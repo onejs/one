@@ -72,16 +72,20 @@ accounts are unavailable).
 ## Status
 
 - **RAN, 2026-09-27:** `One.iOS.Menu.primaryAction` calls SwiftUI's
-  `Menu(content:label:primaryAction:)`. On iPhone 17 Pro / iOS 27.0 with Xcode
-  27.1, the 13-check suite passed at merged source `b58e96c4d` and native
+  `Menu(content:label:primaryAction:)`. On iPhone 16 / iOS 27.0 with Xcode
+  27.1, the 15-check suite passed at merged source `72abae0c6` and native
   build source `60ab9a064`; both commits have native tree
   `3794b6df15a39be9b557c7261992967def52af85`. Short tap dispatched the
   primary callback without opening the menu, long press exposed its native
   item, selection dispatched only the item callback, and disabling blocked
-  both gestures. Six AX/PNG pairs, a side-by-side WebP, the Xcode build log,
+  both gestures. The ordinary Menu still opened on tap and dispatched its
+  item without a primary callback. Eight AX/PNG pairs, a side-by-side WebP, the Xcode build log,
   and built/installed debug-dylib hashes are tracked in
   `tests/native-features/proofs/menu-primary-action`. Context previews,
-  Picker content inside Menu, and other iOS versions remain unproven.
+  Picker content inside Menu, and other iOS versions remain unproven. A
+  broader `tabs-menu` run passed 51 checks before its palette pixel floor
+  rejected a visibly open native palette (`1 < 200`); the failed outcome,
+  screenshot, and AX capture are preserved with the focused proof.
 
 - **RAN, 2026-09-27:** `One.iOS.MeshGradient` calls SwiftUI's
   `MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`

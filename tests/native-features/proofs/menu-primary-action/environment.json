@@ -1,12 +1,12 @@
 {
-  "capturedAtUTC": "2026-09-28T05:00:11.280251+00:00",
+  "capturedAtUTC": "2026-09-28T05:24:13.435228+00:00",
   "host": "MacBook-Pro-9.local",
-  "suiteSourceRevision": "b58e96c4d8947d2fc4c2d7c7a8412920ba67b901",
+  "suiteSourceRevision": "72abae0c650ad0dab6ef15f72278a52b408fd5d0",
   "nativeBuildSourceRevision": "60ab9a064282440000b118a369d758148fcd5e53",
   "nativeSourceTree": "3794b6df15a39be9b557c7261992967def52af85",
   "nativeBuildSourceTree": "3794b6df15a39be9b557c7261992967def52af85",
-  "device": "iPhone 17 Pro",
-  "simulatorId": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "device": "iPhone 16",
+  "simulatorId": "20A4D15A-8E8F-4D08-A8CC-1EBE7417552D",
   "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
   "simulatorState": "Booted",
   "xcode": [
@@ -26,6 +26,6 @@
       "installedSHA256": "327ecba0081551545f93b47f15854006e0f2be79a3b334864adb3fbbe51a538b"
     }
   },
-  "outcomeSHA256": "beb027f48cef3faa7b9b48736759c30abae72cac1b8ab080c22953c573cd8467",
+  "outcomeSHA256": "d9c8a62361d0324f6594f0336ba53c59cfab862b0f46037f54e9f9a89f1f458a",
   "buildLogSHA256": "677cc4d8d0988f10b30368cf35dc1f07a3c2ffa4f2adbef9bb69739768d76e27"
 }

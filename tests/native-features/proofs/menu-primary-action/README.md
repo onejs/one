@@ -1,22 +1,34 @@
 # Menu primary action iOS 27 proof
 
-RAN on pro-128 with Xcode 27.1 and an iPhone 17 Pro running iOS 27.0.
-`outcome.json` records 13 passing checks at suite source
-`b58e96c4d8947d2fc4c2d7c7a8412920ba67b901`. The native build came from
+RAN on pro-128 with Xcode 27.1 and an iPhone 16 running iOS 27.0.
+`outcome.json` records 15 passing checks at suite source
+`72abae0c650ad0dab6ef15f72278a52b408fd5d0`. The native build came from
 `60ab9a064282440000b118a369d758148fcd5e53`; both revisions have the same
 `packages/one/ios` tree,
 `3794b6df15a39be9b557c7261992967def52af85`. After the intervening
 `v2-beta` Vite merge, One's JS package was rebuilt and the suite was rerun
 against that merged source using the unchanged native binary.
 
-Six PNG and compressed AX pairs show the initial state, short tap, long-press
-menu, disabled state before and after touches, and re-enabled state. The
-focused checks prove that a short tap calls `primaryAction` without opening
+Eight PNG and compressed AX pairs show the initial state, short tap, long-press
+menu, disabled state before and after touches, re-enabled state, and an
+ordinary Menu before and after selecting its item. The focused checks prove
+that a short tap calls `primaryAction` without opening
 the menu; a long press opens the native item without a second primary call;
 selecting the item calls `onAction`; disabled Menu accepts neither gesture;
-and re-enabling restores the primary action. `side-by-side.webp` arranges
-initial, tapped, open, and disabled states. The test records the post-touch
-disabled screenshot rather than inferring its state from the pre-touch image.
+and re-enabling restores the primary action. It also proves an ordinary Menu
+still opens on a short tap and sends the item through `onAction` without
+calling the primary callback. `side-by-side.webp` arranges initial, tapped,
+open, disabled, plain-open, and plain-selected states. The test records the
+post-touch disabled screenshot rather than inferring its state from the
+pre-touch image.
+
+RAN: a broader `tabs-menu` run on the suite's required 393×852 iPhone 16
+passed 51 checks, including ordinary Menu items, toggles, nested actions,
+and palette selection, then stopped at its `palette-menu` pixel floor
+(`1 < 200`). `tabs-menu-regression-outcome.json`, `tabs-menu-palette-open.png`,
+and the matching AX capture preserve that result. The screenshot visibly
+shows the native palette open, and AX contains Bold and Italic buttons;
+the full `tabs-menu` suite is not claimed as passing.
 
 `environment.json` was produced from Git, simctl, Xcode, and SHA-256 reads on
 the build host. It records the iOS runtime, light appearance, en_US locale,
@@ -27,12 +39,12 @@ source. The conformance command was:
 
 ```sh
 bun tests/native-features/scripts/one-native-conformance.ts \
-  --simulator-id A9BF26C8-2214-4DC6-AA9E-877B19A49FE9 \
+  --simulator-id 20A4D15A-8E8F-4D08-A8CC-1EBE7417552D \
   --bundle-id dev.vxrn.native.tests --suite menu-primary-action \
   --timeout 45000 \
   --app-path tests/native-features/build/derivedData/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app \
   --js-location 127.0.0.1:8081 \
-  --artifact-dir tests/native-features/build/menu-primary/proof3
+  --artifact-dir tests/native-features/build/menu-primary/proof4
 ```
 
 This proof covers Menu's primary-action initializer on this iOS runtime.
