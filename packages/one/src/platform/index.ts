@@ -93,7 +93,7 @@ export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, Imag
 export { Device } from './device/index'
 export type { DeviceInfo, LocalizationInfo } from './device/index'
 export { Contacts } from './contacts/index'
-export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index'
+export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from './contacts/index'
 export { Calendar } from './calendar/index'
 export type {
   CalendarEvent,

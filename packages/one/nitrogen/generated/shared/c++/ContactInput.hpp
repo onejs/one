@@ -28,10 +28,13 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `ContactPostalAddressInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 
 #include <string>
 #include <vector>
+#include "ContactPostalAddressInput.hpp"
+#include <optional>
 
 namespace margelo::nitro::one {
 
@@ -44,10 +47,11 @@ namespace margelo::nitro::one {
     std::string familyName     SWIFT_PRIVATE;
     std::vector<std::string> phoneNumbers     SWIFT_PRIVATE;
     std::vector<std::string> emailAddresses     SWIFT_PRIVATE;
+    std::optional<std::vector<ContactPostalAddressInput>> postalAddresses     SWIFT_PRIVATE;
 
   public:
     ContactInput() = default;
-    explicit ContactInput(std::string givenName, std::string familyName, std::vector<std::string> phoneNumbers, std::vector<std::string> emailAddresses): givenName(givenName), familyName(familyName), phoneNumbers(phoneNumbers), emailAddresses(emailAddresses) {}
+    explicit ContactInput(std::string givenName, std::string familyName, std::vector<std::string> phoneNumbers, std::vector<std::string> emailAddresses, std::optional<std::vector<ContactPostalAddressInput>> postalAddresses): givenName(givenName), familyName(familyName), phoneNumbers(phoneNumbers), emailAddresses(emailAddresses), postalAddresses(postalAddresses) {}
 
   public:
     friend bool operator==(const ContactInput& lhs, const ContactInput& rhs) = default;
@@ -66,7 +70,8 @@ namespace margelo::nitro {
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "givenName"))),
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "familyName"))),
         JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "phoneNumbers"))),
-        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses")))
+        JSIConverter<std::vector<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses"))),
+        JSIConverter<std::optional<std::vector<margelo::nitro::one::ContactPostalAddressInput>>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "postalAddresses")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::ContactInput& arg) {
@@ -75,6 +80,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "familyName"), JSIConverter<std::string>::toJSI(runtime, arg.familyName));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "phoneNumbers"), JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.phoneNumbers));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses"), JSIConverter<std::vector<std::string>>::toJSI(runtime, arg.emailAddresses));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "postalAddresses"), JSIConverter<std::optional<std::vector<margelo::nitro::one::ContactPostalAddressInput>>>::toJSI(runtime, arg.postalAddresses));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -89,6 +95,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "familyName")))) return false;
       if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "phoneNumbers")))) return false;
       if (!JSIConverter<std::vector<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "emailAddresses")))) return false;
+      if (!JSIConverter<std::optional<std::vector<margelo::nitro::one::ContactPostalAddressInput>>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "postalAddresses")))) return false;
       return true;
     }
   };

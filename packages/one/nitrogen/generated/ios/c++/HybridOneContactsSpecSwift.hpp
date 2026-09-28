@@ -16,8 +16,12 @@ namespace One { class HybridOneContactsSpec_cxx; }
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 // Forward declaration of `ContactInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInfo; }
+// Forward declaration of `ContactPostalAddress` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactInput` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInput; }
+// Forward declaration of `ContactPostalAddressInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 // Forward declaration of `ContactChanges` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactChanges; }
 
@@ -26,9 +30,11 @@ namespace margelo::nitro::one { struct ContactChanges; }
 #include "ContactInfo.hpp"
 #include <vector>
 #include <string>
+#include "ContactPostalAddress.hpp"
 #include "ContactInput.hpp"
-#include "ContactChanges.hpp"
+#include "ContactPostalAddressInput.hpp"
 #include <optional>
+#include "ContactChanges.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 

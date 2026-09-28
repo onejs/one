@@ -18,7 +18,7 @@ public extension ContactChanges {
   /**
    * Create a new instance of `ContactChanges`.
    */
-  init(givenName: String?, familyName: String?, phoneNumbers: [String]?, emailAddresses: [String]?) {
+  init(givenName: String?, familyName: String?, phoneNumbers: [String]?, emailAddresses: [String]?, postalAddresses: [ContactPostalAddressInput]?) {
     self.init({ () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = givenName {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -49,6 +49,18 @@ public extension ContactChanges {
           var __vector = bridge.create_std__vector_std__string_(__unwrappedValue.count)
           for __item in __unwrappedValue {
             __vector.push_back(std.string(__item))
+          }
+          return __vector
+        }())
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__vector_ContactPostalAddressInput__ in
+      if let __unwrappedValue = postalAddresses {
+        return bridge.create_std__optional_std__vector_ContactPostalAddressInput__({ () -> bridge.std__vector_ContactPostalAddressInput_ in
+          var __vector = bridge.create_std__vector_ContactPostalAddressInput_(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(__item)
           }
           return __vector
         }())
@@ -100,6 +112,18 @@ public extension ContactChanges {
       if bridge.has_value_std__optional_std__vector_std__string__(self.__emailAddresses) {
         let __unwrapped = bridge.get_std__optional_std__vector_std__string__(self.__emailAddresses)
         return __unwrapped.map({ __item in String(__item) })
+      } else {
+        return nil
+      }
+    }()
+  }
+
+  @inline(__always)
+  var postalAddresses: [ContactPostalAddressInput]? {
+    return { () -> [ContactPostalAddressInput]? in
+      if bridge.has_value_std__optional_std__vector_ContactPostalAddressInput__(self.__postalAddresses) {
+        let __unwrapped = bridge.get_std__optional_std__vector_ContactPostalAddressInput__(self.__postalAddresses)
+        return __unwrapped.map({ __item in __item })
       } else {
         return nil
       }
