@@ -85,6 +85,9 @@
     "OneKeepAwake": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneKeepAwake" }
     },
+    "OnePrint": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOnePrint" }
+    },
     "OneLocation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },

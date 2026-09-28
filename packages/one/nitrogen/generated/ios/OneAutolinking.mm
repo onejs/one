@@ -30,6 +30,7 @@
 #include "HybridOneProtectedStoreSpecSwift.hpp"
 #include "HybridOnePreferencesSpecSwift.hpp"
 #include "HybridOneKeepAwakeSpecSwift.hpp"
+#include "HybridOnePrintSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
@@ -197,6 +198,13 @@
     "OneKeepAwake",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneKeepAwakeSpec> hybridObject = One::OneAutolinking::createOneKeepAwake();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OnePrint",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOnePrintSpec> hybridObject = One::OneAutolinking::createOnePrint();
       return hybridObject;
     }
   );

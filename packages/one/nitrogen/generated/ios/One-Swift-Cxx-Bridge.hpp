@@ -172,6 +172,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOnePreferencesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOnePreferencesSpec; }
+// Forward declaration of `HybridOnePrintSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOnePrintSpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 // Forward declaration of `HybridOnePurchasesSpec` to properly resolve imports.
@@ -280,6 +282,8 @@ namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `PrintResult` to properly resolve imports.
+namespace margelo::nitro::one { struct PrintResult; }
 // Forward declaration of `PurchaseProductType` to properly resolve imports.
 namespace margelo::nitro::one { enum class PurchaseProductType; }
 // Forward declaration of `PurchaseProduct` to properly resolve imports.
@@ -386,6 +390,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOnePreferencesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOnePreferencesSpec_cxx; }
+// Forward declaration of `HybridOnePrintSpec_cxx` to properly resolve imports.
+namespace One { class HybridOnePrintSpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
 // Forward declaration of `HybridOnePurchasesSpec_cxx` to properly resolve imports.
@@ -485,6 +491,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOnePreferencesSpec.hpp"
+#include "HybridOnePrintSpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOnePurchasesSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
@@ -539,6 +546,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
+#include "PrintResult.hpp"
 #include "PurchaseProduct.hpp"
 #include "PurchaseProductType.hpp"
 #include "PurchaseResult.hpp"
@@ -4316,6 +4324,61 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<std::string>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<PrintResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<PrintResult>>`.
+   */
+  using std__shared_ptr_Promise_PrintResult__ = std::shared_ptr<Promise<PrintResult>>;
+  inline std::shared_ptr<Promise<PrintResult>> create_std__shared_ptr_Promise_PrintResult__() noexcept {
+    return Promise<PrintResult>::create();
+  }
+  inline PromiseHolder<PrintResult> wrap_std__shared_ptr_Promise_PrintResult__(std::shared_ptr<Promise<PrintResult>> promise) noexcept {
+    return PromiseHolder<PrintResult>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const PrintResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const PrintResult&)>`.
+   */
+  using Func_void_PrintResult = std::function<void(const PrintResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const PrintResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_PrintResult_Wrapper final {
+  public:
+    explicit Func_void_PrintResult_Wrapper(std::function<void(const PrintResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const PrintResult& /* result */)>>(std::move(func))) {}
+    inline void call(PrintResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const PrintResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PrintResult create_Func_void_PrintResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PrintResult_Wrapper wrap_Func_void_PrintResult(Func_void_PrintResult value) noexcept {
+    return Func_void_PrintResult_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOnePrintSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOnePrintSpec>`.
+   */
+  using std__shared_ptr_HybridOnePrintSpec_ = std::shared_ptr<HybridOnePrintSpec>;
+  std::shared_ptr<HybridOnePrintSpec> create_std__shared_ptr_HybridOnePrintSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOnePrintSpec_(std__shared_ptr_HybridOnePrintSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOnePrintSpec>
+  using std__weak_ptr_HybridOnePrintSpec_ = std::weak_ptr<HybridOnePrintSpec>;
+  inline std__weak_ptr_HybridOnePrintSpec_ weakify_std__shared_ptr_HybridOnePrintSpec_(const std::shared_ptr<HybridOnePrintSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<PrintResult>>>
+  using Result_std__shared_ptr_Promise_PrintResult___ = Result<std::shared_ptr<Promise<PrintResult>>>;
+  inline Result_std__shared_ptr_Promise_PrintResult___ create_Result_std__shared_ptr_Promise_PrintResult___(const std::shared_ptr<Promise<PrintResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<PrintResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_PrintResult___ create_Result_std__shared_ptr_Promise_PrintResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<PrintResult>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneProtectedStoreSpec>

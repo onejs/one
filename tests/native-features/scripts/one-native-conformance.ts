@@ -115,6 +115,7 @@ const suites = [
   'secure-store',
   'preferences',
   'keep-awake',
+  'print',
   'clipboard',
   'network',
   'browser',
@@ -566,6 +567,8 @@ const preferencesLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-preferences-run')) && has(nodes, 'Persisted: ')
 const keepAwakeLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-keep-awake-run')) && has(nodes, 'Status: ')
+const printLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-print-run')) && has(nodes, 'Status: ')
 const databaseLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-database-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
@@ -729,6 +732,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'secure-store': secureStoreLoaded,
   preferences: preferencesLoaded,
   'keep-awake': keepAwakeLoaded,
+  print: printLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -829,6 +833,7 @@ const suiteHome: Record<Suite, string> = {
   'secure-store': 'nav-one-native-secure-store',
   preferences: 'nav-one-native-preferences',
   'keep-awake': 'nav-one-native-keep-awake',
+  print: 'nav-one-native-print',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -1235,7 +1240,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited' ||
-      config.suite === 'preferences' || config.suite === 'keep-awake') {
+      config.suite === 'preferences' || config.suite === 'keep-awake' ||
+      config.suite === 'print') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; native contract suites need the freshly built app rather than a stale install.
@@ -8722,6 +8728,42 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       console.log(`PASS keep-awake-${expected.split(':')[0].toLowerCase()}`)
     }
     screenshot('keep-awake-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'print') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-print')
+    await wait('print fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-print-run' })
+    await wait('system print options and PDF preview open', (n) =>
+      has(n, 'Options') && has(n, 'Cancel') && has(n, 'Printer') &&
+      has(n, 'No Printer Selected') && has(n, 'US Letter') && has(n, 'Page 1 of 1'))
+    screenshot('print-sheet.png')
+    tap({ label: 'Cancel' })
+    const state = await wait('print cancellation and invalid cases settle', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    for (const expected of [
+      'Available: true',
+      'PdfBytes: 632',
+      'Busy: E_PRINT_BUSY',
+      'Completed: false',
+      'RemoteURI: E_PRINT_URI',
+      'Missing: E_PRINT_FILE',
+      'BadPDF: E_PRINT_PDF',
+      'InvalidType: Print.printPdf: fileUri must be a non-empty string',
+      'InvalidName: Print.printPdf: jobName must be a non-empty string when provided',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`print expected ${expected}`)
+      console.log(`PASS print-${expected.split(':')[0].toLowerCase()}`)
+    }
+    if (got.includes('Options') || got.includes('No Printer Selected'))
+      throw new Error('system print sheet remained presented after cancellation')
+    screenshot('print-cancelled.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
