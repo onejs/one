@@ -7,7 +7,7 @@
     "build:web": "one build",
     "dev": "one dev",
     "ios": "one run:ios",
-    "prebuild:native": "one prebuild && bun scripts/prepare-ios-audio-interruption.ts",
+    "prebuild:native": "one prebuild && bun scripts/prepare-ios-audio-interruption.ts && bun scripts/prepare-ios-background-tasks.ts",
     "test-rnx:one-native-android": "bun scripts/one-native-conformance.rnx.ts",
     "test-ios": "bun run test-ios:dev && bun run test-ios:prod",
     "test-ios:dev": "TEST_ONLY=dev TEST_ENV=dev DEV_PORT=8081 vitest --config ./vitest.config.ios.ts --run",

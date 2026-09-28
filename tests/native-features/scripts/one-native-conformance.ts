@@ -51,6 +51,7 @@ const suites = [
   'app-info',
   'device',
   'motion',
+  'background-tasks',
   'device-attestation',
   'gestures',
   'screen-orientation',
@@ -658,6 +659,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'app-info': appInfoLoaded,
   device: deviceLoaded,
   motion: (nodes: Node[]) => Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
+  'background-tasks': (nodes: Node[]) => Boolean(id(nodes, 'one-native-background-tasks-run')) && has(nodes, 'Schedule: '),
   'device-attestation': (nodes: Node[]) => Boolean(id(nodes, 'one-native-device-attestation-read')) && has(nodes, 'Availability: '),
   gestures: (nodes: Node[]) => Boolean(id(nodes, 'one-native-gestures-box')) && has(nodes, 'Drag: '),
   'screen-orientation': screenOrientationLoaded,
@@ -756,6 +758,7 @@ const suiteHome: Record<Suite, string> = {
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
   motion: 'nav-one-native-motion',
+  'background-tasks': 'nav-one-native-background-tasks',
   'device-attestation': 'nav-one-native-device-attestation',
   gestures: 'nav-one-native-gestures',
   'screen-orientation': 'nav-one-native-screen-orientation',
@@ -1210,6 +1213,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
       config.suite === 'screen-capture' || config.suite === 'motion' ||
+      config.suite === 'background-tasks' ||
       config.suite === 'device-attestation' ||
       config.suite === 'gestures' ||
       config.suite === 'launch-screen' ||
@@ -3286,6 +3290,66 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-motion-stop' })
     screenshot('motion-availability.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'background-tasks') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-background-tasks')
+    await wait('background tasks fixture mounts', (n) =>
+      labels(n).includes('Schedule: pending') && labels(n).includes('Callback: pending')
+    )
+    tap({ id: 'one-native-background-tasks-run' })
+    await wait('BGTaskScheduler reports simulator unavailability and native query/cancel still work', (n) =>
+      labels(n).includes(
+        'Schedule: refresh=E_BACKGROUND_TASK_SUBMIT pending=false cancelled=true processing=E_BACKGROUND_TASK_SUBMIT pending=false cancelled=true invalid=E_BACKGROUND_TASK_INPUT'
+      )
+    )
+    const openTask = (path: string) => {
+      execFileSync('xcrun', [
+        'simctl', 'openurl', config.simulatorId, `nativefeatures://background-task/${path}`,
+      ], { stdio: 'ignore', timeout: 30_000 })
+      if (labels(snapshot(config.simulatorId)).includes('Open in “NativeFeatureTests”?'))
+        tap({ label: 'Open' })
+    }
+    const dataContainer = execFileSync('xcrun', [
+      'simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data',
+    ], { encoding: 'utf8', timeout: 30_000 }).trim()
+    const preferences = path.join(dataContainer, 'Library/Preferences', `${config.bundleId}.plist`)
+    const completed = () => {
+      if (!fs.existsSync(preferences)) return ''
+      try {
+        return execFileSync('plutil', [
+          '-extract', 'OneBackgroundTaskProof', 'raw', '-o', '-', preferences,
+        ], { encoding: 'utf8', timeout: 10_000 }).trim()
+      } catch { return '' }
+    }
+    openTask('refresh')
+    await wait('injected refresh completed natively', () =>
+      completed() === 'dev.vxrn.native.tests.refresh:true'
+    )
+    tap({ id: 'one-native-background-tasks-read' })
+    await wait('headless task delivery reaches the JS setup handler', (n) =>
+      labels(n).includes('Callback: refresh:dev.vxrn.native.tests.refresh') &&
+      completed() === 'dev.vxrn.native.tests.refresh:true'
+    )
+    openTask('processing')
+    await wait('processing delivery reaches JS before expiration', (n) => {
+      if (labels(n).includes('Callback: started:dev.vxrn.native.tests.processing')) return true
+      tap({ id: 'one-native-background-tasks-read' })
+      return false
+    })
+    openTask('expire')
+    await wait('injected processing expired natively', () =>
+      completed() === 'dev.vxrn.native.tests.processing:false'
+    )
+    tap({ id: 'one-native-background-tasks-read' })
+    const final = await wait('expiration aborts JS and settles native failure', (n) =>
+      labels(n).includes('Callback: expired:dev.vxrn.native.tests.processing') &&
+      completed() === 'dev.vxrn.native.tests.processing:false'
+    )
+    screenshot('background-tasks.png', final)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
