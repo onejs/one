@@ -18,10 +18,16 @@ public extension ReminderInfo {
   /**
    * Create a new instance of `ReminderInfo`.
    */
-  init(identifier: String, title: String, completed: Bool, dueMs: Double?) {
+  init(identifier: String, title: String, completed: Bool, dueMs: Double?, recurrence: CalendarRecurrence?) {
     self.init(std.string(identifier), std.string(title), completed, { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = dueMs {
         return bridge.create_std__optional_double_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_CalendarRecurrence_ in
+      if let __unwrappedValue = recurrence {
+        return bridge.create_std__optional_CalendarRecurrence_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -32,17 +38,17 @@ public extension ReminderInfo {
   var identifier: String {
     return String(self.__identifier)
   }
-  
+
   @inline(__always)
   var title: String {
     return String(self.__title)
   }
-  
+
   @inline(__always)
   var completed: Bool {
     return self.__completed
   }
-  
+
   @inline(__always)
   var dueMs: Double? {
     return { () -> Double? in
@@ -53,5 +59,10 @@ public extension ReminderInfo {
         return nil
       }
     }()
+  }
+
+  @inline(__always)
+  var recurrence: CalendarRecurrence? {
+    return self.__recurrence.value
   }
 }

@@ -63,6 +63,27 @@ or deletion. Pass one or more of `title`, `startMs`, `endMs`, `allDay`, or
 `location`; omitted fields keep their current values. Pass an empty location to
 clear it. Ask the person before creating, editing, or deleting an event.
 
+To create a repeating event, pass a `recurrence` rule to `create`:
+
+```tsx
+await One.iOS.Calendar.create({
+  title: 'Review notes',
+  startMs,
+  endMs: startMs + 3_600_000,
+  recurrence: { frequency: 'weekly', interval: 2, occurrenceCount: 8 },
+})
+```
+
+The frequency is `daily`, `weekly`, `monthly`, or `yearly`; `interval` defaults
+to 1. Choose at most one end: `occurrenceCount` or `endDateMs`. Leave both out
+for an ongoing series. The interval must be a whole number from 1 to 1,000;
+the occurrence count must be a whole number from 1 to 10,000. `list` includes
+the rule in each occurrence's optional `recurrence` field. `update` and
+`delete` change only the selected occurrence, not the whole series. Use the
+occurrence's own `startMs` when changing it.
+[Apple's EventKit recurrence guide](https://developer.apple.com/documentation/eventkit/creating-a-recurring-event)
+describes these rules.
+
 ## Reminders
 
 `getRemindersPermissionStatus()` reads reminders access without a prompt.
@@ -89,6 +110,12 @@ from 1 to 500. Each item has an identifier, title, completion flag, and
 optional due time in Unix milliseconds. `createReminder` saves to
 the default writable reminders list. Ask the person before changing or
 deleting reminders.
+
+`createReminder` accepts the same optional `recurrence` rule as events when
+`dueMs` is supplied. A listed reminder includes its rule in `recurrence`.
+EventKit exposes [only the first incomplete reminder in a repeating set](https://developer.apple.com/documentation/eventkit/creating-a-recurring-event),
+so completing it makes the next due reminder available. Use `listReminders`
+again after completion to read the new occurrence.
 
 Missing reminders purpose text rejects with `E_REMINDERS_MANIFEST`; missing
 full access with `E_REMINDERS_PERMISSION`; invalid input with

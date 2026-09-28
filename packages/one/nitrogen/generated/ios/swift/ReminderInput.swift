@@ -18,10 +18,16 @@ public extension ReminderInput {
   /**
    * Create a new instance of `ReminderInput`.
    */
-  init(title: String, dueMs: Double?) {
+  init(title: String, dueMs: Double?, recurrence: CalendarRecurrence?) {
     self.init(std.string(title), { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = dueMs {
         return bridge.create_std__optional_double_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_CalendarRecurrence_ in
+      if let __unwrappedValue = recurrence {
+        return bridge.create_std__optional_CalendarRecurrence_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -32,7 +38,7 @@ public extension ReminderInput {
   var title: String {
     return String(self.__title)
   }
-  
+
   @inline(__always)
   var dueMs: Double? {
     return { () -> Double? in
@@ -43,5 +49,10 @@ public extension ReminderInput {
         return nil
       }
     }()
+  }
+
+  @inline(__always)
+  var recurrence: CalendarRecurrence? {
+    return self.__recurrence.value
   }
 }

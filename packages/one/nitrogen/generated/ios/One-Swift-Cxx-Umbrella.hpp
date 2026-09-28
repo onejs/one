@@ -70,6 +70,10 @@ namespace margelo::nitro::one { struct CalendarEventInput; }
 namespace margelo::nitro::one { struct CalendarEvent; }
 // Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
+// Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
+namespace margelo::nitro::one { enum class CalendarRecurrenceFrequency; }
+// Forward declaration of `CalendarRecurrence` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarRecurrence; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
@@ -345,6 +349,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "CalendarEventChanges.hpp"
 #include "CalendarEventInput.hpp"
 #include "CalendarPermissionStatus.hpp"
+#include "CalendarRecurrence.hpp"
+#include "CalendarRecurrenceFrequency.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 #include "ContactChanges.hpp"

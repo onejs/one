@@ -3377,7 +3377,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       has(n, 'Status: done') &&
       has(
         n,
-        'Result: before=E_CALENDAR_PERMISSION; matched=true; updated=true; removed=true; notFound=E_CALENDAR_NOT_FOUND; invalidUpdate=E_CALENDAR_INPUT; invalid=E_CALENDAR_INPUT'
+        'Result: before=E_CALENDAR_PERMISSION; matched=true; updated=true; removed=true; notFound=E_CALENDAR_NOT_FOUND; invalidUpdate=E_CALENDAR_INPUT; invalid=E_CALENDAR_INPUT; recurrenceListed=true; recurrenceRemoved=true; invalidRecurrence=E_CALENDAR_INPUT'
       )
     )
     screenshot('calendar-round-trip.png')
@@ -3412,7 +3412,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       has(n, 'Reminders status: done') &&
       has(
         n,
-        'Reminders result: before=E_REMINDERS_PERMISSION; matched=true; completedHidden=true; updated=true; removed=true; notFound=E_REMINDERS_NOT_FOUND; invalid=E_REMINDERS_INPUT; invalidLimit=E_REMINDERS_INPUT'
+        'Reminders result: before=E_REMINDERS_PERMISSION; matched=true; completedHidden=true; updated=true; removed=true; notFound=E_REMINDERS_NOT_FOUND; invalid=E_REMINDERS_INPUT; invalidLimit=E_REMINDERS_INPUT; recurrenceListed=true; recurrenceRemoved=true; invalidRecurrence=E_REMINDERS_INPUT'
       )
     )
     screenshot('reminders-round-trip.png')

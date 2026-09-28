@@ -3,11 +3,13 @@ import type {
   CalendarEventChanges,
   CalendarEventInput as NativeCalendarEventInput,
   CalendarPermissionStatus,
+  CalendarRecurrence,
+  CalendarRecurrenceFrequency,
   ReminderInfo,
   ReminderInput,
 } from '../specs/OneCalendar.nitro'
 
-export type { CalendarEvent, CalendarEventChanges, CalendarPermissionStatus, ReminderInfo, ReminderInput }
+export type { CalendarEvent, CalendarEventChanges, CalendarPermissionStatus, CalendarRecurrence, CalendarRecurrenceFrequency, ReminderInfo, ReminderInput }
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
   allDay?: boolean
 }

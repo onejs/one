@@ -95,7 +95,40 @@ export default function OneNativeCalendar() {
       } catch (error) {
         invalid = code(error)
       }
-      setResult(`before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}`)
+      const dayMs = 86_400_000
+      const recurrenceStartMs = Date.now() + 14 * dayMs
+      const recurrenceTitle = `One recurrence proof ${recurrenceStartMs}`
+      await One.iOS.Calendar.create({
+        title: recurrenceTitle,
+        startMs: recurrenceStartMs,
+        endMs: recurrenceStartMs + 3_600_000,
+        recurrence: { frequency: 'daily', interval: 2, occurrenceCount: 3 },
+      })
+      const recurringEvents = (await One.iOS.Calendar.list(
+        recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100
+      )).filter((event) => event.title === recurrenceTitle)
+      const recurrenceListed = recurringEvents.length === 3 && recurringEvents.every((event, index) =>
+        Math.abs(event.startMs - (recurrenceStartMs + index * 2 * dayMs)) < 1000 &&
+        event.recurrence?.frequency === 'daily' && event.recurrence.interval === 2 &&
+        event.recurrence.occurrenceCount === 3
+      )
+      for (const event of [...recurringEvents].reverse()) {
+        await One.iOS.Calendar.delete(event.identifier, event.startMs)
+      }
+      const recurrenceRemoved = !(await One.iOS.Calendar.list(
+        recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100
+      )).some((event) => event.title === recurrenceTitle)
+      let invalidRecurrence = 'none'
+      try {
+        await One.iOS.Calendar.create({
+          title: 'Invalid recurrence', startMs: recurrenceStartMs,
+          endMs: recurrenceStartMs + 3_600_000,
+          recurrence: { frequency: 'daily', interval: 0, occurrenceCount: 3 },
+        })
+      } catch (error) {
+        invalidRecurrence = code(error)
+      }
+      setResult(`before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; invalidRecurrence=${invalidRecurrence}`)
       setStatus('done')
     } catch (error) {
       setStatus(`failed ${code(error)}`)
@@ -155,8 +188,34 @@ export default function OneNativeCalendar() {
       } catch (error) {
         invalidLimit = code(error)
       }
+      const recurringDueMs = Date.now() + 14 * 86_400_000
+      const recurringTitle = `One recurring reminder ${recurringDueMs}`
+      const recurringIdentifier = await One.iOS.Calendar.createReminder({
+        title: recurringTitle,
+        dueMs: recurringDueMs,
+        recurrence: { frequency: 'daily', interval: 2, occurrenceCount: 3 },
+      })
+      const recurring = (await One.iOS.Calendar.listReminders(100)).find(
+        (item) => item.identifier === recurringIdentifier && item.title === recurringTitle
+      )
+      const recurrenceListed = recurring?.recurrence?.frequency === 'daily' &&
+        recurring.recurrence.interval === 2 && recurring.recurrence.occurrenceCount === 3 &&
+        Math.abs((recurring.dueMs ?? 0) - recurringDueMs) < 1000
+      await One.iOS.Calendar.deleteReminder(recurringIdentifier)
+      const recurrenceRemoved = !(await One.iOS.Calendar.listReminders(100, true)).some(
+        (item) => item.title === recurringTitle
+      )
+      let invalidRecurrence = 'none'
+      try {
+        await One.iOS.Calendar.createReminder({
+          title: 'Invalid recurring reminder',
+          recurrence: { frequency: 'daily', occurrenceCount: 3 },
+        })
+      } catch (error) {
+        invalidRecurrence = code(error)
+      }
       setReminderResult(
-        `before=${before}; matched=${matched}; completedHidden=${completedHidden}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalid=${invalid}; invalidLimit=${invalidLimit}`
+        `before=${before}; matched=${matched}; completedHidden=${completedHidden}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalid=${invalid}; invalidLimit=${invalidLimit}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; invalidRecurrence=${invalidRecurrence}`
       )
       setReminderStatus('done')
     } catch (error) {

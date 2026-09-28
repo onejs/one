@@ -28,10 +28,12 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `CalendarRecurrence` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarRecurrence; }
 
 #include <string>
 #include <optional>
+#include "CalendarRecurrence.hpp"
 
 namespace margelo::nitro::one {
 
@@ -44,10 +46,11 @@ namespace margelo::nitro::one {
     std::string title     SWIFT_PRIVATE;
     bool completed     SWIFT_PRIVATE;
     std::optional<double> dueMs     SWIFT_PRIVATE;
+    std::optional<CalendarRecurrence> recurrence     SWIFT_PRIVATE;
 
   public:
     ReminderInfo() = default;
-    explicit ReminderInfo(std::string identifier, std::string title, bool completed, std::optional<double> dueMs): identifier(identifier), title(title), completed(completed), dueMs(dueMs) {}
+    explicit ReminderInfo(std::string identifier, std::string title, bool completed, std::optional<double> dueMs, std::optional<CalendarRecurrence> recurrence): identifier(identifier), title(title), completed(completed), dueMs(dueMs), recurrence(recurrence) {}
 
   public:
     friend bool operator==(const ReminderInfo& lhs, const ReminderInfo& rhs) = default;
@@ -66,7 +69,8 @@ namespace margelo::nitro {
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "identifier"))),
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "title"))),
         JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "completed"))),
-        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "dueMs")))
+        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "dueMs"))),
+        JSIConverter<std::optional<margelo::nitro::one::CalendarRecurrence>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "recurrence")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::ReminderInfo& arg) {
@@ -75,6 +79,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "title"), JSIConverter<std::string>::toJSI(runtime, arg.title));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "completed"), JSIConverter<bool>::toJSI(runtime, arg.completed));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "dueMs"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.dueMs));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "recurrence"), JSIConverter<std::optional<margelo::nitro::one::CalendarRecurrence>>::toJSI(runtime, arg.recurrence));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -89,6 +94,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "title")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "completed")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "dueMs")))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::one::CalendarRecurrence>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "recurrence")))) return false;
       return true;
     }
   };
