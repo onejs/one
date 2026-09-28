@@ -352,6 +352,7 @@
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
+        "OneNativeCamera": "OneNativeCameraComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",

@@ -169,6 +169,10 @@ export type { LocationPermissionStatus, LocationPosition, LocationPlace, Locatio
 export { FileSystem } from './file-system/index.native'
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index.native'
 export { Audio } from './audio/index.native'
+export { CameraView } from './camera/index.native'
+export type {
+  CameraCode, CameraCodeType, CameraFacing, CameraState, CameraViewProps,
+} from './camera/index.native'
 export type {
   AudioPlaybackState,
   AudioPlaybackStatus,

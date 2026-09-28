@@ -27,6 +27,8 @@ export type { LocationPermissionStatus, LocationPosition, LocationPlace, Locatio
 export { FileSystem } from './file-system/index';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index';
 export { Audio } from './audio/index';
+export { CameraView } from './camera/index';
+export type { CameraCode, CameraCodeType, CameraFacing, CameraState, CameraViewProps, } from './camera/index';
 export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index';
 export { Share } from './share/index';
 export { Open } from './open/index';

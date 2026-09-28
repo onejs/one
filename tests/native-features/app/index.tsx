@@ -201,6 +201,11 @@ const testScreens = [
     testID: 'nav-one-native-image-picker',
   },
   {
+    href: '/one-native-camera',
+    label: 'One Native Camera',
+    testID: 'nav-one-native-camera',
+  },
+  {
     href: '/one-native-document-picker',
     label: 'One Native Document Picker',
     testID: 'nav-one-native-document-picker',
