@@ -2307,6 +2307,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
           `${additions.map(([key, text]) => `\t<key>${key}</key>\n\t<string>${escapeXml(text)}</string>\n`).join('')}${anchor}`
         )
       }
+      // the template ships an empty location purpose string; an empty one is
+      // never valid, so a key the manifest did not fill leaves the plist.
+      rendered = rendered.replace(
+        /\t<key>NS\w+UsageDescription<\/key>\s*<string><\/string>\n/g,
+        ''
+      )
       rendered = patchIosInfoPlistSceneManifest(rendered)
     }
     if (platform === 'ios' && relativePath.endsWith('/AppDelegate.swift')) {

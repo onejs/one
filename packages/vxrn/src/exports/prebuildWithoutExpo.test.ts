@@ -265,6 +265,15 @@ ${APP_DELEGATE_PBXPROJ}`,
       '<key>NSLocationWhenInUseUsageDescription</key>\n\t<string>Find nearby cafés &amp; parks</string>'
     )
 
+    const noLocationPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content:
+        '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>NSLocationWhenInUseUsageDescription</key>\n\t<string></string>\n</dict>',
+      platform: 'ios',
+      app,
+    })
+    expect(noLocationPlist.content).not.toContain('NSLocationWhenInUseUsageDescription')
+
     const photoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content:
