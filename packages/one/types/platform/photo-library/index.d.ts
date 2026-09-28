@@ -19,9 +19,11 @@ export declare const PhotoLibrary: Readonly<{
     setFavorite: (_identifier: string, _favorite: boolean) => Promise<void>;
     deleteAsset: (_identifier: string) => Promise<void>;
     replaceImageContent: (_identifier: string, _uri: string) => Promise<void>;
+    replaceVideoContent: (_identifier: string, _uri: string) => Promise<void>;
     revertAssetContent: (_identifier: string) => Promise<void>;
     exportOriginalAsset: (_identifier: string, _allowNetwork?: boolean) => Promise<string>;
     exportCurrentImage: (_identifier: string, _allowNetwork?: boolean) => Promise<string>;
+    exportCurrentVideo: (_identifier: string, _allowNetwork?: boolean) => Promise<string>;
     saveImage: (_uri: string) => Promise<string>;
     saveVideo: (_uri: string) => Promise<string>;
 }>;

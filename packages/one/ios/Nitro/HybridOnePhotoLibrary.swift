@@ -1,4 +1,5 @@
 import NitroModules
+import AVFoundation
 import ImageIO
 import Photos
 import UIKit
@@ -319,41 +320,101 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
           throw Self.error("E_PHOTO_LIBRARY_INPUT",
             "PhotoLibrary.replaceImageContent: an upright JPEG file is required")
         }
-        let options = PHContentEditingInputRequestOptions()
-        options.canHandleAdjustmentData = { _ in false }
-        options.isNetworkAccessAllowed = false
-        asset.requestContentEditingInput(with: options) { input, _ in
-          guard let input else {
-            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
-              "PhotoLibrary.replaceImageContent: Photos could not open the editing input"))
-            return
-          }
-          do {
-            let output = PHContentEditingOutput(contentEditingInput: input)
-            try FileManager.default.copyItem(at: source, to: output.renderedContentURL)
-            output.adjustmentData = PHAdjustmentData(
-              formatIdentifier: "dev.onejs.photo-library.replace-image",
-              formatVersion: "1", data: Data("replace-image".utf8))
-            PHPhotoLibrary.shared().performChanges {
-              PHAssetChangeRequest(for: asset).contentEditingOutput = output
-            } completionHandler: { success, error in
-              if success {
-                promise.resolve()
-              } else {
-                promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
-                  "PhotoLibrary.replaceImageContent: \(error?.localizedDescription ?? "Photos rejected the edit")"))
-              }
-            }
-          } catch {
-            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
-              "PhotoLibrary.replaceImageContent: \(error.localizedDescription)"))
-          }
+        Self.commitLocalContentEdit(asset, source: source, operation: "replaceImageContent",
+          adjustmentKind: "replace-image", promise: promise)
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func replaceVideoContent(identifier: String, uri: String) throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    Task {
+      do {
+        let asset = try Self.readableAsset(identifier, "replaceVideoContent")
+        guard asset.mediaType == .video, asset.canPerform(.content) else {
+          throw Self.error("E_PHOTO_LIBRARY_UNSUPPORTED",
+            "PhotoLibrary.replaceVideoContent: a writable video is required")
+        }
+        let source = try Self.validFileURL(uri, "replaceVideoContent")
+        let header: Data?
+        do {
+          let handle = try FileHandle(forReadingFrom: source)
+          defer { try? handle.close() }
+          header = try handle.read(upToCount: 12)
+        } catch {
+          throw Self.error("E_PHOTO_LIBRARY_INPUT",
+            "PhotoLibrary.replaceVideoContent: the QuickTime movie could not be read")
+        }
+        guard source.pathExtension.lowercased() == "mov",
+          header?.count == 12,
+          header?[4..<12] == Data("ftypqt  ".utf8) else {
+          throw Self.error("E_PHOTO_LIBRARY_INPUT",
+            "PhotoLibrary.replaceVideoContent: an upright QuickTime .mov file is required")
+        }
+        let sourceAsset = AVURLAsset(url: source)
+        let validMovie: Bool
+        do {
+          let tracks = try await sourceAsset.loadTracks(withMediaType: .video)
+          let duration = try await sourceAsset.load(.duration)
+          let seconds = CMTimeGetSeconds(duration)
+          let upright = try await tracks.first?.load(.preferredTransform) == .identity
+          validMovie = upright && seconds.isFinite && seconds > 0
+        } catch {
+          throw Self.error("E_PHOTO_LIBRARY_INPUT",
+            "PhotoLibrary.replaceVideoContent: the QuickTime movie could not be read")
+        }
+        guard validMovie else {
+          throw Self.error("E_PHOTO_LIBRARY_INPUT",
+            "PhotoLibrary.replaceVideoContent: a playable upright video is required")
+        }
+        DispatchQueue.main.async {
+          Self.commitLocalContentEdit(asset, source: source, operation: "replaceVideoContent",
+            adjustmentKind: "replace-video", promise: promise)
         }
       } catch {
         promise.reject(withError: error)
       }
     }
     return promise
+  }
+
+  private static func commitLocalContentEdit(
+    _ asset: PHAsset, source: URL, operation: String, adjustmentKind: String,
+    promise: Promise<Void>
+  ) {
+    let options = PHContentEditingInputRequestOptions()
+    options.canHandleAdjustmentData = { _ in false }
+    options.isNetworkAccessAllowed = false
+    asset.requestContentEditingInput(with: options) { input, _ in
+      guard let input else {
+        promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
+          "PhotoLibrary.\(operation): Photos could not open the editing input"))
+        return
+      }
+      do {
+        let output = PHContentEditingOutput(contentEditingInput: input)
+        try FileManager.default.copyItem(at: source, to: output.renderedContentURL)
+        output.adjustmentData = PHAdjustmentData(
+          formatIdentifier: "dev.onejs.photo-library.\(adjustmentKind)",
+          formatVersion: "1", data: Data(adjustmentKind.utf8))
+        PHPhotoLibrary.shared().performChanges {
+          PHAssetChangeRequest(for: asset).contentEditingOutput = output
+        } completionHandler: { success, changeError in
+          if success {
+            promise.resolve()
+          } else {
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
+              "PhotoLibrary.\(operation): \(changeError?.localizedDescription ?? "Photos rejected the edit")"))
+          }
+        }
+      } catch {
+        promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EDIT",
+          "PhotoLibrary.\(operation): \(error.localizedDescription)"))
+      }
+    }
   }
 
   func revertAssetContent(identifier: String) throws -> Promise<Void> {
@@ -464,6 +525,49 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
           } catch {
             promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EXPORT",
               "PhotoLibrary.exportCurrentImage: \(error.localizedDescription)"))
+          }
+        }
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func exportCurrentVideo(identifier: String, allowNetwork: Bool) throws -> Promise<String> {
+    let promise = Promise<String>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      do {
+        let asset = try Self.readableAsset(identifier, "exportCurrentVideo")
+        guard asset.mediaType == .video else {
+          throw Self.error("E_PHOTO_LIBRARY_UNSUPPORTED",
+            "PhotoLibrary.exportCurrentVideo: a video asset is required")
+        }
+        let options = PHVideoRequestOptions()
+        options.version = .current
+        options.deliveryMode = .highQualityFormat
+        options.isNetworkAccessAllowed = allowNetwork
+        PHImageManager.default().requestExportSession(
+          forVideo: asset, options: options, exportPreset: AVAssetExportPresetPassthrough
+        ) { session, info in
+          guard let session else {
+            let cause = (info?[PHImageErrorKey] as? Error)?.localizedDescription ?? "video data is unavailable"
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EXPORT",
+              "PhotoLibrary.exportCurrentVideo: \(cause)"))
+            return
+          }
+          let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent("one-photo-current-\(UUID().uuidString)")
+            .appendingPathExtension("mov")
+          Task {
+            do {
+              try await session.export(to: url, as: .mov)
+              promise.resolve(withResult: url.absoluteString)
+            } catch {
+              try? FileManager.default.removeItem(at: url)
+              promise.reject(withError: Self.error("E_PHOTO_LIBRARY_EXPORT",
+                "PhotoLibrary.exportCurrentVideo: \(error.localizedDescription)"))
+            }
           }
         }
       } catch {

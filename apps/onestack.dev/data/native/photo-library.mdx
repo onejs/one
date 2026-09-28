@@ -139,6 +139,19 @@ commit failures return `E_PHOTO_LIBRARY_EDIT`. The edit requests a local Photos
 input; an iCloud-only input also returns `E_PHOTO_LIBRARY_EDIT`. Replacing a
 large image requires Photos to process and store a new rendered copy.
 
+`replaceVideoContent(identifier, movieFileUri)` replaces the visible content of
+a video with a local QuickTime `.mov` file whose frames are upright without a
+rotation transform. Photos keeps the original video, and
+`revertAssetContent(identifier)` restores it. Prepare the movie in your app,
+then pass its `file://` URI. This method copies a validated movie into Photos;
+it does not transcode or rotate it. It uses the same manifest, permission,
+identifier, and missing-asset errors as `getAsset()`. A non-video or read-only
+asset returns `E_PHOTO_LIBRARY_UNSUPPORTED`; a non-file URI returns
+`E_PHOTO_LIBRARY_URI`, a missing file returns `E_PHOTO_LIBRARY_FILE`, and a file
+that is not an upright QuickTime movie returns `E_PHOTO_LIBRARY_INPUT`. Photos
+input or commit failure returns `E_PHOTO_LIBRARY_EDIT`. The edit requests only
+a local Photos input, so an iCloud-only input returns `E_PHOTO_LIBRARY_EDIT`.
+
 With full read/write permission, `listAlbums()` returns user-created albums
 sorted by title. `getAlbum(identifier)` reads an album's current title, and
 `listAlbumAssets(identifier)` returns a bounded, newest-first page of its
@@ -197,3 +210,12 @@ read errors as `getAsset()` and `E_PHOTO_LIBRARY_EXPORT` if Photos cannot render
 or write the current image. Delete the temporary file when finished. Photos
 provides the full image data to the app before it is written to disk, so large
 images can temporarily use substantial memory.
+
+`exportCurrentVideo(identifier)` writes the visible, edited video to a unique
+temporary QuickTime `.mov` file. It rejects images and audio with
+`E_PHOTO_LIBRARY_UNSUPPORTED`, uses the same read errors as `getAsset()`, and
+returns `E_PHOTO_LIBRARY_EXPORT` if Photos cannot prepare or write the video.
+Its optional second argument defaults to `false`; pass `true` to allow an
+iCloud download. Export can take time and use substantial temporary storage.
+Delete the returned file when finished. The original resource remains available
+through `exportOriginalAsset(identifier)` after a content edit.

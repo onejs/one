@@ -53,9 +53,11 @@ export interface OnePhotoLibrary extends HybridObject<{ ios: 'swift' }> {
   setFavorite(identifier: string, favorite: boolean): Promise<void>
   deleteAsset(identifier: string): Promise<void>
   replaceImageContent(identifier: string, uri: string): Promise<void>
+  replaceVideoContent(identifier: string, uri: string): Promise<void>
   revertAssetContent(identifier: string): Promise<void>
   exportOriginalAsset(identifier: string, allowNetwork: boolean): Promise<string>
   exportCurrentImage(identifier: string, allowNetwork: boolean): Promise<string>
+  exportCurrentVideo(identifier: string, allowNetwork: boolean): Promise<string>
   saveImage(uri: string): Promise<string>
   saveVideo(uri: string): Promise<string>
 }

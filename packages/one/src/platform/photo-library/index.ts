@@ -25,9 +25,11 @@ export const PhotoLibrary = Object.freeze({
   setFavorite: (_identifier: string, _favorite: boolean): Promise<void> => unsupported(),
   deleteAsset: (_identifier: string): Promise<void> => unsupported(),
   replaceImageContent: (_identifier: string, _uri: string): Promise<void> => unsupported(),
+  replaceVideoContent: (_identifier: string, _uri: string): Promise<void> => unsupported(),
   revertAssetContent: (_identifier: string): Promise<void> => unsupported(),
   exportOriginalAsset: (_identifier: string, _allowNetwork = false): Promise<string> => unsupported(),
   exportCurrentImage: (_identifier: string, _allowNetwork = false): Promise<string> => unsupported(),
+  exportCurrentVideo: (_identifier: string, _allowNetwork = false): Promise<string> => unsupported(),
   saveImage: (_uri: string): Promise<string> => unsupported(),
   saveVideo: (_uri: string): Promise<string> => unsupported(),
 })

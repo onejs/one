@@ -18,9 +18,11 @@ declare function deleteAlbum(identifier: string): Promise<void>;
 declare function setFavorite(identifier: string, favorite: boolean): Promise<void>;
 declare function deleteAsset(identifier: string): Promise<void>;
 declare function replaceImageContent(identifier: string, uri: string): Promise<void>;
+declare function replaceVideoContent(identifier: string, uri: string): Promise<void>;
 declare function revertAssetContent(identifier: string): Promise<void>;
 declare function exportOriginalAsset(identifier: string, allowNetwork?: boolean): Promise<string>;
 declare function exportCurrentImage(identifier: string, allowNetwork?: boolean): Promise<string>;
+declare function exportCurrentVideo(identifier: string, allowNetwork?: boolean): Promise<string>;
 declare function saveImage(uri: string): Promise<string>;
 declare function saveVideo(uri: string): Promise<string>;
 export declare const PhotoLibrary: Readonly<{
@@ -42,9 +44,11 @@ export declare const PhotoLibrary: Readonly<{
     setFavorite: typeof setFavorite;
     deleteAsset: typeof deleteAsset;
     replaceImageContent: typeof replaceImageContent;
+    replaceVideoContent: typeof replaceVideoContent;
     revertAssetContent: typeof revertAssetContent;
     exportOriginalAsset: typeof exportOriginalAsset;
     exportCurrentImage: typeof exportCurrentImage;
+    exportCurrentVideo: typeof exportCurrentVideo;
     saveImage: typeof saveImage;
     saveVideo: typeof saveVideo;
 }>;
