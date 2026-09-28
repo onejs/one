@@ -294,6 +294,34 @@ describe('native.app manifest', () => {
     ).toBe('dark')
   })
 
+  test('the dev manifest carries both native launch background images', () => {
+    const client = expoClientFromNativeApp({
+      ...app,
+      splash: {
+        source: './assets/mark.png',
+        backgroundImage: './assets/launch-light.png',
+        backgroundColor: '#ffffff',
+        dark: {
+          source: './assets/mark-dark.png',
+          backgroundImage: './assets/launch-dark.png',
+          backgroundColor: '#000000',
+        },
+      },
+    })
+    expect(client.splash).toEqual({
+      image: './assets/mark.png',
+      backgroundImage: './assets/launch-light.png',
+      backgroundColor: '#ffffff',
+      imageWidth: undefined,
+      resizeMode: undefined,
+      dark: {
+        image: './assets/mark-dark.png',
+        backgroundImage: './assets/launch-dark.png',
+        backgroundColor: '#000000',
+      },
+    })
+  })
+
   test('platform scope skips the other platform requirement', () => {
     expect(() =>
       validateNativeApp({ name: 'MyApp', android: app.android } as any, 'android')
