@@ -304,6 +304,9 @@ ${APP_DELEGATE_PBXPROJ}`,
     expect(photoPlist.content).toContain(
       '<key>NSPhotoLibraryUsageDescription</key>\n\t<string>Browse photos &amp; videos</string>'
     )
+    expect(photoPlist.content).toContain(
+      '<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>\n\t<true/>'
+    )
     const readWritePhotoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<true/>\n</dict>',
@@ -311,6 +314,9 @@ ${APP_DELEGATE_PBXPROJ}`,
       app: { ...app, photoLibrary: { readWrite: 'Browse photos' } },
     })
     expect(readWritePhotoPlist.content).toContain('<key>NSPhotoLibraryUsageDescription</key>')
+    expect(readWritePhotoPlist.content).toContain(
+      '<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>\n\t<true/>'
+    )
     expect(readWritePhotoPlist.content).not.toContain('NSPhotoLibraryAddUsageDescription')
 
     const contactsPlist = renderPrebuildFile({

@@ -29,6 +29,7 @@ export interface OnePhotoLibrary extends HybridObject<{ ios: 'swift' }> {
   requestAddPermission(): Promise<PhotoLibraryPermissionStatus>
   getReadPermissionStatus(): PhotoLibraryPermissionStatus
   requestReadPermission(): Promise<PhotoLibraryPermissionStatus>
+  presentLimitedLibraryPicker(): Promise<string[]>
   listAssets(offset: number, limit: number): Promise<PhotoLibraryAssetPage>
   getAsset(identifier: string): Promise<PhotoLibraryAsset>
   setFavorite(identifier: string, favorite: boolean): Promise<void>

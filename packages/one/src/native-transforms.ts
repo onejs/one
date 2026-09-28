@@ -9,3 +9,4 @@
  */
 
 export { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin'
+export { renderSwiftPackageModule } from './vite/plugins/swiftPackageModule'

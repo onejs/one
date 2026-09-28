@@ -13,6 +13,7 @@ export default function OneNativePhotoLibrary() {
   const [result, setResult] = useState('none')
   const [readResult, setReadResult] = useState('none')
   const [manageResult, setManageResult] = useState('none')
+  const [limitedResult, setLimitedResult] = useState('none')
   const [savedIds, setSavedIds] = useState<string[]>([])
 
   async function run() {
@@ -216,6 +217,50 @@ export default function OneNativePhotoLibrary() {
     }
   }
 
+  async function requestLimited() {
+    setStatus('limited-requesting')
+    try {
+      let before = ''
+      try {
+        await One.iOS.PhotoLibrary.presentLimitedLibraryPicker()
+      } catch (error) {
+        before = errorCode(error)
+      }
+      const granted = await One.iOS.PhotoLibrary.requestReadPermission()
+      setReadPermission(One.iOS.PhotoLibrary.getReadPermissionStatus())
+      if (granted !== 'limited') throw new Error(`limited permission: ${granted}`)
+      const page = await One.iOS.PhotoLibrary.listAssets(0, 100)
+      setLimitedResult(`before=${before}; permission=${granted}; visible=${page.totalCount}`)
+      setStatus('limited-ready')
+    } catch (error) {
+      setStatus(`limited-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  async function pickLimited() {
+    setStatus('limited-picking')
+    try {
+      const before = await One.iOS.PhotoLibrary.listAssets(0, 100)
+      const added = await One.iOS.PhotoLibrary.presentLimitedLibraryPicker()
+      const after = await One.iOS.PhotoLibrary.listAssets(0, 100)
+      const readable = (await Promise.all(added.map((identifier) =>
+        One.iOS.PhotoLibrary.getAsset(identifier)
+      ))).every((asset, index) => asset.identifier === added[index])
+      const priorId = before.assets[0]?.identifier
+      const preserved = !!priorId && after.assets.some((asset) => asset.identifier === priorId) &&
+        (await One.iOS.PhotoLibrary.getAsset(priorId)).identifier === priorId
+      setLimitedResult(
+        `added=${added.length}; expanded=${after.totalCount > before.totalCount}; ` +
+          `unchanged=${after.totalCount === before.totalCount}; readable=${readable}; preserved=${preserved}; ` +
+          `distinct=${new Set(added).size === added.length}; ` +
+          `saved=${added.length > 0 && added.every((identifier) => savedIds.includes(identifier))}`
+      )
+      setStatus('limited-passed')
+    } catch (error) {
+      setStatus(`limited-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
   return (
     <View style={styles.screen}>
       <Text testID="one-native-photo-library-permission">Permission: {permission}</Text>
@@ -224,15 +269,28 @@ export default function OneNativePhotoLibrary() {
       <Text testID="one-native-photo-library-read-permission">Read permission: {readPermission}</Text>
       <Text testID="one-native-photo-library-read-result">Read result: {readResult}</Text>
       <Text testID="one-native-photo-library-manage-result">Manage result: {manageResult}</Text>
+      <Text testID="one-native-photo-library-limited-result">Limited result: {limitedResult}</Text>
       <Pressable testID="one-native-photo-library-run" style={styles.chip} onPress={run}>
         <Text>Save image and video to Photos</Text>
       </Pressable>
       <Pressable testID="one-native-photo-library-read" style={styles.chip} onPress={read}>
         <Text>Read saved Photos assets</Text>
       </Pressable>
-      <Pressable testID="one-native-photo-library-manage" style={styles.chip} onPress={manage}>
-        <Text>Favorite and delete Photos assets</Text>
-      </Pressable>
+      {readPermission !== 'limited' && (
+        <Pressable testID="one-native-photo-library-manage" style={styles.chip} onPress={manage}>
+          <Text>Favorite and delete Photos assets</Text>
+        </Pressable>
+      )}
+      {readPermission === 'notDetermined' && (
+        <Pressable testID="one-native-photo-library-limited-request" style={styles.chip} onPress={requestLimited}>
+          <Text>Request limited Photos access</Text>
+        </Pressable>
+      )}
+      {readPermission === 'limited' && (
+        <Pressable testID="one-native-photo-library-limited-pick" style={styles.chip} onPress={pickLimited}>
+          <Text>Choose more Photos assets</Text>
+        </Pressable>
+      )}
     </View>
   )
 }
