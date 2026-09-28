@@ -6,13 +6,14 @@ import {
   mkdtempSync,
   readdirSync,
   readFileSync,
+  realpathSync,
   rmSync,
   statSync,
   writeFileSync,
 } from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
-import { join, relative, sep } from 'node:path'
+import { join, relative, resolve, sep } from 'node:path'
 import { validateNativeApp } from '../native/appManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
@@ -20,6 +21,7 @@ type PublishArgs = {
   platform?: string | string[]
   out?: string | string[]
   metadata?: string | string[]
+  intermediatesOut?: string | string[]
 }
 
 function lastValue(value: string | string[] | undefined): string | undefined {
@@ -137,6 +139,21 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
   if (!out) {
     throw new Error('[one] one updates publish needs --out <dir>')
   }
+  const intermediatesOut = lastValue(args.intermediatesOut)
+  if (intermediatesOut) {
+    const published = resolve(out)
+    const debug = resolve(intermediatesOut)
+    if (
+      published === debug ||
+      published.startsWith(`${debug}${sep}`) ||
+      debug.startsWith(`${published}${sep}`)
+    ) {
+      throw new Error('[one] --intermediates-out must be separate from --out')
+    }
+    if (existsSync(debug) && readdirSync(debug).length > 0) {
+      throw new Error(`[one] refusing to write intermediates into non-empty ${debug}`)
+    }
+  }
   const root = process.cwd()
   const { oneOptions } = await loadUserOneOptions('build', true)
   const native = oneOptions?.native
@@ -159,14 +176,28 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
     )
   }
   mkdirSync(out, { recursive: true })
+  if (intermediatesOut) {
+    mkdirSync(intermediatesOut, { recursive: true })
+    const published = realpathSync(out)
+    const debug = realpathSync(intermediatesOut)
+    if (
+      published === debug ||
+      published.startsWith(`${debug}${sep}`) ||
+      debug.startsWith(`${published}${sep}`)
+    ) {
+      throw new Error('[one] --intermediates-out must be separate from --out')
+    }
+  }
   const assetsOut = join(out, 'assets')
   mkdirSync(assetsOut, { recursive: true })
   const metadata = parseMetadata(allValues(args.metadata))
 
   const work = mkdtempSync(join(tmpdir(), 'one-updates-publish-'))
   const bundleJs = join(work, 'bundle.js')
+  const packagerMap = join(work, 'bundle.js.map')
   const assetsDir = join(work, 'assets')
   const bytecode = join(work, 'main.jsbundle')
+  const composedMap = join(work, 'main.jsbundle.map')
   try {
     // the same bundle command the embedded builders run, through the same
     // react-native config override, so the bundler and entry match the
@@ -188,6 +219,7 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
         '--reset-cache',
         '--bundle-output',
         bundleJs,
+        ...(intermediatesOut ? ['--sourcemap-output', packagerMap] : []),
         '--assets-dest',
         assetsDir,
         '--minify',
@@ -196,18 +228,36 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
       { cwd: root, stdio: 'inherit' }
     )
     // the same compiler and flags as the embedded builders: -O bytecode,
-    // warnings off on android like the gradle task. no sourcemaps: they
-    // change no shipped byte.
+    // warnings off on android like the gradle task. generating a hermes map
+    // changes the bytecode, so keep the map paired with this exact output.
     const hermesc = resolveHermesc(root, platform)
     const hermescArgs = ['-emit-binary', '-max-diagnostic-width=80']
     if (platform === 'android') hermescArgs.push('-w')
-    hermescArgs.push('-O', '-out', bytecode, bundleJs)
+    hermescArgs.push('-O')
+    if (intermediatesOut) hermescArgs.push('-output-source-map')
+    hermescArgs.push('-out', bytecode, bundleJs)
     try {
       execFileSync(hermesc, hermescArgs, { cwd: root, stdio: 'inherit' })
     } catch (error) {
       throw new Error(
         `[one] hermesc failed to compile the ${platform} update bundle${error instanceof Error ? `: ${error.message}` : ''}`
       )
+    }
+    if (intermediatesOut) {
+      const require = createRequire(join(root, 'package.json'))
+      const reactNativeJson = require.resolve('react-native/package.json')
+      const composeSourceMaps = join(
+        reactNativeJson.slice(0, -'package.json'.length),
+        'scripts',
+        'compose-source-maps.js'
+      )
+      execFileSync(
+        process.execPath,
+        [composeSourceMaps, packagerMap, `${bytecode}.map`, '-o', composedMap],
+        { cwd: root, stdio: 'inherit' }
+      )
+      writeFileSync(join(intermediatesOut, 'bundle.js'), readFileSync(bundleJs))
+      writeFileSync(join(intermediatesOut, 'main.jsbundle.map'), readFileSync(composedMap))
     }
 
     // the assets tree the bundler laid out is already the update layout:

@@ -97,6 +97,18 @@ urls may be relative to the manifest. `--metadata key=value` (repeatable)
 adds publisher metadata; values parse as JSON scalars when they look like
 one.
 
+For local symbolication, pass `--intermediates-out ./ota-debug` alongside
+`--out`. One writes `bundle.js` and a composed Hermes source map there.
+Keep this directory separate from the published output and never upload it:
+the map can contain application source text. Publish only `manifest.json`
+and `assets/` from `--out`. Requesting a Hermes map changes the generated
+bytecode, so use the map only with the bundle from that same publish run.
+Separate publishes can have different bytecode hashes from the generated
+loader cache key and the temporary bundle path that Hermes embeds. Pin
+`ONE_CACHE_KEY` and compile the same plain bundle from a fixed filename when
+checking whether compiler options change bytecode. The normal publish path
+uses a fresh temporary directory so concurrent runs stay isolated.
+
 After a launch succeeds the launcher keeps the running update, the newest
 older update as the rollback spare, and a staged update newer than the
 running one, and deletes every other download. Downloads for another

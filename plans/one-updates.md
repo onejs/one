@@ -218,13 +218,23 @@ One.Updates.reload(): Promise<void>
 
 ## Publishing
 
-`one updates publish --platform ios|android --out <dir> [--metadata key=value]...`
+`one updates publish --platform ios|android --out <dir> [--metadata key=value]...
+[--intermediates-out <separate-dir>]`
 does three things:
 
 1. It builds the release bundle with the same bundler and options as the embedded
    build.
 2. It lays the assets out by platform path and names each served file by its hash.
 3. It writes the manifest with a fresh id and `createdAt` = now.
+
+The optional intermediates directory holds a plain JS bundle and a composed
+Hermes source map for local symbolication. It is debug-only and must never be
+uploaded. One keeps it outside the published directory. Hermes changes the
+bytecode when asked for a map, so the map belongs to that exact publish output.
+Separate publishes also vary through a generated loader cache key and the
+temporary bundle path embedded by Hermes. Controlled byte comparisons pin
+`ONE_CACHE_KEY` and compile the same plain bundle from one filename; normal
+publishes keep a fresh temporary directory for concurrent safety.
 
 Uploading stays with the app. contrast-mobile's `ota-publish.mjs` keeps its gates
 (fingerprint, delivery marker, stranded runtime) and uploads the directory to R2.
