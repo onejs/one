@@ -68,6 +68,7 @@ export default function OneNativePhotoLibrary() {
       if (!imageId || !videoId) throw new Error('save the proof assets first')
       let before = 'alreadyGranted'
       let getBefore = 'alreadyGranted'
+      let exportBefore = 'alreadyGranted'
       if (readPermission === 'notDetermined') {
         try {
           await One.iOS.PhotoLibrary.listAssets(0, 1)
@@ -78,6 +79,11 @@ export default function OneNativePhotoLibrary() {
           await One.iOS.PhotoLibrary.getAsset(imageId)
         } catch (error) {
           getBefore = errorCode(error)
+        }
+        try {
+          await One.iOS.PhotoLibrary.exportOriginalAsset(imageId)
+        } catch (error) {
+          exportBefore = errorCode(error)
         }
       }
       setStatus('read-requesting')
@@ -99,6 +105,29 @@ export default function OneNativePhotoLibrary() {
       }
       const image = await One.iOS.PhotoLibrary.getAsset(imageId)
       const video = await One.iOS.PhotoLibrary.getAsset(videoId)
+      const exportedImage = await One.iOS.PhotoLibrary.exportOriginalAsset(imageId)
+      let exportedVideo = ''
+      let originalImage = false
+      let originalVideo = false
+      let imageExt = ''
+      let videoExt = ''
+      try {
+        exportedVideo = await One.iOS.PhotoLibrary.exportOriginalAsset(videoId)
+        imageExt = exportedImage.slice(exportedImage.lastIndexOf('.'))
+        videoExt = exportedVideo.slice(exportedVideo.lastIndexOf('.'))
+        const readBytes = async (uri: string) =>
+          new Uint8Array(await (await fetch(uri)).arrayBuffer())
+        const matches = (actual: Uint8Array, expected: Uint8Array) =>
+          actual.length === expected.length && actual.every((byte, index) => byte === expected[index])
+        const cache = One.iOS.FileSystem.getDirectories().cache
+        originalImage = imageExt === '.heic' && matches(await readBytes(exportedImage),
+          await readBytes(cache + 'one-native-photo-library.heic'))
+        originalVideo = videoExt === '.mp4' && matches(await readBytes(exportedVideo),
+          await readBytes(cache + 'one-native-photo-library.mp4'))
+      } finally {
+        await One.iOS.FileSystem.delete(exportedImage)
+        if (exportedVideo) await One.iOS.FileSystem.delete(exportedVideo)
+      }
       let invalid = ''
       try {
         await One.iOS.PhotoLibrary.listAssets(0, 101)
@@ -111,8 +140,21 @@ export default function OneNativePhotoLibrary() {
       } catch (error) {
         missing = errorCode(error)
       }
+      let exportInvalid = ''
+      try {
+        await One.iOS.PhotoLibrary.exportOriginalAsset('  ')
+      } catch (error) {
+        exportInvalid = errorCode(error)
+      }
+      let exportMissing = ''
+      try {
+        await One.iOS.PhotoLibrary.exportOriginalAsset('missing-asset-id')
+      } catch (error) {
+        exportMissing = errorCode(error)
+      }
       setReadResult(
-        `before=${before}; getBefore=${getBefore}; permission=${granted}; count=${page.totalCount}; ` +
+        `before=${before}; getBefore=${getBefore}; exportBefore=${exportBefore}; ` +
+        `permission=${granted}; count=${page.totalCount}; ` +
         `listed=${listedImage && listedVideo}; ` +
         `image=${image.identifier === imageId && image.mediaType === 'image' &&
           image.width > 0 && image.height > 0 && image.durationMs === 0 &&
@@ -120,7 +162,9 @@ export default function OneNativePhotoLibrary() {
         `video=${video.identifier === videoId && video.mediaType === 'video' &&
           video.width > 0 && video.height > 0 && video.durationMs > 0 &&
           typeof video.creationDateMs === 'number' && typeof video.isFavorite === 'boolean'}; ` +
-        `invalid=${invalid}; missing=${missing}`
+        `invalid=${invalid}; missing=${missing}; originalImage=${originalImage}; ` +
+        `originalVideo=${originalVideo}; imageExt=${imageExt}; videoExt=${videoExt}; ` +
+        `exportInvalid=${exportInvalid}; exportMissing=${exportMissing}`
       )
       setStatus('read-passed')
     } catch (error) {

@@ -29,7 +29,7 @@ checklist; One's own exports and docs decide the status.
 | Photo selection | covered | `One.ImagePicker.launchLibrary`, `One.iOS.PhotosPicker` | image-picker; PhotosPicker unproven | done |
 | Image transformation | covered | `One.iOS.ImageManipulator` local crop, resize, rotate, JPEG/PNG encode | RAN iOS 27: orientation, decoded sizes, bytes, red crop/rotation pixels, input errors | done |
 | Live Photos | missing | no Live Photo capture or playback API | none | P3 |
-| Photo library save/manage | partial | `One.iOS.PhotoLibrary` image/video save and read permission with bounded metadata list/get; no file export, limited-selection picker, edit, delete, or albums | photo-library: both permission prompts, image/video save, list/get, errors | P2 |
+| Photo library save/manage | partial | `One.iOS.PhotoLibrary` image/video save, read permission, bounded metadata list/get and original-file export; no iCloud transfer progress/cancel, edited-media export, limited-selection picker, edit, delete, or albums | photo-library: both permission prompts, image/video save, list/get, original bytes, errors | P2 |
 | Foreground location and geocoding | covered | `One.iOS.Location` permission, one fix, watch, forward/reverse geocoding | location: prompt, movement, geocoding | done |
 | Background location | missing | no background location mode or monitoring | none | P2 |
 | Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |

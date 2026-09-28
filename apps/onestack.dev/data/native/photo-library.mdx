@@ -1,6 +1,6 @@
 ---
 title: Photo Library
-description: Save images and videos, and browse asset metadata in the iOS Photos library
+description: Save images and videos, browse asset metadata, and export originals from iOS Photos
 ---
 
 `One.iOS.PhotoLibrary` saves an existing `file://` image or video to Photos and
@@ -70,3 +70,28 @@ permission is missing, `E_PHOTO_LIBRARY_INPUT` for invalid arguments, and
 `E_PHOTO_LIBRARY_NOT_FOUND` for an unknown identifier. Editing, deleting, and
 organizing assets are not yet supported. Page offsets use the current library
 order, so insertions or deletions between requests can shift later pages.
+
+`exportOriginalAsset(identifier)` writes the asset's original photo, video, or
+audio resource to a unique temporary file and returns its `file://` URI. By
+default it reads only local originals. Pass `true` as the second argument to
+allow Photos to download an iCloud original; large downloads may take time and
+use cellular data. The returned file is yours to read, share, move, or delete.
+Delete temporary exports when you are finished:
+
+```tsx
+const uri = await One.iOS.PhotoLibrary.exportOriginalAsset(asset.identifier)
+try {
+  const info = await One.iOS.FileSystem.getInfo(uri)
+  console.log(info.size)
+} finally {
+  await One.iOS.FileSystem.delete(uri)
+}
+```
+
+For a Live Photo, this exports the original still image only. It does not
+apply later Photos edits. The same manifest, read permission, input, and
+missing-asset errors apply. `E_PHOTO_LIBRARY_RESOURCE` means the original
+resource or its file type is unavailable; `E_PHOTO_LIBRARY_EXPORT` means Photos
+could not write it, including when the original requires network access and the
+second argument is false. Network downloads have no progress or cancellation
+callback yet.

@@ -20,6 +20,7 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("requestReadPermission", &HybridOnePhotoLibrarySpec::requestReadPermission);
       prototype.registerHybridMethod("listAssets", &HybridOnePhotoLibrarySpec::listAssets);
       prototype.registerHybridMethod("getAsset", &HybridOnePhotoLibrarySpec::getAsset);
+      prototype.registerHybridMethod("exportOriginalAsset", &HybridOnePhotoLibrarySpec::exportOriginalAsset);
       prototype.registerHybridMethod("saveImage", &HybridOnePhotoLibrarySpec::saveImage);
       prototype.registerHybridMethod("saveVideo", &HybridOnePhotoLibrarySpec::saveVideo);
     });

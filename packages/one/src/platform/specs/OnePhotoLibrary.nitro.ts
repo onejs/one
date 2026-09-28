@@ -31,6 +31,7 @@ export interface OnePhotoLibrary extends HybridObject<{ ios: 'swift' }> {
   requestReadPermission(): Promise<PhotoLibraryPermissionStatus>
   listAssets(offset: number, limit: number): Promise<PhotoLibraryAssetPage>
   getAsset(identifier: string): Promise<PhotoLibraryAsset>
+  exportOriginalAsset(identifier: string, allowNetwork: boolean): Promise<string>
   saveImage(uri: string): Promise<string>
   saveVideo(uri: string): Promise<string>
 }

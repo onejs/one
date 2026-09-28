@@ -48,6 +48,10 @@ function getAsset(identifier: string): Promise<PhotoLibraryAsset> {
   return native().getAsset(identifier).catch(rethrowNativeError)
 }
 
+function exportOriginalAsset(identifier: string, allowNetwork = false): Promise<string> {
+  return native().exportOriginalAsset(identifier, allowNetwork).catch(rethrowNativeError)
+}
+
 function saveImage(uri: string): Promise<string> {
   return native().saveImage(uri).catch(rethrowNativeError)
 }
@@ -63,6 +67,7 @@ export const PhotoLibrary = Object.freeze({
   requestReadPermission,
   listAssets,
   getAsset,
+  exportOriginalAsset,
   saveImage,
   saveVideo,
 })

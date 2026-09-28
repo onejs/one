@@ -7411,9 +7411,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const result = labels(n).find((label) => label.startsWith('Read result: ')) ?? ''
       return labels(n).includes('Status: read-passed') &&
         labels(n).includes('Read permission: authorized') &&
-        result.includes('before=E_PHOTO_LIBRARY_PERMISSION; getBefore=E_PHOTO_LIBRARY_PERMISSION; permission=authorized;') &&
+        result.includes('before=E_PHOTO_LIBRARY_PERMISSION; getBefore=E_PHOTO_LIBRARY_PERMISSION; exportBefore=E_PHOTO_LIBRARY_PERMISSION; permission=authorized;') &&
         result.includes('listed=true; image=true; video=true;') &&
-        result.includes('invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND')
+        result.includes('invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND; originalImage=true; originalVideo=true;') &&
+        result.includes('imageExt=.heic; videoExt=.mp4;') &&
+        result.includes('exportInvalid=E_PHOTO_LIBRARY_INPUT; exportMissing=E_PHOTO_LIBRARY_NOT_FOUND')
     })
     screenshot('photo-library-assets-read.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
