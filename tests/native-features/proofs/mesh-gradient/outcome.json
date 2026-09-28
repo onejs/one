@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 2106
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 11839
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2567
+    },
+    {
+      "name": "home lists nav-one-native-mesh-gradient",
+      "durationMs": 2372
+    },
+    {
+      "name": "nav-one-native-mesh-gradient settles",
+      "durationMs": 5045
+    },
+    {
+      "name": "native mesh gradient mounts",
+      "durationMs": 2025
+    },
+    {
+      "name": "labeled mesh gradient accessible; unlabeled mesh decorative",
+      "durationMs": 0
+    },
+    {
+      "name": "React supplies mesh gradient recolored state",
+      "durationMs": 1998
+    },
+    {
+      "name": "React supplies mesh gradient warped state",
+      "durationMs": 2050
+    },
+    {
+      "name": "React supplies mesh gradient background state",
+      "durationMs": 2023
+    },
+    {
+      "name": "React supplies mesh gradient unsmoothed state",
+      "durationMs": 2064
+    },
+    {
+      "name": "React supplies mesh gradient perceptual state",
+      "durationMs": 1984
+    },
+    {
+      "name": "React supplies mesh gradient three-by-three state",
+      "durationMs": 2065
+    },
+    {
+      "name": "native mesh paints, recolors, warps, and reveals its background",
+      "durationMs": 0
+    },
+    {
+      "name": "native mesh applies color smoothing, color space, and a three-by-three grid",
+      "durationMs": 0
+    }
+  ],
+  "durationMs": 83880,
+  "simulatorId": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "mesh-gradient"
+}

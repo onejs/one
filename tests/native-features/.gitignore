@@ -59,3 +59,8 @@ fail-snapshot.json
 !proofs/elliptical-gradient/*.png
 !proofs/elliptical-gradient/*.webp
 !proofs/elliptical-gradient/outcome.json
+
+# Reviewed iOS 27 SwiftUI MeshGradient runtime evidence.
+!proofs/mesh-gradient/*.png
+!proofs/mesh-gradient/*.webp
+!proofs/mesh-gradient/outcome.json
