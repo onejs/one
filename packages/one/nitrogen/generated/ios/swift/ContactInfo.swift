@@ -18,7 +18,7 @@ public extension ContactInfo {
   /**
    * Create a new instance of `ContactInfo`.
    */
-  init(identifier: String, givenName: String, familyName: String, phoneNumbers: [String], emailAddresses: [String]) {
+  init(identifier: String, givenName: String, familyName: String, phoneNumbers: [String], emailAddresses: [String], postalAddresses: [ContactPostalAddress]) {
     self.init(std.string(identifier), std.string(givenName), std.string(familyName), { () -> bridge.std__vector_std__string_ in
       var __vector = bridge.create_std__vector_std__string_(phoneNumbers.count)
       for __item in phoneNumbers {
@@ -29,6 +29,12 @@ public extension ContactInfo {
       var __vector = bridge.create_std__vector_std__string_(emailAddresses.count)
       for __item in emailAddresses {
         __vector.push_back(std.string(__item))
+      }
+      return __vector
+    }(), { () -> bridge.std__vector_ContactPostalAddress_ in
+      var __vector = bridge.create_std__vector_ContactPostalAddress_(postalAddresses.count)
+      for __item in postalAddresses {
+        __vector.push_back(__item)
       }
       return __vector
     }())
@@ -57,5 +63,10 @@ public extension ContactInfo {
   @inline(__always)
   var emailAddresses: [String] {
     return self.__emailAddresses.map({ __item in String(__item) })
+  }
+
+  @inline(__always)
+  var postalAddresses: [ContactPostalAddress] {
+    return self.__postalAddresses.map({ __item in __item })
   }
 }

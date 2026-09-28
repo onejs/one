@@ -80,6 +80,10 @@ namespace margelo::nitro::one { struct ContactChanges; }
 namespace margelo::nitro::one { struct ContactInfo; }
 // Forward declaration of `ContactInput` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInput; }
+// Forward declaration of `ContactPostalAddressInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddressInput; }
+// Forward declaration of `ContactPostalAddress` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
@@ -156,6 +160,8 @@ namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
+// Forward declaration of `HybridOneMapServicesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMapServicesSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
@@ -202,6 +208,16 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
+// Forward declaration of `MapCoordinate` to properly resolve imports.
+namespace margelo::nitro::one { struct MapCoordinate; }
+// Forward declaration of `MapPlace` to properly resolve imports.
+namespace margelo::nitro::one { struct MapPlace; }
+// Forward declaration of `MapRouteStep` to properly resolve imports.
+namespace margelo::nitro::one { struct MapRouteStep; }
+// Forward declaration of `MapRoute` to properly resolve imports.
+namespace margelo::nitro::one { struct MapRoute; }
+// Forward declaration of `MapTransport` to properly resolve imports.
+namespace margelo::nitro::one { enum class MapTransport; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannelInput; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
@@ -328,6 +344,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactChanges.hpp"
 #include "ContactInfo.hpp"
 #include "ContactInput.hpp"
+#include "ContactPostalAddress.hpp"
+#include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
 #include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
@@ -366,6 +384,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
+#include "HybridOneMapServicesSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
@@ -389,6 +408,11 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
+#include "MapCoordinate.hpp"
+#include "MapPlace.hpp"
+#include "MapRoute.hpp"
+#include "MapRouteStep.hpp"
+#include "MapTransport.hpp"
 #include "NativeChannel.hpp"
 #include "NativeChannelInput.hpp"
 #include "NativeContent.hpp"
@@ -496,6 +520,8 @@ namespace One { class HybridOneLaunchScreenSpec_cxx; }
 namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocationSpec_cxx; }
+// Forward declaration of `HybridOneMapServicesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMapServicesSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNativeModulesSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.

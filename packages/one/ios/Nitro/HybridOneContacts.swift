@@ -86,9 +86,10 @@ final class HybridOneContacts: HybridOneContactsSpec {
           "E_CONTACTS_INPUT", "Contacts.create: provide a given or family name"))
         return
       }
-      guard !Self.hasBlank(input.phoneNumbers), !Self.hasBlank(input.emailAddresses) else {
+      guard !Self.hasBlank(input.phoneNumbers), !Self.hasBlank(input.emailAddresses),
+        Self.validAddresses(input.postalAddresses ?? []) else {
         promise.reject(withError: Self.error(
-          "E_CONTACTS_INPUT", "Contacts.create: phone numbers and email addresses cannot be blank"))
+          "E_CONTACTS_INPUT", "Contacts.create: phone, email, or postal address is invalid"))
         return
       }
       let contact = CNMutableContact()
@@ -96,6 +97,7 @@ final class HybridOneContacts: HybridOneContactsSpec {
       contact.familyName = family
       contact.phoneNumbers = Self.phones(input.phoneNumbers)
       contact.emailAddresses = Self.emails(input.emailAddresses)
+      contact.postalAddresses = Self.addresses(input.postalAddresses ?? [])
       let request = CNSaveRequest()
       request.add(contact, toContainerWithIdentifier: nil)
       do {
@@ -124,7 +126,8 @@ final class HybridOneContacts: HybridOneContactsSpec {
       }
       guard !identifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
         changes.givenName != nil || changes.familyName != nil ||
-          changes.phoneNumbers != nil || changes.emailAddresses != nil else {
+          changes.phoneNumbers != nil || changes.emailAddresses != nil ||
+          changes.postalAddresses != nil else {
         promise.reject(withError: Self.error(
           "E_CONTACTS_INPUT", "Contacts.update: an identifier and at least one change are required"))
         return
@@ -137,6 +140,11 @@ final class HybridOneContacts: HybridOneContactsSpec {
       if let values = changes.emailAddresses, Self.hasBlank(values) {
         promise.reject(withError: Self.error(
           "E_CONTACTS_INPUT", "Contacts.update: email addresses cannot be blank"))
+        return
+      }
+      if let values = changes.postalAddresses, !Self.validAddresses(values) {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_INPUT", "Contacts.update: postal address is invalid"))
         return
       }
       do {
@@ -169,6 +177,9 @@ final class HybridOneContacts: HybridOneContactsSpec {
         }
         if let emails = changes.emailAddresses {
           contact.emailAddresses = Self.emails(emails, preserving: contact.emailAddresses)
+        }
+        if let addresses = changes.postalAddresses {
+          contact.postalAddresses = Self.addresses(addresses, preserving: contact.postalAddresses)
         }
         let request = CNSaveRequest()
         request.update(contact)
@@ -229,6 +240,7 @@ final class HybridOneContacts: HybridOneContactsSpec {
     CNContactFamilyNameKey as CNKeyDescriptor,
     CNContactPhoneNumbersKey as CNKeyDescriptor,
     CNContactEmailAddressesKey as CNKeyDescriptor,
+    CNContactPostalAddressesKey as CNKeyDescriptor,
   ]
 
   private static func info(_ contact: CNContact) -> ContactInfo {
@@ -237,7 +249,20 @@ final class HybridOneContacts: HybridOneContactsSpec {
       givenName: contact.givenName,
       familyName: contact.familyName,
       phoneNumbers: contact.phoneNumbers.map { $0.value.stringValue },
-      emailAddresses: contact.emailAddresses.map { String($0.value) }
+      emailAddresses: contact.emailAddresses.map { String($0.value) },
+      postalAddresses: contact.postalAddresses.map { item in
+        let address = item.value
+        return ContactPostalAddress(
+          label: item.label ?? "",
+          street: address.street,
+          subLocality: address.subLocality,
+          city: address.city,
+          subAdministrativeArea: address.subAdministrativeArea,
+          state: address.state,
+          postalCode: address.postalCode,
+          country: address.country,
+          isoCountryCode: address.isoCountryCode)
+      }
     )
   }
 
@@ -266,6 +291,40 @@ final class HybridOneContacts: HybridOneContactsSpec {
         return remaining.remove(at: index)
       }
       return CNLabeledValue(label: CNLabelHome, value: value as NSString)
+    }
+  }
+
+  private static func validAddresses(_ values: [ContactPostalAddressInput]) -> Bool {
+    !values.contains { value in
+      let fields = [value.street, value.subLocality, value.city,
+        value.subAdministrativeArea, value.state, value.postalCode,
+        value.country, value.isoCountryCode]
+      return value.label?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+        !fields.contains { !($0 ?? "").trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    }
+  }
+
+  private static func addresses(
+    _ values: [ContactPostalAddressInput],
+    preserving existing: [CNLabeledValue<CNPostalAddress>] = []
+  ) -> [CNLabeledValue<CNPostalAddress>] {
+    var remaining = existing
+    return values.map { value in
+      let address = CNMutablePostalAddress()
+      address.street = value.street ?? ""
+      address.subLocality = value.subLocality ?? ""
+      address.city = value.city ?? ""
+      address.subAdministrativeArea = value.subAdministrativeArea ?? ""
+      address.state = value.state ?? ""
+      address.postalCode = value.postalCode ?? ""
+      address.country = value.country ?? ""
+      address.isoCountryCode = value.isoCountryCode ?? ""
+      if let index = remaining.firstIndex(where: {
+        $0.value.isEqual(address) && (value.label == nil || $0.label == value.label)
+      }) {
+        return remaining.remove(at: index)
+      }
+      return CNLabeledValue(label: value.label ?? CNLabelHome, value: address)
     }
   }
 

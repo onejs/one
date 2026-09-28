@@ -84,6 +84,7 @@ const suites = [
   'accessibility',
   'media',
   'map',
+  'map-services',
   'apple-file',
   'apple-auth',
   'local-authentication',
@@ -663,6 +664,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
+  'map-services': (nodes) => Boolean(id(nodes, 'one-native-map-services-run')),
   'apple-file': appleFileLoaded,
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
@@ -749,6 +751,7 @@ const suiteHome: Record<Suite, string> = {
   accessibility: 'nav-one-native-accessibility',
   media: 'nav-one-native-media',
   map: 'nav-one-native-map',
+  'map-services': 'nav-one-native-map-services',
   'apple-file': 'nav-one-native-apple-file',
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
@@ -1152,10 +1155,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     })
   }
   if (config.suite === 'notifications' || config.suite === 'speech' ||
-      config.suite === 'app-tracking') {
+      config.suite === 'app-tracking' || config.suite === 'map-services' ||
+      config.suite === 'contacts') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
-    // to undetermined.
+    // to undetermined; contacts and map-services need the freshly built native contract.
     if (!config.appPath)
       throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
@@ -3210,6 +3214,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Permission: authorized') &&
       labels(n).includes(
         'Result: before=E_CONTACTS_PERMISSION; blankCreate=E_CONTACTS_INPUT; matched=true; edited=true; partial=true; removed=true; missingDelete=E_CONTACTS_NOT_FOUND; notFound=E_CONTACTS_NOT_FOUND; invalidUpdate=E_CONTACTS_INPUT; invalid=E_CONTACTS_INPUT'
+      ) && labels(n).includes(
+        'Address: created=true; edited=true; preserved=true; cleared=true; invalid=E_CONTACTS_INPUT'
       )
     )
     screenshot('contacts-round-trip.png')
@@ -5788,6 +5794,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         (n) => status(n, 'IsOn', 'true') && status(n, 'Changes', 1)
       )
     }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'map-services') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-map-services')
+    await wait('map services fixture mounted', (n) => id(n, 'one-native-map-services-run') !== undefined)
+    tap({ id: 'one-native-map-services-run' })
+    await wait('MapKit search and walking route completed', (n) =>
+      labels(n).some((label) => /^Map services: passed: .*Ferry.*; [1-9][0-9]+m; \d+ points; \d+ steps; empty=true; input=E_MAP_INPUT$/i.test(label)))
+    screenshot('map-services.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

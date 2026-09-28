@@ -15,6 +15,7 @@ import {
   Share,
   Open,
   PhotoLibrary,
+  MapServices,
   AppTracking,
   ImageManipulator,
   Device,
@@ -71,6 +72,7 @@ export type OneIOS = typeof Swift & {
   readonly CameraView: typeof CameraView
   readonly Share: typeof Share
   readonly PhotoLibrary: typeof PhotoLibrary
+  readonly MapServices: typeof MapServices
   readonly AppTracking: typeof AppTracking
   readonly ImageManipulator: typeof ImageManipulator
   readonly Device: typeof Device
@@ -155,6 +157,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   CameraView,
   Share,
   PhotoLibrary,
+  MapServices,
   AppTracking,
   ImageManipulator,
   Device,

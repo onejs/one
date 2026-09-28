@@ -9,6 +9,7 @@ export default function OneNativeContacts() {
   const [permission, setPermission] = useState(One.iOS.Contacts.getPermissionStatus())
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('none')
+  const [addressResult, setAddressResult] = useState('none')
 
   const run = async () => {
     setStatus('running')
@@ -36,6 +37,7 @@ export default function OneNativeContacts() {
         familyName: 'NativeContacts27',
         phoneNumbers: ['+1 415 555 0109'],
         emailAddresses: ['one-proof@example.test'],
+        postalAddresses: [{ label: 'Proof office', street: '1 Market Street', city: 'San Francisco', state: 'CA', postalCode: '94105', country: 'United States', isoCountryCode: 'US' }],
       })
       stage = 'search'
       const matches = await One.iOS.Contacts.search('OneProof', 20)
@@ -47,13 +49,24 @@ export default function OneNativeContacts() {
           found.phoneNumbers.includes('+1 415 555 0109') &&
           found.emailAddresses.includes('one-proof@example.test')
       )
+      const addressCreated = found?.postalAddresses.length === 1 &&
+        found.postalAddresses[0].label === 'Proof office' &&
+        found.postalAddresses[0].street === '1 Market Street' &&
+        found.postalAddresses[0].city === 'San Francisco' &&
+        found.postalAddresses[0].isoCountryCode === 'US'
       stage = 'edit'
       const changed = await One.iOS.Contacts.update(identifier, {
         givenName: 'OneEdited',
         phoneNumbers: ['+1 415 555 0110'],
         emailAddresses: ['one-edited@example.test'],
+        postalAddresses: [{ label: 'Proof office', street: '2 Market Street', city: 'San Francisco', state: 'CA', postalCode: '94105', country: 'United States', isoCountryCode: 'US' }],
       })
       const afterEdit = await One.iOS.Contacts.search('OneEdited', 20)
+      const addressEdited = changed.postalAddresses.length === 1 &&
+        changed.postalAddresses[0].label === 'Proof office' &&
+        changed.postalAddresses[0].street === '2 Market Street' &&
+        afterEdit.some((contact) => contact.identifier === identifier &&
+          contact.postalAddresses[0]?.street === '2 Market Street')
       const edited = changed.identifier === identifier &&
         changed.givenName === 'OneEdited' &&
         changed.familyName === 'NativeContacts27' &&
@@ -66,12 +79,18 @@ export default function OneNativeContacts() {
           (contact) => contact.identifier === identifier
         )
       const cleared = await One.iOS.Contacts.update(identifier, { emailAddresses: [] })
+      const afterPartial = await One.iOS.Contacts.search('OneEdited', 20)
+      const addressPreserved = cleared.postalAddresses[0]?.street === '2 Market Street' &&
+        cleared.postalAddresses[0]?.label === 'Proof office' &&
+        afterPartial.some((contact) => contact.identifier === identifier &&
+          contact.postalAddresses[0]?.street === '2 Market Street' &&
+          contact.postalAddresses[0]?.label === 'Proof office')
       const partial = cleared.identifier === identifier &&
         cleared.givenName === 'OneEdited' &&
         cleared.familyName === 'NativeContacts27' &&
         cleared.phoneNumbers.includes('+1 415 555 0110') &&
         cleared.emailAddresses.length === 0 &&
-        (await One.iOS.Contacts.search('OneEdited', 20)).some(
+        afterPartial.some(
           (contact) => contact.identifier === identifier && contact.emailAddresses.length === 0
         )
       const invalid = await One.iOS.Contacts.search('OneProof', 0).then(
@@ -82,6 +101,16 @@ export default function OneNativeContacts() {
         () => 'unexpected',
         code
       )
+      const invalidAddress = await One.iOS.Contacts.update(identifier, {
+        postalAddresses: [{}],
+      }).then(() => 'unexpected', code)
+      const clearAddressResult = await One.iOS.Contacts.update(identifier, {
+        postalAddresses: [],
+      })
+      const addressCleared = clearAddressResult.postalAddresses.length === 0 &&
+        (await One.iOS.Contacts.search('OneEdited', 20)).some(
+          (contact) => contact.identifier === identifier && contact.postalAddresses.length === 0
+        )
       stage = 'delete'
       await One.iOS.Contacts.delete(identifier)
       stage = 'verify delete'
@@ -96,11 +125,13 @@ export default function OneNativeContacts() {
         code
       )
       identifier = ''
+      setAddressResult(`created=${addressCreated}; edited=${addressEdited}; preserved=${addressPreserved}; cleared=${addressCleared}; invalid=${invalidAddress}`)
       setResult(`before=${before}; blankCreate=${blankCreate}; matched=${matched}; edited=${edited}; partial=${partial}; removed=${removed}; missingDelete=${missingDelete}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}`)
       setStatus(before === 'E_CONTACTS_PERMISSION' && blankCreate === 'E_CONTACTS_INPUT' &&
         matched && edited && partial && removed && missingDelete === 'E_CONTACTS_NOT_FOUND' &&
         notFound === 'E_CONTACTS_NOT_FOUND' && invalidUpdate === 'E_CONTACTS_INPUT' &&
-        invalid === 'E_CONTACTS_INPUT' ? 'passed' : 'failed')
+        invalid === 'E_CONTACTS_INPUT' && addressCreated && addressEdited &&
+        addressPreserved && addressCleared && invalidAddress === 'E_CONTACTS_INPUT' ? 'passed' : 'failed')
     } catch (error) {
       setResult(`${stage}: ${code(error)}`)
       setStatus('failed')
@@ -114,6 +145,7 @@ export default function OneNativeContacts() {
       <Text>{`Permission: ${permission}`}</Text>
       <Text>{`Status: ${status}`}</Text>
       <Text>{`Result: ${result}`}</Text>
+      <Text>{`Address: ${addressResult}`}</Text>
       <Pressable testID="one-native-contacts-run" style={styles.button} onPress={run}>
         <Text>Run Contacts proof</Text>
       </Pressable>
