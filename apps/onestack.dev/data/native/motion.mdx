@@ -1,0 +1,55 @@
+---
+title: Motion sensors
+description: Read Core Motion accelerometer, gyroscope, magnetometer, and fused device-motion streams on iOS.
+---
+
+`One.iOS.Motion` reports which motion sensors the device can use and subscribes to
+live readings. It requires an iOS native build. Check availability before
+subscribing, because iPads and simulator devices can lack sensors. The iOS
+Simulator has no physical motion input.
+
+```tsx
+import { One } from 'one'
+
+const availability = One.iOS.Motion.getAvailability()
+if (availability.accelerometer) {
+  const remove = One.iOS.Motion.addListener(
+    'accelerometer', 100,
+    (reading) => {
+      // reading.value has x, y, z acceleration in units of g
+      console.log(reading.value, reading.timestampMs)
+    },
+    (code, message) => console.error(code, message)
+  )
+  // stop updates when the screen no longer needs them
+  remove()
+}
+```
+
+`getAvailability()` returns `accelerometer`, `gyroscope`, `magnetometer`, and
+`deviceMotion` booleans. `addListener(sensor, intervalMs, onReading, onError)`
+accepts an interval from 16 through 1000 milliseconds and returns an idempotent
+remover. The requested interval is a target: iOS controls the actual sensor
+frequency, and callbacks may be less frequent. Multiple listeners share one
+sensor stream; each receives no more than its requested rate. Remove listeners
+when their screen unmounts to stop the hardware stream.
+
+All readings have a Unix `timestampMs`, sensor name, and `value` with x, y, z.
+Accelerometer values are in units of gravity, gyroscope values are radians per
+second, and magnetometer values are microteslas. For `deviceMotion`, `value` is
+gravity-free user acceleration in units of gravity. It also includes `gravity`,
+`userAcceleration`, `rotationRate`, and `attitude`; attitude x/y/z are
+roll/pitch/yaw in radians. Axes use Core Motion's device coordinate system.
+
+The error callback receives `E_MOTION_UNAVAILABLE` when the sensor is absent,
+`E_MOTION_INPUT` for a native interval validation failure, or
+`E_MOTION_STREAM` if Core Motion stops with an error. The JavaScript wrapper
+throws `TypeError` for an invalid sensor or callbacks and `RangeError` for an
+invalid interval before registering a listener. Basic accelerometer, gyroscope,
+magnetometer, and device-motion streams do not request a motion and fitness
+permission; other Core Motion services such as pedometer and activity tracking
+need `NSMotionUsageDescription` and are not part of this API.
+
+The iOS 27 simulator proof checks the real Core Motion availability flags,
+unavailable-stream errors, and input validation. Live values and sensor
+frequency need a physical-device proof.

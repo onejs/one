@@ -56,6 +56,7 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  'iOS.Motion': 'iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run',
   'iOS.Menu': 'primaryAction short tap, long-press menu, item callback, disabled behavior, and plain Menu tap proven on iOS 27; context previews and Picker inside menu content unbound',
   'iOS.ArrangementView': 'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
   'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
