@@ -38,6 +38,7 @@
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
+#include "HybridOneScreenCaptureSpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneMapServicesSpecSwift.hpp"
@@ -246,6 +247,13 @@
     "OneScreenOrientation",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneScreenOrientationSpec> hybridObject = One::OneAutolinking::createOneScreenOrientation();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneScreenCapture",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneScreenCaptureSpec> hybridObject = One::OneAutolinking::createOneScreenCapture();
       return hybridObject;
     }
   );

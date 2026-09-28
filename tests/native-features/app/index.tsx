@@ -355,6 +355,11 @@ const testScreens = [
     label: 'One Native Screen Orientation',
     testID: 'nav-one-native-screen-orientation',
   },
+  {
+    href: '/one-native-screen-capture',
+    label: 'One Native Screen Capture',
+    testID: 'nav-one-native-screen-capture',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-autogen',

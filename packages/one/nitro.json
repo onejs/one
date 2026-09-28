@@ -109,6 +109,9 @@
     "OneScreenOrientation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneScreenOrientation" }
     },
+    "OneScreenCapture": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneScreenCapture" }
+    },
     "OneContacts": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneContacts" }
     },

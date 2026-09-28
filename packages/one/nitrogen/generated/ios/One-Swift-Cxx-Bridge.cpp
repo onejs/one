@@ -36,6 +36,7 @@
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
+#include "HybridOneScreenCaptureSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
 #include "HybridOneShareSpecSwift.hpp"
@@ -971,6 +972,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneProtectedStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(ScreenCaptureState /* result */)>
+  Func_void_ScreenCaptureState create_Func_void_ScreenCaptureState(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_ScreenCaptureState::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](ScreenCaptureState result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneScreenCaptureSpec>
+  std::shared_ptr<HybridOneScreenCaptureSpec> create_std__shared_ptr_HybridOneScreenCaptureSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneScreenCaptureSpec_cxx swiftPart = One::HybridOneScreenCaptureSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneScreenCaptureSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneScreenCaptureSpec_(std__shared_ptr_HybridOneScreenCaptureSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneScreenCaptureSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneScreenCaptureSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneScreenCaptureSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneScreenCaptureSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

@@ -1,0 +1,37 @@
+---
+title: Screen capture
+description: Observe screenshots and active screen recording or mirroring on iOS.
+---
+
+`One.iOS.ScreenCapture` reports the active window scene's capture state and
+notifies your app after a person takes a screenshot. It requires an iOS native
+build and no manifest permission.
+
+```tsx
+import { One } from 'one'
+
+const state = await One.iOS.ScreenCapture.getState()
+const removeState = One.iOS.ScreenCapture.addStateListener((nextState) => {
+  // hide sensitive content while nextState is 'active'
+})
+const removeScreenshot = One.iOS.ScreenCapture.addScreenshotListener((timestampMs) => {
+  // record an audit event after the screenshot was taken
+})
+
+// call both removers when this screen no longer needs updates
+removeState()
+removeScreenshot()
+```
+
+`getState()` resolves to `active` when UIKit reports that the scene is being
+recorded or mirrored, `inactive` when it is not, and `unspecified` when UIKit
+has not determined a state. `addStateListener()` reports changes after
+registration; call `getState()` to read the current state. The screenshot
+listener receives a Unix timestamp in milliseconds after the screenshot.
+
+`getState()` rejects with `E_SCREEN_CAPTURE_SCENE` if there is no active window
+scene. Screenshot notification arrives after the image is captured, so it
+cannot prevent or redact that screenshot. For recording and mirroring, update
+your own content when the capture state changes. Verify screenshot and recording
+behavior on a physical device: simulator command-line capture reads the host
+framebuffer without exercising UIKit's in-app notifications or scene state.

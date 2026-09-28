@@ -43,6 +43,8 @@ export { AppIcon } from './app-icon/index';
 export type { AppTrackingPermissionStatus } from './app-tracking/index';
 export { ScreenOrientation } from './screen-orientation/index';
 export type { ScreenOrientationLock, ScreenOrientationValue } from './screen-orientation/index';
+export { ScreenCapture } from './screen-capture/index';
+export type { ScreenCaptureState } from './screen-capture/index';
 export { ImageManipulator } from './image-manipulator/index';
 export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult } from './image-manipulator/index';
 export { Device } from './device/index';

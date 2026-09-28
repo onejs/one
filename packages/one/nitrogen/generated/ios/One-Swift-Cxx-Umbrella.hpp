@@ -178,6 +178,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
+// Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenOrientationSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
@@ -298,6 +300,8 @@ namespace margelo::nitro::one { struct ReminderInput; }
 namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
+// Forward declaration of `ScreenCaptureState` to properly resolve imports.
+namespace margelo::nitro::one { enum class ScreenCaptureState; }
 // Forward declaration of `ScreenOrientationLock` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenOrientationLock; }
 // Forward declaration of `ScreenOrientationValue` to properly resolve imports.
@@ -411,6 +415,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
+#include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
@@ -471,6 +476,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ReminderInput.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
+#include "ScreenCaptureState.hpp"
 #include "ScreenOrientationLock.hpp"
 #include "ScreenOrientationValue.hpp"
 #include "ShareItem.hpp"
@@ -561,6 +567,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
+// Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenOrientationSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.

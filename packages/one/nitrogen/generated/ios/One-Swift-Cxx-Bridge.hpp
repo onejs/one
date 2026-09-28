@@ -158,6 +158,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
+// Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenOrientationSpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
@@ -252,6 +254,8 @@ namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
+// Forward declaration of `ScreenCaptureState` to properly resolve imports.
+namespace margelo::nitro::one { enum class ScreenCaptureState; }
 // Forward declaration of `ScreenOrientationValue` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenOrientationValue; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
@@ -332,6 +336,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
+// Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenOrientationSpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
@@ -418,6 +424,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
+#include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
@@ -465,6 +472,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
 #include "ReminderInfo.hpp"
+#include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
@@ -4046,6 +4054,61 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneProtectedStoreSpec>
   using std__weak_ptr_HybridOneProtectedStoreSpec_ = std::weak_ptr<HybridOneProtectedStoreSpec>;
   inline std__weak_ptr_HybridOneProtectedStoreSpec_ weakify_std__shared_ptr_HybridOneProtectedStoreSpec_(const std::shared_ptr<HybridOneProtectedStoreSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: std::shared_ptr<Promise<ScreenCaptureState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ScreenCaptureState>>`.
+   */
+  using std__shared_ptr_Promise_ScreenCaptureState__ = std::shared_ptr<Promise<ScreenCaptureState>>;
+  inline std::shared_ptr<Promise<ScreenCaptureState>> create_std__shared_ptr_Promise_ScreenCaptureState__() noexcept {
+    return Promise<ScreenCaptureState>::create();
+  }
+  inline PromiseHolder<ScreenCaptureState> wrap_std__shared_ptr_Promise_ScreenCaptureState__(std::shared_ptr<Promise<ScreenCaptureState>> promise) noexcept {
+    return PromiseHolder<ScreenCaptureState>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(ScreenCaptureState /* result */)>
+  /**
+   * Specialized version of `std::function<void(ScreenCaptureState)>`.
+   */
+  using Func_void_ScreenCaptureState = std::function<void(ScreenCaptureState /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(ScreenCaptureState / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ScreenCaptureState_Wrapper final {
+  public:
+    explicit Func_void_ScreenCaptureState_Wrapper(std::function<void(ScreenCaptureState /* result */)>&& func): _function(std::make_unique<std::function<void(ScreenCaptureState /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<ScreenCaptureState>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(ScreenCaptureState /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ScreenCaptureState create_Func_void_ScreenCaptureState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ScreenCaptureState_Wrapper wrap_Func_void_ScreenCaptureState(Func_void_ScreenCaptureState value) noexcept {
+    return Func_void_ScreenCaptureState_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneScreenCaptureSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneScreenCaptureSpec>`.
+   */
+  using std__shared_ptr_HybridOneScreenCaptureSpec_ = std::shared_ptr<HybridOneScreenCaptureSpec>;
+  std::shared_ptr<HybridOneScreenCaptureSpec> create_std__shared_ptr_HybridOneScreenCaptureSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneScreenCaptureSpec_(std__shared_ptr_HybridOneScreenCaptureSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneScreenCaptureSpec>
+  using std__weak_ptr_HybridOneScreenCaptureSpec_ = std::weak_ptr<HybridOneScreenCaptureSpec>;
+  inline std__weak_ptr_HybridOneScreenCaptureSpec_ weakify_std__shared_ptr_HybridOneScreenCaptureSpec_(const std::shared_ptr<HybridOneScreenCaptureSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<ScreenCaptureState>>>
+  using Result_std__shared_ptr_Promise_ScreenCaptureState___ = Result<std::shared_ptr<Promise<ScreenCaptureState>>>;
+  inline Result_std__shared_ptr_Promise_ScreenCaptureState___ create_Result_std__shared_ptr_Promise_ScreenCaptureState___(const std::shared_ptr<Promise<ScreenCaptureState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ScreenCaptureState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ScreenCaptureState___ create_Result_std__shared_ptr_Promise_ScreenCaptureState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ScreenCaptureState>>>::withError(error);
+  }
 
   // pragma MARK: std::shared_ptr<Promise<ScreenOrientationValue>>
   /**

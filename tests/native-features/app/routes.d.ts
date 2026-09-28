@@ -108,6 +108,7 @@ declare module 'one' {
         | `/one-native-radial-gradient`
         | `/one-native-safe-area`
         | `/one-native-safe-area-bar`
+        | `/one-native-screen-capture`
         | `/one-native-screen-orientation`
         | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`

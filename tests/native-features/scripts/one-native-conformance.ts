@@ -51,6 +51,7 @@ const suites = [
   'app-info',
   'device',
   'screen-orientation',
+  'screen-capture',
   'database',
   'contacts',
   'calendar',
@@ -647,6 +648,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'app-info': appInfoLoaded,
   device: deviceLoaded,
   'screen-orientation': screenOrientationLoaded,
+  'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
   database: databaseLoaded,
   contacts: contactsLoaded,
   calendar: calendarLoaded,
@@ -739,6 +741,7 @@ const suiteHome: Record<Suite, string> = {
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
   'screen-orientation': 'nav-one-native-screen-orientation',
+  'screen-capture': 'nav-one-native-screen-capture',
   database: 'nav-one-native-database',
   contacts: 'nav-one-native-contacts',
   calendar: 'nav-one-native-calendar',
@@ -1186,6 +1189,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'notifications' || config.suite === 'speech' ||
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
+      config.suite === 'screen-capture' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
@@ -3251,6 +3255,74 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Orientation: portrait') && labels(n).includes('Status: unlocked')
     )
     screenshot('screen-orientation-unlocked.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'screen-capture') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-screen-capture')
+    await wait('scene capture is inactive before a screenshot', (n) =>
+      labels(n).includes('Capture state: inactive') &&
+      labels(n).includes('State events: none') &&
+      labels(n).includes('Screenshot count: 0')
+    )
+    const proofFile = path.join(config.artifactDir, 'screen-capture-trigger.png')
+    execFileSync('xcrun', ['simctl', 'io', config.simulatorId, 'screenshot', proofFile])
+    await wait('host capture leaves the app screenshot listener unchanged', (n) =>
+      labels(n).includes('Screenshot count: 0') && labels(n).includes('Capture state: inactive')
+    )
+    // simctl copies the host framebuffer without posting UIKit's in-app notification.
+    // inject that exact notification into the running simulator app to prove the Nitro callback.
+    const processList = execFileSync('xcrun', [
+      'simctl', 'spawn', config.simulatorId, 'launchctl', 'list',
+    ], { encoding: 'utf8' })
+    const appProcess = processList.split('\n').find((line) =>
+      line.includes(`UIKitApplication:${config.bundleId}[`)
+    )
+    const appPid = Number(appProcess?.split('\t')[0])
+    if (!Number.isInteger(appPid) || appPid <= 0)
+      throw new Error(`ScreenCapture: app process is missing from launchctl: ${appProcess}`)
+    const runInApp = (name: string, expression: string) => {
+      const debuggerOutput = execFileSync('xcrun', [
+        'lldb', '-b',
+        '-o', `process attach --pid ${appPid}`,
+        '-o', `expr -l objc++ -- ${expression}`,
+        '-o', 'process detach',
+        '-o', 'quit',
+      ], { encoding: 'utf8', timeout: 30_000 })
+      fs.writeFileSync(path.join(config.artifactDir, name), debuggerOutput)
+    }
+    const captureTrait = (value: number) =>
+      `(void)[[(UIWindowScene *)[[[[UIApplication sharedApplication] windows] firstObject] windowScene] traitOverrides] setSceneCaptureState:(UISceneCaptureState)${value}]`
+    runInApp('capture-trait-active.log', captureTrait(1))
+    await wait('scene capture listener reports active', (n) =>
+      labels(n).includes('Capture state: active') &&
+      labels(n).includes('State events: active')
+    )
+    runInApp('capture-trait-inactive.log', captureTrait(0))
+    await wait('scene capture listener reports inactive again', (n) =>
+      labels(n).includes('Capture state: inactive') &&
+      labels(n).includes('State events: active,inactive')
+    )
+    const screenshotNotification =
+      '(void)[[NSNotificationCenter defaultCenter] postNotificationName:(NSString *)UIApplicationUserDidTakeScreenshotNotification object:nil]'
+    runInApp('screenshot-notification-injection.log', screenshotNotification)
+    await wait('native screenshot notification reaches JS', (n) =>
+      labels(n).includes('Screenshot count: 1') &&
+      labels(n).includes('Screenshot timestamp valid: true') &&
+      labels(n).includes('Capture state: inactive') &&
+      labels(n).includes('State events: active,inactive')
+    )
+    tap({ id: 'one-native-screen-capture-unsubscribe' })
+    await wait('screenshot listener is removed', (n) => labels(n).includes('Listening: false'))
+    runInApp('screenshot-notification-after-remove.log', screenshotNotification)
+    tap({ id: 'one-native-screen-capture-refresh' })
+    await wait('removed listener ignores a second native notification', (n) =>
+      labels(n).includes('Status: refreshed') && labels(n).includes('Screenshot count: 1') &&
+      labels(n).includes('Capture state: inactive')
+    )
+    screenshot('screen-capture-event.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
