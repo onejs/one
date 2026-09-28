@@ -1,0 +1,55 @@
+---
+title: Camera preview
+description: iOS camera preview with QR and barcode scanning
+---
+
+`One.iOS.CameraView` shows a live camera preview and reports QR or barcode values. It is
+an iOS native view. Use `One.ImagePicker` for camera permission before activating it.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+import { Pressable, Text, View } from 'react-native'
+
+function Scanner() {
+  const [active, setActive] = useState(false)
+  const [message, setMessage] = useState('')
+
+  async function open() {
+    const permission = await One.ImagePicker.requestCameraPermissions()
+    if (permission.granted) setActive(true)
+  }
+
+  return <View>
+    <Pressable onPress={open}><Text>Open scanner</Text></Pressable>
+    <One.iOS.CameraView
+      style={{ height: 320 }}
+      active={active}
+      facing="back"
+      codeTypes={['qr', 'ean13', 'code128']}
+      onStateChange={setMessage}
+      onCodeScanned={({ type, data }) => setMessage(`${type}: ${data}`)}
+    />
+    <Pressable onPress={() => setActive(false)}><Text>Close scanner</Text></Pressable>
+    <Text>{message}</Text>
+  </View>
+}
+```
+
+Declare a camera reason in `native.app.imagePicker.camera`; `one prebuild` writes
+`NSCameraUsageDescription`. Without authorization, the view reports
+`permission-required` and does not open a capture session. `getCameraPermissions()`
+reads permission without prompting. Set `active={false}` when scanning ends; the view
+also stops its capture session when it leaves the window or the app enters the background.
+
+`facing` is `back` or `front`. `codeTypes` accepts `qr`, `ean13`, `ean8`, `upce`,
+`code128`, `code39`, `code93`, `pdf417`, `aztec`, and `dataMatrix`. The default is `['qr']`.
+The view enables only types the selected camera reports as available. With no supported
+requested type, it reports `unsupported`. `onCodeScanned` can fire for every observed
+frame, so apps that act once should set `active={false}` after receiving a code.
+
+`onStateChange` reports `inactive`, `permission-required`, `unavailable`, `ready`,
+`unsupported`, or `failed`. `unavailable` means the selected device camera was not
+found. Apple's iOS Simulator has no device camera: simulator conformance verifies the
+permission gate, activation changes, and unavailable state. Live preview, scanned
+values, and front/back device selection still need a physical iPhone proof.

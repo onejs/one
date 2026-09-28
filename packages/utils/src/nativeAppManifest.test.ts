@@ -1,5 +1,9 @@
 import { describe, expect, test } from 'vitest'
-import { validateNativeApp, type NativeAppManifest } from './nativeAppManifest'
+import {
+  expoClientFromNativeApp,
+  validateNativeApp,
+  type NativeAppManifest,
+} from './nativeAppManifest'
 
 const app = {
   name: 'MyApp',
@@ -270,6 +274,15 @@ describe('native.app manifest', () => {
     expect(() =>
       validateNativeApp({ ...app, updates: { url: '', runtimeVersion: 'test-1' } })
     ).toThrow(/updates\.url/)
+  })
+
+  // prebuild writes no UIUserInterfaceStyle for an unset style, so the built
+  // app follows the system; an expo client reads a missing style as light.
+  test('the dev manifest states the interface style the built app has', () => {
+    expect(expoClientFromNativeApp(app).userInterfaceStyle).toBe('automatic')
+    expect(
+      expoClientFromNativeApp({ ...app, userInterfaceStyle: 'dark' }).userInterfaceStyle
+    ).toBe('dark')
   })
 
   test('platform scope skips the other platform requirement', () => {

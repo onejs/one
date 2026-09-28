@@ -7,6 +7,8 @@ import type {
   AudioRecordingResult,
   AudioRecordingStatus,
   AudioInterruptionEvent,
+  AudioNowPlayingInfo,
+  AudioRemoteCommandEvent,
   OneAudio,
 } from '../specs/OneAudio.nitro'
 
@@ -19,6 +21,9 @@ export type {
   AudioRecordingStatus,
   AudioInterruptionEvent,
   AudioInterruptionType,
+  AudioNowPlayingInfo,
+  AudioRemoteCommandEvent,
+  AudioRemoteCommandType,
 } from '../specs/OneAudio.nitro'
 
 let hybrid: OneAudio | undefined
@@ -58,5 +63,15 @@ export const Audio = Object.freeze({
       throw new TypeError('Audio.watchInterruptions: onEvent must be a function')
     }
     return native().addInterruptionListener(onEvent)
+  },
+  setNowPlayingInfo: (info: AudioNowPlayingInfo): Promise<void> =>
+    native().setNowPlayingInfo(info).catch(rethrowNativeError),
+  clearNowPlayingInfo: (): Promise<void> =>
+    native().clearNowPlayingInfo().catch(rethrowNativeError),
+  watchRemoteCommands: (onEvent: (event: AudioRemoteCommandEvent) => void): (() => void) => {
+    if (typeof onEvent !== 'function') {
+      throw new TypeError('Audio.watchRemoteCommands: onEvent must be a function')
+    }
+    return native().addRemoteCommandListener(onEvent)
   },
 })
