@@ -118,6 +118,30 @@ export default function OneNativeCalendar() {
       const recurrenceRemoved = !(await One.iOS.Calendar.list(
         recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100
       )).some((event) => event.title === recurrenceTitle)
+      const dateStartMs = Date.now() + 21 * dayMs
+      const dateEndMs = dateStartMs + 2 * dayMs + 30 * 60_000
+      const dateTitle = `One date-bounded recurrence ${dateStartMs}`
+      await One.iOS.Calendar.create({
+        title: dateTitle,
+        startMs: dateStartMs,
+        endMs: dateStartMs + 3_600_000,
+        recurrence: { frequency: 'daily', endDateMs: dateEndMs },
+      })
+      const dateEvents = (await One.iOS.Calendar.list(
+        dateStartMs - 1, dateStartMs + 4 * dayMs, 100
+      )).filter((event) => event.title === dateTitle)
+      const dateBounded = dateEvents.length === 3 && dateEvents.every((event, index) =>
+        Math.abs(event.startMs - (dateStartMs + index * dayMs)) < 1000 &&
+        event.recurrence?.frequency === 'daily' && event.recurrence.interval === 1 &&
+        Math.abs((event.recurrence.endDateMs ?? 0) - dateEndMs) < 1000 &&
+        event.recurrence.occurrenceCount === undefined
+      )
+      for (const event of [...dateEvents].reverse()) {
+        await One.iOS.Calendar.delete(event.identifier, event.startMs)
+      }
+      const dateRemoved = !(await One.iOS.Calendar.list(
+        dateStartMs - 1, dateStartMs + 4 * dayMs, 100
+      )).some((event) => event.title === dateTitle)
       let invalidRecurrence = 'none'
       try {
         await One.iOS.Calendar.create({
@@ -128,7 +152,17 @@ export default function OneNativeCalendar() {
       } catch (error) {
         invalidRecurrence = code(error)
       }
-      setResult(`before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; invalidRecurrence=${invalidRecurrence}`)
+      let invalidRecurrenceEnd = 'none'
+      try {
+        await One.iOS.Calendar.create({
+          title: 'Invalid recurrence end', startMs: dateStartMs,
+          endMs: dateStartMs + 3_600_000,
+          recurrence: { frequency: 'daily', endDateMs: dateStartMs - 1 },
+        })
+      } catch (error) {
+        invalidRecurrenceEnd = code(error)
+      }
+      setResult(`before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; dateBounded=${dateBounded}; dateRemoved=${dateRemoved}; invalidRecurrence=${invalidRecurrence}; invalidRecurrenceEnd=${invalidRecurrenceEnd}`)
       setStatus('done')
     } catch (error) {
       setStatus(`failed ${code(error)}`)
