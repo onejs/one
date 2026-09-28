@@ -108,6 +108,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.CameraView` | camera-preview | n/a |  |
 | `One.iOS.Share` | share | n/a |  |
 | `One.iOS.PhotoLibrary` | photo-library | n/a |  |
+| `One.iOS.MapServices` | map-services | n/a |  |
 | `One.iOS.AppTracking` | app-tracking | n/a |  |
 | `One.iOS.ImageManipulator` | image-manipulator | n/a |  |
 | `One.iOS.Device` | device | n/a |  |
