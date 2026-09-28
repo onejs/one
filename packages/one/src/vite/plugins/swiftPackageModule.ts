@@ -33,6 +33,7 @@ export function renderSwiftPackageModule(id: string, platform: string, root: str
   const contract = writeNativeSourceDeclaration(id)
   const packageName = swiftPackageId(packageDir)
   const artifacts = writeSwiftPackageArtifacts(packageDir)
+  // sibling contract edits change this hash and require a native rebuild; stale js fails closed.
   const hash = artifacts.hash
   const watchFiles = Object.keys(artifacts.files).map((file) => join(packageDir, file))
   const fill = /@main\s+struct\s+\w+\s*:\s*(SwiftUI\.)?App\b/.test(
