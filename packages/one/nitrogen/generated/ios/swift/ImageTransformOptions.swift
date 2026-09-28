@@ -18,7 +18,7 @@ public extension ImageTransformOptions {
   /**
    * Create a new instance of `ImageTransformOptions`.
    */
-  init(crop: ImageCrop?, resize: ImageResize?, rotate: Double?, format: ImageFormat, quality: Double?) {
+  init(crop: ImageCrop?, resize: ImageResize?, rotate: Double?, format: OneImageFormat, quality: Double?) {
     self.init({ () -> bridge.std__optional_ImageCrop_ in
       if let __unwrappedValue = crop {
         return bridge.create_std__optional_ImageCrop_(__unwrappedValue)
@@ -50,12 +50,12 @@ public extension ImageTransformOptions {
   var crop: ImageCrop? {
     return self.__crop.value
   }
-  
+
   @inline(__always)
   var resize: ImageResize? {
     return self.__resize.value
   }
-  
+
   @inline(__always)
   var rotate: Double? {
     return { () -> Double? in
@@ -67,12 +67,12 @@ public extension ImageTransformOptions {
       }
     }()
   }
-  
+
   @inline(__always)
-  var format: ImageFormat {
+  var format: OneImageFormat {
     return self.__format
   }
-  
+
   @inline(__always)
   var quality: Double? {
     return { () -> Double? in
