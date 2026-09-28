@@ -55,9 +55,10 @@ final class HybridOneContacts: HybridOneContactsSpec {
       let picker = CNContactPickerViewController()
       picker.predicateForSelectionOfContact = NSPredicate(value: true)
       picker.delegate = self.pickerDelegate
-      picker.presentationController?.delegate = self.pickerDelegate
       self.pendingPicker = promise
-      presenter.present(picker, animated: true)
+      presenter.present(picker, animated: true) {
+        picker.presentationController?.delegate = self.pickerDelegate
+      }
     }
     return promise
   }

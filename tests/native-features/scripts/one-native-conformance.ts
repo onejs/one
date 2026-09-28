@@ -912,6 +912,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const nodes = snapshot(config.simulatorId)
       const app = nodes.find((node) => node.type === 'Application')?.frame
       if (!app) throw new Error(`Home row ${testID} disappeared while scrolling`)
+      // ax reports rows covered by the navigation bar as inside the app frame.
+      const nav = id(nodes, 'index')?.frame
+      if (!nav) throw new Error('Home navigation bar disappeared while scrolling')
+      const navBottom = nav.y + nav.height
       const row = id(nodes, testID)?.frame
       if (!row) {
         // the home list re-renders under the snapshot (fonts, layout) and a
@@ -919,13 +923,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         await new Promise((resolve) => setTimeout(resolve, 400))
         continue
       }
-      if (row.y >= 0 && row.y + row.height <= app.height) {
+      if (row.y >= navBottom && row.y + row.height <= app.height) {
         // a tap on a list still coasting from the last swipe only stops it,
         // so the row has to hold still across two snapshots first.
         let previous = row
         await wait(`${testID} settles`, (settledNodes) => {
           const frame = id(settledNodes, testID)?.frame
-          const settled = Boolean(frame && frame.x === previous.x && frame.y === previous.y)
+          const settled = Boolean(frame && frame.x === previous.x && frame.y === previous.y &&
+            frame.y >= navBottom && frame.y + frame.height <= app.height)
           if (frame) previous = frame
           return settled
         }, true)
@@ -936,7 +941,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       // a row below the viewport needs the list pushed up, and one the swipe already
       // carried past the top needs it pulled back down: scrolling one direction only
       // walks past an overshot row and never comes back to it.
-      const down = row.y < 0
+      const down = row.y < navBottom
       axe(
         [
           'swipe',
@@ -3240,12 +3245,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     })
     screenshot('contacts-picker-match.png')
     point(screen.width / 2, 130)
-    await wait('second Contacts picker opens after selection settles', (n) => {
+    await wait('second Contacts picker opens for swipe after selection settles', (n) => {
       const cancel = pickerCancel()
-      return appHasPickerStage('canceling') && cancel.AXLabel === 'Cancel' &&
+      return appHasPickerStage('swiping') && cancel.AXLabel === 'Cancel' &&
         cancel.type === 'Button' && cancel.pid !== n.find((node) => node.type === 'Application')?.pid
     })
-    screenshot('contacts-picker-cancel.png')
+    screenshot('contacts-picker-swipe.png')
+    axe([
+      'swipe', '--start-x', '201', '--start-y', '78', '--end-x', '201', '--end-y', '750',
+      '--duration', '1.0',
+    ], config.simulatorId)
+    await wait('swipe dismissal resolves and a third Contacts picker opens', (n) => {
+      const cancel = pickerCancel()
+      return appHasPickerStage('afterSwipe') && cancel.AXLabel === 'Cancel' &&
+        cancel.type === 'Button' && cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+    })
+    screenshot('contacts-picker-after-swipe.png')
     const cancel = pickerCancel()
     point(cancel.frame!.x + cancel.frame!.width / 2, cancel.frame!.y + cancel.frame!.height / 2)
     await wait('Contacts create edit search and delete pass', (n) =>
@@ -3256,7 +3271,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       ) && labels(n).includes(
         'Address: created=true; edited=true; preserved=true; cleared=true; invalid=E_CONTACTS_INPUT'
       ) && labels(n).includes(
-        'Picker: selected=true; canceled=true'
+        'Picker: selected=true; swiped=true; afterSwipe=true'
       )
     )
     screenshot('contacts-round-trip.png')

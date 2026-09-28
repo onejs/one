@@ -39,8 +39,9 @@ final class HybridOneDocumentPicker: HybridOneDocumentPickerSpec {
         forOpeningContentTypes: options.types.map(Self.contentType), asCopy: true)
       picker.allowsMultipleSelection = options.multiple
       picker.delegate = self.delegate
-      picker.presentationController?.delegate = self.delegate
-      presenter.present(picker, animated: true)
+      presenter.present(picker, animated: true) {
+        picker.presentationController?.delegate = self.delegate
+      }
     }
     return promise
   }
