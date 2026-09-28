@@ -85,7 +85,13 @@ accounts are unavailable).
   Picker content inside Menu, and other iOS versions remain unproven. A
   broader `tabs-menu` run passed 51 checks before its palette pixel floor
   rejected a visibly open native palette (`1 < 200`); the failed outcome,
-  screenshot, and AX capture are preserved with the focused proof.
+  screenshot, and AX capture are preserved with the focused proof. The same
+  gate on clean `v2-beta` `3b4dcc590`, rebuilt and installed with matching
+  dylib SHA, also passed 51 checks then failed at `1 < 200`; its outcome,
+  screenshot/AX, build log, and environment receipt are preserved. RAN the
+  focused suite again at `6bbe2d2ad` after keeping `primaryAction` off the
+  Android trigger View: 15/15. The Android contract test failed before this
+  fix and passed afterward; independent delta review r46497 gave a GO.
 
 - **RAN, 2026-09-27:** `One.iOS.MeshGradient` calls SwiftUI's
   `MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`

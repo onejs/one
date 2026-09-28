@@ -9,6 +9,13 @@ RAN on pro-128 with Xcode 27.1 and an iPhone 16 running iOS 27.0.
 `v2-beta` Vite merge, One's JS package was rebuilt and the suite was rerun
 against that merged source using the unchanged native binary.
 
+RAN again after the Android prop forwarding fix at `6bbe2d2ad` on the same
+iPhone 16/iOS 27.0 simulator: `post-android-fix-outcome.json` records 15/15
+checks passed. The native tree remains `3794b6df15a39be9b557c7261992967def52af85`;
+the fix changes only `AndroidMenu.tsx` and its contract test. The contract test
+failed before the fix because `primaryAction` reached the trigger View, then
+passed after the callback was removed from forwarded View props.
+
 Eight PNG and compressed AX pairs show the initial state, short tap, long-press
 menu, disabled state before and after touches, re-enabled state, and an
 ordinary Menu before and after selecting its item. The focused checks prove
@@ -29,6 +36,18 @@ and palette selection, then stopped at its `palette-menu` pixel floor
 and the matching AX capture preserve that result. The screenshot visibly
 shows the native palette open, and AX contains Bold and Italic buttons;
 the full `tabs-menu` suite is not claimed as passing.
+
+RAN negative control: the exact same `tabs-menu` gate on clean `v2-beta`
+`3b4dcc590` also passed 51 checks and stopped at `1 < 200` on the same iPhone
+16/iOS 27.0 simulator. Its separately built app had matching built and
+installed code-bearing dylib SHA-256
+`a172bb5a6e0c3b84a6fffad67c5157e376f8db62c42422a739ddbd6505e19bf9`.
+The visual gate source blob is identical on baseline and Menu branch
+(`ec303c41705bbcb2071fd83388c54730c17555a5`). The baseline outcome,
+build log, palette screenshot/AX, and machine-collected environment are saved
+as `clean-v2-beta-*` here. The baseline screenshot shows the native palette
+open; the calibrated pixel floor fails on iOS 27 in both runs. The palette
+assertion was left unchanged.
 
 `environment.json` was produced from Git, simctl, Xcode, and SHA-256 reads on
 the build host. It records the iOS runtime, light appearance, en_US locale,
