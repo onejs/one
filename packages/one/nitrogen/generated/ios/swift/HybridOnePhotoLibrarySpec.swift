@@ -17,6 +17,7 @@ public protocol HybridOnePhotoLibrarySpec_protocol: HybridObject {
   func requestAddPermission() throws -> Promise<PhotoLibraryPermissionStatus>
   func getReadPermissionStatus() throws -> PhotoLibraryPermissionStatus
   func requestReadPermission() throws -> Promise<PhotoLibraryPermissionStatus>
+  func presentLimitedLibraryPicker() throws -> Promise<[String]>
   func listAssets(offset: Double, limit: Double) throws -> Promise<PhotoLibraryAssetPage>
   func getAsset(identifier: String) throws -> Promise<PhotoLibraryAsset>
   func setFavorite(identifier: String, favorite: Bool) throws -> Promise<Void>

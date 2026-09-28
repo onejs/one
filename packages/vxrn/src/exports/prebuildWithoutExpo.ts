@@ -1864,6 +1864,9 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           `\t<key>UIFileSharingEnabled</key>\n\t<true/>\n\t<key>LSSupportsOpeningDocumentsInPlace</key>\n\t<true/>`
         )
       }
+      if (app.photoLibrary?.readWrite !== undefined) {
+        stamps.push('\t<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>\n\t<true/>')
+      }
       if (app.notifications !== undefined) {
         // gates the UNUserNotificationCenter delegate install: apps that link
         // one without notifications keep whatever delegate their own
