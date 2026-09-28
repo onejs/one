@@ -977,6 +977,8 @@ export function MeshGradient({
   style,
   ...props
 }: Types.MeshGradientProps) {
+  if (Number.parseFloat(String(Platform.Version)) < 18)
+    throw new Error('MeshGradient requires iOS 18 or newer')
   if (
     !Number.isSafeInteger(width) ||
     width < 2 ||

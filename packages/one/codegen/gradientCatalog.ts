@@ -433,7 +433,9 @@ private func oneNativeMeshGradientColor(_ value: String) -> Color? {
     }
     if model.colors != items { model.colors = items }`,
     },
-    validate: `  if (!Number.isSafeInteger(width) || width < 2 ||
+    validate: `  if (Number.parseFloat(String(Platform.Version)) < 18)
+    throw new Error('MeshGradient requires iOS 18 or newer')
+  if (!Number.isSafeInteger(width) || width < 2 ||
     !Number.isSafeInteger(height) || height < 2)
     throw new Error('MeshGradient width and height must be integers of at least 2')
   if (!Array.isArray(points) || points.length !== width * height ||
