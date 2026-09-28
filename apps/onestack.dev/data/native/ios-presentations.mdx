@@ -80,8 +80,12 @@ true.
 ## Menu
 
 `One.iOS.Menu` renders its children as the trigger and opens a SwiftUI menu
-on tap. `items` is a list of menu items, `onAction` receives the tapped
+on tap when `primaryAction` is absent. `items` is a list of menu items, `onAction` receives the tapped
 item id, and `accessibilityLabel` names the trigger.
+
+Provide `primaryAction` to run a callback on a short tap; the menu then opens
+on long press, matching SwiftUI `Menu(content:label:primaryAction:)`. Menu item
+selection still calls `onAction`. `disabled` blocks both interactions.
 
 Item shapes:
 
@@ -110,6 +114,7 @@ import { One } from 'one'
     { type: 'action', id: 'delete', title: 'Delete', role: 'destructive' },
   ]}
   onAction={(id) => act(id)}
+  primaryAction={() => openDocument()}
 >
   <One.iOS.Image systemName="ellipsis.circle" />
 </One.iOS.Menu>

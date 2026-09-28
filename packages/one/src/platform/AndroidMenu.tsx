@@ -32,6 +32,7 @@ function MenuPresentation({
   items,
   onAction,
   onValueChange,
+  primaryAction: _primaryAction,
   children,
   disabled = false,
   revision: _revision,

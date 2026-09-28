@@ -439,6 +439,7 @@ export const components = [
       items: 'ReadonlyArray<NativeMenuItem>',
       triggerLabel: 'string',
       disabled: 'boolean',
+      hasPrimaryAction: 'boolean',
       menuOrder: 'string',
       menuActionDismissBehavior: 'string',
       // menu opens on tap and owns the trigger; contextMenu opens on long press and
@@ -448,6 +449,7 @@ export const components = [
     },
     events: {
       onNativeMenuAction: { id: 'string' },
+      onNativeMenuPrimaryAction: { kind: 'string' },
       onNativeMenuValueChange: {
         id: 'string',
         value: 'boolean',
