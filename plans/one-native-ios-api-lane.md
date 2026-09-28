@@ -68,7 +68,7 @@ checklist; One's own exports and docs decide the status.
 | Web browser/auth session | covered | `One.Browser` | browser | done |
 | Web view | covered | `One.iOS.WebView` local HTML and URL loading, navigation/title/loading events | RAN iOS 27 web-photos: document A to B title/loading/progress and pixel repaint | done |
 | Native date/picker/slider/pager controls | covered | `One.iOS.DatePicker`, `Picker`, `Slider`, `Pager` | pickers, tabs-menu | done |
-| Gesture and animation packages | partial | gesture-handler and Reanimated are package peers; no One-specific conformance | none | P2 |
+| Gesture and animation packages | partial | Gesture Handler 3 and Reanimated 4 work in a One native route when installed as app dependencies and wrapped in `GestureHandlerRootView`; they remain package APIs with no One facade | RAN iOS 27 gestures: native pan callback and Reanimated timing position; Android and other gestures unproven | P2 |
 | Vector drawing and view snapshots | missing | no One SVG/Skia drawing or view-shot capture API | none | P3 |
 | Splash | covered | `One.LaunchScreen` first-content hold, synchronous `preventAutoHide()` at module evaluation, and `hide()` with optional iOS fade | RAN iOS 27 launch-screen: storyboard remained over rendered home content, JS link called hide and revealed fixture, second hide safe; normal setup without preventAutoHide failed held-state gate | done |
 | Status bar | partial | React Native StatusBar, no One facade | none | P3 |

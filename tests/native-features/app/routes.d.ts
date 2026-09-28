@@ -62,6 +62,7 @@ declare module 'one' {
         | `/one-native-database`
         | `/one-native-device`
         | `/one-native-device-attestation`
+        | `/one-native-gestures`
         | `/one-native-motion`
         | `/one-native-dialogs`
         | `/one-native-disclosure-group`

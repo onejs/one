@@ -52,6 +52,7 @@ const suites = [
   'device',
   'motion',
   'device-attestation',
+  'gestures',
   'screen-orientation',
   'screen-capture',
   'purchases',
@@ -658,6 +659,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   device: deviceLoaded,
   motion: (nodes: Node[]) => Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
   'device-attestation': (nodes: Node[]) => Boolean(id(nodes, 'one-native-device-attestation-read')) && has(nodes, 'Availability: '),
+  gestures: (nodes: Node[]) => Boolean(id(nodes, 'one-native-gestures-box')) && has(nodes, 'Drag: '),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
@@ -755,6 +757,7 @@ const suiteHome: Record<Suite, string> = {
   device: 'nav-one-native-device',
   motion: 'nav-one-native-motion',
   'device-attestation': 'nav-one-native-device-attestation',
+  gestures: 'nav-one-native-gestures',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
   purchases: 'nav-one-native-purchases',
@@ -1208,6 +1211,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
       config.suite === 'screen-capture' || config.suite === 'motion' ||
       config.suite === 'device-attestation' ||
+      config.suite === 'gestures' ||
       config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited') {
@@ -3309,6 +3313,37 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('device-attestation-availability.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'gestures') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-gestures')
+    const initial = await wait('gesture and animation fixture mounts at rest', (n) =>
+      labels(n).includes('Drag: pending') &&
+      labels(n).includes('Animation: pending') &&
+      Boolean(id(n, 'one-native-gestures-box')?.frame)
+    )
+    const before = id(initial, 'one-native-gestures-box')!.frame!
+    screenshot('gesture-before.png', initial)
+    axe([
+      'swipe', '--start-x', String(Math.round(before.x + before.width / 2)),
+      '--start-y', String(Math.round(before.y + before.height / 2)),
+      '--end-x', String(Math.round(before.x + before.width / 2 + 90)),
+      '--end-y', String(Math.round(before.y + before.height / 2)),
+      '--duration', '0.7',
+    ], config.simulatorId)
+    await wait('native pan reports the measured drag to JS', (n) => {
+      const match = labels(n).find((label) => label.startsWith('Drag: '))?.match(/^Drag: (-?\d+)$/)
+      return Boolean(match && Number(match[1]) >= 65 && Number(match[1]) <= 110)
+    })
+    const animated = await wait('Reanimated timing moves the native box and completes on JS', (n) => {
+      const frame = id(n, 'one-native-gestures-box')?.frame
+      return labels(n).includes('Animation: finished') &&
+        Boolean(frame && frame.x >= before.x + 105 && frame.x <= before.x + 135)
+    })
+    screenshot('gesture-animation.png', animated)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
