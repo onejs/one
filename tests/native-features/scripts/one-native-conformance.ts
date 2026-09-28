@@ -101,6 +101,7 @@ const suites = [
   'audio-background',
   'share',
   'photo-library',
+  'photo-library-limited',
   'image-manipulator',
   'speech',
   'fetch',
@@ -695,6 +696,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'audio-background': audioLoaded,
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
+  'photo-library-limited': photoLibraryLoaded,
   'image-manipulator': imageManipulatorLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
@@ -785,6 +787,7 @@ const suiteHome: Record<Suite, string> = {
   'audio-background': 'nav-one-native-audio',
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
+  'photo-library-limited': 'nav-one-native-photo-library',
   'image-manipulator': 'nav-one-native-image-manipulator',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
@@ -1149,7 +1152,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       timeout: 30_000,
     })
   }
-  if (config.suite === 'photo-library') {
+  if (config.suite === 'photo-library' || config.suite === 'photo-library-limited') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
@@ -7921,6 +7924,62 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('share-completion.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'photo-library-limited') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-photo-library')
+    await wait('Photos permissions start undetermined', (n) =>
+      labels(n).includes('Permission: notDetermined') &&
+      labels(n).includes('Read permission: notDetermined')
+    )
+    tap({ id: 'one-native-photo-library-run' })
+    await wait('Photos add-only permission prompt opens', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies saving photos and videos.'))
+    )
+    tap({ label: 'Allow' })
+    await wait('Photos saves proof assets before limited grant', (n) =>
+      labels(n).includes('Status: passed')
+    )
+    tap({ id: 'one-native-photo-library-limited-request' })
+    await wait('Photos read permission prompt opens for limited access', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.'))
+    )
+    screenshot('photo-library-limited-request.png')
+    const pickerAt = (x: number, y: number) =>
+      JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+    const done = () => pickerAt(365, 135).AXLabel === 'Done'
+    const firstPhoto = () => pickerAt(70, 350).AXLabel?.startsWith('Photo,') === true
+    const secondVideo = () => pickerAt(200, 350).AXLabel?.startsWith('Video,') === true
+    await wait('Photos limited-access choice is actionable', () =>
+      pickerAt(200, 622).AXLabel === 'Select Photos'
+    )
+    point(200, 622)
+    await wait('Photos limited-access picker shows the saved image and video', () =>
+      done() && firstPhoto() && secondVideo()
+    )
+    screenshot('photo-library-limited-initial-picker.png')
+    point(70, 350)
+    point(365, 135)
+    await wait('Photos limited grant exposes one asset', (n) =>
+      labels(n).includes('Status: limited-ready') &&
+      labels(n).includes('Read permission: limited') &&
+      labels(n).includes('Limited result: before=E_PHOTO_LIBRARY_PERMISSION; permission=limited; visible=1')
+    )
+    tap({ id: 'one-native-photo-library-limited-pick' })
+    await wait('Photos presents limited-library re-selection', () =>
+      done() && secondVideo()
+    )
+    screenshot('photo-library-limited-reselection.png')
+    point(200, 350)
+    point(365, 135)
+    await wait('Photos expands the readable limited selection', (n) =>
+      labels(n).includes('Status: limited-passed') &&
+      labels(n).includes('Limited result: added=1; expanded=true; readable=true; distinct=true')
+    )
+    screenshot('photo-library-limited-passed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

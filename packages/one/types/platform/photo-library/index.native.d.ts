@@ -4,6 +4,7 @@ declare function getAddPermissionStatus(): PhotoLibraryPermissionStatus;
 declare function requestAddPermission(): Promise<PhotoLibraryPermissionStatus>;
 declare function getReadPermissionStatus(): PhotoLibraryPermissionStatus;
 declare function requestReadPermission(): Promise<PhotoLibraryPermissionStatus>;
+declare function presentLimitedLibraryPicker(): Promise<string[]>;
 declare function listAssets(offset?: number, limit?: number): Promise<PhotoLibraryAssetPage>;
 declare function getAsset(identifier: string): Promise<PhotoLibraryAsset>;
 declare function setFavorite(identifier: string, favorite: boolean): Promise<void>;
@@ -16,6 +17,7 @@ export declare const PhotoLibrary: Readonly<{
     requestAddPermission: typeof requestAddPermission;
     getReadPermissionStatus: typeof getReadPermissionStatus;
     requestReadPermission: typeof requestReadPermission;
+    presentLimitedLibraryPicker: typeof presentLimitedLibraryPicker;
     listAssets: typeof listAssets;
     getAsset: typeof getAsset;
     setFavorite: typeof setFavorite;

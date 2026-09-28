@@ -902,6 +902,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const std::vector<std::string>& /* result */)>
+  Func_void_std__vector_std__string_ create_Func_void_std__vector_std__string_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_std__string_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<std::string>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::function<void(const PhotoLibraryAssetPage& /* result */)>
   Func_void_PhotoLibraryAssetPage create_Func_void_PhotoLibraryAssetPage(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PhotoLibraryAssetPage::fromUnsafe(swiftClosureWrapper);

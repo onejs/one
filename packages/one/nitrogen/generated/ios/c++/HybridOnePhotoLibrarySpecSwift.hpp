@@ -23,10 +23,10 @@ namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 
 #include "PhotoLibraryPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
+#include <string>
+#include <vector>
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryAsset.hpp"
-#include <vector>
-#include <string>
 #include "PhotoLibraryMediaType.hpp"
 #include <optional>
 
@@ -106,6 +106,14 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> requestReadPermission() override {
       auto __result = _swiftPart.requestReadPermission();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<std::string>>> presentLimitedLibraryPicker() override {
+      auto __result = _swiftPart.presentLimitedLibraryPicker();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

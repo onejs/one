@@ -104,11 +104,11 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
 | `One.iOS.ProtectedStore` | protected-store | n/a |  |
 | `One.iOS.Location` | location | n/a |  |
-| `One.iOS.FileSystem` | location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, image-manipulator | n/a |  |
+| `One.iOS.FileSystem` | location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator | n/a |  |
 | `One.iOS.Audio` | audio, audio-interruption, audio-remote, audio-background | n/a |  |
 | `One.iOS.CameraView` | camera-preview | n/a |  |
 | `One.iOS.Share` | share | n/a |  |
-| `One.iOS.PhotoLibrary` | photo-library | n/a |  |
+| `One.iOS.PhotoLibrary` | photo-library, photo-library-limited | n/a |  |
 | `One.iOS.MapServices` | map-services | n/a |  |
 | `One.iOS.AppTracking` | app-tracking | n/a |  |
 | `One.iOS.AppIcon` | app-icon | n/a |  |

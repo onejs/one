@@ -5,6 +5,7 @@ export declare const PhotoLibrary: Readonly<{
     requestAddPermission: () => Promise<PhotoLibraryPermissionStatus>;
     getReadPermissionStatus: () => PhotoLibraryPermissionStatus;
     requestReadPermission: () => Promise<PhotoLibraryPermissionStatus>;
+    presentLimitedLibraryPicker: () => Promise<string[]>;
     listAssets: (_offset?: number, _limit?: number) => Promise<PhotoLibraryAssetPage>;
     getAsset: (_identifier: string) => Promise<PhotoLibraryAsset>;
     setFavorite: (_identifier: string, _favorite: boolean) => Promise<void>;
