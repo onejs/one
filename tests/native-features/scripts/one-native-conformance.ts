@@ -243,7 +243,12 @@ function snapshot(simulatorId: string): Node[] {
     }
     for (const child of (node.children as Node[] | undefined) ?? []) visit(child)
   }
-  if (foreign(center)) nodes.push({ ...app, children: [] })
+  // quick look's document body can run in another process while its close and search
+  // controls still belong to this app. keep that overlay visible to the media gate.
+  const hasQuickLookOverlay = (node: Node): boolean =>
+    node.AXUniqueId === 'QLOverlayDoneButtonAccessibilityIdentifier' ||
+    ((node.children as Node[] | undefined)?.some(hasQuickLookOverlay) ?? false)
+  if (foreign(center) && !hasQuickLookOverlay(app)) nodes.push({ ...app, children: [] })
   else visit(app)
   // a remote sheet reaches the banner strip too; only a third process there
   // is a banner.
@@ -491,8 +496,8 @@ const menuPrimaryActionLoaded = (nodes: Node[]) =>
 const accessibilityLoaded = (nodes: Node[]) =>
   labels(nodes).some((label) => label.startsWith('Text: ')) &&
   labels(nodes).includes('Standalone switch')
-// a presented Quick Look takes the whole accessibility tree, leaving the fixture behind it
-// out, so the fixture counts as loaded from either side of the presentation.
+// quick look's preview body may run in another process while the overlay controls
+// remain in the app tree, so either the fixture or those controls proves it loaded.
 const mediaLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   ((Boolean(id(nodes, 'one-native-media-category-player')) &&
@@ -6488,10 +6493,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     // a fill control reports no ideal height, so the box React Native gave it is the only
     // thing that can be deciding this size.
-    await wait(
-      'VideoPlayer fills the box React Native gave it',
-      (n) => player(n)?.frame?.height === 220 && player(n)?.frame?.width === 373
-    )
+    await wait('VideoPlayer fills the box React Native gave it', (n) => {
+      const width = n.find((node) => node.type === 'Application')?.frame?.width
+      const frame = player(n)?.frame
+      return Boolean(width && frame && frame.height === 220 &&
+        Math.abs(frame.width - (width - 20)) < 0.5)
+    })
     await visualScreenshot('media-player.png', 'media-player')
     tap({ id: 'one-native-media-height' })
     await wait(
@@ -6520,6 +6527,52 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await withTransport(
       'autoplay starts the fresh player',
       (n) => Boolean(elapsed(n)) && elapsed(n) !== '0:00 elapsed'
+    )
+    const playbackPosition = (nodes: Node[]) =>
+      Number(labels(nodes).find((label) => label.startsWith('PositionMs: '))?.slice(12) ?? -1)
+    const playbackDuration = (nodes: Node[]) =>
+      Number(labels(nodes).find((label) => label.startsWith('DurationMs: '))?.slice(12) ?? -1)
+    await wait('native player reports playback and duration', (n) =>
+      status(n, 'Playback', 'playing') && playbackPosition(n) > 0 &&
+      playbackDuration(n) > 5000
+    )
+    await wait('autoplay clip reaches a known end state', (n) =>
+      status(n, 'Playback', 'ended') && playbackPosition(n) >= 5000
+    )
+    tap({ id: 'one-native-media-command-play' })
+    await wait('play command restarts the ended native player', (n) =>
+      status(n, 'Command', 'play:1') && status(n, 'Playback', 'playing') &&
+      playbackPosition(n) < 2000
+    )
+    tap({ id: 'one-native-media-command-pause' })
+    await wait('programmatic pause reaches AVPlayer', (n) =>
+      status(n, 'Command', 'pause:2') && status(n, 'Playback', 'paused') &&
+      playbackPosition(n) < playbackDuration(n)
+    )
+    tap({ id: 'one-native-media-command-seek' })
+    await wait('programmatic seek moves the paused player to four seconds', (n) =>
+      status(n, 'Command', 'seek:3') && status(n, 'Playback', 'paused') &&
+      playbackPosition(n) >= 3700 && playbackPosition(n) <= 4300
+    )
+    tap({ id: 'one-native-media-height' })
+    await wait('resizing preserves the seeked player position', (n) =>
+      status(n, 'Height', 320) && player(n)?.frame?.height === 320 &&
+      status(n, 'Playback', 'paused') && playbackPosition(n) >= 3700
+    )
+    tap({ id: 'one-native-media-height' })
+    await wait('player returns to original box without a reload', (n) =>
+      status(n, 'Height', 220) && player(n)?.frame?.height === 220 &&
+      playbackPosition(n) >= 3700
+    )
+    tap({ id: 'one-native-media-command-play' })
+    await wait('programmatic play reaches the end', (n) =>
+      status(n, 'Command', 'play:4') && status(n, 'Playback', 'ended') &&
+      playbackPosition(n) >= 5000
+    )
+    tap({ id: 'one-native-media-command-play' })
+    await wait('repeated play command restarts the ended player', (n) =>
+      status(n, 'Command', 'play:5') && status(n, 'Playback', 'playing') &&
+      playbackPosition(n) < 2000
     )
     screenshot('media-playing.png')
 

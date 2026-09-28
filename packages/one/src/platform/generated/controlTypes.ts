@@ -3715,8 +3715,12 @@ export interface MeshGradientProps extends OneNativeViewProps {
   colorSpace?: 'device' | 'perceptual'
 }
 export interface VideoPlayerProps extends OneNativeViewProps {
+  onPlaybackStatus?: (state: string, positionMs: number, durationMs: number) => void
   url?: string
   autoplay?: boolean
+  command?: 'play' | 'pause' | 'seek' | ''
+  commandRevision?: number
+  seekToMs?: number
 }
 export interface PhotosPickerProps extends OneNativeViewProps {
   onPick?: (url: string, index: number, count: number) => void

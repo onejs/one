@@ -17,12 +17,24 @@ export default function OneNativeMedia() {
   const [category, setCategory] = useState<(typeof categories)[number]>('Player')
   const [autoplay, setAutoplay] = useState(false)
   const [tall, setTall] = useState(false)
+  const [command, setCommand] = useState<'' | 'play' | 'pause' | 'seek'>('')
+  const [commandRevision, setCommandRevision] = useState(0)
+  const [seekToMs, setSeekToMs] = useState(0)
+  const [playback, setPlayback] = useState('waiting')
+  const [positionMs, setPositionMs] = useState(0)
+  const [durationMs, setDurationMs] = useState(0)
+  const [playbackEvents, setPlaybackEvents] = useState(0)
   const [isPresented, setIsPresented] = useState(false)
   const [changes, setChanges] = useState(0)
 
   const handlePresentationChange = (value: boolean) => {
     setChanges((count) => count + 1)
     setIsPresented(value)
+  }
+  const sendCommand = (next: 'play' | 'pause' | 'seek', position = 0) => {
+    setCommand(next)
+    setSeekToMs(position)
+    setCommandRevision((value) => value + 1)
   }
   const status: [string, string | number][] = [
     ['Category', category],
@@ -31,6 +43,11 @@ export default function OneNativeMedia() {
     ['Height', tall ? 320 : 220],
     ['Presented', String(isPresented)],
     ['Changes', changes],
+    ['Playback', playback],
+    ['PositionMs', Math.round(positionMs)],
+    ['DurationMs', Math.round(durationMs)],
+    ['PlaybackEvents', playbackEvents],
+    ['Command', `${command || 'none'}:${commandRevision}`],
   ]
 
   return (
@@ -81,12 +98,32 @@ export default function OneNativeMedia() {
             >
               <Text style={styles.actionText}>Toggle height</Text>
             </Pressable>
+            {(['play', 'pause', 'seek'] as const).map((next) => (
+              <Pressable
+                accessibilityRole="button"
+                key={next}
+                style={styles.action}
+                testID={`one-native-media-command-${next}`}
+                onPress={() => sendCommand(next, next === 'seek' ? 4000 : 0)}
+              >
+                <Text style={styles.actionText}>{next}</Text>
+              </Pressable>
+            ))}
           </View>
           <One.iOS.VideoPlayer
             autoplay={autoplay}
+            command={command}
+            commandRevision={commandRevision}
+            seekToMs={seekToMs}
             style={[styles.video, { height: tall ? 320 : 220 }]}
             testID="one-native-media-video"
             url={videoURL}
+            onPlaybackStatus={(state, position, duration) => {
+              setPlayback(state)
+              setPositionMs(position)
+              setDurationMs(duration)
+              setPlaybackEvents((value) => value + 1)
+            }}
           />
         </>
       ) : (

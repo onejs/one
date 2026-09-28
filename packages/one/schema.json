@@ -1999,6 +1999,15 @@
         },
         "autoplay": {
           "type": "boolean"
+        },
+        "command": {
+          "type": "string"
+        },
+        "commandRevision": {
+          "type": "Double"
+        },
+        "seekToMs": {
+          "type": "Double"
         }
       },
       "events": {
@@ -2009,9 +2018,28 @@
           "value": {
             "type": "string"
           }
+        },
+        "onNativeVideoPlayerPlaybackStatus": {
+          "state": {
+            "type": "string"
+          },
+          "positionMs": {
+            "type": "Double"
+          },
+          "durationMs": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
         }
       },
-      "actions": [],
+      "actions": [
+        {
+          "publicProp": "onPlaybackStatus",
+          "event": "onNativeVideoPlayerPlaybackStatus"
+        }
+      ],
       "layout": {
         "kind": "fill"
       },

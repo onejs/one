@@ -741,6 +741,13 @@ per url and reused, so unrelated prop changes do not restart playback. `autoplay
 is read when the url loads; flipping it afterwards does not start or stop the
 video.
 
+`command="play" | "pause" | "seek"` with a positive, increasing
+`commandRevision` controls the player programmatically. Pass nonnegative
+`seekToMs` for seek. `onPlaybackStatus(state, positionMs, durationMs)` reports
+state changes and playback position in milliseconds; `durationMs` is 0 until
+the asset's duration is known. The native AVKit transport controls remain
+available. A new URL starts a new player and reads `autoplay` again.
+
 AVKit publishes the player's own accessibility element over the control, so
 `accessibilityLabel` never reaches a screen reader here even though every other
 control honors it.
