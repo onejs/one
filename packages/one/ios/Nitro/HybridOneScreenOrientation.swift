@@ -123,7 +123,8 @@ final class HybridOneScreenOrientation: HybridOneScreenOrientationSpec {
       for listener in listeners.values { listener(orientation) }
     }
     let mask = Self.mask(scene.effectiveGeometry.interfaceOrientation)
-    for (id, request) in Array(pending) where request.scene === scene && request.mask.contains(mask) {
+    for (id, request) in Array(pending)
+      where request.scene === scene && !mask.isEmpty && request.mask.contains(mask) {
       pending.removeValue(forKey: id)?.promise.resolve(withResult: orientation)
     }
   }
