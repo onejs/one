@@ -17,10 +17,11 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // react native root until its first content, and MainActivity's content
 // from drawing until then on Android, as one prebuild always does. leave it
 // off while expo-splash-screen owns the splash.
-// options: { location: { whenInUse: string } } sets the iOS location prompt.
+// options: { location: { whenInUse: string, background?: boolean } } sets the ios
+// location prompt and optional background mode.
 // options: { audio: { microphone?: string, background?: boolean } } sets the
 // ios recording prompt and background audio mode.
-// options: { photoLibrary: { addOnly: string } } sets the ios photos add prompt.
+// options: { photoLibrary: { addOnly?: string, readWrite?: string } } sets ios photos prompts.
 // options: { contacts: { usage: string } } sets the ios contacts prompt.
 // options: { calendar: { usage?: string, remindersUsage?: string } } sets EventKit prompts.
 module.exports = function withVxrn(config, options = {}) {
@@ -56,6 +57,9 @@ module.exports = function withVxrn(config, options = {}) {
   ) {
     throw new Error('[vxrn/expo-plugin] location.whenInUse must be a non-empty string')
   }
+  if (location?.background !== undefined && typeof location.background !== 'boolean') {
+    throw new Error('[vxrn/expo-plugin] location.background must be a boolean')
+  }
   if (audio !== undefined) {
     if (!audio || typeof audio !== 'object') {
       throw new Error('[vxrn/expo-plugin] audio must configure microphone or background playback')
@@ -73,9 +77,18 @@ module.exports = function withVxrn(config, options = {}) {
   }
   if (
     photoLibrary !== undefined &&
-    (!photoLibrary || typeof photoLibrary.addOnly !== 'string' || !photoLibrary.addOnly.trim())
+    (!photoLibrary ||
+      (photoLibrary.addOnly === undefined && photoLibrary.readWrite === undefined))
   ) {
+    throw new Error('[vxrn/expo-plugin] photoLibrary must configure addOnly or readWrite')
+  }
+  if (photoLibrary?.addOnly !== undefined &&
+    (typeof photoLibrary.addOnly !== 'string' || !photoLibrary.addOnly.trim())) {
     throw new Error('[vxrn/expo-plugin] photoLibrary.addOnly must be a non-empty string')
+  }
+  if (photoLibrary?.readWrite !== undefined &&
+    (typeof photoLibrary.readWrite !== 'string' || !photoLibrary.readWrite.trim())) {
+    throw new Error('[vxrn/expo-plugin] photoLibrary.readWrite must be a non-empty string')
   }
   if (
     contacts !== undefined &&
@@ -103,6 +116,10 @@ module.exports = function withVxrn(config, options = {}) {
           withInfoPlist,
           (nextConfig) => {
             nextConfig.modResults.NSLocationWhenInUseUsageDescription = location.whenInUse
+            if (location.background === true) {
+              const modes = nextConfig.modResults.UIBackgroundModes || []
+              nextConfig.modResults.UIBackgroundModes = [...new Set([...modes, 'location'])]
+            }
             return nextConfig
           },
         ],
@@ -130,7 +147,10 @@ module.exports = function withVxrn(config, options = {}) {
         [
           withInfoPlist,
           (nextConfig) => {
-            nextConfig.modResults.NSPhotoLibraryAddUsageDescription = photoLibrary.addOnly
+            if (photoLibrary.addOnly !== undefined)
+              nextConfig.modResults.NSPhotoLibraryAddUsageDescription = photoLibrary.addOnly
+            if (photoLibrary.readWrite !== undefined)
+              nextConfig.modResults.NSPhotoLibraryUsageDescription = photoLibrary.readWrite
             return nextConfig
           },
         ],

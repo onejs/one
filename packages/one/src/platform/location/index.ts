@@ -17,7 +17,8 @@ export const Location = Object.freeze({
   getCurrentPosition: (): Promise<LocationPosition> => unavailable(),
   watchPosition: (
     _onPosition: (position: LocationPosition) => void,
-    _onError: (error: LocationWatchError) => void
+    _onError: (error: LocationWatchError) => void,
+    _options: { background?: boolean } = {}
   ): (() => void) => unavailable(),
   geocodeAddress: (_address: string): Promise<LocationPlace[]> => unavailable(),
   reverseGeocode: (_latitude: number, _longitude: number): Promise<LocationPlace[]> =>

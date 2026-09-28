@@ -6,7 +6,9 @@ declare function getCurrentPosition(): Promise<LocationPosition>;
 export type LocationWatchError = Error & {
     code: string;
 };
-declare function watchPosition(onPosition: (position: LocationPosition) => void, onError: (error: LocationWatchError) => void): () => void;
+declare function watchPosition(onPosition: (position: LocationPosition) => void, onError: (error: LocationWatchError) => void, options?: {
+    background?: boolean;
+}): () => void;
 declare function geocodeAddress(address: string): Promise<LocationPlace[]>;
 declare function reverseGeocode(latitude: number, longitude: number): Promise<LocationPlace[]>;
 export declare const Location: Readonly<{

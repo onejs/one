@@ -14,10 +14,21 @@ namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `PhotoLibraryAssetPage` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAssetPage; }
+// Forward declaration of `PhotoLibraryAsset` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAsset; }
+// Forward declaration of `PhotoLibraryMediaType` to properly resolve imports.
+namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 
 #include "PhotoLibraryPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
+#include "PhotoLibraryAssetPage.hpp"
+#include "PhotoLibraryAsset.hpp"
+#include <vector>
 #include <string>
+#include "PhotoLibraryMediaType.hpp"
+#include <optional>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -65,7 +76,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
@@ -79,6 +90,46 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> requestAddPermission() override {
       auto __result = _swiftPart.requestAddPermission();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline PhotoLibraryPermissionStatus getReadPermissionStatus() override {
+      auto __result = _swiftPart.getReadPermissionStatus();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> requestReadPermission() override {
+      auto __result = _swiftPart.requestReadPermission();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<PhotoLibraryAssetPage>> listAssets(double offset, double limit) override {
+      auto __result = _swiftPart.listAssets(std::forward<decltype(offset)>(offset), std::forward<decltype(limit)>(limit));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<PhotoLibraryAsset>> getAsset(const std::string& identifier) override {
+      auto __result = _swiftPart.getAsset(identifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::string>> exportOriginalAsset(const std::string& identifier, bool allowNetwork) override {
+      auto __result = _swiftPart.exportOriginalAsset(identifier, std::forward<decltype(allowNetwork)>(allowNetwork));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

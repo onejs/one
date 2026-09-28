@@ -62,7 +62,7 @@ namespace margelo::nitro::one {
       virtual LocationPermissionStatus getPermissionStatus() = 0;
       virtual std::shared_ptr<Promise<LocationPermissionStatus>> requestWhenInUsePermission() = 0;
       virtual std::shared_ptr<Promise<LocationPosition>> getCurrentPosition() = 0;
-      virtual std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError) = 0;
+      virtual std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError, bool background) = 0;
       virtual std::shared_ptr<Promise<std::vector<LocationPlace>>> geocodeAddress(const std::string& address) = 0;
       virtual std::shared_ptr<Promise<std::vector<LocationPlace>>> reverseGeocode(double latitude, double longitude) = 0;
 

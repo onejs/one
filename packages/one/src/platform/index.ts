@@ -81,7 +81,9 @@ export { Open } from './open/index'
 export type { OpenShareContent } from './open/index'
 export type { ShareItem, ShareItemType, ShareResult } from './share/index'
 export { PhotoLibrary } from './photo-library/index'
-export type { PhotoLibraryPermissionStatus } from './photo-library/index'
+export type {
+  PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus,
+} from './photo-library/index'
 export { AppTracking } from './app-tracking/index'
 export type { AppTrackingPermissionStatus } from './app-tracking/index'
 export { ImageManipulator } from './image-manipulator/index'

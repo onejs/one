@@ -16,7 +16,7 @@ public protocol HybridOneLocationSpec_protocol: HybridObject {
   func getPermissionStatus() throws -> LocationPermissionStatus
   func requestWhenInUsePermission() throws -> Promise<LocationPermissionStatus>
   func getCurrentPosition() throws -> Promise<LocationPosition>
-  func addPositionListener(onPosition: @escaping (_ position: LocationPosition) -> Void, onError: @escaping (_ code: String, _ message: String) -> Void) throws -> () -> Void
+  func addPositionListener(onPosition: @escaping (_ position: LocationPosition) -> Void, onError: @escaping (_ code: String, _ message: String) -> Void, background: Bool) throws -> () -> Void
   func geocodeAddress(address: String) throws -> Promise<[LocationPlace]>
   func reverseGeocode(latitude: Double, longitude: Double) throws -> Promise<[LocationPlace]>
 }

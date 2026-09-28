@@ -86,13 +86,20 @@ describe('native.app manifest', () => {
     )
   })
 
-  test('requires a Photos add-only purpose string', () => {
+  test('requires a Photos purpose string for each configured access level', () => {
     expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: 'Save edits.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, photoLibrary: { readWrite: 'Browse photos.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, photoLibrary: {} })).toThrow(
+      /photoLibrary must configure/
+    )
     expect(() => validateNativeApp({ ...app, photoLibrary: null } as any)).toThrow(
-      /photoLibrary\.addOnly/
+      /photoLibrary must configure/
     )
     expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: ' ' } })).toThrow(
       /photoLibrary\.addOnly/
+    )
+    expect(() => validateNativeApp({ ...app, photoLibrary: { readWrite: ' ' } })).toThrow(
+      /photoLibrary\.readWrite/
     )
   })
 
@@ -127,6 +134,8 @@ describe('native.app manifest', () => {
 
   test('requires a non-empty foreground location usage string', () => {
     expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.', background: true } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.', background: 'yes' } } as any)).toThrow(/location\.background/)
     expect(() => validateNativeApp({ ...app, location: null } as any)).toThrow(/location\.whenInUse/)
     expect(() => validateNativeApp({ ...app, location: { whenInUse: ' ' } })).toThrow(
       /location\.whenInUse/
