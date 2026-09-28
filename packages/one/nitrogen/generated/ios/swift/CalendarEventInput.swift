@@ -18,27 +18,38 @@ public extension CalendarEventInput {
   /**
    * Create a new instance of `CalendarEventInput`.
    */
-  init(title: String, startMs: Double, endMs: Double, allDay: Bool) {
-    self.init(std.string(title), startMs, endMs, allDay)
+  init(title: String, startMs: Double, endMs: Double, allDay: Bool, recurrence: CalendarRecurrence?) {
+    self.init(std.string(title), startMs, endMs, allDay, { () -> bridge.std__optional_CalendarRecurrence_ in
+      if let __unwrappedValue = recurrence {
+        return bridge.create_std__optional_CalendarRecurrence_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }())
   }
 
   @inline(__always)
   var title: String {
     return String(self.__title)
   }
-  
+
   @inline(__always)
   var startMs: Double {
     return self.__startMs
   }
-  
+
   @inline(__always)
   var endMs: Double {
     return self.__endMs
   }
-  
+
   @inline(__always)
   var allDay: Bool {
     return self.__allDay
+  }
+
+  @inline(__always)
+  var recurrence: CalendarRecurrence? {
+    return self.__recurrence.value
   }
 }

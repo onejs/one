@@ -62,6 +62,10 @@ namespace margelo::nitro::one { struct BrowserResult; }
 namespace margelo::nitro::one { struct CalendarEvent; }
 // Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
+// Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
+namespace margelo::nitro::one { enum class CalendarRecurrenceFrequency; }
+// Forward declaration of `CalendarRecurrence` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarRecurrence; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
@@ -356,6 +360,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "BrowserResultType.hpp"
 #include "CalendarEvent.hpp"
 #include "CalendarPermissionStatus.hpp"
+#include "CalendarRecurrence.hpp"
+#include "CalendarRecurrenceFrequency.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 #include "ContactInfo.hpp"
@@ -1404,6 +1410,21 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_CalendarPermissionStatus create_Func_void_CalendarPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_CalendarPermissionStatus_Wrapper wrap_Func_void_CalendarPermissionStatus(Func_void_CalendarPermissionStatus value) noexcept {
     return Func_void_CalendarPermissionStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::optional<CalendarRecurrence>
+  /**
+   * Specialized version of `std::optional<CalendarRecurrence>`.
+   */
+  using std__optional_CalendarRecurrence_ = std::optional<CalendarRecurrence>;
+  inline std::optional<CalendarRecurrence> create_std__optional_CalendarRecurrence_(const CalendarRecurrence& value) noexcept {
+    return std::optional<CalendarRecurrence>(value);
+  }
+  inline bool has_value_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline CalendarRecurrence get_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
+    return optional.value();
   }
 
   // pragma MARK: std::vector<CalendarEvent>

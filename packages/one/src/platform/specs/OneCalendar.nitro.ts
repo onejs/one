@@ -12,6 +12,16 @@ export interface CalendarEventInput {
   startMs: number
   endMs: number
   allDay: boolean
+  recurrence?: CalendarRecurrence
+}
+
+export type CalendarRecurrenceFrequency = 'daily' | 'weekly' | 'monthly' | 'yearly'
+
+export interface CalendarRecurrence {
+  frequency: CalendarRecurrenceFrequency
+  interval?: number
+  endDateMs?: number
+  occurrenceCount?: number
 }
 
 export interface CalendarEvent {
@@ -21,6 +31,7 @@ export interface CalendarEvent {
   endMs: number
   allDay: boolean
   location: string
+  recurrence?: CalendarRecurrence
 }
 
 export interface CalendarEventChanges {
@@ -34,6 +45,7 @@ export interface CalendarEventChanges {
 export interface ReminderInput {
   title: string
   dueMs?: number
+  recurrence?: CalendarRecurrence
 }
 
 export interface ReminderInfo {
@@ -41,6 +53,7 @@ export interface ReminderInfo {
   title: string
   completed: boolean
   dueMs?: number
+  recurrence?: CalendarRecurrence
 }
 
 export interface OneCalendar extends HybridObject<{ ios: 'swift' }> {

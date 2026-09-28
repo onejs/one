@@ -8,8 +8,9 @@ direct Swift/Kotlin import belong to other lanes.
 
 Take the highest useful missing API without a live owner. Ship its public types,
 native implementation, docs, and an iOS 27 simulator proof together. Add a Peach
-conformance check when Peach can simulate the observable behavior. Review each
-assembled API batch once with `opus-high` before pushing. Repeat from the matrix.
+conformance check when Peach can simulate the observable behavior. Give each
+assembled API batch one independent review by the model assigned for this lane
+before pushing. Repeat from the matrix.
 
 `covered` means One exposes the useful app path. `partial` means a useful path exists
 but common operations or direct simulator proof are absent. `missing` means no One
@@ -55,7 +56,7 @@ checklist; One's own exports and docs decide the status.
 | Battery and power state | missing | no battery level, charging state, or low-power state API | none | P3 |
 | Cellular/SIM details | missing | `One.Network` reports connection type, not carrier or SIM data | none | P3 |
 | Contacts | covered | `One.iOS.Contacts` permission, name search, create, update, delete, structured postal addresses, and system picker; notes require an Apple-granted entitlement | RAN iOS 27 prompt, create, full and partial edit, search, delete, postal address round trip, system picker selection and cancellation | done |
-| Calendar and reminders | partial | `One.iOS.Calendar` event create, list, update, delete plus reminders permission, list, create, completion, delete; recurrence creation is absent | RAN iOS 27 both prompts, Calendar edit and delete with negative cases, and Reminders round trip | P2 |
+| Calendar and reminders | covered | `One.iOS.Calendar` event create, list, update, delete and reminders permission, list, create, completion, delete; both create daily, weekly, monthly, or yearly recurrence with a count or end date | RAN iOS 27 both prompts, event and reminder round trips, three two-day event occurrences and reminder rule readback, recurrence deletion and invalid input | done |
 | Localization and locale | covered | `One.iOS.Device.getLocalizationInfo` returns locale, languages, calendar, time zone, UTC offset, and currency | RAN device suite on iOS 27: en-US, gregorian, Honolulu, UTC offset, USD | done |
 | Screen orientation | covered | `One.iOS.ScreenOrientation` reads the active window scene, requests portrait or landscape locks, unlocks, and emits orientation changes | RAN iOS 27 iPhone 17 Pro: portrait read, landscape lock and 874x402 window, change event, portrait lock and 402x874 window, change event, unlock | done |
 | Screen capture control | missing | no screenshot detection, capture prevention, or app screenshot API | none | P2 |

@@ -16,6 +16,10 @@ namespace One { class HybridOneCalendarSpec_cxx; }
 namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 // Forward declaration of `CalendarEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEvent; }
+// Forward declaration of `CalendarRecurrence` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarRecurrence; }
+// Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
+namespace margelo::nitro::one { enum class CalendarRecurrenceFrequency; }
 // Forward declaration of `CalendarEventInput` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEventInput; }
 // Forward declaration of `CalendarEventChanges` to properly resolve imports.
@@ -30,9 +34,11 @@ namespace margelo::nitro::one { struct ReminderInput; }
 #include "CalendarEvent.hpp"
 #include <vector>
 #include <string>
+#include "CalendarRecurrence.hpp"
+#include <optional>
+#include "CalendarRecurrenceFrequency.hpp"
 #include "CalendarEventInput.hpp"
 #include "CalendarEventChanges.hpp"
-#include <optional>
 #include "ReminderInfo.hpp"
 #include "ReminderInput.hpp"
 

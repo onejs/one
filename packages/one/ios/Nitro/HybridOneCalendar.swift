@@ -85,6 +85,15 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
           "E_CALENDAR_INPUT", "Calendar.create: title and increasing finite times are required"))
         return
       }
+      var recurrenceRule: EKRecurrenceRule?
+      if let recurrence = input.recurrence {
+        guard let rule = Self.recurrenceRule(recurrence, startMs: input.startMs) else {
+          promise.reject(withError: Self.error(
+            "E_CALENDAR_INPUT", "Calendar.create: recurrence needs a whole-number interval and one valid end"))
+          return
+        }
+        recurrenceRule = rule
+      }
       guard let calendar = Self.store.defaultCalendarForNewEvents else {
         promise.reject(withError: Self.error(
           "E_CALENDAR_UNAVAILABLE", "Calendar.create: no writable calendar is available"))
@@ -96,6 +105,7 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
       event.startDate = Date(timeIntervalSince1970: input.startMs / 1000)
       event.endDate = Date(timeIntervalSince1970: input.endMs / 1000)
       event.isAllDay = input.allDay
+      if let recurrenceRule { event.addRecurrenceRule(recurrenceRule) }
       do {
         try Self.store.save(event, span: .thisEvent, commit: true)
         guard let identifier = event.eventIdentifier else {
@@ -287,6 +297,16 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
           "E_REMINDERS_INPUT", "Calendar.createReminder: use a non-empty title and finite due time when supplied"))
         return
       }
+      var recurrenceRule: EKRecurrenceRule?
+      if let recurrence = input.recurrence {
+        guard let dueMs = input.dueMs,
+          let rule = Self.recurrenceRule(recurrence, startMs: dueMs) else {
+          promise.reject(withError: Self.error(
+            "E_REMINDERS_INPUT", "Calendar.createReminder: recurrence needs a due time and a valid rule"))
+          return
+        }
+        recurrenceRule = rule
+      }
       guard let calendar = Self.store.defaultCalendarForNewReminders() else {
         promise.reject(withError: Self.error(
           "E_REMINDERS_UNAVAILABLE", "Calendar.createReminder: no writable reminders list is available"))
@@ -300,6 +320,7 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
           [.year, .month, .day, .hour, .minute, .second, .timeZone],
           from: Date(timeIntervalSince1970: dueMs / 1_000))
       }
+      if let recurrenceRule { reminder.addRecurrenceRule(recurrenceRule) }
       do {
         try Self.store.save(reminder, commit: true)
         promise.resolve(withResult: reminder.calendarItemIdentifier)
@@ -386,7 +407,8 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
       identifier: reminder.calendarItemIdentifier,
       title: reminder.title ?? "",
       completed: reminder.isCompleted,
-      dueMs: dueDate.map { $0.timeIntervalSince1970 * 1_000 }
+      dueMs: dueDate.map { $0.timeIntervalSince1970 * 1_000 },
+      recurrence: recurrenceInfo(reminder)
     )
   }
 
@@ -431,7 +453,60 @@ final class HybridOneCalendar: HybridOneCalendarSpec {
       startMs: event.startDate.timeIntervalSince1970 * 1000,
       endMs: event.endDate.timeIntervalSince1970 * 1000,
       allDay: event.isAllDay,
-      location: event.location ?? "")
+      location: event.location ?? "",
+      recurrence: recurrenceInfo(event))
+  }
+
+  private static func recurrenceInfo(_ item: EKCalendarItem) -> CalendarRecurrence? {
+    item.recurrenceRules?.first.flatMap { rule -> CalendarRecurrence? in
+      guard let frequency = frequency(rule.frequency) else { return nil }
+      return CalendarRecurrence(
+        frequency: frequency,
+        interval: Double(rule.interval),
+        endDateMs: rule.recurrenceEnd?.endDate.map { $0.timeIntervalSince1970 * 1_000 },
+        occurrenceCount: rule.recurrenceEnd.flatMap { $0.occurrenceCount > 0
+          ? Double($0.occurrenceCount) : nil })
+    }
+  }
+
+  private static func recurrenceRule(_ value: CalendarRecurrence, startMs: Double) -> EKRecurrenceRule? {
+    let interval = value.interval ?? 1
+    guard interval.isFinite, interval >= 1, interval <= 1_000,
+      interval.rounded() == interval,
+      value.endDateMs == nil || value.occurrenceCount == nil,
+      value.endDateMs.map({ $0.isFinite && $0 >= startMs &&
+        $0 <= 8_640_000_000_000_000 }) ?? true,
+      value.occurrenceCount.map({ $0.isFinite && $0 >= 1 && $0 <= 10_000 &&
+        $0.rounded() == $0 }) ?? true else { return nil }
+    let end: EKRecurrenceEnd?
+    if let count = value.occurrenceCount {
+      end = EKRecurrenceEnd(occurrenceCount: Int(count))
+    } else if let endDateMs = value.endDateMs {
+      end = EKRecurrenceEnd(end: Date(timeIntervalSince1970: endDateMs / 1_000))
+    } else {
+      end = nil
+    }
+    return EKRecurrenceRule(
+      recurrenceWith: frequency(value.frequency), interval: Int(interval), end: end)
+  }
+
+  private static func frequency(_ value: CalendarRecurrenceFrequency) -> EKRecurrenceFrequency {
+    switch value {
+    case .daily: return .daily
+    case .weekly: return .weekly
+    case .monthly: return .monthly
+    case .yearly: return .yearly
+    }
+  }
+
+  private static func frequency(_ value: EKRecurrenceFrequency) -> CalendarRecurrenceFrequency? {
+    switch value {
+    case .daily: return .daily
+    case .weekly: return .weekly
+    case .monthly: return .monthly
+    case .yearly: return .yearly
+    @unknown default: return nil
+    }
   }
 
   private static func error(_ code: String, _ message: String) -> RuntimeError {
