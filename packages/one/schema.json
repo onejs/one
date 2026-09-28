@@ -1875,6 +1875,40 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeEllipticalGradient",
+      "publicName": "EllipticalGradient",
+      "props": {
+        "colors": {
+          "type": "ReadonlyArray<string>"
+        },
+        "center": {
+          "type": "string"
+        },
+        "startRadiusFraction": {
+          "type": "Double"
+        },
+        "endRadiusFraction": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeAngularGradient",
       "publicName": "AngularGradient",
       "props": {

@@ -880,6 +880,49 @@ export function RadialGradient({
     />
   )
 }
+import NativeEllipticalGradient from '../specs/OneNativeEllipticalGradientNativeComponent'
+export function EllipticalGradient({
+  colors,
+  center = { x: 0.5, y: 0.5 },
+  startRadiusFraction = 0,
+  endRadiusFraction = 0.5,
+  swiftStyle,
+  style,
+  ...props
+}: Types.EllipticalGradientProps) {
+  if (
+    !Array.isArray(colors) ||
+    !colors.every(
+      (color) =>
+        typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
+    )
+  )
+    throw new Error(
+      'EllipticalGradient colors must be an array of #RRGGBB or #RRGGBBAA colors'
+    )
+  if (!center || !Number.isFinite(center.x) || !Number.isFinite(center.y))
+    throw new Error('EllipticalGradient center must have finite x and y coordinates')
+  if (!Number.isFinite(startRadiusFraction) || !Number.isFinite(endRadiusFraction))
+    throw new Error('EllipticalGradient radius fractions must be finite numbers')
+
+  return (
+    <NativeEllipticalGradient
+      {...props}
+      style={style}
+      accessible={Boolean(props.accessibilityLabel)}
+      accessibilityElementsHidden={!props.accessibilityLabel}
+      accessibilityRole="image"
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      colors={colors}
+      center={JSON.stringify(center)}
+      startRadiusFraction={startRadiusFraction}
+      endRadiusFraction={endRadiusFraction}
+    />
+  )
+}
 import NativeAngularGradient from '../specs/OneNativeAngularGradientNativeComponent'
 export function AngularGradient({
   colors,

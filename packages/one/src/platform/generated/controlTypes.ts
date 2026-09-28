@@ -3694,6 +3694,12 @@ export interface RadialGradientProps extends OneNativeViewProps {
   startRadius?: number
   endRadius: number
 }
+export interface EllipticalGradientProps extends OneNativeViewProps {
+  colors: readonly string[]
+  center?: Readonly<{ x: number; y: number }>
+  startRadiusFraction?: number
+  endRadiusFraction?: number
+}
 export interface AngularGradientProps extends OneNativeViewProps {
   colors: readonly string[]
   center?: Readonly<{ x: number; y: number }>

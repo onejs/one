@@ -39,6 +39,7 @@ export declare const Swift: {
     ConcentricRectangle({ fill, swiftStyle, style, ...props }: import("./types").ConcentricRectangleProps): import("react/jsx-runtime").JSX.Element;
     LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: import("./types").LinearGradientProps): import("react/jsx-runtime").JSX.Element;
     RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: import("./types").RadialGradientProps): import("react/jsx-runtime").JSX.Element;
+    EllipticalGradient({ colors, center, startRadiusFraction, endRadiusFraction, swiftStyle, style, ...props }: import("./types").EllipticalGradientProps): import("react/jsx-runtime").JSX.Element;
     AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: import("./types").AngularGradientProps): import("react/jsx-runtime").JSX.Element;
     VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
     PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react/jsx-runtime").JSX.Element;

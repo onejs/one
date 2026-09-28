@@ -70,6 +70,9 @@ function LinearGradient(_props: Types.LinearGradientProps): never {
 function RadialGradient(_props: Types.RadialGradientProps): never {
   throw new Error('Swift.RadialGradient requires an iOS native build')
 }
+function EllipticalGradient(_props: Types.EllipticalGradientProps): never {
+  throw new Error('Swift.EllipticalGradient requires an iOS native build')
+}
 function AngularGradient(_props: Types.AngularGradientProps): never {
   throw new Error('Swift.AngularGradient requires an iOS native build')
 }
@@ -139,6 +142,7 @@ export const unsupportedControls = {
   ConcentricRectangle,
   LinearGradient,
   RadialGradient,
+  EllipticalGradient,
   AngularGradient,
   VideoPlayer,
   PhotosPicker,

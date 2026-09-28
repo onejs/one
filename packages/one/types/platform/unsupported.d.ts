@@ -72,6 +72,7 @@ export declare const Swift: {
     ConcentricRectangle: (_props: import("./types").ConcentricRectangleProps) => never;
     LinearGradient: (_props: import("./types").LinearGradientProps) => never;
     RadialGradient: (_props: import("./types").RadialGradientProps) => never;
+    EllipticalGradient: (_props: import("./types").EllipticalGradientProps) => never;
     AngularGradient: (_props: import("./types").AngularGradientProps) => never;
     VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
     PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
