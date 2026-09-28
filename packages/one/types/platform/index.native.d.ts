@@ -12,6 +12,7 @@ export * from './extras';
 export { Preferences } from './preferences/index.native';
 export { KeepAwake } from './keep-awake/index.native';
 export { Print } from './print/index.native';
+export { StoreReview } from './store-review/index.native';
 export type { PrintResult } from './print/index.native';
 export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './adaptive/index.native';

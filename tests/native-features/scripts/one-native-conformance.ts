@@ -116,6 +116,7 @@ const suites = [
   'preferences',
   'keep-awake',
   'print',
+  'store-review',
   'clipboard',
   'network',
   'browser',
@@ -569,6 +570,8 @@ const keepAwakeLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-keep-awake-run')) && has(nodes, 'Status: ')
 const printLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-print-run')) && has(nodes, 'Status: ')
+const storeReviewLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-store-review-request')) && has(nodes, 'Status: ')
 const databaseLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-database-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
@@ -733,6 +736,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   preferences: preferencesLoaded,
   'keep-awake': keepAwakeLoaded,
   print: printLoaded,
+  'store-review': storeReviewLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -834,6 +838,7 @@ const suiteHome: Record<Suite, string> = {
   preferences: 'nav-one-native-preferences',
   'keep-awake': 'nav-one-native-keep-awake',
   print: 'nav-one-native-print',
+  'store-review': 'nav-one-native-store-review',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -1241,7 +1246,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited' ||
       config.suite === 'preferences' || config.suite === 'keep-awake' ||
-      config.suite === 'print') {
+      config.suite === 'print' || config.suite === 'store-review') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; native contract suites need the freshly built app rather than a stale install.
@@ -8764,6 +8769,59 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (got.includes('Options') || got.includes('No Printer Selected'))
       throw new Error('system print sheet remained presented after cancellation')
     screenshot('print-cancelled.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'store-review') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-store-review')
+    const mounted = await wait('store review fixture mounted', (n) => has(n, 'Status: idle'))
+    const app = mounted.find((node) => node.type === 'Application')?.frame
+    if (!app?.width || !app.height) throw new Error('store review proof has no app frame')
+    const samplePrompt = (file: string) => {
+      const image = readPng(file)
+      const center = extractCrop(image, { x: 150, y: 300, width: 100, height: 120, viewportWidth: app.width })
+      const stars = extractCrop(image, { x: 80, y: 470, width: 250, height: 60, viewportWidth: app.width })
+      const dark = countMatchingPixels(center, (r, g, b) => r < 220 && g < 220 && b < 220)
+      const cyan = countMatchingPixels(stars, (r, g, b) => b > r + 40 && g > r + 40 && b > 150)
+      return { darkRatio: dark / (center.width * center.height), cyan }
+    }
+    const baseline = samplePrompt(screenshot('store-review-before.png', mounted))
+    if (baseline.darkRatio > 0.1 || baseline.cyan > 100)
+      throw new Error(`store review pixel negative control failed: ${JSON.stringify(baseline)}`)
+    console.log('PASS store-review-baseline-pixels')
+    tap({ id: 'one-native-store-review-request' })
+    const requested = await wait('store review native request settles', (n) =>
+      has(n, 'Status: requested') || has(n, 'Status: failed'))
+    const failure = labels(requested).find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    if (!has(requested, 'Requests: 1')) throw new Error('store review request count did not advance')
+    let prompt = { darkRatio: 0, cyan: 0 }
+    const promptDeadline = Date.now() + config.timeout
+    do {
+      prompt = samplePrompt(screenshot('store-review-prompt.png'))
+      if (prompt.darkRatio > 0.8 && prompt.cyan > 2000) break
+      await Bun.sleep(250)
+    } while (Date.now() < promptDeadline)
+    if (prompt.darkRatio <= 0.8 || prompt.cyan <= 2000)
+      throw new Error(`StoreKit review prompt pixels absent: ${JSON.stringify(prompt)}`)
+    console.log(`PASS store-review-system-prompt ${JSON.stringify(prompt)}`)
+    point(app.x + app.width * 0.5, app.y + app.height * 0.643)
+    let dismissed = { darkRatio: 1, cyan: 9999 }
+    const dismissDeadline = Date.now() + config.timeout
+    do {
+      dismissed = samplePrompt(screenshot('store-review-dismissed.png'))
+      if (dismissed.darkRatio < 0.1 && dismissed.cyan < 100) break
+      await Bun.sleep(250)
+    } while (Date.now() < dismissDeadline)
+    if (dismissed.darkRatio >= 0.1 || dismissed.cyan >= 100)
+      throw new Error(`StoreKit review prompt did not dismiss: ${JSON.stringify(dismissed)}`)
+    console.log('PASS store-review-dismissed-pixels')
+    tap({ id: 'one-native-store-review-alive' })
+    await wait('store review app remains usable', (n) =>
+      has(n, 'Status: alive') && has(n, 'Requests: 1'))
+    console.log('PASS store-review-app-usable')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -1,0 +1,17 @@
+---
+title: Store Review
+description: Ask StoreKit to show the App Store rating prompt at an appropriate moment
+---
+
+`One.iOS.StoreReview.requestReview()` asks StoreKit to consider showing the system rating prompt in the active iOS window scene. Call it after a meaningful app milestone, such as completing a useful task. The request has no arguments or manifest settings.
+
+```tsx
+import { One } from 'one'
+
+// after a useful task completes, at a moment that will not interrupt the user
+await One.iOS.StoreReview.requestReview()
+```
+
+The promise resolves when the request reaches StoreKit. It does not report whether the prompt appeared, was dismissed, or received a rating. iOS decides whether to show it; do not use this method as the action for a “Rate us” button. Apple says development builds show the prompt for testing, TestFlight builds do not, and App Store builds follow system frequency rules. See [Apple's StoreKit request review guidance](https://developer.apple.com/documentation/storekit/appstore/requestreview%28in%3A%29-1q8qs/).
+
+A request without an active window scene rejects with `E_STORE_REVIEW_SCENE`. This API requires an iOS native build; web and Android throw `StoreReview requires an iOS native build`. The iOS 27 simulator proves the development prompt and dismissal, while App Store display policy needs device and distribution proof.

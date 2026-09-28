@@ -81,6 +81,7 @@ export const nativeRoutes = [
       { title: 'Preferences', route: '/native/preferences' },
       { title: 'Keep Awake', route: '/native/keep-awake' },
       { title: 'Print', route: '/native/print' },
+      { title: 'Store Review', route: '/native/store-review' },
       { title: 'Protected Store', route: '/native/protected-store' },
       { title: 'App Tracking Permission', route: '/native/app-tracking' },
       { title: 'Local Authentication', route: '/native/local-authentication' },
