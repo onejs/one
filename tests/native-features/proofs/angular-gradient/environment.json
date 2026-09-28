@@ -1,0 +1,16 @@
+{
+  "sourceRevision": "6541bdc9785b4302908b7919947d5c4c37880238",
+  "suiteSourceRevision": "6541bdc9785b4302908b7919947d5c4c37880238",
+  "nativeBuildSourceRevision": "6541bdc9785b4302908b7919947d5c4c37880238",
+  "nativeSourceTree": "12163c0cd9a3b363e26725c02b3b299f96a81d23",
+  "simulatorId": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "device": "iPhone 17 Pro",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "xcode": "Xcode 27.1\nBuild version 27A9269",
+  "locale": "en_US",
+  "appearance": "light",
+  "builtDebugDylibSHA256": "2b76fdea28f79a3d2df0bf54f8e26ed7c54f3cdc818166e782ce1130a733a941",
+  "installedDebugDylibSHA256": "2b76fdea28f79a3d2df0bf54f8e26ed7c54f3cdc818166e782ce1130a733a941",
+  "builtExecutableSHA256": "b9be6131440200b9cec6da74cd1afa3dd8c0f5555a84661daa0a15f0171c674b",
+  "installedExecutableSHA256": "b9be6131440200b9cec6da74cd1afa3dd8c0f5555a84661daa0a15f0171c674b"
+}
