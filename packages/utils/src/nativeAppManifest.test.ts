@@ -86,13 +86,20 @@ describe('native.app manifest', () => {
     )
   })
 
-  test('requires a Photos add-only purpose string', () => {
+  test('requires a Photos purpose string for each configured access level', () => {
     expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: 'Save edits.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, photoLibrary: { readWrite: 'Browse photos.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, photoLibrary: {} })).toThrow(
+      /photoLibrary must configure/
+    )
     expect(() => validateNativeApp({ ...app, photoLibrary: null } as any)).toThrow(
-      /photoLibrary\.addOnly/
+      /photoLibrary must configure/
     )
     expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: ' ' } })).toThrow(
       /photoLibrary\.addOnly/
+    )
+    expect(() => validateNativeApp({ ...app, photoLibrary: { readWrite: ' ' } })).toThrow(
+      /photoLibrary\.readWrite/
     )
   })
 

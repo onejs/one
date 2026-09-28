@@ -24,6 +24,99 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     return promise
   }
 
+  func getReadPermissionStatus() throws -> PhotoLibraryPermissionStatus {
+    Self.status(PHPhotoLibrary.authorizationStatus(for: .readWrite))
+  }
+
+  func requestReadPermission() throws -> Promise<PhotoLibraryPermissionStatus> {
+    let promise = Promise<PhotoLibraryPermissionStatus>()
+    DispatchQueue.main.async {
+      guard Self.hasReadUsageDescription else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_MANIFEST",
+          "PhotoLibrary.requestReadPermission: set native.app.photoLibrary.readWrite"))
+        return
+      }
+      PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+        promise.resolve(withResult: Self.status(status))
+      }
+    }
+    return promise
+  }
+
+  func listAssets(offset: Double, limit: Double) throws -> Promise<PhotoLibraryAssetPage> {
+    let promise = Promise<PhotoLibraryAssetPage>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      guard Self.hasReadUsageDescription else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_MANIFEST",
+          "PhotoLibrary.listAssets: set native.app.photoLibrary.readWrite"))
+        return
+      }
+      guard Self.canRead else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_PERMISSION",
+          "PhotoLibrary.listAssets: Photos read permission is required"))
+        return
+      }
+      guard offset.isFinite, offset >= 0, offset.rounded() == offset,
+        offset <= 1_000_000, limit.isFinite, limit > 0,
+        limit <= 100, limit.rounded() == limit
+      else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_INPUT",
+          "PhotoLibrary.listAssets: offset must be 0..1000000 and limit must be 1..100 integers"))
+        return
+      }
+
+      let options = PHFetchOptions()
+      options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+      let result = PHAsset.fetchAssets(with: options)
+      let start = min(Int(offset), result.count)
+      let end = min(start + Int(limit), result.count)
+      var assets: [PhotoLibraryAsset] = []
+      assets.reserveCapacity(end - start)
+      for index in start..<end {
+        assets.append(Self.asset(result.object(at: index)))
+      }
+      promise.resolve(withResult: PhotoLibraryAssetPage(
+        assets: assets, totalCount: Double(result.count)))
+    }
+    return promise
+  }
+
+  func getAsset(identifier: String) throws -> Promise<PhotoLibraryAsset> {
+    let promise = Promise<PhotoLibraryAsset>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      guard Self.hasReadUsageDescription else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_MANIFEST",
+          "PhotoLibrary.getAsset: set native.app.photoLibrary.readWrite"))
+        return
+      }
+      guard Self.canRead else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_PERMISSION",
+          "PhotoLibrary.getAsset: Photos read permission is required"))
+        return
+      }
+      guard !identifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_INPUT", "PhotoLibrary.getAsset: identifier is required"))
+        return
+      }
+      guard let asset = PHAsset.fetchAssets(
+        withLocalIdentifiers: [identifier], options: nil
+      ).firstObject else {
+        promise.reject(withError: Self.error(
+          "E_PHOTO_LIBRARY_NOT_FOUND", "PhotoLibrary.getAsset: asset was not found"))
+        return
+      }
+      promise.resolve(withResult: Self.asset(asset))
+    }
+    return promise
+  }
+
   func saveImage(uri: String) throws -> Promise<String> { save(uri, kind: .image) }
   func saveVideo(uri: String) throws -> Promise<String> { save(uri, kind: .video) }
 
@@ -31,16 +124,18 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     let promise = Promise<String>()
     DispatchQueue.main.async {
       let verb = kind == .image ? "saveImage" : "saveVideo"
-      guard Self.hasUsageDescription else {
+      guard Self.hasUsageDescription || Self.hasReadUsageDescription else {
         promise.reject(withError: Self.error(
           "E_PHOTO_LIBRARY_MANIFEST",
-          "PhotoLibrary.\(verb): set native.app.photoLibrary.addOnly"))
+          "PhotoLibrary.\(verb): set native.app.photoLibrary.addOnly or readWrite"))
         return
       }
-      guard PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized else {
+      let canAdd = Self.hasUsageDescription &&
+        PHPhotoLibrary.authorizationStatus(for: .addOnly) == .authorized
+      guard canAdd || (Self.hasReadUsageDescription && Self.canRead) else {
         promise.reject(withError: Self.error(
           "E_PHOTO_LIBRARY_PERMISSION",
-          "PhotoLibrary.\(verb): add-only Photos permission is required"))
+          "PhotoLibrary.\(verb): Photos add-only or read/write permission is required"))
         return
       }
       guard let url = URL(string: uri), url.isFileURL,
@@ -82,6 +177,36 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     guard let usage = Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryAddUsageDescription")
       as? String else { return false }
     return !usage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+  }
+
+  private static var hasReadUsageDescription: Bool {
+    guard let usage = Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryUsageDescription")
+      as? String else { return false }
+    return !usage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+  }
+
+  private static var canRead: Bool {
+    let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+    return status == .authorized || status == .limited
+  }
+
+  private static func asset(_ value: PHAsset) -> PhotoLibraryAsset {
+    let mediaType: PhotoLibraryMediaType
+    switch value.mediaType {
+    case .unknown: mediaType = .unknown
+    case .image: mediaType = .image
+    case .video: mediaType = .video
+    case .audio: mediaType = .audio
+    @unknown default: mediaType = .unknown
+    }
+    return PhotoLibraryAsset(
+      identifier: value.localIdentifier,
+      mediaType: mediaType,
+      width: Double(value.pixelWidth),
+      height: Double(value.pixelHeight),
+      durationMs: value.duration * 1000,
+      creationDateMs: value.creationDate.map { $0.timeIntervalSince1970 * 1000 },
+      isFavorite: value.isFavorite)
   }
 
   private static func status(_ value: PHAuthorizationStatus) -> PhotoLibraryPermissionStatus {

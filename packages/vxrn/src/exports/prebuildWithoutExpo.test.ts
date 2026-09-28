@@ -270,13 +270,28 @@ ${APP_DELEGATE_PBXPROJ}`,
       content:
         '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<key>NSPhotoLibraryAddUsageDescription</key>\n\t<string></string>\n</dict>',
       platform: 'ios',
-      app: { ...app, photoLibrary: { addOnly: 'Save photos & videos' } },
+      app: { ...app, photoLibrary: {
+        addOnly: 'Save photos & videos', readWrite: 'Browse photos & videos',
+      } },
     })
     expect(photoPlist.content?.match(/<key>NSPhotoLibraryAddUsageDescription<\/key>/g))
       .toHaveLength(1)
     expect(photoPlist.content).toContain(
       '<key>NSPhotoLibraryAddUsageDescription</key>\n\t<string>Save photos &amp; videos</string>'
     )
+    expect(photoPlist.content?.match(/<key>NSPhotoLibraryUsageDescription<\/key>/g))
+      .toHaveLength(1)
+    expect(photoPlist.content).toContain(
+      '<key>NSPhotoLibraryUsageDescription</key>\n\t<string>Browse photos &amp; videos</string>'
+    )
+    const readWritePhotoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n\t<true/>\n</dict>',
+      platform: 'ios',
+      app: { ...app, photoLibrary: { readWrite: 'Browse photos' } },
+    })
+    expect(readWritePhotoPlist.content).toContain('<key>NSPhotoLibraryUsageDescription</key>')
+    expect(readWritePhotoPlist.content).not.toContain('NSPhotoLibraryAddUsageDescription')
 
     const contactsPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',

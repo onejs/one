@@ -55,9 +55,10 @@ export interface NativeAppManifest {
     // One.ImagePicker.launchCamera.
     camera?: string
   }
-  // add-only photos permission for one.ios.photolibrary saving.
+  // photos permissions for saving and browsing through one.ios.photolibrary.
   photoLibrary?: {
-    addOnly: string
+    addOnly?: string
+    readWrite?: string
   }
   // ios Contacts permission prompt for One.iOS.Contacts.
   contacts?: {
@@ -299,10 +300,24 @@ export function validateNativeApp(
   if (
     manifest.photoLibrary !== undefined &&
     (!manifest.photoLibrary ||
-      typeof manifest.photoLibrary.addOnly !== 'string' ||
+      (manifest.photoLibrary.addOnly === undefined &&
+        manifest.photoLibrary.readWrite === undefined))
+  ) {
+    fail('photoLibrary must configure addOnly or readWrite')
+  }
+  if (
+    manifest.photoLibrary?.addOnly !== undefined &&
+    (typeof manifest.photoLibrary.addOnly !== 'string' ||
       manifest.photoLibrary.addOnly.trim() === '')
   ) {
     fail('photoLibrary.addOnly must be a non-empty string')
+  }
+  if (
+    manifest.photoLibrary?.readWrite !== undefined &&
+    (typeof manifest.photoLibrary.readWrite !== 'string' ||
+      manifest.photoLibrary.readWrite.trim() === '')
+  ) {
+    fail('photoLibrary.readWrite must be a non-empty string')
   }
   if (
     manifest.contacts !== undefined &&

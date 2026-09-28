@@ -513,7 +513,9 @@ const shareLoaded = (nodes: Node[]) =>
   nodes.some((node) => node.type === 'Application')
 const photoLibraryLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-photo-library-run')) ||
-  labels(nodes).some((label) => label.includes('saving photos and videos'))
+  labels(nodes).some((label) =>
+    label.includes('saving photos and videos') || label.includes('browsing photos and videos')
+  )
 const imageManipulatorLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-image-manipulator-run')) && has(nodes, 'Status: ')
 // the microphone and speech prompts cover the fixture during the request
@@ -1109,6 +1111,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'photo-library') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
     })
@@ -7392,6 +7398,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('photo-library-assets-saved.png')
+    await wait('Photos read permission starts undetermined', (n) =>
+      labels(n).includes('Read permission: notDetermined')
+    )
+    tap({ id: 'one-native-photo-library-read' })
+    await wait('Photos read permission prompt opens', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.'))
+    )
+    screenshot('photo-library-read-prompt.png')
+    tap({ label: 'Allow Full Access' })
+    await wait('Photos lists and reads the saved assets', (n) => {
+      const result = labels(n).find((label) => label.startsWith('Read result: ')) ?? ''
+      return labels(n).includes('Status: read-passed') &&
+        labels(n).includes('Read permission: authorized') &&
+        result.includes('before=E_PHOTO_LIBRARY_PERMISSION; getBefore=E_PHOTO_LIBRARY_PERMISSION; permission=authorized;') &&
+        result.includes('listed=true; image=true; video=true;') &&
+        result.includes('invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND')
+    })
+    screenshot('photo-library-assets-read.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

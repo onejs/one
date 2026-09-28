@@ -1,9 +1,12 @@
 import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
-import type { OnePhotoLibrary, PhotoLibraryPermissionStatus } from '../specs/OnePhotoLibrary.nitro'
+import type {
+  OnePhotoLibrary, PhotoLibraryAsset, PhotoLibraryAssetPage,
+  PhotoLibraryMediaType, PhotoLibraryPermissionStatus,
+} from '../specs/OnePhotoLibrary.nitro'
 
-export type { PhotoLibraryPermissionStatus } from '../specs/OnePhotoLibrary.nitro'
+export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus }
 
 let hybrid: OnePhotoLibrary | undefined
 
@@ -25,6 +28,26 @@ function requestAddPermission(): Promise<PhotoLibraryPermissionStatus> {
   return native().requestAddPermission().catch(rethrowNativeError)
 }
 
+function getReadPermissionStatus(): PhotoLibraryPermissionStatus {
+  try {
+    return native().getReadPermissionStatus()
+  } catch (error) {
+    return rethrowNativeError(error)
+  }
+}
+
+function requestReadPermission(): Promise<PhotoLibraryPermissionStatus> {
+  return native().requestReadPermission().catch(rethrowNativeError)
+}
+
+function listAssets(offset = 0, limit = 50): Promise<PhotoLibraryAssetPage> {
+  return native().listAssets(offset, limit).catch(rethrowNativeError)
+}
+
+function getAsset(identifier: string): Promise<PhotoLibraryAsset> {
+  return native().getAsset(identifier).catch(rethrowNativeError)
+}
+
 function saveImage(uri: string): Promise<string> {
   return native().saveImage(uri).catch(rethrowNativeError)
 }
@@ -36,6 +59,10 @@ function saveVideo(uri: string): Promise<string> {
 export const PhotoLibrary = Object.freeze({
   getAddPermissionStatus,
   requestAddPermission,
+  getReadPermissionStatus,
+  requestReadPermission,
+  listAssets,
+  getAsset,
   saveImage,
   saveVideo,
 })
