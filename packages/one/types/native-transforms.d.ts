@@ -8,4 +8,5 @@
  * vite: the worker runs in a bare node process.
  */
 export { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin';
+export { renderSwiftPackageModule } from './vite/plugins/swiftPackageModule';
 //# sourceMappingURL=native-transforms.d.ts.map

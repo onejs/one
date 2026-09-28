@@ -149,8 +149,10 @@ module.exports = function withVxrn(config, options = {}) {
           (nextConfig) => {
             if (photoLibrary.addOnly !== undefined)
               nextConfig.modResults.NSPhotoLibraryAddUsageDescription = photoLibrary.addOnly
-            if (photoLibrary.readWrite !== undefined)
+            if (photoLibrary.readWrite !== undefined) {
               nextConfig.modResults.NSPhotoLibraryUsageDescription = photoLibrary.readWrite
+              nextConfig.modResults.PHPhotoLibraryPreventAutomaticLimitedAccessAlert = true
+            }
             return nextConfig
           },
         ],

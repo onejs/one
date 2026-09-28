@@ -145,6 +145,7 @@ describe('vxrn/expo-plugin', () => {
     })
     expect(result.modResults.NSPhotoLibraryAddUsageDescription).toBe('Save a photo.')
     expect(result.modResults.NSPhotoLibraryUsageDescription).toBe('Browse photos.')
+    expect(result.modResults.PHPhotoLibraryPreventAutomaticLimitedAccessAlert).toBe(true)
   })
 
   it('stamps the same notification entries as one prebuild', async () => {

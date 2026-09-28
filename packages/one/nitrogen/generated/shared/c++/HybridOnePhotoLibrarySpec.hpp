@@ -22,9 +22,10 @@ namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 
 #include "PhotoLibraryPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
+#include <string>
+#include <vector>
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryAsset.hpp"
-#include <string>
 
 namespace margelo::nitro::one {
 
@@ -61,6 +62,7 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> requestAddPermission() = 0;
       virtual PhotoLibraryPermissionStatus getReadPermissionStatus() = 0;
       virtual std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> requestReadPermission() = 0;
+      virtual std::shared_ptr<Promise<std::vector<std::string>>> presentLimitedLibraryPicker() = 0;
       virtual std::shared_ptr<Promise<PhotoLibraryAssetPage>> listAssets(double offset, double limit) = 0;
       virtual std::shared_ptr<Promise<PhotoLibraryAsset>> getAsset(const std::string& identifier) = 0;
       virtual std::shared_ptr<Promise<void>> setFavorite(const std::string& identifier, bool favorite) = 0;
