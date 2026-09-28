@@ -18,6 +18,8 @@ type MetroInputConfig = NonNullable<Parameters<typeof loadConfigT>[1]>
 
 const WATCHMAN_PROBE_TIMEOUT_MS = 2000
 const expoEnvAdditionalExts = ['env', 'local', 'development']
+// keep js before mjs so platform-aware .native.js wins for one dist.
+const metroSourceExts = ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs', 'swift']
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
 const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
@@ -295,7 +297,7 @@ export async function buildMetroConfigInputFromViteConfig(
       ..._defaultConfig?.resolver,
       useWatchman,
       blockList,
-      sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This fixes `.native` files not being resolved correctly when `.mjs` files are present.
+      sourceExts: metroSourceExts,
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
@@ -440,7 +442,7 @@ export async function getMetroConfigFromViteConfig(
       ..._defaultConfig?.resolver,
       useWatchman,
       blockList,
-      sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This somehow fixes `.native` files not being resolved correctly when `.mjs` files are present.
+      sourceExts: metroSourceExts,
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest

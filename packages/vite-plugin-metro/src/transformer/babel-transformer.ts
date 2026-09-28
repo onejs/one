@@ -17,6 +17,7 @@ import type {
 import assert from 'node:assert'
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import path from 'node:path'
 
 import type { TransformOptions } from './babel-core'
@@ -158,6 +159,25 @@ const transform: BabelTransformer['transform'] = ({
   // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`.
   plugins,
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
+  if (filename.endsWith('.swift')) {
+    const requireFromProject = createRequire(
+      path.resolve(options.projectRoot, 'package.json')
+    )
+    const oneTransforms = requireFromProject(
+      'one/native-transforms'
+    ) as typeof import('one/native-transforms') & {
+      renderSwiftPackageModule: (
+        id: string,
+        platform: string,
+        root: string
+      ) => { code: string; watchFiles: string[] }
+    }
+    originalSrc = oneTransforms.renderSwiftPackageModule(
+      path.isAbsolute(filename) ? filename : path.resolve(options.projectRoot, filename),
+      options.platform ?? '',
+      options.projectRoot
+    ).code
+  }
   // narrow optional Expo compatibility (expo/virtual/env.js and .env files
   // only), shared with the native worker. no-Expo apps pass through byte
   // for byte without resolving any Expo module.
@@ -258,7 +278,7 @@ const transform: BabelTransformer['transform'] = ({
 
 export function getCacheKey(options?: BabelTransformerCacheKeyOptions): string {
   const hash = createHash('sha256')
-  hash.update('vxrn-metro-babel-transformer-v1')
+  hash.update('vxrn-metro-babel-transformer-v2')
 
   const projectRoot = options?.projectRoot
   if (!projectRoot) {

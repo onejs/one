@@ -37,33 +37,37 @@ declare module 'one' {
         | `/one-native-android-segmented`
         | `/one-native-android-selection`
         | `/one-native-android-surface`
+        | `/one-native-angular-gradient`
+        | `/one-native-app-icon`
         | `/one-native-app-info`
-        | `/one-native-screen-orientation`
-        | `/one-native-apple-auth`
         | `/one-native-app-tracking`
+        | `/one-native-apple-auth`
         | `/one-native-apple-file`
         | `/one-native-arrangement`
         | `/one-native-arrangement-view`
         | `/one-native-audio`
         | `/one-native-autogen`
-        | `/one-native-building-blocks`
         | `/one-native-browser`
+        | `/one-native-building-blocks`
         | `/one-native-calendar`
         | `/one-native-camera`
         | `/one-native-clipboard`
         | `/one-native-contacts`
         | `/one-native-containers`
+        | `/one-native-control-group`
+        | `/one-native-control-size`
         | `/one-native-controls`
         | `/one-native-cover-context`
-        | `/one-native-menu-primary-action`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`
         | `/one-native-dialogs`
+        | `/one-native-disclosure-group`
         | `/one-native-document-picker`
         | `/one-native-edit-button`
         | `/one-native-editors`
         | `/one-native-effects`
+        | `/one-native-elliptical-gradient`
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
@@ -71,44 +75,40 @@ declare module 'one' {
         | `/one-native-gpu`
         | `/one-native-grids`
         | `/one-native-group-box`
-        | `/one-native-view-that-fits`
-        | `/one-native-view-slot`
-        | `/one-native-horizontal-inset`
-        | `/one-native-horizontal-bar`
-        | `/one-native-linear-gradient`
-        | `/one-native-radial-gradient`
-        | `/one-native-angular-gradient`
-        | `/one-native-elliptical-gradient`
-        | `/one-native-mesh-gradient`
-        | `/one-native-safe-area-bar`
-        | `/one-native-swipe-actions`
-        | `/one-native-disclosure-group`
-        | `/one-native-control-group`
-        | `/one-native-control-size`
         | `/one-native-groups`
         | `/one-native-haptics`
+        | `/one-native-horizontal-bar`
+        | `/one-native-horizontal-inset`
         | `/one-native-host`
         | `/one-native-image`
-        | `/one-native-image-picker`
         | `/one-native-image-manipulator`
+        | `/one-native-image-picker`
         | `/one-native-leaves`
+        | `/one-native-linear-gradient`
+        | `/one-native-list-row-modifiers`
         | `/one-native-list-search-refresh`
+        | `/one-native-list-section-modifiers`
         | `/one-native-lists`
         | `/one-native-local-authentication`
         | `/one-native-location`
         | `/one-native-map`
         | `/one-native-map-services`
         | `/one-native-media`
+        | `/one-native-menu-primary-action`
+        | `/one-native-mesh-gradient`
         | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-notifications`
         | `/one-native-paste-button`
-        | `/one-native-picker-palette`
         | `/one-native-photo-library`
+        | `/one-native-picker-palette`
         | `/one-native-pip`
         | `/one-native-popover`
         | `/one-native-protected-store`
+        | `/one-native-radial-gradient`
         | `/one-native-safe-area`
+        | `/one-native-safe-area-bar`
+        | `/one-native-screen-orientation`
         | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`
         | `/one-native-share`
@@ -117,14 +117,17 @@ declare module 'one' {
         | `/one-native-source`
         | `/one-native-speech`
         | `/one-native-state`
+        | `/one-native-swipe-actions`
         | `/one-native-system`
+        | `/one-native-tab-oracle`
         | `/one-native-tab-sidebar`
         | `/one-native-tab-slot`
-        | `/one-native-web-photos`
-        | `/one-native-tab-oracle`
         | `/one-native-tabview`
         | `/one-native-ui-map`
         | `/one-native-updates`
+        | `/one-native-view-slot`
+        | `/one-native-view-that-fits`
+        | `/one-native-web-photos`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`
