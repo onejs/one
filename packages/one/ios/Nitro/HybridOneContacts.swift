@@ -1,7 +1,18 @@
 import Contacts
+import ContactsUI
 import NitroModules
+import React
+import UIKit
 
 final class HybridOneContacts: HybridOneContactsSpec {
+  private let pickerDelegate = HybridOneContactsPickerDelegate()
+  private var pendingPicker: Promise<ContactInfo?>?
+
+  override init() {
+    super.init()
+    pickerDelegate.owner = self
+  }
+
   func getPermissionStatus() throws -> ContactsPermissionStatus {
     Self.status(CNContactStore.authorizationStatus(for: .contacts))
   }
@@ -27,6 +38,45 @@ final class HybridOneContacts: HybridOneContactsSpec {
       }
     }
     return promise
+  }
+
+  func pickContact() throws -> Promise<ContactInfo?> {
+    let promise = Promise<ContactInfo?>()
+    DispatchQueue.main.async {
+      guard self.pendingPicker == nil else {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_PICKER", "Contacts.pickContact: a picker is already open"))
+        return
+      }
+      var presenter = RCTKeyWindow()?.rootViewController
+      while let presented = presenter?.presentedViewController { presenter = presented }
+      guard UIApplication.shared.applicationState == .active,
+        let presenter, presenter.view.window != nil,
+        !presenter.isBeingDismissed, !presenter.isBeingPresented,
+        presenter.transitionCoordinator == nil else {
+        promise.reject(withError: Self.error(
+          "E_CONTACTS_PICKER", "Contacts.pickContact: no active view controller"))
+        return
+      }
+      let picker = CNContactPickerViewController()
+      picker.predicateForSelectionOfContact = NSPredicate(value: true)
+      picker.delegate = self.pickerDelegate
+      self.pendingPicker = promise
+      presenter.present(picker, animated: true)
+    }
+    return promise
+  }
+
+  fileprivate func didPick(_ contact: CNContact?, from picker: CNContactPickerViewController) {
+    picker.dismiss(animated: true) { [weak self] in
+      self?.settlePicker(contact)
+    }
+  }
+
+  private func settlePicker(_ contact: CNContact?) {
+    let promise = pendingPicker
+    pendingPicker = nil
+    promise?.resolve(withResult: contact.map(Self.info))
   }
 
   func search(name: String, limit: Double) throws -> Promise<[ContactInfo]> {
@@ -353,5 +403,17 @@ final class HybridOneContacts: HybridOneContactsSpec {
 
   private static func error(_ code: String, _ message: String) -> RuntimeError {
     oneNativeError(code, message)
+  }
+}
+
+final class HybridOneContactsPickerDelegate: NSObject, CNContactPickerDelegate {
+  weak var owner: HybridOneContacts?
+
+  func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+    owner?.didPick(contact, from: picker)
+  }
+
+  func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
+    owner?.didPick(nil, from: picker)
   }
 }

@@ -28,12 +28,12 @@ namespace margelo::nitro::one { struct ContactChanges; }
 #include "ContactsPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
 #include "ContactInfo.hpp"
-#include <vector>
+#include <optional>
 #include <string>
+#include <vector>
 #include "ContactPostalAddress.hpp"
 #include "ContactInput.hpp"
 #include "ContactPostalAddressInput.hpp"
-#include <optional>
 #include "ContactChanges.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
@@ -82,7 +82,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
@@ -96,6 +96,14 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<ContactsPermissionStatus>> requestPermission() override {
       auto __result = _swiftPart.requestPermission();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::optional<ContactInfo>>> pickContact() override {
+      auto __result = _swiftPart.pickContact();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

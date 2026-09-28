@@ -374,7 +374,8 @@ const deviceLoaded = (nodes: Node[]) =>
   has(nodes, 'Model: ')
 const contactsLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-contacts-run')) ||
-  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies contact access.'))
+  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies contact access.')) ||
+  (nodes.length === 1 && nodes[0].type === 'Application')
 const calendarLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-calendar-run')) ||
   labels(nodes).some((label) => label.includes('NativeFeatureTests verifies calendar events.'))
@@ -3203,6 +3204,43 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('PASS Contacts full-access choice opens')
     screenshot('contacts-access-choice.png', [shareAll])
     point(shareAll.frame.x + shareAll.frame.width / 2, shareAll.frame.y + shareAll.frame.height / 2)
+    const systemAt = (x: number, y: number): Node =>
+      JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+    const pickerCancel = () => systemAt(Math.round(screen.width - 39), 100)
+    const appHasPickerStage = (stage: string): boolean => {
+      const app = (JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[])[0]
+      const hasStage = (node: Node): boolean =>
+        node.AXLabel === `Picker stage: ${stage}` ||
+        ((node.children as Node[] | undefined) ?? []).some(hasStage)
+      return hasStage(app)
+    }
+    await wait('Contacts reaches picker selection stage', () => appHasPickerStage('selecting'))
+    await wait('system Contacts picker opens', (n) => {
+      const cancel = pickerCancel()
+      return cancel.AXLabel === 'Cancel' && cancel.type === 'Button' &&
+        cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+    })
+    screenshot('contacts-picker-open.png')
+    const search = systemAt(Math.round(screen.width / 2), Math.round(screen.height - 54))
+    if (search.AXLabel !== 'Search' || search.type !== 'TextField')
+      throw new Error(`Contacts picker search field missing: ${JSON.stringify(search)}`)
+    point(search.frame!.x + search.frame!.width / 2, search.frame!.y + search.frame!.height / 2)
+    axe(['type', 'OneEdited'], config.simulatorId)
+    await wait('Contacts picker filters to the seeded contact', (n) => {
+      const match = systemAt(Math.round(screen.width / 2), 130)
+      return match.AXLabel === 'OneEdited NativeContacts27' &&
+        match.pid !== n.find((node) => node.type === 'Application')?.pid
+    })
+    screenshot('contacts-picker-match.png')
+    point(screen.width / 2, 130)
+    await wait('second Contacts picker opens after selection settles', (n) => {
+      const cancel = pickerCancel()
+      return appHasPickerStage('canceling') && cancel.AXLabel === 'Cancel' &&
+        cancel.type === 'Button' && cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+    })
+    screenshot('contacts-picker-cancel.png')
+    const cancel = pickerCancel()
+    point(cancel.frame!.x + cancel.frame!.width / 2, cancel.frame!.y + cancel.frame!.height / 2)
     await wait('Contacts create edit search and delete pass', (n) =>
       labels(n).includes('Status: passed') &&
       labels(n).includes('Permission: authorized') &&
@@ -3210,6 +3248,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         'Result: before=E_CONTACTS_PERMISSION; blankCreate=E_CONTACTS_INPUT; matched=true; edited=true; partial=true; removed=true; missingDelete=E_CONTACTS_NOT_FOUND; notFound=E_CONTACTS_NOT_FOUND; invalidUpdate=E_CONTACTS_INPUT; invalid=E_CONTACTS_INPUT'
       ) && labels(n).includes(
         'Address: created=true; edited=true; preserved=true; cleared=true; invalid=E_CONTACTS_INPUT'
+      ) && labels(n).includes(
+        'Picker: selected=true; canceled=true'
       )
     )
     screenshot('contacts-round-trip.png')

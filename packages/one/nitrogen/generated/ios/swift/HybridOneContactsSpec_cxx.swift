@@ -84,7 +84,7 @@ open class HybridOneContactsSpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneContactsSpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -135,7 +135,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_ContactsPermissionStatus_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func requestPermission() -> bridge.Result_std__shared_ptr_Promise_ContactsPermissionStatus___ {
     do {
@@ -154,7 +154,32 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(__exceptionPtr)
     }
   }
-  
+
+  @inline(__always)
+  public final func pickContact() -> bridge.Result_std__shared_ptr_Promise_std__optional_ContactInfo____ {
+    do {
+      let __result = try self.__implementation.pickContact()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__optional_ContactInfo___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__optional_ContactInfo___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__optional_ContactInfo___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__optional_ContactInfo_ in
+              if let __unwrappedValue = __result {
+                return bridge.create_std__optional_ContactInfo_(__unwrappedValue)
+              } else {
+                return .init()
+              }
+            }()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(__exceptionPtr)
+    }
+  }
+
   @inline(__always)
   public final func search(name: std.string, limit: Double) -> bridge.Result_std__shared_ptr_Promise_std__vector_ContactInfo____ {
     do {
@@ -179,7 +204,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func create(input: ContactInput) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
@@ -198,7 +223,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func update(identifier: std.string, changes: ContactChanges) -> bridge.Result_std__shared_ptr_Promise_ContactInfo___ {
     do {
@@ -217,7 +242,7 @@ open class HybridOneContactsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_ContactInfo___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func remove(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {

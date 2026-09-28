@@ -33,6 +33,10 @@ function requestPermission(): Promise<ContactsPermissionStatus> {
   return native().requestPermission().catch(rethrowNativeError)
 }
 
+function pickContact(): Promise<ContactInfo | undefined> {
+  return native().pickContact().catch(rethrowNativeError)
+}
+
 function search(name: string, limit = 100): Promise<ContactInfo[]> {
   return native().search(name, limit).catch(rethrowNativeError)
 }
@@ -52,6 +56,7 @@ function deleteContact(identifier: string): Promise<void> {
 export const Contacts = Object.freeze({
   getPermissionStatus,
   requestPermission,
+  pickContact,
   search,
   create,
   update,

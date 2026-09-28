@@ -16,6 +16,7 @@ const unsupported = (): never => {
 export const Contacts = Object.freeze({
   getPermissionStatus: (): ContactsPermissionStatus => unsupported(),
   requestPermission: (): Promise<ContactsPermissionStatus> => unsupported(),
+  pickContact: (): Promise<ContactInfo | undefined> => unsupported(),
   search: (_name: string, _limit = 100): Promise<ContactInfo[]> => unsupported(),
   create: (_input: ContactInput): Promise<string> => unsupported(),
   update: (_identifier: string, _changes: ContactChanges): Promise<ContactInfo> => unsupported(),

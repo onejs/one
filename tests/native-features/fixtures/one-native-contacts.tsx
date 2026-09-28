@@ -10,6 +10,8 @@ export default function OneNativeContacts() {
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('none')
   const [addressResult, setAddressResult] = useState('none')
+  const [pickerStage, setPickerStage] = useState('idle')
+  const [pickerResult, setPickerResult] = useState('none')
 
   const run = async () => {
     setStatus('running')
@@ -24,6 +26,13 @@ export default function OneNativeContacts() {
       setPermission(granted)
       if (granted !== 'authorized' && granted !== 'limited') {
         throw new Error(`Permission: ${granted}`)
+      }
+      for (const name of ['OneProof', 'OneEdited']) {
+        for (const contact of await One.iOS.Contacts.search(name, 100)) {
+          if (contact.familyName === 'NativeContacts27') {
+            await One.iOS.Contacts.delete(contact.identifier)
+          }
+        }
       }
       const blankCreate = await One.iOS.Contacts.create({
         givenName: 'Invalid',
@@ -93,6 +102,17 @@ export default function OneNativeContacts() {
         afterPartial.some(
           (contact) => contact.identifier === identifier && contact.emailAddresses.length === 0
         )
+      stage = 'picker selection'
+      setPickerStage('selecting')
+      const picked = await One.iOS.Contacts.pickContact()
+      const selected = picked?.identifier === identifier &&
+        picked.givenName === 'OneEdited' &&
+        picked.phoneNumbers.includes('+1 415 555 0110') &&
+        picked.postalAddresses[0]?.street === '2 Market Street'
+      stage = 'picker cancellation'
+      setPickerStage('canceling')
+      const canceled = await One.iOS.Contacts.pickContact() === undefined
+      setPickerStage('done')
       const invalid = await One.iOS.Contacts.search('OneProof', 0).then(
         () => 'unexpected',
         code
@@ -126,12 +146,14 @@ export default function OneNativeContacts() {
       )
       identifier = ''
       setAddressResult(`created=${addressCreated}; edited=${addressEdited}; preserved=${addressPreserved}; cleared=${addressCleared}; invalid=${invalidAddress}`)
+      setPickerResult(`selected=${selected}; canceled=${canceled}`)
       setResult(`before=${before}; blankCreate=${blankCreate}; matched=${matched}; edited=${edited}; partial=${partial}; removed=${removed}; missingDelete=${missingDelete}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}`)
       setStatus(before === 'E_CONTACTS_PERMISSION' && blankCreate === 'E_CONTACTS_INPUT' &&
         matched && edited && partial && removed && missingDelete === 'E_CONTACTS_NOT_FOUND' &&
         notFound === 'E_CONTACTS_NOT_FOUND' && invalidUpdate === 'E_CONTACTS_INPUT' &&
         invalid === 'E_CONTACTS_INPUT' && addressCreated && addressEdited &&
-        addressPreserved && addressCleared && invalidAddress === 'E_CONTACTS_INPUT' ? 'passed' : 'failed')
+        addressPreserved && addressCleared && invalidAddress === 'E_CONTACTS_INPUT' &&
+        selected && canceled ? 'passed' : 'failed')
     } catch (error) {
       setResult(`${stage}: ${code(error)}`)
       setStatus('failed')
@@ -146,6 +168,8 @@ export default function OneNativeContacts() {
       <Text>{`Status: ${status}`}</Text>
       <Text>{`Result: ${result}`}</Text>
       <Text>{`Address: ${addressResult}`}</Text>
+      <Text>{`Picker stage: ${pickerStage}`}</Text>
+      <Text>{`Picker: ${pickerResult}`}</Text>
       <Pressable testID="one-native-contacts-run" style={styles.button} onPress={run}>
         <Text>Run Contacts proof</Text>
       </Pressable>
