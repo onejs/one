@@ -33,6 +33,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeMenuAction({.id = std::string(identifier.UTF8String)});
     };
+    _menuView.onPrimaryAction = ^{
+      OneNativeMenuComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeMenuPrimaryAction({.kind = std::string("primary")});
+    };
     _menuView.onValueChange = ^(NSString *identifier, BOOL value, NSInteger sourceIndex, NSInteger eventCount, NSInteger revision) {
       OneNativeMenuComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -62,6 +68,7 @@ using namespace facebook::react;
     _itemsDirty = NO;
   }
   [_menuView configure:RCTNSStringFromString(next.triggerLabel) disabled:next.disabled
+              hasPrimaryAction:next.hasPrimaryAction
               menuOrder:RCTNSStringFromString(next.menuOrder)
               menuActionDismissBehavior:RCTNSStringFromString(next.menuActionDismissBehavior)
               presentation:RCTNSStringFromString(next.presentation)

@@ -25,6 +25,7 @@ export function ContextMenu(props: ContextMenuProps) {
 function MenuPresentation({
   items,
   onAction,
+  primaryAction,
   children,
   onValueChange,
   revision = 0,
@@ -63,8 +64,10 @@ function MenuPresentation({
       menuActionDismissBehavior={menuActionDismissBehavior}
       triggerLabel={accessibilityLabel}
       disabled={disabled}
+      hasPrimaryAction={presentation === 'menu' && !!primaryAction}
       presentation={presentation}
       onNativeMenuAction={({ nativeEvent }) => onAction(nativeEvent.id)}
+      onNativeMenuPrimaryAction={() => primaryAction?.()}
       onNativeMenuValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }

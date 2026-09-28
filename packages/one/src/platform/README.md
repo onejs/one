@@ -275,6 +275,8 @@ legacy `TabView`, which has no roles.
 
 `One.iOS.Menu` renders actual SwiftUI `Menu`, `Button`, `Toggle`, `Section`,
 `Divider`, and `ControlGroup` views. Every node has a unique nonempty `id`.
+`primaryAction` maps to SwiftUI's menu initializer: a short tap calls it,
+while a long press presents the items. Without it, a tap presents the menu.
 Use `type: 'submenu'` for nested menus, `type: 'section'` for groups with optional
 headings, and `type: 'divider'` for explicit separators. `controlGroup` supports
 SDK-derived styles, including `palette`, `menu`, and `compactMenu`.
