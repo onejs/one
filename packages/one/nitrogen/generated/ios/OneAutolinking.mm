@@ -34,6 +34,7 @@
 #include "HybridOneShareSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneAppTrackingSpecSwift.hpp"
+#include "HybridOneAppIconSpecSwift.hpp"
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
@@ -217,6 +218,13 @@
     "OneAppTracking",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneAppTrackingSpec> hybridObject = One::OneAutolinking::createOneAppTracking();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAppIcon",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneAppIconSpec> hybridObject = One::OneAutolinking::createOneAppIcon();
       return hybridObject;
     }
   );

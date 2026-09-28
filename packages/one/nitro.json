@@ -97,6 +97,9 @@
     "OneAppTracking": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppTracking" }
     },
+    "OneAppIcon": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAppIcon" }
+    },
     "OneImageManipulator": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneImageManipulator" }
     },

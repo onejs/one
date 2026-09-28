@@ -124,6 +124,8 @@ namespace margelo::nitro::one { struct HingeState; }
 namespace margelo::nitro::one { enum class HingeStatus; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
+// Forward declaration of `HybridOneAppIconSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAppIconSpec; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneAppTrackingSpec` to properly resolve imports.
@@ -378,6 +380,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HingeState.hpp"
 #include "HingeStatus.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
+#include "HybridOneAppIconSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
@@ -498,6 +501,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
+// Forward declaration of `HybridOneAppIconSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAppIconSpec_cxx; }
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneAppTrackingSpec_cxx` to properly resolve imports.

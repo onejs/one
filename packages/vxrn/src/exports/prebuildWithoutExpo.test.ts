@@ -1218,7 +1218,12 @@ describe('generateForPlatform determinism', () => {
     const appWithIcon = {
       ...app,
       version: '9.9.9',
-      ios: { ...app.ios, buildNumber: '4242' },
+      ios: { ...app.ios, buildNumber: '4242', alternateIcons: {
+        TestAlternate: {
+          source: fileURLToPath(new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)),
+          backgroundColor: '#123456',
+        },
+      } },
       android: {
         ...app.android,
         versionCode: 4242,
@@ -1280,6 +1285,8 @@ describe('generateForPlatform determinism', () => {
     expect(generatedPbxproj).toContain('CURRENT_PROJECT_VERSION = 4242;')
     expect(generatedPbxproj).not.toContain('MARKETING_VERSION = 1.0;')
     expect(generatedPbxproj).not.toContain('CURRENT_PROJECT_VERSION = 1;')
+    expect(generatedPbxproj.match(/ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "TestAlternate";/g))
+      .toHaveLength(2)
     const generatedGradle = readFileSync(
       join(output, 'android', 'app', 'build.gradle'),
       'utf8'
@@ -1301,6 +1308,14 @@ describe('generateForPlatform determinism', () => {
     expect(iosContents.images.every((image) => image.filename)).toBe(true)
     const iosMarketing = await sharp(join(iosIconDir, 'icon-1024.png')).metadata()
     expect(iosMarketing).toMatchObject({ width: 1024, height: 1024, hasAlpha: false })
+    const alternateIconDir = join(output, 'ios', 'MyApp', 'Images.xcassets', 'TestAlternate.appiconset')
+    const alternateContents: { images: Array<{ filename?: string }> } = JSON.parse(
+      readFileSync(join(alternateIconDir, 'Contents.json'), 'utf8')
+    )
+    expect(alternateContents.images).toHaveLength(9)
+    expect(alternateContents.images.every((image) => image.filename)).toBe(true)
+    expect(await sharp(join(alternateIconDir, 'icon-1024.png')).metadata())
+      .toMatchObject({ width: 1024, height: 1024, hasAlpha: false })
 
     const androidIcon = await sharp(
       join(

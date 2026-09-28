@@ -300,6 +300,18 @@ public final class OneAutolinking {
     return HybridOneAppTracking.self is any RecyclableView.Type
   }
 
+  public static func createOneAppIcon() -> bridge.std__shared_ptr_HybridOneAppIconSpec_ {
+    let hybridObject = HybridOneAppIcon()
+    return { () -> bridge.std__shared_ptr_HybridOneAppIconSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneAppIconRecyclable() -> Bool {
+    return HybridOneAppIcon.self is any RecyclableView.Type
+  }
+
   public static func createOneImageManipulator() -> bridge.std__shared_ptr_HybridOneImageManipulatorSpec_ {
     let hybridObject = HybridOneImageManipulator()
     return { () -> bridge.std__shared_ptr_HybridOneImageManipulatorSpec_ in

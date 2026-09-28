@@ -122,6 +122,9 @@ export interface NativeAppManifest {
       light: string
       dark?: string
     }
+    // extra home screen icons selectable through One.iOS.AppIcon. keys are
+    // the icon names passed to setIcon; each source is a square 1024px image.
+    alternateIcons?: Record<string, { source: string; backgroundColor: string }>
     // system prompt text for Face ID through One.iOS.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -258,6 +261,19 @@ export function validateNativeApp(
     (!manifest.icon.source || !HEX_COLOR.test(manifest.icon.backgroundColor))
   ) {
     fail('icon requires source and a six-digit hex backgroundColor')
+  }
+  if (manifest.ios?.alternateIcons !== undefined) {
+    if (!manifest.icon) fail('ios.alternateIcons requires a primary icon')
+    const entries = Object.entries(manifest.ios.alternateIcons)
+    if (entries.length === 0) fail('ios.alternateIcons requires at least one icon')
+    for (const [name, icon] of entries) {
+      if (name === 'AppIcon' || !TARGET_NAME.test(name)) {
+        fail(`ios.alternateIcons name "${name}" must be an identifier other than AppIcon`)
+      }
+      if (!icon?.source || !HEX_COLOR.test(icon.backgroundColor)) {
+        fail(`ios.alternateIcons.${name} requires source and a six-digit hex backgroundColor`)
+      }
+    }
   }
   if (
     manifest.splash !== undefined &&

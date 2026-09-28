@@ -346,6 +346,11 @@ const testScreens = [
     testID: 'nav-one-native-app-info',
   },
   {
+    href: '/one-native-app-icon',
+    label: 'One Native App Icon',
+    testID: 'nav-one-native-app-icon',
+  },
+  {
     href: '/one-native-screen-orientation',
     label: 'One Native Screen Orientation',
     testID: 'nav-one-native-screen-orientation',

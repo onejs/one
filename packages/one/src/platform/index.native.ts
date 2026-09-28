@@ -192,6 +192,7 @@ export type {
   PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus,
 } from './photo-library/index.native'
 export { AppTracking } from './app-tracking/index.native'
+export { AppIcon } from './app-icon/index.native'
 export type { AppTrackingPermissionStatus } from './app-tracking/index.native'
 export { ScreenOrientation } from './screen-orientation/index.native'
 export type { ScreenOrientationLock, ScreenOrientationValue } from './screen-orientation/index.native'

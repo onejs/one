@@ -1347,49 +1347,55 @@ async function generateAppIcons(args: {
   const { root, dest, platform, app } = args
   if (!app.icon) return
 
+  if (platform === 'ios') {
+    const assetsDir = path.join(dest, app.name, 'Images.xcassets')
+    const template: {
+      images: Array<{ idiom: string; scale: string; size: string; filename?: string }>
+      info: { author: string; version: number }
+    } = JSON.parse(FSExtra.readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
+    const icons: Array<[string, { source: string; backgroundColor: string }]> = [
+      ['AppIcon', app.icon],
+      ...Object.entries(app.ios?.alternateIcons ?? {}),
+    ]
+    for (const [name, icon] of icons) {
+      const source = path.resolve(root, icon.source)
+      if (!FSExtra.existsSync(source)) {
+        throw new Error(`[vxrn] native.app icon source does not exist: ${source}`)
+      }
+      const metadata = await sharp(source).metadata()
+      if (metadata.width !== metadata.height || metadata.width === undefined || metadata.width < 1024) {
+        throw new Error(`[vxrn] native.app icon source must be a square image at least 1024px wide: ${source}`)
+      }
+      const iconDir = path.join(assetsDir, `${name}.appiconset`)
+      FSExtra.mkdirSync(iconDir, { recursive: true })
+      const contents = structuredClone(template)
+      for (const image of contents.images) {
+        const points = Number.parseFloat(image.size.split('x')[0])
+        const scale = Number.parseInt(image.scale, 10)
+        const pixels = points * scale
+        const filename = image.idiom === 'ios-marketing'
+          ? 'icon-1024.png' : `icon-${points}@${image.scale}.png`
+        image.filename = filename
+        await sharp(source)
+          .rotate()
+          .resize(pixels, pixels, { fit: 'cover' })
+          .flatten({ background: icon.backgroundColor })
+          .png()
+          .toFile(path.join(iconDir, filename))
+      }
+      FSExtra.writeFileSync(path.join(iconDir, 'Contents.json'), `${JSON.stringify(contents, null, 2)}\n`)
+    }
+    return
+  }
+
   const source = path.resolve(root, app.icon.source)
   if (!FSExtra.existsSync(source)) {
     throw new Error(`[vxrn] native.app.icon source does not exist: ${source}`)
   }
   const metadata = await sharp(source).metadata()
-  if (
-    metadata.width === undefined ||
-    metadata.height === undefined ||
-    metadata.width !== metadata.height ||
-    metadata.width < 1024
-  ) {
-    throw new Error(
-      '[vxrn] native.app.icon source must be a square image at least 1024px wide'
-    )
+  if (metadata.width !== metadata.height || metadata.width === undefined || metadata.width < 1024) {
+    throw new Error('[vxrn] native.app.icon source must be a square image at least 1024px wide')
   }
-
-  if (platform === 'ios') {
-    const iconDir = path.join(dest, app.name, 'Images.xcassets', 'AppIcon.appiconset')
-    const contentsPath = path.join(iconDir, 'Contents.json')
-    const contents: {
-      images: Array<{ idiom: string; scale: string; size: string; filename?: string }>
-      info: { author: string; version: number }
-    } = JSON.parse(FSExtra.readFileSync(contentsPath, 'utf8'))
-    for (const image of contents.images) {
-      const points = Number.parseFloat(image.size.split('x')[0])
-      const scale = Number.parseInt(image.scale, 10)
-      const pixels = points * scale
-      const filename =
-        image.idiom === 'ios-marketing'
-          ? 'icon-1024.png'
-          : `icon-${points}@${image.scale}.png`
-      image.filename = filename
-      await sharp(source)
-        .rotate()
-        .resize(pixels, pixels, { fit: 'cover' })
-        .flatten({ background: app.icon.backgroundColor })
-        .png()
-        .toFile(path.join(iconDir, filename))
-    }
-    FSExtra.writeFileSync(contentsPath, `${JSON.stringify(contents, null, 2)}\n`)
-    return
-  }
-
   for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
     const pixels = 48 * multiplier
     const iconDir = path.join(dest, 'app', 'src', 'main', 'res', `mipmap-${density}`)
@@ -2247,6 +2253,16 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
           `CURRENT_PROJECT_VERSION = ${app.ios.buildNumber};`
         )
       }
+    }
+    if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj') &&
+      app.ios?.alternateIcons !== undefined) {
+      const anchor = 'ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;'
+      if (!rendered.includes(anchor)) {
+        throw new Error('[vxrn] prebuild template lost its primary app icon build setting')
+      }
+      const names = Object.keys(app.ios.alternateIcons).sort().join(' ')
+      rendered = rendered.replaceAll(anchor,
+        `${anchor}\n\t\t\t\tASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "${names}";`)
     }
     if (platform === 'ios' && relativePath.endsWith('/Info.plist')) {
       // schemes, usesNonExemptEncryption, and fileSharing stamp above in one

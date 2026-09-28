@@ -92,6 +92,7 @@ const suites = [
   'local-authentication',
   'protected-store',
   'app-tracking',
+  'app-icon',
   'location',
   'file-system',
   'audio',
@@ -684,6 +685,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'local-authentication': localAuthenticationLoaded,
   'protected-store': protectedStoreLoaded,
   'app-tracking': appTrackingLoaded,
+  'app-icon': (nodes) => Boolean(id(nodes, 'one-native-app-icon-alternate')),
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
@@ -773,6 +775,7 @@ const suiteHome: Record<Suite, string> = {
   'local-authentication': 'nav-one-native-local-authentication',
   'protected-store': 'nav-one-native-protected-store',
   'app-tracking': 'nav-one-native-app-tracking',
+  'app-icon': 'nav-one-native-app-icon',
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
@@ -1177,7 +1180,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'notifications' || config.suite === 'speech' ||
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
-      config.suite === 'contacts' || config.suite === 'screen-orientation') {
+      config.suite === 'contacts' || config.suite === 'screen-orientation' ||
+      config.suite === 'app-icon') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; contacts, map-services, and orientation need the freshly built native contract.
@@ -7530,6 +7534,59 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('After: denied') &&
       labels(nodes).includes('Result: denied:denied'))
     screenshot('app-tracking-denied.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-icon') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-icon')
+    await wait('alternate icon binary is configured and primary is showing', (nodes) =>
+      labels(nodes).includes('Supported: true') &&
+      labels(nodes).includes('Current icon: primary') &&
+      labels(nodes).includes('Icon result: idle'))
+
+    const confirmSystemAlert = async (image: string) => {
+      const frame = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+      if (!frame) throw new Error('App icon alert has no application frame')
+      let button: Node | undefined
+      const deadline = Date.now() + config.timeout
+      do {
+        for (let fraction = 0.48; fraction <= 0.74; fraction += 0.025) {
+          const hit = JSON.parse(axe(['describe-ui', '--point',
+            `${Math.round(frame.width / 2)},${Math.round(frame.height * fraction)}`],
+            config.simulatorId)) as Node
+          if (hit.type === 'Button' && hit.AXLabel === 'OK' && hit.frame) {
+            button = hit
+            break
+          }
+        }
+        if (button) break
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      } while (Date.now() < deadline)
+      if (!button?.frame) throw new Error('iOS app icon change alert and OK action did not appear')
+      screenshot(image, [button])
+      point(button.frame.x + button.frame.width / 2, button.frame.y + button.frame.height / 2)
+    }
+
+    tap({ id: 'one-native-app-icon-alternate' })
+    await confirmSystemAlert('app-icon-alternate-alert.png')
+    await wait('alternate icon selected and read back from UIKit', (nodes) =>
+      labels(nodes).includes('Current icon: TestAlternate') &&
+      labels(nodes).includes('Icon result: changed'))
+    screenshot('app-icon-alternate-selected.png')
+
+    tap({ id: 'one-native-app-icon-invalid' })
+    await wait('unknown icon name rejected without changing selection', (nodes) =>
+      labels(nodes).includes('Current icon: TestAlternate') &&
+      labels(nodes).includes('Icon result: invalid:E_APP_ICON_INPUT'))
+
+    tap({ id: 'one-native-app-icon-primary' })
+    await confirmSystemAlert('app-icon-primary-alert.png')
+    await wait('primary icon restored and read back from UIKit', (nodes) =>
+      labels(nodes).includes('Current icon: primary') &&
+      labels(nodes).includes('Icon result: changed'))
+    screenshot('app-icon-primary-restored.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

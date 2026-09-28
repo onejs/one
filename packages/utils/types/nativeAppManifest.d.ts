@@ -73,6 +73,10 @@ export interface NativeAppManifest {
             light: string;
             dark?: string;
         };
+        alternateIcons?: Record<string, {
+            source: string;
+            backgroundColor: string;
+        }>;
         faceIdUsageDescription?: string;
         fileSharing?: boolean;
         associatedDomains?: string[];
