@@ -6,6 +6,8 @@ declare function getReadPermissionStatus(): PhotoLibraryPermissionStatus;
 declare function requestReadPermission(): Promise<PhotoLibraryPermissionStatus>;
 declare function listAssets(offset?: number, limit?: number): Promise<PhotoLibraryAssetPage>;
 declare function getAsset(identifier: string): Promise<PhotoLibraryAsset>;
+declare function setFavorite(identifier: string, favorite: boolean): Promise<void>;
+declare function deleteAsset(identifier: string): Promise<void>;
 declare function exportOriginalAsset(identifier: string, allowNetwork?: boolean): Promise<string>;
 declare function saveImage(uri: string): Promise<string>;
 declare function saveVideo(uri: string): Promise<string>;
@@ -16,6 +18,8 @@ export declare const PhotoLibrary: Readonly<{
     requestReadPermission: typeof requestReadPermission;
     listAssets: typeof listAssets;
     getAsset: typeof getAsset;
+    setFavorite: typeof setFavorite;
+    deleteAsset: typeof deleteAsset;
     exportOriginalAsset: typeof exportOriginalAsset;
     saveImage: typeof saveImage;
     saveVideo: typeof saveVideo;

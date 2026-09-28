@@ -98,6 +98,45 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     return promise
   }
 
+  func setFavorite(identifier: String, favorite: Bool) throws -> Promise<Void> {
+    changeAsset(identifier, operation: "setFavorite", failureCode: "E_PHOTO_LIBRARY_CHANGE") {
+      PHAssetChangeRequest(for: $0).isFavorite = favorite
+    }
+  }
+
+  func deleteAsset(identifier: String) throws -> Promise<Void> {
+    changeAsset(identifier, operation: "deleteAsset", failureCode: "E_PHOTO_LIBRARY_DELETE") {
+      PHAssetChangeRequest.deleteAssets([$0] as NSArray)
+    }
+  }
+
+  private func changeAsset(
+    _ identifier: String,
+    operation: String,
+    failureCode: String,
+    change: @escaping (PHAsset) -> Void
+  ) -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      do {
+        let asset = try Self.readableAsset(identifier, operation)
+        PHPhotoLibrary.shared().performChanges {
+          change(asset)
+        } completionHandler: { success, error in
+          if success {
+            promise.resolve()
+          } else {
+            promise.reject(withError: Self.error(failureCode,
+              "PhotoLibrary.\(operation): \(error?.localizedDescription ?? "Photos rejected the change")"))
+          }
+        }
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
   func exportOriginalAsset(identifier: String, allowNetwork: Bool) throws -> Promise<String> {
     let promise = Promise<String>()
     DispatchQueue.global(qos: .userInitiated).async {

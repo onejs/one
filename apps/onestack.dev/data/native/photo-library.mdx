@@ -67,9 +67,28 @@ return image or video bytes. `listAssets()` accepts integer `offset` from 0 to
 1,000,000 and integer `limit` from 1 to 100. The read methods reject with
 `E_PHOTO_LIBRARY_MANIFEST` or `E_PHOTO_LIBRARY_PERMISSION` when configuration or
 permission is missing, `E_PHOTO_LIBRARY_INPUT` for invalid arguments, and
-`E_PHOTO_LIBRARY_NOT_FOUND` for an unknown identifier. Editing, deleting, and
-organizing assets are not yet supported. Page offsets use the current library
+`E_PHOTO_LIBRARY_NOT_FOUND` for an unknown identifier. Page offsets use the current library
 order, so insertions or deletions between requests can shift later pages.
+
+With read/write permission, `setFavorite(identifier, true)` marks an asset as a
+favorite; pass `false` to remove it. `deleteAsset(identifier)` asks Photos to
+delete the asset from the entire library, which may show a system confirmation.
+Both methods resolve only after Photos commits the change. Use `getAsset()` to
+read the updated favorite state or confirm that a deleted identifier now returns
+`E_PHOTO_LIBRARY_NOT_FOUND`:
+
+```tsx
+await One.iOS.PhotoLibrary.setFavorite(asset.identifier, true)
+const updated = await One.iOS.PhotoLibrary.getAsset(asset.identifier)
+console.log(updated.isFavorite)
+await One.iOS.PhotoLibrary.deleteAsset(asset.identifier)
+```
+
+The write methods use the same manifest, permission, input, and missing-asset
+errors as `getAsset()`. A rejected Photos change returns
+`E_PHOTO_LIBRARY_CHANGE` for favorites or `E_PHOTO_LIBRARY_DELETE` for deletion.
+Deleting is permanent from the app's point of view; Photos may retain the item
+in Recently Deleted. Album management and content editing are not yet supported.
 
 `exportOriginalAsset(identifier)` writes the asset's original photo, video, or
 audio resource to a unique temporary file and returns its `file://` URI. By

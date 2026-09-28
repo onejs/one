@@ -128,6 +128,22 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline std::shared_ptr<Promise<void>> setFavorite(const std::string& identifier, bool favorite) override {
+      auto __result = _swiftPart.setFavorite(identifier, std::forward<decltype(favorite)>(favorite));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> deleteAsset(const std::string& identifier) override {
+      auto __result = _swiftPart.deleteAsset(identifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<std::string>> exportOriginalAsset(const std::string& identifier, bool allowNetwork) override {
       auto __result = _swiftPart.exportOriginalAsset(identifier, std::forward<decltype(allowNetwork)>(allowNetwork));
       if (__result.hasError()) [[unlikely]] {
