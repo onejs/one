@@ -6150,6 +6150,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // title, so the markers React sent are readable without a screenshot. the
     // surface itself is the test-id box: this tree exposes no 'Map' label.
     const surface = (nodes: Node[]) => id(nodes, 'one-native-map-view')
+    const appWidth = (nodes: Node[]) => nodes.find((node) =>
+      node.type === 'Application' || node.AXRole === 'AXApplication' ||
+      node.role === 'AXApplication')?.frame?.width
+    const fills = (nodes: Node[], height: number) => {
+      const width = appWidth(nodes)
+      const frame = surface(nodes)?.frame
+      return width !== undefined && frame !== undefined &&
+        Math.abs(frame.height - height) < 0.5 &&
+        Math.abs(frame.width - (width - 20)) < 0.5
+    }
     const regions = (nodes: Node[]) =>
       Number(
         labels(nodes)
@@ -6169,24 +6179,25 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // thing that can be deciding this size.
     await wait(
       'Map fills the box React Native gave it',
-      (n) => surface(n)?.frame?.height === 220 && surface(n)?.frame?.width === 373
+      (n) => fills(n, 220)
     )
     // MapKit publishes its surface before its annotations and tiles have painted. Marker AX
     // presence gates the model, then the pixel gate below gates the asynchronous paint.
     await wait(
       'the markers React sent are on the map',
-      (n) => has(n, 'Coit Tower') && has(n, 'Ballpark') && !has(n, 'Pyramid')
+      (n) => has(n, 'One pin Coit Tower') && has(n, 'One pin Ballpark') &&
+        !has(n, 'One pin Pyramid')
     )
     await visualScreenshot('map-two-pins.png', 'map-markers')
     tap({ id: 'one-native-map-height' })
     await wait(
       'the map follows the box when the style changes',
-      (n) => status(n, 'Height', 320) && surface(n)?.frame?.height === 320
+      (n) => status(n, 'Height', 320) && fills(n, 320)
     )
     tap({ id: 'one-native-map-height' })
     await wait(
       'the map follows the box back',
-      (n) => status(n, 'Height', 220) && surface(n)?.frame?.height === 220
+      (n) => status(n, 'Height', 220) && fills(n, 220)
     )
     // the markers prop is an object array, which crosses Fabric as a struct per element.
     // asserting the third one is absent as well as the first two present is what separates
@@ -6194,7 +6205,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-map-pins' })
     await wait(
       'adding a marker adds it to the map',
-      (n) => status(n, 'Pins', 3) && has(n, 'Pyramid') && has(n, 'Coit Tower')
+      (n) => status(n, 'Pins', 3) && has(n, 'One pin Pyramid') &&
+        has(n, 'One pin Coit Tower')
     )
     screenshot('map-three-pins.png')
     tap({ id: 'one-native-map-pins' })
@@ -6202,9 +6214,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'emptying the array removes every marker',
       (n) =>
         status(n, 'Pins', 0) &&
-        !has(n, 'Pyramid') &&
-        !has(n, 'Coit Tower') &&
-        !has(n, 'Ballpark')
+        !has(n, 'One pin Pyramid') &&
+        !has(n, 'One pin Coit Tower') &&
+        !has(n, 'One pin Ballpark')
     )
     await visualScreenshot('map-no-pins.png', 'map-tiles')
 
@@ -6220,6 +6232,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => status(n, 'Center', '37.7989,-122.4662') && regions(n) > before
     )
     screenshot('map-presidio.png')
+    tap({ id: 'one-native-map-look-around' })
+    await wait('MapKit Look Around loads street imagery', (n) =>
+      status(n, 'Look Around', 'open') &&
+      Boolean(id(n, 'LookAroundLocationLabel')?.AXLabel) &&
+      Boolean(id(n, 'LookAroundImageryDateLabel')?.AXLabel) &&
+      Boolean(id(n, 'LookAroundCompassView')) &&
+      labels(n).includes('Close'))
+    screenshot('map-look-around-open.png')
+    tap({ label: 'Close' })
+    await wait('Look Around close updates the controlled binding', (n) =>
+      status(n, 'Look Around', 'closed') &&
+      status(n, 'Look Around dismissals', 1) &&
+      !id(n, 'LookAroundLocationLabel'))
+    screenshot('map-look-around-closed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

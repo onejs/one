@@ -73,17 +73,21 @@ export function resolveVisualRegion(
   )
   // the snapshot tree repeats the live screen once per container path, so one
   // surface matches many nodes with the identical frame. that duplication is
-  // not ambiguity: only distinct frames are.
+  // not ambiguity: only distinct frames are. axe can round the same frame's
+  // dimensions differently across repeated nodes, so compare below a pixel.
   const framed = matches.filter((node) => node.frame)
-  const regions = new Set(
-    framed.map((node) => JSON.stringify(node.frame, ['height', 'width', 'x', 'y']))
-  )
-  if (framed.length === 0 || regions.size !== 1 || !framed[0].frame) {
+  const first = framed[0]?.frame
+  const sameRegion = first && framed.every(({ frame }) => frame &&
+    Math.abs(frame.x - first.x) < 1 / 64 &&
+    Math.abs(frame.y - first.y) < 1 / 64 &&
+    Math.abs(frame.width - first.width) < 1 / 64 &&
+    Math.abs(frame.height - first.height) < 1 / 64)
+  if (!sameRegion) {
     throw new Error(
-      `${declaration.name}: expected one framed accessibility anchor ${JSON.stringify(declaration.anchor.selector)}, found ${framed.length} in ${regions.size} distinct regions`
+      `${declaration.name}: expected one framed accessibility anchor ${JSON.stringify(declaration.anchor.selector)}, found ${framed.length} with differing frames`
     )
   }
-  const region = declaration.anchor.region(framed[0].frame)
+  const region = declaration.anchor.region(first)
   if (
     ![region.x, region.y, region.width, region.height].every(Number.isFinite) ||
     region.width <= 0 ||
