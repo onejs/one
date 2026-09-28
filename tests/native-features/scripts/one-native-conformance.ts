@@ -7090,6 +7090,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'location') {
+    const appContainer = execFileSync('xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
+      { encoding: 'utf8', timeout: 30_000 }).trim()
+    const modes = JSON.parse(execFileSync('xcrun', [
+      'plutil', '-extract', 'UIBackgroundModes', 'json', '-o', '-', path.join(appContainer, 'Info.plist')
+    ], { encoding: 'utf8', timeout: 30_000 })) as string[]
+    if (!modes.includes('location')) throw new Error('Installed app does not declare the location background mode')
+    console.log('PASS installed app declares location background mode')
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-location')
@@ -7153,6 +7161,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('reverse geocoding identifies San Francisco', (n) =>
       labels(n).includes('Reverse: San Francisco')
     )
+    tap({ id: 'one-native-location-background-watch' })
+    await wait('background location watch starts in foreground', (n) =>
+      labels(n).includes('Background watch: active:47.6062,-122.3321'))
+    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'], {
+      stdio: 'ignore', timeout: 30_000,
+    })
+    const settingsForeground = () => labels(snapshot(config.simulatorId)).includes('Settings')
+    const settingsDeadline = Date.now() + config.timeout
+    while (!settingsForeground() && Date.now() < settingsDeadline) {
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    if (!settingsForeground()) throw new Error('Settings did not take the foreground')
+    console.log('PASS Settings takes the foreground')
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '48.8566,2.3522'], {
+      stdio: 'ignore', timeout: 30_000,
+    })
+    const dataContainer = execFileSync('xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+      { encoding: 'utf8', timeout: 30_000 }).trim()
+    const proofFile = path.join(dataContainer, 'Documents', 'one-native-location-background-proof.txt')
+    const proofValue = () => fs.existsSync(proofFile) ? fs.readFileSync(proofFile, 'utf8') : 'missing'
+    const backgroundDeadline = Date.now() + config.timeout
+    while (proofValue() !== 'background:48.8566,2.3522' && Date.now() < backgroundDeadline) {
+      if (!settingsForeground()) throw new Error('Settings left the foreground before location callback')
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    if (proofValue() !== 'background:48.8566,2.3522' || !settingsForeground()) {
+      throw new Error(`Background location callback did not run under Settings: ${proofValue()}`)
+    }
+    console.log('PASS location callback runs while Settings is foreground')
+    screenshot('location-background-settings.png')
+    launchApp()
+    await wait('background location arrives while Settings is foreground', (n) =>
+      labels(n).includes('Background watch: background:48.8566,2.3522'))
+    screenshot('location-background-returned.png')
+    tap({ id: 'one-native-location-stop-background-watch' })
+    await wait('background location watch stops', (n) =>
+      labels(n).includes('Background watch: stopped'))
     screenshot('location-current-position.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

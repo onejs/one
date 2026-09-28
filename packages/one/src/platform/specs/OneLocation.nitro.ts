@@ -37,7 +37,8 @@ export interface OneLocation extends HybridObject<{ ios: 'swift' }> {
   getCurrentPosition(): Promise<LocationPosition>
   addPositionListener(
     onPosition: (position: LocationPosition) => void,
-    onError: (code: string, message: string) => void
+    onError: (code: string, message: string) => void,
+    background: boolean
   ): () => void
   geocodeAddress(address: string): Promise<LocationPlace[]>
   reverseGeocode(latitude: number, longitude: number): Promise<LocationPlace[]>

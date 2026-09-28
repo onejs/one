@@ -17,7 +17,8 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // react native root until its first content, and MainActivity's content
 // from drawing until then on Android, as one prebuild always does. leave it
 // off while expo-splash-screen owns the splash.
-// options: { location: { whenInUse: string } } sets the iOS location prompt.
+// options: { location: { whenInUse: string, background?: boolean } } sets the ios
+// location prompt and optional background mode.
 // options: { audio: { microphone?: string, background?: boolean } } sets the
 // ios recording prompt and background audio mode.
 // options: { photoLibrary: { addOnly?: string, readWrite?: string } } sets ios photos prompts.
@@ -55,6 +56,9 @@ module.exports = function withVxrn(config, options = {}) {
     (typeof location.whenInUse !== 'string' || !location.whenInUse.trim())
   ) {
     throw new Error('[vxrn/expo-plugin] location.whenInUse must be a non-empty string')
+  }
+  if (location?.background !== undefined && typeof location.background !== 'boolean') {
+    throw new Error('[vxrn/expo-plugin] location.background must be a boolean')
   }
   if (audio !== undefined) {
     if (!audio || typeof audio !== 'object') {
@@ -112,6 +116,10 @@ module.exports = function withVxrn(config, options = {}) {
           withInfoPlist,
           (nextConfig) => {
             nextConfig.modResults.NSLocationWhenInUseUsageDescription = location.whenInUse
+            if (location.background === true) {
+              const modes = nextConfig.modResults.UIBackgroundModes || []
+              nextConfig.modResults.UIBackgroundModes = [...new Set([...modes, 'location'])]
+            }
             return nextConfig
           },
         ],

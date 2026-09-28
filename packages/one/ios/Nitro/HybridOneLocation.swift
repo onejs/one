@@ -7,7 +7,11 @@ final class HybridOneLocation: HybridOneLocationSpec {
   private let delegate = OneLocationDelegate()
   private var permissionPromises: [Promise<LocationPermissionStatus>] = []
   private var positionPromises: [Promise<LocationPosition>] = []
-  private var positionListeners: [UUID: ((LocationPosition) -> Void, (String, String) -> Void)] = [:]
+  private var positionListeners: [UUID: (
+    onPosition: (LocationPosition) -> Void,
+    onError: (String, String) -> Void,
+    background: Bool
+  )] = [:]
   private var monitoring = false
   private var geocoders: [UUID: CLGeocoder] = [:]
 
@@ -81,7 +85,8 @@ final class HybridOneLocation: HybridOneLocationSpec {
 
   func addPositionListener(
     onPosition: @escaping (LocationPosition) -> Void,
-    onError: @escaping (String, String) -> Void
+    onError: @escaping (String, String) -> Void,
+    background: Bool
   ) throws -> () -> Void {
     let id = UUID()
     DispatchQueue.main.async {
@@ -91,7 +96,19 @@ final class HybridOneLocation: HybridOneLocationSpec {
         onError("E_LOCATION_PERMISSION", "Location.watchPosition: location permission is required")
         return
       }
-      self.positionListeners[id] = (onPosition, onError)
+      if background {
+        guard (Bundle.main.object(forInfoDictionaryKey: "UIBackgroundModes") as? [String])?
+          .contains("location") == true else {
+          onError("E_LOCATION_MANIFEST", "Location.watchPosition: set native.app.location.background")
+          return
+        }
+        guard UIApplication.shared.applicationState == .active else {
+          onError("E_LOCATION_BACKGROUND", "Location.watchPosition: start the background watch while active")
+          return
+        }
+      }
+      self.positionListeners[id] = (onPosition, onError, background)
+      self.updateBackgroundOptions(manager)
       if let position = Self.recentPosition(manager) { onPosition(position) }
       if self.positionPromises.isEmpty && !self.monitoring {
         manager.startUpdatingLocation()
@@ -102,8 +119,9 @@ final class HybridOneLocation: HybridOneLocationSpec {
       DispatchQueue.main.async {
         guard let self else { return }
         self.positionListeners.removeValue(forKey: id)
+        let manager = self.locationManager()
+        self.updateBackgroundOptions(manager)
         if self.positionListeners.isEmpty && self.monitoring {
-          let manager = self.locationManager()
           manager.stopUpdatingLocation()
           self.monitoring = false
           if !self.positionPromises.isEmpty { manager.requestLocation() }
@@ -194,8 +212,9 @@ final class HybridOneLocation: HybridOneLocationSpec {
         if monitoring { manager.stopUpdatingLocation(); monitoring = false }
         let listeners = Array(positionListeners.values)
         positionListeners.removeAll()
-        for (_, onError) in listeners {
-          onError("E_LOCATION_PERMISSION", "Location.watchPosition: location permission was removed")
+        updateBackgroundOptions(manager)
+        for listener in listeners {
+          listener.onError("E_LOCATION_PERMISSION", "Location.watchPosition: location permission was removed")
         }
       }
       let positions = positionPromises
@@ -219,7 +238,7 @@ final class HybridOneLocation: HybridOneLocationSpec {
     for promise in pending {
       promise.resolve(withResult: position)
     }
-    for (onPosition, _) in positionListeners.values { onPosition(position) }
+    for listener in positionListeners.values { listener.onPosition(position) }
     if !positionListeners.isEmpty && !monitoring {
       locationManager().startUpdatingLocation()
       monitoring = true
@@ -248,13 +267,14 @@ final class HybridOneLocation: HybridOneLocationSpec {
       let listeners = Array(positionListeners.values)
       positionListeners.removeAll()
       if monitoring { locationManager().stopUpdatingLocation(); monitoring = false }
-      for (_, onError) in listeners {
-        onError("E_LOCATION_PERMISSION", "Location.watchPosition: location permission was removed")
+      updateBackgroundOptions(locationManager())
+      for listener in listeners {
+        listener.onError("E_LOCATION_PERMISSION", "Location.watchPosition: location permission was removed")
       }
       return
     }
-    for (_, onError) in positionListeners.values {
-      onError(
+    for listener in positionListeners.values {
+      listener.onError(
         denied ? "E_LOCATION_PERMISSION" : "E_LOCATION_UNAVAILABLE",
         "Location.watchPosition: \(nativeError.domain) \(nativeError.code): \(error.localizedDescription)")
     }
@@ -286,6 +306,13 @@ final class HybridOneLocation: HybridOneLocationSpec {
     created.delegate = delegate
     manager = created
     return created
+  }
+
+  private func updateBackgroundOptions(_ manager: CLLocationManager) {
+    let enabled = positionListeners.values.contains { $0.background }
+    manager.allowsBackgroundLocationUpdates = enabled
+    manager.pausesLocationUpdatesAutomatically = !enabled
+    manager.showsBackgroundLocationIndicator = enabled
   }
 
   private static func status(_ status: CLAuthorizationStatus) -> LocationPermissionStatus {

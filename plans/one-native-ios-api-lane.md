@@ -31,7 +31,7 @@ checklist; One's own exports and docs decide the status.
 | Live Photos | missing | no Live Photo capture or playback API | none | P3 |
 | Photo library save/manage | partial | `One.iOS.PhotoLibrary` image/video save, read permission, bounded metadata list/get and original-file export; no iCloud transfer progress/cancel, edited-media export, limited-selection picker, edit, delete, or albums | photo-library: both permission prompts, image/video save, list/get, original bytes, errors | P2 |
 | Foreground location and geocoding | covered | `One.iOS.Location` permission, one fix, watch, forward/reverse geocoding | location: prompt, movement, geocoding | done |
-| Background location | missing | no background location mode or monitoring | none | P2 |
+| Background location | partial | opt-in `One.iOS.Location.watchPosition(..., { background: true })` with `location` background mode; no region/significant-change monitoring or relaunch | RAN iOS 27: callback wrote a moved coordinate while Settings was foreground; prolonged OS suspension policy needs device proof | P2 |
 | Maps | partial | `One.UI.Map`, `One.iOS.Map`; no search or directions service | map, ui-map | P2 |
 | Share | covered | `One.iOS.Share` text, URL, and file sheet; `One.iOS.ShareLink` button | share: text/link, file preview, cancel and errors; ShareLink unproven | done |
 | Clipboard | covered | `One.Clipboard` text | clipboard | done |

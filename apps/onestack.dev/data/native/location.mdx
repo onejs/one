@@ -1,6 +1,6 @@
 ---
 title: Location
-description: Request foreground location permission and read the current position on iOS
+description: Request location permission and read foreground or background position updates on iOS
 ---
 
 `One.iOS.Location` uses Core Location for foreground permission, one-shot and
@@ -57,6 +57,28 @@ leaves. The error callback receives `E_LOCATION_PERMISSION` if permission is
 missing or revoked; that ends the subscription. Other location failures report
 `E_LOCATION_UNAVAILABLE`, and the subscription stays active until `stop()`.
 
+Pass `{ background: true }` as the third argument to keep receiving updates
+while another app is in front. Set `location.background: true` in the manifest
+or the `vxrn/expo-plugin` option first; it adds `location` to
+`UIBackgroundModes`. Start this watch while your
+app is active, after the user grants location permission. It uses the same
+stop function and displays iOS's background location indicator. Tracking
+stops when the watch is removed; apps should restore a wanted watch after a
+fresh launch. This path does not monitor regions or restart a terminated app.
+Background mode without the manifest calls the error callback with
+`E_LOCATION_MANIFEST`; starting the background watch while inactive calls it
+with `E_LOCATION_BACKGROUND`.
+Background watches keep location hardware active even while stationary, so stop
+them promptly when tracking ends to limit battery use.
+
+```tsx
+const stopBackgroundWatch = One.iOS.Location.watchPosition(
+  (position) => console.log(position.latitude, position.longitude),
+  (error) => console.error(error.code, error.message),
+  { background: true }
+)
+```
+
 `geocodeAddress(address)` converts an address into matching places, and
 `reverseGeocode(latitude, longitude)` looks up places near a coordinate. Each
 place includes coordinates and any address fields Apple returns. These methods
@@ -68,5 +90,4 @@ The permission request rejects with `E_LOCATION_MANIFEST` if the usage text is
 missing and `E_LOCATION_BACKGROUND` if the app is inactive. Reading a position
 without permission rejects with `E_LOCATION_PERMISSION`. A failed location fix
 rejects with `E_LOCATION_UNAVAILABLE`. Error codes are available on `error.code`.
-This API is iOS only and throws on Android or web. Background location updates
-are not available yet.
+This API is iOS only and throws on Android or web.

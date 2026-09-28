@@ -69,9 +69,10 @@ export interface NativeAppManifest {
     usage?: string
     remindersUsage?: string
   }
-  // foreground Core Location permission prompt for One.iOS.Location.
+  // core location prompt and opt-in background updates for one.ios.location.
   location?: {
     whenInUse: string
+    background?: boolean
   }
   // microphone prompt and background playback for One.iOS.Audio.
   audio?: {
@@ -349,6 +350,10 @@ export function validateNativeApp(
       manifest.location.whenInUse.trim() === '')
   ) {
     fail('location.whenInUse must be a non-empty string')
+  }
+  if (manifest.location?.background !== undefined &&
+    typeof manifest.location.background !== 'boolean') {
+    fail('location.background must be a boolean')
   }
   if (manifest.audio !== undefined) {
     if (!manifest.audio || typeof manifest.audio !== 'object') {

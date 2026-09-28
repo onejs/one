@@ -41,6 +41,7 @@ export interface NativeAppManifest {
     };
     location?: {
         whenInUse: string;
+        background?: boolean;
     };
     audio?: {
         microphone?: string;

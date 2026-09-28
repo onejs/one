@@ -1873,9 +1873,13 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       if (app.ios?.widgets) {
         stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
       }
-      if (app.pictureInPicture || app.audio?.background) {
+      const backgroundModes = [
+        ...(app.pictureInPicture || app.audio?.background ? ['audio'] : []),
+        ...(app.location?.background ? ['location'] : []),
+      ]
+      if (backgroundModes.length) {
         stamps.push(
-          '\t<key>UIBackgroundModes</key>\n\t<array>\n\t\t<string>audio</string>\n\t</array>'
+          `\t<key>UIBackgroundModes</key>\n\t<array>\n${backgroundModes.map((mode) => `\t\t<string>${mode}</string>`).join('\n')}\n\t</array>`
         )
       }
       if (app.updates !== undefined) {

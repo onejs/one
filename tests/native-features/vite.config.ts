@@ -144,6 +144,7 @@ export default defineConfig({
           },
           location: {
             whenInUse: 'NativeFeatureTests verifies current location.',
+            background: true,
           },
           // updates builds point at the suite's static server, set at
           // prebuild time (127.0.0.1 for the ios simulator, 10.0.2.2 for

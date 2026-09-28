@@ -38,11 +38,12 @@ export type LocationWatchError = Error & { code: string }
 
 function watchPosition(
   onPosition: (position: LocationPosition) => void,
-  onError: (error: LocationWatchError) => void
+  onError: (error: LocationWatchError) => void,
+  options: { background?: boolean } = {}
 ): () => void {
   return native().addPositionListener(onPosition, (code, message) => {
     onError(Object.assign(new Error(message), { code }))
-  })
+  }, options.background === true)
 }
 
 function geocodeAddress(address: string): Promise<LocationPlace[]> {
