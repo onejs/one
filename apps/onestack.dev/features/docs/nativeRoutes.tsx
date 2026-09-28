@@ -64,6 +64,7 @@ export const nativeRoutes = [
       { title: 'App Icon', route: '/native/app-icon' },
       { title: 'Device', route: '/native/device' },
       { title: 'Screen Orientation', route: '/native/screen-orientation' },
+      { title: 'Screen Capture', route: '/native/screen-capture' },
       { title: 'Contacts', route: '/native/contacts' },
       { title: 'Calendar', route: '/native/calendar' },
       { title: 'ImagePicker', route: '/native/image-picker' },

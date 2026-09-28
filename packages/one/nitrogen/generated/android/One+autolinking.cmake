@@ -61,6 +61,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOnePhotoLibrarySpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneProtectedStoreSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneScreenCaptureSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneScreenOrientationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneShareSpec.cpp
