@@ -109,6 +109,9 @@
     "OneMotion": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneMotion" }
     },
+    "OneBackgroundTasks": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneBackgroundTasks" }
+    },
     "OneDeviceAttestation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneDeviceAttestation" }
     },

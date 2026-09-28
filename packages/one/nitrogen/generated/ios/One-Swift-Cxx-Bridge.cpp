@@ -14,6 +14,7 @@
 #include "HybridOneAppTrackingSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
+#include "HybridOneBackgroundTasksSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
@@ -266,6 +267,46 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
 
+  // pragma MARK: std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>
+  Func_void_std__vector_PendingBackgroundTask_ create_Func_void_std__vector_PendingBackgroundTask_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_PendingBackgroundTask_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<PendingBackgroundTask>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const BackgroundTaskInvocation& /* invocation */)>
+  Func_void_BackgroundTaskInvocation create_Func_void_BackgroundTaskInvocation(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BackgroundTaskInvocation::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BackgroundTaskInvocation& invocation) mutable -> void {
+      swiftClosure.call(invocation);
+    };
+  }
+
+  // pragma MARK: std::function<void(const std::string& /* executionId */)>
+  Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::string& executionId) mutable -> void {
+      swiftClosure.call(executionId);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneBackgroundTasksSpec>
+  std::shared_ptr<HybridOneBackgroundTasksSpec> create_std__shared_ptr_HybridOneBackgroundTasksSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneBackgroundTasksSpec_cxx swiftPart = One::HybridOneBackgroundTasksSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneBackgroundTasksSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneBackgroundTasksSpec_(std__shared_ptr_HybridOneBackgroundTasksSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneBackgroundTasksSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneBackgroundTasksSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneBackgroundTasksSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneBackgroundTasksSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
   // pragma MARK: std::function<void(const BrowserResult& /* result */)>
   Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_BrowserResult::fromUnsafe(swiftClosureWrapper);
@@ -310,14 +351,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_std__vector_CalendarEvent_ create_Func_void_std__vector_CalendarEvent_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_CalendarEvent_::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const std::vector<CalendarEvent>& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-
-  // pragma MARK: std::function<void(const std::string& /* result */)>
-  Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::string& result) mutable -> void {
       swiftClosure.call(result);
     };
   }

@@ -199,6 +199,10 @@ export default defineConfig({
           },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
+            backgroundTasks: {
+              refresh: ['dev.vxrn.native.tests.refresh'],
+              processing: ['dev.vxrn.native.tests.processing'],
+            },
             alternateIcons: {
               TestAlternate: {
                 source: 'assets/alternate-icon.svg',

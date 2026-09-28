@@ -46,6 +46,10 @@ namespace margelo::nitro::one { struct AudioRecordingStatus; }
 namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
 // Forward declaration of `AudioRemoteCommandType` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
+// Forward declaration of `BackgroundTaskInvocation` to properly resolve imports.
+namespace margelo::nitro::one { struct BackgroundTaskInvocation; }
+// Forward declaration of `BackgroundTaskKind` to properly resolve imports.
+namespace margelo::nitro::one { enum class BackgroundTaskKind; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -116,6 +120,8 @@ namespace margelo::nitro::one { class HybridOneAppTrackingSpec; }
 namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 // Forward declaration of `HybridOneAudioSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAudioSpec; }
+// Forward declaration of `HybridOneBackgroundTasksSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
@@ -256,6 +262,8 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PendingBackgroundTask` to properly resolve imports.
+namespace margelo::nitro::one { struct PendingBackgroundTask; }
 // Forward declaration of `PhotoLibraryAlbumPage` to properly resolve imports.
 namespace margelo::nitro::one { struct PhotoLibraryAlbumPage; }
 // Forward declaration of `PhotoLibraryAlbum` to properly resolve imports.
@@ -322,6 +330,8 @@ namespace One { class HybridOneAppTrackingSpec_cxx; }
 namespace One { class HybridOneAppleAuthSpec_cxx; }
 // Forward declaration of `HybridOneAudioSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAudioSpec_cxx; }
+// Forward declaration of `HybridOneBackgroundTasksSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBackgroundTasksSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
@@ -404,6 +414,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "AudioRecordingStatus.hpp"
 #include "AudioRemoteCommandEvent.hpp"
 #include "AudioRemoteCommandType.hpp"
+#include "BackgroundTaskInvocation.hpp"
+#include "BackgroundTaskKind.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -439,6 +451,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
+#include "HybridOneBackgroundTasksSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -509,6 +522,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PendingBackgroundTask.hpp"
 #include "PhotoLibraryAlbum.hpp"
 #include "PhotoLibraryAlbumPage.hpp"
 #include "PhotoLibraryAsset.hpp"
@@ -1354,6 +1368,140 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
   }
 
+  // pragma MARK: std::optional<bool>
+  /**
+   * Specialized version of `std::optional<bool>`.
+   */
+  using std__optional_bool_ = std::optional<bool>;
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
+    return std::optional<bool>(value);
+  }
+  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::vector<PendingBackgroundTask>
+  /**
+   * Specialized version of `std::vector<PendingBackgroundTask>`.
+   */
+  using std__vector_PendingBackgroundTask_ = std::vector<PendingBackgroundTask>;
+  inline std::vector<PendingBackgroundTask> create_std__vector_PendingBackgroundTask_(size_t size) noexcept {
+    std::vector<PendingBackgroundTask> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_PendingBackgroundTask___ = std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>;
+  inline std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>> create_std__shared_ptr_Promise_std__vector_PendingBackgroundTask___() noexcept {
+    return Promise<std::vector<PendingBackgroundTask>>::create();
+  }
+  inline PromiseHolder<std::vector<PendingBackgroundTask>> wrap_std__shared_ptr_Promise_std__vector_PendingBackgroundTask___(std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>> promise) noexcept {
+    return PromiseHolder<std::vector<PendingBackgroundTask>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<PendingBackgroundTask>&)>`.
+   */
+  using Func_void_std__vector_PendingBackgroundTask_ = std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<PendingBackgroundTask>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_PendingBackgroundTask__Wrapper final {
+  public:
+    explicit Func_void_std__vector_PendingBackgroundTask__Wrapper(std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<PendingBackgroundTask> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_PendingBackgroundTask_ create_Func_void_std__vector_PendingBackgroundTask_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_PendingBackgroundTask__Wrapper wrap_Func_void_std__vector_PendingBackgroundTask_(Func_void_std__vector_PendingBackgroundTask_ value) noexcept {
+    return Func_void_std__vector_PendingBackgroundTask__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::function<void(const BackgroundTaskInvocation& /* invocation */)>
+  /**
+   * Specialized version of `std::function<void(const BackgroundTaskInvocation&)>`.
+   */
+  using Func_void_BackgroundTaskInvocation = std::function<void(const BackgroundTaskInvocation& /* invocation */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BackgroundTaskInvocation& / * invocation * /)>`, this can be used from Swift.
+   */
+  class Func_void_BackgroundTaskInvocation_Wrapper final {
+  public:
+    explicit Func_void_BackgroundTaskInvocation_Wrapper(std::function<void(const BackgroundTaskInvocation& /* invocation */)>&& func): _function(std::make_unique<std::function<void(const BackgroundTaskInvocation& /* invocation */)>>(std::move(func))) {}
+    inline void call(BackgroundTaskInvocation invocation) const noexcept {
+      _function->operator()(invocation);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BackgroundTaskInvocation& /* invocation */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BackgroundTaskInvocation create_Func_void_BackgroundTaskInvocation(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BackgroundTaskInvocation_Wrapper wrap_Func_void_BackgroundTaskInvocation(Func_void_BackgroundTaskInvocation value) noexcept {
+    return Func_void_BackgroundTaskInvocation_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::function<void(const std::string& /* executionId */)>
+  /**
+   * Specialized version of `std::function<void(const std::string&)>`.
+   */
+  using Func_void_std__string = std::function<void(const std::string& /* executionId */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::string& / * executionId * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__string_Wrapper final {
+  public:
+    explicit Func_void_std__string_Wrapper(std::function<void(const std::string& /* executionId */)>&& func): _function(std::make_unique<std::function<void(const std::string& /* executionId */)>>(std::move(func))) {}
+    inline void call(std::string executionId) const noexcept {
+      _function->operator()(executionId);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::string& /* executionId */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__string_Wrapper wrap_Func_void_std__string(Func_void_std__string value) noexcept {
+    return Func_void_std__string_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneBackgroundTasksSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBackgroundTasksSpec>`.
+   */
+  using std__shared_ptr_HybridOneBackgroundTasksSpec_ = std::shared_ptr<HybridOneBackgroundTasksSpec>;
+  std::shared_ptr<HybridOneBackgroundTasksSpec> create_std__shared_ptr_HybridOneBackgroundTasksSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBackgroundTasksSpec_(std__shared_ptr_HybridOneBackgroundTasksSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneBackgroundTasksSpec>
+  using std__weak_ptr_HybridOneBackgroundTasksSpec_ = std::weak_ptr<HybridOneBackgroundTasksSpec>;
+  inline std__weak_ptr_HybridOneBackgroundTasksSpec_ weakify_std__shared_ptr_HybridOneBackgroundTasksSpec_(const std::shared_ptr<HybridOneBackgroundTasksSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>
+  using Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ = Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>::withError(error);
+  }
+
+  // pragma MARK: Result<void>
+  using Result_void_ = Result<void>;
+  inline Result_void_ create_Result_void_() noexcept {
+    return Result<void>::withValue();
+  }
+  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
+    return Result<void>::withError(error);
+  }
+
   // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<BrowserResult>>`.
@@ -1400,21 +1548,6 @@ namespace margelo::nitro::one::bridge::swift {
     return optional.has_value();
   }
   inline BrowserPresentationStyle get_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::optional<bool>
-  /**
-   * Specialized version of `std::optional<bool>`.
-   */
-  using std__optional_bool_ = std::optional<bool>;
-  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
-    return std::optional<bool>(value);
-  }
-  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
     return optional.value();
   }
 
@@ -1495,15 +1628,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withError(error);
-  }
-
-  // pragma MARK: Result<void>
-  using Result_void_ = Result<void>;
-  inline Result_void_ create_Result_void_() noexcept {
-    return Result<void>::withValue();
-  }
-  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
-    return Result<void>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<CalendarPermissionStatus>>
@@ -1610,28 +1734,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline PromiseHolder<std::string> wrap_std__shared_ptr_Promise_std__string__(std::shared_ptr<Promise<std::string>> promise) noexcept {
     return PromiseHolder<std::string>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::string& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::string&)>`.
-   */
-  using Func_void_std__string = std::function<void(const std::string& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::string& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__string_Wrapper final {
-  public:
-    explicit Func_void_std__string_Wrapper(std::function<void(const std::string& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::string& /* result */)>>(std::move(func))) {}
-    inline void call(std::string result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::string& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__string_Wrapper wrap_Func_void_std__string(Func_void_std__string value) noexcept {
-    return Func_void_std__string_Wrapper(std::move(value));
   }
 
   // pragma MARK: std::shared_ptr<Promise<CalendarEvent>>

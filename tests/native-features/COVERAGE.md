@@ -118,6 +118,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.ImageManipulator` | photo-library, photo-library-limited, image-manipulator | n/a |  |
 | `One.iOS.Device` | device | n/a |  |
 | `One.iOS.Motion` | motion | n/a | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
+| `One.iOS.BackgroundTasks` | background-tasks | n/a | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device |
 | `One.iOS.DeviceAttestation` | device-attestation | n/a | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
 | `One.iOS.Contacts` | contacts | n/a |  |
 | `One.iOS.Calendar` | calendar | n/a |  |

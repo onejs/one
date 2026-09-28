@@ -48,6 +48,10 @@ namespace margelo::nitro::one { struct AudioRecordingStatus; }
 namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
 // Forward declaration of `AudioRemoteCommandType` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
+// Forward declaration of `BackgroundTaskInvocation` to properly resolve imports.
+namespace margelo::nitro::one { struct BackgroundTaskInvocation; }
+// Forward declaration of `BackgroundTaskKind` to properly resolve imports.
+namespace margelo::nitro::one { enum class BackgroundTaskKind; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -136,6 +140,8 @@ namespace margelo::nitro::one { class HybridOneAppTrackingSpec; }
 namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 // Forward declaration of `HybridOneAudioSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAudioSpec; }
+// Forward declaration of `HybridOneBackgroundTasksSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
@@ -294,6 +300,8 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PendingBackgroundTask` to properly resolve imports.
+namespace margelo::nitro::one { struct PendingBackgroundTask; }
 // Forward declaration of `PhotoLibraryAlbumPage` to properly resolve imports.
 namespace margelo::nitro::one { struct PhotoLibraryAlbumPage; }
 // Forward declaration of `PhotoLibraryAlbum` to properly resolve imports.
@@ -380,6 +388,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AudioRecordingStatus.hpp"
 #include "AudioRemoteCommandEvent.hpp"
 #include "AudioRemoteCommandType.hpp"
+#include "BackgroundTaskInvocation.hpp"
+#include "BackgroundTaskKind.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -424,6 +434,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
+#include "HybridOneBackgroundTasksSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -503,6 +514,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PendingBackgroundTask.hpp"
 #include "PhotoLibraryAlbum.hpp"
 #include "PhotoLibraryAlbumPage.hpp"
 #include "PhotoLibraryAsset.hpp"
@@ -568,6 +580,8 @@ namespace One { class HybridOneAppTrackingSpec_cxx; }
 namespace One { class HybridOneAppleAuthSpec_cxx; }
 // Forward declaration of `HybridOneAudioSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAudioSpec_cxx; }
+// Forward declaration of `HybridOneBackgroundTasksSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBackgroundTasksSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
