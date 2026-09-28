@@ -360,6 +360,18 @@ public final class OneAutolinking {
     return HybridOneScreenCapture.self is any RecyclableView.Type
   }
 
+  public static func createOnePurchases() -> bridge.std__shared_ptr_HybridOnePurchasesSpec_ {
+    let hybridObject = HybridOnePurchases()
+    return { () -> bridge.std__shared_ptr_HybridOnePurchasesSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOnePurchasesRecyclable() -> Bool {
+    return HybridOnePurchases.self is any RecyclableView.Type
+  }
+
   public static func createOneContacts() -> bridge.std__shared_ptr_HybridOneContactsSpec_ {
     let hybridObject = HybridOneContacts()
     return { () -> bridge.std__shared_ptr_HybridOneContactsSpec_ in

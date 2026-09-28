@@ -30,9 +30,9 @@ namespace margelo::nitro::one {
    */
   enum class ContactsPermissionStatus {
     AUTHORIZED      SWIFT_NAME(authorized) = 0,
-    DENIED      SWIFT_NAME(denied) = 1,
-    NOTDETERMINED      SWIFT_NAME(notdetermined) = 2,
-    RESTRICTED      SWIFT_NAME(restricted) = 3,
+    NOTDETERMINED      SWIFT_NAME(notdetermined) = 1,
+    RESTRICTED      SWIFT_NAME(restricted) = 2,
+    DENIED      SWIFT_NAME(denied) = 3,
     LIMITED      SWIFT_NAME(limited) = 4,
   } CLOSED_ENUM;
 
@@ -47,9 +47,9 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("authorized"): return margelo::nitro::one::ContactsPermissionStatus::AUTHORIZED;
-        case hashString("denied"): return margelo::nitro::one::ContactsPermissionStatus::DENIED;
         case hashString("notDetermined"): return margelo::nitro::one::ContactsPermissionStatus::NOTDETERMINED;
         case hashString("restricted"): return margelo::nitro::one::ContactsPermissionStatus::RESTRICTED;
+        case hashString("denied"): return margelo::nitro::one::ContactsPermissionStatus::DENIED;
         case hashString("limited"): return margelo::nitro::one::ContactsPermissionStatus::LIMITED;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum ContactsPermissionStatus - invalid value!");
@@ -58,9 +58,9 @@ namespace margelo::nitro {
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::ContactsPermissionStatus arg) {
       switch (arg) {
         case margelo::nitro::one::ContactsPermissionStatus::AUTHORIZED: return JSIConverter<std::string>::toJSI(runtime, "authorized");
-        case margelo::nitro::one::ContactsPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::ContactsPermissionStatus::NOTDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "notDetermined");
         case margelo::nitro::one::ContactsPermissionStatus::RESTRICTED: return JSIConverter<std::string>::toJSI(runtime, "restricted");
+        case margelo::nitro::one::ContactsPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::ContactsPermissionStatus::LIMITED: return JSIConverter<std::string>::toJSI(runtime, "limited");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert ContactsPermissionStatus to JS - invalid value: "
@@ -74,9 +74,9 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("authorized"):
-        case hashString("denied"):
         case hashString("notDetermined"):
         case hashString("restricted"):
+        case hashString("denied"):
         case hashString("limited"):
           return true;
         default:

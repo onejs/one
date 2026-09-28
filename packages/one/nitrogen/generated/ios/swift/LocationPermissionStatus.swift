@@ -17,12 +17,12 @@ public extension LocationPermissionStatus {
    */
   init?(fromString string: String) {
     switch string {
-      case "denied":
-        self = .denied
       case "notDetermined":
         self = .notdetermined
       case "restricted":
         self = .restricted
+      case "denied":
+        self = .denied
       case "whenInUse":
         self = .wheninuse
       case "always":
@@ -37,12 +37,12 @@ public extension LocationPermissionStatus {
    */
   var stringValue: String {
     switch self {
-      case .denied:
-        return "denied"
       case .notdetermined:
         return "notDetermined"
       case .restricted:
         return "restricted"
+      case .denied:
+        return "denied"
       case .wheninuse:
         return "whenInUse"
       case .always:

@@ -30,9 +30,9 @@ namespace margelo::nitro::one {
    */
   enum class PhotoLibraryPermissionStatus {
     AUTHORIZED      SWIFT_NAME(authorized) = 0,
-    DENIED      SWIFT_NAME(denied) = 1,
-    NOTDETERMINED      SWIFT_NAME(notdetermined) = 2,
-    RESTRICTED      SWIFT_NAME(restricted) = 3,
+    NOTDETERMINED      SWIFT_NAME(notdetermined) = 1,
+    RESTRICTED      SWIFT_NAME(restricted) = 2,
+    DENIED      SWIFT_NAME(denied) = 3,
     LIMITED      SWIFT_NAME(limited) = 4,
   } CLOSED_ENUM;
 
@@ -47,9 +47,9 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("authorized"): return margelo::nitro::one::PhotoLibraryPermissionStatus::AUTHORIZED;
-        case hashString("denied"): return margelo::nitro::one::PhotoLibraryPermissionStatus::DENIED;
         case hashString("notDetermined"): return margelo::nitro::one::PhotoLibraryPermissionStatus::NOTDETERMINED;
         case hashString("restricted"): return margelo::nitro::one::PhotoLibraryPermissionStatus::RESTRICTED;
+        case hashString("denied"): return margelo::nitro::one::PhotoLibraryPermissionStatus::DENIED;
         case hashString("limited"): return margelo::nitro::one::PhotoLibraryPermissionStatus::LIMITED;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum PhotoLibraryPermissionStatus - invalid value!");
@@ -58,9 +58,9 @@ namespace margelo::nitro {
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::PhotoLibraryPermissionStatus arg) {
       switch (arg) {
         case margelo::nitro::one::PhotoLibraryPermissionStatus::AUTHORIZED: return JSIConverter<std::string>::toJSI(runtime, "authorized");
-        case margelo::nitro::one::PhotoLibraryPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::PhotoLibraryPermissionStatus::NOTDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "notDetermined");
         case margelo::nitro::one::PhotoLibraryPermissionStatus::RESTRICTED: return JSIConverter<std::string>::toJSI(runtime, "restricted");
+        case margelo::nitro::one::PhotoLibraryPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::PhotoLibraryPermissionStatus::LIMITED: return JSIConverter<std::string>::toJSI(runtime, "limited");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert PhotoLibraryPermissionStatus to JS - invalid value: "
@@ -74,9 +74,9 @@ namespace margelo::nitro {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("authorized"):
-        case hashString("denied"):
         case hashString("notDetermined"):
         case hashString("restricted"):
+        case hashString("denied"):
         case hashString("limited"):
           return true;
         default:

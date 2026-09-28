@@ -65,6 +65,7 @@ export const nativeRoutes = [
       { title: 'Device', route: '/native/device' },
       { title: 'Screen Orientation', route: '/native/screen-orientation' },
       { title: 'Screen Capture', route: '/native/screen-capture' },
+      { title: 'Purchases', route: '/native/purchases' },
       { title: 'Launch Screen', route: '/native/launch-screen' },
       { title: 'Contacts', route: '/native/contacts' },
       { title: 'Calendar', route: '/native/calendar' },

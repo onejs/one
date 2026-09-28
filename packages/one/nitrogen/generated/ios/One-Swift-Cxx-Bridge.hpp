@@ -158,6 +158,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
+// Forward declaration of `HybridOnePurchasesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOnePurchasesSpec; }
 // Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
@@ -252,6 +254,20 @@ namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `PurchaseProductType` to properly resolve imports.
+namespace margelo::nitro::one { enum class PurchaseProductType; }
+// Forward declaration of `PurchaseProduct` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseProduct; }
+// Forward declaration of `PurchaseResult` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseResult; }
+// Forward declaration of `PurchaseStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class PurchaseStatus; }
+// Forward declaration of `PurchaseTransaction` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseTransaction; }
+// Forward declaration of `PurchaseUpdateStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class PurchaseUpdateStatus; }
+// Forward declaration of `PurchaseUpdate` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseUpdate; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ScreenCaptureState` to properly resolve imports.
@@ -336,6 +352,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
+// Forward declaration of `HybridOnePurchasesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOnePurchasesSpec_cxx; }
 // Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.
@@ -424,6 +442,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
+#include "HybridOnePurchasesSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -471,6 +490,13 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
+#include "PurchaseProduct.hpp"
+#include "PurchaseProductType.hpp"
+#include "PurchaseResult.hpp"
+#include "PurchaseStatus.hpp"
+#include "PurchaseTransaction.hpp"
+#include "PurchaseUpdate.hpp"
+#include "PurchaseUpdateStatus.hpp"
 #include "ReminderInfo.hpp"
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
@@ -4054,6 +4080,206 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneProtectedStoreSpec>
   using std__weak_ptr_HybridOneProtectedStoreSpec_ = std::weak_ptr<HybridOneProtectedStoreSpec>;
   inline std__weak_ptr_HybridOneProtectedStoreSpec_ weakify_std__shared_ptr_HybridOneProtectedStoreSpec_(const std::shared_ptr<HybridOneProtectedStoreSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: std::vector<PurchaseProduct>
+  /**
+   * Specialized version of `std::vector<PurchaseProduct>`.
+   */
+  using std__vector_PurchaseProduct_ = std::vector<PurchaseProduct>;
+  inline std::vector<PurchaseProduct> create_std__vector_PurchaseProduct_(size_t size) noexcept {
+    std::vector<PurchaseProduct> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<PurchaseProduct>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<PurchaseProduct>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_PurchaseProduct___ = std::shared_ptr<Promise<std::vector<PurchaseProduct>>>;
+  inline std::shared_ptr<Promise<std::vector<PurchaseProduct>>> create_std__shared_ptr_Promise_std__vector_PurchaseProduct___() noexcept {
+    return Promise<std::vector<PurchaseProduct>>::create();
+  }
+  inline PromiseHolder<std::vector<PurchaseProduct>> wrap_std__shared_ptr_Promise_std__vector_PurchaseProduct___(std::shared_ptr<Promise<std::vector<PurchaseProduct>>> promise) noexcept {
+    return PromiseHolder<std::vector<PurchaseProduct>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<PurchaseProduct>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<PurchaseProduct>&)>`.
+   */
+  using Func_void_std__vector_PurchaseProduct_ = std::function<void(const std::vector<PurchaseProduct>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<PurchaseProduct>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_PurchaseProduct__Wrapper final {
+  public:
+    explicit Func_void_std__vector_PurchaseProduct__Wrapper(std::function<void(const std::vector<PurchaseProduct>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<PurchaseProduct>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<PurchaseProduct> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<PurchaseProduct>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_PurchaseProduct_ create_Func_void_std__vector_PurchaseProduct_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_PurchaseProduct__Wrapper wrap_Func_void_std__vector_PurchaseProduct_(Func_void_std__vector_PurchaseProduct_ value) noexcept {
+    return Func_void_std__vector_PurchaseProduct__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::optional<PurchaseTransaction>
+  /**
+   * Specialized version of `std::optional<PurchaseTransaction>`.
+   */
+  using std__optional_PurchaseTransaction_ = std::optional<PurchaseTransaction>;
+  inline std::optional<PurchaseTransaction> create_std__optional_PurchaseTransaction_(const PurchaseTransaction& value) noexcept {
+    return std::optional<PurchaseTransaction>(value);
+  }
+  inline bool has_value_std__optional_PurchaseTransaction_(const std::optional<PurchaseTransaction>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline PurchaseTransaction get_std__optional_PurchaseTransaction_(const std::optional<PurchaseTransaction>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<PurchaseResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<PurchaseResult>>`.
+   */
+  using std__shared_ptr_Promise_PurchaseResult__ = std::shared_ptr<Promise<PurchaseResult>>;
+  inline std::shared_ptr<Promise<PurchaseResult>> create_std__shared_ptr_Promise_PurchaseResult__() noexcept {
+    return Promise<PurchaseResult>::create();
+  }
+  inline PromiseHolder<PurchaseResult> wrap_std__shared_ptr_Promise_PurchaseResult__(std::shared_ptr<Promise<PurchaseResult>> promise) noexcept {
+    return PromiseHolder<PurchaseResult>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const PurchaseResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const PurchaseResult&)>`.
+   */
+  using Func_void_PurchaseResult = std::function<void(const PurchaseResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const PurchaseResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_PurchaseResult_Wrapper final {
+  public:
+    explicit Func_void_PurchaseResult_Wrapper(std::function<void(const PurchaseResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const PurchaseResult& /* result */)>>(std::move(func))) {}
+    inline void call(PurchaseResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const PurchaseResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PurchaseResult create_Func_void_PurchaseResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PurchaseResult_Wrapper wrap_Func_void_PurchaseResult(Func_void_PurchaseResult value) noexcept {
+    return Func_void_PurchaseResult_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<PurchaseTransaction>
+  /**
+   * Specialized version of `std::vector<PurchaseTransaction>`.
+   */
+  using std__vector_PurchaseTransaction_ = std::vector<PurchaseTransaction>;
+  inline std::vector<PurchaseTransaction> create_std__vector_PurchaseTransaction_(size_t size) noexcept {
+    std::vector<PurchaseTransaction> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_PurchaseTransaction___ = std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>;
+  inline std::shared_ptr<Promise<std::vector<PurchaseTransaction>>> create_std__shared_ptr_Promise_std__vector_PurchaseTransaction___() noexcept {
+    return Promise<std::vector<PurchaseTransaction>>::create();
+  }
+  inline PromiseHolder<std::vector<PurchaseTransaction>> wrap_std__shared_ptr_Promise_std__vector_PurchaseTransaction___(std::shared_ptr<Promise<std::vector<PurchaseTransaction>>> promise) noexcept {
+    return PromiseHolder<std::vector<PurchaseTransaction>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<PurchaseTransaction>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<PurchaseTransaction>&)>`.
+   */
+  using Func_void_std__vector_PurchaseTransaction_ = std::function<void(const std::vector<PurchaseTransaction>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<PurchaseTransaction>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_PurchaseTransaction__Wrapper final {
+  public:
+    explicit Func_void_std__vector_PurchaseTransaction__Wrapper(std::function<void(const std::vector<PurchaseTransaction>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<PurchaseTransaction>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<PurchaseTransaction> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<PurchaseTransaction>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_PurchaseTransaction_ create_Func_void_std__vector_PurchaseTransaction_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_PurchaseTransaction__Wrapper wrap_Func_void_std__vector_PurchaseTransaction_(Func_void_std__vector_PurchaseTransaction_ value) noexcept {
+    return Func_void_std__vector_PurchaseTransaction__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::function<void(const PurchaseUpdate& /* update */)>
+  /**
+   * Specialized version of `std::function<void(const PurchaseUpdate&)>`.
+   */
+  using Func_void_PurchaseUpdate = std::function<void(const PurchaseUpdate& /* update */)>;
+  /**
+   * Wrapper class for a `std::function<void(const PurchaseUpdate& / * update * /)>`, this can be used from Swift.
+   */
+  class Func_void_PurchaseUpdate_Wrapper final {
+  public:
+    explicit Func_void_PurchaseUpdate_Wrapper(std::function<void(const PurchaseUpdate& /* update */)>&& func): _function(std::make_unique<std::function<void(const PurchaseUpdate& /* update */)>>(std::move(func))) {}
+    inline void call(PurchaseUpdate update) const noexcept {
+      _function->operator()(update);
+    }
+  private:
+    std::unique_ptr<std::function<void(const PurchaseUpdate& /* update */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PurchaseUpdate create_Func_void_PurchaseUpdate(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PurchaseUpdate_Wrapper wrap_Func_void_PurchaseUpdate(Func_void_PurchaseUpdate value) noexcept {
+    return Func_void_PurchaseUpdate_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOnePurchasesSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOnePurchasesSpec>`.
+   */
+  using std__shared_ptr_HybridOnePurchasesSpec_ = std::shared_ptr<HybridOnePurchasesSpec>;
+  std::shared_ptr<HybridOnePurchasesSpec> create_std__shared_ptr_HybridOnePurchasesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOnePurchasesSpec_(std__shared_ptr_HybridOnePurchasesSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOnePurchasesSpec>
+  using std__weak_ptr_HybridOnePurchasesSpec_ = std::weak_ptr<HybridOnePurchasesSpec>;
+  inline std__weak_ptr_HybridOnePurchasesSpec_ weakify_std__shared_ptr_HybridOnePurchasesSpec_(const std::shared_ptr<HybridOnePurchasesSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>
+  using Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ = Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____(const std::shared_ptr<Promise<std::vector<PurchaseProduct>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<PurchaseResult>>>
+  using Result_std__shared_ptr_Promise_PurchaseResult___ = Result<std::shared_ptr<Promise<PurchaseResult>>>;
+  inline Result_std__shared_ptr_Promise_PurchaseResult___ create_Result_std__shared_ptr_Promise_PurchaseResult___(const std::shared_ptr<Promise<PurchaseResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<PurchaseResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_PurchaseResult___ create_Result_std__shared_ptr_Promise_PurchaseResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<PurchaseResult>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>
+  using Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ = Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(const std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>::withError(error);
+  }
 
   // pragma MARK: std::shared_ptr<Promise<ScreenCaptureState>>
   /**

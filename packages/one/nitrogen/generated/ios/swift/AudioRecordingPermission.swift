@@ -17,12 +17,12 @@ public extension AudioRecordingPermission {
    */
   init?(fromString string: String) {
     switch string {
+      case "denied":
+        self = .denied
       case "undetermined":
         self = .undetermined
       case "granted":
         self = .granted
-      case "denied":
-        self = .denied
       default:
         return nil
     }
@@ -33,12 +33,12 @@ public extension AudioRecordingPermission {
    */
   var stringValue: String {
     switch self {
+      case .denied:
+        return "denied"
       case .undetermined:
         return "undetermined"
       case .granted:
         return "granted"
-      case .denied:
-        return "denied"
     }
   }
 }

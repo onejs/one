@@ -52,6 +52,7 @@ const suites = [
   'device',
   'screen-orientation',
   'screen-capture',
+  'purchases',
   'launch-screen',
   'database',
   'contacts',
@@ -650,6 +651,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   device: deviceLoaded,
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
+  purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
   'launch-screen': (nodes: Node[]) => labels(nodes).includes('Launch screen fixture: visible'),
   database: databaseLoaded,
   contacts: contactsLoaded,
@@ -744,6 +746,7 @@ const suiteHome: Record<Suite, string> = {
   device: 'nav-one-native-device',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
+  purchases: 'nav-one-native-purchases',
   'launch-screen': 'nav-one-native-launch-screen',
   database: 'nav-one-native-database',
   contacts: 'nav-one-native-contacts',
@@ -3351,6 +3354,32 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Capture state: inactive')
     )
     screenshot('screen-capture-event.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'purchases') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-purchases')
+    await wait('StoreKit configuration reaches the One fixture', (nodes) =>
+      labels(nodes).includes('Catalog: ready') &&
+      labels(nodes).includes('Before: empty') &&
+      labels(nodes).includes('Invalid: E_PURCHASE_INPUT,E_PURCHASE_INPUT,E_PURCHASE_INPUT') &&
+      labels(nodes).includes('Purchase: idle'))
+    screenshot('purchases-catalog.png')
+
+    tap({ id: 'one-native-purchases-buy' })
+    await wait('verified purchase survives finish and retains entitlement', (nodes) => {
+      const values = labels(nodes)
+      return values.includes('Purchase: purchased') &&
+        values.includes('Proof: unfinished=true; entitled=true; signed=true; finished=true; retained=true')
+    })
+    screenshot('purchases-transaction.png')
+
+    tap({ id: 'one-native-purchases-restore' })
+    await wait('App Store sync preserves entitlement', (nodes) =>
+      labels(nodes).includes('Restore: entitled'))
+    screenshot('purchases-restored.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

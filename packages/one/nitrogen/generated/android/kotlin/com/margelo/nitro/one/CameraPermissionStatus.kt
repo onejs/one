@@ -16,9 +16,9 @@ import com.facebook.proguard.annotations.DoNotStrip
 @DoNotStrip
 @Keep
 enum class CameraPermissionStatus(@DoNotStrip @Keep val value: Int) {
-  UNDETERMINED(0),
-  GRANTED(1),
-  DENIED(2);
+  DENIED(0),
+  UNDETERMINED(1),
+  GRANTED(2);
 
   companion object
 }

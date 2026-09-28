@@ -1,0 +1,80 @@
+---
+title: Purchases
+description: StoreKit 2 products, purchases, entitlements, and transaction updates on iOS
+---
+
+`One.iOS.Purchases` uses StoreKit 2 in a One native iOS build. Configure product
+IDs in App Store Connect for an app you distribute, or select a local StoreKit
+configuration in an Xcode test plan while developing. The API needs no Info.plist
+usage string. [Apple's StoreKit testing guide](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode)
+explains local products and transactions.
+
+In this example, `grantContentOnce` is app code that verifies any server-owned
+access and persists delivery by transaction ID before the transaction is
+finished.
+
+```ts
+import { One } from 'one'
+
+const purchases = One.iOS.Purchases
+const handling = new Set<string>()
+async function deliver(transaction: { id: string; productId: string; jws: string }) {
+  if (handling.has(transaction.id)) return
+  handling.add(transaction.id)
+  try {
+    // persist delivery by transaction id so a relaunch or restore stays idempotent.
+    await grantContentOnce(transaction.id, transaction.productId, transaction.jws)
+    await purchases.finishTransaction(transaction.id)
+  } finally {
+    handling.delete(transaction.id)
+  }
+}
+
+const remove = purchases.addTransactionListener(async (update) => {
+  if (update.status === 'verified' && update.transaction) await deliver(update.transaction)
+})
+for (const transaction of await purchases.getUnfinishedTransactions()) await deliver(transaction)
+
+const products = await purchases.getProducts(['com.example.app.premium'])
+// Show products[0].displayPrice in your purchase UI.
+const result = await purchases.purchase('com.example.app.premium')
+if (result.status === 'purchased' && result.transaction) await deliver(result.transaction)
+// Keep the listener for your app session; call remove() when its owner unmounts.
+```
+
+`getProducts` accepts 1 to 100 distinct IDs, returns configured products in
+the requested order, and omits IDs StoreKit does not find. A product includes
+its localized name, description, display price, optional currency code, and
+type. `purchase` starts StoreKit's system flow from the active app. It returns
+`purchased` with a locally verified transaction, `cancelled`, or `pending`.
+The optional second argument is an app account token UUID, sent to StoreKit
+with the purchase.
+
+Each transaction has a decimal string ID and original ID because StoreKit uses
+64-bit integers that JavaScript numbers cannot always represent. It also has
+the product ID and type, purchase time in milliseconds, optional expiration
+and revocation times, and its signed JWS. Verify the JWS with Apple on your
+server before granting server-owned access. A transaction is only delivered as
+`purchased` after StoreKit's local verification succeeds. An unverified update
+has `status: 'unverified'` and an error, with no grantable transaction.
+
+Start the update listener at app startup. On startup and after a pending
+purchase, call `getUnfinishedTransactions()` to recover transactions that
+arrived before the listener. Deliver content before calling
+`finishTransaction(id)`. That method accepts only an unfinished, verified
+transaction. A finished transaction leaves the unfinished list; a
+nonconsumable entitlement remains available. `getCurrentEntitlements()`
+returns active nonconsumables and subscriptions. It does not include
+consumables, so use the unfinished list and your own delivery record for those.
+Call `sync()` from an explicit Restore Purchases action to ask App Store to
+sync the user's transaction history; then read entitlements again.
+[Apple documents the entitlement scope](https://developer.apple.com/documentation/storekit/transaction/currententitlements).
+
+Invalid IDs and account tokens reject with `E_PURCHASE_INPUT`. Missing products
+reject with `E_PURCHASE_PRODUCT`; a purchase attempted while the app is
+inactive rejects with `E_PURCHASE_INACTIVE`. Product loading, purchase flow,
+unknown results, unverified transactions, finish of an ID not in StoreKit's
+unfinished list, and restore failures use `E_PURCHASE_PRODUCTS`,
+`E_PURCHASE_FAILED`, `E_PURCHASE_RESULT`, `E_PURCHASE_UNVERIFIED`,
+`E_PURCHASE_NOT_UNFINISHED`, and `E_PURCHASE_SYNC` respectively. Web and Android
+throw when this iOS API is called.
