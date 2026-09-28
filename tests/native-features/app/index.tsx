@@ -9,6 +9,7 @@ import { updatesBoot } from '../fixtures/updates-boot'
 const testScreens = [
   { href: '/color-test', label: 'Color API', testID: 'nav-color-test' },
   { href: '/zoom-test', label: 'Zoom Transitions', testID: 'nav-zoom-test' },
+  { href: '/one-native-gestures', label: 'Native Gestures', testID: 'nav-one-native-gestures' },
   { href: '/toolbar-test', label: 'Toolbar', testID: 'nav-toolbar-test' },
   { href: '/menu-test', label: 'Menu Actions', testID: 'nav-menu-test' },
   { href: '/split-view-test', label: 'Split View', testID: 'nav-split-view-test' },

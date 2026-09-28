@@ -1,0 +1,58 @@
+---
+title: Gestures and animation
+description: Use Gesture Handler and Reanimated in a One native route.
+---
+
+One native routes can use React Native Gesture Handler 3, Reanimated 4, and
+Worklets. Add all three packages to the app, then rebuild the native app so
+their native modules are linked:
+
+```bash
+bun add react-native-gesture-handler@~3.3.0 react-native-reanimated@~4.6.0 react-native-worklets@~0.12.2
+bun run prebuild:native
+bun run ios
+```
+
+Wrap the gesture area in `GestureHandlerRootView`. A route-local wrapper works
+for a gesture that stays in the route. Content presented in a separate native
+sheet needs its own wrapper. One does not install or wrap Gesture Handler for
+every app automatically.
+
+```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
+import { GestureDetector, GestureHandlerRootView, usePanGesture } from 'react-native-gesture-handler'
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+import { scheduleOnRN } from 'react-native-worklets'
+
+export default function DragRoute() {
+  const [distance, setDistance] = useState(0)
+  const x = useSharedValue(0)
+  const style = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }))
+  const pan = usePanGesture({
+    onUpdate: (event) => { x.value = event.translationX },
+    onDeactivate: (event) => {
+      scheduleOnRN(setDistance, Math.round(event.translationX))
+      x.value = withTiming(120)
+    },
+  })
+
+  return (
+    <GestureHandlerRootView style={{ flex: 1, padding: 24 }}>
+      <Text>Dragged {distance} points</Text>
+      <GestureDetector gesture={pan}>
+        <Animated.View style={[{ width: 72, height: 72, backgroundColor: 'blue' }, style]} />
+      </GestureDetector>
+    </GestureHandlerRootView>
+  )
+}
+```
+
+Gesture callbacks that update Reanimated shared values run on the UI runtime.
+Use `scheduleOnRN` when a callback needs to update React state. One's native
+Metro transform configures the Worklets Babel plugin for these packages.
+
+The iOS 27 conformance route drags a native gesture detector, checks the
+measured pan callback reaches JS, and checks the animated view finishes at
+its target native position. Gesture Handler and Reanimated remain independent
+package APIs; One does not expose an alternate gesture or animation facade.
