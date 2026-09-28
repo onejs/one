@@ -336,8 +336,8 @@ private func oneNativeAngularGradientColor(_ value: String) -> Color? {
     layout: 'fill',
     decorativeWhenUnlabeled: true,
     fields: {
-      width: { type: 'Double', default: 2, required: true },
-      height: { type: 'Double', default: 2, required: true },
+      meshWidth: { type: 'Double', default: 2, required: true },
+      meshHeight: { type: 'Double', default: 2, required: true },
       points: {
         type: 'string',
         default: '[{"x":0,"y":0},{"x":1,"y":0},{"x":0,"y":1},{"x":1,"y":1}]',
@@ -375,26 +375,23 @@ private func oneNativeAngularGradientColor(_ value: String) -> Color? {
     ],
     swift: `Group {
       if #available(iOS 18.0, *),
-        let meshWidth = Int(exactly: model.width), meshWidth >= 2,
-        let meshHeight = Int(exactly: model.height), meshHeight >= 2,
+        let meshWidth = Int(exactly: model.meshWidth), meshWidth >= 2,
+        let meshHeight = Int(exactly: model.meshHeight), meshHeight >= 2,
         let points = oneNativeMeshGradientPoints(model.points),
         points.count == model.colors.count,
         meshWidth <= points.count,
         points.count % meshWidth == 0,
         points.count / meshWidth == meshHeight,
         let background = oneNativeMeshGradientColor(model.background) {
-        GeometryReader { geometry in
-          MeshGradient(
-            width: meshWidth,
-            height: meshHeight,
-            points: points,
-            colors: model.colors.compactMap(oneNativeMeshGradientColor),
-            background: background,
-            smoothsColors: model.smoothsColors,
-            colorSpace: model.colorSpace == "perceptual" ? .perceptual : .device
-          )
-          .frame(width: geometry.size.width, height: geometry.size.height)
-        }
+        MeshGradient(
+          width: meshWidth,
+          height: meshHeight,
+          points: points,
+          colors: model.colors.compactMap(oneNativeMeshGradientColor),
+          background: background,
+          smoothsColors: model.smoothsColors,
+          colorSpace: model.colorSpace == "perceptual" ? .perceptual : .device
+        )
       } else {
         Color.clear
       }
@@ -438,16 +435,16 @@ private func oneNativeMeshGradientColor(_ value: String) -> Color? {
     },
     validate: `  if (Number.parseFloat(String(Platform.Version)) < 18)
     throw new Error('MeshGradient requires iOS 18 or newer')
-  if (!Number.isSafeInteger(width) || width < 2 ||
-    !Number.isSafeInteger(height) || height < 2)
-    throw new Error('MeshGradient width and height must be integers of at least 2')
-  if (!Array.isArray(points) || points.length !== width * height ||
+  if (!Number.isSafeInteger(meshWidth) || meshWidth < 2 ||
+    !Number.isSafeInteger(meshHeight) || meshHeight < 2)
+    throw new Error('MeshGradient meshWidth and meshHeight must be integers of at least 2')
+  if (!Array.isArray(points) || points.length !== meshWidth * meshHeight ||
     !points.every((point) => point && Number.isFinite(point.x) && Number.isFinite(point.y) &&
       Number.isFinite(Math.fround(point.x)) && Number.isFinite(Math.fround(point.y))))
-    throw new Error('MeshGradient points must contain width × height finite Float32 coordinates')
-  if (!Array.isArray(colors) || colors.length !== width * height ||
+    throw new Error('MeshGradient points must contain meshWidth × meshHeight finite Float32 coordinates')
+  if (!Array.isArray(colors) || colors.length !== meshWidth * meshHeight ||
     !colors.every((color) => typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)))
-    throw new Error('MeshGradient colors must contain width × height #RRGGBB or #RRGGBBAA colors')
+    throw new Error('MeshGradient colors must contain meshWidth × meshHeight #RRGGBB or #RRGGBBAA colors')
   if (typeof background !== 'string' || !/^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(background))
     throw new Error('MeshGradient background must be #RRGGBB or #RRGGBBAA')
   if (colorSpace !== 'device' && colorSpace !== 'perceptual')

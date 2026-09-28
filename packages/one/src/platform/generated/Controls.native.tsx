@@ -966,8 +966,8 @@ export function AngularGradient({
 }
 import NativeMeshGradient from '../specs/OneNativeMeshGradientNativeComponent'
 export function MeshGradient({
-  width,
-  height,
+  meshWidth,
+  meshHeight,
   points,
   colors,
   background = '#00000000',
@@ -980,15 +980,17 @@ export function MeshGradient({
   if (Number.parseFloat(String(Platform.Version)) < 18)
     throw new Error('MeshGradient requires iOS 18 or newer')
   if (
-    !Number.isSafeInteger(width) ||
-    width < 2 ||
-    !Number.isSafeInteger(height) ||
-    height < 2
+    !Number.isSafeInteger(meshWidth) ||
+    meshWidth < 2 ||
+    !Number.isSafeInteger(meshHeight) ||
+    meshHeight < 2
   )
-    throw new Error('MeshGradient width and height must be integers of at least 2')
+    throw new Error(
+      'MeshGradient meshWidth and meshHeight must be integers of at least 2'
+    )
   if (
     !Array.isArray(points) ||
-    points.length !== width * height ||
+    points.length !== meshWidth * meshHeight ||
     !points.every(
       (point) =>
         point &&
@@ -999,18 +1001,18 @@ export function MeshGradient({
     )
   )
     throw new Error(
-      'MeshGradient points must contain width × height finite Float32 coordinates'
+      'MeshGradient points must contain meshWidth × meshHeight finite Float32 coordinates'
     )
   if (
     !Array.isArray(colors) ||
-    colors.length !== width * height ||
+    colors.length !== meshWidth * meshHeight ||
     !colors.every(
       (color) =>
         typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)
     )
   )
     throw new Error(
-      'MeshGradient colors must contain width × height #RRGGBB or #RRGGBBAA colors'
+      'MeshGradient colors must contain meshWidth × meshHeight #RRGGBB or #RRGGBBAA colors'
     )
   if (
     typeof background !== 'string' ||
@@ -1031,8 +1033,8 @@ export function MeshGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-      width={width}
-      height={height}
+      meshWidth={meshWidth}
+      meshHeight={meshHeight}
       points={JSON.stringify(points)}
       colors={colors}
       background={background}

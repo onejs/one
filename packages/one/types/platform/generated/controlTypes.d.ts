@@ -2649,8 +2649,8 @@ export interface AngularGradientProps extends OneNativeViewProps {
     }>;
 }
 export interface MeshGradientProps extends OneNativeViewProps {
-    width: number;
-    height: number;
+    meshWidth: number;
+    meshHeight: number;
     points: readonly Readonly<{
         x: number;
         y: number;

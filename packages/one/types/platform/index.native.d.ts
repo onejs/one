@@ -41,7 +41,7 @@ export declare const Swift: {
     RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: import("./types").RadialGradientProps): import("react/jsx-runtime").JSX.Element;
     EllipticalGradient({ colors, center, startRadiusFraction, endRadiusFraction, swiftStyle, style, ...props }: import("./types").EllipticalGradientProps): import("react/jsx-runtime").JSX.Element;
     AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: import("./types").AngularGradientProps): import("react/jsx-runtime").JSX.Element;
-    MeshGradient({ width, height, points, colors, background, smoothsColors, colorSpace, swiftStyle, style, ...props }: import("./types").MeshGradientProps): import("react/jsx-runtime").JSX.Element;
+    MeshGradient({ meshWidth, meshHeight, points, colors, background, smoothsColors, colorSpace, swiftStyle, style, ...props }: import("./types").MeshGradientProps): import("react/jsx-runtime").JSX.Element;
     VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: import("./types").VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
     PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
     WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types").WebViewProps): import("react/jsx-runtime").JSX.Element;

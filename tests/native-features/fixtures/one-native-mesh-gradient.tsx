@@ -38,8 +38,8 @@ export default function OneNativeMeshGradientFixture() {
       <Text>SwiftUI MeshGradient</Text>
       <View style={styles.underlay}>
         <One.iOS.MeshGradient
-          width={mode === 'three-by-three' ? 3 : 2}
-          height={mode === 'three-by-three' ? 3 : 2}
+          meshWidth={mode === 'three-by-three' ? 3 : 2}
+          meshHeight={mode === 'three-by-three' ? 3 : 2}
           points={points}
           colors={colors}
           background={mode === 'background' ? '#00FFFF' : '#00000000'}
@@ -57,7 +57,7 @@ export default function OneNativeMeshGradientFixture() {
       <Pressable testID="one-native-mesh-gradient-unsmoothed" onPress={() => setMode('unsmoothed')}><Text>Disable color smoothing</Text></Pressable>
       <Pressable testID="one-native-mesh-gradient-perceptual" onPress={() => setMode('perceptual')}><Text>Use perceptual colors</Text></Pressable>
       <Pressable testID="one-native-mesh-gradient-three-by-three" onPress={() => setMode('three-by-three')}><Text>Three by three</Text></Pressable>
-      <One.iOS.MeshGradient width={2} height={2} points={corners} colors={colors.slice(0, 4)} style={styles.decorative} testID="one-native-mesh-gradient-decorative" />
+      <One.iOS.MeshGradient meshWidth={2} meshHeight={2} points={corners} colors={colors.slice(0, 4)} style={styles.decorative} testID="one-native-mesh-gradient-decorative" />
     </View>
   )
 }

@@ -1943,10 +1943,10 @@
       "name": "OneNativeMeshGradient",
       "publicName": "MeshGradient",
       "props": {
-        "width": {
+        "meshWidth": {
           "type": "Double"
         },
-        "height": {
+        "meshHeight": {
           "type": "Double"
         },
         "points": {
