@@ -8746,11 +8746,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   )
   await wait('centered menu trigger', (n) => {
     const trigger = n.find((node) => node.AXLabel === 'Open native menu')
+    const app = n.find((node) => node.type === 'Application')
     return Boolean(
       trigger?.frame &&
+      app?.frame &&
       trigger.frame.width > 0 &&
       trigger.frame.height > 0 &&
-      trigger.frame.x + trigger.frame.width / 2 === 196.5
+      Math.abs(
+        trigger.frame.x + trigger.frame.width / 2 -
+        (app.frame.x + app.frame.width / 2)
+      ) <= 1
     )
   })
   screenshot('01-centered-trigger.png')
