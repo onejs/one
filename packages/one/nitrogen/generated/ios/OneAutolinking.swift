@@ -348,6 +348,18 @@ public final class OneAutolinking {
     return HybridOneMotion.self is any RecyclableView.Type
   }
 
+  public static func createOneDeviceAttestation() -> bridge.std__shared_ptr_HybridOneDeviceAttestationSpec_ {
+    let hybridObject = HybridOneDeviceAttestation()
+    return { () -> bridge.std__shared_ptr_HybridOneDeviceAttestationSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneDeviceAttestationRecyclable() -> Bool {
+    return HybridOneDeviceAttestation.self is any RecyclableView.Type
+  }
+
   public static func createOneScreenOrientation() -> bridge.std__shared_ptr_HybridOneScreenOrientationSpec_ {
     let hybridObject = HybridOneScreenOrientation()
     return { () -> bridge.std__shared_ptr_HybridOneScreenOrientationSpec_ in
