@@ -561,11 +561,13 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
     icon: app.icon?.source,
     splash: app.splash && {
       image: app.splash.source,
+      backgroundImage: app.splash.backgroundImage,
       backgroundColor: app.splash.backgroundColor,
       imageWidth: app.splash.width,
       resizeMode: app.splash.resizeMode,
       dark: app.splash.dark && {
         image: app.splash.dark.source,
+        backgroundImage: app.splash.dark.backgroundImage,
         backgroundColor: app.splash.dark.backgroundColor,
       },
     },
