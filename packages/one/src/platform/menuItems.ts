@@ -81,6 +81,7 @@ export function flattenMenuItems(
             help,
             controlGroupStyle: 'automatic',
             values: [],
+            selection: '',
             menuOrder: '',
             menuActionDismissBehavior,
             parentId,
@@ -157,6 +158,7 @@ export function flattenMenuItems(
             help,
             controlGroupStyle: 'automatic',
             values,
+            selection: '',
             menuOrder: '',
             menuActionDismissBehavior,
             parentId,
@@ -229,6 +231,7 @@ export function flattenMenuItems(
             help,
             controlGroupStyle: 'automatic',
             values: [],
+            selection: '',
             menuOrder,
             menuActionDismissBehavior,
             parentId,
@@ -236,6 +239,7 @@ export function flattenMenuItems(
           })
           if (!Array.isArray(input.children))
             throw new Error('Swift.Menu ' + item.type + ' requires children')
+
           append(
             input.children,
             item.id,
@@ -281,6 +285,7 @@ export function flattenMenuItems(
             help: '',
             controlGroupStyle: 'automatic',
             values: [],
+            selection: '',
             menuOrder: '',
             menuActionDismissBehavior: '',
             parentId,
@@ -288,6 +293,7 @@ export function flattenMenuItems(
           })
           if (!Array.isArray(input.children))
             throw new Error('Swift.Menu ' + item.type + ' requires children')
+
           append(
             input.children,
             item.id,
@@ -346,6 +352,7 @@ export function flattenMenuItems(
             help: '',
             controlGroupStyle,
             values: [],
+            selection: '',
             menuOrder: '',
             menuActionDismissBehavior: '',
             parentId,
@@ -353,6 +360,87 @@ export function flattenMenuItems(
           })
           if (!Array.isArray(input.children))
             throw new Error('Swift.Menu ' + item.type + ' requires children')
+
+          append(
+            input.children,
+            item.id,
+            Boolean(disabled || disabledValue),
+            Boolean(hidden || hiddenValue)
+          )
+          break
+        }
+        case 'picker': {
+          for (const name of Object.keys(input)) {
+            if (
+              name !== 'type' &&
+              name !== 'id' &&
+              name !== 'title' &&
+              name !== 'systemImage' &&
+              name !== 'selection' &&
+              name !== 'disabled' &&
+              name !== 'hidden' &&
+              name !== 'help' &&
+              name !== 'children'
+            )
+              throw new Error(
+                'Unsupported Swift.Menu ' + item.type + ' property: ' + name
+              )
+          }
+          const id = input.id ?? ''
+          if (input.id == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires id')
+          if (typeof id !== 'string') throw new Error('Invalid Swift.Menu id')
+          const title = input.title ?? ''
+          if (input.title == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires title')
+          if (typeof title !== 'string') throw new Error('Invalid Swift.Menu title')
+          const systemImage = input.systemImage ?? ''
+          if (typeof systemImage !== 'string')
+            throw new Error('Invalid Swift.Menu systemImage')
+          const selection = input.selection ?? ''
+          if (input.selection == null)
+            throw new Error('Swift.Menu ' + item.type + ' requires selection')
+          if (typeof selection !== 'string')
+            throw new Error('Invalid Swift.Menu selection')
+          const disabledValue = input.disabled ?? false
+          if (typeof disabledValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu disabled')
+          const hiddenValue = input.hidden ?? false
+          if (typeof hiddenValue !== 'boolean')
+            throw new Error('Invalid Swift.Menu hidden')
+          const help = input.help ?? ''
+          if (typeof help !== 'string') throw new Error('Invalid Swift.Menu help')
+          if (!item.id || ids.has(item.id))
+            throw new Error(
+              'Swift.Menu requires unique, nonempty item ids: "' + item.id + '"'
+            )
+          ids.add(item.id)
+          result.push({
+            id,
+            title,
+            systemImage,
+            role: '',
+            disabled: disabled || disabledValue,
+            hidden: hidden || hiddenValue,
+            help,
+            controlGroupStyle: 'automatic',
+            values: [],
+            selection,
+            menuOrder: '',
+            menuActionDismissBehavior: '',
+            parentId,
+            type: item.type,
+          })
+          if (!Array.isArray(input.children))
+            throw new Error('Swift.Menu ' + item.type + ' requires children')
+          if (
+            !input.children.length ||
+            input.children.some((child: any) => child?.type !== 'action')
+          )
+            throw new Error('Swift.Menu picker children must be actions')
+          if (!input.children.some((child: any) => child.id === input.selection))
+            throw new Error('Swift.Menu picker selection must match a child id')
+
           append(
             input.children,
             item.id,
@@ -387,6 +475,7 @@ export function flattenMenuItems(
             help: '',
             controlGroupStyle: 'automatic',
             values: [],
+            selection: '',
             menuOrder: '',
             menuActionDismissBehavior: '',
             parentId,

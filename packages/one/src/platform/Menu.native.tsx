@@ -28,6 +28,7 @@ function MenuPresentation({
   primaryAction,
   children,
   onValueChange,
+  onPickerChange,
   revision = 0,
   menuOrder = 'automatic',
   menuActionDismissBehavior = 'automatic',
@@ -47,6 +48,9 @@ function MenuPresentation({
     const name = presentation === 'contextMenu' ? 'ContextMenu' : 'Menu'
     throw new Error(`Swift.${name} with toggles requires onValueChange`)
   }
+  if (!onPickerChange && nativeItems.some((item) => item.type === 'picker')) {
+    throw new Error('Swift.Menu with a Picker requires onPickerChange')
+  }
   const controlled = useControlled<{
     id: string
     value: boolean
@@ -54,12 +58,19 @@ function MenuPresentation({
     eventCount: number
     revision: number
   }>((event) => onValueChange?.(event.id, event.value, event.sourceIndex), revision)
+  const pickerControlled = useControlled<{
+    id: string
+    value: string
+    eventCount: number
+    revision: number
+  }>((event) => onPickerChange?.(event.id, event.value), revision)
   return (
     <NativeMenu
       {...props}
       items={nativeItems}
       revision={revision}
       acknowledgedEvent={controlled.acknowledgedEvent}
+      pickerAcknowledgedEvent={pickerControlled.acknowledgedEvent}
       menuOrder={menuOrder}
       menuActionDismissBehavior={menuActionDismissBehavior}
       triggerLabel={accessibilityLabel}
@@ -70,6 +81,9 @@ function MenuPresentation({
       onNativeMenuPrimaryAction={() => primaryAction?.()}
       onNativeMenuValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
+      }
+      onNativeMenuPickerChange={({ nativeEvent }) =>
+        pickerControlled.onNativeChange(nativeEvent)
       }
     >
       <View collapsable={false}>{children}</View>

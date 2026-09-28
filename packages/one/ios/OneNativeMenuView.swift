@@ -12,12 +12,15 @@ final class OneNativeMenuModel: ObservableObject {
   @Published var menuActionDismissBehavior = "automatic"
   @Published var presentation = "menu"
   @Published var controlled = OneNativeControlled<[String: [Bool]]>([:])
+  @Published var pickerControlled = OneNativeControlled<[String: String]>([:])
   var propValues: [String: [Bool]] = [:]
+  var propPickerValues: [String: String] = [:]
   var active = false
   var items: [String: OneNativeMenuNode] = [:]
   var onAction: ((String) -> Void)?
   var onPrimaryAction: (() -> Void)?
   var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
+  var onPickerChange: ((String, String, Int, Int) -> Void)?
 
   func action(_ id: String) {
     guard active, !disabled, let item = items[id], item.type == .action, !item.disabled, !item.hidden else { return }
@@ -39,6 +42,17 @@ final class OneNativeMenuModel: ObservableObject {
     controlled.change(next)
     onValueChange?(id, value, index, controlled.eventCount, controlled.revision)
   }
+
+  func pick(_ id: String, value: String) {
+    guard active, !disabled, let item = items[id], item.type == .picker, !item.disabled, !item.hidden,
+          let option = items[value], option.parentId == id, option.type == .action,
+          !option.disabled, !option.hidden else { return }
+    var next = pickerControlled.value
+    guard next[id] != value else { return }
+    next[id] = value
+    pickerControlled.change(next)
+    onPickerChange?(id, value, pickerControlled.eventCount, pickerControlled.revision)
+  }
 }
 
 @objcMembers
@@ -46,6 +60,7 @@ public final class OneNativeMenuView: UIView {
   public var onAction: ((String) -> Void)?
   public var onPrimaryAction: (() -> Void)?
   public var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
+  public var onPickerChange: ((String, String, Int, Int) -> Void)?
   private var model = OneNativeMenuModel()
   private var controller: OneNativeHostingController<OneNativeMenuRoot>?
 
@@ -66,11 +81,13 @@ public final class OneNativeMenuView: UIView {
     let nodes = items.map(OneNativeMenuNode.init)
     model.items = Dictionary(uniqueKeysWithValues: nodes.map { ($0.id, $0) })
     model.propValues = Dictionary(uniqueKeysWithValues: nodes.filter { $0.type == .toggle }.map { ($0.id, $0.values) })
+    model.propPickerValues = Dictionary(uniqueKeysWithValues: nodes.filter { $0.type == .picker }.map { ($0.id, $0.selection) })
     model.children = Dictionary(grouping: nodes, by: \.parentId)
   }
 
-  public func configure(_ triggerLabel: String, disabled: Bool, hasPrimaryAction: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, revision: Int) {
+  public func configure(_ triggerLabel: String, disabled: Bool, hasPrimaryAction: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, pickerAcknowledgedEvent: Int, revision: Int) {
     if let next = model.controlled.applying(model.propValues, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
+    if let next = model.pickerControlled.applying(model.propPickerValues, acknowledged: pickerAcknowledgedEvent, revision: revision) { model.pickerControlled = next }
     if model.label != triggerLabel { model.label = triggerLabel }
     if model.disabled != disabled { model.disabled = disabled }
     if model.hasPrimaryAction != hasPrimaryAction { model.hasPrimaryAction = hasPrimaryAction }
@@ -97,6 +114,7 @@ public final class OneNativeMenuView: UIView {
       model.onAction = { [weak self] id in self?.onAction?(id) }
       model.onPrimaryAction = { [weak self] in self?.onPrimaryAction?() }
       model.onValueChange = { [weak self] id, value, index, count, revision in self?.onValueChange?(id, value, index, count, revision) }
+      model.onPickerChange = { [weak self] id, value, count, revision in self?.onPickerChange?(id, value, count, revision) }
       controller = OneNativeHostingController(rootView: OneNativeMenuRoot(model: model))
     }
     controller?.attach(to: self)
@@ -108,10 +126,34 @@ public final class OneNativeMenuView: UIView {
     model.onAction = nil
     model.onPrimaryAction = nil
     model.onValueChange = nil
+    model.onPickerChange = nil
     model.trigger?.removeFromSuperview()
     controller?.detach()
     controller = nil
     model = OneNativeMenuModel()
+  }
+}
+
+struct OneNativeMenuPicker: View {
+  @ObservedObject var model: OneNativeMenuModel
+  let item: OneNativeMenuNode
+
+  var body: some View {
+    Picker(selection: Binding(
+      get: { model.pickerControlled.value[item.id] ?? item.selection },
+      set: { model.pick(item.id, value: $0) }
+    )) {
+      ForEach(model.children[item.id] ?? []) { option in
+        if !option.hidden {
+          OneNativeMenuLabel(item: option)
+            .tag(option.id)
+            .disabled(option.disabled)
+        }
+      }
+    } label: {
+      OneNativeMenuLabel(item: item)
+    }
+    .pickerStyle(.menu)
   }
 }
 

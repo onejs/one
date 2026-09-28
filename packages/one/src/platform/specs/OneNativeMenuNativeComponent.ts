@@ -15,6 +15,7 @@ export type NativeMenuItem = Readonly<{
   help: string
   controlGroupStyle: string
   values: ReadonlyArray<boolean>
+  selection: string
   menuOrder: string
   menuActionDismissBehavior: string
 }>
@@ -28,6 +29,7 @@ interface NativeProps extends ViewProps {
   presentation: string
   acknowledgedEvent: Int32
   revision: Int32
+  pickerAcknowledgedEvent: Int32
   onNativeMenuAction?: DirectEventHandler<Readonly<{ id: string }>>
   onNativeMenuPrimaryAction?: DirectEventHandler<Readonly<{ kind: string }>>
   onNativeMenuValueChange?: DirectEventHandler<
@@ -38,6 +40,9 @@ interface NativeProps extends ViewProps {
       eventCount: Int32
       revision: Int32
     }>
+  >
+  onNativeMenuPickerChange?: DirectEventHandler<
+    Readonly<{ id: string; value: string; eventCount: Int32; revision: Int32 }>
   >
 }
 export default codegenNativeComponent<NativeProps>('OneNativeMenu')

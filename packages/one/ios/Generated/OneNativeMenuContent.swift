@@ -8,6 +8,7 @@ enum OneNativeMenuKind: String {
   case submenu
   case section
   case controlGroup
+  case picker
   case divider
 }
 struct OneNativeMenuNode: Identifiable {
@@ -22,6 +23,7 @@ struct OneNativeMenuNode: Identifiable {
   let help: String
   let controlGroupStyle: String
   let values: [Bool]
+  let selection: String
   let menuOrder: String
   let menuActionDismissBehavior: String
   init(_ item: [String: Any]) {
@@ -36,6 +38,7 @@ struct OneNativeMenuNode: Identifiable {
     help = item["help"] as! String
     controlGroupStyle = item["controlGroupStyle"] as! String
     values = item["values"] as! [Bool]
+    selection = item["selection"] as! String
     menuOrder = item["menuOrder"] as! String
     menuActionDismissBehavior = item["menuActionDismissBehavior"] as! String
   }
@@ -65,6 +68,8 @@ struct OneNativeGeneratedMenuContent: View {
             Section { OneNativeGeneratedMenuContent(model: model, parentId: item.id) } header: { if !item.title.isEmpty { Text(item.title) } }
           case .controlGroup:
             ControlGroup { OneNativeGeneratedMenuContent(model: model, parentId: item.id) } label: { OneNativeMenuLabel(item: item) }.oneNativeControlGroupStyle(item.controlGroupStyle)
+          case .picker:
+            OneNativeMenuPicker(model: model, item: item)
           case .divider:
             Divider()
           }
