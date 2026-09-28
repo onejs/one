@@ -41,8 +41,8 @@ type OneNativeStyleNative = Readonly<{
   sdkModifiers?: string
 }>
 interface NativeProps extends ViewProps {
-  width: Double
-  height: Double
+  meshWidth: Double
+  meshHeight: Double
   points: string
   colors: ReadonlyArray<string>
   background: string

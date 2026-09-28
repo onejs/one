@@ -4,8 +4,8 @@ import SwiftUI
 import UIKit
 
 private final class MeshGradientModel: ObservableObject {
-  @Published var width: Double = 2
-  @Published var height: Double = 2
+  @Published var meshWidth: Double = 2
+  @Published var meshHeight: Double = 2
   @Published var points: String = "[{\"x\":0,\"y\":0},{\"x\":1,\"y\":0},{\"x\":0,\"y\":1},{\"x\":1,\"y\":1}]"
   @Published var colors: [String] = ["#000000","#000000","#000000","#000000"]
   @Published var background: String = "#00000000"
@@ -38,9 +38,9 @@ private final class MeshGradientModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ width: Double, height: Double, points: String, background: String, smoothsColors: Bool, colorSpace: String) {
-    if model.width != width { model.width = width }
-    if model.height != height { model.height = height }
+  public func configure(_ meshWidth: Double, meshHeight: Double, points: String, background: String, smoothsColors: Bool, colorSpace: String) {
+    if model.meshWidth != meshWidth { model.meshWidth = meshWidth }
+    if model.meshHeight != meshHeight { model.meshHeight = meshHeight }
     if model.points != points { model.points = points }
     if model.background != background { model.background = background }
     if model.smoothsColors != smoothsColors { model.smoothsColors = smoothsColors }
@@ -94,26 +94,23 @@ private struct MeshGradientContent: View {
   var body: some View {
     Group {
       if #available(iOS 18.0, *),
-        let meshWidth = Int(exactly: model.width), meshWidth >= 2,
-        let meshHeight = Int(exactly: model.height), meshHeight >= 2,
+        let meshWidth = Int(exactly: model.meshWidth), meshWidth >= 2,
+        let meshHeight = Int(exactly: model.meshHeight), meshHeight >= 2,
         let points = oneNativeMeshGradientPoints(model.points),
         points.count == model.colors.count,
         meshWidth <= points.count,
         points.count % meshWidth == 0,
         points.count / meshWidth == meshHeight,
         let background = oneNativeMeshGradientColor(model.background) {
-        GeometryReader { geometry in
-          MeshGradient(
-            width: meshWidth,
-            height: meshHeight,
-            points: points,
-            colors: model.colors.compactMap(oneNativeMeshGradientColor),
-            background: background,
-            smoothsColors: model.smoothsColors,
-            colorSpace: model.colorSpace == "perceptual" ? .perceptual : .device
-          )
-          .frame(width: geometry.size.width, height: geometry.size.height)
-        }
+        MeshGradient(
+          width: meshWidth,
+          height: meshHeight,
+          points: points,
+          colors: model.colors.compactMap(oneNativeMeshGradientColor),
+          background: background,
+          smoothsColors: model.smoothsColors,
+          colorSpace: model.colorSpace == "perceptual" ? .perceptual : .device
+        )
       } else {
         Color.clear
       }

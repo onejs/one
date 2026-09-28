@@ -45,8 +45,8 @@ using namespace facebook::react;
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
-  [_nativeView configure:next.width
-    height:next.height points:RCTNSStringFromString(next.points) background:RCTNSStringFromString(next.background) smoothsColors:next.smoothsColors colorSpace:RCTNSStringFromString(next.colorSpace)];
+  [_nativeView configure:next.meshWidth
+    meshHeight:next.meshHeight points:RCTNSStringFromString(next.points) background:RCTNSStringFromString(next.background) smoothsColors:next.smoothsColors colorSpace:RCTNSStringFromString(next.colorSpace)];
 
   [super updateProps:props oldProps:oldProps];
 }

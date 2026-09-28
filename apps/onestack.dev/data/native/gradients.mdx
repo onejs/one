@@ -121,15 +121,17 @@ Other iOS versions remain unproven.
 
 `One.iOS.MeshGradient` calls SwiftUI's
 [`MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`](https://developer.apple.com/documentation/swiftui/meshgradient/init%28width%3Aheight%3Apoints%3Acolors%3Abackground%3Asmoothscolors%3Acolorspace%3A%29).
-It requires iOS 18 or newer. `width` and `height` count vertices, so `points`
-and `colors` each contain `width × height` entries in row order. Each point is
+It requires iOS 18 or newer. `meshWidth` and `meshHeight` count vertices, so
+`points` and `colors` each contain `meshWidth × meshHeight` entries in row order.
+The names keep grid dimensions separate from the view's layout dimensions.
+Each point is
 a normalized `{ x, y }` coordinate; colors and the optional `background` use
 sRGB `#RRGGBB` or `#RRGGBBAA` strings:
 
 ```tsx
 <One.iOS.MeshGradient
-  width={2}
-  height={2}
+  meshWidth={2}
+  meshHeight={2}
   points={[{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }]}
   colors={['#FF0000', '#00FF00', '#0000FF', '#FFFF00']}
   background="#00000000"

@@ -677,8 +677,10 @@ versions remain unproven.
 
 `One.iOS.MeshGradient` maps SwiftUI's
 `MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`
-on iOS 18 or newer. `width` and `height` count vertices; `points` and `colors`
-each supply `width × height` values in row order. Points are normalized
+on iOS 18 or newer. `meshWidth` and `meshHeight` count vertices; `points` and
+`colors` each supply `meshWidth × meshHeight` values in row order. The names
+keep grid dimensions separate from the React Native view's layout dimensions.
+Points are normalized
 `{ x, y }` values and colors are sRGB hex strings. `background` defaults to
 transparent, `smoothsColors` to `true`, and `colorSpace` to `device` (or
 `perceptual`). A mesh with no accessibility label is decorative. Bezier-point
