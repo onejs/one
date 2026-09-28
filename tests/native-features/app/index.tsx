@@ -597,6 +597,11 @@ const testScreens = [
     label: 'One Native Print',
     testID: 'nav-one-native-print',
   },
+  {
+    href: '/one-native-store-review',
+    label: 'One Native Store Review',
+    testID: 'nav-one-native-store-review',
+  },
 ] as const
 
 export default function HomeScreen() {

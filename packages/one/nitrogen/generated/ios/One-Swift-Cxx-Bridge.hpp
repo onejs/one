@@ -188,6 +188,8 @@ namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
+// Forward declaration of `HybridOneStoreReviewSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
 // Forward declaration of `ImageCrop` to properly resolve imports.
@@ -406,6 +408,8 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
+// Forward declaration of `HybridOneStoreReviewSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneStoreReviewSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneUpdatesSpec_cxx; }
 
@@ -499,6 +503,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
+#include "HybridOneStoreReviewSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
 #include "ImagePickerAsset.hpp"
@@ -4872,6 +4877,18 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>::withError(error);
   }
+
+  // pragma MARK: std::shared_ptr<HybridOneStoreReviewSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneStoreReviewSpec>`.
+   */
+  using std__shared_ptr_HybridOneStoreReviewSpec_ = std::shared_ptr<HybridOneStoreReviewSpec>;
+  std::shared_ptr<HybridOneStoreReviewSpec> create_std__shared_ptr_HybridOneStoreReviewSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneStoreReviewSpec_(std__shared_ptr_HybridOneStoreReviewSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneStoreReviewSpec>
+  using std__weak_ptr_HybridOneStoreReviewSpec_ = std::weak_ptr<HybridOneStoreReviewSpec>;
+  inline std__weak_ptr_HybridOneStoreReviewSpec_ weakify_std__shared_ptr_HybridOneStoreReviewSpec_(const std::shared_ptr<HybridOneStoreReviewSpec>& strong) noexcept { return strong; }
 
   // pragma MARK: std::shared_ptr<Promise<OneUpdatesCheckResult>>
   /**

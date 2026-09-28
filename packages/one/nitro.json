@@ -88,6 +88,9 @@
     "OnePrint": {
       "ios": { "language": "swift", "implementationClassName": "HybridOnePrint" }
     },
+    "OneStoreReview": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneStoreReview" }
+    },
     "OneLocation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },
