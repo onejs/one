@@ -15,6 +15,8 @@ namespace margelo::nitro::one {
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("search", &HybridOneMapServicesSpec::search);
+      prototype.registerHybridMethod("autocomplete", &HybridOneMapServicesSpec::autocomplete);
+      prototype.registerHybridMethod("resolveSuggestion", &HybridOneMapServicesSpec::resolveSuggestion);
       prototype.registerHybridMethod("directions", &HybridOneMapServicesSpec::directions);
     });
   }

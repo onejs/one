@@ -17,6 +17,8 @@
 namespace margelo::nitro::one { struct MapPlace; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
+// Forward declaration of `MapSuggestion` to properly resolve imports.
+namespace margelo::nitro::one { struct MapSuggestion; }
 // Forward declaration of `MapRoute` to properly resolve imports.
 namespace margelo::nitro::one { struct MapRoute; }
 // Forward declaration of `MapTransport` to properly resolve imports.
@@ -27,6 +29,7 @@ namespace margelo::nitro::one { enum class MapTransport; }
 #include <NitroModules/Promise.hpp>
 #include <string>
 #include "MapCoordinate.hpp"
+#include "MapSuggestion.hpp"
 #include "MapRoute.hpp"
 #include "MapTransport.hpp"
 
@@ -62,6 +65,8 @@ namespace margelo::nitro::one {
     public:
       // Methods
       virtual std::shared_ptr<Promise<std::vector<MapPlace>>> search(const std::string& query, const MapCoordinate& center, double radiusMeters) = 0;
+      virtual std::shared_ptr<Promise<std::vector<MapSuggestion>>> autocomplete(const std::string& query, const MapCoordinate& center, double radiusMeters) = 0;
+      virtual std::shared_ptr<Promise<MapPlace>> resolveSuggestion(const std::string& id) = 0;
       virtual std::shared_ptr<Promise<MapRoute>> directions(const MapCoordinate& origin, const MapCoordinate& destination, MapTransport transport) = 0;
 
     protected:

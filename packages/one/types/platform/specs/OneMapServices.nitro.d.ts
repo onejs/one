@@ -8,6 +8,11 @@ export interface MapPlace {
     address: string;
     coordinate: MapCoordinate;
 }
+export interface MapSuggestion {
+    id: string;
+    title: string;
+    subtitle: string;
+}
 export interface MapRouteStep {
     instructions: string;
     distanceMeters: number;
@@ -23,6 +28,8 @@ export interface OneMapServices extends HybridObject<{
     ios: 'swift';
 }> {
     search(query: string, center: MapCoordinate, radiusMeters: number): Promise<MapPlace[]>;
+    autocomplete(query: string, center: MapCoordinate, radiusMeters: number): Promise<MapSuggestion[]>;
+    resolveSuggestion(id: string): Promise<MapPlace>;
     directions(origin: MapCoordinate, destination: MapCoordinate, transport: MapTransport): Promise<MapRoute>;
 }
 //# sourceMappingURL=OneMapServices.nitro.d.ts.map

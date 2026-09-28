@@ -5999,7 +5999,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('map services fixture mounted', (n) => id(n, 'one-native-map-services-run') !== undefined)
     tap({ id: 'one-native-map-services-run' })
     await wait('MapKit search and walking route completed', (n) =>
-      labels(n).some((label) => /^Map services: passed: .*Ferry.*; [1-9][0-9]+m; \d+ points; \d+ steps; empty=true; input=E_MAP_INPUT$/i.test(label)))
+      labels(n).some((label) => /^Map services: passed: .*Ferry.*; [1-9][0-9]+m; \d+ points; \d+ steps; autocomplete=.*Ferry.*; canceled=true; invalidSuggestion=E_MAP_INPUT; empty=true; input=E_MAP_INPUT$/i.test(label)))
     screenshot('map-services.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

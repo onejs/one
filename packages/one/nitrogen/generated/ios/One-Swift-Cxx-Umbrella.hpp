@@ -222,6 +222,8 @@ namespace margelo::nitro::one { struct MapPlace; }
 namespace margelo::nitro::one { struct MapRouteStep; }
 // Forward declaration of `MapRoute` to properly resolve imports.
 namespace margelo::nitro::one { struct MapRoute; }
+// Forward declaration of `MapSuggestion` to properly resolve imports.
+namespace margelo::nitro::one { struct MapSuggestion; }
 // Forward declaration of `MapTransport` to properly resolve imports.
 namespace margelo::nitro::one { enum class MapTransport; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
@@ -425,6 +427,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "MapPlace.hpp"
 #include "MapRoute.hpp"
 #include "MapRouteStep.hpp"
+#include "MapSuggestion.hpp"
 #include "MapTransport.hpp"
 #include "NativeChannel.hpp"
 #include "NativeChannelInput.hpp"

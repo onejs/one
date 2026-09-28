@@ -14,6 +14,8 @@ public protocol HybridOneMapServicesSpec_protocol: HybridObject {
 
   // Methods
   func search(query: String, center: MapCoordinate, radiusMeters: Double) throws -> Promise<[MapPlace]>
+  func autocomplete(query: String, center: MapCoordinate, radiusMeters: Double) throws -> Promise<[MapSuggestion]>
+  func resolveSuggestion(id: String) throws -> Promise<MapPlace>
   func directions(origin: MapCoordinate, destination: MapCoordinate, transport: MapTransport) throws -> Promise<MapRoute>
 }
 
