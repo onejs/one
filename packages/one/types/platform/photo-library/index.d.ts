@@ -1,5 +1,5 @@
-import type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus } from '../specs/OnePhotoLibrary.nitro';
-export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus };
+import type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus } from '../specs/OnePhotoLibrary.nitro';
+export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus };
 export declare const PhotoLibrary: Readonly<{
     getAddPermissionStatus: () => PhotoLibraryPermissionStatus;
     requestAddPermission: () => Promise<PhotoLibraryPermissionStatus>;
@@ -8,6 +8,14 @@ export declare const PhotoLibrary: Readonly<{
     presentLimitedLibraryPicker: () => Promise<string[]>;
     listAssets: (_offset?: number, _limit?: number) => Promise<PhotoLibraryAssetPage>;
     getAsset: (_identifier: string) => Promise<PhotoLibraryAsset>;
+    listAlbums: (_offset?: number, _limit?: number) => Promise<PhotoLibraryAlbumPage>;
+    getAlbum: (_identifier: string) => Promise<PhotoLibraryAlbum>;
+    createAlbum: (_title: string) => Promise<string>;
+    renameAlbum: (_identifier: string, _title: string) => Promise<void>;
+    listAlbumAssets: (_identifier: string, _offset?: number, _limit?: number) => Promise<PhotoLibraryAssetPage>;
+    addAssetToAlbum: (_albumIdentifier: string, _assetIdentifier: string) => Promise<void>;
+    removeAssetFromAlbum: (_albumIdentifier: string, _assetIdentifier: string) => Promise<void>;
+    deleteAlbum: (_identifier: string) => Promise<void>;
     setFavorite: (_identifier: string, _favorite: boolean) => Promise<void>;
     deleteAsset: (_identifier: string) => Promise<void>;
     exportOriginalAsset: (_identifier: string, _allowNetwork?: boolean) => Promise<string>;

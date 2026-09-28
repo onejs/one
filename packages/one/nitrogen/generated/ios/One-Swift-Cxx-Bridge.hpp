@@ -238,6 +238,10 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PhotoLibraryAlbumPage` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAlbumPage; }
+// Forward declaration of `PhotoLibraryAlbum` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAlbum; }
 // Forward declaration of `PhotoLibraryAssetPage` to properly resolve imports.
 namespace margelo::nitro::one { struct PhotoLibraryAssetPage; }
 // Forward declaration of `PhotoLibraryAsset` to properly resolve imports.
@@ -454,6 +458,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PhotoLibraryAlbum.hpp"
+#include "PhotoLibraryAlbumPage.hpp"
 #include "PhotoLibraryAsset.hpp"
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryMediaType.hpp"
@@ -3875,6 +3881,85 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_PhotoLibraryAsset_Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::vector<PhotoLibraryAlbum>
+  /**
+   * Specialized version of `std::vector<PhotoLibraryAlbum>`.
+   */
+  using std__vector_PhotoLibraryAlbum_ = std::vector<PhotoLibraryAlbum>;
+  inline std::vector<PhotoLibraryAlbum> create_std__vector_PhotoLibraryAlbum_(size_t size) noexcept {
+    std::vector<PhotoLibraryAlbum> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAlbumPage>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAlbumPage>>`.
+   */
+  using std__shared_ptr_Promise_PhotoLibraryAlbumPage__ = std::shared_ptr<Promise<PhotoLibraryAlbumPage>>;
+  inline std::shared_ptr<Promise<PhotoLibraryAlbumPage>> create_std__shared_ptr_Promise_PhotoLibraryAlbumPage__() noexcept {
+    return Promise<PhotoLibraryAlbumPage>::create();
+  }
+  inline PromiseHolder<PhotoLibraryAlbumPage> wrap_std__shared_ptr_Promise_PhotoLibraryAlbumPage__(std::shared_ptr<Promise<PhotoLibraryAlbumPage>> promise) noexcept {
+    return PromiseHolder<PhotoLibraryAlbumPage>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const PhotoLibraryAlbumPage& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const PhotoLibraryAlbumPage&)>`.
+   */
+  using Func_void_PhotoLibraryAlbumPage = std::function<void(const PhotoLibraryAlbumPage& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const PhotoLibraryAlbumPage& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_PhotoLibraryAlbumPage_Wrapper final {
+  public:
+    explicit Func_void_PhotoLibraryAlbumPage_Wrapper(std::function<void(const PhotoLibraryAlbumPage& /* result */)>&& func): _function(std::make_unique<std::function<void(const PhotoLibraryAlbumPage& /* result */)>>(std::move(func))) {}
+    inline void call(PhotoLibraryAlbumPage result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const PhotoLibraryAlbumPage& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PhotoLibraryAlbumPage create_Func_void_PhotoLibraryAlbumPage(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PhotoLibraryAlbumPage_Wrapper wrap_Func_void_PhotoLibraryAlbumPage(Func_void_PhotoLibraryAlbumPage value) noexcept {
+    return Func_void_PhotoLibraryAlbumPage_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAlbum>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAlbum>>`.
+   */
+  using std__shared_ptr_Promise_PhotoLibraryAlbum__ = std::shared_ptr<Promise<PhotoLibraryAlbum>>;
+  inline std::shared_ptr<Promise<PhotoLibraryAlbum>> create_std__shared_ptr_Promise_PhotoLibraryAlbum__() noexcept {
+    return Promise<PhotoLibraryAlbum>::create();
+  }
+  inline PromiseHolder<PhotoLibraryAlbum> wrap_std__shared_ptr_Promise_PhotoLibraryAlbum__(std::shared_ptr<Promise<PhotoLibraryAlbum>> promise) noexcept {
+    return PromiseHolder<PhotoLibraryAlbum>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const PhotoLibraryAlbum& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const PhotoLibraryAlbum&)>`.
+   */
+  using Func_void_PhotoLibraryAlbum = std::function<void(const PhotoLibraryAlbum& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const PhotoLibraryAlbum& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_PhotoLibraryAlbum_Wrapper final {
+  public:
+    explicit Func_void_PhotoLibraryAlbum_Wrapper(std::function<void(const PhotoLibraryAlbum& /* result */)>&& func): _function(std::make_unique<std::function<void(const PhotoLibraryAlbum& /* result */)>>(std::move(func))) {}
+    inline void call(PhotoLibraryAlbum result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const PhotoLibraryAlbum& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PhotoLibraryAlbum create_Func_void_PhotoLibraryAlbum(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PhotoLibraryAlbum_Wrapper wrap_Func_void_PhotoLibraryAlbum(Func_void_PhotoLibraryAlbum value) noexcept {
+    return Func_void_PhotoLibraryAlbum_Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::shared_ptr<HybridOnePhotoLibrarySpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOnePhotoLibrarySpec>`.
@@ -3930,6 +4015,24 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_PhotoLibraryAsset___ create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAsset>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>
+  using Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ = Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>;
+  inline Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(const std::shared_ptr<Promise<PhotoLibraryAlbumPage>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>
+  using Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ = Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>;
+  inline Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(const std::shared_ptr<Promise<PhotoLibraryAlbum>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<HybridOneProtectedStoreSpec>

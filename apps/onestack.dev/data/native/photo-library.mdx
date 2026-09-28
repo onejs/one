@@ -110,7 +110,32 @@ The write methods use the same manifest, permission, input, and missing-asset
 errors as `getAsset()`. A rejected Photos change returns
 `E_PHOTO_LIBRARY_CHANGE` for favorites or `E_PHOTO_LIBRARY_DELETE` for deletion.
 Deleting is permanent from the app's point of view; Photos may retain the item
-in Recently Deleted. Album management and content editing are not yet supported.
+in Recently Deleted. Content editing is not yet supported.
+
+With full read/write permission, `listAlbums()` returns user-created albums
+sorted by title. `getAlbum(identifier)` reads an album's current title, and
+`listAlbumAssets(identifier)` returns a bounded, newest-first page of its
+assets. The two list methods accept the same `offset` and `limit` bounds as
+`listAssets()`. They do not include smart albums or folders.
+
+```tsx
+const albumId = await One.iOS.PhotoLibrary.createAlbum('Trip photos')
+await One.iOS.PhotoLibrary.addAssetToAlbum(albumId, assetId)
+const page = await One.iOS.PhotoLibrary.listAlbumAssets(albumId, 0, 50)
+await One.iOS.PhotoLibrary.renameAlbum(albumId, 'Summer trip')
+await One.iOS.PhotoLibrary.removeAssetFromAlbum(albumId, assetId)
+await One.iOS.PhotoLibrary.deleteAlbum(albumId)
+```
+
+Album titles are trimmed and must contain 1 to 255 characters. Adding or
+removing an asset changes only its album membership. Deleting an album removes
+the album, not its photos or videos, and Photos may ask the user to confirm.
+Album methods reject with `E_PHOTO_LIBRARY_PERMISSION` without full read/write
+access, `E_PHOTO_LIBRARY_MANIFEST` without its usage message,
+`E_PHOTO_LIBRARY_INPUT` for invalid titles, identifiers, or pages, and
+`E_PHOTO_LIBRARY_NOT_FOUND` for unknown or non-user album identifiers. An
+album that disallows the requested edit returns `E_PHOTO_LIBRARY_ALBUM_READONLY`;
+a rejected Photos change returns `E_PHOTO_LIBRARY_ALBUM_CHANGE`.
 
 `exportOriginalAsset(identifier)` writes the asset's original photo, video, or
 audio resource to a unique temporary file and returns its `file://` URI. By

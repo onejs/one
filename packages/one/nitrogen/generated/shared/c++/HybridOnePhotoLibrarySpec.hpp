@@ -19,6 +19,10 @@ namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
 namespace margelo::nitro::one { struct PhotoLibraryAssetPage; }
 // Forward declaration of `PhotoLibraryAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct PhotoLibraryAsset; }
+// Forward declaration of `PhotoLibraryAlbumPage` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAlbumPage; }
+// Forward declaration of `PhotoLibraryAlbum` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAlbum; }
 
 #include "PhotoLibraryPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -26,6 +30,8 @@ namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 #include <vector>
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryAsset.hpp"
+#include "PhotoLibraryAlbumPage.hpp"
+#include "PhotoLibraryAlbum.hpp"
 
 namespace margelo::nitro::one {
 
@@ -65,6 +71,14 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<std::vector<std::string>>> presentLimitedLibraryPicker() = 0;
       virtual std::shared_ptr<Promise<PhotoLibraryAssetPage>> listAssets(double offset, double limit) = 0;
       virtual std::shared_ptr<Promise<PhotoLibraryAsset>> getAsset(const std::string& identifier) = 0;
+      virtual std::shared_ptr<Promise<PhotoLibraryAlbumPage>> listAlbums(double offset, double limit) = 0;
+      virtual std::shared_ptr<Promise<PhotoLibraryAlbum>> getAlbum(const std::string& identifier) = 0;
+      virtual std::shared_ptr<Promise<std::string>> createAlbum(const std::string& title) = 0;
+      virtual std::shared_ptr<Promise<void>> renameAlbum(const std::string& identifier, const std::string& title) = 0;
+      virtual std::shared_ptr<Promise<PhotoLibraryAssetPage>> listAlbumAssets(const std::string& identifier, double offset, double limit) = 0;
+      virtual std::shared_ptr<Promise<void>> addAssetToAlbum(const std::string& albumIdentifier, const std::string& assetIdentifier) = 0;
+      virtual std::shared_ptr<Promise<void>> removeAssetFromAlbum(const std::string& albumIdentifier, const std::string& assetIdentifier) = 0;
+      virtual std::shared_ptr<Promise<void>> deleteAlbum(const std::string& identifier) = 0;
       virtual std::shared_ptr<Promise<void>> setFavorite(const std::string& identifier, bool favorite) = 0;
       virtual std::shared_ptr<Promise<void>> deleteAsset(const std::string& identifier) = 0;
       virtual std::shared_ptr<Promise<std::string>> exportOriginalAsset(const std::string& identifier, bool allowNetwork) = 0;

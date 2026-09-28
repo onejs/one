@@ -21,6 +21,14 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("presentLimitedLibraryPicker", &HybridOnePhotoLibrarySpec::presentLimitedLibraryPicker);
       prototype.registerHybridMethod("listAssets", &HybridOnePhotoLibrarySpec::listAssets);
       prototype.registerHybridMethod("getAsset", &HybridOnePhotoLibrarySpec::getAsset);
+      prototype.registerHybridMethod("listAlbums", &HybridOnePhotoLibrarySpec::listAlbums);
+      prototype.registerHybridMethod("getAlbum", &HybridOnePhotoLibrarySpec::getAlbum);
+      prototype.registerHybridMethod("createAlbum", &HybridOnePhotoLibrarySpec::createAlbum);
+      prototype.registerHybridMethod("renameAlbum", &HybridOnePhotoLibrarySpec::renameAlbum);
+      prototype.registerHybridMethod("listAlbumAssets", &HybridOnePhotoLibrarySpec::listAlbumAssets);
+      prototype.registerHybridMethod("addAssetToAlbum", &HybridOnePhotoLibrarySpec::addAssetToAlbum);
+      prototype.registerHybridMethod("removeAssetFromAlbum", &HybridOnePhotoLibrarySpec::removeAssetFromAlbum);
+      prototype.registerHybridMethod("deleteAlbum", &HybridOnePhotoLibrarySpec::deleteAlbum);
       prototype.registerHybridMethod("setFavorite", &HybridOnePhotoLibrarySpec::setFavorite);
       prototype.registerHybridMethod("deleteAsset", &HybridOnePhotoLibrarySpec::deleteAsset);
       prototype.registerHybridMethod("exportOriginalAsset", &HybridOnePhotoLibrarySpec::exportOriginalAsset);

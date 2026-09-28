@@ -101,28 +101,14 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
           "PhotoLibrary.listAssets: Photos read permission is required"))
         return
       }
-      guard offset.isFinite, offset >= 0, offset.rounded() == offset,
-        offset <= 1_000_000, limit.isFinite, limit > 0,
-        limit <= 100, limit.rounded() == limit
-      else {
-        promise.reject(withError: Self.error(
-          "E_PHOTO_LIBRARY_INPUT",
-          "PhotoLibrary.listAssets: offset must be 0..1000000 and limit must be 1..100 integers"))
-        return
+      do {
+        let page = try Self.validPage(offset, limit, "listAssets")
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        promise.resolve(withResult: Self.assetPage(PHAsset.fetchAssets(with: options), page))
+      } catch {
+        promise.reject(withError: error)
       }
-
-      let options = PHFetchOptions()
-      options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-      let result = PHAsset.fetchAssets(with: options)
-      let start = min(Int(offset), result.count)
-      let end = min(start + Int(limit), result.count)
-      var assets: [PhotoLibraryAsset] = []
-      assets.reserveCapacity(end - start)
-      for index in start..<end {
-        assets.append(Self.asset(result.object(at: index)))
-      }
-      promise.resolve(withResult: PhotoLibraryAssetPage(
-        assets: assets, totalCount: Double(result.count)))
     }
     return promise
   }
@@ -132,6 +118,169 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
     DispatchQueue.global(qos: .userInitiated).async {
       do {
         promise.resolve(withResult: Self.asset(try Self.readableAsset(identifier, "getAsset")))
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func listAlbums(offset: Double, limit: Double) throws -> Promise<PhotoLibraryAlbumPage> {
+    let promise = Promise<PhotoLibraryAlbumPage>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      do {
+        try Self.requireAlbumAccess("listAlbums")
+        let page = try Self.validPage(offset, limit, "listAlbums")
+        let result = PHAssetCollection.fetchAssetCollections(
+          with: .album, subtype: .albumRegular, options: nil)
+        var collections: [PHAssetCollection] = []
+        collections.reserveCapacity(result.count)
+        result.enumerateObjects { collection, _, _ in collections.append(collection) }
+        collections.sort {
+          let order = ($0.localizedTitle ?? "").localizedCaseInsensitiveCompare($1.localizedTitle ?? "")
+          return order == .orderedSame ? $0.localIdentifier < $1.localIdentifier : order == .orderedAscending
+        }
+        let start = min(page.offset, collections.count)
+        let end = min(start + page.limit, collections.count)
+        promise.resolve(withResult: PhotoLibraryAlbumPage(
+          albums: collections[start..<end].map(Self.album),
+          totalCount: Double(collections.count)))
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func getAlbum(identifier: String) throws -> Promise<PhotoLibraryAlbum> {
+    let promise = Promise<PhotoLibraryAlbum>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      do {
+        promise.resolve(withResult: Self.album(try Self.readableAlbum(identifier, "getAlbum")))
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func createAlbum(title: String) throws -> Promise<String> {
+    let promise = Promise<String>()
+    DispatchQueue.main.async {
+      do {
+        try Self.requireAlbumAccess("createAlbum")
+        let cleanTitle = try Self.validAlbumTitle(title, "createAlbum")
+        var identifier: String?
+        PHPhotoLibrary.shared().performChanges {
+          identifier = PHAssetCollectionChangeRequest
+            .creationRequestForAssetCollection(withTitle: cleanTitle)
+            .placeholderForCreatedAssetCollection.localIdentifier
+        } completionHandler: { success, error in
+          if success, let identifier {
+            promise.resolve(withResult: identifier)
+          } else {
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_ALBUM_CHANGE",
+              "PhotoLibrary.createAlbum: \(error?.localizedDescription ?? "Photos did not create an album")"))
+          }
+        }
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func renameAlbum(identifier: String, title: String) throws -> Promise<Void> {
+    changeAlbum(identifier, operation: "renameAlbum", edit: .rename) {
+      let cleanTitle = try Self.validAlbumTitle(title, "renameAlbum")
+      return { $0.title = cleanTitle }
+    }
+  }
+
+  func listAlbumAssets(identifier: String, offset: Double, limit: Double) throws -> Promise<PhotoLibraryAssetPage> {
+    let promise = Promise<PhotoLibraryAssetPage>()
+    DispatchQueue.global(qos: .userInitiated).async {
+      do {
+        let album = try Self.readableAlbum(identifier, "listAlbumAssets")
+        let page = try Self.validPage(offset, limit, "listAlbumAssets")
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        promise.resolve(withResult: Self.assetPage(
+          PHAsset.fetchAssets(in: album, options: options), page))
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  func addAssetToAlbum(albumIdentifier: String, assetIdentifier: String) throws -> Promise<Void> {
+    changeAlbum(albumIdentifier, operation: "addAssetToAlbum", edit: .addContent) {
+      let asset = try Self.readableAsset(assetIdentifier, "addAssetToAlbum")
+      return { $0.addAssets([asset] as NSArray) }
+    }
+  }
+
+  func removeAssetFromAlbum(albumIdentifier: String, assetIdentifier: String) throws -> Promise<Void> {
+    changeAlbum(albumIdentifier, operation: "removeAssetFromAlbum", edit: .removeContent) {
+      let asset = try Self.readableAsset(assetIdentifier, "removeAssetFromAlbum")
+      return { $0.removeAssets([asset] as NSArray) }
+    }
+  }
+
+  func deleteAlbum(identifier: String) throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      do {
+        let album = try Self.readableAlbum(identifier, "deleteAlbum")
+        guard album.canPerform(.delete) else {
+          throw Self.error("E_PHOTO_LIBRARY_ALBUM_READONLY", "PhotoLibrary.deleteAlbum: album cannot be deleted")
+        }
+        PHPhotoLibrary.shared().performChanges {
+          PHAssetCollectionChangeRequest.deleteAssetCollections([album] as NSArray)
+        } completionHandler: { success, error in
+          if success {
+            promise.resolve()
+          } else {
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_ALBUM_CHANGE",
+              "PhotoLibrary.deleteAlbum: \(error?.localizedDescription ?? "Photos rejected the change")"))
+          }
+        }
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  private func changeAlbum(
+    _ identifier: String,
+    operation: String,
+    edit: PHCollectionEditOperation,
+    prepare: @escaping () throws -> (PHAssetCollectionChangeRequest) -> Void
+  ) -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      do {
+        let album = try Self.readableAlbum(identifier, operation)
+        guard album.canPerform(edit) else {
+          throw Self.error("E_PHOTO_LIBRARY_ALBUM_READONLY", "PhotoLibrary.\(operation): album cannot be edited")
+        }
+        let change = try prepare()
+        var requestCreated = false
+        PHPhotoLibrary.shared().performChanges {
+          if let request = PHAssetCollectionChangeRequest(for: album) {
+            requestCreated = true
+            change(request)
+          }
+        } completionHandler: { success, error in
+          if success && requestCreated {
+            promise.resolve()
+          } else {
+            promise.reject(withError: Self.error("E_PHOTO_LIBRARY_ALBUM_CHANGE",
+              "PhotoLibrary.\(operation): \(error?.localizedDescription ?? "Photos rejected the change")"))
+          }
+        }
       } catch {
         promise.reject(withError: error)
       }
@@ -293,6 +442,61 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
   private static var canRead: Bool {
     let status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
     return status == .authorized || status == .limited
+  }
+
+  private static func requireAlbumAccess(_ operation: String) throws {
+    guard hasReadUsageDescription else {
+      throw error("E_PHOTO_LIBRARY_MANIFEST",
+        "PhotoLibrary.\(operation): set native.app.photoLibrary.readWrite")
+    }
+    guard PHPhotoLibrary.authorizationStatus(for: .readWrite) == .authorized else {
+      throw error("E_PHOTO_LIBRARY_PERMISSION",
+        "PhotoLibrary.\(operation): full Photos read/write permission is required")
+    }
+  }
+
+  private static func validPage(_ offset: Double, _ limit: Double, _ operation: String) throws -> (offset: Int, limit: Int) {
+    guard offset.isFinite, offset >= 0, offset.rounded() == offset,
+      offset <= 1_000_000, limit.isFinite, limit > 0,
+      limit <= 100, limit.rounded() == limit else {
+      throw error("E_PHOTO_LIBRARY_INPUT",
+        "PhotoLibrary.\(operation): offset must be 0..1000000 and limit must be 1..100 integers")
+    }
+    return (Int(offset), Int(limit))
+  }
+
+  private static func assetPage(_ result: PHFetchResult<PHAsset>, _ page: (offset: Int, limit: Int)) -> PhotoLibraryAssetPage {
+    let start = min(page.offset, result.count)
+    let end = min(start + page.limit, result.count)
+    var assets: [PhotoLibraryAsset] = []
+    assets.reserveCapacity(end - start)
+    for index in start..<end { assets.append(asset(result.object(at: index))) }
+    return PhotoLibraryAssetPage(assets: assets, totalCount: Double(result.count))
+  }
+
+  private static func validAlbumTitle(_ title: String, _ operation: String) throws -> String {
+    let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
+    guard !trimmed.isEmpty, trimmed.count <= 255 else {
+      throw error("E_PHOTO_LIBRARY_INPUT", "PhotoLibrary.\(operation): title must be 1..255 characters")
+    }
+    return trimmed
+  }
+
+  private static func readableAlbum(_ identifier: String, _ operation: String) throws -> PHAssetCollection {
+    try requireAlbumAccess(operation)
+    guard !identifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+      throw error("E_PHOTO_LIBRARY_INPUT", "PhotoLibrary.\(operation): identifier is required")
+    }
+    guard let album = PHAssetCollection.fetchAssetCollections(
+      withLocalIdentifiers: [identifier], options: nil).firstObject,
+      album.assetCollectionType == .album, album.assetCollectionSubtype == .albumRegular else {
+      throw error("E_PHOTO_LIBRARY_NOT_FOUND", "PhotoLibrary.\(operation): album was not found")
+    }
+    return album
+  }
+
+  private static func album(_ value: PHAssetCollection) -> PhotoLibraryAlbum {
+    PhotoLibraryAlbum(identifier: value.localIdentifier, title: value.localizedTitle ?? "")
   }
 
   private static func readableAsset(_ identifier: String, _ operation: String) throws -> PHAsset {

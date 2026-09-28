@@ -20,6 +20,14 @@ public protocol HybridOnePhotoLibrarySpec_protocol: HybridObject {
   func presentLimitedLibraryPicker() throws -> Promise<[String]>
   func listAssets(offset: Double, limit: Double) throws -> Promise<PhotoLibraryAssetPage>
   func getAsset(identifier: String) throws -> Promise<PhotoLibraryAsset>
+  func listAlbums(offset: Double, limit: Double) throws -> Promise<PhotoLibraryAlbumPage>
+  func getAlbum(identifier: String) throws -> Promise<PhotoLibraryAlbum>
+  func createAlbum(title: String) throws -> Promise<String>
+  func renameAlbum(identifier: String, title: String) throws -> Promise<Void>
+  func listAlbumAssets(identifier: String, offset: Double, limit: Double) throws -> Promise<PhotoLibraryAssetPage>
+  func addAssetToAlbum(albumIdentifier: String, assetIdentifier: String) throws -> Promise<Void>
+  func removeAssetFromAlbum(albumIdentifier: String, assetIdentifier: String) throws -> Promise<Void>
+  func deleteAlbum(identifier: String) throws -> Promise<Void>
   func setFavorite(identifier: String, favorite: Bool) throws -> Promise<Void>
   func deleteAsset(identifier: String) throws -> Promise<Void>
   func exportOriginalAsset(identifier: String, allowNetwork: Bool) throws -> Promise<String>

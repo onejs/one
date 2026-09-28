@@ -14,6 +14,7 @@ export default function OneNativePhotoLibrary() {
   const [readResult, setReadResult] = useState('none')
   const [manageResult, setManageResult] = useState('none')
   const [limitedResult, setLimitedResult] = useState('none')
+  const [albumResult, setAlbumResult] = useState('none')
   const [savedIds, setSavedIds] = useState<string[]>([])
 
   async function run() {
@@ -261,13 +262,70 @@ export default function OneNativePhotoLibrary() {
     }
   }
 
+  async function albums() {
+    setStatus('album-checking')
+    try {
+      const [imageId, videoId] = savedIds
+      if (!imageId || !videoId) throw new Error('save the proof assets first')
+      let invalid = ''
+      try { await One.iOS.PhotoLibrary.createAlbum('   ') } catch (error) { invalid = errorCode(error) }
+      let pageError = ''
+      try { await One.iOS.PhotoLibrary.listAlbums(0, 101) } catch (error) { pageError = errorCode(error) }
+      let missing = ''
+      try { await One.iOS.PhotoLibrary.getAlbum('missing-album-id') } catch (error) { missing = errorCode(error) }
+      const albumId = await One.iOS.PhotoLibrary.createAlbum('  One proof album  ')
+      const created = await One.iOS.PhotoLibrary.getAlbum(albumId)
+      const listedPage = await One.iOS.PhotoLibrary.listAlbums(0, 100)
+      let listed = listedPage.albums.some((album) => album.identifier === albumId)
+      for (let offset = 100; offset < listedPage.totalCount && !listed; offset += 100) {
+        listed = (await One.iOS.PhotoLibrary.listAlbums(offset, 100)).albums
+          .some((album) => album.identifier === albumId)
+      }
+      await One.iOS.PhotoLibrary.addAssetToAlbum(albumId, imageId)
+      await One.iOS.PhotoLibrary.addAssetToAlbum(albumId, videoId)
+      const firstPage = await One.iOS.PhotoLibrary.listAlbumAssets(albumId, 0, 1)
+      const secondPage = await One.iOS.PhotoLibrary.listAlbumAssets(albumId, 1, 1)
+      const members = [firstPage.assets[0]?.identifier, secondPage.assets[0]?.identifier]
+      await One.iOS.PhotoLibrary.renameAlbum(albumId, 'One proof renamed')
+      const renamed = await One.iOS.PhotoLibrary.getAlbum(albumId)
+      let badTitle = ''
+      try { await One.iOS.PhotoLibrary.renameAlbum(albumId, ' ') } catch (error) { badTitle = errorCode(error) }
+      let badAsset = ''
+      try { await One.iOS.PhotoLibrary.addAssetToAlbum(albumId, 'missing-asset-id') } catch (error) { badAsset = errorCode(error) }
+      await One.iOS.PhotoLibrary.removeAssetFromAlbum(albumId, imageId)
+      const reduced = await One.iOS.PhotoLibrary.listAlbumAssets(albumId, 0, 10)
+      const imagePreserved = (await One.iOS.PhotoLibrary.getAsset(imageId)).identifier === imageId
+      setStatus('album-deleting')
+      await One.iOS.PhotoLibrary.deleteAlbum(albumId)
+      let deleted = ''
+      try { await One.iOS.PhotoLibrary.getAlbum(albumId) } catch (error) { deleted = errorCode(error) }
+      const videoPreserved = (await One.iOS.PhotoLibrary.getAsset(videoId)).identifier === videoId
+      setAlbumResult(
+        `invalid=${invalid}; page=${pageError}; missing=${missing}; ` +
+          `created=${created.identifier === albumId && created.title === 'One proof album'}; listed=${listed}; ` +
+          `added=${firstPage.totalCount === 2 && secondPage.totalCount === 2 &&
+            members.includes(imageId) && members.includes(videoId)}; ` +
+          `renamed=${renamed.title === 'One proof renamed'}; title=${badTitle}; asset=${badAsset}; ` +
+          `removed=${reduced.totalCount === 1 && reduced.assets[0]?.identifier === videoId}; ` +
+          `preserved=${imagePreserved && videoPreserved}; deleted=${deleted}`
+      )
+      setStatus('album-passed')
+    } catch (error) {
+      setStatus(`album-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
   return (
     <View style={styles.screen}>
       <Text testID="one-native-photo-library-permission">Permission: {permission}</Text>
       <Text testID="one-native-photo-library-status">Status: {status}</Text>
       <Text testID="one-native-photo-library-result">Result: {result}</Text>
       <Text testID="one-native-photo-library-read-permission">Read permission: {readPermission}</Text>
-      <Text testID="one-native-photo-library-read-result">Read result: {readResult}</Text>
+      {albumResult === 'none' ? (
+        <Text testID="one-native-photo-library-read-result">Read result: {readResult}</Text>
+      ) : (
+        <Text testID="one-native-photo-library-album-result">Album result: {albumResult}</Text>
+      )}
       <Text testID="one-native-photo-library-manage-result">Manage result: {manageResult}</Text>
       <Text testID="one-native-photo-library-limited-result">Limited result: {limitedResult}</Text>
       <Pressable testID="one-native-photo-library-run" style={styles.chip} onPress={run}>
@@ -279,6 +337,11 @@ export default function OneNativePhotoLibrary() {
       {readPermission !== 'limited' && (
         <Pressable testID="one-native-photo-library-manage" style={styles.chip} onPress={manage}>
           <Text>Favorite and delete Photos assets</Text>
+        </Pressable>
+      )}
+      {readPermission === 'authorized' && (
+        <Pressable testID="one-native-photo-library-albums" style={styles.chip} onPress={albums}>
+          <Text>Create and edit a Photos album</Text>
         </Pressable>
       )}
       {readPermission === 'notDetermined' && (

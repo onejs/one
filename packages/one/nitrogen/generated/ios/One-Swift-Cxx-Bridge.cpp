@@ -926,6 +926,22 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const PhotoLibraryAlbumPage& /* result */)>
+  Func_void_PhotoLibraryAlbumPage create_Func_void_PhotoLibraryAlbumPage(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_PhotoLibraryAlbumPage::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const PhotoLibraryAlbumPage& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const PhotoLibraryAlbum& /* result */)>
+  Func_void_PhotoLibraryAlbum create_Func_void_PhotoLibraryAlbum(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_PhotoLibraryAlbum::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const PhotoLibraryAlbum& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::shared_ptr<HybridOnePhotoLibrarySpec>
   std::shared_ptr<HybridOnePhotoLibrarySpec> create_std__shared_ptr_HybridOnePhotoLibrarySpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOnePhotoLibrarySpec_cxx swiftPart = One::HybridOnePhotoLibrarySpec_cxx::fromUnsafe(swiftUnsafePointer);

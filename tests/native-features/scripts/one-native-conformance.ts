@@ -538,7 +538,8 @@ const photoLibraryLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-photo-library-run')) ||
   (nodes.length === 1 && nodes[0]?.type === 'Application') ||
   labels(nodes).some((label) =>
-    label.includes('saving photos and videos') || label.includes('browsing photos and videos')
+    label.includes('saving photos and videos') || label.includes('browsing photos and videos') ||
+    label.includes('delete the album “One proof renamed”')
   )
 const imageManipulatorLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-image-manipulator-run')) && has(nodes, 'Status: ')
@@ -1185,10 +1186,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'notifications' || config.suite === 'speech' ||
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
-      config.suite === 'app-icon') {
+      config.suite === 'app-icon' || config.suite === 'photo-library' ||
+      config.suite === 'photo-library-limited') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
-    // to undetermined; contacts, map-services, and orientation need the freshly built native contract.
+    // to undetermined; native contract suites need the freshly built app rather than a stale install.
     if (!config.appPath)
       throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
@@ -8035,17 +8037,40 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         result.includes('exportInvalid=E_PHOTO_LIBRARY_INPUT; exportMissing=E_PHOTO_LIBRARY_NOT_FOUND')
     })
     screenshot('photo-library-assets-read.png')
+    const findLabel = (node: Node, expected: string): Node | undefined => {
+      if (node.AXLabel === expected) return node
+      for (const child of (node.children as Node[] | undefined) ?? []) {
+        const found = findLabel(child, expected)
+        if (found) return found
+      }
+    }
+    tap({ id: 'one-native-photo-library-albums' })
+    let albumDeleteFrame: Node['frame']
+    await wait('Photos confirms album deletion without deleting its assets', () => {
+      const roots = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
+      const title = roots.map((root) =>
+        findLabel(root, 'Allow “NativeFeatureTests” to delete the album “One proof renamed”?')).find(Boolean)
+      albumDeleteFrame = roots.map((root) => findLabel(root, 'Delete')).find(Boolean)?.frame
+      return Boolean(title && albumDeleteFrame)
+    })
+    screenshot('photo-library-album-delete-prompt.png')
+    if (!albumDeleteFrame) throw new Error('Photos album delete button lost its accessibility frame')
+    point(albumDeleteFrame.x + albumDeleteFrame.width / 2,
+      albumDeleteFrame.y + albumDeleteFrame.height / 2)
+    await wait('Photos album lifecycle persists and leaves assets intact', (n) =>
+      labels(n).includes('Status: album-passed') &&
+      labels(n).includes(
+        'Album result: invalid=E_PHOTO_LIBRARY_INPUT; page=E_PHOTO_LIBRARY_INPUT; ' +
+          'missing=E_PHOTO_LIBRARY_NOT_FOUND; created=true; listed=true; added=true; ' +
+          'renamed=true; title=E_PHOTO_LIBRARY_INPUT; asset=E_PHOTO_LIBRARY_NOT_FOUND; ' +
+          'removed=true; preserved=true; deleted=E_PHOTO_LIBRARY_NOT_FOUND'
+      )
+    )
+    screenshot('photo-library-album-managed.png')
     tap({ id: 'one-native-photo-library-manage' })
     let deleteFrame: Node['frame']
     await wait('Photos presents a delete confirmation for the proof video', () => {
       const roots = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
-      const findLabel = (node: Node, expected: string): Node | undefined => {
-        if (node.AXLabel === expected) return node
-        for (const child of (node.children as Node[] | undefined) ?? []) {
-          const found = findLabel(child, expected)
-          if (found) return found
-        }
-      }
       const title = roots.map((root) =>
         findLabel(root, 'Allow “NativeFeatureTests” to delete this video?')).find(Boolean)
       deleteFrame = roots.map((root) => findLabel(root, 'Delete')).find(Boolean)?.frame

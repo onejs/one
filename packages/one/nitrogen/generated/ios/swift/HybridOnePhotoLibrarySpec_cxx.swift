@@ -250,6 +250,158 @@ open class HybridOnePhotoLibrarySpec_cxx {
   }
 
   @inline(__always)
+  public final func listAlbums(offset: Double, limit: Double) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ {
+    do {
+      let __result = try self.__implementation.listAlbums(offset: offset, limit: limit)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_PhotoLibraryAlbumPage__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_PhotoLibraryAlbumPage__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_PhotoLibraryAlbumPage__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func getAlbum(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ {
+    do {
+      let __result = try self.__implementation.getAlbum(identifier: String(identifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_PhotoLibraryAlbum__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_PhotoLibraryAlbum__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_PhotoLibraryAlbum__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func createAlbum(title: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
+    do {
+      let __result = try self.__implementation.createAlbum(title: String(title))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__string__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__string__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__string__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(std.string(__result)) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func renameAlbum(identifier: std.string, title: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.renameAlbum(identifier: String(identifier), title: String(title))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func listAlbumAssets(identifier: std.string, offset: Double, limit: Double) -> bridge.Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ {
+    do {
+      let __result = try self.__implementation.listAlbumAssets(identifier: String(identifier), offset: offset, limit: limit)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_PhotoLibraryAssetPage__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_PhotoLibraryAssetPage__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_PhotoLibraryAssetPage__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func addAssetToAlbum(albumIdentifier: std.string, assetIdentifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.addAssetToAlbum(albumIdentifier: String(albumIdentifier), assetIdentifier: String(assetIdentifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func removeAssetFromAlbum(albumIdentifier: std.string, assetIdentifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.removeAssetFromAlbum(albumIdentifier: String(albumIdentifier), assetIdentifier: String(assetIdentifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
+  public final func deleteAlbum(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.deleteAlbum(identifier: String(identifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
   public final func setFavorite(identifier: std.string, favorite: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
       let __result = try self.__implementation.setFavorite(identifier: String(identifier), favorite: favorite)

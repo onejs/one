@@ -20,6 +20,10 @@ namespace margelo::nitro::one { struct PhotoLibraryAssetPage; }
 namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 // Forward declaration of `PhotoLibraryMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
+// Forward declaration of `PhotoLibraryAlbumPage` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAlbumPage; }
+// Forward declaration of `PhotoLibraryAlbum` to properly resolve imports.
+namespace margelo::nitro::one { struct PhotoLibraryAlbum; }
 
 #include "PhotoLibraryPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -29,6 +33,8 @@ namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 #include "PhotoLibraryAsset.hpp"
 #include "PhotoLibraryMediaType.hpp"
 #include <optional>
+#include "PhotoLibraryAlbumPage.hpp"
+#include "PhotoLibraryAlbum.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -130,6 +136,70 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<PhotoLibraryAsset>> getAsset(const std::string& identifier) override {
       auto __result = _swiftPart.getAsset(identifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<PhotoLibraryAlbumPage>> listAlbums(double offset, double limit) override {
+      auto __result = _swiftPart.listAlbums(std::forward<decltype(offset)>(offset), std::forward<decltype(limit)>(limit));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<PhotoLibraryAlbum>> getAlbum(const std::string& identifier) override {
+      auto __result = _swiftPart.getAlbum(identifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::string>> createAlbum(const std::string& title) override {
+      auto __result = _swiftPart.createAlbum(title);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> renameAlbum(const std::string& identifier, const std::string& title) override {
+      auto __result = _swiftPart.renameAlbum(identifier, title);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<PhotoLibraryAssetPage>> listAlbumAssets(const std::string& identifier, double offset, double limit) override {
+      auto __result = _swiftPart.listAlbumAssets(identifier, std::forward<decltype(offset)>(offset), std::forward<decltype(limit)>(limit));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> addAssetToAlbum(const std::string& albumIdentifier, const std::string& assetIdentifier) override {
+      auto __result = _swiftPart.addAssetToAlbum(albumIdentifier, assetIdentifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> removeAssetFromAlbum(const std::string& albumIdentifier, const std::string& assetIdentifier) override {
+      auto __result = _swiftPart.removeAssetFromAlbum(albumIdentifier, assetIdentifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> deleteAlbum(const std::string& identifier) override {
+      auto __result = _swiftPart.deleteAlbum(identifier);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
