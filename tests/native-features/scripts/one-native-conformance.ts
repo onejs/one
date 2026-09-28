@@ -517,7 +517,9 @@ const shareLoaded = (nodes: Node[]) =>
   nodes.some((node) => node.type === 'Application')
 const photoLibraryLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-photo-library-run')) ||
-  labels(nodes).some((label) => label.includes('saving photos and videos'))
+  labels(nodes).some((label) =>
+    label.includes('saving photos and videos') || label.includes('browsing photos and videos')
+  )
 const imageManipulatorLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-image-manipulator-run')) && has(nodes, 'Status: ')
 // the microphone and speech prompts cover the fixture during the request
@@ -1115,6 +1117,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'photo-library') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
     })
@@ -7183,6 +7189,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'location') {
+    const appContainer = execFileSync('xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
+      { encoding: 'utf8', timeout: 30_000 }).trim()
+    const modes = JSON.parse(execFileSync('xcrun', [
+      'plutil', '-extract', 'UIBackgroundModes', 'json', '-o', '-', path.join(appContainer, 'Info.plist')
+    ], { encoding: 'utf8', timeout: 30_000 })) as string[]
+    if (!modes.includes('location')) throw new Error('Installed app does not declare the location background mode')
+    console.log('PASS installed app declares location background mode')
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-location')
@@ -7246,6 +7260,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('reverse geocoding identifies San Francisco', (n) =>
       labels(n).includes('Reverse: San Francisco')
     )
+    tap({ id: 'one-native-location-background-watch' })
+    await wait('background location watch starts in foreground', (n) =>
+      labels(n).includes('Background watch: active:47.6062,-122.3321'))
+    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'], {
+      stdio: 'ignore', timeout: 30_000,
+    })
+    const settingsForeground = () => labels(snapshot(config.simulatorId)).includes('Settings')
+    const settingsDeadline = Date.now() + config.timeout
+    while (!settingsForeground() && Date.now() < settingsDeadline) {
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    if (!settingsForeground()) throw new Error('Settings did not take the foreground')
+    console.log('PASS Settings takes the foreground')
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '48.8566,2.3522'], {
+      stdio: 'ignore', timeout: 30_000,
+    })
+    const dataContainer = execFileSync('xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+      { encoding: 'utf8', timeout: 30_000 }).trim()
+    const proofFile = path.join(dataContainer, 'Documents', 'one-native-location-background-proof.txt')
+    const proofValue = () => fs.existsSync(proofFile) ? fs.readFileSync(proofFile, 'utf8') : 'missing'
+    const backgroundDeadline = Date.now() + config.timeout
+    while (proofValue() !== 'background:48.8566,2.3522' && Date.now() < backgroundDeadline) {
+      if (!settingsForeground()) throw new Error('Settings left the foreground before location callback')
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    if (proofValue() !== 'background:48.8566,2.3522' || !settingsForeground()) {
+      throw new Error(`Background location callback did not run under Settings: ${proofValue()}`)
+    }
+    console.log('PASS location callback runs while Settings is foreground')
+    screenshot('location-background-settings.png')
+    launchApp()
+    await wait('background location arrives while Settings is foreground', (n) =>
+      labels(n).includes('Background watch: background:48.8566,2.3522'))
+    screenshot('location-background-returned.png')
+    tap({ id: 'one-native-location-stop-background-watch' })
+    await wait('background location watch stops', (n) =>
+      labels(n).includes('Background watch: stopped'))
     screenshot('location-current-position.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -7491,6 +7543,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('photo-library-assets-saved.png')
+    await wait('Photos read permission starts undetermined', (n) =>
+      labels(n).includes('Read permission: notDetermined')
+    )
+    tap({ id: 'one-native-photo-library-read' })
+    await wait('Photos read permission prompt opens', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.'))
+    )
+    screenshot('photo-library-read-prompt.png')
+    tap({ label: 'Allow Full Access' })
+    await wait('Photos lists and reads the saved assets', (n) => {
+      const result = labels(n).find((label) => label.startsWith('Read result: ')) ?? ''
+      return labels(n).includes('Status: read-passed') &&
+        labels(n).includes('Read permission: authorized') &&
+        result.includes('before=E_PHOTO_LIBRARY_PERMISSION; getBefore=E_PHOTO_LIBRARY_PERMISSION; exportBefore=E_PHOTO_LIBRARY_PERMISSION; permission=authorized;') &&
+        result.includes('listed=true; image=true; video=true;') &&
+        result.includes('invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND; originalImage=true; originalVideo=true;') &&
+        result.includes('imageExt=.heic; videoExt=.mp4;') &&
+        result.includes('exportInvalid=E_PHOTO_LIBRARY_INPUT; exportMissing=E_PHOTO_LIBRARY_NOT_FOUND')
+    })
+    screenshot('photo-library-assets-read.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

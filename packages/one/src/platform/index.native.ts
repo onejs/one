@@ -186,7 +186,9 @@ export { Open } from './open/index.native'
 export type { OpenShareContent } from './open/index.native'
 export type { ShareItem, ShareItemType, ShareResult } from './share/index.native'
 export { PhotoLibrary } from './photo-library/index.native'
-export type { PhotoLibraryPermissionStatus } from './photo-library/index.native'
+export type {
+  PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus,
+} from './photo-library/index.native'
 export { AppTracking } from './app-tracking/index.native'
 export type { AppTrackingPermissionStatus } from './app-tracking/index.native'
 export { ImageManipulator } from './image-manipulator/index.native'

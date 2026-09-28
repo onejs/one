@@ -1873,9 +1873,13 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       if (app.ios?.widgets) {
         stamps.push('\t<key>NSSupportsLiveActivities</key>\n\t<true/>')
       }
-      if (app.pictureInPicture || app.audio?.background) {
+      const backgroundModes = [
+        ...(app.pictureInPicture || app.audio?.background ? ['audio'] : []),
+        ...(app.location?.background ? ['location'] : []),
+      ]
+      if (backgroundModes.length) {
         stamps.push(
-          '\t<key>UIBackgroundModes</key>\n\t<array>\n\t\t<string>audio</string>\n\t</array>'
+          `\t<key>UIBackgroundModes</key>\n\t<array>\n${backgroundModes.map((mode) => `\t\t<string>${mode}</string>`).join('\n')}\n\t</array>`
         )
       }
       if (app.updates !== undefined) {
@@ -2252,7 +2256,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         usage.set('NSCameraUsageDescription', app.imagePicker.camera)
       }
       if (app.photoLibrary !== undefined) {
-        usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
+        if (app.photoLibrary.addOnly !== undefined) {
+          usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)
+        }
+        if (app.photoLibrary.readWrite !== undefined) {
+          usage.set('NSPhotoLibraryUsageDescription', app.photoLibrary.readWrite)
+        }
       }
       if (app.contacts !== undefined) {
         usage.set('NSContactsUsageDescription', app.contacts.usage)
@@ -2302,6 +2311,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
           `${additions.map(([key, text]) => `\t<key>${key}</key>\n\t<string>${escapeXml(text)}</string>\n`).join('')}${anchor}`
         )
       }
+      // the template ships an empty location purpose string; an empty one is
+      // never valid, so a key the manifest did not fill leaves the plist.
+      rendered = rendered.replace(
+        /\t<key>NS\w+UsageDescription<\/key>\s*<string><\/string>\n/g,
+        ''
+      )
       rendered = patchIosInfoPlistSceneManifest(rendered)
     }
     if (platform === 'ios' && relativePath.endsWith('/AppDelegate.swift')) {
