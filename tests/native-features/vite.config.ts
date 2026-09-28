@@ -113,6 +113,32 @@ function fetchConformanceEndpoints(): Plugin {
   }
 }
 
+type NativeOptions = NonNullable<Parameters<typeof one>[0]>['native']
+
+const nativeBundler = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
+  ? ({ bundler: 'vite' } satisfies NativeOptions)
+  : ({
+      bundler: 'metro',
+      bundlerOptions: {
+        defaultConfigOverrides: (config) => {
+          if (!config) throw new Error('Metro default config is required')
+          const resolveRequest = config.resolver?.resolveRequest
+          return {
+            ...config,
+            resolver: {
+              ...config.resolver,
+              resolveRequest: (context, moduleName, platform) =>
+                (resolveRequest ?? context.resolveRequest)(
+                  context,
+                  nativeWebgpuTarget(moduleName) ?? moduleName,
+                  platform
+                ),
+            },
+          }
+        },
+      },
+    } satisfies NativeOptions)
+
 export default defineConfig({
   plugins: [
     one({
@@ -199,24 +225,7 @@ export default defineConfig({
             googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
           },
         },
-        bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
-        bundlerOptions: {
-          defaultConfigOverrides: (config) => {
-            const resolveRequest = config.resolver?.resolveRequest
-            return {
-              ...config,
-              resolver: {
-                ...config.resolver,
-                resolveRequest: (context, moduleName, platform) =>
-                  (resolveRequest ?? context.resolveRequest)(
-                    context,
-                    nativeWebgpuTarget(moduleName) ?? moduleName,
-                    platform
-                  ),
-              },
-            }
-          },
-        },
+        ...nativeBundler,
       },
       router: {
         linking: {
