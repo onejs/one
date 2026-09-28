@@ -120,6 +120,14 @@ objects into its process to prove One receives `began` and `ended`, reports
 that Simulator does not simulate most audio-session interactions across processes. Cross-app arbitration,
 physical accessory route changes, and background policy need device proof.
 
+`audio-remote` starts a local WAV, calls Now Playing metadata setup and update
+through Nitro, checks the native state, title, and artwork errors, clears the
+metadata, and proves playback continues. It does not read back system metadata.
+The iOS 27 simulator reported an active `MPNowPlayingSession` in a disposable
+diagnostic build, but Control Center had no media tile and Lock Screen showed no
+track. The cause is unconfirmed. Visible system controls, tile removal, and
+remote command callbacks need device proof.
+
 `share` covers `One.iOS.Share` on an iOS 27 simulator. It opens the system
 share sheet with text and a URL, then opens it again with a real cache file.
 A second request rejects while the first sheet is open. Copy completes the

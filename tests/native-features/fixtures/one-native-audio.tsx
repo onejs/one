@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { AppState, Pressable, StyleSheet, Text, View } from 'react-native'
+import { AppState, Pressable, ScrollView, StyleSheet, Text } from 'react-native'
 import { One } from 'one'
 
 const pause = (durationMs: number) => new Promise((resolve) => setTimeout(resolve, durationMs))
@@ -10,16 +10,23 @@ export default function OneNativeAudio() {
   const [background, setBackground] = useState('idle')
   const [interruption, setInterruption] = useState('idle')
   const [interruptionPlayback, setInterruptionPlayback] = useState('none')
+  const [remote, setRemote] = useState('idle')
+  const [remotePlayback, setRemotePlayback] = useState('none')
+  const [remoteEvents, setRemoteEvents] = useState('none')
+  const [remoteErrors, setRemoteErrors] = useState('none')
   const backgroundResult = useRef<{
     state: string; start: number; advanced: number; elapsed: number
   } | null>(null)
   const backgroundSubscription = useRef<ReturnType<typeof AppState.addEventListener> | null>(null)
   const interruptionSubscription = useRef<(() => void) | null>(null)
   const interruptionEvents = useRef<string[]>([])
+  const remoteSubscription = useRef<(() => void) | null>(null)
+  const remotePlaybackChecks = useRef(0)
 
   useEffect(() => () => {
     backgroundSubscription.current?.remove()
     interruptionSubscription.current?.()
+    remoteSubscription.current?.()
   }, [])
 
   async function writeBackgroundClip() {
@@ -118,6 +125,75 @@ export default function OneNativeAudio() {
       setInterruptionPlayback(playback.state)
     } catch (error) {
       setInterruptionPlayback(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  async function prepareRemotePlayback() {
+    remoteSubscription.current?.()
+    remoteSubscription.current = null
+    setRemote('preparing')
+    setRemoteEvents('none')
+    setRemoteErrors('none')
+    remotePlaybackChecks.current = 0
+    try {
+      const audio = One.iOS.Audio
+      await audio.stop()
+      let stateError = ''
+      try {
+        await audio.setNowPlayingInfo({ title: 'No player' })
+      } catch (error) {
+        if (error && typeof error === 'object' && 'code' in error) stateError = String(error.code)
+      }
+      await audio.play(await writeBackgroundClip())
+      let playback = await audio.getPlaybackStatus()
+      const deadline = Date.now() + 5000
+      while (Date.now() < deadline && playback.state !== 'playing') {
+        await pause(100)
+        playback = await audio.getPlaybackStatus()
+      }
+      if (playback.state !== 'playing') throw new Error(`clip did not start: ${playback.state}`)
+      await audio.setNowPlayingInfo({ title: 'One Remote Proof', artist: 'Native Fixture' })
+      await audio.setNowPlayingInfo({
+        title: 'One Remote Proof Updated', artist: 'Native Fixture', albumTitle: 'Conformance',
+      })
+      let titleError = ''
+      try {
+        await audio.setNowPlayingInfo({ title: '   ' })
+      } catch (error) {
+        if (error && typeof error === 'object' && 'code' in error) titleError = String(error.code)
+      }
+      let artworkError = ''
+      try {
+        await audio.setNowPlayingInfo({ title: 'One Remote Proof', artworkUri: 'file:///missing-artwork.png' })
+      } catch (error) {
+        if (error && typeof error === 'object' && 'code' in error) artworkError = String(error.code)
+      }
+      setRemoteErrors(`${stateError},${titleError},${artworkError}`)
+      remoteSubscription.current = audio.watchRemoteCommands((event) => {
+        setRemoteEvents(`${event.type}:${Math.round(event.positionMs ?? -1)}`)
+      })
+      setRemote('ready')
+    } catch (error) {
+      setRemote(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  async function checkRemotePlayback() {
+    try {
+      const playback = await One.iOS.Audio.getPlaybackStatus()
+      remotePlaybackChecks.current += 1
+      setRemotePlayback(`${playback.state}:${remotePlaybackChecks.current}`)
+    } catch (error) {
+      setRemotePlayback(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
+  async function clearRemotePlayback() {
+    try {
+      await One.iOS.Audio.clearNowPlayingInfo()
+      setRemote('cleared')
+    } catch (error) {
+      setRemote(`error: ${error instanceof Error ? error.message : String(error)}`)
     }
   }
 
@@ -243,7 +319,7 @@ export default function OneNativeAudio() {
   }
 
   return (
-    <View style={styles.screen}>
+    <ScrollView contentContainerStyle={styles.screen}>
       <Text testID="one-native-audio-status">Status: {status}</Text>
       <Text testID="one-native-audio-result">Result: {result}</Text>
       <Pressable testID="one-native-audio-run" style={styles.chip} onPress={run}>
@@ -264,11 +340,24 @@ export default function OneNativeAudio() {
       <Pressable testID="one-native-audio-interruption-check" style={styles.chip} onPress={checkInterruptionPlayback}>
         <Text>Check interruption playback</Text>
       </Pressable>
-    </View>
+      <Text testID="one-native-audio-remote">Remote: {remote}</Text>
+      <Pressable testID="one-native-audio-remote-start" style={styles.chip} onPress={prepareRemotePlayback}>
+        <Text>Start remote playback</Text>
+      </Pressable>
+      <Text testID="one-native-audio-remote-events">Remote event: {remoteEvents}</Text>
+      <Text testID="one-native-audio-remote-errors">Remote errors: {remoteErrors}</Text>
+      <Text testID="one-native-audio-remote-playback">Remote playback: {remotePlayback}</Text>
+      <Pressable testID="one-native-audio-remote-check" style={styles.chip} onPress={checkRemotePlayback}>
+        <Text>Check remote playback</Text>
+      </Pressable>
+      <Pressable testID="one-native-audio-remote-clear" style={styles.chip} onPress={clearRemotePlayback}>
+        <Text>Clear remote controls</Text>
+      </Pressable>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 16, gap: 12 },
+  screen: { padding: 16, paddingBottom: 180, gap: 12 },
   chip: { padding: 12, backgroundColor: '#eee', borderRadius: 8 },
 })

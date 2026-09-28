@@ -28,6 +28,12 @@ namespace margelo::nitro::one { struct AudioRecordingResult; }
 namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 // Forward declaration of `AudioInterruptionType` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioInterruptionType; }
+// Forward declaration of `AudioNowPlayingInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
+// Forward declaration of `AudioRemoteCommandEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
+// Forward declaration of `AudioRemoteCommandType` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 
 #include "AudioRecordingPermission.hpp"
 #include <NitroModules/Promise.hpp>
@@ -41,6 +47,9 @@ namespace margelo::nitro::one { enum class AudioInterruptionType; }
 #include <functional>
 #include "AudioInterruptionEvent.hpp"
 #include "AudioInterruptionType.hpp"
+#include "AudioNowPlayingInfo.hpp"
+#include "AudioRemoteCommandEvent.hpp"
+#include "AudioRemoteCommandType.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -88,7 +97,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-    
+
 
   public:
     // Methods
@@ -198,6 +207,30 @@ namespace margelo::nitro::one {
     }
     inline std::function<void()> addInterruptionListener(const std::function<void(const AudioInterruptionEvent& /* event */)>& onEvent) override {
       auto __result = _swiftPart.addInterruptionListener(onEvent);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> setNowPlayingInfo(const AudioNowPlayingInfo& info) override {
+      auto __result = _swiftPart.setNowPlayingInfo(std::forward<decltype(info)>(info));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> clearNowPlayingInfo() override {
+      auto __result = _swiftPart.clearNowPlayingInfo();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::function<void()> addRemoteCommandListener(const std::function<void(const AudioRemoteCommandEvent& /* event */)>& onEvent) override {
+      auto __result = _swiftPart.addRemoteCommandListener(onEvent);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

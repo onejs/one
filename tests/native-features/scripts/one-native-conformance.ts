@@ -90,6 +90,7 @@ const suites = [
   'file-system',
   'audio',
   'audio-interruption',
+  'audio-remote',
   'audio-background',
   'share',
   'photo-library',
@@ -647,6 +648,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
   'audio-interruption': audioLoaded,
+  'audio-remote': audioLoaded,
   'audio-background': audioLoaded,
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
@@ -728,6 +730,7 @@ const suiteHome: Record<Suite, string> = {
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
   'audio-interruption': 'nav-one-native-audio',
+  'audio-remote': 'nav-one-native-audio',
   'audio-background': 'nav-one-native-audio',
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
@@ -7208,6 +7211,39 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('native interruption ended notification reaches One', (n) =>
       labels(n).includes('Interruption: began:false,ended:true'))
     screenshot('audio-interruption.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'audio-remote') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-audio')
+    axe(['swipe', '--start-x', '200', '--start-y', '730', '--end-x', '200',
+      '--end-y', '250', '--duration', '0.5'], config.simulatorId)
+    await wait('audio remote fixture starts idle', (n) =>
+      labels(n).includes('Remote: idle') &&
+      (id(n, 'one-native-audio-remote-start')?.frame?.y ?? 1000) < 800)
+    tap({ id: 'one-native-audio-remote-start' })
+    await wait('now playing metadata and errors are returned by Nitro', (n) =>
+      labels(n).includes('Remote: ready') &&
+      labels(n).includes(
+        'Remote errors: E_AUDIO_STATE,E_AUDIO_METADATA,E_AUDIO_ARTWORK'))
+    axe(['swipe', '--start-x', '200', '--start-y', '730', '--end-x', '200',
+      '--end-y', '230', '--duration', '0.5'], config.simulatorId)
+    await wait('remote playback controls are visible', (n) =>
+      (id(n, 'one-native-audio-remote-check')?.frame?.y ?? 1000) < 700 &&
+      (id(n, 'one-native-audio-remote-clear')?.frame?.y ?? 1000) < 700)
+    tap({ id: 'one-native-audio-remote-check' })
+    await wait('metadata setup did not stop playback', (n) =>
+      labels(n).includes('Remote playback: playing:1'))
+    screenshot('audio-remote-configured.png')
+    tap({ id: 'one-native-audio-remote-clear' })
+    await wait('remote metadata clears without stopping playback', (n) =>
+      labels(n).includes('Remote: cleared'))
+    tap({ id: 'one-native-audio-remote-check' })
+    await wait('playback continues after remote metadata clears', (n) =>
+      labels(n).includes('Remote playback: playing:2'))
+    screenshot('audio-remote-cleared.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
