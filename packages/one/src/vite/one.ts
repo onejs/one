@@ -911,6 +911,20 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         : (nativeOptions?.bundlerOptions as any)
 
     globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => [
+      ...(nativeApp
+        ? [
+            {
+              name: 'one:externalize-expo-for-native-app',
+              resolveId(source) {
+                // native.app binaries have no expo runtime, even when the
+                // workspace hoists an expo package used by another app.
+                if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
+                  return { id: source, external: true }
+                }
+              },
+            } satisfies Plugin,
+          ]
+        : []),
       createAliasPlugin(withAbsorbedAliases(options.alias), platform),
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
       ...(viteBundlerOptions?.plugins ?? []),
