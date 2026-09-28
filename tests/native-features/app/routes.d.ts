@@ -38,6 +38,7 @@ declare module 'one' {
         | `/one-native-android-selection`
         | `/one-native-android-surface`
         | `/one-native-app-info`
+        | `/one-native-screen-orientation`
         | `/one-native-apple-auth`
         | `/one-native-app-tracking`
         | `/one-native-apple-file`

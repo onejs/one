@@ -50,6 +50,7 @@ const suites = [
   'crypto',
   'app-info',
   'device',
+  'screen-orientation',
   'database',
   'contacts',
   'calendar',
@@ -214,8 +215,10 @@ function snapshot(simulatorId: string): Node[] {
       throw error
     }
   }
-  const center = probe(frame.width / 2, frame.height / 2)
-  const banner = probe(frame.width / 2, 80)
+  // axe point probes keep portrait-based x coordinates after the scene rotates.
+  const probeX = Math.min(frame.width, frame.height) / 2
+  const center = probe(probeX, frame.height / 2)
+  const banner = probe(probeX, 80)
   const foreign = (node: Node) => node.pid !== undefined && node.pid !== app.pid
   // axe also repeats a text's run as a second node with the same type,
   // label, and frame; one element is one node.
@@ -374,6 +377,9 @@ const deviceLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-device-read')) &&
   has(nodes, 'Model: ')
+const screenOrientationLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-orientation-read')) &&
+  has(nodes, 'Orientation: ')
 const contactsLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-contacts-run')) ||
   labels(nodes).some((label) => label.includes('NativeFeatureTests verifies contact access.')) ||
@@ -636,6 +642,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
   device: deviceLoaded,
+  'screen-orientation': screenOrientationLoaded,
   database: databaseLoaded,
   contacts: contactsLoaded,
   calendar: calendarLoaded,
@@ -725,6 +732,7 @@ const suiteHome: Record<Suite, string> = {
   crypto: 'nav-one-native-crypto',
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
+  'screen-orientation': 'nav-one-native-screen-orientation',
   database: 'nav-one-native-database',
   contacts: 'nav-one-native-contacts',
   calendar: 'nav-one-native-calendar',
@@ -1169,10 +1177,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'notifications' || config.suite === 'speech' ||
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
-      config.suite === 'contacts') {
+      config.suite === 'contacts' || config.suite === 'screen-orientation') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
-    // to undetermined; contacts and map-services need the freshly built native contract.
+    // to undetermined; contacts, map-services, and orientation need the freshly built native contract.
     if (!config.appPath)
       throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
@@ -3189,6 +3197,50 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     })
     screenshot('device-info.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'screen-orientation') {
+    const dimensions = (nodes: Node[]) => {
+      const label = labels(nodes).find((item) => item.startsWith('Dimensions: '))
+      const match = label && /^Dimensions: (\d+)x(\d+)$/.exec(label)
+      return match ? { width: Number(match[1]), height: Number(match[2]) } : undefined
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-screen-orientation')
+    await wait('orientation fixture starts without events', (n) =>
+      labels(n).includes('Orientation: pending') && labels(n).includes('Events: none')
+    )
+    tap({ id: 'one-native-orientation-read' })
+    await wait('scene starts in portrait', (n) => {
+      const size = dimensions(n)
+      return labels(n).includes('Orientation: portrait') && labels(n).includes('Status: read') &&
+        Boolean(size && size.width < size.height)
+    })
+    screenshot('screen-orientation-portrait-initial.png')
+    tap({ id: 'one-native-orientation-landscape' })
+    await wait('scene rotates left and emits an event', (n) => {
+      const size = dimensions(n)
+      return labels(n).includes('Orientation: landscapeLeft') &&
+        labels(n).includes('Status: locked-landscapeLeft') &&
+        labels(n).includes('Events: landscapeLeft') &&
+        Boolean(size && size.width > size.height)
+    })
+    screenshot('screen-orientation-landscape.png')
+    tap({ id: 'one-native-orientation-portrait' })
+    await wait('scene returns to portrait and emits another event', (n) => {
+      const size = dimensions(n)
+      return labels(n).includes('Orientation: portrait') &&
+        labels(n).includes('Status: locked-portrait') &&
+        labels(n).includes('Events: landscapeLeft,portrait') &&
+        Boolean(size && size.width < size.height)
+    })
+    tap({ id: 'one-native-orientation-unlock' })
+    await wait('unlock returns the current orientation', (n) =>
+      labels(n).includes('Orientation: portrait') && labels(n).includes('Status: unlocked')
+    )
+    screenshot('screen-orientation-unlocked.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
