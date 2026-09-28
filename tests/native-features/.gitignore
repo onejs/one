@@ -49,3 +49,8 @@ fail-snapshot.json
 !proofs/control-size/*.png
 !proofs/control-size/*.webp
 !proofs/control-size/outcome.json
+
+# Reviewed iOS 27 SwiftUI AngularGradient runtime evidence.
+!proofs/angular-gradient/*.png
+!proofs/angular-gradient/*.webp
+!proofs/angular-gradient/outcome.json

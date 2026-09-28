@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 756
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 8301
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 3091
+    },
+    {
+      "name": "home lists nav-one-native-angular-gradient",
+      "durationMs": 3406
+    },
+    {
+      "name": "nav-one-native-angular-gradient settles",
+      "durationMs": 3213
+    },
+    {
+      "name": "native angular gradient mounts",
+      "durationMs": 3011
+    },
+    {
+      "name": "labeled angular gradient accessible; unlabeled gradient decorative",
+      "durationMs": 0
+    },
+    {
+      "name": "React supplies angular gradient rotated state",
+      "durationMs": 1238
+    },
+    {
+      "name": "React supplies angular gradient moved state",
+      "durationMs": 1273
+    },
+    {
+      "name": "React supplies angular gradient reversed state",
+      "durationMs": 1051
+    },
+    {
+      "name": "React supplies angular gradient three state",
+      "durationMs": 1049
+    },
+    {
+      "name": "React supplies angular gradient single state",
+      "durationMs": 1261
+    },
+    {
+      "name": "React supplies angular gradient alpha state",
+      "durationMs": 1033
+    },
+    {
+      "name": "React supplies angular gradient empty state",
+      "durationMs": 1007
+    },
+    {
+      "name": "native angular gradient rotates, moves its center, and reverses colors",
+      "durationMs": 0
+    },
+    {
+      "name": "native angular gradient renders one and three colors, alpha, and empty colors",
+      "durationMs": 0
+    }
+  ],
+  "durationMs": 71674,
+  "simulatorId": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "angular-gradient"
+}
