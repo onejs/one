@@ -1,3 +1,9 @@
+// core-js 3.47.0's make-built-in patches Function.prototype.toString with a
+// fallback to inspect-source. metro inline requires can defer inspect-source
+// until that fallback runs, when it captures the patched method and recurses.
+// evaluate inspect-source before another polyfill can load make-built-in.
+import 'core-js/internals/inspect-source'
+
 // --------------- global -------------------
 // for react-navigation/native NavigationContainer
 

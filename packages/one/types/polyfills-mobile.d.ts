@@ -1,3 +1,4 @@
+import 'core-js/internals/inspect-source';
 import 'web-streams-polyfill/polyfill/es5';
 import '@azure/core-asynciterator-polyfill';
 import 'core-js/actual/url';
