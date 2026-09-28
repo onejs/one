@@ -102,15 +102,18 @@ private struct MeshGradientContent: View {
         points.count % meshWidth == 0,
         points.count / meshWidth == meshHeight,
         let background = oneNativeMeshGradientColor(model.background) {
-        MeshGradient(
-          width: meshWidth,
-          height: meshHeight,
-          points: points,
-          colors: model.colors.compactMap(oneNativeMeshGradientColor),
-          background: background,
-          smoothsColors: model.smoothsColors,
-          colorSpace: model.colorSpace == "perceptual" ? .perceptual : .device
-        )
+        GeometryReader { geometry in
+          MeshGradient(
+            width: meshWidth,
+            height: meshHeight,
+            points: points,
+            colors: model.colors.compactMap(oneNativeMeshGradientColor),
+            background: background,
+            smoothsColors: model.smoothsColors,
+            colorSpace: model.colorSpace == "perceptual" ? .perceptual : .device
+          )
+          .frame(width: geometry.size.width, height: geometry.size.height)
+        }
       } else {
         Color.clear
       }
