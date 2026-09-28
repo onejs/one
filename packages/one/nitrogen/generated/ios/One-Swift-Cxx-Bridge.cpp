@@ -36,6 +36,7 @@
 #include "HybridOneNotificationsSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
+#include "HybridOnePurchasesSpecSwift.hpp"
 #include "HybridOneScreenCaptureSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
@@ -972,6 +973,54 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneProtectedStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const std::vector<PurchaseProduct>& /* result */)>
+  Func_void_std__vector_PurchaseProduct_ create_Func_void_std__vector_PurchaseProduct_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_PurchaseProduct_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<PurchaseProduct>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const PurchaseResult& /* result */)>
+  Func_void_PurchaseResult create_Func_void_PurchaseResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_PurchaseResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const PurchaseResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const std::vector<PurchaseTransaction>& /* result */)>
+  Func_void_std__vector_PurchaseTransaction_ create_Func_void_std__vector_PurchaseTransaction_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_PurchaseTransaction_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<PurchaseTransaction>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const PurchaseUpdate& /* update */)>
+  Func_void_PurchaseUpdate create_Func_void_PurchaseUpdate(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_PurchaseUpdate::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const PurchaseUpdate& update) mutable -> void {
+      swiftClosure.call(update);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOnePurchasesSpec>
+  std::shared_ptr<HybridOnePurchasesSpec> create_std__shared_ptr_HybridOnePurchasesSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOnePurchasesSpec_cxx swiftPart = One::HybridOnePurchasesSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOnePurchasesSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOnePurchasesSpec_(std__shared_ptr_HybridOnePurchasesSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOnePurchasesSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOnePurchasesSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOnePurchasesSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOnePurchasesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

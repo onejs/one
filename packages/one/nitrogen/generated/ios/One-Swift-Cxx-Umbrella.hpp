@@ -178,6 +178,8 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
+// Forward declaration of `HybridOnePurchasesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOnePurchasesSpec; }
 // Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
@@ -292,6 +294,20 @@ namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
 // Forward declaration of `ProtectedStorePolicy` to properly resolve imports.
 namespace margelo::nitro::one { enum class ProtectedStorePolicy; }
+// Forward declaration of `PurchaseProductType` to properly resolve imports.
+namespace margelo::nitro::one { enum class PurchaseProductType; }
+// Forward declaration of `PurchaseProduct` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseProduct; }
+// Forward declaration of `PurchaseResult` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseResult; }
+// Forward declaration of `PurchaseStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class PurchaseStatus; }
+// Forward declaration of `PurchaseTransaction` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseTransaction; }
+// Forward declaration of `PurchaseUpdateStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class PurchaseUpdateStatus; }
+// Forward declaration of `PurchaseUpdate` to properly resolve imports.
+namespace margelo::nitro::one { struct PurchaseUpdate; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ReminderInput` to properly resolve imports.
@@ -415,6 +431,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
+#include "HybridOnePurchasesSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -472,6 +489,13 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
 #include "ProtectedStorePolicy.hpp"
+#include "PurchaseProduct.hpp"
+#include "PurchaseProductType.hpp"
+#include "PurchaseResult.hpp"
+#include "PurchaseStatus.hpp"
+#include "PurchaseTransaction.hpp"
+#include "PurchaseUpdate.hpp"
+#include "PurchaseUpdateStatus.hpp"
 #include "ReminderInfo.hpp"
 #include "ReminderInput.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
@@ -567,6 +591,8 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
+// Forward declaration of `HybridOnePurchasesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOnePurchasesSpec_cxx; }
 // Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.

@@ -29,9 +29,9 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (LocationPermissionStatus).
    */
   enum class LocationPermissionStatus {
-    DENIED      SWIFT_NAME(denied) = 0,
-    NOTDETERMINED      SWIFT_NAME(notdetermined) = 1,
-    RESTRICTED      SWIFT_NAME(restricted) = 2,
+    NOTDETERMINED      SWIFT_NAME(notdetermined) = 0,
+    RESTRICTED      SWIFT_NAME(restricted) = 1,
+    DENIED      SWIFT_NAME(denied) = 2,
     WHENINUSE      SWIFT_NAME(wheninuse) = 3,
     ALWAYS      SWIFT_NAME(always) = 4,
   } CLOSED_ENUM;
@@ -46,9 +46,9 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::LocationPermissionStatus fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("denied"): return margelo::nitro::one::LocationPermissionStatus::DENIED;
         case hashString("notDetermined"): return margelo::nitro::one::LocationPermissionStatus::NOTDETERMINED;
         case hashString("restricted"): return margelo::nitro::one::LocationPermissionStatus::RESTRICTED;
+        case hashString("denied"): return margelo::nitro::one::LocationPermissionStatus::DENIED;
         case hashString("whenInUse"): return margelo::nitro::one::LocationPermissionStatus::WHENINUSE;
         case hashString("always"): return margelo::nitro::one::LocationPermissionStatus::ALWAYS;
         default: [[unlikely]]
@@ -57,9 +57,9 @@ namespace margelo::nitro {
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::LocationPermissionStatus arg) {
       switch (arg) {
-        case margelo::nitro::one::LocationPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::LocationPermissionStatus::NOTDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "notDetermined");
         case margelo::nitro::one::LocationPermissionStatus::RESTRICTED: return JSIConverter<std::string>::toJSI(runtime, "restricted");
+        case margelo::nitro::one::LocationPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::LocationPermissionStatus::WHENINUSE: return JSIConverter<std::string>::toJSI(runtime, "whenInUse");
         case margelo::nitro::one::LocationPermissionStatus::ALWAYS: return JSIConverter<std::string>::toJSI(runtime, "always");
         default: [[unlikely]]
@@ -73,9 +73,9 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("denied"):
         case hashString("notDetermined"):
         case hashString("restricted"):
+        case hashString("denied"):
         case hashString("whenInUse"):
         case hashString("always"):
           return true;

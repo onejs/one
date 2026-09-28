@@ -114,6 +114,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.AppIcon` | app-icon | n/a |  |
 | `One.iOS.ScreenOrientation` | screen-orientation | n/a |  |
 | `One.iOS.ScreenCapture` | screen-capture | n/a |  |
+| `One.iOS.Purchases` | purchases | n/a |  |
 | `One.iOS.ImageManipulator` | image-manipulator | n/a |  |
 | `One.iOS.Device` | device | n/a |  |
 | `One.iOS.Contacts` | contacts | n/a |  |

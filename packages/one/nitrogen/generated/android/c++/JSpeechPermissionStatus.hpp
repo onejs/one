@@ -42,15 +42,15 @@ namespace margelo::nitro::one {
     static jni::alias_ref<JSpeechPermissionStatus> fromCpp(SpeechPermissionStatus value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
+        case SpeechPermissionStatus::DENIED:
+          static const auto fieldDENIED = clazz->getStaticField<JSpeechPermissionStatus>("DENIED");
+          return clazz->getStaticFieldValue(fieldDENIED);
         case SpeechPermissionStatus::UNDETERMINED:
           static const auto fieldUNDETERMINED = clazz->getStaticField<JSpeechPermissionStatus>("UNDETERMINED");
           return clazz->getStaticFieldValue(fieldUNDETERMINED);
         case SpeechPermissionStatus::GRANTED:
           static const auto fieldGRANTED = clazz->getStaticField<JSpeechPermissionStatus>("GRANTED");
           return clazz->getStaticFieldValue(fieldGRANTED);
-        case SpeechPermissionStatus::DENIED:
-          static const auto fieldDENIED = clazz->getStaticField<JSpeechPermissionStatus>("DENIED");
-          return clazz->getStaticFieldValue(fieldDENIED);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

@@ -20,6 +20,7 @@ import {
   AppIcon,
   ScreenOrientation,
   ScreenCapture,
+  Purchases,
   ImageManipulator,
   Device,
   Contacts,
@@ -80,6 +81,7 @@ export type OneIOS = typeof Swift & {
   readonly AppIcon: typeof AppIcon
   readonly ScreenOrientation: typeof ScreenOrientation
   readonly ScreenCapture: typeof ScreenCapture
+  readonly Purchases: typeof Purchases
   readonly ImageManipulator: typeof ImageManipulator
   readonly Device: typeof Device
   readonly Contacts: typeof Contacts
@@ -168,6 +170,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   AppIcon,
   ScreenOrientation,
   ScreenCapture,
+  Purchases,
   ImageManipulator,
   Device,
   Contacts,

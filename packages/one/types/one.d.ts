@@ -1,4 +1,4 @@
-import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, ImageManipulator, Device, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
+import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, Purchases, ImageManipulator, Device, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -18,6 +18,7 @@ export type OneIOS = typeof Swift & {
     readonly AppIcon: typeof AppIcon;
     readonly ScreenOrientation: typeof ScreenOrientation;
     readonly ScreenCapture: typeof ScreenCapture;
+    readonly Purchases: typeof Purchases;
     readonly ImageManipulator: typeof ImageManipulator;
     readonly Device: typeof Device;
     readonly Contacts: typeof Contacts;

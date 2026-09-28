@@ -45,6 +45,8 @@ export { ScreenOrientation } from './screen-orientation/index';
 export type { ScreenOrientationLock, ScreenOrientationValue } from './screen-orientation/index';
 export { ScreenCapture } from './screen-capture/index';
 export type { ScreenCaptureState } from './screen-capture/index';
+export { Purchases } from './purchases/index';
+export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from './purchases/index';
 export { ImageManipulator } from './image-manipulator/index';
 export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult } from './image-manipulator/index';
 export { Device } from './device/index';

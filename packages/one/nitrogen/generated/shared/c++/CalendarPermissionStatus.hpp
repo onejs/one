@@ -29,9 +29,9 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (CalendarPermissionStatus).
    */
   enum class CalendarPermissionStatus {
-    DENIED      SWIFT_NAME(denied) = 0,
-    NOTDETERMINED      SWIFT_NAME(notdetermined) = 1,
-    RESTRICTED      SWIFT_NAME(restricted) = 2,
+    NOTDETERMINED      SWIFT_NAME(notdetermined) = 0,
+    RESTRICTED      SWIFT_NAME(restricted) = 1,
+    DENIED      SWIFT_NAME(denied) = 2,
     WRITEONLY      SWIFT_NAME(writeonly) = 3,
     FULLACCESS      SWIFT_NAME(fullaccess) = 4,
   } CLOSED_ENUM;
@@ -46,9 +46,9 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::CalendarPermissionStatus fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("denied"): return margelo::nitro::one::CalendarPermissionStatus::DENIED;
         case hashString("notDetermined"): return margelo::nitro::one::CalendarPermissionStatus::NOTDETERMINED;
         case hashString("restricted"): return margelo::nitro::one::CalendarPermissionStatus::RESTRICTED;
+        case hashString("denied"): return margelo::nitro::one::CalendarPermissionStatus::DENIED;
         case hashString("writeOnly"): return margelo::nitro::one::CalendarPermissionStatus::WRITEONLY;
         case hashString("fullAccess"): return margelo::nitro::one::CalendarPermissionStatus::FULLACCESS;
         default: [[unlikely]]
@@ -57,9 +57,9 @@ namespace margelo::nitro {
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::CalendarPermissionStatus arg) {
       switch (arg) {
-        case margelo::nitro::one::CalendarPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::CalendarPermissionStatus::NOTDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "notDetermined");
         case margelo::nitro::one::CalendarPermissionStatus::RESTRICTED: return JSIConverter<std::string>::toJSI(runtime, "restricted");
+        case margelo::nitro::one::CalendarPermissionStatus::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::CalendarPermissionStatus::WRITEONLY: return JSIConverter<std::string>::toJSI(runtime, "writeOnly");
         case margelo::nitro::one::CalendarPermissionStatus::FULLACCESS: return JSIConverter<std::string>::toJSI(runtime, "fullAccess");
         default: [[unlikely]]
@@ -73,9 +73,9 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("denied"):
         case hashString("notDetermined"):
         case hashString("restricted"):
+        case hashString("denied"):
         case hashString("writeOnly"):
         case hashString("fullAccess"):
           return true;

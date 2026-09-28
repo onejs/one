@@ -17,12 +17,12 @@ public extension CalendarPermissionStatus {
    */
   init?(fromString string: String) {
     switch string {
-      case "denied":
-        self = .denied
       case "notDetermined":
         self = .notdetermined
       case "restricted":
         self = .restricted
+      case "denied":
+        self = .denied
       case "writeOnly":
         self = .writeonly
       case "fullAccess":
@@ -37,12 +37,12 @@ public extension CalendarPermissionStatus {
    */
   var stringValue: String {
     switch self {
-      case .denied:
-        return "denied"
       case .notdetermined:
         return "notDetermined"
       case .restricted:
         return "restricted"
+      case .denied:
+        return "denied"
       case .writeonly:
         return "writeOnly"
       case .fullaccess:

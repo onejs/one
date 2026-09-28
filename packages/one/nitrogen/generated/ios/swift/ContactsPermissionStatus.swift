@@ -19,12 +19,12 @@ public extension ContactsPermissionStatus {
     switch string {
       case "authorized":
         self = .authorized
-      case "denied":
-        self = .denied
       case "notDetermined":
         self = .notdetermined
       case "restricted":
         self = .restricted
+      case "denied":
+        self = .denied
       case "limited":
         self = .limited
       default:
@@ -39,12 +39,12 @@ public extension ContactsPermissionStatus {
     switch self {
       case .authorized:
         return "authorized"
-      case .denied:
-        return "denied"
       case .notdetermined:
         return "notDetermined"
       case .restricted:
         return "restricted"
+      case .denied:
+        return "denied"
       case .limited:
         return "limited"
     }

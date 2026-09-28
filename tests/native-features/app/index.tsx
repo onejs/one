@@ -361,6 +361,11 @@ const testScreens = [
     testID: 'nav-one-native-screen-capture',
   },
   {
+    href: '/one-native-purchases',
+    label: 'One Native Purchases',
+    testID: 'nav-one-native-purchases',
+  },
+  {
     href: '/one-native-launch-screen',
     label: 'One Native Launch Screen',
     testID: 'nav-one-native-launch-screen',

@@ -29,9 +29,9 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (AudioRecordingPermission).
    */
   enum class AudioRecordingPermission {
-    UNDETERMINED      SWIFT_NAME(undetermined) = 0,
-    GRANTED      SWIFT_NAME(granted) = 1,
-    DENIED      SWIFT_NAME(denied) = 2,
+    DENIED      SWIFT_NAME(denied) = 0,
+    UNDETERMINED      SWIFT_NAME(undetermined) = 1,
+    GRANTED      SWIFT_NAME(granted) = 2,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::one
@@ -44,18 +44,18 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::AudioRecordingPermission fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
+        case hashString("denied"): return margelo::nitro::one::AudioRecordingPermission::DENIED;
         case hashString("undetermined"): return margelo::nitro::one::AudioRecordingPermission::UNDETERMINED;
         case hashString("granted"): return margelo::nitro::one::AudioRecordingPermission::GRANTED;
-        case hashString("denied"): return margelo::nitro::one::AudioRecordingPermission::DENIED;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum AudioRecordingPermission - invalid value!");
       }
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::AudioRecordingPermission arg) {
       switch (arg) {
+        case margelo::nitro::one::AudioRecordingPermission::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         case margelo::nitro::one::AudioRecordingPermission::UNDETERMINED: return JSIConverter<std::string>::toJSI(runtime, "undetermined");
         case margelo::nitro::one::AudioRecordingPermission::GRANTED: return JSIConverter<std::string>::toJSI(runtime, "granted");
-        case margelo::nitro::one::AudioRecordingPermission::DENIED: return JSIConverter<std::string>::toJSI(runtime, "denied");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert AudioRecordingPermission to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -67,9 +67,9 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
+        case hashString("denied"):
         case hashString("undetermined"):
         case hashString("granted"):
-        case hashString("denied"):
           return true;
         default:
           return false;

@@ -39,6 +39,7 @@
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneScreenCaptureSpecSwift.hpp"
+#include "HybridOnePurchasesSpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneMapServicesSpecSwift.hpp"
@@ -254,6 +255,13 @@
     "OneScreenCapture",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneScreenCaptureSpec> hybridObject = One::OneAutolinking::createOneScreenCapture();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OnePurchases",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOnePurchasesSpec> hybridObject = One::OneAutolinking::createOnePurchases();
       return hybridObject;
     }
   );

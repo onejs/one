@@ -112,6 +112,9 @@
     "OneScreenCapture": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneScreenCapture" }
     },
+    "OnePurchases": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOnePurchases" }
+    },
     "OneContacts": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneContacts" }
     },
