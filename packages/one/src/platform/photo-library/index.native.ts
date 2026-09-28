@@ -92,8 +92,20 @@ function deleteAsset(identifier: string): Promise<void> {
   return native().deleteAsset(identifier).catch(rethrowNativeError)
 }
 
+function replaceImageContent(identifier: string, uri: string): Promise<void> {
+  return native().replaceImageContent(identifier, uri).catch(rethrowNativeError)
+}
+
+function revertAssetContent(identifier: string): Promise<void> {
+  return native().revertAssetContent(identifier).catch(rethrowNativeError)
+}
+
 function exportOriginalAsset(identifier: string, allowNetwork = false): Promise<string> {
   return native().exportOriginalAsset(identifier, allowNetwork).catch(rethrowNativeError)
+}
+
+function exportCurrentImage(identifier: string, allowNetwork = false): Promise<string> {
+  return native().exportCurrentImage(identifier, allowNetwork).catch(rethrowNativeError)
 }
 
 function saveImage(uri: string): Promise<string> {
@@ -122,7 +134,10 @@ export const PhotoLibrary = Object.freeze({
   deleteAlbum,
   setFavorite,
   deleteAsset,
+  replaceImageContent,
+  revertAssetContent,
   exportOriginalAsset,
+  exportCurrentImage,
   saveImage,
   saveVideo,
 })

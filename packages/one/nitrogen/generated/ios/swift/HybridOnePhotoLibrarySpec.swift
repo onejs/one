@@ -30,7 +30,10 @@ public protocol HybridOnePhotoLibrarySpec_protocol: HybridObject {
   func deleteAlbum(identifier: String) throws -> Promise<Void>
   func setFavorite(identifier: String, favorite: Bool) throws -> Promise<Void>
   func deleteAsset(identifier: String) throws -> Promise<Void>
+  func replaceImageContent(identifier: String, uri: String) throws -> Promise<Void>
+  func revertAssetContent(identifier: String) throws -> Promise<Void>
   func exportOriginalAsset(identifier: String, allowNetwork: Bool) throws -> Promise<String>
+  func exportCurrentImage(identifier: String, allowNetwork: Bool) throws -> Promise<String>
   func saveImage(uri: String) throws -> Promise<String>
   func saveVideo(uri: String) throws -> Promise<String>
 }

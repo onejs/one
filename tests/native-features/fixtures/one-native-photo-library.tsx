@@ -13,6 +13,7 @@ export default function OneNativePhotoLibrary() {
   const [result, setResult] = useState('none')
   const [readResult, setReadResult] = useState('none')
   const [manageResult, setManageResult] = useState('none')
+  const [editResult, setEditResult] = useState('none')
   const [limitedResult, setLimitedResult] = useState('none')
   const [albumResult, setAlbumResult] = useState('none')
   const [savedIds, setSavedIds] = useState<string[]>([])
@@ -218,6 +219,86 @@ export default function OneNativePhotoLibrary() {
     }
   }
 
+  async function editImage() {
+    setStatus('edit-checking')
+    let transformedUri = ''
+    let currentUri = ''
+    let originalUri = ''
+    let restoredCurrentUri = ''
+    let decodedCurrentUri = ''
+    let decodedRestoredUri = ''
+    try {
+      const [imageId, videoId] = savedIds
+      if (!imageId || !videoId) throw new Error('save the proof assets first')
+      const source = One.iOS.FileSystem.getDirectories().cache + 'one-native-photo-library.heic'
+      const transformed = await One.iOS.ImageManipulator.transform(source, {
+        format: 'jpeg', resize: { width: 60 },
+      })
+      transformedUri = transformed.uri
+      const before = await One.iOS.PhotoLibrary.getAsset(imageId)
+      let invalid = ''
+      try { await One.iOS.PhotoLibrary.replaceImageContent(' ', transformed.uri) }
+      catch (error) { invalid = errorCode(error) }
+      let video = ''
+      try { await One.iOS.PhotoLibrary.replaceImageContent(videoId, transformed.uri) }
+      catch (error) { video = errorCode(error) }
+      let uri = ''
+      try { await One.iOS.PhotoLibrary.replaceImageContent(imageId, 'https://onestack.dev/edit.jpg') }
+      catch (error) { uri = errorCode(error) }
+      let format = ''
+      try { await One.iOS.PhotoLibrary.replaceImageContent(imageId, source) }
+      catch (error) { format = errorCode(error) }
+      let currentVideo = ''
+      try { await One.iOS.PhotoLibrary.exportCurrentImage(videoId) }
+      catch (error) { currentVideo = errorCode(error) }
+      setStatus('edit-applying')
+      await One.iOS.PhotoLibrary.replaceImageContent(imageId, transformed.uri)
+      const edited = await One.iOS.PhotoLibrary.getAsset(imageId)
+      currentUri = await One.iOS.PhotoLibrary.exportCurrentImage(imageId)
+      originalUri = await One.iOS.PhotoLibrary.exportOriginalAsset(imageId)
+      const current = await One.iOS.FileSystem.getInfo(currentUri)
+      const decodedCurrent = await One.iOS.ImageManipulator.transform(currentUri, { format: 'png' })
+      decodedCurrentUri = decodedCurrent.uri
+      const originalBytes = new Uint8Array(await (await fetch(originalUri)).arrayBuffer())
+      const sourceBytes = new Uint8Array(await (await fetch(source)).arrayBuffer())
+      const rendered = current.exists && typeof current.size === 'number' && current.size > 0 &&
+        currentUri.endsWith('.jpeg') && decodedCurrent.width === 60 && decodedCurrent.height === 90
+      const originalKept = originalUri.endsWith('.heic') &&
+        originalBytes.length === sourceBytes.length &&
+        originalBytes.every((byte, index) => byte === sourceBytes[index])
+      await One.iOS.FileSystem.delete(currentUri)
+      currentUri = ''
+      await One.iOS.FileSystem.delete(originalUri)
+      originalUri = ''
+      setStatus('edit-reverting')
+      await One.iOS.PhotoLibrary.revertAssetContent(imageId)
+      const restored = await One.iOS.PhotoLibrary.getAsset(imageId)
+      restoredCurrentUri = await One.iOS.PhotoLibrary.exportCurrentImage(imageId)
+      const decodedRestored = await One.iOS.ImageManipulator.transform(restoredCurrentUri, { format: 'png' })
+      decodedRestoredUri = decodedRestored.uri
+      let missing = ''
+      try { await One.iOS.PhotoLibrary.revertAssetContent('missing-asset-id') }
+      catch (error) { missing = errorCode(error) }
+      setEditResult(
+        `invalid=${invalid}; video=${video}; uri=${uri}; format=${format}; currentVideo=${currentVideo}; ` +
+        `before=${before.width}x${before.height}; edited=${edited.width}x${edited.height}; ` +
+        `rendered=${rendered}; originalKept=${originalKept}; ` +
+        `restored=${restored.width}x${restored.height}; restoredBytes=${
+          decodedRestored.width === 80 && decodedRestored.height === 120}; missing=${missing}`
+      )
+      setStatus('edit-passed')
+    } catch (error) {
+      setStatus(`edit-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+    } finally {
+      if (currentUri) await One.iOS.FileSystem.delete(currentUri)
+      if (originalUri) await One.iOS.FileSystem.delete(originalUri)
+      if (restoredCurrentUri) await One.iOS.FileSystem.delete(restoredCurrentUri)
+      if (decodedCurrentUri) await One.iOS.FileSystem.delete(decodedCurrentUri)
+      if (decodedRestoredUri) await One.iOS.FileSystem.delete(decodedRestoredUri)
+      if (transformedUri) await One.iOS.FileSystem.delete(transformedUri)
+    }
+  }
+
   async function requestLimited() {
     setStatus('limited-requesting')
     try {
@@ -321,10 +402,12 @@ export default function OneNativePhotoLibrary() {
       <Text testID="one-native-photo-library-status">Status: {status}</Text>
       <Text testID="one-native-photo-library-result">Result: {result}</Text>
       <Text testID="one-native-photo-library-read-permission">Read permission: {readPermission}</Text>
-      {albumResult === 'none' ? (
-        <Text testID="one-native-photo-library-read-result">Read result: {readResult}</Text>
-      ) : (
+      {albumResult !== 'none' ? (
         <Text testID="one-native-photo-library-album-result">Album result: {albumResult}</Text>
+      ) : editResult !== 'none' ? (
+        <Text testID="one-native-photo-library-edit-result">Edit result: {editResult}</Text>
+      ) : (
+        <Text testID="one-native-photo-library-read-result">Read result: {readResult}</Text>
       )}
       <Text testID="one-native-photo-library-manage-result">Manage result: {manageResult}</Text>
       <Text testID="one-native-photo-library-limited-result">Limited result: {limitedResult}</Text>
@@ -337,6 +420,11 @@ export default function OneNativePhotoLibrary() {
       {readPermission !== 'limited' && (
         <Pressable testID="one-native-photo-library-manage" style={styles.chip} onPress={manage}>
           <Text>Favorite and delete Photos assets</Text>
+        </Pressable>
+      )}
+      {readPermission === 'authorized' && (
+        <Pressable testID="one-native-photo-library-edit" style={styles.chip} onPress={editImage}>
+          <Text>Replace and revert a Photos image</Text>
         </Pressable>
       )}
       {readPermission === 'authorized' && (
@@ -359,6 +447,6 @@ export default function OneNativePhotoLibrary() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 16, gap: 12 },
+  screen: { flex: 1, padding: 16, gap: 12, backgroundColor: '#fff' },
   chip: { padding: 12, backgroundColor: '#eee', borderRadius: 8 },
 })
