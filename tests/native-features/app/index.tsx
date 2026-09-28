@@ -592,6 +592,11 @@ const testScreens = [
     label: 'One Native Keep Awake',
     testID: 'nav-one-native-keep-awake',
   },
+  {
+    href: '/one-native-print',
+    label: 'One Native Print',
+    testID: 'nav-one-native-print',
+  },
 ] as const
 
 export default function HomeScreen() {

@@ -10,6 +10,7 @@ import {
   ProtectedStore,
   Preferences,
   KeepAwake,
+  Print,
   Location,
   FileSystem,
   Audio,
@@ -77,6 +78,7 @@ export type OneIOS = typeof Swift & {
   readonly ProtectedStore: typeof ProtectedStore
   readonly Preferences: typeof Preferences
   readonly KeepAwake: typeof KeepAwake
+  readonly Print: typeof Print
   readonly Location: typeof Location
   readonly FileSystem: typeof FileSystem
   readonly Audio: typeof Audio
@@ -171,6 +173,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   ProtectedStore,
   Preferences,
   KeepAwake,
+  Print,
   Location,
   FileSystem,
   Audio,
