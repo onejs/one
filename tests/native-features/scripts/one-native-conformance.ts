@@ -1149,10 +1149,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     })
   }
   if (config.suite === 'notifications' || config.suite === 'speech' ||
-      config.suite === 'app-tracking' || config.suite === 'map-services') {
+      config.suite === 'app-tracking' || config.suite === 'map-services' ||
+      config.suite === 'contacts') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
-    // to undetermined; map-services needs the freshly built Nitro registration.
+    // to undetermined; contacts and map-services need the freshly built native contract.
     if (!config.appPath)
       throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
@@ -3207,6 +3208,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Permission: authorized') &&
       labels(n).includes(
         'Result: before=E_CONTACTS_PERMISSION; blankCreate=E_CONTACTS_INPUT; matched=true; edited=true; partial=true; removed=true; missingDelete=E_CONTACTS_NOT_FOUND; notFound=E_CONTACTS_NOT_FOUND; invalidUpdate=E_CONTACTS_INPUT; invalid=E_CONTACTS_INPUT'
+      ) && labels(n).includes(
+        'Address: created=true; edited=true; preserved=true; cleared=true; invalid=E_CONTACTS_INPUT'
       )
     )
     screenshot('contacts-round-trip.png')

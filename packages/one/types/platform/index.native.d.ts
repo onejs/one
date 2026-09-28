@@ -153,7 +153,7 @@ export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, Imag
 export { Device } from './device/index.native';
 export type { DeviceInfo, LocalizationInfo } from './device/index.native';
 export { Contacts } from './contacts/index.native';
-export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index.native';
+export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from './contacts/index.native';
 export { Calendar } from './calendar/index.native';
 export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index.native';
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native';

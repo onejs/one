@@ -7,12 +7,37 @@ export type ContactsPermissionStatus =
   | 'authorized'
   | 'limited'
 
+export interface ContactPostalAddress {
+  label: string
+  street: string
+  subLocality: string
+  city: string
+  subAdministrativeArea: string
+  state: string
+  postalCode: string
+  country: string
+  isoCountryCode: string
+}
+
+export interface ContactPostalAddressInput {
+  label?: string
+  street?: string
+  subLocality?: string
+  city?: string
+  subAdministrativeArea?: string
+  state?: string
+  postalCode?: string
+  country?: string
+  isoCountryCode?: string
+}
+
 export interface ContactInfo {
   identifier: string
   givenName: string
   familyName: string
   phoneNumbers: string[]
   emailAddresses: string[]
+  postalAddresses: ContactPostalAddress[]
 }
 
 export interface ContactInput {
@@ -20,6 +45,7 @@ export interface ContactInput {
   familyName: string
   phoneNumbers: string[]
   emailAddresses: string[]
+  postalAddresses?: ContactPostalAddressInput[]
 }
 
 export interface ContactChanges {
@@ -27,6 +53,7 @@ export interface ContactChanges {
   familyName?: string
   phoneNumbers?: string[]
   emailAddresses?: string[]
+  postalAddresses?: ContactPostalAddressInput[]
 }
 
 export interface OneContacts extends HybridObject<{ ios: 'swift' }> {

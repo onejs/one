@@ -5,11 +5,13 @@ import type {
   ContactChanges,
   ContactInfo,
   ContactInput,
+  ContactPostalAddress,
+  ContactPostalAddressInput,
   ContactsPermissionStatus,
   OneContacts,
 } from '../specs/OneContacts.nitro'
 
-export type { ContactChanges, ContactInfo, ContactInput, ContactsPermissionStatus }
+export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus }
 
 let hybrid: OneContacts | undefined
 

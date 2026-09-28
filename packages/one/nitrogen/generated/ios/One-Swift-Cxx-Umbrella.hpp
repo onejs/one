@@ -80,6 +80,10 @@ namespace margelo::nitro::one { struct ContactChanges; }
 namespace margelo::nitro::one { struct ContactInfo; }
 // Forward declaration of `ContactInput` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInput; }
+// Forward declaration of `ContactPostalAddressInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddressInput; }
+// Forward declaration of `ContactPostalAddress` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
@@ -340,6 +344,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactChanges.hpp"
 #include "ContactInfo.hpp"
 #include "ContactInput.hpp"
+#include "ContactPostalAddress.hpp"
+#include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
 #include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"

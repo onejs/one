@@ -68,6 +68,10 @@ namespace margelo::nitro::one { struct CameraPermissionResponse; }
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 // Forward declaration of `ContactInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInfo; }
+// Forward declaration of `ContactPostalAddressInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddressInput; }
+// Forward declaration of `ContactPostalAddress` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
@@ -349,6 +353,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 #include "ContactInfo.hpp"
+#include "ContactPostalAddress.hpp"
+#include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
 #include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
@@ -1673,6 +1679,17 @@ namespace margelo::nitro::one::bridge::swift {
     return vector;
   }
 
+  // pragma MARK: std::vector<ContactPostalAddress>
+  /**
+   * Specialized version of `std::vector<ContactPostalAddress>`.
+   */
+  using std__vector_ContactPostalAddress_ = std::vector<ContactPostalAddress>;
+  inline std::vector<ContactPostalAddress> create_std__vector_ContactPostalAddress_(size_t size) noexcept {
+    std::vector<ContactPostalAddress> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
   // pragma MARK: std::vector<ContactInfo>
   /**
    * Specialized version of `std::vector<ContactInfo>`.
@@ -1716,6 +1733,32 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_std__vector_ContactInfo_ create_Func_void_std__vector_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_std__vector_ContactInfo__Wrapper wrap_Func_void_std__vector_ContactInfo_(Func_void_std__vector_ContactInfo_ value) noexcept {
     return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<ContactPostalAddressInput>
+  /**
+   * Specialized version of `std::vector<ContactPostalAddressInput>`.
+   */
+  using std__vector_ContactPostalAddressInput_ = std::vector<ContactPostalAddressInput>;
+  inline std::vector<ContactPostalAddressInput> create_std__vector_ContactPostalAddressInput_(size_t size) noexcept {
+    std::vector<ContactPostalAddressInput> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::optional<std::vector<ContactPostalAddressInput>>
+  /**
+   * Specialized version of `std::optional<std::vector<ContactPostalAddressInput>>`.
+   */
+  using std__optional_std__vector_ContactPostalAddressInput__ = std::optional<std::vector<ContactPostalAddressInput>>;
+  inline std::optional<std::vector<ContactPostalAddressInput>> create_std__optional_std__vector_ContactPostalAddressInput__(const std::vector<ContactPostalAddressInput>& value) noexcept {
+    return std::optional<std::vector<ContactPostalAddressInput>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<ContactPostalAddressInput> get_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
+    return optional.value();
   }
 
   // pragma MARK: std::shared_ptr<Promise<ContactInfo>>
