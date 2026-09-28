@@ -70,7 +70,7 @@ checklist; One's own exports and docs decide the status.
 | Native date/picker/slider/pager controls | covered | `One.iOS.DatePicker`, `Picker`, `Slider`, `Pager` | pickers, tabs-menu | done |
 | Gesture and animation packages | partial | gesture-handler and Reanimated are package peers; no One-specific conformance | none | P2 |
 | Vector drawing and view snapshots | missing | no One SVG/Skia drawing or view-shot capture API | none | P3 |
-| Splash | partial | launch storyboard and first-content hold; no imperative hide API | prebuild only | P2 |
+| Splash | covered | `One.LaunchScreen` first-content hold, synchronous `preventAutoHide()` at module evaluation, and `hide()` with optional iOS fade | RAN iOS 27 launch-screen: storyboard remained over rendered home content, JS link called hide and revealed fixture, second hide safe; normal setup without preventAutoHide failed held-state gate | done |
 | Status bar | partial | React Native StatusBar, no One facade | none | P3 |
 | Safe area | covered | `One.UI.SafeArea` | safe-area | done |
 | Device identity | covered | `One.AppInfo` binary ID; `One.iOS.Device` model, OS, idiom, simulator, vendor ID | app-info, device | done |

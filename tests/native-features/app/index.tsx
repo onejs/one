@@ -360,6 +360,11 @@ const testScreens = [
     label: 'One Native Screen Capture',
     testID: 'nav-one-native-screen-capture',
   },
+  {
+    href: '/one-native-launch-screen',
+    label: 'One Native Launch Screen',
+    testID: 'nav-one-native-launch-screen',
+  },
   { href: '/one-native', label: 'One Native', testID: 'nav-one-native' },
   {
     href: '/one-native-autogen',

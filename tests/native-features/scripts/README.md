@@ -47,6 +47,17 @@ bun tests/native-features/scripts/one-native-conformance.ts \
 
 `--simulator-udid` is accepted as an alias. Unknown arguments and invalid values fail, including an unknown suite. A failed stop is accepted only when its error explicitly says that the named app is not running.
 
+`launch-screen` runs against an iOS 27 native app with One's launch hold in
+the app delegate. Start the fixture dev server with
+`ONE_NATIVE_LAUNCH_SCREEN_PROOF=1 bun run dev --port 8081`, then pass the
+current `NativeFeatureTests.app` with `--app-path`. The proof setup module
+calls `One.LaunchScreen.preventAutoHide()` before the first render. The suite
+requires the storyboard labels to remain over an already rendered home route,
+opens `nativefeatures:///one-native-launch-screen?launch-screen-proof=hide`
+to call `hide()` in JS, requires the fixture to appear, then calls `hide()`
+again. The default fixture setup is the negative control: the storyboard
+footer is absent after first content and the held-state gate fails.
+
 Before home navigation and native tab taps, the runner waits for stable bounds and dismisses any observed development warning overlay and asserts it is gone. The overlay can cover the target while its accessibility node remains present.
 
 The runner drives the simulator with the [axe](https://github.com/cameroncooke/AXe) cli on `PATH` (`describe-ui`, `touch`, `swipe`, `key`, `type`) and `xcrun simctl` (`launch`, `terminate`, `io … screenshot`). Use axe 1.8 or later on Xcode 27; `xcodebuildmcp` 2.7 bundles it under `libexec/bundled/axe`. Screenshot failures fail the run.
