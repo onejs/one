@@ -5159,12 +5159,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'menu-picker') {
+    const pixelEvidence: Record<string, Record<string, number>> = {}
     const shows = (nodes: Node[], selected: string, requested: string, count: number) =>
       has(nodes, `Selected: ${selected}`) &&
       has(nodes, `Requested: ${requested}`) &&
       has(nodes, `Picker events: ${count}`)
     const options = (nodes: Node[]) =>
       ['Small', 'Large', 'Automatic'].every((label) => labels(nodes).includes(label))
+    const checkSelection = (name: string, selected: string, nodes: Node[], imagePath: string) => {
+      const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame?.width
+      if (!viewportWidth) throw new Error('Picker capture has no application width')
+      const image = readPng(imagePath)
+      const scores: Record<string, number> = {}
+      for (const label of ['Small', 'Large', 'Automatic']) {
+        const option = nodes.find((node) => node.type === 'Button' && node.AXLabel === label)
+        if (!option?.frame) throw new Error(`Picker option ${label} has no button frame`)
+        scores[label] = countMatchingPixels(
+          extractCrop(image, {
+            x: option.frame.x + 4,
+            y: option.frame.y + 9,
+            width: 24,
+            height: 24,
+            viewportWidth,
+          }),
+          (r, g, b) => r < 80 && g < 80 && b < 80
+        )
+      }
+      pixelEvidence[name] = scores
+      if (scores[selected] < 80 || Object.entries(scores).some(([label, ink]) => label !== selected && ink > 10))
+        throw new Error(`${name} native checkmark does not identify ${selected}: ${JSON.stringify(scores)}`)
+      checks.push({ name, durationMs: 0 })
+      console.log(`PASS ${name}`)
+    }
+    const dismissPicker = async () => {
+      const app = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+      if (!app) throw new Error('Picker menu has no application frame')
+      point(app.x + app.width - 10, app.y + app.height - 100)
+      await wait('Picker menu dismissed', (nodes) => !options(nodes) && !labels(nodes).includes('Size'))
+    }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-menu-picker')
@@ -5180,12 +5212,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('menu-picker-outer.png', outer)
     tap({ label: 'Size' })
     const opened = await wait('Picker opens native options submenu', options)
-    screenshot('menu-picker-options.png', opened)
+    checkSelection('initial native Picker checkmark marks Small', 'Small', opened, screenshot('menu-picker-options.png', opened))
     tap({ label: 'Large' })
     const selected = await wait('Picker selection reaches React', (nodes) =>
       shows(nodes, 'large', 'large', 1) && has(nodes, 'Other action: none')
     )
     screenshot('menu-picker-selected.png', selected)
+    tap({ id: 'one-native-menu-picker-menu' })
+    await wait('accepted Picker row reopens', (nodes) => labels(nodes).includes('Size'))
+    tap({ label: 'Size' })
+    const acceptedOptions = await wait('accepted Picker options reopen', options)
+    checkSelection('accepted native Picker checkmark marks Large', 'Large', acceptedOptions, screenshot('menu-picker-accepted-options.png', acceptedOptions))
+    await dismissPicker()
     tap({ label: 'Toggle rejection' })
     await wait('Picker rejection enabled', (nodes) => has(nodes, 'Reject: on'))
     tap({ id: 'one-native-menu-picker-menu' })
@@ -5197,11 +5235,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       shows(nodes, 'large', 'automatic', 2) && has(nodes, 'Reject: on')
     )
     screenshot('menu-picker-rejected.png', rejected)
+    tap({ id: 'one-native-menu-picker-menu' })
+    await wait('rejected Picker row reopens', (nodes) => labels(nodes).includes('Size'))
+    tap({ label: 'Size' })
+    const rejectedOptions = await wait('rejected Picker options reopen', options)
+    checkSelection('rejected native Picker checkmark remains Large', 'Large', rejectedOptions, screenshot('menu-picker-rejected-options.png', rejectedOptions))
+    await dismissPicker()
     tap({ label: 'Reset picker' })
     const reset = await wait('Picker revision resets selection', (nodes) =>
       shows(nodes, 'small', 'none', 2)
     )
     screenshot('menu-picker-reset.png', reset)
+    tap({ id: 'one-native-menu-picker-menu' })
+    await wait('reset Picker row reopens', (nodes) => labels(nodes).includes('Size'))
+    tap({ label: 'Size' })
+    const resetOptions = await wait('reset Picker options reopen', options)
+    checkSelection('reset native Picker checkmark marks Small', 'Small', resetOptions, screenshot('menu-picker-reset-options.png', resetOptions))
+    fs.writeFileSync(path.join(config.artifactDir, 'menu-picker-pixels.json'), JSON.stringify(pixelEvidence, null, 2))
     return
   }
   if (config.suite === 'menu-primary-action') {
