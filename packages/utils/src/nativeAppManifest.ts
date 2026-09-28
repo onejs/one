@@ -534,7 +534,10 @@ export function expoClientFromNativeApp(app: NativeAppManifest) {
     scheme: app.scheme,
     version: app.version,
     orientation: app.orientation,
-    userInterfaceStyle: app.userInterfaceStyle,
+    // an expo config without the key means light, while prebuild writes no
+    // UIUserInterfaceStyle for an unset style and the app follows the system,
+    // so the manifest states the style the built app has.
+    userInterfaceStyle: app.userInterfaceStyle ?? 'automatic',
     icon: app.icon?.source,
     splash: app.splash && {
       image: app.splash.source,
