@@ -1,0 +1,61 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 954
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 12001
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2500
+    },
+    {
+      "name": "home lists nav-one-native-menu-primary-action",
+      "durationMs": 2315
+    },
+    {
+      "name": "nav-one-native-menu-primary-action settles",
+      "durationMs": 5115
+    },
+    {
+      "name": "Menu primary action fixture mounted",
+      "durationMs": 2122
+    },
+    {
+      "name": "short tap runs primary action without opening menu",
+      "durationMs": 2152
+    },
+    {
+      "name": "long press opens native menu without primary action",
+      "durationMs": 2325
+    },
+    {
+      "name": "native menu item reaches its separate callback",
+      "durationMs": 2215
+    },
+    {
+      "name": "native menu becomes disabled",
+      "durationMs": 2114
+    },
+    {
+      "name": "disabled Menu rejects short and long press",
+      "durationMs": 700
+    },
+    {
+      "name": "Menu re-enabled",
+      "durationMs": 2126
+    },
+    {
+      "name": "primary action works again after enabling",
+      "durationMs": 2141
+    }
+  ],
+  "durationMs": 136373,
+  "simulatorId": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "menu-primary-action"
+}
