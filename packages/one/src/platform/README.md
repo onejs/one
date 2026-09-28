@@ -660,6 +660,14 @@ The iOS 27 iPhone 17 Pro proof covers the full-circle angle, center movement,
 reversed colors, one and three colors, alpha, and empty input. Other iOS
 versions remain unproven.
 
+`One.iOS.EllipticalGradient` uses SwiftUI's
+`EllipticalGradient(colors:center:startRadiusFraction:endRadiusFraction:)`.
+`center` is a normalized `{ x, y }` point defaulting to the box center.
+The radius fractions default to 0 and 0.5 and stretch their circular
+coordinate space into the assigned layout box. It accepts sRGB hex colors,
+and an unlabeled view is decorative. Explicit stops and arbitrary SwiftUI
+`Color` values are unbound.
+
 `Circle`, `Capsule`, `Rectangle`, `RoundedRectangle`, `ConcentricRectangle`, and `Ellipse` are SwiftUI's
 shapes, one control each, named as SwiftUI names them. A shape has no ideal size
 of its own, so it takes the `width` and `height` React Native gives it, and `fill`

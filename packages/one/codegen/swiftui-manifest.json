@@ -17765,6 +17765,7 @@
         "Circle",
         "ConcentricRectangle",
         "Ellipse",
+        "EllipticalGradient",
         "EmptyView",
         "Image",
         "LinearGradient",
@@ -19632,6 +19633,36 @@
         }
       ],
       "ios": 13
+    },
+    {
+      "module": "SwiftUICore",
+      "type": "EllipticalGradient",
+      "parameters": [
+        {
+          "label": "colors",
+          "name": "colors",
+          "type": "[SwiftUICore.Color]"
+        },
+        {
+          "defaultValue": ".center",
+          "label": "center",
+          "name": "center",
+          "type": "SwiftUICore.UnitPoint"
+        },
+        {
+          "defaultValue": "0",
+          "label": "startRadiusFraction",
+          "name": "startRadiusFraction",
+          "type": "CoreFoundation.CGFloat"
+        },
+        {
+          "defaultValue": "0.5",
+          "label": "endRadiusFraction",
+          "name": "endRadiusFraction",
+          "type": "CoreFoundation.CGFloat"
+        }
+      ],
+      "ios": 15
     },
     {
       "module": "SwiftUICore",

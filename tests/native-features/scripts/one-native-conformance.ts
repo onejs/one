@@ -64,6 +64,7 @@ const suites = [
   'linear-gradient',
   'radial-gradient',
   'angular-gradient',
+  'elliptical-gradient',
   'horizontal-inset',
   'horizontal-bar',
   'swipe-actions',
@@ -415,6 +416,9 @@ const radialGradientLoaded = (nodes: Node[]) =>
 const angularGradientLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-angular-gradient-screen'))
+const ellipticalGradientLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-elliptical-gradient-screen'))
 const horizontalInsetLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-horizontal-inset-screen'))
@@ -633,6 +637,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'linear-gradient': linearGradientLoaded,
   'radial-gradient': radialGradientLoaded,
   'angular-gradient': angularGradientLoaded,
+  'elliptical-gradient': ellipticalGradientLoaded,
   'horizontal-inset': horizontalInsetLoaded,
   'horizontal-bar': horizontalBarLoaded,
   'swipe-actions': swipeActionsLoaded,
@@ -718,6 +723,7 @@ const suiteHome: Record<Suite, string> = {
   'linear-gradient': 'nav-one-native-linear-gradient',
   'radial-gradient': 'nav-one-native-radial-gradient',
   'angular-gradient': 'nav-one-native-angular-gradient',
+  'elliptical-gradient': 'nav-one-native-elliptical-gradient',
   'horizontal-inset': 'nav-one-native-horizontal-inset',
   'horizontal-bar': 'nav-one-native-horizontal-bar',
   'swipe-actions': 'nav-one-native-swipe-actions',
@@ -3698,6 +3704,99 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     checks.push({ name: 'native angular gradient rotates, moves its center, and reverses colors', durationMs: 0 })
     checks.push({ name: 'native angular gradient renders one and three colors, alpha, and empty colors', durationMs: 0 })
     console.log(`PASS native angular gradient pixels: ${JSON.stringify(palettes)}`)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'elliptical-gradient') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-elliptical-gradient')
+    const initial = await wait('native elliptical gradient mounts', (nodes) =>
+      labels(nodes).includes('SwiftUI EllipticalGradient') &&
+      labels(nodes).includes('Mode: initial') &&
+      labels(nodes).includes('Native elliptical gradient preview') &&
+      Boolean(id(nodes, 'one-native-elliptical-gradient-native')?.frame))
+    if (id(initial, 'one-native-elliptical-gradient-decorative'))
+      throw new Error('Unlabeled decorative elliptical gradient is exposed to accessibility')
+    checks.push({ name: 'labeled elliptical gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+    const native = id(initial, 'one-native-elliptical-gradient-native')!.frame!
+    if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 150) > 2)
+      throw new Error(`EllipticalGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`)
+    const captures: Record<string, string> = {}
+    const capture = async (mode: string, nodes: Node[]) => {
+      await Bun.sleep(300)
+      captures[mode] = screenshot(`elliptical-gradient-${mode}.png`, nodes)
+    }
+    await capture('initial', initial)
+    for (const mode of ['reversed', 'moved', 'wide', 'inner', 'single', 'alpha', 'three', 'empty']) {
+      tap({ id: `one-native-elliptical-gradient-${mode}` })
+      const nodes = await wait(`React supplies elliptical gradient ${mode} state`, (next) =>
+        labels(next).includes(`Mode: ${mode}`))
+      await capture(mode, nodes)
+    }
+    const app = initial.find((node) => node.type === 'Application')?.frame
+    if (!app?.width) throw new Error('EllipticalGradient proof has no application frame')
+    const sample = (mode: string, xFraction: number, yFraction = 0.5) => {
+      const png = readPng(captures[mode]!)
+      const scale = png.width / app.width
+      const x = Math.round((native.x + native.width * xFraction) * scale)
+      const y = Math.round((native.y + native.height * yFraction) * scale)
+      if (x < 0 || y < 0 || x >= png.width || y >= png.height)
+        throw new Error(`EllipticalGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+      const at = (y * png.width + x) * 4
+      return [...png.data.subarray(at, at + 3)]
+    }
+    const pixels = {
+      initialCenter: sample('initial', 0.5),
+      initialEdge: sample('initial', 0.95),
+      initialVerticalEdge: sample('initial', 0.5, 0.95),
+      initialXQuarter: sample('initial', 0.75),
+      initialYQuarter: sample('initial', 0.5, 0.75),
+      initialEqualPhysicalX: sample('initial', 0.5 + 37.5 / 280),
+      initialInner: sample('initial', 0.6),
+      reversedCenter: sample('reversed', 0.5),
+      reversedEdge: sample('reversed', 0.95),
+      movedCenter: sample('moved', 0.25),
+      movedRight: sample('moved', 0.75),
+      wideEdge: sample('wide', 0.95),
+      innerNearCenter: sample('inner', 0.6),
+      singleCenter: sample('single', 0.5),
+      singleEdge: sample('single', 0.95),
+      alphaCenter: sample('alpha', 0.5),
+      alphaEdge: sample('alpha', 0.95),
+      threeMiddle: sample('three', 0.75),
+      emptyCenter: sample('empty', 0.5),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'elliptical-gradient-pixels.json'),
+      JSON.stringify({ pixels, nativeFrame: native }, null, 2))
+    const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
+    const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
+    if (!red(pixels.initialCenter) || !blue(pixels.initialEdge) ||
+        !blue(pixels.initialVerticalEdge) ||
+        !blue(pixels.reversedCenter) || !red(pixels.reversedEdge))
+      throw new Error(`Native EllipticalGradient did not paint or reverse its colors: ${JSON.stringify(pixels)}`)
+    const distance = (a: number[], b: number[]) =>
+      a.reduce((sum, channel, index) => sum + Math.abs(channel - b[index]!), 0)
+    if (distance(pixels.initialXQuarter, pixels.initialYQuarter) > 75 ||
+        pixels.initialEqualPhysicalX[0]! < pixels.initialYQuarter[0]! + 20)
+      throw new Error(`Native EllipticalGradient did not stretch equal normalized radii into elliptical contours: ${JSON.stringify(pixels)}`)
+    if (!red(pixels.movedCenter) || !blue(pixels.movedRight))
+      throw new Error(`Native EllipticalGradient did not honor its moved UnitPoint center: ${JSON.stringify(pixels)}`)
+    if (pixels.wideEdge[0]! < pixels.initialEdge[0]! + 25 ||
+        pixels.innerNearCenter[0]! < pixels.initialInner[0]! + 20)
+      throw new Error(`Native EllipticalGradient did not honor both radius fractions: ${JSON.stringify(pixels)}`)
+    const green = (value: number[]) => value[1]! > 130 && value[0]! < 80 && value[2]! < 130
+    if (!green(pixels.singleCenter) || !green(pixels.singleEdge) || !green(pixels.threeMiddle))
+      throw new Error(`Native EllipticalGradient did not render one and three sRGB colors: ${JSON.stringify(pixels)}`)
+    if (!(pixels.alphaCenter[0]! > 220 && pixels.alphaCenter[1]! > 200 && pixels.alphaCenter[2]! < 80) ||
+        !blue(pixels.alphaEdge))
+      throw new Error(`Native EllipticalGradient did not composite sRGB alpha over yellow: ${JSON.stringify(pixels)}`)
+    if (!(pixels.emptyCenter[0]! > 220 && pixels.emptyCenter[1]! > 200 && pixels.emptyCenter[2]! < 80))
+      throw new Error(`Empty native EllipticalGradient did not reveal its yellow underlay: ${JSON.stringify(pixels)}`)
+    checks.push({ name: 'native elliptical gradient paints, reverses, and moves its center', durationMs: 0 })
+    checks.push({ name: 'native elliptical gradient stretches normalized radii across both axes', durationMs: 0 })
+    checks.push({ name: 'native elliptical gradient honors both radius fractions, one and three colors, alpha, and empty colors', durationMs: 0 })
+    console.log(`PASS native elliptical gradient pixels: ${JSON.stringify(pixels)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

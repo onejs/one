@@ -162,6 +162,84 @@ private func oneNativeRadialGradientColor(_ value: String) -> Color? {
     throw new Error('RadialGradient radii must be finite numbers')`,
   },
   {
+    name: 'EllipticalGradient',
+    layout: 'fill',
+    decorativeWhenUnlabeled: true,
+    fields: {
+      colors: { type: 'strings', default: [], publicType: 'readonly string[]', required: true },
+      center: {
+        type: 'string',
+        default: '{"x":0.5,"y":0.5}',
+        publicType: 'Readonly<{ x: number; y: number }>',
+        jsDefault: '{ x: 0.5, y: 0.5 }',
+        nativeValue: 'JSON.stringify(center)',
+      },
+      startRadiusFraction: { type: 'Double', default: 0 },
+      endRadiusFraction: { type: 'Double', default: 0.5 },
+    },
+    constructors: [
+      {
+        type: 'EllipticalGradient',
+        parameters: [
+          { label: 'colors', type: '[SwiftUICore.Color]' },
+          { label: 'center', type: 'SwiftUICore.UnitPoint' },
+          { label: 'startRadiusFraction', type: 'CoreFoundation.CGFloat' },
+          { label: 'endRadiusFraction', type: 'CoreFoundation.CGFloat' },
+        ],
+      },
+    ],
+    swift: `EllipticalGradient(
+      colors: model.colors.compactMap(oneNativeEllipticalGradientColor),
+      center: oneNativeEllipticalGradientPoint(model.center),
+      startRadiusFraction: model.startRadiusFraction,
+      endRadiusFraction: model.endRadiusFraction
+    )`,
+    extraSwift: `private struct OneNativeEllipticalGradientPoint: Decodable {
+  let x: Double
+  let y: Double
+}
+
+private func oneNativeEllipticalGradientPoint(_ raw: String) -> UnitPoint {
+  guard let data = raw.data(using: .utf8),
+    let point = try? JSONDecoder().decode(OneNativeEllipticalGradientPoint.self, from: data),
+    point.x.isFinite, point.y.isFinite else { return .center }
+  return UnitPoint(x: CGFloat(point.x), y: CGFloat(point.y))
+}
+
+private func oneNativeEllipticalGradientColor(_ value: String) -> Color? {
+  guard value.first == "#", value.count == 7 || value.count == 9,
+    let hex = UInt64(value.dropFirst(), radix: 16) else { return nil }
+  let red, green, blue, alpha: UInt64
+  if value.count == 7 {
+    red = (hex >> 16) & 0xff
+    green = (hex >> 8) & 0xff
+    blue = hex & 0xff
+    alpha = 0xff
+  } else {
+    red = (hex >> 24) & 0xff
+    green = (hex >> 16) & 0xff
+    blue = (hex >> 8) & 0xff
+    alpha = hex & 0xff
+  }
+  return Color(.sRGB, red: Double(red) / 255, green: Double(green) / 255,
+    blue: Double(blue) / 255, opacity: Double(alpha) / 255)
+}`,
+    setBody: {
+      colors: `guard items.allSatisfy({ oneNativeEllipticalGradientColor($0) != nil }) else {
+      NSLog("OneNative EllipticalGradient received invalid colors")
+      return
+    }
+    if model.colors != items { model.colors = items }`,
+    },
+    validate: `  if (!Array.isArray(colors) ||
+      !colors.every((color) => typeof color === 'string' && /^#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?$/.test(color)))
+    throw new Error('EllipticalGradient colors must be an array of #RRGGBB or #RRGGBBAA colors')
+  if (!center || !Number.isFinite(center.x) || !Number.isFinite(center.y))
+    throw new Error('EllipticalGradient center must have finite x and y coordinates')
+  if (!Number.isFinite(startRadiusFraction) || !Number.isFinite(endRadiusFraction))
+    throw new Error('EllipticalGradient radius fractions must be finite numbers')`,
+  },
+  {
     name: 'AngularGradient',
     layout: 'fill',
     decorativeWhenUnlabeled: true,

@@ -94,3 +94,22 @@ rules apply.
 The iOS 27 proof exercises a half-turn angle, a moved center, reversed colors,
 single and three-color arrays, alpha over a yellow underlay, and transparent
 empty input. Other iOS versions remain unproven.
+
+`One.iOS.EllipticalGradient` calls SwiftUI's
+[`EllipticalGradient(colors:center:startRadiusFraction:endRadiusFraction:)`](https://developer.apple.com/documentation/swiftui/ellipticalgradient/init%28colors%3Acenter%3Astartradiusfraction%3Aendradiusfraction%3A%29).
+Its normalized `center` defaults to `{ x: 0.5, y: 0.5 }`. The two radii are
+fractions of the unit circle stretched into the view's layout box; they
+default to `0` and `0.5`:
+
+```tsx
+<One.iOS.EllipticalGradient
+  colors={['#FF3311', '#1144DD']}
+  center={{ x: 0.5, y: 0.5 }}
+  startRadiusFraction={0}
+  endRadiusFraction={0.5}
+  style={{ width: 280, height: 150 }}
+/>
+```
+
+The same sRGB hex and decorative-unless-labeled accessibility rules apply.
+Explicit gradient stops and arbitrary SwiftUI `Color` values are not bound.
