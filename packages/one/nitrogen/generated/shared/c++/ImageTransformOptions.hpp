@@ -32,13 +32,13 @@
 namespace margelo::nitro::one { struct ImageCrop; }
 // Forward declaration of `ImageResize` to properly resolve imports.
 namespace margelo::nitro::one { struct ImageResize; }
-// Forward declaration of `ImageFormat` to properly resolve imports.
-namespace margelo::nitro::one { enum class ImageFormat; }
+// Forward declaration of `OneImageFormat` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneImageFormat; }
 
 #include "ImageCrop.hpp"
 #include <optional>
 #include "ImageResize.hpp"
-#include "ImageFormat.hpp"
+#include "OneImageFormat.hpp"
 
 namespace margelo::nitro::one {
 
@@ -50,12 +50,12 @@ namespace margelo::nitro::one {
     std::optional<ImageCrop> crop     SWIFT_PRIVATE;
     std::optional<ImageResize> resize     SWIFT_PRIVATE;
     std::optional<double> rotate     SWIFT_PRIVATE;
-    ImageFormat format     SWIFT_PRIVATE;
+    OneImageFormat format     SWIFT_PRIVATE;
     std::optional<double> quality     SWIFT_PRIVATE;
 
   public:
     ImageTransformOptions() = default;
-    explicit ImageTransformOptions(std::optional<ImageCrop> crop, std::optional<ImageResize> resize, std::optional<double> rotate, ImageFormat format, std::optional<double> quality): crop(crop), resize(resize), rotate(rotate), format(format), quality(quality) {}
+    explicit ImageTransformOptions(std::optional<ImageCrop> crop, std::optional<ImageResize> resize, std::optional<double> rotate, OneImageFormat format, std::optional<double> quality): crop(crop), resize(resize), rotate(rotate), format(format), quality(quality) {}
 
   public:
     friend bool operator==(const ImageTransformOptions& lhs, const ImageTransformOptions& rhs) = default;
@@ -74,7 +74,7 @@ namespace margelo::nitro {
         JSIConverter<std::optional<margelo::nitro::one::ImageCrop>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "crop"))),
         JSIConverter<std::optional<margelo::nitro::one::ImageResize>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "resize"))),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "rotate"))),
-        JSIConverter<margelo::nitro::one::ImageFormat>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "format"))),
+        JSIConverter<margelo::nitro::one::OneImageFormat>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "format"))),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "quality")))
       );
     }
@@ -83,7 +83,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "crop"), JSIConverter<std::optional<margelo::nitro::one::ImageCrop>>::toJSI(runtime, arg.crop));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "resize"), JSIConverter<std::optional<margelo::nitro::one::ImageResize>>::toJSI(runtime, arg.resize));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "rotate"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.rotate));
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "format"), JSIConverter<margelo::nitro::one::ImageFormat>::toJSI(runtime, arg.format));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "format"), JSIConverter<margelo::nitro::one::OneImageFormat>::toJSI(runtime, arg.format));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "quality"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.quality));
       return obj;
     }
@@ -98,7 +98,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<margelo::nitro::one::ImageCrop>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "crop")))) return false;
       if (!JSIConverter<std::optional<margelo::nitro::one::ImageResize>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "resize")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "rotate")))) return false;
-      if (!JSIConverter<margelo::nitro::one::ImageFormat>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "format")))) return false;
+      if (!JSIConverter<margelo::nitro::one::OneImageFormat>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "format")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "quality")))) return false;
       return true;
     }
