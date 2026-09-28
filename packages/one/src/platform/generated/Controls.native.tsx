@@ -1045,14 +1045,28 @@ export function MeshGradient({
 }
 import NativeVideoPlayer from '../specs/OneNativeVideoPlayerNativeComponent'
 export function VideoPlayer({
+  onPlaybackStatus,
   url = '',
   autoplay = false,
+  command = '',
+  commandRevision = 0,
+  seekToMs = 0,
   swiftStyle,
   style,
   ...props
 }: Types.VideoPlayerProps) {
   if (typeof url !== 'string' || !url)
     throw new Error('VideoPlayer url must be a non-empty string')
+  if (!['', 'play', 'pause', 'seek'].includes(command))
+    throw new Error('Unknown VideoPlayer command: ' + command)
+  if (!Number.isSafeInteger(commandRevision) || commandRevision < 0)
+    throw new Error('VideoPlayer commandRevision must be a nonnegative safe integer')
+  if (command && commandRevision === 0)
+    throw new Error('VideoPlayer command requires a positive commandRevision')
+  if (!command && commandRevision > 0)
+    throw new Error('VideoPlayer commandRevision requires a command')
+  if (!Number.isFinite(seekToMs) || seekToMs < 0)
+    throw new Error('VideoPlayer seekToMs must be a nonnegative finite number')
 
   return (
     <NativeVideoPlayer
@@ -1064,6 +1078,16 @@ export function VideoPlayer({
       }
       url={url}
       autoplay={autoplay}
+      command={command}
+      commandRevision={commandRevision}
+      seekToMs={seekToMs}
+      onNativeVideoPlayerPlaybackStatus={({ nativeEvent }) =>
+        onPlaybackStatus?.(
+          nativeEvent.state,
+          nativeEvent.positionMs,
+          nativeEvent.durationMs
+        )
+      }
     />
   )
 }

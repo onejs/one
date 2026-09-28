@@ -44,14 +44,56 @@ import { One } from 'one'
 
 ## VideoPlayer
 
-`One.iOS.VideoPlayer` plays a remote video from `url`. `autoplay` starts
-playback without a tap.
+`One.iOS.VideoPlayer` plays a local `file://` or remote video from `url` with
+AVKit's native transport controls. `autoplay` starts playback when a URL loads.
+The player keeps its position when other props change and creates a new player
+only when `url` changes.
 
 ```tsx
 import { One } from 'one'
 
 <One.iOS.VideoPlayer url="https://example.com/trailer.mp4" autoplay />
 ```
+
+Set `command` to `play`, `pause`, or `seek` and increment `commandRevision` for
+each command, including repeated commands of the same kind. For `seek`, pass a
+nonnegative `seekToMs`. Revisions start at 1 and increase for the lifetime of
+the view. `onPlaybackStatus(state, positionMs, durationMs)` reports `loading`,
+`playing`, `paused`, `ended`, or `failed` and the player's current time and
+duration in milliseconds. Unknown or indefinite duration is reported as 0.
+Status arrives on state changes, after commands, and about twice per second
+while playing. Native transport taps also change the reported status.
+
+```tsx
+import { useState } from 'react'
+import { Button, View } from 'react-native'
+import { One } from 'one'
+
+function ControlledVideo() {
+  const [control, setControl] = useState({ command: '' as '' | 'play' | 'pause' | 'seek', revision: 0, seekToMs: 0 })
+  const send = (command: 'play' | 'pause' | 'seek', seekToMs = 0) =>
+    setControl((previous) => ({ command, seekToMs, revision: previous.revision + 1 }))
+
+  return <View>
+    <One.iOS.VideoPlayer
+      url="https://example.com/trailer.mp4"
+      style={{ height: 220 }}
+      command={control.command}
+      commandRevision={control.revision}
+      seekToMs={control.seekToMs}
+      onPlaybackStatus={(state, positionMs, durationMs) => console.log(state, positionMs, durationMs)}
+    />
+    <Button title="Play" onPress={() => send('play')} />
+    <Button title="Pause" onPress={() => send('pause')} />
+    <Button title="Skip to 10s" onPress={() => send('seek', 10_000)} />
+  </View>
+}
+```
+
+The player follows the app's audio session. This view does not publish Now
+Playing metadata or remote transport callbacks. `One.iOS.Audio` manages a
+separate player and its own remote commands. Playback during backgrounding,
+cross-app audio arbitration, and picture in picture need device proof.
 
 ## WebView
 

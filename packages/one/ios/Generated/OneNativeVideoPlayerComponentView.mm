@@ -22,6 +22,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeVideoPlayerEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
     };
+    _nativeView.onPlaybackStatus = ^(NSString *state, double positionMs, double durationMs, NSInteger eventCount) {
+      OneNativeVideoPlayerComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeVideoPlayerEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeVideoPlayerPlaybackStatus({.state = std::string(state.UTF8String), .positionMs = (double)positionMs, .durationMs = (double)durationMs, .eventCount = (int)eventCount});
+    };
   }
   return self;
 }
@@ -35,7 +41,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.url)
-    autoplay:next.autoplay];
+    autoplay:next.autoplay command:RCTNSStringFromString(next.command) commandRevision:next.commandRevision seekToMs:next.seekToMs];
 
   [super updateProps:props oldProps:oldProps];
 }

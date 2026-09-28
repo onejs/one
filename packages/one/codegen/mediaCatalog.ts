@@ -12,39 +12,147 @@ export const mediaControls: Control[] = [
     fields: {
       url: { type: 'string', default: '' },
       autoplay: { type: 'boolean', default: false },
+      command: { type: 'string', default: '', publicType: "'play' | 'pause' | 'seek'" },
+      commandRevision: { type: 'Double', default: 0 },
+      seekToMs: { type: 'Double', default: 0 },
     },
+    actions: [
+      {
+        prop: 'onPlaybackStatus',
+        event: 'PlaybackStatus',
+        payload: { state: 'string', positionMs: 'Double', durationMs: 'Double' },
+      },
+    ],
     constructors: [
       {
         type: 'VideoPlayer',
         parameters: [{ label: 'player', type: 'AVFoundation.AVPlayer?' }],
       },
     ],
-    swift: `VideoPlayerSurface(url: model.url, autoplay: model.autoplay)`,
-    extraSwift: `// AVPlayer holds the playback position and is expensive to build, so it is created once per
-// url and replaced only when the url changes. building it in body would restart playback
-// every time any other prop moved.
-private struct VideoPlayerSurface: View {
-  let url: String
-  let autoplay: Bool
-  @State private var player: AVPlayer?
-  @State private var loaded: String?
-  var body: some View {
-    VideoPlayer(player: player)
-      .onAppear { load() }
-      .onChange(of: url) { load() }
-  }
-  // autoplay is read when the url loads, so flipping it later does not restart the video.
-  private func load() {
+    swift: `VideoPlayerSurface(model: model)`,
+    extraSwift: `private final class OneNativeVideoSession: ObservableObject {
+  @Published private(set) var player: AVPlayer?
+  private var loaded: String?
+  private var timeObserver: Any?
+  private var controlObservation: NSKeyValueObservation?
+  private var itemObservation: NSKeyValueObservation?
+  private var endObserver: NSObjectProtocol?
+  private var ended = false
+  private var appliedRevision: Double = 0
+  var report: ((String, Double, Double) -> Void)?
+
+  deinit { clear() }
+
+  // a player owns its position. changing unrelated React props must not recreate it.
+  func load(_ url: String, autoplay: Bool) {
     guard loaded != url else { return }
+    clear()
     loaded = url
-    guard let parsed = URL(string: url) else { player = nil; return }
+    guard let parsed = URL(string: url) else { return }
     let next = AVPlayer(url: parsed)
     player = next
+    controlObservation = next.observe(\\.timeControlStatus, options: [.new]) { [weak self] _, _ in
+      DispatchQueue.main.async { self?.emit() }
+    }
+    if let item = next.currentItem {
+      itemObservation = item.observe(\\.status, options: [.new]) { [weak self] _, _ in
+        DispatchQueue.main.async { self?.emit() }
+      }
+      endObserver = NotificationCenter.default.addObserver(
+        forName: .AVPlayerItemDidPlayToEndTime, object: item, queue: .main
+      ) { [weak self] _ in
+        self?.ended = true
+        self?.emit()
+      }
+    }
+    timeObserver = next.addPeriodicTimeObserver(
+      forInterval: CMTime(seconds: 0.5, preferredTimescale: 600), queue: .main
+    ) { [weak self] _ in
+      guard let self, let player = self.player else { return }
+      if self.ended, player.currentTime().seconds + 0.5 < (player.currentItem?.duration.seconds ?? 0) {
+        self.ended = false
+      }
+      self.emit()
+    }
     if autoplay { next.play() }
+    emit()
+  }
+
+  func apply(_ command: String, revision: Double, seekToMs: Double) {
+    guard revision > appliedRevision else { return }
+    guard let player else { return }
+    appliedRevision = revision
+    switch command {
+    case "play":
+      if ended { player.seek(to: .zero); ended = false }
+      player.play()
+    case "pause": player.pause()
+    case "seek":
+      ended = false
+      player.seek(to: CMTime(seconds: seekToMs / 1000, preferredTimescale: 600)) { [weak self] _ in
+        DispatchQueue.main.async { self?.emit() }
+      }
+    default: return
+    }
+    emit()
+  }
+
+  private func emit() {
+    guard let player else { return }
+    let seconds = player.currentTime().seconds
+    let duration = player.currentItem?.duration.seconds ?? 0
+    let state: String
+    if player.currentItem?.status == .failed { state = "failed" }
+    else if ended { state = "ended" }
+    else if player.timeControlStatus == .playing { state = "playing" }
+    else if player.timeControlStatus == .waitingToPlayAtSpecifiedRate { state = "loading" }
+    else { state = "paused" }
+    report?(state, seconds.isFinite ? max(0, seconds * 1000) : 0,
+            duration.isFinite ? max(0, duration * 1000) : 0)
+  }
+
+  private func clear() {
+    controlObservation = nil
+    itemObservation = nil
+    if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
+    endObserver = nil
+    if let player, let timeObserver { player.removeTimeObserver(timeObserver) }
+    timeObserver = nil
+    player?.pause()
+    player = nil
+    ended = false
+  }
+}
+
+private struct VideoPlayerSurface: View {
+  @ObservedObject var model: VideoPlayerModel
+  @StateObject private var session = OneNativeVideoSession()
+  var body: some View {
+    VideoPlayer(player: session.player)
+      .onAppear {
+        session.report = { [weak model = model] state, position, duration in
+          model?.playbackStatus(state, position, duration)
+        }
+        session.load(model.url, autoplay: model.autoplay)
+        if model.commandRevision > 0 {
+          session.apply(model.command, revision: model.commandRevision, seekToMs: model.seekToMs)
+        }
+      }
+      .onChange(of: model.url) { session.load(model.url, autoplay: model.autoplay) }
+      .onChange(of: model.commandRevision) {
+        if model.commandRevision > 0 {
+          session.apply(model.command, revision: model.commandRevision, seekToMs: model.seekToMs)
+        }
+      }
   }
 }
 `,
-    validate: `  if (typeof url !== 'string' || !url) throw new Error('VideoPlayer url must be a non-empty string')`,
+    validate: `  if (typeof url !== 'string' || !url) throw new Error('VideoPlayer url must be a non-empty string')
+  if (!['', 'play', 'pause', 'seek'].includes(command)) throw new Error('Unknown VideoPlayer command: ' + command)
+  if (!Number.isSafeInteger(commandRevision) || commandRevision < 0) throw new Error('VideoPlayer commandRevision must be a nonnegative safe integer')
+  if (command && commandRevision === 0) throw new Error('VideoPlayer command requires a positive commandRevision')
+  if (!command && commandRevision > 0) throw new Error('VideoPlayer commandRevision requires a command')
+  if (!Number.isFinite(seekToMs) || seekToMs < 0) throw new Error('VideoPlayer seekToMs must be a nonnegative finite number')`,
   },
   {
     // PhotosPicker hands back PhotosPickerItem, which is a promise of data rather than a
