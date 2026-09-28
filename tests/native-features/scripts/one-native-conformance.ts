@@ -51,6 +51,7 @@ const suites = [
   'app-info',
   'device',
   'motion',
+  'device-attestation',
   'screen-orientation',
   'screen-capture',
   'purchases',
@@ -656,6 +657,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'app-info': appInfoLoaded,
   device: deviceLoaded,
   motion: (nodes: Node[]) => Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
+  'device-attestation': (nodes: Node[]) => Boolean(id(nodes, 'one-native-device-attestation-read')) && has(nodes, 'Availability: pending'),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
@@ -752,6 +754,7 @@ const suiteHome: Record<Suite, string> = {
   'app-info': 'nav-one-native-app-info',
   device: 'nav-one-native-device',
   motion: 'nav-one-native-motion',
+  'device-attestation': 'nav-one-native-device-attestation',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
   purchases: 'nav-one-native-purchases',
@@ -1204,6 +1207,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
       config.suite === 'screen-capture' || config.suite === 'motion' ||
+      config.suite === 'device-attestation' ||
       config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited') {
@@ -3278,6 +3282,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-motion-stop' })
     screenshot('motion-availability.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'device-attestation') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-device-attestation')
+    await wait('attestation fixture starts pending', (n) =>
+      labels(n).includes('Availability: pending') &&
+      labels(n).includes('Invalid: pending') &&
+      labels(n).includes('Attempts: pending')
+    )
+    tap({ id: 'one-native-device-attestation-read' })
+    await wait('device attestation unavailable on iOS simulator', (n) =>
+      labels(n).includes('Availability: AppAttest=false DeviceCheck=false')
+    )
+    tap({ id: 'one-native-device-attestation-validate' })
+    await wait('native hash and key validation rejects invalid input', (n) =>
+      labels(n).includes('Invalid: key=E_DEVICE_ATTESTATION_INPUT hash=E_DEVICE_ATTESTATION_INPUT')
+    )
+    tap({ id: 'one-native-device-attestation-probe' })
+    await wait('all simulator service calls reject unavailable', (n) =>
+      labels(n).includes(
+        'Attempts: key=E_DEVICE_ATTESTATION_UNAVAILABLE attest=E_DEVICE_ATTESTATION_UNAVAILABLE assertion=E_DEVICE_ATTESTATION_UNAVAILABLE token=E_DEVICE_ATTESTATION_UNAVAILABLE'
+      )
+    )
+    screenshot('device-attestation-availability.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

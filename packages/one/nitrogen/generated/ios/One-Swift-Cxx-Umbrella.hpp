@@ -90,6 +90,8 @@ namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DeviceAttestationAvailability` to properly resolve imports.
+namespace margelo::nitro::one { struct DeviceAttestationAvailability; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
@@ -144,6 +146,8 @@ namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
+// Forward declaration of `HybridOneDeviceAttestationSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
@@ -397,6 +401,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
+#include "DeviceAttestationAvailability.hpp"
 #include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
@@ -424,6 +429,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
+#include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
@@ -572,6 +578,8 @@ namespace One { class HybridOneClipboardSpec_cxx; }
 namespace One { class HybridOneContactsSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCryptoSpec_cxx; }
+// Forward declaration of `HybridOneDeviceAttestationSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.

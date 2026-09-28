@@ -63,7 +63,7 @@ checklist; One's own exports and docs decide the status.
 | Print | missing | no AirPrint presentation API | none | P3 |
 | Mail and SMS composer | partial | share sheet can hand off content; no configured message composer | share sheet only | P3 |
 | App tracking permission | covered | `One.iOS.AppTracking` synchronous status and one-time App Tracking Transparency request | RAN iOS 27: configured system prompt, denial, concurrent requests, persisted status | done |
-| Device attestation | missing | no App Attest or DeviceCheck service | none | P2 |
+| Device attestation | partial | `One.iOS.DeviceAttestation` App Attest availability, key generation, attestation and assertion; DeviceCheck token; server validation remains app-owned | iOS 27 simulator availability, invalid input and unavailable errors pending live proof; registered physical device needed for successful Apple operations | P2 |
 | Bluetooth and NFC | missing | no CoreBluetooth or CoreNFC service | none | P3 |
 | Web browser/auth session | covered | `One.Browser` | browser | done |
 | Web view | covered | `One.iOS.WebView` local HTML and URL loading, navigation/title/loading events | RAN iOS 27 web-photos: document A to B title/loading/progress and pixel repaint | done |
