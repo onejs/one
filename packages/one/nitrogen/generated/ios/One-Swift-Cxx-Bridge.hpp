@@ -196,6 +196,8 @@ namespace margelo::nitro::one { struct MapPlace; }
 namespace margelo::nitro::one { struct MapRouteStep; }
 // Forward declaration of `MapRoute` to properly resolve imports.
 namespace margelo::nitro::one { struct MapRoute; }
+// Forward declaration of `MapSuggestion` to properly resolve imports.
+namespace margelo::nitro::one { struct MapSuggestion; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannel; }
 // Forward declaration of `NativeContent` to properly resolve imports.
@@ -427,6 +429,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "MapPlace.hpp"
 #include "MapRoute.hpp"
 #include "MapRouteStep.hpp"
+#include "MapSuggestion.hpp"
 #include "NativeChannel.hpp"
 #include "NativeContent.hpp"
 #include "NativeIosPermission.hpp"
@@ -2900,6 +2903,85 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__vector_MapPlace__Wrapper(std::move(value));
   }
 
+  // pragma MARK: std::vector<MapSuggestion>
+  /**
+   * Specialized version of `std::vector<MapSuggestion>`.
+   */
+  using std__vector_MapSuggestion_ = std::vector<MapSuggestion>;
+  inline std::vector<MapSuggestion> create_std__vector_MapSuggestion_(size_t size) noexcept {
+    std::vector<MapSuggestion> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<MapSuggestion>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<MapSuggestion>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_MapSuggestion___ = std::shared_ptr<Promise<std::vector<MapSuggestion>>>;
+  inline std::shared_ptr<Promise<std::vector<MapSuggestion>>> create_std__shared_ptr_Promise_std__vector_MapSuggestion___() noexcept {
+    return Promise<std::vector<MapSuggestion>>::create();
+  }
+  inline PromiseHolder<std::vector<MapSuggestion>> wrap_std__shared_ptr_Promise_std__vector_MapSuggestion___(std::shared_ptr<Promise<std::vector<MapSuggestion>>> promise) noexcept {
+    return PromiseHolder<std::vector<MapSuggestion>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<MapSuggestion>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<MapSuggestion>&)>`.
+   */
+  using Func_void_std__vector_MapSuggestion_ = std::function<void(const std::vector<MapSuggestion>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<MapSuggestion>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_MapSuggestion__Wrapper final {
+  public:
+    explicit Func_void_std__vector_MapSuggestion__Wrapper(std::function<void(const std::vector<MapSuggestion>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<MapSuggestion>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<MapSuggestion> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<MapSuggestion>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_MapSuggestion_ create_Func_void_std__vector_MapSuggestion_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_MapSuggestion__Wrapper wrap_Func_void_std__vector_MapSuggestion_(Func_void_std__vector_MapSuggestion_ value) noexcept {
+    return Func_void_std__vector_MapSuggestion__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<MapPlace>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<MapPlace>>`.
+   */
+  using std__shared_ptr_Promise_MapPlace__ = std::shared_ptr<Promise<MapPlace>>;
+  inline std::shared_ptr<Promise<MapPlace>> create_std__shared_ptr_Promise_MapPlace__() noexcept {
+    return Promise<MapPlace>::create();
+  }
+  inline PromiseHolder<MapPlace> wrap_std__shared_ptr_Promise_MapPlace__(std::shared_ptr<Promise<MapPlace>> promise) noexcept {
+    return PromiseHolder<MapPlace>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const MapPlace& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const MapPlace&)>`.
+   */
+  using Func_void_MapPlace = std::function<void(const MapPlace& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const MapPlace& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_MapPlace_Wrapper final {
+  public:
+    explicit Func_void_MapPlace_Wrapper(std::function<void(const MapPlace& /* result */)>&& func): _function(std::make_unique<std::function<void(const MapPlace& /* result */)>>(std::move(func))) {}
+    inline void call(MapPlace result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const MapPlace& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MapPlace create_Func_void_MapPlace(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MapPlace_Wrapper wrap_Func_void_MapPlace(Func_void_MapPlace value) noexcept {
+    return Func_void_MapPlace_Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::vector<MapCoordinate>
   /**
    * Specialized version of `std::vector<MapCoordinate>`.
@@ -2975,6 +3057,24 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>
+  using Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ = Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::shared_ptr<Promise<std::vector<MapSuggestion>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<MapPlace>>>
+  using Result_std__shared_ptr_Promise_MapPlace___ = Result<std::shared_ptr<Promise<MapPlace>>>;
+  inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::shared_ptr<Promise<MapPlace>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<MapPlace>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<MapPlace>>>::withError(error);
   }
 
   // pragma MARK: Result<std::shared_ptr<Promise<MapRoute>>>

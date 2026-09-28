@@ -701,6 +701,22 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const std::vector<MapSuggestion>& /* result */)>
+  Func_void_std__vector_MapSuggestion_ create_Func_void_std__vector_MapSuggestion_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_MapSuggestion_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<MapSuggestion>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const MapPlace& /* result */)>
+  Func_void_MapPlace create_Func_void_MapPlace(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_MapPlace::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const MapPlace& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::function<void(const MapRoute& /* result */)>
   Func_void_MapRoute create_Func_void_MapRoute(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_MapRoute::fromUnsafe(swiftClosureWrapper);

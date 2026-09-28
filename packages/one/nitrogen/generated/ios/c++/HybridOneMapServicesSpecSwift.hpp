@@ -16,6 +16,8 @@ namespace One { class HybridOneMapServicesSpec_cxx; }
 namespace margelo::nitro::one { struct MapPlace; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
+// Forward declaration of `MapSuggestion` to properly resolve imports.
+namespace margelo::nitro::one { struct MapSuggestion; }
 // Forward declaration of `MapRoute` to properly resolve imports.
 namespace margelo::nitro::one { struct MapRoute; }
 // Forward declaration of `MapRouteStep` to properly resolve imports.
@@ -28,6 +30,7 @@ namespace margelo::nitro::one { enum class MapTransport; }
 #include <NitroModules/Promise.hpp>
 #include <string>
 #include "MapCoordinate.hpp"
+#include "MapSuggestion.hpp"
 #include "MapRoute.hpp"
 #include "MapRouteStep.hpp"
 #include "MapTransport.hpp"
@@ -84,6 +87,22 @@ namespace margelo::nitro::one {
     // Methods
     inline std::shared_ptr<Promise<std::vector<MapPlace>>> search(const std::string& query, const MapCoordinate& center, double radiusMeters) override {
       auto __result = _swiftPart.search(query, std::forward<decltype(center)>(center), std::forward<decltype(radiusMeters)>(radiusMeters));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<MapSuggestion>>> autocomplete(const std::string& query, const MapCoordinate& center, double radiusMeters) override {
+      auto __result = _swiftPart.autocomplete(query, std::forward<decltype(center)>(center), std::forward<decltype(radiusMeters)>(radiusMeters));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<MapPlace>> resolveSuggestion(const std::string& id) override {
+      auto __result = _swiftPart.resolveSuggestion(id);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

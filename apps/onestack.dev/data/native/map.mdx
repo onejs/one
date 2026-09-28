@@ -74,6 +74,12 @@ The map view's marker and polyline props accept coordinates from these results.
 ```ts
 const center = { latitude: 37.7955, longitude: -122.3937 }
 const places = await One.iOS.MapServices.search('Ferry Building', center, 3000)
+const suggestions = await One.iOS.MapServices.autocomplete('Ferry Bu', center, 3000)
+const selected = suggestions[0]
+if (selected) {
+  const place = await One.iOS.MapServices.resolveSuggestion(selected.id)
+  // place has the selected suggestion's name, address, and coordinates.
+}
 const route = await One.iOS.MapServices.directions(
   center,
   { latitude: 37.7786, longitude: -122.3893 },
@@ -90,3 +96,14 @@ travel time in seconds, polyline coordinates, and instruction steps. The
 transport is `driving` or `walking`. Search can return an empty array. Invalid
 input rejects with `E_MAP_INPUT`; service and routing failures reject with
 `E_MAP_SEARCH` and `E_MAP_DIRECTIONS`.
+
+`autocomplete(query, center, radiusMeters = 5000)` returns MapKit text
+suggestions with an `id`, `title`, and `subtitle`. Pass the selected `id` to
+`resolveSuggestion(id)` to get its exact MapKit place. IDs remain valid until
+the next successful autocomplete result replaces them. A newer query cancels
+an unfinished query, which rejects with `E_MAP_CANCELED`; handle that when
+updating suggestions as someone types. Invalid input or an old ID rejects
+with `E_MAP_INPUT`. MapKit failures use `E_MAP_AUTOCOMPLETE` or `E_MAP_SEARCH`;
+a query that does not finish in 20 seconds uses `E_MAP_TIMEOUT`. See
+[Apple's MapKit completion guide](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter)
+for how suggestion fragments are produced.
