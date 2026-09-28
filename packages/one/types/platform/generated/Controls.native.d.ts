@@ -24,6 +24,7 @@ export declare function LinearGradient({ colors, startPoint, endPoint, swiftStyl
 export declare function RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: Types.RadialGradientProps): import("react/jsx-runtime").JSX.Element;
 export declare function EllipticalGradient({ colors, center, startRadiusFraction, endRadiusFraction, swiftStyle, style, ...props }: Types.EllipticalGradientProps): import("react/jsx-runtime").JSX.Element;
 export declare function AngularGradient({ colors, center, angle, swiftStyle, style, ...props }: Types.AngularGradientProps): import("react/jsx-runtime").JSX.Element;
+export declare function MeshGradient({ meshWidth, meshHeight, points, colors, background, smoothsColors, colorSpace, swiftStyle, style, ...props }: Types.MeshGradientProps): import("react/jsx-runtime").JSX.Element;
 export declare function VideoPlayer({ url, autoplay, swiftStyle, style, ...props }: Types.VideoPlayerProps): import("react/jsx-runtime").JSX.Element;
 export declare function PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: Types.PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
 export declare function WebView({ onNavigate, onTitleChange, onLoadingChange, url, html, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: Types.WebViewProps): import("react/jsx-runtime").JSX.Element;

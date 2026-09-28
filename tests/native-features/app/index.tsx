@@ -126,6 +126,11 @@ const testScreens = [
     testID: 'nav-one-native-elliptical-gradient',
   },
   {
+    href: '/one-native-mesh-gradient',
+    label: 'One Native Mesh Gradient',
+    testID: 'nav-one-native-mesh-gradient',
+  },
+  {
     href: '/one-native-horizontal-inset',
     label: 'One Native Horizontal Inset',
     testID: 'nav-one-native-horizontal-inset',

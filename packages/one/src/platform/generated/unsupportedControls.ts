@@ -76,6 +76,9 @@ function EllipticalGradient(_props: Types.EllipticalGradientProps): never {
 function AngularGradient(_props: Types.AngularGradientProps): never {
   throw new Error('Swift.AngularGradient requires an iOS native build')
 }
+function MeshGradient(_props: Types.MeshGradientProps): never {
+  throw new Error('Swift.MeshGradient requires an iOS native build')
+}
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error('Swift.VideoPlayer requires an iOS native build')
 }
@@ -144,6 +147,7 @@ export const unsupportedControls = {
   RadialGradient,
   EllipticalGradient,
   AngularGradient,
+  MeshGradient,
   VideoPlayer,
   PhotosPicker,
   WebView,

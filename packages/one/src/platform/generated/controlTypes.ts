@@ -3705,6 +3705,15 @@ export interface AngularGradientProps extends OneNativeViewProps {
   center?: Readonly<{ x: number; y: number }>
   angle?: Readonly<{ radians: number }>
 }
+export interface MeshGradientProps extends OneNativeViewProps {
+  meshWidth: number
+  meshHeight: number
+  points: readonly Readonly<{ x: number; y: number }>[]
+  colors: readonly string[]
+  background?: string
+  smoothsColors?: boolean
+  colorSpace?: 'device' | 'perceptual'
+}
 export interface VideoPlayerProps extends OneNativeViewProps {
   url?: string
   autoplay?: boolean

@@ -24,6 +24,7 @@ declare function LinearGradient(_props: Types.LinearGradientProps): never;
 declare function RadialGradient(_props: Types.RadialGradientProps): never;
 declare function EllipticalGradient(_props: Types.EllipticalGradientProps): never;
 declare function AngularGradient(_props: Types.AngularGradientProps): never;
+declare function MeshGradient(_props: Types.MeshGradientProps): never;
 declare function VideoPlayer(_props: Types.VideoPlayerProps): never;
 declare function PhotosPicker(_props: Types.PhotosPickerProps): never;
 declare function WebView(_props: Types.WebViewProps): never;
@@ -64,6 +65,7 @@ export declare const unsupportedControls: {
     RadialGradient: typeof RadialGradient;
     EllipticalGradient: typeof EllipticalGradient;
     AngularGradient: typeof AngularGradient;
+    MeshGradient: typeof MeshGradient;
     VideoPlayer: typeof VideoPlayer;
     PhotosPicker: typeof PhotosPicker;
     WebView: typeof WebView;
