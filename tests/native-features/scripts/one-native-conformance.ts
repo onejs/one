@@ -40,6 +40,7 @@ const suites = [
   'list-row-background',
   'list-row-modifiers',
   'list-section-modifiers',
+  'form-section-modifiers',
   'list-search-refresh',
   'scroll-search-refresh',
   'groups',
@@ -334,6 +335,10 @@ const listSectionModifiersLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-section-modifiers-screen')) &&
   has(nodes, 'Section modifiers: ')
+const formSectionModifiersLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  Boolean(id(nodes, 'one-native-form-section-modifiers-screen')) &&
+  has(nodes, 'Form sections: ')
 const listSearchRefreshLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-search-refresh-screen')) &&
@@ -626,6 +631,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'list-row-background': listsLoaded,
   'list-row-modifiers': listRowModifiersLoaded,
   'list-section-modifiers': listSectionModifiersLoaded,
+  'form-section-modifiers': formSectionModifiersLoaded,
   'list-search-refresh': listSearchRefreshLoaded,
   'scroll-search-refresh': scrollSearchRefreshLoaded,
   groups: groupsLoaded,
@@ -715,6 +721,7 @@ const suiteHome: Record<Suite, string> = {
   'list-row-background': 'nav-one-native-lists',
   'list-row-modifiers': 'nav-one-native-list-row-modifiers',
   'list-section-modifiers': 'nav-one-native-list-section-modifiers',
+  'form-section-modifiers': 'nav-one-native-form-section-modifiers',
   'list-search-refresh': 'nav-one-native-list-search-refresh',
   'scroll-search-refresh': 'nav-one-native-scroll-search-refresh',
   groups: 'nav-one-native-groups',
@@ -2350,6 +2357,68 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
     )
     screenshot('list-search-refresh-typed.png', typed)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'form-section-modifiers') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-form-section-modifiers')
+    const compact = await wait('native Form sections mount', (nodes) =>
+      labels(nodes).includes('Form sections: compact') &&
+      labels(nodes).includes('First form section') &&
+      labels(nodes).includes('Second form section') &&
+      labels(nodes).includes('Apple form row') &&
+      labels(nodes).includes('Banana form row'))
+    const compactPath = screenshot('form-section-modifiers-compact.png', compact)
+    tap({ id: 'one-native-form-section-modifiers-toggle' })
+    await wait('React expands native Form sections', (nodes) =>
+      labels(nodes).includes('Form sections: expanded') &&
+      labels(nodes).includes('First form section') &&
+      labels(nodes).includes('Second form section') &&
+      labels(nodes).includes('Apple form row') &&
+      labels(nodes).includes('Banana form row'))
+    await Bun.sleep(300)
+    const expanded = snapshot(config.simulatorId)
+    const expandedPath = screenshot('form-section-modifiers-expanded.png', expanded)
+    tap({ id: 'one-native-form-section-modifiers-toggle' })
+    await wait('React restores native Form sections', (nodes) =>
+      labels(nodes).includes('Form sections: compact') &&
+      labels(nodes).includes('Apple form row') &&
+      labels(nodes).includes('Banana form row'))
+    await Bun.sleep(300)
+    const restored = snapshot(config.simulatorId)
+    const restoredPath = screenshot('form-section-modifiers-restored.png', restored)
+    const frame = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.AXLabel === label && node.frame)?.frame
+    const geometry = Object.fromEntries([
+      ['form', 'one-native-form-section-modifiers-form'],
+    ].map(([name, identifier]) => [name, {
+      compact: id(compact, identifier)?.frame,
+      expanded: id(expanded, identifier)?.frame,
+      restored: id(restored, identifier)?.frame,
+    }])) as Record<string, unknown>
+    for (const label of ['First form section', 'Second form section', 'Apple form row', 'Banana form row']) {
+      geometry[label] = {
+        compact: frame(compact, label),
+        expanded: frame(expanded, label),
+        restored: frame(restored, label),
+      }
+    }
+    const app = compact.find((node) => node.type === 'Application')?.frame
+    const host = id(compact, 'one-native-form-section-modifiers-form')?.frame
+    if (!app || !host) throw new Error(`Native Form proof lost viewport or host: ${JSON.stringify(geometry)}`)
+    const region = {
+      x: host.x, y: host.y, width: host.width,
+      height: Math.min(host.height, 320), viewportWidth: app.width,
+    }
+    const pixels = {
+      changed: countChangedPixels(compactPath, expandedPath, region, 8),
+      restored: countChangedPixels(compactPath, restoredPath, region, 8),
+    }
+    fs.writeFileSync(path.join(config.artifactDir, 'form-section-modifiers-measurements.json'),
+      JSON.stringify({ geometry, pixels }, null, 2))
+    console.log(`Form Section modifiers measured: ${JSON.stringify({ geometry, pixels })}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

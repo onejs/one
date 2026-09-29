@@ -3,6 +3,7 @@
 #import "One-Swift.h"
 #import "OneNativeFormShadowNode.h"
 #import <React/RCTConversions.h>
+#import "OneNativeStyleDictionary.h"
 
 using namespace facebook::react;
 
@@ -25,12 +26,19 @@ using namespace facebook::react;
     _formView.onMeasure = ^(CGFloat height) {
       [weakSelf updateMeasuredHeight:height];
     };
+    _formView.onSDKEvent = ^(NSString *name, NSString *value) {
+      OneNativeFormComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeFormEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
+    };
   }
   return self;
 }
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeFormProps>(props);
+  [_formView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_formView configureWithSizing:RCTNSStringFromString(next.sizing)];
   [_formView configureEnvironmentWithColorScheme:RCTNSStringFromString(next.colorScheme)
                                  dynamicTypeSize:RCTNSStringFromString(next.dynamicTypeSize)

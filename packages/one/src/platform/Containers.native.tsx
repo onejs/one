@@ -245,6 +245,7 @@ export function Form({
   children,
   style,
   sizing = 'fill',
+  swiftStyle,
   colorScheme,
   dynamicTypeSize,
   controlSize,
@@ -271,6 +272,8 @@ export function Form({
         isEnabled,
       })}
       sizing={sizing}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
       style={sizing === 'content' ? [{ alignSelf: 'stretch' }, style] : [{ flex: 1 }, style]}
     >
       <InsideContainer value={true}>{children}</InsideContainer>

@@ -73,7 +73,8 @@ export const containerComponents = [
     name: 'OneNativeForm',
     publicName: 'Form',
     props: { sizing: 'string', ...environmentProps },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     // fill takes the box React Native gave it; content reports the height SwiftUI
     // measured back to Yoga, so a form in a sheet wraps its rows.
@@ -443,6 +444,7 @@ export interface SpacerProps extends ViewProps {
 export type FormSizing = 'fill' | 'content'
 export interface FormProps extends ViewProps, EnvironmentProps {
   sizing?: FormSizing
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SectionProps extends ViewProps {

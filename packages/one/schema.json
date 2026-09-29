@@ -3196,7 +3196,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"

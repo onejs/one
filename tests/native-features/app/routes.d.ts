@@ -65,6 +65,7 @@ declare module 'one' {
         | `/one-native-effects`
         | `/one-native-fetch`
         | `/one-native-file-system`
+        | `/one-native-form-section-modifiers`
         | `/one-native-fonts`
         | `/one-native-glass-container`
         | `/one-native-gpu`

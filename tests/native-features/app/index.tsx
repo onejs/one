@@ -46,6 +46,11 @@ const testScreens = [
     testID: 'nav-one-native-list-section-modifiers',
   },
   {
+    href: '/one-native-form-section-modifiers',
+    label: 'One Native Form Section Modifiers',
+    testID: 'nav-one-native-form-section-modifiers',
+  },
+  {
     href: '/one-native-list-search-refresh',
     label: 'One Native List Search and Refresh',
     testID: 'nav-one-native-list-search-refresh',
