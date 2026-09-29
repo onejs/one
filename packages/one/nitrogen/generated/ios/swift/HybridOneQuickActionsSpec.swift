@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneQuickActionsSpec``
 public protocol HybridOneQuickActionsSpec_protocol: HybridObject {
   // Properties
-  
+
 
   // Methods
   func setItems(items: [QuickActionItem]) throws -> Promise<Void>
