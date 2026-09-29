@@ -291,9 +291,7 @@ export function globbedRoutesToRouteContext(
         })
         .catch((err) => {
           console.error(`Error loading route`, id, err, new Error().stack)
-          if (isChunkLoadError(err)) {
-            handleSkewError()
-          }
+          const reloading = isChunkLoadError(err) && handleSkewError()
           // rendering an empty component keeps one bad route from taking down the
           // app, but it also makes the failure invisible: nothing inside the route
           // mounts and the only trace is the line above. in dev, hand it to the
@@ -317,8 +315,10 @@ export function globbedRoutesToRouteContext(
 
             // `Importing a module script failed` names neither the module nor
             // the reason. when a browser content blocker refused one of the
-            // route's imports, walking the graph finds the exact file.
-            if (hasWebHistory && routePaths[id]) {
+            // route's imports, walking the graph finds the exact file. not while
+            // the skew reload above tears the page down: that aborts the walk's
+            // fetches, which would read as a blocker refusing them.
+            if (hasWebHistory && routePaths[id] && !reloading) {
               diagnoseRouteLoadFailure(id, routePaths[id])
                 .then((message) => {
                   if (message) console.error(message)
