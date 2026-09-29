@@ -28,9 +28,13 @@ export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-
 export { Audio } from './audio/index';
 export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index';
 export { Share } from './share/index';
+export { Open } from './open/index';
+export type { OpenShareContent } from './open/index';
 export type { ShareItem, ShareItemType, ShareResult } from './share/index';
 export { PhotoLibrary } from './photo-library/index';
 export type { PhotoLibraryPermissionStatus } from './photo-library/index';
+export { AppTracking } from './app-tracking/index';
+export type { AppTrackingPermissionStatus } from './app-tracking/index';
 export { ImageManipulator } from './image-manipulator/index';
 export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult } from './image-manipulator/index';
 export { Device } from './device/index';

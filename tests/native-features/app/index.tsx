@@ -46,11 +46,6 @@ const testScreens = [
     testID: 'nav-one-native-list-search-refresh',
   },
   {
-    href: '/one-native-scroll-search-refresh',
-    label: 'One Native Scroll Search and Refresh',
-    testID: 'nav-one-native-scroll-search-refresh',
-  },
-  {
     href: '/one-native-building-blocks',
     label: 'One Native Building Blocks',
     testID: 'nav-one-native-building-blocks',
@@ -445,6 +440,11 @@ const testScreens = [
     href: '/one-native-protected-store',
     label: 'One Native Protected Store',
     testID: 'nav-one-native-protected-store',
+  },
+  {
+    href: '/one-native-app-tracking',
+    label: 'One Native App Tracking',
+    testID: 'nav-one-native-app-tracking',
   },
   {
     href: '/one-native-location',

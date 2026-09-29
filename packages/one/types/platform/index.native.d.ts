@@ -1,5 +1,5 @@
 import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, Group, GroupBox, ViewThatFits, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
-import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
+import { ContextMenu as IOSContextMenu, Menu as IOSMenu } from './Menu.native';
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
 import { NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
@@ -13,8 +13,8 @@ export type { ToolbarHostProps, ToolbarItemProps } from './extras';
 export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './adaptive/index.native';
 export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, ReservedRegionsProviderProps, } from './adaptive/types';
 export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, SplitLayoutRatio, SplitLayoutSize, SplitFixedLayoutSize, OverlayArrangementEdge, } from './ArrangementView.native';
-declare const Menu: typeof AndroidMenu;
-declare const ContextMenu: typeof AndroidContextMenu;
+declare const Menu: typeof IOSMenu;
+declare const ContextMenu: typeof IOSContextMenu;
 export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
     DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react/jsx-runtime").JSX.Element;
@@ -62,8 +62,8 @@ export declare const Swift: {
     TabSection: typeof TabSection;
     TabViewBottomAccessory: typeof TabViewBottomAccessory;
     TabViewSlot: typeof TabViewSlot;
-    Menu: typeof AndroidMenu;
-    ContextMenu: typeof AndroidContextMenu;
+    Menu: typeof IOSMenu;
+    ContextMenu: typeof IOSContextMenu;
     Sheet: typeof Sheet;
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
@@ -132,9 +132,13 @@ export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-
 export { Audio } from './audio/index.native';
 export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index.native';
 export { Share } from './share/index.native';
+export { Open } from './open/index.native';
+export type { OpenShareContent } from './open/index.native';
 export type { ShareItem, ShareItemType, ShareResult } from './share/index.native';
 export { PhotoLibrary } from './photo-library/index.native';
 export type { PhotoLibraryPermissionStatus } from './photo-library/index.native';
+export { AppTracking } from './app-tracking/index.native';
+export type { AppTrackingPermissionStatus } from './app-tracking/index.native';
 export { ImageManipulator } from './image-manipulator/index.native';
 export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult } from './image-manipulator/index.native';
 export { Device } from './device/index.native';

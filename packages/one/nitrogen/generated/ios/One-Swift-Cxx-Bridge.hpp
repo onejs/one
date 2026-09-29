@@ -8,6 +8,8 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `AppTrackingPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class AppTrackingPermissionStatus; }
 // Forward declaration of `AppleAuthCredential` to properly resolve imports.
 namespace margelo::nitro::one { struct AppleAuthCredential; }
 // Forward declaration of `AppleAuthFullName` to properly resolve imports.
@@ -88,6 +90,8 @@ namespace margelo::nitro::one { enum class HingeStatus; }
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
+// Forward declaration of `HybridOneAppTrackingSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAppTrackingSpec; }
 // Forward declaration of `HybridOneAppleAuthSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 // Forward declaration of `HybridOneAudioSpec` to properly resolve imports.
@@ -230,6 +234,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppInfoSpec_cxx; }
+// Forward declaration of `HybridOneAppTrackingSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAppTrackingSpec_cxx; }
 // Forward declaration of `HybridOneAppleAuthSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppleAuthSpec_cxx; }
 // Forward declaration of `HybridOneAudioSpec_cxx` to properly resolve imports.
@@ -284,6 +290,7 @@ namespace One { class HybridOneSpeechSpec_cxx; }
 namespace One { class HybridOneUpdatesSpec_cxx; }
 
 // Include C++ defined types
+#include "AppTrackingPermissionStatus.hpp"
 #include "AppleAuthCredential.hpp"
 #include "AppleAuthFullName.hpp"
 #include "AppleAuthResult.hpp"
@@ -323,6 +330,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HingeStatus.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
+#include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
@@ -782,6 +790,70 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_AppleCredentialState___ create_Result_std__shared_ptr_Promise_AppleCredentialState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AppleCredentialState>>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<AppTrackingPermissionStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<AppTrackingPermissionStatus>>`.
+   */
+  using std__shared_ptr_Promise_AppTrackingPermissionStatus__ = std::shared_ptr<Promise<AppTrackingPermissionStatus>>;
+  inline std::shared_ptr<Promise<AppTrackingPermissionStatus>> create_std__shared_ptr_Promise_AppTrackingPermissionStatus__() noexcept {
+    return Promise<AppTrackingPermissionStatus>::create();
+  }
+  inline PromiseHolder<AppTrackingPermissionStatus> wrap_std__shared_ptr_Promise_AppTrackingPermissionStatus__(std::shared_ptr<Promise<AppTrackingPermissionStatus>> promise) noexcept {
+    return PromiseHolder<AppTrackingPermissionStatus>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(AppTrackingPermissionStatus /* result */)>
+  /**
+   * Specialized version of `std::function<void(AppTrackingPermissionStatus)>`.
+   */
+  using Func_void_AppTrackingPermissionStatus = std::function<void(AppTrackingPermissionStatus /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(AppTrackingPermissionStatus / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_AppTrackingPermissionStatus_Wrapper final {
+  public:
+    explicit Func_void_AppTrackingPermissionStatus_Wrapper(std::function<void(AppTrackingPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(AppTrackingPermissionStatus /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<AppTrackingPermissionStatus>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(AppTrackingPermissionStatus /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_AppTrackingPermissionStatus create_Func_void_AppTrackingPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AppTrackingPermissionStatus_Wrapper wrap_Func_void_AppTrackingPermissionStatus(Func_void_AppTrackingPermissionStatus value) noexcept {
+    return Func_void_AppTrackingPermissionStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneAppTrackingSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneAppTrackingSpec>`.
+   */
+  using std__shared_ptr_HybridOneAppTrackingSpec_ = std::shared_ptr<HybridOneAppTrackingSpec>;
+  std::shared_ptr<HybridOneAppTrackingSpec> create_std__shared_ptr_HybridOneAppTrackingSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneAppTrackingSpec_(std__shared_ptr_HybridOneAppTrackingSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneAppTrackingSpec>
+  using std__weak_ptr_HybridOneAppTrackingSpec_ = std::weak_ptr<HybridOneAppTrackingSpec>;
+  inline std__weak_ptr_HybridOneAppTrackingSpec_ weakify_std__shared_ptr_HybridOneAppTrackingSpec_(const std::shared_ptr<HybridOneAppTrackingSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<AppTrackingPermissionStatus>
+  using Result_AppTrackingPermissionStatus_ = Result<AppTrackingPermissionStatus>;
+  inline Result_AppTrackingPermissionStatus_ create_Result_AppTrackingPermissionStatus_(AppTrackingPermissionStatus value) noexcept {
+    return Result<AppTrackingPermissionStatus>::withValue(std::move(value));
+  }
+  inline Result_AppTrackingPermissionStatus_ create_Result_AppTrackingPermissionStatus_(const std::exception_ptr& error) noexcept {
+    return Result<AppTrackingPermissionStatus>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>
+  using Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ = Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>;
+  inline Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ create_Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___(const std::shared_ptr<Promise<AppTrackingPermissionStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ create_Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<AudioRecordingPermission>>

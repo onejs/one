@@ -1,4 +1,4 @@
-import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, Location, FileSystem, Audio, Share, PhotoLibrary, ImageManipulator, Device, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
+import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, Location, FileSystem, Audio, Share, Open, PhotoLibrary, AppTracking, ImageManipulator, Device, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -12,6 +12,7 @@ export type OneIOS = typeof Swift & {
     readonly Audio: typeof Audio;
     readonly Share: typeof Share;
     readonly PhotoLibrary: typeof PhotoLibrary;
+    readonly AppTracking: typeof AppTracking;
     readonly ImageManipulator: typeof ImageManipulator;
     readonly Device: typeof Device;
     readonly Contacts: typeof Contacts;
@@ -44,6 +45,9 @@ export type OneUI = typeof NativeUI & {
 export type OneNotifications = typeof Notifications;
 export type OneAPI = {
     readonly platform: OnePlatform;
+    readonly openURL: typeof Open.openURL;
+    readonly openShare: typeof Open.openShare;
+    readonly openSettings: typeof Open.openSettings;
     readonly AppInfo: typeof AppInfo;
     readonly Database: typeof Database;
     readonly iOS: Readonly<OneIOS>;

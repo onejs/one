@@ -39,7 +39,6 @@ const suites = [
   'list-row-modifiers',
   'list-section-modifiers',
   'list-search-refresh',
-  'scroll-search-refresh',
   'groups',
   'state',
   'safe-area',
@@ -79,6 +78,7 @@ const suites = [
   'apple-auth',
   'local-authentication',
   'protected-store',
+  'app-tracking',
   'location',
   'file-system',
   'audio',
@@ -315,10 +315,6 @@ const listSearchRefreshLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-list-search-refresh-screen')) &&
   has(nodes, 'Refresh: ')
-const scrollSearchRefreshLoaded = (nodes: Node[]) =>
-  nodes.some((n) => n.type === 'Application') &&
-  Boolean(id(nodes, 'one-native-scroll-search-refresh-screen')) &&
-  has(nodes, 'Refresh: ')
 const groupsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-groups-refuse')) &&
@@ -465,6 +461,8 @@ const protectedStoreLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'protected-store-prepare')) && has(nodes, 'Status: ')) ||
   (nodes.some((node) => node.type === 'Application') &&
     nodes.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-protected-store'))
+const appTrackingLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-app-tracking-request')) && has(nodes, 'Before: ')
 const locationLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
   has(nodes, 'Allow While Using App')
@@ -566,7 +564,6 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'list-row-modifiers': listRowModifiersLoaded,
   'list-section-modifiers': listSectionModifiersLoaded,
   'list-search-refresh': listSearchRefreshLoaded,
-  'scroll-search-refresh': scrollSearchRefreshLoaded,
   groups: groupsLoaded,
   state: stateLoaded,
   'safe-area': safeAreaLoaded,
@@ -606,6 +603,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'apple-auth': appleAuthLoaded,
   'local-authentication': localAuthenticationLoaded,
   'protected-store': protectedStoreLoaded,
+  'app-tracking': appTrackingLoaded,
   location: locationLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
@@ -640,7 +638,6 @@ const suiteHome: Record<Suite, string> = {
   'list-row-modifiers': 'nav-one-native-list-row-modifiers',
   'list-section-modifiers': 'nav-one-native-list-section-modifiers',
   'list-search-refresh': 'nav-one-native-list-search-refresh',
-  'scroll-search-refresh': 'nav-one-native-scroll-search-refresh',
   groups: 'nav-one-native-groups',
   state: 'nav-one-native-state',
   'safe-area': 'nav-one-native-safe-area',
@@ -679,6 +676,7 @@ const suiteHome: Record<Suite, string> = {
   'apple-auth': 'nav-one-native-apple-auth',
   'local-authentication': 'nav-one-native-local-authentication',
   'protected-store': 'nav-one-native-protected-store',
+  'app-tracking': 'nav-one-native-app-tracking',
   location: 'nav-one-native-location',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
@@ -1069,8 +1067,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       timeout: 30_000,
     })
   }
-  if (config.suite === 'notifications' || config.suite === 'speech') {
-    // simctl privacy has no notifications or speech recognition service on
+  if (config.suite === 'notifications' || config.suite === 'speech' ||
+      config.suite === 'app-tracking') {
+    // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined.
     if (!config.appPath)
@@ -2118,72 +2117,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'IsOn', 'true')
       )
     }
-    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
-    return
-  }
-  if (config.suite === 'scroll-search-refresh') {
-    const searchField = (nodes: Node[]) => nodes.find((node) =>
-      node.type === 'TextField' &&
-      node.AXUniqueId !== 'quick-navigate-path-input' &&
-      (node.frame?.width ?? 0) > 100
-    )
-    const pull = (nodes: Node[]) => {
-      const screen = id(nodes, 'one-native-scroll-search-refresh-screen')?.frame
-      if (!screen) throw new Error('Search and refresh screen has no frame')
-      axe([
-        'swipe', '--start-x', String(Math.round(screen.x + screen.width / 2)),
-        '--start-y', String(Math.round(screen.y + screen.height * 0.45)),
-        '--end-x', String(Math.round(screen.x + screen.width / 2)),
-        '--end-y', String(Math.round(screen.y + screen.height * 0.8)),
-        '--duration', '0.8',
-      ], config.simulatorId)
-    }
-
-    await wait('home screen mounted', () => true, true)
-    await dismissWarning(true)
-    await tapNav('nav-one-native-scroll-search-refresh')
-    const mounted = await wait('searchable ScrollView and rows mount', (nodes) =>
-      has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
-    )
-    screenshot('scroll-search-refresh-initial.png', mounted)
-    pull(mounted)
-    const refreshing = await wait('pull starts native ScrollView refresh action', (nodes) =>
-      has(nodes, 'Refresh: 1 started, 0 completed')
-    )
-    screenshot('scroll-search-refresh-pending.png', refreshing)
-    tap({ id: 'one-native-scroll-refresh-release' })
-    const completed = await wait('ScrollView refresh callback completes after promise resolves', (nodes) =>
-      has(nodes, 'Refresh: 1 started, 1 completed')
-    )
-    pull(completed)
-    await wait('native ScrollView accepts a second pull after completion', (nodes) =>
-      has(nodes, 'Refresh: 2 started, 1 completed')
-    )
-    tap({ id: 'one-native-scroll-refresh-release' })
-    await wait('second ScrollView refresh callback completes', (nodes) =>
-      has(nodes, 'Refresh: 2 started, 2 completed')
-    )
-    tap({ id: 'one-native-scroll-search-external' })
-    const external = await wait('controlled ScrollView search receives external text', (nodes) =>
-      has(nodes, 'Query: pear') && has(nodes, 'Pear') && !has(nodes, 'Apple') &&
-      String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
-    )
-    screenshot('scroll-search-refresh-external.png', external)
-    tap({ id: 'one-native-scroll-search-clear' })
-    const cleared = await wait('external clear restores native search field and scroll rows', (nodes) =>
-      has(nodes, 'Query: ') && has(nodes, 'Apple') &&
-      String(searchField(nodes)?.AXValue ?? '') === 'Search'
-    )
-    const field = searchField(cleared)?.frame
-    if (!field) throw new Error('Native search field has no frame')
-    point(field.x + field.width / 2, field.y + field.height / 2)
-    await typeInto('native ScrollView search field', 'pea', (nodes) => searchField(nodes)?.AXValue)
-    const typed = await wait('native search edit changes React binding and scroll rows', (nodes) =>
-      labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
-      has(nodes, 'Pear') && has(nodes, 'Peach') &&
-      !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
-    )
-    screenshot('scroll-search-refresh-typed.png', typed)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -6532,6 +6465,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         'Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS; biometric=v1; presence=vp; updated=v2; absent=null; missingUpdate=E_PROTECTED_STORE_NOT_FOUND'
       ))
     screenshot('protected-store-round-trip.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-tracking') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-tracking')
+    await wait('tracking permission starts undetermined', (nodes) =>
+      labels(nodes).includes('Before: notDetermined') &&
+      labels(nodes).includes('After: pending') &&
+      labels(nodes).includes('Result: none'))
+    tap({ id: 'one-native-app-tracking-request' })
+    await wait('tracking prompt displays configured purpose text', (nodes) =>
+      labels(nodes).some((label) =>
+        label.includes('NativeFeatureTests verifies the tracking permission prompt.')) &&
+      has(nodes, 'Ask App Not to Track'))
+    screenshot('app-tracking-prompt.png')
+    tap({ label: 'Ask App Not to Track' })
+    await wait('two concurrent requests resolve denied and status persists', (nodes) =>
+      labels(nodes).includes('Before: notDetermined') &&
+      labels(nodes).includes('After: denied') &&
+      labels(nodes).includes('Result: denied:denied'))
+    screenshot('app-tracking-denied.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -90,6 +90,9 @@
     "OnePhotoLibrary": {
       "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" }
     },
+    "OneAppTracking": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAppTracking" }
+    },
     "OneImageManipulator": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneImageManipulator" }
     },

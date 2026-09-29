@@ -38,24 +38,27 @@ declare module 'one' {
         | `/one-native-android-selection`
         | `/one-native-android-surface`
         | `/one-native-app-info`
+        | `/one-native-app-tracking`
         | `/one-native-apple-auth`
         | `/one-native-apple-file`
         | `/one-native-arrangement`
         | `/one-native-arrangement-view`
         | `/one-native-audio`
         | `/one-native-autogen`
-        | `/one-native-building-blocks`
         | `/one-native-browser`
+        | `/one-native-building-blocks`
         | `/one-native-calendar`
         | `/one-native-clipboard`
         | `/one-native-contacts`
         | `/one-native-containers`
+        | `/one-native-control-group`
         | `/one-native-controls`
         | `/one-native-cover-context`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`
         | `/one-native-dialogs`
+        | `/one-native-disclosure-group`
         | `/one-native-document-picker`
         | `/one-native-edit-button`
         | `/one-native-editors`
@@ -67,19 +70,16 @@ declare module 'one' {
         | `/one-native-gpu`
         | `/one-native-grids`
         | `/one-native-group-box`
-        | `/one-native-view-that-fits`
-        | `/one-native-view-slot`
-        | `/one-native-swipe-actions`
-        | `/one-native-disclosure-group`
-        | `/one-native-control-group`
         | `/one-native-groups`
         | `/one-native-haptics`
         | `/one-native-host`
         | `/one-native-image`
-        | `/one-native-image-picker`
         | `/one-native-image-manipulator`
+        | `/one-native-image-picker`
         | `/one-native-leaves`
+        | `/one-native-list-row-modifiers`
         | `/one-native-list-search-refresh`
+        | `/one-native-list-section-modifiers`
         | `/one-native-lists`
         | `/one-native-local-authentication`
         | `/one-native-location`
@@ -94,6 +94,7 @@ declare module 'one' {
         | `/one-native-popover`
         | `/one-native-protected-store`
         | `/one-native-safe-area`
+        | `/one-native-safe-area-bar`
         | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`
         | `/one-native-share`
@@ -102,14 +103,17 @@ declare module 'one' {
         | `/one-native-source`
         | `/one-native-speech`
         | `/one-native-state`
+        | `/one-native-swipe-actions`
         | `/one-native-system`
+        | `/one-native-tab-oracle`
         | `/one-native-tab-sidebar`
         | `/one-native-tab-slot`
-        | `/one-native-web-photos`
-        | `/one-native-tab-oracle`
         | `/one-native-tabview`
         | `/one-native-ui-map`
         | `/one-native-updates`
+        | `/one-native-view-slot`
+        | `/one-native-view-that-fits`
+        | `/one-native-web-photos`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`
