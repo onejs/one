@@ -49,10 +49,11 @@ namespace margelo::nitro::one {
     double durationMs     SWIFT_PRIVATE;
     std::optional<double> creationDateMs     SWIFT_PRIVATE;
     bool isFavorite     SWIFT_PRIVATE;
+    bool isLivePhoto     SWIFT_PRIVATE;
 
   public:
     PhotoLibraryAsset() = default;
-    explicit PhotoLibraryAsset(std::string identifier, PhotoLibraryMediaType mediaType, double width, double height, double durationMs, std::optional<double> creationDateMs, bool isFavorite): identifier(identifier), mediaType(mediaType), width(width), height(height), durationMs(durationMs), creationDateMs(creationDateMs), isFavorite(isFavorite) {}
+    explicit PhotoLibraryAsset(std::string identifier, PhotoLibraryMediaType mediaType, double width, double height, double durationMs, std::optional<double> creationDateMs, bool isFavorite, bool isLivePhoto): identifier(identifier), mediaType(mediaType), width(width), height(height), durationMs(durationMs), creationDateMs(creationDateMs), isFavorite(isFavorite), isLivePhoto(isLivePhoto) {}
 
   public:
     friend bool operator==(const PhotoLibraryAsset& lhs, const PhotoLibraryAsset& rhs) = default;
@@ -74,7 +75,8 @@ namespace margelo::nitro {
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "height"))),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "durationMs"))),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "creationDateMs"))),
-        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isFavorite")))
+        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isFavorite"))),
+        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isLivePhoto")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::PhotoLibraryAsset& arg) {
@@ -86,6 +88,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "durationMs"), JSIConverter<double>::toJSI(runtime, arg.durationMs));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "creationDateMs"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.creationDateMs));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "isFavorite"), JSIConverter<bool>::toJSI(runtime, arg.isFavorite));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "isLivePhoto"), JSIConverter<bool>::toJSI(runtime, arg.isLivePhoto));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -103,6 +106,7 @@ namespace margelo::nitro {
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "durationMs")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "creationDateMs")))) return false;
       if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isFavorite")))) return false;
+      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "isLivePhoto")))) return false;
       return true;
     }
   };

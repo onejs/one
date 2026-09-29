@@ -84,7 +84,9 @@ read access, `E_PHOTO_LIBRARY_MANIFEST` without the read/write usage message,
 
 Each asset has an
 `identifier`, `mediaType`, pixel `width` and `height`, `durationMs`, optional
-`creationDateMs`, and `isFavorite`. These methods read metadata; they do not
+`creationDateMs`, `isFavorite`, and `isLivePhoto`. An asset with `isLivePhoto`
+can be displayed with [`One.iOS.LivePhotoView`](/native/ios-media#livephotoview).
+These methods read metadata; they do not
 return image or video bytes. `listAssets()` accepts integer `offset` from 0 to
 1,000,000 and integer `limit` from 1 to 100. The read methods reject with
 `E_PHOTO_LIBRARY_MANIFEST` or `E_PHOTO_LIBRARY_PERMISSION` when configuration or

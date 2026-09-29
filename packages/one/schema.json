@@ -2047,6 +2047,56 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeLivePhotoView",
+      "publicName": "LivePhotoView",
+      "props": {
+        "assetIdentifier": {
+          "type": "string"
+        },
+        "autoplay": {
+          "type": "boolean"
+        },
+        "command": {
+          "type": "string"
+        },
+        "commandRevision": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativeLivePhotoViewPlaybackState": {
+          "state": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPlaybackState",
+          "event": "onNativeLivePhotoViewPlaybackState"
+        }
+      ],
+      "layout": {
+        "kind": "fill"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePhotosPicker",
       "publicName": "PhotosPicker",
       "props": {

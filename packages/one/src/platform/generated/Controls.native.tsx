@@ -1091,6 +1091,46 @@ export function VideoPlayer({
     />
   )
 }
+import NativeLivePhotoView from '../specs/OneNativeLivePhotoViewNativeComponent'
+export function LivePhotoView({
+  onPlaybackState,
+  assetIdentifier,
+  autoplay = false,
+  command = '',
+  commandRevision = 0,
+  swiftStyle,
+  style,
+  ...props
+}: Types.LivePhotoViewProps) {
+  if (typeof assetIdentifier !== 'string' || !assetIdentifier.trim())
+    throw new Error('LivePhotoView assetIdentifier must be a non-empty string')
+  if (!['', 'play', 'stop'].includes(command))
+    throw new Error('Unknown LivePhotoView command: ' + command)
+  if (!Number.isSafeInteger(commandRevision) || commandRevision < 0)
+    throw new Error('LivePhotoView commandRevision must be a nonnegative safe integer')
+  if (command && commandRevision === 0)
+    throw new Error('LivePhotoView command requires a positive commandRevision')
+  if (!command && commandRevision > 0)
+    throw new Error('LivePhotoView commandRevision requires a command')
+
+  return (
+    <NativeLivePhotoView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      assetIdentifier={assetIdentifier}
+      autoplay={autoplay}
+      command={command}
+      commandRevision={commandRevision}
+      onNativeLivePhotoViewPlaybackState={({ nativeEvent }) =>
+        onPlaybackState?.(nativeEvent.state, nativeEvent.errorCode)
+      }
+    />
+  )
+}
 import NativePhotosPicker from '../specs/OneNativePhotosPickerNativeComponent'
 export function PhotosPicker({
   onPick,

@@ -155,6 +155,219 @@ private struct VideoPlayerSurface: View {
   if (!Number.isFinite(seekToMs) || seekToMs < 0) throw new Error('VideoPlayer seekToMs must be a nonnegative finite number')`,
   },
   {
+    name: 'LivePhotoView',
+    layout: 'fill',
+    imports: ['Photos', 'PhotosUI'],
+    fields: {
+      assetIdentifier: { type: 'string', default: '', required: true },
+      autoplay: { type: 'boolean', default: false },
+      command: { type: 'string', default: '', publicType: "'play' | 'stop'" },
+      commandRevision: { type: 'Double', default: 0 },
+    },
+    actions: [
+      {
+        prop: 'onPlaybackState',
+        event: 'PlaybackState',
+        payload: { state: 'string', errorCode: 'string' },
+      },
+    ],
+    constructors: [],
+    swift: `LivePhotoSurface(model: model)`,
+    extraSwift: `private final class OneNativeLivePhotoSession: NSObject, ObservableObject, PHLivePhotoViewDelegate {
+  weak var view: PHLivePhotoView?
+  private var livePhoto: PHLivePhoto?
+  private var identifier = ""
+  private var generation = 0
+  private var requestId = PHInvalidImageRequestID
+  private var appliedRevision: Double = 0
+  private var pendingCommand: String?
+  private var autoplay = false
+  private var manualStop = false
+  private var state = ""
+  private var errorCode = ""
+  var report: ((String, String) -> Void)?
+
+  deinit {
+    if requestId != PHInvalidImageRequestID {
+      PHImageManager.default().cancelImageRequest(requestId)
+    }
+    view?.delegate = nil
+    view?.stopPlayback()
+  }
+
+  func attach(_ view: PHLivePhotoView) {
+    self.view = view
+    view.delegate = self
+    view.livePhoto = livePhoto
+  }
+
+  func detach(_ view: PHLivePhotoView) {
+    view.delegate = nil
+    view.stopPlayback()
+    if self.view === view { self.view = nil }
+  }
+
+  func clear() {
+    generation += 1
+    if requestId != PHInvalidImageRequestID {
+      PHImageManager.default().cancelImageRequest(requestId)
+      requestId = PHInvalidImageRequestID
+    }
+    manualStop = true
+    view?.stopPlayback()
+    view?.livePhoto = nil
+    livePhoto = nil
+    identifier = ""
+    pendingCommand = nil
+  }
+
+  func configure(_ nextIdentifier: String, autoplay: Bool, command: String, revision: Double) {
+    self.autoplay = autoplay
+    if identifier != nextIdentifier {
+      clear()
+      identifier = nextIdentifier
+      state = ""
+      errorCode = ""
+      emit("loading")
+      guard !nextIdentifier.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        fail("E_LIVE_PHOTO_INPUT")
+        return
+      }
+      let permission = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+      guard permission == .authorized || permission == .limited else {
+        fail("E_LIVE_PHOTO_PERMISSION")
+        return
+      }
+      guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [nextIdentifier], options: nil).firstObject else {
+        fail("E_LIVE_PHOTO_NOT_FOUND")
+        return
+      }
+      guard asset.mediaSubtypes.contains(.photoLive) else {
+        fail("E_LIVE_PHOTO_NOT_LIVE")
+        return
+      }
+      let currentGeneration = generation
+      let options = PHLivePhotoRequestOptions()
+      options.deliveryMode = .highQualityFormat
+      options.isNetworkAccessAllowed = false
+      requestId = PHImageManager.default().requestLivePhoto(for: asset,
+        targetSize: CGSize(width: 1280, height: 1280), contentMode: .aspectFit,
+        options: options) { [weak self] photo, info in
+        DispatchQueue.main.async { [weak self] in
+          guard let self, self.generation == currentGeneration else { return }
+          if info?[PHImageResultIsDegradedKey] as? Bool == true { return }
+          self.requestId = PHInvalidImageRequestID
+          guard let photo, info?[PHImageErrorKey] == nil else {
+            self.fail("E_LIVE_PHOTO_LOAD")
+            return
+          }
+          self.livePhoto = photo
+          self.view?.livePhoto = photo
+          self.emit("ready")
+          if let pending = self.pendingCommand {
+            self.pendingCommand = nil
+            self.execute(pending)
+          } else if self.autoplay {
+            self.execute("play")
+          }
+        }
+      }
+    }
+    guard revision > appliedRevision else { return }
+    appliedRevision = revision
+    if livePhoto != nil { execute(command) }
+    else if state != "failed" { pendingCommand = command }
+  }
+
+  private func execute(_ command: String) {
+    guard livePhoto != nil else { return }
+    switch command {
+    case "play":
+      manualStop = false
+      view?.startPlayback(with: .full)
+    case "stop":
+      manualStop = true
+      view?.stopPlayback()
+      emit("ready")
+    default: break
+    }
+  }
+
+  private func fail(_ code: String) {
+    pendingCommand = nil
+    emit("failed", code)
+  }
+
+  private func emit(_ nextState: String, _ code: String = "") {
+    let nextCode = nextState == "failed" ? code : ""
+    guard state != nextState || errorCode != nextCode else { return }
+    state = nextState
+    errorCode = nextCode
+    report?(nextState, nextCode)
+  }
+
+  func livePhotoView(_ livePhotoView: PHLivePhotoView,
+    willBeginPlaybackWith playbackStyle: PHLivePhotoViewPlaybackStyle) {
+    manualStop = false
+    emit("playing")
+  }
+
+  func livePhotoView(_ livePhotoView: PHLivePhotoView,
+    didEndPlaybackWith playbackStyle: PHLivePhotoViewPlaybackStyle) {
+    if !manualStop { emit("ended") }
+  }
+}
+
+private struct OneNativeLivePhotoContainer: UIViewRepresentable {
+  let session: OneNativeLivePhotoSession
+
+  func makeCoordinator() -> OneNativeLivePhotoSession { session }
+  func makeUIView(context: Context) -> PHLivePhotoView {
+    let view = PHLivePhotoView()
+    view.contentMode = .scaleAspectFit
+    session.attach(view)
+    return view
+  }
+  func updateUIView(_ view: PHLivePhotoView, context: Context) {}
+  static func dismantleUIView(_ view: PHLivePhotoView, coordinator: OneNativeLivePhotoSession) {
+    coordinator.detach(view)
+  }
+}
+
+private struct LivePhotoSurface: View {
+  @ObservedObject var model: LivePhotoViewModel
+  @StateObject private var session = OneNativeLivePhotoSession()
+
+  private func configure() {
+    session.configure(model.assetIdentifier, autoplay: model.autoplay,
+      command: model.command, revision: model.commandRevision)
+  }
+
+  var body: some View {
+    OneNativeLivePhotoContainer(session: session)
+      .onAppear {
+        session.report = { [weak model] state, errorCode in
+          model?.playbackState(state, errorCode)
+        }
+        configure()
+      }
+      .onChange(of: model.assetIdentifier) { configure() }
+      .onChange(of: model.autoplay) { configure() }
+      .onChange(of: model.commandRevision) { configure() }
+      .onDisappear {
+        session.report = nil
+        session.clear()
+      }
+  }
+}
+`,
+    validate: `  if (typeof assetIdentifier !== 'string' || !assetIdentifier.trim()) throw new Error('LivePhotoView assetIdentifier must be a non-empty string')
+  if (!['', 'play', 'stop'].includes(command)) throw new Error('Unknown LivePhotoView command: ' + command)
+  if (!Number.isSafeInteger(commandRevision) || commandRevision < 0) throw new Error('LivePhotoView commandRevision must be a nonnegative safe integer')
+  if (command && commandRevision === 0) throw new Error('LivePhotoView command requires a positive commandRevision')
+  if (!command && commandRevision > 0) throw new Error('LivePhotoView commandRevision requires a command')`,
+  },
+  {
     // PhotosPicker hands back PhotosPickerItem, which is a promise of data rather than a
     // file. loading it is asynchronous and per item, so each loaded item is its own numbered
     // event carrying the index it held in the selection and how many were picked; a caller

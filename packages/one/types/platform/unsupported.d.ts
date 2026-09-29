@@ -76,6 +76,7 @@ export declare const Swift: {
     AngularGradient: (_props: import("./types").AngularGradientProps) => never;
     MeshGradient: (_props: import("./types").MeshGradientProps) => never;
     VideoPlayer: (_props: import("./types").VideoPlayerProps) => never;
+    LivePhotoView: (_props: import("./types").LivePhotoViewProps) => never;
     PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
     WebView: (_props: import("./types").WebViewProps) => never;
     SignInWithAppleButton: (_props: import("./types").SignInWithAppleButtonProps) => never;

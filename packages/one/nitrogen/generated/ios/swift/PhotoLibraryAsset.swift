@@ -18,14 +18,14 @@ public extension PhotoLibraryAsset {
   /**
    * Create a new instance of `PhotoLibraryAsset`.
    */
-  init(identifier: String, mediaType: PhotoLibraryMediaType, width: Double, height: Double, durationMs: Double, creationDateMs: Double?, isFavorite: Bool) {
+  init(identifier: String, mediaType: PhotoLibraryMediaType, width: Double, height: Double, durationMs: Double, creationDateMs: Double?, isFavorite: Bool, isLivePhoto: Bool) {
     self.init(std.string(identifier), mediaType, width, height, durationMs, { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = creationDateMs {
         return bridge.create_std__optional_double_(__unwrappedValue)
       } else {
         return .init()
       }
-    }(), isFavorite)
+    }(), isFavorite, isLivePhoto)
   }
 
   @inline(__always)
@@ -68,5 +68,10 @@ public extension PhotoLibraryAsset {
   @inline(__always)
   var isFavorite: Bool {
     return self.__isFavorite
+  }
+
+  @inline(__always)
+  var isLivePhoto: Bool {
+    return self.__isLivePhoto
   }
 }

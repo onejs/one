@@ -93,6 +93,7 @@ declare module 'one' {
         | `/one-native-list-row-modifiers`
         | `/one-native-list-search-refresh`
         | `/one-native-list-section-modifiers`
+        | `/one-native-live-photo`
         | `/one-native-lists`
         | `/one-native-local-authentication`
         | `/one-native-location`

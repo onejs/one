@@ -82,6 +82,9 @@ function MeshGradient(_props: Types.MeshGradientProps): never {
 function VideoPlayer(_props: Types.VideoPlayerProps): never {
   throw new Error('Swift.VideoPlayer requires an iOS native build')
 }
+function LivePhotoView(_props: Types.LivePhotoViewProps): never {
+  throw new Error('Swift.LivePhotoView requires an iOS native build')
+}
 function PhotosPicker(_props: Types.PhotosPickerProps): never {
   throw new Error('Swift.PhotosPicker requires an iOS native build')
 }
@@ -149,6 +152,7 @@ export const unsupportedControls = {
   AngularGradient,
   MeshGradient,
   VideoPlayer,
+  LivePhotoView,
   PhotosPicker,
   WebView,
   SignInWithAppleButton,

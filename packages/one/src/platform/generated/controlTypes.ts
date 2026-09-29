@@ -3722,6 +3722,13 @@ export interface VideoPlayerProps extends OneNativeViewProps {
   commandRevision?: number
   seekToMs?: number
 }
+export interface LivePhotoViewProps extends OneNativeViewProps {
+  onPlaybackState?: (state: string, errorCode: string) => void
+  assetIdentifier: string
+  autoplay?: boolean
+  command?: 'play' | 'stop' | ''
+  commandRevision?: number
+}
 export interface PhotosPickerProps extends OneNativeViewProps {
   onPick?: (url: string, index: number, count: number) => void
   onPickItemIdentifier?: (itemIdentifier: string, index: number, count: number) => void

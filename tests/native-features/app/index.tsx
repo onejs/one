@@ -242,6 +242,11 @@ const testScreens = [
     testID: 'nav-one-native-photo-library',
   },
   {
+    href: '/one-native-live-photo',
+    label: 'One Native Live Photo',
+    testID: 'nav-one-native-live-photo',
+  },
+  {
     href: '/one-native-image-manipulator',
     label: 'One Native Image Manipulator',
     testID: 'nav-one-native-image-manipulator',
