@@ -48,6 +48,7 @@ public final class OneNativeMenuView: UIView {
   public var onValueChange: ((String, Bool, Int, Int, Int) -> Void)?
   private var model = OneNativeMenuModel()
   private var controller: OneNativeHostingController<OneNativeMenuRoot>?
+  private var contextMenu: UIContextMenuInteraction?
 
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
@@ -55,6 +56,7 @@ public final class OneNativeMenuView: UIView {
   public func mountTrigger(_ view: UIView) {
     precondition(model.trigger == nil, "Swift.Menu expects one RN trigger container")
     model.trigger = view
+    setNeedsLayout()
   }
 
   public func unmountTrigger(_ view: UIView) {
@@ -93,10 +95,36 @@ public final class OneNativeMenuView: UIView {
   private func updateHost() {
     model.active = false
     guard window != nil else { controller?.detach(); return }
-    if controller == nil {
+    if model.onAction == nil {
       model.onAction = { [weak self] id in self?.onAction?(id) }
       model.onPrimaryAction = { [weak self] in self?.onPrimaryAction?() }
       model.onValueChange = { [weak self] id, value, index, count, revision in self?.onValueChange?(id, value, index, count, revision) }
+    }
+    // a context menu is the same UIContextMenuInteraction swiftui's contextMenu installs,
+    // added to the host directly. a hosting controller per trigger costs every one of
+    // them a child view controller and a swiftui graph on each window move, which a list
+    // of rows pays on every tab or page switch. the trigger stays a plain subview, so the
+    // react native subtree keeps its own touches and accessibility.
+    if model.presentation == "contextMenu" {
+      controller?.detach()
+      controller = nil
+      if let trigger = model.trigger {
+        if trigger.superview !== self { addSubview(trigger) }
+        trigger.frame = bounds
+      }
+      if contextMenu == nil {
+        let interaction = UIContextMenuInteraction(delegate: self)
+        addInteraction(interaction)
+        contextMenu = interaction
+      }
+      model.active = true
+      return
+    }
+    if let contextMenu {
+      removeInteraction(contextMenu)
+      self.contextMenu = nil
+    }
+    if controller == nil {
       controller = OneNativeHostingController(rootView: OneNativeMenuRoot(model: model))
     }
     controller?.attach(to: self)
@@ -119,25 +147,8 @@ private struct OneNativeMenuRoot: View {
   @ObservedObject var model: OneNativeMenuModel
   var body: some View {
     if let trigger = model.trigger {
-      // a context menu opens on long press and leaves its subject alone the rest of the
-      // time, so the React Native subtree keeps its own touches and its own accessibility.
-      // a menu owns the tap instead, which is why its trigger is passive.
-      if model.presentation == "contextMenu" {
-        OneNativeSlot(content: trigger, mode: .fill)
-          .frame(width: model.size.width, height: model.size.height)
-          // yoga owns the trigger frame, so pin the slot to the host's box
-          // explicitly: inside a page the pager presents at the safe box, the
-          // safe-area proposal would otherwise displace this fixed frame off
-          // the yoga box the trigger was laid out in.
-          .position(x: model.size.width / 2, y: model.size.height / 2)
-          .contentShape(Rectangle())
-          .contextMenu {
-            OneNativeGeneratedMenuContent(model: model, parentId: "")
-          }
-          .disabled(model.disabled)
-          .oneNativeMenuOrder(model.menuOrder)
-          .oneNativeMenuActionDismissBehavior(model.menuActionDismissBehavior)
-      } else if model.hasPrimaryAction {
+      // a menu owns the tap, which is why its trigger is passive.
+      if model.hasPrimaryAction {
         Menu {
           OneNativeGeneratedMenuContent(model: model, parentId: "")
         } label: {
@@ -173,5 +184,95 @@ private struct OneNativeMenuRoot: View {
       // Yoga owns the trigger frame, not the safe area.
       .position(x: model.size.width / 2, y: model.size.height / 2)
       .contentShape(Rectangle())
+  }
+}
+
+extension OneNativeMenuView: UIContextMenuInteractionDelegate {
+  public func contextMenuInteraction(
+    _ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint
+  ) -> UIContextMenuConfiguration? {
+    guard !model.disabled else { return nil }
+    let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
+      guard let self else { return nil }
+      return UIMenu(children: self.menuElements("", dismiss: self.model.menuActionDismissBehavior, disabled: false))
+    }
+    configuration.preferredMenuElementOrder = Self.menuOrder(model.menuOrder)
+    return configuration
+  }
+
+  // the uikit form of OneNativeGeneratedMenuContent: a divider or a section closes the
+  // run of items before it, the way uikit groups menu elements between separators.
+  // dismiss behavior and disabled pass down to nested items, as swiftui's environment does.
+  private func menuElements(_ parentId: String, dismiss: String, disabled: Bool) -> [UIMenuElement] {
+    var groups: [UIMenuElement] = []
+    var run: [UIMenuElement] = []
+    func closeRun() {
+      guard !run.isEmpty else { return }
+      groups.append(UIMenu(options: .displayInline, children: run))
+      run = []
+    }
+    for item in model.children[parentId] ?? [] where !item.hidden {
+      let image = item.systemImage.isEmpty ? nil : UIImage(systemName: item.systemImage)
+      let itemDismiss = item.menuActionDismissBehavior.isEmpty ? dismiss : item.menuActionDismissBehavior
+      let itemDisabled = disabled || item.disabled
+      switch item.type {
+      case .action:
+        let action = UIAction(title: item.title, image: image) { [weak self] _ in self?.model.action(item.id) }
+        if item.role == "destructive" { action.attributes.insert(.destructive) }
+        if itemDisabled { action.attributes.insert(.disabled) }
+        if itemDismiss == "disabled" { action.attributes.insert(.keepsMenuPresented) }
+        run.append(action)
+      case .toggle:
+        let values = (model.controlled.value[item.id] ?? []).prefix(item.values.count)
+        let on = !values.isEmpty && values.allSatisfy { $0 }
+        let state: UIMenuElement.State = on ? .on : values.contains(true) ? .mixed : .off
+        let action = UIAction(title: item.title, image: image, state: state) { [weak self] _ in
+          for index in item.values.indices { self?.model.changeValue(item.id, index: index, value: !on) }
+        }
+        if itemDisabled { action.attributes.insert(.disabled) }
+        if itemDismiss == "disabled" { action.attributes.insert(.keepsMenuPresented) }
+        run.append(action)
+      case .submenu:
+        let menu = UIMenu(title: item.title, image: image, children: menuElements(item.id, dismiss: itemDismiss, disabled: itemDisabled))
+        run.append(menu)
+      case .section:
+        closeRun()
+        groups.append(UIMenu(title: item.title, options: .displayInline, children: menuElements(item.id, dismiss: itemDismiss, disabled: itemDisabled)))
+      case .controlGroup:
+        closeRun()
+        groups.append(controlGroup(item, image: image, dismiss: itemDismiss, disabled: itemDisabled))
+      case .divider:
+        closeRun()
+      }
+    }
+    closeRun()
+    return groups
+  }
+
+  // swiftui draws a ControlGroup inside a menu as an inline row of its controls.
+  private func controlGroup(_ item: OneNativeMenuNode, image: UIImage?, dismiss: String, disabled: Bool) -> UIMenuElement {
+    let children = menuElements(item.id, dismiss: dismiss, disabled: disabled)
+    switch item.controlGroupStyle {
+    case "palette":
+      return UIMenu(title: item.title, image: image, options: [.displayInline, .displayAsPalette], children: children)
+    case "menu":
+      return UIMenu(title: item.title, image: image, children: children)
+    case "compactMenu":
+      let menu = UIMenu(title: item.title, image: image, options: .displayInline, children: children)
+      menu.preferredElementSize = .small
+      return menu
+    default:
+      let menu = UIMenu(title: item.title, image: image, options: .displayInline, children: children)
+      menu.preferredElementSize = .medium
+      return menu
+    }
+  }
+
+  private static func menuOrder(_ value: String) -> UIContextMenuConfiguration.ElementOrder {
+    switch value {
+    case "priority": return .priority
+    case "fixed": return .fixed
+    default: return .automatic
+    }
   }
 }
