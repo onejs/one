@@ -95,6 +95,14 @@ export interface NativeAppManifest {
             refresh?: string[];
             processing?: string[];
         };
+        appIntents?: {
+            actions: Array<{
+                id: string;
+                title: string;
+                textParameterTitle?: string;
+                shortcutPhrase: string;
+            }>;
+        };
     };
     android?: {
         applicationId: string;

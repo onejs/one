@@ -2,6 +2,7 @@ import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeApp
 export type { NativeAppManifest as PrebuildAppConfig } from '@vxrn/utils/nativeAppManifest';
 export declare const validatePrebuildApp: typeof validateNativeApp;
 export declare function renderSceneDelegateSwift(appName: string): string;
+export declare function renderIosAppIntentsSwift(actions: NonNullable<NonNullable<NativeAppManifest['ios']>['appIntents']>['actions']): string;
 export interface RenderedPrebuildFile {
     destRelativePath: string;
     content: string | null;

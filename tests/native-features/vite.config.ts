@@ -203,6 +203,21 @@ export default defineConfig({
               refresh: ['dev.vxrn.native.tests.refresh'],
               processing: ['dev.vxrn.native.tests.processing'],
             },
+            appIntents: {
+              actions: [
+                {
+                  id: 'dev.vxrn.native.tests.echo',
+                  title: 'One Echo Text',
+                  textParameterTitle: 'Text',
+                  shortcutPhrase: 'Echo text in {app}',
+                },
+                {
+                  id: 'dev.vxrn.native.tests.unhandled',
+                  title: 'One Unhandled Action',
+                  shortcutPhrase: 'Try action in {app}',
+                },
+              ],
+            },
             alternateIcons: {
               TestAlternate: {
                 source: 'assets/alternate-icon.svg',

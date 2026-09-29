@@ -19,11 +19,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneHapticsRecyclable() -> Bool {
     return HybridOneHaptics.self is any RecyclableView.Type
   }
-  
+
   public static func createOneLaunchScreen() -> bridge.std__shared_ptr_HybridOneLaunchScreenSpec_ {
     let hybridObject = HybridOneLaunchScreen()
     return { () -> bridge.std__shared_ptr_HybridOneLaunchScreenSpec_ in
@@ -31,11 +31,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneLaunchScreenRecyclable() -> Bool {
     return HybridOneLaunchScreen.self is any RecyclableView.Type
   }
-  
+
   public static func createOneClipboard() -> bridge.std__shared_ptr_HybridOneClipboardSpec_ {
     let hybridObject = HybridOneClipboard()
     return { () -> bridge.std__shared_ptr_HybridOneClipboardSpec_ in
@@ -43,11 +43,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneClipboardRecyclable() -> Bool {
     return HybridOneClipboard.self is any RecyclableView.Type
   }
-  
+
   public static func createOneCrypto() -> bridge.std__shared_ptr_HybridOneCryptoSpec_ {
     let hybridObject = HybridOneCrypto()
     return { () -> bridge.std__shared_ptr_HybridOneCryptoSpec_ in
@@ -55,11 +55,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneCryptoRecyclable() -> Bool {
     return HybridOneCrypto.self is any RecyclableView.Type
   }
-  
+
   public static func createOneNetwork() -> bridge.std__shared_ptr_HybridOneNetworkSpec_ {
     let hybridObject = HybridOneNetwork()
     return { () -> bridge.std__shared_ptr_HybridOneNetworkSpec_ in
@@ -67,11 +67,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneNetworkRecyclable() -> Bool {
     return HybridOneNetwork.self is any RecyclableView.Type
   }
-  
+
   public static func createOneAppInfo() -> bridge.std__shared_ptr_HybridOneAppInfoSpec_ {
     let hybridObject = HybridOneAppInfo()
     return { () -> bridge.std__shared_ptr_HybridOneAppInfoSpec_ in
@@ -79,11 +79,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneAppInfoRecyclable() -> Bool {
     return HybridOneAppInfo.self is any RecyclableView.Type
   }
-  
+
   public static func createOneBrowser() -> bridge.std__shared_ptr_HybridOneBrowserSpec_ {
     let hybridObject = HybridOneBrowser()
     return { () -> bridge.std__shared_ptr_HybridOneBrowserSpec_ in
@@ -91,11 +91,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneBrowserRecyclable() -> Bool {
     return HybridOneBrowser.self is any RecyclableView.Type
   }
-  
+
   public static func createOneImagePicker() -> bridge.std__shared_ptr_HybridOneImagePickerSpec_ {
     let hybridObject = HybridOneImagePicker()
     return { () -> bridge.std__shared_ptr_HybridOneImagePickerSpec_ in
@@ -103,11 +103,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneImagePickerRecyclable() -> Bool {
     return HybridOneImagePicker.self is any RecyclableView.Type
   }
-  
+
   public static func createOneDocumentPicker() -> bridge.std__shared_ptr_HybridOneDocumentPickerSpec_ {
     let hybridObject = HybridOneDocumentPicker()
     return { () -> bridge.std__shared_ptr_HybridOneDocumentPickerSpec_ in
@@ -115,11 +115,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneDocumentPickerRecyclable() -> Bool {
     return HybridOneDocumentPicker.self is any RecyclableView.Type
   }
-  
+
   public static func createOneFonts() -> bridge.std__shared_ptr_HybridOneFontsSpec_ {
     let hybridObject = HybridOneFonts()
     return { () -> bridge.std__shared_ptr_HybridOneFontsSpec_ in
@@ -127,11 +127,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneFontsRecyclable() -> Bool {
     return HybridOneFonts.self is any RecyclableView.Type
   }
-  
+
   public static func createOneNotifications() -> bridge.std__shared_ptr_HybridOneNotificationsSpec_ {
     let hybridObject = HybridOneNotifications()
     return { () -> bridge.std__shared_ptr_HybridOneNotificationsSpec_ in
@@ -139,11 +139,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneNotificationsRecyclable() -> Bool {
     return HybridOneNotifications.self is any RecyclableView.Type
   }
-  
+
   public static func createOneSecureStore() -> bridge.std__shared_ptr_HybridOneSecureStoreSpec_ {
     let hybridObject = HybridOneSecureStore()
     return { () -> bridge.std__shared_ptr_HybridOneSecureStoreSpec_ in
@@ -151,11 +151,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneSecureStoreRecyclable() -> Bool {
     return HybridOneSecureStore.self is any RecyclableView.Type
   }
-  
+
   public static func createOneAdaptive() -> bridge.std__shared_ptr_HybridOneAdaptiveSpec_ {
     let hybridObject = HybridOneAdaptive()
     return { () -> bridge.std__shared_ptr_HybridOneAdaptiveSpec_ in
@@ -163,11 +163,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneAdaptiveRecyclable() -> Bool {
     return HybridOneAdaptive.self is any RecyclableView.Type
   }
-  
+
   public static func createOneSpeech() -> bridge.std__shared_ptr_HybridOneSpeechSpec_ {
     let hybridObject = HybridOneSpeech()
     return { () -> bridge.std__shared_ptr_HybridOneSpeechSpec_ in
@@ -175,11 +175,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneSpeechRecyclable() -> Bool {
     return HybridOneSpeech.self is any RecyclableView.Type
   }
-  
+
   public static func createOneFetch() -> bridge.std__shared_ptr_HybridOneFetchSpec_ {
     let hybridObject = HybridOneFetch()
     return { () -> bridge.std__shared_ptr_HybridOneFetchSpec_ in
@@ -187,11 +187,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneFetchRecyclable() -> Bool {
     return HybridOneFetch.self is any RecyclableView.Type
   }
-  
+
   public static func createOneAppleAuth() -> bridge.std__shared_ptr_HybridOneAppleAuthSpec_ {
     let hybridObject = HybridOneAppleAuth()
     return { () -> bridge.std__shared_ptr_HybridOneAppleAuthSpec_ in
@@ -199,11 +199,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneAppleAuthRecyclable() -> Bool {
     return HybridOneAppleAuth.self is any RecyclableView.Type
   }
-  
+
   public static func createOneLocalAuthentication() -> bridge.std__shared_ptr_HybridOneLocalAuthenticationSpec_ {
     let hybridObject = HybridOneLocalAuthentication()
     return { () -> bridge.std__shared_ptr_HybridOneLocalAuthenticationSpec_ in
@@ -211,11 +211,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneLocalAuthenticationRecyclable() -> Bool {
     return HybridOneLocalAuthentication.self is any RecyclableView.Type
   }
-  
+
   public static func createOneProtectedStore() -> bridge.std__shared_ptr_HybridOneProtectedStoreSpec_ {
     let hybridObject = HybridOneProtectedStore()
     return { () -> bridge.std__shared_ptr_HybridOneProtectedStoreSpec_ in
@@ -223,7 +223,7 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneProtectedStoreRecyclable() -> Bool {
     return HybridOneProtectedStore.self is any RecyclableView.Type
   }
@@ -239,7 +239,7 @@ public final class OneAutolinking {
   public static func isOnePreferencesRecyclable() -> Bool {
     return HybridOnePreferences.self is any RecyclableView.Type
   }
-  
+
   public static func createOneKeepAwake() -> bridge.std__shared_ptr_HybridOneKeepAwakeSpec_ {
     let hybridObject = HybridOneKeepAwake()
     return { () -> bridge.std__shared_ptr_HybridOneKeepAwakeSpec_ in
@@ -295,11 +295,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneLocationRecyclable() -> Bool {
     return HybridOneLocation.self is any RecyclableView.Type
   }
-  
+
   public static func createOneFileSystem() -> bridge.std__shared_ptr_HybridOneFileSystemSpec_ {
     let hybridObject = HybridOneFileSystem()
     return { () -> bridge.std__shared_ptr_HybridOneFileSystemSpec_ in
@@ -307,11 +307,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneFileSystemRecyclable() -> Bool {
     return HybridOneFileSystem.self is any RecyclableView.Type
   }
-  
+
   public static func createOneAudio() -> bridge.std__shared_ptr_HybridOneAudioSpec_ {
     let hybridObject = HybridOneAudio()
     return { () -> bridge.std__shared_ptr_HybridOneAudioSpec_ in
@@ -319,11 +319,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneAudioRecyclable() -> Bool {
     return HybridOneAudio.self is any RecyclableView.Type
   }
-  
+
   public static func createOneShare() -> bridge.std__shared_ptr_HybridOneShareSpec_ {
     let hybridObject = HybridOneShare()
     return { () -> bridge.std__shared_ptr_HybridOneShareSpec_ in
@@ -331,11 +331,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneShareRecyclable() -> Bool {
     return HybridOneShare.self is any RecyclableView.Type
   }
-  
+
   public static func createOnePhotoLibrary() -> bridge.std__shared_ptr_HybridOnePhotoLibrarySpec_ {
     let hybridObject = HybridOnePhotoLibrary()
     return { () -> bridge.std__shared_ptr_HybridOnePhotoLibrarySpec_ in
@@ -343,11 +343,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOnePhotoLibraryRecyclable() -> Bool {
     return HybridOnePhotoLibrary.self is any RecyclableView.Type
   }
-  
+
   public static func createOneAppTracking() -> bridge.std__shared_ptr_HybridOneAppTrackingSpec_ {
     let hybridObject = HybridOneAppTracking()
     return { () -> bridge.std__shared_ptr_HybridOneAppTrackingSpec_ in
@@ -379,11 +379,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneImageManipulatorRecyclable() -> Bool {
     return HybridOneImageManipulator.self is any RecyclableView.Type
   }
-  
+
   public static func createOneDevice() -> bridge.std__shared_ptr_HybridOneDeviceSpec_ {
     let hybridObject = HybridOneDevice()
     return { () -> bridge.std__shared_ptr_HybridOneDeviceSpec_ in
@@ -391,11 +391,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneDeviceRecyclable() -> Bool {
     return HybridOneDevice.self is any RecyclableView.Type
   }
-  
+
   public static func createOneMotion() -> bridge.std__shared_ptr_HybridOneMotionSpec_ {
     let hybridObject = HybridOneMotion()
     return { () -> bridge.std__shared_ptr_HybridOneMotionSpec_ in
@@ -418,6 +418,18 @@ public final class OneAutolinking {
 
   public static func isOneBackgroundTasksRecyclable() -> Bool {
     return HybridOneBackgroundTasks.self is any RecyclableView.Type
+  }
+
+  public static func createOneAppIntents() -> bridge.std__shared_ptr_HybridOneAppIntentsSpec_ {
+    let hybridObject = HybridOneAppIntents()
+    return { () -> bridge.std__shared_ptr_HybridOneAppIntentsSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneAppIntentsRecyclable() -> Bool {
+    return HybridOneAppIntents.self is any RecyclableView.Type
   }
 
   public static func createOneDeviceAttestation() -> bridge.std__shared_ptr_HybridOneDeviceAttestationSpec_ {
@@ -475,11 +487,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneContactsRecyclable() -> Bool {
     return HybridOneContacts.self is any RecyclableView.Type
   }
-  
+
   public static func createOneCalendar() -> bridge.std__shared_ptr_HybridOneCalendarSpec_ {
     let hybridObject = HybridOneCalendar()
     return { () -> bridge.std__shared_ptr_HybridOneCalendarSpec_ in
@@ -487,11 +499,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneCalendarRecyclable() -> Bool {
     return HybridOneCalendar.self is any RecyclableView.Type
   }
-  
+
   public static func createOneMapServices() -> bridge.std__shared_ptr_HybridOneMapServicesSpec_ {
     let hybridObject = HybridOneMapServices()
     return { () -> bridge.std__shared_ptr_HybridOneMapServicesSpec_ in
@@ -511,11 +523,11 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneUpdatesRecyclable() -> Bool {
     return HybridOneUpdates.self is any RecyclableView.Type
   }
-  
+
   public static func createOneNativeModules() -> bridge.std__shared_ptr_HybridOneNativeModulesSpec_ {
     let hybridObject = HybridOneNativeModules()
     return { () -> bridge.std__shared_ptr_HybridOneNativeModulesSpec_ in
@@ -523,7 +535,7 @@ public final class OneAutolinking {
       return __cxxWrapped.getCxxPart()
     }()
   }
-  
+
   public static func isOneNativeModulesRecyclable() -> Bool {
     return HybridOneNativeModules.self is any RecyclableView.Type
   }

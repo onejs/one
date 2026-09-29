@@ -1,13 +1,11 @@
 #import "OneBackgroundTasksBridge.h"
+#import "OneHeadlessHost.h"
 #import "One-Swift.h"
 #import <React-RCTAppDelegate/RCTReactNativeFactory.h>
-#import <React-RCTAppDelegate/RCTRootViewFactory.h>
 
 void OneBackgroundTasksRegisterHost(RCTReactNativeFactory *factory, NSDictionary *launchOptions) {
   [[OneBackgroundTasksCoordinator shared] registerWithStartHost:^{
-    [factory.rootViewFactory initializeReactHostWithLaunchOptions:launchOptions
-                                              bundleConfiguration:factory.bundleConfiguration
-                                             devMenuConfiguration:factory.devMenuConfiguration];
+    OneStartHeadlessReactHost(factory, launchOptions);
   }];
 }
 
