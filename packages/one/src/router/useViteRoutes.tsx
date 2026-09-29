@@ -314,10 +314,10 @@ export function globbedRoutesToRouteContext(
             })
 
             // `Importing a module script failed` names neither the module nor
-            // the reason. when a browser content blocker refused one of the
-            // route's imports, walking the graph finds the exact file. not while
-            // the skew reload above tears the page down: that aborts the walk's
-            // fetches, which would read as a blocker refusing them.
+            // the reason. when one of the route's imports does not exist or a
+            // browser content blocker refused it, walking the graph finds the
+            // exact file. not while the skew reload above tears the page down:
+            // that aborts the walk's fetches.
             if (hasWebHistory && routePaths[id] && !reloading) {
               diagnoseRouteLoadFailure(id, routePaths[id])
                 .then((message) => {

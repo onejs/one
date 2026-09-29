@@ -156,12 +156,23 @@ export function createFileSystemRouterPlugin(
 
           if (route.type === 'spa' && !isSpaShell) {
             // render just the layouts? route.layouts
-            return `<!DOCTYPE html><html><head>
+            const shell = `<!DOCTYPE html><html><head>
             ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module" src="/@one/dev.js"></script>
             <script type="module" src="/@vite/client" async=""></script>
             <script type="module" src="/@id/__x00__virtual:one-entry" async=""></script>
           </head></html>`
+            // the client still renders +not-found from the shell, but the status
+            // must say 404: an import of a file that does not exist lands here
+            // too, and a 200 html reply reads to the browser as a bad mime type
+            // instead of a missing module.
+            if (route.isNotFound) {
+              return new Response(shell, {
+                status: 404,
+                headers: { 'Content-Type': 'text/html' },
+              })
+            }
+            return shell
           }
 
           if (renderPromise) {
