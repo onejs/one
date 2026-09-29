@@ -56,6 +56,7 @@ const suites = [
   'gestures',
   'screen-orientation',
   'screen-capture',
+  'view-snapshot',
   'purchases',
   'launch-screen',
   'database',
@@ -679,6 +680,8 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   gestures: (nodes: Node[]) => Boolean(id(nodes, 'one-native-gestures-box')) && has(nodes, 'Drag: '),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
+  'view-snapshot': (nodes: Node[]) => Boolean(id(nodes, 'one-native-view-snapshot-capture')) &&
+    labels(nodes).some((label) => label.startsWith('View snapshot: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
   'launch-screen': (nodes: Node[]) => labels(nodes).includes('Launch screen fixture: visible'),
   database: databaseLoaded,
@@ -783,6 +786,7 @@ const suiteHome: Record<Suite, string> = {
   gestures: 'nav-one-native-gestures',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
+  'view-snapshot': 'nav-one-native-view-snapshot',
   purchases: 'nav-one-native-purchases',
   'launch-screen': 'nav-one-native-launch-screen',
   database: 'nav-one-native-database',
@@ -1247,7 +1251,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'notifications' || config.suite === 'speech' ||
       config.suite === 'app-tracking' || config.suite === 'map-services' ||
       config.suite === 'contacts' || config.suite === 'screen-orientation' ||
-      config.suite === 'screen-capture' || config.suite === 'motion' ||
+      config.suite === 'screen-capture' || config.suite === 'view-snapshot' ||
+      config.suite === 'motion' ||
       config.suite === 'background-tasks' ||
       config.suite === 'device-attestation' ||
       config.suite === 'gestures' ||
@@ -3490,6 +3495,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Orientation: portrait') && labels(n).includes('Status: unlocked')
     )
     screenshot('screen-orientation-unlocked.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'view-snapshot') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-view-snapshot')
+    const mounted = await wait('mounted view snapshot target is visible', (n) =>
+      labels(n).includes('View snapshot: idle') && Boolean(id(n, 'one-native-view-snapshot-target')) &&
+      Boolean(id(n, 'one-native-view-snapshot-blue')))
+    const target = id(mounted, 'one-native-view-snapshot-target')?.frame
+    if (!target || target.width <= 0 || target.height <= 0)
+      throw new Error('ViewSnapshot: mounted target has no measurable frame')
+    tap({ id: 'one-native-view-snapshot-capture' })
+    const captured = await wait('view snapshot returns its PNG metadata', (n) =>
+      labels(n).includes('View snapshot: captured') &&
+      labels(n).some((label) => /^View file: [A-F0-9-]+\.png$/.test(label)) &&
+      labels(n).some((label) => /^View dimensions: \d+x\d+$/.test(label)) &&
+      labels(n).some((label) => /^View bytes: [1-9]\d*$/.test(label)))
+    const fileName = labels(captured).find((label) => label.startsWith('View file: '))?.slice('View file: '.length)
+    const dimensionsLabel = labels(captured).find((label) => label.startsWith('View dimensions: '))
+    const bytesLabel = labels(captured).find((label) => label.startsWith('View bytes: '))
+    if (!fileName || !dimensionsLabel || !bytesLabel)
+      throw new Error('ViewSnapshot: missing PNG metadata labels')
+    const container = execFileSync('xcrun', [
+      'simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data',
+    ], { encoding: 'utf8' }).trim()
+    const file = path.join(container, 'Library/Caches/OneScreenCapture', fileName)
+    if (!fs.existsSync(file)) throw new Error(`ViewSnapshot: PNG is missing: ${file}`)
+    const image = readPng(file)
+    const scale = image.width / target.width
+    if (scale < 2.9 || scale > 3.1 || image.height !== Math.round(target.height * scale) ||
+      dimensionsLabel !== `View dimensions: ${image.width}x${image.height}` ||
+      bytesLabel !== `View bytes: ${fs.statSync(file).size}`)
+      throw new Error(`ViewSnapshot: wrong PNG dimensions or bytes: ${JSON.stringify({ target, width: image.width,
+        height: image.height, dimensionsLabel, bytesLabel })}`)
+    const pixel = (x: number, y: number) => {
+      const offset = (Math.round(y * scale) * image.width + Math.round(x * scale)) * 4
+      return Array.from(image.data.slice(offset, offset + 3), Number)
+    }
+    const redPixel = pixel(target.width / 8, target.height / 8)
+    const bluePixel = pixel(target.width / 2, target.height / 2)
+    if (!(redPixel[0] > 170 && redPixel[0] > redPixel[1] * 2 && redPixel[0] > redPixel[2] * 2 &&
+      bluePixel[2] > 150 && bluePixel[2] > bluePixel[0] * 2 && bluePixel[2] > bluePixel[1] * 2))
+      throw new Error(`ViewSnapshot: PNG lost nested pixels: ${JSON.stringify({ redPixel, bluePixel })}`)
+    fs.copyFileSync(file, path.join(config.artifactDir, 'view-snapshot.png'))
+    console.log(`PASS view snapshot PNG pixels: ${JSON.stringify({ redPixel, bluePixel, width: image.width,
+      height: image.height })}`)
+    tap({ id: 'one-native-view-snapshot-invalid' })
+    await wait('invalid view tags reject with exact TypeError', (n) => labels(n).includes(
+      'Invalid tags: TypeError:ScreenCapture.captureView requires a positive 32-bit integer view tag|' +
+      'TypeError:ScreenCapture.captureView requires a positive 32-bit integer view tag'))
+    tap({ id: 'one-native-view-snapshot-delete' })
+    await wait('view snapshot file deletion settles', (n) =>
+      labels(n).includes('View snapshot: deleted') && labels(n).includes('View file: none'))
+    if (fs.existsSync(file)) throw new Error(`ViewSnapshot: deleted PNG still exists: ${file}`)
+    tap({ id: 'one-native-view-snapshot-unmount' })
+    await wait('view snapshot target is unmounted', (n) => !id(n, 'one-native-view-snapshot-target'))
+    tap({ id: 'one-native-view-snapshot-stale' })
+    await wait('stale view tag rejects', (n) => labels(n).includes('Stale tag: E_SCREEN_CAPTURE_VIEW'))
+    screenshot('view-snapshot-passed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

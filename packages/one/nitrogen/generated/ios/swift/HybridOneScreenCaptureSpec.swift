@@ -14,7 +14,8 @@ public protocol HybridOneScreenCaptureSpec_protocol: HybridObject {
 
   // Methods
   func getState() throws -> Promise<ScreenCaptureState>
-  func captureWindow() throws -> Promise<WindowCaptureResult>
+  func captureWindow() throws -> Promise<ScreenCaptureResult>
+  func captureView(viewTag: Double) throws -> Promise<ScreenCaptureResult>
   func addStateListener(onChange: @escaping (_ state: ScreenCaptureState) -> Void) throws -> () -> Void
   func addScreenshotListener(onScreenshot: @escaping (_ timestampMs: Double) -> Void) throws -> () -> Void
 }

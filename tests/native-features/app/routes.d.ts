@@ -132,6 +132,7 @@ declare module 'one' {
         | `/one-native-ui-map`
         | `/one-native-updates`
         | `/one-native-view-slot`
+        | `/one-native-view-snapshot`
         | `/one-native-view-that-fits`
         | `/one-native-web-photos`
         | `/split-view-test`

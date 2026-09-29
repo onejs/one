@@ -15,12 +15,12 @@
 
 // Forward declaration of `ScreenCaptureState` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenCaptureState; }
-// Forward declaration of `WindowCaptureResult` to properly resolve imports.
-namespace margelo::nitro::one { struct WindowCaptureResult; }
+// Forward declaration of `ScreenCaptureResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ScreenCaptureResult; }
 
 #include "ScreenCaptureState.hpp"
 #include <NitroModules/Promise.hpp>
-#include "WindowCaptureResult.hpp"
+#include "ScreenCaptureResult.hpp"
 #include <functional>
 
 namespace margelo::nitro::one {
@@ -55,7 +55,8 @@ namespace margelo::nitro::one {
     public:
       // Methods
       virtual std::shared_ptr<Promise<ScreenCaptureState>> getState() = 0;
-      virtual std::shared_ptr<Promise<WindowCaptureResult>> captureWindow() = 0;
+      virtual std::shared_ptr<Promise<ScreenCaptureResult>> captureWindow() = 0;
+      virtual std::shared_ptr<Promise<ScreenCaptureResult>> captureView(double viewTag) = 0;
       virtual std::function<void()> addStateListener(const std::function<void(ScreenCaptureState /* state */)>& onChange) = 0;
       virtual std::function<void()> addScreenshotListener(const std::function<void(double /* timestampMs */)>& onScreenshot) = 0;
 

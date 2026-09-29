@@ -352,6 +352,8 @@ namespace margelo::nitro::one { struct ReminderInput; }
 namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
+// Forward declaration of `ScreenCaptureResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ScreenCaptureResult; }
 // Forward declaration of `ScreenCaptureState` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenCaptureState; }
 // Forward declaration of `ScreenOrientationLock` to properly resolve imports.
@@ -380,8 +382,6 @@ namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
 namespace margelo::nitro::one { struct SpeechStartOptions; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
-// Forward declaration of `WindowCaptureResult` to properly resolve imports.
-namespace margelo::nitro::one { struct WindowCaptureResult; }
 
 // Include C++ defined types
 #include "AppTrackingPermissionStatus.hpp"
@@ -556,6 +556,7 @@ namespace margelo::nitro::one { struct WindowCaptureResult; }
 #include "ReminderInput.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
+#include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationLock.hpp"
 #include "ScreenOrientationValue.hpp"
@@ -570,7 +571,6 @@ namespace margelo::nitro::one { struct WindowCaptureResult; }
 #include "SpeechPermissionStatus.hpp"
 #include "SpeechStartOptions.hpp"
 #include "UserInterfaceSizeClass.hpp"
-#include "WindowCaptureResult.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>

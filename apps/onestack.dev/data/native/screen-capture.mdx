@@ -1,6 +1,6 @@
 ---
 title: Screen capture
-description: Observe iOS screen capture and save a PNG of the app window.
+description: Observe iOS screen capture and save a PNG of the app window or a React Native view.
 ---
 
 `One.iOS.ScreenCapture` reports the active window scene's capture state and
@@ -42,6 +42,34 @@ The PNG contains the app window's rendered content. It excludes system UI
 drawn in other windows, including the status bar. It does not take an OS
 screenshot or trigger `addScreenshotListener`.
 
+To capture one mounted React Native view, pass its native tag from
+`findNodeHandle()` to `captureView()`. Set `collapsable={false}` on the target
+view: Fabric can otherwise mount its children beside it, and a view-only PNG
+can silently omit those children. The returned file has the same
+`{ uri, width, height, size }` shape as `captureWindow()`. Its dimensions are
+the target's bounds in pixels at the active window's native scale.
+
+```tsx
+import { useRef, type ComponentRef } from 'react'
+import { findNodeHandle, View } from 'react-native'
+import { One } from 'one'
+
+const target = useRef<ComponentRef<typeof View>>(null)
+
+// render <View ref={target} collapsable={false}>...</View> before capturing
+const tag = findNodeHandle(target.current)
+if (tag == null) throw new Error('target view is not mounted')
+const image = await One.iOS.ScreenCapture.captureView(tag)
+try {
+  // use image.uri with a file upload, share sheet, or image view
+} finally {
+  await One.iOS.FileSystem.delete(image.uri)
+}
+```
+
+Capture the tag while the view is mounted. `captureView()` renders that view's
+UIKit subtree at call time. It does not include sibling views or system UI.
+
 `getState()` resolves to `active` when UIKit reports that the scene is being
 recorded or mirrored, `inactive` when it is not, and `unspecified` when UIKit
 has not determined a state. `addStateListener()` reports changes after
@@ -54,6 +82,11 @@ scene. `captureWindow()` uses that scene and rejects with
 `E_SCREEN_CAPTURE_RENDER` if UIKit cannot draw it,
 `E_SCREEN_CAPTURE_ENCODE` if PNG encoding fails, or
 `E_SCREEN_CAPTURE_FILE` if the file cannot be saved.
+`captureView()` uses the same scene and PNG errors; it rejects with
+`E_SCREEN_CAPTURE_VIEW` if the tag no longer resolves to a mounted view in the
+active app window. Its JS wrapper throws `TypeError` for a non-integer,
+non-positive, or out-of-range tag. A direct Nitro call instead rejects with
+`E_SCREEN_CAPTURE_INPUT` for those values.
 
 Screenshot notification arrives after the image is captured, so it cannot
 prevent or redact that screenshot. For recording and mirroring, update
