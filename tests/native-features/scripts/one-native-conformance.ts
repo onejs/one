@@ -8584,7 +8584,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       status(n, 'Command', 'stop:3') && status(n, 'Playback', 'ready') &&
       status(n, 'Error', 'none') &&
       events(n) === 'Events: loading>ready>playing>ended>playing>ready')
-    screenshot('live-photo-passed.png')
+    const stopped = screenshot('live-photo-passed.png')
+    const restored = countChangedPixels(baselineB, stopped, photoCrop, 10)
+    if (restored.changed !== 0)
+      throw new Error(`Live Photo stop did not restore the key photo: ${JSON.stringify(restored)}`)
+    console.log(`PASS live-photo-key-photo-restored ${JSON.stringify(restored)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
