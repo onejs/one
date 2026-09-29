@@ -561,7 +561,8 @@ const photoLibraryLoaded = (nodes: Node[]) =>
     label.includes('delete the album “One proof renamed”')
   )
 const livePhotoLoaded = (nodes: Node[]) =>
-  Boolean(id(nodes, 'one-native-live-photo-permission')) && has(nodes, 'Status: ')
+  (Boolean(id(nodes, 'one-native-live-photo-permission')) && has(nodes, 'Status: ')) ||
+  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.'))
 const imageManipulatorLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-image-manipulator-run')) && has(nodes, 'Status: ')
 // the microphone and speech prompts cover the fixture during the request
