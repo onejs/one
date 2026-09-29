@@ -24,6 +24,18 @@ namespace margelo::nitro::one { struct AppleAuthSignInOptions; }
 namespace margelo::nitro::one { enum class AppleCredentialState; }
 // Forward declaration of `AppleRealUserStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class AppleRealUserStatus; }
+// Forward declaration of `AudioPlaybackState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioPlaybackState; }
+// Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlaybackStatus; }
+// Forward declaration of `AudioRecordingPermission` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRecordingPermission; }
+// Forward declaration of `AudioRecordingResult` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRecordingResult; }
+// Forward declaration of `AudioRecordingState` to properly resolve imports.
+namespace margelo::nitro::one { enum class AudioRecordingState; }
+// Forward declaration of `AudioRecordingStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioRecordingStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -38,10 +50,24 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 namespace margelo::nitro::one { enum class BrowserResultType; }
 // Forward declaration of `BrowserResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserResult; }
+// Forward declaration of `CalendarEventInput` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarEventInput; }
+// Forward declaration of `CalendarEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarEvent; }
+// Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
+// Forward declaration of `ContactInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactInfo; }
+// Forward declaration of `ContactInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ContactInput; }
+// Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DeviceInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -56,6 +82,14 @@ namespace margelo::nitro::one { struct FetchHeader; }
 namespace margelo::nitro::one { struct FetchNativeRequest; }
 // Forward declaration of `FetchNativeResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct FetchNativeResponse; }
+// Forward declaration of `FileDirectories` to properly resolve imports.
+namespace margelo::nitro::one { struct FileDirectories; }
+// Forward declaration of `FileEncoding` to properly resolve imports.
+namespace margelo::nitro::one { enum class FileEncoding; }
+// Forward declaration of `FileEntry` to properly resolve imports.
+namespace margelo::nitro::one { struct FileEntry; }
+// Forward declaration of `FileInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct FileInfo; }
 // Forward declaration of `HapticImpact` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
@@ -70,28 +104,48 @@ namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneAppleAuthSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
+// Forward declaration of `HybridOneAudioSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
+// Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
+// Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneContactsSpec; }
 // Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCryptoSpec; }
+// Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDeviceSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFetchSpec; }
+// Forward declaration of `HybridOneFileSystemSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneFileSystemSpec; }
 // Forward declaration of `HybridOneFontsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFontsSpec; }
 // Forward declaration of `HybridOneHapticsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
+// Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
+// Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneLocationSpec; }
+// Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 // Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
+// Forward declaration of `HybridOnePhotoLibrarySpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOneSecureStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
+// Forward declaration of `HybridOneShareSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
@@ -102,6 +156,18 @@ namespace margelo::nitro::one { struct ImagePickerAsset; }
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 // Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
+// Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
+// Forward declaration of `LocalBiometryType` to properly resolve imports.
+namespace margelo::nitro::one { enum class LocalBiometryType; }
+// Forward declaration of `LocalizationInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocalizationInfo; }
+// Forward declaration of `LocationPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class LocationPermissionStatus; }
+// Forward declaration of `LocationPlace` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationPlace; }
+// Forward declaration of `LocationPosition` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannelInput; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
@@ -150,10 +216,22 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `ReminderInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInfo; }
+// Forward declaration of `ReminderInput` to properly resolve imports.
+namespace margelo::nitro::one { struct ReminderInput; }
 // Forward declaration of `ResolvedDocumentPickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
+// Forward declaration of `ShareItemType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ShareItemType; }
+// Forward declaration of `ShareItem` to properly resolve imports.
+namespace margelo::nitro::one { struct ShareItem; }
+// Forward declaration of `ShareResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ShareResult; }
 // Forward declaration of `SizeClass` to properly resolve imports.
 namespace margelo::nitro::one { struct SizeClass; }
 // Forward declaration of `SpeechErrorCode` to properly resolve imports.
@@ -180,6 +258,12 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AppleAuthSignInOptions.hpp"
 #include "AppleCredentialState.hpp"
 #include "AppleRealUserStatus.hpp"
+#include "AudioPlaybackState.hpp"
+#include "AudioPlaybackStatus.hpp"
+#include "AudioRecordingPermission.hpp"
+#include "AudioRecordingResult.hpp"
+#include "AudioRecordingState.hpp"
+#include "AudioRecordingStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -187,8 +271,15 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "BrowserPresentationStyle.hpp"
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
+#include "CalendarEvent.hpp"
+#include "CalendarEventInput.hpp"
+#include "CalendarPermissionStatus.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
+#include "ContactInfo.hpp"
+#include "ContactInput.hpp"
+#include "ContactsPermissionStatus.hpp"
+#include "DeviceInfo.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -196,6 +287,10 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "FetchHeader.hpp"
 #include "FetchNativeRequest.hpp"
 #include "FetchNativeResponse.hpp"
+#include "FileDirectories.hpp"
+#include "FileEncoding.hpp"
+#include "FileEntry.hpp"
+#include "FileInfo.hpp"
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
 #include "HingeState.hpp"
@@ -203,22 +298,38 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
+#include "HybridOneAudioSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
+#include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
+#include "HybridOneContactsSpec.hpp"
 #include "HybridOneCryptoSpec.hpp"
+#include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
+#include "HybridOneFileSystemSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
+#include "HybridOneLocalAuthenticationSpec.hpp"
+#include "HybridOneLocationSpec.hpp"
+#include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
+#include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
+#include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImagePickerAsset.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
+#include "LocalAuthenticationStatus.hpp"
+#include "LocalBiometryType.hpp"
+#include "LocalizationInfo.hpp"
+#include "LocationPermissionStatus.hpp"
+#include "LocationPlace.hpp"
+#include "LocationPosition.hpp"
 #include "NativeChannel.hpp"
 #include "NativeChannelInput.hpp"
 #include "NativeContent.hpp"
@@ -243,8 +354,14 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PhotoLibraryPermissionStatus.hpp"
+#include "ReminderInfo.hpp"
+#include "ReminderInput.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
+#include "ShareItem.hpp"
+#include "ShareItemType.hpp"
+#include "ShareResult.hpp"
 #include "SizeClass.hpp"
 #include "SpeechErrorCode.hpp"
 #include "SpeechEvent.hpp"
@@ -280,28 +397,48 @@ namespace One { class HybridOneAdaptiveSpec_cxx; }
 namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneAppleAuthSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppleAuthSpec_cxx; }
+// Forward declaration of `HybridOneAudioSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
+// Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneCalendarSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneClipboardSpec_cxx; }
+// Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneContactsSpec_cxx; }
 // Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCryptoSpec_cxx; }
+// Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDeviceSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFetchSpec_cxx; }
+// Forward declaration of `HybridOneFileSystemSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneFileSystemSpec_cxx; }
 // Forward declaration of `HybridOneFontsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFontsSpec_cxx; }
 // Forward declaration of `HybridOneHapticsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneHapticsSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
+// Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
+// Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneLocationSpec_cxx; }
+// Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneNativeModulesSpec_cxx; }
 // Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNotificationsSpec_cxx; }
+// Forward declaration of `HybridOnePhotoLibrarySpec_cxx` to properly resolve imports.
+namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
+// Forward declaration of `HybridOneShareSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.

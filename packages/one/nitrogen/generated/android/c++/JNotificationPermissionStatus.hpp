@@ -42,15 +42,15 @@ namespace margelo::nitro::one {
     static jni::alias_ref<JNotificationPermissionStatus> fromCpp(NotificationPermissionStatus value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
+        case NotificationPermissionStatus::UNDETERMINED:
+          static const auto fieldUNDETERMINED = clazz->getStaticField<JNotificationPermissionStatus>("UNDETERMINED");
+          return clazz->getStaticFieldValue(fieldUNDETERMINED);
         case NotificationPermissionStatus::GRANTED:
           static const auto fieldGRANTED = clazz->getStaticField<JNotificationPermissionStatus>("GRANTED");
           return clazz->getStaticFieldValue(fieldGRANTED);
         case NotificationPermissionStatus::DENIED:
           static const auto fieldDENIED = clazz->getStaticField<JNotificationPermissionStatus>("DENIED");
           return clazz->getStaticFieldValue(fieldDENIED);
-        case NotificationPermissionStatus::UNDETERMINED:
-          static const auto fieldUNDETERMINED = clazz->getStaticField<JNotificationPermissionStatus>("UNDETERMINED");
-          return clazz->getStaticFieldValue(fieldUNDETERMINED);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");

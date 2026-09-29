@@ -26,6 +26,11 @@ const testScreens = [
     testID: 'nav-one-native-controls',
   },
   {
+    href: '/one-native-paste-button',
+    label: 'One Native Paste Button',
+    testID: 'nav-one-native-paste-button',
+  },
+  {
     href: '/one-native-sheet',
     label: 'One Native Sheets',
     testID: 'nav-one-native-sheet',
@@ -84,6 +89,51 @@ const testScreens = [
     href: '/one-native-document-picker',
     label: 'One Native Document Picker',
     testID: 'nav-one-native-document-picker',
+  },
+  {
+    href: '/one-native-audio',
+    label: 'One Native Audio',
+    testID: 'nav-one-native-audio',
+  },
+  {
+    href: '/one-native-share',
+    label: 'One Native Share',
+    testID: 'nav-one-native-share',
+  },
+  {
+    href: '/one-native-photo-library',
+    label: 'One Native Photo Library',
+    testID: 'nav-one-native-photo-library',
+  },
+  {
+    href: '/one-native-editors',
+    label: 'One Native Editors',
+    testID: 'nav-one-native-editors',
+  },
+  {
+    href: '/one-native-grids',
+    label: 'One Native Grids',
+    testID: 'nav-one-native-grids',
+  },
+  {
+    href: '/one-native-device',
+    label: 'One Native Device',
+    testID: 'nav-one-native-device',
+  },
+  {
+    href: '/one-native-database',
+    label: 'One Native Database',
+    testID: 'nav-one-native-database',
+  },
+  {
+    href: '/one-native-contacts',
+    label: 'One Native Contacts',
+    testID: 'nav-one-native-contacts',
+  },
+  {
+    href: '/one-native-calendar',
+    label: 'One Native Calendar',
+    testID: 'nav-one-native-calendar',
   },
   {
     href: '/one-native-map',
@@ -167,6 +217,66 @@ const testScreens = [
     testID: 'nav-one-native-android-inputs',
   },
   {
+    href: '/one-native-android-selection',
+    label: 'One Native Android Selection',
+    testID: 'nav-one-native-android-selection',
+  },
+  {
+    href: '/one-native-android-cards',
+    label: 'One Native Android Cards',
+    testID: 'nav-one-native-android-cards',
+  },
+  {
+    href: '/one-native-android-dividers',
+    label: 'One Native Android Dividers',
+    testID: 'nav-one-native-android-dividers',
+  },
+  {
+    href: '/one-native-android-filter-chip',
+    label: 'One Native Android Filter Chip',
+    testID: 'nav-one-native-android-filter-chip',
+  },
+  {
+    href: '/one-native-android-chips',
+    label: 'One Native Android Chips',
+    testID: 'nav-one-native-android-chips',
+  },
+  {
+    href: '/one-native-android-badges',
+    label: 'One Native Android Badges',
+    testID: 'nav-one-native-android-badges',
+  },
+  {
+    href: '/one-native-android-list-items',
+    label: 'One Native Android List Items',
+    testID: 'nav-one-native-android-list-items',
+  },
+  {
+    href: '/one-native-android-flow-row',
+    label: 'One Native Android Flow Row',
+    testID: 'nav-one-native-android-flow-row',
+  },
+  {
+    href: '/one-native-android-icon-buttons',
+    label: 'One Native Android Icon Buttons',
+    testID: 'nav-one-native-android-icon-buttons',
+  },
+  {
+    href: '/one-native-android-loading',
+    label: 'One Native Android Loading',
+    testID: 'nav-one-native-android-loading',
+  },
+  {
+    href: '/one-native-android-surface',
+    label: 'One Native Android Surface',
+    testID: 'nav-one-native-android-surface',
+  },
+  {
+    href: '/one-native-android-progress',
+    label: 'One Native Android Progress',
+    testID: 'nav-one-native-android-progress',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',
@@ -217,6 +327,21 @@ const testScreens = [
     testID: 'nav-one-native-apple-auth',
   },
   {
+    href: '/one-native-local-authentication',
+    label: 'One Native Local Authentication',
+    testID: 'nav-one-native-local-authentication',
+  },
+  {
+    href: '/one-native-location',
+    label: 'One Native Location',
+    testID: 'nav-one-native-location',
+  },
+  {
+    href: '/one-native-file-system',
+    label: 'One Native File System',
+    testID: 'nav-one-native-file-system',
+  },
+  {
     href: '/one-native-speech',
     label: 'One Native Speech',
     testID: 'nav-one-native-speech',
@@ -230,6 +355,11 @@ const testScreens = [
     href: '/one-native-fetch',
     label: 'One Native Fetch',
     testID: 'nav-one-native-fetch',
+  },
+  {
+    href: '/one-native-secure-store',
+    label: 'One Native Secure Store',
+    testID: 'nav-one-native-secure-store',
   },
 ] as const
 

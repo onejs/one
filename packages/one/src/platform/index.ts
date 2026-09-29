@@ -14,6 +14,10 @@ export {
   getHinge,
   onHingeChange,
   ReservedRegions,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
 } from './adaptive/index'
 export type {
   UserInterfaceSizeClass,
@@ -22,6 +26,7 @@ export type {
   HingeState,
   ReservedRegionKind,
   ReservedRegion,
+  WindowSegment,
   ReservedRegionOptions,
   ReservedRegionsProviderProps,
 } from './adaptive/types'
@@ -49,6 +54,35 @@ export type {
 export type * from './composeTypes'
 export type * from './types'
 export { Haptics } from './haptics/index'
+export { LocalAuthentication } from './local-authentication/index'
+export type { LocalAuthenticationStatus } from './local-authentication/index'
+export { Location } from './location/index'
+export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError } from './location/index'
+export { FileSystem } from './file-system/index'
+export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index'
+export { Audio } from './audio/index'
+export type {
+  AudioPlaybackState,
+  AudioPlaybackStatus,
+  AudioRecordingPermission,
+  AudioRecordingResult,
+  AudioRecordingState,
+  AudioRecordingStatus,
+} from './audio/index'
+export { Share } from './share/index'
+export type { ShareItem, ShareItemType, ShareResult } from './share/index'
+export { PhotoLibrary } from './photo-library/index'
+export type { PhotoLibraryPermissionStatus } from './photo-library/index'
+export { Device } from './device/index'
+export type { DeviceInfo, LocalizationInfo } from './device/index'
+export { Contacts } from './contacts/index'
+export type { ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index'
+export { Calendar } from './calendar/index'
+export type {
+  CalendarEvent,
+  CalendarEventInput,
+  CalendarPermissionStatus,
+} from './calendar/index'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index'
 export { AppInfo } from './app-info/index'
 export type { AppInfoApi } from './app-info/index'

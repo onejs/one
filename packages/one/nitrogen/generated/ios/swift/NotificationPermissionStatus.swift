@@ -17,12 +17,12 @@ public extension NotificationPermissionStatus {
    */
   init?(fromString string: String) {
     switch string {
+      case "undetermined":
+        self = .undetermined
       case "granted":
         self = .granted
       case "denied":
         self = .denied
-      case "undetermined":
-        self = .undetermined
       default:
         return nil
     }
@@ -33,12 +33,12 @@ public extension NotificationPermissionStatus {
    */
   var stringValue: String {
     switch self {
+      case .undetermined:
+        return "undetermined"
       case .granted:
         return "granted"
       case .denied:
         return "denied"
-      case .undetermined:
-        return "undetermined"
     }
   }
 }

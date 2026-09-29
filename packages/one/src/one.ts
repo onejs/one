@@ -6,6 +6,15 @@ import {
   Browser as NativeBrowser,
   Widgets,
   LiveActivities,
+  LocalAuthentication,
+  Location,
+  FileSystem,
+  Audio,
+  Share,
+  PhotoLibrary,
+  Device,
+  Contacts,
+  Calendar,
   WidgetUI,
   Clipboard as NativeClipboard,
   AppInfo,
@@ -30,26 +39,16 @@ import {
   ToolbarHost,
   ToolbarItem,
   UI as NativeUI,
-  getHinge,
-  getSizeClass,
-  onHingeChange,
   ReservedRegions,
-  useHinge,
-  useSizeClass,
   ZoomTransitionAlignmentRectDetector,
   ZoomTransitionEnabler,
   ZoomTransitionSource,
   type ColorType,
-  useFonts,
-  useNativeState,
-  useNetworkState,
 } from './platform'
 import {
   SafeAreaProvider,
   SafeAreaView,
   initialWindowMetrics,
-  useSafeAreaFrame,
-  useSafeAreaInsets,
 } from './safe-area-context'
 
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
@@ -58,6 +57,15 @@ export type OneIOS = typeof Swift & {
   readonly Widgets: typeof Widgets
   readonly LiveActivities: typeof LiveActivities
   readonly WidgetUI: typeof WidgetUI
+  readonly LocalAuthentication: typeof LocalAuthentication
+  readonly Location: typeof Location
+  readonly FileSystem: typeof FileSystem
+  readonly Audio: typeof Audio
+  readonly Share: typeof Share
+  readonly PhotoLibrary: typeof PhotoLibrary
+  readonly Device: typeof Device
+  readonly Contacts: typeof Contacts
+  readonly Calendar: typeof Calendar
   readonly Color: ColorType['ios']
   readonly MenuAction: typeof MenuAction
   readonly SplitView: typeof SplitView
@@ -80,24 +88,12 @@ export type OneSafeArea = {
   readonly Provider: typeof SafeAreaProvider
   readonly View: typeof SafeAreaView
   readonly initialMetrics: typeof initialWindowMetrics
-  readonly useFrame: typeof useSafeAreaFrame
-  readonly useInsets: typeof useSafeAreaInsets
 }
 
 export type OneUI = typeof NativeUI & {
   readonly Fonts: typeof Fonts
   readonly SafeArea: Readonly<OneSafeArea>
   readonly TextInput: typeof TextInput
-  readonly useFonts: typeof useFonts
-  readonly useNativeState: typeof useNativeState
-  // the window scene's size classes and the hinge, plus the regions reserved
-  // inside a provider view (a foldable's fold, a camera occlusion): what
-  // adaptive layout reads.
-  readonly useSizeClass: typeof useSizeClass
-  readonly getSizeClass: typeof getSizeClass
-  readonly useHinge: typeof useHinge
-  readonly getHinge: typeof getHinge
-  readonly onHingeChange: typeof onHingeChange
   readonly ReservedRegions: typeof ReservedRegions
 }
 
@@ -121,7 +117,6 @@ export type OneAPI = {
   readonly SecureStore: typeof NativeSecureStore
   readonly Speech: typeof NativeSpeech
   readonly Updates: typeof NativeUpdates
-  readonly useNetworkState: typeof useNetworkState
 }
 
 function currentPlatform(): OnePlatform {
@@ -136,6 +131,15 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   Widgets,
   LiveActivities,
   WidgetUI,
+  LocalAuthentication,
+  Location,
+  FileSystem,
+  Audio,
+  Share,
+  PhotoLibrary,
+  Device,
+  Contacts,
+  Calendar,
   Color: Color.ios,
   MenuAction,
   SplitView,
@@ -157,8 +161,6 @@ const SafeArea: Readonly<OneSafeArea> = Object.freeze({
   Provider: SafeAreaProvider,
   View: SafeAreaView,
   initialMetrics: initialWindowMetrics,
-  useFrame: useSafeAreaFrame,
-  useInsets: useSafeAreaInsets,
 })
 
 const UI: Readonly<OneUI> = Object.freeze({
@@ -166,13 +168,6 @@ const UI: Readonly<OneUI> = Object.freeze({
   Fonts,
   SafeArea,
   TextInput,
-  useFonts,
-  useNativeState,
-  useSizeClass,
-  getSizeClass,
-  useHinge,
-  getHinge,
-  onHingeChange,
   ReservedRegions,
 })
 
@@ -196,5 +191,4 @@ export const One: OneAPI = Object.freeze({
   SecureStore: NativeSecureStore,
   Speech: NativeSpeech,
   Updates: NativeUpdates,
-  useNetworkState,
 })

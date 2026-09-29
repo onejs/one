@@ -36,17 +36,27 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppInfoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppleAuthSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneAudioSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneCalendarSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneContactsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneDeviceSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFetchSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneFileSystemSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFontsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneHapticsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneLocationSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOnePhotoLibrarySpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneShareSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp
   # Android-specific Nitrogen C++ sources
@@ -61,6 +71,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneFontsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp

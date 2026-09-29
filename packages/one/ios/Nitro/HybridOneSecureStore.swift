@@ -94,4 +94,16 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
       return Promise.rejected(withError: error)
     }
   }
+
+  func getItemSync(key: String) throws -> String? {
+    return try Self.read(key: key)
+  }
+
+  func setItemSync(key: String, value: String) throws {
+    try Self.write(key: key, value: value)
+  }
+
+  func deleteItemSync(key: String) throws {
+    try Self.remove(key: key)
+  }
 }

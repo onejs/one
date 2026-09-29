@@ -28,16 +28,21 @@ declare module 'one' {
         | `/one-native-apple-auth`
         | `/one-native-apple-file`
         | `/one-native-arrangement`
+        | `/one-native-audio`
         | `/one-native-autogen`
         | `/one-native-browser`
+        | `/one-native-calendar`
         | `/one-native-clipboard`
+        | `/one-native-contacts`
         | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-crypto`
+        | `/one-native-device`
         | `/one-native-dialogs`
         | `/one-native-document-picker`
         | `/one-native-effects`
         | `/one-native-fetch`
+        | `/one-native-file-system`
         | `/one-native-fonts`
         | `/one-native-gpu`
         | `/one-native-groups`
@@ -47,14 +52,19 @@ declare module 'one' {
         | `/one-native-image-picker`
         | `/one-native-leaves`
         | `/one-native-lists`
+        | `/one-native-local-authentication`
+        | `/one-native-location`
         | `/one-native-map`
         | `/one-native-media`
         | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-notifications`
+        | `/one-native-photo-library`
         | `/one-native-pip`
         | `/one-native-popover`
         | `/one-native-safe-area`
+        | `/one-native-secure-store`
+        | `/one-native-share`
         | `/one-native-sheet`
         | `/one-native-speech`
         | `/one-native-state`
@@ -62,6 +72,7 @@ declare module 'one' {
         | `/one-native-tab-oracle`
         | `/one-native-tabview`
         | `/one-native-ui-map`
+        | `/one-native-updates`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`

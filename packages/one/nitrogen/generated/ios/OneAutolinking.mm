@@ -25,7 +25,17 @@
 #include "HybridOneSpeechSpecSwift.hpp"
 #include "HybridOneFetchSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
+#include "HybridOneLocalAuthenticationSpecSwift.hpp"
+#include "HybridOneLocationSpecSwift.hpp"
+#include "HybridOneFileSystemSpecSwift.hpp"
+#include "HybridOneAudioSpecSwift.hpp"
+#include "HybridOneShareSpecSwift.hpp"
+#include "HybridOnePhotoLibrarySpecSwift.hpp"
+#include "HybridOneDeviceSpecSwift.hpp"
+#include "HybridOneContactsSpecSwift.hpp"
+#include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
+#include "HybridOneNativeModulesSpecSwift.hpp"
 
 @interface OneAutolinking : NSObject
 @end
@@ -142,9 +152,79 @@
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneLocalAuthentication",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneLocalAuthenticationSpec> hybridObject = One::OneAutolinking::createOneLocalAuthentication();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneLocation",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneLocationSpec> hybridObject = One::OneAutolinking::createOneLocation();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneFileSystem",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneFileSystemSpec> hybridObject = One::OneAutolinking::createOneFileSystem();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAudio",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneAudioSpec> hybridObject = One::OneAutolinking::createOneAudio();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneShare",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneShareSpec> hybridObject = One::OneAutolinking::createOneShare();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OnePhotoLibrary",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOnePhotoLibrarySpec> hybridObject = One::OneAutolinking::createOnePhotoLibrary();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDevice",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneDeviceSpec> hybridObject = One::OneAutolinking::createOneDevice();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneContacts",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneContactsSpec> hybridObject = One::OneAutolinking::createOneContacts();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneCalendar",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneCalendarSpec> hybridObject = One::OneAutolinking::createOneCalendar();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneUpdates",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneUpdatesSpec> hybridObject = One::OneAutolinking::createOneUpdates();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneNativeModules",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneNativeModulesSpec> hybridObject = One::OneAutolinking::createOneNativeModules();
       return hybridObject;
     }
   );

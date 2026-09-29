@@ -55,6 +55,10 @@ export {
   getHinge,
   onHingeChange,
   ReservedRegions,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
 } from './adaptive/index.native'
 export type {
   UserInterfaceSizeClass,
@@ -63,6 +67,7 @@ export type {
   HingeState,
   ReservedRegionKind,
   ReservedRegion,
+  WindowSegment,
   ReservedRegionOptions,
   ReservedRegionsProviderProps,
 } from './adaptive/types'
@@ -106,7 +111,7 @@ export const Swift =
         ScrollView,
         LazyVStack,
         LazyHStack,
-        ControlGroup,
+                                ControlGroup,
         DisclosureGroup,
         Divider,
         Link,
@@ -140,6 +145,35 @@ export type {
 export type * from './types'
 export type * from './composeTypes'
 export { Haptics } from './haptics/index.native'
+export { LocalAuthentication } from './local-authentication/index.native'
+export type { LocalAuthenticationStatus } from './local-authentication/index.native'
+export { Location } from './location/index.native'
+export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError } from './location/index.native'
+export { FileSystem } from './file-system/index.native'
+export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index.native'
+export { Audio } from './audio/index.native'
+export type {
+  AudioPlaybackState,
+  AudioPlaybackStatus,
+  AudioRecordingPermission,
+  AudioRecordingResult,
+  AudioRecordingState,
+  AudioRecordingStatus,
+} from './audio/index.native'
+export { Share } from './share/index.native'
+export type { ShareItem, ShareItemType, ShareResult } from './share/index.native'
+export { PhotoLibrary } from './photo-library/index.native'
+export type { PhotoLibraryPermissionStatus } from './photo-library/index.native'
+export { Device } from './device/index.native'
+export type { DeviceInfo, LocalizationInfo } from './device/index.native'
+export { Contacts } from './contacts/index.native'
+export type { ContactInfo, ContactInput, ContactsPermissionStatus } from './contacts/index.native'
+export { Calendar } from './calendar/index.native'
+export type {
+  CalendarEvent,
+  CalendarEventInput,
+  CalendarPermissionStatus,
+} from './calendar/index.native'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export { AppInfo } from './app-info/index.native'
 export type { AppInfoApi } from './app-info/index.native'

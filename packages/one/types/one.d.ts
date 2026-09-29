@@ -1,10 +1,19 @@
-import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, getHinge, getSizeClass, onHingeChange, ReservedRegions, useHinge, useSizeClass, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType, useFonts, useNativeState, useNetworkState } from './platform';
-import { SafeAreaProvider, SafeAreaView, initialWindowMetrics, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
+import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, Location, FileSystem, Audio, Share, PhotoLibrary, Device, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
+import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
     readonly Widgets: typeof Widgets;
     readonly LiveActivities: typeof LiveActivities;
     readonly WidgetUI: typeof WidgetUI;
+    readonly LocalAuthentication: typeof LocalAuthentication;
+    readonly Location: typeof Location;
+    readonly FileSystem: typeof FileSystem;
+    readonly Audio: typeof Audio;
+    readonly Share: typeof Share;
+    readonly PhotoLibrary: typeof PhotoLibrary;
+    readonly Device: typeof Device;
+    readonly Contacts: typeof Contacts;
+    readonly Calendar: typeof Calendar;
     readonly Color: ColorType['ios'];
     readonly MenuAction: typeof MenuAction;
     readonly SplitView: typeof SplitView;
@@ -23,20 +32,11 @@ export type OneSafeArea = {
     readonly Provider: typeof SafeAreaProvider;
     readonly View: typeof SafeAreaView;
     readonly initialMetrics: typeof initialWindowMetrics;
-    readonly useFrame: typeof useSafeAreaFrame;
-    readonly useInsets: typeof useSafeAreaInsets;
 };
 export type OneUI = typeof NativeUI & {
     readonly Fonts: typeof Fonts;
     readonly SafeArea: Readonly<OneSafeArea>;
     readonly TextInput: typeof TextInput;
-    readonly useFonts: typeof useFonts;
-    readonly useNativeState: typeof useNativeState;
-    readonly useSizeClass: typeof useSizeClass;
-    readonly getSizeClass: typeof getSizeClass;
-    readonly useHinge: typeof useHinge;
-    readonly getHinge: typeof getHinge;
-    readonly onHingeChange: typeof onHingeChange;
     readonly ReservedRegions: typeof ReservedRegions;
 };
 export type OneNotifications = typeof Notifications;
@@ -58,7 +58,6 @@ export type OneAPI = {
     readonly SecureStore: typeof NativeSecureStore;
     readonly Speech: typeof NativeSpeech;
     readonly Updates: typeof NativeUpdates;
-    readonly useNetworkState: typeof useNetworkState;
 };
 export declare const One: OneAPI;
 //# sourceMappingURL=one.d.ts.map
