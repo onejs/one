@@ -41,7 +41,8 @@ export default function OneNativeLivePhoto() {
         for (const item of page.assets) {
           if (item.isLivePhoto && item.width === 320 && item.height === 240)
             live = item.identifier
-          if (!item.isLivePhoto && item.mediaType === 'image') plain ||= item.identifier
+          if (!item.isLivePhoto && item.mediaType === 'image' &&
+              item.width === 120 && item.height === 80) plain ||= item.identifier
         }
       }
       if (!live || !plain) throw new Error(`assets missing: live=${live} plain=${plain}`)
