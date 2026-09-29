@@ -36,6 +36,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppIconSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppInfoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneAppIntentsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAppTrackingSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAudioSpec.cpp

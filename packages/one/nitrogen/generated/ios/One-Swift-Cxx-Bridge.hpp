@@ -8,6 +8,8 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `AppIntentInvocation` to properly resolve imports.
+namespace margelo::nitro::one { struct AppIntentInvocation; }
 // Forward declaration of `AppTrackingPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class AppTrackingPermissionStatus; }
 // Forward declaration of `AppleAuthCredential` to properly resolve imports.
@@ -114,6 +116,8 @@ namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 namespace margelo::nitro::one { class HybridOneAppIconSpec; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
+// Forward declaration of `HybridOneAppIntentsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneAppIntentsSpec; }
 // Forward declaration of `HybridOneAppTrackingSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppTrackingSpec; }
 // Forward declaration of `HybridOneAppleAuthSpec` to properly resolve imports.
@@ -340,6 +344,8 @@ namespace One { class HybridOneAdaptiveSpec_cxx; }
 namespace One { class HybridOneAppIconSpec_cxx; }
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppInfoSpec_cxx; }
+// Forward declaration of `HybridOneAppIntentsSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneAppIntentsSpec_cxx; }
 // Forward declaration of `HybridOneAppTrackingSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppTrackingSpec_cxx; }
 // Forward declaration of `HybridOneAppleAuthSpec_cxx` to properly resolve imports.
@@ -422,6 +428,7 @@ namespace One { class HybridOneStoreReviewSpec_cxx; }
 namespace One { class HybridOneUpdatesSpec_cxx; }
 
 // Include C++ defined types
+#include "AppIntentInvocation.hpp"
 #include "AppTrackingPermissionStatus.hpp"
 #include "AppleAuthCredential.hpp"
 #include "AppleAuthFullName.hpp"
@@ -474,6 +481,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppIconSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
+#include "HybridOneAppIntentsSpec.hpp"
 #include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
@@ -931,6 +939,69 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneAppInfoSpec>
   using std__weak_ptr_HybridOneAppInfoSpec_ = std::weak_ptr<HybridOneAppInfoSpec>;
   inline std__weak_ptr_HybridOneAppInfoSpec_ weakify_std__shared_ptr_HybridOneAppInfoSpec_(const std::shared_ptr<HybridOneAppInfoSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: std::function<void(const AppIntentInvocation& /* invocation */)>
+  /**
+   * Specialized version of `std::function<void(const AppIntentInvocation&)>`.
+   */
+  using Func_void_AppIntentInvocation = std::function<void(const AppIntentInvocation& /* invocation */)>;
+  /**
+   * Wrapper class for a `std::function<void(const AppIntentInvocation& / * invocation * /)>`, this can be used from Swift.
+   */
+  class Func_void_AppIntentInvocation_Wrapper final {
+  public:
+    explicit Func_void_AppIntentInvocation_Wrapper(std::function<void(const AppIntentInvocation& /* invocation */)>&& func): _function(std::make_unique<std::function<void(const AppIntentInvocation& /* invocation */)>>(std::move(func))) {}
+    inline void call(AppIntentInvocation invocation) const noexcept {
+      _function->operator()(invocation);
+    }
+  private:
+    std::unique_ptr<std::function<void(const AppIntentInvocation& /* invocation */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_AppIntentInvocation create_Func_void_AppIntentInvocation(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_AppIntentInvocation_Wrapper wrap_Func_void_AppIntentInvocation(Func_void_AppIntentInvocation value) noexcept {
+    return Func_void_AppIntentInvocation_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<AppIntentInvocation>
+  /**
+   * Specialized version of `std::vector<AppIntentInvocation>`.
+   */
+  using std__vector_AppIntentInvocation_ = std::vector<AppIntentInvocation>;
+  inline std::vector<AppIntentInvocation> create_std__vector_AppIntentInvocation_(size_t size) noexcept {
+    std::vector<AppIntentInvocation> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneAppIntentsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneAppIntentsSpec>`.
+   */
+  using std__shared_ptr_HybridOneAppIntentsSpec_ = std::shared_ptr<HybridOneAppIntentsSpec>;
+  std::shared_ptr<HybridOneAppIntentsSpec> create_std__shared_ptr_HybridOneAppIntentsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneAppIntentsSpec_(std__shared_ptr_HybridOneAppIntentsSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneAppIntentsSpec>
+  using std__weak_ptr_HybridOneAppIntentsSpec_ = std::weak_ptr<HybridOneAppIntentsSpec>;
+  inline std__weak_ptr_HybridOneAppIntentsSpec_ weakify_std__shared_ptr_HybridOneAppIntentsSpec_(const std::shared_ptr<HybridOneAppIntentsSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::vector<AppIntentInvocation>>
+  using Result_std__vector_AppIntentInvocation__ = Result<std::vector<AppIntentInvocation>>;
+  inline Result_std__vector_AppIntentInvocation__ create_Result_std__vector_AppIntentInvocation__(const std::vector<AppIntentInvocation>& value) noexcept {
+    return Result<std::vector<AppIntentInvocation>>::withValue(value);
+  }
+  inline Result_std__vector_AppIntentInvocation__ create_Result_std__vector_AppIntentInvocation__(const std::exception_ptr& error) noexcept {
+    return Result<std::vector<AppIntentInvocation>>::withError(error);
+  }
+
+  // pragma MARK: Result<void>
+  using Result_void_ = Result<void>;
+  inline Result_void_ create_Result_void_() noexcept {
+    return Result<void>::withValue();
+  }
+  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
+    return Result<void>::withError(error);
+  }
 
   // pragma MARK: std::optional<AppleAuthFullName>
   /**
@@ -1525,15 +1596,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<void>
-  using Result_void_ = Result<void>;
-  inline Result_void_ create_Result_void_() noexcept {
-    return Result<void>::withValue();
-  }
-  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
-    return Result<void>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<BrowserResult>>

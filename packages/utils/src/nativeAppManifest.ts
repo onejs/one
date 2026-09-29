@@ -155,6 +155,16 @@ export interface NativeAppManifest {
       refresh?: string[]
       processing?: string[]
     }
+    // statically compiled App Intents for One.iOS.AppIntents. handlers live
+    // in the native setupFile so Shortcuts can start the app in the background.
+    appIntents?: {
+      actions: Array<{
+        id: string
+        title: string
+        textParameterTitle?: string
+        shortcutPhrase: string
+      }>
+    }
   }
   android?: {
     applicationId: string
@@ -296,6 +306,27 @@ export function validateNativeApp(
       if (typeof identifier !== 'string' || !REVERSE_DNS.test(identifier)) {
         fail(`ios.backgroundTasks identifier "${identifier}" must use reverse DNS notation`)
       }
+    }
+  }
+  if (manifest.ios?.appIntents !== undefined) {
+    const actions = manifest.ios.appIntents?.actions
+    if (!Array.isArray(actions) || actions.length === 0) {
+      fail('ios.appIntents.actions must be a non-empty array')
+    }
+    const ids = new Set<string>()
+    for (const action of actions) {
+      if (!action || typeof action !== 'object' ||
+        typeof action.id !== 'string' || !action.id.trim() ||
+        typeof action.title !== 'string' || !action.title.trim() ||
+        (action.textParameterTitle !== undefined &&
+          (typeof action.textParameterTitle !== 'string' || !action.textParameterTitle.trim())) ||
+        typeof action.shortcutPhrase !== 'string' ||
+        action.shortcutPhrase.split('{app}').length !== 2 ||
+        !action.shortcutPhrase.replace('{app}', '').trim()) {
+        fail('ios.appIntents actions need unique non-empty id/title, optional textParameterTitle, and a shortcutPhrase with one {app}')
+      }
+      if (ids.has(action.id)) fail(`ios.appIntents action "${action.id}" is duplicated`)
+      ids.add(action.id)
     }
   }
   if (

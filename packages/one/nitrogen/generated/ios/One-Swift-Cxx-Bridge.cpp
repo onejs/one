@@ -11,6 +11,7 @@
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneAppIconSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
+#include "HybridOneAppIntentsSpecSwift.hpp"
 #include "HybridOneAppTrackingSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
@@ -149,6 +150,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneAppInfoSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const AppIntentInvocation& /* invocation */)>
+  Func_void_AppIntentInvocation create_Func_void_AppIntentInvocation(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_AppIntentInvocation::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const AppIntentInvocation& invocation) mutable -> void {
+      swiftClosure.call(invocation);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneAppIntentsSpec>
+  std::shared_ptr<HybridOneAppIntentsSpec> create_std__shared_ptr_HybridOneAppIntentsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneAppIntentsSpec_cxx swiftPart = One::HybridOneAppIntentsSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneAppIntentsSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneAppIntentsSpec_(std__shared_ptr_HybridOneAppIntentsSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneAppIntentsSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAppIntentsSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneAppIntentsSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneAppIntentsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

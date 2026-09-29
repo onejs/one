@@ -30,6 +30,7 @@ import {
   Device,
   Motion,
   BackgroundTasks,
+  AppIntents,
   DeviceAttestation,
   Contacts,
   Calendar,
@@ -99,6 +100,7 @@ export type OneIOS = typeof Swift & {
   readonly Device: typeof Device
   readonly Motion: typeof Motion
   readonly BackgroundTasks: typeof BackgroundTasks
+  readonly AppIntents: typeof AppIntents
   readonly DeviceAttestation: typeof DeviceAttestation
   readonly Contacts: typeof Contacts
   readonly Calendar: typeof Calendar
@@ -196,6 +198,7 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   Device,
   Motion,
   BackgroundTasks,
+  AppIntents,
   DeviceAttestation,
   Contacts,
   Calendar,

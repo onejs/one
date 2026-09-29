@@ -40,6 +40,7 @@ declare module 'one' {
         | `/one-native-angular-gradient`
         | `/one-native-app-icon`
         | `/one-native-app-info`
+        | `/one-native-app-intents`
         | `/one-native-app-tracking`
         | `/one-native-apple-auth`
         | `/one-native-apple-file`

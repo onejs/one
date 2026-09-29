@@ -183,6 +183,22 @@ describe('native.app manifest', () => {
     ).toThrow(/appGroup/)
   })
 
+  test('validates static App Intent identifiers and shortcut phrases', () => {
+    const first = {
+      id: 'dev.one.myapp.echo',
+      title: 'Echo text',
+      textParameterTitle: 'Text',
+      shortcutPhrase: 'Echo text in {app}',
+    }
+    const withActions = (actions: Array<typeof first>) =>
+      ({ ...app, ios: { ...app.ios, appIntents: { actions } } })
+    expect(() => validateNativeApp(withActions([first]))).not.toThrow()
+    expect(() => validateNativeApp(withActions([first, { ...first }]))).toThrow(/duplicated/)
+    expect(() => validateNativeApp(withActions([{ ...first, shortcutPhrase: 'Echo text' }]))).toThrow(/shortcu\w*Phrase/)
+    expect(() => validateNativeApp(withActions([{ ...first, shortcutPhrase: '{app} in {app}' }]))).toThrow(/shortcu\w*Phrase/)
+    expect(() => validateNativeApp(withActions([{ ...first, textParameterTitle: ' ' }]))).toThrow(/textParameterTitle/)
+  })
+
   test('rejects missing platform ids and out-of-range platform values', () => {
     expect(() => validateNativeApp({ name: 'MyApp' } as any)).toThrow(/bundleId/)
     expect(() =>

@@ -171,6 +171,8 @@ export type { DeviceInfo, LocalizationInfo } from './device/index.native';
 export { Motion } from './motion/index.native';
 export type { MotionAvailability, MotionReading, MotionSensor, MotionVector } from './motion/index.native';
 export { BackgroundTasks } from './background-tasks/index.native';
+export { AppIntents } from './app-intents/index.native';
+export type { AppIntentHandler } from './app-intents/index.native';
 export type { BackgroundTaskContext, BackgroundTaskHandler } from './background-tasks/index.native';
 export type { BackgroundTaskInvocation, BackgroundTaskKind, PendingBackgroundTask } from './background-tasks/index.native';
 export { DeviceAttestation } from './device-attestation/index.native';

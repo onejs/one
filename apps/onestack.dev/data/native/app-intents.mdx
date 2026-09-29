@@ -1,0 +1,44 @@
+---
+title: App Intents and Shortcuts
+description: Expose fixed iOS actions to Shortcuts and handle them in native JavaScript.
+---
+
+`One.iOS.AppIntents` exposes actions declared at build time to Apple's Shortcuts app. Each action accepts an optional string and returns a string. Add the action metadata to `native.app.ios.appIntents.actions`, then define its JavaScript handler in a native `setupFile` so a cold Shortcuts launch can start the existing React host and reach it.
+
+```tsx
+// vite.config.ts
+one({
+  setupFile: { native: './app-intents-setup.ts' },
+  native: {
+    app: {
+      name: 'MyApp',
+      ios: {
+        bundleId: 'com.example.myapp',
+        appIntents: {
+          actions: [{
+            id: 'com.example.myapp.echo',
+            title: 'Echo Text',
+            textParameterTitle: 'Text',
+            shortcutPhrase: 'Echo text in {app}',
+          }],
+        },
+      },
+    },
+  },
+})
+```
+
+```tsx
+// app-intents-setup.ts
+import { One } from 'one'
+
+One.iOS.AppIntents.defineAction('com.example.myapp.echo', async (text) => {
+  return text ?? ''
+})
+```
+
+The phrase must contain `{app}` exactly once; prebuild substitutes the app's name for Shortcuts. IDs and titles must be nonempty, and IDs must be unique. `textParameterTitle` is optional. If omitted, the action has no input and the handler receives `null`. The handler must return a string or a promise of one. `defineAction` returns an idempotent remover; keep the registration for the lifetime of the app unless you intentionally stop handling that action. JavaScript rejects invalid arguments with `TypeError`; native rejects an action absent from the built manifest with `E_APP_INTENTS_INPUT`.
+
+The Shortcuts app discovers generated Swift action types after an iOS rebuild. Action registration cannot change at runtime. Each invocation is delivered once: actions arriving before JavaScript registers its handler are held, then explicitly claimed by `defineAction`; later invocations go to the active handler. A missing, thrown, or stalled handler makes the Shortcuts run fail. Native bounds each invocation to **20 seconds**, including startup, and reports `E_APP_INTENTS_TIMEOUT` when that limit is reached. A thrown handler reports `E_APP_INTENTS_HANDLER`. The JavaScript setup file must import and define handlers early; One prebuild requires it when actions are declared.
+
+The simulator proof uses the genuine Shortcuts editor and verifies discovery, warm delivery, a new process for cold delivery, the string result, and the missing-handler timeout. Siri voice invocation, app entities, typed parameters, and the system's device-specific policy remain outside this API and proof. Web and Android throw `AppIntents requires an iOS native build`.
