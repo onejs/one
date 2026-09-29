@@ -119,7 +119,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Android.SuggestionChip` | n/a | android-chips |  |
 | `One.Android.Text` | n/a | android, android-inputs, android-badges, android-list-items, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-flow-row, android-icon-buttons |  |
 | `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-filter-chip, android-chips, android-icon-buttons |  |
-| `One.Android.Button` | n/a | android, android-inputs, android-selection, android-filter-chip |  |
+| `One.Android.Button` | n/a | android, android-inputs, android-selection, android-filter-chip, android-icon-buttons |  |
 | `One.Android.Switch` | n/a | android |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |
 | `One.Android.RadioButton` | n/a | android-selection |  |

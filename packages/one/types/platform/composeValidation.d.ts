@@ -6,7 +6,7 @@ export declare const verticalArrangements: readonly ['top', 'center', 'bottom', 
 export declare const horizontalArrangements: readonly ['start', 'center', 'end', 'spaceBetween', 'spaceAround', 'spaceEvenly'];
 export declare const textAlignments: readonly ['unspecified', 'left', 'right', 'center', 'justify', 'start', 'end'];
 export declare const fontWeights: readonly ['thin', 'extraLight', 'light', 'normal', 'medium', 'semiBold', 'bold', 'extraBold', 'black'];
-export declare const buttonVariants: readonly ['filled', 'outlined', 'text'];
+export declare const buttonVariants: readonly ['filled', 'tonal', 'elevated', 'outlined', 'text'];
 export declare const buttonTones: readonly ['default', 'danger'];
 export declare const textFieldVariants: readonly ['filled', 'outlined'];
 export declare const textFieldKeyboardTypes: readonly ['default', 'number', 'decimal', 'email', 'password', 'phone', 'url'];

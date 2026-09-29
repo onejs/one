@@ -155,7 +155,7 @@ export interface ComposeIconProps extends ComposeLeafProps {
   filled?: boolean
 }
 
-export type ComposeButtonVariant = 'filled' | 'outlined' | 'text'
+export type ComposeButtonVariant = 'filled' | 'tonal' | 'elevated' | 'outlined' | 'text'
 export type ComposeButtonTone = 'default' | 'danger'
 
 export interface ComposeButtonProps extends ComposeLeafProps {
