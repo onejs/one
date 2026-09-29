@@ -412,6 +412,7 @@
         "OneNativeAngularGradient": "OneNativeAngularGradientComponentView",
         "OneNativeMeshGradient": "OneNativeMeshGradientComponentView",
         "OneNativeVideoPlayer": "OneNativeVideoPlayerComponentView",
+        "OneNativeLivePhotoView": "OneNativeLivePhotoViewComponentView",
         "OneNativePhotosPicker": "OneNativePhotosPickerComponentView",
         "OneNativeWebView": "OneNativeWebViewComponentView",
         "OneNativeSignInWithAppleButton": "OneNativeSignInWithAppleButtonComponentView",

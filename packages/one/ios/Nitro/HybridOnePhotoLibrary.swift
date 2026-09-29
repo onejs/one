@@ -746,7 +746,8 @@ final class HybridOnePhotoLibrary: HybridOnePhotoLibrarySpec {
       height: Double(value.pixelHeight),
       durationMs: value.duration * 1000,
       creationDateMs: value.creationDate.map { $0.timeIntervalSince1970 * 1000 },
-      isFavorite: value.isFavorite)
+      isFavorite: value.isFavorite,
+      isLivePhoto: value.mediaSubtypes.contains(.photoLive))
   }
 
   private static func status(_ value: PHAuthorizationStatus) -> PhotoLibraryPermissionStatus {

@@ -110,6 +110,7 @@ const suites = [
   'share',
   'photo-library',
   'photo-library-limited',
+  'live-photo',
   'image-manipulator',
   'speech',
   'fetch',
@@ -559,6 +560,8 @@ const photoLibraryLoaded = (nodes: Node[]) =>
     label.includes('saving photos and videos') || label.includes('browsing photos and videos') ||
     label.includes('delete the album “One proof renamed”')
   )
+const livePhotoLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-live-photo-permission')) && has(nodes, 'Status: ')
 const imageManipulatorLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-image-manipulator-run')) && has(nodes, 'Status: ')
 // the microphone and speech prompts cover the fixture during the request
@@ -735,6 +738,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   share: shareLoaded,
   'photo-library': photoLibraryLoaded,
   'photo-library-limited': photoLibraryLoaded,
+  'live-photo': livePhotoLoaded,
   'image-manipulator': imageManipulatorLoaded,
   speech: speechLoaded,
   fetch: fetchLoaded,
@@ -839,6 +843,7 @@ const suiteHome: Record<Suite, string> = {
   share: 'nav-one-native-share',
   'photo-library': 'nav-one-native-photo-library',
   'photo-library-limited': 'nav-one-native-photo-library',
+  'live-photo': 'nav-one-native-live-photo',
   'image-manipulator': 'nav-one-native-image-manipulator',
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
@@ -1218,7 +1223,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       timeout: 30_000,
     })
   }
-  if (config.suite === 'photo-library' || config.suite === 'photo-library-limited') {
+  if (config.suite === 'photo-library' || config.suite === 'photo-library-limited' ||
+      config.suite === 'live-photo') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
@@ -1227,6 +1233,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       stdio: 'ignore',
       timeout: 30_000,
     })
+  }
+  if (config.suite === 'live-photo') {
+    execFileSync('xcrun', [
+      'simctl', 'addmedia', config.simulatorId,
+      fileURLToPath(new URL('../assets/one-native-live-photo.jpg', import.meta.url)),
+      fileURLToPath(new URL('../assets/one-native-live-photo.mov', import.meta.url)),
+    ], { stdio: 'inherit', timeout: 60_000 })
   }
   if (config.suite === 'contacts') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts-limited', config.bundleId], {
@@ -1259,6 +1272,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'launch-screen' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited' ||
+      config.suite === 'live-photo' ||
       config.suite === 'preferences' || config.suite === 'keep-awake' ||
       config.suite === 'print' || config.suite === 'store-review' ||
       config.suite === 'quick-actions') {
@@ -8447,6 +8461,82 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('share-completion.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'live-photo') {
+    const status = (nodes: Node[], name: string, value: string) =>
+      labels(nodes).includes(`${name}: ${value}`)
+    const events = (nodes: Node[]) =>
+      labels(nodes).find((label) => label.startsWith('Events: ')) ?? ''
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-live-photo')
+    await wait('live photo fixture mounted', (n) => status(n, 'Status', 'idle'))
+    tap({ id: 'one-native-live-photo-permission' })
+    await wait('Live Photo view rejects missing read permission', (n) =>
+      status(n, 'Playback', 'failed') && status(n, 'Error', 'E_LIVE_PHOTO_PERMISSION') &&
+      events(n).includes('loading>failed:E_LIVE_PHOTO_PERMISSION'))
+    tap({ id: 'one-native-live-photo-authorize' })
+    await wait('Photos read permission prompt opens for Live Photo', (n) =>
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.')))
+    tap({ label: 'Allow Full Access' })
+    await wait('PhotoLibrary identifies the paired Live Photo', (n) =>
+      status(n, 'Status', 'authorized') &&
+      status(n, 'Metadata', 'live=true; plain=false; id=true'))
+    tap({ id: 'one-native-live-photo-invalid-button' })
+    await wait('Live Photo JS rejects blank identifier', (n) =>
+      status(n, 'Invalid', 'LivePhotoView assetIdentifier must be a non-empty string'))
+    tap({ id: 'one-native-live-photo-missing' })
+    await wait('Live Photo view rejects unknown asset', (n) =>
+      status(n, 'Playback', 'failed') && status(n, 'Error', 'E_LIVE_PHOTO_NOT_FOUND') &&
+      events(n).includes('loading>failed:E_LIVE_PHOTO_NOT_FOUND'))
+    tap({ id: 'one-native-live-photo-plain' })
+    await wait('Live Photo view rejects ordinary image', (n) =>
+      status(n, 'Playback', 'failed') && status(n, 'Error', 'E_LIVE_PHOTO_NOT_LIVE') &&
+      events(n).includes('loading>failed:E_LIVE_PHOTO_NOT_LIVE'))
+    tap({ id: 'one-native-live-photo-live' })
+    const ready = await wait('Live Photo reaches nondegraded ready state', (n) =>
+      status(n, 'Playback', 'ready') && status(n, 'Error', 'none') &&
+      events(n) === 'Events: loading>ready')
+    const photo = id(ready, 'one-native-live-photo-frame')?.frame
+    const control = id(ready, 'one-native-live-photo-static')?.frame
+    const appWidth = ready.find((node) => node.type === 'Application')?.frame?.width
+    if (!photo || !control || !appWidth || photo.width !== 320 || photo.height !== 240)
+      throw new Error(`Live Photo proof frames invalid: ${JSON.stringify({ photo, control, appWidth })}`)
+    const photoCrop = { x: photo.x + 12, y: photo.y + 12,
+      width: photo.width - 24, height: photo.height - 24, viewportWidth: appWidth }
+    const controlCrop = { ...control, viewportWidth: appWidth }
+    const baselineA = screenshot('live-photo-ready-a.png')
+    const baselineB = screenshot('live-photo-ready-b.png')
+    const still = countChangedPixels(baselineA, baselineB, photoCrop, 10)
+    if (still.changed !== 0)
+      throw new Error(`Live Photo pre-playback negative control moved: ${JSON.stringify(still)}`)
+    console.log(`PASS live-photo-preplayback-static ${JSON.stringify(still)}`)
+    tap({ id: 'one-native-live-photo-play' })
+    await wait('Live Photo begins playback', (n) =>
+      status(n, 'Command', 'play:1') && status(n, 'Playback', 'playing') &&
+      events(n) === 'Events: loading>ready>playing')
+    const playingA = screenshot('live-photo-playing-a.png')
+    const playingB = screenshot('live-photo-playing-b.png')
+    const motion = countChangedPixels(playingA, playingB, photoCrop, 10)
+    const controlMotion = countChangedPixels(baselineA, playingB, controlCrop, 10)
+    if (motion.ratio <= 0.01 || controlMotion.changed !== 0)
+      throw new Error(`Live Photo playback pixels failed: ${JSON.stringify({ motion, controlMotion })}`)
+    console.log(`PASS live-photo-playing-pixels ${JSON.stringify({ motion, controlMotion })}`)
+    await wait('Live Photo playback ends naturally', (n) =>
+      status(n, 'Playback', 'ended') && status(n, 'Error', 'none') &&
+      events(n) === 'Events: loading>ready>playing>ended')
+    tap({ id: 'one-native-live-photo-play' })
+    await wait('Live Photo repeated play command starts again', (n) =>
+      status(n, 'Command', 'play:2') && status(n, 'Playback', 'playing') &&
+      events(n) === 'Events: loading>ready>playing>ended>playing')
+    tap({ id: 'one-native-live-photo-stop' })
+    await wait('Live Photo stop returns to ready key photo', (n) =>
+      status(n, 'Command', 'stop:3') && status(n, 'Playback', 'ready') &&
+      status(n, 'Error', 'none') &&
+      events(n) === 'Events: loading>ready>playing>ended>playing>ready')
+    screenshot('live-photo-passed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

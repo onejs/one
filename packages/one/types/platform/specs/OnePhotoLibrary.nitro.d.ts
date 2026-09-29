@@ -9,6 +9,7 @@ export interface PhotoLibraryAsset {
     durationMs: number;
     creationDateMs?: number;
     isFavorite: boolean;
+    isLivePhoto: boolean;
 }
 export interface PhotoLibraryAssetPage {
     assets: PhotoLibraryAsset[];

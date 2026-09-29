@@ -1,6 +1,6 @@
 ---
 title: iOS Media and Empty States
-description: Image, shapes, VideoPlayer, WebView, PhotosPicker, Map, ContentUnavailableView, and EmptyView under One.iOS
+description: Image, shapes, VideoPlayer, LivePhotoView, WebView, PhotosPicker, Map, ContentUnavailableView, and EmptyView under One.iOS
 ---
 
 Media, shapes, and empty states under `One.iOS`. Every view here accepts
@@ -94,6 +94,53 @@ The player follows the app's audio session. This view does not publish Now
 Playing metadata or remote transport callbacks. `One.iOS.Audio` manages a
 separate player and its own remote commands. Playback during backgrounding,
 cross-app audio arbitration, and picture in picture need device proof.
+
+## LivePhotoView
+
+`One.iOS.LivePhotoView` displays and plays a Live Photo already in the Photos
+library. Request read access with `One.iOS.PhotoLibrary.requestReadPermission()`,
+then pass the `identifier` of an asset whose `isLivePhoto` is `true`. Give the
+view an explicit size. It loads a nondegraded `PHLivePhoto` and shows its key
+photo at `ready`. It does not capture or assemble a still and video pair.
+
+```tsx
+import { useState } from 'react'
+import { Button, View } from 'react-native'
+import { One } from 'one'
+
+function LivePhoto({ assetIdentifier }: { assetIdentifier: string }) {
+  const [control, setControl] = useState({ command: '' as '' | 'play' | 'stop', revision: 0 })
+  const send = (command: 'play' | 'stop') =>
+    setControl((previous) => ({ command, revision: previous.revision + 1 }))
+
+  return <View>
+    <One.iOS.LivePhotoView
+      assetIdentifier={assetIdentifier}
+      style={{ width: 320, height: 240 }}
+      command={control.command}
+      commandRevision={control.revision}
+      onPlaybackState={(state, errorCode) => console.log(state, errorCode)}
+    />
+    <Button title="Play" onPress={() => send('play')} />
+    <Button title="Stop" onPress={() => send('stop')} />
+  </View>
+}
+```
+
+`autoplay` starts when the nondegraded Live Photo reaches `ready`. Otherwise,
+send `play` or `stop` with an increasing positive `commandRevision`. Revisions
+increase for the lifetime of the view, including repeated commands. The event
+order for a normal full play is `loading`, `ready`, `playing`, `ended`.
+`stop` returns to `ready` and shows the key photo. `onPlaybackState` receives
+`(state, errorCode)`; `errorCode` is `''` unless `state` is `failed`.
+
+Failures report `E_LIVE_PHOTO_INPUT` for a blank identifier supplied directly
+to the native component, `E_LIVE_PHOTO_PERMISSION` without Photos read access,
+`E_LIVE_PHOTO_NOT_FOUND` for an unknown or inaccessible asset,
+`E_LIVE_PHOTO_NOT_LIVE` for an ordinary image, or `E_LIVE_PHOTO_LOAD` if Photos
+cannot supply the Live Photo. The JavaScript wrapper rejects a blank identifier
+before mounting. The loader uses local Photos data and does not download an
+iCloud original; a cloud-only asset may fail with `E_LIVE_PHOTO_LOAD`.
 
 ## WebView
 
