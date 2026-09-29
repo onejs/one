@@ -346,10 +346,15 @@ private struct LivePhotoSurface: View {
   var body: some View {
     OneNativeLivePhotoContainer(session: session)
       .onAppear {
-        session.report = { [weak model] state, errorCode in
-          model?.playbackState(state, errorCode)
+        session.report = { state, errorCode in
+          model.playbackState(state, errorCode)
         }
-        configure()
+        // the generated host marks its model active after attaching the view.
+        // defer the first status so loading and immediate failures reach fabric.
+        DispatchQueue.main.async {
+          guard session.report != nil else { return }
+          configure()
+        }
       }
       .onChange(of: model.assetIdentifier) { configure() }
       .onChange(of: model.autoplay) { configure() }

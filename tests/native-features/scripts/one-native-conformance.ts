@@ -1240,6 +1240,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       fileURLToPath(new URL('../assets/one-native-live-photo.jpg', import.meta.url)),
       fileURLToPath(new URL('../assets/one-native-live-photo.mov', import.meta.url)),
     ], { stdio: 'inherit', timeout: 60_000 })
+    execFileSync('xcrun', [
+      'simctl', 'addmedia', config.simulatorId,
+      fileURLToPath(new URL('../assets/one-native-picker-portrait.heic', import.meta.url)),
+    ], { stdio: 'inherit', timeout: 60_000 })
   }
   if (config.suite === 'contacts') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts-limited', config.bundleId], {
