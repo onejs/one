@@ -8511,7 +8511,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error(`Live Photo proof frames invalid: ${JSON.stringify({ photo, control, appWidth })}`)
     const photoCrop = { x: photo.x + 12, y: photo.y + 12,
       width: photo.width - 24, height: photo.height - 24, viewportWidth: appWidth }
-    const controlCrop = { ...control, viewportWidth: appWidth }
+    // h264 changes the control's border pixels while encoding; its interior
+    // must stay byte-stable across the same frames that move the live photo.
+    const controlCrop = { x: control.x + 2, y: control.y + 2,
+      width: control.width - 4, height: control.height - 4, viewportWidth: appWidth }
     const baselineA = screenshot('live-photo-ready-a.png')
     const baselineB = screenshot('live-photo-ready-b.png')
     const still = countChangedPixels(baselineA, baselineB, photoCrop, 10)
