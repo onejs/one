@@ -74,11 +74,11 @@ public final class OneNativeMenuView: UIView {
   public func configure(_ triggerLabel: String, disabled: Bool, hasPrimaryAction: Bool, menuOrder: String, menuActionDismissBehavior: String, presentation: String, acknowledgedEvent: Int, revision: Int) {
     if let next = model.controlled.applying(model.propValues, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
     if model.label != triggerLabel { model.label = triggerLabel }
-    if model.disabled != disabled { model.disabled = disabled }
+    if model.disabled != disabled { model.disabled = disabled; setNeedsLayout() }
     if model.hasPrimaryAction != hasPrimaryAction { model.hasPrimaryAction = hasPrimaryAction }
     if model.menuOrder != menuOrder { model.menuOrder = menuOrder }
     if model.menuActionDismissBehavior != menuActionDismissBehavior { model.menuActionDismissBehavior = menuActionDismissBehavior }
-    if model.presentation != presentation { model.presentation = presentation }
+    if model.presentation != presentation { model.presentation = presentation; setNeedsLayout() }
   }
 
   public override func didMoveToWindow() {
@@ -117,6 +117,8 @@ public final class OneNativeMenuView: UIView {
         addInteraction(interaction)
         contextMenu = interaction
       }
+      // swiftui's disabled covers the subject of a context menu too: its touches and the menu
+      isUserInteractionEnabled = !model.disabled
       model.active = true
       return
     }
@@ -124,6 +126,7 @@ public final class OneNativeMenuView: UIView {
       removeInteraction(contextMenu)
       self.contextMenu = nil
     }
+    isUserInteractionEnabled = true
     if controller == nil {
       controller = OneNativeHostingController(rootView: OneNativeMenuRoot(model: model))
     }
@@ -191,7 +194,6 @@ extension OneNativeMenuView: UIContextMenuInteractionDelegate {
   public func contextMenuInteraction(
     _ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint
   ) -> UIContextMenuConfiguration? {
-    guard !model.disabled else { return nil }
     let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { [weak self] _ in
       guard let self else { return nil }
       return UIMenu(children: self.menuElements("", dismiss: self.model.menuActionDismissBehavior, disabled: false))
@@ -245,6 +247,9 @@ extension OneNativeMenuView: UIContextMenuInteractionDelegate {
         closeRun()
       }
     }
+    // items with no divider or section among them stay flat, as swiftui builds them: an
+    // extra inline menu around a section's items hides the section's header.
+    if groups.isEmpty { return run }
     closeRun()
     return groups
   }
