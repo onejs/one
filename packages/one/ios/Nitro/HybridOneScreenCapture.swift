@@ -1,5 +1,5 @@
+import Foundation
 import NitroModules
-import React
 import UIKit
 
 final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
@@ -42,13 +42,63 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
   func getState() throws -> Promise<ScreenCaptureState> {
     let promise = Promise<ScreenCaptureState>()
     DispatchQueue.main.async {
-      guard let scene = Self.currentScene() else {
+      guard let scene = self.currentScene() else {
         promise.reject(withError: oneNativeError(
           "E_SCREEN_CAPTURE_SCENE", "ScreenCapture.getState: no active window scene"))
         return
       }
       self.observe(scene)
       promise.resolve(withResult: Self.state(scene.traitCollection.sceneCaptureState))
+    }
+    return promise
+  }
+
+  func captureWindow() throws -> Promise<WindowCaptureResult> {
+    let promise = Promise<WindowCaptureResult>()
+    DispatchQueue.main.async {
+      guard let window = self.currentWindow(), window.windowScene != nil else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_SCENE", "ScreenCapture.captureWindow: no active app window scene"))
+        return
+      }
+      guard !window.bounds.isEmpty else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_RENDER", "ScreenCapture.captureWindow: window has no drawable area"))
+        return
+      }
+      let format = UIGraphicsImageRendererFormat.default()
+      format.scale = window.screen.scale
+      var didDraw = false
+      let image = UIGraphicsImageRenderer(bounds: window.bounds, format: format).image { _ in
+        didDraw = window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
+      }
+      guard didDraw else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_RENDER", "ScreenCapture.captureWindow: window could not be rendered"))
+        return
+      }
+      guard let data = image.pngData(), let cgImage = image.cgImage else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_ENCODE", "ScreenCapture.captureWindow: PNG encoding failed"))
+        return
+      }
+      let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        .appendingPathComponent("OneScreenCapture", isDirectory: true)
+      let destination = folder.appendingPathComponent(UUID().uuidString).appendingPathExtension("png")
+      do {
+        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        try data.write(to: destination, options: .atomic)
+      } catch {
+        try? FileManager.default.removeItem(at: destination)
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_FILE", "ScreenCapture.captureWindow: PNG file could not be saved"))
+        return
+      }
+      promise.resolve(withResult: WindowCaptureResult(
+        uri: destination.absoluteString,
+        width: Double(cgImage.width),
+        height: Double(cgImage.height),
+        size: Double(data.count)))
     }
     return promise
   }
@@ -73,7 +123,7 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
   }
 
   @MainActor private func observeCurrentScene() {
-    guard let scene = Self.currentScene() else { return }
+    guard let scene = currentScene() else { return }
     observe(scene)
   }
 
@@ -99,8 +149,20 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
     for listener in stateListeners.values { listener(state) }
   }
 
-  private static func currentScene() -> UIWindowScene? {
-    RCTKeyWindow()?.windowScene
+  @MainActor private func currentWindow() -> UIWindow? {
+    let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+    let activeScene = scenes.first(where: { $0.activationState == .foregroundActive })
+    let pinnedScene = observedScene?.activationState == .unattached ? nil : observedScene
+    let windows = (activeScene ?? pinnedScene ?? scenes.first)?.windows ?? []
+    return windows.first(where: { $0.isKeyWindow && $0.windowLevel == .normal && $0.rootViewController != nil }) ??
+      windows.first(where: { !$0.isHidden && $0.windowLevel == .normal && $0.rootViewController != nil }) ??
+      windows.first(where: { $0.isKeyWindow }) ?? windows.first
+  }
+
+  @MainActor private func currentScene() -> UIWindowScene? {
+    let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+    return currentWindow()?.windowScene ??
+      scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first
   }
 
   private static func state(_ value: UISceneCaptureState) -> ScreenCaptureState {

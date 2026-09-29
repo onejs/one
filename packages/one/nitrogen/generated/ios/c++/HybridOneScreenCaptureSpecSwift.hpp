@@ -14,9 +14,13 @@ namespace One { class HybridOneScreenCaptureSpec_cxx; }
 
 // Forward declaration of `ScreenCaptureState` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenCaptureState; }
+// Forward declaration of `WindowCaptureResult` to properly resolve imports.
+namespace margelo::nitro::one { struct WindowCaptureResult; }
 
 #include "ScreenCaptureState.hpp"
 #include <NitroModules/Promise.hpp>
+#include "WindowCaptureResult.hpp"
+#include <string>
 #include <functional>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
@@ -71,6 +75,14 @@ namespace margelo::nitro::one {
     // Methods
     inline std::shared_ptr<Promise<ScreenCaptureState>> getState() override {
       auto __result = _swiftPart.getState();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<WindowCaptureResult>> captureWindow() override {
+      auto __result = _swiftPart.captureWindow();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
