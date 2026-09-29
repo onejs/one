@@ -76,13 +76,13 @@ export default function OneNativeLivePhoto() {
     </Pressable>
 
   return <View style={styles.screen} testID="one-native-live-photo-screen">
-    <Text testID="one-native-live-photo-status">Status: {status}</Text>
-    <Text testID="one-native-live-photo-metadata">Metadata: {metadata}</Text>
-    <Text testID="one-native-live-photo-playback">Playback: {playback}</Text>
-    <Text testID="one-native-live-photo-error">Error: {error}</Text>
-    <Text testID="one-native-live-photo-events">Events: {events.join('>') || 'none'}</Text>
-    <Text testID="one-native-live-photo-invalid">Invalid: {invalid}</Text>
-    <Text testID="one-native-live-photo-command">Command: {command || 'none'}:{revision}</Text>
+    <Text style={styles.readout} numberOfLines={1} testID="one-native-live-photo-status">Status: {status}</Text>
+    <Text style={styles.readout} numberOfLines={1} testID="one-native-live-photo-metadata">Metadata: {metadata}</Text>
+    <Text style={styles.readout} numberOfLines={1} testID="one-native-live-photo-playback">Playback: {playback}</Text>
+    <Text style={styles.readout} numberOfLines={1} testID="one-native-live-photo-error">Error: {error}</Text>
+    <Text style={styles.readout} numberOfLines={1} testID="one-native-live-photo-events">Events: {events.join('>') || 'none'}</Text>
+    <Text style={styles.readout} numberOfLines={1} testID="one-native-live-photo-invalid">Invalid: {invalid}</Text>
+    <Text style={styles.readout} numberOfLines={1} testID="one-native-live-photo-command">Command: {command || 'none'}:{revision}</Text>
     <View style={styles.row}>
       {button('No permission', 'one-native-live-photo-permission', () => show('missing-asset-id'))}
       {button('Grant', 'one-native-live-photo-authorize', authorize)}
@@ -117,6 +117,7 @@ export default function OneNativeLivePhoto() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 12, gap: 3, backgroundColor: '#fff' },
+  readout: { height: 19, fontSize: 13 },
   row: { flexDirection: 'row', gap: 6, marginTop: 4 },
   button: { paddingHorizontal: 11, paddingVertical: 7, backgroundColor: '#293d62', borderRadius: 5 },
   buttonText: { color: '#fff', fontSize: 13 },
