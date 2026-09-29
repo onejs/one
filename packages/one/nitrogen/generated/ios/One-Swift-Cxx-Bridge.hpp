@@ -306,6 +306,8 @@ namespace margelo::nitro::one { struct PurchaseUpdate; }
 namespace margelo::nitro::one { struct QuickActionItem; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
+// Forward declaration of `ScreenCaptureResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ScreenCaptureResult; }
 // Forward declaration of `ScreenCaptureState` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenCaptureState; }
 // Forward declaration of `ScreenOrientationValue` to properly resolve imports.
@@ -330,8 +332,6 @@ namespace margelo::nitro::one { struct SpeechPermissionResponse; }
 namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
-// Forward declaration of `WindowCaptureResult` to properly resolve imports.
-namespace margelo::nitro::one { struct WindowCaptureResult; }
 
 // Forward declarations of Swift defined types
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
@@ -570,6 +570,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PurchaseUpdateStatus.hpp"
 #include "QuickActionItem.hpp"
 #include "ReminderInfo.hpp"
+#include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
 #include "ShareItem.hpp"
@@ -582,7 +583,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "SpeechPermissionResponse.hpp"
 #include "SpeechPermissionStatus.hpp"
 #include "UserInterfaceSizeClass.hpp"
-#include "WindowCaptureResult.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/ArrayBufferHolder.hpp>
@@ -4709,38 +4709,38 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_ScreenCaptureState_Wrapper(std::move(value));
   }
 
-  // pragma MARK: std::shared_ptr<Promise<WindowCaptureResult>>
+  // pragma MARK: std::shared_ptr<Promise<ScreenCaptureResult>>
   /**
-   * Specialized version of `std::shared_ptr<Promise<WindowCaptureResult>>`.
+   * Specialized version of `std::shared_ptr<Promise<ScreenCaptureResult>>`.
    */
-  using std__shared_ptr_Promise_WindowCaptureResult__ = std::shared_ptr<Promise<WindowCaptureResult>>;
-  inline std::shared_ptr<Promise<WindowCaptureResult>> create_std__shared_ptr_Promise_WindowCaptureResult__() noexcept {
-    return Promise<WindowCaptureResult>::create();
+  using std__shared_ptr_Promise_ScreenCaptureResult__ = std::shared_ptr<Promise<ScreenCaptureResult>>;
+  inline std::shared_ptr<Promise<ScreenCaptureResult>> create_std__shared_ptr_Promise_ScreenCaptureResult__() noexcept {
+    return Promise<ScreenCaptureResult>::create();
   }
-  inline PromiseHolder<WindowCaptureResult> wrap_std__shared_ptr_Promise_WindowCaptureResult__(std::shared_ptr<Promise<WindowCaptureResult>> promise) noexcept {
-    return PromiseHolder<WindowCaptureResult>(std::move(promise));
+  inline PromiseHolder<ScreenCaptureResult> wrap_std__shared_ptr_Promise_ScreenCaptureResult__(std::shared_ptr<Promise<ScreenCaptureResult>> promise) noexcept {
+    return PromiseHolder<ScreenCaptureResult>(std::move(promise));
   }
 
-  // pragma MARK: std::function<void(const WindowCaptureResult& /* result */)>
+  // pragma MARK: std::function<void(const ScreenCaptureResult& /* result */)>
   /**
-   * Specialized version of `std::function<void(const WindowCaptureResult&)>`.
+   * Specialized version of `std::function<void(const ScreenCaptureResult&)>`.
    */
-  using Func_void_WindowCaptureResult = std::function<void(const WindowCaptureResult& /* result */)>;
+  using Func_void_ScreenCaptureResult = std::function<void(const ScreenCaptureResult& /* result */)>;
   /**
-   * Wrapper class for a `std::function<void(const WindowCaptureResult& / * result * /)>`, this can be used from Swift.
+   * Wrapper class for a `std::function<void(const ScreenCaptureResult& / * result * /)>`, this can be used from Swift.
    */
-  class Func_void_WindowCaptureResult_Wrapper final {
+  class Func_void_ScreenCaptureResult_Wrapper final {
   public:
-    explicit Func_void_WindowCaptureResult_Wrapper(std::function<void(const WindowCaptureResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const WindowCaptureResult& /* result */)>>(std::move(func))) {}
-    inline void call(WindowCaptureResult result) const noexcept {
+    explicit Func_void_ScreenCaptureResult_Wrapper(std::function<void(const ScreenCaptureResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ScreenCaptureResult& /* result */)>>(std::move(func))) {}
+    inline void call(ScreenCaptureResult result) const noexcept {
       _function->operator()(result);
     }
   private:
-    std::unique_ptr<std::function<void(const WindowCaptureResult& /* result */)>> _function;
+    std::unique_ptr<std::function<void(const ScreenCaptureResult& /* result */)>> _function;
   } SWIFT_NONCOPYABLE;
-  Func_void_WindowCaptureResult create_Func_void_WindowCaptureResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_WindowCaptureResult_Wrapper wrap_Func_void_WindowCaptureResult(Func_void_WindowCaptureResult value) noexcept {
-    return Func_void_WindowCaptureResult_Wrapper(std::move(value));
+  Func_void_ScreenCaptureResult create_Func_void_ScreenCaptureResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ScreenCaptureResult_Wrapper wrap_Func_void_ScreenCaptureResult(Func_void_ScreenCaptureResult value) noexcept {
+    return Func_void_ScreenCaptureResult_Wrapper(std::move(value));
   }
 
   // pragma MARK: std::shared_ptr<HybridOneScreenCaptureSpec>
@@ -4764,13 +4764,13 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<ScreenCaptureState>>>::withError(error);
   }
 
-  // pragma MARK: Result<std::shared_ptr<Promise<WindowCaptureResult>>>
-  using Result_std__shared_ptr_Promise_WindowCaptureResult___ = Result<std::shared_ptr<Promise<WindowCaptureResult>>>;
-  inline Result_std__shared_ptr_Promise_WindowCaptureResult___ create_Result_std__shared_ptr_Promise_WindowCaptureResult___(const std::shared_ptr<Promise<WindowCaptureResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<WindowCaptureResult>>>::withValue(value);
+  // pragma MARK: Result<std::shared_ptr<Promise<ScreenCaptureResult>>>
+  using Result_std__shared_ptr_Promise_ScreenCaptureResult___ = Result<std::shared_ptr<Promise<ScreenCaptureResult>>>;
+  inline Result_std__shared_ptr_Promise_ScreenCaptureResult___ create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(const std::shared_ptr<Promise<ScreenCaptureResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ScreenCaptureResult>>>::withValue(value);
   }
-  inline Result_std__shared_ptr_Promise_WindowCaptureResult___ create_Result_std__shared_ptr_Promise_WindowCaptureResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<WindowCaptureResult>>>::withError(error);
+  inline Result_std__shared_ptr_Promise_ScreenCaptureResult___ create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ScreenCaptureResult>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<ScreenOrientationValue>>

@@ -53,54 +53,82 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
     return promise
   }
 
-  func captureWindow() throws -> Promise<WindowCaptureResult> {
-    let promise = Promise<WindowCaptureResult>()
+  func captureWindow() throws -> Promise<ScreenCaptureResult> {
+    let promise = Promise<ScreenCaptureResult>()
     DispatchQueue.main.async {
       guard let window = self.currentWindow(), window.windowScene != nil else {
         promise.reject(withError: oneNativeError(
           "E_SCREEN_CAPTURE_SCENE", "ScreenCapture.captureWindow: no active app window scene"))
         return
       }
-      guard !window.bounds.isEmpty else {
-        promise.reject(withError: oneNativeError(
-          "E_SCREEN_CAPTURE_RENDER", "ScreenCapture.captureWindow: window has no drawable area"))
-        return
-      }
-      let format = UIGraphicsImageRendererFormat.default()
-      format.scale = window.screen.scale
-      var didDraw = false
-      let image = UIGraphicsImageRenderer(bounds: window.bounds, format: format).image { _ in
-        didDraw = window.drawHierarchy(in: window.bounds, afterScreenUpdates: true)
-      }
-      guard didDraw else {
-        promise.reject(withError: oneNativeError(
-          "E_SCREEN_CAPTURE_RENDER", "ScreenCapture.captureWindow: window could not be rendered"))
-        return
-      }
-      guard let data = image.pngData(), let cgImage = image.cgImage else {
-        promise.reject(withError: oneNativeError(
-          "E_SCREEN_CAPTURE_ENCODE", "ScreenCapture.captureWindow: PNG encoding failed"))
-        return
-      }
-      let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        .appendingPathComponent("OneScreenCapture", isDirectory: true)
-      let destination = folder.appendingPathComponent(UUID().uuidString).appendingPathExtension("png")
       do {
-        try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
-        try data.write(to: destination, options: .atomic)
+        promise.resolve(withResult: try Self.render(window, scale: window.screen.scale, operation: "captureWindow"))
       } catch {
-        try? FileManager.default.removeItem(at: destination)
-        promise.reject(withError: oneNativeError(
-          "E_SCREEN_CAPTURE_FILE", "ScreenCapture.captureWindow: PNG file could not be saved"))
-        return
+        promise.reject(withError: error)
       }
-      promise.resolve(withResult: WindowCaptureResult(
-        uri: destination.absoluteString,
-        width: Double(cgImage.width),
-        height: Double(cgImage.height),
-        size: Double(data.count)))
     }
     return promise
+  }
+
+  func captureView(viewTag: Double) throws -> Promise<ScreenCaptureResult> {
+    let promise = Promise<ScreenCaptureResult>()
+    DispatchQueue.main.async {
+      guard viewTag.isFinite, viewTag >= 1, viewTag <= Double(Int32.max),
+        viewTag.rounded(.towardZero) == viewTag else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_INPUT", "ScreenCapture.captureView: view tag must be a positive 32-bit integer"))
+        return
+      }
+      guard let window = self.currentWindow(), window.windowScene != nil else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_SCENE", "ScreenCapture.captureView: no active app window scene"))
+        return
+      }
+      guard let view = window.viewWithTag(Int(viewTag)), view !== window, view.window === window else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_VIEW", "ScreenCapture.captureView: mounted view tag was not found in the app window"))
+        return
+      }
+      do {
+        promise.resolve(withResult: try Self.render(view, scale: window.screen.scale, operation: "captureView"))
+      } catch {
+        promise.reject(withError: error)
+      }
+    }
+    return promise
+  }
+
+  @MainActor private static func render(_ view: UIView, scale: CGFloat, operation: String) throws -> ScreenCaptureResult {
+    guard !view.bounds.isEmpty else {
+      throw oneNativeError("E_SCREEN_CAPTURE_RENDER", "ScreenCapture.\(operation): view has no drawable area")
+    }
+    let format = UIGraphicsImageRendererFormat.default()
+    format.scale = scale
+    var didDraw = false
+    let image = UIGraphicsImageRenderer(bounds: view.bounds, format: format).image { _ in
+      didDraw = view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+    }
+    guard didDraw else {
+      throw oneNativeError("E_SCREEN_CAPTURE_RENDER", "ScreenCapture.\(operation): view could not be rendered")
+    }
+    guard let data = image.pngData(), let cgImage = image.cgImage else {
+      throw oneNativeError("E_SCREEN_CAPTURE_ENCODE", "ScreenCapture.\(operation): PNG encoding failed")
+    }
+    let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+      .appendingPathComponent("OneScreenCapture", isDirectory: true)
+    let destination = folder.appendingPathComponent(UUID().uuidString).appendingPathExtension("png")
+    do {
+      try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+      try data.write(to: destination, options: .atomic)
+    } catch {
+      try? FileManager.default.removeItem(at: destination)
+      throw oneNativeError("E_SCREEN_CAPTURE_FILE", "ScreenCapture.\(operation): PNG file could not be saved")
+    }
+    return ScreenCaptureResult(
+      uri: destination.absoluteString,
+      width: Double(cgImage.width),
+      height: Double(cgImage.height),
+      size: Double(data.count))
   }
 
   func addStateListener(onChange: @escaping (ScreenCaptureState) -> Void) throws -> () -> Void {

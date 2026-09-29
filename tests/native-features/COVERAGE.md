@@ -109,7 +109,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.StoreReview` | store-review | n/a |  |
 | `One.iOS.QuickActions` | quick-actions | n/a |  |
 | `One.iOS.Location` | location | n/a |  |
-| `One.iOS.FileSystem` | screen-capture, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print | n/a |  |
+| `One.iOS.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print | n/a |  |
 | `One.iOS.Audio` | audio, audio-interruption, audio-remote, audio-background | n/a |  |
 | `One.iOS.CameraView` | camera-preview | n/a |  |
 | `One.iOS.Share` | share | n/a |  |
@@ -118,7 +118,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.AppTracking` | app-tracking | n/a |  |
 | `One.iOS.AppIcon` | app-icon | n/a |  |
 | `One.iOS.ScreenOrientation` | screen-orientation | n/a |  |
-| `One.iOS.ScreenCapture` | screen-capture | n/a |  |
+| `One.iOS.ScreenCapture` | screen-capture, view-snapshot | n/a |  |
 | `One.iOS.Purchases` | purchases | n/a |  |
 | `One.iOS.ImageManipulator` | photo-library, photo-library-limited, image-manipulator | n/a |  |
 | `One.iOS.Device` | device | n/a |  |

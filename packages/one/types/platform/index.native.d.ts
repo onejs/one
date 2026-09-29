@@ -160,7 +160,7 @@ export type { AppTrackingPermissionStatus } from './app-tracking/index.native';
 export { ScreenOrientation } from './screen-orientation/index.native';
 export type { ScreenOrientationLock, ScreenOrientationValue } from './screen-orientation/index.native';
 export { ScreenCapture } from './screen-capture/index.native';
-export type { ScreenCaptureState, WindowCaptureResult } from './screen-capture/index.native';
+export type { ScreenCaptureResult, ScreenCaptureState } from './screen-capture/index.native';
 export { Purchases } from './purchases/index.native';
 export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from './purchases/index.native';
 export { ImageManipulator } from './image-manipulator/index.native';

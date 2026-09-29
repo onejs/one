@@ -1192,10 +1192,10 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
-  // pragma MARK: std::function<void(const WindowCaptureResult& /* result */)>
-  Func_void_WindowCaptureResult create_Func_void_WindowCaptureResult(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_WindowCaptureResult::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const WindowCaptureResult& result) mutable -> void {
+  // pragma MARK: std::function<void(const ScreenCaptureResult& /* result */)>
+  Func_void_ScreenCaptureResult create_Func_void_ScreenCaptureResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_ScreenCaptureResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const ScreenCaptureResult& result) mutable -> void {
       swiftClosure.call(result);
     };
   }

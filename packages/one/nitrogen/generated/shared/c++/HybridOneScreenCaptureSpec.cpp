@@ -16,6 +16,7 @@ namespace margelo::nitro::one {
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("getState", &HybridOneScreenCaptureSpec::getState);
       prototype.registerHybridMethod("captureWindow", &HybridOneScreenCaptureSpec::captureWindow);
+      prototype.registerHybridMethod("captureView", &HybridOneScreenCaptureSpec::captureView);
       prototype.registerHybridMethod("addStateListener", &HybridOneScreenCaptureSpec::addStateListener);
       prototype.registerHybridMethod("addScreenshotListener", &HybridOneScreenCaptureSpec::addScreenshotListener);
     });
