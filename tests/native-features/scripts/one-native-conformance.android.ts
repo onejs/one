@@ -3537,6 +3537,13 @@ async function runUpdates(config: Config) {
     coldLaunch()
     await openFixture()
     await wait('failed update is never selected again', (n) => labelValue(n, 'UpdateId') === first.id)
+    // the server still serves the failed update, and the reaper deleted its
+    // files: check and fetch never take it again, so a client polling the
+    // server cannot loop through the same crash.
+    tap('one-native-updates-check')
+    await wait('still-served failed update checks none', (n) => labelValue(n, 'Check') === 'none')
+    tap('one-native-updates-fetch')
+    await wait('still-served failed update fetches none', (n) => labelValue(n, 'Fetch') === 'none')
 
     // 5. a proven update survives a kill during its splash: the kill lands
     // while launching is still recorded, and the relaunch selects it again.

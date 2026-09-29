@@ -159,6 +159,8 @@ Selection:
 - A cold launch that finds `launching` still set covers a native crash, a hang, or a
   kill before content appeared:
   - an update with zero successes is marked failed and never selected again;
+    its id joins a rejected list the reaper keeps, and `check` and `fetch`
+    answer none for it while a server still serves it;
   - an update with at least one success is selected again.
   - Expo never abandons a proven update (`ErrorRecovery.swift:159-164`); this guard
     keeps a force-quit during the splash from deleting a good update.

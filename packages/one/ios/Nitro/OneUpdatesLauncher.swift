@@ -72,9 +72,13 @@ struct OneUpdatesStoredUpdate: Codable {
   var manifestJson: String
 }
 
+// rejected holds the ids whose first launch failed, newest last. the reaper
+// deletes their files, and this list keeps check and fetch from taking them
+// again while a server still serves them.
 struct OneUpdatesStateFile: Codable {
   var updates: [String: OneUpdatesStoredUpdate]
   var launching: String?
+  var rejected: [String]?
 }
 
 @objc public final class OneUpdatesLauncher: NSObject {
@@ -82,6 +86,7 @@ struct OneUpdatesStateFile: Codable {
   static let embeddedManifestName = "one-updates-embedded"
   static let stateFileName = "state.json"
   static let directoryName = "one-updates"
+  static let rejectedLimit = 32
 
   private static let lock = NSRecursiveLock()
   private static var installed = false
@@ -289,6 +294,7 @@ struct OneUpdatesStateFile: Codable {
       if let launching = state.launching {
         if let entry = state.updates[launching], entry.successes == 0 {
           state.updates[launching]?.failed = true
+          reject(launching, in: &state)
         }
         state.launching = nil
         dirty = true
@@ -455,7 +461,10 @@ struct OneUpdatesStateFile: Codable {
   private static func rollBack(launching: String, reason: String) {
     NSLog("[OneUpdates] update %@ failed before first render, rolling back: %@", launching, reason)
     var state = loadState()
-    state.updates[launching]?.failed = true
+    if let entry = state.updates[launching] {
+      state.updates[launching]?.failed = true
+      if entry.successes == 0 { reject(launching, in: &state) }
+    }
     state.launching = nil
     saveState(state)
     skipOnce = launching
@@ -591,6 +600,12 @@ struct OneUpdatesStateFile: Codable {
     return updateIsComplete(id: id, manifest: manifest)
   }
 
+  static func reject(_ id: String, in state: inout OneUpdatesStateFile) {
+    var rejected = (state.rejected ?? []).filter { $0 != id }
+    rejected.append(id)
+    state.rejected = Array(rejected.suffix(rejectedLimit))
+  }
+
   static func emitStaged() {
     let staged = currentStagedJson()
     lock.lock()
@@ -700,7 +715,9 @@ struct OneUpdatesStateFile: Codable {
       lock.lock()
       let state = loadState()
       let runningDate = runningCreatedAt(state: state)
-      let staged = stagedIsComplete(id: manifest.id, state: state)
+      let staged =
+        stagedIsComplete(id: manifest.id, state: state)
+        || state.rejected?.contains(manifest.id) == true
       lock.unlock()
       guard let servedDate = dateOf(createdAt: manifest.createdAt) else {
         promise.reject(
@@ -758,7 +775,9 @@ struct OneUpdatesStateFile: Codable {
       lock.lock()
       let state = loadState()
       let runningDate = runningCreatedAt(state: state)
-      let staged = stagedIsComplete(id: manifest.id, state: state)
+      let staged =
+        stagedIsComplete(id: manifest.id, state: state)
+        || state.rejected?.contains(manifest.id) == true
       lock.unlock()
       guard let servedDate = dateOf(createdAt: manifest.createdAt), servedDate > runningDate,
         !staged

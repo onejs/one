@@ -120,7 +120,7 @@ export declare function expoClientFromNativeApp(app: NativeAppManifest): {
     scheme: string | string[] | undefined;
     version: string | undefined;
     orientation: "default" | "landscape" | "portrait" | undefined;
-    userInterfaceStyle: "automatic" | "dark" | "light" | undefined;
+    userInterfaceStyle: "automatic" | "dark" | "light";
     icon: string | undefined;
     splash: {
         image: string;
