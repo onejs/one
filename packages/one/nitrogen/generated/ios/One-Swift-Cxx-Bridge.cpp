@@ -1192,6 +1192,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
 
+  // pragma MARK: std::function<void(const WindowCaptureResult& /* result */)>
+  Func_void_WindowCaptureResult create_Func_void_WindowCaptureResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_WindowCaptureResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const WindowCaptureResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneScreenCaptureSpec>
   std::shared_ptr<HybridOneScreenCaptureSpec> create_std__shared_ptr_HybridOneScreenCaptureSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneScreenCaptureSpec_cxx swiftPart = One::HybridOneScreenCaptureSpec_cxx::fromUnsafe(swiftUnsafePointer);

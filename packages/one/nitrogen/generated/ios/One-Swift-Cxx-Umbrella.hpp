@@ -380,6 +380,8 @@ namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
 namespace margelo::nitro::one { struct SpeechStartOptions; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
+// Forward declaration of `WindowCaptureResult` to properly resolve imports.
+namespace margelo::nitro::one { struct WindowCaptureResult; }
 
 // Include C++ defined types
 #include "AppTrackingPermissionStatus.hpp"
@@ -568,6 +570,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "SpeechPermissionStatus.hpp"
 #include "SpeechStartOptions.hpp"
 #include "UserInterfaceSizeClass.hpp"
+#include "WindowCaptureResult.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
 #include <NitroModules/Promise.hpp>

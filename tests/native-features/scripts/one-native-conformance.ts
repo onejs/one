@@ -3500,8 +3500,56 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('scene capture is inactive before a screenshot', (n) =>
       labels(n).includes('Capture state: inactive') &&
       labels(n).includes('State events: none') &&
-      labels(n).includes('Screenshot count: 0')
+      labels(n).includes('Screenshot count: 0') &&
+      labels(n).includes('Window capture: idle')
     )
+    tap({ id: 'one-native-screen-capture-window' })
+    const captured = await wait('app window snapshot returns a PNG file and pixel dimensions', (n) =>
+      labels(n).includes('Window capture: captured') &&
+      labels(n).some((label) => /^Window file: [A-F0-9-]+\.png$/.test(label)) &&
+      labels(n).some((label) => /^Window dimensions: \d+x\d+$/.test(label)) &&
+      labels(n).some((label) => /^Window bytes: [1-9]\d*$/.test(label))
+    )
+    const fileName = labels(captured).find((label) => label.startsWith('Window file: '))?.slice('Window file: '.length)
+    const dimensionsLabel = labels(captured).find((label) => label.startsWith('Window dimensions: '))
+    const bytesLabel = labels(captured).find((label) => label.startsWith('Window bytes: '))
+    if (!fileName || !dimensionsLabel || !bytesLabel)
+      throw new Error('ScreenCapture: missing PNG metadata labels')
+    const container = execFileSync('xcrun', [
+      'simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data',
+    ], { encoding: 'utf8' }).trim()
+    const file = path.join(container, 'Library/Caches/OneScreenCapture', fileName)
+    if (!fs.existsSync(file)) throw new Error(`ScreenCapture: PNG is missing from its cache folder: ${file}`)
+    const image = readPng(file)
+    const app = captured.find((node) => node.type === 'Application')?.frame
+    const red = id(captured, 'one-native-screen-capture-red')?.frame
+    const blue = id(captured, 'one-native-screen-capture-blue')?.frame
+    if (!app || !red || !blue) throw new Error('ScreenCapture: missing app or color-box frames')
+    const scale = image.width / app.width
+    if (scale < 2.9 || scale > 3.1 || image.height !== Math.round(app.height * scale) ||
+      dimensionsLabel !== `Window dimensions: ${image.width}x${image.height}` ||
+      bytesLabel !== `Window bytes: ${fs.statSync(file).size}`)
+      throw new Error(`ScreenCapture: wrong PNG dimensions or bytes: ${JSON.stringify({
+        app, width: image.width, height: image.height, dimensionsLabel, bytesLabel,
+      })}`)
+    const pixel = (frame: NonNullable<Node['frame']>) => {
+      const x = Math.round((frame.x + frame.width / 2) * scale)
+      const y = Math.round((frame.y + frame.height / 2) * scale)
+      const offset = (y * image.width + x) * 4
+      return Array.from(image.data.slice(offset, offset + 3), Number)
+    }
+    const redPixel = pixel(red)
+    const bluePixel = pixel(blue)
+    if (!(redPixel[0] > 170 && redPixel[0] > redPixel[1] * 2 && redPixel[0] > redPixel[2] * 2 &&
+      bluePixel[2] > 150 && bluePixel[2] > bluePixel[0] * 2 && bluePixel[2] > bluePixel[1] * 2))
+      throw new Error(`ScreenCapture: window PNG lost its color boxes: ${JSON.stringify({ redPixel, bluePixel })}`)
+    fs.copyFileSync(file, path.join(config.artifactDir, 'screen-capture-window.png'))
+    console.log(`PASS app window PNG pixels: ${JSON.stringify({ redPixel, bluePixel, width: image.width, height: image.height })}`)
+    tap({ id: 'one-native-screen-capture-delete' })
+    await wait('captured PNG can be removed through FileSystem', (n) =>
+      labels(n).includes('Window capture: deleted') && labels(n).includes('Window file: none')
+    )
+    if (fs.existsSync(file)) throw new Error(`ScreenCapture: deleted PNG still exists: ${file}`)
     const proofFile = path.join(config.artifactDir, 'screen-capture-trigger.png')
     execFileSync('xcrun', ['simctl', 'io', config.simulatorId, 'screenshot', proofFile])
     await wait('host capture leaves the app screenshot listener unchanged', (n) =>

@@ -144,6 +144,25 @@ open class HybridOneScreenCaptureSpec_cxx {
   }
 
   @inline(__always)
+  public final func captureWindow() -> bridge.Result_std__shared_ptr_Promise_WindowCaptureResult___ {
+    do {
+      let __result = try self.__implementation.captureWindow()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_WindowCaptureResult__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_WindowCaptureResult__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_WindowCaptureResult__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_WindowCaptureResult___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_WindowCaptureResult___(__exceptionPtr)
+    }
+  }
+
+  @inline(__always)
   public final func addStateListener(onChange: bridge.Func_void_ScreenCaptureState) -> bridge.Result_std__function_void____ {
     do {
       let __result = try self.__implementation.addStateListener(onChange: { () -> (ScreenCaptureState) -> Void in
