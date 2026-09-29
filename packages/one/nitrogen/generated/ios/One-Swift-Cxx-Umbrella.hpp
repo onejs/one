@@ -198,6 +198,8 @@ namespace margelo::nitro::one { class HybridOnePrintSpec; }
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 // Forward declaration of `HybridOnePurchasesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOnePurchasesSpec; }
+// Forward declaration of `HybridOneQuickActionsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneQuickActionsSpec; }
 // Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
@@ -340,6 +342,8 @@ namespace margelo::nitro::one { struct PurchaseTransaction; }
 namespace margelo::nitro::one { enum class PurchaseUpdateStatus; }
 // Forward declaration of `PurchaseUpdate` to properly resolve imports.
 namespace margelo::nitro::one { struct PurchaseUpdate; }
+// Forward declaration of `QuickActionItem` to properly resolve imports.
+namespace margelo::nitro::one { struct QuickActionItem; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ReminderInput` to properly resolve imports.
@@ -473,6 +477,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOnePrintSpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOnePurchasesSpec.hpp"
+#include "HybridOneQuickActionsSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -544,6 +549,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "PurchaseTransaction.hpp"
 #include "PurchaseUpdate.hpp"
 #include "PurchaseUpdateStatus.hpp"
+#include "QuickActionItem.hpp"
 #include "ReminderInfo.hpp"
 #include "ReminderInput.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"
@@ -653,6 +659,8 @@ namespace One { class HybridOnePrintSpec_cxx; }
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
 // Forward declaration of `HybridOnePurchasesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOnePurchasesSpec_cxx; }
+// Forward declaration of `HybridOneQuickActionsSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneQuickActionsSpec_cxx; }
 // Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.

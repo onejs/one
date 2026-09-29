@@ -32,6 +32,7 @@
 #include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOnePrintSpecSwift.hpp"
 #include "HybridOneStoreReviewSpecSwift.hpp"
+#include "HybridOneQuickActionsSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
@@ -213,6 +214,13 @@
     "OneStoreReview",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneStoreReviewSpec> hybridObject = One::OneAutolinking::createOneStoreReview();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneQuickActions",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneQuickActionsSpec> hybridObject = One::OneAutolinking::createOneQuickActions();
       return hybridObject;
     }
   );

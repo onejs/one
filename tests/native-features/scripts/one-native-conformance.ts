@@ -117,6 +117,7 @@ const suites = [
   'keep-awake',
   'print',
   'store-review',
+  'quick-actions',
   'clipboard',
   'network',
   'browser',
@@ -572,6 +573,8 @@ const printLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-print-run')) && has(nodes, 'Status: ')
 const storeReviewLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-store-review-request')) && has(nodes, 'Status: ')
+const quickActionsLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-quick-actions-set')) && has(nodes, 'Initial: ')
 const databaseLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-database-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
@@ -737,6 +740,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'keep-awake': keepAwakeLoaded,
   print: printLoaded,
   'store-review': storeReviewLoaded,
+  'quick-actions': quickActionsLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -839,6 +843,7 @@ const suiteHome: Record<Suite, string> = {
   'keep-awake': 'nav-one-native-keep-awake',
   print: 'nav-one-native-print',
   'store-review': 'nav-one-native-store-review',
+  'quick-actions': 'nav-one-native-quick-actions',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -870,6 +875,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   ]
   const redBox = (nodes: Node[]) => {
     const found = labels(nodes)
+    if (found.includes('Render Error') && found.some((label) => label.startsWith('Error on route '))) {
+      return found.find((label) => label.startsWith('NitroModulesProxy.createHybridObject(')) ||
+        found.find((label) => label.startsWith('Error on route '))
+    }
     if (!redBoxButtons.every((button) => found.includes(button))) return undefined
     return found
       .filter((label) => !redBoxButtons.includes(label) && label !== 'OneNativeTests')
@@ -1246,7 +1255,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited' ||
       config.suite === 'preferences' || config.suite === 'keep-awake' ||
-      config.suite === 'print' || config.suite === 'store-review') {
+      config.suite === 'print' || config.suite === 'store-review' ||
+      config.suite === 'quick-actions') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; native contract suites need the freshly built app rather than a stale install.
@@ -8822,6 +8832,105 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('store review app remains usable', (n) =>
       has(n, 'Status: alive') && has(n, 'Requests: 1'))
     console.log('PASS store-review-app-usable')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'quick-actions') {
+    const actionId = 'dev.vxrn.native.tests.quick-open'
+    const actionLabel = 'Open Quick Actions, One proof action'
+    const springboard = (): Node[] => {
+      const [root] = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
+      const nodes: Node[] = []
+      const visit = (node: Node) => {
+        nodes.push(node)
+        for (const child of (node.children as Node[] | undefined) ?? []) visit(child)
+      }
+      visit(root)
+      return nodes
+    }
+    const waitSpringboard = async (predicate: (nodes: Node[]) => boolean, name: string) => {
+      const deadline = Date.now() + config.timeout
+      let nodes: Node[] = []
+      do {
+        nodes = springboard()
+        if (predicate(nodes)) return nodes
+        await Bun.sleep(250)
+      } while (Date.now() < deadline)
+      axe(['screenshot', '--output', path.join(config.artifactDir, `fail-${name.replaceAll(' ', '-')}.png`)],
+        config.simulatorId)
+      throw new Error(`${name} timed out; labels: ${labels(nodes).join(' | ')}`)
+    }
+    const openMenu = async (expectAction: boolean) => {
+      axe(['button', 'home'], config.simulatorId)
+      let nodes = await waitSpringboard((n) => Boolean(n.find((node) => node.AXLabel === 'NativeFeatureTests')), 'Home icon')
+      for (let page = 0; page < 6; page++) {
+        let previous: Node['frame'] | undefined
+        nodes = await waitSpringboard((n) => {
+          const frame = n.find((node) => node.AXLabel === 'NativeFeatureTests')?.frame
+          const stable = Boolean(frame && previous && frame.x === previous.x && frame.y === previous.y)
+          if (frame) previous = frame
+          return stable
+        }, 'Home icon settles')
+        const icon = nodes.find((node) => node.AXLabel === 'NativeFeatureTests')?.frame
+        const screen = nodes.find((node) => node.type === 'Application')?.frame
+        if (!icon || !screen) throw new Error('Home icon or display frame missing')
+        if (icon.x >= 0 && icon.x + icon.width <= screen.width) {
+          axe(['touch', '-x', String(Math.round(icon.x + icon.width / 2)),
+            '-y', String(Math.round(icon.y + icon.height / 2)), '--down', '--up', '--delay', '1.2'],
+          config.simulatorId)
+          const menu = await waitSpringboard((n) => has(n, 'Remove App') && has(n, 'Edit Home Screen'), 'system Home menu')
+          const found = labels(menu).includes(actionLabel)
+          if (found !== expectAction)
+            throw new Error(`Home menu action presence was ${found}, expected ${expectAction}`)
+          screenshot(expectAction ? 'quick-actions-menu.png' : 'quick-actions-cleared-menu.png')
+          return
+        }
+        axe(['swipe', '--start-x', icon.x >= screen.width ? '350' : '50', '--start-y', '430',
+          '--end-x', icon.x >= screen.width ? '50' : '350', '--end-y', '430', '--duration', '0.5'],
+        config.simulatorId)
+        nodes = springboard()
+      }
+      throw new Error('Home icon remained offscreen after six page swipes')
+    }
+    const selectAction = () => axe(['tap', '--label', actionLabel], config.simulatorId)
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-quick-actions')
+    await wait('quick actions fixture mounted', (n) => has(n, 'Initial: null') && has(n, 'Warm: 0:'))
+    tap({ id: 'one-native-quick-actions-set' })
+    await wait('quick action registered and read back', (n) =>
+      has(n, `Registered: 1:${actionId}:Open Quick Actions:One proof action`) && has(n, 'Error: none'))
+    await openMenu(true)
+    console.log('PASS quick-actions-system-menu')
+    selectAction()
+    await wait('warm quick action delivered once', (n) => has(n, `Warm: 1:${actionId}`) && has(n, 'Initial: null'))
+    await openMenu(true)
+    selectAction()
+    await wait('second warm quick action delivered once', (n) =>
+      has(n, `Warm: 2:${actionId},${actionId}`) && has(n, 'Initial: null'))
+    console.log('PASS quick-actions-warm-exact')
+
+    stopApp()
+    await openMenu(true)
+    selectAction()
+    await wait('quick action cold launch reaches home', () => true, true)
+    await tapNav('nav-one-native-quick-actions')
+    await wait('cold action pulled without listener replay', (n) =>
+      has(n, `Initial: ${actionId}`) && has(n, 'Warm: 0:'))
+    tap({ id: 'one-native-quick-actions-clear-initial' })
+    await wait('initial action clears without warm replay', (n) =>
+      has(n, 'Initial: null') && has(n, 'Warm: 0:'))
+    tap({ id: 'one-native-quick-actions-invalid' })
+    await wait('quick action input rejects invalid cases', (n) =>
+      has(n, 'Invalid: rejected,rejected,rejected,rejected,rejected') && has(n, 'Error: none'))
+    tap({ id: 'one-native-quick-actions-clear' })
+    const cleared = await wait('dynamic actions cleared and read back', (n) =>
+      has(n, 'Registered: cleared:0') && has(n, 'Error: none'))
+    screenshot('quick-actions-passed.png', cleared)
+    await openMenu(false)
+    console.log('PASS quick-actions-system-menu-cleared')
+    axe(['button', 'home'], config.simulatorId)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

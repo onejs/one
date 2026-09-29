@@ -107,6 +107,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.KeepAwake` | keep-awake | n/a |  |
 | `One.iOS.Print` | print | n/a |  |
 | `One.iOS.StoreReview` | store-review | n/a |  |
+| `One.iOS.QuickActions` | quick-actions | n/a |  |
 | `One.iOS.Location` | location | n/a |  |
 | `One.iOS.FileSystem` | location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print | n/a |  |
 | `One.iOS.Audio` | audio, audio-interruption, audio-remote, audio-background | n/a |  |

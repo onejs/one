@@ -56,6 +56,8 @@ export { Preferences } from './preferences/index.native'
 export { KeepAwake } from './keep-awake/index.native'
 export { Print } from './print/index.native'
 export { StoreReview } from './store-review/index.native'
+export { QuickActions } from './quick-actions/index.native'
+export type { QuickActionItem } from './quick-actions/index.native'
 export type { PrintResult } from './print/index.native'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
 // toolbar item's props are the generated ToolbarItemProps, reachable through Swift.ToolbarItem.

@@ -91,6 +91,9 @@
     "OneStoreReview": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneStoreReview" }
     },
+    "OneQuickActions": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneQuickActions" }
+    },
     "OneLocation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },
