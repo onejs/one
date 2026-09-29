@@ -21,6 +21,9 @@ export interface NativeAppManifest {
     contacts?: {
         usage: string;
     };
+    calendar?: {
+        usage: string;
+    };
     location?: {
         whenInUse: string;
     };

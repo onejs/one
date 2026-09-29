@@ -463,6 +463,7 @@ export interface ComposeTextFieldProps extends ComposeLeafProps {
 export interface ComposeSliderProps extends ComposeLeafProps {
   value: number
   onValueChange: (value: number) => void
+  onValueChangeFinished?: () => void
   revision?: number
   minimumValue?: number
   maximumValue?: number

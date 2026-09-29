@@ -91,6 +91,21 @@ internal class OneNativeComposeNodeNumberValueChangeEvent(
         }
 }
 
+internal class OneNativeComposeNodeSliderFinishedEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val eventCount: Int,
+) : Event<OneNativeComposeNodeSliderFinishedEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeSliderFinished"
+
+    override fun canCoalesce(): Boolean = false
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply {
+            putInt("eventCount", eventCount)
+        }
+}
+
 internal class OneNativeComposeNodeDialogConfirmEvent(
     surfaceId: Int,
     viewTag: Int,
