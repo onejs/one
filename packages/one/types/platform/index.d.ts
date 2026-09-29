@@ -26,6 +26,8 @@ export { Preferences } from './preferences/index';
 export { KeepAwake } from './keep-awake/index';
 export { Print } from './print/index';
 export { StoreReview } from './store-review/index';
+export { QuickActions } from './quick-actions/index';
+export type { QuickActionItem } from './quick-actions/index';
 export type { PrintResult } from './print/index';
 export { Location } from './location/index';
 export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError } from './location/index';

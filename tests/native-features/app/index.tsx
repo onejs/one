@@ -602,6 +602,11 @@ const testScreens = [
     label: 'One Native Store Review',
     testID: 'nav-one-native-store-review',
   },
+  {
+    href: '/one-native-quick-actions',
+    label: 'One Native Quick Actions',
+    testID: 'nav-one-native-quick-actions',
+  },
 ] as const
 
 export default function HomeScreen() {

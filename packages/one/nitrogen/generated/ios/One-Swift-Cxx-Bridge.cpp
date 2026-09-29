@@ -43,6 +43,7 @@
 #include "HybridOnePrintSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
 #include "HybridOnePurchasesSpecSwift.hpp"
+#include "HybridOneQuickActionsSpecSwift.hpp"
 #include "HybridOneScreenCaptureSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
@@ -1156,6 +1157,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOnePurchasesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const std::vector<QuickActionItem>& /* result */)>
+  Func_void_std__vector_QuickActionItem_ create_Func_void_std__vector_QuickActionItem_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_QuickActionItem_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<QuickActionItem>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneQuickActionsSpec>
+  std::shared_ptr<HybridOneQuickActionsSpec> create_std__shared_ptr_HybridOneQuickActionsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneQuickActionsSpec_cxx swiftPart = One::HybridOneQuickActionsSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneQuickActionsSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneQuickActionsSpec_(std__shared_ptr_HybridOneQuickActionsSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneQuickActionsSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneQuickActionsSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneQuickActionsSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneQuickActionsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

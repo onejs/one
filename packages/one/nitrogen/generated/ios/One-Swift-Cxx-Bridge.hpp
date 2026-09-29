@@ -178,6 +178,8 @@ namespace margelo::nitro::one { class HybridOnePrintSpec; }
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 // Forward declaration of `HybridOnePurchasesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOnePurchasesSpec; }
+// Forward declaration of `HybridOneQuickActionsSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneQuickActionsSpec; }
 // Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
@@ -300,6 +302,8 @@ namespace margelo::nitro::one { struct PurchaseTransaction; }
 namespace margelo::nitro::one { enum class PurchaseUpdateStatus; }
 // Forward declaration of `PurchaseUpdate` to properly resolve imports.
 namespace margelo::nitro::one { struct PurchaseUpdate; }
+// Forward declaration of `QuickActionItem` to properly resolve imports.
+namespace margelo::nitro::one { struct QuickActionItem; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ScreenCaptureState` to properly resolve imports.
@@ -398,6 +402,8 @@ namespace One { class HybridOnePrintSpec_cxx; }
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
 // Forward declaration of `HybridOnePurchasesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOnePurchasesSpec_cxx; }
+// Forward declaration of `HybridOneQuickActionsSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneQuickActionsSpec_cxx; }
 // Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.
@@ -498,6 +504,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOnePrintSpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOnePurchasesSpec.hpp"
+#include "HybridOneQuickActionsSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -559,6 +566,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PurchaseTransaction.hpp"
 #include "PurchaseUpdate.hpp"
 #include "PurchaseUpdateStatus.hpp"
+#include "QuickActionItem.hpp"
 #include "ReminderInfo.hpp"
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
@@ -4596,6 +4604,72 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>::withError(error);
+  }
+
+  // pragma MARK: std::vector<QuickActionItem>
+  /**
+   * Specialized version of `std::vector<QuickActionItem>`.
+   */
+  using std__vector_QuickActionItem_ = std::vector<QuickActionItem>;
+  inline std::vector<QuickActionItem> create_std__vector_QuickActionItem_(size_t size) noexcept {
+    std::vector<QuickActionItem> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<std::vector<QuickActionItem>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<QuickActionItem>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_QuickActionItem___ = std::shared_ptr<Promise<std::vector<QuickActionItem>>>;
+  inline std::shared_ptr<Promise<std::vector<QuickActionItem>>> create_std__shared_ptr_Promise_std__vector_QuickActionItem___() noexcept {
+    return Promise<std::vector<QuickActionItem>>::create();
+  }
+  inline PromiseHolder<std::vector<QuickActionItem>> wrap_std__shared_ptr_Promise_std__vector_QuickActionItem___(std::shared_ptr<Promise<std::vector<QuickActionItem>>> promise) noexcept {
+    return PromiseHolder<std::vector<QuickActionItem>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::vector<QuickActionItem>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<QuickActionItem>&)>`.
+   */
+  using Func_void_std__vector_QuickActionItem_ = std::function<void(const std::vector<QuickActionItem>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<QuickActionItem>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_QuickActionItem__Wrapper final {
+  public:
+    explicit Func_void_std__vector_QuickActionItem__Wrapper(std::function<void(const std::vector<QuickActionItem>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<QuickActionItem>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<QuickActionItem> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<QuickActionItem>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_QuickActionItem_ create_Func_void_std__vector_QuickActionItem_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_QuickActionItem__Wrapper wrap_Func_void_std__vector_QuickActionItem_(Func_void_std__vector_QuickActionItem_ value) noexcept {
+    return Func_void_std__vector_QuickActionItem__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneQuickActionsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneQuickActionsSpec>`.
+   */
+  using std__shared_ptr_HybridOneQuickActionsSpec_ = std::shared_ptr<HybridOneQuickActionsSpec>;
+  std::shared_ptr<HybridOneQuickActionsSpec> create_std__shared_ptr_HybridOneQuickActionsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneQuickActionsSpec_(std__shared_ptr_HybridOneQuickActionsSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneQuickActionsSpec>
+  using std__weak_ptr_HybridOneQuickActionsSpec_ = std::weak_ptr<HybridOneQuickActionsSpec>;
+  inline std__weak_ptr_HybridOneQuickActionsSpec_ weakify_std__shared_ptr_HybridOneQuickActionsSpec_(const std::shared_ptr<HybridOneQuickActionsSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>
+  using Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ = Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ create_Result_std__shared_ptr_Promise_std__vector_QuickActionItem____(const std::shared_ptr<Promise<std::vector<QuickActionItem>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ create_Result_std__shared_ptr_Promise_std__vector_QuickActionItem____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<ScreenCaptureState>>
