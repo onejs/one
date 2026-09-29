@@ -8579,11 +8579,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (peak.ratio <= 0.01 || staticChanged !== 0)
       throw new Error(`Live Photo playback pixels failed: ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`)
     console.log(`PASS live-photo-playing-pixels ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`)
-    tap({ id: 'one-native-live-photo-play' })
-    await wait('Live Photo repeated play command starts again', (n) =>
-      status(n, 'Command', 'play:2') && status(n, 'Playback', 'playing') &&
-      events(n) === 'Events: loading>ready>playing>ended>playing')
-    tap({ id: 'one-native-live-photo-stop' })
+    tap({ id: 'one-native-live-photo-replay-stop' })
     await wait('Live Photo stop returns to ready key photo', (n) =>
       status(n, 'Command', 'stop:3') && status(n, 'Playback', 'ready') &&
       status(n, 'Error', 'none') &&

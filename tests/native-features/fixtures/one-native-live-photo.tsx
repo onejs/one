@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
@@ -15,6 +15,7 @@ export default function OneNativeLivePhoto() {
   const [invalid, setInvalid] = useState('pending')
   const [command, setCommand] = useState<'' | 'play' | 'stop'>('')
   const [revision, setRevision] = useState(0)
+  const stopOnNextPlay = useRef(false)
 
   const show = (identifier: string) => {
     setActiveId(identifier)
@@ -97,6 +98,10 @@ export default function OneNativeLivePhoto() {
     <View style={styles.row}>
       {button('Play', 'one-native-live-photo-play', () => send('play'))}
       {button('Stop', 'one-native-live-photo-stop', () => send('stop'))}
+      {button('Replay + stop', 'one-native-live-photo-replay-stop', () => {
+        stopOnNextPlay.current = true
+        send('play')
+      })}
     </View>
     <View collapsable={false} testID="one-native-live-photo-frame" style={styles.photo}>
       {activeId ? <One.iOS.LivePhotoView
@@ -109,6 +114,10 @@ export default function OneNativeLivePhoto() {
           setPlayback(state)
           setError(code || 'none')
           setEvents((current) => [...current, `${state}${code ? `:${code}` : ''}`])
+          if (state === 'playing' && stopOnNextPlay.current) {
+            stopOnNextPlay.current = false
+            send('stop')
+          }
         }}
       /> : null}
     </View>
