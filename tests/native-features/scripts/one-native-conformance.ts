@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawn } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -8518,20 +8518,64 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (still.changed !== 0)
       throw new Error(`Live Photo pre-playback negative control moved: ${JSON.stringify(still)}`)
     console.log(`PASS live-photo-preplayback-static ${JSON.stringify(still)}`)
-    tap({ id: 'one-native-live-photo-play' })
-    await wait('Live Photo begins playback', (n) =>
-      status(n, 'Command', 'play:1') && status(n, 'Playback', 'playing') &&
-      events(n) === 'Events: loading>ready>playing')
-    const playingA = screenshot('live-photo-playing-a.png')
-    const playingB = screenshot('live-photo-playing-b.png')
-    const motion = countChangedPixels(playingA, playingB, photoCrop, 10)
-    const controlMotion = countChangedPixels(baselineA, playingB, controlCrop, 10)
-    if (motion.ratio <= 0.01 || controlMotion.changed !== 0)
-      throw new Error(`Live Photo playback pixels failed: ${JSON.stringify({ motion, controlMotion })}`)
-    console.log(`PASS live-photo-playing-pixels ${JSON.stringify({ motion, controlMotion })}`)
-    await wait('Live Photo playback ends naturally', (n) =>
-      status(n, 'Playback', 'ended') && status(n, 'Error', 'none') &&
-      events(n) === 'Events: loading>ready>playing>ended')
+    const videoPath = path.join(config.artifactDir, 'live-photo-playback.mp4')
+    const recording = spawn('xcrun', [
+      'simctl', 'io', config.simulatorId, 'recordVideo', '--codec', 'h264', '--force', videoPath,
+    ], { stdio: ['ignore', 'pipe', 'pipe'] })
+    let recordOutput = ''
+    const closed = new Promise<number>((resolve, reject) => {
+      recording.once('error', reject)
+      recording.once('close', (code) => resolve(code ?? -1))
+    })
+    const started = new Promise<void>((resolve, reject) => {
+      const deadline = setTimeout(() => reject(new Error(`Live Photo recording did not start: ${recordOutput}`)), 15_000)
+      const onData = (chunk: Buffer) => {
+        recordOutput += chunk.toString()
+        if (recordOutput.includes('Recording started')) {
+          clearTimeout(deadline)
+          resolve()
+        }
+      }
+      recording.stdout?.on('data', onData)
+      recording.stderr?.on('data', onData)
+      recording.once('error', (error) => { clearTimeout(deadline); reject(error) })
+      recording.once('close', (code) => {
+        clearTimeout(deadline)
+        reject(new Error(`Live Photo recording exited ${code}: ${recordOutput}`))
+      })
+    })
+    let completed = false
+    try {
+      await started
+      tap({ id: 'one-native-live-photo-play' })
+      await wait('Live Photo begins playback', (n) =>
+        status(n, 'Command', 'play:1') && status(n, 'Playback', 'playing') &&
+        events(n) === 'Events: loading>ready>playing')
+      await wait('Live Photo playback ends naturally', (n) =>
+        status(n, 'Playback', 'ended') && status(n, 'Error', 'none') &&
+        events(n) === 'Events: loading>ready>playing>ended')
+      completed = true
+    } finally {
+      if (recording.exitCode === null) recording.kill('SIGINT')
+      const code = await closed
+      if (completed && code !== 0)
+        throw new Error(`Live Photo recording exited ${code}: ${recordOutput}`)
+    }
+    const frameDir = fs.mkdtempSync(path.join(config.artifactDir, 'live-photo-frames-'))
+    execFileSync('ffmpeg', [
+      '-hide_banner', '-loglevel', 'error', '-i', videoPath, '-vf', 'fps=4',
+      path.join(frameDir, 'frame-%03d.png'),
+    ], { stdio: 'pipe', timeout: 60_000 })
+    const frames = fs.readdirSync(frameDir).filter((name) => name.endsWith('.png')).sort()
+      .map((name) => path.join(frameDir, name))
+    if (frames.length < 3) throw new Error(`Live Photo recording has ${frames.length} frames`)
+    const motion = frames.slice(1).map((frame) => countChangedPixels(frames[0], frame, photoCrop, 10))
+    const peak = motion.reduce((best, next) => next.ratio > best.ratio ? next : best)
+    const staticChanged = Math.max(...frames.slice(1).map((frame) =>
+      countChangedPixels(frames[0], frame, controlCrop, 10).changed))
+    if (peak.ratio <= 0.01 || staticChanged !== 0)
+      throw new Error(`Live Photo playback pixels failed: ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`)
+    console.log(`PASS live-photo-playing-pixels ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`)
     tap({ id: 'one-native-live-photo-play' })
     await wait('Live Photo repeated play command starts again', (n) =>
       status(n, 'Command', 'play:2') && status(n, 'Playback', 'playing') &&
