@@ -1,5 +1,6 @@
-import { type ColorValue, type StyleProp, type ViewStyle } from 'react-native';
+import type { ColorValue, StyleProp, ViewStyle } from 'react-native';
 import type { EdgeFadeCurve, EdgeFadeMode, EdgeFadeProps } from './types';
+export declare const DEFAULT_CURVE: EdgeFadeCurve;
 export interface ResolvedEdge {
     size: number;
     curve: EdgeFadeCurve;
@@ -15,29 +16,13 @@ export interface ResolvedEdgeFade {
     blurRadius: number;
     frostProgression: number;
 }
-export declare function resolveEdges(props: EdgeFadeProps): ResolvedEdgeFade;
-export interface NativeEdgeFadeProps {
-    fadeTop: number;
-    fadeBottom: number;
-    fadeLeft: number;
-    fadeRight: number;
-    curveTop: string;
-    curveBottom: string;
-    curveLeft: string;
-    curveRight: string;
-    fadeRadius: number;
-    mode: string;
-    blurRadius: number;
-    frostProgression: number;
-    overlayColor: number;
-}
-export declare function resolveVeilColor(color?: ColorValue): number;
-export declare function resolveNativeProps(resolved: ResolvedEdgeFade, radius?: number): NativeEdgeFadeProps;
+export declare function resolveEdges(props: EdgeFadeProps, isRTL: boolean): ResolvedEdgeFade;
 /**
  * the `radius` prop is the only corner source: it feeds the native mask on
  * the mask path and a clipped container on the core overlay path, so both
  * modes round identically. `style.borderRadius` would only round the
  * wrapper without touching the fade, so it is ignored loudly.
  */
-export declare function resolveRadius(radius: number | undefined, style: StyleProp<ViewStyle>): number | undefined;
+export declare function resolveRadius(radius: number | undefined, styleRadius: unknown): number | undefined;
+export declare function flattenStyle(style: StyleProp<ViewStyle>): Record<string, unknown>;
 //# sourceMappingURL=normalize.d.ts.map

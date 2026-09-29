@@ -81,7 +81,7 @@ export const fontWeights = [
   'extraBold',
   'black',
 ] as const
-export const buttonVariants = ['filled', 'outlined', 'text'] as const
+export const buttonVariants = ['filled', 'tonal', 'elevated', 'outlined', 'text'] as const
 export const buttonTones = ['default', 'danger'] as const
 export const textFieldVariants = ['filled', 'outlined'] as const
 export const textFieldKeyboardTypes = [
