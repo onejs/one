@@ -84,7 +84,7 @@ open class HybridOneQuickActionsSpec_cxx {
     }
   }
 
-  
+
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneQuickActionsSpec_cxx {
   }
 
   // Properties
-  
+
 
   // Methods
   @inline(__always)
@@ -142,7 +142,7 @@ open class HybridOneQuickActionsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func getItems() -> bridge.Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ {
     do {
@@ -167,7 +167,7 @@ open class HybridOneQuickActionsSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_QuickActionItem____(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func getInitialAction() -> bridge.Result_std__optional_std__string__ {
     do {
@@ -185,7 +185,7 @@ open class HybridOneQuickActionsSpec_cxx {
       return bridge.create_Result_std__optional_std__string__(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func clearInitialAction() -> bridge.Result_void_ {
     do {
@@ -196,7 +196,7 @@ open class HybridOneQuickActionsSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
-  
+
   @inline(__always)
   public final func addListener(listener: bridge.Func_void_std__string) -> bridge.Result_std__function_void____ {
     do {
