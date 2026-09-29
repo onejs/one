@@ -9243,7 +9243,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const openShortcuts = async () => {
       try {
         execFileSync('xcrun', ['simctl', 'terminate', config.simulatorId, shortcutBundle], {
-          stdio: 'ignore', timeout: 30_000,
+          encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30_000,
         })
       } catch (error) {
         if (!/not running|nothing to terminate/i.test(String(error))) throw error
@@ -9323,12 +9323,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       shortcutTap('play', editor)
     }
     const restartShortcutsToLibrary = async () => {
-      execFileSync('xcrun', ['simctl', 'terminate', config.simulatorId, shortcutBundle], {
-        stdio: 'ignore', timeout: 30_000,
-      })
-      execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, shortcutBundle], {
-        stdio: 'ignore', timeout: 30_000,
-      })
+      await openShortcuts()
       await waitShortcut('Shortcuts library after editor', (n) => has(n, 'Select'))
     }
     const cleanup = async () => {
