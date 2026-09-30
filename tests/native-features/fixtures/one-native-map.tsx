@@ -78,9 +78,7 @@ export default function OneNativeMap() {
         testID="one-native-map-view"
         onRegionChange={(latitude, longitude) => {
           setRegions((count) => count + 1)
-          // rounding keeps the assertion about where the camera went rather than about
-          // the exact float MapKit settled on.
-          setCenter(`${latitude.toFixed(2)},${longitude.toFixed(2)}`)
+          setCenter(`${latitude.toFixed(4)},${longitude.toFixed(4)}`)
         }}
       />
     </View>
