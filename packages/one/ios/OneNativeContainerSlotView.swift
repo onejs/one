@@ -33,8 +33,18 @@ private struct SlotContent: View {
 }
 
 @objcMembers
-public final class OneNativeContainerSlotView: UIView, OneNativeComposable {
+public final class OneNativeContainerSlotView: UIView, OneNativeComposable, OneNativeFocusedContent {
   private let model = SlotModel()
+
+  @nonobjc var containsComposedFocus: Bool {
+    guard let content = model.content, content.window != nil else { return false }
+    var pending = [content]
+    while let view = pending.popLast() {
+      if view.isFirstResponder { return true }
+      pending.append(contentsOf: view.subviews)
+    }
+    return false
+  }
 
   public var content: UIView? {
     get { model.content }

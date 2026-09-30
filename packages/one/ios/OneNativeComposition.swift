@@ -30,6 +30,12 @@ extension OneNativeComposable {
   public func propagateActive(_ active: Bool) {}
 }
 
+// composed controls render in their parent's host, so their own uiview cannot
+// resign the rendered field. this receipt identifies the subtree being removed.
+protocol OneNativeFocusedContent: AnyObject {
+  var containsComposedFocus: Bool { get }
+}
+
 // standalone, a control fills the Fabric view it was given. composed, it must take its
 // ideal size so the host can measure a stack of them, so the fill lives here rather than
 // inside the generated content.
@@ -119,7 +125,7 @@ final class OneNativeSchemeBridge: ObservableObject {
 // container it wraps them in, which it supplies at init. a container is composable
 // itself, so containers nest.
 @objcMembers public class OneNativeContainerView: UIView, OneNativeComposable,
-  OneNativeCompositionParent
+  OneNativeCompositionParent, OneNativeFocusedContent
 {
   private let wrap: (OneNativeChildren, Bool) -> AnyView
   private let published = OneNativeChildren()
@@ -131,6 +137,21 @@ final class OneNativeSchemeBridge: ObservableObject {
   private var active = false
 
   public var compositionActive: Bool { active }
+
+  @nonobjc var containsComposedFocus: Bool {
+    childViews.contains { ($0 as? OneNativeFocusedContent)?.containsComposedFocus == true }
+  }
+
+  @nonobjc private var compositionHost: UIView? {
+    if let parent = compositionParent as? OneNativeContainerView { return parent.compositionHost }
+    return (compositionParent as? UIView) ?? controller?.viewIfLoaded
+  }
+
+  @nonobjc private func resignComposedFocus(in child: UIView) {
+    guard (child as? OneNativeFocusedContent)?.containsComposedFocus == true else { return }
+    // keyboard layout must run while the focused row still belongs to the host.
+    compositionHost?.endEditing(true)
+  }
 
   @nonobjc init(wrap: @escaping (OneNativeChildren, _ standalone: Bool) -> AnyView) {
     self.wrap = wrap
@@ -180,6 +201,7 @@ final class OneNativeSchemeBridge: ObservableObject {
   public func refreshRow(for child: UIView) {
     guard let index = childViews.firstIndex(where: { $0 === child }),
       let composable = child as? OneNativeComposable else { return }
+    resignComposedFocus(in: child)
     let identity = rowIdentity(for: child)
     identity.revision += 1
     published.items[index] = OneNativeComposedChild(
@@ -192,6 +214,7 @@ final class OneNativeSchemeBridge: ObservableObject {
 
   public func removeChild(_ child: UIView) {
     guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
+    resignComposedFocus(in: child)
     childViews.remove(at: index)
     guard let composable = child as? OneNativeComposable else {
       preconditionFailure("One Native container child lost its composition capability")
@@ -229,6 +252,7 @@ final class OneNativeSchemeBridge: ObservableObject {
   }
 
   public func reset() {
+    resignComposedFocus(in: self)
     compositionParent = nil
     propagateActive(false)
     for child in childViews { (child as? OneNativeComposable)?.decompose() }
