@@ -1,5 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createServer } from '../headless-server'
+import { getLoaderPath } from '../utils/cleanUrl'
 import type { One } from '../vite/types'
+import { createRoutesManifest } from './createRoutesManifest'
 import { createWorkerHandler, type LazyRoutes } from './workerHandler'
 
 // route files are router-root relative, the way createRoutesManifest emits them
@@ -11,6 +14,17 @@ const pageRoute = {
   urlCleanPath: '/some-page',
   routeKeys: {},
   type: 'ssr',
+  middlewares: [],
+} satisfies One.BuildInfo['manifest']['pageRoutes'][number]
+
+const ssgPageRoute = {
+  file: './docs/[slug].tsx',
+  page: '/docs/[slug]',
+  namedRegex: '^/docs/(?<slug>[^/]+?)(?:/)?$',
+  urlPath: '/docs/[slug]',
+  urlCleanPath: '/docs/[slug]',
+  routeKeys: { slug: 'slug' },
+  type: 'ssg',
   middlewares: [],
 } satisfies One.BuildInfo['manifest']['pageRoutes'][number]
 
@@ -149,5 +163,97 @@ describe('createWorkerHandler', () => {
     await handleRequest(new Request('https://example.com/some-page'))
     await handleRequest(new Request('https://example.com/some-page'))
     expect(imports).toBeGreaterThan(1)
+  })
+
+  it.each<Record<string, string>>([{}, { '/docs/intro': 'docs/intro.html' }])(
+    'ssg dynamic route answers 404 when routeMap %j omits the route',
+    async (routeMap) => {
+      const ssgBuildInfo = {
+        ...buildInfo,
+        routeMap,
+        manifest: {
+          ...buildInfo.manifest,
+          pageRoutes: [ssgPageRoute],
+        },
+      }
+
+      const handleRequest = createWorkerHandler({
+        oneOptions: { router: { root: 'app' }, web: { defaultRenderMode: 'ssg' } },
+        buildInfo: ssgBuildInfo,
+        lazyRoutes,
+      }).handleRequest
+
+      const loaderPath = getLoaderPath('/docs/missing', false)
+      const res = await handleRequest(new Request(`https://example.com${loaderPath}`))
+      expect(res?.status).toBe(200)
+      const text = await res?.text()
+      expect(text).toContain('__oneError:404')
+    }
+  )
+
+  it('ssg dynamic route runs loader on demand when routeMap is omitted', async () => {
+    const ssgBuildInfo = {
+      ...buildInfo,
+      routeMap: undefined,
+      manifest: {
+        ...buildInfo.manifest,
+        pageRoutes: [ssgPageRoute],
+      },
+    }
+
+    const ssgRouteKey = `/app/${ssgPageRoute.file.slice(2)}`
+    const handleRequest = createWorkerHandler({
+      oneOptions: { router: { root: 'app' }, web: { defaultRenderMode: 'ssg' } },
+      buildInfo: ssgBuildInfo,
+      lazyRoutes: {
+        ...lazyRoutes,
+        serverEntry: async () => ({
+          default: {
+            render: () => '<html></html>',
+            options: {
+              routes: {
+                [ssgRouteKey]: async () => ({
+                  loader: async ({ params }: { params: { slug: string } }) => ({
+                    slug: params.slug,
+                  }),
+                }),
+              },
+            },
+          },
+        }),
+      },
+    }).handleRequest
+
+    const loaderPath = getLoaderPath('/docs/getting-started', false)
+    const res = await handleRequest(new Request(`https://example.com${loaderPath}`))
+    expect(res?.status).toBe(200)
+    const text = await res?.text()
+    expect(text).not.toContain('ssg route not in routeMap')
+    expect(text).toContain('"slug":"getting-started"')
+  })
+
+  it('headless ENOENT uses the nearest grouped not-found route without a build map', async () => {
+    const routeFile = './(tabs)/gone/[slug].tsx'
+    const manifest = createRoutesManifest([routeFile, './(tabs)/gone/+not-found.tsx'], {})
+    if (!manifest) throw new Error('expected grouped route manifest')
+    const server = await createServer({
+      manifest,
+      oneOptions: { router: { root: 'app' } },
+      routes: {
+        ...lazyRoutes,
+        pages: {
+          [routeFile]: async () => ({
+            loader: async () => {
+              throw Object.assign(new Error('missing page'), { code: 'ENOENT' })
+            },
+          }),
+        },
+      },
+    })
+    const response = await server.fetch(
+      new Request(`https://example.com${getLoaderPath('/gone/missing', false)}`)
+    )
+    expect(response?.status).toBe(200)
+    expect(await response?.text()).toContain('__oneNotFoundPath:"/gone/+not-found"')
   })
 })
