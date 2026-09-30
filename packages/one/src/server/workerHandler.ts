@@ -13,6 +13,7 @@ import {
   resolveLoaderRoute,
   resolvePageRoute,
 } from '../createHandleRequest'
+import { stripGroupSegmentsFromPath } from '../router/matchers'
 import type { RenderAppProps } from '../types'
 import { getPathFromLoaderPath } from '../utils/cleanUrl'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
@@ -36,9 +37,13 @@ export type LazyRoutes = {
   middlewares: Record<string, () => Promise<any>>
 }
 
+// headless servers have no build map; an empty map still describes a real build
+type ServedBuildInfo = Omit<One.BuildInfo, 'routeMap'> &
+  Partial<Pick<One.BuildInfo, 'routeMap'>>
+
 type WorkerHandlerOptions = {
   oneOptions: One.PluginOptions
-  buildInfo: One.BuildInfo
+  buildInfo: ServedBuildInfo
   lazyRoutes: LazyRoutes
   // when true, skip the module/loader caches so vite hmr of a route file is
   // visible on the next request. production omits this.
@@ -125,7 +130,17 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     let cur = urlPath
     while (cur) {
       const parent = cur.lastIndexOf('/') > 0 ? cur.slice(0, cur.lastIndexOf('/')) : ''
-      if (routeMap[`${parent}/+not-found`]) return `${parent}/+not-found`
+      const candidate = `${parent}/+not-found`
+      if (
+        routeMap
+          ? routeMap[candidate]
+          : compiledManifest.pageRoutes.some(
+              (route) =>
+                route.isNotFound && stripGroupSegmentsFromPath(route.page) === candidate
+            )
+      ) {
+        return candidate
+      }
       if (!parent) break
       cur = parent
     }
@@ -375,7 +390,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           // loader ENOENT → serve nearest +not-found page
           if (pageResult.isEnoent) {
             const nfPath = findNearestNotFoundPath(loaderProps?.path || '/')
-            const nfHtml = routeMap[nfPath]
+            const nfHtml = routeMap?.[nfPath]
             if (nfHtml) {
               const html = await readStaticHtml(nfHtml)
               if (html) {
@@ -520,10 +535,10 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
           : null
 
         const htmlPath = notFoundKey
-          ? routeMap[notFoundKey]
+          ? routeMap?.[notFoundKey]
           : isDynamicRoute
-            ? routeMap[routeCleanPath] || routeMap[url.pathname]
-            : routeMap[url.pathname] || routeMap[routeBuildInfo?.cleanPath]
+            ? routeMap?.[routeCleanPath] || routeMap?.[url.pathname]
+            : routeMap?.[url.pathname] || routeMap?.[routeBuildInfo?.cleanPath]
 
         if (htmlPath) {
           const html = await readStaticHtml(htmlPath)
@@ -538,7 +553,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
         // dynamic route with no static HTML → 404
         if (isDynamicRoute) {
           const notFoundRoute = findNearestNotFoundPath(url.pathname)
-          const notFoundHtmlPath = routeMap[notFoundRoute]
+          const notFoundHtmlPath = routeMap?.[notFoundRoute]
 
           if (notFoundHtmlPath) {
             const notFoundHtml = await readStaticHtml(notFoundHtmlPath)
@@ -659,6 +674,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
         if (
           route.type === 'ssg' &&
           Object.keys(route.routeKeys).length > 0 &&
+          routeMap &&
           !routeMap[originalUrl]
         ) {
           return new Response(make404LoaderJs(originalUrl, 'ssg route not in routeMap'), {
@@ -798,7 +814,7 @@ export function createWorkerHandler(options: WorkerHandlerOptions) {
     return null
   }
 
-  function updateRoutes(newBuildInfo: One.BuildInfo, newLazyRoutes?: LazyRoutes) {
+  function updateRoutes(newBuildInfo: ServedBuildInfo, newLazyRoutes?: LazyRoutes) {
     compiledManifest = compileManifest(newBuildInfo.manifest)
     routeToBuildInfo = newBuildInfo.routeToBuildInfo
     routeMap = newBuildInfo.routeMap
