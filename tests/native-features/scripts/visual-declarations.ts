@@ -112,11 +112,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       positiveMeasured: 3_718,
       negativeMeasured: 356,
       threshold: 1_500,
-      changedPixelsMeasured: 26_687,
+      changedPixelsMeasured: 26_751,
       crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'positive pin-tint is 3,718, threshold is 1,500, negative pin-free map reads 356 (~10.4x separation); 2/70 cross matches (both genuine pin maps)',
+        'positive pin-tint 3,718, bar is 1,500, pin-free map reads 356 (~10x separation); 2/89 cross matches (both genuine pin maps)',
     },
   },
   {
@@ -135,14 +135,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     measureSubject: (crop) => countDistinctColorsInCrop(crop),
     minSubjectFloor: 8_000,
     calibration: {
-      positiveMeasured: 14_893,
+      positiveMeasured: 14_813,
       negativeMeasured: 460,
       threshold: 8_000,
-      changedPixelsMeasured: 714_973,
+      changedPixelsMeasured: 716_096,
       crossSubstitutionMatches: 4,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'rendered MapKit tiles read 14,893 distinct colors, threshold is 8,000, unrendered screen reads 460 (~32x separation); 4/70 cross matches (all 4 genuine map screens)',
+        'rendered MapKit tile colours 14,813, bar is 8,000, unrendered screen reads 460 (~32x separation); 4/89 cross matches (all 4 genuine map screens)',
     },
   },
 
@@ -178,11 +178,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       positiveMeasured: 67_857,
       negativeMeasured: 0,
       threshold: 40_000,
-      changedPixelsMeasured: 105_309,
+      changedPixelsMeasured: 102_194,
       crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'two-color structural score 67,857 (track: 73,874, thumb: 27,143), bar is 40,000, wheel picker reads 0; 2/70 cross matches (both genuine segmented pickers)',
+        'two-colour structural score 67,857, bar is 40,000, wheel picker reads 0; 2/89 cross matches (both genuine segmented pickers)',
     },
   },
   {
@@ -207,9 +207,9 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       threshold: 5_000,
       changedPixelsMeasured: 14_665,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'calendar selection badge blue pixels 12,485, bar is 5,000, wheel picker reads 0; 1/70 cross matches (only date-graphical; 0 on segmented and sheets)',
+        'calendar selection badge blue pixels 12,485, bar is 5,000, wheel picker reads 0; 1/89 cross matches (only date-graphical)',
     },
   },
 
@@ -244,14 +244,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     },
     minSubjectFloor: 3_000,
     calibration: {
-      positiveMeasured: 4_798,
+      positiveMeasured: 6_632,
       negativeMeasured: 0,
       threshold: 3_000,
-      changedPixelsMeasured: 10_935,
+      changedPixelsMeasured: 13_837,
       crossSubstitutionMatches: 3,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'switch capsule structural score 4,798 (well: 4,798, thumb: 5,742), bar is 3,000, slider fixture reads 0; 3/70 cross matches (all 3 genuine toggle switches)',
+        'switch capsule structural score 6,632, bar is 3,000, slider fixture reads 0; 3/89 cross matches (all 3 genuine off-state switches, checked by eye)',
     },
   },
   {
@@ -285,14 +285,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     },
     minSubjectFloor: 2_000,
     calibration: {
-      positiveMeasured: 4_248,
+      positiveMeasured: 4_247,
       negativeMeasured: 0,
       threshold: 2_000,
-      changedPixelsMeasured: 41_701,
+      changedPixelsMeasured: 44_016,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'slider two-component score 4,248 (blue track: 4,248, grey track: 12,909), bar is 2,000, toggle fixture reads 0; 1/70 cross matches (only form-controls)',
+        'slider two-component score 4,247, bar is 2,000, toggle fixture reads 0; 1/89 cross matches (only form-controls)',
     },
   },
   {
@@ -319,14 +319,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       ),
     minSubjectFloor: 15_000,
     calibration: {
-      positiveMeasured: null,
-      negativeMeasured: null,
+      positiveMeasured: 23_849,
+      negativeMeasured: 144,
       threshold: 15_000,
-      changedPixelsMeasured: null,
-      crossSubstitutionMatches: null,
-      corpusSize: 70,
+      changedPixelsMeasured: 25_217,
+      crossSubstitutionMatches: 2,
+      corpusSize: 89,
       nullStateReads:
-        'the prior upper-bound capture contained 22,735 capsule-color pixels; the new enabled capture and negative require device recalibration',
+        'stepper capsule pixels 23,849, bar is 15,000, toggle fixture reads 144 (~166x separation); 2/89 cross matches (both genuine stepper captures)',
     },
   },
 
@@ -341,11 +341,13 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'sheets/sheet-dismissed.png',
     anchor: {
       capture: 'sheets/sheet-open.png',
-      selector: { AXUniqueId: 'one-native-sheet-content' },
+      // the sheet content View publishes no accessibility node, so the region is anchored to
+      // the heading inside it, whose frame already spans the card's inset content width.
+      selector: { AXLabel: 'Sheet Content' },
       region: (frame) => ({
-        x: frame.x + 20,
+        x: frame.x,
         y: frame.y + 125,
-        width: frame.width - 40,
+        width: frame.width,
         height: 200,
       }),
     },
@@ -355,14 +357,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       countMatchingPixels(crop, (r, g, b) => r > 252 && g > 252 && b > 252),
     minSubjectFloor: 200_000,
     calibration: {
-      positiveMeasured: 630_655,
+      positiveMeasured: 603_894,
       negativeMeasured: 0,
       threshold: 200_000,
-      changedPixelsMeasured: 635_400,
-      crossSubstitutionMatches: 16,
-      corpusSize: 70,
+      changedPixelsMeasured: 638_863,
+      crossSubstitutionMatches: 17,
+      corpusSize: 89,
       nullStateReads:
-        'modal sheet pure white card pixels 630,655, bar is 200,000, dismissed screen reads 0; 16/70 cross matches (honest surface paint presence detector)',
+        'modal sheet white card pixels 603,894, bar is 200,000, dismissed screen reads 0; 17/89 cross matches (a surface-paint presence detector, not a sheet detector: it matches any large white card)',
     },
   },
 
@@ -397,14 +399,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     },
     minSubjectFloor: 200,
     calibration: {
-      positiveMeasured: 252,
+      positiveMeasured: 686,
       negativeMeasured: 0,
       threshold: 200,
-      changedPixelsMeasured: 5_484,
+      changedPixelsMeasured: 8_100,
       crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'palette Bold icon score 252 (card: 2,525, icon: 625), bar is 200, closed trigger reads 0; 2/70 cross matches (both open context menu palettes)',
+        'palette Bold icon score 686, bar is 200, closed trigger reads 0; 2/89 cross matches (both open context menu palettes)',
     },
   },
 
@@ -440,13 +442,13 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     minSubjectFloor: 2_500,
     calibration: {
       positiveMeasured: 4_634,
-      negativeMeasured: 534,
+      negativeMeasured: 1_167,
       threshold: 2_500,
-      changedPixelsMeasured: 130_748,
+      changedPixelsMeasured: 163_843,
       crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'alert card+title score 4,634 (card: 134,897, title: 4,634), bar is 2,500, non-alert screen reads 534; 2/70 cross matches (both genuine alert dialogs)',
+        'alert card and title score 4,634, bar is 2,500, non-alert screen reads 1,167 (~4x separation); 2/89 cross matches (both genuine alert dialogs)',
     },
   },
   {
@@ -471,14 +473,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     },
     minSubjectFloor: 1_200,
     calibration: {
-      positiveMeasured: 2_150,
+      positiveMeasured: 1_278,
       negativeMeasured: 0,
       threshold: 1_200,
-      changedPixelsMeasured: 3_263,
+      changedPixelsMeasured: 1_756,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'confirmation title header text score 2,150 (card: 6,452, text: 2,492), bar is 1,200, hidden title reads 0; 1/70 cross matches (only confirmation-visible)',
+        'confirmation title text score 1,278, bar is 1,200, hidden title reads 0; 1/89 cross matches (only confirmation-visible). the worst margin in the suite at 6.5%, so it was measured rather than left alone: five independent captures read 1,278 every time, spread 0.00%, so the floor is sensitive rather than lucky and must not be lowered. run-to-run variance is what that rules out; a font or layout change would still move it.',
     },
   },
 
@@ -493,8 +495,16 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'host/host-one-child.png',
     anchor: {
       capture: 'host/host-three-children.png',
-      selector: { AXUniqueId: 'one-native-host' },
-      region: (frame) => ({ x: frame.x, y: frame.y, width: frame.width - 7, height: 45 }),
+      // the Swift.Host publishes no node of its own, so the region is anchored to the composed
+      // Toggle that is always its first child. the composed button and stepper this check
+      // grades are the two rows directly below it.
+      selector: { type: 'CheckBox', AXLabel: 'Toggle' },
+      region: (frame) => ({
+        x: frame.x,
+        y: frame.y + frame.height,
+        width: frame.width - 7,
+        height: 45,
+      }),
     },
     prompt: 'A composed stepper control is visible inside the host container.',
     measureSubject: (crop) => {
@@ -525,14 +535,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     },
     minSubjectFloor: 2_000,
     calibration: {
-      positiveMeasured: 3_655,
+      positiveMeasured: 2_912,
       negativeMeasured: 0,
       threshold: 2_000,
-      changedPixelsMeasured: 143_012,
+      changedPixelsMeasured: 143_099,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'composed button + stepper score 3,655 (button: 3,756, stepper: 18,278), bar is 2,000, one-child host reads 0; 1/70 cross matches (only host-three-children)',
+        'composed button and stepper score 2,912, bar is 2,000, one-child host reads 0; 1/89 cross matches (only host-three-children)',
     },
   },
 
@@ -566,11 +576,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       positiveMeasured: 2_396,
       negativeMeasured: 0,
       threshold: 1_500,
-      changedPixelsMeasured: 73_947,
+      changedPixelsMeasured: 74_978,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'composed Section 2 host row score 2,396 (dark: 2,934, blue: 2,396), bar is 1,500, one-section screen reads 0; 1/70 cross matches (only containers-two-sections)',
+        'composed Section 2 host row score 2,396, bar is 1,500, one-section screen reads 0; 1/89 cross matches (only containers-two-sections)',
     },
   },
 
@@ -596,14 +606,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       ),
     minSubjectFloor: 20_000,
     calibration: {
-      positiveMeasured: 106_591,
+      positiveMeasured: 59_583,
       negativeMeasured: 0,
       threshold: 20_000,
-      changedPixelsMeasured: 261_990,
+      changedPixelsMeasured: 61_252,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'action button #e8f0ff tinted pixels 106,591, bar is 20,000, closed popover reads 0; 1/70 cross matches (only popover-open)',
+        'action button tinted pixels 59,583, bar is 20,000, closed popover reads 0; 1/89 cross matches (only popover-open)',
     },
   },
 
@@ -627,14 +637,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       countMatchingPixels(crop, (r, g, b) => r > 180 && g < 80 && b < 80),
     minSubjectFloor: 8_000,
     calibration: {
-      positiveMeasured: 15_916,
+      positiveMeasured: 28_017,
       negativeMeasured: 0,
       threshold: 8_000,
-      changedPixelsMeasured: 21_710,
+      changedPixelsMeasured: 31_340,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'red tinted capsule pixels 15,916, bar is 8,000, plain button reads 0; 1/70 cross matches (only button-borderedProminent)',
+        'red tinted capsule pixels 28,017, bar is 8,000, plain button reads 0; 1/89 cross matches (only button-borderedProminent)',
     },
   },
   {
@@ -679,11 +689,11 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       positiveMeasured: 1_958,
       negativeMeasured: 0,
       threshold: 1_200,
-      changedPixelsMeasured: 3_321,
+      changedPixelsMeasured: 3_316,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'centered masked bullet pixels 1,958, bar is 1,200, plain text field reads 0; 1/70 cross matches (only secure-masked)',
+        'centred masked bullet pixels 1,958, bar is 1,200, plain text field reads 0; 1/89 cross matches (only secure-masked)',
     },
   },
 
@@ -706,14 +716,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       countMatchingPixels(crop, (r, g, b) => r < 20 && g < 20 && b < 20),
     minSubjectFloor: 50_000,
     calibration: {
-      positiveMeasured: 108_745,
+      positiveMeasured: 157_740,
       negativeMeasured: 0,
       threshold: 50_000,
-      changedPixelsMeasured: 546_453,
+      changedPixelsMeasured: 738_540,
       crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'video player letterbox black pixels 108,745, bar is 50,000, no-player fixture reads 0; 2/70 cross matches (both genuine video player captures)',
+        'video player letterbox black pixels 157,740, bar is 50,000, no-player fixture reads 0; 2/89 cross matches (both genuine video player captures)',
     },
   },
 
@@ -729,9 +739,12 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     anchor: {
       capture: 'accessibility/a11y-wrapped-text.png',
       selector: { AXUniqueId: 'one-native-a11y-text' },
+      // the paragraph wraps onto four lines and the fourth is short, so the bottom of the
+      // frame has no trailing ink at all. line 3 is the last one that reaches the right edge,
+      // which is the edge a clipped width would have taken away.
       region: (frame) => ({
         x: frame.x + frame.width - 127,
-        y: frame.y + frame.height - 12,
+        y: frame.y + frame.height * 0.5 + 4,
         width: 110,
         height: 12,
       }),
@@ -741,14 +754,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       countMatchingPixels(crop, (r, g, b) => r < 80 && g < 80 && b < 80),
     minSubjectFloor: 1_500,
     calibration: {
-      positiveMeasured: 2_926,
+      positiveMeasured: 2_088,
       negativeMeasured: 0,
       threshold: 1_500,
-      changedPixelsMeasured: 6_451,
+      changedPixelsMeasured: 3_954,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 89,
       nullStateReads:
-        'wrapped line 3 trailing edge dark text pixels 2,926, bar is 1,500, short text reads 0; 1/70 cross matches (only a11y-wrapped-text)',
+        'wrapped line 3 trailing edge dark pixels 2,088, bar is 1,500, short text reads 0; 1/89 cross matches (only a11y-wrapped-text)',
     },
   },
 ]
