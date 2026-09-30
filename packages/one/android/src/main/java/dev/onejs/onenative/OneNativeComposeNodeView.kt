@@ -1320,7 +1320,10 @@ private fun RenderComposeNode(
 ) {
     val props = node.renderedProps
     val style = props.composeStyle
-    val modifier = outerModifier.applyComposeStyle(style).applyReactSemantics(node, props)
+    // dialogs draw in their own window, outside the host or parent placement
+    val kind = node.renderedNodeKind
+    val placement = if (kind == "alertdialog" || kind == "dialog") Modifier else outerModifier
+    val modifier = placement.applyComposeStyle(style).applyReactSemantics(node, props)
     val foregroundColor = style.foregroundColor?.let(::Color) ?: resolveColorRole(props.colorRole)
 
     if (foregroundColor != null) {
