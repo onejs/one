@@ -1,4 +1,4 @@
-const { existsSync } = require('node:fs')
+const { existsSync, readFileSync, realpathSync } = require('node:fs')
 const path = require('node:path')
 const { absorbedPackageNames } = require('./dist/cjs/utils/absorbedPackages.cjs')
 // one's own native code autolinks as the `one` dependency. these are its native
@@ -22,16 +22,37 @@ function appRoot() {
   return dir
 }
 
+// the app's installed dependencies at their real paths. community autolinking
+// keeps a node_modules symlink in the path, and gradle's `..` walks out of the
+// symlink's parent instead of the package's (a workspace whose node_modules
+// links to the repo's), so native builds see a directory that does not exist.
+function appDependencyRoots(root) {
+  const pkg = JSON.parse(readFileSync(path.join(root, 'package.json'), 'utf8'))
+  return Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }).flatMap((name) => {
+    const dir = path.join(root, 'node_modules', name)
+    return existsSync(path.join(dir, 'package.json'))
+      ? [[name, { root: realpathSync(dir) }]]
+      : []
+  })
+}
+
+const root = appRoot()
+
 module.exports = {
   commands: [...require('vxrn/react-native-commands')],
   dependencies: Object.fromEntries([
+    ...appDependencyRoots(root),
     ...bundledNativePackages.map((name) => [
       name,
-      { root: path.dirname(require.resolve(`${name}/package.json`, { paths: [__dirname] })) },
+      {
+        root: path.dirname(
+          require.resolve(`${name}/package.json`, { paths: [__dirname] })
+        ),
+      },
     ]),
     // one implements the packages it absorbs natively, so their own native
     // code never links.
-    ...absorbedPackageNames(appRoot()).map((name) => [
+    ...absorbedPackageNames(root).map((name) => [
       name,
       { platforms: { ios: null, android: null } },
     ]),

@@ -152,7 +152,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             : []),
         ],
       },
-      mainModuleName: 'one/metro-entry',
+      // one generates the entry from the route tree. an app that embeds its
+      // routes under its own root (a host shell) names that entry instead,
+      // and every bundle, embedded or published as an update, starts there.
+      mainModuleName: userMetroOptions?.mainModuleName ?? 'one/metro-entry',
       // allow env var to enable lazy startup
       startup: process.env.ONE_METRO_LAZY ? 'lazy' : userMetroOptions?.startup,
     }

@@ -44,6 +44,7 @@ object OneUpdatesLauncher {
     private const val EMBEDDED_MANIFEST_NAME = "one-updates-embedded.json"
     private const val STATE_FILE_NAME = "state.json"
     private const val DIRECTORY_NAME = "one-updates"
+    private const val REJECTED_LIMIT = 32
     private const val URL_META_DATA = "dev.onejs.updates.url"
     private const val RUNTIME_VERSION_META_DATA = "dev.onejs.updates.runtimeVersion"
     const val EMBEDDED_BUNDLE_ASSET = "index.android.bundle"
@@ -95,9 +96,13 @@ object OneUpdatesLauncher {
         val manifestJson: String
     )
 
+    // rejected holds the ids whose first launch failed, newest last. the
+    // reaper deletes their files, and this list keeps check and fetch from
+    // taking them again while a server still serves them.
     private data class LauncherState(
         val updates: MutableMap<String, StoredUpdate>,
-        var launching: String?
+        var launching: String?,
+        val rejected: MutableList<String> = mutableListOf()
     )
 
     // MARK: - config and paths
@@ -271,7 +276,11 @@ object OneUpdatesLauncher {
             val launching =
                 if (json.isNull("launching")) null
                 else json.optString("launching", "").takeIf { it.isNotEmpty() }
-            LauncherState(state, launching)
+            val rejected = mutableListOf<String>()
+            json.optJSONArray("rejected")?.let { list ->
+                for (index in 0 until list.length()) rejected.add(list.getString(index))
+            }
+            LauncherState(state, launching, rejected)
         } catch (_: Exception) {
             LauncherState(mutableMapOf(), null)
         }
@@ -290,7 +299,7 @@ object OneUpdatesLauncher {
                     .put("manifestJson", entry.manifestJson)
             )
         }
-        val json = JSONObject().put("updates", updates)
+        val json = JSONObject().put("updates", updates).put("rejected", JSONArray(state.rejected))
         val launching = state.launching
         if (launching != null) json.put("launching", launching)
         else json.put("launching", JSONObject.NULL)
@@ -411,6 +420,7 @@ object OneUpdatesLauncher {
                     val entry = state.updates[launching]
                     if (entry != null && entry.successes == 0) {
                         state.updates[launching] = entry.copy(failed = true)
+                        reject(state, launching)
                     }
                     state.launching = null
                     dirty = true
@@ -530,7 +540,10 @@ object OneUpdatesLauncher {
                     "update $launching failed before first render, rolling back: ${error.message}"
                 )
                 val entry = state.updates[launching]
-                if (entry != null) state.updates[launching] = entry.copy(failed = true)
+                if (entry != null) {
+                    state.updates[launching] = entry.copy(failed = true)
+                    if (entry.successes == 0) reject(state, launching)
+                }
                 state.launching = null
                 saveState(state)
                 skipOnce = launching
@@ -693,6 +706,12 @@ object OneUpdatesLauncher {
         return updateIsComplete(id, manifest)
     }
 
+    private fun reject(state: LauncherState, id: String) {
+        state.rejected.remove(id)
+        state.rejected.add(id)
+        while (state.rejected.size > REJECTED_LIMIT) state.rejected.removeAt(0)
+    }
+
     private fun emitStaged() {
         val staged = currentStagedJson()
         val listeners =
@@ -818,7 +837,10 @@ object OneUpdatesLauncher {
                     val (runningMillis, staged) =
                         synchronized(lock) {
                             val state = loadState()
-                            Pair(runningCreatedAtMillis(state), stagedIsComplete(manifest.id, state))
+                            Pair(
+                                runningCreatedAtMillis(state),
+                                stagedIsComplete(manifest.id, state) || manifest.id in state.rejected
+                            )
                         }
                     if (manifest.createdAtMillis > runningMillis && !staged) {
                         promise.resolve(OneUpdatesCheckResult(OneUpdatesCheckType.AVAILABLE, json))
@@ -867,7 +889,10 @@ object OneUpdatesLauncher {
                     val (runningMillis, staged) =
                         synchronized(lock) {
                             val state = loadState()
-                            Pair(runningCreatedAtMillis(state), stagedIsComplete(manifest.id, state))
+                            Pair(
+                                runningCreatedAtMillis(state),
+                                stagedIsComplete(manifest.id, state) || manifest.id in state.rejected
+                            )
                         }
                     if (manifest.createdAtMillis <= runningMillis || staged) {
                         promise.resolve(OneUpdatesFetchResult(OneUpdatesFetchType.NONE, null))

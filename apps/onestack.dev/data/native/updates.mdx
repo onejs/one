@@ -8,6 +8,8 @@ launcher selects the bundle before React Native starts: the newest downloaded
 update for the binary's runtime version, or the embedded bundle. A bad update
 never bricks the app: a fatal error before first render marks the update
 failed and the host reboots onto the next candidate in the same session.
+An update that failed its first launch is never taken again: `check` and
+`fetch` answer `none` for its id while the server still serves it.
 
 ```tsx
 import { One } from 'one'
