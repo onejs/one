@@ -691,8 +691,10 @@ ${
             : ''
         }${
           control.focus
-            ? `  var onFocusChange: ((Bool, Int, Int) -> Void)?
+            ? `  var hasNativeFocus = false
+  var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
+    hasNativeFocus = value
     guard ${[...guards, 'controlledFocus.value != value'].join(', ')} else { return }
     controlledFocus.change(value)
     onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
@@ -713,7 +715,7 @@ ${
 `
           })
           .join('')}}
-@objcMembers public final class ${nativeName}View: UIView, OneNativeComposable {
+@objcMembers public final class ${nativeName}View: UIView, OneNativeComposable${control.focus ? ', OneNativeFocusedContent' : ''} {
 ${hasSDKEvents ? '  public var onSDKEvent: ((String, String) -> Void)?\n' : ''}
 ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n` : ''}${
           control.focus ? '  public var onFocusChange: ((Bool, Int, Int) -> Void)?\n' : ''
@@ -723,7 +725,7 @@ ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Voi
               `  public var on${action.event}: ((${[...Object.values(action.payload ?? {}).map(swiftScalar), 'Int'].join(', ')}) -> Void)?\n`
           )
           .join('')}  private var model = ${name}Model()
-${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var controller: OneNativeHostingController<${measured ? 'OneNativeMeasuredStandalone' : 'OneNativeStandalone'}<${name}Content>>?
+${control.focus ? '  @nonobjc var containsComposedFocus: Bool { model.hasNativeFocus }\n' : ''}${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var controller: OneNativeHostingController<${measured ? 'OneNativeMeasuredStandalone' : 'OneNativeStandalone'}<${name}Content>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
