@@ -2,7 +2,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import {
   ForegroundHandler,
-  HANDLER_TIMEOUT_MS,
   normalizeBehavior,
   showAllBehavior,
   suppressBehavior,
@@ -96,23 +95,17 @@ describe('ForegroundHandler', () => {
     expect(present).toHaveBeenCalledWith('a', showAllBehavior)
   })
 
-  it('shows everything when the handler times out, and settles once', async () => {
+  it('leaves a stalled handler unsettled for the native backstop', async () => {
     const present = vi.fn()
     const runner = new ForegroundHandler(present)
-    let answer!: (behavior: typeof showAllBehavior) => void
     runner.setHandler({
-      handleNotification: () => new Promise((resolve) => void (answer = resolve)),
+      handleNotification: () => new Promise<never>(() => {}),
     })
     runner.receive('a', notification)
     await settled()
+    // no js timer: native shows everything after 3s, the one clock.
     expect(present).not.toHaveBeenCalled()
-    await vi.advanceTimersByTimeAsync(HANDLER_TIMEOUT_MS)
-    expect(present).toHaveBeenCalledTimes(1)
-    expect(present).toHaveBeenCalledWith('a', showAllBehavior)
-    // a late answer after the timeout presents nothing more.
-    answer({ ...suppressBehavior })
-    await settled()
-    expect(present).toHaveBeenCalledTimes(1)
+    expect(runner.receive('a', notification)).toBe(false)
   })
 
   it('ignores duplicates of an in-flight request id', async () => {
