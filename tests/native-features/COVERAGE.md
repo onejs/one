@@ -104,7 +104,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
 | `One.iOS.ProtectedStore` | protected-store | n/a |  |
-| `One.iOS.Preferences` | preferences | n/a |  |
+| `One.iOS.Preferences` | preferences, app-intents | n/a |  |
 | `One.iOS.KeepAwake` | keep-awake | n/a |  |
 | `One.iOS.Print` | print | n/a |  |
 | `One.iOS.StoreReview` | store-review | n/a |  |
@@ -125,6 +125,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.Device` | device | n/a |  |
 | `One.iOS.Motion` | motion | n/a | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
 | `One.iOS.BackgroundTasks` | background-tasks | n/a | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device |
+| `One.iOS.AppIntents` | app-intents | n/a |  |
 | `One.iOS.DeviceAttestation` | device-attestation | n/a | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
 | `One.iOS.Contacts` | contacts | n/a |  |
 | `One.iOS.Calendar` | calendar | n/a |  |

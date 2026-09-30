@@ -127,6 +127,9 @@
     "OneBackgroundTasks": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneBackgroundTasks" }
     },
+    "OneAppIntents": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAppIntents" }
+    },
     "OneDeviceAttestation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneDeviceAttestation" }
     },

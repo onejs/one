@@ -37,7 +37,7 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     )
   }
   validateNativeApp(app, args.platform)
-  if (app.ios?.backgroundTasks && args.platform !== 'android') {
+  if ((app.ios?.backgroundTasks || app.ios?.appIntents) && args.platform !== 'android') {
     const configured = oneOptions?.setupFile
     const setupFile = typeof configured === 'string'
       ? configured
@@ -48,7 +48,9 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
           : undefined
     if (!setupFile || !existsSync(resolve(root, setupFile))) {
       throw new Error(
-        '[one] native.app.ios.backgroundTasks requires an existing iOS native setupFile that defines every task handler before the app renders'
+        app.ios?.backgroundTasks
+          ? '[one] native.app.ios.backgroundTasks requires an existing iOS native setupFile that defines every task handler before the app renders'
+          : '[one] native.app.ios.appIntents requires an existing iOS native setupFile that defines every action handler before the app renders'
       )
     }
   }

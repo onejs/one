@@ -120,6 +120,7 @@ const suites = [
   'print',
   'store-review',
   'quick-actions',
+  'app-intents',
   'clipboard',
   'network',
   'browser',
@@ -580,6 +581,8 @@ const storeReviewLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-store-review-request')) && has(nodes, 'Status: ')
 const quickActionsLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-quick-actions-set')) && has(nodes, 'Initial: ')
+const appIntentsLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-app-intents-read')) && has(nodes, 'Receipt: ')
 const databaseLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-database-run')) && has(nodes, 'Persisted: ')
 const speechLoaded = (nodes: Node[]) =>
@@ -749,6 +752,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   print: printLoaded,
   'store-review': storeReviewLoaded,
   'quick-actions': quickActionsLoaded,
+  'app-intents': appIntentsLoaded,
   clipboard: clipboardLoaded,
   network: networkLoaded,
   browser: browserLoaded,
@@ -854,6 +858,7 @@ const suiteHome: Record<Suite, string> = {
   print: 'nav-one-native-print',
   'store-review': 'nav-one-native-store-review',
   'quick-actions': 'nav-one-native-quick-actions',
+  'app-intents': 'nav-one-native-app-intents',
   clipboard: 'nav-one-native-clipboard',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -1280,7 +1285,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'live-photo' ||
       config.suite === 'preferences' || config.suite === 'keep-awake' ||
       config.suite === 'print' || config.suite === 'store-review' ||
-      config.suite === 'quick-actions') {
+      config.suite === 'quick-actions' || config.suite === 'app-intents') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; native contract suites need the freshly built app rather than a stale install.
@@ -9187,6 +9192,223 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await openMenu(false)
     console.log('PASS quick-actions-system-menu-cleared')
     axe(['button', 'home'], config.simulatorId)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'app-intents') {
+    const shortcutBundle = 'com.apple.shortcuts'
+    const shortcutTitles = ['One Echo Text', 'One Unhandled Action']
+    let pendingDraft = false
+    const shortcutNodes = (): Node[] => {
+      const [root] = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
+      const nodes: Node[] = []
+      const visit = (node: Node) => {
+        nodes.push(node)
+        for (const child of (node.children as Node[] | undefined) ?? []) visit(child)
+      }
+      visit(root)
+      return nodes
+    }
+    const waitShortcut = async (
+      name: string,
+      predicate: (nodes: Node[]) => boolean,
+      timeout = config.timeout
+    ): Promise<Node[]> => {
+      const started = Date.now()
+      let nodes: Node[] = []
+      do {
+        nodes = shortcutNodes()
+        if (predicate(nodes)) {
+          checks.push({ name, durationMs: Date.now() - started })
+          console.log(`PASS ${name}`)
+          return nodes
+        }
+        await Bun.sleep(250)
+      } while (Date.now() - started < timeout)
+      screenshot(`fail-${name.replaceAll(' ', '-')}.png`, nodes)
+      throw new Error(`${name} timed out; Shortcuts labels: ${labels(nodes).join(' | ')}`)
+    }
+    const shortcutTap = (label: string, nodes = shortcutNodes()) => {
+      const frame = nodes.find((node) => node.AXLabel === label)?.frame
+      if (!frame) throw new Error(`Shortcuts did not expose ${label}`)
+      touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
+    const shortcutType = async (value: string) => {
+      axe(['type', value[0]], config.simulatorId)
+      await waitShortcut(`Shortcuts takes ${value[0]}`, (nodes) =>
+        nodes.some((node) => node.type === 'TextField' &&
+          String(node.AXValue ?? '').includes(value[0])))
+      if (value.length > 1) axe(['type', value.slice(1)], config.simulatorId)
+    }
+    const openShortcuts = async () => {
+      try {
+        execFileSync('xcrun', ['simctl', 'terminate', config.simulatorId, shortcutBundle], {
+          encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30_000,
+        })
+      } catch (error) {
+        if (!/not running|nothing to terminate/i.test(String(error))) throw error
+      }
+      execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, shortcutBundle], {
+        stdio: 'ignore', timeout: 30_000,
+      })
+      let nodes = await waitShortcut('Shortcuts library opens', (n) =>
+        has(n, 'New Shortcut') || has(n, 'Continue'))
+      if (has(nodes, 'Continue')) {
+        shortcutTap('Continue', nodes)
+        nodes = await waitShortcut('Shortcuts introduction dismissed', (n) => has(n, 'New Shortcut'))
+      }
+      return nodes
+    }
+    const addShortcut = async (title: string) => {
+      const library = await waitShortcut('Shortcuts library ready', (n) => has(n, 'New Shortcut'))
+      shortcutTap('New Shortcut', library)
+      pendingDraft = true
+      const editor = await waitShortcut('Shortcuts editor ready', (n) => has(n, 'Editor'))
+      shortcutTap('Editor', editor)
+      const search = await waitShortcut('Shortcuts action search ready', (n) =>
+        n.some((node) => node.type === 'TextField' && node.AXValue === 'Search' &&
+          node.frame && node.frame.y < (n.find((entry) => entry.type === 'Application')?.frame?.height ?? 0)))
+      const displayHeight = search.find((node) => node.type === 'Application')?.frame?.height ?? 0
+      const searchField = search.find((node) => node.type === 'TextField' &&
+        node.AXValue === 'Search' && node.frame && node.frame.y < displayHeight)?.frame
+      if (!searchField) throw new Error('Shortcuts action search field had no frame')
+      touch(searchField.x + searchField.width / 2, searchField.y + searchField.height / 2)
+      await shortcutType(title)
+      const result = await waitShortcut(`${title} discovered by Shortcuts`, (n) =>
+        n.some((node) => node.AXLabel === title))
+      shortcutTap(title, result)
+      await waitShortcut(`${title} inserted into editor`, (n) =>
+        !has(n, 'Add actions from below to create a shortcut.') && has(n, 'play'))
+      pendingDraft = false
+      screenshot(`${title === shortcutTitles[0] ? 'app-intents-echo' : 'app-intents-unhandled'}-editor.png`,
+        shortcutNodes())
+    }
+    const setText = async (value: string) => {
+      const editor = await waitShortcut('Shortcuts text parameter ready', (n) =>
+        n.some((node) => node.AXLabel === 'Text' && node.type === 'Button'))
+      shortcutTap('Text', editor)
+      await waitShortcut('Shortcuts text editor focused', (n) =>
+        n.some((node) => node.type === 'TextField' && node.AXValue !== 'Search' &&
+          node.frame && node.frame.y < (n.find((entry) => entry.type === 'Application')?.frame?.height ?? 0)))
+      axe(['key-combo', '--modifiers', '227', '--key', '4'], config.simulatorId)
+      await shortcutType(value)
+      await waitShortcut(`Shortcuts parameter is ${value}`, (n) =>
+        n.some((node) => String(node.AXValue ?? '') === value))
+      const close = shortcutNodes().find((node) => node.AXLabel === 'Close')
+      if (close) shortcutTap('Close')
+    }
+    const ocrBinary = path.join(config.artifactDir, 'shortcuts-ocr')
+    execFileSync('swiftc', [fileURLToPath(new URL('./shortcuts-ocr.swift', import.meta.url)),
+      '-o', ocrBinary], { stdio: 'pipe', timeout: 90_000 })
+    const readText = (image: string) => execFileSync(ocrBinary, [image], {
+      encoding: 'utf8', timeout: 30_000,
+    })
+    const resultImage = async (needle: string, name: string, timeout = config.timeout) => {
+      const started = Date.now()
+      let readback = ''
+      do {
+        const image = screenshot(`${name}.png`, shortcutNodes())
+        readback = readText(image)
+        if (readback.includes(needle)) {
+          checks.push({ name, durationMs: Date.now() - started })
+          console.log(`PASS ${name}: ${needle}`)
+          return image
+        }
+        await Bun.sleep(250)
+      } while (Date.now() - started < timeout)
+      throw new Error(`${name} missing ${needle}; OCR: ${readback}`)
+    }
+    const play = async () => {
+      const editor = await waitShortcut('Shortcuts play ready', (n) => has(n, 'play'))
+      shortcutTap('play', editor)
+    }
+    const restartShortcutsToLibrary = async () => {
+      await openShortcuts()
+      await waitShortcut('Shortcuts library after editor', (n) => has(n, 'Select'))
+    }
+    const cleanup = async () => {
+      await restartShortcutsToLibrary()
+      const nodes = shortcutNodes()
+      if (!has(nodes, 'Select')) return
+      const present = shortcutTitles.map((title) => `${title}, 1 action`)
+        .filter((label) => has(nodes, label))
+      if (pendingDraft && has(nodes, 'New Shortcut, No actions'))
+        present.push('New Shortcut, No actions')
+      if (!present.length) return
+      shortcutTap('Select', nodes)
+      for (const label of present) {
+        const card = await waitShortcut(`${label} selection available`, (n) => has(n, label))
+        shortcutTap(label, card)
+        const title = label.split(', ')[0]
+        await waitShortcut(`${title} selected for cleanup`, (n) => has(n, `Selected, ${title}`))
+      }
+      const selected = await waitShortcut('Shortcuts Delete available', (n) => has(n, 'Delete'))
+      shortcutTap('Delete', selected)
+      const confirmation = await waitShortcut('Shortcuts delete confirmation', (n) =>
+        labels(n).some((label) => /^Delete(?: \d+)? Shortcuts?$/.test(label)))
+      const confirmLabel = labels(confirmation).find((label) =>
+        /^Delete(?: \d+)? Shortcuts?$/.test(label))
+      if (!confirmLabel) throw new Error('Shortcuts confirmation button disappeared')
+      shortcutTap(confirmLabel, confirmation)
+      await waitShortcut('Shortcuts proof actions removed', (n) =>
+        present.every((label) => !has(n, label)))
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-app-intents')
+    await wait('app intents fixture mounted', (n) => has(n, 'Receipt: unread'))
+    tap({ id: 'one-native-app-intents-reset' })
+    await wait('app intents receipt cleared', (n) => has(n, 'Receipt: missing'))
+    tap({ id: 'one-native-app-intents-invalid' })
+    await wait('app intents invalid input rejects', (n) => has(n, 'Invalid: TypeError'))
+    const warmPid = Number(/: (\d+)/.exec(launchApp())?.[1])
+    if (!Number.isInteger(warmPid) || warmPid <= 0)
+      throw new Error('simctl did not report the warm One process PID')
+    await openShortcuts()
+    try {
+      await addShortcut(shortcutTitles[0])
+      await setText('Warm-one')
+      const before = screenshot('app-intents-before-play.png', shortcutNodes())
+      if (readText(before).includes('JS:Warm-one'))
+        throw new Error('Shortcuts result appeared before the warm invocation')
+      await play()
+      await resultImage('JS:Warm-one', 'app-intents-warm-result')
+      console.log('PASS app-intents-warm-result')
+
+      stopApp()
+      await setText('Cold-two')
+      const coldBefore = screenshot('app-intents-before-cold.png', shortcutNodes())
+      if (readText(coldBefore).includes('JS:Cold-two'))
+        throw new Error('Shortcuts cold result appeared before the invocation')
+      await play()
+      await resultImage('JS:Cold-two', 'app-intents-cold-result')
+      const coldPid = Number(/: (\d+)/.exec(launchApp())?.[1])
+      if (!Number.isInteger(coldPid) || coldPid <= 0 || coldPid === warmPid)
+        throw new Error(`Shortcuts did not cold-start a distinct One process (${warmPid} -> ${coldPid})`)
+      console.log(`PASS app-intents-cold-process ${warmPid}->${coldPid}`)
+      await wait('cold One fixture remains usable', () => true, true)
+      await tapNav('nav-one-native-app-intents')
+      tap({ id: 'one-native-app-intents-read' })
+      const receipt = await wait('both Shortcuts calls reached JavaScript once', (n) =>
+        has(n, 'Receipt: 2|Cold-two'))
+      screenshot('app-intents-passed.png', receipt)
+      console.log('PASS app-intents-exact-receipt')
+
+      await restartShortcutsToLibrary()
+      await addShortcut(shortcutTitles[1])
+      const missingStart = Date.now()
+      await play()
+      await resultImage('E_APP_INTENTS_TIMEOUT', 'app-intents-unhandled-timeout', 30_000)
+      const elapsed = Date.now() - missingStart
+      if (elapsed < 19_000) throw new Error(`Missing handler failed early after ${elapsed}ms`)
+      console.log(`PASS app-intents-missing-handler-bounded ${elapsed}ms`)
+    } finally {
+      await cleanup()
+      execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, config.bundleId], {
+        stdio: 'ignore', timeout: 30_000,
+      })
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
