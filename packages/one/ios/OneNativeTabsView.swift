@@ -158,7 +158,6 @@ private final class TabsModel: ObservableObject {
   @Published var customizable = false
   @Published var bottomAccessoryEnabled = true
   @Published var swiftStyle = OneNativeStyle()
-  @Published var tabViewRevision = 0
   // TabViewCustomization's JSON, the form React holds and persists. the decoded value lives
   // beside it so the binding does not decode on every read.
   @Published var customizationJSON = ""
@@ -246,6 +245,7 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
   private var model = TabsModel()
   private var controller: OneNativeHostingController<TabsContent>?
   private let actionDelegate = ActionTabDelegate()
+  private weak var tabBarController: UITabBarController?
   private var toolbars: [OneNativeToolbarView] = []
   private var active = false
 
@@ -263,12 +263,16 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
+  // keep keyed page identities stable so swiftUI reconciles inserted, removed and reordered tabs
+  // against their content instead of reusing the page at the same array position. the TabView is
+  // never rebuilt for them: a rebuild re-hosts every page under a new controller while a child
+  // view controller inside the page (react-native-pager-view) keeps the old parent, and UIKit
+  // aborts with UIViewControllerHierarchyInconsistency.
   public func setPages(_ pages: [OneNativeTabItem]) {
-    let topologyChanged = model.pages.map(\.id) != pages.map(\.id)
-      || model.pages.map(\.modifiers.section) != pages.map(\.modifiers.section)
-    // keep keyed page identities stable so swiftUI reconciles inserted and reordered tabs
-    // against their content instead of reusing the page at the same array position.
     let mounted = Dictionary(uniqueKeysWithValues: model.pages.map { ($0.id, $0) })
+    let disabledChanged = pages.contains { page in
+      mounted[page.id].map { $0.modifiers.disabled != page.modifiers.disabled } ?? false
+    }
     model.pages = pages.map { page in
       guard let current = mounted[page.id], current.view === page.view else { return page }
       current.kind = page.kind
@@ -282,7 +286,19 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
       current.emit = page.emit
       return current
     }
-    if topologyChanged { model.tabViewRevision += 1 }
+    // swiftUI applies the change on its next update, so the redraw waits a turn for it.
+    if disabledChanged { DispatchQueue.main.async { [weak self] in self?.redrawTabBarItems() } }
+  }
+
+  // UIKit sets a tab bar item's isEnabled without redrawing the item, so a tab disabled after
+  // mount stops taking taps while it still looks enabled. any other item change redraws it: the
+  // badge goes away and back in one turn, which draws nothing in between.
+  private func redrawTabBarItems() {
+    for item in tabBarController?.tabBar.items ?? [] {
+      let badge = item.badgeValue
+      item.badgeValue = badge == nil ? "" : nil
+      item.badgeValue = badge
+    }
   }
 
   public func mountToolbar(_ toolbar: OneNativeToolbarView) {
@@ -336,6 +352,7 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
   // so each page's hook reports the controller once it is in the window and the interceptor goes
   // back in front of whatever SwiftUI installed.
   func interceptActionTabs(_ tabBarController: UITabBarController) {
+    self.tabBarController = tabBarController
     guard tabBarController.delegate !== actionDelegate else { return }
     actionDelegate.original = tabBarController.delegate
     actionDelegate.model = model
@@ -438,7 +455,6 @@ private struct TabsContent: View {
         }
       }
     }
-    .id(model.tabViewRevision)
   }
 
   @available(iOS 18.0, *)
@@ -487,7 +503,6 @@ private struct TabsContent: View {
           .tag(page.id)
       }
     }
-    .id(model.tabViewRevision)
   }
 }
 

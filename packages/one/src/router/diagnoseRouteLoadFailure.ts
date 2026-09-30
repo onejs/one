@@ -12,8 +12,10 @@
 // and clearing caches.
 //
 // a blocked request also fails `fetch()`, so walking the route's module graph
-// from the browser finds the exact module the blocker refused. dev only, and
-// only after a route has already failed to load.
+// from the browser finds the exact module the blocker refused. the same walk
+// names a module the dev server answers 404 for, which the browser reports just
+// as vaguely: an import of a file that was never written. dev only, and only
+// after a route has already failed to load.
 
 const MAX_MODULES = 500
 const TIMEOUT_MS = 5000
@@ -37,45 +39,71 @@ function collectImports(source: string, base: string): string[] {
   return out
 }
 
-/**
- * Walks the module graph under `entryUrl` looking for a module the browser
- * refuses to fetch. Returns the blocked module's url, or null when every
- * module in the graph is reachable (which means the import failed for some
- * other reason, such as a syntax error inside one of them).
- */
-export async function findBlockedModule(entryUrl: string): Promise<string | null> {
-  const deadline = Date.now() + TIMEOUT_MS
-  const seen = new Set<string>()
-  let frontier = [new URL(entryUrl, window.location.href).href]
+export type RouteLoadFault =
+  // the browser refused the request: it never reached the dev server
+  | { kind: 'blocked'; url: string }
+  // the dev server answered 404: a module imports a file that does not exist
+  | { kind: 'missing'; url: string; importer: string | null }
 
-  while (frontier.length && seen.size < MAX_MODULES && Date.now() < deadline) {
-    const batch = frontier.filter((url) => !seen.has(url)).slice(0, 32)
-    if (!batch.length) break
+/**
+ * Walks the module graph under `entryUrl` looking for a module that cannot
+ * load: one the dev server answers 404 for, or one the browser refuses to
+ * fetch. Returns null when every module in the graph is reachable (which means
+ * the import failed for some other reason, such as a syntax error inside one
+ * of them).
+ */
+export async function findRouteLoadFault(entryUrl: string): Promise<RouteLoadFault | null> {
+  const deadline = Date.now() + TIMEOUT_MS
+  const importers = new Map<string, string | null>()
+  const entry = new URL(entryUrl, window.location.href).href
+  importers.set(entry, null)
+  let frontier = [entry]
+  let visited = 0
+
+  while (frontier.length && visited < MAX_MODULES && Date.now() < deadline) {
+    const batch = frontier.slice(0, 32)
     frontier = frontier.slice(batch.length)
+    visited += batch.length
 
     const results = await Promise.all(
       batch.map(async (url) => {
-        seen.add(url)
         let res: Response
         try {
           res = await fetch(url)
         } catch {
-          // the request never reached the server. in dev the server is
-          // demonstrably up (the page and one's own runtime loaded from it),
-          // so this is the browser refusing to make the request.
-          return { url, blocked: true, imports: [] as string[] }
+          return { url, fault: 'unreachable' as const, imports: [] as string[] }
         }
-        if (!res.ok) return { url, blocked: false, imports: [] }
+        if (res.status === 404) return { url, fault: 'missing' as const, imports: [] }
+        if (!res.ok) return { url, fault: null, imports: [] }
         const type = res.headers.get('content-type') ?? ''
-        if (!type.includes('javascript')) return { url, blocked: false, imports: [] }
-        return { url, blocked: false, imports: collectImports(await res.text(), url) }
+        if (!type.includes('javascript')) return { url, fault: null, imports: [] }
+        return { url, fault: null, imports: collectImports(await res.text(), url) }
       })
     )
 
     for (const result of results) {
-      if (result.blocked) return result.url
+      if (result.fault === 'missing') {
+        // prebundled dependencies resolve their own imports, and the regex scan
+        // can match import-shaped text inside their strings, so a 404 counts
+        // only when app source asked for it.
+        const importer = importers.get(result.url) ?? null
+        if (importer?.includes('/node_modules/')) continue
+        return { kind: 'missing', url: result.url, importer }
+      }
+      if (result.fault === 'unreachable') {
+        // a request that never reached the server is a blocker only while the
+        // server still answers: a page tearing down or a dev server going away
+        // fails every fetch the same way.
+        const serverAnswers = await fetch(window.location.href, { method: 'HEAD' }).then(
+          () => true,
+          () => false
+        )
+        return serverAnswers ? { kind: 'blocked', url: result.url } : null
+      }
       for (const next of result.imports) {
-        if (!seen.has(next)) frontier.push(next)
+        if (importers.has(next)) continue
+        importers.set(next, result.url)
+        frontier.push(next)
       }
     }
   }
@@ -92,10 +120,22 @@ export async function diagnoseRouteLoadFailure(
   routeId: string,
   routeUrl: string
 ): Promise<string | null> {
-  const blocked = await findBlockedModule(routeUrl)
-  if (!blocked) return null
+  const fault = await findRouteLoadFault(routeUrl)
+  if (!fault) return null
 
-  const path = blocked.replace(window.location.origin, '')
+  const toPath = (url: string) => url.replace(window.location.origin, '')
+  const path = toPath(fault.url)
+
+  if (fault.kind === 'missing') {
+    return [
+      `Route "${routeId}" failed to load because ${path} does not exist (the dev server answered 404).`,
+      ``,
+      fault.importer
+        ? `${toPath(fault.importer)} imports it. Create the file or remove the import.`
+        : `Create the file or remove the import.`,
+    ].join('\n')
+  }
+
   return [
     `Route "${routeId}" failed to load because this browser refused to fetch ${path}`,
     ``,

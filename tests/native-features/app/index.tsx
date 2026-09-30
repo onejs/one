@@ -77,6 +77,11 @@ const testScreens = [
     testID: 'nav-one-native-tab-slot',
   },
   {
+    href: '/one-native-tab-lifecycle',
+    label: 'One Native Tab Lifecycle',
+    testID: 'nav-one-native-tab-lifecycle',
+  },
+  {
     href: '/one-native-tab-sidebar',
     label: 'One Native Tab Sidebar',
     testID: 'nav-one-native-tab-sidebar',

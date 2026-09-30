@@ -48,8 +48,8 @@ declare module 'one' {
         | `/one-native-arrangement-view`
         | `/one-native-audio`
         | `/one-native-autogen`
-        | `/one-native-browser`
         | `/one-native-background-tasks`
+        | `/one-native-browser`
         | `/one-native-building-blocks`
         | `/one-native-calendar`
         | `/one-native-camera`
@@ -64,8 +64,6 @@ declare module 'one' {
         | `/one-native-database`
         | `/one-native-device`
         | `/one-native-device-attestation`
-        | `/one-native-gestures`
-        | `/one-native-motion`
         | `/one-native-dialogs`
         | `/one-native-disclosure-group`
         | `/one-native-document-picker`
@@ -76,6 +74,7 @@ declare module 'one' {
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
+        | `/one-native-gestures`
         | `/one-native-glass-container`
         | `/one-native-gpu`
         | `/one-native-grids`
@@ -88,14 +87,15 @@ declare module 'one' {
         | `/one-native-image`
         | `/one-native-image-manipulator`
         | `/one-native-image-picker`
+        | `/one-native-keep-awake`
         | `/one-native-launch-screen`
         | `/one-native-leaves`
         | `/one-native-linear-gradient`
         | `/one-native-list-row-modifiers`
         | `/one-native-list-search-refresh`
         | `/one-native-list-section-modifiers`
-        | `/one-native-live-photo`
         | `/one-native-lists`
+        | `/one-native-live-photo`
         | `/one-native-local-authentication`
         | `/one-native-location`
         | `/one-native-map`
@@ -103,6 +103,7 @@ declare module 'one' {
         | `/one-native-media`
         | `/one-native-menu-primary-action`
         | `/one-native-mesh-gradient`
+        | `/one-native-motion`
         | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-notifications`
@@ -111,7 +112,11 @@ declare module 'one' {
         | `/one-native-picker-palette`
         | `/one-native-pip`
         | `/one-native-popover`
+        | `/one-native-preferences`
+        | `/one-native-print`
         | `/one-native-protected-store`
+        | `/one-native-purchases`
+        | `/one-native-quick-actions`
         | `/one-native-radial-gradient`
         | `/one-native-safe-area`
         | `/one-native-safe-area-bar`
@@ -125,8 +130,10 @@ declare module 'one' {
         | `/one-native-source`
         | `/one-native-speech`
         | `/one-native-state`
+        | `/one-native-store-review`
         | `/one-native-swipe-actions`
         | `/one-native-system`
+        | `/one-native-tab-lifecycle`
         | `/one-native-tab-oracle`
         | `/one-native-tab-sidebar`
         | `/one-native-tab-slot`
