@@ -1344,6 +1344,14 @@ export interface RenderedPrebuildFile {
   content: string | null
 }
 
+const IPAD_APP_ICON_SIZES: Array<[string, string[]]> = [
+  ['20x20', ['1x', '2x']],
+  ['29x29', ['1x', '2x']],
+  ['40x40', ['1x', '2x']],
+  ['76x76', ['1x', '2x']],
+  ['83.5x83.5', ['2x']],
+]
+
 async function generateAppIcons(args: {
   root: string
   dest: string
@@ -1375,6 +1383,13 @@ async function generateAppIcons(args: {
       const iconDir = path.join(assetsDir, `${name}.appiconset`)
       FSExtra.mkdirSync(iconDir, { recursive: true })
       const contents = structuredClone(template)
+      // the template is iPhone-only. App Store upload rejects a tablet build
+      // without the iPad sizes (ITMS-90023, 152 and 167 pixels among them).
+      if (app.ios?.tablet) {
+        for (const [size, scales] of IPAD_APP_ICON_SIZES) {
+          for (const scale of scales) contents.images.push({ idiom: 'ipad', scale, size })
+        }
+      }
       for (const image of contents.images) {
         const points = Number.parseFloat(image.size.split('x')[0])
         const scale = Number.parseInt(image.scale, 10)
