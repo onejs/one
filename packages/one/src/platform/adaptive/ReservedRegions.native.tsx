@@ -4,8 +4,6 @@ import NativeReservedRegionsProvider from '../specs/OneNativeReservedRegionsProv
 import { ReservedRegionsContext, type ReservedRegionsSnapshot } from './reservedRegionsContext'
 import type { ReservedRegion, ReservedRegionsProviderProps } from './types'
 
-export { useReady, useRegions, useSegments, useSpanning } from './reservedRegionsContext'
-
 type NativeRegion = {
   id: string
   kind: string

@@ -22,7 +22,7 @@ exposes no name query, so a wrong key registers silently and a later
 `isLoaded` for that key reads true. On web, fonts known at build time
 belong in CSS `@font-face`; `load` is for fonts chosen at runtime.
 
-`One.UI.useFonts` loads a map on mount and returns `[loaded, error]`. It
+`One.useFonts` loads a map on mount and returns `[loaded, error]`. It
 seeds from the platform so a map that is already usable never flashes
 unloaded. Pass a stable map: the effect runs once, like the familiar font
 hook.
@@ -31,7 +31,7 @@ hook.
 import { One } from 'one'
 
 function App() {
-  const [loaded, error] = One.UI.useFonts({ Inter: require('./assets/Inter.ttf') })
+  const [loaded, error] = One.useFonts({ Inter: require('./assets/Inter.ttf') })
   if (!loaded) return null
   return <Content />
 }

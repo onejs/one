@@ -14,11 +14,11 @@ export default function OneNativeArrangementFixture() {
 }
 
 function Arrangement() {
-  const sizeClass = One.UI.useSizeClass()
-  const hinge = One.UI.useHinge()
-  const reservedRegions = One.UI.ReservedRegions.useRegions({ includeInactive: true })
-  const segments = One.UI.ReservedRegions.useSegments()
-  const spanning = One.UI.ReservedRegions.useSpanning()
+  const sizeClass = One.useSizeClass()
+  const hinge = One.useHinge()
+  const reservedRegions = One.useReservedRegions({ includeInactive: true })
+  const segments = One.useWindowSegments()
+  const spanning = One.useSpanning()
   const [style, setStyle] = useState<ArrangementViewStyle>('automatic')
 
   return (

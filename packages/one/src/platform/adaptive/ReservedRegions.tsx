@@ -3,8 +3,6 @@ import { View, type LayoutChangeEvent } from 'react-native'
 import { ReservedRegionsContext, type ReservedRegionsSnapshot } from './reservedRegionsContext'
 import type { ReservedRegionsProviderProps } from './types'
 
-export { useReady, useRegions, useSegments, useSpanning } from './reservedRegionsContext'
-
 // the web has no reserved-region source this view can read, so the provider
 // is ready at once with none.
 export function Provider({ children, onLayout, ...props }: ReservedRegionsProviderProps) {
