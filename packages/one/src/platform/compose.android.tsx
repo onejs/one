@@ -233,6 +233,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   onNativeComposeNodeNumberValueChange?: (event: {
     nativeEvent: { value: number; eventCount: number; revision: number }
   }) => void
+  onNativeComposeNodeSliderFinished?: (event: unknown) => void
   onNativeComposeNodeDialogConfirm?: (event: unknown) => void
   onNativeComposeNodeDialogDismiss?: (event: unknown) => void
 }
@@ -971,6 +972,7 @@ function TextField({
 function Slider({
   value,
   onValueChange,
+  onValueChangeFinished,
   revision = 0,
   minimumValue = 0,
   maximumValue = 1,
@@ -984,6 +986,7 @@ function Slider({
   validateSliderProps({
     value,
     onValueChange,
+    onValueChangeFinished,
     revision,
     minimumValue,
     maximumValue,
@@ -1012,6 +1015,9 @@ function Slider({
       disabled={disabled}
       onNativeComposeNodeNumberValueChange={(event) =>
         controlled.onNativeChange(event.nativeEvent)
+      }
+      onNativeComposeNodeSliderFinished={
+        onValueChangeFinished ? () => onValueChangeFinished() : undefined
       }
     />
   )

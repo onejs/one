@@ -688,6 +688,8 @@ export function validateSliderProps(props: ComposeSliderProps) {
   )
     throw new Error('Compose Slider limits must overlap the value range')
   assertFunction(props.onValueChange, 'Slider onValueChange')
+  if (props.onValueChangeFinished !== undefined)
+    assertFunction(props.onValueChangeFinished, 'Slider onValueChangeFinished')
   assertOptionalBoolean(props.disabled, 'Slider disabled')
   if (props.colors !== undefined) assertComposeColors(props.colors, sliderColorKeys, 'Slider')
 }

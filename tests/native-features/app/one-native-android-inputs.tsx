@@ -12,6 +12,7 @@ export default function OneNativeAndroidInputs() {
   const [textRevision, setTextRevision] = useState(0)
   const [volume, setVolume] = useState(25)
   const [volumeRequest, setVolumeRequest] = useState(25)
+  const [volumeFinished, setVolumeFinished] = useState(0)
   const [dialogVisible, setDialogVisible] = useState(false)
   const [dialogOutcome, setDialogOutcome] = useState('none')
   const [customVisible, setCustomVisible] = useState(false)
@@ -78,6 +79,10 @@ export default function OneNativeAndroidInputs() {
         testID="one-native-android-inputs-slider-status"
         text={`Slider: ${Math.round(volume)} · Request: ${Math.round(volumeRequest)}`}
       />
+      <One.Android.Text
+        testID="one-native-android-inputs-slider-finished"
+        text={`Slider finishes: ${volumeFinished}`}
+      />
       <One.Android.Slider
         accessibilityLabel="Volume slider"
         value={volume}
@@ -85,6 +90,7 @@ export default function OneNativeAndroidInputs() {
           setVolumeRequest(value)
           setVolume(value)
         }}
+        onValueChangeFinished={() => setVolumeFinished((count) => count + 1)}
         minimumValue={0}
         maximumValue={100}
         lowerLimit={20}

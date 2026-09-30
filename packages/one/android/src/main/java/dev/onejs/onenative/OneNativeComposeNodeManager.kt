@@ -91,6 +91,8 @@ class OneNativeComposeNodeManager :
             mapOf("registrationName" to "onNativeComposeNodeTextFieldSubmit")
         events["topNativeComposeNodeNumberValueChange"] =
             mapOf("registrationName" to "onNativeComposeNodeNumberValueChange")
+        events["topNativeComposeNodeSliderFinished"] =
+            mapOf("registrationName" to "onNativeComposeNodeSliderFinished")
         events["topNativeComposeNodeDialogConfirm"] =
             mapOf("registrationName" to "onNativeComposeNodeDialogConfirm")
         events["topNativeComposeNodeDialogDismiss"] =

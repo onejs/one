@@ -231,6 +231,7 @@ interface NativeProps extends ViewProps {
   onNativeComposeNodeNumberValueChange?: DirectEventHandler<
     Readonly<{ value: Double; eventCount: Int32; revision: Int32 }>
   >
+  onNativeComposeNodeSliderFinished?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
   onNativeComposeNodeDialogConfirm?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
   onNativeComposeNodeDialogDismiss?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }

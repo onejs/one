@@ -716,6 +716,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private var pressEventCount = 0
     private var dialogEventCount = 0
     private var submitEventCount = 0
+    private var sliderFinishedEventCount = 0
     private var logicalParent: OneNativeComposeNodeView? = null
 
     init {
@@ -1201,6 +1202,18 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         )
     }
 
+    internal fun handleSliderFinished() {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        sliderFinishedEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeSliderFinishedEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = sliderFinishedEventCount,
+            )
+        )
+    }
+
     internal fun handleDialogConfirm() {
         if (!compositionActive) return
         dialogEventCount += 1
@@ -1303,6 +1316,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pressEventCount = 0
         dialogEventCount = 0
         submitEventCount = 0
+        sliderFinishedEventCount = 0
         semanticsVersion = 0
     }
 
@@ -2286,6 +2300,7 @@ private fun RenderComposeSlider(
             node.handleNumberChanged(next)
         },
         modifier = modifier,
+        onValueChangeFinished = node::handleSliderFinished,
         enabled = enabled,
         valueRange = range,
         steps = steps,
