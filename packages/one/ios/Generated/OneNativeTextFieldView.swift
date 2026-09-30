@@ -46,8 +46,10 @@ private final class TextFieldModel: ObservableObject {
     if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
   }
+  var hasNativeFocus = false
   var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
+    hasNativeFocus = value
     guard active, !disabled, controlledFocus.value != value else { return }
     controlledFocus.change(value)
     onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
@@ -60,13 +62,14 @@ private final class TextFieldModel: ObservableObject {
     onSubmit?(submitCount)
   }
 }
-@objcMembers public final class OneNativeTextFieldView: UIView, OneNativeComposable {
+@objcMembers public final class OneNativeTextFieldView: UIView, OneNativeComposable, OneNativeFocusedContent {
   public var onSDKEvent: ((String, String) -> Void)?
 
   public var onChange: ((String, Int, Int) -> Void)?
   public var onFocusChange: ((Bool, Int, Int) -> Void)?
   public var onSubmit: ((Int) -> Void)?
   private var model = TextFieldModel()
+  @nonobjc var containsComposedFocus: Bool { model.hasNativeFocus }
   public var onHeight: ((CGFloat) -> Void)?
   private var controller: OneNativeHostingController<OneNativeMeasuredStandalone<TextFieldContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
