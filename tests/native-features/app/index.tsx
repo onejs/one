@@ -6,6 +6,11 @@ const testScreens = [
   { href: '/zoom-test', label: 'Zoom Transitions', testID: 'nav-zoom-test' },
   { href: '/toolbar-test', label: 'Toolbar', testID: 'nav-toolbar-test' },
   { href: '/menu-test', label: 'Menu Actions', testID: 'nav-menu-test' },
+  {
+    href: '/native-glass-menu-study',
+    label: 'Native Glass Menu Study',
+    testID: 'nav-native-glass-menu-study',
+  },
   { href: '/split-view-test', label: 'Split View', testID: 'nav-split-view-test' },
   {
     href: '/one-native-controls',
