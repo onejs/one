@@ -4,7 +4,7 @@ import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { nativeSourceContract, writeNativeSourceDeclarations } from './nativeSourceContract'
+import { nativeSourceContract, swiftPodManifest, writeNativeSourceDeclarations } from './nativeSourceContract'
 
 const require = createRequire(import.meta.url)
 const tsc = join(require.resolve('typescript/package.json'), '..', 'bin', 'tsc')
@@ -120,5 +120,13 @@ AudioMath.rms('wrong')
     writeFileSync(declaration, 'declare const handWritten: true\n')
     writeNativeSourceDeclarations(root)
     expect(readFileSync(declaration, 'utf8')).toBe('declare const handWritten: true\n')
+  })
+
+  it('uses the declared Swift language mode and rejects dependencies a pod cannot link', () => {
+    expect(swiftPodManifest('Package.swift', `let package = Package(
+      targets: [.executableTarget(name: "App", swiftSettings: [.swiftLanguageMode(.v6), .defaultIsolation(MainActor.self)])]
+    )`)).toEqual({ languageMode: 6, mainActorIsolation: true })
+    expect(swiftPodManifest('Package.swift', 'let package = Package(name: "App")').languageMode).toBe(5)
+    expect(() => swiftPodManifest('Package.swift', `let package = Package(dependencies: [.package(url: "https://example.com/third-party.git", from: "1.0.0")])`)).toThrow(/SwiftPM package dependencies/)
   })
 })

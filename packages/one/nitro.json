@@ -75,6 +75,10 @@
     "OneUpdates": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }
+    },
+    "OneNativeModules": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneNativeModules" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneNativeModules" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]

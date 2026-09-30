@@ -5,6 +5,13 @@ import { pathToFileURL } from 'node:url'
 import { validateNativeApp, type NativeAppManifest } from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 import sharp from 'sharp'
+import {
+  kotlinSourceId,
+  renderKotlinSourceGlue,
+  swiftPodManifest,
+  writeNativeSourceDeclaration,
+  writeSwiftPackageArtifacts,
+} from '../utils/nativeSourceContract'
 import { swiftPackageDirectories } from '../utils/swiftPackageId'
 
 type NativeProjectPatches = {
@@ -1958,6 +1965,32 @@ export const generateForPlatform = async (
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
   if (platform === 'ios') generateIosWidgets(dest, app)
   if (platform === 'ios') generateSwiftPackages({ root, dest })
+  if (platform === 'android') generateKotlinSources({ root, dest })
+}
+
+function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
+  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts'])
+  const collect = (dir: string) => {
+    for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
+      if (entry.name.startsWith('.') || skip.has(entry.name)) continue
+      const source = path.join(dir, entry.name)
+      if (entry.isDirectory()) collect(source)
+      else if (entry.isFile() && entry.name.endsWith('.kt')) {
+        const id = kotlinSourceId(root, source)
+        const target = path.join(dest, 'app/src/main/java/one/source', id)
+        FSExtra.mkdirSync(target, { recursive: true })
+        FSExtra.copyFileSync(source, path.join(target, entry.name))
+        const contract = writeNativeSourceDeclaration(source)
+        if (contract.modules.length > 0) {
+          FSExtra.writeFileSync(
+            path.join(target, `OneNativeSource_${id}.kt`),
+            renderKotlinSourceGlue(id, contract).source
+          )
+        }
+      }
+    }
+  }
+  collect(root)
 }
 
 // every directory under the app root holding a Package.swift becomes one local
@@ -1970,6 +2003,10 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
   for (const [id, packageDir] of swiftPackageDirectories(root)) {
     const podDir = path.join(dest, 'OneSwiftPackages', id)
+    const manifest = swiftPodManifest(
+      path.join(packageDir, 'Package.swift'),
+      FSExtra.readFileSync(path.join(packageDir, 'Package.swift'), 'utf8')
+    )
     const sources: string[] = []
     const collect = (dir: string) => {
       for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
@@ -1982,12 +2019,24 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
       }
     }
     collect(packageDir)
+    const artifacts = writeSwiftPackageArtifacts(packageDir)
+    const contracts = artifacts.contracts
+    const hasView = contracts.some((contract) => contract.defaultView)
+    if (contracts.filter((contract) => contract.defaultView).length > 1) {
+      throw new Error(`[vxrn] swift package ${packageDir} has more than one @main type`)
+    }
     // cocoapods globs do not descend into symlinked directories, so mirror the
     // tree with real directories and link each file.
     for (const source of sources) {
       const link = path.join(podDir, 'Sources', path.relative(packageDir, source))
       FSExtra.mkdirSync(path.dirname(link), { recursive: true })
       FSExtra.symlinkSync(FSExtra.realpathSync(source), link)
+    }
+    if (contracts.some((contract) => contract.modules.length > 0)) {
+      FSExtra.writeFileSync(
+        path.join(podDir, 'Sources', 'OneNativeSource.generated.swift'),
+        artifacts.glue
+      )
     }
     FSExtra.writeFileSync(
       path.join(podDir, `${id}.podspec`),
@@ -1999,18 +2048,18 @@ function generateSwiftPackages({ root, dest }: { root: string; dest: string }) {
   s.license = 'MIT'
   s.author = 'one'
   s.source = { :path => '.' }
-  s.swift_version = '6.0'
+  s.swift_version = '${manifest.languageMode}.0'
   s.source_files = 'Sources/**/*.swift', 'Register.m'
   s.dependency 'One'
   s.pod_target_xcconfig = {
-    'OTHER_SWIFT_FLAGS' => '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20 -Xfrontend -import-module -Xfrontend One -Xfrontend -entry-point-function-name -Xfrontend ${id}_main',
+    'OTHER_SWIFT_FLAGS' => '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20 -Xfrontend -import-module -Xfrontend One${manifest.mainActorIsolation ? ' -default-isolation MainActor' : ''}${hasView ? ` -Xfrontend -entry-point-function-name -Xfrontend ${id}_main` : ''}',
   }
 end
 `
     )
     FSExtra.writeFileSync(
       path.join(podDir, 'Register.m'),
-      `#import <Foundation/Foundation.h>
+      hasView ? `#import <Foundation/Foundation.h>
 
 extern int ${id}_main(int argc, char **argv);
 extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **));
@@ -2023,7 +2072,7 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
   OneSwiftRegisterPackage("${id}", ${id}_main);
 }
 @end
-`
+` : '#import <Foundation/Foundation.h>\n'
     )
   }
 }
