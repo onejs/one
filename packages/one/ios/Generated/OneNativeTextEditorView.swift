@@ -41,19 +41,22 @@ private final class TextEditorModel: ObservableObject {
     if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
   }
+  var hasNativeFocus = false
   var onFocusChange: ((Bool, Int, Int) -> Void)?
   func changeFocus(_ value: Bool) {
+    hasNativeFocus = value
     guard active, !disabled, controlledFocus.value != value else { return }
     controlledFocus.change(value)
     onFocusChange?(value, controlledFocus.eventCount, controlledFocus.revision)
   }
 }
-@objcMembers public final class OneNativeTextEditorView: UIView, OneNativeComposable {
+@objcMembers public final class OneNativeTextEditorView: UIView, OneNativeComposable, OneNativeFocusedContent {
   public var onSDKEvent: ((String, String) -> Void)?
 
   public var onChange: ((String, Int, Int) -> Void)?
   public var onFocusChange: ((Bool, Int, Int) -> Void)?
   private var model = TextEditorModel()
+  @nonobjc var containsComposedFocus: Bool { model.hasNativeFocus }
   private var controller: OneNativeHostingController<OneNativeStandalone<TextEditorContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
