@@ -558,6 +558,16 @@ function requireKeyboardShown(config: Config) {
 }
 
 function swipeFresh(config: Config, name: string) {
+  swipeScrollView(config, name, 0.72, 0.3)
+}
+
+// the home list keeps its scroll position across fixture visits, so reaching a
+// row above the viewport needs a swipe the other way.
+function swipeFreshBack(config: Config, name: string) {
+  swipeScrollView(config, name, 0.3, 0.72)
+}
+
+function swipeScrollView(config: Config, name: string, from: number, to: number) {
   const current = snapshot(config)
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
   if (scrollables.length !== 1)
@@ -567,8 +577,8 @@ function swipeFresh(config: Config, name: string) {
   const bounds = validBounds(scrollables[0], name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const height = bounds.bottom - bounds.top
-  const y1 = Math.round(bounds.top + height * 0.72)
-  const y2 = Math.round(bounds.top + height * 0.3)
+  const y1 = Math.round(bounds.top + height * from)
+  const y2 = Math.round(bounds.top + height * to)
   adbText(config, [
     'shell',
     'input',
@@ -581,7 +591,41 @@ function swipeFresh(config: Config, name: string) {
   ])
 }
 
+// tapNavigation below only swipes the list downward, so a row above the
+// current position would be unreachable after visiting a lower fixture. the
+// list is long and each fixture visit leaves the position where it was, so
+// rewind to the first row before looking for the target.
+async function resetNavigationToTop(config: Config) {
+  for (let attempt = 0; attempt < 12; attempt++) {
+    const current = snapshot(config)
+    const rows = current.nodes
+      .filter((node) => node.resourceId.includes('nav-') && node.bounds)
+      .sort((a, b) => a.bounds!.top - b.bounds!.top)
+    if (rows[0] && resourceIdMatches(rows[0].resourceId, 'nav-one-native-controls')) return
+    const before = rows.map((node) => `${node.resourceId}:${node.bounds!.top}`).join('|')
+    swipeFreshBack(config, 'Home navigation scroll view')
+    const moved = await waitFor(
+      config,
+      'Home navigation scroll position rewinds',
+      (nodes) => {
+        const next = nodes
+          .filter((node) => node.resourceId.includes('nav-') && node.bounds)
+          .map((node) => `${node.resourceId}:${node.bounds!.top}`)
+          .join('|')
+        return next !== before
+      },
+      undefined,
+      5_000
+    ).then(
+      () => true,
+      () => false
+    )
+    if (!moved) return
+  }
+}
+
 async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
+  await resetNavigationToTop(config)
   for (let attempt = 0; attempt < 8; attempt++) {
     const current = snapshot(config)
     const rows = matching(current.nodes, {
