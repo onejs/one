@@ -3,17 +3,17 @@ title: Text Input
 description: Native text input with shared state, plus adaptive layout
 ---
 
-`One.useNativeState` creates one observable handle shared between
+`useNativeState` creates one observable handle shared between
 JavaScript and the bound native views. Pass the handle as `value` to
 `One.UI.TextInput`: keystrokes land in every bound view without a React
 render. The ref carries `focus`, `blur`, `clear`, `isFocused`, and
 `setSelection`.
 
 ```tsx
-import { One } from 'one'
+import { One, useNativeState } from 'one'
 
 function NameField() {
-  const name = One.useNativeState('')
+  const name = useNativeState('')
 
   return (
     <One.UI.TextInput
@@ -47,7 +47,7 @@ web and are accepted but ignored on native.
 
 ### Adaptive layout
 
-`One.useSizeClass()` returns the window's horizontal and vertical size
+`useSizeClass()` returns the window's horizontal and vertical size
 classes (`compact`, `regular`, or `unspecified`) and re-renders when they change.
 On iOS they are the window scene's `UIUserInterfaceSizeClass` values, so a
 layout can branch on the trait iOS uses rather than on the screen's width.
@@ -57,8 +57,8 @@ display regular in both axes. On Android they come from the activity window's
 480dp is compact, otherwise regular. They update on configuration and
 window-metrics changes.
 
-`One.useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
-`fullyOpen`, or `unknown`) and `angle` in radians, and `One.onHingeChange`
+`useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
+`fullyOpen`, or `unknown`) and `angle` in radians, and `onHingeChange`
 subscribes outside React. The `get*` variants read the current value once.
 On iOS the state comes from `UIHinge`. On Android the status comes from the
 Jetpack `FoldingFeature` (`FLAT` is fullyOpen, `HALF_OPENED` is partiallyOpen)
@@ -68,18 +68,18 @@ the current window reads closed, and a device with no hinge reads null.
 Safe area insets say how far to pull content in from each edge; they cannot
 describe a fold across the middle of the screen or a camera on the inner
 display. `One.UI.ReservedRegions.Provider` is a view that reports the regions
-reserved inside its own bounds, and `One.useReservedRegions()` reads
+reserved inside its own bounds, and `useReservedRegions()` reads
 them from the nearest provider. A `division` is a fold that content should not
 straddle; an `occlusion` is a camera cutout or system control that hides
 content. Each region has an `id`, a `frame` in the provider's points (margins
 included), the `margins` kept around it for interactive content, and
-`isActive`. `One.useReservedRegions()` returns active regions unless you pass
+`isActive`. `useReservedRegions()` returns active regions unless you pass
 `{ includeInactive: true }`, and `{ kind: 'division' }` narrows to one kind.
-`One.useReservedRegionsReady()` turns true once the provider has taken its first reading, which
+`useReservedRegionsReady()` turns true once the provider has taken its first reading, which
 lands before the first frame.
 
-`One.useWindowSegments()` returns the unobstructed parts of the provider when
-an active full-span division separates it. `One.useSpanning()` reports whether
+`useWindowSegments()` returns the unobstructed parts of the provider when
+an active full-span division separates it. `useSpanning()` reports whether
 that division splits the provider. The provider must fill the window to read
 window segments.
 
@@ -89,8 +89,10 @@ active while it separates the display, and each display cutout
 is an `occlusion`; Android reports no margins. The web reports none.
 
 ```tsx
+import { One, useReservedRegions } from 'one'
+
 function Canvas() {
-  const [fold] = One.useReservedRegions({ kind: 'division' })
+  const [fold] = useReservedRegions({ kind: 'division' })
   if (!fold) return <Board />
   return (
     <>
@@ -109,8 +111,10 @@ function Canvas() {
 and a secondary pane side by side or stacked and keeps them clear of a fold:
 
 ```tsx
+import { One, useSizeClass } from 'one'
+
 function Workspace() {
-  const sizeClass = One.useSizeClass()
+  const sizeClass = useSizeClass()
   if (sizeClass.horizontal !== 'regular') return <Chat />
   return (
     <One.iOS.ArrangementView
