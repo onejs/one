@@ -125,6 +125,16 @@ abstract class OneShareTargetActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+        // a warm reuse always isolates the previous draft rather than
+        // touching it; but if that previous draft never reached a persisted
+        // draft.json (still mid-intake when this new intent arrived), it has
+        // nothing discoverable pointing at it, so its directory -- and
+        // whatever it had already copied -- would otherwise leak forever.
+        // delete() on a draft that was never written is a no-op.
+        val previous = session
+        if (draftStore.load(previous.draftId) == null) {
+            draftStore.delete(previous.draftId)
+        }
         session = Session(draftStore.newDraftId(), intent)
     }
 
@@ -133,9 +143,16 @@ abstract class OneShareTargetActivity : ComponentActivity() {
         outState.putString(STATE_DRAFT_ID, session.draftId)
     }
 
+    // only a real destroy ends the in-flight send; a destroy that is
+    // immediately followed by a recreated instance (rotation) must not --
+    // sendScope/sendSupervisor are meant to outlive that, per the comment on
+    // their declaration, which isChangingConfigurations is what actually
+    // enforces.
     override fun onDestroy() {
         super.onDestroy()
-        sendSupervisor.cancel()
+        if (!isChangingConfigurations) {
+            sendSupervisor.cancel()
+        }
     }
 
     private companion object {
@@ -175,7 +192,6 @@ private fun OneShareTargetScreen(
     var editedText by remember { mutableStateOf(existingDraft?.editedText.orEmpty()) }
     var destinations by remember { mutableStateOf<List<ShareDestination>>(emptyList()) }
     var selectedDestinationId by remember { mutableStateOf(existingDraft?.destinationId) }
-    var intakeNotice by remember { mutableStateOf<String?>(null) }
     val composeScope = rememberCoroutineScope()
     var intakeJob by remember { mutableStateOf<Job?>(null) }
 
@@ -207,6 +223,14 @@ private fun OneShareTargetScreen(
         val job = launch {
             try {
                 if (intakeIntent != null) {
+                    // a retry re-runs intake on the same intent; clear
+                    // whatever an earlier attempt for this draft id already
+                    // copied first, so a retry's files never pile up next to
+                    // a prior attempt's (intake itself also cleans up after
+                    // itself on abort, but an attempt that fully succeeded
+                    // before a later step -- e.g. destinations() -- failed
+                    // would otherwise leave its copies behind here).
+                    draftStore.clearItems(draftId)
                     val result =
                         OneShareIntake.intake(
                             context = context,
@@ -214,10 +238,20 @@ private fun OneShareTargetScreen(
                             destinationDir = itemsDir,
                             limits = limits,
                         )
-                    if (result.text.isNotEmpty()) editedText = result.text
+                    if (result.issues.isNotEmpty()) {
+                        // no-drop: intake itself already refused to return a
+                        // partial item set, so this is never "send what
+                        // fit" -- it blocks here until cancelled or retried.
+                        val issue = result.issues.first()
+                        phase = ScreenPhase.Failed("Couldn't include \"${issue.label}\": ${issue.reason}.")
+                        return@launch
+                    }
+                    // never clobber text the user already has in the
+                    // composer (e.g. from a draft persisted before an
+                    // earlier attempt's later step failed and this is a
+                    // retry) with what is otherwise the same seed text again.
+                    if (editedText.isEmpty() && result.text.isNotEmpty()) editedText = result.text
                     shareItems = result.items
-                    intakeNotice =
-                        if (result.truncated) "Some shared items were skipped (${result.issues.size})." else null
                     persist()
                 }
                 destinations = adapter.destinations()
@@ -311,9 +345,6 @@ private fun OneShareTargetScreen(
                         },
                         style = MaterialTheme.typography.bodySmall,
                     )
-                }
-                intakeNotice?.let {
-                    Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
                 }
                 if (current is ScreenPhase.Ready && current.error != null) {
                     Text(current.error, color = MaterialTheme.colorScheme.error)
