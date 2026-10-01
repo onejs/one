@@ -12,6 +12,7 @@ import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
+import dev.onejs.onenative.OneNativeMenuTriggerManager
 import dev.onejs.onenative.OneNativePictureInPictureManager
 import dev.onejs.onenative.OneNativeSafeAreaModule
 import dev.onejs.onenative.OneNativeReservedRegionsProviderManager
@@ -72,6 +73,7 @@ class OnePackage : BaseReactPackage() {
     ): List<ViewManager<*, *>> =
         listOf(
             OneNativeComposeNodeManager(),
+            OneNativeMenuTriggerManager(),
             OneNativeSafeAreaProviderManager(),
             OneNativeReservedRegionsProviderManager(),
             OneNativeEdgeFadeManager(),
