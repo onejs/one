@@ -10,7 +10,7 @@ import {
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join, relative } from 'node:path'
+import { dirname, join, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import sharp from 'sharp'
@@ -389,7 +389,8 @@ ${APP_DELEGATE_PBXPROJ}`,
     const androidSettings = renderPrebuildFile({
       relativePath: 'settings.gradle',
       content: `pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
-includeBuild('../node_modules/@react-native/gradle-plugin')`,
+includeBuild('../node_modules/@react-native/gradle-plugin')
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }`,
       platform: 'android',
       app,
     })
@@ -743,10 +744,25 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
       JSON.stringify({ name: '@react-native/gradle-plugin', version: '0.0.0' })
     )
 
+    const cliPath = join(
+      root,
+      'node_modules',
+      '@react-native-community',
+      'cli',
+      'build',
+      'bin.js'
+    )
+    mkdirSync(dirname(cliPath), { recursive: true })
+    writeFileSync(
+      cliPath,
+      "if (process.argv[2] !== 'config') process.exit(1); console.log(JSON.stringify({root: process.cwd(), dependencies: {}}))"
+    )
+
     const rendered = renderPrebuildFile({
       relativePath: 'settings.gradle',
       content: `pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
-includeBuild('../node_modules/@react-native/gradle-plugin')`,
+includeBuild('../node_modules/@react-native/gradle-plugin')
+extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }`,
       platform: 'android',
       app,
     })
@@ -759,6 +775,21 @@ includeBuild('../node_modules/@react-native/gradle-plugin')`,
       encoding: 'utf8',
     }).trim()
     expect(resolved).toBe(realpathSync(join(nested, 'package.json')))
+    const cliScript = [...(rendered.content ?? '').matchAll(/"--print", "([^"]+)"/g)]
+      .map((match) => match[1])
+      .find((script) => script.includes('@react-native-community/cli/build/bin.js'))
+    if (!cliScript) throw new Error('expected installed CLI resolution script')
+    const resolvedCli = execFileSync(process.execPath, ['--print', cliScript], {
+      cwd: settingsDir,
+      encoding: 'utf8',
+    }).trim()
+    const cliConfig = JSON.parse(
+      execFileSync(process.execPath, [resolvedCli, 'config'], {
+        cwd: root,
+        encoding: 'utf8',
+      })
+    )
+    expect(cliConfig).toEqual({ root: realpathSync(root), dependencies: {} })
 
     // negative control: a bare top-level resolution fails here, proving the
     // fixture is genuinely non-hoisted and the old snippet would break
