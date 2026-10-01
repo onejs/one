@@ -16,6 +16,7 @@ in points, defaulting to large. Detents must be unique.
 |------|------|
 | `isPresented`, `onIsPresentedChange` | `boolean`, `(value: boolean) => void` |
 | `onDismiss` | `() => void` |
+| `onDidDismiss` | `() => void` after physical dismissal |
 | `presentationDetents` | `readonly` detent |
 | `selectedDetent`, `onSelectedDetentChange` | controlled detent (pass both or neither) |
 | `detentRevision` | `number` |
@@ -26,6 +27,15 @@ in points, defaulting to large. Detents must be unique.
 | `presentationBackgroundInteraction` | `'automatic'`, `'enabled'`, `'disabled'`, or `{ enabledUpThrough: detent }` |
 | `presentationContentInteraction` | content interaction |
 | `presentationSizing` | `'automatic'`, `'fitted'`, `'form'`, `'page'` |
+
+`onIsPresentedChange(false)` asks React to close the presentation. The parent
+can accept or decline that change. `onDismiss` forwards SwiftUI's dismissal
+notification, which can arrive while the native content is still on screen.
+Use `onDidDismiss` when retaining content or transferring ownership until the
+original presented content has left its native window. It fires once for an
+accepted close; a declined close, superseded presentation or disposed host
+does not report successful completion. Keep the Sheet and its content mounted
+until completion if you need that callback.
 
 ```tsx
 import { One } from 'one'
@@ -40,7 +50,7 @@ import { One } from 'one'
 ## FullScreenCover
 
 `One.iOS.FullScreenCover` covers the screen with `isPresented`,
-`onIsPresentedChange`, `onDismiss`, and `revision`. It has no detents: the
+`onIsPresentedChange`, `onDismiss`, `onDidDismiss`, and `revision`. It has no detents: the
 content dismisses from React or from a control it supplies.
 
 ```tsx
