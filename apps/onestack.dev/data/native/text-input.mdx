@@ -63,7 +63,9 @@ subscribes outside React. The `get*` variants read the current value once.
 On iOS the state comes from `UIHinge`. On Android the status comes from the
 Jetpack `FoldingFeature` (`FLAT` is fullyOpen, `HALF_OPENED` is partiallyOpen)
 and the angle from the hinge sensor; a hinge sensor with no folding feature in
-the current window reads closed, and a device with no hinge reads null.
+the current window reads closed only on an official 0° sensor reading and
+unknown otherwise, preserving the sensor angle; a device with no hinge reads
+null.
 
 Safe area insets say how far to pull content in from each edge; they cannot
 describe a fold across the middle of the screen or a camera on the inner

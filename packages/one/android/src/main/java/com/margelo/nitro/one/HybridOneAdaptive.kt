@@ -28,9 +28,10 @@ import com.margelo.nitro.core.Promise
 // window-layout changes. hinge status comes from the WindowInfoTracker
 // FoldingFeature (FLAT fullyOpen, HALF_OPENED partiallyOpen) with the angle
 // from the hinge-angle sensor in radians; a hinge sensor with no
-// FoldingFeature in the current window reads closed, and a device with no
-// hinge sensor reads null. the first listener starts the monitors and the
-// last removal stops them, including the sensor.
+// FoldingFeature in the current window reads closed only on an official
+// 0-degree sensor reading and unknown otherwise, preserving the sensor
+// angle; a device with no hinge sensor reads null. the first listener starts
+// the monitors and the last removal stops them, including the sensor.
 class HybridOneAdaptive : HybridOneAdaptiveSpec() {
     private val sizeClassListeners = mutableMapOf<Int, (SizeClass) -> Unit>()
     private val hingeListeners = mutableMapOf<Int, (HingeState?) -> Unit>()
@@ -118,8 +119,8 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
 
     private fun computeHinge(): HingeState? {
         if (!hasHingeSensor()) return null
-        val angleRad =
-            synchronized(this) { lastAngleDeg }?.let { (it * Math.PI / 180.0) }
+        val angleDeg = synchronized(this) { lastAngleDeg }
+        val angleRad = angleDeg?.let { (it * Math.PI / 180.0) }
         val features = currentFoldingFeatures()
         val feature = features.firstOrNull()
         return when (feature?.state) {
@@ -127,7 +128,13 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
                 HingeState(HingeStatus.FULLYOPEN, angleRad ?: Math.PI)
             FoldingFeature.State.HALF_OPENED ->
                 HingeState(HingeStatus.PARTIALLYOPEN, angleRad ?: (Math.PI / 2.0))
-            else -> HingeState(HingeStatus.CLOSED, angleRad ?: 0.0)
+            else -> {
+                if (angleDeg == 0f) {
+                    HingeState(HingeStatus.CLOSED, 0.0)
+                } else {
+                    HingeState(HingeStatus.UNKNOWN, angleRad ?: 0.0)
+                }
+            }
         }
     }
 
