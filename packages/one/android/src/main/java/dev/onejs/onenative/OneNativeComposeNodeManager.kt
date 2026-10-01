@@ -95,7 +95,13 @@ class OneNativeComposeNodeManager :
             mapOf("registrationName" to "onNativeComposeNodeDialogConfirm")
         events["topNativeComposeNodeDialogDismiss"] =
             mapOf("registrationName" to "onNativeComposeNodeDialogDismiss")
+        events["topNativeComposeNodeContentSizeChange"] =
+            mapOf("registrationName" to "onNativeComposeNodeContentSizeChange")
         return events
+    }
+
+    override fun setIntrinsicHeight(view: OneNativeComposeNodeView, value: Boolean) {
+        view.setIntrinsicHeight(value)
     }
 
     override fun setNodeType(view: OneNativeComposeNodeView, value: String?) {

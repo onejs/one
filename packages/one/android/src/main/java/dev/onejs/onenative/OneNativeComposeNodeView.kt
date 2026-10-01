@@ -717,6 +717,24 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private var dialogEventCount = 0
     private var submitEventCount = 0
     private var logicalParent: OneNativeComposeNodeView? = null
+    private var intrinsicHeight = false
+    private var reportedContentHeight = -1
+    private val contentLayout = Runnable { layoutComposeContent() }
+
+    internal fun setIntrinsicHeight(value: Boolean) {
+        if (intrinsicHeight == value) return
+        intrinsicHeight = value
+        reportedContentHeight = -1
+        requestLayout()
+    }
+
+    override fun requestLayout() {
+        super.requestLayout()
+        if (intrinsicHeight && logicalParent == null) {
+            removeCallbacks(contentLayout)
+            post(contentLayout)
+        }
+    }
 
     init {
         clipChildren = false
@@ -1272,20 +1290,36 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     }
 
     private fun layoutComposeContent() {
-        if (!composeView.isAttachedToWindow || width <= 0 || height <= 0) return
+        if (!composeView.isAttachedToWindow || width <= 0 || (!intrinsicHeight && height <= 0)) return
         composeView.measure(
             MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-            MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+            if (intrinsicHeight) MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
+            else MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
         )
-        composeView.layout(0, 0, width, height)
+        val contentHeight = if (intrinsicHeight) composeView.measuredHeight else height
+        composeView.layout(0, 0, width, contentHeight)
+        if (intrinsicHeight && contentHeight != reportedContentHeight) {
+            reportedContentHeight = contentHeight
+            UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+                OneNativeComposeNodeContentSizeChangeEvent(
+                    surfaceId = UIManagerHelper.getSurfaceId(this),
+                    viewTag = id,
+                    height = contentHeight / resources.displayMetrics.density.toDouble(),
+                )
+            )
+        }
     }
 
     override fun onDetachedFromWindow() {
+        removeCallbacks(contentLayout)
         setCompositionActive(false)
         super.onDetachedFromWindow()
     }
 
     internal fun resetForReuse() {
+        removeCallbacks(contentLayout)
+        intrinsicHeight = false
+        reportedContentHeight = -1
         setCompositionActive(false)
         logicalChildren.forEach { child ->
             child.logicalParent = null
