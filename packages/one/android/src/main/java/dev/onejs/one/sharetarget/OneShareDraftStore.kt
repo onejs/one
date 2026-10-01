@@ -2,6 +2,8 @@ package dev.onejs.one.sharetarget
 
 import android.content.Context
 import android.net.Uri
+import android.util.AtomicFile
+import java.io.IOException
 import java.io.File
 import java.util.UUID
 import org.json.JSONArray
@@ -12,6 +14,7 @@ internal data class StoredShareDraft(
     val destinationId: String?,
     val editedText: String,
     val items: List<ShareItem>,
+    val pendingDelivery: Boolean = false,
 )
 
 // durable store for one in-flight share draft per id, under the app's
@@ -30,9 +33,9 @@ internal class OneShareDraftStore(private val context: Context) {
 
     fun load(id: String): StoredShareDraft? {
         val file = draftFile(id)
-        if (!file.exists()) return null
+        if (!file.exists() && !File(file.path + ".bak").exists()) return null
         return try {
-            val json = JSONObject(file.readText())
+            val json = JSONObject(AtomicFile(file).openRead().bufferedReader().use { it.readText() })
             val items = mutableListOf<ShareItem>()
             val itemsJson = json.optJSONArray("items") ?: JSONArray()
             for (i in 0 until itemsJson.length()) {
@@ -57,9 +60,10 @@ internal class OneShareDraftStore(private val context: Context) {
                 destinationId = json.optString("destinationId", "").takeIf { it.isNotEmpty() },
                 editedText = json.optString("editedText", ""),
                 items = items,
+                pendingDelivery = json.optBoolean("pendingDelivery", false),
             )
-        } catch (_: Exception) {
-            null
+        } catch (error: Exception) {
+            throw IOException("Could not read share draft $id", error)
         }
     }
 
@@ -85,19 +89,24 @@ internal class OneShareDraftStore(private val context: Context) {
                 .put("destinationId", draft.destinationId ?: JSONObject.NULL)
                 .put("editedText", draft.editedText)
                 .put("items", itemsJson)
+                .put("pendingDelivery", draft.pendingDelivery)
 
         val dir = draftDir(draft.id).apply { mkdirs() }
         val file = File(dir, "draft.json")
-        val tmp = File(dir, "draft.json.tmp")
-        tmp.writeText(json.toString())
-        if (!tmp.renameTo(file)) {
-            tmp.copyTo(file, overwrite = true)
-            tmp.delete()
+        val atomic = AtomicFile(file)
+        val output = atomic.startWrite()
+        try {
+            output.write(json.toString().toByteArray(Charsets.UTF_8))
+            atomic.finishWrite(output)
+        } catch (error: Exception) {
+            atomic.failWrite(output)
+            throw error
         }
     }
 
     fun delete(id: String) {
-        draftDir(id).deleteRecursively()
+        val directory = draftDir(id)
+        if (directory.exists() && !directory.deleteRecursively()) throw IOException("Could not discard share draft $id")
     }
 
     // drops every file under a draft's dir except a pending draft.json, used

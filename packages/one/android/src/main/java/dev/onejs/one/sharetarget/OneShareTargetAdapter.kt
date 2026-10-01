@@ -8,5 +8,6 @@ package dev.onejs.one.sharetarget
 interface OneShareTargetAdapter {
     suspend fun destinations(): List<ShareDestination>
 
+    // accept an id at most once; a recovered attempt retries the same payload.
     suspend fun send(submission: ShareSubmission)
 }

@@ -202,3 +202,26 @@ committed files in place, never a copy. Pinned deps match
 `androidx.compose.ui/foundation:1.11.4`, `androidx.compose.material3:1.5.0-alpha17`,
 `kotlinx-coroutines-android:1.10.2`, AGP `8.13.2`, `compileSdk 35`/`minSdk 23`,
 Kotlin `2.1.20`.
+
+## Retained native session owner
+
+The parent completed the lifecycle work omitted by the previous passes. `OneShareSessionModel` is an internal AndroidX ViewModel obtained through the Activity's `ViewModelProvider`. Compose observes its state and forwards actions. The model owns loading, edits, selection, delivery and discard; rotation observes the same sending phase and operation. A warm intent creates a separate draft while an earlier send keeps its original id. Loading is cancelled and joined before incomplete draft cleanup. Destination retries load the owned manifest rather than copying the launch intent again.
+
+All draft reads, writes and deletion run on `Dispatchers.IO`. A mutex orders persistence and terminal deletion. An edit queued before Send/Cancel cannot recreate a terminal draft. `AtomicFile` commits the manifest and recovers its backup; a corrupt manifest produces an error instead of being treated as a new share. The manifest records a pending delivery before transport starts. Recovery keeps the original payload and destination, prohibits edits/discard of an ambiguous attempt, and retries with the same submission id. Adapters must accept that id at most once. Hardware Back forwards to the same discard action and cannot cancel an in-flight delivery.
+
+Primary text now counts toward `maxItems`. Send validates edited text against the per-item and remaining total byte budgets before invoking the adapter.
+
+RAN from the parent, on studio with the committed harness's real sources and existing pinned Kotlin 2.1.20 dependencies:
+
+```sh
+cd packages/one/android/Tests/ShareTarget/harness
+ANDROID_HOME=/Users/n8/Library/Android/sdk \
+  /Users/n8/.gradle/wrapper/dists/gradle-9.4.1-bin/arn2x92ynaizyzdaamcbpbhtj/gradle-9.4.1/bin/gradle \
+  compileDebugKotlin testDebugUnitTest --console=plain --no-daemon
+```
+
+Output: `BUILD SUCCESSFUL in 9s`. Parsed JUnit XML: intake 17 tests, 0 failures, 0 errors; retained session model 10 tests, 0 failures, 0 errors. These execute the actual ViewModelProvider, ContentResolver and disk store with gated adapters. Coverage includes retained ownership during a suspended send, refusal of a second send/edit/discard, process recovery with exact submission equality, destination retry preserving a durable edit, warm intent isolation, over-budget edits, cancellation during destination loading, primary-text count limits, an unavailable original destination, atomic backup recovery and corrupt-manifest rejection.
+
+TESTED negative control: removed the `canSend` budget guard while retaining the ready-phase guard, then ran the model suite. Output: `7 tests completed, 1 failed`, specifically `editOverBudgetCannotReachAdapter`. Restored the real source, added the remaining recovery/storage checks and ran the final suite above. No assertion, retry or timeout was loosened.
+
+Limits: this proves native model and persistence behavior with real AndroidX ownership, not Activity recreation or visual Compose interaction on an emulator. There is still no on-device intent dispatch, keyboard/layout screenshot, or generated One project integration evidence. The native UI and full integration remain pending; this checkpoint is not an accepted runtime63 patch.
