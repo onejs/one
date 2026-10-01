@@ -1,0 +1,180 @@
+---
+title: Native Platform APIs
+description: Find the shipped shared and iOS service APIs, permissions, and lifecycle contracts
+---
+
+Services live on `One` when they support both native platforms, and on
+`One.iOS` when they expose an iOS capability. Hooks are named imports from
+`one`. Use each reference for the complete signature, configuration, permission
+behavior, event cleanup, and errors.
+
+## Shared services
+
+| API | What you can do |
+| --- | --- |
+| [One.Notifications](/native/notifications) | Request permission, schedule and dismiss notifications, handle responses, obtain push tokens, and configure Android channels |
+| [One.Clipboard](/native/clipboard) | Read, write, and check clipboard text |
+| [One.Network, useNetworkState](/native/network) | Read and subscribe to connection state |
+| [One.Browser](/native/browser) | Open a system browser or authentication session and dismiss it |
+| `One.Auth.Apple` | Start Apple authorization on iOS; see the authentication section below |
+| [One.Haptics](/native/haptics) | Produce selection, impact, and notification feedback |
+| [One.AppInfo](/native/app-info) | Read the installed version, build, and application identifier |
+| [One.ImagePicker](/native/image-picker) | Pick library media or use the system camera picker |
+| [One.DocumentPicker](/native/document-picker) | Select documents with cancellation and file metadata |
+| [One.SecureStore](/native/secure-store) | Store strings in Keychain or encrypted Android storage, asynchronously or synchronously |
+| [One.Database](/native/database) | Open and query SQLite databases through OP SQLite |
+| `One.Speech` | Request permission and start or stop speech recognition; see the dictation section below |
+| [One.LaunchScreen](/native/launch-screen) | Hold the launch screen until the app is ready, then hide it |
+| [One.Updates](/native/updates) | Check, download, stage, and reload OTA bundles; the launcher handles early-failure rollback and cache pruning |
+| `One.openURL`, `One.openShare`, `One.openSettings` | Hand a URL, share payload, or settings request to the system |
+| [global crypto](/native/crypto) | Generate secure random values and UUIDs |
+| `global fetch` | Stream native HTTP responses and upload React Native file parts |
+
+`One.Auth.Apple` is grouped under the shared authentication namespace, but Apple
+authorization is an iOS operation. On Android and web, `isAvailable` is false and authorization calls reject.
+
+Secure storage uses string keys and values:
+
+```ts
+import { One } from 'one'
+
+export async function saveSession(token: string) {
+  await One.SecureStore.setItem('session', token)
+}
+
+export async function readSession() {
+  return One.SecureStore.getItem('session')
+}
+
+export async function clearSession() {
+  await One.SecureStore.deleteItem('session')
+}
+```
+
+A missing key reads `null`. SecureStore rejects on web; choose a separate web
+session strategy. The synchronous verbs block the JavaScript thread, so reserve
+them for a value needed synchronously, such as an initial session read.
+
+## iOS services
+
+These are exported on `One.iOS`; they do not acquire Android implementations
+because the same app also uses Compose.
+
+| API | What you can do |
+| --- | --- |
+| [LocalAuthentication](/native/local-authentication) | Check biometric support and request system authentication |
+| [ProtectedStore](/native/protected-store) | Protect Keychain items with biometric or device-passcode access policies |
+| [Preferences](/native/preferences) | Read and write persistent preferences |
+| [Location](/native/location) | Request permission, locate, watch position, and geocode; background updates need configuration |
+| [MapServices](/native/map#ios-search-and-directions) | Search places, request suggestions, reverse-geocode, and obtain directions |
+| [FileSystem](/native/file-system) | Read and write sandbox files, inspect directories, and manage files |
+| [Audio](/native/audio) | Play and record audio, configure background playback, and handle interruptions and Now Playing |
+| [CameraView](/native/camera) | Render a camera preview and receive scanned codes |
+| [Share](/native/share) | Present the iOS share sheet and receive its result |
+| [PhotoLibrary](/native/photo-library) | Save, query, export, and manage Photos assets and albums |
+| [ImageManipulator](/native/image-manipulator) | Crop, resize, rotate, and encode local images |
+| [Contacts](/native/contacts) | Request access, search, create, update, delete, and use the system contact picker |
+| [Calendar](/native/calendar) | Manage events and reminders, including supported recurrence rules |
+| [Device](/native/device) | Read device and localization snapshots |
+| [Motion](/native/motion) | Subscribe to available motion sensors |
+| [ScreenOrientation](/native/screen-orientation) | Read, lock, unlock, and observe the active scene orientation |
+| [ScreenCapture](/native/screen-capture) | Observe capture state and screenshot events; capture a window or mounted view as PNG |
+| [Purchases](/native/purchases) | Read StoreKit products, purchase, restore, and observe transactions |
+| [BackgroundTasks](/native/background-tasks) | Register and schedule system-managed background work |
+| [DeviceAttestation](/native/device-attestation) | Use App Attest and DeviceCheck with app-owned server validation |
+| [AppTracking](/native/app-tracking) | Read and request tracking permission |
+| [AppIcon](/native/app-icon) | Read and change configured alternate icons |
+| [KeepAwake](/native/keep-awake) | Control the app's idle-timer flag |
+| [Print](/native/print) | Present the system print sheet for a local PDF |
+| [StoreReview](/native/store-review) | Request a system review prompt; iOS decides whether to display it |
+| [QuickActions](/native/quick-actions) | Manage Home Screen actions and receive warm or cold selections |
+| [Widgets, LiveActivities, WidgetUI](/native/ios-widgets) | Update a generated WidgetKit extension and ActivityKit presentations |
+
+Widget and Live Activity APIs need a generated extension, App Group, and the
+relevant signing capabilities. [Native project setup](/docs/guides-ios-native#ios-widgets-and-live-activities)
+shows the configuration. Widgets render a supported serialized JSX layout,
+not an arbitrary React Native subtree.
+
+## Permissions and subscriptions
+
+Configure native usage descriptions and capabilities before building the app,
+then request runtime permission from the corresponding API. A camera picker,
+camera preview, library picker, and Photos library management have different
+permission contracts. The system picker can select media without granting the
+app general library access.
+
+A live network subscription returns an object with `remove()`:
+
+```tsx
+import { useEffect, useState } from 'react'
+import { One } from 'one'
+
+export function useConnectionType() {
+  const [type, setType] = useState('unknown')
+
+  useEffect(() => {
+    const subscription = One.Network.addStateListener((state) => {
+      setType(state.type)
+    })
+    return () => subscription.remove()
+  }, [])
+
+  return type
+}
+```
+
+For a component that also needs the initial snapshot, use the exported
+`useNetworkState` hook. Other services can return an unsubscribe function or
+another handle; follow their own cleanup signature rather than assuming every
+service uses `remove()`.
+
+## Apple authentication
+
+`One.Auth.Apple.isAvailable` is a boolean. `signIn` accepts optional
+`requestedScopes` (`'fullName'` and `'email'`), `state`, and `nonce`, and
+resolves a discriminated result. Cancellation resolves `{ type: 'cancel' }`.
+On success the credential includes the user identifier and nullable identity
+token, authorization code, name, and email fields.
+
+```ts
+import { One } from 'one'
+
+export async function signInWithApple() {
+  if (!One.Auth.Apple.isAvailable) return null
+  const result = await One.Auth.Apple.signIn({
+    requestedScopes: ['fullName', 'email'],
+  })
+  return result.type === 'success' ? result.credential : null
+}
+```
+
+Use `getCredentialState(user)` to read the credential's current state. Enable
+Sign in with Apple in the app's entitlements and signing capabilities;
+`native.app.ios.usesAppleSignIn` configures the One prebuild entitlement.
+Your server owns credential verification and the session it creates.
+
+## Dictation
+
+`One.Speech.isAvailable()` reports native recognizer availability.
+`getPermissions()` and `requestPermissions()` return permission responses.
+After a grant, `start({ lang? }, onEvent)` returns a session with `stop()`
+and `abort()`. `lang` is a language tag such as `en-US`.
+
+The callback receives `{ type, transcript, error?, message? }`; `type` is
+`start`, `transcript`, `end`, or `error`. Each transcript is the whole result
+so far. `stop()` finishes with a final event, while `abort()` tears down the
+session silently. Configure `native.app.speech` with `recognition` and `microphone` usage
+descriptions before prebuild. On web,
+availability is false, permissions are denied, and `start` throws.
+
+## System actions and HTTP
+
+`One.openURL(url)` and `One.openSettings()` return `Promise<void>`.
+`One.openShare({ title?, message?, url? })` passes content to the system share
+surface. On web, URL opening uses a new tab, sharing needs `navigator.share`,
+and app settings are unsupported.
+
+Native global `fetch` streams response bodies and accepts React Native file
+parts in `FormData`. Use its standard request and response objects; no
+`One.fetch` wrapper is required. Streaming is separate from
+`One.Network`, which reports connection state.
