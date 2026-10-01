@@ -62,6 +62,86 @@ final class OneShareTargetIntakeTests: XCTestCase {
     XCTAssertEqual(items, [.text("caption from the system compose field")])
   }
 
+  // MARK: - Representation priority
+
+  /// Safari's own page-share attachment (and many others) registers both a
+  /// URL and a plain-text title for the same item; the link must win so it
+  /// isn't silently lost in favor of its title text.
+  func testURLRepresentationWinsOverEquivalentPlainText() async throws {
+    let provider = NSItemProvider()
+    provider.registerObject(URL(string: "https://example.com/page")! as NSURL, visibility: .all)
+    provider.registerObject("Example Page" as NSString, visibility: .all)
+
+    let intake = OneShareTargetIntake(configuration: makeConfiguration())
+    let items = try await intake.intake(
+      attachments: [provider],
+      accompanyingText: nil,
+      destinationDirectory: scratchDirectory,
+      isCancelled: { false }
+    )
+    XCTAssertEqual(items, [.url(URL(string: "https://example.com/page")!)])
+  }
+
+  // MARK: - Text/URL byte budgets
+
+  func testRejectsOversizeTextAttachment() async throws {
+    let longText = String(repeating: "a", count: 2048)
+    let provider = NSItemProvider(object: longText as NSString)
+    let intake = OneShareTargetIntake(configuration: makeConfiguration(maxItemBytes: 1024))
+
+    do {
+      _ = try await intake.intake(
+        attachments: [provider],
+        accompanyingText: nil,
+        destinationDirectory: scratchDirectory,
+        isCancelled: { false }
+      )
+      XCTFail("expected itemTooLarge")
+    } catch OneShareTargetError.itemTooLarge(let name, let limit) {
+      XCTAssertEqual(name, "text")
+      XCTAssertEqual(limit, 1024)
+    }
+  }
+
+  func testRejectsOversizeURLAttachment() async throws {
+    let url = URL(string: "https://example.com/" + String(repeating: "a", count: 2048))!
+    let provider = NSItemProvider(object: url as NSURL)
+    let intake = OneShareTargetIntake(configuration: makeConfiguration(maxItemBytes: 64))
+
+    do {
+      _ = try await intake.intake(
+        attachments: [provider],
+        accompanyingText: nil,
+        destinationDirectory: scratchDirectory,
+        isCancelled: { false }
+      )
+      XCTFail("expected itemTooLarge")
+    } catch OneShareTargetError.itemTooLarge(let name, _) {
+      XCTAssertEqual(name, "url")
+    }
+  }
+
+  func testTextAndURLItemsCountTowardTotalBudget() async throws {
+    let text = String(repeating: "a", count: 1000)
+    let textProvider = NSItemProvider(object: text as NSString)
+    let fileProvider = try makeFileProvider(byteCount: 500)
+    let intake = OneShareTargetIntake(configuration: makeConfiguration(maxItemBytes: 10_000, maxTotalBytes: 1200))
+
+    do {
+      _ = try await intake.intake(
+        attachments: [textProvider, fileProvider],
+        accompanyingText: nil,
+        destinationDirectory: scratchDirectory,
+        isCancelled: { false }
+      )
+      XCTFail("expected a total-budget failure: text (1000 bytes) + file (500 bytes) exceeds a 1200-byte total")
+    } catch OneShareTargetError.itemTooLarge {
+      // the per-item budget clamps to the remaining total budget
+    } catch OneShareTargetError.totalTooLarge {
+      // also acceptable
+    }
+  }
+
   // MARK: - File copy, bounded and chunked
 
   func testCopiesFileWithinBudget() async throws {
