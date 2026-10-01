@@ -1,0 +1,61 @@
+{
+  "drafts": [
+    {
+      "destinationId": "team",
+      "text": "Check out One's share target\nCheck out One's share target",
+      "id": "8C25CA9A-3CEC-4EA3-B4E1-2E0C66F35599",
+      "items": [
+        {
+          "url": "https://example.com/one-share-target",
+          "kind": "url"
+        }
+      ],
+      "createdAt": "2026-10-01T19:57:15Z"
+    },
+    {
+      "createdAt": "2026-10-01T20:06:25Z",
+      "destinationId": "personal",
+      "id": "DDBC7AAD-C297-4269-9334-4F6CC0ED7076",
+      "text": "Edited native share",
+      "items": [
+        {
+          "kind": "url",
+          "url": "https://example.com/one-share-target"
+        }
+      ]
+    },
+    {
+      "createdAt": "2026-10-01T20:18:12Z",
+      "items": [
+        {
+          "kind": "url",
+          "url": "https://example.com/one-share-target"
+        }
+      ],
+      "id": "86054DC3-DFF5-424A-8DF4-828463FA193E",
+      "text": "E"
+    },
+    {
+      "id": "465C71BC-E0A6-4FBB-84D7-C31EFBBD7AC2",
+      "destinationId": "team",
+      "items": [
+        {
+          "kind": "url",
+          "url": "https://example.com/one-share-target"
+        }
+      ],
+      "createdAt": "2026-10-01T20:01:09Z",
+      "text": "Check out One's share target"
+    }
+  ],
+  "receipts": {
+    "accepted.receipt": "{\"items\":[{\"kind\":\"url\",\"url\":\"https:\\/\\/example.com\\/one-share-target\"}],\"id\":\"26EF68EA-88A1-4AA3-BFC6-AA9A724570BF\",\"text\":\"Check out One's share target\",\"destinationId\":\"team\"}",
+    "send-entered.receipt": "",
+    "submission-0022F358-E181-4926-BB93-66DE28B4FDF5.receipt": "{\"destinationId\":\"personal\",\"id\":\"DDBC7AAD-C297-4269-9334-4F6CC0ED7076\",\"text\":\"Edited native share\",\"items\":[{\"kind\":\"url\",\"url\":\"https:\\/\\/example.com\\/one-share-target\"}]}",
+    "destinations-entered.receipt": "",
+    "submission-42EBEA85-3B4F-47E8-BB0A-1116CB45A15A.receipt": "{\"id\":\"4219DF94-6B0E-428C-A5B9-9053350B0BDB\",\"destinationId\":\"personal\",\"items\":[{\"url\":\"https:\\/\\/example.com\\/one-share-target\",\"kind\":\"url\"}],\"text\":\"Edited native share\"}",
+    "submission-8EAA44E8-1E06-4F97-9A2A-E435B5323426.receipt": "{\"items\":[{\"url\":\"https:\\/\\/example.com\\/one-share-target\",\"kind\":\"url\"}],\"id\":\"26EF68EA-88A1-4AA3-BFC6-AA9A724570BF\",\"destinationId\":\"team\",\"text\":\"Check out One's share target\"}",
+    "submission-AA50C67F-8C6C-4AFB-934A-398DB29F6409.receipt": "{\"id\":\"26EF68EA-88A1-4AA3-BFC6-AA9A724570BF\",\"text\":\"Check out One's share target\",\"items\":[{\"kind\":\"url\",\"url\":\"https:\\/\\/example.com\\/one-share-target\"}],\"destinationId\":\"team\"}",
+    "submission-03C09087-B736-491E-B716-164E99A524C4.receipt": "{\"destinationId\":\"team\",\"text\":\"Check out One's share target\",\"items\":[{\"url\":\"https:\\/\\/example.com\\/one-share-target\",\"kind\":\"url\"}],\"id\":\"80F0FAEB-1AE0-4AB2-BE64-5D889AD7017D\"}"
+  }
+}
