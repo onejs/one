@@ -2730,6 +2730,8 @@ async function generateKotlinSources({ root, dest }: { root: string; dest: strin
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts'])
   const sources: string[] = []
   const collect = (dir: string) => {
+    // nested javascript packages own their native sources, including fixtures.
+    if (dir !== root && FSExtra.existsSync(path.join(dir, 'package.json'))) return
     for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || skip.has(entry.name)) continue
       const source = path.join(dir, entry.name)
