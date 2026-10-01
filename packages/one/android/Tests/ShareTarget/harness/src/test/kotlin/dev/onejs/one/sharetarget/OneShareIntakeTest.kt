@@ -248,6 +248,40 @@ class OneShareIntakeTest {
         assertEquals(OneShareIntakeIssueReason.UNACCEPTED_TYPE, result.issues.single().reason)
     }
 
+    @Test
+    fun `incoming file scheme cannot copy the receiver private file`() = runBlocking {
+        val privateFile = File(context.filesDir, "synthetic-private-share-probe.txt")
+        privateFile.writeText("synthetic receiver-only data")
+        try {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                putExtra(Intent.EXTRA_STREAM, Uri.fromFile(privateFile))
+            }
+            val result = OneShareIntake.intake(context, intent, destinationDir, generousLimits)
+            assertTrue(result.items.isEmpty())
+            assertTrue(result.truncated)
+            assertEquals(OneShareIntakeIssueReason.UNACCEPTED_TYPE, result.issues.single().reason)
+            assertTrue(destinationDir.listFiles()?.isEmpty() != false)
+            assertEquals("synthetic receiver-only data", privateFile.readText())
+        } finally {
+            privateFile.delete()
+        }
+    }
+
+    @Test
+    fun `clip text preserves whitespace and exact duplicate detection`() = runBlocking {
+        val value = "  padded shared text\n"
+        val clip = ClipData.newPlainText("first", value)
+        clip.addItem(ClipData.Item("\n second text "))
+        val intent = Intent(Intent.ACTION_SEND_MULTIPLE).apply {
+            putExtra(Intent.EXTRA_TEXT, value)
+            clipData = clip
+        }
+        val result = OneShareIntake.intake(context, intent, destinationDir, generousLimits)
+        assertEquals(value, result.text)
+        assertEquals(listOf(ShareItem.Text("\n second text ")), result.items)
+        assertFalse(result.truncated)
+    }
+
     // --- file uris: real ContentResolver round trip through a fake provider ---
 
     @Test
