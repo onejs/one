@@ -80,6 +80,13 @@ internal object OneShareIntake {
             }
         }
 
+    // no-drop: a single rejected/oversized/unreadable entry anywhere in the
+    // intent (including EXTRA_TEXT itself) aborts the whole intake rather
+    // than silently continuing without it. any files already copied in this
+    // call are deleted before returning, so a caller never sees a partial
+    // item set it could accidentally send -- the caller is expected to
+    // surface the single issue and block sending, not offer a truncated
+    // result as success.
     private suspend fun intakeOrThrow(
         context: Context,
         intent: Intent,
@@ -87,15 +94,40 @@ internal object OneShareIntake {
         limits: OneShareIntakeLimits,
     ): OneShareIntakeResult {
         val resolver = context.contentResolver
-        val primaryText = intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.toString()?.trim().orEmpty()
+        // exact CharSequence bytes, never trimmed: whitespace the sender put
+        // in EXTRA_TEXT is part of what the user agreed to share.
+        val rawPrimaryText = intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.toString().orEmpty()
 
         val seenTextValues = mutableSetOf<String>()
-        if (primaryText.isNotEmpty()) seenTextValues.add(primaryText)
-
-        val issues = mutableListOf<OneShareIntakeIssue>()
         val items = mutableListOf<ShareItem>()
+        val copiedFiles = mutableListOf<File>()
         var itemCount = 0
         var totalBytes = 0L
+        var primaryText = ""
+
+        fun abort(issue: OneShareIntakeIssue): OneShareIntakeResult {
+            copiedFiles.forEach { it.delete() }
+            return OneShareIntakeResult(text = "", items = emptyList(), truncated = true, issues = listOf(issue))
+        }
+
+        if (rawPrimaryText.isNotEmpty()) {
+            val isUrl = isUrl(rawPrimaryText)
+            if (isUrl && !limits.acceptedUrls) {
+                return abort(OneShareIntakeIssue(rawPrimaryText, OneShareIntakeIssueReason.UNACCEPTED_TYPE))
+            }
+            if (!isUrl && !limits.acceptedText) {
+                return abort(OneShareIntakeIssue(rawPrimaryText, OneShareIntakeIssueReason.UNACCEPTED_TYPE))
+            }
+            val bytes = rawPrimaryText.toByteArray(Charsets.UTF_8).size.toLong()
+            if (bytes > limits.maxItemBytes || bytes > limits.maxTotalBytes) {
+                return abort(OneShareIntakeIssue(rawPrimaryText, OneShareIntakeIssueReason.OVER_SIZE_LIMIT))
+            }
+            if (limits.maxItems < 1) return abort(OneShareIntakeIssue(rawPrimaryText, OneShareIntakeIssueReason.OVER_ITEM_LIMIT))
+            itemCount += 1
+            primaryText = rawPrimaryText
+            totalBytes += bytes
+            seenTextValues.add(rawPrimaryText)
+        }
 
         for (entry in collectEntries(intent)) {
             currentCoroutineContext().ensureActive()
@@ -107,21 +139,17 @@ internal object OneShareIntake {
 
                     val isUrl = isUrl(value)
                     if (isUrl && !limits.acceptedUrls) {
-                        issues += OneShareIntakeIssue(value, OneShareIntakeIssueReason.UNACCEPTED_TYPE)
-                        continue
+                        return abort(OneShareIntakeIssue(value, OneShareIntakeIssueReason.UNACCEPTED_TYPE))
                     }
                     if (!isUrl && !limits.acceptedText) {
-                        issues += OneShareIntakeIssue(value, OneShareIntakeIssueReason.UNACCEPTED_TYPE)
-                        continue
+                        return abort(OneShareIntakeIssue(value, OneShareIntakeIssueReason.UNACCEPTED_TYPE))
                     }
                     if (itemCount >= limits.maxItems) {
-                        issues += OneShareIntakeIssue(value, OneShareIntakeIssueReason.OVER_ITEM_LIMIT)
-                        continue
+                        return abort(OneShareIntakeIssue(value, OneShareIntakeIssueReason.OVER_ITEM_LIMIT))
                     }
                     val bytes = value.toByteArray(Charsets.UTF_8).size.toLong()
-                    if (totalBytes + bytes > limits.maxTotalBytes) {
-                        issues += OneShareIntakeIssue(value, OneShareIntakeIssueReason.OVER_SIZE_LIMIT)
-                        continue
+                    if (bytes > limits.maxItemBytes || totalBytes + bytes > limits.maxTotalBytes) {
+                        return abort(OneShareIntakeIssue(value, OneShareIntakeIssueReason.OVER_SIZE_LIMIT))
                     }
 
                     items.add(if (isUrl) ShareItem.Url(value) else ShareItem.Text(value))
@@ -135,37 +163,32 @@ internal object OneShareIntake {
                     val label = uri.toString()
 
                     if (!isAcceptedMime(mimeType, limits.acceptedFileMimePrefixes)) {
-                        issues += OneShareIntakeIssue(label, OneShareIntakeIssueReason.UNACCEPTED_TYPE)
-                        continue
+                        return abort(OneShareIntakeIssue(label, OneShareIntakeIssueReason.UNACCEPTED_TYPE))
                     }
                     if (itemCount >= limits.maxItems) {
-                        issues += OneShareIntakeIssue(label, OneShareIntakeIssueReason.OVER_ITEM_LIMIT)
-                        continue
+                        return abort(OneShareIntakeIssue(label, OneShareIntakeIssueReason.OVER_ITEM_LIMIT))
                     }
                     val remainingTotal = limits.maxTotalBytes - totalBytes
                     if (remainingTotal <= 0) {
-                        issues += OneShareIntakeIssue(label, OneShareIntakeIssueReason.OVER_SIZE_LIMIT)
-                        continue
+                        return abort(OneShareIntakeIssue(label, OneShareIntakeIssueReason.OVER_SIZE_LIMIT))
                     }
 
                     val (displayName, declaredSize) = queryMetadata(resolver, uri)
                     val cap = minOf(limits.maxItemBytes, remainingTotal)
                     if (declaredSize != null && declaredSize > cap) {
-                        issues += OneShareIntakeIssue(displayName ?: label, OneShareIntakeIssueReason.OVER_SIZE_LIMIT)
-                        continue
+                        return abort(OneShareIntakeIssue(displayName ?: label, OneShareIntakeIssueReason.OVER_SIZE_LIMIT))
                     }
 
                     val copied = boundedCopy(resolver, uri, destinationDir, displayName, cap)
                     if (copied == null) {
-                        issues += OneShareIntakeIssue(displayName ?: label, OneShareIntakeIssueReason.READ_ERROR)
-                        continue
+                        return abort(OneShareIntakeIssue(displayName ?: label, OneShareIntakeIssueReason.READ_ERROR))
                     }
                     if (copied.hitLimit) {
                         copied.file.delete()
-                        issues += OneShareIntakeIssue(displayName ?: label, OneShareIntakeIssueReason.OVER_SIZE_LIMIT)
-                        continue
+                        return abort(OneShareIntakeIssue(displayName ?: label, OneShareIntakeIssueReason.OVER_SIZE_LIMIT))
                     }
 
+                    copiedFiles.add(copied.file)
                     items.add(
                         ShareItem.File(
                             uri = Uri.fromFile(copied.file),
@@ -183,8 +206,8 @@ internal object OneShareIntake {
         return OneShareIntakeResult(
             text = primaryText,
             items = items,
-            truncated = issues.isNotEmpty(),
-            issues = issues,
+            truncated = false,
+            issues = emptyList(),
         )
     }
 
