@@ -22,6 +22,17 @@ export const docsRoutes = [
   },
 
   {
+    title: 'One Native',
+    pages: [
+      { title: 'Overview', route: '/docs/native-overview' },
+      { title: 'Setup', route: '/docs/native-setup' },
+      { title: 'Components', route: '/docs/native-components' },
+      { title: 'Platform APIs', route: '/docs/native-apis' },
+      { title: 'Platform Notes', route: '/docs/native-platforms' },
+    ],
+  },
+
+  {
     title: 'Routing',
     pages: [
       { title: 'Overview', route: '/docs/routing' },
