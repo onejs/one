@@ -1,9 +1,23 @@
-import { useRef } from 'react'
-import { findNodeHandle, Pressable, TurboModuleRegistry, View } from 'react-native'
+import { useRef, type ComponentRef } from 'react'
+import {
+  findNodeHandle,
+  Pressable,
+  requireNativeComponent,
+  TurboModuleRegistry,
+  View,
+  type ViewProps,
+} from 'react-native'
 import { flattenMenuItems } from './menuItems'
 import type { NativeMenuItem } from './specs/OneNativeMenuNativeComponent'
 import type { ContextMenuProps, MenuProps } from './types'
 import type { TurboModule } from 'react-native'
+
+const NativeContextTrigger = requireNativeComponent<
+  ViewProps & {
+    contextMenuEnabled: boolean
+    onNativeMenuLongPress: () => void
+  }
+>('OneNativeMenuTrigger')
 
 type Selection = {
   type: 'action' | 'toggle'
@@ -42,6 +56,7 @@ function MenuPresentation({
   ...viewProps
 }: MenuProps & { presentation: 'menu' | 'contextMenu' }) {
   const anchor = useRef<View>(null)
+  const contextAnchor = useRef<ComponentRef<typeof NativeContextTrigger>>(null)
   const nativeItems = flattenMenuItems(items)
   if (!onValueChange && nativeItems.some((item) => item.type === 'toggle')) {
     throw new Error('Menu with toggles requires onValueChange')
@@ -49,7 +64,9 @@ function MenuPresentation({
 
   const open = async () => {
     if (disabled) return
-    const anchorTag = findNodeHandle(anchor.current)
+    const anchorTag = findNodeHandle(
+      presentation === 'contextMenu' ? contextAnchor.current : anchor.current
+    )
     if (anchorTag == null) throw new Error('Menu trigger has no native view')
     const selection = await popup().show(anchorTag, nativeItems)
     if (selection?.type === 'action') onAction(selection.id)
@@ -58,12 +75,22 @@ function MenuPresentation({
     }
   }
 
+  if (presentation === 'contextMenu') {
+    return (
+      <NativeContextTrigger
+        ref={contextAnchor}
+        collapsable={false}
+        {...viewProps}
+        contextMenuEnabled={!disabled}
+        onNativeMenuLongPress={open}
+      >
+        {children}
+      </NativeContextTrigger>
+    )
+  }
+
   return (
-    <Pressable
-      disabled={disabled}
-      onPress={presentation === 'menu' ? open : undefined}
-      onLongPress={presentation === 'contextMenu' ? open : undefined}
-    >
+    <Pressable disabled={disabled} onPress={open}>
       <View ref={anchor} collapsable={false} {...viewProps}>
         {children}
       </View>
