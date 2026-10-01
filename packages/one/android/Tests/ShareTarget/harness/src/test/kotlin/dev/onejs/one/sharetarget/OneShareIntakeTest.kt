@@ -132,21 +132,62 @@ class OneShareIntakeTest {
         assertTrue(result.items.isEmpty())
     }
 
-    // --- ClipData text/url entries become items, counted and byte-budgeted ---
+    // --- EXTRA_TEXT is never trimmed and is still bound by the same limits ---
 
     @Test
-    fun `clip data text entries become items and count toward maxItems`() = runBlocking {
+    fun `extra text whitespace is preserved exactly, never trimmed`() = runBlocking {
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TEXT, "  padded text\n")
+        }
+        val result = OneShareIntake.intake(context, intent, destinationDir, generousLimits)
+        assertEquals("  padded text\n", result.text)
+    }
+
+    @Test
+    fun `extra text over maxItemBytes aborts the whole intake, not just the text`() = runBlocking {
+        val uri = Uri.parse("content://dev.onejs.test.shareprovider/file/also-rejected")
+        registerFile(uri, "also.bin", "application/octet-stream", ByteArray(10))
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TEXT, "x".repeat(2000))
+            putExtra(Intent.EXTRA_STREAM, uri)
+        }
+        val limits = generousLimits.copy(maxItemBytes = 100, maxTotalBytes = 4096)
+        val result = OneShareIntake.intake(context, intent, destinationDir, limits)
+
+        assertEquals("", result.text)
+        assertTrue(result.items.isEmpty())
+        assertEquals(OneShareIntakeIssueReason.OVER_SIZE_LIMIT, result.issues.single().reason)
+        // the file entry, which would otherwise have been fine on its own,
+        // is never copied because the text ahead of it already aborted intake
+        assertTrue(destinationDir.listFiles()?.isEmpty() != false)
+    }
+
+    @Test
+    fun `extra text rejected by acceptedText=false blocks the whole intake`() = runBlocking {
+        val intent = Intent(Intent.ACTION_SEND).apply { putExtra(Intent.EXTRA_TEXT, "plain note") }
+        val limits = generousLimits.copy(acceptedText = false)
+        val result = OneShareIntake.intake(context, intent, destinationDir, limits)
+
+        assertEquals("", result.text)
+        assertEquals(OneShareIntakeIssueReason.UNACCEPTED_TYPE, result.issues.single().reason)
+    }
+
+    // --- ClipData text/url entries become items, counted and byte-budgeted ---
+    // --- no-drop: any rejection anywhere aborts the whole intake ---
+
+    @Test
+    fun `clip data text entries count toward maxItems and a rejection aborts the whole batch`() = runBlocking {
         val clip = ClipData.newPlainText("a", "first shared note")
         clip.addItem(ClipData.Item("second shared note"))
-        clip.addItem(ClipData.Item("https://example.com"))
+        clip.addItem(ClipData.Item("third shared note"))
         val intent = Intent(Intent.ACTION_SEND_MULTIPLE).apply { clipData = clip }
 
         val limits = generousLimits.copy(maxItems = 2)
         val result = OneShareIntake.intake(context, intent, destinationDir, limits)
 
-        assertEquals(2, result.items.size)
+        assertTrue(result.items.isEmpty())
         assertTrue(result.truncated)
-        assertEquals(1, result.issues.count { it.reason == OneShareIntakeIssueReason.OVER_ITEM_LIMIT })
+        assertEquals(OneShareIntakeIssueReason.OVER_ITEM_LIMIT, result.issues.single().reason)
     }
 
     @Test
@@ -163,7 +204,7 @@ class OneShareIntakeTest {
     }
 
     @Test
-    fun `text item byte budget is enforced in utf8 bytes`() = runBlocking {
+    fun `text item byte budget is enforced in utf8 bytes and a rejection aborts the batch`() = runBlocking {
         val big = "x".repeat(50)
         val small = "y".repeat(50)
         val clip = ClipData.newPlainText("a", big)
@@ -173,14 +214,27 @@ class OneShareIntakeTest {
         val limits = generousLimits.copy(maxTotalBytes = 60)
         val result = OneShareIntake.intake(context, intent, destinationDir, limits)
 
-        // the first (50 bytes) fits under 60, the second (another 50) does not
-        assertEquals(1, result.items.size)
+        // the first (50 bytes) fits under 60, the second (another 50) does
+        // not -- no-drop means neither is returned, not just the second
+        assertTrue(result.items.isEmpty())
         assertTrue(result.truncated)
         assertEquals(OneShareIntakeIssueReason.OVER_SIZE_LIMIT, result.issues.single().reason)
     }
 
     @Test
-    fun `acceptedText false rejects plain text but acceptedUrls still allows a url`() = runBlocking {
+    fun `a single text item over maxItemBytes is rejected even under maxTotalBytes`() = runBlocking {
+        val clip = ClipData.newPlainText("a", "x".repeat(200))
+        val intent = Intent(Intent.ACTION_SEND_MULTIPLE).apply { clipData = clip }
+
+        val limits = generousLimits.copy(maxItemBytes = 100, maxTotalBytes = 4096)
+        val result = OneShareIntake.intake(context, intent, destinationDir, limits)
+
+        assertTrue(result.items.isEmpty())
+        assertEquals(OneShareIntakeIssueReason.OVER_SIZE_LIMIT, result.issues.single().reason)
+    }
+
+    @Test
+    fun `acceptedText false rejects the first plain text entry and never reaches the url after it`() = runBlocking {
         val clip = ClipData.newPlainText("a", "plain note")
         clip.addItem(ClipData.Item("https://example.com"))
         val intent = Intent(Intent.ACTION_SEND_MULTIPLE).apply { clipData = clip }
@@ -188,8 +242,9 @@ class OneShareIntakeTest {
         val limits = generousLimits.copy(acceptedText = false, acceptedUrls = true)
         val result = OneShareIntake.intake(context, intent, destinationDir, limits)
 
-        assertEquals(1, result.items.size)
-        assertTrue(result.items.single() is ShareItem.Url)
+        // no-drop: the whole batch aborts on the first rejection in
+        // iteration order; the url after it is never even looked at
+        assertTrue(result.items.isEmpty())
         assertEquals(OneShareIntakeIssueReason.UNACCEPTED_TYPE, result.issues.single().reason)
     }
 
@@ -282,6 +337,29 @@ class OneShareIntakeTest {
 
         assertTrue(threw is CancellationException)
         assertTrue(destinationDir.listFiles()?.none { it.length() > 0 && it.length() == bytes.size.toLong() } ?: true)
+    }
+
+    @Test
+    fun `a file already copied earlier in the batch is deleted when a later entry aborts intake`() = runBlocking {
+        val okUri = Uri.parse("content://dev.onejs.test.shareprovider/file/ok")
+        registerFile(okUri, "ok.bin", "application/octet-stream", ByteArray(10))
+        val badUri = Uri.parse("content://dev.onejs.test.shareprovider/file/bad")
+        registerFile(badUri, "bad.pdf", "application/pdf", ByteArray(10))
+
+        val clip = ClipData(
+            ClipDescription("x", arrayOf("*/*")),
+            ClipData.Item(okUri),
+        )
+        clip.addItem(ClipData.Item(badUri))
+        val intent = Intent(Intent.ACTION_SEND_MULTIPLE).apply { clipData = clip }
+        val limits = generousLimits.copy(acceptedFileMimePrefixes = setOf("application/octet-stream"))
+        val result = OneShareIntake.intake(context, intent, destinationDir, limits)
+
+        assertTrue(result.items.isEmpty())
+        assertEquals(OneShareIntakeIssueReason.UNACCEPTED_TYPE, result.issues.single().reason)
+        // ok.bin was already copied to disk before bad.pdf aborted the
+        // batch; no-drop means it must not survive on disk either
+        assertTrue(destinationDir.listFiles()?.isEmpty() != false)
     }
 
     // --- uri dedup across EXTRA_STREAM and ClipData ---
