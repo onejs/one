@@ -139,3 +139,14 @@ internal class OneNativeComposeNodeBooleanValueChangeEvent(
             putInt("revision", revision)
         }
 }
+
+internal class OneNativeComposeNodeContentSizeChangeEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val height: Double,
+) : Event<OneNativeComposeNodeContentSizeChangeEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeContentSizeChange"
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply { putDouble("height", height) }
+}
