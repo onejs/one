@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "sharetarget-harness"
+
+include(":sample-app")
