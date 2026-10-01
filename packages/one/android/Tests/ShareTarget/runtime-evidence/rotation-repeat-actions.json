@@ -1,0 +1,53 @@
+{
+  "drafts": [
+    {
+      "destinationId": "inbox",
+      "editedText": "Single before warm replacement",
+      "items": [
+        {
+          "type": "file",
+          "uri": "file:///data/user/0/dev.onejs.one.sharetarget.sample/files/one-sharetarget/ccd13365-a509-4408-adcc-3ecb25015889/357988102587-alpha.txt",
+          "name": "alpha.txt",
+          "mimeType": "text/plain",
+          "size": 38
+        }
+      ],
+      "pendingDelivery": false
+    },
+    {
+      "destinationId": "session-proof",
+      "editedText": "Cold multiple rotation proof",
+      "items": [
+        {
+          "type": "file",
+          "uri": "file:///data/user/0/dev.onejs.one.sharetarget.sample/files/one-sharetarget/31426aaa-c4ba-461d-b427-5b5a4beb2e0a/377668075263-alpha.txt",
+          "name": "alpha.txt",
+          "mimeType": "text/plain",
+          "size": 38
+        },
+        {
+          "type": "file",
+          "uri": "file:///data/user/0/dev.onejs.one.sharetarget.sample/files/one-sharetarget/31426aaa-c4ba-461d-b427-5b5a4beb2e0a/377677188888-beta.txt",
+          "name": "beta.txt",
+          "mimeType": "text/plain",
+          "size": 37
+        }
+      ],
+      "pendingDelivery": true
+    }
+  ],
+  "deliveries": [
+    {
+      "submissionId": "235bc402-46e9-41a6-826e-cc5f887da6cc",
+      "destinationId": "session-proof",
+      "text": "Cold native sh Editedare text",
+      "items": [
+        {
+          "name": "alpha.txt",
+          "bytes": 38,
+          "copiedContent": "Native content URI fixture: alpha.txt\n"
+        }
+      ]
+    }
+  ]
+}

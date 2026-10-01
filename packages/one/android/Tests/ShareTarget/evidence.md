@@ -225,3 +225,20 @@ Output: `BUILD SUCCESSFUL in 9s`. Parsed JUnit XML: intake 17 tests, 0 failures,
 TESTED negative control: removed the `canSend` budget guard while retaining the ready-phase guard, then ran the model suite. Output: `7 tests completed, 1 failed`, specifically `editOverBudgetCannotReachAdapter`. Restored the real source, added the remaining recovery/storage checks and ran the final suite above. No assertion, retry or timeout was loosened.
 
 Limits: this proves native model and persistence behavior with real AndroidX ownership, not Activity recreation or visual Compose interaction on an emulator. There is still no on-device intent dispatch, keyboard/layout screenshot, or generated One project integration evidence. The native UI and full integration remain pending; this checkpoint is not an accepted runtime63 patch.
+
+## Device validation and keyboard correction (2026-10-01)
+
+The native Activity/device gap above is now verified on an exclusively claimed
+existing headless API 37 AVD. The device exposed a real IME/system-bar overlap;
+`OneShareTargetActivity` now applies native system-bar and IME insets. Cold/warm
+SEND and SEND_MULTIPLE, initial editable text, native session selection,
+keyboard-visible Send, error/retry with an identical id and payload, owned
+cancellation, retained sending across rotation and old/new warm-share isolation
+all ran on the actual composer. Native stub delivery markers are recorded.
+Compile and 27 relevant native tests passed after the source correction.
+
+See [the device evidence](runtime-evidence/README.md), inspected PNG/AX pairs,
+[q90 before/after WebP](runtime-evidence/native-keyboard-before-after.webp), and
+[own-session share receipt](runtime-evidence/tm-share-receipt.json).
+This verifies the standalone native harness; generated One integration and real
+TM credentials/transport remain the parent's separate scope.
