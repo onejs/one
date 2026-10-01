@@ -48,6 +48,11 @@ function TamaguiNativeSheetRenderer({
     )
   }
   const selectedDetent = detents?.[open ? position : 0]
+  // interactiveDismissDisabled blocks closing, while a singleton also blocks resizing.
+  const presentationDetents = useMemo(
+    () => (disableDrag && selectedDetent ? [selectedDetent] : detents),
+    [disableDrag, selectedDetent, detents]
+  )
   return (
     <View ref={ref} style={{ position: 'absolute', width: 0, height: 0, zIndex }}>
       <Sheet
@@ -55,10 +60,10 @@ function TamaguiNativeSheetRenderer({
         onIsPresentedChange={onOpenChange}
         onDidDismiss={onDismiss}
         fitToContents={fitToContents}
-        presentationDetents={detents}
-        selectedDetent={selectedDetent}
+        presentationDetents={presentationDetents}
+        selectedDetent={disableDrag ? undefined : selectedDetent}
         onSelectedDetentChange={
-          detents
+          detents && !disableDrag
             ? (detent) => {
                 const index = detents.findIndex(
                   (point) =>
