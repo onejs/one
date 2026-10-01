@@ -2,20 +2,28 @@
 // Apple-frameworks-only: no React/Expo/One Nitro runtime dependency.
 // Safe under APPLICATION_EXTENSION_API_ONLY.
 
+import Social
 import UIKit
-import UniformTypeIdentifiers
 
-/// The native compose controller: system compose text input, a native
-/// destination picker, attachment preview metadata, and Send/Cancel. Fully
-/// generic; it knows nothing about any particular app's transport. A
-/// generated principal class (see `OneShareTargetViewController`) supplies
+/// The native compose controller. Built on the system's own
+/// `SLComposeServiceViewController` (the same base the Xcode "Share
+/// Extension" template uses) rather than a bespoke `UIViewController`: it
+/// supplies a correctly chrome'd navigation bar with Cancel/Post out of the
+/// box, an editable text view preloaded with the share's initial text, and
+/// an automatic attachment preview -- all native behavior a custom
+/// `UIViewController` has to reimplement and can get wrong (a root
+/// `UIViewController` has no navigation bar at all unless something wraps it
+/// in a `UINavigationController`, which is what previously made Cancel/Post
+/// invisible).
+///
+/// All sequencing (intake, persist, send, cancel, and the races between
+/// them) lives in `OneShareTargetSubmissionCoordinator`, which this class
+/// only renders and forwards user actions to.
+///
+/// A generated principal class (see `OneShareTargetViewController`) supplies
 /// the adapter and configuration and is the one actually registered as the
 /// Share extension's principal class.
-///
-/// Depends only on Foundation/UIKit/UniformTypeIdentifiers and is safe to
-/// link `APPLICATION_EXTENSION_API_ONLY`: it never touches `UIApplication`,
-/// URL-opening, or any other app-only API.
-open class OneShareComposeViewController: UIViewController {
+open class OneShareComposeViewController: SLComposeServiceViewController {
   /// Must be overridden by the generated principal subclass.
   open var configuration: OneShareTargetConfiguration {
     fatalError("OneShareComposeViewController.configuration must be overridden")
@@ -27,262 +35,239 @@ open class OneShareComposeViewController: UIViewController {
     fatalError("OneShareComposeViewController.makeAdapter() must be overridden")
   }
 
-  // MARK: - State
-
   private let submissionId = UUID().uuidString
-  private var draftStore: OneShareTargetDraftStore?
-  private lazy var adapter: any OneShareTargetAdapter = makeAdapter()
-
-  private var destinations: [OneShareDestination] = []
-  private var selectedDestinationId: String?
-  private var copiedItems: [OneSharedItem] = []
-  private var accompanyingText: String = ""
-
-  private var intakeTask: Task<Void, Never>?
-  private var sendTask: Task<Void, Never>?
-  private let cancellationFlag = OneShareTargetCancellationFlag()
-  private var isSending = false
-
-  // MARK: - UI
-
-  private let textView = UITextView()
-  private let destinationTable = UITableView(frame: .zero, style: .plain)
-  private let attachmentTable = UITableView(frame: .zero, style: .plain)
-  private let errorLabel = UILabel()
-  private let activityIndicator = UIActivityIndicatorView(style: .medium)
-  private var sendButton: UIBarButtonItem!
-  private var cancelButton: UIBarButtonItem!
-
-  private static let attachmentCellId = "attachment"
-  private static let destinationCellId = "destination"
+  private var coordinator: OneShareTargetSubmissionCoordinator?
+  private var refreshTask: Task<Void, Never>?
 
   // MARK: - Lifecycle
 
-  override open func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = .systemBackground
-    buildUI()
-    beginLoading()
-  }
-
-  private func buildUI() {
-    title = "Share"
-    cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didTapCancel))
-    sendButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapSend))
-    sendButton.isEnabled = false
-    navigationItem.leftBarButtonItem = cancelButton
-    navigationItem.rightBarButtonItem = sendButton
-
-    textView.font = .preferredFont(forTextStyle: .body)
-    textView.delegate = self
-    textView.translatesAutoresizingMaskIntoConstraints = false
-
-    destinationTable.dataSource = self
-    destinationTable.delegate = self
-    destinationTable.register(UITableViewCell.self, forCellReuseIdentifier: Self.destinationCellId)
-    destinationTable.translatesAutoresizingMaskIntoConstraints = false
-
-    attachmentTable.dataSource = self
-    attachmentTable.delegate = self
-    attachmentTable.isScrollEnabled = false
-    attachmentTable.register(UITableViewCell.self, forCellReuseIdentifier: Self.attachmentCellId)
-    attachmentTable.translatesAutoresizingMaskIntoConstraints = false
-
-    errorLabel.numberOfLines = 0
-    errorLabel.textColor = .systemRed
-    errorLabel.font = .preferredFont(forTextStyle: .footnote)
-    errorLabel.translatesAutoresizingMaskIntoConstraints = false
-
-    activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-
-    let stack = UIStackView(arrangedSubviews: [textView, attachmentTable, errorLabel, destinationTable])
-    stack.axis = .vertical
-    stack.spacing = 12
-    stack.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(stack)
-    view.addSubview(activityIndicator)
-
-    NSLayoutConstraint.activate([
-      stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-      stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-      stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-      stack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
-      textView.heightAnchor.constraint(equalToConstant: 120),
-      attachmentTable.heightAnchor.constraint(equalToConstant: 88),
-      activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-    ])
-  }
-
-  // MARK: - Loading
-
-  private func beginLoading() {
-    activityIndicator.startAnimating()
+  open override func presentationAnimationDidFinish() {
+    super.presentationAnimationDidFinish()
 
     let extensionItems = (extensionContext?.inputItems as? [NSExtensionItem]) ?? []
     let attachments = extensionItems.flatMap { $0.attachments ?? [] }
-    let text = extensionItems.compactMap { $0.attributedContentText?.string }.first
+    let initialText = extensionItems.compactMap { $0.attributedContentText?.string }.first
 
-    intakeTask = Task { [weak self] in
-      guard let self else { return }
-      await self.runIntake(attachments: attachments, accompanyingText: text)
+    // Shown immediately, before intake finishes: the user's own typed
+    // caption (if any) is never held back waiting on file copies. Never
+    // re-injected with a URL/file representation afterwards -- those travel
+    // separately in the submission's `items`, so there is exactly one place
+    // this text appears, not a duplicate line repeating it.
+    if let initialText {
+      textView.text = initialText
     }
-  }
 
-  private func runIntake(attachments: [NSItemProvider], accompanyingText: String?) async {
-    do {
-      let store = try OneShareTargetDraftStore(appGroupIdentifier: configuration.appGroupIdentifier)
-      draftStore = store
-      let itemsDirectory = try await store.itemsDirectory(forSubmissionId: submissionId)
-
-      let intake = OneShareTargetIntake(configuration: configuration)
-      let items = try await intake.intake(
-        attachments: attachments,
-        accompanyingText: accompanyingText,
-        destinationDirectory: itemsDirectory,
-        isCancelled: { [cancellationFlag] in cancellationFlag.isCancelled }
-      )
-
-      if Task.isCancelled || cancellationFlag.isCancelled { return }
-
-      let destinations = try await adapter.destinations()
-
-      self.copiedItems = items
-      self.accompanyingText = accompanyingText ?? ""
-      self.destinations = destinations
-      self.selectedDestinationId = destinations.first?.id
-
-      try await persistDraft()
-
-      activityIndicator.stopAnimating()
-      attachmentTable.reloadData()
-      destinationTable.reloadData()
-      updateSendEnabled()
-    } catch is CancellationError {
-      // cancellation already handled by didTapCancel
-    } catch let error as OneShareTargetError where error == .intakeCancelled {
-      // cancellation already handled by didTapCancel
-    } catch {
-      activityIndicator.stopAnimating()
-      showError("Couldn't prepare this share: \(error.localizedDescription)")
-    }
-  }
-
-  private func persistDraft() async throws {
-    guard let draftStore else { return }
-    let draft = OneShareTargetDraft(
-      id: submissionId,
-      destinationId: selectedDestinationId,
-      text: accompanyingText,
-      items: copiedItems
-    )
-    try await draftStore.save(draft)
-  }
-
-  private func updateSendEnabled() {
-    sendButton.isEnabled = !isSending && selectedDestinationId != nil && !destinations.isEmpty
-  }
-
-  private func showError(_ message: String) {
-    errorLabel.text = message
-  }
-
-  // MARK: - Actions
-
-  @objc private func didTapCancel() {
-    cancellationFlag.cancel()
-    intakeTask?.cancel()
-    sendTask?.cancel()
-    Task { [weak self] in
-      guard let self else { return }
-      try? await self.draftStore?.discard(submissionId: self.submissionId)
-      self.extensionContext?.cancelRequest(
-        withError: NSError(domain: "OneShareTarget", code: NSUserCancelledError)
-      )
-    }
-  }
-
-  @objc private func didTapSend() {
-    guard let destinationId = selectedDestinationId, !isSending else { return }
-    isSending = true
-    updateSendEnabled()
-    errorLabel.text = nil
-    activityIndicator.startAnimating()
-
-    let submission = OneShareSubmission(
-      id: submissionId,
-      destinationId: destinationId,
-      text: accompanyingText,
-      items: copiedItems
-    )
-
-    sendTask = Task { [weak self] in
+    refreshTask = Task { [weak self] in
       guard let self else { return }
       do {
-        try await self.adapter.send(submission: submission)
-        // success: remove only this delivered draft, then complete the host request.
-        try? await self.draftStore?.discard(submissionId: self.submissionId)
-        self.activityIndicator.stopAnimating()
-        self.extensionContext?.completeRequest(returningItems: nil)
+        let store = try OneShareTargetDraftStore(appGroupIdentifier: self.configuration.appGroupIdentifier)
+        let coordinator = OneShareTargetSubmissionCoordinator(
+          submissionId: self.submissionId,
+          configuration: self.configuration,
+          adapter: self.makeAdapter(),
+          draftStore: store
+        )
+        self.coordinator = coordinator
+        await coordinator.load(attachments: attachments, accompanyingText: initialText).value
+        await self.refresh()
       } catch {
-        // failure: retain the draft/UI so the user can retry.
-        self.isSending = false
-        self.activityIndicator.stopAnimating()
-        self.updateSendEnabled()
-        self.showError("Couldn't send: \(error.localizedDescription)")
+        self.placeholder = "Couldn't prepare this share: \(error.localizedDescription)"
+        self.validateContent()
       }
     }
   }
-}
 
-// MARK: - UITextViewDelegate
+  @MainActor
+  private func refresh() async {
+    guard let coordinator else { return }
+    let state = await coordinator.state
+    if state == .failed {
+      placeholder = await coordinator.lastError ?? "Couldn't load destinations."
+    }
+    isSendableSnapshot = await coordinator.isSendable
+    let selectedId = await coordinator.selectedDestinationId
+    let destinations = await coordinator.destinations
+    destinationSummarySnapshot = destinations.first(where: { $0.id == selectedId })?.title ?? "Choose…"
+    validateContent()
+    reloadConfigurationItems()
+  }
 
-extension OneShareComposeViewController: UITextViewDelegate {
-  public func textViewDidChange(_ textView: UITextView) {
-    accompanyingText = textView.text
-    Task { try? await self.persistDraft() }
+  // MARK: - SLComposeServiceViewController overrides
+
+  open override func isContentValid() -> Bool {
+    // `isContentValid()` is called synchronously by the system and cannot
+    // itself await the actor; `isSendableSnapshot` is kept current by
+    // `textViewDidChange` and `refresh()` instead of being read live here.
+    guard coordinator != nil else { return false }
+    return isSendableSnapshot
+  }
+
+  /// Mirrors `coordinator.isSendable`, updated whenever the coordinator's
+  /// state could have changed it. `isContentValid()` must return
+  /// synchronously, which an actor-isolated read cannot do.
+  private var isSendableSnapshot = false
+
+  open override func textViewDidChange(_ textView: UITextView) {
+    super.textViewDidChange(textView)
+    guard let coordinator else { return }
+    let text = textView.text ?? ""
+    Task {
+      await coordinator.updateText(text)
+      self.isSendableSnapshot = await coordinator.isSendable
+      self.validateContent()
+    }
+  }
+
+  open override func configurationItems() -> [Any]! {
+    guard coordinator != nil else { return [] }
+    let item = SLComposeSheetConfigurationItem()!
+    item.title = "Send To"
+    // `.subtitle`-style cells (used by the destination picker below) are
+    // what let this item's value actually show; a default-style
+    // `UITableViewCell` has no detail label to show one. The compose
+    // controller already reads `item.value` for the row text, so this item
+    // itself just needs a synchronous snapshot kept current.
+    item.value = destinationSummarySnapshot
+    item.tapHandler = { [weak self] in
+      self?.presentDestinationPicker()
+    }
+    return [item]
+  }
+
+  /// Synchronous snapshot of the selected destination's display text,
+  /// refreshed alongside `isSendableSnapshot`.
+  private var destinationSummarySnapshot = "Loading…"
+
+  private func presentDestinationPicker() {
+    guard let coordinator else { return }
+    Task {
+      let destinations = await coordinator.destinations
+      let selectedId = await coordinator.selectedDestinationId
+      await MainActor.run { [weak self] in
+        guard let self else { return }
+        let picker = DestinationListViewController(destinations: destinations, selectedId: selectedId) { [weak self] id in
+          guard let self, let coordinator = self.coordinator else { return }
+          Task {
+            await coordinator.selectDestination(id)
+            self.destinationSummarySnapshot = await coordinator.destinations
+              .first(where: { $0.id == id })?.title ?? "Choose…"
+            self.isSendableSnapshot = await coordinator.isSendable
+            await MainActor.run {
+              self.validateContent()
+              self.reloadConfigurationItems()
+              self.popConfigurationViewController()
+            }
+          }
+        }
+        self.pushConfigurationViewController(picker)
+      }
+    }
+  }
+
+  open override func didSelectPost() {
+    guard let coordinator else { return }
+    // Disabling both buttons (not just relying on the coordinator's own
+    // refusal) is what keeps a submission that may already be accepted from
+    // ever being presented as cancellable: the control itself goes away.
+    navigationItem.leftBarButtonItem?.isEnabled = false
+    navigationItem.rightBarButtonItem?.isEnabled = false
+    isModalInPresentation = true
+
+    Task {
+      let result = await coordinator.send()
+      switch result {
+      case .success:
+        self.extensionContext?.completeRequest(returningItems: nil)
+      case .failure(let error):
+        self.isSendableSnapshot = await coordinator.isSendable
+        await MainActor.run {
+          self.navigationItem.leftBarButtonItem?.isEnabled = true
+          self.navigationItem.rightBarButtonItem?.isEnabled = true
+          self.isModalInPresentation = false
+          self.validateContent()
+          self.presentSendErrorAlert(error)
+        }
+      }
+    }
+  }
+
+  open override func didSelectCancel() {
+    guard let coordinator else {
+      extensionContext?.cancelRequest(withError: NSError(domain: "OneShareTarget", code: NSUserCancelledError))
+      return
+    }
+    navigationItem.leftBarButtonItem?.isEnabled = false
+    navigationItem.rightBarButtonItem?.isEnabled = false
+
+    Task {
+      // Refused by the coordinator if a send is in flight/already accepted;
+      // in that case this simply re-enables the UI rather than dismissing,
+      // since the system's own Cancel tap already happened.
+      let cancelled = await coordinator.cancel()
+      if cancelled {
+        self.extensionContext?.cancelRequest(withError: NSError(domain: "OneShareTarget", code: NSUserCancelledError))
+      } else {
+        await MainActor.run {
+          self.navigationItem.leftBarButtonItem?.isEnabled = true
+          self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+      }
+    }
+  }
+
+  private func presentSendErrorAlert(_ error: Error) {
+    let alert = UIAlertController(
+      title: "Couldn't send",
+      message: error.localizedDescription,
+      preferredStyle: .alert
+    )
+    alert.addAction(UIAlertAction(title: "OK", style: .default))
+    present(alert, animated: true)
   }
 }
 
-// MARK: - UITableViewDataSource / UITableViewDelegate
+/// A destination's title and subtitle, pushed by `configurationItems()`'s
+/// tap handler. Uses `.subtitle`-style cells so a destination's `subtitle`
+/// (staleness, metadata) is actually visible -- a default-style
+/// `UITableViewCell` has no detail text label to show it in.
+private final class DestinationListViewController: UITableViewController {
+  private let destinations: [OneShareDestination]
+  private let selectedId: String?
+  private let onSelect: (String) -> Void
+  private static let cellId = "destination"
 
-extension OneShareComposeViewController: UITableViewDataSource, UITableViewDelegate {
-  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    tableView === destinationTable ? destinations.count : copiedItems.count
+  init(destinations: [OneShareDestination], selectedId: String?, onSelect: @escaping (String) -> Void) {
+    self.destinations = destinations
+    self.selectedId = selectedId
+    self.onSelect = onSelect
+    super.init(style: .plain)
+    title = "Send To"
   }
 
-  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if tableView === destinationTable {
-      let cell = tableView.dequeueReusableCell(withIdentifier: Self.destinationCellId, for: indexPath)
-      let destination = destinations[indexPath.row]
-      cell.textLabel?.text = destination.title
-      cell.detailTextLabel?.text = destination.subtitle
-      cell.accessoryType = destination.id == selectedDestinationId ? .checkmark : .none
-      return cell
-    }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) is not used")
+  }
 
-    let cell = tableView.dequeueReusableCell(withIdentifier: Self.attachmentCellId, for: indexPath)
-    switch copiedItems[indexPath.row] {
-    case .text(let value):
-      cell.textLabel?.text = value
-      cell.detailTextLabel?.text = "Text"
-    case .url(let value):
-      cell.textLabel?.text = value.absoluteString
-      cell.detailTextLabel?.text = "Link"
-    case .file(let file):
-      cell.textLabel?.text = file.name
-      cell.detailTextLabel?.text = "\(file.mimeType) · \(ByteCountFormatter.string(fromByteCount: Int64(file.byteCount), countStyle: .file))"
-    }
-    cell.selectionStyle = .none
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: Self.cellId)
+  }
+
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    destinations.count
+  }
+
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: Self.cellId)
+    let destination = destinations[indexPath.row]
+    cell.textLabel?.text = destination.title
+    cell.detailTextLabel?.text = destination.subtitle
+    cell.accessoryType = destination.id == selectedId ? .checkmark : .none
     return cell
   }
 
-  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    guard tableView === destinationTable else { return }
-    selectedDestinationId = destinations[indexPath.row].id
-    tableView.reloadData()
-    updateSendEnabled()
-    Task { try? await self.persistDraft() }
+    onSelect(destinations[indexPath.row].id)
   }
 }
