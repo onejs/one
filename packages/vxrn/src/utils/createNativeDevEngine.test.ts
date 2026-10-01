@@ -1872,8 +1872,14 @@ globalThis.minifyProbe = describeHeader()`
   }
 
   function runFixture(code: string) {
-    const context: Record<string, unknown> = { console }
-    runInNewContext(code, context)
+    const context = createContext({ console })
+    runInContext(code, context)
+    expect(
+      runInContext(
+        'Object.getOwnPropertyDescriptor(globalThis, "describeHeader")',
+        context
+      )
+    ).toBeUndefined()
     return Reflect.get(context, 'minifyProbe')
   }
 

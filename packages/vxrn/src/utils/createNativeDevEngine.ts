@@ -445,28 +445,13 @@ export function postProcessNativeBundle(code: string): string {
 }
 
 /**
- * Wrap the dev bundle body in a function scope so module top-level
- * `var`/`function` declarations don't leak onto the global object.
+ * wrap dev module declarations in a function scope. script-level declarations
+ * create global properties that can block react native's lazy polyfills.
+ * production uses rolldown's iife format; the dev engine needs this wrapper.
  *
- * rolldown's dev() emits the bundle as a *script*. A top-level `var` in a
- * script creates a NON-configurable property on the global object. RN's
- * `Libraries/Network/fetch.js` declares `var ... Headers, Request, ...`, so
- * `global.Headers`/`global.Request` become non-configurable. RN's `setUpXHR`
- * then calls `polyfillGlobal('Headers', ...)`, whose `polyfillObjectProperty`
- * does `Object.defineProperty(global, 'Headers', { configurable: true, ... })`
- * — which throws "Cannot redefine property" and RN converts to
- * `console.error('Failed to set polyfill. Headers is not configurable.')`.
- * In dev that console.error becomes a blocking LogBox redbox, so the app never
- * mounts (every appium navigation then times out). The prod build is immune:
- * its modules are wrapped in closures (no global leak) and it has no LogBox.
- *
- * Wrapping everything after the prelude in an IIFE makes those module vars
- * function-scoped, matching prod, so `polyfillGlobal` succeeds. The prelude
- * stays at script scope because it intentionally installs globals
- * (`globalThis.global`/`__DEV__`/`process`/...). Intentional globals survive:
- * the runtime is assigned via `globalThis.__rolldown_runtime__ = ...`, and HMR
- * updates run through a *direct* `eval` inside this scope, so they still see
- * the closure's `__esmMin`/`__toCommonJS`/module bindings.
+ * keep the prelude at script scope because it installs intentional globals.
+ * the dev runtime assigns itself to globalThis, and hmr's direct eval stays
+ * inside this closure so it can reach module bindings and runtime helpers.
  */
 export function wrapNativeBundleModuleScope(code: string): string {
   // the prelude (intro) ends right before the rolldown runtime region
@@ -960,7 +945,11 @@ export async function buildNativeBundle(
       // last, so it sees what every other plugin produced
       nativeBundlePostProcessPlugin(),
     ],
-    output: getNativeOutputOptions(prelude, sourcemap, minify),
+    output: {
+      ...getNativeOutputOptions(prelude, sourcemap, minify),
+      // native hosts evaluate a script; module bindings must stay out of globals.
+      format: 'iife',
+    },
   })
   const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
 
