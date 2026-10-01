@@ -29,6 +29,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeSheetEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSheetDismiss({.revision = (int)revision});
     };
+    _sheet.onDidDismiss = ^(NSInteger revision, NSInteger presentationId) {
+      OneNativeSheetComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeSheetEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeSheetDidDismiss({.revision = (int)revision, .presentationId = (int)presentationId});
+    };
     _sheet.onDetentChange = ^(NSString *type, double value, NSInteger eventCount, NSInteger revision) {
       OneNativeSheetComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -65,7 +71,7 @@ using namespace facebook::react;
     [_sheet setDetents:detents];
     _detentsDirty = NO;
   }
-  [_sheet configure:next.isPresented acknowledgedEvent:next.acknowledgedEvent revision:next.revision
+  [_sheet configure:next.isPresented acknowledgedEvent:next.acknowledgedEvent revision:next.revision presentationId:next.presentationId
     fitToContents:next.fitToContents
     selectedDetentType:RCTNSStringFromString(next.selectedDetentType)
     selectedDetentValue:next.selectedDetentValue
