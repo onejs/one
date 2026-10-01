@@ -497,17 +497,21 @@ export function createFileSystemRouterPlugin(
           const routeFile = path.join(routerRoot, route.file)
 
           // this will remove all loaders
-          let transformedJS = (await server.transformRequest(routeFile))?.code
+          const transformedJS = (await server.transformRequest(routeFile))?.code
           if (!transformedJS) {
             throw new Error(`No transformed js returned`)
           }
+
+          const platform = url.searchParams.get('platform')
 
           // the client tree-shake plugin replaces loader exports with stubs
           // like "export function loader()". if no stub exists, this route has
           // no loader - skip the SSR module import to avoid evaluating modules
           // with potentially SSR-incompatible deps (e.g. tamagui in SSR)
           if (!/export function loader\(\)/.test(transformedJS)) {
-            return transformedJS
+            return platform === 'ios' || platform === 'android' || platform === 'native'
+              ? 'exports.loader = () => undefined;'
+              : 'export function loader() { return undefined }'
           }
 
           const exported = await runner.import(routeFile)
@@ -571,8 +575,6 @@ export function createFileSystemRouterPlugin(
             }
           }
 
-          const platform = url.searchParams.get('platform')
-
           if (platform === 'ios' || platform === 'android' || platform === 'native') {
             // Need to transpile to CommonJS for React Native
 
@@ -587,13 +589,8 @@ export function createFileSystemRouterPlugin(
             return `exports.loader = () => (${JSON.stringify(loaderData)});`
           }
 
-          if (loaderData) {
-            // the client only reads loader() off this module, so serve the data
-            // alone instead of the whole route module with its stub rewritten
-            return `export function loader(){return ${JSON.stringify(loaderData)}}`
-          }
-
-          return transformedJS
+          // the loader endpoint never evaluates the client page module.
+          return `export function loader(){return ${JSON.stringify(loaderData)}}`
         },
 
         async handleAPI({ route }) {
