@@ -20,7 +20,10 @@ import {
 // the compose leaves read the spec through codegenNativeComponent and a context, so the test
 // renders them: the mock turns the native node into an element the renderer can mount, and the
 // assertions read the props that reach it.
-vi.mock('react-native', () => ({ Platform: { OS: 'android' } }))
+vi.mock('react-native', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-native')>()
+  return { Platform: { OS: 'android' }, StyleSheet: actual.StyleSheet }
+})
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', async () => {
   const { createElement } = await import('react')
   return { default: () => (props: any) => createElement('div', props) }
