@@ -1,0 +1,12 @@
+{
+  "destinationId": "team",
+  "text": "Check out One's share target\nCheck out One's share target",
+  "id": "8C25CA9A-3CEC-4EA3-B4E1-2E0C66F35599",
+  "items": [
+    {
+      "url": "https://example.com/one-share-target",
+      "kind": "url"
+    }
+  ],
+  "createdAt": "2026-10-01T19:57:15Z"
+}

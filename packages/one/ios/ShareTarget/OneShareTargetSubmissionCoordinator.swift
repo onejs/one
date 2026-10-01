@@ -1,221 +1,249 @@
-// Standalone native contract for a One share-target adapter.
-// Apple-frameworks-only: no React/Expo/One Nitro runtime dependency.
-// Safe under APPLICATION_EXTENSION_API_ONLY.
-
 import Foundation
 
-/// The lifecycle of one compose session. Every public action on
-/// `OneShareTargetSubmissionCoordinator` is gated by this state: there is no
-/// path to send twice, to cancel a delivery that may already be accepted, or
-/// to edit after the draft has been discarded.
 public enum OneShareComposeState: Equatable, Sendable {
-  case loading
-  /// Intake and `destinations()` both succeeded; the user may edit, pick a
-  /// destination, send, or cancel.
-  case ready
-  /// Loading finished but `destinations()` failed; there is nothing to send
-  /// to, but the already-copied items remain persisted and cancel still works.
-  case failed
-  case sending
-  case cancelling
-  case delivered
-  case cancelled
+  case loading, ready, failed, sending, cancelling, delivered, cancelled
 }
 
-/// Orchestrates one share submission's lifecycle (intake, edit, send,
-/// cancel) independent of any UI framework, so the sequencing that matters
-/// most here — the races a Share extension's abrupt teardown invites — can
-/// be exercised by a real test instead of only typechecked.
-///
-/// Three invariants this type exists to hold:
-/// - Cancelling awaits the in-flight load (intake copy + persist) before
-///   discarding, so a persist that finishes after a naive discard can never
-///   recreate a cancelled draft.
-/// - Once a submission may have been accepted (`send()` has been called),
-///   no later action can discard or overwrite its draft except the send's
-///   own completion; a concurrent `cancel()` is refused outright.
-/// - A `destinations()` failure never loses already-copied items: they are
-///   persisted before `destinations()` runs, not after.
+/// One durable compose session. Writes are ordered snapshots; terminal
+/// deletion joins the same queue, so no suspended save can recreate a draft.
 public actor OneShareTargetSubmissionCoordinator {
   public let submissionId: String
   private let configuration: OneShareTargetConfiguration
   private let adapter: any OneShareTargetAdapter
   private let draftStore: OneShareTargetDraftStore
-  private let intake: OneShareTargetIntake
   private let cancellationFlag = OneShareTargetCancellationFlag()
+  public private(set) var state: OneShareComposeState = .loading {
+    didSet {
+      let matching = stateWaiters.filter { $0.0 == state }
+      stateWaiters.removeAll { $0.0 == state }
+      matching.forEach { $0.1.resume() }
+    }
+  }
+  private var stateWaiters: [(OneShareComposeState, CheckedContinuation<Void, Never>)] = []
 
-  public private(set) var state: OneShareComposeState = .loading
+  // Event barrier for deterministic lifecycle probes; no scheduling guesses.
+  func waitForState(_ expected: OneShareComposeState) async {
+    if state == expected { return }
+    await withCheckedContinuation { stateWaiters.append((expected, $0)) }
+  }
   public private(set) var destinations: [OneShareDestination] = []
   public private(set) var selectedDestinationId: String?
   public private(set) var items: [OneSharedItem] = []
-  public private(set) var text: String = ""
+  public private(set) var text = ""
   public private(set) var lastError: String?
-
-  /// Once true, no persist may run: the draft has been (or is being)
-  /// discarded by a cancel or a successful send.
-  private var isTerminal = false
-
   private var loadTask: Task<Void, Never>?
-  private var persistTask: Task<Void, Never>?
+  private var writeTask: Task<Void, Error>?
+  private var destinationRequest: DestinationRequest?
+  private var intakeCompleted = false
+  private var textWasEdited = false
+  private var isTerminal = false
+  private var attemptedSubmission: OneShareSubmission?
+  public var isDeliveryPending: Bool { attemptedSubmission != nil }
 
-  public init(
-    submissionId: String = UUID().uuidString,
-    configuration: OneShareTargetConfiguration,
-    adapter: any OneShareTargetAdapter,
-    draftStore: OneShareTargetDraftStore
-  ) {
+  public init(submissionId: String = UUID().uuidString,
+              configuration: OneShareTargetConfiguration,
+              adapter: any OneShareTargetAdapter, draftStore: OneShareTargetDraftStore) {
     self.submissionId = submissionId
     self.configuration = configuration
     self.adapter = adapter
     self.draftStore = draftStore
-    self.intake = OneShareTargetIntake(configuration: configuration)
-  }
-
-  public var isSendable: Bool {
-    state == .ready
-      && selectedDestinationId != nil
-      && !destinations.isEmpty
-      && text.utf8.count <= configuration.maxItemBytes
   }
 
   public var textByteCount: Int { text.utf8.count }
-  public var textByteBudget: Int { configuration.maxItemBytes }
+  public var textByteBudget: Int {
+    max(0, min(configuration.maxItemBytes, configuration.maxTotalBytes - attachmentBytes))
+  }
+  private var attachmentBytes: Int { items.reduce(0) { $0 + OneShareTargetIntake.byteCount(of: $1) } }
+  public var isSendable: Bool {
+    if attemptedSubmission != nil { return state == .ready }
+    return state == .ready && destinations.contains(where: { $0.id == selectedDestinationId })
+      && (configuration.acceptsText || text.isEmpty)
+      && textByteCount <= textByteBudget
+      && items.count + (text.isEmpty ? 0 : 1) <= configuration.maxItems
+      && items.allSatisfy { OneShareTargetIntake.byteCount(of: $0) <= configuration.maxItemBytes }
+      && attachmentBytes <= configuration.maxTotalBytes
+  }
 
-  // MARK: - Load
-
-  /// Starts intake + destination loading. A second call while a load is
-  /// already in flight (or finished) returns the same task rather than
-  /// starting a competing one.
   @discardableResult
   public func load(attachments: [NSItemProvider], accompanyingText: String?) -> Task<Void, Never> {
-    if let loadTask { return loadTask }
-    let task = Task { [weak self] () -> Void in
-      await self?.runLoad(attachments: attachments, accompanyingText: accompanyingText)
-    }
+    if let loadTask, state != .failed { return loadTask }
+    guard state == .loading || state == .failed else { return Task {} }
+    state = .loading
+    lastError = nil
+    let task = Task { await self.runLoad(attachments: attachments, accompanyingText: accompanyingText) }
     loadTask = task
     return task
   }
 
   private func runLoad(attachments: [NSItemProvider], accompanyingText: String?) async {
     do {
-      let itemsDirectory = try await draftStore.itemsDirectory(forSubmissionId: submissionId)
-      let copied = try await intake.intake(
-        attachments: attachments,
-        accompanyingText: accompanyingText,
-        destinationDirectory: itemsDirectory,
-        isCancelled: { [cancellationFlag] in cancellationFlag.isCancelled }
-      )
+      if !intakeCompleted {
+        if let restored = try await draftStore.load(submissionId: submissionId) {
+          items = restored.items
+          if !textWasEdited { text = restored.text }
+          selectedDestinationId = restored.destinationId
+          if restored.pendingDelivery == true, let destinationId = restored.destinationId {
+            attemptedSubmission = OneShareSubmission(id: restored.id, destinationId: destinationId, text: restored.text, items: restored.items)
+            text = restored.text
+            textWasEdited = false
+          }
+        } else {
+          let directory = try await draftStore.itemsDirectory(forSubmissionId: submissionId)
+          let copied = try await OneShareTargetIntake(configuration: configuration).intake(
+            attachments: attachments, accompanyingText: accompanyingText, destinationDirectory: directory,
+            isCancelled: { [cancellationFlag] in cancellationFlag.isCancelled })
+          if cancellationFlag.isCancelled { return }
+          // Text belongs to the editable submission, exactly once. URLs stay typed
+          // attachments with the system preview, rather than becoming text copies.
+          let textParts = copied.compactMap { item -> String? in
+            if case .text(let value) = item { return value }; return nil
+          }
+          let initial = textParts.joined(separator: "\n")
+          items = copied.filter { if case .text = $0 { return false }; return true }
+          if !textWasEdited { text = initial }
+        }
+        if cancellationFlag.isCancelled { return }
+        intakeCompleted = true
+        try await persistNow()
+      }
       if cancellationFlag.isCancelled { return }
-
-      items = copied
-      text = accompanyingText ?? ""
-
-      // Persist before destinations() runs: a destinations() failure below
-      // must still leave a recoverable draft for the items already copied
-      // to disk, never a silent drop of work already done.
+      // A recovered attempt already has a fixed destination. Listing failure
+      // must not strand its exact retry, or change its attempted payload.
+      if attemptedSubmission != nil { state = .ready; return }
+      let request = DestinationRequest()
+      destinationRequest = request
+      let adapter = adapter
+      // Unstructured intentionally: cancellation does not await an adapter
+      // that ignores cancellation. Only the winning result can update state.
+      Task {
+        do { request.resolve(.success(try await adapter.destinations())) }
+        catch { request.resolve(.failure(error)) }
+      }
+      let loaded = try await request.value()
+      destinationRequest = nil
+      if cancellationFlag.isCancelled { return }
+      destinations = loaded
+      if !loaded.contains(where: { $0.id == selectedDestinationId }) {
+        selectedDestinationId = loaded.first?.id
+      }
       try await persistNow()
       if cancellationFlag.isCancelled { return }
-
-      do {
-        let loadedDestinations = try await adapter.destinations()
-        if cancellationFlag.isCancelled { return }
-        destinations = loadedDestinations
-        selectedDestinationId = loadedDestinations.first?.id
-        try await persistNow()
-        state = .ready
-      } catch {
-        lastError = error.localizedDescription
-        state = .failed
-      }
-    } catch is CancellationError {
-    } catch let error as OneShareTargetError where error == .intakeCancelled {
+      state = .ready
     } catch {
+      guard !cancellationFlag.isCancelled else { return }
       lastError = error.localizedDescription
       state = .failed
     }
   }
 
-  // MARK: - Edit
-
   public func updateText(_ newText: String) {
-    guard state == .ready else { return }
+    guard attemptedSubmission == nil, state == .loading || state == .ready || state == .failed else { return }
+    textWasEdited = true
     text = newText
-    schedulePersist()
+    if intakeCompleted { _ = enqueueSave() }
   }
 
   public func selectDestination(_ id: String) {
-    guard state == .ready, destinations.contains(where: { $0.id == id }) else { return }
+    guard attemptedSubmission == nil, state == .ready, destinations.contains(where: { $0.id == id }) else { return }
     selectedDestinationId = id
-    schedulePersist()
+    _ = enqueueSave()
   }
 
-  private func schedulePersist() {
-    persistTask?.cancel()
-    persistTask = Task { [weak self] () -> Void in
-      try? await self?.persistNow()
+  private func enqueueSave() -> Task<Void, Error>? {
+    guard !isTerminal else { return nil }
+    let previous = writeTask
+    let store = draftStore
+    let draft = OneShareTargetDraft(id: submissionId, destinationId: selectedDestinationId, text: text, items: items, pendingDelivery: attemptedSubmission == nil ? nil : true)
+    let task = Task {
+      // A later full snapshot can recover from a prior failed write.
+      _ = try? await previous?.value
+      try await store.save(draft)
     }
+    writeTask = task
+    return task
   }
 
-  /// Internal rather than private so a test can call it directly to prove
-  /// the `isTerminal` guard below: the real race this guards against (a
-  /// persist landing on the `draftStore` actor after a concurrent cancel/
-  /// send has already discarded it) depends on exact scheduling between two
-  /// actors, which isn't something a test can force deterministically --
-  /// calling this after cancel()/send() exercises the same guard check a
-  /// real race would hit.
-  func persistNow() async throws {
-    // Re-checked here (not just by callers) so a persist queued before a
-    // cancel/send landed, but executed after, is still refused: isTerminal
-    // is read fresh at the moment of the actual write, after any awaits.
-    guard !isTerminal else { return }
-    let draft = OneShareTargetDraft(id: submissionId, destinationId: selectedDestinationId, text: text, items: items)
-    try await draftStore.save(draft)
+  private func persistNow() async throws {
+    try await enqueueSave()?.value
   }
 
-  // MARK: - Send
+  private func discard() async throws {
+    isTerminal = true
+    _ = try? await writeTask?.value
+    try await draftStore.discard(submissionId: submissionId)
+  }
 
-  /// Attempts delivery. Once this enters `.sending`, `cancel()` is refused
-  /// until it resolves: a submission that may already be accepted on the far
-  /// end must never be presented as cancellable.
   @discardableResult
   public func send() async -> Result<Void, Error> {
-    guard state == .ready, let destinationId = selectedDestinationId else {
+    guard isSendable, let destinationId = selectedDestinationId else {
       return .failure(OneShareTargetError.invalidState)
     }
     state = .sending
-    let submission = OneShareSubmission(id: submissionId, destinationId: destinationId, text: text, items: items)
+    let submission = attemptedSubmission ?? OneShareSubmission(id: submissionId, destinationId: destinationId, text: text, items: items)
+    // A thrown adapter result cannot distinguish rejection from lost
+    // acknowledgement. Journal before calling it and freeze exact retries.
+    attemptedSubmission = submission
     do {
+      // Save the exact submitted snapshot before the adapter can accept it.
+      try await persistNow()
       try await adapter.send(submission: submission)
-      isTerminal = true
-      try? await draftStore.discard(submissionId: submissionId)
+      try await discard()
       state = .delivered
+      lastError = nil
       return .success(())
     } catch {
-      guard state == .sending else { return .failure(error) }
-      state = .ready
+      // Once accepted, deletion failure must not invite duplicate delivery.
+      state = isTerminal ? .delivered : .ready
       lastError = error.localizedDescription
       return .failure(error)
     }
   }
 
-  // MARK: - Cancel
-
-  /// Cancels loading or discards a ready/failed draft. Refused once sending
-  /// may have been accepted, or after a terminal state is already reached.
-  /// Awaits the in-flight load and any queued persist before discarding, so
-  /// neither can write a file after this call has removed the draft
-  /// directory — the fix for a cancel that raced a pending copy/persist and
-  /// ended up recreating the "cancelled" draft.
   @discardableResult
   public func cancel() async -> Bool {
-    guard state == .loading || state == .ready || state == .failed else { return false }
+    guard attemptedSubmission == nil, state == .loading || state == .ready || state == .failed else { return false }
     state = .cancelling
     cancellationFlag.cancel()
+    destinationRequest?.resolve(.failure(CancellationError()))
+    // Provider callbacks must finish copying before deleting their directory.
     await loadTask?.value
-    await persistTask?.value
-    isTerminal = true
-    try? await draftStore.discard(submissionId: submissionId)
-    state = .cancelled
-    return true
+    // Recovery can discover a journaled attempt after cancellation began.
+    // Its ambiguous delivery is still protected from terminal deletion.
+    if attemptedSubmission != nil { state = .ready; return false }
+    do {
+      try await discard()
+      state = .cancelled
+      return true
+    } catch {
+      lastError = error.localizedDescription
+      state = .failed
+      return false
+    }
+  }
+}
+
+/// A one-shot event race, with no polling or timeout. Late adapter results
+/// have no reference to coordinator state or disk and are safely ignored.
+private final class DestinationRequest: @unchecked Sendable {
+  private let lock = NSLock()
+  private var result: Result<[OneShareDestination], Error>?
+  private var continuation: CheckedContinuation<[OneShareDestination], Error>?
+
+  func resolve(_ result: Result<[OneShareDestination], Error>) {
+    lock.lock()
+    guard self.result == nil else { lock.unlock(); return }
+    self.result = result
+    let pending = continuation
+    continuation = nil
+    lock.unlock()
+    pending?.resume(with: result)
+  }
+
+  func value() async throws -> [OneShareDestination] {
+    try await withCheckedThrowingContinuation { continuation in
+      lock.lock()
+      if let result { lock.unlock(); continuation.resume(with: result) }
+      else { self.continuation = continuation; lock.unlock() }
+    }
   }
 }

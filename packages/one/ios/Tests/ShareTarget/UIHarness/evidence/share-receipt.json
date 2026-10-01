@@ -1,0 +1,15 @@
+{
+  "shareId": "share-folder-s5624-d37beb4b89a3cd43-1a0f92dcc6c-806554a067c61854",
+  "kind": "Folder",
+  "title": "Native iOS share lifecycle and real extension proof",
+  "subtitle": "51 items",
+  "caption": "Actual native picker/edit/send/cancel/error interactions, remote extension AX and disk receipts. 34 passing tests, strict Swift 6 extension build. Unknown delivery freezes exact submission and retries identical content/id. Parent assembled TM UI gate remains separate.",
+  "path": "packages/one/ios/Tests/ShareTarget/UIHarness/evidence",
+  "projectId": "proj-8suw26ueo11i",
+  "sessionId": "s5624",
+  "scope": "one",
+  "machineId": "mc-3aa87nk0z4j17",
+  "sourcePath": "/Users/n8/one/packages/one/ios/Tests/ShareTarget/UIHarness/evidence",
+  "createdAtMs": 1790886923372,
+  "autoOpen": true
+}
