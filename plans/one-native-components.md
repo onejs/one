@@ -5,6 +5,16 @@ views, controls and containers matching SwiftUI exactly; system service APIs
 (`One.iOS.<Service>`), Swift/Kotlin import, Android, the Contrast migration and
 Peach's Expo UI coverage belong to other lanes. Work lands on `v2-beta`.
 
+## gradient direction
+
+Nate's 2026-10-01 decision, recorded in Contrast goals commit `2c8dbf7455`:
+One has no gradient-specific component; any gradient follows web CSS gradient
+syntax. Retire the `one-native-linear-gradient` colors/normalized-points
+proposal. Its branch and native proof are reference material for a web-aligned
+redesign, with no pending approval or landing gate for the old shape. Earlier
+native gradient proof below is historical evidence, not the current API goal.
+Menu-embedded Picker and App Intents remain held for Nate.
+
 ## Where the gap is
 
 `bun run coverage` (packages/one) at 94bd0b18e: 520 of 522 public `View`
@@ -19,7 +29,6 @@ that One cannot express:
 | `TextEditor` | leaf, controlled text | multi-line input; the one missing core control |
 | `PasteButton` | leaf, action | pastes without the system paste prompt |
 | `MultiDatePicker` | leaf, controlled set | calendar with several dates |
-| `LinearGradient`, `RadialGradient`, `AngularGradient`, `EllipticalGradient`, `MeshGradient` | fill leaves | gradients as views, like the shape leaves |
 | `UnevenRoundedRectangle`, `ConcentricRectangle` | fill leaves | finish the shape family |
 | `LazyVGrid`, `LazyHGrid` | containers | `GridItem` columns as data |
 | `Grid`, `GridRow` | containers | two-dimensional static layout |
@@ -58,7 +67,7 @@ The remaining partial surfaces are:
 1. `TextEditor` and `UnevenRoundedRectangle`: controlled multiline input and
    four independent corner radii, with the `editors` simulator suite.
 2. Grids: `LazyVGrid`, `LazyHGrid`, `Grid`, `GridRow`.
-3. Remaining leaves: `PasteButton`, `MultiDatePicker`, gradients, and
+3. Remaining leaves: `PasteButton`, `MultiDatePicker`, and
    `ConcentricRectangle`, prioritizing controls used to build screens.
 4. `GroupBox`, `GlassEffectContainer`, `ViewThatFits`.
 5. Suites for the bound-but-unexercised views, grouped by family.
@@ -166,10 +175,10 @@ accounts are unavailable).
   remained accessible. The tracked
   `tests/native-features/proofs/linear-gradient` bundle preserves seven
   AX/PNG pairs, sampled RGB values, outcome, runtime metadata, generation
-  check, and RN-versus-SwiftUI WebP. The public bridge accepts sRGB hex colors
+  check, and RN-versus-SwiftUI WebP. That earlier bridge used sRGB hex colors
   and normalized `{ x, y }` points; arbitrary SwiftUI `Color` values and
-  explicit stops remain unbound. This is native conformance for the supported
-  initializer, with the gap disclosed in docs and coverage.
+  explicit stops were unbound. Its shape is retired under the gradient
+  direction above; these receipts remain reference evidence.
 
 - **RAN, 2026-09-27:** the `horizontal-inset` suite passed nine checks on
   ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
