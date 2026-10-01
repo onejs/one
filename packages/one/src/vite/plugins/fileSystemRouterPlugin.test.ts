@@ -168,7 +168,7 @@ describe('createFileSystemRouterPlugin', () => {
     expect(use).not.toHaveBeenCalled()
   })
 
-  it('caches dev ssg html until the module runner is invalidated', async () => {
+  it('caches dev ssg html and serves loader data without evaluating the page', async () => {
     process.env.VITE_ENVIRONMENT = 'ssr'
     tempRoot = mkdtempSync(path.join(tmpdir(), 'one-router-ssg-cache-'))
     const appDir = path.join(tempRoot, 'app')
@@ -183,6 +183,8 @@ describe('createFileSystemRouterPlugin', () => {
     const { virtualEntryId } = await import('./virtualEntryConstants')
 
     let renderCount = 0
+    let loaderData: unknown
+    const loader = vi.fn(() => loaderData)
     const render = vi.fn(async () => `<html><body>${++renderCount}</body></html>`)
     const runner = {
       import: vi.fn(async (id: string) => {
@@ -190,7 +192,7 @@ describe('createFileSystemRouterPlugin', () => {
           return { default: { render } }
         }
         if (id === routeFile) {
-          return { default: () => null }
+          return { default: () => null, loader }
         }
         return {}
       }),
@@ -202,7 +204,12 @@ describe('createFileSystemRouterPlugin', () => {
     const server = {
       environments: {
         ssr: {},
+        ios: {},
+        android: {},
       },
+      transformRequest: vi.fn(async () => ({
+        code: 'throw new Error("the loader endpoint evaluated the page"); export default function Index() { return null }',
+      })),
       hot: {
         send: vi.fn(),
       },
@@ -264,11 +271,16 @@ describe('createFileSystemRouterPlugin', () => {
         writeHead: vi.fn(),
         write: vi.fn((chunk: string) => {
           chunks.push(chunk)
+          return true
         }),
         end: vi.fn(() => {
           res.writableFinished = true
           res.emit('finish')
         }),
+      })
+      const finished = new Promise<void>((resolve, reject) => {
+        res.once('finish', resolve)
+        res.once('error', reject)
       })
       const next = vi.fn((error?: unknown) => {
         if (error) {
@@ -278,6 +290,7 @@ describe('createFileSystemRouterPlugin', () => {
       })
 
       await handleRouteRequest(req, res, next)
+      await finished
       expect(res.end).toHaveBeenCalled()
       return chunks.join('')
     }
@@ -306,5 +319,45 @@ describe('createFileSystemRouterPlugin', () => {
     // the render also has to invalidate the route context the tree is built
     // from, otherwise it renders fresh html out of pre-edit route modules
     expect(globalThis['__vxrnVersion']).toBe((versionBeforeChange || 0) + 1)
+
+    const { getLoaderPath } = await import('../../utils/cleanUrl')
+    const loaderPath = getLoaderPath('/', true)
+    const importsBeforeLoaderRequest = runner.import.mock.calls.length
+    loader.mockClear()
+
+    for (const platform of ['web', 'ios', 'android', 'native']) {
+      const body = await request(`${loaderPath}?platform=${platform}`)
+      const exports: { loader?: () => unknown } = {}
+      new Function(
+        'exports',
+        body
+          .replace('export default ', '')
+          .replace('export function loader', 'exports.loader = function')
+      )(exports)
+      expect(exports.loader).toBeTypeOf('function')
+      expect(exports.loader?.()).toBeUndefined()
+    }
+    expect(runner.import).toHaveBeenCalledTimes(importsBeforeLoaderRequest)
+    expect(loader).not.toHaveBeenCalled()
+
+    server.transformRequest.mockResolvedValue({
+      code: 'throw new Error("the loader endpoint evaluated the page"); export function loader() { return "route-id-stub" }',
+    })
+    for (const value of [undefined, null, false, 0, '', { ready: true }]) {
+      loaderData = value
+      for (const platform of ['web', 'ios', 'android', 'native']) {
+        const body = await request(`${loaderPath}?platform=${platform}`)
+        const exports: { loader?: () => unknown } = {}
+        new Function(
+          'exports',
+          body
+            .replace('export default ', '')
+            .replace('export function loader', 'exports.loader = function')
+        )(exports)
+        expect(exports.loader).toBeTypeOf('function')
+        expect(exports.loader?.()).toEqual(value)
+      }
+    }
+    expect(loader).toHaveBeenCalledTimes(24)
   })
 })
