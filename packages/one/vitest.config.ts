@@ -1,9 +1,12 @@
 import { defineConfig } from 'vitest/config'
 import { resolve } from 'node:path'
+import { createRequire } from 'node:module'
 
 // two environments: src tests run One's web router setup; tests/ covers the
 // native platform surface against react-native-web with its native state setup.
-const react = resolve(__dirname, '../../node_modules/react/index.js')
+const require = createRequire(import.meta.url)
+// hooks and the renderer must share the renderer's installed react instance.
+const react = createRequire(require.resolve('react-test-renderer')).resolve('react')
 const reactNativeWeb = resolve(__dirname, '../../node_modules/react-native-web/dist/index.js')
 const extensions = [
   '.web.mjs',
