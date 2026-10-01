@@ -138,6 +138,9 @@ final class OneNativeSchemeBridge: ObservableObject {
 
   public var compositionActive: Bool { active }
 
+  // a full-screen swift app keeps the screen insets; embedded controls use their box.
+  @nonobjc var hostingScreenInsets: Bool { false }
+
   @nonobjc var containsComposedFocus: Bool {
     childViews.contains { ($0 as? OneNativeFocusedContent)?.containsComposedFocus == true }
   }
@@ -241,12 +244,16 @@ final class OneNativeSchemeBridge: ObservableObject {
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
 
-  private func updateHost() {
+  @nonobjc func updateHost() {
     guard compositionParent == nil else { return }
     guard window != nil else { controller?.detach(); propagateActive(false); return }
     if controller == nil {
-      controller = OneNativeHostingController(rootView: wrap(published, true))
+      controller = OneNativeHostingController(
+        rootView: wrap(published, true), screenInsets: hostingScreenInsets
+      )
     }
+    let regions: SafeAreaRegions = hostingScreenInsets ? .all : []
+    if controller?.safeAreaRegions != regions { controller?.safeAreaRegions = regions }
     controller?.attach(to: self)
     propagateActive(controller?.isAttached == true)
   }
