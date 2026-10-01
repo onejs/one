@@ -103,6 +103,9 @@ public enum OneShareTargetError: Error, Sendable, Equatable {
   case unsupportedAttachment(typeIdentifier: String)
   case noAcceptedRepresentation
   case intakeCancelled
+  /// An action (send, cancel, edit) was attempted outside the state that
+  /// permits it (for example sending before load finished, or twice).
+  case invalidState
 }
 
 /// Implemented once per app, by generated code. An adapter is a pure
