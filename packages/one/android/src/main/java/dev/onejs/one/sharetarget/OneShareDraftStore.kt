@@ -99,4 +99,15 @@ internal class OneShareDraftStore(private val context: Context) {
     fun delete(id: String) {
         draftDir(id).deleteRecursively()
     }
+
+    // drops every file under a draft's dir except a pending draft.json, used
+    // to clear partial copies left by an intake that never finished (e.g. the
+    // process died mid-copy on rotation) before that intake is retried for
+    // the same draft id -- otherwise the retry's files pile up alongside the
+    // orphaned ones from the killed attempt.
+    fun clearItems(id: String) {
+        draftDir(id).listFiles()?.forEach { entry ->
+            if (entry.name != "draft.json" && entry.name != "draft.json.tmp") entry.deleteRecursively()
+        }
+    }
 }
