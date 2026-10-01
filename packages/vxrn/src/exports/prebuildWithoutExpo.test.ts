@@ -1225,7 +1225,7 @@ describe('generateForPlatform determinism', () => {
     const appWithIcon = {
       ...app,
       version: '9.9.9',
-      ios: { ...app.ios, buildNumber: '4242', alternateIcons: {
+      ios: { ...app.ios, buildNumber: '4242', tablet: true, alternateIcons: {
         TestAlternate: {
           source: fileURLToPath(new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)),
           backgroundColor: '#123456',
@@ -1311,15 +1311,20 @@ describe('generateForPlatform determinism', () => {
     const iosContents: { images: Array<{ filename?: string }> } = JSON.parse(
       readFileSync(join(iosIconDir, 'Contents.json'), 'utf8')
     )
-    expect(iosContents.images).toHaveLength(9)
+    expect(iosContents.images).toHaveLength(18)
     expect(iosContents.images.every((image) => image.filename)).toBe(true)
+    // a tablet build ships the iPad sizes App Store upload requires
+    expect(await sharp(join(iosIconDir, 'icon-76@2x.png')).metadata())
+      .toMatchObject({ width: 152, height: 152 })
+    expect(await sharp(join(iosIconDir, 'icon-83.5@2x.png')).metadata())
+      .toMatchObject({ width: 167, height: 167 })
     const iosMarketing = await sharp(join(iosIconDir, 'icon-1024.png')).metadata()
     expect(iosMarketing).toMatchObject({ width: 1024, height: 1024, hasAlpha: false })
     const alternateIconDir = join(output, 'ios', 'MyApp', 'Images.xcassets', 'TestAlternate.appiconset')
     const alternateContents: { images: Array<{ filename?: string }> } = JSON.parse(
       readFileSync(join(alternateIconDir, 'Contents.json'), 'utf8')
     )
-    expect(alternateContents.images).toHaveLength(9)
+    expect(alternateContents.images).toHaveLength(18)
     expect(alternateContents.images.every((image) => image.filename)).toBe(true)
     expect(await sharp(join(alternateIconDir, 'icon-1024.png')).metadata())
       .toMatchObject({ width: 1024, height: 1024, hasAlpha: false })
