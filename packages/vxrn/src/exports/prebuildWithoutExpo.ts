@@ -2480,6 +2480,14 @@ end`
         hardcodedGradlePlugin,
         `includeBuild(new File(["node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('@react-native/gradle-plugin/package.json')"].execute(null, settingsDir).text.trim()).parentFile.canonicalPath)`
       )
+      const autolinkCommand = 'ex.autolinkLibrariesFromCommand()'
+      if (rendered.split(autolinkCommand).length !== 2) {
+        throw new Error('[vxrn] expected one React Native autolinking command')
+      }
+      rendered = rendered.replace(
+        autolinkCommand,
+        `ex.autolinkLibrariesFromCommand(["node", ["node", "--print", "require.resolve('@react-native-community/cli/build/bin.js')"].execute(null, settingsDir).text.trim(), "config"])`
+      )
     }
     if (platform === 'android' && relativePath === 'app/build.gradle' && app.android?.minify) {
       const minify = 'def enableProguardInReleaseBuilds = false'
