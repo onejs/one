@@ -122,6 +122,8 @@ internal object OneShareIntake {
             if (bytes > limits.maxItemBytes || bytes > limits.maxTotalBytes) {
                 return abort(OneShareIntakeIssue(rawPrimaryText, OneShareIntakeIssueReason.OVER_SIZE_LIMIT))
             }
+            if (limits.maxItems < 1) return abort(OneShareIntakeIssue(rawPrimaryText, OneShareIntakeIssueReason.OVER_ITEM_LIMIT))
+            itemCount += 1
             primaryText = rawPrimaryText
             totalBytes += bytes
             seenTextValues.add(rawPrimaryText)
