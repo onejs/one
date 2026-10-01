@@ -1,4 +1,5 @@
-import { Children, createContext, useContext, type ReactNode } from 'react'
+import { Children, createContext, useContext, useState, type ReactNode } from 'react'
+import { StyleSheet } from 'react-native'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { iconColorRoles } from './ui/iconRoles'
 import { useControlled } from './controlled'
@@ -264,6 +265,15 @@ function ComposeNode({
   ...props
 }: ComposeNativeNodeProps) {
   const nested = useContext(ComposeContext)
+  const [contentHeight, setContentHeight] = useState<number>()
+  const rootStyle = StyleSheet.flatten(style)
+  const intrinsicHeight =
+    !nested &&
+    rootStyle?.height == null &&
+    !(rootStyle?.flex && rootStyle.flex > 0) &&
+    !(rootStyle?.flexGrow && rootStyle.flexGrow > 0) &&
+    composeStyle?.height == null &&
+    !composeStyle?.fillMaxHeight
   if (nested && style != null)
     throw new Error(
       'Compose nodes nested in a Compose tree must use composeStyle instead of style'
@@ -276,7 +286,22 @@ function ComposeNode({
     <NativeComposeNode
       {...props}
       composeStyle={composeStyle}
-      style={nested ? undefined : style}
+      intrinsicHeight={intrinsicHeight}
+      onNativeComposeNodeContentSizeChange={
+        intrinsicHeight
+          ? (event) => setContentHeight(event.nativeEvent.height)
+          : undefined
+      }
+      style={
+        nested
+          ? undefined
+          : [
+              intrinsicHeight && contentHeight !== undefined
+                ? { height: contentHeight }
+                : undefined,
+              style,
+            ]
+      }
       collapsable={false}
     >
       <ComposeContext.Provider value={true}>{children}</ComposeContext.Provider>

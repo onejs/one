@@ -28,6 +28,8 @@ type ComposeStyleNative = Readonly<{
 
 interface NativeProps extends ViewProps {
   nodeType: string
+  intrinsicHeight?: boolean
+  onNativeComposeNodeContentSizeChange?: DirectEventHandler<Readonly<{ height: Double }>>
   text?: string
   fontSize?: WithDefault<Double, -1>
   fontWeight?: string
