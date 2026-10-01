@@ -34,6 +34,8 @@ public final class OneSwiftHostView: OneNativeContainerView {
   private let model: SwiftHostModel
   private var propsText = ""
 
+  @nonobjc override var hostingScreenInsets: Bool { model.fill }
+
   public init() {
     let model = SwiftHostModel()
     self.model = model
@@ -47,7 +49,10 @@ public final class OneSwiftHostView: OneNativeContainerView {
 
   public func configure(packageName: String, props: String, fill: Bool) {
     if model.packageName != packageName { model.packageName = packageName }
-    if model.fill != fill { model.fill = fill }
+    if model.fill != fill {
+      model.fill = fill
+      updateHost()
+    }
     if propsText != props {
       propsText = props
       model.props = JSON(parsing: props)
