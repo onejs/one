@@ -14,13 +14,16 @@ public struct OneShareTargetDraft: Sendable, Equatable, Codable {
   public let text: String
   public let items: [OneSharedItem]
   public let createdAt: Date
+  /// Present after a send attempt: its outcome may be unknown.
+  public let pendingDelivery: Bool?
 
-  public init(id: String, destinationId: String?, text: String, items: [OneSharedItem], createdAt: Date = Date()) {
+  public init(id: String, destinationId: String?, text: String, items: [OneSharedItem], createdAt: Date = Date(), pendingDelivery: Bool? = nil) {
     self.id = id
     self.destinationId = destinationId
     self.text = text
     self.items = items
     self.createdAt = createdAt
+    self.pendingDelivery = pendingDelivery
   }
 }
 
@@ -29,6 +32,7 @@ public struct OneShareTargetDraft: Sendable, Equatable, Codable {
 /// same directory, so they stay valid for exactly as long as the draft does.
 public actor OneShareTargetDraftStore {
   private let draftsDirectory: URL
+  private let beforeSave: (@Sendable (OneShareTargetDraft) async -> Void)?
 
   public init(appGroupIdentifier: String) throws {
     guard let container = FileManager.default.containerURL(
@@ -53,7 +57,16 @@ public actor OneShareTargetDraftStore {
   /// (for example in a standalone test harness).
   public init(directory: URL) throws {
     draftsDirectory = directory
+    beforeSave = nil
     try FileManager.default.createDirectory(at: draftsDirectory, withIntermediateDirectories: true)
+  }
+
+  // Test-only suspension point before a real disk write. The public store
+  // contract and atomic manifest implementation remain the production path.
+  init(directory: URL, beforeSave: @escaping @Sendable (OneShareTargetDraft) async -> Void) throws {
+    draftsDirectory = directory
+    self.beforeSave = beforeSave
+    try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
   }
 
   /// Directory a submission's copied item files should be written into.
@@ -64,7 +77,8 @@ public actor OneShareTargetDraftStore {
     return directory
   }
 
-  public func save(_ draft: OneShareTargetDraft) throws {
+  public func save(_ draft: OneShareTargetDraft) async throws {
+    await beforeSave?(draft)
     let directory = draftDirectory(for: draft.id)
     try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
     let encoder = JSONEncoder()

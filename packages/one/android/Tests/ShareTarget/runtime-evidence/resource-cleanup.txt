@@ -1,0 +1,7 @@
+OK: killing emulator, bye bye
+OK
+
+released 1 claim(s) for s5653 on FC152722-68F7-52FE-B33C-7C54F5DA67D1
+Released own AVD-name/serial lock. No other device or PID stopped.
+  PID COMMAND
+54770 /Users/n8/Library/Android/sdk/emulator/qemu/darwin-aarch64/qemu-system-aarch64-headless -avd android_lane_pixel_8 -port 5580 -no-window -no-audio -no-boot-anim -no-snapshot -cores 2 -memory 1536 -gpu swiftshader

@@ -1,0 +1,17 @@
+{
+  "drafts": [],
+  "deliveries": [
+    {
+      "submissionId": "235bc402-46e9-41a6-826e-cc5f887da6cc",
+      "destinationId": "session-proof",
+      "text": "Cold native sh Editedare text",
+      "items": [
+        {
+          "name": "alpha.txt",
+          "bytes": 38,
+          "copiedContent": "Native content URI fixture: alpha.txt\n"
+        }
+      ]
+    }
+  ]
+}

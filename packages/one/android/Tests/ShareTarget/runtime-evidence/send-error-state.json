@@ -1,0 +1,19 @@
+{
+  "drafts": [
+    {
+      "destinationId": "session-proof",
+      "editedText": "Cold native sh Editedare text",
+      "items": [
+        {
+          "type": "file",
+          "uri": "file:///data/user/0/dev.onejs.one.sharetarget.sample/files/one-sharetarget/235bc402-46e9-41a6-826e-cc5f887da6cc/335272236076-alpha.txt",
+          "name": "alpha.txt",
+          "mimeType": "text/plain",
+          "size": 38
+        }
+      ],
+      "pendingDelivery": true
+    }
+  ],
+  "deliveries": []
+}

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.compose.setContent
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +15,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -45,6 +48,7 @@ abstract class OneShareTargetActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         model = ViewModelProvider(this, object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T =
@@ -58,7 +62,11 @@ abstract class OneShareTargetActivity : ComponentActivity() {
                 if (state.phase == SharePhase.DELIVERED || state.phase == SharePhase.CANCELLED) finish()
             }
             MaterialTheme {
-                Surface(modifier = Modifier.fillMaxSize()) { ShareScreen(state, model) }
+                // Android 15+ draws edge to edge. Keep the composer and actions
+                // above the IME while protecting every phase from system bars.
+                Surface(modifier = Modifier.fillMaxSize().systemBarsPadding().imePadding()) {
+                    ShareScreen(state, model)
+                }
             }
         }
     }
