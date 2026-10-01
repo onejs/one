@@ -1,0 +1,1 @@
+../../../../ShareTarget/OneShareTargetAdapter.swift
