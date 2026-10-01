@@ -6,6 +6,7 @@ import { expect, it, vi } from 'vitest'
 vi.mock('react-native', () => ({
   findNodeHandle: vi.fn(),
   Pressable: 'Pressable',
+  requireNativeComponent: vi.fn((name: string) => name),
   TurboModuleRegistry: { get: vi.fn() },
   View: 'View',
 }))
