@@ -11,6 +11,8 @@ struct OneNativeSheetRoot: View {
     if let content = model.content {
       OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
         if model.active && model.controlled.value { model.onLayout?(frame) }
+      }, onWindowChange: { identity, attached in
+        model.presentedWindowChanged(identity, attached: attached)
       })
       .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

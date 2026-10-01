@@ -24,13 +24,35 @@ final class OneNativeSheetModel: ObservableObject {
   var onChange: ((Bool, Int, Int) -> Void)?
   var onDetentChange: ((String, Double, Int, Int) -> Void)?
   var onDismiss: ((Int) -> Void)?
+  var onDidDismiss: ((Int, Int) -> Void)?
   var onLayout: ((CGRect) -> Void)?
+  private var presentationGeneration = 0
+  var presentationId = 0
+  private var presentedSlot: (identity: ObjectIdentifier, generation: Int, revision: Int, presentationId: Int)?
+  func applyPresented(_ next: OneNativeControlled<Bool>) {
+    if next.value && !controlled.value { presentationGeneration += 1 }
+    controlled = next
+  }
   func change(_ value: Bool) {
     guard active, controlled.value != value else { return }
+    if value { presentationGeneration += 1 }
     controlled.change(value)
     onChange?(value, controlled.eventCount, controlled.revision)
   }
   func dismissed() { if active { onDismiss?(controlled.revision) } }
+
+  func presentedWindowChanged(_ identity: ObjectIdentifier, attached: Bool) {
+    if attached {
+      presentedSlot = (identity, presentationGeneration, controlled.revision, presentationId)
+      return
+    }
+    guard let slot = presentedSlot, slot.identity == identity else { return }
+    presentedSlot = nil
+    // completion belongs to the original mounted presentation, never a later reopen.
+    guard active, !controlled.value, slot.generation == presentationGeneration,
+      slot.revision == controlled.revision, slot.presentationId == presentationId else { return }
+    onDidDismiss?(slot.revision, slot.presentationId)
+  }
 
   var selectedPresentationDetent: PresentationDetent {
     detentValues.first(where: { $0.key == selectedDetent.value })?.detent
@@ -60,6 +82,7 @@ final class OneNativeSheetModel: ObservableObject {
   public var onChange: ((Bool, Int, Int) -> Void)?
   public var onDetentChange: ((String, Double, Int, Int) -> Void)?
   public var onDismiss: ((Int) -> Void)?
+  public var onDidDismiss: ((Int, Int) -> Void)?
   private var model = OneNativeSheetModel()
   private var controller: OneNativeHostingController<OneNativeSheetRoot>?
   public override init(frame: CGRect) { super.init(frame: frame) }
@@ -102,7 +125,7 @@ final class OneNativeSheetModel: ObservableObject {
     }
   }
   public func configure(
-    _ isPresented: Bool, acknowledgedEvent: Int, revision: Int,
+    _ isPresented: Bool, acknowledgedEvent: Int, revision: Int, presentationId: Int,
     fitToContents: Bool, selectedDetentType: String, selectedDetentValue: Double,
     acknowledgedDetentEvent: Int, detentRevision: Int,
     interactiveDismissDisabled: Bool, presentationDragIndicator: String,
@@ -111,7 +134,8 @@ final class OneNativeSheetModel: ObservableObject {
     presentationBackgroundInteractionDetentValue: Double,
     presentationContentInteraction: String, presentationSizing: String, presentation: String
   ) {
-    if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
+    model.presentationId = presentationId
+    if let next = model.controlled.applying(isPresented, acknowledged: acknowledgedEvent, revision: revision) { model.applyPresented(next) }
     let controlsSelectedDetent = !selectedDetentType.isEmpty
     if controlsSelectedDetent {
       let key = "\(selectedDetentType):\(selectedDetentValue)"
@@ -167,13 +191,14 @@ final class OneNativeSheetModel: ObservableObject {
         self?.onDetentChange?(type, value, count, revision)
       }
       model.onDismiss = { [weak self] revision in self?.onDismiss?(revision) }
+      model.onDidDismiss = { [weak self] revision, presentationId in self?.onDidDismiss?(revision, presentationId) }
       controller = OneNativeHostingController(rootView: OneNativeSheetRoot(model: model), screenInsets: true)
     }
     controller?.attach(to: self)
     model.active = controller?.isAttached == true
   }
   public func reset() {
-    model.active = false; model.onChange = nil; model.onDetentChange = nil; model.onDismiss = nil; model.onLayout = nil
+    model.active = false; model.onChange = nil; model.onDetentChange = nil; model.onDismiss = nil; model.onDidDismiss = nil; model.onLayout = nil
     controller?.presentedViewController?.dismiss(animated: false)
     controller?.detach(); controller = nil; model = OneNativeSheetModel()
   }
