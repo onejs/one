@@ -8,8 +8,8 @@ Peach's Expo UI coverage belong to other lanes. Work lands on `v2-beta`.
 ## gradient direction
 
 Nate's 2026-10-01 decision, recorded in Contrast goals commit `2c8dbf7455`:
-One has no gradient-specific component; any gradient follows web CSS gradient
-syntax. Retire the `one-native-linear-gradient` colors/normalized-points
+One's gradient direction is web CSS gradient syntax without gradient-specific
+components. Retire the `one-native-linear-gradient` colors/normalized-points
 proposal. Its branch and native proof are reference material for a web-aligned
 redesign, with no pending approval or landing gate for the old shape. Earlier
 native gradient proof below is historical evidence, not the current API goal.
