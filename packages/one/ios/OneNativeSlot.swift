@@ -7,6 +7,7 @@ struct OneNativeSlot: UIViewRepresentable {
   let mode: Mode
   weak var layoutHost: UIView?
   var onLayout: ((CGRect) -> Void)?
+  var onWindowChange: ((ObjectIdentifier, Bool) -> Void)?
 
   func makeUIView(context: Context) -> Container { Container(content: content) }
   func updateUIView(_ view: Container, context: Context) {
@@ -19,6 +20,7 @@ struct OneNativeSlot: UIViewRepresentable {
     view.mode = mode
     view.layoutHost = layoutHost
     view.onLayout = onLayout
+    view.onWindowChange = onWindowChange
     view.isUserInteractionEnabled = mode != .passive
     view.accessibilityElementsHidden = mode == .passive
     view.claimContent()
@@ -37,6 +39,8 @@ struct OneNativeSlot: UIViewRepresentable {
     var mode = Mode.passive
     weak var layoutHost: UIView?
     var onLayout: ((CGRect) -> Void)?
+    var onWindowChange: ((ObjectIdentifier, Bool) -> Void)?
+    private var hasWindow = false
     init(content: UIView) {
       self.content = content
       super.init(frame: .zero)
@@ -62,6 +66,11 @@ struct OneNativeSlot: UIViewRepresentable {
 
     override func didMoveToWindow() {
       super.didMoveToWindow()
+      let attached = window != nil
+      if attached != hasWindow {
+        hasWindow = attached
+        onWindowChange?(ObjectIdentifier(self), attached)
+      }
       guard window != nil else { return }
       claimContent()
       // a layout pass that ran before the slot had a window skipped sizing.

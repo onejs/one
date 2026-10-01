@@ -3045,6 +3045,9 @@
         "revision": {
           "type": "Int32"
         },
+        "presentationId": {
+          "type": "Int32"
+        },
         "detents": {
           "type": "ReadonlyArray<NativeSheetDetent>"
         },
@@ -3106,6 +3109,14 @@
         },
         "onNativeSheetDismiss": {
           "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSheetDidDismiss": {
+          "revision": {
+            "type": "Int32"
+          },
+          "presentationId": {
             "type": "Int32"
           }
         },
