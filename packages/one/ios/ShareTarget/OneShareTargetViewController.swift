@@ -2,7 +2,7 @@
 // Apple-frameworks-only: no React/Expo/One Nitro runtime dependency.
 // Safe under APPLICATION_EXTENSION_API_ONLY.
 
-import UIKit
+import Social
 
 /// The class generated code should actually subclass for an extension's
 /// principal class (`NSExtensionPrincipalClass` in the extension's
