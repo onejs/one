@@ -16,8 +16,9 @@ SDK=$(xcrun --sdk iphonesimulator --show-sdk-path)
 TARGET="arm64-apple-ios17.0-simulator"
 
 echo "== Compiling HarnessShareExtension (application-extension, strict concurrency) =="
-xcrun swiftc -sdk "$SDK" -target "$TARGET" \
+xcrun --sdk iphonesimulator swiftc -sdk "$SDK" -target "$TARGET" \
   -swift-version 6 -strict-concurrency=complete -application-extension \
+  -module-name HarnessShareExtension -Xcc -isysroot -Xcc "$SDK" \
   -parse-as-library \
   -Xlinker -e -Xlinker _NSExtensionMain \
   -o "$OUT/HarnessShareExtension" \
@@ -33,8 +34,8 @@ xcrun swiftc -sdk "$SDK" -target "$TARGET" \
   "$ROOT/ShareExtension/GeneratedHarnessShareViewController.swift"
 
 echo "== Compiling HarnessHost =="
-xcrun swiftc -sdk "$SDK" -target "$TARGET" \
-  -swift-version 6 \
+xcrun --sdk iphonesimulator swiftc -sdk "$SDK" -target "$TARGET" \
+  -swift-version 6 -Xcc -isysroot -Xcc "$SDK" \
   -parse-as-library \
   -o "$OUT/HarnessHost" \
   "$ROOT/Shared/HarnessShareTargetAdapter.swift" \
