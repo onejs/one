@@ -159,8 +159,13 @@ internal object OneShareIntake {
 
                 is Entry.UriEntry -> {
                     val uri = entry.uri
-                    val mimeType = resolver.getType(uri) ?: "application/octet-stream"
                     val label = uri.toString()
+                    // incoming senders must use a permission-granted provider uri.
+                    // a file uri would be opened under the receiver's own uid.
+                    if (uri.scheme != ContentResolver.SCHEME_CONTENT) {
+                        return abort(OneShareIntakeIssue(label, OneShareIntakeIssueReason.UNACCEPTED_TYPE))
+                    }
+                    val mimeType = resolver.getType(uri) ?: "application/octet-stream"
 
                     if (!isAcceptedMime(mimeType, limits.acceptedFileMimePrefixes)) {
                         return abort(OneShareIntakeIssue(label, OneShareIntakeIssueReason.UNACCEPTED_TYPE))
@@ -248,7 +253,7 @@ internal object OneShareIntake {
                     addUri(uri)
                     continue
                 }
-                val text = item.text?.toString()?.trim()
+                val text = item.text?.toString()
                 if (!text.isNullOrEmpty()) entries.add(Entry.CharSequenceEntry(text))
             }
         }
