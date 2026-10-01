@@ -1,0 +1,84 @@
+---
+title: One Native
+description: Build native screens and use platform services from the One package
+---
+
+One Native is the native component and service library included in `one`.
+Use it alongside React Native views and One's file router. It supplies SwiftUI
+on iOS, Jetpack Compose on Android, shared components, and native services.
+
+Start with [setup](/docs/native-setup), choose your
+[components](/docs/native-components), and look up the
+[platform APIs](/docs/native-apis). Read the
+[platform notes](/docs/native-platforms) before sharing a screen across targets.
+The [Native reference](/native) has a page for each component family and service.
+
+## Imports and namespaces
+
+```tsx
+import { One, useNativeState, useSizeClass } from 'one'
+```
+
+| Namespace | What it contains |
+| --- | --- |
+| `One.iOS` | SwiftUI components and iOS services such as Location, Audio, and Photos |
+| `One.Android` | Compose components, Android colors, and native menus |
+| `One.UI` | Shared components: Image, Map, Icon, TextInput, effects, fonts, and safe areas |
+| `One` | Shared services such as Notifications, Clipboard, Browser, and SecureStore |
+
+Hooks are named imports. For example, `useNativeState` creates state that bound
+native controls can share; `useSizeClass` reads the current window size class.
+Components and services use the `One` namespace.
+
+## Choose a platform explicitly
+
+`One.iOS` and `One.Android` expose different native frameworks. Keep the
+platform branch outside the component that renders those views. A web route
+can render ordinary React DOM content:
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+export function NotificationsSetting() {
+  const [enabled, setEnabled] = useState(true)
+
+  if (One.platform === 'ios') {
+    return (
+      <One.iOS.Toggle
+        label="Notifications"
+        isOn={enabled}
+        onIsOnChange={setEnabled}
+      />
+    )
+  }
+  if (One.platform === 'android') {
+    return (
+      <One.Android.Switch
+        label="Notifications"
+        isOn={enabled}
+        onIsOnChange={setEnabled}
+      />
+    )
+  }
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={enabled}
+        onChange={(event) => setEnabled(event.currentTarget.checked)}
+      />
+      Notifications
+    </label>
+  )
+}
+```
+
+You can also put native implementations in `.ios.tsx` and `.android.tsx`
+files and the web implementation in `.tsx`. See
+[platform-specific routing](/docs/routing).
+
+The routed `Stack` and `Tabs` remain the navigation layer for file routes.
+`One.iOS.NavigationStack` and `One.iOS.Tabs` are separate primitives for
+explicit SwiftUI composition. Choose the layer that owns the navigation you
+are building; see the [component guide](/docs/native-components).
