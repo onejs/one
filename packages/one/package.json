@@ -144,7 +144,16 @@
       "require": "./dist/cjs/headless-server.cjs"
     },
     "./devtools/*": "./devtools/*",
-    "./schema.json": "./schema.json"
+    "./schema.json": "./schema.json",
+    "./tamagui": {
+      "react-native": {
+        "types": "./types/tamagui.native.d.ts",
+        "default": "./dist/esm/tamagui.native.js"
+      },
+      "types": "./types/tamagui.d.ts",
+      "import": "./dist/esm/tamagui.mjs",
+      "require": "./dist/cjs/tamagui.cjs"
+    }
   },
   "main": "dist/cjs",
   "module": "dist/esm",
@@ -261,7 +270,8 @@
     "react-native-screens": ">=4.25.0",
     "react-native-web": "^0.21.2",
     "react-native-worklets": ">=0.12.2",
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.4",
+    "@tamagui/sheet": ">=3.0.0-beta.0 <4"
   },
   "peerDependenciesMeta": {
     "@react-native/babel-preset": {
@@ -286,6 +296,9 @@
       "optional": true
     },
     "sharp": {
+      "optional": true
+    },
+    "@tamagui/sheet": {
       "optional": true
     }
   },
