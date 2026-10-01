@@ -421,3 +421,73 @@ describe('compose progress validation', () => {
     )
   })
 })
+
+describe('compose sizing and layout', () => {
+  it('enables intrinsicHeight by default for root compose nodes', () => {
+    expect(render(Compose.Icon, { name: 'star' })).toMatchObject({
+      props: {
+        intrinsicHeight: true,
+      },
+    })
+  })
+
+  it('opts out of intrinsicHeight when alignSelf stretch is set', () => {
+    expect(
+      render(Compose.Icon, { name: 'star', style: { alignSelf: 'stretch' } })
+    ).toMatchObject({
+      props: {
+        intrinsicHeight: false,
+      },
+    })
+  })
+
+  it('opts out of intrinsicHeight when aspectRatio is set', () => {
+    expect(
+      render(Compose.Icon, { name: 'star', style: { aspectRatio: 2 } })
+    ).toMatchObject({
+      props: {
+        intrinsicHeight: false,
+      },
+    })
+  })
+
+  it('opts out of intrinsicHeight when flexBasis is set', () => {
+    expect(
+      render(Compose.Icon, { name: 'star', style: { flexBasis: 50 } })
+    ).toMatchObject({
+      props: {
+        intrinsicHeight: false,
+      },
+    })
+    expect(
+      render(Compose.Icon, { name: 'star', style: { flexBasis: '50%' } })
+    ).toMatchObject({
+      props: {
+        intrinsicHeight: false,
+      },
+    })
+  })
+
+  it('opts out of intrinsicHeight when explicit height, flex, or composeStyle fillMaxHeight is set', () => {
+    expect(render(Compose.Icon, { name: 'star', style: { height: 60 } })).toMatchObject({
+      props: { intrinsicHeight: false },
+    })
+    expect(render(Compose.Icon, { name: 'star', style: { flex: 1 } })).toMatchObject({
+      props: { intrinsicHeight: false },
+    })
+    expect(render(Compose.Icon, { name: 'star', style: { flexGrow: 1 } })).toMatchObject({
+      props: { intrinsicHeight: false },
+    })
+    expect(
+      render(Compose.Icon, { name: 'star', composeStyle: { fillMaxHeight: true } })
+    ).toMatchObject({
+      props: { intrinsicHeight: false },
+    })
+    expect(
+      render(Compose.Icon, { name: 'star', composeStyle: { height: 60 } })
+    ).toMatchObject({
+      props: { intrinsicHeight: false },
+    })
+  })
+})
+

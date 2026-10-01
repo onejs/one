@@ -1291,20 +1291,32 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     private fun layoutComposeContent() {
         if (!composeView.isAttachedToWindow || width <= 0 || (!intrinsicHeight && height <= 0)) return
+        val heightSpec = if (intrinsicHeight) {
+            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
+        } else {
+            MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
+        }
         composeView.measure(
             MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-            if (intrinsicHeight) MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
-            else MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+            heightSpec,
         )
-        val contentHeight = if (intrinsicHeight) composeView.measuredHeight else height
-        composeView.layout(0, 0, width, contentHeight)
-        if (intrinsicHeight && contentHeight != reportedContentHeight) {
-            reportedContentHeight = contentHeight
+        val naturalContentHeight = if (intrinsicHeight) composeView.measuredHeight else height
+        val layoutHeight =
+            if (intrinsicHeight && height > 0) minOf(naturalContentHeight, height) else naturalContentHeight
+        if (intrinsicHeight && layoutHeight < naturalContentHeight) {
+            composeView.measure(
+                MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(layoutHeight, MeasureSpec.EXACTLY),
+            )
+        }
+        composeView.layout(0, 0, width, layoutHeight)
+        if (intrinsicHeight && naturalContentHeight != reportedContentHeight) {
+            reportedContentHeight = naturalContentHeight
             UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
                 OneNativeComposeNodeContentSizeChangeEvent(
                     surfaceId = UIManagerHelper.getSurfaceId(this),
                     viewTag = id,
-                    height = contentHeight / resources.displayMetrics.density.toDouble(),
+                    height = naturalContentHeight / resources.displayMetrics.density.toDouble(),
                 )
             )
         }

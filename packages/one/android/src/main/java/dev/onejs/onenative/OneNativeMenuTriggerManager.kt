@@ -5,6 +5,7 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.WritableMap
+import com.facebook.react.uimanager.PointerEvents
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.uimanager.annotations.ReactProp
@@ -42,7 +43,7 @@ private class OneNativeMenuTriggerView(private val reactContext: ThemedReactCont
     private val detector = GestureDetector(reactContext, object : GestureDetector.SimpleOnGestureListener() {
         override fun onDown(event: MotionEvent): Boolean = true
         override fun onLongPress(event: MotionEvent) {
-            if (!contextMenuEnabled || !isAttachedToWindow) return
+            if (!contextMenuEnabled || !isAttachedToWindow || !PointerEvents.canBeTouchTarget(pointerEvents)) return
             ownsGesture = true
             NativeGestureUtil.notifyNativeGestureStarted(this@OneNativeMenuTriggerView, event)
             emitLongPress()
@@ -51,7 +52,7 @@ private class OneNativeMenuTriggerView(private val reactContext: ThemedReactCont
 
     init {
         setOnLongClickListener {
-            if (!contextMenuEnabled) false else {
+            if (!contextMenuEnabled || !PointerEvents.canBeTouchTarget(pointerEvents)) false else {
                 emitLongPress()
                 true
             }
@@ -78,7 +79,7 @@ private class OneNativeMenuTriggerView(private val reactContext: ThemedReactCont
     }
 
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-        if (contextMenuEnabled) detector.onTouchEvent(event)
+        if (contextMenuEnabled && PointerEvents.canBeTouchTarget(pointerEvents)) detector.onTouchEvent(event)
         val result = super.dispatchTouchEvent(event)
         if (event.actionMasked == MotionEvent.ACTION_UP || event.actionMasked == MotionEvent.ACTION_CANCEL) {
             if (ownsGesture) NativeGestureUtil.notifyNativeGestureEnded(this, event)
@@ -88,7 +89,7 @@ private class OneNativeMenuTriggerView(private val reactContext: ThemedReactCont
     }
 
     // the detector owns touch long press; the listener owns accessibility activation.
-    override fun onTouchEvent(event: MotionEvent): Boolean = true
+    override fun onTouchEvent(event: MotionEvent): Boolean = super.onTouchEvent(event)
 
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean =
         ownsGesture || super.onInterceptTouchEvent(event)

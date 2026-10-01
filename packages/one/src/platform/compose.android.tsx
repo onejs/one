@@ -272,6 +272,9 @@ function ComposeNode({
     rootStyle?.height == null &&
     !(rootStyle?.flex && rootStyle.flex > 0) &&
     !(rootStyle?.flexGrow && rootStyle.flexGrow > 0) &&
+    !(rootStyle?.flexBasis != null && rootStyle.flexBasis !== 'auto') &&
+    rootStyle?.aspectRatio == null &&
+    rootStyle?.alignSelf !== 'stretch' &&
     composeStyle?.height == null &&
     !composeStyle?.fillMaxHeight
   if (nested && style != null)
