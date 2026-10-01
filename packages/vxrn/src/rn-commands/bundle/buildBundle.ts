@@ -93,11 +93,11 @@ export async function buildBundle(
 
   // write sourcemap if available and requested
   if (result.map && args.sourcemapOutput) {
-    FSExtra.writeFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
+    FSExtra.outputFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
   }
 
   console.info(`Writing bundle to ${bundleOutput}...`)
-  FSExtra.writeFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
+  FSExtra.outputFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
   console.info('Done.')
 
   // Prevent the process not getting exited for some unknown reason.
