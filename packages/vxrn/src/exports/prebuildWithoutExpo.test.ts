@@ -1838,6 +1838,40 @@ describe('ios widgets', () => {
   }, 180000)
 })
 
+describe('app kotlin source discovery', () => {
+  it('generates app sources without harvesting nested javascript packages', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-'))
+    const workspaceModules = fileURLToPath(
+      new URL('../../../../node_modules', import.meta.url)
+    )
+    const { symlinkSync } = await import('node:fs')
+    mkdirSync(join(root, 'node_modules', '@react-native-community'), { recursive: true })
+    for (const name of ['cli', 'template']) {
+      symlinkSync(
+        join(workspaceModules, '@react-native-community', name),
+        join(root, 'node_modules', '@react-native-community', name)
+      )
+    }
+    writeFileSync(join(root, 'package.json'), '{"name":"app"}')
+    const appDir = join(root, 'features', 'counter')
+    const dependencyDir = join(root, 'packages', 'vendored')
+    mkdirSync(appDir, { recursive: true })
+    mkdirSync(join(dependencyDir, 'fixtures'), { recursive: true })
+    const source = 'package app.counter\nclass Counter\n'
+    writeFileSync(join(appDir, 'Counter.kt'), source)
+    writeFileSync(join(dependencyDir, 'package.json'), '{"name":"vendored"}')
+    writeFileSync(
+      join(dependencyDir, 'fixtures', 'Browser.kt'),
+      'package browser.fixture\nclass Browser\n'
+    )
+    await generateForPlatform(root, 'android', app)
+    const generated = join(root, 'android', 'app', 'src', 'main', 'java', 'one', 'source')
+    const ids = readdirSync(generated)
+    expect(ids).toHaveLength(1)
+    expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(source)
+  }, 180000)
+})
+
 describe('swift cxx interop', () => {
   it('maps the same package names as prebuild and rejects collisions', () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-swift-package-map-'))
