@@ -5,7 +5,9 @@ description: Install One Native and generate iOS or Android projects with or wit
 
 One Native is included in the `one` package. There is no separate native UI
 package to install. The v2 beta uses React 19.2.3 and React Native 0.87;
-the current examples use 0.87.1. Native components require the New Architecture.
+the current examples use 0.87.1. Native components require the New Architecture. The
+[installation guide](/docs/installation) lists the full dependency set,
+including screens, Worklets, and Liquid Glass.
 The iOS deployment floor is 17. See the
 [platform notes](/docs/native-platforms) for feature-specific requirements.
 
@@ -52,6 +54,14 @@ Add `react-native.config.cjs` at the app root:
 
 ```js
 module.exports = require('one/react-native-config')
+```
+
+For an existing app, ensure its `devDependencies` include the community
+native template and CLI. The current One examples use template 0.87.1 and
+CLI 20.2.0:
+
+```bash
+npm install --save-dev @react-native-community/template@0.87.1 @react-native-community/cli@20.2.0
 ```
 
 Then generate the projects from the app directory:
