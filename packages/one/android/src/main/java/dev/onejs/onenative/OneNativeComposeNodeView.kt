@@ -1836,7 +1836,12 @@ private fun OneNativeMaterialTheme(content: @Composable () -> Unit) {
                 if (dark) darkColorScheme() else lightColorScheme()
             }
         }
-    MaterialTheme(colorScheme = colorScheme, content = content)
+    MaterialTheme(colorScheme = colorScheme) {
+        androidx.compose.runtime.CompositionLocalProvider(
+            LocalContentColor provides colorScheme.onSurface,
+            content = content,
+        )
+    }
 }
 
 @Composable
@@ -2143,7 +2148,7 @@ private fun RenderComposeSwitch(
 ) {
     val enabled = !props.disabled && node.isEnabled
     val overrides = props.switchColors
-    val colors = SwitchDefaults.colors(
+    val colors = SwitchDefaults.colors().copy(
         checkedThumbColor = overrides.checkedThumbColor?.let(::Color) ?: Color.Unspecified,
         checkedTrackColor = overrides.checkedTrackColor?.let(::Color) ?: Color.Unspecified,
         checkedBorderColor = overrides.checkedBorderColor?.let(::Color) ?: Color.Unspecified,
