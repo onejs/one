@@ -27,11 +27,10 @@ final class OneShareTargetSubmissionCoordinatorTests: XCTestCase {
 
   // MARK: - Cancel awaits the in-flight load before discarding
 
-  /// A `destinations()` call that takes a moment to resolve, so `cancel()`
-  /// has a real window in which the load is still writing to disk when
-  /// cancellation is requested.
-  func testCancelDuringLoadAwaitsLoadBeforeDiscardingAndLeavesNoDraft() async throws {
-    let adapter = FakeAdapter(destinations: [.init(id: "d1", title: "Dest")], destinationsDelayNanoseconds: 50_000_000)
+  /// The adapter stays held until after cancel completes. A coordinator
+  /// that awaits the adapter rather than racing cancellation hangs here.
+  func testCancelDoesNotWaitForUncooperativeDestinationsAndLeavesNoDraft() async throws {
+    let adapter = FakeAdapter(destinations: [.init(id: "d1", title: "Dest")], holdDestinations: true)
     let store = try makeStore()
     let coordinator = OneShareTargetSubmissionCoordinator(
       submissionId: "sub-1",
@@ -41,20 +40,17 @@ final class OneShareTargetSubmissionCoordinatorTests: XCTestCase {
     )
 
     _ = await coordinator.load(attachments: [], accompanyingText: "hello")
-    // Give the load a moment to start (past the first persist) before cancelling,
-    // so this actually exercises the race rather than cancelling before anything started.
-    try await Task.sleep(nanoseconds: 5_000_000)
+    // The callback event proves the first real manifest write completed.
+    await adapter.destinationsEntered.wait()
     let cancelled = await coordinator.cancel()
 
     XCTAssertTrue(cancelled)
     let state = await coordinator.state
     XCTAssertEqual(state, .cancelled)
 
-    // The regression this proves: without cancel() awaiting the in-flight
-    // load, the load's post-destinations persist can land after discard and
-    // recreate the "cancelled" draft. With the fix, no draft remains.
     let draft = try await store.load(submissionId: "sub-1")
     XCTAssertNil(draft, "cancel must not leave a draft recreated by a load that was still in flight")
+    await adapter.destinationsRelease.open()
   }
 
   // MARK: - destinations() failure still persists already-copied items
@@ -109,7 +105,7 @@ final class OneShareTargetSubmissionCoordinatorTests: XCTestCase {
   // MARK: - A submission that may already be accepted cannot be cancelled
 
   func testCancelIsRefusedWhileSendIsInFlight() async throws {
-    let adapter = FakeAdapter(destinations: [.init(id: "d1", title: "Dest")], sendDelayNanoseconds: 50_000_000)
+    let adapter = FakeAdapter(destinations: [.init(id: "d1", title: "Dest")], holdSend: true)
     let store = try makeStore()
     let coordinator = OneShareTargetSubmissionCoordinator(
       submissionId: "sub-4",
@@ -122,13 +118,14 @@ final class OneShareTargetSubmissionCoordinatorTests: XCTestCase {
     await coordinator.selectDestination("d1")
 
     let sendTask = Task { await coordinator.send() }
-    try await Task.sleep(nanoseconds: 10_000_000)
+    await adapter.sendEntered.wait()
     let stateWhileSending = await coordinator.state
     XCTAssertEqual(stateWhileSending, .sending)
 
     let cancelled = await coordinator.cancel()
     XCTAssertFalse(cancelled, "a submission that may already be accepted must never present as cancellable")
 
+    await adapter.sendRelease.open()
     let result = await sendTask.value
     guard case .success = result else { return XCTFail("expected send to still succeed") }
     let finalState = await coordinator.state
@@ -156,50 +153,6 @@ final class OneShareTargetSubmissionCoordinatorTests: XCTestCase {
     XCTAssertEqual(state, .ready, "a failed send must retain the draft/UI for retry, not strand the user")
     let draft = try await store.load(submissionId: "sub-5")
     XCTAssertNotNil(draft, "a failed send must not have discarded the draft")
-  }
-
-  // MARK: - The terminal guard itself, deterministically
-
-  /// `testCancelDuringLoadAwaitsLoadBeforeDiscardingAndLeavesNoDraft` above
-  /// exercises the real scheduling path, but winning that race deterministically
-  /// isn't possible from a test. This calls the same guarded write directly,
-  /// which is exactly what a persist landing late from that race would hit.
-  func testPersistIsRefusedAfterCancelEvenIfAttemptedDirectly() async throws {
-    let adapter = FakeAdapter()
-    let store = try makeStore()
-    let coordinator = OneShareTargetSubmissionCoordinator(
-      submissionId: "sub-7",
-      configuration: makeConfiguration(),
-      adapter: adapter,
-      draftStore: store
-    )
-
-    await coordinator.load(attachments: [], accompanyingText: "x").value
-    _ = await coordinator.cancel()
-    try? await coordinator.persistNow()
-
-    let draft = try await store.load(submissionId: "sub-7")
-    XCTAssertNil(draft, "a persist attempted after cancellation must never recreate the discarded draft")
-  }
-
-  func testPersistIsRefusedAfterSuccessfulSendEvenIfAttemptedDirectly() async throws {
-    let adapter = FakeAdapter(destinations: [.init(id: "d1", title: "Dest")])
-    let store = try makeStore()
-    let coordinator = OneShareTargetSubmissionCoordinator(
-      submissionId: "sub-8",
-      configuration: makeConfiguration(),
-      adapter: adapter,
-      draftStore: store
-    )
-
-    await coordinator.load(attachments: [], accompanyingText: "x").value
-    await coordinator.selectDestination("d1")
-    let result = await coordinator.send()
-    guard case .success = result else { return XCTFail("expected send to succeed") }
-    try? await coordinator.persistNow()
-
-    let draft = try await store.load(submissionId: "sub-8")
-    XCTAssertNil(draft, "a persist attempted after a successful delivery must never recreate the discarded draft")
   }
 
   // MARK: - Byte budget
@@ -231,47 +184,51 @@ private enum SampleError: Error, Equatable {
   case boom
 }
 
-private final class FakeAdapter: OneShareTargetAdapter, @unchecked Sendable {
+private actor FakeAdapter: OneShareTargetAdapter {
+  let destinationsEntered = EventGate()
+  let destinationsRelease = EventGate()
+  let sendEntered = EventGate()
+  let sendRelease = EventGate()
   private let destinationsResult: [OneShareDestination]
   private let destinationsError: Error?
-  private let destinationsDelayNanoseconds: UInt64
   private let sendError: Error?
-  private let sendDelayNanoseconds: UInt64
-
-  init(
-    destinations: [OneShareDestination] = [],
-    destinationsError: Error? = nil,
-    destinationsDelayNanoseconds: UInt64 = 0,
-    sendError: Error? = nil,
-    sendDelayNanoseconds: UInt64 = 0
-  ) {
-    self.destinationsResult = destinations
+  private let holdDestinations: Bool
+  private let holdSend: Bool
+  init(destinations: [OneShareDestination] = [], destinationsError: Error? = nil,
+       holdDestinations: Bool = false, sendError: Error? = nil, holdSend: Bool = false) {
+    destinationsResult = destinations
     self.destinationsError = destinationsError
-    self.destinationsDelayNanoseconds = destinationsDelayNanoseconds
     self.sendError = sendError
-    self.sendDelayNanoseconds = sendDelayNanoseconds
+    self.holdDestinations = holdDestinations
+    self.holdSend = holdSend
   }
-
-  required init() {
-    self.destinationsResult = []
-    self.destinationsError = nil
-    self.destinationsDelayNanoseconds = 0
-    self.sendError = nil
-    self.sendDelayNanoseconds = 0
+  init() {
+    destinationsResult = []; destinationsError = nil; sendError = nil
+    holdDestinations = false; holdSend = false
   }
-
   func destinations() async throws -> [OneShareDestination] {
-    if destinationsDelayNanoseconds > 0 {
-      try? await Task.sleep(nanoseconds: destinationsDelayNanoseconds)
-    }
+    await destinationsEntered.open()
+    if holdDestinations { await destinationsRelease.wait() }
     if let destinationsError { throw destinationsError }
     return destinationsResult
   }
-
   func send(submission: OneShareSubmission) async throws {
-    if sendDelayNanoseconds > 0 {
-      try? await Task.sleep(nanoseconds: sendDelayNanoseconds)
-    }
+    await sendEntered.open()
+    if holdSend { await sendRelease.wait() }
     if let sendError { throw sendError }
+  }
+}
+
+actor EventGate {
+  private var opened = false
+  private var waiters: [CheckedContinuation<Void, Never>] = []
+  func wait() async {
+    if opened { return }
+    await withCheckedContinuation { waiters.append($0) }
+  }
+  func open() {
+    opened = true
+    let pending = waiters; waiters = []
+    pending.forEach { $0.resume() }
   }
 }

@@ -52,7 +52,7 @@ public struct OneShareTargetIntake: Sendable {
   ///   - attachments: the extension item's `NSItemProvider` attachments.
   ///   - accompanyingText: the system compose text typed before an
   ///     attachment was picked (`NSExtensionItem.attributedContentText`),
-  ///     preserved as its own text item.
+  ///     included once as text, even when a provider exposes the same caption.
   ///   - destinationDirectory: an app-group-local directory owned by this
   ///     draft; copied files are written under it.
   ///   - isCancelled: polled between and during copies; cancelling stops
@@ -66,8 +66,16 @@ public struct OneShareTargetIntake: Sendable {
     var items: [OneSharedItem] = []
     var totalBytes = 0
 
-    if let accompanyingText, !accompanyingText.isEmpty, configuration.acceptsText {
-      items.append(.text(accompanyingText))
+    if let accompanyingText, !accompanyingText.isEmpty {
+      guard configuration.acceptsText else {
+        throw OneShareTargetError.unsupportedAttachment(typeIdentifier: UTType.plainText.identifier)
+      }
+      guard configuration.maxItems > 0 else {
+        throw OneShareTargetError.tooManyItems(limit: configuration.maxItems)
+      }
+      try Self.enforceItemBudget(byteCount: accompanyingText.utf8.count, name: "text",
+                                remainingTotalBudget: configuration.maxTotalBytes, configuration: configuration)
+
     }
 
     for provider in attachments {
@@ -87,6 +95,15 @@ public struct OneShareTargetIntake: Sendable {
       items.append(item)
     }
 
+    if let caption = accompanyingText, !caption.isEmpty,
+       !items.contains(.text(caption)) {
+      guard items.count < configuration.maxItems else {
+        throw OneShareTargetError.tooManyItems(limit: configuration.maxItems)
+      }
+      try Self.enforceItemBudget(byteCount: caption.utf8.count, name: "text",
+                                remainingTotalBudget: configuration.maxTotalBytes - totalBytes, configuration: configuration)
+      items.insert(.text(caption), at: 0)
+    }
     return items
   }
 
@@ -147,7 +164,7 @@ public struct OneShareTargetIntake: Sendable {
     )
   }
 
-  private static func byteCount(of item: OneSharedItem) -> Int {
+  static func byteCount(of item: OneSharedItem) -> Int {
     switch item {
     case .text(let value): return value.utf8.count
     case .url(let value): return value.absoluteString.utf8.count

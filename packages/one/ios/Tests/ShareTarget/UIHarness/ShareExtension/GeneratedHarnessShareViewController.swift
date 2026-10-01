@@ -3,6 +3,7 @@
 // example in OneShareTargetViewController's doc comment, made real.
 import Foundation
 
+@objc(GeneratedHarnessShareViewController)
 final class GeneratedHarnessShareViewController: OneShareTargetViewController {
   override var configuration: OneShareTargetConfiguration {
     OneShareTargetConfiguration(

@@ -80,9 +80,8 @@ final class HarnessRootViewController: UIViewController {
   }
 
   private func setFlags(sendFail: Bool, destinationsFail: Bool) {
-    let defaults = UserDefaults(suiteName: harnessAppGroupIdentifier)
-    defaults?.set(sendFail, forKey: "sendShouldFail")
-    defaults?.set(destinationsFail, forKey: "destinationsShouldFail")
+    HarnessControl.sendShouldFail = sendFail
+    HarnessControl.destinationsShouldFail = destinationsFail
   }
 
   private func presentShareSheet() {

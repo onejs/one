@@ -6,7 +6,8 @@ final class HarnessShareTargetAdapter: OneShareTargetAdapter {
   init() {}
 
   func destinations() async throws -> [OneShareDestination] {
-    if HarnessControl.destinationsShouldFail {
+    try await HarnessControl.waitIfHeld("destinations")
+    if HarnessControl.controlledFlag("destinationsShouldFail") {
       throw HarnessAdapterError.destinationsUnavailable
     }
     return [
@@ -16,9 +17,12 @@ final class HarnessShareTargetAdapter: OneShareTargetAdapter {
   }
 
   func send(submission: OneShareSubmission) async throws {
-    if HarnessControl.sendShouldFail {
+    try HarnessControl.record("submission-" + UUID().uuidString, data: JSONEncoder().encode(submission))
+    try await HarnessControl.waitIfHeld("send")
+    if HarnessControl.controlledFlag("sendShouldFail") {
       throw HarnessAdapterError.sendFailed
     }
+    try HarnessControl.record("accepted", data: JSONEncoder().encode(submission))
   }
 }
 
