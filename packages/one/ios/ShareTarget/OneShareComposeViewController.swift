@@ -38,42 +38,69 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
   private let submissionId = UUID().uuidString
   private var coordinator: OneShareTargetSubmissionCoordinator?
   private var refreshTask: Task<Void, Never>?
+  private var editTask: Task<Void, Never>?
+  private var hasEditedText = false
+  private var actionInFlight = false
+  private var loadFailed = false
+  private var deliveryPendingSnapshot = false
+  private var initialAttachments: [NSItemProvider] = []
+  private var initialText: String?
+
+  private var composeNavigationItem: UINavigationItem? {
+    func find(_ view: UIView) -> UINavigationBar? {
+      if let bar = view as? UINavigationBar { return bar }
+      for child in view.subviews { if let bar = find(child) { return bar } }
+      return nil
+    }
+    return find(view)?.topItem
+  }
+
+  @objc private func postTapped() { didSelectPost() }
+  @objc private func cancelTapped() { didSelectCancel() }
 
   // MARK: - Lifecycle
 
   open override func presentationAnimationDidFinish() {
     super.presentationAnimationDidFinish()
+    // SL's default Post action dismisses its sheet before didSelectPost.
+    // Route the existing native buttons directly so a failed delivery can
+    // retain the editor/picker, and a pending send cannot appear cancellable.
+    composeNavigationItem?.leftBarButtonItem?.target = self
+    composeNavigationItem?.leftBarButtonItem?.action = #selector(cancelTapped)
+    composeNavigationItem?.rightBarButtonItem?.target = self
+    composeNavigationItem?.rightBarButtonItem?.action = #selector(postTapped)
 
     let extensionItems = (extensionContext?.inputItems as? [NSExtensionItem]) ?? []
     let attachments = extensionItems.flatMap { $0.attachments ?? [] }
-    let initialText = extensionItems.compactMap { $0.attributedContentText?.string }.first
+    let initialText = extensionItems.compactMap { $0.attributedContentText?.string }.joined(separator: "\n")
+    self.initialAttachments = attachments
+    self.initialText = initialText
 
     // Shown immediately, before intake finishes: the user's own typed
     // caption (if any) is never held back waiting on file copies. Never
     // re-injected with a URL/file representation afterwards -- those travel
     // separately in the submission's `items`, so there is exactly one place
     // this text appears, not a duplicate line repeating it.
-    if let initialText {
-      textView.text = initialText
-    }
+    textView.text = initialText
 
-    refreshTask = Task { [weak self] in
-      guard let self else { return }
-      do {
-        let store = try OneShareTargetDraftStore(appGroupIdentifier: self.configuration.appGroupIdentifier)
-        let coordinator = OneShareTargetSubmissionCoordinator(
-          submissionId: self.submissionId,
-          configuration: self.configuration,
-          adapter: self.makeAdapter(),
-          draftStore: store
-        )
-        self.coordinator = coordinator
+    do {
+      let store = try OneShareTargetDraftStore(appGroupIdentifier: self.configuration.appGroupIdentifier)
+      let coordinator = OneShareTargetSubmissionCoordinator(
+        submissionId: self.submissionId,
+        configuration: self.configuration,
+        adapter: self.makeAdapter(),
+        draftStore: store
+      )
+      self.coordinator = coordinator
+      refreshTask = Task {
         await coordinator.load(attachments: attachments, accompanyingText: initialText).value
+        let preparedText = await coordinator.text
+        if !self.hasEditedText { self.textView.text = preparedText }
         await self.refresh()
-      } catch {
-        self.placeholder = "Couldn't prepare this share: \(error.localizedDescription)"
-        self.validateContent()
       }
+    } catch {
+      self.placeholder = "Couldn't prepare this share: \(error.localizedDescription)"
+      self.validateContent()
     }
   }
 
@@ -81,13 +108,18 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
   private func refresh() async {
     guard let coordinator else { return }
     let state = await coordinator.state
+    deliveryPendingSnapshot = await coordinator.isDeliveryPending
+    isModalInPresentation = deliveryPendingSnapshot || actionInFlight
+    textView.isEditable = !deliveryPendingSnapshot && !actionInFlight
+    composeNavigationItem?.leftBarButtonItem?.isEnabled = !deliveryPendingSnapshot && !actionInFlight
+    loadFailed = state == .failed
     if state == .failed {
       placeholder = await coordinator.lastError ?? "Couldn't load destinations."
     }
     isSendableSnapshot = await coordinator.isSendable
     let selectedId = await coordinator.selectedDestinationId
     let destinations = await coordinator.destinations
-    destinationSummarySnapshot = destinations.first(where: { $0.id == selectedId })?.title ?? "Choose…"
+    destinationSummarySnapshot = destinations.first(where: { $0.id == selectedId })?.title ?? (deliveryPendingSnapshot ? selectedId ?? "Saved share" : "Choose…")
     validateContent()
     reloadConfigurationItems()
   }
@@ -98,7 +130,7 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
     // `isContentValid()` is called synchronously by the system and cannot
     // itself await the actor; `isSendableSnapshot` is kept current by
     // `textViewDidChange` and `refresh()` instead of being read live here.
-    guard coordinator != nil else { return false }
+    guard coordinator != nil, !actionInFlight else { return false }
     return isSendableSnapshot
   }
 
@@ -109,9 +141,14 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
 
   open override func textViewDidChange(_ textView: UITextView) {
     super.textViewDidChange(textView)
-    guard let coordinator else { return }
+    guard let coordinator, !actionInFlight else { return }
+    hasEditedText = true
     let text = textView.text ?? ""
-    Task {
+    let previous = editTask
+    isSendableSnapshot = false
+    validateContent()
+    editTask = Task {
+      await previous?.value
       await coordinator.updateText(text)
       self.isSendableSnapshot = await coordinator.isSendable
       self.validateContent()
@@ -119,17 +156,25 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
   }
 
   open override func configurationItems() -> [Any]! {
-    guard coordinator != nil else { return [] }
     let item = SLComposeSheetConfigurationItem()!
-    item.title = "Send To"
+    item.title = loadFailed ? "Retry destinations" : "Send To"
     // `.subtitle`-style cells (used by the destination picker below) are
     // what let this item's value actually show; a default-style
     // `UITableViewCell` has no detail label to show one. The compose
     // controller already reads `item.value` for the row text, so this item
     // itself just needs a synchronous snapshot kept current.
-    item.value = destinationSummarySnapshot
+    item.value = loadFailed ? "Tap to retry" : destinationSummarySnapshot
     item.tapHandler = { [weak self] in
-      self?.presentDestinationPicker()
+      guard let self, !self.actionInFlight, !self.deliveryPendingSnapshot else { return }
+      if self.loadFailed {
+        self.loadFailed = false
+        self.destinationSummarySnapshot = "Loading…"
+        self.reloadConfigurationItems()
+        self.refreshTask = Task {
+          await coordinator?.load(attachments: self.initialAttachments, accompanyingText: self.initialText).value
+          await self.refresh()
+        }
+      } else { self.presentDestinationPicker() }
     }
     return [item]
   }
@@ -139,12 +184,13 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
   private var destinationSummarySnapshot = "Loading…"
 
   private func presentDestinationPicker() {
-    guard let coordinator else { return }
+    guard let coordinator, !actionInFlight, !deliveryPendingSnapshot else { return }
     Task {
+      guard await coordinator.state == .ready else { return }
       let destinations = await coordinator.destinations
       let selectedId = await coordinator.selectedDestinationId
       await MainActor.run { [weak self] in
-        guard let self else { return }
+        guard let self, !self.actionInFlight, !self.deliveryPendingSnapshot else { return }
         let picker = DestinationListViewController(destinations: destinations, selectedId: selectedId) { [weak self] id in
           guard let self, let coordinator = self.coordinator else { return }
           Task {
@@ -165,25 +211,38 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
   }
 
   open override func didSelectPost() {
-    guard let coordinator else { return }
+    guard let coordinator, !actionInFlight else { return }
+    actionInFlight = true
+    textView.isEditable = false
+    isSendableSnapshot = false
+    validateContent()
     // Disabling both buttons (not just relying on the coordinator's own
     // refusal) is what keeps a submission that may already be accepted from
     // ever being presented as cancellable: the control itself goes away.
-    navigationItem.leftBarButtonItem?.isEnabled = false
-    navigationItem.rightBarButtonItem?.isEnabled = false
+    composeNavigationItem?.leftBarButtonItem?.isEnabled = false
+    composeNavigationItem?.rightBarButtonItem?.isEnabled = false
     isModalInPresentation = true
 
     Task {
+      await self.editTask?.value
+      await coordinator.updateText(self.textView.text ?? "")
       let result = await coordinator.send()
       switch result {
       case .success:
         self.extensionContext?.completeRequest(returningItems: nil)
       case .failure(let error):
+        if await coordinator.state == .delivered {
+          self.extensionContext?.completeRequest(returningItems: nil)
+          return
+        }
+        self.actionInFlight = false
+        self.deliveryPendingSnapshot = await coordinator.isDeliveryPending
+        self.textView.isEditable = !self.deliveryPendingSnapshot
         self.isSendableSnapshot = await coordinator.isSendable
         await MainActor.run {
-          self.navigationItem.leftBarButtonItem?.isEnabled = true
-          self.navigationItem.rightBarButtonItem?.isEnabled = true
-          self.isModalInPresentation = false
+          self.composeNavigationItem?.leftBarButtonItem?.isEnabled = !self.deliveryPendingSnapshot
+          self.composeNavigationItem?.rightBarButtonItem?.isEnabled = true
+          self.isModalInPresentation = self.deliveryPendingSnapshot
           self.validateContent()
           self.presentSendErrorAlert(error)
         }
@@ -192,12 +251,15 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
   }
 
   open override func didSelectCancel() {
+    guard !actionInFlight, !deliveryPendingSnapshot else { return }
+    actionInFlight = true
+    textView.isEditable = false
     guard let coordinator else {
       extensionContext?.cancelRequest(withError: NSError(domain: "OneShareTarget", code: NSUserCancelledError))
       return
     }
-    navigationItem.leftBarButtonItem?.isEnabled = false
-    navigationItem.rightBarButtonItem?.isEnabled = false
+    composeNavigationItem?.leftBarButtonItem?.isEnabled = false
+    composeNavigationItem?.rightBarButtonItem?.isEnabled = false
 
     Task {
       // Refused by the coordinator if a send is in flight/already accepted;
@@ -207,9 +269,11 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
       if cancelled {
         self.extensionContext?.cancelRequest(withError: NSError(domain: "OneShareTarget", code: NSUserCancelledError))
       } else {
+        self.actionInFlight = false
+        await self.refresh()
         await MainActor.run {
-          self.navigationItem.leftBarButtonItem?.isEnabled = true
-          self.navigationItem.rightBarButtonItem?.isEnabled = true
+          self.composeNavigationItem?.leftBarButtonItem?.isEnabled = !self.deliveryPendingSnapshot
+          self.composeNavigationItem?.rightBarButtonItem?.isEnabled = true
         }
       }
     }
@@ -217,8 +281,8 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
 
   private func presentSendErrorAlert(_ error: Error) {
     let alert = UIAlertController(
-      title: "Couldn't send",
-      message: error.localizedDescription,
+      title: deliveryPendingSnapshot ? "Delivery not confirmed" : "Couldn't send",
+      message: error.localizedDescription + (deliveryPendingSnapshot ? "\n\nThis share is saved. Tap Post to retry the same share." : ""),
       preferredStyle: .alert
     )
     alert.addAction(UIAlertAction(title: "OK", style: .default))
