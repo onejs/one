@@ -132,6 +132,8 @@ dependencies {
     implementation "androidx.browser:browser:1.9.0"
     implementation "com.google.android.material:material:1.13.0"
     implementation "androidx.activity:activity:1.9.3"
+    // setContent and BackHandler for the share-target compose activity.
+    implementation "androidx.activity:activity-compose:1.9.3"
     implementation "androidx.core:core:1.13.1"
     // folding features for reserved regions (Jetpack WindowManager).
     implementation "androidx.window:window:1.5.1"
