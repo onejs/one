@@ -6,7 +6,7 @@ import type { DirectEventHandler, Double } from 'react-native/Libraries/Types/Co
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 
 type KotlinHostEvent = Readonly<{ name: string; args: string }>
-type KotlinHostSizeEvent = Readonly<{ width: Double; height: Double }>
+type KotlinHostSizeEvent = Readonly<{ width: Double; height: Double; intrinsicWidth: boolean }>
 
 interface NativeProps extends ViewProps {
   // the kotlin source id the bundler derived from the imported file's path
@@ -14,6 +14,8 @@ interface NativeProps extends ViewProps {
   view: string
   contractHash: string
   props: string
+  intrinsicWidth: boolean
+  intrinsicHeight: boolean
   onHostEvent?: DirectEventHandler<KotlinHostEvent>
   onHostSizeChange?: DirectEventHandler<KotlinHostSizeEvent>
 }

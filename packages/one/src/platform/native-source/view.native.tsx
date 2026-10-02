@@ -8,7 +8,7 @@ import type { KotlinSourceViewProps } from './viewTypes'
 export type { KotlinSourceViewProps } from './viewTypes'
 
 export function KotlinSourceView({ source, view, contractHash, props }: KotlinSourceViewProps) {
-  const [contentSize, setContentSize] = useState<{ width: number; height: number }>()
+  const [contentSize, setContentSize] = useState<{ width: number; height: number; intrinsicWidth: boolean }>()
   const rootStyle = StyleSheet.flatten((props as any)?.style)
 
   const stretchedWidth =
@@ -28,6 +28,8 @@ export function KotlinSourceView({ source, view, contractHash, props }: KotlinSo
       source={source}
       view={view}
       contractHash={contractHash}
+      intrinsicWidth={!stretchedWidth}
+      intrinsicHeight={!stretchedHeight}
       // a callback travels as true; the composable's lambda reports its call
       props={JSON.stringify(props, (_key, value) => (typeof value === 'function' ? true : value))}
       onHostEvent={(event) => {
@@ -39,7 +41,7 @@ export function KotlinSourceView({ source, view, contractHash, props }: KotlinSo
       }}
       style={[
         contentSize && {
-          width: stretchedWidth ? undefined : contentSize.width,
+          width: stretchedWidth || !contentSize.intrinsicWidth ? undefined : contentSize.width,
           height: stretchedHeight ? undefined : contentSize.height,
         },
         (props as any)?.style,
