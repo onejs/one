@@ -15,7 +15,7 @@ import {
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
 import { Team } from '~/components/Team'
-import { PrettyText, PrettyTextBigger } from '~/components/typography'
+import { PrettyText } from '~/components/typography'
 import { OneLogo } from '~/features/brand/Logo'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
@@ -35,8 +35,8 @@ export default function HomePage() {
   return (
     <>
       <HeadInfo
-        title="One: React Native, actually native"
-        description="One is a Vite framework for web and native: generated SwiftUI and Jetpack Compose, every native API under One.*, bundled in Rust."
+        title="One: React Native, all in one"
+        description="The faster, easier and more complete way to build React Native apps: works with what you use, with 100% native API coverage built in."
         openGraph={{
           images: [
             { url: `${process.env.ONE_SERVER_URL}/og.jpg`, width: 1200, height: 630 },
@@ -49,7 +49,7 @@ export default function HomePage() {
 
       <Spacer size="8 gtSm:4" />
 
-      <ContainerSm>
+      <ContainerSm maxWidth={1040}>
         <XStack justifyContent="space-between" mb="2">
           <View
             group
@@ -123,21 +123,23 @@ export default function HomePage() {
         <View theme="gray" gap="4" pt="5 sm:8">
           <H1
             fontFamily="heading"
-            fontSize="132px sm:64px"
-            lineHeight="124px sm:64px"
-            letterSpacing="-6px sm:-2px"
+            fontSize="104px sm:56px"
+            lineHeight="100px sm:58px"
+            letterSpacing={0}
             fontWeight="800"
             color={INK}
             mt="6"
           >
-            React Native, actually native.
+            React Native,
+            <br />
+            all in one.
           </H1>
 
-          <PrettyTextBigger color={INK} opacity={0.8}>
-            One is a Vite framework for web and native. SwiftUI and Jetpack Compose are
-            generated for you, every native API lives under{' '}
-            <Code>One.*</Code>, and it all bundles in Rust.
-          </PrettyTextBigger>
+          <Body fontSize="24px sm:20px" lineHeight="34px sm:29px" maw={760}>
+            The faster, easier and more complete way to build React Native apps. One
+            works with the libraries you already use and gives you everything else out
+            of the box, with 100% native API coverage.
+          </Body>
 
           <XStack gap="4" alignItems="center" mt="2" flexWrap="wrap">
             <CopyCommand />
@@ -154,43 +156,68 @@ export default function HomePage() {
             <YStack gap="3" mt="2">
               {BUNDLE_TIMES.map((lane) => (
                 <XStack key={lane.name} alignItems="center" gap="4">
-                  <Text fontFamily="mono" w={80} color="color12" fontWeight="600">
+                  <Text fontFamily="mono" w={80} color={INK} fontWeight="600">
                     {lane.name}
                   </Text>
-                  <View
-                    h={28}
-                    br="4"
-                    bg={lane.lead ? INK : 'rgba(20,18,8,0.18)'}
-                    w={`${(lane.seconds / BUNDLE_MAX) * 70}%`}
+                  <div
+                    style={{
+                      height: 28,
+                      borderRadius: 6,
+                      width: `${(lane.seconds / BUNDLE_MAX) * 70}%`,
+                      // one is solid; metro is a dot grid
+                      background: lane.lead
+                        ? INK
+                        : `radial-gradient(${INK} 1.6px, transparent 2.2px) 0 0 / 7px 7px`,
+                    }}
                   />
-                  <Text fontFamily="mono" color="color11">
+                  <Text fontFamily="mono" color={INK}>
                     {lane.seconds}s
                   </Text>
                 </XStack>
               ))}
             </YStack>
-            <PrettyText fontSize="4" color={INK} opacity={0.6} mt="3">
+            <Body fontSize="15px" lineHeight="22px" opacity={0.65} mt="2">
               Cold dev bundle of a production iOS app, same machine.
-            </PrettyText>
+            </Body>
           </Section>
 
           <Section label="One Native" title="Every native view and API, typed.">
-            <PrettyText color={INK}>
+            <Body>
               SwiftUI and Jetpack Compose are generated straight from the platform SDKs.
               Haptics, storage, updates, notifications and the rest share one call on iOS
               and Android.
-            </PrettyText>
-            <CodeBlock>{NATIVE_SAMPLE}</CodeBlock>
+            </Body>
+            <CodeBlock code={NATIVE_SAMPLE} />
             <Link href="/native/overview">
-              <PrettyText color={INK}>Explore One Native</PrettyText>
+              <Body textDecorationLine="underline">Explore One Native</Body>
             </Link>
           </Section>
 
-          <Section label="Full stack" title="And the web, from the same app.">
-            <PrettyText color={INK}>
-              SSG, SSR or SPA per route, typed loaders, middleware and API routes, deployed
-              to Vercel or Cloudflare.
-            </PrettyText>
+          <Section label="Batteries included" title="Everything a real app needs.">
+            <XStack flexWrap="wrap" columnGap="6" rowGap="5" mt="2">
+              {INCLUDED.map((item) => (
+                <YStack key={item.title} w="calc(50% - 16px) sm:100%" gap="1">
+                  <Text fontFamily="heading" fontWeight="800" fontSize="20px" color={INK}>
+                    {item.title}
+                  </Text>
+                  <Body fontSize="17px" lineHeight="25px" opacity={0.8}>
+                    {item.text}
+                  </Body>
+                </YStack>
+              ))}
+            </XStack>
+          </Section>
+
+          <Section label="No lock-in" title="And it works with what you use.">
+            <XStack flexWrap="wrap" gap="3" mt="2">
+              {WORKS_WITH.map((name) => (
+                <View key={name} bg={INK} br="6" px="4" py="2">
+                  <Text fontFamily="mono" fontSize="15px" color={YELLOW}>
+                    {name}
+                  </Text>
+                </View>
+              ))}
+            </XStack>
           </Section>
 
           <Separator />
@@ -279,17 +306,51 @@ const NATIVE_SAMPLE = `import { One } from 'one'
 
 One.Haptics.impact('medium')`
 
+// what ships in the box; each line traces to a v2 feature
+const INCLUDED = [
+  { title: 'Routing', text: 'Typed file-system routes, layouts, stacks and tabs.' },
+  { title: 'Native UI', text: 'SwiftUI and Jetpack Compose, generated for you.' },
+  { title: 'Native APIs', text: 'Haptics, storage, notifications, purchases and more.' },
+  { title: 'Updates', text: 'Over-the-air updates with rollback, built in.' },
+  { title: 'Data', text: 'Typed loaders with SSR, SSG or SPA per route.' },
+  { title: 'Deploy', text: 'Vercel, Cloudflare or your own Hono server.' },
+  { title: 'DevTools', text: 'Route debugging, loader timing, source inspector.' },
+  { title: 'Builds', text: 'Prebuild, run:ios and run:android, no Expo required.' },
+]
+
+const WORKS_WITH = [
+  'Expo modules',
+  'Expo Go',
+  'React Navigation',
+  'Reanimated',
+  'Nitro modules',
+  'Tamagui',
+  'NativeWind',
+  'Metro mode',
+]
+
+const Body = styled(Paragraph, {
+  fontFamily: 'body',
+  fontSize: '19px',
+  lineHeight: '28px',
+  fontWeight: '400',
+  color: INK,
+})
+
+// an eyebrow as an ink tag, tilted a touch
 const Section = ({ label, title, children }) => {
   return (
     <YStack gap="3" py="6">
-      <Text fontFamily="mono" fontSize="3" color={INK} opacity={0.6} textTransform="uppercase">
-        {label}
-      </Text>
+      <View als="flex-start" bg={INK} px="3" py="1" rotate="-2deg" mb="1">
+        <Text fontFamily="mono" fontSize="13px" color={YELLOW} textTransform="uppercase">
+          {label}
+        </Text>
+      </View>
       <H2
         fontFamily="heading"
         fontSize="48px sm:34px"
         lineHeight="52px sm:38px"
-        letterSpacing="-2px sm:-1px"
+        letterSpacing={0}
         fontWeight="800"
         color={INK}
       >
@@ -300,17 +361,27 @@ const Section = ({ label, title, children }) => {
   )
 }
 
-const Code = styled(Text, {
-  fontFamily: 'mono',
-  fontSize: '0.9em',
-  color: 'color12',
-})
+// yellow on ink, with strings a shade lighter and keywords and punctuation dimmer
+const CODE_TOKEN = /('[^']*'|"[^"]*"|\bimport\b|\bfrom\b|[{}()<>=/])/
+const CODE_COLOR = { string: '#fff3b0', quiet: '#a8921f', text: YELLOW }
 
-const CodeBlock = ({ children }: { children: string }) => {
+const CodeBlock = ({ code }: { code: string }) => {
   return (
     <View bg={INK} br="8" p="5" overflow="hidden">
-      <Text fontFamily="mono" fontSize="3" lineHeight="5" color={YELLOW} whiteSpace="pre">
-        {children}
+      <Text fontFamily="mono" fontSize="15px" lineHeight="26px" whiteSpace="pre">
+        {code.split(CODE_TOKEN).map((part, i) => {
+          const color =
+            part.startsWith("'") || part.startsWith('"')
+              ? CODE_COLOR.string
+              : part === 'import' || part === 'from' || CODE_TOKEN.test(part)
+                ? CODE_COLOR.quiet
+                : CODE_COLOR.text
+          return (
+            <Text key={i} color={color}>
+              {part}
+            </Text>
+          )
+        })}
       </Text>
     </View>
   )
