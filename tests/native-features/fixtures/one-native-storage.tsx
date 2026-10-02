@@ -53,7 +53,8 @@ function runBench(report: (name: string, value: string) => void) {
   const storage = One.Storage
   const count = 10000
   const value = 'v'.repeat(64)
-  const perCall = (start: number) => `${(((performance.now() - start) * 1000) / count).toFixed(2)}us`
+  const perCall = (start: number) =>
+    `${(((performance.now() - start) * 1000) / count).toFixed(2)}us`
   let start = performance.now()
   for (let index = 0; index < count; index++) storage.setItem(`bench-${index}`, value)
   report('BenchSet', perCall(start))
@@ -61,11 +62,15 @@ function runBench(report: (name: string, value: string) => void) {
   for (let index = 0; index < count; index++) storage.getItem(`bench-${index}`)
   report('BenchGet', perCall(start))
   start = performance.now()
-  for (let index = 0; index < count; index++) storage.setItem('bench-hot', `${value}${index}`)
+  for (let index = 0; index < count; index++)
+    storage.setItem('bench-hot', `${value}${index}`)
   report('BenchOverwrite', perCall(start))
   start = performance.now()
   const keys = storage.getAllKeys()
-  report('BenchAllKeys', `${((performance.now() - start) * 1000).toFixed(0)}us for ${keys.length}`)
+  report(
+    'BenchAllKeys',
+    `${((performance.now() - start) * 1000).toFixed(0)}us for ${keys.length}`
+  )
   start = performance.now()
   for (let index = 0; index < count; index++) storage.removeItem(`bench-${index}`)
   report('BenchRemove', perCall(start))
@@ -102,35 +107,49 @@ export default function OneNativeStorage() {
     <View style={styles.screen}>
       <Text>{`Status: ${status}`}</Text>
       <Text>{`Persisted: ${persisted}`}</Text>
-      {results.map(([name, value]) => <Text key={name}>{`${name}: ${value}`}</Text>)}
-      <Pressable testID="one-native-storage-run" style={styles.chip} onPress={() => {
-        const next: [string, string][] = []
-        try {
-          runChecks((name, value) => next.push([name, value]))
-          setStatus('done')
-        } catch (error) {
-          setStatus(`failed ${message(error)}`)
-        }
-        setResults(next)
-      }}>
+      {results.map(([name, value]) => (
+        <Text key={name}>{`${name}: ${value}`}</Text>
+      ))}
+      <Pressable
+        testID="one-native-storage-run"
+        style={styles.chip}
+        onPress={() => {
+          const next: [string, string][] = []
+          try {
+            runChecks((name, value) => next.push([name, value]))
+            setStatus('done')
+          } catch (error) {
+            setStatus(`failed ${message(error)}`)
+          }
+          setResults(next)
+        }}
+      >
         <Text>Run storage checks</Text>
       </Pressable>
-      <Pressable testID="one-native-storage-bench" style={styles.chip} onPress={() => {
-        const next: [string, string][] = []
-        try {
-          runBench((name, value) => next.push([name, value]))
-          setStatus('benched')
-        } catch (error) {
-          setStatus(`failed ${message(error)}`)
-        }
-        setResults(next)
-      }}>
+      <Pressable
+        testID="one-native-storage-bench"
+        style={styles.chip}
+        onPress={() => {
+          const next: [string, string][] = []
+          try {
+            runBench((name, value) => next.push([name, value]))
+            setStatus('benched')
+          } catch (error) {
+            setStatus(`failed ${message(error)}`)
+          }
+          setResults(next)
+        }}
+      >
         <Text>Run storage benchmark</Text>
       </Pressable>
-      <Pressable testID="one-native-storage-clear" style={styles.chip} onPress={() => {
-        One.Storage.removeItem(persistKey)
-        setStatus('cleared')
-      }}>
+      <Pressable
+        testID="one-native-storage-clear"
+        style={styles.chip}
+        onPress={() => {
+          One.Storage.removeItem(persistKey)
+          setStatus('cleared')
+        }}
+      >
         <Text>Clear persisted</Text>
       </Pressable>
     </View>
@@ -139,5 +158,10 @@ export default function OneNativeStorage() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 6, backgroundColor: '#fff' },
-  chip: { padding: 10, borderRadius: 8, backgroundColor: '#e5e7eb', alignSelf: 'flex-start' },
+  chip: {
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: '#e5e7eb',
+    alignSelf: 'flex-start',
+  },
 })
