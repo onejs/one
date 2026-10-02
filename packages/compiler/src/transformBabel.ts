@@ -145,7 +145,10 @@ const getOptions = (
 }
 
 function getBabelCaller(props: Props): babel.TransformOptions['caller'] {
-  return {
+  // babel hands every caller field to presets (babel-preset-expo reads platform
+  // and isDev), but its types list only the esm support flags, so the extra
+  // fields go through a named value rather than a checked literal.
+  const caller = {
     name: 'vxrn',
     platform:
       props.environment === 'ios' || props.environment === 'android'
@@ -153,6 +156,7 @@ function getBabelCaller(props: Props): babel.TransformOptions['caller'] {
         : 'web',
     isDev: props.development,
   }
+  return caller
 }
 
 /**
@@ -229,7 +233,7 @@ export async function transformBabel(
   const extension = extname(id)
   const isTSX = extension === '.tsx'
   const isTS = isTSX || extension === '.ts'
-  const babelOptions = {
+  const babelOptions: babel.TransformOptions = {
     filename: id,
     compact: false,
     babelrc: options.babelrc ?? false,
