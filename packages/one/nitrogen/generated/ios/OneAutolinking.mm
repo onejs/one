@@ -28,7 +28,7 @@
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
-#include "HybridOnePreferencesSpecSwift.hpp"
+#include "HybridOneStorageSpecSwift.hpp"
 #include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOnePrintSpecSwift.hpp"
 #include "HybridOneStoreReviewSpecSwift.hpp"
@@ -191,9 +191,9 @@
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
-    "OnePreferences",
+    "OneStorage",
     []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOnePreferencesSpec> hybridObject = One::OneAutolinking::createOnePreferences();
+      std::shared_ptr<HybridOneStorageSpec> hybridObject = One::OneAutolinking::createOneStorage();
       return hybridObject;
     }
   );

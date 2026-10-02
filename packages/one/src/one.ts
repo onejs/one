@@ -8,7 +8,6 @@ import {
   LiveActivities,
   LocalAuthentication,
   ProtectedStore,
-  Preferences,
   KeepAwake,
   Print,
   StoreReview,
@@ -51,6 +50,7 @@ import {
   Notifications,
   Network as NativeNetwork,
   SecureStore as NativeSecureStore,
+  Storage,
   Speech as NativeSpeech,
   Updates as NativeUpdates,
   SplitView,
@@ -65,11 +65,7 @@ import {
   ZoomTransitionSource,
   type ColorType,
 } from './platform'
-import {
-  SafeAreaProvider,
-  SafeAreaView,
-  initialWindowMetrics,
-} from './safe-area-context'
+import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context'
 
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
 
@@ -79,7 +75,6 @@ export type OneIOS = typeof Swift & {
   readonly WidgetUI: typeof WidgetUI
   readonly LocalAuthentication: typeof LocalAuthentication
   readonly ProtectedStore: typeof ProtectedStore
-  readonly Preferences: typeof Preferences
   readonly KeepAwake: typeof KeepAwake
   readonly Print: typeof Print
   readonly StoreReview: typeof StoreReview
@@ -159,6 +154,7 @@ export type OneAPI = {
   readonly ImagePicker: typeof ImagePicker
   readonly DocumentPicker: typeof DocumentPicker
   readonly SecureStore: typeof NativeSecureStore
+  readonly Storage: typeof Storage
   readonly Speech: typeof NativeSpeech
   readonly Updates: typeof NativeUpdates
 }
@@ -177,7 +173,6 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   WidgetUI,
   LocalAuthentication,
   ProtectedStore,
-  Preferences,
   KeepAwake,
   Print,
   StoreReview,
@@ -255,6 +250,7 @@ export const One: OneAPI = Object.freeze({
   ImagePicker,
   DocumentPicker,
   SecureStore: NativeSecureStore,
+  Storage,
   Speech: NativeSpeech,
   Updates: NativeUpdates,
 })

@@ -65,7 +65,6 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOnePhotoLibrarySpec.cpp
-  ../nitrogen/generated/shared/c++/HybridOnePreferencesSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOnePrintSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneProtectedStoreSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOnePurchasesSpec.cpp
@@ -75,6 +74,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneShareSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneStorageSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneStoreReviewSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp
   # Android-specific Nitrogen C++ sources
@@ -95,6 +95,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneStorageSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp
 )
 

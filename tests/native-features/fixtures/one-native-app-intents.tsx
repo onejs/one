@@ -8,9 +8,9 @@ export default function OneNativeAppIntents() {
   const [receipt, setReceipt] = useState('unread')
   const [invalid, setInvalid] = useState('unchecked')
 
-  const read = () => setReceipt(One.iOS.Preferences.getItemSync(receiptKey) ?? 'missing')
+  const read = () => setReceipt(One.Storage.getItem(receiptKey) ?? 'missing')
   const reset = () => {
-    One.iOS.Preferences.deleteItemSync(receiptKey)
+    One.Storage.removeItem(receiptKey)
     read()
   }
   const checkInvalid = () => {

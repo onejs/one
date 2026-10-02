@@ -43,6 +43,7 @@
 #include "JHybridOneSecureStoreSpec.hpp"
 #include "JHybridOneSpeechSpec.hpp"
 #include "JFunc_void_SpeechEvent.hpp"
+#include "JHybridOneStorageSpec.hpp"
 #include "JHybridOneUpdatesSpec.hpp"
 #include "JFunc_void_std__optional_std__string_.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
@@ -183,6 +184,14 @@ struct JHybridOneAppleAuthSpecImpl: public jni::JavaClass<JHybridOneAppleAuthSpe
     return javaPart->getJHybridOneAppleAuthSpec();
   }
 };
+struct JHybridOneStorageSpecImpl: public jni::JavaClass<JHybridOneStorageSpecImpl, JHybridOneStorageSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneStorage;";
+  static std::shared_ptr<JHybridOneStorageSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneStorageSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneStorageSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneStorageSpec();
+  }
+};
 struct JHybridOneUpdatesSpecImpl: public jni::JavaClass<JHybridOneUpdatesSpecImpl, JHybridOneUpdatesSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneUpdates;";
   static std::shared_ptr<JHybridOneUpdatesSpec> create() {
@@ -233,6 +242,7 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneSecureStoreSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneSpeechSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_SpeechEvent_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneStorageSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneUpdatesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_std__optional_std__string__cxx::registerNatives();
 
@@ -331,6 +341,12 @@ void registerAllNatives() {
     "OneAppleAuth",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneAppleAuthSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneStorage",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneStorageSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
