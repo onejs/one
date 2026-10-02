@@ -1,19 +1,8 @@
-import {
-  Database,
-  FileStack,
-  FolderCheck,
-  Loader,
-  TabletSmartphone,
-  Triangle,
-  X,
-} from '~/features/icons/lucide'
 import { useState, type KeyboardEvent } from 'react'
 import {
-  Circle,
-  EnsureFlexed,
-  H5,
+  H1,
+  H2,
   Paragraph,
-  Portal,
   Spacer,
   Text,
   Theme,
@@ -26,7 +15,7 @@ import {
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
 import { Team } from '~/components/Team'
-import { PrettyText, PrettyTextBigger, PrettyTextMedium } from '~/components/typography'
+import { PrettyText, PrettyTextBigger } from '~/components/typography'
 import { OneLogo } from '~/features/brand/Logo'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
@@ -46,8 +35,8 @@ export default function HomePage() {
   return (
     <>
       <HeadInfo
-        title="One, a React Framework"
-        description="One is a React framework focused on simplicity that lets you target both web and native at once with a single Vite plugin."
+        title="One: React Native, actually native"
+        description="One is a Vite framework for web and native: generated SwiftUI and Jetpack Compose, every native API under One.*, bundled in Rust."
         openGraph={{
           images: [
             { url: `${process.env.ONE_SERVER_URL}/og.jpg`, width: 1200, height: 630 },
@@ -128,57 +117,80 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View theme="yellow" gap="4" pt="5 sm:8">
-          <PrettyTextBigger>
-            The simplest, fastest, all-in-one React&nbsp;Native framework.
-          </PrettyTextBigger>
+        <View theme="gray" gap="4" pt="5 sm:8">
+          <H1
+            fontFamily="heading"
+            fontSize="96px sm:56px"
+            lineHeight="96px sm:58px"
+            letterSpacing="-4px sm:-2px"
+            fontWeight="800"
+            color="color12"
+            mt="6"
+          >
+            React Native, actually native.
+          </H1>
 
           <PrettyTextBigger>
-            A single Vite plugin for fully-typed{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
-              file-system routes
-            </Link>
-            , per-page{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/render-modes">
-              render modes
-            </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-loader">
-              loaders
-            </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-middlewares">
-              middleware
-            </Link>
-            , a{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/features">
-              ton of features
-            </Link>
-            , and a production-ready{' '}
-            <Link target="_blank" href="https://hono.dev">
-              Hono
-            </Link>
-            , Vercel or Cloudflare server.
+            One is a Vite framework for web and native. SwiftUI and Jetpack Compose are
+            generated for you, every native API lives under{' '}
+            <Code>One.*</Code>, and it all bundles in Rust.
           </PrettyTextBigger>
 
-          <YStack mt={20} px="6" als="center" alignItems="center" justifyContent="center">
-            <Paragraph size="5" color="color9" theme="gray">
-              Get started:
-            </Paragraph>
+          <XStack gap="4" alignItems="center" mt="2" flexWrap="wrap">
             <CopyCommand />
-          </YStack>
+            <Link href="/docs/introduction" asChild>
+              <Button size="5" br="10" bw={0} bg="color12 hover:color11">
+                <ButtonText color="color1">Read the docs</ButtonText>
+              </Button>
+            </Link>
+          </XStack>
 
-          <YStack>
-            <Video />
+          <Separator />
 
-            <InfoBoxes />
-          </YStack>
+          <Section label="Speed" title="5.4x faster than Metro.">
+            <YStack gap="3" mt="2">
+              {BUNDLE_TIMES.map((lane) => (
+                <XStack key={lane.name} alignItems="center" gap="4">
+                  <Text fontFamily="mono" w={80} color="color12" fontWeight="600">
+                    {lane.name}
+                  </Text>
+                  <View
+                    h={28}
+                    br="4"
+                    bg={lane.lead ? 'color12' : 'color6'}
+                    w={`${(lane.seconds / BUNDLE_MAX) * 70}%`}
+                  />
+                  <Text fontFamily="mono" color="color11">
+                    {lane.seconds}s
+                  </Text>
+                </XStack>
+              ))}
+            </YStack>
+            <PrettyText fontSize="4" color="color10" mt="3">
+              Cold dev bundle of a production iOS app, same machine.
+            </PrettyText>
+          </Section>
 
-          {/* <Spacer /> */}
+          <Section label="One Native" title="Every native view and API, typed.">
+            <PrettyText>
+              SwiftUI and Jetpack Compose are generated straight from the platform SDKs.
+              Haptics, storage, updates, notifications and the rest share one call on iOS
+              and Android.
+            </PrettyText>
+            <CodeBlock>{NATIVE_SAMPLE}</CodeBlock>
+            <Link href="/native/overview">
+              <PrettyText color="color11">Explore One Native</PrettyText>
+            </Link>
+          </Section>
 
-          {/* <EmailSignup />
+          <Section label="Full stack" title="And the web, from the same app.">
+            <PrettyText>
+              SSG, SSR or SPA per route, typed loaders, middleware and API routes, deployed
+              to Vercel or Cloudflare.
+            </PrettyText>
+          </Section>
 
-          <Spacer /> */}
+          <Separator />
 
           <Theme name="gray">
             <Link
@@ -246,209 +258,55 @@ export default function HomePage() {
   )
 }
 
-const InfoBoxes = () => {
-  return (
-    <XStack
-      mx="-8 sm:0px"
-      rowGap="1"
-      columnGap="5"
-      mb="13"
-      flexDirection="sm:column"
-      fw="wrap"
-    >
-      <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
-        Typed file-system routing, nested layouts with groups.
-      </InfoCard>
-      <InfoCard title="Render Modes" Icon={FileStack}>
-        Render any page as SPA, SSR, or SSG, control the global default.
-      </InfoCard>
-      <InfoCard title="Loaders" Icon={Loader}>
-        Typed loaders make it easy to bring in data and migrate from other frameworks.
-      </InfoCard>
-      <InfoCard title="Web + Native" Icon={TabletSmartphone}>
-        Build a website with React. Or a native app with React Native. Or both at once.
-      </InfoCard>
-      <InfoCard title="Vite-native" Icon={ViteIcon}>
-        Use just Vite, even for native, or defer to Metro. One lets you choose.
-      </InfoCard>
-      <InfoCard title="Simplistic model" Icon={Database}>
-        One avoids the complexity of RSC in favor of SSG, SPA, or SSR, with loaders or a
-        sync-engine for data.
-      </InfoCard>
-    </XStack>
-  )
-}
+// cold dev bundle of the contrast app on ios, four interleaved runs
+// (one session m13021, 2026-09-06): rolldown ~3.6s, metro + babel ~19.5s
+const BUNDLE_TIMES = [
+  { name: 'One', seconds: 3.6, lead: true },
+  { name: 'Metro', seconds: 19.5, lead: false },
+]
+const BUNDLE_MAX = 19.5
 
-const ViteIcon = (props) => (
-  <View rotate="180deg">
-    <Triangle {...props} />
-  </View>
-)
+const NATIVE_SAMPLE = `import { One } from 'one'
 
-const InfoCard = ({ title, Icon, children }) => {
+<One.iOS.Button label="Save" onPress={save} />
+<One.Android.Switch isOn={on} onIsOnChange={setOn} />
+
+One.Haptics.impact('medium')`
+
+const Section = ({ label, title, children }) => {
   return (
-    <YStack pos="relative" w="calc(50% - var(--t-space-3)) sm:100%" mb="4 sm:2" py="2">
-      <YStack position="absolute" inset={0} opacity={0.25}></YStack>
-      <YStack gap="2" p="4">
-        <View als="flex-end" mb={-20} opacity={0.1}>
-          <Icon size={28} />
-        </View>
-        <H5 fontFamily="mono" size="2" color="color12" mt={-10}>
-          {title}
-        </H5>
-        <PrettyText color="gray11">{children}</PrettyText>
-      </YStack>
+    <YStack gap="3" py="6">
+      <Text fontFamily="mono" fontSize="3" color="color10" textTransform="uppercase">
+        {label}
+      </Text>
+      <H2
+        fontFamily="heading"
+        fontSize="48px sm:34px"
+        lineHeight="52px sm:38px"
+        letterSpacing="-2px sm:-1px"
+        fontWeight="800"
+        color="color12"
+      >
+        {title}
+      </H2>
+      {children}
     </YStack>
   )
 }
 
-function Video() {
-  const [showVideo, setShowVideo] = useState(false)
+const Code = styled(Text, {
+  fontFamily: 'mono',
+  fontSize: '0.9em',
+  color: 'color12',
+})
 
+const CodeBlock = ({ children }: { children: string }) => {
   return (
-    <>
-      {showVideo && (
-        <Portal zIndex={1000}>
-          <YStack
-            position={'fixed' as any}
-            t={0}
-            l={0}
-            r={0}
-            b={0}
-            bg="rgba(0,0,0,0.95)"
-            gap="4"
-            zi={100_000}
-            justifyContent="center"
-            alignItems="center"
-            pointerEvents="auto"
-            onPress={() => setShowVideo(false)}
-          >
-            <div className="video-background">
-              <EnsureFlexed />
-              <iframe
-                src="https://www.youtube.com/embed/ZJH4bKkwo90?si=tIVSYmbpEY_0c4-8&amp;autoplay=1&amp;vq=hd1080p;hd=1&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;rel=0"
-                title="One Demo Video"
-                style={{ maxWidth: '95%' }}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
-            </div>
-            <Button
-              pos="absolute"
-              t={10}
-              r={10}
-              p="2"
-              br="10"
-              onPress={() => setShowVideo(false)}
-              aria-label="Close Video"
-            >
-              <X />
-            </Button>
-          </YStack>
-        </Portal>
-      )}
-
-      <View
-        als="center"
-        miw={250}
-        maw={350}
-        h={290}
-        w="100%"
-        alignItems="center"
-        contain="size layout"
-        group="card"
-        container="card"
-        containerType="normal"
-        onPress={() => setShowVideo(true)}
-        zi={0}
-        scale={0.85}
-        m={-40}
-        mb={0}
-      >
-        <View
-          transition="quick"
-          als="center"
-          maxWidth={380}
-          w="100%"
-          ov="hidden"
-          cursor="pointer"
-          render="button"
-          aria-label="Promo Video Launcher"
-          backgroundColor="transparent"
-          borderWidth={0}
-          userSelect="none"
-          y={10}
-        >
-          <YStack w="100%" h={205}>
-            <div
-              style={{
-                backgroundImage: `url(/cover.webp)`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'contain',
-                backgroundPosition: 'bottom center',
-                width: '100%',
-                height: '100%',
-                border: 'none',
-              }}
-            />
-          </YStack>
-
-          <View
-            pos="absolute"
-            top={0}
-            right={0}
-            bottom={0}
-            left={0}
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Circle
-              transition="bouncy"
-              y={35}
-              alignItems="center"
-              size={60}
-              shac="shadowColor"
-              shar={10}
-            >
-              <svg
-                style={{ marginTop: -10 }}
-                width="100%"
-                height="100%"
-                viewBox="0 0 100 100"
-              >
-                <polygon
-                  style={{ transform: 'translateY(6px)' }}
-                  points="35,25 75,50 35,75"
-                  fill="var(--color8)"
-                />
-              </svg>
-            </Circle>
-          </View>
-        </View>
-        <Paragraph
-          transition="quickest"
-          fontFamily="mono"
-          size="3 sm:6"
-          w={340}
-          px="5"
-          pt={6}
-          pb={11}
-          bg="color2"
-          scale="group-hover/card:1.02 group-press/card:0.99"
-          y="group-press/card:0"
-          textAlign="center"
-          zi={2}
-          br="8"
-          shac="shadowColor"
-          shar={10}
-          cur="pointer"
-        >
-          5m video intro
-        </Paragraph>
-      </View>
-    </>
+    <View bg="color2" br="8" p="5" overflow="hidden">
+      <Text fontFamily="mono" fontSize="3" lineHeight="5" color="color12" whiteSpace="pre">
+        {children}
+      </Text>
+    </View>
   )
 }
 
@@ -465,7 +323,7 @@ const Separator = styled(View, {
 const CopyCommand = () => {
   const [hovered, setHovered] = useState(false)
   const { hasCopied: hasNpxRunCommandCopied, onCopy: handleCopyNpxRunCommand } =
-    useClipboard(`npx one@latest`)
+    useClipboard(`npx one@beta`)
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -497,7 +355,7 @@ const CopyCommand = () => {
           role="button"
           tabIndex={0}
           onKeyDown={handleKeyDown}
-          aria-label="Copy npx one command"
+          aria-label="Copy npx one@beta command"
         >
           <Text
             fontFamily="mono"
@@ -509,7 +367,7 @@ const CopyCommand = () => {
             fontWeight="bold"
             lh="0px"
           >
-            npx one
+            npx one@beta
           </Text>
 
           <View role="img" aria-label="Copy icon">
