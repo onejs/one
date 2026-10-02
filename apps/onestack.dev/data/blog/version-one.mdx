@@ -15,7 +15,7 @@ by: nate
 
 One makes building apps for both web and native a delight, bringing simplicity and sanity to what typically is an incredibly messy affair. Where before you'd need two frameworks, two bundlers, and a ton of glue code, with One it's now as simple as can be - Vite, a single plugin, and some file-system routes.
 
-Get started a simply as:
+Get started as simply as:
 
 ```bash
 npx one
@@ -25,9 +25,9 @@ Our goal for version one was to reach **stability**, deploy multiple apps into a
 
 A huge thanks is owed to [Pokai Chang](https://github.com/zetavg), who led the large part of the work of getting One to maturity, including large wins like Metro mode, and a robust web and native integration testing infrastructure.
 
-One makes it possible for the first time to get **a 100 on your Lighthouse performance score without trouble**, even when sharing UI with native on fully on hydrated pages.
+One makes it possible for the first time to get **a 100 on your Lighthouse performance score without trouble**, even when sharing UI with native on fully hydrated pages.
 
-We think **One is great even if you are only targeting web**, in large part because our we only focus on React, and made the decision early to avoid implementing RSC for the sake of simplicity.
+We think **One is great even if you are only targeting web**, in large part because we only focus on React, and made the decision early to avoid implementing RSC for the sake of simplicity.
 
 The major features in version 1 are:
 
@@ -40,7 +40,7 @@ The major features in version 1 are:
   compatibility and ease of migration.
 - <New /> **[Middleware](/docs/routing-middlewares)** for request interception and shared
   context.
-- <New /> **[Sitemaps](/docs/configuration#sitemap)** with per-route overrides.
+- <New /> **[Sitemaps](/docs/configuration#websitemap)** with per-route overrides.
 - <New /> **[Deploy to Vercel or Cloudflare](/docs/guides-deployment)** workers with a
   single config option.
 - <New /> **[useLoaderState](/docs/hooks-useLoaderState)**, **[setServerData and
@@ -86,7 +86,7 @@ The major features in version 1 are:
   `Stack.Header.SearchBar`, and more.
 - <New /> **[Parallel builds with worker threads](/docs/one-build#parallel-builds-with-worker-threads)** -
   Static page generation now uses multiple CPU cores by default for ~40% faster builds.
-- <New /> **[Environment Guard Imports](/docs/environment-guards)** - `import 'server-only'`,
+- <New /> **[Environment Guard Imports](/docs/configuration#environmentguards)** - `import 'server-only'`,
   `'client-only'`, `'native-only'`, and `'web-only'` to prevent modules from leaking into
   the wrong build environment.
 - <New /> **[SPA Shell Rendering](/docs/configuration#webrenderrootlayout)** - Render your
@@ -115,9 +115,9 @@ We've been testing Rolldown in a branch and it's looking promising. It works mos
 
 ## Community
 
-One started as a fork of [Expo Router](https://expo.dev/router), which itself built on [React Navigation](https://reactnavigation.org). One is built top of our [vxrn](https://vxrn.dev) library. We owe a thanks to the Expo and React Navigation teams.
+One started as a fork of [Expo Router](https://expo.dev/router), which itself built on [React Navigation](https://reactnavigation.org). One is built on top of our [vxrn](https://vxrn.dev) library. We owe a thanks to the Expo and React Navigation teams.
 
 Get in touch!
 
-- [Join our Discord](https://discord.gg/one) to chat, ask questions, or share what you're building
+- [Join our Discord](https://discord.gg/YpUKRqaFtm) to chat, ask questions, or share what you're building
 - [Open an issue](https://github.com/onejs/one/issues) if you hit a bug (repros help a lot!)

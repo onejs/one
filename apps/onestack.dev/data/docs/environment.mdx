@@ -37,9 +37,9 @@ Port priority (highest wins):
 #### Core Variables
 
 - `ONE_CACHE_KEY` is set to a random number for each production build, or stable per dev server run. Useful for cache keys.
-- `ONE_APP_NAME` is set to your [app.key setting](/docs/configuration#app-key).
+- `ONE_APP_NAME` is set to your `native.app.name` setting, falling back to [`native.key`](/docs/configuration#nativekey).
 - `ONE_SERVER_URL` is set in development mode to the current running server URL, like `http://0.0.0.0:8081`. You are expected to set this yourself for production builds.
-- `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#web-defaultRenderMode).
+- `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#webdefaultrendermode).
 
 #### Platform Detection
 

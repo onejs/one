@@ -34,7 +34,7 @@ No, we find the complexity trade-off not worth it. One supports [SSG, SPA, and S
 
 ### What platforms does One support?
 
-macOS (stable), Linux (developing), and Windows (early). See the [Status documentation](/docs/status) for details.
+macOS (stable), Linux (stable), and Windows (early, not officially supported). See the [Status documentation](/docs/status) for details.
 
 ### Can I use One for web-only or native-only projects?
 
@@ -44,7 +44,7 @@ Yes. One works great as a web-only framework - you don't even need `react-native
 
 One takes a simpler approach: no RSC, no complex server/client boundaries. Instead, One uses [loaders](/docs/routing-loader) for data fetching (similar to Remix) and recommends pairing with a sync engine like [Zero](https://zerosync.dev) for real-time data. One also targets React Native alongside web with a single codebase, which Next.js doesn't support.
 
-That said, One provides many things out of the box: [image optimization](/docs/guides-images) with blur placeholders, [dynamic OpenGraph images](/docs/guides-open-graph), [middleware](/docs/routing-middlewares), [automatic sitemaps](/docs/configuration#sitemap), [dev tools](/docs/dev-tools), a [production Hono server](/docs/one-serve), [API routes](/docs/render-modes#api), typed routes, scroll restoration, and a loading progress bar. See [Features](/docs/features) for the full list.
+That said, One provides many things out of the box: [image optimization](/docs/guides-images) with blur placeholders, [dynamic OpenGraph images](/docs/guides-open-graph), [middleware](/docs/routing-middlewares), [automatic sitemaps](/docs/configuration#websitemap), [dev tools](/docs/dev-tools), a [production Hono server](/docs/one-serve), [API routes](/docs/render-modes#api), typed routes, scroll restoration, and a loading progress bar. See [Features](/docs/features) for the full list.
 
 ### How does One compare to TanStack Start?
 
@@ -86,4 +86,4 @@ Yes. One can be added incrementally to existing React Native projects. Start by 
 
 ### Does One support monorepos?
 
-Yes. One works well in monorepos with tools like Turborepo, Nx, or pnpm workspaces. Configure your workspace's package resolution and One will respect it. The [one-recommended](https://github.com/onejs/one/tree/main/examples/one-recommended) example shows a typical setup.
+Yes. One works well in monorepos with tools like Turborepo, Nx, or pnpm workspaces. Configure your workspace's package resolution and One will respect it.

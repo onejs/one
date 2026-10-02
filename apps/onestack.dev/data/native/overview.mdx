@@ -40,9 +40,10 @@ The namespace tells you where an API runs:
 
 Platform-only components stay strict: SwiftUI components throw outside iOS
 builds and Compose components throw outside Android builds, so keep those
-branches behind platform checks. Components that are only meaningful on one
-platform but harmless elsewhere (toolbar, menu, zoom) return `null` instead,
-so they are safe to keep in cross-platform trees.
+branches behind platform checks. The UIKit toolbar host, menu
+actions, and zoom transition components (`One.iOS.ToolbarHost`,
+`One.iOS.MenuAction`, and the `ZoomTransition*` components) return `null`
+instead, so they are safe to keep in cross-platform trees.
 
 `One.platform` reads the current platform: `'web'`, `'ios'`, `'android'`,
 or `'rnx'`.
