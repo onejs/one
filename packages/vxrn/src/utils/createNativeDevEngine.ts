@@ -2039,14 +2039,14 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
       if (!/\.[cm]?[jt]sx?$/.test(id)) return
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
-      const hasClass = code.includes('class ') || code.includes('class{')
+      const hasClass = /\bclass(?:\s|\{)/.test(code)
       const hasAsync = code.includes('async')
       const hasBlockScopedLoop = /\bfor\s*\(\s*(?:const|let)\b/.test(code)
       if (!hasClass && !hasAsync && !hasBlockScopedLoop) return
       let output: { code: string; map?: any } | undefined
-      // keep the existing oxc limit for large prebuilt files. async lowering
-      // below has no size exemption and runs after the worklet transform.
-      if (code.length <= 500_000) {
+      // Keep the Oxc limit for other large prebuilt files. Classes and async
+      // lowering have no size exemption: legacy Hermes must parse them too.
+      if (code.length <= 500_000 || hasClass) {
         if (!oxc) oxc = await import('oxc-transform')
         const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
         const result = oxc.transformSync(id, code, {
@@ -2064,6 +2064,17 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
         output = {
           code: result.code,
           map: sourceMaps ? result.map : undefined,
+        }
+      }
+      if (hasClass) {
+        const { transformHermesClasses } = await import('@vxrn/compiler')
+        const classes = await transformHermesClasses(output?.code ?? code, id, sourceMaps)
+        if (classes) {
+          if (classes.map && output?.map) {
+            const remapping = (await import('@jridgewell/remapping')).default
+            classes.map = remapping([classes.map, output.map], () => null)
+          }
+          output = classes
         }
       }
       const lowered = await transformHermesAsync(output?.code ?? code, id, sourceMaps)
