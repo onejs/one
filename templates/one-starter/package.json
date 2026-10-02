@@ -1,0 +1,134 @@
+{
+  "name": "example-one-starter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.3.0"
+  },
+  "packageManager": "bun@1.4.2",
+  "scripts": {
+    "postinstall": "one patch",
+    "dev": "dotenvx run -f .env.development -- one dev",
+    "build": "one build",
+    "serve": "one serve",
+    "ios": "one run:ios",
+    "android": "one run:android",
+    "prebuild:native": "one prebuild",
+    "backend": "bun run env:dev orez --data-dir=.orez --pg-port=5533 --zero-port=4948 --on-db-ready=\"bun run migrate\"",
+    "migrate": "bun run env:dev bun scripts/migrate/build.ts && bun run env:dev bun -e \"const { main } = await import('./src/database/migrate-dist.js'); await main()\"",
+    "db:generate": "drizzle-kit generate --config src/database/drizzle.config.ts",
+    "zero:generate": "on-zero generate",
+    "env:dev": "NODE_ENV=development dotenvx run -f .env.development --",
+    "typecheck": "tsc --noEmit",
+    "check": "bun run typecheck && bun run lint",
+    "lint": "oxlint src app scripts *.ts",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "up": "tko up"
+  },
+  "dependencies": {
+    "@callstack/liquid-glass": "^0.8.1",
+    "@noble/hashes": "^2.0.1",
+    "@o/better-auth-utils": "0.16.19-canary.1790768320875",
+    "@o/database": "0.16.19-canary.1790768320875",
+    "@o/helpers": "0.16.19-canary.1790768320875",
+    "@op-engineering/op-sqlite": "18.2.5",
+    "@react-navigation/core": "8.0.0-alpha.34",
+    "@react-navigation/native": "8.0.0-alpha.44",
+    "@rocicorp/zero": "1.9.0",
+    "@tamagui/animations-css": "3.0.0-beta.1540.1",
+    "@tamagui/animations-motion": "3.0.0-beta.1540.1",
+    "@tamagui/animations-reanimated": "3.0.0-beta.1540.1",
+    "@tamagui/config": "3.0.0-beta.1540.1",
+    "@tamagui/constants": "3.0.0-beta.1540.1",
+    "@tamagui/linear-gradient": "3.0.0-beta.1540.1",
+    "@tamagui/native": "3.0.0-beta.1540.1",
+    "@tamagui/themes": "3.0.0-beta.1540.1",
+    "@tamagui/toast": "3.0.0-beta.1540.1",
+    "@vxrn/color-scheme": "2.0.0-beta.159.1",
+    "better-auth": "1.6.23",
+    "drizzle-orm": "1.0.0-beta.9-e89174b",
+    "drizzle-zero-sqlite": "^0.6.0",
+    "motion": "12.36.0",
+    "on-zero": "0.16.19-canary.1790768320875",
+    "one": "2.0.0-beta.159.1",
+    "orez-sync-executor": "0.13.2",
+    "pg": "8.18.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.87.1",
+    "react-native-gesture-handler": "~3.3.0",
+    "react-native-keyboard-controller": "1.21.11",
+    "react-native-reanimated": "~4.6.0",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.27.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2",
+    "react-native-worklets": "~0.12.2",
+    "tamagui": "3.0.0-beta.1540.1",
+    "valibot": "^1.1.0",
+    "vxrn": "2.0.0-beta.159.1"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.44.1",
+    "@o/cli": "0.16.19-canary.1790768320875",
+    "@react-native-community/cli": "^20.2.0",
+    "@react-native-community/template": "^0.87.1",
+    "@tamagui/vite-plugin": "3.0.0-beta.1540.1",
+    "@types/bun": "^1.2.16",
+    "@types/node": "24.0.3",
+    "@types/pg": "^8.11.10",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "~19.1.7",
+    "babel-preset-expo": "58.0.0-canary-20260909-ea7a89a",
+    "drizzle-kit": "1.0.0-beta.9-e89174b",
+    "orez": "0.16.19-canary.1790768320875",
+    "oxfmt": "^0.16.0",
+    "oxlint": "^1.31.0",
+    "typescript": "7.0.2",
+    "vite": "8.2.2"
+  },
+  "reanimated": {
+    "staticFeatureFlags": {
+      "ENABLE_SHARED_ELEMENT_TRANSITIONS": false,
+      "ANDROID_SYNCHRONOUSLY_UPDATE_UI_PROPS": true,
+      "IOS_SYNCHRONOUSLY_UPDATE_UI_PROPS": true,
+      "USE_COMMIT_HOOK_ONLY_FOR_REACT_COMMITS": true,
+      "DISABLE_COMMIT_PAUSING_MECHANISM": true,
+      "FORCE_REACT_RENDER_FOR_SETTLED_ANIMATIONS": true
+    }
+  },
+  "trustedDependencies": [
+    "@rocicorp/zero-sqlite3",
+    "oxc-parser",
+    "sharp"
+  ],
+  "upgradeSets": {
+    "takeout": [
+      "@o/*",
+      "on-zero"
+    ],
+    "tamagui": [
+      "tamagui",
+      "@tamagui/*"
+    ],
+    "one": [
+      "one",
+      "vxrn",
+      "@vxrn/*"
+    ],
+    "zero": [
+      "@rocicorp/zero"
+    ],
+    "better-auth": [
+      "better-auth",
+      "@better-auth/*"
+    ],
+    "drizzle": [
+      "drizzle-orm",
+      "drizzle-kit"
+    ]
+  },
+  "main": "node_modules/one/metro-entry.js"
+}

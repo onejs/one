@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 90,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "sortImports": {
+    "groups": [
+      ["side_effect", "side_effect_style"],
+      ["builtin"],
+      ["external"],
+      ["internal"],
+      ["parent", "sibling", "index"],
+      ["type"],
+      ["style"],
+      ["unknown"]
+    ],
+    "newlinesBetween": false
+  },
+  "ignorePatterns": [
+    "**/generated-new.ts",
+    "**/generated-v2.ts",
+    "**/.tamagui/**",
+    "**/package.json",
+    "**/env-server.ts",
+    ".docker/**",
+    ".dist/**",
+    "**/tmp-data/**",
+    "**/.build/**",
+    "storage/**",
+    "**/.output/**",
+    "**/.vscode/**",
+    "**/.claude/**",
+    "**/migrations/meta/**",
+    "**/*.generated.**",
+    "**/themes-out.ts",
+    "**/*.d.ts",
+    "**/ios/**",
+    "**/android/**",
+    "**/dist/**",
+    "**/tamagui.css",
+    "**/.ultra.cache.json"
+  ]
+}
