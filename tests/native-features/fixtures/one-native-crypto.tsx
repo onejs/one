@@ -38,7 +38,8 @@ function readCrypto() {
 function bench(): string {
   const crypto = globalThis.crypto as unknown as DeviceCrypto
   const count = 10000
-  const perCall = (start: number) => `${(((performance.now() - start) * 1000) / count).toFixed(2)}us`
+  const perCall = (start: number) =>
+    `${(((performance.now() - start) * 1000) / count).toFixed(2)}us`
   let start = performance.now()
   for (let index = 0; index < count; index++) crypto.randomUUID()
   const uuid = perCall(start)
