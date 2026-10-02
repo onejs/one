@@ -1937,6 +1937,51 @@ globalThis.minifyProbe = describeHeader()`
 })
 
 describe('native production assets', () => {
+  it.each(['legacy', 'exported'])(
+    'shares the %s React Native asset registry with library imports',
+    async (registryKind) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-native-registry-'))
+      const rnRoot = join(root, 'node_modules/react-native')
+      const registryRoot = join(root, 'node_modules/@react-native/assets-registry')
+      await mkdir(join(rnRoot, 'src'), { recursive: true })
+      await mkdir(registryRoot, { recursive: true })
+      await writeFile(
+        join(rnRoot, 'package.json'),
+        JSON.stringify({ name: 'react-native', main: 'index.js' })
+      )
+      await writeFile(join(rnRoot, 'index.js'), 'export {}')
+      await writeFile(
+        join(registryRoot, 'package.json'),
+        JSON.stringify({ name: '@react-native/assets-registry' })
+      )
+      const registryFile =
+        registryKind === 'exported'
+          ? join(rnRoot, 'src/asset-registry.js')
+          : join(registryRoot, 'registry.js')
+      await writeFile(
+        registryFile,
+        'const assets = []; export function registerAsset(asset) { return assets.push(asset) }; export function getAssetByID(id) { return assets[id - 1] }'
+      )
+      await writeFile(join(root, 'icon.png'), 'icon')
+      await writeFile(
+        join(root, 'entry.js'),
+        `import icon from './icon.png'; import { getAssetByID } from '@react-native/assets-registry/registry'; globalThis.registryAsset = getAssetByID(icon)`
+      )
+      try {
+        const result = await buildNativeBundle({
+          root,
+          entryFile: 'entry.js',
+          platform: 'ios',
+        })
+        const context = createContext({ console })
+        runInContext(result.code, context)
+        expect(context.registryAsset.name).toBe('icon')
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+
   it('registers scale siblings and keeps monorepo assets inside assetsDest', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-assets-'))
     const appRoot = join(testRoot, 'workspace/apps/native-app')
