@@ -125,7 +125,9 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
     // `import` target (for example @babel/runtime), which turns callable CJS
     // helpers into namespace objects at runtime.
     conditionNames: ['react-native', 'browser'],
-    mainFields: ['react-native', 'browser', 'module', 'main'],
+    // Native CommonJS consumers need the package's main export shape (punycode
+    // exposes ucs2 there, but only its default export contains it in module).
+    mainFields: ['react-native', 'browser', 'main', 'module'],
     aliasFields: [['react-native'], ['browser']],
   }
 }
