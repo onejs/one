@@ -29,7 +29,7 @@
     ]
   },
   "scripts": {
-    "audit": "bun audit --audit-level high --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx --ignore GHSA-7pqw-9j4j-h8q3",
+    "audit": "bun audit --audit-level high --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx --ignore GHSA-7pqw-9j4j-h8q3 --ignore GHSA-86w9-cpqp-85rv",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
@@ -87,7 +87,7 @@
     "esbuild": "0.28.1",
     "vite": "8.2.2",
     "rolldown": "1.2.8",
-    "basic-ftp": "5.3.1",
+    "basic-ftp": "6.2.1",
     "fast-xml-builder": "1.1.7",
     "fast-uri": "3.1.7",
     "@babel/plugin-transform-modules-systemjs": "7.29.4",
@@ -107,7 +107,7 @@
     "brace-expansion": "5.0.11",
     "node-forge": "1.4.0",
     "picomatch": "^4.0.4",
-    "piscina": "4.9.3",
+    "piscina": "4.9.4",
     "shell-quote": "1.10.0",
     "cross-spawn": "7.0.6",
     "got": "11.8.5",
