@@ -14,7 +14,8 @@ find_package(react-native-worklets REQUIRED CONFIG)
 
 # one library for the package's C++: the sync-state JSI host object (shared
 # with iOS; only the registry trampolines differ, Swift there, JNI here), the
-# One.Storage engine (shared; only its directory lookup is per platform), and
+# One.Storage engine (shared; only its directory lookup is per platform), the
+# crypto random source, and
 # the nitrogen-generated Nitro hybrid objects. JNI_OnLoad in
 # OneNativeSyncJni.cpp registers both.
 add_library(
@@ -22,7 +23,8 @@ add_library(
   ${JNI_DIR}/OneNativeSyncJni.cpp
   ${JNI_DIR}/OneStorageDirectory.cpp
   ${CPP_DIR}/OneNativeSyncHost.cpp
-  ${CPP_DIR}/HybridOneStorage.cpp)
+  ${CPP_DIR}/HybridOneStorage.cpp
+  ${CPP_DIR}/HybridOneCrypto.cpp)
 
 target_include_directories(One PRIVATE ${CPP_DIR} ${JNI_DIR})
 

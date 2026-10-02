@@ -64,7 +64,7 @@ installFetch()
 
 // --------------- crypto -------------------
 // Hermes ships no WebCrypto. install getRandomValues + randomUUID backed
-// by the OneCrypto nitro hybrid object (SecRandomCopyBytes / SecureRandom), only
+// by the OneCrypto c++ hybrid object (arc4random_buf on both platforms), only
 // filling the pieces the runtime lacks.
 
 import { installCrypto } from './platform/crypto'

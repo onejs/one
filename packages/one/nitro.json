@@ -22,8 +22,7 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
     },
     "OneCrypto": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneCrypto" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneCrypto" }
+      "all": { "language": "c++", "implementationClassName": "HybridOneCrypto" }
     },
     "OneNetwork": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneNetwork" },

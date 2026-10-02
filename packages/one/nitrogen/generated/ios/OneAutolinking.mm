@@ -13,7 +13,7 @@
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
-#include "HybridOneCryptoSpecSwift.hpp"
+#include "HybridOneCrypto.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
@@ -88,8 +88,10 @@
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneCrypto",
     []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneCryptoSpec> hybridObject = One::OneAutolinking::createOneCrypto();
-      return hybridObject;
+      static_assert(std::is_default_constructible_v<HybridOneCrypto>,
+                    "The HybridObject \"HybridOneCrypto\" is not default-constructible! "
+                    "Create a public constructor that takes zero arguments to be able to autolink this HybridObject.");
+      return std::make_shared<HybridOneCrypto>();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

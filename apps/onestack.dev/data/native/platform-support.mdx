@@ -25,7 +25,7 @@ description: What every native API does on iOS, Android, and web
 | Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
 | Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
 | Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
-| Crypto | SecRandomCopyBytes | SecureRandom | platform crypto |
+| Crypto | arc4random_buf | arc4random_buf | platform crypto |
 | ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
 | Photo Library | save, browse, edit, albums, and export | unsupported (throws) | unsupported (throws) |
 | Image Manipulator | local crop, resize, rotate, JPEG/PNG encode | unsupported (throws) | unsupported (throws) |
