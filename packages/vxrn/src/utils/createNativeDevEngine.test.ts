@@ -1,5 +1,5 @@
 import { existsSync, realpathSync } from 'node:fs'
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
@@ -1937,6 +1937,54 @@ globalThis.minifyProbe = describeHeader()`
 })
 
 describe('native production assets', () => {
+  it('uses runtime exports for declaration aliases while preserving source aliases', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-declaration-alias-'))
+    const packageRoot = join(root, 'node_modules/example')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({
+        name: 'example',
+        type: 'module',
+        exports: { './value': { import: './esm.js', require: './cjs.cjs' } },
+      })
+    )
+    await writeFile(join(packageRoot, 'esm.js'), 'export const value = 42')
+    await writeFile(join(packageRoot, 'cjs.cjs'), 'exports.value = 43')
+    await writeFile(join(root, 'runtime.js'), 'export const value = 44')
+    await writeFile(
+      join(root, 'declaration.d.ts'),
+      'export class Value { constructor(); }'
+    )
+    await writeFile(
+      join(root, 'tsconfig.json'),
+      JSON.stringify({
+        compilerOptions: {
+          paths: {
+            'example/value': ['./declaration.d.ts'],
+            '@runtime': ['./runtime.js'],
+          },
+        },
+      })
+    )
+    await writeFile(
+      join(root, 'entry.ts'),
+      `import { value } from 'example/value'; import { value as local } from '@runtime'; globalThis.aliasValues = [value, require('example/value').value, local]`
+    )
+    try {
+      const result = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.ts',
+      })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'aliasValues')).toEqual([42, 43, 44])
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it.each(['legacy', 'exported'])(
     'shares the %s React Native asset registry with library imports',
     async (registryKind) => {
@@ -1993,6 +2041,8 @@ describe('native production assets', () => {
     await writeFile(join(appAssets, 'icon.png'), 'icon-1x')
     await writeFile(join(appAssets, 'icon@2x.png'), 'icon-2x')
     await writeFile(join(appAssets, 'icon@3x.png'), 'icon-3x')
+    const animationBytes = Buffer.from([0x50, 0x4b, 0xff, 0x00])
+    await writeFile(join(appAssets, 'animation.lottie'), animationBytes)
     await writeFile(join(packageAssets, 'back.png'), 'back-1x')
     await writeFile(join(packageAssets, 'back@2x.png'), 'back-2x')
     await writeFile(
@@ -2000,7 +2050,8 @@ describe('native production assets', () => {
       `
 import icon from './assets/icon.png'
 import back from '../../node_modules/example/assets/back.png'
-globalThis.__nativeAssetProbe = [icon, back]
+import animation from './assets/animation.lottie'
+globalThis.__nativeAssetProbe = [icon, back, animation]
 `
     )
 
@@ -2053,7 +2104,11 @@ globalThis.__nativeAssetProbe = [icon, back]
       expect(registered.map((asset) => [asset.name, asset.scales])).toEqual([
         ['icon', [1, 2, 3]],
         ['back', [1, 2]],
+        ['animation', [1]],
       ])
+      expect(await readFile(join(assetsDest, 'assets/assets/animation.lottie'))).toEqual(
+        animationBytes
+      )
       for (const file of ['icon.png', 'icon@2x.png', 'icon@3x.png']) {
         expect(existsSync(join(assetsDest, 'assets/assets', file))).toBe(true)
       }
@@ -2238,6 +2293,33 @@ globalThis.__vxrnConditionalExportProbe = helper()
 })
 
 describe('native Flow sources', () => {
+  it('strips typed arrows and class fields without a Flow pragma or type import', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-unmarked-flow-'))
+    await writeFile(
+      join(root, 'entry.js'),
+      `
+const URI = { isFileURI: (uri: string): boolean => uri.startsWith('file://') }
+class Response {
+  taskId: string;
+  constructor(id: string) { this.taskId = id }
+}
+globalThis.unmarkedFlowResult = URI.isFileURI(new Response('file://').taskId)
+`
+    )
+    try {
+      const result = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'unmarkedFlowResult')).toBe(true)
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it.each(['', `/* ${'license text '.repeat(150)} */\n`])(
     'strips third-party Flow following a license header (%#)',
     async (license) => {
