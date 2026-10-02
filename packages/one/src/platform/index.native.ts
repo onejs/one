@@ -52,7 +52,7 @@ import * as UI from './effects'
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index.native'
 
 export * from './extras'
-export { Preferences } from './preferences/index.native'
+export { Storage } from './storage/index.native'
 export { KeepAwake } from './keep-awake/index.native'
 export { Print } from './print/index.native'
 export { StoreReview } from './store-review/index.native'

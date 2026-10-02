@@ -2349,6 +2349,56 @@ async function run(config: Config) {
       'one-native-secure-store-run'
     )
 
+    // storage: the same checks as ios, then a cold relaunch must read the
+    // value written before it, and after a clear and another relaunch it must
+    // read null, so the persisted read cannot pass on stale memory.
+    relaunchApp(config)
+    await expect('storage-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 'home-screen')
+    await tapNavigation(config, 'nav-one-native-storage')
+    await expect('storage-mounted', (nodes) => textIncludes(nodes, 'Status: idle'), 'one-native-storage-run')
+    tapFresh(config, 'one-native-storage-clear', { id: 'one-native-storage-clear', role: 'button', clickable: true })
+    await expect('storage-cleared', (nodes) => textIncludes(nodes, 'Status: cleared'), 'one-native-storage-run')
+    tapFresh(config, 'one-native-storage-run', { id: 'one-native-storage-run', role: 'button', clickable: true })
+    const storageReport = await expect(
+      'storage-checks-report',
+      (nodes) => textIncludes(nodes, 'Status: done') || textIncludes(nodes, 'Status: failed'),
+      'one-native-storage-run'
+    )
+    const storageLabels = storageReport.nodes.flatMap((node) => nodeValues(node))
+    const storageFailure = storageLabels.find((label) => label.startsWith('Status: failed'))
+    if (storageFailure) throw new Error(storageFailure)
+    const storageExpected: [string, string][] = [
+      ['Missing', 'null'],
+      ['Overwritten', 'second'],
+      ['EmptyValue', '""'],
+      ['AllKeys', 'other,value'],
+      ['AfterRemove', 'null'],
+      ['RemoveMissing', 'null'],
+      ['AllKeysEmpty', '[]'],
+      ['EmptyKey', 'Storage.getItem: key must be a non-empty string'],
+      ['NonStringKey', 'Storage.getItem: key must be a non-empty string'],
+      ['NonStringValue', 'Storage.setItem: value must be a string'],
+    ]
+    for (const [name, value] of storageExpected) {
+      if (!storageLabels.includes(`${name}: ${value}`))
+        throw new Error(
+          `storage ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(storageLabels.find((label) => label.startsWith(`${name}: `)))}`
+        )
+      console.log(`PASS storage-${name.toLowerCase()}`)
+    }
+    relaunchApp(config)
+    await expect('storage-relaunch-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 'home-screen')
+    await tapNavigation(config, 'nav-one-native-storage')
+    await expect('storage-persisted', (nodes) => textIncludes(nodes, 'Persisted: kept'), 'one-native-storage-run')
+    console.log('PASS storage-persist')
+    tapFresh(config, 'one-native-storage-clear', { id: 'one-native-storage-clear', role: 'button', clickable: true })
+    await expect('storage-cleared-after-relaunch', (nodes) => textIncludes(nodes, 'Status: cleared'), 'one-native-storage-run')
+    relaunchApp(config)
+    await expect('storage-removed-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 'home-screen')
+    await tapNavigation(config, 'nav-one-native-storage')
+    await expect('storage-removed', (nodes) => textIncludes(nodes, 'Persisted: null'), 'one-native-storage-run')
+    console.log('PASS storage-deleted-persist')
+
     // notifications slice n1: clear app data so the permission starts
     // undetermined like a fresh install, then grant and read back.
     clearAppData(config)

@@ -6,9 +6,9 @@ const receiptKey = 'one-app-intents-proof'
 
 if (Platform.OS === 'ios') {
   One.iOS.AppIntents.defineAction(actionId, (text) => {
-    const prior = One.iOS.Preferences.getItemSync(receiptKey)
+    const prior = One.Storage.getItem(receiptKey)
     const count = prior ? Number(prior.split('|')[0]) + 1 : 1
-    One.iOS.Preferences.setItemSync(receiptKey, `${count}|${text ?? ''}`)
+    One.Storage.setItem(receiptKey, `${count}|${text ?? ''}`)
     return `JS:${text ?? ''}`
   })
 }

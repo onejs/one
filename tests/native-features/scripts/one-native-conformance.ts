@@ -115,7 +115,7 @@ const suites = [
   'speech',
   'fetch',
   'secure-store',
-  'preferences',
+  'storage',
   'keep-awake',
   'print',
   'store-review',
@@ -571,8 +571,8 @@ const fetchLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-fetch-run')) && has(nodes, 'Status: ')
 const secureStoreLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-secure-store-run')) && has(nodes, 'Persisted: ')
-const preferencesLoaded = (nodes: Node[]) =>
-  Boolean(id(nodes, 'one-native-preferences-run')) && has(nodes, 'Persisted: ')
+const storageLoaded = (nodes: Node[]) =>
+  Boolean(id(nodes, 'one-native-storage-run')) && has(nodes, 'Persisted: ')
 const keepAwakeLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-keep-awake-run')) && has(nodes, 'Status: ')
 const printLoaded = (nodes: Node[]) =>
@@ -747,7 +747,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   speech: speechLoaded,
   fetch: fetchLoaded,
   'secure-store': secureStoreLoaded,
-  preferences: preferencesLoaded,
+  storage: storageLoaded,
   'keep-awake': keepAwakeLoaded,
   print: printLoaded,
   'store-review': storeReviewLoaded,
@@ -853,7 +853,7 @@ const suiteHome: Record<Suite, string> = {
   speech: 'nav-one-native-speech',
   fetch: 'nav-one-native-fetch',
   'secure-store': 'nav-one-native-secure-store',
-  preferences: 'nav-one-native-preferences',
+  storage: 'nav-one-native-storage',
   'keep-awake': 'nav-one-native-keep-awake',
   print: 'nav-one-native-print',
   'store-review': 'nav-one-native-store-review',
@@ -1283,7 +1283,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited' ||
       config.suite === 'live-photo' ||
-      config.suite === 'preferences' || config.suite === 'keep-awake' ||
+      config.suite === 'storage' || config.suite === 'keep-awake' ||
       config.suite === 'print' || config.suite === 'store-review' ||
       config.suite === 'quick-actions' || config.suite === 'app-intents') {
     // simctl privacy has no notifications, speech recognition, or tracking service on
@@ -8926,57 +8926,57 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
-  if (config.suite === 'preferences') {
+  if (config.suite === 'storage') {
     const expected: [string, string][] = [
       ['Missing', 'null'],
       ['Overwritten', 'second'],
-      ['SyncRead', 'second'],
       ['EmptyValue', '""'],
-      ['AfterSyncWrite', 'third'],
-      ['AfterDelete', 'null'],
-      ['DeleteMissing', 'null'],
-      ['EmptyKey', 'Preferences.getItemSync: key must be a non-empty string'],
-      ['NonStringKey', 'Preferences.getItem: key must be a non-empty string'],
-      ['NonStringValue', 'Preferences.setItem: value must be a string'],
+      ['AllKeys', 'other,value'],
+      ['AfterRemove', 'null'],
+      ['RemoveMissing', 'null'],
+      ['AllKeysEmpty', '[]'],
+      ['EmptyKey', 'Storage.getItem: key must be a non-empty string'],
+      ['NonStringKey', 'Storage.getItem: key must be a non-empty string'],
+      ['NonStringValue', 'Storage.setItem: value must be a string'],
     ]
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
-    await tapNav('nav-one-native-preferences')
-    await wait('preferences fixture mounted', (n) =>
+    await tapNav('nav-one-native-storage')
+    await wait('storage fixture mounted', (n) =>
       has(n, 'Status: idle') && has(n, 'Persisted: '))
-    tap({ id: 'one-native-preferences-clear' })
+    tap({ id: 'one-native-storage-clear' })
     await wait('persist key cleared before run', (n) => has(n, 'Status: cleared'))
-    tap({ id: 'one-native-preferences-run' })
-    const first = await wait('preferences operations complete', (n) =>
+    tap({ id: 'one-native-storage-run' })
+    const first = await wait('storage operations complete', (n) =>
       has(n, 'Status: done') || has(n, 'Status: failed'))
-    screenshot('preferences-checks.png')
+    screenshot('storage-checks.png')
     const got = labels(first)
     const failed = got.find((label) => label.startsWith('Status: failed'))
     if (failed) throw new Error(failed)
     for (const [name, value] of expected) {
       if (!got.includes(`${name}: ${value}`)) {
-        throw new Error(`preferences ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((label) => label.startsWith(`${name}: `)))}`)
+        throw new Error(`storage ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((label) => label.startsWith(`${name}: `)))}`)
       }
-      console.log(`PASS preferences-${name.toLowerCase()}`)
+      console.log(`PASS storage-${name.toLowerCase()}`)
     }
     stopApp()
     launchApp()
     await wait('relaunched home mounted', () => true, true)
     await dismissWarning(true)
-    await tapNav('nav-one-native-preferences')
-    await wait('preference survives process relaunch', (n) => has(n, 'Persisted: kept'))
-    screenshot('preferences-persisted.png')
-    console.log('PASS preferences-persist')
-    tap({ id: 'one-native-preferences-clear' })
+    await tapNav('nav-one-native-storage')
+    await wait('stored value survives process relaunch', (n) => has(n, 'Persisted: kept'))
+    screenshot('storage-persisted.png')
+    console.log('PASS storage-persist')
+    tap({ id: 'one-native-storage-clear' })
     await wait('persist key cleared after relaunch', (n) => has(n, 'Status: cleared'))
     stopApp()
     launchApp()
-    await wait('home mounted after deletion', () => true, true)
+    await wait('home mounted after removal', () => true, true)
     await dismissWarning(true)
-    await tapNav('nav-one-native-preferences')
-    await wait('deleted preference remains missing', (n) => has(n, 'Persisted: null'))
-    screenshot('preferences-deleted.png')
-    console.log('PASS preferences-deleted-persist')
+    await tapNav('nav-one-native-storage')
+    await wait('removed value remains missing', (n) => has(n, 'Persisted: null'))
+    screenshot('storage-deleted.png')
+    console.log('PASS storage-deleted-persist')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
