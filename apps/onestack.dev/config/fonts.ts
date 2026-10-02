@@ -151,7 +151,6 @@ const mono = createFont({
     16: 134 * 2.5 - 3,
   },
   letterSpacing: {
-    true: 0,
     4: 0,
     6: 0,
     7: 0,

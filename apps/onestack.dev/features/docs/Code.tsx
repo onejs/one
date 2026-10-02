@@ -1,7 +1,7 @@
 import { Text, Theme, styled } from '@tamagui/core'
 
 export const Code = styled(Text, {
-  name: 'Code',
+  displayName: 'Code',
   render: 'code',
   fontFamily: 'mono',
   lineHeight: '18px',
@@ -25,10 +25,11 @@ export const Code = styled(Text, {
 })
 
 const CodeInlineBase = styled(Text, {
-  name: 'CodeInline',
+  displayName: 'CodeInline',
   render: 'code',
   fontFamily: 'mono',
   color: 'color12',
+  fontWeight: '400',
   backgroundColor: 'background08',
   cursor: 'inherit',
   // @ts-ignore

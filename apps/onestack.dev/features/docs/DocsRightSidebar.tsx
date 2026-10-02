@@ -48,7 +48,7 @@ export function DocsRightSidebar({
         overflow="hidden"
         pointerEvents="auto"
       >
-        <H4 userSelect="none" size="2" mx="2" id="site-quick-nav-heading">
+        <H4 userSelect="none" size="2" color="color" mx="2" id="site-quick-nav-heading">
           Quick nav
         </H4>
 
@@ -64,6 +64,7 @@ export function DocsRightSidebar({
                       render="li"
                       fontFamily="inherit"
                       fontSize="inherit"
+                      fontWeight="600"
                       key={i}
                       display="flex"
                       alignItems="center"

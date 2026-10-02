@@ -213,6 +213,7 @@
     "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch",
     "@react-navigation/native@8.0.0-alpha.44": "patches/@react-navigation%2Fnative@8.0.0-alpha.44.patch",
     "react-native-safe-area-context@5.7.0": "patches/react-native-safe-area-context@5.7.0.patch",
-    "react-native-webgpu@0.5.14": "patches/react-native-webgpu@0.5.14.patch"
+    "react-native-webgpu@0.5.14": "patches/react-native-webgpu@0.5.14.patch",
+    "@tamagui/web@3.0.0-beta.1479.1": "patches/@tamagui%2Fweb@3.0.0-beta.1479.1.patch"
   }
 }

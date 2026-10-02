@@ -1,0 +1,826 @@
+{
+  "@tamagui/react-native-web": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-web/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-use-pressable": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-use-pressable/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-use-responder-events": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-use-responder-events/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/web": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/web/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/animation-helpers": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/animation-helpers/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/style-grammar": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/style-grammar/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/compose-refs": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/compose-refs/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/constants": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/constants/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/dom": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/dom/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/helpers": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/helpers/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/simple-hash": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/simple-hash/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/is-equal-shallow": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/is-equal-shallow/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/native": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/native/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-types": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-types/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/normalize-css-color": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/normalize-css-color/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/types": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/web/node_modules/@tamagui/types/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/generate-themes/node_modules/@tamagui/types/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/helpers-node/node_modules/@tamagui/types/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/static/node_modules/@tamagui/types/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/vite-plugin/node_modules/@tamagui/types/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/cli/node_modules/@tamagui/types/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-did-finish-ssr": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-did-finish-ssr/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-event": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-event/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-force-update": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-force-update/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/themes": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/themes/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/create-theme": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/create-theme/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-store": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-store/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "tamagui": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/tamagui/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/accordion": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/accordion/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/collapsible": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/collapsible/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/animate-presence": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/animate-presence/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-constant": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-constant/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-presence": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-presence/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/core": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/core/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-media-driver": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-media-driver/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-element-layout": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-element-layout/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/create-context": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/create-context/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/polyfill-dev": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/polyfill-dev/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/stacks": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/stacks/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-controllable-state": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-controllable-state/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/start-transition": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/start-transition/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/collection": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/collection/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/text": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/text/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/get-font-sized": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/get-font-sized/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/helpers-tamagui": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/helpers-tamagui/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/font-size": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/font-size/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-direction": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-direction/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/adapt": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/adapt/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/portal": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/portal/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/z-index-stack": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/z-index-stack/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/alert-dialog": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/alert-dialog/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/dialog": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/dialog/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/animate": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/animate/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/dismissable": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/dismissable/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-escape-keydown": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-escape-keydown/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-callback-ref": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-callback-ref/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/focus-scope": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/focus-scope/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-async": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-async/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/remove-scroll": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/remove-scroll/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/sheet": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/sheet/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/animations-react-native": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/sheet/node_modules/@tamagui/animations-react-native/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/config-default/node_modules/@tamagui/animations-react-native/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-pan-responder": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-pan-responder/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/scroll-view": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/scroll-view/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/avatar": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/avatar/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/image": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/image/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/shapes": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/shapes/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/button": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/button/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/config-default": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/config-default/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/animations-css": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/animations-css/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/cubic-bezier-animator": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/cubic-bezier-animator/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/shorthands": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/config-default/node_modules/@tamagui/shorthands/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/static/node_modules/@tamagui/shorthands/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/to-tailwind/node_modules/@tamagui/shorthands/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/config/node_modules/@tamagui/shorthands/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/card": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/card/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/checkbox": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/checkbox/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/checkbox-headless": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/checkbox-headless/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/focusable": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/focusable/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/label": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/label/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-previous": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/checkbox-headless/node_modules/@tamagui/use-previous/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/radio-headless/node_modules/@tamagui/use-previous/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/switch-headless/node_modules/@tamagui/use-previous/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/context-menu": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/context-menu/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/create-menu": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/create-menu/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/focus-guard": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/focus-guard/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/get-token": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/get-token/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/popover": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/popover/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/floating": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/floating/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/popper": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/popper/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/roving-focus": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/roving-focus/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/element": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/element/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/fake-react-native": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/fake-react-native/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/field": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/field/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/form": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/form/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/group": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/group/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/input": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/input/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/linear-gradient": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/linear-gradient/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/list-item": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/list-item/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/menu": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/menu/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/progress": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/progress/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/radio-group": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/radio-group/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/radio-headless": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/radio-headless/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/select": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/select/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/separator": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/separator/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-debounce": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-debounce/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/slider": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/slider/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/spacer": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/spacer/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/spinner": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/spinner/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/switch": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/switch/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/switch-headless": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/switch-headless/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/tabs": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/tabs/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/tabs-headless": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/tabs-headless/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/theme": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/theme/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/toast": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/toast/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/visually-hidden": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/visually-hidden/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/toggle-group": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/toggle-group/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/tooltip": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/tooltip/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/ui": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/ui/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/use-window-dimensions": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/use-window-dimensions/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/helpers-icon": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/helpers-icon/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-svg": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-svg/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-web-lite": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-web-lite/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/react-native-web-internals": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/react-native-web-internals/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/vite-plugin": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/vite-plugin/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/cli/node_modules/@tamagui/vite-plugin/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/proxy-worm": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/vite-plugin/node_modules/@tamagui/proxy-worm/package.json",
+      "version": "3.0.0-beta.1479.1"
+    },
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/cli/node_modules/@tamagui/vite-plugin/node_modules/@tamagui/proxy-worm/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/static": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/static/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/cli-color": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/cli-color/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/compiler-core": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/compiler-core/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/generate-themes": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/generate-themes/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/helpers-node": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/helpers-node/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/cli": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/cli/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/metro-plugin": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/metro-plugin/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/to-tailwind": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/to-tailwind/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/language-service": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/language-service/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/config": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/config/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/animations-motion": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/animations-reanimated": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/apps/onestack.dev/node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ],
+  "@tamagui/create-system-font": [
+    {
+      "path": "/Users/n8/.worktrees/one-one-site-tamagui-v3/node_modules/@tamagui/create-system-font/package.json",
+      "version": "3.0.0-beta.1479.1"
+    }
+  ]
+}

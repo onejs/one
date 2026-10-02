@@ -1,0 +1,305 @@
+diff --git a/dist/cjs/helpers/getSplitStyles.cjs b/dist/cjs/helpers/getSplitStyles.cjs
+index f46be80..16cd552 100644
+--- a/dist/cjs/helpers/getSplitStyles.cjs
++++ b/dist/cjs/helpers/getSplitStyles.cjs
+@@ -1167,28 +1167,28 @@ function writeStyleRecord(state, property, value, cursor, original, flags, condi
+ 	if (sourceLayer === sourceLayerStyle && !condition) {
+ 		const other = slot === cssSlot ? list : slots.get(flags & recordInline ? cssSlot : property);
+ 		if (other) for (let index = 0; index < other.length; index++) {
+-			const entry = other[index];
+-			const entryFlags = entry[7];
+-			if (entry[0] === property && !entry[2] && entryFlags >> 5 === sourceLayerStyle && (entryFlags & (recordInline | recordCSS)) !== (flags & (recordInline | recordCSS))) other.splice(index--, 1);
++			const entry2 = other[index];
++			const entryFlags = entry2[7];
++			if (entry2[0] === property && !entry2[2] && entryFlags >> 5 === sourceLayerStyle && (entryFlags & (recordInline | recordCSS)) !== (flags & (recordInline | recordCSS))) other.splice(index--, 1);
+ 		}
+ 	}
+ 	for (let index = 0; index < list.length; index++) {
+-		const entry = list[index];
+-		const entryFlags = entry[7];
++		const entry2 = list[index];
++		const entryFlags = entry2[7];
+ 		if ((entryFlags & (recordInline | recordCSS)) !== (flags & (recordInline | recordCSS))) continue;
+-		if (entry[0] !== property) continue;
++		if (entry2[0] !== property) continue;
+ 		if (flags & recordDefault) {
+-			if (!(entryFlags & recordDefault) && (!entry[2] || entry[3] === identity)) return;
+-		} else if (entryFlags & recordDefault && (!condition || entry[3] === identity)) {
++			if (!(entryFlags & recordDefault) && (!entry2[2] || entry2[3] === identity)) return;
++		} else if (entryFlags & recordDefault && (!condition || entry2[3] === identity)) {
+ 			list.splice(index--, 1);
+ 			continue;
+ 		}
+-		if (entry[3] === identity) {
++		if (entry2[3] === identity) {
+ 			list.splice(index, 1);
+ 			break;
+ 		}
+ 	}
+-	list.push([
++	const entry = [
+ 		property,
+ 		value,
+ 		condition,
+@@ -1197,7 +1197,9 @@ function writeStyleRecord(state, property, value, cursor, original, flags, condi
+ 		cursor ? cursor[conditionWrappers] : void 0,
+ 		original,
+ 		flags | sourceLayer << 5
+-	]);
++	];
++	if (sourceLayer === sourceLayerBase && direct.flatPass?.[passVariantOutput]) entry[9] = true;
++	list.push(entry);
+ }
+ function streamWriteInline(state, property, value, cursor, original, normalize = property === "lineHeight", conditionOverride = -1, force = false) {
+ 	writeStyleRecord(state, property, value, cursor, original, (normalize ? recordNormalize : 0) | (force ? recordInline : 0), conditionOverride);
+@@ -1469,6 +1471,12 @@ function ownsSourceLayer(state, property, conditional = false) {
+ 	const layer = direct.flatPass?.[passSourceLayer] || 0;
+ 	const layers = direct.flatPropertyLayers ||= /* @__PURE__ */ new Map();
+ 	const previous = layers.get(property);
++	if (previous === sourceLayerBase && layer === sourceLayerBase && !conditional && !direct.flatPass?.[passVariantOutput]) {
++		const entries = direct.flatSlots?.get(styleSlot(property));
++		if (entries) {
++			for (let index = entries.length; index--;) if (entries[index][0] === property && entries[index][9]) entries.splice(index, 1);
++		}
++	}
+ 	if (previous !== void 0) {
+ 		if (previous > layer) return false;
+ 		if (previous < layer) {
+diff --git a/dist/cjs/helpers/getSplitStyles.native.js b/dist/cjs/helpers/getSplitStyles.native.js
+index 307b881..a902b3e 100644
+--- a/dist/cjs/helpers/getSplitStyles.native.js
++++ b/dist/cjs/helpers/getSplitStyles.native.js
+@@ -1143,7 +1143,7 @@ var recordDefault = 8;
+ var recordCSS = 16;
+ function writeStyleRecord(state, property, value, cursor, original, flags) {
+ 	var conditionOverride = arguments.length > 6 && arguments[6] !== void 0 ? arguments[6] : -1;
+-	var _direct_flatPass;
++	var _direct_flatPass, _direct_flatPass1;
+ 	var _direct;
+ 	var condition = conditionOverride !== -1 ? conditionOverride : cursor ? cursor[conditionValue] : 0;
+ 	var identity = cursor ? cursor[conditionKey] : "";
+@@ -1184,7 +1184,7 @@ function writeStyleRecord(state, property, value, cursor, original, flags) {
+ 			break;
+ 		}
+ 	}
+-	list.push([
++	var entry2 = [
+ 		property,
+ 		value,
+ 		condition,
+@@ -1193,7 +1193,9 @@ function writeStyleRecord(state, property, value, cursor, original, flags) {
+ 		cursor ? cursor[conditionWrappers] : void 0,
+ 		original,
+ 		flags | sourceLayer << 5
+-	]);
++	];
++	if (sourceLayer === sourceLayerBase && ((_direct_flatPass1 = direct.flatPass) === null || _direct_flatPass1 === void 0 ? void 0 : _direct_flatPass1[passVariantOutput])) entry2[9] = true;
++	list.push(entry2);
+ }
+ function streamWriteInline(state, property, value, cursor, original) {
+ 	var normalize = arguments.length > 5 && arguments[5] !== void 0 ? arguments[5] : property === "lineHeight", conditionOverride = arguments.length > 6 && arguments[6] !== void 0 ? arguments[6] : -1, force = arguments.length > 7 && arguments[7] !== void 0 ? arguments[7] : false;
+@@ -1557,12 +1559,19 @@ function configuredValue(state, property, raw) {
+ }
+ function ownsSourceLayer(state, property) {
+ 	var conditional = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
+-	var _direct_flatPass;
++	var _direct_flatPass, _direct_flatPass1;
+ 	var _direct;
+ 	var direct = state;
+ 	var layer = ((_direct_flatPass = direct.flatPass) === null || _direct_flatPass === void 0 ? void 0 : _direct_flatPass[passSourceLayer]) || 0;
+ 	var layers = (_direct = direct).flatPropertyLayers || (_direct.flatPropertyLayers = /* @__PURE__ */ new Map());
+ 	var previous = layers.get(property);
++	if (previous === sourceLayerBase && layer === sourceLayerBase && !conditional && !((_direct_flatPass1 = direct.flatPass) === null || _direct_flatPass1 === void 0 ? void 0 : _direct_flatPass1[passVariantOutput])) {
++		var _direct_flatSlots;
++		var entries = (_direct_flatSlots = direct.flatSlots) === null || _direct_flatSlots === void 0 ? void 0 : _direct_flatSlots.get(property);
++		if (entries) {
++			for (var index = entries.length; index--;) if (entries[index][0] === property && entries[index][9]) entries.splice(index, 1);
++		}
++	}
+ 	if (previous !== void 0) {
+ 		if (previous > layer) return false;
+ 		if (previous < layer) {
+diff --git a/dist/esm/helpers/getSplitStyles.mjs b/dist/esm/helpers/getSplitStyles.mjs
+index 4a9489f..b9d7dff 100644
+--- a/dist/esm/helpers/getSplitStyles.mjs
++++ b/dist/esm/helpers/getSplitStyles.mjs
+@@ -1126,28 +1126,28 @@ function writeStyleRecord(state, property, value, cursor, original, flags, condi
+ 	if (sourceLayer === sourceLayerStyle && !condition) {
+ 		const other = slot === cssSlot ? list : slots.get(flags & recordInline ? cssSlot : property);
+ 		if (other) for (let index = 0; index < other.length; index++) {
+-			const entry = other[index];
+-			const entryFlags = entry[7];
+-			if (entry[0] === property && !entry[2] && entryFlags >> 5 === sourceLayerStyle && (entryFlags & 17) !== (flags & 17)) other.splice(index--, 1);
++			const entry2 = other[index];
++			const entryFlags = entry2[7];
++			if (entry2[0] === property && !entry2[2] && entryFlags >> 5 === sourceLayerStyle && (entryFlags & 17) !== (flags & 17)) other.splice(index--, 1);
+ 		}
+ 	}
+ 	for (let index = 0; index < list.length; index++) {
+-		const entry = list[index];
+-		const entryFlags = entry[7];
++		const entry2 = list[index];
++		const entryFlags = entry2[7];
+ 		if ((entryFlags & 17) !== (flags & 17)) continue;
+-		if (entry[0] !== property) continue;
++		if (entry2[0] !== property) continue;
+ 		if (flags & recordDefault) {
+-			if (!(entryFlags & recordDefault) && (!entry[2] || entry[3] === identity)) return;
+-		} else if (entryFlags & recordDefault && (!condition || entry[3] === identity)) {
++			if (!(entryFlags & recordDefault) && (!entry2[2] || entry2[3] === identity)) return;
++		} else if (entryFlags & recordDefault && (!condition || entry2[3] === identity)) {
+ 			list.splice(index--, 1);
+ 			continue;
+ 		}
+-		if (entry[3] === identity) {
++		if (entry2[3] === identity) {
+ 			list.splice(index, 1);
+ 			break;
+ 		}
+ 	}
+-	list.push([
++	const entry = [
+ 		property,
+ 		value,
+ 		condition,
+@@ -1156,7 +1156,9 @@ function writeStyleRecord(state, property, value, cursor, original, flags, condi
+ 		cursor ? cursor[conditionWrappers] : void 0,
+ 		original,
+ 		flags | sourceLayer << 5
+-	]);
++	];
++	if (sourceLayer === sourceLayerBase && direct.flatPass?.[passVariantOutput]) entry[9] = true;
++	list.push(entry);
+ }
+ function streamWriteInline(state, property, value, cursor, original, normalize = property === "lineHeight", conditionOverride = -1, force = false) {
+ 	writeStyleRecord(state, property, value, cursor, original, (normalize ? recordNormalize : 0) | (force ? recordInline : 0), conditionOverride);
+@@ -1428,6 +1430,12 @@ function ownsSourceLayer(state, property, conditional = false) {
+ 	const layer = direct.flatPass?.[passSourceLayer] || 0;
+ 	const layers = direct.flatPropertyLayers ||= /* @__PURE__ */ new Map();
+ 	const previous = layers.get(property);
++	if (previous === sourceLayerBase && layer === sourceLayerBase && !conditional && !direct.flatPass?.[passVariantOutput]) {
++		const entries = direct.flatSlots?.get(styleSlot(property));
++		if (entries) {
++			for (let index = entries.length; index--;) if (entries[index][0] === property && entries[index][9]) entries.splice(index, 1);
++		}
++	}
+ 	if (previous !== void 0) {
+ 		if (previous > layer) return false;
+ 		if (previous < layer) {
+diff --git a/dist/esm/helpers/getSplitStyles.native.js b/dist/esm/helpers/getSplitStyles.native.js
+index df1e86e..0707c70 100644
+--- a/dist/esm/helpers/getSplitStyles.native.js
++++ b/dist/esm/helpers/getSplitStyles.native.js
+@@ -1108,7 +1108,7 @@ var recordDefault = 8;
+ var recordCSS = 16;
+ function writeStyleRecord(state, property, value, cursor, original, flags) {
+ 	var conditionOverride = arguments.length > 6 && arguments[6] !== void 0 ? arguments[6] : -1;
+-	var _direct_flatPass;
++	var _direct_flatPass, _direct_flatPass1;
+ 	var _direct;
+ 	var condition = conditionOverride !== -1 ? conditionOverride : cursor ? cursor[conditionValue] : 0;
+ 	var identity = cursor ? cursor[conditionKey] : "";
+@@ -1149,7 +1149,7 @@ function writeStyleRecord(state, property, value, cursor, original, flags) {
+ 			break;
+ 		}
+ 	}
+-	list.push([
++	var entry2 = [
+ 		property,
+ 		value,
+ 		condition,
+@@ -1158,7 +1158,9 @@ function writeStyleRecord(state, property, value, cursor, original, flags) {
+ 		cursor ? cursor[conditionWrappers] : void 0,
+ 		original,
+ 		flags | sourceLayer << 5
+-	]);
++	];
++	if (sourceLayer === sourceLayerBase && ((_direct_flatPass1 = direct.flatPass) === null || _direct_flatPass1 === void 0 ? void 0 : _direct_flatPass1[passVariantOutput])) entry2[9] = true;
++	list.push(entry2);
+ }
+ function streamWriteInline(state, property, value, cursor, original) {
+ 	var normalize = arguments.length > 5 && arguments[5] !== void 0 ? arguments[5] : property === "lineHeight", conditionOverride = arguments.length > 6 && arguments[6] !== void 0 ? arguments[6] : -1, force = arguments.length > 7 && arguments[7] !== void 0 ? arguments[7] : false;
+@@ -1522,12 +1524,19 @@ function configuredValue(state, property, raw) {
+ }
+ function ownsSourceLayer(state, property) {
+ 	var conditional = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
+-	var _direct_flatPass;
++	var _direct_flatPass, _direct_flatPass1;
+ 	var _direct;
+ 	var direct = state;
+ 	var layer = ((_direct_flatPass = direct.flatPass) === null || _direct_flatPass === void 0 ? void 0 : _direct_flatPass[passSourceLayer]) || 0;
+ 	var layers = (_direct = direct).flatPropertyLayers || (_direct.flatPropertyLayers = /* @__PURE__ */ new Map());
+ 	var previous = layers.get(property);
++	if (previous === sourceLayerBase && layer === sourceLayerBase && !conditional && !((_direct_flatPass1 = direct.flatPass) === null || _direct_flatPass1 === void 0 ? void 0 : _direct_flatPass1[passVariantOutput])) {
++		var _direct_flatSlots;
++		var entries = (_direct_flatSlots = direct.flatSlots) === null || _direct_flatSlots === void 0 ? void 0 : _direct_flatSlots.get(property);
++		if (entries) {
++			for (var index = entries.length; index--;) if (entries[index][0] === property && entries[index][9]) entries.splice(index, 1);
++		}
++	}
+ 	if (previous !== void 0) {
+ 		if (previous > layer) return false;
+ 		if (previous < layer) {
+diff --git a/src/helpers/getCSSStylesAtomic.ts b/src/helpers/getCSSStylesAtomic.ts
+index 59b744d..8c0dc15 100644
+--- a/src/helpers/getCSSStylesAtomic.ts
++++ b/src/helpers/getCSSStylesAtomic.ts
+@@ -40,6 +40,7 @@ export type AtomicSlotEntry = [
+   original?: any,
+   flags?: number,
+   lifecycle?: boolean,
++  baseVariant?: boolean,
+ ]
+ 
+ export type SlotIdentity = [
+diff --git a/src/helpers/getSplitStyles.tsx b/src/helpers/getSplitStyles.tsx
+index 2a5013b..34663ae 100644
+--- a/src/helpers/getSplitStyles.tsx
++++ b/src/helpers/getSplitStyles.tsx
+@@ -2471,7 +2471,7 @@ function writeStyleRecord(
+       break
+     }
+   }
+-  list.push([
++  const entry: AtomicSlotEntry = [
+     property,
+     value,
+     condition,
+@@ -2480,7 +2480,11 @@ function writeStyleRecord(
+     cursor ? cursor[conditionWrappers] : undefined,
+     original,
+     flags | (sourceLayer << 5),
+-  ])
++  ]
++  if (sourceLayer === sourceLayerBase && direct.flatPass?.[passVariantOutput]) {
++    entry[9] = true
++  }
++  list.push(entry)
+ }
+ 
+ function streamWriteInline(
+@@ -3001,6 +3005,24 @@ function ownsSourceLayer(state: GetStyleState, property: string, conditional = f
+   const layer = direct.flatPass?.[passSourceLayer] || 0
+   const layers = (direct.flatPropertyLayers ||= new Map())
+   const previous = layers.get(property)
++  if (
++    previous === sourceLayerBase &&
++    layer === sourceLayerBase &&
++    !conditional &&
++    !direct.flatPass?.[passVariantOutput]
++  ) {
++    // a later authored base replaces the default variant's entire output for
++    // this property, including its responsive clauses. direct clauses retain
++    // their own slots, so a conditional-only override still keeps the base.
++    const entries = direct.flatSlots?.get(
++      process.env.TAMAGUI_TARGET === 'web' ? styleSlot(property) : property
++    )
++    if (entries) {
++      for (let index = entries.length; index--; ) {
++        if (entries[index][0] === property && entries[index][9]) entries.splice(index, 1)
++      }
++    }
++  }
+   if (previous !== undefined) {
+     if (previous > layer) return false
+     if (previous < layer) {

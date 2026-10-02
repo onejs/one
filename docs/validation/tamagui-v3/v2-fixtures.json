@@ -1,0 +1,38 @@
+[
+  {
+    "fixture": "examples/testflight/package.json",
+    "tamagui": "2.6.2",
+    "core": "2.6.2",
+    "web": "2.6.2"
+  },
+  {
+    "fixture": "tests/test-app-cases/package.json",
+    "tamagui": "2.6.2",
+    "core": "2.6.2",
+    "web": "2.6.2"
+  },
+  {
+    "fixture": "tests/test-routing-flicker/package.json",
+    "tamagui": "2.6.2",
+    "core": "2.6.2",
+    "web": "2.6.2"
+  },
+  {
+    "fixture": "tests/test-loaders/package.json",
+    "tamagui": "2.6.2",
+    "core": "2.6.2",
+    "web": "2.6.2"
+  },
+  {
+    "fixture": "tests/test/package.json",
+    "tamagui": "2.6.2",
+    "core": "2.6.2",
+    "web": "2.6.2"
+  },
+  {
+    "fixture": "tests/sandbox/package.json",
+    "tamagui": "2.6.2",
+    "core": "2.6.2",
+    "web": "2.6.2"
+  }
+]

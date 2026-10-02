@@ -6,6 +6,7 @@ import {
   Circle,
   Popover,
   Sheet,
+  Theme,
   XStack,
   YStack,
   isTouchable,
@@ -14,7 +15,6 @@ import { useDocsMenu } from '~/features/docs/useDocsMenu'
 import { OneBall } from '../brand/Logo'
 import { DocsMenuContents } from '../docs/DocsMenuContents'
 import { DocsSectionTabs } from '../docs/DocsSectionTabs'
-import { ScrollView } from './ScrollView'
 import { useIsScrolled } from './useIsScrolled'
 import { SocialLinksRow } from './SocialLinksRow'
 import { View } from 'tamagui'
@@ -64,6 +64,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
               px="2"
               br="10"
               bw={2}
+              borderColor="transparent"
               onPress={() => {
                 if (isTouchable) {
                   setOpen(!open)
@@ -115,8 +116,8 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
               spring: { damping: 25, mass: 1.2, stiffness: 200 },
             }}
           >
-            <Sheet.Container>
-              <Sheet.Background bg="color5" />
+            <Sheet.Container theme="yellow">
+              <Sheet.Background bg="color5" br={0} />
               <Sheet.ScrollView showsVerticalScrollIndicator={false} zi={1000}>
                 <XStack
                   group="card"
@@ -139,7 +140,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
                 <Adapt.Contents />
               </Sheet.ScrollView>
             </Sheet.Container>
-            <Sheet.Overlay zIndex={100} bg="background075" />
+            <Sheet.Overlay zIndex={100} bg="background" opacity="1 enter:0 exit:0" />
           </Sheet>
         </Adapt>
 
@@ -156,6 +157,7 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
 }) {
   return (
     <Popover.Content
+      theme="yellow"
       mt={-5}
       bg="color5"
       x="0 enter:-10px exit:10px"
@@ -182,14 +184,19 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
       trapFocus
       br="6"
     >
-      <Popover.Arrow bg="color5" size={44} borderWidth={0} opacity={0.84} />
+      <Popover.Arrow bg="color5" size={13} borderWidth={0} opacity={0.84} />
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: '100%' }}>
+      <Popover.ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ flexGrow: 1, flexShrink: 1, flexBasis: '0%', width: '100%' }}
+      >
         <YStack aria-label="Home menu contents" w="100%" p="4" alignItems="flex-end">
-          <DocsSectionTabs />
+          <Theme name="gray">
+            <DocsSectionTabs />
+          </Theme>
           <DocsMenuContents inMenu />
         </YStack>
-      </ScrollView>
+      </Popover.ScrollView>
     </Popover.Content>
   )
 })

@@ -112,7 +112,7 @@ type DrawerProps = {
 }
 
 const Overlay = styled(YStack, {
-  name: 'DrawerOverlay',
+  displayName: 'DrawerOverlay',
   context: DrawerContext,
   opacity: 'enter:0 exit:0',
   variants: {

@@ -1,0 +1,1451 @@
+{
+  "files": [
+    {
+      "file": "app/_layout.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/_layout.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/blog/[slug]+ssg.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/blog/index+ssg.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/blog/rss.xml+api.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/docs/_layout.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/docs/[slug].tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/native/_layout.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/native/[slug].tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/native/index.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/plans/_layout.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/(content)/plans/[slug].tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/+not-found.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/api/mailing-list-signup+api.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/index.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/llms-full.txt+api.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/routes.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "app/test.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/Button.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/Community.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/Drawer.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/EmailSignup.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/Hint.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/Status.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/Team.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/TopNav.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "components/typography.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "config/fonts.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "config/tamagui.config.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "config/tokens.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "data/authors.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/brand/Logo.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/Badge.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/Code.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/DocsLayout.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/DocsMenuContents.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/DocsRightSidebar.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/DocsRouteNavItem.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/docsRoutes.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/DocsSectionTabs.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/LinkHeading.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/MDXComponents.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/mdxPlugins.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/nativeRoutes.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/Notice.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/PropsTable.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/RouteTree.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/RovingTabs.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/types.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/unwrapText.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/useBashCommand.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/useClipboard.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/useDocsMenu.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/docs/useLocalStorageWatcher.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/email/mailingListSignup.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/DiscordIcon.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/ExternalIcon.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/GithubIcon.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/ChevronDown.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/ChevronLeft.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/ChevronRight.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/ChevronUp.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Database.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/File.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/FileStack.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Folder.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/FolderCheck.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/index.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Link2.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Loader.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Menu.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Minus.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Moon.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Plus.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Search.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Sun.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/SunMoon.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/TabletSmartphone.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/Triangle.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/icons/lucide/X.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/search/DocSearch.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/search/SearchContext.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/search/SearchProvider.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/Containers.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/ErrorBoundary.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/Footer.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/headerColors.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/HeaderMenu.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/HeadInfo.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/LayoutDecorativeStripe.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/Link.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/ScrollView.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/SocialLinksRow.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/SubTitle.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/site/useIsScrolled.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/supabase/index.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/supabase/types.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/theme/ThemeToggleButton.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "features/theme/useSystemTheme.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "helpers/subset-font.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "helpers/typeHelpers.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/animations-css.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/animations-motion.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/animations-reanimated.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/animations-rn.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/src/createAnimations.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/src/index.native.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/src/index.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/src/polyfill.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/types/createAnimations.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/types/index.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/types/index.native.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-motion/types/polyfill.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/src/createAnimations.native.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/src/index.native.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/src/index.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/src/polyfill.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/src/types.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/types/createAnimations.native.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/types/index.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/types/index.native.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/types/polyfill.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-react-native/types/types.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/src/createAnimations.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/src/createAnimationsCompiler.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/src/index.compiler.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/src/index.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/src/textInputHost.native.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/src/textInputHost.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/types/createAnimations.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/types/createAnimationsCompiler.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/types/index.compiler.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/types/index.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/types/textInputHost.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/animations-reanimated/types/textInputHost.native.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/src/index.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/src/v4.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/src/v5.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/src/v6.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/types/index.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/types/v4.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/types/v5.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/types/v6.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/v4.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/v5.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/node_modules/@tamagui/shorthands/v6.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/animations-css.native.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/animations-css.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/animations-motion.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/animations-reanimated.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/animations-rn.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/fonts.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/media.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/settings.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v5-base.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v5-fonts.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v5-subtle.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v5.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v6-base.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v6-builder.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v6-tailwind-scales.generated.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v6-themes.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/src/v6.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/animations-css.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/animations-css.native.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/animations-motion.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/animations-reanimated.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/animations-rn.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/fonts.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/media.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/settings.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v5-base.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v5-fonts.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v5-subtle.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v5.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v6-base.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v6-builder.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v6-tailwind-scales.generated.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v6-themes.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/types/v6.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/v6-base.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/v6-builder.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/config/v6.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/node_modules/@tamagui/types/types.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/node_modules/@tamagui/types/types.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/src/compilerStats.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/src/extensions.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/src/index.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/src/internal.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/src/loadTamagui.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/src/plugin.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/src/zeroRuntime.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/types/compilerStats.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/types/extensions.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/types/index.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/types/internal.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/types/loadTamagui.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/types/plugin.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "node_modules/@tamagui/vite-plugin/types/zeroRuntime.d.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "scripts/generate-og-images.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "tests/integration.test.tsx",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "tests/rss.test.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "vite.config.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    },
+    {
+      "file": "vitest.config.ts",
+      "sites": [],
+      "functionalVariants": [],
+      "sheetFrames": [],
+      "transitions": []
+    }
+  ],
+  "summary": {
+    "sites": 0,
+    "clean": 0,
+    "needsRelocation": 0,
+    "unknownHost": 0,
+    "ineligible": 0,
+    "flagged": 0,
+    "warnings": 0,
+    "waiting": 0,
+    "ignoredFiles": 0,
+    "functionalVariantSites": 0,
+    "functionalVariantConverted": 0,
+    "functionalVariantFlagged": 0,
+    "functionalVariantFlags": {},
+    "sheetFrames": 0,
+    "sheetFramesFlagged": 0,
+    "transitions": 0,
+    "transitionsFlagged": 0
+  }
+}

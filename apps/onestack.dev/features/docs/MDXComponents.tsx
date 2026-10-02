@@ -35,7 +35,7 @@ const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
       mt="2"
       mb="2"
       {...props}
-      lh="39px"
+      lh="39px sm:32px"
       fontWeight="400"
     >
       {disableUnwrapText ? children : unwrapText(children)}
@@ -103,6 +103,7 @@ const Th = styled(Text, {
   px: '3',
   fontWeight: '600',
   fontSize: '4',
+  lineHeight: '25px',
   color: 'color11',
   textAlign: 'left' as any,
   verticalAlign: 'bottom' as any,
@@ -116,6 +117,8 @@ const Td = styled(Text, {
   py: '2-5',
   px: '3',
   fontSize: '4',
+  lineHeight: '25px',
+  fontWeight: '600',
   color: 'color12',
   textAlign: 'left' as any,
   verticalAlign: 'top' as any,
@@ -156,6 +159,7 @@ const New = () => (
   <Text
     fontFamily="mono"
     fontSize={11}
+    lineHeight="32px"
     px="1-5"
     py="0-5"
     bg="green5"

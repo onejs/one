@@ -233,11 +233,11 @@ export default function HomePage() {
             </Link>
           </Theme>
 
-          <Separator borderColor="backgroundFocus" />
+          <Separator />
 
           <Community />
 
-          <Separator borderColor="backgroundFocus" />
+          <Separator />
 
           <Team />
         </View>
