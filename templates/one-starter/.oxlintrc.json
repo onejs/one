@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "react",
+    "typescript"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "ignorePatterns": [
+    "src/data/generated/**",
+    "src/database/migrations/**",
+    "**/*.d.ts",
+    "**/dist/**",
+    "**/node_modules/**",
+    "src/database/migrate-dist.js"
+  ]
+}
