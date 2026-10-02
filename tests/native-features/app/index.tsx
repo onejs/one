@@ -598,9 +598,9 @@ const testScreens = [
     testID: 'nav-one-native-secure-store',
   },
   {
-    href: '/one-native-preferences',
-    label: 'One Native Preferences',
-    testID: 'nav-one-native-preferences',
+    href: '/one-native-storage',
+    label: 'One Native Storage',
+    testID: 'nav-one-native-storage',
   },
   {
     href: '/one-native-keep-awake',

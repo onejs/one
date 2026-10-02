@@ -78,7 +78,7 @@ export const nativeRoutes = [
       { title: 'Image Manipulator', route: '/native/image-manipulator' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'SecureStore', route: '/native/secure-store' },
-      { title: 'Preferences', route: '/native/preferences' },
+      { title: 'Storage', route: '/native/storage' },
       { title: 'Keep Awake', route: '/native/keep-awake' },
       { title: 'Print', route: '/native/print' },
       { title: 'Store Review', route: '/native/store-review' },
