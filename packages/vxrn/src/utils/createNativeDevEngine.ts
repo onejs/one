@@ -1308,7 +1308,7 @@ function nativeIdentityAliasPlugin(platform: 'ios' | 'android'): Plugin {
     directory: string
   ): { root: string; aliases: Record<string, unknown> } | null => {
     if (packages.has(directory)) return packages.get(directory)!
-    let result = null
+    let result: { root: string; aliases: Record<string, unknown> } | null = null
     const manifest = join(directory, 'package.json')
     if (existsSync(manifest)) {
       try {
