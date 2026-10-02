@@ -81,6 +81,7 @@ class OnePackage : BaseReactPackage() {
             OneNativeMaskManager(),
             OneNativeUiMapManager(),
             OneNativePictureInPictureManager(),
+            OneKotlinHostManager(),
         )
 
     companion object {

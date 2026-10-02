@@ -2724,9 +2724,61 @@ export const generateForPlatform = async (
   if (platform === 'android') await generateKotlinSources({ root, dest })
 }
 
+export function enableAppComposeIntegration(dest: string) {
+  const rootBuildGradlePath = path.join(dest, 'build.gradle')
+  if (FSExtra.existsSync(rootBuildGradlePath)) {
+    let content = FSExtra.readFileSync(rootBuildGradlePath, 'utf8')
+    const composePluginClasspath =
+      '        classpath("org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:$kotlinVersion")'
+    if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
+      const anchor = content.includes('classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")')
+        ? 'classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")'
+        : 'classpath "org.jetbrains.kotlin:kotlin-gradle-plugin"'
+      content = insertAfterLine(content, anchor, composePluginClasspath)
+      FSExtra.writeFileSync(rootBuildGradlePath, content, 'utf8')
+    }
+  }
+
+  const appBuildGradlePath = path.join(dest, 'app/build.gradle')
+  if (FSExtra.existsSync(appBuildGradlePath)) {
+    let content = FSExtra.readFileSync(appBuildGradlePath, 'utf8')
+    if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
+      const pluginAnchor = content.includes('apply plugin: "org.jetbrains.kotlin.android"')
+        ? 'apply plugin: "org.jetbrains.kotlin.android"'
+        : "apply plugin: 'org.jetbrains.kotlin.android'"
+      content = insertAfterLine(
+        content,
+        pluginAnchor,
+        'apply plugin: "org.jetbrains.kotlin.plugin.compose"'
+      )
+    }
+    if (!content.includes('compose true')) {
+      content = insertAfterLine(
+        content,
+        'android {',
+        '    buildFeatures {\n        compose true\n    }'
+      )
+    }
+    if (!content.includes('androidx.compose.ui:ui')) {
+      const composeDeps = [
+        '    def composeUiVersion = rootProject.ext.has("composeUiVersion") ? rootProject.ext.get("composeUiVersion") : "1.11.4"',
+        '    def material3Version = rootProject.ext.has("material3Version") ? rootProject.ext.get("material3Version") : "1.5.0-alpha17"',
+        '    implementation "androidx.compose.ui:ui:$composeUiVersion"',
+        '    implementation "androidx.compose.foundation:foundation:$composeUiVersion"',
+        '    implementation "androidx.compose.material3:material3:$material3Version"',
+      ].join('\n')
+      const depsAnchor = content.includes('implementation("com.facebook.react:react-android")')
+        ? 'implementation("com.facebook.react:react-android")'
+        : 'implementation "com.facebook.react:react-android"'
+      content = insertAfterLine(content, depsAnchor, composeDeps)
+    }
+    FSExtra.writeFileSync(appBuildGradlePath, content, 'utf8')
+  }
+}
+
 // the native source contract loads only for an app that has kotlin or swift
 // sources to generate glue for.
-async function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
+export async function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts'])
   const sources: string[] = []
   const collect = (dir: string) => {
@@ -2744,18 +2796,23 @@ async function generateKotlinSources({ root, dest }: { root: string; dest: strin
   const { kotlinSourceId, renderKotlinSourceGlue, writeNativeSourceDeclaration } = await import(
     '../utils/nativeSourceContract'
   )
+  let hasViews = false
   for (const source of sources) {
     const id = kotlinSourceId(root, source)
     const target = path.join(dest, 'app/src/main/java/one/source', id)
     FSExtra.mkdirSync(target, { recursive: true })
     FSExtra.copyFileSync(source, path.join(target, path.basename(source)))
     const contract = writeNativeSourceDeclaration(source)
+    if (contract.views.length > 0) hasViews = true
     if (contract.modules.length > 0 || contract.views.length > 0) {
       FSExtra.writeFileSync(
         path.join(target, `OneNativeSource_${id}.kt`),
         renderKotlinSourceGlue(id, contract).source
       )
     }
+  }
+  if (hasViews) {
+    enableAppComposeIntegration(dest)
   }
 }
 
