@@ -173,11 +173,12 @@ class StorageLog {
   // room for a `size` byte record that replaces `replaced` live bytes. the
   // log is only compacted when it is full: if at least half of it is dead it
   // is rewritten at twice the live size, otherwise it doubles. writes into
-  // existing room never pay for compaction.
+  // existing room never pay for compaction. the snapshot still holds the
+  // replaced record, so the compacted log is sized to fit it and the new one.
   uint8_t* reserve(size_t size, size_t replaced) {
     if (used_ + size > capacity_) {
       size_t live = live_ - replaced + size;
-      if (live * 2 <= used_) compact(pageAligned(live * 2));
+      if (live * 2 <= used_) compact(pageAligned(std::max(live * 2, live_ + size)));
       if (used_ + size > capacity_) remap(fd_, capacity_, pageAligned(std::max(capacity_ * 2, used_ + size)));
     }
     return base_ + used_;
@@ -247,13 +248,15 @@ class StorageLog {
       uint8_t op = base_[offset++];
       size_t keyStart = 0;
       size_t keySize = 0;
+      Slot slot{};
+      // the whole record parses before it touches the map, so a torn record
+      // leaves the entries and their live size exactly as the prior ones left them.
       if ((op != kSetOp && op != kRemoveOp) || !field(keyStart, keySize)) break;
+      if (op == kSetOp && !field(slot.offset, slot.size)) break;
       key.assign(reinterpret_cast<const char*>(base_ + keyStart), keySize);
       auto found = entries_.find(key);
       if (found != entries_.end()) live_ -= setSize(keySize, found->second.size);
       if (op == kSetOp) {
-        Slot slot{};
-        if (!field(slot.offset, slot.size)) break;
         live_ += setSize(keySize, slot.size);
         if (found != entries_.end()) {
           found->second = slot;
