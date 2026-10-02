@@ -90,7 +90,7 @@ export const HomePage = memo(() => {
                     justify="center"
                     cursor="pointer"
                     role="checkbox"
-                    aria-checked={todo.completed}
+                    aria-checked={!!todo.completed}
                     aria-label={`Complete ${todo.text}`}
                     onPress={() => toggleTodo(todo.id, !todo.completed)}
                   >
