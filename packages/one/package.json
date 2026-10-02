@@ -303,6 +303,7 @@
     }
   },
   "devDependencies": {
+    "@tamagui/sheet": "3.0.0-beta.1537.1",
     "@callstack/liquid-glass": "^0.8.1",
     "@react-native/babel-plugin-codegen": "0.87.1",
     "@react-native/codegen": "^0.87.1",
