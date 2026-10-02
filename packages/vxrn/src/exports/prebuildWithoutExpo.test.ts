@@ -17,7 +17,9 @@ import sharp from 'sharp'
 import { swiftPackageDirectories } from '../utils/swiftPackageId'
 import {
   applyAndroidDependencyPatches,
+  enableAppComposeIntegration,
   generateForPlatform,
+  generateKotlinSources,
   getNativeDependencyInventory,
   renderPrebuildFile,
   renderSceneDelegateSwift,
@@ -2420,5 +2422,115 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
       app,
     })
     expect(plain.content).not.toContain('one-updates-embedded.json')
+  })
+})
+
+describe('kotlin compose app integration', () => {
+  it('enables compose plugin, buildFeatures, and dependencies in gradle files', () => {
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-compose-gradle-'))
+    const rootGradle = join(dest, 'build.gradle')
+    const appDir = join(dest, 'app')
+    const appGradle = join(appDir, 'build.gradle')
+    mkdirSync(appDir, { recursive: true })
+
+    writeFileSync(
+      rootGradle,
+      `buildscript {
+    dependencies {
+        classpath("com.android.tools.build:gradle")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    }
+}
+`
+    )
+    writeFileSync(
+      appGradle,
+      `apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
+
+android {
+    namespace "com.example.app"
+}
+
+dependencies {
+    implementation("com.facebook.react:react-android")
+}
+`
+    )
+
+    enableAppComposeIntegration(dest)
+
+    const updatedRoot = readFileSync(rootGradle, 'utf8')
+    expect(updatedRoot).toContain('org.jetbrains.kotlin.plugin.compose.gradle.plugin')
+
+    const updatedApp = readFileSync(appGradle, 'utf8')
+    expect(updatedApp).toContain('apply plugin: "org.jetbrains.kotlin.plugin.compose"')
+    expect(updatedApp).toContain('buildFeatures {\n        compose true\n    }')
+    expect(updatedApp).toContain('androidx.compose.ui:ui:$composeUiVersion')
+    expect(updatedApp).toContain('androidx.compose.foundation:foundation:$composeUiVersion')
+    expect(updatedApp).toContain('androidx.compose.material3:material3:$material3Version')
+  })
+
+  it('enables compose only when .kt has views, keeping module-only prebuild unchanged', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-compose-views-root-'))
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-compose-views-dest-'))
+    const rootGradle = join(dest, 'build.gradle')
+    const appDir = join(dest, 'app')
+    const appGradle = join(appDir, 'build.gradle')
+    mkdirSync(appDir, { recursive: true })
+
+    const initialRootGradle = `buildscript {
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    }
+}
+`
+    const initialAppGradle = `apply plugin: "org.jetbrains.kotlin.android"
+android {
+    namespace "com.example"
+}
+dependencies {
+    implementation("com.facebook.react:react-android")
+}
+`
+    writeFileSync(rootGradle, initialRootGradle)
+    writeFileSync(appGradle, initialAppGradle)
+
+    // 1. Module-only source: prebuild must leave gradle unchanged
+    writeFileSync(
+      join(root, 'MathModule.kt'),
+      `package com.example
+object MathModule : dev.onejs.one.source.OneModule {
+  fun add(a: Int, b: Int): Int = a + b
+}
+`
+    )
+
+    await generateKotlinSources({ root, dest })
+
+    expect(readFileSync(rootGradle, 'utf8')).toBe(initialRootGradle)
+    expect(readFileSync(appGradle, 'utf8')).toBe(initialAppGradle)
+
+    // 2. Add a composable view source: prebuild must enable Compose
+    writeFileSync(
+      join(root, 'Counter.kt'),
+      `package com.example
+import androidx.compose.runtime.Composable
+
+@Composable
+fun Counter(label: String, onIncrement: () -> Unit) {
+}
+`
+    )
+
+    await generateKotlinSources({ root, dest })
+
+    const updatedRoot = readFileSync(rootGradle, 'utf8')
+    const updatedApp = readFileSync(appGradle, 'utf8')
+    expect(updatedRoot).toContain('org.jetbrains.kotlin.plugin.compose')
+    expect(updatedApp).toContain('apply plugin: "org.jetbrains.kotlin.plugin.compose"')
+    expect(updatedApp).toContain('compose true')
+    expect(updatedApp).toContain('androidx.compose.ui:ui')
   })
 })
