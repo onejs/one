@@ -12,7 +12,7 @@ export const userPublic = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (table) => [index('userPublic_username_idx').on(table.username)]
+  (table) => [index('userPublic_username_idx').on(table.username)],
 )
 export const userState = pgTable('userState', {
   userId: text('userId').primaryKey(),
@@ -31,5 +31,5 @@ export const todo = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (table) => [index('todo_userId_idx').on(table.userId)]
+  (table) => [index('todo_userId_idx').on(table.userId)],
 )

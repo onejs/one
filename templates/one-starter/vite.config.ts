@@ -1,7 +1,7 @@
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
 import { one } from 'one/vite'
 import { defineConfig } from 'vite'
-import { APP_NAME, APP_SCHEME, APP_ID } from './appIdentity'
+import { APP_NAME, APP_SCHEME, APP_ID } from './appIdentity.ts'
 
 export default defineConfig({
   server: { port: 8081 },

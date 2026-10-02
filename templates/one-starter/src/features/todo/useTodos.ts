@@ -14,7 +14,7 @@ export function useTodos() {
     },
     {
       enabled: Boolean(userId),
-    }
+    },
   )
   const isLoading = type === 'unknown'
   const sortedTodos = useMemo(() => {
@@ -28,7 +28,7 @@ export function useTodos() {
       userId,
       text,
       completed: false,
-      createdAt: new Date().toISOString(),
+      createdAt: Date.now(),
     }
     zero.mutate.todo.insert(newTodo)
   }

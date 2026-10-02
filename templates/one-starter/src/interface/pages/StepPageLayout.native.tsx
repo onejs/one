@@ -40,6 +40,7 @@ export const StepPageLayout = ({
           )}
 
           <YStack gap="4" mt="2">
+            {Icon && <Icon size={28} color="color-11" />}
             {IconGroup && IconGroup}
 
             <YStack gap="2">

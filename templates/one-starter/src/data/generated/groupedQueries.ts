@@ -5,5 +5,15 @@
  * this file re-exports all query modules - while this breaks tree-shaking,
  * queries are typically small and few in number even in larger apps.
  */
-export * as todo from '../queries/todo'
-export * as user from '../queries/user'
+import * as todoSource from '../todo/queries'
+import * as userPublicSource from '../userPublic/queries'
+
+export const todo = {
+  todoById: todoSource.todoById,
+  todosByUserId: todoSource.todosByUserId,
+}
+
+export const userPublic = {
+  userById: userPublicSource.userById,
+  userWithState: userPublicSource.userWithState,
+}

@@ -24,7 +24,7 @@ export async function syncDrizzleMigrations() {
 
   // find directory-format migrations (contain migration.sql)
   const migrationDirs = entries.filter(
-    (e) => e.isDirectory() && e.name !== 'meta' && e.name !== 'node_modules'
+    (e) => e.isDirectory() && e.name !== 'meta' && e.name !== 'node_modules',
   )
 
   let created = 0

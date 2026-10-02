@@ -21,8 +21,6 @@ export type AvatarProps = Omit<CircleProps, 'size'> & {
   active?: boolean
   isOnline?: boolean | null
   disableBorder?: boolean
-  gradient?: boolean
-  gradientColors?: string[]
 }
 export const Avatar = memo(
   ({
@@ -32,8 +30,6 @@ export const Avatar = memo(
     active,
     isOnline,
     disableBorder,
-    gradient,
-    gradientColors,
     ...rest
   }: AvatarProps) => {
     const size = getSimpleSize(sizeIn)
@@ -92,7 +88,7 @@ export const Avatar = memo(
         ) : null}
       </YStack>
     )
-  }
+  },
 )
 const SelectableCircle = styled(Circle, {
   select: 'none',

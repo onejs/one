@@ -6,7 +6,7 @@ import { authClient } from '~/features/auth/client/authClient'
 import { passwordLogin } from '~/features/auth/client/passwordLogin'
 import { Button } from '~/interface/buttons/Button'
 import { showError } from '~/interface/dialogs/actions'
-import { Input } from '~/interface/forms/Input'
+import { Input } from 'tamagui'
 import { PasswordIcon } from '~/interface/icons/phosphor/PasswordIcon'
 import { KeyboardStickyFooter } from '~/interface/keyboard/KeyboardStickyFooter'
 import { StepPageLayout } from '~/interface/pages/StepPageLayout'
@@ -77,10 +77,8 @@ export const PasswordPage = () => {
           type="password"
           autoFocus
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') handleContinue()
-          }}
+          onChangeText={setPassword}
+          onSubmitEditing={() => handleContinue()}
         />
       </YStack>
     </StepPageLayout>

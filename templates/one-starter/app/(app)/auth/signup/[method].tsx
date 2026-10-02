@@ -1,14 +1,13 @@
-import { useParams, useRouter, createRoute } from 'one'
+import { useParams, useRouter } from 'one'
 import { memo, useLayoutEffect, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { SizableText, Spinner, useEvent, XStack, YStack } from 'tamagui'
 import { Button } from '~/interface/buttons/Button'
 import { Pressable } from '~/interface/buttons/Pressable'
 import { showError } from '~/interface/dialogs/actions'
-import { Input } from '~/interface/forms/Input'
+import { Input } from 'tamagui'
 import { CaretLeftIcon } from '~/interface/icons/phosphor/CaretLeftIcon'
 import { PageLayout } from '~/interface/pages/PageLayout'
-const route = createRoute<'/(app)/auth/signup/[method]'>()
 export const SignupPage = memo(() => {
   const { method } = useParams<{
     method?: 'email'
@@ -34,7 +33,7 @@ export const SignupPage = memo(() => {
     setLoading(true)
     try {
       router.push(
-        `/auth/login/password?method=${method}&value=${encodeURIComponent(inputValue)}`
+        `/auth/login/password?method=${method}&value=${encodeURIComponent(inputValue)}`,
       )
     } finally {
       setLoading(false)
@@ -78,11 +77,9 @@ export const SignupPage = memo(() => {
             ref={inputRef}
             placeholder="Enter email address"
             value={inputValue}
-            onChange={(event) => setInputValue(event.target.value)}
+            onChangeText={setInputValue}
             autoCapitalize="none"
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') handleContinue()
-            }}
+            onSubmitEditing={() => handleContinue()}
             type="email"
             name="email"
             autoComplete="email"

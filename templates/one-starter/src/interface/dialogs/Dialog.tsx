@@ -10,7 +10,7 @@ let globalShowDialog:
   | ((
       state: Omit<DialogState, 'resolve'> & {
         resolve?: (value: boolean) => void
-      }
+      },
     ) => void)
   | null = null
 export function DialogProvider({ children }: { children: ReactNode }) {
@@ -22,7 +22,7 @@ export function DialogProvider({ children }: { children: ReactNode }) {
   const showDialog = (
     newState: Omit<DialogState, 'resolve'> & {
       resolve?: (value: boolean) => void
-    }
+    },
   ) => {
     setState({
       ...newState,

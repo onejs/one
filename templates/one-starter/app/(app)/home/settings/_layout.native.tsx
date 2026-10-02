@@ -16,7 +16,7 @@ export function SettingLayout() {
         name="index"
         options={{
           title: 'Settings',
-          headerLargeEnabled: true,
+          headerLargeTitleEnabled: true,
           headerLeft: () => <HeaderBackButton />,
         }}
       />

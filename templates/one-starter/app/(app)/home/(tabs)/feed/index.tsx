@@ -1,9 +1,9 @@
 import { memo, useState } from 'react'
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { isWeb, ScrollView, SizableText, Spinner, Theme, XStack, YStack } from 'tamagui'
 import { useTodos } from '~/features/todo/useTodos'
 import { Button } from '~/interface/buttons/Button'
-import { Input } from '~/interface/forms/Input'
+import { Input } from 'tamagui'
 import { PageContainer } from '~/interface/layout/PageContainer'
 import { H1, H3 } from '~/interface/text/Headings'
 export const HomePage = memo(() => {
@@ -59,10 +59,8 @@ export const HomePage = memo(() => {
               flex={1}
               placeholder="What needs to be done?"
               value={newTodoText}
-              onChange={(event) => setNewTodoText(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter') handleAddTodo()
-              }}
+              onChangeText={setNewTodoText}
+              onSubmitEditing={() => handleAddTodo()}
               size="lg"
               h={56}
             />

@@ -1,4 +1,3 @@
-import { router } from 'one'
 import { Circle, H5, isWeb, Spacer, XStack, YStack } from 'tamagui'
 import { HeaderBackButton } from '../buttons/HeaderBackButton'
 import { H1, H4 } from '../text/Headings'

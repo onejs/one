@@ -22,7 +22,7 @@ export const MainHeader = () => {
           <XStack position="relative" w="100%" px="2" items="center">
             <XStack gap="2" items="center">
               <Link href="/" aria-label="Home" asChild>
-                <Logo h={20} />
+                <Logo height={20} />
               </Link>
             </XStack>
 
@@ -111,11 +111,12 @@ export const MainHeaderMenu = memo(() => {
             exit: 0,
           }}
         />
-        <Sheet.Content bg="color-2" boxShadow="0 0 10px shadow-4">
+        <Sheet.Container>
+          <Sheet.Background bg="color-2" boxShadow="0 0 10px shadow-4" />
           <YStack flex={1} gap="2">
             <XStack p="4" pb="3" justify="space-between" items="center">
               <XStack gap="3" items="center">
-                <Logo h={32} />
+                <Logo height={32} />
               </XStack>
               <ThemeSwitch />
             </XStack>
@@ -170,7 +171,7 @@ export const MainHeaderMenu = memo(() => {
               </XStack>
             )}
           </YStack>
-        </Sheet.Content>
+        </Sheet.Container>
       </Sheet>
     </>
   )

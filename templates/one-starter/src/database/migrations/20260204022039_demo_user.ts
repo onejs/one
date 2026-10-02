@@ -32,7 +32,7 @@ export async function up(client: PoolClient) {
     VALUES ($1, $2, $3, true, $4, $4, 'user')
     ON CONFLICT (email) DO NOTHING
     `,
-    [DEMO_ID, DEMO_NAME, DEMO_EMAIL, now]
+    [DEMO_ID, DEMO_NAME, DEMO_EMAIL, now],
   )
 
   // insert account with password
@@ -42,7 +42,7 @@ export async function up(client: PoolClient) {
     VALUES ($1, $2, 'credential', $3, $4, $5, $5)
     ON CONFLICT (id) DO NOTHING
     `,
-    [`${DEMO_ID}-account`, DEMO_ID, DEMO_ID, passwordHash, now]
+    [`${DEMO_ID}-account`, DEMO_ID, DEMO_ID, passwordHash, now],
   )
 
   // insert user public
@@ -52,7 +52,7 @@ export async function up(client: PoolClient) {
     VALUES ($1, $2, $3)
     ON CONFLICT (id) DO NOTHING
     `,
-    [DEMO_ID, DEMO_NAME, now]
+    [DEMO_ID, DEMO_NAME, now],
   )
 
   // insert user state
@@ -62,7 +62,7 @@ export async function up(client: PoolClient) {
     VALUES ($1, false)
     ON CONFLICT ("userId") DO NOTHING
     `,
-    [DEMO_ID]
+    [DEMO_ID],
   )
   console.info('demo user created:', DEMO_EMAIL)
 }
