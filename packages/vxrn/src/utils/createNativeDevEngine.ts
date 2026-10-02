@@ -310,6 +310,7 @@ function getNativePlugins(
     // loops the earlier lowering steps emit.
     hermesLoopsPlugin(sourceMaps),
     ...userPlugins,
+    nativeExportsPrecedencePlugin(root, platform),
     nativeDeclarationAliasPlugin(root, platform),
   ].map((plugin: Plugin) =>
     plugin.api?.vxrnNative ? plugin.api.vxrnNative(context) : plugin
@@ -1344,6 +1345,62 @@ function nativeIdentityAliasPlugin(platform: 'ios' | 'android'): Plugin {
       }
       const result = resolver.sync(dirname(importer), source)
       if (result.path) return result.path
+    },
+  }
+}
+
+// export maps resolve in key order, so a package listing `browser` before
+// `react-native` would give native its web build. the browser fallback is for
+// packages without a native target: where a package's exports name both,
+// resolve it as metro does, without `browser`.
+function nativeExportsPrecedencePlugin(root: string, platform: 'ios' | 'android'): Plugin {
+  const manifests = new Map<string, { name?: string; exports?: unknown } | null>()
+  const readManifest = (directory: string) => {
+    if (!manifests.has(directory)) {
+      let manifest = null
+      try {
+        manifest = JSON.parse(readFileSync(join(directory, 'package.json'), 'utf8'))
+      } catch {}
+      manifests.set(directory, manifest)
+    }
+    return manifests.get(directory)
+  }
+  const resolvers = new Map<string, import('rolldown/experimental').ResolverFactory>()
+  return {
+    name: 'vxrn:native-exports-precedence',
+    async resolveId(source, importer, options) {
+      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
+      const resolved = await this.resolve(source, importer, {
+        skipSelf: true,
+        kind: options.kind,
+      })
+      if (!resolved || resolved.external || resolved.id.startsWith('\0')) return resolved
+      const name = source
+        .split('/')
+        .slice(0, source.startsWith('@') ? 2 : 1)
+        .join('/')
+      let directory = dirname(resolved.id)
+      while (readManifest(directory)?.name !== name) {
+        if (dirname(directory) === directory) return resolved
+        directory = dirname(directory)
+      }
+      const exportsMap = JSON.stringify(readManifest(directory)?.exports ?? null)
+      if (!exportsMap.includes('"react-native"') || !exportsMap.includes('"browser"')) {
+        return resolved
+      }
+      const kind = options.kind === 'require-call' ? 'require' : 'import'
+      let resolver = resolvers.get(kind)
+      if (!resolver) {
+        const { ResolverFactory } = await import('rolldown/experimental')
+        resolver = new ResolverFactory({
+          ...getNativeResolveConfig(platform),
+          conditionNames: ['react-native', kind, 'default'],
+        })
+        resolvers.set(kind, resolver)
+      }
+      const native = resolver.sync(importer ? dirname(importer) : root, source)
+      if (!native.path || native.path === resolved.id) return resolved
+      return this.resolve(native.path, importer, { skipSelf: true, kind: options.kind })
     },
   }
 }
