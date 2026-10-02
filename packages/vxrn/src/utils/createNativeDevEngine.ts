@@ -270,6 +270,7 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
+    nativeIdentityAliasPlugin(platform),
     nativeAssetRegistryPlugin(root),
     // route every `react-native/*` import through the app's react native copy.
     // two reasons: package managers can install the same react native version at
@@ -1291,6 +1292,56 @@ export function hmrClientNoopPlugin(): Plugin {
           moduleType: 'js',
         }
       }
+    },
+  }
+}
+
+function nativeIdentityAliasPlugin(platform: 'ios' | 'android'): Plugin {
+  const packages = new Map<
+    string,
+    { root: string; aliases: Record<string, unknown> } | null
+  >()
+  let resolver: import('rolldown/experimental').ResolverFactory | undefined
+  const findPackage = (
+    directory: string
+  ): { root: string; aliases: Record<string, unknown> } | null => {
+    if (packages.has(directory)) return packages.get(directory)!
+    let result = null
+    const manifest = join(directory, 'package.json')
+    if (existsSync(manifest)) {
+      try {
+        const field = JSON.parse(readFileSync(manifest, 'utf8'))['react-native']
+        result = {
+          root: directory,
+          aliases: field && typeof field === 'object' ? field : {},
+        }
+      } catch {}
+    } else {
+      const parent = dirname(directory)
+      if (parent !== directory) result = findPackage(parent)
+    }
+    packages.set(directory, result)
+    return result
+  }
+  return {
+    name: 'vxrn:native-identity-alias',
+    async resolveId(source, importer) {
+      if (!importer || !source.startsWith('.')) return
+      const pkg = findPackage(dirname(importer))
+      if (!pkg) return
+      const key = `./${normalizePath(relative(pkg.root, resolve(dirname(importer), source)))}`
+      if (pkg.aliases[key] !== key) return
+      // A native identity mapping deliberately keeps the original implementation
+      // even when the browser field maps it elsewhere. Avoid alias recursion.
+      if (!resolver) {
+        const { ResolverFactory } = await import('rolldown/experimental')
+        resolver = new ResolverFactory({
+          ...getNativeResolveConfig(platform),
+          aliasFields: [],
+        })
+      }
+      const result = resolver.sync(dirname(importer), source)
+      if (result.path) return result.path
     },
   }
 }

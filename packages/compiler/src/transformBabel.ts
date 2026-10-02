@@ -237,6 +237,14 @@ export async function transformBabel(
     sourceMaps: false,
     minified: false,
     ...options,
+    ...(!isTS
+      ? {
+          parserOpts: {
+            ...options.parserOpts,
+            plugins: [...(options.parserOpts?.plugins || []), 'jsx'],
+          },
+        }
+      : {}),
     // vite and rolldown own module syntax and import.meta, so presets written for
     // metro (babel-preset-expo) must keep esm instead of rewriting it for metro's runtime
     caller: {

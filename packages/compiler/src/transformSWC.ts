@@ -29,7 +29,7 @@ export function shouldStripFlow(id: string, code: string): boolean {
     // Typed function returns, declarations, and class fields still need stripping.
     /\(\s*(?:\.\.\.)?[\w$]+\??\s*:\s*/.test(code) ||
     /\)\s*:\s*(?:[\w$]+(?:<[^;{}]*>)?(?:\[\])?\s*)(?:=>|\{)/.test(code) ||
-    /^\s*[\w$]+\??\s*:\s*(?:string|number|boolean|any|mixed|void|[A-Z][\w$]*)(?:[^;\r\n=]*);/m.test(
+    /^\s*[\w$]+\??\s*:\s*(?:string|number|boolean|any|mixed|void|[A-Z][\w$]*)(?:[^;\r\n=]*)(?:=[^;\r\n]*)?;/m.test(
       code
     ) ||
     /\b(?:opaque\s+)?type\s+[\w$]+(?:\s*<[^;{}]*>)?\s*=/.test(code)
