@@ -1,0 +1,2 @@
+# Ignore Drizzle snapshot meta files in diffs
+migrations/meta/*.json -diff

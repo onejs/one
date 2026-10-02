@@ -1,0 +1,5 @@
+export const APP_NAME = 'One Starter'
+export const APP_NAME_LOWERCASE = 'one-starter'
+export const DOMAIN = 'example.com'
+export const DEMO_EMAIL = 'demo@example.com'
+export const DEMO_PASSWORD = 'demopassword123'
