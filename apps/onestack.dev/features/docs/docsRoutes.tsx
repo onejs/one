@@ -90,6 +90,7 @@ export const docsRoutes = [
       { title: 'useTabs', route: '/docs/hooks-useTabs' },
       { title: 'useDrawer', route: '/docs/hooks-useDrawer' },
       { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
+      { title: 'useHeaderHeight', route: '/docs/hooks-useHeaderHeight' },
       { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
       { title: 'useSitemap', route: '/docs/hooks-useSitemap' },
     ],
