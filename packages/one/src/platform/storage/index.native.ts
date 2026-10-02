@@ -4,7 +4,8 @@ import type { OneStorage } from '../specs/OneStorage.nitro'
 import { assertStorageKey, assertStorageValue } from './validate'
 
 // native entry: one process-wide store per app, held in memory and appended to
-// a log file on every write (see HybridOneStorage). each verb is one jsi call.
+// a memory-mapped log on every write (cpp/HybridOneStorage.cpp, shared by iOS
+// and Android). each verb is one jsi call straight into c++.
 let hybrid: OneStorage | undefined
 
 function native(): OneStorage {
