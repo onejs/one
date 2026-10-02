@@ -5,8 +5,11 @@ import android.view.ViewGroup
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.unit.constrainHeight
+import androidx.compose.ui.unit.constrainWidth
 import com.facebook.react.uimanager.UIManagerHelper
 import com.facebook.react.views.view.ReactViewGroup
 
@@ -35,6 +38,9 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     private var reportedWidth = -1.0
     private var reportedHeight = -1.0
+    private var observedWidth = -1
+    private var observedHeight = -1
+    private var measuringContent = false
 
     init {
         clipChildren = false
@@ -52,13 +58,38 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                         "native view $source.$view changed (contract hash mismatch: expected $hash, got ${dispatch.contractHash}); rebuild the app"
                     )
                 }
-                dispatch.Content(
-                    view = view,
-                    propsJson = props,
-                    emit = { eventName, eventArgs ->
-                        onHostEvent(source, view, eventName, eventArgs)
+                Layout(
+                    content = {
+                        dispatch.Content(
+                            view = view,
+                            propsJson = props,
+                            emit = { eventName, eventArgs ->
+                                onHostEvent(source, view, eventName, eventArgs)
+                            },
+                        )
                     },
-                )
+                ) { measurables, constraints ->
+                    // yoga owns the outer minimums; content keeps its natural size.
+                    val contentConstraints = constraints.copy(minWidth = 0, minHeight = 0)
+                    val placeables = measurables.map { it.measure(contentConstraints) }
+                    val contentWidth = placeables.maxOfOrNull { it.width } ?: 0
+                    val contentHeight = placeables.maxOfOrNull { it.height } ?: 0
+                    if (source == committedSource && view == committedView) {
+                        val changed = contentWidth != observedWidth || contentHeight != observedHeight
+                        observedWidth = contentWidth
+                        observedHeight = contentHeight
+                        if (changed && !measuringContent && isAttachedToWindow) {
+                            removeCallbacks(contentLayout)
+                            post(contentLayout)
+                        }
+                    }
+                    layout(
+                        constraints.constrainWidth(contentWidth),
+                        constraints.constrainHeight(contentHeight),
+                    ) {
+                        placeables.forEach { it.placeRelativeWithLayer(0, 0) }
+                    }
+                }
             }
         }
     }
@@ -89,6 +120,8 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         if (sourceOrViewChanged) {
             reportedWidth = -1.0
             reportedHeight = -1.0
+            observedWidth = -1
+            observedHeight = -1
         }
 
         if (sourceOrViewChanged || nextHash != committedContractHash || nextProps != committedProps) {
@@ -161,31 +194,36 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     private fun layoutComposeContent() {
         if (!composeView.isAttachedToWindow || committedSource.isEmpty() || committedView.isEmpty()) return
-        // measure content before letting yoga apply the outer constraints.
-        composeView.measure(
-            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-        )
-        val naturalWidth = composeView.measuredWidth
-        var naturalHeight = composeView.measuredHeight
-        if (width > 0 && width != naturalWidth) {
+        measuringContent = true
+        try {
+            // measure content before letting yoga apply the outer constraints.
             composeView.measure(
-                MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
                 MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
             )
-            naturalHeight = composeView.measuredHeight
+            val naturalWidth = composeView.measuredWidth
+            var naturalHeight = composeView.measuredHeight
+            if (width > 0 && width != naturalWidth) {
+                composeView.measure(
+                    MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                )
+                naturalHeight = composeView.measuredHeight
+            }
+            onContentSizeChanged(
+                committedSource,
+                committedView,
+                naturalWidth,
+                naturalHeight,
+            )
+            composeView.measure(
+                MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+            )
+            composeView.layout(0, 0, width, height)
+        } finally {
+            measuringContent = false
         }
-        onContentSizeChanged(
-            committedSource,
-            committedView,
-            naturalWidth,
-            naturalHeight,
-        )
-        composeView.measure(
-            MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-            MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
-        )
-        composeView.layout(0, 0, width, height)
     }
 
     override fun onDetachedFromWindow() {
@@ -198,6 +236,8 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         removeCallbacks(contentLayout)
         reportedWidth = -1.0
         reportedHeight = -1.0
+        observedWidth = -1
+        observedHeight = -1
         committedSource = ""
         committedView = ""
         committedContractHash = ""
