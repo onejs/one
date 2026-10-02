@@ -167,7 +167,7 @@
     "playwright": "^1.58.2",
     "prettier": "^3.5.3",
     "shell-quote": "1.10.0",
-    "tamagui": "2.6.2",
+    "tamagui": "3.0.0-beta.1479.1",
     "ts-pattern": "^5.6.2",
     "turbo": "^2.9.18",
     "typescript": "7.0.2",

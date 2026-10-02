@@ -1,25 +1,27 @@
-import { Link2 } from '@tamagui/lucide-icons-2'
-import type { ViewProps } from 'tamagui'
-import { View } from 'tamagui'
+import { Link2 } from '~/features/icons/lucide'
+import type { ComponentProps } from 'react'
+import { View, html } from 'tamagui'
 
-export const LinkHeading = ({ id, children, ...props }: { id: string } & ViewProps) => (
-  <View
+export const LinkHeading = ({
+  id,
+  children,
+  ...props
+}: { id: string } & ComponentProps<typeof html.a>) => (
+  <html.a
     flexDirection="row"
-    render="a"
+    display="inline-flex"
+    gap="4"
+    {...props}
     className="text-underline-none"
     style={{ textDecoration: 'none' }}
-    // @ts-ignore web anchor prop
     href={`#${id}`}
     id={id}
     data-id={id}
-    display="inline-flex"
-    ai="center"
-    gap="$4"
-    {...props}
+    alignItems="center"
   >
     {children}
     <View render="span" opacity={0.3}>
       <Link2 size={16} color="var(--color)" aria-hidden />
     </View>
-  </View>
+  </html.a>
 )

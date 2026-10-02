@@ -1,3 +1,4 @@
+import { useAnimatedNumber, useAnimatedNumberStyle } from '@tamagui/animations-css/extras'
 import { FocusScope } from '@tamagui/focus-scope'
 import { Portal } from '@tamagui/portal'
 import type { Dispatch, SetStateAction } from 'react'
@@ -10,9 +11,8 @@ import {
   YStack,
   createStyledContext,
   styled,
-  useConfiguration,
   useControllableState,
-  usePropsAndStyle,
+  createStyledHOC,
   withStaticProperties,
 } from 'tamagui'
 import { AnimatePresence } from '@tamagui/animate-presence'
@@ -29,11 +29,7 @@ const SwipeDismissableComponent = React.forwardRef<
   TamaguiElement,
   ViewProps & { onDismiss: () => void; children: any; dismissAfter?: number }
 >(({ onDismiss, children, dismissAfter = 80, ...rest }, ref) => {
-  const { animationDriver } = useConfiguration()
-  const { useAnimatedNumber, useAnimatedNumberStyle } = animationDriver!
-  const AnimatedView = (animationDriver!.View ?? View) as typeof Animated.View
   const pan = useAnimatedNumber(0)
-  const [props, style] = usePropsAndStyle(rest)
   const [dragStarted, setDragStarted] = useState(false)
   const dismissAfterRef = useRef(dismissAfter)
 
@@ -73,23 +69,16 @@ const SwipeDismissableComponent = React.forwardRef<
   })
 
   return (
-    <AnimatedView
+    <YStack
       ref={ref}
-      style={[
-        panStyle,
-        {
-          height: '100%',
-          ...(style as any),
-          ...(dragStarted && {
-            pointerEvents: 'none',
-          }),
-        },
-      ]}
-      {...panResponder.panHandlers}
-      {...(props as any)}
+      {...(panResponder.panHandlers as any)}
+      {...rest}
+      height="100%"
+      pointerEvents={dragStarted ? 'none' : rest.pointerEvents}
+      style={[panStyle, rest.style]}
     >
       {children}
-    </AnimatedView>
+    </YStack>
   )
 })
 
@@ -97,15 +86,13 @@ const DrawerFrame = styled(YStack, {
   variants: {
     unstyled: {
       false: {
-        themeInverse: true,
-        paddingVertical: '$2',
-        render: 'nav',
+        paddingVertical: '2',
         width: 210,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        backgroundColor: '$background',
+        backgroundColor: 'background',
         x: 0,
-        gap: '$4',
+        gap: '4',
       },
     },
   } as const,
@@ -127,30 +114,23 @@ type DrawerProps = {
 const Overlay = styled(YStack, {
   name: 'DrawerOverlay',
   context: DrawerContext,
-  enterStyle: {
-    opacity: 0,
-  },
-  exitStyle: {
-    opacity: 0,
-  },
-
+  opacity: 'enter:0 exit:0',
   variants: {
     unstyled: {
       false: {
-        fullscreen: true,
+        inset: 0,
         position: 'absolute',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         zIndex: 100_000 - 1,
       },
     },
   } as const,
-
   defaultVariants: {
     unstyled: process.env.TAMAGUI_HEADLESS === '1',
   },
 })
 
-const DrawerOverlay = Overlay.styleable((props, ref) => {
+const DrawerOverlay = createStyledHOC(Overlay, (props, ref) => {
   const { setOpen } = DrawerContext.useStyledContext()
   return <Overlay ref={ref} onPress={() => setOpen(false)} {...props} />
 })
@@ -171,16 +151,17 @@ const DrawerSwipeable = forwardRef<
   )
 })
 
-const DrawerContent = DrawerFrame.styleable((props, ref) => {
+const DrawerContent = createStyledHOC(DrawerFrame, (props, ref) => {
   const { children, ...rest } = props
 
   return (
     <FocusScope trapped enabled={true} loop>
       <DrawerFrame
         ref={ref}
+        render="nav"
+        theme={rest.unstyled ? undefined : 'inverse'}
         transition="medium"
-        enterStyle={{ x: -(rest.width || rest.w || 210) }}
-        exitStyle={{ x: -(rest.width || rest.w || 210) }}
+        x={`enter:${-(rest.width || rest.w || 210)}px exit:${-(rest.width || rest.w || 210)}px`}
         {...rest}
       >
         {children}

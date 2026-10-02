@@ -9,11 +9,11 @@ export const DocsSectionTabs = () => {
 
   return (
     <XStack
-      ai="center"
-      gap="$1"
-      p="$1"
-      br="$10"
-      bg="$color2"
+      alignItems="center"
+      gap="1"
+      p="1"
+      bg="color2"
+      br="10"
       role="tablist"
       aria-label="Documentation section"
     >
@@ -37,22 +37,20 @@ const Tab = ({
       <XStack
         render="a"
         className="text-underline-none"
-        ai="center"
-        jc="center"
-        px="$3"
-        py="$1.5"
-        br="$8"
+        alignItems="center"
+        justifyContent="center"
+        px="3"
+        py="1-5"
         cursor="pointer"
-        bg={active ? '$background' : 'transparent'}
-        hoverStyle={{ bg: active ? '$background' : '$color3' }}
-        pressStyle={{ bg: active ? '$background' : '$color4' }}
+        bg={`${active ? 'background' : 'transparent'} hover:${active ? 'background' : 'color3'} press:${active ? 'background' : 'color4'}`}
+        br="8"
         role="tab"
         aria-selected={active}
       >
         <SizableText
-          size="$3"
-          fow={active ? '700' : '500'}
-          color={active ? '$color12' : '$color10'}
+          size="3"
+          color={`${active ? 'color12' : 'color10'}`}
+          fontWeight={active ? '700' : '500'}
         >
           {label}
         </SizableText>

@@ -30,52 +30,43 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
       <XStack
         ref={ref}
         className="docs-nav-item"
-        ai="center"
-        jc="flex-end"
-        px="$4"
-        py="$1.5"
+        alignItems="center"
+        justifyContent="flex-end"
+        px="4"
+        py="1-5 sm:1-5"
         opacity={pending ? 0.25 : 1}
-        pressStyle={{
-          backgroundColor: '$background04',
-        }}
+        backgroundColor="press:background04"
         pointerEvents={pending ? 'none' : ('inherit' as any)}
-        pos="relative"
-        $sm={{
-          py: '$1.5',
-        }}
         {...(inMenu && {
-          jc: 'flex-start',
+          justifyContent: 'flex-start',
         })}
+        pos="relative"
       >
         {!inMenu && (
           <YStack
             className="sidebar-indicator"
-            o={active ? 1 : 0}
+            opacity={active ? 1 : 0}
             pos="absolute"
             t={0}
             b={0}
             l={0}
-            br="$2"
             w={2}
-            bg={active ? '$color10' : '$backgroundHover'}
+            bg={`${active ? 'color10' : 'backgroundHover'}`}
+            br="2"
           />
         )}
         <SizableText
-          size="$5"
-          lh="$5"
+          size="5"
           cursor="pointer"
           userSelect="none"
-          col="$color12"
-          opacity={active ? 1 : 0.65}
-          // ta={inMenu ? 'left' : 'right'}
+          opacity={`${active ? 1 : 0.65} hover:0.85`}
           w="100%"
-          hoverStyle={{
-            o: 0.85,
-          }}
           {...(active && {
-            fow: '700',
+            fontWeight: '700',
             opacity: 1,
           })}
+          lh="5"
+          col="color12"
         >
           {children}
           {!!icon && (
@@ -89,14 +80,14 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         </SizableText>
         {isExternal && (
           <XStack opacity={0.5}>
-            <Spacer size="$2" />
+            <Spacer size="2" />
             <ExternalIcon />
           </XStack>
         )}
         {pending ? (
           <>
             <XStack flex={1} />
-            <SizableText size="$1" px="$2" py="$1" bg="$background" borderRadius="$3">
+            <SizableText size="1" px="2" py="1" bg="background" borderRadius="3">
               WIP
             </SizableText>
           </>

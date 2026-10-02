@@ -4,20 +4,26 @@ import { PrettyText } from './typography'
 
 export const Community = () => {
   return (
-    <YStack group containerType="normal" gap="$8" my="$4">
+    <YStack group containerType="normal" gap="8" my="4">
       <VisuallyHidden>
         <PrettyText
-          fontFamily="$mono"
-          fontSize="$7"
-          lineHeight="$7"
-          color="$color"
-          ta="center"
+          fontFamily="mono"
+          fontSize="7"
+          lineHeight="7"
+          color="color"
+          textAlign="center"
         >
           Community
         </PrettyText>
       </VisuallyHidden>
 
-      <XStack gap="$8" als="center" $xs={{ fd: 'column', ai: 'center', jc: 'center' }}>
+      <XStack
+        gap="8"
+        flexDirection="xs:column"
+        alignItems="xs:center"
+        justifyContent="xs:center"
+        als="center"
+      >
         <SocialLinksRow large />
       </XStack>
     </YStack>

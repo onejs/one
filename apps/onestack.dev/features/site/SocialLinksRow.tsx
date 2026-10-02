@@ -35,7 +35,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
               d="M323.74 148.35h36.12l-78.91 90.2 92.83 122.73h-72.69l-56.93-74.43-65.15 74.43h-36.14l84.4-96.47-89.05-116.46h74.53l51.46 68.04 59.53-68.04zm-12.68 191.31h20.02l-129.2-170.82H180.4l130.66 170.82z"
             />
           </svg>
-          <SubTitle dsp={large ? 'flex' : 'none'}>X</SubTitle>
+          <SubTitle display={large ? 'flex' : 'none'}>X</SubTitle>
         </Container>
       </HoverableLink>
 
@@ -46,11 +46,11 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
       >
         <Container miw={large ? 60 : 45} y={-1}>
           <GithubIcon width={28 * scale} height={28 * scale} aria-hidden="true" />
-          <SubTitle dsp={large ? 'flex' : 'none'}>Github</SubTitle>
+          <SubTitle display={large ? 'flex' : 'none'}>Github</SubTitle>
         </Container>
       </HoverableLink>
 
-      <View dsp={large ? 'flex' : 'none'} $group-card-gtXs={{ dsp: 'inline-flex' }}>
+      <View display={`${large ? 'flex' : 'none'} @gtXs/card:inline-flex`}>
         <HoverableLink
           target="_blank"
           href="https://discord.gg/YpUKRqaFtm"
@@ -58,7 +58,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
         >
           <Container miw={large ? 60 : 45}>
             <DiscordIcon width={25 * scale} height={25 * scale} aria-hidden="true" />
-            <SubTitle dsp={large ? 'flex' : 'none'}>Discord</SubTitle>
+            <SubTitle display={large ? 'flex' : 'none'}>Discord</SubTitle>
           </Container>
         </HoverableLink>
       </View>
@@ -67,13 +67,13 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
 }
 
 const Container = styled(YStack, {
-  gap: '$4',
+  gap: '4',
   mx: -5,
-  ai: 'center',
+  alignItems: 'center',
 })
 
 const SubTitle = styled(SizableText, {
-  size: '$4',
+  size: '4',
   als: 'center',
 })
 
@@ -84,16 +84,16 @@ const HoverableLink = (props: SizableTextProps & LinkProps) => {
     <SizableText
       render="a"
       cur="pointer"
-      p="$2"
-      px="$3"
-      o={0.66}
-      hoverStyle={{ o: 1 }}
+      paddingTop="2"
+      paddingBottom="2"
+      px="3"
       textDecorationColor="transparent"
-      ai="center"
-      jc="center"
-      dsp="inline-flex"
-      {...linkProps}
+      {...(linkProps as any)}
       {...props}
+      opacity={`${props.opacity ?? 0.66} hover:1`}
+      alignItems="center"
+      justifyContent="center"
+      display="inline-flex"
     />
   )
 }

@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from '@tamagui/lucide-icons-2'
+import { ChevronLeft, ChevronRight } from '~/features/icons/lucide'
 import { type Href, Link, Slot } from 'one'
 import type { ReactNode } from 'react'
 import {
@@ -31,42 +31,24 @@ export function DocsLayout() {
     <>
       <TopNav />
 
-      <View
-        overflow="hidden"
-        mx="auto"
-        $gtMd={{
-          flexDirection: 'row',
-        }}
-        maw={1250}
-        zi={100}
-      >
+      <View overflow="hidden" mx="auto" flexDirection="gtMd:row" maw={1250} zi={100}>
         <EnsureFlexed />
         <View
-          animateOnly={['left']}
-          position={'fixed' as any}
-          top={0}
-          zi={9999}
+          position="fixed gtMd:fixed"
+          top="0px gtMd:0px"
           overflow="hidden"
-          width="100%"
-          backgroundColor="$background"
-          $gtMd={{
-            backgroundColor: 'transparent',
-            position: 'fixed' as any,
-            top: 0,
-            bottom: 0,
-            width: 225,
-          }}
+          width="100% gtMd:225px"
+          backgroundColor="background gtMd:transparent"
+          bottom="gtMd:0px"
+          zi={9999}
         >
           <YStack
-            dsp="none"
-            $gtMd={{
-              dsp: 'flex',
-            }}
+            display="none gtMd:flex"
             mt={28}
             h={65}
             maxWidth="fit-content"
+            ml="4"
             zi={100_000}
-            ml="$4"
           >
             <Link href="/">
               <OneLogo size={0.55} />
@@ -75,13 +57,10 @@ export function DocsLayout() {
 
           <ScrollView>
             <View
-              display="none"
+              display="none gtMd:block"
               contain="paint layout"
-              $gtMd={{
-                display: 'block',
-                pt: 38,
-                pb: '$10',
-              }}
+              pt="gtMd:38px"
+              pb="gtMd:10"
             >
               <DocsMenuContents />
 
@@ -92,17 +71,17 @@ export function DocsLayout() {
       </View>
 
       <ContainerDocs>
-        {/* <Spacer $md={{ dsp: 'none' }} /> */}
+        {/* <Spacer $md={{ display: 'none' }} /> */}
         <Slot />
 
         {(previous || next) && (
           <XStack
             className="text-decoration-none"
             aria-label="Pagination navigation"
-            mt="$14"
-            mb="$10"
-            jc="space-between"
-            gap="$4"
+            mt="14"
+            mb="10"
+            gap="4"
+            justifyContent="space-between"
           >
             {previous && (
               <Link href={previous.route as Href} asChild>
@@ -110,32 +89,28 @@ export function DocsLayout() {
                   className="text-underline-none"
                   render="a"
                   group="card"
-                  hoverStyle={{
-                    borderColor: '$color6',
-                  }}
+                  container="card"
+                  borderColor="borderColor hover:color6"
                   flex={1}
                   width="50%"
-                  p="$5"
-                  borderRadius="$2"
+                  p="5"
+                  borderRadius="2"
                   borderWidth={1}
-                  borderColor="$borderColor"
-                  pressStyle={{
-                    backgroundColor: '$backgroundPress',
-                  }}
-                  aria-label={`Previous page: ${previous.title}`}
-                  ai="center"
-                  gap="$4"
+                  backgroundColor="press:backgroundPress"
+                  gap="4"
                   transition="100ms"
+                  aria-label={`Previous page: ${previous.title}`}
+                  alignItems="center"
                 >
-                  <View o={0} l="$-4" transition="quickest">
-                    <ChevronLeft color="$color11" />
+                  <View opacity={0} l="-4" transition="quickest">
+                    <ChevronLeft color="color11" />
                   </View>
 
-                  <View l="$-8" transition="quicker">
-                    <SizableText userSelect="none" size="$5">
+                  <View l="-8" transition="quicker">
+                    <SizableText userSelect="none" size="5">
                       Previous
                     </SizableText>
-                    <SizableText userSelect="none" size="$3" color="$gray10">
+                    <SizableText userSelect="none" size="3" color="gray10">
                       {previous.title}
                     </SizableText>
                   </View>
@@ -149,35 +124,31 @@ export function DocsLayout() {
                   className="text-underline-none"
                   render="a"
                   group="card"
-                  hoverStyle={{
-                    borderColor: '$color6',
-                  }}
+                  container="card"
+                  borderColor="borderColor hover:color6"
                   flex={1}
                   width="50%"
-                  p="$5"
-                  borderRadius="$2"
+                  p="5"
+                  borderRadius="2"
                   borderWidth={1}
-                  borderColor="$borderColor"
-                  pressStyle={{
-                    backgroundColor: '$backgroundPress',
-                  }}
-                  aria-label={`Next page: ${next.title}`}
-                  ai="center"
-                  jc="flex-end"
-                  gap="$4"
+                  backgroundColor="press:backgroundPress"
+                  gap="4"
                   transition="100ms"
+                  aria-label={`Next page: ${next.title}`}
+                  alignItems="center"
+                  justifyContent="flex-end"
                 >
-                  <View r="$-8" transition="quicker">
-                    <Paragraph userSelect="none" size="$5">
+                  <View r="-8" transition="quicker">
+                    <Paragraph userSelect="none" size="5">
                       Next
                     </Paragraph>
-                    <Paragraph userSelect="none" size="$3" color="$gray10">
+                    <Paragraph userSelect="none" size="3" color="gray10">
                       {next.title}
                     </Paragraph>
                   </View>
 
-                  <View o={0} r="$-4" transition="quickest">
-                    <ChevronRight color="$color11" />
+                  <View opacity={0} r="-4" transition="quickest">
+                    <ChevronRight color="color11" />
                   </View>
                 </XStack>
               </Link>
@@ -192,13 +163,7 @@ export function DocsLayout() {
           rel="noopener noreferrer"
           target="_blank"
         >
-          <Paragraph
-            px="$4"
-            o={0.5}
-            hoverStyle={{
-              o: 1,
-            }}
-          >
+          <Paragraph px="4" opacity="0.5 hover:1">
             Edit this page on GitHub.
           </Paragraph>
         </Link>

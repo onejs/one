@@ -35,20 +35,17 @@ export function PropsTable({
   return (
     <YStack
       borderWidth={1}
-      borderColor="$borderColor"
+      borderColor="borderColor"
+      my="4"
+      mx="-4 sm:0px"
       f={1}
       aria-label={hasAriaLabel ? ariaLabel : 'Component Props'}
       aria-labelledby={ariaLabelledBy}
-      my="$4"
-      br="$4"
+      br="4"
       ov="hidden"
-      mx="$-4"
-      $sm={{
-        mx: 0,
-      }}
     >
-      <XStack ai="center" py="$2" px="$4" backgroundColor="$borderColor">
-        <H3 size="$3">{title}</H3>
+      <XStack alignItems="center" py="2" px="4" backgroundColor="borderColor">
+        <H3 size="3">{title}</H3>
       </XStack>
       {data.map(
         ({ name, type, required, deprecated, default: defaultValue, description }, i) => (
@@ -56,21 +53,27 @@ export function PropsTable({
             <YStack width="100%">
               <XStack
                 pos="relative"
-                py="$2"
-                bg="$background"
-                px="$4"
-                $sm={{ flexDirection: 'column' }}
+                py="2"
+                bg="background"
+                px="4"
+                flexDirection="sm:column"
               >
-                <YStack fullscreen backgroundColor="$background" zi={-1} o={0.5} />
-                <XStack miw="30%" ai="center" jc="space-between">
+                <YStack
+                  position="absolute"
+                  inset={0}
+                  backgroundColor="background"
+                  zi={-1}
+                  opacity={0.5}
+                />
+                <XStack miw="30%" alignItems="center" justifyContent="space-between">
                   <H4
-                    color="$color"
-                    fow="700"
-                    fontFamily="$mono"
+                    color="color"
+                    fontFamily="mono"
                     textTransform="none"
                     textDecorationLine={deprecated ? 'line-through' : 'none'}
-                    size="$4"
+                    size="4"
                     width={200}
+                    fontWeight="700"
                   >
                     {name}
                     {required ? (
@@ -78,7 +81,7 @@ export function PropsTable({
                         render="span"
                         // @ts-ignore
                         fontSize="inherit"
-                        o={0.5}
+                        opacity={0.5}
                       >
                         {' '}
                         <Paragraph render="span" fontWeight="300">
@@ -91,54 +94,63 @@ export function PropsTable({
 
                 {!!type && (
                   <>
-                    <Separator als="stretch" vertical mx="$3.5" my="$2" />
+                    <Separator
+                      borderColor="backgroundFocus"
+                      als="stretch"
+                      vertical
+                      mx="3-5"
+                      my="2"
+                    />
 
                     <XStack
                       f={2}
                       miw="30%"
-                      ai="center"
-                      $xs={{
-                        flexDirection: 'column',
-                        ai: 'flex-start',
-                      }}
+                      alignItems="center xs:flex-start"
+                      flexDirection="xs:column"
                     >
                       <Paragraph
-                        size="$3"
-                        o={0.8}
-                        fontFamily="$mono"
+                        size="3"
+                        fontFamily="mono"
                         overflow="hidden"
                         textOverflow="ellipsis"
                         mr="auto"
+                        opacity={0.8}
                       >
                         {type}
                       </Paragraph>
 
-                      <XStack ai="center">
+                      <XStack alignItems="center">
                         {defaultValue ? (
-                          <XStack ai="center" gap="$1">
-                            <Paragraph o={0.5} size="$2">
+                          <XStack alignItems="center" gap="1">
+                            <Paragraph opacity={0.5} size="2">
                               Default:&nbsp;
                             </Paragraph>
-                            <Code my="$-1" bg="$backgroundPress">
+                            <Code my="-1" bg="backgroundPress">
                               {defaultValue}
                             </Code>
                           </XStack>
                         ) : null}
 
                         {Boolean(defaultValue) && (
-                          <Separator als="stretch" vertical mx="$3.5" my="$2" />
+                          <Separator
+                            borderColor="backgroundFocus"
+                            als="stretch"
+                            vertical
+                            mx="3-5"
+                            my="2"
+                          />
                         )}
 
                         {deprecated ? (
                           <View
-                            w="$8"
-                            ai="center"
+                            w="8"
+                            bg="red2"
+                            alignItems="center"
                             theme={'red_alt2' as any}
-                            bg="$red2"
                             bw={1}
-                            br="$2"
+                            br="2"
                           >
-                            <Paragraph render="span" size="$2" fontWeight="300">
+                            <Paragraph render="span" size="2" fontWeight="300">
                               deprecated
                             </Paragraph>
                           </View>
@@ -150,14 +162,14 @@ export function PropsTable({
               </XStack>
 
               {!!description && (
-                <YStack py="$2" px="$4">
-                  <Paragraph size="$3" o={0.65}>
+                <YStack py="2" px="4">
+                  <Paragraph size="3" opacity={0.65}>
                     {description}
                   </Paragraph>
                 </YStack>
               )}
             </YStack>
-            <Separator my={2} />
+            <Separator borderColor="backgroundFocus" my={2} />
           </ListItem>
         )
       )}

@@ -1,4 +1,4 @@
-import { File, Folder, Plus, Minus } from '@tamagui/lucide-icons-2'
+import { File, Folder, Plus, Minus } from '~/features/icons/lucide'
 import { Paragraph, ScrollView, XStack, YStack } from 'tamagui'
 
 type RouteNode = {
@@ -20,15 +20,15 @@ export const RouteTree = ({
   return (
     <YStack
       ov="hidden"
-      bg="$color3"
+      bg="color3"
       {...(!indent && {
         bw: 2,
-        borderColor: '$color4',
-        br: '$4',
-        my: '$4',
+        borderColor: 'color4',
+        br: '4',
+        my: '4',
       })}
       {...(indent && {
-        btc: '$color4',
+        btc: 'color4',
         zi: 1000,
         btw: 1,
       })}
@@ -44,43 +44,38 @@ export const RouteTree = ({
           {routes.map((route, i) => {
             const Icon = route.children ? Folder : File
             const StatusIcon = route.delete ? Minus : route.add ? Plus : null
-            const statusColor = route.delete
-              ? '$red10'
-              : route.add
-                ? '$green10'
-                : undefined
+            const statusColor = route.delete ? 'red10' : route.add ? 'green10' : undefined
 
             return (
               <YStack
-                componentName="RouteTree"
                 key={i}
                 bbw={1}
                 theme={
                   (route.delete ? 'light_gray' : route.add ? 'add' : undefined) as any
                 }
-                bbc="$color3"
+                bbc="color3"
                 {...((route.highlight || route.add) && {
-                  bg: '$color2',
+                  bg: 'color2',
                 })}
                 {...(i === routes.length - 1 && {
                   mb: -1,
                 })}
               >
-                <XStack px="$2">
+                <XStack px="2">
                   <XStack
                     w="30%"
+                    p="2-5"
+                    gap="3"
+                    {...(indent && {
+                      pl: '7',
+                    })}
                     miw={130}
                     ov="hidden"
-                    p="$2.5"
-                    ai="center"
-                    gap="$3"
-                    {...(indent && {
-                      pl: '$7',
-                    })}
+                    alignItems="center"
                   >
                     <Icon
                       size={12}
-                      color="$color10"
+                      color="color10"
                       {...(!route.children && {
                         opacity: 0.5,
                       })}
@@ -91,15 +86,15 @@ export const RouteTree = ({
                       ww="normal"
                       ov="hidden"
                       textOverflow="ellipsis"
-                      ff="$mono"
-                      size="$1"
-                      ls={-0.5}
+                      size={20}
+                      ff="mono"
+                      letterSpacing={-0.5}
                     >
                       {route.name}
                     </Paragraph>
                   </XStack>
-                  <YStack p="$2.5">
-                    <Paragraph size="$4" color="$color11">
+                  <YStack p="2-5">
+                    <Paragraph size="4" color="color11">
                       {route.description}
                     </Paragraph>
                   </YStack>

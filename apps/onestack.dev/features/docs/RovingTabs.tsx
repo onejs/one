@@ -50,14 +50,14 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
 
   const content = (
     <Code
-      p="$4"
+      p="4"
       backgroundColor="transparent"
+      fontSize={15}
+      lineHeight="25px"
+      color="color12"
+      {...rest}
       f={1}
       className={className}
-      fontSize={15}
-      lineHeight={25}
-      color="$color12"
-      {...rest}
     >
       {showTabs ? transformedCommand : children}
     </Code>
@@ -69,15 +69,15 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
         <Tabs
           activationMode="manual"
           orientation="horizontal"
-          br="$4"
-          mx="$1"
+          br="4"
+          mx="1"
+          group
           value={selectedPackageManager}
           onPress={(e) => e.stopPropagation()}
           onValueChange={setPackageManager}
-          group
         >
           <YStack w="100%">
-            <YStack pos="relative" px="$1.5" pt="$2">
+            <YStack pos="relative" px="1-5" pt="2">
               <AnimatePresence initial={false}>
                 {intentAt && (
                   <TabIndicator
@@ -100,7 +100,7 @@ export function RovingTabs({ className, children, code, size, ...rest }) {
                 )}
               </AnimatePresence>
 
-              <Tabs.List loop={false} aria-label="package manager" gap="$2">
+              <Tabs.List loop={false} aria-label="package manager" gap="2">
                 <>
                   {PACKAGE_MANAGERS.map((pkgManager) => (
                     <Tab
@@ -155,23 +155,21 @@ function Tab({
   return (
     <Tabs.Tab
       unstyled
-      px="$2.5"
-      py="$2"
-      gap="$1.5"
+      px="2-5"
+      py="2"
+      gap="1-5"
       bg="transparent"
-      bw={0}
-      br="$4"
       shadowRadius={0}
       cursor="pointer"
+      outlineColor="focus-visible:outline-color"
+      outlineWidth="focus-visible:2px"
+      outlineStyle="focus-visible:solid"
+      bw={0}
+      br="4"
       value={pkgManager}
       onInteraction={onInteraction}
-      focusVisibleStyle={{
-        outlineColor: '$outlineColor',
-        outlineWidth: 2,
-        outlineStyle: 'solid',
-      }}
     >
-      <XStack gap="$1.5" ai="center" jc="center">
+      <XStack gap="1-5" alignItems="center" justifyContent="center">
         <Image
           scale={imageName === 'pnpm' ? 0.7 : 0.8}
           src={`/logos/${imageName}.svg`}
@@ -181,10 +179,10 @@ function Tab({
         />
         <SizableText
           y={-0.5}
-          size="$3"
-          col={active ? '$color12' : '$color11'}
-          o={active ? 1 : 0.75}
+          size="3"
           cursor="pointer"
+          col={active ? 'color12' : 'color11'}
+          opacity={active ? 1 : 0.75}
         >
           {pkgManager}
         </SizableText>
@@ -200,22 +198,16 @@ function TabIndicator({ active, ...props }: { active?: boolean } & ViewProps) {
       pointerEvents="none"
       t={0}
       l={0}
-      bg="$color1"
-      o={0.7}
-      br="$4"
-      zi={0}
+      bg="color1"
       transition="quickest"
-      enterStyle={{
-        o: 0,
-      }}
-      exitStyle={{
-        o: 0,
-      }}
       {...(active && {
-        bg: '$color8',
-        o: 0.6,
+        bg: 'color8',
+        opacity: 0.6,
       })}
       {...props}
+      opacity={`${props.opacity ?? (active ? 0.6 : 0.7)} enter:0 exit:0`}
+      br="4"
+      zi={0}
     />
   )
 }

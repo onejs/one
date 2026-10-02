@@ -1,30 +1,18 @@
-import { getTokenValue, styled, XStack } from 'tamagui'
+import { getTokenValue, styled, XStack, type SizeTokens } from 'tamagui'
 
 export const Button = styled(XStack, {
   cur: 'pointer',
   render: 'a',
   className: 'text-underline-none',
-
-  bg: '$color2',
-
-  hoverStyle: {
-    bg: '$color3',
-  },
-
-  pressStyle: {
-    bg: '$color1',
-  },
-
+  bg: 'color2 hover:color3 press:color1',
   variants: {
-    size: {
-      '...size': (size = '$4') => {
-        const sizeVal = +getTokenValue(size as any, 'size') / 3
+    size: styled.dynamic<SizeTokens>((size = '4') => {
+      const sizeVal = +getTokenValue(size as any, 'size') / 3
 
-        return {
-          px: sizeVal,
-          py: sizeVal * 1.5,
-        }
-      },
-    },
+      return {
+        px: sizeVal,
+        py: sizeVal * 1.5,
+      }
+    }),
   },
 })

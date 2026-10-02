@@ -6,7 +6,6 @@ const defaultSizes = {
   2: 12,
   3: 13,
   4: 14,
-  true: 14,
   5: 16,
   6: 18,
   7: 20,
@@ -72,8 +71,8 @@ const heading = createMainFont(
       7: '700',
     },
     color: {
-      6: '$colorFocus',
-      7: '$color',
+      6: 'colorFocus',
+      7: 'color',
     },
     letterSpacing: {
       5: 2,
@@ -113,7 +112,6 @@ const mono = createFont({
   ...body,
   family: '"IBM Plex Mono", Consolas, monospace, monospace',
   weight: {
-    true: '400',
     4: '400',
   },
   size: {
@@ -121,7 +119,6 @@ const mono = createFont({
     2: 12 * 1.4,
     3: 13 * 1.4,
     4: 14 * 1.4,
-    true: 14 * 1.4,
     5: 16 * 1.4,
     6: 18 * 1.4,
     7: 20 * 1.4,
@@ -140,7 +137,6 @@ const mono = createFont({
     2: 12 * 2.5 - 3,
     3: 13 * 2.5 - 3,
     4: 14 * 2.5 - 3,
-    true: 14 * 2.5 - 3,
     5: 16 * 2.5 - 3,
     6: 18 * 2.5 - 3,
     7: 20 * 2.5 - 3,

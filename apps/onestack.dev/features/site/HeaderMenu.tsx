@@ -1,4 +1,4 @@
-import { Menu } from '@tamagui/lucide-icons-2'
+import { Menu } from '~/features/icons/lucide'
 import * as React from 'react'
 import {
   Adapt,
@@ -33,8 +33,6 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
     <>
       <Popover
         disableRTL
-        // Note: turning this on seems to break the HomeGlow (shockingly, maybe a React bug)
-        // keepChildrenMounted
         hoverable={{
           delay: 50,
           restMs: 40,
@@ -48,24 +46,24 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
           setState({ ...state, via, viaAt: Date.now() })
           setOpen(next)
         }}
-        size="$5"
         stayInFrame={{ padding: 20 }}
       >
         <Popover.Anchor asChild>
           <YStack
             zi={120_000}
-            pe="auto"
-            pos={'fixed' as any}
+            pointerEvents="auto"
             t={42}
             r={20}
-            $gtMd={{ dsp: !isScrolled ? 'none' : 'flex' }}
+            display={`gtMd:${!isScrolled ? 'none' : 'flex'}`}
+            pos={'fixed' as any}
           >
             <Button
-              size="$3"
-              bg={isPressOpened ? '$color5' : 'transparent'}
-              br="$10"
+              size="sm"
+              height={36}
+              bg={`${isPressOpened ? 'color5' : 'transparent'} hover:${isPressOpened ? 'color5' : 'transparent'}`}
+              px="2"
+              br="10"
               bw={2}
-              px="$2"
               onPress={() => {
                 if (isTouchable) {
                   setOpen(!open)
@@ -82,25 +80,22 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
                 // hover handles this
               }}
               aria-label="Open the main menu"
-              hoverStyle={{
-                bg: isPressOpened ? '$color5' : 'transparent',
-              }}
             >
               <Circle
                 transition="medium"
-                o={isScrolled ? 0 : 1}
+                opacity={isScrolled ? 0 : 1}
                 size={34}
-                ai="center"
-                jc="center"
+                alignItems="center"
+                justifyContent="center"
               >
-                <Menu color="$color11" size={20} />
+                <Menu color="color11" size={20} />
               </Circle>
 
               <YStack
-                pos="absolute"
-                fullscreen
+                position="absolute"
+                inset={0}
                 transition="medium"
-                o={isScrolled ? 1 : 0}
+                opacity={isScrolled ? 1 : 0}
                 x={8}
                 y={0}
               >
@@ -115,17 +110,22 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
             zIndex={100000000}
             modal
             dismissOnSnapToBottom
-            transition="bouncy"
-            transitionConfig={{
-              type: 'spring',
-              damping: 25,
-              mass: 1.2,
-              stiffness: 200,
+            transition={{
+              preset: 'bouncy',
+              spring: { damping: 25, mass: 1.2, stiffness: 200 },
             }}
           >
-            <Sheet.Frame bg="$color5">
+            <Sheet.Container>
+              <Sheet.Background bg="color5" />
               <Sheet.ScrollView showsVerticalScrollIndicator={false} zi={1000}>
-                <XStack group="card" containerType="normal" mt="$3" mb="$-2" px="$2">
+                <XStack
+                  group="card"
+                  container="card"
+                  containerType="normal"
+                  mt="3"
+                  mb="-2"
+                  px="2"
+                >
                   <Link
                     style={{ marginBottom: -6, marginTop: 12, marginLeft: 26 }}
                     href="/"
@@ -138,8 +138,8 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
 
                 <Adapt.Contents />
               </Sheet.ScrollView>
-            </Sheet.Frame>
-            <Sheet.Overlay zIndex={100} bg={'$background075'} />
+            </Sheet.Container>
+            <Sheet.Overlay zIndex={100} bg="background075" />
           </Sheet>
         </Adapt>
 
@@ -157,43 +157,35 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
   return (
     <Popover.Content
       mt={-5}
-      bw={0}
-      bg="$color5"
-      enterStyle={{ x: -10, o: 0 }}
-      exitStyle={{ x: 10, o: 0 }}
-      x={0}
+      bg="color5"
+      x="0 enter:-10px exit:10px"
+      opacity="1 enter:0 exit:0"
       y={4}
-      o={1}
-      transition={[
-        'quicker',
-        {
-          opacity: {
-            overshootClamping: true,
-          },
-        },
-      ]}
-      animateOnly={['transform', 'opacity']}
+      transition={{
+        preset: 'quicker',
+        opacity: { preset: 'quicker', spring: { overshootClamping: true } },
+        properties: 'transform, opacity',
+      }}
       p={0}
       maxHeight="80vh"
       maxWidth={360}
       minWidth={280}
-      elevation="$10"
+      boxShadow="0 27px 54px rgba(0,0,0,0.2)"
       shadowColor="#000"
       shadowOpacity={0.2}
       zIndex={100000000}
-      trapFocus
-      br="$6"
-      {...{
-        style: {
-          WebkitBackdropFilter: 'blur(20px)',
-          backdropFilter: 'blur(20px)',
-        },
+      style={{
+        WebkitBackdropFilter: 'blur(20px)',
+        backdropFilter: 'blur(20px)',
       }}
+      bw={0}
+      trapFocus
+      br="6"
     >
-      <Popover.Arrow bg="$color5" size="$4" borderWidth={0} o={0.84} />
+      <Popover.Arrow bg="color5" size={44} borderWidth={0} opacity={0.84} />
 
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: '100%' }}>
-        <YStack aria-label="Home menu contents" w="100%" p="$4" ai="flex-end">
+        <YStack aria-label="Home menu contents" w="100%" p="4" alignItems="flex-end">
           <DocsSectionTabs />
           <DocsMenuContents inMenu />
         </YStack>
