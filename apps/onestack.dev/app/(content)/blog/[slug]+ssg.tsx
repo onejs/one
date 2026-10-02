@@ -41,6 +41,7 @@ export default function BlogPost() {
   const date = frontmatter.publishedAt
     ? new Date(frontmatter.publishedAt).toLocaleDateString('en-US', {
         year: 'numeric',
+        timeZone: 'UTC',
         month: 'long',
         day: 'numeric',
       })
