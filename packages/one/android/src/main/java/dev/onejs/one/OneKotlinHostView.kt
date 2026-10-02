@@ -197,14 +197,14 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         measuringContent = true
         try {
             // measure content before letting yoga apply the outer constraints.
-            composeView.measure(
+            measureComposeContent(
                 MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
                 MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
             )
             val naturalWidth = composeView.measuredWidth
             var naturalHeight = composeView.measuredHeight
             if (width > 0 && width != naturalWidth) {
-                composeView.measure(
+                measureComposeContent(
                     MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
                 )
@@ -216,7 +216,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                 naturalWidth,
                 naturalHeight,
             )
-            composeView.measure(
+            measureComposeContent(
                 MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
                 MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
             )
@@ -224,6 +224,15 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         } finally {
             measuringContent = false
         }
+    }
+
+    private fun measureComposeContent(widthSpec: Int, heightSpec: Int) {
+        // each explicit pass must update compose constraints rather than reuse android's cache.
+        composeView.forceLayout()
+        for (index in 0 until composeView.childCount) {
+            composeView.getChildAt(index).forceLayout()
+        }
+        composeView.measure(widthSpec, heightSpec)
     }
 
     override fun onDetachedFromWindow() {
