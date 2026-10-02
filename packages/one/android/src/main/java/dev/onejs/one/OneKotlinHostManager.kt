@@ -59,14 +59,6 @@ class OneKotlinHostManager :
         view.stageContractHash(value)
     }
 
-    override fun setIntrinsicWidth(view: OneKotlinHostView, value: Boolean) {
-        view.setIntrinsicWidth(value)
-    }
-
-    override fun setIntrinsicHeight(view: OneKotlinHostView, value: Boolean) {
-        view.setIntrinsicHeight(value)
-    }
-
     override fun setProps(view: OneKotlinHostView, value: String?) {
         view.stageProps(value)
     }
