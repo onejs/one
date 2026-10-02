@@ -18,7 +18,7 @@ export function showToast(
     type?: 'error' | 'warn' | 'info' | 'success'
     message?: string
     duration?: number
-  } = {}
+  } = {},
 ) {
   const { type, message, ...rest } = options
   const details = {

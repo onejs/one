@@ -29,7 +29,7 @@ async function ensureZeroPublication() {
   try {
     const { rows } = await client.query(
       `SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND tablename NOT IN (${PRIVATE_TABLES.map((_, i) => `$${i + 1}`).join(', ')})`,
-      PRIVATE_TABLES
+      PRIVATE_TABLES,
     )
     if (!rows.length) return
     const tableList = rows.map((r: any) => `"${r.tablename}"`).join(', ')
@@ -83,10 +83,10 @@ async function waitForDatabase(connectionString: string, maxRetries = 30) {
       await pool.end()
       console.info('✅ database connection successful')
       return
-    } catch (err) {
+    } catch {
       const delay = Math.min(1000 * 1.5 ** i, 10000)
       console.info(
-        `⏳ waiting for database... attempt ${i + 1}/${maxRetries} (retry in ${delay}ms)`
+        `⏳ waiting for database... attempt ${i + 1}/${maxRetries} (retry in ${delay}ms)`,
       )
       await new Promise((resolve) => setTimeout(resolve, delay))
     }

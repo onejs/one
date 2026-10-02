@@ -1,7 +1,7 @@
 import { Defs, G, LinearGradient, Path, Polygon, Stop, Svg } from 'react-native-svg'
 export const LogoIcon = ({ size = 24 }: { size?: number }) => {
   return (
-    <Svg w={size} h={size} viewBox="0 0 128 128">
+    <Svg width={size} height={size} viewBox="0 0 128 128">
       <Defs>
         <LinearGradient
           x1="67.1763271%"

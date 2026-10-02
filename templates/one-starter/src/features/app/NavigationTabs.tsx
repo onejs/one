@@ -1,5 +1,5 @@
 import { Link, usePathname } from 'one'
-import { useMedia, XStack, View } from 'tamagui'
+import { useMedia, XStack } from 'tamagui'
 import { Pressable } from '~/interface/buttons/Pressable'
 import { HouseIcon } from '~/interface/icons/phosphor/HouseIcon'
 import { UserCircleIcon } from '~/interface/icons/phosphor/UserCircleIcon'
