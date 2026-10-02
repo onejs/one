@@ -6,6 +6,7 @@ import { configureVXRNCompilerPlugin } from './configure'
 import {
   findUserBabelConfig,
   getBabelOptions,
+  stripFlowTypes,
   transformBabel,
   transformOxcReactCompiler,
 } from './transformBabel'
@@ -664,5 +665,16 @@ describe('user babel config end-to-end through the compiler plugin', () => {
       })
       fs.rmSync(projectRoot, { recursive: true, force: true })
     }
+  })
+})
+
+describe('Flow and JSX parsing', () => {
+  it('strips Flow types while retaining JSX in published JavaScript', async () => {
+    const result = await stripFlowTypes(
+      '/app/VideoView.js',
+      `export function View(props: {value: string}) { return <NativeView {...props} /> }`
+    )
+    expect(result.code).not.toContain('value: string')
+    expect(result.code).toContain('<NativeView')
   })
 })
