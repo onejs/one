@@ -1942,6 +1942,11 @@ describe('native production assets', () => {
     try {
       for (const [name, manifest] of Object.entries({
         mapped: { main: './node.js', browser: { './node.js': './browser.js' } },
+        identity: {
+          main: './index.js',
+          browser: { './node': './browser' },
+          'react-native': { './node': './node' },
+        },
         fallback: { main: './node.js', browser: './browser.js' },
         conditional: { exports: { browser: './browser.js', default: './node.js' } },
         native: {
@@ -1956,13 +1961,14 @@ describe('native production assets', () => {
           join(directory, 'package.json'),
           JSON.stringify({ name, ...manifest })
         )
+        await writeFile(join(directory, 'index.js'), `module.exports = require('./node')`)
         for (const target of ['node', 'browser', 'native']) {
           await writeFile(join(directory, `${target}.js`), `module.exports = '${target}'`)
         }
       }
       await writeFile(
         join(root, 'entry.js'),
-        `globalThis.targets = [require('mapped'), require('fallback'), require('conditional'), require('native')]`
+        `globalThis.targets = [require('mapped'), require('fallback'), require('conditional'), require('native'), require('identity')]`
       )
       const result = await buildNativeBundle({
         root,
@@ -1976,6 +1982,7 @@ describe('native production assets', () => {
         'browser',
         'browser',
         'native',
+        'node',
       ])
     } finally {
       await rm(root, { recursive: true, force: true })
@@ -2346,6 +2353,7 @@ describe('native Flow sources', () => {
 const URI = { isFileURI: (uri: string): boolean => uri.startsWith('file://') }
 class Response {
   taskId: string;
+  lengthComputable: boolean = false;
   onabort: (event: string) => void = () => {};
   constructor(id: string) { this.taskId = id }
 }
