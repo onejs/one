@@ -154,8 +154,6 @@ namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
-// Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneDeviceAttestationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
@@ -459,7 +457,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactsSpec.hpp"
-#include "HybridOneCryptoSpec.hpp"
 #include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
@@ -619,8 +616,6 @@ namespace One { class HybridOneCalendarSpec_cxx; }
 namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactsSpec_cxx; }
-// Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneDeviceAttestationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.

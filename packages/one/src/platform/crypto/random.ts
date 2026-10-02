@@ -1,17 +1,14 @@
 // shared crypto helpers: pure and platform-free, so the formatting, the
 // fill semantics, and the install-only-when-missing rule unit-test in node.
-// the only platform part is the byte source each entry injects.
+// the only platform part is the random source each entry injects.
 
 export const MAX_RANDOM_BYTES = 65536
 
-export type RandomBytesSource = (count: number) => Uint8Array
-
-export function assertByteCount(count: number): void {
-  if (!Number.isInteger(count) || count < 0 || count > MAX_RANDOM_BYTES) {
-    throw new RangeError(
-      `secure random: count must be an integer 0..${MAX_RANDOM_BYTES}, got ${String(count)}.`
-    )
-  }
+// fill writes secure random bytes over all of `bytes` in place; randomUUID
+// returns a version 4 uuid. both are synchronous because the web apis are.
+export type RandomSource = {
+  fill(bytes: Uint8Array<ArrayBuffer>): void
+  randomUUID(): string
 }
 
 const HEX_DIGITS = '0123456789abcdef'
@@ -79,7 +76,7 @@ function quotaExceededError(): Error {
 
 export function fillRandomValues<T extends ArrayBufferView>(
   view: T,
-  source: RandomBytesSource
+  source: RandomSource
 ): T {
   if (!INTEGER_ARRAY_TAGS.has(Object.prototype.toString.call(view))) {
     throw new TypeError(
@@ -92,9 +89,11 @@ export function fillRandomValues<T extends ArrayBufferView>(
   if (view.byteLength === 0) {
     return view
   }
-  new Uint8Array(view.buffer, view.byteOffset, view.byteLength).set(
-    source(view.byteLength)
-  )
+  // like the web api, a view over shared memory is refused.
+  if (!(view.buffer instanceof ArrayBuffer)) {
+    throw new TypeError('crypto.getRandomValues: shared memory is not supported.')
+  }
+  source.fill(new Uint8Array(view.buffer, view.byteOffset, view.byteLength))
   return view
 }
 
@@ -110,7 +109,7 @@ export type CryptoPolyfillTarget = {
 }
 
 export function installCryptoPolyfill(
-  source: RandomBytesSource,
+  source: RandomSource,
   target: CryptoPolyfillTarget = globalThis
 ): void {
   const existing = target.crypto
@@ -123,7 +122,7 @@ export function installCryptoPolyfill(
   }
   const getRandomValues = <T extends ArrayBufferView>(view: T): T =>
     fillRandomValues(view, source)
-  const randomUUID = (): string => formatUuidV4(source(16))
+  const randomUUID = (): string => source.randomUUID()
   if (existing == null) {
     target.crypto = { getRandomValues, randomUUID }
     return

@@ -5,11 +5,19 @@ import {
   formatUuidV4,
   installCryptoPolyfill,
   MAX_RANDOM_BYTES,
-  type RandomBytesSource,
+  type RandomSource,
 } from '../src/platform/crypto/random'
 
-const sequentialSource: RandomBytesSource = (count: number) =>
-  Uint8Array.from({ length: count }, (_, index) => index & 255)
+const sequentialSource: RandomSource = {
+  fill(bytes) {
+    for (let index = 0; index < bytes.length; index++) bytes[index] = index & 255
+  },
+  randomUUID() {
+    const bytes = new Uint8Array(16)
+    this.fill(bytes)
+    return formatUuidV4(bytes)
+  },
+}
 
 const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/
 

@@ -16,6 +16,7 @@
 
 
 #include <NitroModules/ArrayBuffer.hpp>
+#include <string>
 
 namespace margelo::nitro::one {
 
@@ -44,11 +45,12 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-      
+
 
     public:
       // Methods
-      virtual std::shared_ptr<ArrayBuffer> getRandomBytes(double count) = 0;
+      virtual void fillRandomBytes(const std::shared_ptr<ArrayBuffer>& buffer, double offset, double length) = 0;
+      virtual std::string randomUUID() = 0;
 
     protected:
       // Hybrid Setup

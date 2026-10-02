@@ -14,7 +14,8 @@ namespace margelo::nitro::one {
     HybridObject::loadHybridMethods();
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
-      prototype.registerHybridMethod("getRandomBytes", &HybridOneCryptoSpec::getRandomBytes);
+      prototype.registerHybridMethod("fillRandomBytes", &HybridOneCryptoSpec::fillRandomBytes);
+      prototype.registerHybridMethod("randomUUID", &HybridOneCryptoSpec::randomUUID);
     });
   }
 
