@@ -4,7 +4,7 @@ import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { nativeSourceContract, swiftPodManifest, writeNativeSourceDeclarations } from './nativeSourceContract'
+import { nativeSourceContract, renderKotlinSourceGlue, swiftPodManifest, writeNativeSourceDeclarations } from './nativeSourceContract'
 
 const require = createRequire(import.meta.url)
 const tsc = join(require.resolve('typescript/package.json'), '..', 'bin', 'tsc')
@@ -86,6 +86,39 @@ AudioMath.rms('wrong')
     )
     expect(view.defaultView).toBe(true)
     expect(nativeSourceContract('/app/native/Helper.swift', 'struct Helper {}').defaultView).toBe(false)
+  })
+
+  it('imports public Kotlin composables as typed components with callbacks', () => {
+    const contract = nativeSourceContract(
+      '/app/native/Counter.kt',
+      `package app.counter
+@Composable
+fun Counter(title: String, subtitle: String? = null, onTap: () -> Unit, onPick: ((Int) -> Unit)? = null, modifier: Modifier = Modifier) {
+  Text(title)
+}
+@Composable private fun Hidden() {}
+fun helper(x: Int) = x`
+    )
+    expect(contract.views).toEqual([
+      {
+        name: 'Counter',
+        props: [
+          { name: 'title', type: 'string', nativeType: 'String', optional: false, callback: null },
+          { name: 'subtitle', type: 'string | null', nativeType: 'String?', optional: true, callback: null },
+          { name: 'onTap', type: '() => void', nativeType: '()->Unit', optional: false, callback: [] },
+          { name: 'onPick', type: '((value0: number) => void) | null', nativeType: '((Int)->Unit)?', optional: true, callback: [{ type: 'number', nativeType: 'Int' }] },
+        ],
+      },
+    ])
+    const glue = renderKotlinSourceGlue('K_counter', contract).source
+    expect(glue).toContain('class OneNativeSourceViews_K_counter: OneNativeSourceViewDispatch')
+    expect(glue).toContain('onPick = if (props.optBoolean("onPick")) ({ a0 -> emit("onPick"')
+    expect(() =>
+      nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(count: Int = 1) {}')
+    ).toThrow(/Bad\.kt:2:.*may only default to null/)
+    expect(() =>
+      nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(onTap: () -> Int) {}')
+    ).toThrow(/must return Unit/)
   })
 
   it('rejects unsupported signatures at their source location', () => {
