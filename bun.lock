@@ -423,7 +423,7 @@
         "@react-navigation/core": "8.0.0-alpha.34",
         "@react-navigation/drawer": "8.0.0-alpha.51",
         "@react-navigation/native": "8.0.0-alpha.44",
-        "@tamagui/sheet": ">=3.0.0-beta.0 <4",
+        "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4",
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
         "react-native": "^0.87.0",
