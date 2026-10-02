@@ -108,6 +108,29 @@ export const DEFAULT_GLOBALS = new Set([
   'clearInterval',
   'HermesInternal',
   '_WORKLET',
+  // Reanimated installs these in the UI runtime. Capturing them on the JS
+  // thread fails before its value unpacker can initialize (Reanimated 3).
+  'ReanimatedError',
+  '__reanimatedLoggerConfig',
+  '_IS_FABRIC',
+  '_log',
+  '_toString',
+  '_scheduleHostFunctionOnJS',
+  '_scheduleRemoteFunctionOnJS',
+  '_scheduleOnRuntime',
+  '_makeShareableClone',
+  '_updatePropsPaper',
+  '_updatePropsFabric',
+  '_measurePaper',
+  '_measureFabric',
+  '_scrollToPaper',
+  '_dispatchCommandPaper',
+  '_dispatchCommandFabric',
+  '_setGestureState',
+  '_notifyAboutProgress',
+  '_notifyAboutEnd',
+  '_runOnUIQueue',
+  '_getAnimationTimestamp',
 ])
 
 export function createGlobalsSet(
