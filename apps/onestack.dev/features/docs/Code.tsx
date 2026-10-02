@@ -36,12 +36,10 @@ const CodeInlineBase = styled(Text, {
   fontSize: '88%',
   p: '$1.5',
   whiteSpace: 'pre-wrap',
-  // @ts-ignore web css prop
-  wordBreak: 'break-word',
 })
 
 export const CodeInline = (props: any) => (
   <Theme name="yellow">
-    <CodeInlineBase {...props} />
+    <CodeInlineBase style={{ wordBreak: 'break-word' }} {...props} />
   </Theme>
 )
