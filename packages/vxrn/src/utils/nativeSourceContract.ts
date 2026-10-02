@@ -17,10 +17,26 @@ export interface NativeSourceModule {
   methods: NativeSourceMethod[]
 }
 
+// a public @Composable function in a .kt file: imported as a react component
+// whose props are its parameters. a function-typed parameter is a callback.
+export interface NativeSourceViewProp {
+  name: string
+  type: string
+  nativeType: string
+  optional: boolean
+  callback: { type: string; nativeType: string }[] | null
+}
+
+export interface NativeSourceView {
+  name: string
+  props: NativeSourceViewProp[]
+}
+
 export interface NativeSourceContract {
   language: 'swift' | 'kotlin'
   packageName?: string
   modules: NativeSourceModule[]
+  views: NativeSourceView[]
   defaultView: boolean
   hash: string
   declaration: string
@@ -265,6 +281,65 @@ function methods(file: string, list: Token[], start: number, end: number, langua
   return result
 }
 
+function viewProp(file: string, part: Token[]): NativeSourceViewProp | null {
+  const colon = part.findIndex((token) => token.text === ':')
+  if (colon !== 1 || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(part[0].text)) {
+    fail(file, part[0], 'composable parameter needs a name and an explicit type')
+  }
+  const name = part[0].text
+  const equals = split(part.slice(colon + 1), '=')
+  const typeTokens = equals[0]
+  const fallback = equals[1]?.map((token) => token.text).join('')
+  const nativeType = typeTokens.map((token) => token.text).join('')
+  // the host supplies the modifier: the composable keeps its own default
+  if (nativeType === 'Modifier') {
+    if (fallback !== 'Modifier') fail(file, part[0], 'a composable modifier parameter needs the default Modifier')
+    return null
+  }
+  const nullable = typeTokens.at(-1)?.text === '?'
+  if (fallback !== undefined && !(nullable && fallback === 'null')) {
+    fail(file, part[0], `composable parameter ${name} may only default to null`)
+  }
+  const optional = fallback !== undefined
+  // (A, B) -> Unit, optionally parenthesized and nullable
+  let fn = nullable ? typeTokens.slice(0, -1) : typeTokens
+  if (fn[0]?.text === '(' && close(file, fn, 0, '(', ')') === fn.length - 1 && fn.some((token) => token.text === '->')) {
+    fn = fn.slice(1, -1)
+  }
+  const arrow = fn.findIndex((token) => token.text === '->')
+  if (arrow >= 0 && fn[0]?.text === '(' && close(file, fn, 0, '(', ')') === arrow - 1) {
+    const result = fn.slice(arrow + 1).map((token) => token.text).join('')
+    if (result !== 'Unit') fail(file, part[0], `composable callback ${name} must return Unit`)
+    const inner = fn.slice(1, arrow - 1)
+    const callback = inner.length === 0 ? [] : split(inner, ',').map((arg) => ({
+      type: tsType(file, arg, 'kotlin'),
+      nativeType: arg.map((token) => token.text).join(''),
+    }))
+    const signature = `(${callback.map((arg, index) => `value${index}: ${arg.type}`).join(', ')}) => void`
+    return { name, type: nullable ? `(${signature}) | null` : signature, nativeType, optional, callback }
+  }
+  return { name, type: tsType(file, typeTokens, 'kotlin'), nativeType, optional, callback: null }
+}
+
+// a top-level public @Composable fun, or null for any other top-level fun
+function composableView(file: string, list: Token[], keyword: number, floor: number): NativeSourceView | null {
+  const modifiers = list.slice(declarationStart(list, floor, keyword), keyword).map((token) => token.text)
+  if (!modifiers.some((value, index) => value === '@' && modifiers[index + 1] === 'Composable')) return null
+  if (modifiers.includes('private') || modifiers.includes('internal')) return null
+  const name = list[keyword + 1]?.text
+  if (!name || !/^[A-Z][A-Za-z0-9_]*$/.test(name)) fail(file, list[keyword], 'an imported composable needs a capitalized name')
+  if (list[keyword + 2]?.text !== '(') fail(file, list[keyword], 'generic or extension composables are unsupported')
+  const closing = close(file, list, keyword + 2, '(', ')')
+  if (list[closing + 1]?.text === ':') fail(file, list[closing + 1], `composable ${name} must return Unit`)
+  const inner = list.slice(keyword + 3, closing)
+  const props = inner.length === 0 ? [] : split(inner, ',').flatMap((part) => {
+    if (part.length === 0) return []
+    const prop = viewProp(file, part)
+    return prop ? [prop] : []
+  })
+  return { name, props }
+}
+
 export function nativeSourceContract(file: string, source: string): NativeSourceContract {
   const language = file.endsWith('.swift') ? 'swift' : file.endsWith('.kt') ? 'kotlin' : undefined
   if (!language) throw new Error(`${file}: expected a .swift or .kt source file`)
@@ -279,12 +354,22 @@ export function nativeSourceContract(file: string, source: string): NativeSource
     fail(file, list[packageToken], `unsupported kotlin package ${packageName}`)
   }
   const modules: NativeSourceModule[] = []
+  const views: NativeSourceView[] = []
   let defaultView = false
   let i = 0
   let previous = 0
   while (i < list.length) {
     const kind = list[i].text
     const declaration = language === 'swift' ? kind === 'class' || kind === 'struct' : kind === 'object'
+    if (language === 'kotlin' && kind === 'fun') {
+      const view = composableView(file, list, i, previous)
+      if (view) {
+        if (views.some((other) => other.name === view.name)) fail(file, list[i], `overloaded composable ${view.name} is unsupported`)
+        views.push(view)
+      }
+      i++
+      continue
+    }
     if (!declaration) {
       if (kind === '{') { i = close(file, list, i, '{', '}') + 1; previous = i }
       else i++
@@ -307,7 +392,7 @@ export function nativeSourceContract(file: string, source: string): NativeSource
     i = end + 1
     previous = i
   }
-  const canonical = JSON.stringify({ language, packageName, modules, defaultView })
+  const canonical = JSON.stringify({ language, packageName, modules, views, defaultView })
   const hash = createHash('sha256').update(canonical).digest('hex')
   const declarations = modules.map((module) => [
     `export declare const ${module.name}: {`,
@@ -316,11 +401,15 @@ export function nativeSourceContract(file: string, source: string): NativeSource
     ),
     '}',
   ].join('\n'))
+  declarations.push(...views.map((view) =>
+    `export declare function ${view.name}(props: {${view.props.map((prop) => ` ${prop.name}${prop.optional ? '?' : ''}: ${prop.type}`).join(';')} }): ReactElement`
+  ))
   if (defaultView) {
-    declarations.unshift("import type { ReactElement } from 'react'\nexport default function SwiftPackage(props: Record<string, unknown>): ReactElement")
+    declarations.unshift("export default function SwiftPackage(props: Record<string, unknown>): ReactElement")
   }
+  if (defaultView || views.length > 0) declarations.unshift("import type { ReactElement } from 'react'")
   const declaration = `${GENERATED_HEADER}${declarations.join('\n\n')}\n`
-  return { language, packageName, modules, defaultView, hash, declaration }
+  return { language, packageName, modules, views, defaultView, hash, declaration }
 }
 
 export function kotlinSourceId(root: string, file: string): string {
@@ -374,7 +463,7 @@ export function writeNativeSourceDeclaration(file: string): NativeSourceContract
   const contract = nativeSourceContract(file, readFileSync(file, 'utf8'))
   const extension = contract.language === 'swift' ? '.swift' : '.kt'
   const declaration = join(dirname(file), `${basename(file, extension)}.d${extension}.ts`)
-  if (contract.modules.length === 0 && !contract.defaultView) {
+  if (contract.modules.length === 0 && contract.views.length === 0 && !contract.defaultView) {
     if (existsSync(declaration) && readFileSync(declaration, 'utf8').startsWith(GENERATED_HEADER)) {
       rmSync(declaration, { force: true })
     }
@@ -590,7 +679,7 @@ export function renderKotlinSourceGlue(
   const hash = createHash('sha256').update(JSON.stringify({ sourceId, contract: contract.hash })).digest('hex')
   const value = (type: string, input: string, path: string): string => {
     if (type.endsWith('?')) {
-      return `(${input} == JSONObject.NULL ? null : ${value(type.slice(0, -1), input, path)})`
+      return `(if (${input} == JSONObject.NULL) null else ${value(type.slice(0, -1), input, path)})`
     }
     if (type === 'String') return `readString(${input}, ${path})`
     if (type === 'Boolean') return `readBoolean(${input}, ${path})`
@@ -608,37 +697,39 @@ export function renderKotlinSourceGlue(
   }
   const source = [
     'import androidx.annotation.Keep',
+    ...(contract.views.length === 0 ? [] : ['import androidx.compose.runtime.Composable', 'import dev.onejs.one.OneNativeSourceViewDispatch']),
     'import dev.onejs.one.OneNativeSourceDispatch',
     'import org.json.JSONArray',
     'import org.json.JSONObject',
     '',
+    'private fun readString(value: Any, path: String): String = value as? String ?: error("$path: expected string")',
+    'private fun readBoolean(value: Any, path: String): Boolean = value as? Boolean ?: error("$path: expected boolean")',
+    'private fun readDouble(value: Any, path: String): Double {',
+    '  val result = (value as? Number)?.toDouble() ?: error("$path: expected number")',
+    '  if (!result.isFinite()) error("$path: expected finite number")',
+    '  return result',
+    '}',
+    'private fun readInt(value: Any, path: String): Int {',
+    '  val result = readDouble(value, path)',
+    '  if (result % 1.0 != 0.0 || result < Int.MIN_VALUE || result > Int.MAX_VALUE) error("$path: expected Int")',
+    '  return result.toInt()',
+    '}',
+    'private fun readLong(value: Any, path: String): Long {',
+    '  val result = readDouble(value, path)',
+    '  if (result % 1.0 != 0.0 || result < -9007199254740991.0 || result > 9007199254740991.0) error("$path: expected safe Long")',
+    '  return result.toLong()',
+    '}',
+    'private fun <T> readList(value: Any, path: String, read: (Any, String) -> T): List<T> {',
+    '  val array = value as? JSONArray ?: error("$path: expected array")',
+    '  return (0 until array.length()).map { index -> read(array.get(index), "$path[$index]") }',
+    '}',
+    'private fun <T> readMap(value: Any, path: String, read: (Any, String) -> T): Map<String, T> {',
+    '  val objectValue = value as? JSONObject ?: error("$path: expected object")',
+    '  return objectValue.keys().asSequence().associateWith { key -> read(objectValue.get(key), "$path.$key") }',
+    '}',
+    '',
     `@Keep class OneNativeSource_${sourceId}: OneNativeSourceDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
-    '  private fun readString(value: Any, path: String): String = value as? String ?: error("$path: expected string")',
-    '  private fun readBoolean(value: Any, path: String): Boolean = value as? Boolean ?: error("$path: expected boolean")',
-    '  private fun readDouble(value: Any, path: String): Double {',
-    '    val result = (value as? Number)?.toDouble() ?: error("$path: expected number")',
-    '    if (!result.isFinite()) error("$path: expected finite number")',
-    '    return result',
-    '  }',
-    '  private fun readInt(value: Any, path: String): Int {',
-    '    val result = readDouble(value, path)',
-    '    if (result % 1.0 != 0.0 || result < Int.MIN_VALUE || result > Int.MAX_VALUE) error("$path: expected Int")',
-    '    return result.toInt()',
-    '  }',
-    '  private fun readLong(value: Any, path: String): Long {',
-    '    val result = readDouble(value, path)',
-    '    if (result % 1.0 != 0.0 || result < -9007199254740991.0 || result > 9007199254740991.0) error("$path: expected safe Long")',
-    '    return result.toLong()',
-    '  }',
-    '  private fun <T> readList(value: Any, path: String, read: (Any, String) -> T): List<T> {',
-    '    val array = value as? JSONArray ?: error("$path: expected array")',
-    '    return (0 until array.length()).map { index -> read(array.get(index), "$path[$index]") }',
-    '  }',
-    '  private fun <T> readMap(value: Any, path: String, read: (Any, String) -> T): Map<String, T> {',
-    '    val objectValue = value as? JSONObject ?: error("$path: expected object")',
-    '    return objectValue.keys().asSequence().associateWith { key -> read(objectValue.get(key), "$path.$key") }',
-    '  }',
     '  override suspend fun call(module: String, method: String, argsJson: String): String {',
     '    val args = JSONArray(argsJson)',
     '    return when (module) {',
@@ -673,6 +764,49 @@ export function renderKotlinSourceGlue(
     '  }',
     '}',
     '',
+    ...(contract.views.length === 0 ? [] : viewGlue(sourceId, contract, hash, value)),
   ].join('\n')
   return { hash, source }
+}
+
+// renders an imported composable from the host's json props; a callback
+// parameter reports its arguments to the host as a json array.
+function viewGlue(
+  sourceId: string,
+  contract: NativeSourceContract,
+  hash: string,
+  value: (type: string, input: string, path: string) => string
+): string[] {
+  const qualifier = contract.packageName ? `${contract.packageName}.` : ''
+  return [
+    `@Keep class OneNativeSourceViews_${sourceId}: OneNativeSourceViewDispatch {`,
+    `  override val contractHash = ${JSON.stringify(hash)}`,
+    '  @Composable',
+    '  override fun Content(view: String, propsJson: String, emit: (String, String) -> Unit) {',
+    '    val props = JSONObject(propsJson)',
+    '    when (view) {',
+    ...contract.views.flatMap((view) => [
+      `      ${JSON.stringify(view.name)} -> ${qualifier}${view.name}(`,
+      ...view.props.map((prop) => {
+        const path = JSON.stringify(`props.${prop.name}`)
+        if (prop.callback) {
+          const args = prop.callback.map((_, index) => `a${index}`)
+          const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg) => `.put(JSONObject.wrap(${arg}))`).join('')}.toString())`
+          const lambda = `{ ${args.length > 0 ? `${args.join(', ')} -> ` : ''}${body} }`
+          // the host sends true for each callback the element passed
+          return `        ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (props.optBoolean(${JSON.stringify(prop.name)})) (${lambda}) else null` : lambda},`
+        }
+        const input = prop.optional
+          ? `(props.opt(${JSON.stringify(prop.name)}) ?: JSONObject.NULL)`
+          : `(props.opt(${JSON.stringify(prop.name)}) ?: error(${JSON.stringify(`props.${prop.name}: required`)}))`
+        return `        ${prop.name} = ${value(prop.nativeType, input, path)},`
+      }),
+      '      )',
+    ]),
+    '      else -> error("composable $view is not linked; rebuild the app")',
+    '    }',
+    '  }',
+    '}',
+    '',
+  ]
 }
