@@ -23,7 +23,6 @@
 #include "JHybridOneAppleAuthSpec.hpp"
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
-#include "JHybridOneCryptoSpec.hpp"
 #include "JHybridOneDocumentPickerSpec.hpp"
 #include "JHybridOneFetchSpec.hpp"
 #include "JFunc_void_FetchNativeResponse.hpp"
@@ -46,6 +45,7 @@
 #include "JHybridOneUpdatesSpec.hpp"
 #include "JFunc_void_std__optional_std__string_.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
+#include "HybridOneCrypto.hpp"
 #include "HybridOneStorage.hpp"
 
 namespace margelo::nitro::one {
@@ -78,14 +78,6 @@ struct JHybridOneClipboardSpecImpl: public jni::JavaClass<JHybridOneClipboardSpe
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneClipboardSpecImpl::javaobject()>();
     jni::local_ref<JHybridOneClipboardSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOneClipboardSpec();
-  }
-};
-struct JHybridOneCryptoSpecImpl: public jni::JavaClass<JHybridOneCryptoSpecImpl, JHybridOneCryptoSpec::JavaPart> {
-  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneCrypto;";
-  static std::shared_ptr<JHybridOneCryptoSpec> create() {
-    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneCryptoSpecImpl::javaobject()>();
-    jni::local_ref<JHybridOneCryptoSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
-    return javaPart->getJHybridOneCryptoSpec();
   }
 };
 struct JHybridOneNetworkSpecImpl: public jni::JavaClass<JHybridOneNetworkSpecImpl, JHybridOneNetworkSpec::JavaPart> {
@@ -214,7 +206,6 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneAppleAuthSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
-  margelo::nitro::one::JHybridOneCryptoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneDocumentPickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneFetchSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_FetchNativeResponse_cxx::registerNatives();
@@ -259,7 +250,10 @@ void registerAllNatives() {
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneCrypto",
     []() -> std::shared_ptr<HybridObject> {
-      return JHybridOneCryptoSpecImpl::create();
+      static_assert(std::is_default_constructible_v<HybridOneCrypto>,
+                    "The HybridObject \"HybridOneCrypto\" is not default-constructible! "
+                    "Create a public constructor that takes zero arguments to be able to autolink this HybridObject.");
+      return std::make_shared<HybridOneCrypto>();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

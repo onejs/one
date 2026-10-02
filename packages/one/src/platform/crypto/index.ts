@@ -1,20 +1,24 @@
-import { assertByteCount, installCryptoPolyfill, type RandomBytesSource } from './random'
+import { formatUuidV4, installCryptoPolyfill, type RandomSource } from './random'
 
-// web entry. same shape as the native entry, but the byte source is the
+// web entry. same shape as the native entry, but the random source is the
 // platform crypto itself: installCrypto only fills genuinely missing
 // pieces, so a browser's crypto is never replaced.
-function webSource(count: number): Uint8Array {
-  assertByteCount(count)
+function fill(bytes: Uint8Array<ArrayBuffer>): void {
   const getRandomValues = globalThis.crypto?.getRandomValues
   if (typeof getRandomValues !== 'function') {
     throw new Error('secure random: web crypto is unavailable in this browser.')
   }
-  const out = new Uint8Array(count)
-  getRandomValues.call(globalThis.crypto, out)
-  return out
+  getRandomValues.call(globalThis.crypto, bytes)
 }
 
-const source: RandomBytesSource = (count: number) => webSource(count)
+const source: RandomSource = {
+  fill,
+  randomUUID() {
+    const bytes = new Uint8Array(16)
+    fill(bytes)
+    return formatUuidV4(bytes)
+  },
+}
 
 export function installCrypto(): void {
   installCryptoPolyfill(source)

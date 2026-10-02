@@ -134,8 +134,6 @@ namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
-// Forward declaration of `HybridOneCryptoSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneCryptoSpec; }
 // Forward declaration of `HybridOneDeviceAttestationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
@@ -360,8 +358,6 @@ namespace One { class HybridOneCalendarSpec_cxx; }
 namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactsSpec_cxx; }
-// Forward declaration of `HybridOneCryptoSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneCryptoSpec_cxx; }
 // Forward declaration of `HybridOneDeviceAttestationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
@@ -486,7 +482,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactsSpec.hpp"
-#include "HybridOneCryptoSpec.hpp"
 #include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
@@ -2264,27 +2259,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ContactInfo>>>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneCryptoSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneCryptoSpec>`.
-   */
-  using std__shared_ptr_HybridOneCryptoSpec_ = std::shared_ptr<HybridOneCryptoSpec>;
-  std::shared_ptr<HybridOneCryptoSpec> create_std__shared_ptr_HybridOneCryptoSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneCryptoSpec_(std__shared_ptr_HybridOneCryptoSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneCryptoSpec>
-  using std__weak_ptr_HybridOneCryptoSpec_ = std::weak_ptr<HybridOneCryptoSpec>;
-  inline std__weak_ptr_HybridOneCryptoSpec_ weakify_std__shared_ptr_HybridOneCryptoSpec_(const std::shared_ptr<HybridOneCryptoSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<ArrayBuffer>>
-  using Result_std__shared_ptr_ArrayBuffer__ = Result<std::shared_ptr<ArrayBuffer>>;
-  inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
-    return Result<std::shared_ptr<ArrayBuffer>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<ArrayBuffer>>::withError(error);
   }
 
   // pragma MARK: std::shared_ptr<Promise<DeviceInfo>>

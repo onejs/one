@@ -33,6 +33,25 @@ function readCrypto() {
   return { first, second, random }
 }
 
+// microseconds per call over a fixed workload, for comparing against other
+// crypto libraries with the same loops.
+function bench(): string {
+  const crypto = globalThis.crypto as unknown as DeviceCrypto
+  const count = 10000
+  const perCall = (start: number) => `${(((performance.now() - start) * 1000) / count).toFixed(2)}us`
+  let start = performance.now()
+  for (let index = 0; index < count; index++) crypto.randomUUID()
+  const uuid = perCall(start)
+  const small = new Uint8Array(16)
+  start = performance.now()
+  for (let index = 0; index < count; index++) crypto.getRandomValues(small)
+  const values16 = perCall(start)
+  const large = new Uint8Array(4096)
+  start = performance.now()
+  for (let index = 0; index < count; index++) crypto.getRandomValues(large)
+  return `uuid ${uuid} values16 ${values16} values4096 ${perCall(start)}`
+}
+
 function readState() {
   try {
     return { ...readCrypto(), error: 'none' }
@@ -58,6 +77,7 @@ export default function OneNativeCrypto() {
     }
   })
   const [state, setState] = useState(readState)
+  const [timings, setTimings] = useState('not run')
   const regenerate = useCallback(() => {
     setState(readState())
   }, [])
@@ -73,12 +93,20 @@ export default function OneNativeCrypto() {
       <Text>{`Valid: ${valid ? 'v4' : 'no'}`}</Text>
       <Text>{`Distinct: ${distinct ? 'true' : 'false'}`}</Text>
       <Text>{`Error: ${state.error}`}</Text>
+      <Text>{`Bench: ${timings}`}</Text>
       <Pressable
         testID="one-native-crypto-regenerate"
         style={styles.chip}
         onPress={regenerate}
       >
         <Text>Regenerate</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-crypto-bench"
+        style={styles.chip}
+        onPress={() => setTimings(bench())}
+      >
+        <Text>Run crypto benchmark</Text>
       </Pressable>
     </View>
   )

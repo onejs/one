@@ -83,7 +83,6 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
-  ../nitrogen/generated/android/c++/JHybridOneCryptoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFetchSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFontsSpec.cpp

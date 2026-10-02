@@ -48,18 +48,6 @@ public final class OneAutolinking {
     return HybridOneClipboard.self is any RecyclableView.Type
   }
 
-  public static func createOneCrypto() -> bridge.std__shared_ptr_HybridOneCryptoSpec_ {
-    let hybridObject = HybridOneCrypto()
-    return { () -> bridge.std__shared_ptr_HybridOneCryptoSpec_ in
-      let __cxxWrapped = hybridObject.getCxxWrapper()
-      return __cxxWrapped.getCxxPart()
-    }()
-  }
-
-  public static func isOneCryptoRecyclable() -> Bool {
-    return HybridOneCrypto.self is any RecyclableView.Type
-  }
-
   public static func createOneNetwork() -> bridge.std__shared_ptr_HybridOneNetworkSpec_ {
     let hybridObject = HybridOneNetwork()
     return { () -> bridge.std__shared_ptr_HybridOneNetworkSpec_ in

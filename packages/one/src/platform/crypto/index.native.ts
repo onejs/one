@@ -1,27 +1,24 @@
 import { NitroModules } from 'react-native-nitro-modules'
 import type { OneCrypto } from '../specs/OneCrypto.nitro'
-import { assertByteCount, installCryptoPolyfill, type RandomBytesSource } from './random'
+import { installCryptoPolyfill, type RandomSource } from './random'
 
-// count cryptographically secure bytes from SecRandomCopyBytes /
-// SecureRandom through the OneCrypto nitro hybrid object, created on first
-// use and cached. never Math.random: a failed native call throws. private:
-// installCrypto is the only consumer, and the global is the api.
+// secure random from the platform csprng (arc4random_buf on both) through the
+// OneCrypto c++ hybrid object, created on first use and cached. bytes land in
+// the caller's own buffer, so getRandomValues allocates and copies nothing.
+// never Math.random: a failed native call throws. private: installCrypto is
+// the only consumer, and the global is the api.
 let hybrid: OneCrypto | undefined
 
-function getSecureRandomBytes(count: number): Uint8Array {
-  assertByteCount(count)
-  if (count === 0) {
-    return new Uint8Array(0)
-  }
-  hybrid ??= NitroModules.createHybridObject<OneCrypto>('OneCrypto')
-  const bytes = new Uint8Array(hybrid.getRandomBytes(count))
-  if (bytes.length !== count) {
-    throw new Error(`secure random: expected ${count} bytes, got ${bytes.length}.`)
-  }
-  return bytes
+function native(): OneCrypto {
+  return (hybrid ??= NitroModules.createHybridObject<OneCrypto>('OneCrypto'))
 }
 
-const nativeSource: RandomBytesSource = (count: number) => getSecureRandomBytes(count)
+const nativeSource: RandomSource = {
+  fill(bytes) {
+    native().fillRandomBytes(bytes.buffer, bytes.byteOffset, bytes.byteLength)
+  },
+  randomUUID: () => native().randomUUID(),
+}
 
 // installs globalThis.crypto.getRandomValues + randomUUID when the runtime
 // lacks them. no-ops when the binary has no OneCrypto: installing a throwing

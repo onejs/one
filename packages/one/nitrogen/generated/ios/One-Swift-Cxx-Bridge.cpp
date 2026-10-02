@@ -20,7 +20,6 @@
 #include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
-#include "HybridOneCryptoSpecSwift.hpp"
 #include "HybridOneDeviceAttestationSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneDocumentPickerSpecSwift.hpp"
@@ -477,22 +476,6 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneContactsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
-    return swiftPart.toUnsafe();
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneCryptoSpec>
-  std::shared_ptr<HybridOneCryptoSpec> create_std__shared_ptr_HybridOneCryptoSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
-    One::HybridOneCryptoSpec_cxx swiftPart = One::HybridOneCryptoSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::one::HybridOneCryptoSpecSwift>(swiftPart);
-  }
-  void* NON_NULL get_std__shared_ptr_HybridOneCryptoSpec_(std__shared_ptr_HybridOneCryptoSpec_ cppType) {
-    std::shared_ptr<margelo::nitro::one::HybridOneCryptoSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneCryptoSpecSwift>(cppType);
-    #ifdef NITRO_DEBUG
-    if (swiftWrapper == nullptr) [[unlikely]] {
-      throw std::runtime_error("Class \"HybridOneCryptoSpec\" is not implemented in Swift!");
-    }
-    #endif
-    One::HybridOneCryptoSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 
