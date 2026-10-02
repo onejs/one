@@ -60,6 +60,8 @@ RGB pixels are compared without a tolerance. Different dimensions are padded wit
 
 **RAN, unresolved home:** desktop primary text retains its 300 weight and page height. Residual pixels lie in lower social/team regions and dark-theme link colors. Mobile has a 10px lower-page height difference beginning around the feature/social area. These remain unclassified, not accepted as a redesign.
 
+**RAN:** the browser also logged unknown built-in skin tokens such as `background-hover`, `border-color` and `outline-color`, while this supported v5 theme exports camel-case names. **INFERRED:** those defaults may affect control states beyond the captured screens. Their general compatibility is not validated; the requested header border is explicitly transparent.
+
 ## Reproduction and artifacts
 
 From the repository root:
