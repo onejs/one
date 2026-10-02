@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import { createRequire } from 'node:module'
 import path from 'node:path'
+import { runInNewContext } from 'node:vm'
 import { afterEach, describe, expect, it } from 'vitest'
 import { configureVXRNCompilerPlugin } from './configure'
 import { shouldTransformWorklets, transformWorklets } from './transformWorklets'
@@ -172,6 +173,32 @@ describe('transformWorklets', () => {
     expect(init, 'serialized worklet code').toBeTruthy()
     expect(init![0]).not.toContain('this.__closure')
     expect(init![0]).toContain('flushQueue')
+  })
+
+  it('keeps Reanimated UI-runtime globals out of the JavaScript closure', async () => {
+    const result = await transformWorklets(
+      '/app/valueUnpacker.ts',
+      `function valueUnpacker(value) { 'worklet'; return _toString(value) }
+       globalThis.__unpacker = valueUnpacker`,
+      false,
+      { pluginVersion: '3.19.1' }
+    )
+    const mainRuntime: any = {}
+    runInNewContext(result.code, mainRuntime)
+    expect(Object.keys(mainRuntime.__unpacker.__closure)).toEqual([])
+    const uiRuntime: any = { _toString: String }
+    const unpack = runInNewContext(mainRuntime.__unpacker.__initData.code, uiRuntime)
+    expect(unpack(42)).toBe('42')
+  })
+
+  it('keeps strict global configuration explicit for UI-runtime helpers', async () => {
+    const result = await transformWorklets(
+      '/app/strictGlobals.ts',
+      `function unpack(value) { 'worklet'; return _toString(value) }`,
+      false,
+      { pluginVersion: '3.19.1', strictGlobal: true }
+    )
+    expect(result.code).toMatch(/__closure = \{\s*_toString/)
   })
 
   it('honors no-worklet-closure and limit-init-data-hoisting the way the worklets runtime needs', async () => {
