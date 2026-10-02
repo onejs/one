@@ -124,8 +124,9 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
     // both here makes a CommonJS require eligible for an export map's ESM
     // `import` target (for example @babel/runtime), which turns callable CJS
     // helpers into namespace objects at runtime.
-    conditionNames: ['react-native'],
-    mainFields: ['react-native', 'module', 'main'],
+    conditionNames: ['react-native', 'browser'],
+    mainFields: ['react-native', 'browser', 'module', 'main'],
+    aliasFields: [['react-native'], ['browser']],
   }
 }
 
@@ -1316,7 +1317,7 @@ function nativeDeclarationAliasPlugin(root: string, platform: 'ios' | 'android')
         const { ResolverFactory } = await import('rolldown/experimental')
         resolver = new ResolverFactory({
           ...getNativeResolveConfig(platform),
-          conditionNames: ['react-native', kind, 'default'],
+          conditionNames: ['react-native', 'browser', kind, 'default'],
         })
         resolvers.set(kind, resolver)
       }

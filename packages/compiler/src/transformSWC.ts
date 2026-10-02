@@ -27,6 +27,7 @@ export function shouldStripFlow(id: string, code: string): boolean {
     /\b(?:import|export)\s+type\b/.test(code) ||
     // Some published Flow sources omit the pragma and use ordinary imports.
     // Typed function returns, declarations, and class fields still need stripping.
+    /\(\s*(?:\.\.\.)?[\w$]+\??\s*:\s*/.test(code) ||
     /\)\s*:\s*(?:[\w$]+(?:<[^;{}]*>)?(?:\[\])?\s*)(?:=>|\{)/.test(code) ||
     /^\s*[\w$]+\??\s*:\s*(?:string|number|boolean|any|mixed|void|[A-Z][\w$]*)(?:[^;\r\n=]*);/m.test(
       code
