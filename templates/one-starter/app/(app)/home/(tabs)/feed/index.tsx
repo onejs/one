@@ -1,10 +1,9 @@
 import { memo, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { isWeb, ScrollView, SizableText, Spinner, Theme, XStack, YStack } from 'tamagui'
+import { isWeb, ScrollView, SizableText, Spinner, XStack, YStack } from 'tamagui'
 import { useTodos } from '~/features/todo/useTodos'
 import { Button } from '~/interface/buttons/Button'
 import { Input } from 'tamagui'
-import { PageContainer } from '~/interface/layout/PageContainer'
 import { H1, H3 } from '~/interface/text/Headings'
 export const HomePage = memo(() => {
   const { todos, isLoading, addTodo, toggleTodo, deleteTodo } = useTodos()
@@ -28,17 +27,6 @@ export const HomePage = memo(() => {
         minHeight: '100vh' as any,
       })}
     >
-      {/* notice banner */}
-      <Theme name="yellow">
-        <XStack bg="color-3" py="3" w="100%">
-          <PageContainer>
-            <SizableText size="4">
-              Your app starts here. Sign in and try synced todos.
-            </SizableText>
-          </PageContainer>
-        </XStack>
-      </Theme>
-
       <YStack
         pb={isWeb ? '10' : insets.bottom + 40}
         gap="6"
@@ -101,6 +89,9 @@ export const HomePage = memo(() => {
                     items="center"
                     justify="center"
                     cursor="pointer"
+                    role="checkbox"
+                    aria-checked={todo.completed}
+                    aria-label={`Complete ${todo.text}`}
                     onPress={() => toggleTodo(todo.id, !todo.completed)}
                   >
                     {todo.completed && (
@@ -116,7 +107,7 @@ export const HomePage = memo(() => {
                   >
                     {todo.text}
                   </SizableText>
-                  <Button theme="red" px="3" onPress={() => deleteTodo(todo.id)}>
+                  <Button theme="red" px="3" aria-label={`Delete ${todo.text}`} onPress={() => deleteTodo(todo.id)}>
                     ✕
                   </Button>
                 </XStack>
@@ -125,46 +116,6 @@ export const HomePage = memo(() => {
           )}
         </YStack>
 
-        {/* about section */}
-        <YStack
-          display={{
-            default: 'none',
-            lg: 'flex',
-          }}
-          pt={{
-            default: '4',
-            lg: '12',
-          }}
-          gap="4"
-          w={{
-            lg: 340,
-          }}
-        >
-          <Theme name="accent">
-            <YStack p="4" bg="color-3" rounded="4" borderColor="color-6" borderWidth={1}>
-              <H3 mb="2" color="color-11">
-                One Starter
-              </H3>
-              <YStack gap="2" opacity={0.8}>
-                <SizableText size="6">
-                  A minimal but complete stack for native and web apps.
-                </SizableText>
-                <YStack gap="1" mt="1">
-                  <SizableText size="4" color="color-11">
-                    One • Tamagui • Zero • Better Auth
-                  </SizableText>
-                  <SizableText size="4" color="color-11">
-                    Bun • TypeScript
-                  </SizableText>
-                </YStack>
-                <SizableText size="4" mt="2" opacity={0.7}>
-                  Includes scripts for dev, build, deploy, and a clean package structure
-                  ready for production.
-                </SizableText>
-              </YStack>
-            </YStack>
-          </Theme>
-        </YStack>
       </YStack>
     </YStack>
   )
