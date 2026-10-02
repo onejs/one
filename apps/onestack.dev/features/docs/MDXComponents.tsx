@@ -2,7 +2,6 @@ import { ChevronRight } from '@tamagui/lucide-icons-2'
 import { Link } from 'one'
 import React from 'react'
 import {
-  EnsureFlexed,
   H1,
   H2,
   H3,
@@ -67,8 +66,6 @@ const TableBase = styled(View, {
   display: 'table' as any,
   width: '100%',
   my: '$4',
-  // @ts-ignore
-  borderCollapse: 'collapse' as any,
 })
 
 const TableWrapper = styled(View, {
@@ -79,7 +76,12 @@ const TableWrapper = styled(View, {
 
 const Table = (props: any) => (
   <TableWrapper>
-    <TableBase className="mdx-table" my={0} {...props} />
+    <TableBase
+      className="mdx-table"
+      my={0}
+      style={{ borderCollapse: 'collapse' }}
+      {...props}
+    />
   </TableWrapper>
 )
 
@@ -126,10 +128,14 @@ const Td = styled(Text, {
 })
 
 const HR = () => (
-  <YStack mt="$9" mb="$5" mx="auto" maxWidth="50%">
-    <EnsureFlexed />
-    <YStack borderBottomColor="$color5" borderBottomWidth={1} flex={1} />
-  </YStack>
+  <YStack
+    mt="$9"
+    mb="$5"
+    mx="auto"
+    width="50%"
+    borderBottomColor="$color5"
+    borderBottomWidth={1}
+  />
 )
 
 // code blocks are fully rendered by Expressive Code (a self-contained
@@ -198,7 +204,7 @@ const componentsIn = {
         pressStyle={{ y: 2, bg: '$color1' }}
       >
         <XStack ai="center" jc="space-between" f={1} w="100%">
-          <YStack>
+          <YStack flexShrink={1}>
             <Heading size="$4" color="$color7" {...(!!category && { mt: '$-2' })}>
               {category}
             </Heading>
