@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
+import { NitroModules, type HybridObject } from 'react-native-nitro-modules'
 
 const persistKey = 'one-native-storage-persist'
 
@@ -69,6 +70,27 @@ function runBench(report: (name: string, value: string) => void) {
   for (let index = 0; index < count; index++) storage.removeItem(`bench-${index}`)
   report('BenchRemove', perCall(start))
   storage.removeItem('bench-hot')
+  // the same get and set loops on the bare hybrid object, and the loop with
+  // no call at all, split a gap between One's wrapper, the jsi dispatch and
+  // the engine.
+  const raw = NitroModules.createHybridObject<RawStorage>('OneStorage')
+  start = performance.now()
+  for (let index = 0; index < count; index++) raw.setItem(`bench-${index}`, value)
+  report('BenchSetRaw', perCall(start))
+  start = performance.now()
+  for (let index = 0; index < count; index++) raw.getItem(`bench-${index}`)
+  report('BenchGetRaw', perCall(start))
+  let sink = 0
+  start = performance.now()
+  for (let index = 0; index < count; index++) sink += `bench-${index}`.length
+  report('BenchLoop', `${perCall(start)} (${sink > 0})`)
+  for (let index = 0; index < count; index++) raw.removeItem(`bench-${index}`)
+}
+
+interface RawStorage extends HybridObject<{ ios: 'c++'; android: 'c++' }> {
+  getItem(key: string): string | undefined
+  setItem(key: string, value: string): void
+  removeItem(key: string): void
 }
 
 export default function OneNativeStorage() {
