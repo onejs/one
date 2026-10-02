@@ -25,6 +25,7 @@
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/lucide-icons-2": "2.6.2",
     "@tamagui/react-native-web": "2.6.2",
+    "@tamagui/sheet": "2.6.2",
     "@tamagui/themes": "2.6.2",
     "@tamagui/use-store": "2.6.2",
     "@vxrn/color-scheme": "workspace:*",
