@@ -80,12 +80,20 @@ a JS `interface Spec extends TurboModule`, one lazy cached
 `TurboModuleRegistry.get<Spec>()`, no `as`, no per-call `try`/`catch`, no JS copy of
 state that native can answer (`Fonts.isLoaded` asks the platform; it does not keep a set).
 
-## 4. Sync or async
+## 4. Sync, async, and speed
 
 A call is synchronous when the platform answers without I/O, a permission prompt or UI:
 `AppInfo.*`, `Fonts.isLoaded`, `Notifications.getLastResponse`, and fire-and-forget
 effects, which return `void` (`Haptics.impact`). Everything else returns a promise. A
 call never has both a sync and an async form.
+
+An API an app can call in a loop, per frame or per row (storage, crypto, file and
+network data, sensors) must match or beat the fastest library that does the same job.
+Measure it on device, iOS Release and Android, against that library with the same
+workload, keep the benchmark in its `tests/native-features` fixture, and redesign until
+it wins. Work that needs no platform framework is one shared C++ hybrid object called
+straight over JSI, so it never crosses into Swift or the JVM; data moves through the
+caller's own buffer instead of a copy.
 
 ## 5. Absent, refused, unsupported, failed
 
