@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.28.5",
+    "@babel/plugin-transform-block-scoping": "^7.28.6",
     "@babel/plugin-transform-classes": "^7.28.6",
     "@babel/plugin-transform-destructuring": "^7.28.5",
     "@babel/plugin-transform-flow-strip-types": "^7.27.1",
