@@ -48,6 +48,7 @@ export default function BlogIndex() {
               const date = post.publishedAt
                 ? new Date(post.publishedAt).toLocaleDateString('en-US', {
                     year: 'numeric',
+                    timeZone: 'UTC',
                     month: 'long',
                     day: 'numeric',
                   })
