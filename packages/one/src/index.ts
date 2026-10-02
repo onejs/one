@@ -74,6 +74,7 @@ export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>
 
 // hooks
 export { useIsFocused } from '@react-navigation/core'
+export { useHeaderHeight } from './useHeaderHeight'
 // re-export
 export * from '@vxrn/color-scheme'
 // TODO breaking due to react-native-gesture-handler
