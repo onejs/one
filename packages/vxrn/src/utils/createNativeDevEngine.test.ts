@@ -1937,6 +1937,51 @@ globalThis.minifyProbe = describeHeader()`
 })
 
 describe('native production assets', () => {
+  it('uses browser fallbacks and mappings after React Native overrides', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-browser-'))
+    try {
+      for (const [name, manifest] of Object.entries({
+        mapped: { main: './node.js', browser: { './node.js': './browser.js' } },
+        fallback: { main: './node.js', browser: './browser.js' },
+        conditional: { exports: { browser: './browser.js', default: './node.js' } },
+        native: {
+          main: './node.js',
+          browser: './browser.js',
+          'react-native': './native.js',
+        },
+      })) {
+        const directory = join(root, 'node_modules', name)
+        await mkdir(directory, { recursive: true })
+        await writeFile(
+          join(directory, 'package.json'),
+          JSON.stringify({ name, ...manifest })
+        )
+        for (const target of ['node', 'browser', 'native']) {
+          await writeFile(join(directory, `${target}.js`), `module.exports = '${target}'`)
+        }
+      }
+      await writeFile(
+        join(root, 'entry.js'),
+        `globalThis.targets = [require('mapped'), require('fallback'), require('conditional'), require('native')]`
+      )
+      const result = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'targets')).toEqual([
+        'browser',
+        'browser',
+        'browser',
+        'native',
+      ])
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it('uses runtime exports for declaration aliases while preserving source aliases', async () => {
     const root = await mkdtemp(join(tmpdir(), 'vxrn-native-declaration-alias-'))
     const packageRoot = join(root, 'node_modules/example')
@@ -2301,9 +2346,11 @@ describe('native Flow sources', () => {
 const URI = { isFileURI: (uri: string): boolean => uri.startsWith('file://') }
 class Response {
   taskId: string;
+  onabort: (event: string) => void = () => {};
   constructor(id: string) { this.taskId = id }
 }
-globalThis.unmarkedFlowResult = URI.isFileURI(new Response('file://').taskId)
+function filePath(path: string) { return new Response(path).taskId }
+globalThis.unmarkedFlowResult = URI.isFileURI(filePath('file://'))
 `
     )
     try {
