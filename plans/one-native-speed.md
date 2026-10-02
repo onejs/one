@@ -9,7 +9,7 @@ fixture.
 | api | rival | state |
 | --- | --- | --- |
 | `One.Storage` | MMKV 3.3.3 | shared C++ engine over an mmap log; device numbers pending (the Swift/Kotlin version lost 7-12x on writes) |
-| global `crypto` | react-native-quick-crypto | shared C++ over `arc4random_buf`, fills the caller's buffer in place; device numbers pending |
+| global `crypto` | react-native-quick-crypto 1.1.7 | shared C++ over `arc4random_buf`, fills in place. `randomUUID` wins 6x iOS, 4x Android; 16-byte fills win on iOS, trail 14% on Android; 4 KB fills trail 25% on iOS and 4.6x on Android, because bionic's `arc4random` is portable ChaCha behind a lock while quick-crypto uses OpenSSL's hardware-AES DRBG. Closing that needs a vetted vectorized DRBG, never a hand-rolled one |
 | `One.Database` | op-sqlite | is op-sqlite, the fastest SQLite binding; nothing to win |
 | `One.FileSystem` | expo-file-system, react-native-nitro-fs | unmeasured; iOS only, and no read call yet |
 | `fetch` streaming | expo/fetch | unmeasured: per-chunk latency and throughput for a large streamed body |
