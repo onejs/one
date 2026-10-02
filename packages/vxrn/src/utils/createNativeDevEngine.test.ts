@@ -1223,6 +1223,32 @@ describe('getHermesSWCIncludes', () => {
     expect(result.code).not.toContain('async function *')
   })
 
+  it.each([true, false])('lowers complete class hierarchies for Hermes (dev=%s)', async (dev) => {
+    const plugin = hermesCompatSWCPlugin(dev)
+    const result = await Reflect.apply(plugin.transform as Function, undefined, [
+      `class Base { value = 2; getValue() { return this.value } }
+       class Derived extends Base { extra = 3; getValue() { return super.getValue() + this.extra } }
+       globalThis.__classProbe = new Derived().getValue()`,
+      '/project/classes.ts',
+    ])
+    expect(result.code).not.toMatch(/\bclass\s+(?:Base|Derived|extends)/)
+    const context: any = {}
+    runInNewContext(result.code, context)
+    expect(context.__classProbe).toBe(5)
+  })
+
+  it('lowers classes in large prebuilt modules', async () => {
+    const plugin = hermesCompatSWCPlugin(false)
+    const result = await Reflect.apply(plugin.transform as Function, undefined, [
+      '/*' + ' '.repeat(500_000) + '*/ class Large { value = 7 } globalThis.__largeClass = new Large().value',
+      '/project/prebuilt.js',
+    ])
+    expect(result.code).not.toMatch(/\bclass\s+Large/)
+    const context: any = {}
+    runInNewContext(result.code, context)
+    expect(context.__largeClass).toBe(7)
+  })
+
   it('downlevels private fields, public class fields, and static blocks for Hermes', async () => {
     const plugin = hermesCompatSWCPlugin(true)
     if (typeof plugin.transform !== 'function') {
