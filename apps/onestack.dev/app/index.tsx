@@ -44,6 +44,9 @@ export default function HomePage() {
         }}
       />
 
+      {/* the whole page sits on one's yellow */}
+      <style>{`:root:root { --bodyBgLight: ${YELLOW}; --bodyBgDark: ${YELLOW}; }`}</style>
+
       <Spacer size="8 gtSm:4" />
 
       <ContainerSm>
@@ -120,17 +123,17 @@ export default function HomePage() {
         <View theme="gray" gap="4" pt="5 sm:8">
           <H1
             fontFamily="heading"
-            fontSize="96px sm:56px"
-            lineHeight="96px sm:58px"
-            letterSpacing="-4px sm:-2px"
+            fontSize="132px sm:64px"
+            lineHeight="124px sm:64px"
+            letterSpacing="-6px sm:-2px"
             fontWeight="800"
-            color="color12"
+            color={INK}
             mt="6"
           >
             React Native, actually native.
           </H1>
 
-          <PrettyTextBigger>
+          <PrettyTextBigger color={INK} opacity={0.8}>
             One is a Vite framework for web and native. SwiftUI and Jetpack Compose are
             generated for you, every native API lives under{' '}
             <Code>One.*</Code>, and it all bundles in Rust.
@@ -157,7 +160,7 @@ export default function HomePage() {
                   <View
                     h={28}
                     br="4"
-                    bg={lane.lead ? 'color12' : 'color6'}
+                    bg={lane.lead ? INK : 'rgba(20,18,8,0.18)'}
                     w={`${(lane.seconds / BUNDLE_MAX) * 70}%`}
                   />
                   <Text fontFamily="mono" color="color11">
@@ -166,25 +169,25 @@ export default function HomePage() {
                 </XStack>
               ))}
             </YStack>
-            <PrettyText fontSize="4" color="color10" mt="3">
+            <PrettyText fontSize="4" color={INK} opacity={0.6} mt="3">
               Cold dev bundle of a production iOS app, same machine.
             </PrettyText>
           </Section>
 
           <Section label="One Native" title="Every native view and API, typed.">
-            <PrettyText>
+            <PrettyText color={INK}>
               SwiftUI and Jetpack Compose are generated straight from the platform SDKs.
               Haptics, storage, updates, notifications and the rest share one call on iOS
               and Android.
             </PrettyText>
             <CodeBlock>{NATIVE_SAMPLE}</CodeBlock>
             <Link href="/native/overview">
-              <PrettyText color="color11">Explore One Native</PrettyText>
+              <PrettyText color={INK}>Explore One Native</PrettyText>
             </Link>
           </Section>
 
           <Section label="Full stack" title="And the web, from the same app.">
-            <PrettyText>
+            <PrettyText color={INK}>
               SSG, SSR or SPA per route, typed loaders, middleware and API routes, deployed
               to Vercel or Cloudflare.
             </PrettyText>
@@ -260,6 +263,9 @@ export default function HomePage() {
 
 // cold dev bundle of the contrast app on ios, four interleaved runs
 // (one session m13021, 2026-09-06): rolldown ~3.6s, metro + babel ~19.5s
+const YELLOW = '#F5CA05'
+const INK = '#141208'
+
 const BUNDLE_TIMES = [
   { name: 'One', seconds: 3.6, lead: true },
   { name: 'Metro', seconds: 19.5, lead: false },
@@ -276,7 +282,7 @@ One.Haptics.impact('medium')`
 const Section = ({ label, title, children }) => {
   return (
     <YStack gap="3" py="6">
-      <Text fontFamily="mono" fontSize="3" color="color10" textTransform="uppercase">
+      <Text fontFamily="mono" fontSize="3" color={INK} opacity={0.6} textTransform="uppercase">
         {label}
       </Text>
       <H2
@@ -285,7 +291,7 @@ const Section = ({ label, title, children }) => {
         lineHeight="52px sm:38px"
         letterSpacing="-2px sm:-1px"
         fontWeight="800"
-        color="color12"
+        color={INK}
       >
         {title}
       </H2>
@@ -302,8 +308,8 @@ const Code = styled(Text, {
 
 const CodeBlock = ({ children }: { children: string }) => {
   return (
-    <View bg="color2" br="8" p="5" overflow="hidden">
-      <Text fontFamily="mono" fontSize="3" lineHeight="5" color="color12" whiteSpace="pre">
+    <View bg={INK} br="8" p="5" overflow="hidden">
+      <Text fontFamily="mono" fontSize="3" lineHeight="5" color={YELLOW} whiteSpace="pre">
         {children}
       </Text>
     </View>
