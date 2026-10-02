@@ -26,7 +26,6 @@ namespace {
 constexpr uint8_t kSetOp = 1;
 constexpr uint8_t kRemoveOp = 2;
 constexpr size_t kMinCapacity = 64 * 1024;
-constexpr size_t kCompactFloor = 64 * 1024;
 
 [[noreturn]] void fail(const char* code, const std::string& message) {
   throw std::runtime_error(std::string(code) + ": Storage: " + message);
@@ -36,27 +35,28 @@ std::string lastError() {
   return std::strerror(errno);
 }
 
-size_t setSize(const std::string& key, const std::string& value) {
-  return 9 + key.size() + value.size();
+size_t setSize(size_t keySize, size_t valueSize) {
+  return 9 + keySize + valueSize;
 }
 
-size_t removeSize(const std::string& key) {
-  return 5 + key.size();
-}
-
-uint8_t* writeField(uint8_t* at, const std::string& text) {
-  uint32_t length = static_cast<uint32_t>(text.size());
+uint8_t* writeField(uint8_t* at, const char* text, size_t size) {
+  uint32_t length = static_cast<uint32_t>(size);
   at[0] = static_cast<uint8_t>(length);
   at[1] = static_cast<uint8_t>(length >> 8);
   at[2] = static_cast<uint8_t>(length >> 16);
   at[3] = static_cast<uint8_t>(length >> 24);
-  std::memcpy(at + 4, text.data(), text.size());
-  return at + 4 + text.size();
+  std::memcpy(at + 4, text, size);
+  return at + 4 + size;
 }
 
 void checkKey(const std::string& key) {
   if (key.empty()) fail("E_STORAGE_INPUT", "key must be a non-empty string");
   if (key.size() > std::numeric_limits<uint32_t>::max()) fail("E_STORAGE_INPUT", "key is too large");
+}
+
+size_t pageAligned(size_t size) {
+  static const size_t page = static_cast<size_t>(sysconf(_SC_PAGESIZE));
+  return (std::max(size, kMinCapacity) + page - 1) / page * page;
 }
 
 // writes zeros over [from, to) so the file's blocks exist before they are
@@ -73,6 +73,14 @@ bool zeroFill(int fd, size_t from, size_t to) {
   return true;
 }
 
+// where a live value's bytes sit in the mapped log. values are never copied
+// into the map: a write lands once, in the log, and a read copies straight
+// out of it.
+struct Slot {
+  size_t offset;
+  size_t size;
+};
+
 class StorageLog {
  public:
   static StorageLog& shared() {
@@ -86,7 +94,7 @@ class StorageLog {
     open();
     auto found = entries_.find(key);
     if (found == entries_.end()) return std::nullopt;
-    return found->second;
+    return std::string(reinterpret_cast<const char*>(base_ + found->second.offset), found->second.size);
   }
 
   void set(const std::string& key, const std::string& value) {
@@ -94,17 +102,21 @@ class StorageLog {
     if (value.size() > std::numeric_limits<uint32_t>::max()) fail("E_STORAGE_INPUT", "value is too large");
     std::lock_guard<std::mutex> guard(mutex_);
     open();
-    size_t size = setSize(key, value);
-    uint8_t* record = reserve(size);
-    writeField(writeField(record + 1, key), value);
+    auto found = entries_.find(key);
+    size_t replaced = found == entries_.end() ? 0 : setSize(key.size(), found->second.size);
+    size_t size = setSize(key.size(), value.size());
+    uint8_t* record = reserve(size, replaced);
+    uint8_t* valueField = writeField(record + 1, key.data(), key.size());
+    writeField(valueField, value.data(), value.size());
+    Slot slot{static_cast<size_t>(valueField - base_) + 4, value.size()};
     commit(record, kSetOp, size);
-    auto [entry, inserted] = entries_.try_emplace(key, value);
-    if (!inserted) {
-      live_ -= setSize(key, entry->second);
-      entry->second = value;
+    // compaction only moves slot offsets, so `found` is still valid.
+    if (found != entries_.end()) {
+      found->second = slot;
+    } else {
+      entries_.emplace(key, slot);
     }
-    live_ += size;
-    compactIfNeeded();
+    live_ = live_ - replaced + size;
   }
 
   void remove(const std::string& key) {
@@ -113,13 +125,13 @@ class StorageLog {
     open();
     auto found = entries_.find(key);
     if (found == entries_.end()) return;
-    size_t size = removeSize(key);
-    uint8_t* record = reserve(size);
-    writeField(record + 1, key);
+    size_t removed = setSize(key.size(), found->second.size);
+    size_t size = 5 + key.size();
+    uint8_t* record = reserve(size, 0);
+    writeField(record + 1, key.data(), key.size());
     commit(record, kRemoveOp, size);
-    live_ -= setSize(key, found->second);
     entries_.erase(found);
-    compactIfNeeded();
+    live_ -= removed;
   }
 
   std::vector<std::string> keys() {
@@ -133,7 +145,7 @@ class StorageLog {
 
  private:
   std::mutex mutex_;
-  std::unordered_map<std::string, std::string> entries_;
+  std::unordered_map<std::string, Slot> entries_;
   std::string path_;
   int fd_ = -1;
   uint8_t* base_ = nullptr;
@@ -149,11 +161,6 @@ class StorageLog {
     capacity_ = 0;
   }
 
-  static size_t pageAligned(size_t size) {
-    size_t page = static_cast<size_t>(sysconf(_SC_PAGESIZE));
-    return (std::max(size, kMinCapacity) + page - 1) / page * page;
-  }
-
   // the body is stored before the op byte, and the compiler may not reorder
   // the two, so the process dying at any instruction leaves either a whole
   // record or a zero op byte.
@@ -163,8 +170,16 @@ class StorageLog {
     used_ += size;
   }
 
-  uint8_t* reserve(size_t size) {
-    if (used_ + size > capacity_) remap(fd_, capacity_, pageAligned(std::max(capacity_ * 2, used_ + size)));
+  // room for a `size` byte record that replaces `replaced` live bytes. the
+  // log is only compacted when it is full: if at least half of it is dead it
+  // is rewritten at twice the live size, otherwise it doubles. writes into
+  // existing room never pay for compaction.
+  uint8_t* reserve(size_t size, size_t replaced) {
+    if (used_ + size > capacity_) {
+      size_t live = live_ - replaced + size;
+      if (live * 2 <= used_) compact(pageAligned(live * 2));
+      if (used_ + size > capacity_) remap(fd_, capacity_, pageAligned(std::max(capacity_ * 2, used_ + size)));
+    }
     return base_ + used_;
   }
 
@@ -215,37 +230,38 @@ class StorageLog {
     entries_.clear();
     live_ = 0;
     size_t offset = 0;
-    auto field = [&](std::string& out) {
+    // reads one length-prefixed field at `offset`, returning its start.
+    auto field = [&](size_t& start, size_t& length) {
       if (size - offset < 4) return false;
       const uint8_t* at = base_ + offset;
-      size_t length = static_cast<size_t>(at[0]) | static_cast<size_t>(at[1]) << 8 |
-          static_cast<size_t>(at[2]) << 16 | static_cast<size_t>(at[3]) << 24;
+      length = static_cast<size_t>(at[0]) | static_cast<size_t>(at[1]) << 8 | static_cast<size_t>(at[2]) << 16 |
+          static_cast<size_t>(at[3]) << 24;
       if (length > size - offset - 4) return false;
-      out.assign(reinterpret_cast<const char*>(at + 4), length);
-      offset += 4 + length;
+      start = offset + 4;
+      offset = start + length;
       return true;
     };
     std::string key;
-    std::string value;
     size_t valid = 0;
     while (offset < size) {
       uint8_t op = base_[offset++];
-      if ((op != kSetOp && op != kRemoveOp) || !field(key)) break;
+      size_t keyStart = 0;
+      size_t keySize = 0;
+      if ((op != kSetOp && op != kRemoveOp) || !field(keyStart, keySize)) break;
+      key.assign(reinterpret_cast<const char*>(base_ + keyStart), keySize);
+      auto found = entries_.find(key);
+      if (found != entries_.end()) live_ -= setSize(keySize, found->second.size);
       if (op == kSetOp) {
-        if (!field(value)) break;
-        live_ += setSize(key, value);
-        // try_emplace leaves `value` untouched when the key already exists.
-        auto [entry, inserted] = entries_.try_emplace(key, std::move(value));
-        if (!inserted) {
-          live_ -= setSize(key, entry->second);
-          entry->second = std::move(value);
-        }
-      } else {
-        auto found = entries_.find(key);
+        Slot slot{};
+        if (!field(slot.offset, slot.size)) break;
+        live_ += setSize(keySize, slot.size);
         if (found != entries_.end()) {
-          live_ -= setSize(key, found->second);
-          entries_.erase(found);
+          found->second = slot;
+        } else {
+          entries_.emplace(key, slot);
         }
+      } else if (found != entries_.end()) {
+        entries_.erase(found);
       }
       valid = offset;
     }
@@ -255,15 +271,21 @@ class StorageLog {
     if (end > valid) std::memset(base_ + valid, 0, end - valid);
   }
 
-  // writes the live entries to a temporary file, syncs it, and renames it over
-  // the log, so a crash during compaction leaves one whole log or the other.
-  void compactIfNeeded() {
-    if (used_ <= kCompactFloor || used_ <= live_ * 2) return;
+  // writes the live entries to a temporary file of `capacity` bytes, syncs
+  // it, and renames it over the log, so a crash during compaction leaves one
+  // whole log or the other. slots move to their new offsets only once the
+  // new log is in place.
+  void compact(size_t capacity) {
     std::string snapshot(live_, '\0');
-    uint8_t* at = reinterpret_cast<uint8_t*>(snapshot.data());
+    std::vector<size_t> offsets;
+    offsets.reserve(entries_.size());
+    uint8_t* start = reinterpret_cast<uint8_t*>(snapshot.data());
+    uint8_t* at = start;
     for (const auto& entry : entries_) {
       at[0] = kSetOp;
-      at = writeField(writeField(at + 1, entry.first), entry.second);
+      uint8_t* valueField = writeField(at + 1, entry.first.data(), entry.first.size());
+      offsets.push_back(static_cast<size_t>(valueField - start) + 4);
+      at = writeField(valueField, reinterpret_cast<const char*>(base_ + entry.second.offset), entry.second.size);
     }
     std::string staging = path_ + ".tmp";
     int fd = ::open(staging.c_str(), O_RDWR | O_CREAT | O_TRUNC | O_CLOEXEC, 0644);
@@ -273,7 +295,6 @@ class StorageLog {
       if (chunk <= 0) break;
       written += static_cast<size_t>(chunk);
     }
-    size_t capacity = pageAligned(live_ * 2);
     bool staged = fd >= 0 && written == snapshot.size() && zeroFill(fd, live_, capacity) && fsync(fd) == 0 &&
         rename(staging.c_str(), path_.c_str()) == 0;
     if (!staged) {
@@ -283,6 +304,8 @@ class StorageLog {
       fail("E_STORAGE_WRITE", "compaction failed (" + reason + ")");
     }
     remap(fd, capacity, capacity);
+    size_t index = 0;
+    for (auto& entry : entries_) entry.second.offset = offsets[index++];
     used_ = live_;
   }
 };
