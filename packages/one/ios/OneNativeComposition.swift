@@ -64,20 +64,17 @@ struct OneNativeMeasuredStandalone<Content: View>: View {
 // update pass; a UIKit-side measurement would need explicit scheduling. composed, the
 // parent measures it instead.
 extension View {
-  @ViewBuilder func oneNativeMeasured(
+  func oneNativeMeasured(
     _ standalone: Bool, _ onHeight: ((CGFloat) -> Void)?
   ) -> some View {
-    if standalone {
-      self
-        .fixedSize(horizontal: false, vertical: true)
-        .onGeometryChange(for: CGFloat.self) { proxy in
-          proxy.size.height
-        } action: { height in
-          onHeight?(height)
-        }
-    } else {
-      self
-    }
+    // changing measurement keeps the same subtree identity and its state.
+    self
+      .fixedSize(horizontal: false, vertical: standalone)
+      .onGeometryChange(for: CGFloat.self) { proxy in
+        standalone ? proxy.size.height : 0
+      } action: { height in
+        if standalone { onHeight?(height) }
+      }
   }
 
   @ViewBuilder func oneNativeScheme(_ standalone: Bool, _ scheme: ColorScheme) -> some View {
