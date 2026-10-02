@@ -20,6 +20,10 @@ export async function transformHermesClasses(
     babelrc: false,
     configFile: false,
     sourceMaps,
+    // the caller composes stage maps itself; a file's own sourceMappingURL
+    // composed here would give the stage map several sources
+    // @ts-expect-error @types/babel__core omits false, which babel accepts
+    inputSourceMap: false,
     parserOpts: { plugins: ['jsx'] },
     // Legacy Hermes hoists lexical names, including in class-free functions.
     // Lower block scope so minification cannot shadow parameters or constructors.
