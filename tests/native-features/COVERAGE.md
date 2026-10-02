@@ -104,7 +104,6 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
 | `One.iOS.ProtectedStore` | protected-store | n/a |  |
-| `One.Storage` | storage, app-intents | storage |  |
 | `One.iOS.KeepAwake` | keep-awake | n/a |  |
 | `One.iOS.Print` | print | n/a |  |
 | `One.iOS.StoreReview` | store-review | n/a |  |
@@ -213,6 +212,7 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.ImagePicker` | image-picker, camera-preview | image-picker |  |
 | `One.DocumentPicker` | apple-file | missing | Android fixture exists, no suite opens it |
 | `One.SecureStore` | secure-store | secure-store |  |
+| `One.Storage` | storage, app-intents | storage |  |
 | `One.Speech` | speech | speech |  |
 | `One.Updates` | updates | updates |  |
 | `useSizeClass` | missing | missing | fixture exists, no suite opens it |
