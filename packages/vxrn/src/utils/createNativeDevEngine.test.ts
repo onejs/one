@@ -2003,6 +2003,38 @@ globalThis.minifyProbe = describeHeader()`
 })
 
 describe('native production assets', () => {
+  it.each(['ios', 'android'] as const)('preserves CommonJS package main exports on %s', async (platform) => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-cjs-main-'))
+    try {
+      const directory = join(root, 'node_modules', 'native-punycode')
+      await mkdir(directory, { recursive: true })
+      await writeFile(
+        join(directory, 'package.json'),
+        JSON.stringify({ name: 'native-punycode', main: './cjs.js', module: './esm.mjs' })
+      )
+      await writeFile(
+        join(directory, 'cjs.js'),
+        `module.exports = { ucs2: { decode: value => Array.from(value) } }`
+      )
+      await writeFile(
+        join(directory, 'esm.mjs'),
+        `export default { ucs2: { decode: value => Array.from(value) } }`
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `import imported from 'native-punycode'
+         const required = require('native-punycode')
+         globalThis.decoded = [required.ucs2.decode('ab').join(','), imported.ucs2.decode('cd').join(',')]`
+      )
+      const result = await buildNativeBundle({ root, platform, entryFile: 'entry.js' })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'decoded')).toEqual(['a,b', 'c,d'])
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it('uses browser fallbacks and mappings after React Native overrides', async () => {
     const root = await mkdtemp(join(tmpdir(), 'vxrn-native-browser-'))
     try {
