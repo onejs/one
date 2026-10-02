@@ -80,8 +80,7 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneProtectedStore" }
     },
     "OneStorage": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneStorage" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneStorage" }
+      "all": { "language": "c++", "implementationClassName": "HybridOneStorage" }
     },
     "OneKeepAwake": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneKeepAwake" }

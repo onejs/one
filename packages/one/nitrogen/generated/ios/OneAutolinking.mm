@@ -28,7 +28,7 @@
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
-#include "HybridOneStorageSpecSwift.hpp"
+#include "HybridOneStorage.hpp"
 #include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOnePrintSpecSwift.hpp"
 #include "HybridOneStoreReviewSpecSwift.hpp"
@@ -193,8 +193,10 @@
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneStorage",
     []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneStorageSpec> hybridObject = One::OneAutolinking::createOneStorage();
-      return hybridObject;
+      static_assert(std::is_default_constructible_v<HybridOneStorage>,
+                    "The HybridObject \"HybridOneStorage\" is not default-constructible! "
+                    "Create a public constructor that takes zero arguments to be able to autolink this HybridObject.");
+      return std::make_shared<HybridOneStorage>();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
