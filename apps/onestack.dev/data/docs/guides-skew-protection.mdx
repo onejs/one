@@ -124,10 +124,10 @@ If you need custom cache behavior, set headers in your loader or middleware:
 ```tsx
 import { setResponseHeaders } from 'one'
 
-export function loader() {
+export async function loader() {
   // cache for 5 minutes at the edge
-  setResponseHeaders({
-    'cache-control': 'public, s-maxage=300'
+  await setResponseHeaders((headers) => {
+    headers.set('cache-control', 'public, s-maxage=300')
   })
   return { data: '...' }
 }

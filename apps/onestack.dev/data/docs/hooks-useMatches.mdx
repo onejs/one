@@ -93,7 +93,7 @@ Each match in the array has this shape:
 interface RouteMatch {
   routeId: string      // e.g., './docs/_layout.tsx'
   pathname: string     // e.g., '/docs/intro'
-  params: Record<string, string>  // URL params like { slug: 'intro' }
+  params: Record<string, string | string[]>  // URL params like { slug: 'intro' }
   loaderData?: unknown // data from the route's loader
 }
 ```

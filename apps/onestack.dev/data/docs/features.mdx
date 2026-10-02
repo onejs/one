@@ -23,7 +23,7 @@ Out of the box, the One Vite plugin does the following:
 - Enables [`?imagedata` imports](/docs/guides-images) for automatic image dimensions and blur placeholders
 - Supports [`.inline.css` files](/docs/guides-css#inline-css-inlinecss) to inline critical CSS and prioritize layout CSS before scripts
 - Configures native to resolve "react-native" export field in package.json
-- Enforces [environment guard imports](/docs/environment-guards) (`server-only`, `client-only`, `native-only`, `web-only`) that prevent modules from being used in the wrong build environment
+- Enforces [environment guard imports](/docs/configuration#environmentguards) (`server-only`, `client-only`, `native-only`, `web-only`) that prevent modules from being used in the wrong build environment
 - Configures platform-specific extensions `web|server|native|ios|android` for extensions `ts|tsx|js|mjs`, eg `.ios.ts`, `.server.ts`
 - Adds a ssr-css plugin that enables perfect dev-mode CSS on first load, matching production
 - Configures a wide variety of optimizeDeps presets for React Native library compatibility
@@ -77,13 +77,13 @@ Out of the box, the One Vite plugin does the following:
 - Adds a [Redirect component](/docs/components-Redirect)
 - Supports [middleware](/docs/routing-middlewares) for request interception and shared context
 - [Deploy to Vercel or Cloudflare](/docs/guides-deployment) workers with a single config option
-- Automatic [sitemap generation](/docs/configuration#sitemap) with per-route overrides
-- [SPA shell rendering](/docs/configuration#webrenderrootlayout) - render the root layout into HTML for SPA pages so users see nav, head tags, and CSS immediately while page content loads client-side
+- Automatic [sitemap generation](/docs/configuration#websitemap) with per-route overrides
+- [SPA shell rendering](/docs/render-modes#layout-render-modes) - render the root layout into HTML for SPA pages so users see nav, head tags, and CSS immediately while page content loads client-side
 
 ## Devtools
 
 - **[Dev Tools Panel](/docs/dev-tools)** - Press Alt+Space to open the spotlight menu with SEO Preview, Route Info, Loader Timing, and Errors panels
-- **[Source Inspector](/docs/dev-tools#source-inspector)** - Hold Shift+Cmd (Mac) or Shift+Ctrl (Windows/Linux) and click any element to open in your editor
+- **[Source Inspector](/docs/dev-tools#source-inspector)** - Hold Option (Mac) or Alt (Windows/Linux) and click any element to open in your editor
 
 ## Build
 
