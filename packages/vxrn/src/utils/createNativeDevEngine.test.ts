@@ -2047,6 +2047,13 @@ describe('native production assets', () => {
         },
         fallback: { main: './node.js', browser: './browser.js' },
         conditional: { exports: { browser: './browser.js', default: './node.js' } },
+        both: {
+          exports: {
+            browser: './browser.js',
+            'react-native': './native.js',
+            default: './node.js',
+          },
+        },
         native: {
           main: './node.js',
           browser: './browser.js',
@@ -2066,7 +2073,7 @@ describe('native production assets', () => {
       }
       await writeFile(
         join(root, 'entry.js'),
-        `globalThis.targets = [require('mapped'), require('fallback'), require('conditional'), require('native'), require('identity')]`
+        `globalThis.targets = [require('mapped'), require('fallback'), require('conditional'), require('both'), require('native'), require('identity')]`
       )
       const result = await buildNativeBundle({
         root,
@@ -2079,6 +2086,7 @@ describe('native production assets', () => {
         'browser',
         'browser',
         'browser',
+        'native',
         'native',
         'node',
       ])
