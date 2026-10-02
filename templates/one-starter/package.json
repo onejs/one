@@ -18,7 +18,7 @@
     "backend": "bun run env:dev orez --data-dir=.orez --pg-port=5533 --zero-port=4948 --on-db-ready=\"bun run migrate\"",
     "migrate": "bun run env:dev bun scripts/migrate/build.ts && bun run env:dev bun -e \"const { main } = await import('./src/database/migrate-dist.js'); await main()\"",
     "db:generate": "drizzle-kit generate --config src/database/drizzle.config.ts",
-    "zero:generate": "on-zero generate",
+    "zero:generate": "on-zero generate && drizzle-zero generate --config src/database/drizzle-zero.config.ts --output src/data/generated/schema.ts --force --suppress-defaults-warning",
     "env:dev": "NODE_ENV=development dotenvx run -f .env.development --",
     "typecheck": "tsc --noEmit",
     "check": "bun run typecheck && bun run lint",
@@ -48,7 +48,6 @@
     "@vxrn/color-scheme": "2.0.0-beta.159.1",
     "better-auth": "1.6.23",
     "drizzle-orm": "1.0.0-beta.9-e89174b",
-    "drizzle-zero-sqlite": "^0.6.0",
     "on-zero": "0.16.19-canary.1790768320875",
     "one": "2.0.0-beta.159.1",
     "orez-sync-executor": "0.13.2",
@@ -66,7 +65,8 @@
     "react-native-worklets": "~0.12.2",
     "tamagui": "3.0.0-beta.1540.1",
     "valibot": "^1.1.0",
-    "vxrn": "2.0.0-beta.159.1"
+    "vxrn": "2.0.0-beta.159.1",
+    "drizzle-zero": "1.0.0-beta.1"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.44.1",
@@ -100,7 +100,8 @@
   "trustedDependencies": [
     "@rocicorp/zero-sqlite3",
     "oxc-parser",
-    "sharp"
+    "sharp",
+    "esbuild"
   ],
   "upgradeSets": {
     "takeout": [
