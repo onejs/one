@@ -2750,7 +2750,7 @@ async function generateKotlinSources({ root, dest }: { root: string; dest: strin
     FSExtra.mkdirSync(target, { recursive: true })
     FSExtra.copyFileSync(source, path.join(target, path.basename(source)))
     const contract = writeNativeSourceDeclaration(source)
-    if (contract.modules.length > 0) {
+    if (contract.modules.length > 0 || contract.views.length > 0) {
       FSExtra.writeFileSync(
         path.join(target, `OneNativeSource_${id}.kt`),
         renderKotlinSourceGlue(id, contract).source
