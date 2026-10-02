@@ -31,12 +31,8 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     private var committedContractHash by mutableStateOf("")
     private var committedProps by mutableStateOf("{}")
 
-    private var intrinsicWidth = false
-    private var intrinsicHeight = false
-    private var measuresIntrinsicWidth: Boolean? = null
     private val contentLayout = Runnable { layoutComposeContent() }
 
-    private var reportedIntrinsicWidth: Boolean? = null
     private var reportedWidth = -1.0
     private var reportedHeight = -1.0
 
@@ -104,19 +100,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         }
     }
 
-    internal fun setIntrinsicWidth(value: Boolean) {
-        if (intrinsicWidth == value) return
-        intrinsicWidth = value
-        measuresIntrinsicWidth = null
-        requestLayout()
-    }
-
-    internal fun setIntrinsicHeight(value: Boolean) {
-        if (intrinsicHeight == value) return
-        intrinsicHeight = value
-        requestLayout()
-    }
-
     override fun requestLayout() {
         super.requestLayout()
         if (isAttachedToWindow) {
@@ -145,15 +128,13 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         sizeView: String,
         widthPx: Int,
         heightPx: Int,
-        widthIsIntrinsic: Boolean,
     ) {
         if (!isAttachedToWindow || sizeSource != committedSource || sizeView != committedView) return
         val density = resources.displayMetrics.density.toDouble()
         if (density <= 0.0) return
         val widthDp = widthPx / density
         val heightDp = heightPx / density
-        if (widthDp == reportedWidth && heightDp == reportedHeight && widthIsIntrinsic == reportedIntrinsicWidth) return
-        reportedIntrinsicWidth = widthIsIntrinsic
+        if (widthDp == reportedWidth && heightDp == reportedHeight) return
         reportedWidth = widthDp
         reportedHeight = heightDp
         val reactContext = UIManagerHelper.getReactContext(this) ?: return
@@ -164,7 +145,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                 viewTag = id,
                 width = widthDp,
                 height = heightDp,
-                intrinsicWidth = widthIsIntrinsic,
             )
         )
     }
@@ -181,24 +161,31 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     private fun layoutComposeContent() {
         if (!composeView.isAttachedToWindow || committedSource.isEmpty() || committedView.isEmpty()) return
-        // a nonzero initial yoga width can come from the parent's default stretch.
-        val widthIsIntrinsic = measuresIntrinsicWidth ?: (intrinsicWidth && width == 0).also {
-            measuresIntrinsicWidth = it
-        }
+        // measure content before letting yoga apply the outer constraints.
         composeView.measure(
-            if (widthIsIntrinsic) MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
-            else MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-            if (intrinsicHeight) MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
-            else MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
         )
-        composeView.layout(0, 0, composeView.measuredWidth, composeView.measuredHeight)
+        val naturalWidth = composeView.measuredWidth
+        var naturalHeight = composeView.measuredHeight
+        if (width > 0 && width != naturalWidth) {
+            composeView.measure(
+                MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+            )
+            naturalHeight = composeView.measuredHeight
+        }
         onContentSizeChanged(
             committedSource,
             committedView,
-            composeView.measuredWidth,
-            composeView.measuredHeight,
-            widthIsIntrinsic,
+            naturalWidth,
+            naturalHeight,
         )
+        composeView.measure(
+            MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+        )
+        composeView.layout(0, 0, width, height)
     }
 
     override fun onDetachedFromWindow() {
@@ -209,10 +196,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     internal fun resetForReuse() {
         removeCallbacks(contentLayout)
-        intrinsicWidth = false
-        intrinsicHeight = false
-        measuresIntrinsicWidth = null
-        reportedIntrinsicWidth = null
         reportedWidth = -1.0
         reportedHeight = -1.0
         committedSource = ""

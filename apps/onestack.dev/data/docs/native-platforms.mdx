@@ -83,6 +83,11 @@ Use React Native `style` for a native host's outer bounds, and `swiftStyle` or
 content-sized parent and a filling child depend on each other's size.
 Scrolling and presentation content needs a defined viewport.
 
+Imported Kotlin composables contribute their natural content size to the React
+Native layout. The surrounding Yoga container retains parent stretch, flex,
+and minimum or maximum dimensions. Content height updates when composable
+props or Kotlin state changes.
+
 Keep labels, accessibility props, and native control state aligned with what
 the user sees. Verify the actual platform screen, including Dynamic Type,
 keyboard, safe areas, dark appearance, and the OS versions you support. A web
