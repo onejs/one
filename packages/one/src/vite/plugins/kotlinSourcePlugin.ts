@@ -32,8 +32,20 @@ export function kotlinSourcePlugin(platform: 'ios' | 'android', root: string): P
             `${method.name}: (...args) => callNativeSource(${JSON.stringify(`${sourceId}.${module.name}`)}, ${JSON.stringify(method.name)}, args, ${JSON.stringify(hash)})`
           ).join(',')}})`
         ).join('\n')
-        if (!exports) throw new Error(`[one] ${id} has no OneModule object to import`)
-        return `import { callNativeSource } from ${JSON.stringify(nativeSource)}\n${exports}\n`
+        // each public @Composable function imports as a component of the kotlin host
+        const viewHost = join(oneRoot, 'dist/esm/platform/native-source/view.native.js')
+        const views = contract.views.map((view) =>
+          `export function ${view.name}(props) { return createElement(KotlinSourceView, { source: ${JSON.stringify(sourceId)}, view: ${JSON.stringify(view.name)}, contractHash: ${JSON.stringify(hash)}, props }) }`
+        ).join('\n')
+        if (!exports && !views) {
+          throw new Error(`[one] ${id} has no OneModule object or public @Composable function to import`)
+        }
+        return [
+          exports && `import { callNativeSource } from ${JSON.stringify(nativeSource)}`,
+          views && `import { createElement } from 'react'\nimport { KotlinSourceView } from ${JSON.stringify(viewHost)}`,
+          exports,
+          views,
+        ].filter(Boolean).join('\n') + '\n'
       },
     },
   }

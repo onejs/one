@@ -15,10 +15,25 @@ export interface NativeSourceModule {
     name: string;
     methods: NativeSourceMethod[];
 }
+export interface NativeSourceViewProp {
+    name: string;
+    type: string;
+    nativeType: string;
+    optional: boolean;
+    callback: {
+        type: string;
+        nativeType: string;
+    }[] | null;
+}
+export interface NativeSourceView {
+    name: string;
+    props: NativeSourceViewProp[];
+}
 export interface NativeSourceContract {
     language: 'swift' | 'kotlin';
     packageName?: string;
     modules: NativeSourceModule[];
+    views: NativeSourceView[];
     defaultView: boolean;
     hash: string;
     declaration: string;
