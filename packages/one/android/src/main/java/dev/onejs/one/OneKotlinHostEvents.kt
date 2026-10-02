@@ -26,6 +26,7 @@ internal class OneKotlinHostSizeEvent(
     viewTag: Int,
     private val width: Double,
     private val height: Double,
+    private val intrinsicWidth: Boolean,
 ) : Event<OneKotlinHostSizeEvent>(surfaceId, viewTag) {
     override fun getEventName(): String = "topHostSizeChange"
 
@@ -35,5 +36,6 @@ internal class OneKotlinHostSizeEvent(
         Arguments.createMap().apply {
             putDouble("width", width)
             putDouble("height", height)
+            putBoolean("intrinsicWidth", intrinsicWidth)
         }
 }
