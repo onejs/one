@@ -1258,6 +1258,25 @@ describe('getHermesSWCIncludes', () => {
     expect(values).toEqual([0, 1])
   })
 
+  it.each([true, false])('preserves class-free parameter shadowing for Hermes (dev=%s)', async (dev) => {
+    const plugin = hermesCompatSWCPlugin(dev)
+    const result = await Reflect.apply(plugin.transform as Function, undefined, [
+      `function createStore(config) {
+         if (!globalThis.factory) {
+           const config = { install() { globalThis.factory = value => value.id } }
+           config.install()
+         }
+         return globalThis.factory(config)
+       }
+       globalThis.__storeId = createStore({id: 'device'})`,
+      '/project/class-free-storage.js',
+    ])
+    expect(result.code).not.toMatch(/\b(?:let|const)\s/)
+    const context: any = {}
+    runInNewContext(result.code, context)
+    expect(context.__storeId).toBe('device')
+  })
+
   it('lowers classes in large prebuilt modules', async () => {
     const plugin = hermesCompatSWCPlugin(false)
     const result = await Reflect.apply(plugin.transform as Function, undefined, [
