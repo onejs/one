@@ -217,8 +217,8 @@ function xmlUnescape(value: string) {
 
 function attributes(source: string) {
   const result: Record<string, string> = {}
-  const pattern = /([A-Za-z_:][A-Za-z0-9_.:-]*)\s*=\s*"([^"]*)"/g
-  for (const match of source.matchAll(pattern)) result[match[1]] = xmlUnescape(match[2])
+  const pattern = /([A-Za-z_:][A-Za-z0-9_.:-]*)\s*=\s*(["'])(.*?)\2/g
+  for (const match of source.matchAll(pattern)) result[match[1]] = xmlUnescape(match[3])
   return result
 }
 
