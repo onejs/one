@@ -171,7 +171,7 @@ open class OneShareComposeViewController: SLComposeServiceViewController {
         self.destinationSummarySnapshot = "Loading…"
         self.reloadConfigurationItems()
         self.refreshTask = Task {
-          await coordinator?.load(attachments: self.initialAttachments, accompanyingText: self.initialText).value
+          await self.coordinator?.load(attachments: self.initialAttachments, accompanyingText: self.initialText).value
           await self.refresh()
         }
       } else { self.presentDestinationPicker() }
