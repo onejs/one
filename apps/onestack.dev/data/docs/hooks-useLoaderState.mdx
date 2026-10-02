@@ -251,7 +251,7 @@ export default function Page() {
 
 `useLoaderState` works consistently across all rendering modes:
 
-- **SPA (`+spa`)**: Loaders execute on the client, refetch triggers client-side fetching
+- **SPA (`+spa`)**: Loaders execute on the server for each request, refetch triggers client-side fetching
 - **SSR (`+ssr`)**: Initial load on server, refetch executes on client
 - **SSG (`+ssg`)**: Build-time data as initial state, refetch provides fresh client data
 

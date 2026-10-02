@@ -2,7 +2,7 @@
 title: Routing
 ---
 
-The `app` directory is where One handles universal file system routing. Every file you create in it will be turned into a route, except for files named `_layout` or `_middleware` (or files that match patterns in your [`ignoredRouteFiles`](/docs/configuration#routerignoredRouteFiles) configuration, if you have that). One only supports file system routes at this time, but we have a [discussion](https://github.com/onejs/one/discussions/108) for those who want to help us figure out a configuration-based approach.
+The `app` directory is where One handles universal file system routing. Every file you create in it will be turned into a route, except for files named `_layout` or `_middleware` (or files that match patterns in your [`ignoredRouteFiles`](/docs/configuration#routerignoredroutefiles) configuration, if you have that). One only supports file system routes at this time, but we have a [discussion](https://github.com/onejs/one/discussions/108) for those who want to help us figure out a configuration-based approach.
 
 Here's an example:
 
@@ -50,7 +50,7 @@ export default function HomePage() {
 }
 ```
 
-All `index` files match against `/`, so `app/index.tsx` matches to your root `/` route. You can give your page a name as well, for example `app/about.tsx` will the `/about` route.
+All `index` files match against `/`, so `app/index.tsx` matches to your root `/` route. You can give your page a name as well, for example `app/about.tsx` will match the `/about` route.
 
 ### Dynamic Routes
 
@@ -134,7 +134,7 @@ You can choose a rendering strategy on a per-page basis using a filename suffix.
 - `route+ssg.tsx` - Matches `/route`, but will render the page as a SSG route.
 - `route+spa.tsx` - Matches `/route`, but will render the page as a SPA route.
 - `route+ssr.tsx` - Matches `/route`, but will render the page as a SSR route.
-- `route+api.tsx` - Matches `/route`, but will render the page as an API route.
+- `route+api.ts` - Matches `/route`, but will render the page as an API route.
 
 Layouts also support render mode suffixes (`_layout+ssg.tsx`, `_layout+ssr.tsx`). This is especially useful for SPA-heavy apps - when a parent layout has SSG or SSR mode, the layout shell renders on the server while page content remains client-rendered. See [Layout Render Modes](/docs/routing-layouts#layout-render-modes) for details.
 

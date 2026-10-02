@@ -10,7 +10,8 @@ Native iOS 18+ zoom transitions. The destination screen expands from a source el
 </Notice>
 
 ```tsx
-import { One } from 'one'
+import { One, Stack, useParams, useRouter } from 'one'
+import { Pressable, Text, View } from 'react-native'
 
 // source screen: wrap the tappable element
 function ListScreen() {
