@@ -2,12 +2,9 @@ package dev.onejs.one
 
 import android.content.Context
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.facebook.react.uimanager.UIManagerHelper
@@ -34,6 +31,13 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     private var committedContractHash by mutableStateOf("")
     private var committedProps by mutableStateOf("{}")
 
+    private var intrinsicWidth = false
+    private var intrinsicHeight = false
+    private var measuresIntrinsicWidth: Boolean? = null
+    private var hasYogaLayout = false
+    private val contentLayout = Runnable { layoutComposeContent() }
+
+    private var reportedIntrinsicWidth: Boolean? = null
     private var reportedWidth = -1.0
     private var reportedHeight = -1.0
 
@@ -53,20 +57,13 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                         "native view $source.$view changed (contract hash mismatch: expected $hash, got ${dispatch.contractHash}); rebuild the app"
                     )
                 }
-                Box(
-                    modifier =
-                        Modifier.onSizeChanged { size ->
-                            onContentSizeChanged(source, view, size.width, size.height)
-                        }
-                ) {
-                    dispatch.Content(
-                        view = view,
-                        propsJson = props,
-                        emit = { eventName, eventArgs ->
-                            onHostEvent(source, view, eventName, eventArgs)
-                        },
-                    )
-                }
+                dispatch.Content(
+                    view = view,
+                    propsJson = props,
+                    emit = { eventName, eventArgs ->
+                        onHostEvent(source, view, eventName, eventArgs)
+                    },
+                )
             }
         }
     }
@@ -104,11 +101,33 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
             committedView = nextView
             committedContractHash = nextHash
             committedProps = nextProps
+            requestLayout()
+        }
+    }
+
+    internal fun setIntrinsicWidth(value: Boolean) {
+        if (intrinsicWidth == value) return
+        intrinsicWidth = value
+        measuresIntrinsicWidth = null
+        requestLayout()
+    }
+
+    internal fun setIntrinsicHeight(value: Boolean) {
+        if (intrinsicHeight == value) return
+        intrinsicHeight = value
+        requestLayout()
+    }
+
+    override fun requestLayout() {
+        super.requestLayout()
+        if (hasYogaLayout) {
+            removeCallbacks(contentLayout)
+            post(contentLayout)
         }
     }
 
     private fun onHostEvent(eventSource: String, eventView: String, name: String, args: String) {
-        // Discard events if detached, or if source/view changed to prevent delivering stale events
+        // discard events from a detached or replaced source/view
         if (!isAttachedToWindow || eventSource != committedSource || eventView != committedView) return
         val reactContext = UIManagerHelper.getReactContext(this) ?: return
         val dispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, id) ?: return
@@ -122,13 +141,20 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         )
     }
 
-    private fun onContentSizeChanged(sizeSource: String, sizeView: String, widthPx: Int, heightPx: Int) {
+    private fun onContentSizeChanged(
+        sizeSource: String,
+        sizeView: String,
+        widthPx: Int,
+        heightPx: Int,
+        widthIsIntrinsic: Boolean,
+    ) {
         if (!isAttachedToWindow || sizeSource != committedSource || sizeView != committedView) return
         val density = resources.displayMetrics.density.toDouble()
         if (density <= 0.0) return
         val widthDp = widthPx / density
         val heightDp = heightPx / density
-        if (widthDp == reportedWidth && heightDp == reportedHeight) return
+        if (widthDp == reportedWidth && heightDp == reportedHeight && widthIsIntrinsic == reportedIntrinsicWidth) return
+        reportedIntrinsicWidth = widthIsIntrinsic
         reportedWidth = widthDp
         reportedHeight = heightDp
         val reactContext = UIManagerHelper.getReactContext(this) ?: return
@@ -139,29 +165,57 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
                 viewTag = id,
                 width = widthDp,
                 height = heightDp,
+                intrinsicWidth = widthIsIntrinsic,
             )
         )
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        composeView.layout(0, 0, right - left, bottom - top)
+        hasYogaLayout = true
+        layoutComposeContent()
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        composeView.measure(widthMeasureSpec, heightMeasureSpec)
-        setMeasuredDimension(
-            resolveSize(composeView.measuredWidth, widthMeasureSpec),
-            resolveSize(composeView.measuredHeight, heightMeasureSpec),
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        post(contentLayout)
+    }
+
+    private fun layoutComposeContent() {
+        if (!hasYogaLayout || !composeView.isAttachedToWindow || committedSource.isEmpty() || committedView.isEmpty()) return
+        // a nonzero initial yoga width can come from the parent's default stretch.
+        val widthIsIntrinsic = measuresIntrinsicWidth ?: (intrinsicWidth && width == 0).also {
+            measuresIntrinsicWidth = it
+        }
+        composeView.measure(
+            if (widthIsIntrinsic) MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
+            else MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+            if (intrinsicHeight) MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
+            else MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+        )
+        composeView.layout(0, 0, composeView.measuredWidth, composeView.measuredHeight)
+        onContentSizeChanged(
+            committedSource,
+            committedView,
+            composeView.measuredWidth,
+            composeView.measuredHeight,
+            widthIsIntrinsic,
         )
     }
 
     override fun onDetachedFromWindow() {
+        removeCallbacks(contentLayout)
         super.onDetachedFromWindow()
         composeView.disposeComposition()
     }
 
     internal fun resetForReuse() {
+        removeCallbacks(contentLayout)
+        intrinsicWidth = false
+        intrinsicHeight = false
+        measuresIntrinsicWidth = null
+        hasYogaLayout = false
+        reportedIntrinsicWidth = null
         reportedWidth = -1.0
         reportedHeight = -1.0
         committedSource = ""
