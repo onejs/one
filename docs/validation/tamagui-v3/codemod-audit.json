@@ -1,0 +1,685 @@
+[
+  {
+    "file": "app/index.tsx",
+    "line": 58,
+    "label": "<Spacer>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$gtSm.size is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "explicit responsive variant clauses; retained physical font/Spacer values"
+    ]
+  },
+  {
+    "file": "app/index.tsx",
+    "line": 85,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.jc is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "app/index.tsx",
+    "line": 209,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.fd is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "app/index.tsx",
+    "line": 238,
+    "label": "<PrettyText>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.size is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "explicit responsive variant clauses; retained physical font/Spacer values"
+    ]
+  },
+  {
+    "file": "app/index.tsx",
+    "line": 277,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.fd is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "app/index.tsx",
+    "line": 327,
+    "label": "<PrettyText>",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `gray11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "app/index.tsx",
+    "line": 457,
+    "label": "<Paragraph>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.size is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "explicit responsive variant clauses; retained physical font/Spacer values"
+    ]
+  },
+  {
+    "file": "app/index.tsx",
+    "line": 545,
+    "label": "<Text>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.ls is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "components/Community.tsx",
+    "line": 20,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$xs.fd is not a style property, so a flat value cannot carry it"
+      },
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$xs.ai is not a style property, so a flat value cannot carry it"
+      },
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$xs.jc is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "components/Hint.tsx",
+    "line": 26,
+    "label": "<Tooltip.Trigger>",
+    "flags": [
+      {
+        "code": "dynamic-legacy-condition",
+        "detail": "property \"color\" is not a static assignment"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "preserved conditional value in a flat dynamic program"
+    ]
+  },
+  {
+    "file": "components/Team.tsx",
+    "line": 8,
+    "label": "<PrettyText>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.ta is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "components/TopNav.tsx",
+    "line": 43,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$gtMd.jc is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "components/TopNav.tsx",
+    "line": 98,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.dsp is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "components/TopNav.tsx",
+    "line": 114,
+    "label": "<View>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.dsp is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "components/typography.tsx",
+    "line": 18,
+    "label": "styled(PrettyText, …)",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$gtSm.size is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `gray11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "explicit responsive variant clauses; retained physical font/Spacer values",
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/Badge.tsx",
+    "line": 14,
+    "label": "styled(Paragraph, …) variants.variant.red",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `red7`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      },
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `red11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/Badge.tsx",
+    "line": 19,
+    "label": "styled(Paragraph, …) variants.variant.blue",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `blue7`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      },
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `blue11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/Badge.tsx",
+    "line": 24,
+    "label": "styled(Paragraph, …) variants.variant.green",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `green7`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      },
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `green11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/Badge.tsx",
+    "line": 29,
+    "label": "styled(Paragraph, …) variants.variant.purple",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `purple7`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      },
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `purple11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/Badge.tsx",
+    "line": 34,
+    "label": "styled(Paragraph, …) variants.variant.pink",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `gray3`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      },
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `yellow11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/Badge.tsx",
+    "line": 39,
+    "label": "styled(Paragraph, …) variants.variant.orange",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `orange7`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      },
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `orange11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/DocsLayout.tsx",
+    "line": 60,
+    "label": "<YStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$gtMd.dsp is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/docs/DocsLayout.tsx",
+    "line": 138,
+    "label": "<SizableText>",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `gray10`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/DocsLayout.tsx",
+    "line": 174,
+    "label": "<Paragraph>",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `gray10`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/DocsLayout.tsx",
+    "line": 195,
+    "label": "<Paragraph>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "hoverStyle.o is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/docs/DocsLayout.tsx",
+    "line": 45,
+    "label": "<View animateOnly>",
+    "flags": [
+      {
+        "code": "unsupported-legacy-value",
+        "detail": "the removed `animateOnly` has no `transition` next to it; spell it as `properties` wherever the transition is authored"
+      }
+    ],
+    "resolution": [
+      "removed animateOnly from static view; transition properties live at animation boundaries"
+    ]
+  },
+  {
+    "file": "features/docs/DocsRightSidebar.tsx",
+    "line": 30,
+    "label": "<YStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$gtMd.pe is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/docs/DocsRouteNavItem.tsx",
+    "line": 63,
+    "label": "<SizableText>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "hoverStyle.o is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/docs/MDXComponents.tsx",
+    "line": 32,
+    "label": "<Paragraph>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.size is not a style property, so a flat value cannot carry it"
+      },
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.fow is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "explicit responsive variant clauses; retained physical font/Spacer values",
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/docs/MDXComponents.tsx",
+    "line": 160,
+    "label": "<Text>",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `green5`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      },
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `green11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/PropsTable.tsx",
+    "line": 96,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$xs.ai is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/docs/PropsTable.tsx",
+    "line": 133,
+    "label": "<View>",
+    "flags": [],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "bg preserves `red2`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/docs/RovingTabs.tsx",
+    "line": 198,
+    "label": "<YStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "enterStyle.o is not a style property, so a flat value cannot carry it"
+      },
+      {
+        "code": "non-style-condition-entry",
+        "detail": "exitStyle.o is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/site/Footer.tsx",
+    "line": 8,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.fd is not a style property, so a flat value cannot carry it"
+      },
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.jc is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/site/Footer.tsx",
+    "line": 18,
+    "label": "<XStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.fd is not a style property, so a flat value cannot carry it"
+      },
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.jc is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/site/HeaderMenu.tsx",
+    "line": 55,
+    "label": "<YStack>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$gtMd.dsp is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/site/HeaderMenu.tsx",
+    "line": 158,
+    "label": "<Popover.Content>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "enterStyle.o is not a style property, so a flat value cannot carry it"
+      },
+      {
+        "code": "non-style-condition-entry",
+        "detail": "exitStyle.o is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/site/SocialLinksRow.tsx",
+    "line": 53,
+    "label": "<View>",
+    "flags": [
+      {
+        "code": "container-group-not-declared",
+        "detail": "group \"card\" is not declared in this file, so the \"@…\" query this condition becomes has no container to match; add \"container\" to the element declaring the group"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "declared named card containers on existing ancestors, retaining containerType normal"
+    ]
+  },
+  {
+    "file": "features/site/SocialLinksRow.tsx",
+    "line": 84,
+    "label": "<SizableText>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "hoverStyle.o is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  },
+  {
+    "file": "features/site/SubTitle.tsx",
+    "line": 14,
+    "label": "<H3>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$sm.size is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [
+      {
+        "code": "legacy-palette-token",
+        "detail": "color preserves `gray11`, which @tamagui/config/v6 does not define; choose an absolute palette token or an adaptive color-N value"
+      }
+    ],
+    "resolution": [
+      "explicit responsive variant clauses; retained physical font/Spacer values",
+      "retained exact supported v5 palette values; no v6 remap"
+    ]
+  },
+  {
+    "file": "features/theme/ThemeToggleButton.tsx",
+    "line": 32,
+    "label": "<Paragraph>",
+    "flags": [
+      {
+        "code": "non-style-condition-entry",
+        "detail": "$group-hover.o is not a style property, so a flat value cannot carry it"
+      }
+    ],
+    "warnings": [],
+    "resolution": [
+      "normalized shorthand to canonical style property, merged condition program, retained spread precedence"
+    ]
+  }
+]
