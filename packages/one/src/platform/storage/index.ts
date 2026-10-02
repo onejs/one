@@ -1,22 +1,22 @@
-import { assertStorageKey, assertStorageValue } from './validate'
+import { invalidKey, invalidValue } from './validate'
 
 // web entry: the browser's localStorage, under keys only this api reads, so
 // getAllKeys lists this api's entries and nothing else the page stored.
 const prefix = 'One.Storage.'
 
 function getItem(key: string): string | null {
-  assertStorageKey(key, 'Storage.getItem')
+  if (typeof key !== 'string' || key === '') invalidKey('Storage.getItem')
   return localStorage.getItem(prefix + key)
 }
 
 function setItem(key: string, value: string): void {
-  assertStorageKey(key, 'Storage.setItem')
-  assertStorageValue(value, 'Storage.setItem')
+  if (typeof key !== 'string' || key === '') invalidKey('Storage.setItem')
+  if (typeof value !== 'string') invalidValue('Storage.setItem')
   localStorage.setItem(prefix + key, value)
 }
 
 function removeItem(key: string): void {
-  assertStorageKey(key, 'Storage.removeItem')
+  if (typeof key !== 'string' || key === '') invalidKey('Storage.removeItem')
   localStorage.removeItem(prefix + key)
 }
 

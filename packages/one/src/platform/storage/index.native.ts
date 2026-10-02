@@ -1,40 +1,47 @@
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { OneStorage } from '../specs/OneStorage.nitro'
-import { assertStorageKey, assertStorageValue } from './validate'
+import { invalidKey, invalidValue } from './validate'
 
 // native entry: one process-wide store per app, held in memory and appended to
 // a memory-mapped log on every write (cpp/HybridOneStorage.cpp, shared by iOS
-// and Android). each verb is one jsi call straight into c++.
+// and Android). each verb is one jsi call straight into c++, and everything
+// around it is inline, since any extra js call per verb shows up against the
+// fastest native stores.
 let hybrid: OneStorage | undefined
 
-function native(): OneStorage {
-  return (hybrid ??= NitroModules.createHybridObject<OneStorage>('OneStorage'))
-}
-
 function getItem(key: string): string | null {
-  assertStorageKey(key, 'Storage.getItem')
+  if (typeof key !== 'string' || key === '') invalidKey('Storage.getItem')
   try {
-    return native().getItem(key) ?? null
+    return (
+      (hybrid ??= NitroModules.createHybridObject<OneStorage>('OneStorage')).getItem(
+        key
+      ) ?? null
+    )
   } catch (error) {
     rethrowNativeError(error)
   }
 }
 
 function setItem(key: string, value: string): void {
-  assertStorageKey(key, 'Storage.setItem')
-  assertStorageValue(value, 'Storage.setItem')
+  if (typeof key !== 'string' || key === '') invalidKey('Storage.setItem')
+  if (typeof value !== 'string') invalidValue('Storage.setItem')
   try {
-    native().setItem(key, value)
+    ;(hybrid ??= NitroModules.createHybridObject<OneStorage>('OneStorage')).setItem(
+      key,
+      value
+    )
   } catch (error) {
     rethrowNativeError(error)
   }
 }
 
 function removeItem(key: string): void {
-  assertStorageKey(key, 'Storage.removeItem')
+  if (typeof key !== 'string' || key === '') invalidKey('Storage.removeItem')
   try {
-    native().removeItem(key)
+    ;(hybrid ??= NitroModules.createHybridObject<OneStorage>('OneStorage')).removeItem(
+      key
+    )
   } catch (error) {
     rethrowNativeError(error)
   }
@@ -42,7 +49,8 @@ function removeItem(key: string): void {
 
 function getAllKeys(): string[] {
   try {
-    return native().getAllKeys()
+    return (hybrid ??=
+      NitroModules.createHybridObject<OneStorage>('OneStorage')).getAllKeys()
   } catch (error) {
     rethrowNativeError(error)
   }
