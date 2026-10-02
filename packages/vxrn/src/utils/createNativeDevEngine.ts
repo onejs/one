@@ -306,6 +306,7 @@ function getNativePlugins(
     // loops the earlier lowering steps emit.
     hermesLoopsPlugin(sourceMaps),
     ...userPlugins,
+    nativeDeclarationAliasPlugin(root, platform),
   ].map((plugin: Plugin) =>
     plugin.api?.vxrnNative ? plugin.api.vxrnNative(context) : plugin
   )
@@ -1289,6 +1290,43 @@ export function hmrClientNoopPlugin(): Plugin {
           moduleType: 'js',
         }
       }
+    },
+  }
+}
+
+function nativeDeclarationAliasPlugin(root: string, platform: 'ios' | 'android'): Plugin {
+  const resolvers = new Map<string, import('rolldown/experimental').ResolverFactory>()
+  return {
+    name: 'vxrn:declaration-alias',
+    async resolveId(source, importer, options) {
+      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
+      const resolved = await this.resolve(source, importer, {
+        skipSelf: true,
+        kind: options.kind,
+      })
+      if (!resolved || resolved.external || !/\.d\.[cm]?ts$/.test(resolved.id)) {
+        return resolved
+      }
+      // tsconfig paths can supply types for a package without replacing its
+      // runtime export. Resolve that package with the same native conditions,
+      // but without the declaration alias, and preserve import/require selection.
+      const kind = options.kind === 'require-call' ? 'require' : 'import'
+      let resolver = resolvers.get(kind)
+      if (!resolver) {
+        const { ResolverFactory } = await import('rolldown/experimental')
+        resolver = new ResolverFactory({
+          ...getNativeResolveConfig(platform),
+          conditionNames: ['react-native', kind, 'default'],
+        })
+        resolvers.set(kind, resolver)
+      }
+      const runtime = resolver.sync(importer ? dirname(importer) : root, source)
+      if (!runtime.path || /\.d\.[cm]?ts$/.test(runtime.path)) {
+        this.error(
+          `Native import ${source} resolves to a declaration without a runtime export`
+        )
+      }
+      return this.resolve(runtime.path, importer, { skipSelf: true, kind: options.kind })
     },
   }
 }

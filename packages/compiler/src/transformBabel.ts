@@ -66,6 +66,7 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
   ) {
     if (props.userSetting?.excludeDefaultPlugins) {
       return {
+        caller: getBabelCaller(props),
         ...props.userSetting,
         ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
       }
@@ -135,11 +136,23 @@ const getOptions = (
   if (plugins.length || userBabelConfig) {
     return {
       plugins,
+      caller: getBabelCaller(props),
       ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
     }
   }
 
   return null
+}
+
+function getBabelCaller(props: Props): babel.TransformOptions['caller'] {
+  return {
+    name: 'vxrn',
+    platform:
+      props.environment === 'ios' || props.environment === 'android'
+        ? props.environment
+        : 'web',
+    isDev: props.development,
+  }
 }
 
 /**
@@ -228,6 +241,7 @@ export async function transformBabel(
     // metro (babel-preset-expo) must keep esm instead of rewriting it for metro's runtime
     caller: {
       name: 'vxrn',
+      ...options.caller,
       supportsStaticESM: true,
       supportsDynamicImport: true,
     },
