@@ -2027,7 +2027,7 @@ function copyNativeAssetFiles(
 
 /**
  * SWC transform for Hermes compatibility.
- * Transforms class properties and private fields that Hermes doesn't support.
+ * Lowers classes, lexical bindings, and async syntax for legacy Hermes.
  * Inspired by rollipop's swc-plugin.ts.
  */
 export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin {
@@ -2041,11 +2041,11 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
       // skip files that don't need transformation
       const hasClass = /\bclass(?:\s|\{)/.test(code)
       const hasAsync = code.includes('async')
-      const hasBlockScopedLoop = /\bfor\s*\(\s*(?:const|let)\b/.test(code)
-      if (!hasClass && !hasAsync && !hasBlockScopedLoop) return
+      const hasBlockScopedBinding = /\b(?:const|let)\s/.test(code)
+      if (!hasClass && !hasAsync && !hasBlockScopedBinding) return
       let output: { code: string; map?: any } | undefined
-      // Keep the Oxc limit for other large prebuilt files. Classes and async
-      // lowering have no size exemption: legacy Hermes must parse them too.
+      // Keep the Oxc limit for other large prebuilt files. Class, lexical binding,
+      // and async lowering below have no size exemption for legacy Hermes.
       if (code.length <= 500_000 || hasClass) {
         if (!oxc) oxc = await import('oxc-transform')
         const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
@@ -2066,7 +2066,7 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
           map: sourceMaps ? result.map : undefined,
         }
       }
-      if (hasClass) {
+      if (hasClass || hasBlockScopedBinding) {
         const { transformHermesClasses } = await import('@vxrn/compiler')
         const classes = await transformHermesClasses(output?.code ?? code, id, sourceMaps)
         if (classes) {
