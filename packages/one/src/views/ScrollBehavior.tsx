@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
+import { usePathname } from '../hooks'
 import { setLastAction } from '../router/lastAction'
 import {
   routeInfo,
@@ -102,7 +103,12 @@ type ScrollBehaviorProps = {
 
 let disable: (() => void) | null = null
 
-function configure(props: ScrollBehaviorProps) {
+type PendingScroll = { pathname: string; apply: () => void }
+
+function configure(
+  props: ScrollBehaviorProps,
+  scheduleScroll: (scroll: PendingScroll) => void
+) {
   if (typeof window === 'undefined' || !window.addEventListener) {
     return
   }
@@ -158,33 +164,39 @@ function configure(props: ScrollBehaviorProps) {
     }
 
     const { hash } = state
+    const wasPop = didPop
+    const prevPathname = previousPathname
+    scheduleScroll({
+      pathname: currentPathname,
+      apply: () => {
+        if (hash) {
+          setTimeout(() => {
+            scrollToHash(hash)
+          })
+        } else if (wasPop) {
+          if (props.disable !== 'restore') {
+            // for now only restore on back button
+            restorePosition()
+          }
+        } else {
+          // Check if we're navigating within a scroll group
+          // If both previous and current paths are in the same group, restore group position
+          const prevGroup = prevPathname ? getGroupKey(prevPathname) : null
+          const currentGroup = getGroupKey(currentPathname)
 
-    if (hash) {
-      setTimeout(() => {
-        scrollToHash(hash)
-      })
-    } else if (didPop) {
-      if (props.disable !== 'restore') {
-        // for now only restore on back button
-        restorePosition()
-      }
-    } else {
-      // Check if we're navigating within a scroll group
-      // If both previous and current paths are in the same group, restore group position
-      const prevGroup = previousPathname ? getGroupKey(previousPathname) : null
-      const currentGroup = getGroupKey(currentPathname)
-
-      if (prevGroup && currentGroup && prevGroup === currentGroup) {
-        // Same scroll group - restore the group's scroll position
-        restoreGroupPosition(currentGroup)
-      } else if (state.linkOptions?.scrollGroup) {
-        // Custom scroll group specified in link options
-        restoreGroupPosition(state.linkOptions.scrollGroup)
-      } else {
-        // Different group or no group - scroll to top
-        window.scrollTo(0, 0)
-      }
-    }
+          if (prevGroup && currentGroup && prevGroup === currentGroup) {
+            // Same scroll group - restore the group's scroll position
+            restoreGroupPosition(currentGroup)
+          } else if (state.linkOptions?.scrollGroup) {
+            // Custom scroll group specified in link options
+            restoreGroupPosition(state.linkOptions.scrollGroup)
+          } else {
+            // Different group or no group - scroll to top
+            window.scrollTo(0, 0)
+          }
+        }
+      },
+    })
 
     previousPathname = currentPathname
   })
@@ -214,8 +226,19 @@ export function ScrollBehavior(props: ScrollBehaviorProps) {
       }
     }, [])
 
+    const pathname = usePathname()
+    const [pending, setPending] = useState<PendingScroll | null>(null)
+
+    useLayoutEffect(() => {
+      if (!pending || pending.pathname !== pathname) return
+      // route notifications precede React's DOM commit. scroll only once the
+      // destination has committed, so the outgoing page never jumps first.
+      pending.apply()
+      setPending(null)
+    }, [pending, pathname])
+
     useEffect(() => {
-      return configure(props)
+      return configure(props, setPending)
     }, [props.disable])
   }
 
