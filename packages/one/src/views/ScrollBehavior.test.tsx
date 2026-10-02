@@ -40,8 +40,9 @@ vi.mock('../router/router', () => ({
   },
 }))
 
-import { registerScrollGroup, ScrollBehavior } from './ScrollBehavior'
+vi.mock('../hooks', () => ({ usePathname: () => location.pathname }))
 
+import { registerScrollGroup, ScrollBehavior } from './ScrollBehavior'
 ;(globalThis as any).IS_REACT_ACT_ENVIRONMENT = true
 
 type MockLocation = {
@@ -61,6 +62,7 @@ function navigate(pathname: string, search = '') {
   act(() => subscriptions.root?.({}))
   location.pathname = pathname
   location.search = search
+  act(() => renderer?.update(<ScrollBehavior />))
 }
 
 beforeEach(() => {
@@ -148,4 +150,15 @@ describe('ScrollBehavior groups', () => {
 
     unregister()
   })
+})
+
+// a route event can arrive while the outgoing DOM is still on screen.
+it('keeps the outgoing page at its scroll position until the destination commits', () => {
+  router.routeInfo = { unstable_globalHref: '/destination', pathname: '/destination' }
+  act(() => subscriptions.root?.({}))
+  expect(scrollTo).not.toHaveBeenCalled()
+  location.pathname = '/destination'
+  act(() => renderer?.update(<ScrollBehavior />))
+  expect(scrollTo).toHaveBeenCalledTimes(1)
+  expect(scrollTo).toHaveBeenCalledWith(0, 0)
 })
