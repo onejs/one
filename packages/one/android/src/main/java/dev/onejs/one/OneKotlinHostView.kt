@@ -34,7 +34,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     private var intrinsicWidth = false
     private var intrinsicHeight = false
     private var measuresIntrinsicWidth: Boolean? = null
-    private var hasYogaLayout = false
     private val contentLayout = Runnable { layoutComposeContent() }
 
     private var reportedIntrinsicWidth: Boolean? = null
@@ -120,7 +119,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     override fun requestLayout() {
         super.requestLayout()
-        if (hasYogaLayout) {
+        if (isAttachedToWindow) {
             removeCallbacks(contentLayout)
             post(contentLayout)
         }
@@ -172,7 +171,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        hasYogaLayout = true
         layoutComposeContent()
     }
 
@@ -182,7 +180,7 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
     }
 
     private fun layoutComposeContent() {
-        if (!hasYogaLayout || !composeView.isAttachedToWindow || committedSource.isEmpty() || committedView.isEmpty()) return
+        if (!composeView.isAttachedToWindow || committedSource.isEmpty() || committedView.isEmpty()) return
         // a nonzero initial yoga width can come from the parent's default stretch.
         val widthIsIntrinsic = measuresIntrinsicWidth ?: (intrinsicWidth && width == 0).also {
             measuresIntrinsicWidth = it
@@ -214,7 +212,6 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         intrinsicWidth = false
         intrinsicHeight = false
         measuresIntrinsicWidth = null
-        hasYogaLayout = false
         reportedIntrinsicWidth = null
         reportedWidth = -1.0
         reportedHeight = -1.0
