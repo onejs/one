@@ -34,6 +34,8 @@ export const docsScenes = {
   'ios-color': { title: 'iOS Color' },
   'android-compose': { title: 'Android Compose' },
   'android-menu': { title: 'Android Menus', screen: { cornerRadius: 48, top: 0.3, press: true } },
+  'android-icons': { title: 'Android Icons' },
+  'android-color': { title: 'Android Color' },
 } satisfies Record<string, DocsScene>
 
 export type DocsSceneName = keyof typeof docsScenes
