@@ -232,3 +232,105 @@ Current receipts are in
 `starter-browser.json`. Required and additional render results remain
 separate. Full blog/overview PDFs and desktop/mobile PNGs are preserved.
 The parent owns assembled review, renderer repair, CI, share, and publication.
+
+## Final assembled branch and dependency repair
+
+Branch: `launch/one-v2-docs-assembled`, based on freshly fetched
+`origin/launch/one-v2-docs` at
+`34eaf72da3c3c33af4620e13187082a5bd45dd2a`.
+Final validated source SHA: `b834121f318c4630019217c3fb759716961be9b0` (the subsequent evidence commit only
+updates this plan). The parent owns the final share, approval, publication,
+and CI disposition. REVIEW: none, assembled blog already reviewed by s8086.
+The managed worktree is `~/.worktrees/one-launch-docs-assembled` and is
+preserved clean with both commits pushed.
+
+Upstream repair: Tamagui `v3-beta` commit
+`96e0bdff96edb2efccbf135c2ab2e6e56de61be8`.
+The site retains authentic `tamagui@2.6.2` and `@tamagui/web@2.6.2` with its
+existing configuration. React and React DOM are `19.2.3`; Bun is `1.4.2`.
+The One workspace source is the reviewed docs base, with its unchanged
+`1.27.1` package manifest version. No v3 dependency upgrade, starter/CLI
+change, public API, inline-code restyle, or app runtime workaround was added.
+The blog remains `draft: true`; its existing October 1 date is pending the
+parent's publication decision.
+
+RAN: added `patches/@tamagui%2Fweb@2.6.2.patch` to the existing root
+`patchedDependencies` mechanism and regenerated `bun.lock` with Bun.
+The patch removes the process-wide `localStates` map and stores each
+snapshot in `localState` on the hook's existing ref. Restoration and both
+cleanup paths use that ref. The provider registry, theme resolution, and
+wrapper rules retain their original behavior. Published source and all four
+web/native ESM/CJS hook files carry the same minimal substitution.
+The internal ref field is erased from declarations: all 140 shipped `.d.ts`
+files remain byte-identical to the original npm package, so no type patch is
+needed. Native distribution files pass Node syntax checks; native device
+behavior was not tested in this docs lane.
+
+TESTED: downloaded the fresh npm 2.6.2 tarball, verified its SHA-512 against
+registry `dist.integrity`, and dry-ran the patch against its pristine files.
+Fresh isolated original and patched Bun installs each used a separate empty
+cache. A fresh root install also applied the committed patch; SHA-256 hashes
+of all five installed files match the expected patched bytes in both
+installs. A frozen root install then passed with no changes. No hand-edited
+`node_modules` is part of the delivered fix.
+
+TESTED: adapted the two upstream SSR tests to the published 2.6.2 source.
+The original fails both: a warmed tree changes inherited `isNew:false` to
+`true`, and hydration reports a recoverable mismatch. The patched source
+passes both, with mount, zero recoverable errors, and retained host asserted.
+An additional test puts Strict Mode at the root and alternates yellow/blue
+four times: it asserts inherited theme values, exactly two initial strict
+mount effects, and retention of the same host with no remount. It passes
+against both original and patched packages. Original total: two failures,
+one pass. Patched total: three passes. Independent compiled CJS and ESM SSR
+probes also fail against the original and pass with the patch. Assertions
+and source package versions are identical between controls.
+
+RAN: the final site build passed under the heavy gate, generating 170 pages.
+It still reports the existing Tamagui config/extractor errors, including
+`fileExists` and `Must provide components`; this is a successful build with
+those diagnostics. The thirteen built workspace dist directories were reused
+from the preserved docs worktree at the identical source SHA; this is not a
+claim of a clean-source monorepo build. Site typecheck, ten strict API
+snippets, 143 served local links/anchors across 90 routes, and five RSS tests
+passed. Served RSS contains the published v1 control and excludes the v2
+draft. `git diff --check` and the frozen Bun install pass.
+
+TESTED: all nine required pages pass at 1440x1000 and 390x844:
+`/native/storage`, `/native/ui-pager`, `/native/portal`,
+`/docs/installation`, `/native/secure-store`, `/native/haptics`,
+`/docs/native-overview`, `/blog/version-two`, and
+`/native/migrating-to-one`. All 18 observations are HTTP 200, React and
+Tamagui mounted, with substantial content, visible headings, loaded fonts,
+zero console errors/page exceptions, zero doubled yellow spans in both
+server HTML and hydrated DOM, and no horizontal overflow. The native index
+at `/native` also passes the same checks at both widths.
+These final results replace the earlier Pager/migration hydration failures
+in the review-fixes receipts. The original source controls still fail, so
+this result does not depend on suppressing React errors.
+
+RAN: full blog desktop/mobile PNGs and a nine-page A4 PDF are saved. The PDF
+text includes the first heading and final release-history paragraph.
+Desktop/mobile top, middle, and end captures were inspected.
+All final receipts, controls, reproduction scripts, hashes, logs, and
+artifacts live in `~/Library/Caches/one-v2-launch-assembled/`:
+`receipt.json`, `applied-patch.json`, `patch-hashes.json`,
+`test-status.json`, `source-{original,patched}-test.log`,
+`compiled-{original,patched}-test.log`, `esm-{original,patched}-test.log`,
+`root-install.log`, `isolated-{original,patched}-install.log`,
+`frozen-install.log`, `site-build.log`, `typecheck.log`, `snippets.log`,
+`routes.json`, `native-index-routes.json`, `link-checks.json`,
+`rss-tests.log`, `rss-publication.json`, and `pdf-info.txt`.
+The full artifacts are `blog-version-two.pdf`, `blog-version-two.png`, and
+`blog-version-two-mobile.png`; every checked route has both full PNGs.
+
+To reproduce on this machine, run `bun install --frozen-lockfile` at the
+assembled root, then `bun run site:build` under the heavy gate. Serve with
+`bun run serve --host 127.0.0.1 --port 4386` from `apps/onestack.dev` and run
+`node ~/Library/Caches/one-v2-launch-assembled/capture.cjs http://127.0.0.1:4386`.
+The isolated install manifests, patches, lockfiles, Vitest tests, and config
+are preserved in `install-original/` and `install-patched/` under the same
+cache directory. In each directory run `bun install --frozen-lockfile`,
+`bun run vitest run`, `node ../compiled-probe.cjs`, and
+`node ../compiled-probe.mjs`; the original controls must fail their SSR
+assertions. Public main and stable release remain untouched.
