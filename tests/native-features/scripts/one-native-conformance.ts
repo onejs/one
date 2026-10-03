@@ -271,6 +271,13 @@ function snapshot(simulatorId: string): Node[] {
   return nodes
 }
 
+const appWidth = (nodes: Node[]) =>
+  nodes.find(
+    (node) =>
+      node.type === 'Application' ||
+      node.AXRole === 'AXApplication' ||
+      node.role === 'AXApplication'
+  )?.frame?.width
 const labels = (nodes: Node[]) =>
   nodes.flatMap((node) => (node.AXLabel ? [node.AXLabel] : []))
 const has = (nodes: Node[], text: string) =>
@@ -6652,9 +6659,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // title, so the markers React sent are readable without a screenshot. the
     // surface itself is the test-id box: this tree exposes no 'Map' label.
     const surface = (nodes: Node[]) => id(nodes, 'one-native-map-view')
-    const appWidth = (nodes: Node[]) => nodes.find((node) =>
-      node.type === 'Application' || node.AXRole === 'AXApplication' ||
-      node.role === 'AXApplication')?.frame?.width
     const fills = (nodes: Node[], height: number) => {
       const width = appWidth(nodes)
       const frame = surface(nodes)?.frame
@@ -6922,7 +6926,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait(
       'UiMap fills the box React Native gave it',
-      (n) => surface(n)?.frame?.height === 220 && surface(n)?.frame?.width === 373
+      (n) =>
+        surface(n)?.frame?.height === 220 &&
+        surface(n)?.frame?.width === (appWidth(n) ?? 0) - 20
     )
     await wait(
       'the markers React sent are on the map',
@@ -7578,7 +7584,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'pickers') {
-    // match the segmented control by its native component identity and exact xcode 26.4 bounds,
+    // match the segmented control by its native component identity and exact bounds,
     // so the tap cannot silently address a different tab group.
     const segmented = (nodes: Node[]) =>
       nodes.find(
@@ -7586,7 +7592,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
           node.AXUniqueId === 'one-native-control' &&
           node.type === 'TabGroup' &&
           node.frame &&
-          node.frame.width === 373 &&
+          node.frame.width === (appWidth(nodes) ?? 0) - 20 &&
           node.frame.height === 31
       )?.frame
     const tapSegment = async (index: number, name: string) => {

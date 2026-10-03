@@ -14,10 +14,15 @@ rather than by hand.
    difference gives exact alpha for every pixel, so antialiased edges and
    translucent fills stay correct. It crops to the scene and writes a
    transparent PNG at 2x.
-3. Scenes with a `hold` in `scenes.ts` drag across the subject and keep the
+3. The script waits until two frames on the same background match, so remote
+   images and map tiles have arrived before the capture.
+4. Scenes with a `hold` in `scenes.ts` drag across the subject and keep the
    finger down for the capture, so a pager can be shown mid swipe. A third
    frame must match the first, or the capture fails.
-4. `scripts/docs-composite.ts` places each platform's capture side by side at
+5. Scenes with `home` leave the app once they show and capture the lower part
+   of the real screen with rounded corners. Picture in picture uses this,
+   since its window only exists outside the app.
+6. `scripts/docs-composite.ts` places each platform's capture side by side at
    the same scale on the brand yellow with a soft shadow, and writes a
    1600x1000 webp to `apps/onestack.dev/public/native/`.
 
@@ -33,6 +38,13 @@ bun scripts/docs-capture.ts --platform android --device emulator-5554 --scene pa
 bun scripts/docs-composite.ts --scene pager --captures /tmp/docs \
   --out ../../apps/onestack.dev/public/native/pager.webp
 ```
+
+Each scene name in `scenes.ts` maps to `apps/onestack.dev/public/native/<scene>.webp`.
+`map` is captured on iOS only unless the Android build has a Google Maps key,
+and `pip` on Android only, since iPhone simulators have no picture in picture.
+Disable the Gemini app on the emulator first
+(`adb shell pm disable-user --user 0 com.google.android.apps.bard`), or its
+overlay covers the home screen.
 
 Look at the result before committing it.
 
