@@ -11,7 +11,7 @@ export function resolveCanaryVersion(
   }
 
   const timestamp = (options.now ?? Date.now)()
-  if (options.baseVersion) return `${options.baseVersion}-canary.${timestamp}`
+  if (options.baseVersion) return `${options.baseVersion}-0.canary.${timestamp}`
   return `${currentVersion.replace(/(-\d+)+$/, '')}-${timestamp}`
 }
 
