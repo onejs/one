@@ -35,21 +35,55 @@ string }`.
 | `pushToken` | `(id: string) => Promise<string \| null>` |
 | `onPushToken` | `(listener: (event) => void) => () => void` (returns an unsubscribe function) |
 
-`push` opts into push updates. An `ActivityView` is `{ lockScreen,
-compactLeading, compactTrailing, minimal, expandedLeading,
-expandedTrailing, expandedBottom }` of widget nodes.
+`push` opts into push updates. An `ActivityView` places a `WidgetUI` tree in
+each Live Activity region:
+
+<PropsTable
+  title="ActivityView"
+  source="widgets/view.ts#ActivityView"
+  data={[
+    { name: 'lockScreen', required: true, type: 'ReactNode', description: 'The Lock Screen banner.' },
+    { name: 'compactLeading', type: 'ReactNode', description: 'Left of the camera in the compact Dynamic Island.' },
+    { name: 'compactTrailing', type: 'ReactNode', description: 'Right of the camera in the compact Dynamic Island.' },
+    { name: 'minimal', type: 'ReactNode', description: 'The Dynamic Island when another activity shares it.' },
+    { name: 'expandedLeading', type: 'ReactNode', description: 'The expanded Dynamic Island, leading side.' },
+    { name: 'expandedTrailing', type: 'ReactNode', description: 'The expanded Dynamic Island, trailing side.' },
+    { name: 'expandedBottom', type: 'ReactNode', description: 'The expanded Dynamic Island, below the sides.' },
+  ]}
+/>
 
 ## WidgetUI
 
-`One.iOS.WidgetUI` builds widget content from `Text`, `VStack`, `HStack`,
-`ZStack`, `Spacer`, `Divider`, `Image` (`systemName`), `Progress` and
-`Gauge` (`value`, `total`), `Circle`, `Rectangle`, `RoundedRectangle`
-(`fill`, `cornerRadius`), and `Link` (`url`). Styling goes through a small
-style object: `color`, `backgroundColor`, `fontSize`, `fontWeight`
-(`regular`, `medium`, `semibold`, `bold`), `fontDesign` (`default`,
-`rounded`, `serif`, `monospaced`), `padding`, `borderRadius`, `spacing`,
-`width`, `height`, `opacity`, `lineLimit`, and `alignment` (`leading`,
-`center`, `trailing`).
+`One.iOS.WidgetUI` builds widget content. Each element takes a `style`.
+
+| Element | Props |
+| --- | --- |
+| `Text`, `VStack`, `HStack`, `ZStack` | `children` |
+| `Spacer`, `Divider` | none |
+| `Image` | `systemName` |
+| `Progress`, `Gauge` | `value`, `total` |
+| `Circle`, `Rectangle`, `RoundedRectangle` | `fill`, `cornerRadius` |
+| `Link` | `url`, `children` |
+
+<PropsTable
+  title="WidgetStyle"
+  source="widgets/view.ts#WidgetStyle"
+  data={[
+    { name: 'color', type: 'string', description: 'The text and symbol color.' },
+    { name: 'backgroundColor', type: 'string', description: 'The fill behind the element.' },
+    { name: 'fontSize', type: 'number', description: 'The text size in points.' },
+    { name: 'fontWeight', type: '"regular" | "medium" | "semibold" | "bold"', description: 'The text weight.' },
+    { name: 'fontDesign', type: '"default" | "rounded" | "serif" | "monospaced"', description: 'The system font design.' },
+    { name: 'padding', type: 'number', description: 'Space inside the element on every side.' },
+    { name: 'borderRadius', type: 'number', description: 'Rounds the background.' },
+    { name: 'spacing', type: 'number', description: 'The gap between a stack\'s children.' },
+    { name: 'width', type: 'number', description: 'A fixed width.' },
+    { name: 'height', type: 'number', description: 'A fixed height.' },
+    { name: 'opacity', type: 'number', description: 'From 0 to 1.' },
+    { name: 'lineLimit', type: 'number', description: 'The most lines a Text shows.' },
+    { name: 'alignment', type: '"leading" | "center" | "trailing"', description: 'How a stack aligns its children.' },
+  ]}
+/>
 
 ```tsx
 import { One } from 'one'

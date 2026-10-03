@@ -3,28 +3,38 @@ title: iOS Color
 description: Type-safe UIKit semantic colors
 ---
 
-Type-safe UIKit semantic colors. These stay as native color values and respond to trait
-changes without a React appearance subscription.
+<NativeHero
+  src="/native/ios-color.webp"
+  alt="One.iOS.Color system tints and grays as swatches"
+/>
+
+`One.iOS.Color` names UIKit's semantic colors with types. Each is a native
+`PlatformColor`, so it follows light mode, dark mode, and increased contrast
+without a React appearance subscription.
 
 ```tsx
+import { Text, View } from 'react-native'
 import { One } from 'one'
 
-<View style={{ backgroundColor: One.iOS.Color.systemBlue }} />
-<Text style={{ color: One.iOS.Color.label }} />
+<View style={{ backgroundColor: One.iOS.Color.secondarySystemBackground }}>
+  <Text style={{ color: One.iOS.Color.label }}>Hello</Text>
+</View>
 ```
 
-### iOS Colors
+## Colors
 
-All UIKit semantic colors: `systemBlue`, `systemBrown`, `systemCyan`,
-`systemGreen`, `systemIndigo`, `systemMint`, `systemOrange`, `systemPink`,
-`systemPurple`, `systemRed`, `systemTeal`, `systemYellow`, `systemGray`
-through `systemGray6`, `label`, `secondaryLabel`, `tertiaryLabel`,
-`quaternaryLabel`, `systemFill`, `secondarySystemFill`,
-`tertiarySystemFill`, `quaternarySystemFill`, `placeholderText`,
-`systemBackground`, `secondarySystemBackground`,
-`systemGroupedBackground`, `secondarySystemGroupedBackground`,
-`tertiarySystemGroupedBackground`, `separator`, `opaqueSeparator`, `link`,
-`darkText`, and `lightText`.
+| Group | Names |
+| --- | --- |
+| Tints | `systemBlue`, `systemBrown`, `systemCyan`, `systemGreen`, `systemIndigo`, `systemMint`, `systemOrange`, `systemPink`, `systemPurple`, `systemRed`, `systemTeal`, `systemYellow` |
+| Grays | `systemGray`, `systemGray2`, `systemGray3`, `systemGray4`, `systemGray5`, `systemGray6` |
+| Text | `label`, `secondaryLabel`, `tertiaryLabel`, `quaternaryLabel`, `placeholderText`, `link`, `darkText`, `lightText` |
+| Fills | `systemFill`, `secondarySystemFill`, `tertiarySystemFill`, `quaternarySystemFill` |
+| Backgrounds | `systemBackground`, `secondarySystemBackground`, `tertiarySystemBackground` |
+| Grouped backgrounds | `systemGroupedBackground`, `secondarySystemGroupedBackground`, `tertiarySystemGroupedBackground` |
+| Separators | `separator`, `opaqueSeparator` |
 
-On web every color reads `null`, so gate native styling behind a platform
-check or fall back to a web color.
+Any other UIKit color name works as a string key, such as
+`One.iOS.Color['tintColor']`. It reaches `PlatformColor` unchecked.
+
+On Android and web every color reads `null`. Pick a color per platform, or use
+[Android Color](/native/android-color) on Android.
