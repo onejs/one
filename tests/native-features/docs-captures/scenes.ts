@@ -31,6 +31,7 @@ export const docsScenes = {
   'ios-tabs': { title: 'iOS Tabs' },
   'ios-navigation': { title: 'iOS Navigation' },
   'ios-media': { title: 'iOS Media' },
+  'ios-color': { title: 'iOS Color' },
 } satisfies Record<string, DocsScene>
 
 export type DocsSceneName = keyof typeof docsScenes
