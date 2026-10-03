@@ -26,6 +26,8 @@ rather than by hand.
    wait until the scene is found, and a long press keeps the tap that opens
    the link from presenting early. With `home` they leave the app first; picture in picture
    uses this, since its window only exists outside the app.
+   Where the background still shows, as around a popup menu, the shot
+   waits for its white phase.
 6. `scripts/docs-composite.ts` places each platform's capture side by side at
    the same scale on the brand yellow with a soft shadow, and writes a
    1600x1000 webp to `apps/onestack.dev/public/native/`.
