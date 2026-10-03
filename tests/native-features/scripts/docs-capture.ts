@@ -12,7 +12,7 @@ import { mkdirSync, mkdtempSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import sharp from 'sharp'
-import { docsScenes, type DocsSceneName } from '../docs-captures/scenes'
+import { docsScenes, type DocsScene, type DocsSceneName } from '../docs-captures/scenes'
 
 const args = Object.fromEntries(
   process.argv
@@ -25,7 +25,7 @@ const platform = args.platform as 'ios' | 'android'
 const device = args.device
 const sceneName = args.scene as DocsSceneName
 const out = args.out
-const scene = docsScenes[sceneName]
+const scene: DocsScene = docsScenes[sceneName]
 if (!['ios', 'android'].includes(platform) || !device || !scene || !out) {
   throw new Error(
     'usage: docs-capture.ts --platform ios|android --device <id> --scene <name> --out <dir>'
@@ -266,6 +266,42 @@ for (let attempt = 0; !rest; attempt++) {
   }
 }
 const scale = density(rest.white)
+if (scene.home) {
+  if (platform === 'ios') run('axe', ['button', 'home', '--udid', device])
+  else run(adb, ['-s', device, 'shell', 'input', 'keyevent', 'KEYCODE_HOME'])
+  await sleep(4000)
+  const frame = await screenshot()
+  // the screen from `top` down, its corners rounded like the device's.
+  const top = Math.round(frame.height * scene.home.top)
+  const height = frame.height - top
+  const radius = Math.round(scene.home.cornerRadius * scale)
+  const mask = Buffer.from(
+    `<svg width="${frame.width}" height="${height}"><rect width="100%" height="100%" rx="${radius}" ry="${radius}"/></svg>`
+  )
+  mkdirSync(out, { recursive: true })
+  const file = join(out, `${sceneName}.${platform}.png`)
+  const rounded = await sharp(frame.data, {
+    raw: { width: frame.width, height: frame.height, channels: 4 },
+  })
+    .extract({ left: 0, top, width: frame.width, height })
+    .composite([{ input: mask, blend: 'dest-in' }])
+    .png()
+    .toBuffer()
+  await sharp(rounded)
+    .resize(Math.round((frame.width * 2) / scale), Math.round((height * 2) / scale), {
+      kernel: 'lanczos3',
+    })
+    .toFile(file)
+  console.log(file)
+  process.exit(0)
+}
+// remote images and map tiles arrive after the scene first shows, so wait until two
+// frames on the same background match.
+for (let settled = false; !settled; ) {
+  const next = await framePair()
+  settled = sameSubject(rest.white, next.white, bounds(next))
+  rest = next
+}
 let box = bounds(rest)
 let pair = rest
 if (scene.hold) {
