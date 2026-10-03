@@ -2,7 +2,7 @@
 
 Two uniform components that retire `react-native-teleport` and
 `react-native-pager-view` in One apps. Nate approved this surface on
-2026-10-02; they land on v2-beta once the proof below passes.
+2026-10-02; they are on v2-beta from 2.0.0-beta.163.1.
 
 With One.Storage (landed, retires `react-native-mmkv`) and `useHeaderHeight`
 from `one` (landed, retires the direct `@react-navigation/elements` import),
@@ -88,11 +88,17 @@ pager.current?.setPage(1)
 - Speed: `onPageScroll` delivered per frame with no extra JS frames, measured
   against pager-view on device per section 4 of the conventions.
 
-## Proof before landing
+## Proof
 
-- `tests/native-features` fixtures for both, run on iOS and Android.
-- Peach seams for `OneNativePortal*` and `OneNativePager`, checked against
-  iOS by a library conformance case.
-- Contrast: contrast-ui's root provider, the design map's status portals and
-  the Develop pager move to these, and teleport and pager-view leave the
-  catalog, on a Contrast branch that lands with the One beta.
+- RAN, iOS 27 simulator (iPhone 17 Pro, Release build): `--suite portal`
+  passes; `--suite pager` passes all 21 checks. A drag that starts on a page's
+  text input pages neither One.UI.Pager nor pager-view 8.0.5, so the suite
+  drags above it.
+- RAN, Android emulator (`android_lane_pixel_8`, debug build with Metro):
+  `--suite portal` 11 checks and `--suite pager` 10 checks pass.
+- Peach seams and library cases exist in Contrast
+  (`OnePortalLibraryCase`, `OneUIPagerLibraryCase`); their comparison against
+  iOS captures is still to run.
+- Contrast main carries One 2.0.0-beta.163.1 and Tamagui
+  3.0.0-beta.1562.1 with `setup-one-portal`; react-native-teleport and
+  react-native-pager-view left contrast-mobile (OTA runtime 80).
