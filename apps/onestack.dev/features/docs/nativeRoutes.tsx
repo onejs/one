@@ -12,6 +12,7 @@ export const nativeRoutes = [
       { title: 'Map', route: '/native/map' },
       { title: 'Pager', route: '/native/ui-pager' },
       { title: 'Picture in Picture', route: '/native/picture-in-picture' },
+      { title: 'Portal', route: '/native/portal' },
       { title: 'Text Input', route: '/native/text-input' },
       { title: 'Gradients', route: '/native/gradients' },
       { title: 'Fonts', route: '/native/fonts' },
