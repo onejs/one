@@ -1,36 +1,34 @@
 import * as BasicTemplateSteps from './steps/one'
-import * as TakeoutTemplateSteps from './steps/takeout'
 
 export const templates = [
   {
     title: `Basic`,
     value: 'Basic',
-    description: 'The simplest starting point, vanilla React Native',
+    description: 'The simplest starting point, vanilla Rreact Native',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/onejs/one.git`,
       sshFallback: `git@github.com:onejs/one.git`,
       dir: [`examples`, `one-basic`],
-      branch: 'v2-beta',
+      branch: 'main',
     },
     ...BasicTemplateSteps,
   },
 
   {
-    title: `Takeout`,
+    title: `Takeout Free`,
     value: 'Takeout',
     description: 'One, Tamagui, Zero, Better Auth',
-    type: 'included-in-monorepo',
-    hidden: true,
-    packageManager: 'bun',
+    type: 'external-repo',
+    hidden: false,
     repo: {
-      url: `https://github.com/onejs/one.git`,
-      sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`templates`, `one-starter`],
-      branch: 'v2-beta',
+      url: `https://github.com/tamagui/takeout-free.git`,
+      sshFallback: `git@github.com:tamagui/takeout-free.git`,
+      dir: [],
+      branch: 'main',
     },
-    ...TakeoutTemplateSteps,
+    ...BasicTemplateSteps,
   },
 
   {
