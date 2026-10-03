@@ -7,7 +7,6 @@ import fs, { ensureDir, writeJson, writeJSON } from 'fs-extra'
 import pMap from 'p-map'
 import prompts from 'prompts'
 import { spawnify } from './spawnify'
-import blockedVersions from './blocked-versions.json'
 import {
   ensureNpmAuthentication,
   isExactVersionPublishedOnNpm,
@@ -17,33 +16,14 @@ import {
   resolveBetaVersion,
   resolveCanaryVersion,
   resolvePublishTag,
+  resolveStableVersion,
+  skipBlockedVersions,
 } from './release-version'
 
 // avoid emitter error
 process.setMaxListeners(50)
 process.stderr.setMaxListeners(50)
 process.stdout.setMaxListeners(50)
-
-// skip over versions taken by the old "one" package on npm
-function skipBlockedVersions(
-  version: string,
-  mode: 'patch' | 'minor' | 'major' = 'patch'
-): string {
-  const blocked = new Set(blockedVersions.one)
-  let current = version
-  while (blocked.has(current)) {
-    console.info(`Version ${current} is blocked (old npm package), skipping...`)
-    const [major, minor, patch] = current.split('.').map(Number)
-    if (mode === 'major') {
-      current = `${major + 1}.0.0`
-    } else if (mode === 'minor') {
-      current = `${major}.${minor + 1}.0`
-    } else {
-      current = `${major}.${minor}.${patch + 1}`
-    }
-  }
-  return current
-}
 
 // --resume would be cool here where it stores the last failed step somewhere and tries resuming
 
@@ -66,7 +46,11 @@ const isRC = process.argv.includes('--rc')
 const betaVersion = resolveBetaVersion(process.argv.slice(2))
 const isBeta = betaVersion !== null
 const skipVersion = finish || rePublish || process.argv.includes('--skip-version')
-const shouldPatch = process.argv.includes('--patch')
+const releaseMode = process.argv.includes('--major')
+  ? 'major'
+  : process.argv.includes('--patch')
+    ? 'patch'
+    : 'minor'
 const dirty = finish || rePublish || undocumented || process.argv.includes('--dirty')
 const skipPublish = process.argv.includes('--skip-publish')
 const skipTest =
@@ -118,19 +102,7 @@ const nextVersion = (() => {
     return null
   }
 
-  let plusVersion = skipVersion ? 0 : 1
-  const patchAndCanary = curVersion.split('.')[2]
-  const [patch, lastCanary] = patchAndCanary.split('-')
-  // if were publishing another canary no bump version
-  if (lastCanary && canary) {
-    plusVersion = 0
-  }
-  const patchVersion = shouldPatch ? +patch + plusVersion : 0
-  const curMinor = +curVersion.split('.')[1] || 0
-  const minorVersion = curMinor + (shouldPatch ? 0 : plusVersion)
-  const next = `1.${minorVersion}.${patchVersion}`
-
-  return skipBlockedVersions(next, shouldPatch ? 'patch' : 'minor')
+  return resolveStableVersion(curVersion, { mode: releaseMode, skipVersion })
 })()
 
 if (!skipVersion) {
@@ -328,7 +300,10 @@ async function run() {
         })
       }
 
-      version = skipBlockedVersions(answer.version)
+      version =
+        skipVersion || isBeta || canary || isRC
+          ? answer.version
+          : skipBlockedVersions(answer.version, releaseMode)
       console.info('Next:', version, '\n')
     }
 
