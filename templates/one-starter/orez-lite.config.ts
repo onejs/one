@@ -19,7 +19,7 @@ export default defineLocalConfig({
         applicationSql.transaction(() => {
           throw new Error('application migration cannot execute a query AST')
         }, work),
-      { seed: true },
+      { seed: process.env.NODE_ENV === 'development' },
     ),
   callbacks: {
     authenticate: `http://127.0.0.1:${ports.web}/api/zero/rust-auth`,

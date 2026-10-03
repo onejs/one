@@ -84,7 +84,6 @@ function activeRegistration(registrations: RegisteredDialog[]) {
   }, null)
 }
 
-// `false` means dialogs never present as sheets, whatever the width. the rnx
 // shell window is often phone-shaped, and a bottom sheet there is a full-window
 // takeover of the thing the dialog is about.
 export type DialogSheetBreakpoint = 'max-md' | 'max-sm' | false

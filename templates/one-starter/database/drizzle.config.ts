@@ -5,7 +5,7 @@ export default defineConfig({
   out: './database/migrations',
   dialect: 'sqlite',
   dbCredentials: {
-    url: '.orez/feed.sqlite',
+    url: '.orez/application-sql/singleton.sqlite',
   },
   strict: true,
 })

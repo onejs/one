@@ -1,9 +1,4 @@
-// the native feed layout. one never fires intercepting routes on native,
-// so `make` is declared here as the system form sheet; the trigger pushes
-// one href on every platform and only this declaration differs.
-import { formSheetOptions } from '~/interface/ui/sheet/routeSheetOptions'
 import { Stack } from 'one'
-import { Platform } from 'react-native'
 
 export const unstable_settings = { initialRouteName: 'index' }
 
@@ -19,14 +14,7 @@ export default function FeedLayout() {
         options={{ headerShown: true, headerLargeTitleEnabled: true, title: 'Feed' }}
       />
       <Stack.Screen name="post/[postId]" />
-      <Stack.Screen
-        name="make"
-        options={{
-          ...formSheetOptions({ initialDetent: 'full' }),
-          // the ios toolbar must be visible before modal presentation to preserve state
-          headerShown: Platform.OS === 'ios',
-        }}
-      />
+
     </Stack>
   )
 }

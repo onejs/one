@@ -1,11 +1,14 @@
+import { server } from '~/env'
 import type { Endpoint } from 'one'
 
 // local uploads live beside the SQLite database; production serves objects through R2.
 export const GET: Endpoint = async (request) => {
-  if (process.env.NODE_ENV !== 'development') return new Response(null, { status: 404 })
   const file = new URL(request.url).pathname.split('/').at(-1) || ''
   if (!/^[a-zA-Z0-9_-]+\.(jpg|png|webp|gif)$/.test(file)) {
     return new Response(null, { status: 404 })
+  }
+  if (process.env.NODE_ENV !== 'development') {
+    return Response.redirect(`${server.CLOUDFLARE_R2_PUBLIC_URL}/uploads/${file}`, 302)
   }
   const { readFile } = await import('node:fs/promises')
   try {

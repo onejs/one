@@ -7,7 +7,9 @@
  * degrades any param it can't read to `v.record(v.unknown())`, dropping all
  * validation. Keep props flat and primitive-typed.
  */
-import { ensureLoggedIn, mutations, serverWhere } from 'on-zero'
+import { ensureLoggedIn, mutations, serverWhere, zql } from 'on-zero'
+
+import { validateImage, validateText } from '~/data/validate'
 
 const permissions = serverWhere('post', (q, auth) => {
   return q.cmp('userId', auth?.id || '')
@@ -31,8 +33,15 @@ export const mutate = mutations(
         createdAt: number
       },
     ) => {
+      validateImage(post.image)
+      validateText(post.caption, 6000)
       const auth = ensureLoggedIn()
-      await ctx.tx.mutate.post.insert({ ...post, commentCount: 0, userId: auth.id })
+      await ctx.tx.mutate.post.insert({
+        ...post,
+        createdAt: ctx.environment === 'server' ? Date.now() : post.createdAt,
+        commentCount: 0,
+        userId: auth.id,
+      })
       await ctx.can(permissions, post.id)
     },
 
@@ -47,11 +56,18 @@ export const mutate = mutations(
       },
     ) => {
       await ctx.can(permissions, post.id)
+      validateImage(post.image)
+      validateText(post.caption, 6000)
       await ctx.tx.mutate.post.update(post)
     },
 
     delete: async (ctx, args: { id: string }) => {
       await ctx.can(permissions, args.id)
+      const comments = await ctx.tx.run(zql.comment.where('postId', args.id))
+      for (const comment of comments) {
+        await ctx.tx.mutate.appNotification.delete({ id: `postComment:${comment.id}` })
+        await ctx.tx.mutate.comment.delete({ id: comment.id })
+      }
       await ctx.tx.mutate.post.delete({ id: args.id })
     },
   },

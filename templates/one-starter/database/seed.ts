@@ -1,27 +1,5 @@
 import type * as schema from './schema'
-/**
- * @agent-rule
- * demo/world seed data — plain rows keyed by table name, in insert order
- * (FK parents before children). every row carries an explicit `seed-*` id, so
- * applying twice is a no-op (`INSERT ... ON CONFLICT DO NOTHING` per row) and a
- * grown seed set back-fills only the missing rows.
- *
- * this is DATA, not a program. keep it importable with ONLY stdlib,
- * `import type`, and the pure `../auth/demoIdentity.ts` constants when private
- * demo rows need the authenticated owner's id. use that exact relative path
- * with its `.ts` extension because deployed seed boot runs in plain node. no
- * project aliases, drizzle, or `db` imports. deployed boot and browser preview
- * both load this file after migrations with the same insert semantics.
- *
- * never seed a derived value: post.commentCount is an orez aggregate, so its
- * triggers count the comment rows below. seeding it too would double it.
- *
- * retheme: keep the shape (deterministic ids, parents before children,
- * instants as integer epoch milliseconds, calendar days as `YYYY-MM-DD` text,
- * money as integer cents, coded columns storing catalog ids) and swap
- * userPublic/post/comment for your own tables. content lives here once and is
- * shown to everyone, so make it good.
- */
+
 import type { SeedData } from '@o/database'
 
 const MINUTE = 60_000

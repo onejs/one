@@ -2,7 +2,6 @@ import { S3mini } from 's3mini'
 import { authServer } from '~/auth/server/authServer'
 import { getZeroAuthData } from '~/auth/server/getZeroAuthData'
 import { server } from '~/env'
-import { SERVER_URL } from '~/constants'
 import { randomId } from '~/helpers/randomId'
 import type { Endpoint } from 'one'
 
@@ -81,11 +80,11 @@ export const POST: Endpoint = async (req) => {
       const directory = `${process.cwd()}/.orez/uploads`
       await mkdir(directory, { recursive: true })
       await writeFile(`${directory}/${safeName}`, bytes)
-      return Response.json({ ok: true, key, url: `${SERVER_URL}/api/file/image/${safeName}` })
+      return Response.json({ ok: true, key, url: `/api/file/image/${safeName}` })
     }
     await putUploadObject(key, bytes, contentType)
 
-    const url = `${server.CLOUDFLARE_R2_PUBLIC_URL}/${key}`
+    const url = `/api/file/image/${safeName}`
     return Response.json({ ok: true, key, url })
   } catch (err) {
     console.error('[upload] failed', err)

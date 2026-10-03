@@ -16,13 +16,8 @@ export const authServer = betterAuth({
   secret: server.BETTER_AUTH_SECRET,
   advanced: {
     cookiePrefix: APP_SCHEME,
-    // behind Cloudflare the socket IP is always the edge, so better-auth can't
-    // tell clients apart and falls back to one shared rate-limit bucket for
-    // every request. trust Cloudflare's client IP header so deployed apps
-    // bucket rate limits per visitor.
-    ipAddress: {
-      ipAddressHeaders: ['cf-connecting-ip'],
-    },
+    // one replaces this header with the request socket's address.
+    ipAddress: { ipAddressHeaders: ['x-vxrn-peer-address'] },
   },
 
   session: {
@@ -34,7 +29,7 @@ export const authServer = betterAuth({
   },
 
   emailAndPassword: {
-    enabled: true,
+    enabled: process.env.NODE_ENV === 'development',
     autoSignIn: false,
   },
 
@@ -43,7 +38,6 @@ export const authServer = betterAuth({
     `http://localhost:${ports.zero}`,
     `http://127.0.0.1:${ports.web}`,
     `${APP_SCHEME}://`,
-    'http://localhost:5173',
   ],
 
   databaseHooks: {
