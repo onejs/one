@@ -50,7 +50,10 @@ proof exists three times.
 - Expo UI: only what One does not cover. Expo UI parity is a pixel oracle for
   Peach, owned by s7767 (iOS) and r53511 (Android); One's lane does not build
   Expo UI proofs.
-- Android (r53511 / android-manager): regular mobile Android first. One's
+- Android (r53511 / android-manager): regular mobile Android first. Android
+  Expo UI visual conformance stays there. On-device One.UI.Pager return and
+  draft behavior and the regular-phone composer/IME proofs belong to p56058
+  under r54227; this lane reuses those retained proofs and does not rebuild them. One's
   Compose surface is proved in r53511's lane; this lane only adds One API
   behavior tests that are platform-neutral.
 
