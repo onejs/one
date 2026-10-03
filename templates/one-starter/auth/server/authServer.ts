@@ -52,6 +52,19 @@ export const authServer = betterAuth({
   },
 
   plugins: [
+    {
+      id: 'await-auth-delivery',
+      init() {
+        return {
+          context: {
+            // delivery errors must reach the sign-in request.
+            async runInBackgroundOrAwait(work: Promise<unknown> | void) {
+              return await work
+            },
+          },
+        }
+      },
+    },
     // session-token auth only (web cookie + native bearer). no jwt() plugin:
     // Zero validates the session token via getSession, never a JWKS-verified jwt
     // (that fetch fails on the SSR loopback — see auth/server/getZeroAuthData.ts).
