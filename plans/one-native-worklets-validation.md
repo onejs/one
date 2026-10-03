@@ -22,7 +22,7 @@ install functions untransformed; iOS failed with `Cannot read property bytecode
 of undefined`. The harness now configures the compiler instance the bundler
 actually reads. Those early trial timings are discarded.
 
-Web proof is pending. The web harness resolves web module variants and passes
+RAN: web proof passed, including layout, runOnUI, physical pan and timing animation. The web harness resolves web module variants and passes
 the fixture through One's worklet transform, so Reanimated gets inferred
 closures for `useAnimatedStyle`. It uses React Native Web for this existing
 third-party fixture, rather than One.UI components.
@@ -32,7 +32,10 @@ processes produce cold and warm full iOS production bundles (not cached
 bundle responses), minification and source maps off; config/setup excluded.
 Both apps use Vite's native config loader because config bundling failed on
 Contrast's `import.meta.resolve` with a synthetic Vite module identifier.
-Final receipts: `/tmp/one-worklets-{starter,contrast}-final-native-config.json`.
+Starter receipt: `/tmp/one-worklets-starter-final-native-config.json`.
+Contrast IDE root disables native; that attempted graph is discarded. Correct
+mobile root: `~/contrast/templates/contrast-mobile`, pending receipt
+`/tmp/one-worklets-contrast-mobile-final.json`. The harness rejects native:false.
 Do not remove the Babel backend until both comparisons and runtime proof pass.
 
 Built apps available for reuse:

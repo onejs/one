@@ -36,6 +36,8 @@ if (args.includes('--child')) {
   )
   const oneOptions = globalThis.__oneOptions
   if (!oneOptions) throw new Error('One plugin did not load app options')
+  if (oneOptions.native === false)
+    throw new Error('This app disables native builds; select the mobile app root')
   compiler.configureVXRNCompilerPlugin({
     enableReanimated: true,
     enableNativeWorklets: mode === 'one',

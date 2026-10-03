@@ -1,0 +1,777 @@
+{
+  "validation": "RAN",
+  "source": "One native-features fixture; linked Worklets 0.12.2 and Reanimated 4.6.0; native build from 506ff623d plus concurrent service/navigation edits. Core compiler source unchanged during these runs.",
+  "results": [
+    {
+      "passed": true,
+      "platform": "ios",
+      "device": "E6192F15-5A25-477F-B48D-329F9FCBF408",
+      "steps": [
+        "fixture starts without callbacks",
+        "runOnUI executes on the expected runtime and moves the view",
+        "layout animation completes and changes native geometry",
+        "gesture runs on the expected runtime, reports drag and finishes timing"
+      ],
+      "observations": [
+        {
+          "step": "fixture starts without callbacks",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 24,
+              "y": 24,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "x": 24,
+              "y": 57,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: pending",
+              "x": 24,
+              "y": 90,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "x": 24,
+              "y": 123,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: pending",
+              "x": 24,
+              "y": 156,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "x": 24,
+              "y": 255,
+              "width": 72,
+              "height": 72
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "x": 24,
+              "y": 351,
+              "width": 72,
+              "height": 72
+            }
+          ]
+        },
+        {
+          "step": "runOnUI executes on the expected runtime and moves the view",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 24,
+              "width": 354,
+              "height": 17,
+              "y": 24
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "y": 57,
+              "x": 24,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: ui:40",
+              "height": 17,
+              "y": 90,
+              "width": 354,
+              "x": 24
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "y": 123,
+              "height": 17,
+              "x": 24,
+              "width": 354
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: pending",
+              "width": 354,
+              "x": 24,
+              "height": 17,
+              "y": 156
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "x": 24,
+              "height": 72,
+              "width": 72,
+              "y": 255
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "y": 351,
+              "width": 72,
+              "height": 72,
+              "x": 64
+            }
+          ]
+        },
+        {
+          "step": "layout animation completes and changes native geometry",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "height": 17,
+              "x": 24,
+              "y": 24,
+              "width": 354
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "height": 17,
+              "x": 24,
+              "y": 57,
+              "width": 354
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: ui:40",
+              "height": 17,
+              "x": 24,
+              "y": 90,
+              "width": 354
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "height": 17,
+              "y": 123,
+              "x": 24,
+              "width": 354
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: ui",
+              "height": 17,
+              "x": 24,
+              "y": 156,
+              "width": 354
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "height": 72,
+              "y": 255,
+              "x": 24,
+              "width": 180
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "height": 72,
+              "x": 64,
+              "y": 351,
+              "width": 72
+            }
+          ]
+        },
+        {
+          "step": "gesture runs on the expected runtime, reports drag and finishes timing",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: 80",
+              "y": 24,
+              "height": 17,
+              "x": 24,
+              "width": 354
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: finished",
+              "y": 57,
+              "height": 17,
+              "x": 24,
+              "width": 354
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: ui:40",
+              "height": 17,
+              "width": 354,
+              "x": 24,
+              "y": 90
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: ui",
+              "height": 17,
+              "width": 354,
+              "x": 24,
+              "y": 123
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: ui",
+              "height": 17,
+              "width": 354,
+              "x": 24,
+              "y": 156
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "height": 72,
+              "width": 180,
+              "y": 255,
+              "x": 24
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "height": 72,
+              "width": 72,
+              "y": 351,
+              "x": 144
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "platform": "android",
+      "device": "emulator-5584",
+      "steps": [
+        "fixture starts without callbacks",
+        "runOnUI executes on the expected runtime and moves the view",
+        "layout animation completes and changes native geometry",
+        "gesture runs on the expected runtime, reports drag and finishes timing"
+      ],
+      "observations": [
+        {
+          "step": "fixture starts without callbacks",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 63,
+              "y": 63,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "x": 63,
+              "y": 156,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: pending",
+              "x": 63,
+              "y": 249,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "x": 63,
+              "y": 342,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: pending",
+              "x": 63,
+              "y": 435,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "x": 63,
+              "y": 714,
+              "width": 189,
+              "height": 189
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "x": 63,
+              "y": 966,
+              "width": 189,
+              "height": 189
+            }
+          ]
+        },
+        {
+          "step": "runOnUI executes on the expected runtime and moves the view",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 63,
+              "y": 63,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "x": 63,
+              "y": 156,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: ui:40",
+              "x": 63,
+              "y": 249,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "x": 63,
+              "y": 342,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: pending",
+              "x": 63,
+              "y": 435,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "x": 63,
+              "y": 714,
+              "width": 189,
+              "height": 189
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "x": 168,
+              "y": 966,
+              "width": 84,
+              "height": 189
+            }
+          ]
+        },
+        {
+          "step": "layout animation completes and changes native geometry",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 63,
+              "y": 63,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "x": 63,
+              "y": 156,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: ui:40",
+              "x": 63,
+              "y": 249,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "x": 63,
+              "y": 342,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: ui",
+              "x": 63,
+              "y": 435,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "x": 63,
+              "y": 714,
+              "width": 473,
+              "height": 189
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "x": 168,
+              "y": 966,
+              "width": 84,
+              "height": 189
+            }
+          ]
+        },
+        {
+          "step": "gesture runs on the expected runtime, reports drag and finishes timing",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: 82",
+              "x": 63,
+              "y": 63,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: finished",
+              "x": 63,
+              "y": 156,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: ui:40",
+              "x": 63,
+              "y": 249,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: ui",
+              "x": 63,
+              "y": 342,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: ui",
+              "x": 63,
+              "y": 435,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "x": 63,
+              "y": 714,
+              "width": 473,
+              "height": 189
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "x": 378,
+              "y": 966,
+              "width": -126,
+              "height": 189
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "platform": "web",
+      "device": "",
+      "steps": [
+        "fixture starts without callbacks",
+        "runOnUI executes on the expected runtime and moves the view",
+        "layout animation completes and changes view geometry",
+        "gesture runs on the expected runtime, reports drag and finishes timing"
+      ],
+      "observations": [
+        {
+          "step": "fixture starts without callbacks",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 24,
+              "y": 24,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "x": 24,
+              "y": 57,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: pending",
+              "x": 24,
+              "y": 90,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "x": 24,
+              "y": 123,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: pending",
+              "x": 24,
+              "y": 156,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "",
+              "x": 24,
+              "y": 255,
+              "width": 72,
+              "height": 72
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "",
+              "x": 24,
+              "y": 351,
+              "width": 72,
+              "height": 72
+            }
+          ]
+        },
+        {
+          "step": "runOnUI executes on the expected runtime and moves the view",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 24,
+              "y": 24,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "x": 24,
+              "y": 57,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: web:40",
+              "x": 24,
+              "y": 90,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "x": 24,
+              "y": 123,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: pending",
+              "x": 24,
+              "y": 156,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "",
+              "x": 24,
+              "y": 255,
+              "width": 72,
+              "height": 72
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "",
+              "x": 64,
+              "y": 351,
+              "width": 72,
+              "height": 72
+            }
+          ]
+        },
+        {
+          "step": "layout animation completes and changes view geometry",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 24,
+              "y": 24,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "x": 24,
+              "y": 57,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: web:40",
+              "x": 24,
+              "y": 90,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "x": 24,
+              "y": 123,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: web",
+              "x": 24,
+              "y": 156,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "",
+              "x": 24,
+              "y": 255,
+              "width": 180,
+              "height": 72
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "",
+              "x": 64,
+              "y": 351,
+              "width": 72,
+              "height": 72
+            }
+          ]
+        },
+        {
+          "step": "gesture runs on the expected runtime, reports drag and finishes timing",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: 72",
+              "x": 24,
+              "y": 24,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: finished",
+              "x": 24,
+              "y": 57,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: web:40",
+              "x": 24,
+              "y": 90,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: web",
+              "x": 24,
+              "y": 123,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: web",
+              "x": 24,
+              "y": 156,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "",
+              "x": 24,
+              "y": 255,
+              "width": 180,
+              "height": 72
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "",
+              "x": 144,
+              "y": 351,
+              "width": 72,
+              "height": 72
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

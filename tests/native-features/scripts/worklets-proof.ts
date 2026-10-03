@@ -29,28 +29,41 @@ const run = (command: string, argv: string[]) =>
 const axe = (argv: string[]) => run(arg('--axe', 'axe'), [...argv, '--udid', device])
 const adb = (argv: string[]) => run('adb', ['-s', device, ...argv])
 const pageErrors: string[] = []
+function webPage() {
+  assert(page, 'web page must be initialized')
+  return page
+}
+
 let browser: Awaited<ReturnType<typeof chromium.launch>> | undefined
 let page: Awaited<ReturnType<NonNullable<typeof browser>['newPage']>> | undefined
 
 async function snapshot(): Promise<Node[]> {
   if (platform === 'web') {
-    return page!.locator('[data-testid]').evaluateAll((elements) =>
-      elements.map((element) => {
-        const box = element.getBoundingClientRect()
-        return {
-          id: element.getAttribute('data-testid')!,
-          label: element.textContent ?? '',
-          x: box.x,
-          y: box.y,
-          width: box.width,
-          height: box.height,
-        }
-      })
-    )
+    return webPage()
+      .locator('[data-testid]')
+      .evaluateAll((elements) =>
+        elements.map((element) => {
+          const box = element.getBoundingClientRect()
+          return {
+            id: element.getAttribute('data-testid') ?? undefined,
+            label: element.textContent ?? '',
+            x: box.x,
+            y: box.y,
+            width: box.width,
+            height: box.height,
+          }
+        })
+      )
   }
   if (platform === 'ios') {
     const result: Node[] = []
-    const visit = (node: any) => {
+    type IOSNode = {
+      AXUniqueId?: string
+      AXLabel?: string
+      frame?: Omit<Node, 'id' | 'label'>
+      children?: IOSNode[]
+    }
+    const visit = (node: IOSNode) => {
       const frame = node.frame
       if (frame)
         result.push({
@@ -60,7 +73,9 @@ async function snapshot(): Promise<Node[]> {
         })
       node.children?.forEach(visit)
     }
-    visit(JSON.parse(axe(['describe-ui']))[0])
+    const roots = JSON.parse(axe(['describe-ui']))
+    assert(Array.isArray(roots), 'iOS accessibility snapshot must be an array')
+    roots.forEach(visit)
     return result
   }
   adb(['shell', 'uiautomator', 'dump', '/sdcard/worklets-proof.xml'])
@@ -73,7 +88,8 @@ async function snapshot(): Promise<Node[]> {
         attribute[2].replaceAll('&amp;', '&'),
       ])
     )
-    const bounds = attributes.bounds.match(/\[(\d+),(\d+)\]\[(\d+),(\d+)\]/)!
+    const bounds = attributes.bounds?.match(/\[(\d+),(\d+)\]\[(\d+),(\d+)\]/)
+    assert(bounds, 'Android accessibility node must contain valid bounds')
     const [, left, top, right, bottom] = bounds.map(Number)
     return {
       id: attributes['resource-id'].split('/').at(-1),
@@ -91,15 +107,16 @@ async function expectState(step: string, condition: (nodes: Node[]) => boolean) 
   let nodes: Node[] = []
   do {
     nodes = await snapshot()
+    assert.deepEqual(pageErrors, [], 'fixture must have no browser runtime errors')
     if (condition(nodes)) {
       history.push({ step, nodes })
       writeFileSync(
         resolve(artifactDir, 'steps.json'),
-        JSON.stringify(history, null, 2) + '\n'
+        `${JSON.stringify(history, null, 2)}\n`
       )
       return nodes
     }
-    if (platform === 'web') await page!.waitForTimeout(50)
+    if (platform === 'web') await webPage().waitForTimeout(50)
     else await new Promise((resolve) => setTimeout(resolve, 100))
   } while (Date.now() < deadline)
   throw new Error(`${step} failed: ${JSON.stringify(nodes)}`)
@@ -109,7 +126,7 @@ const has = (nodes: Node[], label: string) => nodes.some((node) => node.label ==
 async function tap(id: string, nodes: Node[]) {
   const node = byId(nodes, id)
   assert(node, `missing ${id}`)
-  if (platform === 'web') return page!.getByTestId(id).click()
+  if (platform === 'web') return webPage().getByTestId(id).click()
   const x = String(Math.round(node.x + node.width / 2))
   const y = String(Math.round(node.y + node.height / 2))
   if (platform === 'ios') axe(['touch', '-x', x, '-y', y, '--down', '--up'])
@@ -117,7 +134,7 @@ async function tap(id: string, nodes: Node[]) {
 }
 async function screenshot(name: string) {
   const file = resolve(artifactDir, `${name}.png`)
-  if (platform === 'web') return page!.screenshot({ path: file })
+  if (platform === 'web') return webPage().screenshot({ path: file })
   if (platform === 'ios') run('xcrun', ['simctl', 'io', device, 'screenshot', file])
   else
     writeFileSync(
@@ -146,8 +163,9 @@ try {
       Boolean(byId(nodes, 'one-native-gestures-box'))
   )
   await screenshot('before')
-  const box = byId(initial, 'one-native-gestures-box')!
-  const layout = byId(initial, 'worklets-layout-box')!
+  const box = byId(initial, 'one-native-gestures-box')
+  const layout = byId(initial, 'worklets-layout-box')
+  assert(box && layout, 'both fixture views must be mounted')
   const scale = box.width / 72
   const runtime = platform === 'web' ? 'web' : 'ui'
   await tap('worklets-run-ui', initial)
@@ -163,7 +181,7 @@ try {
   )
   await tap('worklets-resize', ui)
   const resized = await expectState(
-    'layout animation completes and changes native geometry',
+    'layout animation completes and changes view geometry',
     (nodes) => {
       const current = byId(nodes, 'worklets-layout-box')
       return (
@@ -172,17 +190,18 @@ try {
       )
     }
   )
-  const current = byId(resized, 'one-native-gestures-box')!
+  const current = byId(resized, 'one-native-gestures-box')
+  assert(current, 'gesture view must remain mounted')
   const start = {
     x: Math.round(current.x + current.width / 2),
     y: Math.round(current.y + current.height / 2),
   }
   const end = { x: start.x + Math.round(90 * scale), y: start.y }
   if (platform === 'web') {
-    await page!.mouse.move(start.x, start.y)
-    await page!.mouse.down()
-    await page!.mouse.move(end.x, end.y, { steps: 20 })
-    await page!.mouse.up()
+    await webPage().mouse.move(start.x, start.y)
+    await webPage().mouse.down()
+    await webPage().mouse.move(end.x, end.y, { steps: 20 })
+    await webPage().mouse.up()
   } else if (platform === 'ios')
     axe([
       'swipe',
@@ -227,7 +246,7 @@ try {
   await screenshot('after')
   writeFileSync(
     resolve(artifactDir, 'outcome.json'),
-    JSON.stringify(
+    `${JSON.stringify(
       {
         passed: true,
         platform,
@@ -236,7 +255,7 @@ try {
       },
       null,
       2
-    ) + '\n'
+    )}\n`
   )
   console.info(`${platform}: all worklet runtime checks passed`)
 } finally {
