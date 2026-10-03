@@ -21,8 +21,11 @@ rather than by hand.
    frame must match the first, or the capture fails.
 5. Scenes with `screen` capture the real screen, or its lower part, with
    rounded corners, for views the system draws over the app such as sheets
-   and alerts. With `home` they leave the app first; picture in picture uses
-   this, since its window only exists outside the app.
+   and alerts. With `press` the script long presses the scene, which
+   presents them; presenting covers the alternating background, so it must
+   wait until the scene is found, and a long press keeps the tap that opens
+   the link from presenting early. With `home` they leave the app first; picture in picture
+   uses this, since its window only exists outside the app.
 6. `scripts/docs-composite.ts` places each platform's capture side by side at
    the same scale on the brand yellow with a soft shadow, and writes a
    1600x1000 webp to `apps/onestack.dev/public/native/`.
