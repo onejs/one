@@ -2,131 +2,104 @@
   "name": "example-one-starter",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
+  "license": "MIT",
   "engines": {
-    "node": ">=24.3.0"
+    "node": ">=24.16.0"
   },
-  "packageManager": "bun@1.4.2",
+  "type": "module",
+  "targets": [
+    "native",
+    "web"
+  ],
   "scripts": {
+    "dev": "bun env.ts -- one dev",
+    "build": "NODE_OPTIONS=--import=orez-lite/cloudflare/node-wasm-loader one build",
+    "generate": "bun run generate:migrations && bun run generate:types",
+    "generate:types": "on-zero generate data",
+    "generate:migrations": "drizzle-kit generate --config=database/drizzle.config.ts",
+    "typecheck": "tsc --noEmit",
     "postinstall": "one patch",
-    "dev": "dotenvx run -f .env.development -- one dev",
-    "build": "one build",
-    "serve": "one serve",
     "ios": "one run:ios",
     "android": "one run:android",
-    "prebuild:native": "one prebuild",
-    "backend": "bun run env:dev orez --data-dir=.orez --pg-port=5533 --zero-port=4948 --on-db-ready=\"bun run migrate\"",
-    "migrate": "bun run env:dev bun scripts/migrate/build.ts && bun run env:dev bun -e \"const { main } = await import('./src/database/migrate-dist.js'); await main()\"",
-    "db:generate": "drizzle-kit generate --config src/database/drizzle.config.ts",
-    "zero:generate": "on-zero generate && drizzle-zero generate --config src/database/drizzle-zero.config.ts --output src/data/generated/schema.ts --force --suppress-defaults-warning",
-    "env:dev": "NODE_ENV=development dotenvx run -f .env.development --",
-    "typecheck": "tsc --noEmit",
+    "prebuild:native": "bun env.ts -- one prebuild",
     "check": "bun run typecheck && bun run lint",
-    "lint": "oxlint src app scripts *.ts",
+    "lint": "oxlint app auth data database features helpers interface lib tamagui *.ts",
     "format": "oxfmt",
-    "format:check": "oxfmt --check",
-    "up": "tko up"
+    "serve": "one serve"
   },
   "dependencies": {
+    "@better-auth/core": "1.6.30",
+    "@better-auth/expo": "1.6.30",
     "@callstack/liquid-glass": "^0.8.1",
-    "@noble/hashes": "^2.0.1",
-    "@o/better-auth-utils": "0.16.19-canary.1790768320875",
-    "@o/database": "0.16.19-canary.1790768320875",
-    "@o/helpers": "0.16.19-canary.1790768320875",
-    "@op-engineering/op-sqlite": "18.2.5",
+    "@react-native/assets-registry": "0.87.1",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.50",
     "@react-navigation/core": "8.0.0-alpha.34",
+    "@react-navigation/elements": "3.0.0-alpha.48",
     "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/native-stack": "8.0.0-alpha.52",
     "@rocicorp/zero": "1.9.0",
+    "@o/database": "0.16.19-canary.1790768320875",
+    "@o/env": "0.16.19-canary.1790768320875",
+    "@o/helpers": "0.16.19-canary.1790768320875",
     "@tamagui/animations-css": "3.0.0-beta.1540.1",
     "@tamagui/animations-reanimated": "3.0.0-beta.1540.1",
     "@tamagui/config": "3.0.0-beta.1540.1",
-    "@tamagui/constants": "3.0.0-beta.1540.1",
-    "@tamagui/linear-gradient": "3.0.0-beta.1540.1",
     "@tamagui/native": "3.0.0-beta.1540.1",
-    "@tamagui/themes": "3.0.0-beta.1540.1",
     "@tamagui/toast": "3.0.0-beta.1540.1",
-    "@vxrn/color-scheme": "2.0.0-beta.159.1",
-    "better-auth": "1.6.23",
+    "better-auth": "1.6.30",
     "drizzle-orm": "1.0.0-beta.9-e89174b",
+    "drizzle-zero-sqlite": "0.16.19-canary.1790768320875",
+    "markdown-to-jsx": "^9.10.2",
     "on-zero": "0.16.19-canary.1790768320875",
     "one": "2.0.0-beta.159.1",
-    "pg": "8.18.0",
+    "orez-lite": "0.16.19-canary.1790768320875",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.87.1",
     "react-native-gesture-handler": "~3.3.0",
-    "react-native-keyboard-controller": "1.21.11",
+    "react-native-keyboard-controller": "1.22.5",
     "react-native-reanimated": "~4.6.0",
-    "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.27.0",
     "react-native-svg": "15.15.4",
-    "react-native-web": "^0.21.2",
+    "react-native-teleport": "^1.2.2",
     "react-native-worklets": "~0.12.2",
+    "s3mini": "^0.9.5",
+    "server-only": "^0.0.1",
     "tamagui": "3.0.0-beta.1540.1",
     "valibot": "^1.1.0",
+    "sf-symbols-typescript": "2.2.0",
+    "@tamagui/menu": "3.0.0-beta.1540.1",
     "vxrn": "2.0.0-beta.159.1",
-    "drizzle-zero": "1.0.0-beta.1"
+    "starter-mdx": "file:lib/mdx",
+    "@op-engineering/op-sqlite": "18.2.5"
   },
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.44.1",
-    "@o/cli": "0.16.19-canary.1790768320875",
+    "@babel/core": "^7.26.0",
     "@react-native-community/cli": "^20.2.0",
     "@react-native-community/template": "^0.87.1",
+    "@react-native/metro-config": "0.87.1",
     "@tamagui/vite-plugin": "3.0.0-beta.1540.1",
     "@types/bun": "^1.2.16",
     "@types/node": "24.0.3",
-    "@types/pg": "^8.11.10",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "~19.1.7",
-    "babel-preset-expo": "58.0.0-canary-20260909-ea7a89a",
     "drizzle-kit": "1.0.0-beta.9-e89174b",
-    "orez": "0.16.19-canary.1790768320875",
-    "oxfmt": "^0.16.0",
-    "oxlint": "^1.31.0",
     "typescript": "7.0.2",
-    "vite": "8.2.2"
-  },
-  "reanimated": {
-    "staticFeatureFlags": {
-      "ENABLE_SHARED_ELEMENT_TRANSITIONS": false,
-      "ANDROID_SYNCHRONOUSLY_UPDATE_UI_PROPS": true,
-      "IOS_SYNCHRONOUSLY_UPDATE_UI_PROPS": true,
-      "USE_COMMIT_HOOK_ONLY_FOR_REACT_COMMITS": true,
-      "DISABLE_COMMIT_PAUSING_MECHANISM": true,
-      "FORCE_REACT_RENDER_FOR_SETTLED_ANIMATIONS": true
-    }
+    "vite": "8.2.2",
+    "oxlint": "^1.31.0",
+    "oxfmt": "^0.16.0",
+    "babel-preset-expo": "58.0.0-canary-20260909-ea7a89a",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "~19.1.7"
   },
   "trustedDependencies": [
     "@rocicorp/zero-sqlite3",
-    "oxc-parser",
-    "sharp",
-    "esbuild"
+    "@swc/core"
   ],
-  "upgradeSets": {
-    "takeout": [
-      "@o/*",
-      "on-zero"
-    ],
-    "tamagui": [
-      "tamagui",
-      "@tamagui/*"
-    ],
-    "one": [
-      "one",
-      "vxrn",
-      "@vxrn/*"
-    ],
-    "zero": [
-      "@rocicorp/zero"
-    ],
-    "better-auth": [
-      "better-auth",
-      "@better-auth/*"
-    ],
-    "drizzle": [
-      "drizzle-orm",
-      "drizzle-kit"
-    ]
+  "patchedDependencies": {
+    "@react-navigation/bottom-tabs@8.0.0-alpha.50": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.50.patch",
+    "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch",
+    "react-native-reanimated@4.6.0": "patches/react-native-reanimated@4.6.0.patch",
+    "@react-navigation/native-stack@8.0.0-alpha.52": "patches/@react-navigation%2Fnative-stack@8.0.0-alpha.52.patch",
+    "react-native-keyboard-controller@1.22.5": "patches/react-native-keyboard-controller@1.22.5.patch"
   },
-  "main": "node_modules/one/metro-entry.js"
+  "packageManager": "bun@1.4.2"
 }

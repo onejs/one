@@ -6,46 +6,49 @@ import type { OneRouter } from 'one'
 declare module 'one' {
   export namespace OneRouter {
     export interface __routes<T extends string = string> extends Record<string, unknown> {
-      StaticRoutes: 
+      StaticRoutes:
         | `/`
-        | `/(app)`
-        | `/(app)/auth`
-        | `/(app)/auth/login`
-        | `/(app)/auth/login/password`
-        | `/(app)/home`
-        | `/(app)/home/(tabs)`
-        | `/(app)/home/(tabs)/feed`
-        | `/(app)/home/(tabs)/feed/`
-        | `/(app)/home/feed`
-        | `/(app)/home/feed/`
-        | `/(app)/home/settings`
-        | `/(app)/home/settings/`
-        | `/(app)/home/settings/blocked-users`
-        | `/(app)/home/settings/edit-profile`
         | `/_sitemap`
         | `/auth`
+        | `/auth/`
         | `/auth/login`
-        | `/auth/login/password`
+        | `/auth/signup/otp`
+        | `/eula`
         | `/home`
         | `/home/(tabs)`
+        | `/home/(tabs)/action`
         | `/home/(tabs)/feed`
         | `/home/(tabs)/feed/`
+        | `/home/(tabs)/feed/make`
+        | `/home/(tabs)/profile`
+        | `/home/(tabs)/profile/`
+        | `/home/action`
         | `/home/feed`
         | `/home/feed/`
+        | `/home/feed/make`
+        | `/home/profile`
+        | `/home/profile/`
         | `/home/settings`
-        | `/home/settings/`
-        | `/home/settings/blocked-users`
         | `/home/settings/edit-profile`
-      DynamicRoutes: 
-        | `/(app)/auth/signup/${OneRouter.SingleRoutePart<T>}`
+        | `/home/settings/notifications`
+        | `/privacy-policy`
+        | `/terms-of-service`
+      DynamicRoutes:
         | `/auth/signup/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: 
-        | `/(app)/auth/signup/[method]`
+        | `/docs/${OneRouter.SingleRoutePart<T>}`
+        | `/home/(tabs)/feed/post/${OneRouter.SingleRoutePart<T>}`
+        | `/home/feed/post/${OneRouter.SingleRoutePart<T>}`
+      DynamicRouteTemplate:
         | `/auth/signup/[method]`
+        | `/docs/[slug]`
+        | `/home/(tabs)/feed/post/[postId]`
+        | `/home/feed/post/[postId]`
       IsTyped: true
       RouteTypes: {
-        '/(app)/auth/signup/[method]': RouteInfo<{ method: string }>
         '/auth/signup/[method]': RouteInfo<{ method: string }>
+        '/docs/[slug]': RouteInfo<{ slug: string }>
+        '/home/(tabs)/feed/post/[postId]': RouteInfo<{ postId: string }>
+        '/home/feed/post/[postId]': RouteInfo<{ postId: string }>
       }
     }
   }

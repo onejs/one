@@ -1,0 +1,29 @@
+diff --git a/ios/observers/movement/observer/KeyboardMovementObserver+Listeners.swift b/ios/observers/movement/observer/KeyboardMovementObserver+Listeners.swift
+index 464eec73bb1450faec92a62e4e60a92fc15307e2..1d7b2ffc310057e17b36a2464b437a29488f1672 100644
+--- a/ios/observers/movement/observer/KeyboardMovementObserver+Listeners.swift
++++ b/ios/observers/movement/observer/KeyboardMovementObserver+Listeners.swift
+@@ -24,7 +24,10 @@ extension KeyboardMovementObserver {
+       self.duration = duration
+ 
+       onRequestAnimation()
+-      onEvent("onKeyboardMoveStart", Float(self.keyboardHeight) as NSNumber, 1, duration as NSNumber, tag)
++      // a will-show can carry a zero-height frame (a rotation with no keyboard on
++      // screen does this); reporting it as fully open strands progress at 1
++      let progress = self.keyboardHeight > 0 ? 1 : 0
++      onEvent("onKeyboardMoveStart", Float(self.keyboardHeight) as NSNumber, progress as NSNumber, duration as NSNumber, tag)
+       onNotify("KeyboardController::keyboardWillShow", buildEventParams(self.keyboardHeight, duration, tag))
+ 
+       setupKeyboardWatcher()
+diff --git a/src/components/KeyboardChatScrollView/useChatKeyboard/index.ios.ts b/src/components/KeyboardChatScrollView/useChatKeyboard/index.ios.ts
+--- a/src/components/KeyboardChatScrollView/useChatKeyboard/index.ios.ts
++++ b/src/components/KeyboardChatScrollView/useChatKeyboard/index.ios.ts
+@@ -80,6 +80,9 @@
+           offset,
+         );
+ 
++        // a focus event with no keyboard movement must preserve the native scroll position.
++        if (effective === padding.value) return;
++
+         const atEnd = isScrollAtEnd(
+           scroll.value,
+           layout.value.height,
