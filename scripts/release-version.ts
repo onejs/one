@@ -2,6 +2,7 @@ export function resolveCanaryVersion(
   currentVersion: string,
   options: {
     rePublish: boolean
+    baseVersion?: string
     now?: () => number
   }
 ): string {
@@ -9,7 +10,9 @@ export function resolveCanaryVersion(
     return currentVersion
   }
 
-  return `${currentVersion.replace(/(-\d+)+$/, '')}-${(options.now ?? Date.now)()}`
+  const timestamp = (options.now ?? Date.now)()
+  if (options.baseVersion) return `${options.baseVersion}-canary.${timestamp}`
+  return `${currentVersion.replace(/(-\d+)+$/, '')}-${timestamp}`
 }
 
 export function resolveBetaVersion(args: string[]): string | null {
