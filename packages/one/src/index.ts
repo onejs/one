@@ -246,3 +246,5 @@ export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 export { useScrollGroup } from './useScrollGroup'
 // server
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'
+
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './platform/ui/pagerTypes'

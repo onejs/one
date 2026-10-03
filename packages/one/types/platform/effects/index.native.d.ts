@@ -13,4 +13,6 @@ export type { IconColorRole, IconElements, IconProps } from '../ui/Icon';
 export type { CameraPosition, Coordinates, MapCircle, MapMarker, MapPolygon, MapPolyline, MapProps, } from '../ui/Map';
 export { Portal, PortalHost } from '../ui/Portal.native';
 export type { PortalProps, PortalHostProps } from '../ui/portalTypes';
+export { Pager } from '../ui/Pager.native';
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent, } from '../ui/pagerTypes';
 //# sourceMappingURL=index.native.d.ts.map

@@ -37,7 +37,7 @@ const pagerStyle = (props: object) => {
     tree = TestRenderer.create(createElement(PagerModule.Pager, props))
   })
   const pager = tree!.root.findAll(
-    (node) => node.type === 'host-OneNativePager'
+    (node) => node.type === 'host-OneNativeSwiftPager'
   )[0]
   const style = pager.props.style
   tree!.unmount()

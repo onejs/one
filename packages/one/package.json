@@ -465,7 +465,8 @@
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView",
         "OneNativePortalView": "OneNativePortalViewComponentView",
-        "OneNativePortalHostView": "OneNativePortalHostViewComponentView"
+        "OneNativePortalHostView": "OneNativePortalHostViewComponentView",
+        "OneNativeSwiftPager": "OneNativeSwiftPagerComponentView"
       }
     }
   }
