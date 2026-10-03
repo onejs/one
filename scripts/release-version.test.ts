@@ -25,6 +25,16 @@ describe('resolveCanaryVersion', () => {
   })
 })
 
+test('V2 canaries identify their source line even before the beta version bump', () => {
+  expect(
+    resolveCanaryVersion('1.27.1', {
+      rePublish: false,
+      baseVersion: '2.0.0',
+      now: () => 1787823968463,
+    })
+  ).toBe('2.0.0-canary.1787823968463')
+})
+
 describe('resolveBetaVersion', () => {
   test('accepts the automatic V2 beta version format', () => {
     expect(resolveBetaVersion(['--beta', '--version', '2.0.0-beta.247.2'])).toBe(
