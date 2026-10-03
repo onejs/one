@@ -1,6 +1,25 @@
 {
   "validation": "RAN",
-  "source": "One native-features fixture; linked Worklets 0.12.2 and Reanimated 4.6.0; native build from 506ff623d plus concurrent service/navigation edits. Core compiler source unchanged during these runs.",
+  "date": "2026-10-03",
+  "nativeBuild": {
+    "source": "506ff623d plus concurrent native service/navigation edits",
+    "configuration": "Debug",
+    "ios": "iOS 27, iPhone 17 Pro simulator",
+    "android": "Android 17/API 37, Pixel 8 emulator",
+    "reanimated": "4.6.0",
+    "worklets": "0.12.2",
+    "scope": "Reused locally built binaries. This is a worklet runtime proof, not the clean-install real-app matrix."
+  },
+  "javascript": {
+    "mode": "Production native bundles, minify false; web fixture transformed by One",
+    "compilerSourceCheckpoint": "d37d48109",
+    "fixtureSourceCheckpoint": "af3dbde4c",
+    "runnerSourceCheckpoint": "af3dbde4c",
+    "sha256": {
+      "ios": "2d745ac18b4ea0bddf12f8c3ffc82171d0d038a6ca90c5a10a49fd0a104e701d",
+      "android": "b7e25687a75922aee33ca064081aa0fa9d487d92514d701520769c7890008b01"
+    }
+  },
   "results": [
     {
       "passed": true,
@@ -9,7 +28,7 @@
       "steps": [
         "fixture starts without callbacks",
         "runOnUI executes on the expected runtime and moves the view",
-        "layout animation completes and changes native geometry",
+        "layout animation completes and changes view geometry",
         "gesture runs on the expected runtime, reports drag and finishes timing"
       ],
       "observations": [
@@ -19,58 +38,74 @@
             {
               "id": "worklets-drag-result",
               "label": "Drag: pending",
-              "x": 24,
-              "y": 24,
               "width": 354,
-              "height": 17
+              "height": 17,
+              "y": 86,
+              "x": 24
             },
             {
               "id": "worklets-animation-result",
               "label": "Animation: pending",
-              "x": 24,
-              "y": 57,
               "width": 354,
-              "height": 17
+              "height": 17,
+              "y": 119,
+              "x": 24
             },
             {
               "id": "worklets-ui-result",
               "label": "runOnUI: pending",
-              "x": 24,
-              "y": 90,
               "width": 354,
-              "height": 17
+              "height": 17,
+              "x": 24,
+              "y": 152
             },
             {
               "id": "worklets-gesture-result",
               "label": "Gesture runtime: pending",
-              "x": 24,
-              "y": 123,
               "width": 354,
-              "height": 17
+              "height": 17,
+              "x": 24,
+              "y": 185
             },
             {
               "id": "worklets-layout-result",
               "label": "Layout: pending",
-              "x": 24,
-              "y": 156,
               "width": 354,
-              "height": 17
+              "height": 17,
+              "x": 24,
+              "y": 218
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "width": 354,
+              "height": 17,
+              "x": 24,
+              "y": 251
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "width": 354,
+              "height": 17,
+              "x": 24,
+              "y": 284
             },
             {
               "id": "worklets-layout-box",
               "label": "Layout box",
-              "x": 24,
-              "y": 255,
               "width": 72,
-              "height": 72
+              "height": 72,
+              "x": 24,
+              "y": 317
             },
             {
               "id": "one-native-gestures-box",
               "label": "Drag box",
-              "x": 24,
-              "y": 351,
               "width": 72,
-              "height": 72
+              "height": 72,
+              "x": 24,
+              "y": 413
             }
           ]
         },
@@ -80,15 +115,92 @@
             {
               "id": "worklets-drag-result",
               "label": "Drag: pending",
-              "x": 24,
+              "y": 86,
               "width": 354,
-              "height": 17,
-              "y": 24
+              "x": 24,
+              "height": 17
             },
             {
               "id": "worklets-animation-result",
               "label": "Animation: pending",
-              "y": 57,
+              "width": 354,
+              "height": 17,
+              "y": 119,
+              "x": 24
+            },
+            {
+              "id": "worklets-ui-result",
+              "label": "runOnUI: ui:40",
+              "width": 354,
+              "y": 152,
+              "height": 17,
+              "x": 24
+            },
+            {
+              "id": "worklets-gesture-result",
+              "label": "Gesture runtime: pending",
+              "width": 354,
+              "height": 17,
+              "y": 185,
+              "x": 24
+            },
+            {
+              "id": "worklets-layout-result",
+              "label": "Layout: pending",
+              "width": 354,
+              "y": 218,
+              "height": 17,
+              "x": 24
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "width": 354,
+              "y": 251,
+              "height": 17,
+              "x": 24
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "width": 354,
+              "height": 17,
+              "y": 284,
+              "x": 24
+            },
+            {
+              "id": "worklets-layout-box",
+              "label": "Layout box",
+              "width": 72,
+              "y": 317,
+              "height": 72,
+              "x": 24
+            },
+            {
+              "id": "one-native-gestures-box",
+              "label": "Drag box",
+              "width": 72,
+              "y": 413,
+              "height": 72,
+              "x": 64
+            }
+          ]
+        },
+        {
+          "step": "layout animation completes and changes view geometry",
+          "nodes": [
+            {
+              "id": "worklets-drag-result",
+              "label": "Drag: pending",
+              "x": 24,
+              "height": 17,
+              "y": 86,
+              "width": 354
+            },
+            {
+              "id": "worklets-animation-result",
+              "label": "Animation: pending",
+              "y": 119,
               "x": 24,
               "width": 354,
               "height": 17
@@ -96,103 +208,58 @@
             {
               "id": "worklets-ui-result",
               "label": "runOnUI: ui:40",
-              "height": 17,
-              "y": 90,
               "width": 354,
-              "x": 24
+              "x": 24,
+              "y": 152,
+              "height": 17
             },
             {
               "id": "worklets-gesture-result",
               "label": "Gesture runtime: pending",
-              "y": 123,
-              "height": 17,
+              "y": 185,
               "x": 24,
-              "width": 354
-            },
-            {
-              "id": "worklets-layout-result",
-              "label": "Layout: pending",
               "width": 354,
-              "x": 24,
-              "height": 17,
-              "y": 156
-            },
-            {
-              "id": "worklets-layout-box",
-              "label": "Layout box",
-              "x": 24,
-              "height": 72,
-              "width": 72,
-              "y": 255
-            },
-            {
-              "id": "one-native-gestures-box",
-              "label": "Drag box",
-              "y": 351,
-              "width": 72,
-              "height": 72,
-              "x": 64
-            }
-          ]
-        },
-        {
-          "step": "layout animation completes and changes native geometry",
-          "nodes": [
-            {
-              "id": "worklets-drag-result",
-              "label": "Drag: pending",
-              "height": 17,
-              "x": 24,
-              "y": 24,
-              "width": 354
-            },
-            {
-              "id": "worklets-animation-result",
-              "label": "Animation: pending",
-              "height": 17,
-              "x": 24,
-              "y": 57,
-              "width": 354
-            },
-            {
-              "id": "worklets-ui-result",
-              "label": "runOnUI: ui:40",
-              "height": 17,
-              "x": 24,
-              "y": 90,
-              "width": 354
-            },
-            {
-              "id": "worklets-gesture-result",
-              "label": "Gesture runtime: pending",
-              "height": 17,
-              "y": 123,
-              "x": 24,
-              "width": 354
+              "height": 17
             },
             {
               "id": "worklets-layout-result",
               "label": "Layout: ui",
-              "height": 17,
+              "width": 354,
               "x": 24,
-              "y": 156,
-              "width": 354
+              "y": 218,
+              "height": 17
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "width": 354,
+              "y": 251,
+              "x": 24,
+              "height": 17
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "y": 284,
+              "x": 24,
+              "width": 354,
+              "height": 17
             },
             {
               "id": "worklets-layout-box",
               "label": "Layout box",
-              "height": 72,
-              "y": 255,
+              "width": 180,
               "x": 24,
-              "width": 180
+              "y": 317,
+              "height": 72
             },
             {
               "id": "one-native-gestures-box",
               "label": "Drag box",
-              "height": 72,
+              "y": 413,
+              "width": 72,
               "x": 64,
-              "y": 351,
-              "width": 72
+              "height": 72
             }
           ]
         },
@@ -202,26 +269,26 @@
             {
               "id": "worklets-drag-result",
               "label": "Drag: 80",
-              "y": 24,
-              "height": 17,
+              "y": 86,
               "x": 24,
+              "height": 17,
               "width": 354
             },
             {
               "id": "worklets-animation-result",
               "label": "Animation: finished",
-              "y": 57,
-              "height": 17,
               "x": 24,
+              "y": 119,
+              "height": 17,
               "width": 354
             },
             {
               "id": "worklets-ui-result",
               "label": "runOnUI: ui:40",
               "height": 17,
-              "width": 354,
               "x": 24,
-              "y": 90
+              "width": 354,
+              "y": 152
             },
             {
               "id": "worklets-gesture-result",
@@ -229,31 +296,47 @@
               "height": 17,
               "width": 354,
               "x": 24,
-              "y": 123
+              "y": 185
             },
             {
               "id": "worklets-layout-result",
               "label": "Layout: ui",
+              "x": 24,
+              "width": 354,
+              "height": 17,
+              "y": 218
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
               "height": 17,
               "width": 354,
+              "y": 251,
+              "x": 24
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
               "x": 24,
-              "y": 156
+              "y": 284,
+              "height": 17,
+              "width": 354
             },
             {
               "id": "worklets-layout-box",
               "label": "Layout box",
-              "height": 72,
+              "x": 24,
               "width": 180,
-              "y": 255,
-              "x": 24
+              "y": 317,
+              "height": 72
             },
             {
               "id": "one-native-gestures-box",
               "label": "Drag box",
               "height": 72,
-              "width": 72,
-              "y": 351,
-              "x": 144
+              "y": 413,
+              "x": 144,
+              "width": 72
             }
           ]
         }
@@ -266,7 +349,7 @@
       "steps": [
         "fixture starts without callbacks",
         "runOnUI executes on the expected runtime and moves the view",
-        "layout animation completes and changes native geometry",
+        "layout animation completes and changes view geometry",
         "gesture runs on the expected runtime, reports drag and finishes timing"
       ],
       "observations": [
@@ -277,7 +360,7 @@
               "id": "worklets-drag-result",
               "label": "Drag: pending",
               "x": 63,
-              "y": 63,
+              "y": 195,
               "width": 954,
               "height": 51
             },
@@ -285,7 +368,7 @@
               "id": "worklets-animation-result",
               "label": "Animation: pending",
               "x": 63,
-              "y": 156,
+              "y": 288,
               "width": 954,
               "height": 51
             },
@@ -293,7 +376,7 @@
               "id": "worklets-ui-result",
               "label": "runOnUI: pending",
               "x": 63,
-              "y": 249,
+              "y": 381,
               "width": 954,
               "height": 51
             },
@@ -301,7 +384,7 @@
               "id": "worklets-gesture-result",
               "label": "Gesture runtime: pending",
               "x": 63,
-              "y": 342,
+              "y": 474,
               "width": 954,
               "height": 51
             },
@@ -309,7 +392,23 @@
               "id": "worklets-layout-result",
               "label": "Layout: pending",
               "x": 63,
-              "y": 435,
+              "y": 567,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 63,
+              "y": 660,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 63,
+              "y": 753,
               "width": 954,
               "height": 51
             },
@@ -317,7 +416,7 @@
               "id": "worklets-layout-box",
               "label": "Layout box",
               "x": 63,
-              "y": 714,
+              "y": 846,
               "width": 189,
               "height": 189
             },
@@ -325,7 +424,7 @@
               "id": "one-native-gestures-box",
               "label": "Drag box",
               "x": 63,
-              "y": 966,
+              "y": 1098,
               "width": 189,
               "height": 189
             }
@@ -338,7 +437,7 @@
               "id": "worklets-drag-result",
               "label": "Drag: pending",
               "x": 63,
-              "y": 63,
+              "y": 195,
               "width": 954,
               "height": 51
             },
@@ -346,7 +445,7 @@
               "id": "worklets-animation-result",
               "label": "Animation: pending",
               "x": 63,
-              "y": 156,
+              "y": 288,
               "width": 954,
               "height": 51
             },
@@ -354,7 +453,7 @@
               "id": "worklets-ui-result",
               "label": "runOnUI: ui:40",
               "x": 63,
-              "y": 249,
+              "y": 381,
               "width": 954,
               "height": 51
             },
@@ -362,7 +461,7 @@
               "id": "worklets-gesture-result",
               "label": "Gesture runtime: pending",
               "x": 63,
-              "y": 342,
+              "y": 474,
               "width": 954,
               "height": 51
             },
@@ -370,7 +469,23 @@
               "id": "worklets-layout-result",
               "label": "Layout: pending",
               "x": 63,
-              "y": 435,
+              "y": 567,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 63,
+              "y": 660,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 63,
+              "y": 753,
               "width": 954,
               "height": 51
             },
@@ -378,7 +493,7 @@
               "id": "worklets-layout-box",
               "label": "Layout box",
               "x": 63,
-              "y": 714,
+              "y": 846,
               "width": 189,
               "height": 189
             },
@@ -386,20 +501,20 @@
               "id": "one-native-gestures-box",
               "label": "Drag box",
               "x": 168,
-              "y": 966,
+              "y": 1098,
               "width": 84,
               "height": 189
             }
           ]
         },
         {
-          "step": "layout animation completes and changes native geometry",
+          "step": "layout animation completes and changes view geometry",
           "nodes": [
             {
               "id": "worklets-drag-result",
               "label": "Drag: pending",
               "x": 63,
-              "y": 63,
+              "y": 195,
               "width": 954,
               "height": 51
             },
@@ -407,7 +522,7 @@
               "id": "worklets-animation-result",
               "label": "Animation: pending",
               "x": 63,
-              "y": 156,
+              "y": 288,
               "width": 954,
               "height": 51
             },
@@ -415,7 +530,7 @@
               "id": "worklets-ui-result",
               "label": "runOnUI: ui:40",
               "x": 63,
-              "y": 249,
+              "y": 381,
               "width": 954,
               "height": 51
             },
@@ -423,7 +538,7 @@
               "id": "worklets-gesture-result",
               "label": "Gesture runtime: pending",
               "x": 63,
-              "y": 342,
+              "y": 474,
               "width": 954,
               "height": 51
             },
@@ -431,7 +546,23 @@
               "id": "worklets-layout-result",
               "label": "Layout: ui",
               "x": 63,
-              "y": 435,
+              "y": 567,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 63,
+              "y": 660,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 63,
+              "y": 753,
               "width": 954,
               "height": 51
             },
@@ -439,7 +570,7 @@
               "id": "worklets-layout-box",
               "label": "Layout box",
               "x": 63,
-              "y": 714,
+              "y": 846,
               "width": 473,
               "height": 189
             },
@@ -447,7 +578,7 @@
               "id": "one-native-gestures-box",
               "label": "Drag box",
               "x": 168,
-              "y": 966,
+              "y": 1098,
               "width": 84,
               "height": 189
             }
@@ -458,9 +589,9 @@
           "nodes": [
             {
               "id": "worklets-drag-result",
-              "label": "Drag: 82",
+              "label": "Drag: 80",
               "x": 63,
-              "y": 63,
+              "y": 195,
               "width": 954,
               "height": 51
             },
@@ -468,7 +599,7 @@
               "id": "worklets-animation-result",
               "label": "Animation: finished",
               "x": 63,
-              "y": 156,
+              "y": 288,
               "width": 954,
               "height": 51
             },
@@ -476,7 +607,7 @@
               "id": "worklets-ui-result",
               "label": "runOnUI: ui:40",
               "x": 63,
-              "y": 249,
+              "y": 381,
               "width": 954,
               "height": 51
             },
@@ -484,7 +615,7 @@
               "id": "worklets-gesture-result",
               "label": "Gesture runtime: ui",
               "x": 63,
-              "y": 342,
+              "y": 474,
               "width": 954,
               "height": 51
             },
@@ -492,7 +623,23 @@
               "id": "worklets-layout-result",
               "label": "Layout: ui",
               "x": 63,
-              "y": 435,
+              "y": 567,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 63,
+              "y": 660,
+              "width": 954,
+              "height": 51
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 63,
+              "y": 753,
               "width": 954,
               "height": 51
             },
@@ -500,7 +647,7 @@
               "id": "worklets-layout-box",
               "label": "Layout box",
               "x": 63,
-              "y": 714,
+              "y": 846,
               "width": 473,
               "height": 189
             },
@@ -508,7 +655,7 @@
               "id": "one-native-gestures-box",
               "label": "Drag box",
               "x": 378,
-              "y": 966,
+              "y": 1098,
               "width": -126,
               "height": 189
             }
@@ -571,6 +718,22 @@
               "height": 17
             },
             {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 24,
+              "y": 189,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 24,
+              "y": 222,
+              "width": 354,
+              "height": 17
+            },
+            {
               "id": "worklets-layout-box",
               "label": "",
               "x": 24,
@@ -628,6 +791,22 @@
               "label": "Layout: pending",
               "x": 24,
               "y": 156,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 24,
+              "y": 189,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 24,
+              "y": 222,
               "width": 354,
               "height": 17
             },
@@ -693,6 +872,22 @@
               "height": 17
             },
             {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 24,
+              "y": 189,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 24,
+              "y": 222,
+              "width": 354,
+              "height": 17
+            },
+            {
               "id": "worklets-layout-box",
               "label": "",
               "x": 24,
@@ -754,6 +949,22 @@
               "height": 17
             },
             {
+              "id": "worklets-run-ui",
+              "label": "Run on UI",
+              "x": 24,
+              "y": 189,
+              "width": 354,
+              "height": 17
+            },
+            {
+              "id": "worklets-resize",
+              "label": "Resize layout",
+              "x": 24,
+              "y": 222,
+              "width": 354,
+              "height": 17
+            },
+            {
               "id": "worklets-layout-box",
               "label": "",
               "x": 24,
@@ -773,5 +984,6 @@
         }
       ]
     }
-  ]
+  ],
+  "screenshots": "before-after.webp (original capture sizes, quality 90)"
 }

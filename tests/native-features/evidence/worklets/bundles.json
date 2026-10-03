@@ -1,0 +1,317 @@
+{
+  "validation": "RAN",
+  "compilerBaseline": "99e6e988e (compiler source unchanged from measurement source commits)",
+  "babelPlugin": "react-native-reanimated/plugin reexports react-native-worklets/plugin, version 0.12.2",
+  "results": [
+    {
+      "app": "one-basic",
+      "root": "/Users/n8/one/examples/one-basic",
+      "host": {
+        "hostname": "studio-64",
+        "platform": "darwin",
+        "arch": "arm64",
+        "cpu": "Apple M5 Max",
+        "cores": 18
+      },
+      "source": {
+        "commit": "fcdfa011ace5431bebaf8e3b745159fed51776be",
+        "dirty": "M apps/onestack.dev/data/native/motion.mdx\n M packages/compiler/types/transformSWC.d.ts\n M packages/one/android/src/main/AndroidManifest.xml\n M packages/one/ios/Nitro/HybridOneMotion.swift\n M packages/one/nitro.json\n M packages/one/nitrogen/generated/android/One+autolinking.cmake\n M packages/one/nitrogen/generated/android/OneOnLoad.cpp\n M packages/one/src/platform/file-system/index.native.ts\n M packages/one/src/platform/file-system/index.ts\n M packages/one/src/platform/image-manipulator/index.native.ts\n M packages/one/src/platform/image-manipulator/index.ts\n M packages/one/src/platform/motion/index.native.ts\n M packages/one/src/platform/motion/index.ts\n M packages/one/src/platform/specs/OneFileSystem.nitro.ts\n M packages/one/src/platform/specs/OneImageManipulator.nitro.ts\n M packages/one/src/platform/specs/OneMotion.nitro.ts\n M packages/one/types/daemon/server.d.ts\n M packages/one/types/index.d.ts\n M packages/one/types/platform/Sheet.native.d.ts\n M packages/one/types/platform/crypto/random.d.ts\n M packages/one/types/platform/generated/sheetTypes.d.ts\n M packages/one/types/platform/index.d.ts\n M packages/one/types/platform/index.native.d.ts\n M packages/one/types/platform/specs/OneAppIntents.nitro.d.ts\n M packages/one/types/platform/specs/OneCrypto.nitro.d.ts\n M packages/one/types/platform/specs/OneFileSystem.nitro.d.ts\n M packages/one/types/platform/specs/OneImageManipulator.nitro.d.ts\n M packages/one/types/platform/specs/OneMotion.nitro.d.ts\n M packages/one/types/platform/specs/OneNativeComposeNodeNativeComponent.d.ts\n M packages/one/types/platform/specs/OneNativeSheetNativeComponent.d.ts\n M packages/one/types/platform/ui/Portal.d.ts\n M packages/one/types/server/workerHandler.d.ts\n M packages/vxrn/types/exports/prebuildWithoutExpo.d.ts\n M packages/vxrn/types/utils/createNativeDevEngine.d.ts\n M plans/one-native-speed.md\n M tests/native-features/.gitignore\n M tests/native-features/fixtures/one-native-crypto.tsx\n M tests/native-features/fixtures/one-native-fetch.tsx\n M tests/native-features/fixtures/one-native-file-system.tsx\n M tests/native-features/fixtures/one-native-gestures.tsx\n M tests/native-features/fixtures/one-native-image-manipulator.tsx\n M tests/native-features/fixtures/one-native-motion.tsx\n M tests/native-features/fixtures/one-native-storage.tsx\n?? packages/create-vxrn/types/\n?? packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneFileSystem.kt\n?? packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneImageManipulator.kt\n?? packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneMotion.kt\n?? packages/one/nitrogen/generated/android/c++/JFileDirectories.hpp\n?? packages/one/nitrogen/generated/android/c++/JFileEncoding.hpp\n?? packages/one/nitrogen/generated/android/c++/JFileEntry.hpp\n?? packages/one/nitrogen/generated/android/c++/JFileInfo.hpp\n?? packages/one/nitrogen/generated/android/c++/JFunc_void_MotionReading.hpp\n?? packages/one/nitrogen/generated/android/c++/JFunc_void_std__string_std__string.hpp\n?? packages/one/nitrogen/generated/android/c++/JHybridOneFileSystemSpec.cpp\n?? packages/one/nitrogen/generated/android/c++/JHybridOneFileSystemSpec.hpp\n?? packages/one/nitrogen/generated/android/c++/JHybridOneImageManipulatorSpec.cpp\n?? packages/one/nitrogen/generated/android/c++/JHybridOneImageManipulatorSpec.hpp\n?? packages/one/nitrogen/generated/android/c++/JHybridOneMotionSpec.cpp\n?? packages/one/nitrogen/generated/android/c++/JHybridOneMotionSpec.hpp\n?? packages/one/nitrogen/generated/android/c++/JImageCrop.hpp\n?? packages/one/nitrogen/generated/android/c++/JImageResize.hpp\n?? packages/one/nitrogen/generated/android/c++/JImageTransformOptions.hpp\n?? packages/one/nitrogen/generated/android/c++/JImageTransformResult.hpp\n?? packages/one/nitrogen/generated/android/c++/JMotionAvailability.hpp\n?? packages/one/nitrogen/generated/android/c++/JMotionReading.hpp\n?? packages/one/nitrogen/generated/android/c++/JMotionSensor.hpp\n?? packages/one/nitrogen/generated/android/c++/JMotionVector.hpp\n?? packages/one/nitrogen/generated/android/c++/JOneImageFormat.hpp\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/FileDirectories.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/FileEncoding.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/FileEntry.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/FileInfo.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/Func_void_MotionReading.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/Func_void_std__string_std__string.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/HybridOneFileSystemSpec.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/HybridOneImageManipulatorSpec.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/HybridOneMotionSpec.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/ImageCrop.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/ImageResize.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/ImageTransformOptions.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/ImageTransformResult.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/MotionAvailability.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/MotionReading.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/MotionSensor.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/MotionVector.kt\n?? packages/one/nitrogen/generated/android/kotlin/com/margelo/nitro/one/OneImageFormat.kt\n?? packages/one/types/platform/native-source/view.d.ts\n?? packages/one/types/platform/native-source/view.native.d.ts\n?? packages/one/types/platform/native-source/viewTypes.d.ts\n?? packages/one/types/platform/specs/OneKotlinHostNativeComponent.d.ts\n?? packages/vxrn/types/utils/compileNativeDevBytecode.d.ts\n?? plans/one-native-realapps.md\n?? scripts/native-worklets-benchmark.ts\n?? tests/native-features/assets/one-speed-12mp-source.md\n?? tests/native-features/assets/one-speed-12mp.jpg\n?? tests/native-features/benchmarks/\n?? tests/native-features/fixtures/native-speed.ts\n?? tests/native-features/fixtures/realapps-api-ios.android.tsx\n?? tests/native-features/fixtures/realapps-api-ios.ios.tsx\n?? tests/native-features/fixtures/realapps-api-ios.tsx\n?? tests/native-features/fixtures/realapps-api-report.tsx\n?? tests/native-features/fixtures/realapps-api-services.native.tsx\n?? tests/native-features/fixtures/realapps-api-tsconfig.json\n?? tests/native-features/fixtures/realapps-api-ui.native.tsx\n?? tests/native-features/fixtures/realapps-api-widgets.android.tsx\n?? tests/native-features/fixtures/realapps-api-widgets.ios.tsx\n?? tests/native-features/fixtures/realapps-api-widgets.tsx\n?? tests/native-features/fixtures/realapps-api-zoom.android.tsx\n?? tests/native-features/fixtures/realapps-api-zoom.ios.tsx\n?? tests/native-features/fixtures/realapps-api.native.tsx\n?? tests/native-features/fixtures/realapps-routing/\n?? tests/native-features/fixtures/worklets-entry.ts\n?? tests/native-features/proofs/native-speed/\n?? tests/native-features/scripts/native-speed-server.ts\n?? tests/native-features/scripts/realapps-android-ui.ts\n?? tests/native-features/scripts/realapps-navigation.ts\n?? tests/native-features/scripts/realapps-web-ready.ts\n?? tests/native-features/scripts/realapps.ts\n?? tests/native-features/scripts/worklets-proof.ts\n?? tests/native-features/scripts/worklets-server.ts",
+        "appCommit": "fcdfa011ace5431bebaf8e3b745159fed51776be"
+      },
+      "method": "counterbalanced fresh processes, first and second full iOS production bundles in each process; minify and source maps off; setup measured separately; no OS page-cache purge",
+      "mediansMs": {
+        "one": {
+          "cold": 3896.267917,
+          "warm": 2669.2915409999996
+        },
+        "babel": {
+          "cold": 4029.771,
+          "warm": 3285.051625
+        }
+      },
+      "samples": [
+        {
+          "sample": 0,
+          "mode": "one",
+          "setupMs": 811.1625829999999,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 3896.267917,
+              "bytes": 3598852,
+              "sha256": "45fe9d630015b4a4f61875b2e4040d0ad03c2b293a600a1ff0595ae967a74c36",
+              "filesContainingWorkletHash": 28
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 2669.2915409999996,
+              "bytes": 3598852,
+              "sha256": "45fe9d630015b4a4f61875b2e4040d0ad03c2b293a600a1ff0595ae967a74c36",
+              "filesContainingWorkletHash": 28
+            }
+          ]
+        },
+        {
+          "sample": 0,
+          "mode": "babel",
+          "setupMs": 705.301167,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 4535.607667,
+              "bytes": 3596047,
+              "sha256": "8aa340395895984550a8a3b5590112d639ecbbc10ab15d9592b6526922f5276f",
+              "filesContainingWorkletHash": 28
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 3357.501916,
+              "bytes": 3596047,
+              "sha256": "8aa340395895984550a8a3b5590112d639ecbbc10ab15d9592b6526922f5276f",
+              "filesContainingWorkletHash": 28
+            }
+          ]
+        },
+        {
+          "sample": 1,
+          "mode": "babel",
+          "setupMs": 616.8076659999999,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 4029.771,
+              "bytes": 3596047,
+              "sha256": "8aa340395895984550a8a3b5590112d639ecbbc10ab15d9592b6526922f5276f",
+              "filesContainingWorkletHash": 28
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 3285.051625,
+              "bytes": 3596047,
+              "sha256": "8aa340395895984550a8a3b5590112d639ecbbc10ab15d9592b6526922f5276f",
+              "filesContainingWorkletHash": 28
+            }
+          ]
+        },
+        {
+          "sample": 1,
+          "mode": "one",
+          "setupMs": 718.900667,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 4100.634209000001,
+              "bytes": 3598852,
+              "sha256": "45fe9d630015b4a4f61875b2e4040d0ad03c2b293a600a1ff0595ae967a74c36",
+              "filesContainingWorkletHash": 28
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 3029.3348749999996,
+              "bytes": 3598852,
+              "sha256": "45fe9d630015b4a4f61875b2e4040d0ad03c2b293a600a1ff0595ae967a74c36",
+              "filesContainingWorkletHash": 28
+            }
+          ]
+        },
+        {
+          "sample": 2,
+          "mode": "one",
+          "setupMs": 555.657458,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 2810.616125,
+              "bytes": 3598852,
+              "sha256": "45fe9d630015b4a4f61875b2e4040d0ad03c2b293a600a1ff0595ae967a74c36",
+              "filesContainingWorkletHash": 28
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 2266.6505829999996,
+              "bytes": 3598852,
+              "sha256": "45fe9d630015b4a4f61875b2e4040d0ad03c2b293a600a1ff0595ae967a74c36",
+              "filesContainingWorkletHash": 28
+            }
+          ]
+        },
+        {
+          "sample": 2,
+          "mode": "babel",
+          "setupMs": 479.66229200000004,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 3339.393125,
+              "bytes": 3596047,
+              "sha256": "8aa340395895984550a8a3b5590112d639ecbbc10ab15d9592b6526922f5276f",
+              "filesContainingWorkletHash": 28
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 2710.574792,
+              "bytes": 3596047,
+              "sha256": "8aa340395895984550a8a3b5590112d639ecbbc10ab15d9592b6526922f5276f",
+              "filesContainingWorkletHash": 28
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "app": "contrast-mobile",
+      "root": "/Users/n8/contrast/templates/contrast-mobile",
+      "host": {
+        "hostname": "studio-64",
+        "platform": "darwin",
+        "arch": "arm64",
+        "cpu": "Apple M5 Max",
+        "cores": 18
+      },
+      "source": {
+        "commit": "548f0155f79d825c2cb6edbf3600876d04aa72e7",
+        "dirty": "M packages/compiler/types/transformSWC.d.ts\n M packages/one/types/daemon/server.d.ts\n M packages/one/types/index.d.ts\n M packages/one/types/platform/Sheet.native.d.ts\n M packages/one/types/platform/crypto/random.d.ts\n M packages/one/types/platform/generated/sheetTypes.d.ts\n M packages/one/types/platform/index.d.ts\n M packages/one/types/platform/index.native.d.ts\n M packages/one/types/platform/specs/OneAppIntents.nitro.d.ts\n M packages/one/types/platform/specs/OneCrypto.nitro.d.ts\n M packages/one/types/platform/specs/OneFileSystem.nitro.d.ts\n M packages/one/types/platform/specs/OneImageManipulator.nitro.d.ts\n M packages/one/types/platform/specs/OneMotion.nitro.d.ts\n M packages/one/types/platform/specs/OneNativeComposeNodeNativeComponent.d.ts\n M packages/one/types/platform/specs/OneNativeSheetNativeComponent.d.ts\n M packages/one/types/platform/ui/Portal.d.ts\n M packages/one/types/server/workerHandler.d.ts\n M packages/vxrn/types/exports/prebuildWithoutExpo.d.ts\n M packages/vxrn/types/utils/createNativeDevEngine.d.ts\n M tests/native-features/fixtures/one-native-gestures.tsx\n?? packages/create-vxrn/types/\n?? packages/one/types/platform/native-source/view.d.ts\n?? packages/one/types/platform/native-source/view.native.d.ts\n?? packages/one/types/platform/native-source/viewTypes.d.ts\n?? packages/one/types/platform/specs/OneKotlinHostNativeComponent.d.ts\n?? packages/vxrn/types/utils/compileNativeDevBytecode.d.ts\n?? scripts/native-worklets-benchmark.ts\n?? tests/native-features/WORKLETS.md\n?? tests/native-features/evidence/\n?? tests/native-features/fixtures/realapps-api-ios.android.tsx\n?? tests/native-features/fixtures/realapps-api-ios.ios.tsx\n?? tests/native-features/fixtures/realapps-api-ios.tsx\n?? tests/native-features/fixtures/realapps-api-report.tsx\n?? tests/native-features/fixtures/realapps-api-services.native.tsx\n?? tests/native-features/fixtures/realapps-api-tsconfig.json\n?? tests/native-features/fixtures/realapps-api-ui.native.tsx\n?? tests/native-features/fixtures/realapps-api-widgets.android.tsx\n?? tests/native-features/fixtures/realapps-api-widgets.ios.tsx\n?? tests/native-features/fixtures/realapps-api-widgets.tsx\n?? tests/native-features/fixtures/realapps-api-zoom.android.tsx\n?? tests/native-features/fixtures/realapps-api-zoom.ios.tsx\n?? tests/native-features/fixtures/realapps-api.native.tsx\n?? tests/native-features/fixtures/realapps-menu.tsx\n?? tests/native-features/fixtures/realapps-routing/\n?? tests/native-features/fixtures/worklets-entry.ts\n?? tests/native-features/scripts/realapps-inject.ts\n?? tests/native-features/scripts/worklets-proof.ts\n?? tests/native-features/scripts/worklets-server.ts",
+        "appCommit": "1301762085bf5fb61145243d4c687a1d30852add"
+      },
+      "method": "counterbalanced fresh processes, first and second full iOS production bundles in each process; minify and source maps off; setup measured separately; no OS page-cache purge",
+      "mediansMs": {
+        "one": {
+          "cold": 11508.686625,
+          "warm": 10813.217749999998
+        },
+        "babel": {
+          "cold": 13957.776957999999,
+          "warm": 14707.105542
+        }
+      },
+      "samples": [
+        {
+          "sample": 0,
+          "mode": "one",
+          "setupMs": 1132.611584,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 11310.995291000001,
+              "bytes": 14607619,
+              "sha256": "b9227ec647c94ca991fe139d396e45e9b756fb5dc588af739f14488146bff265",
+              "filesContainingWorkletHash": 258
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 9280.579459,
+              "bytes": 14607619,
+              "sha256": "b9227ec647c94ca991fe139d396e45e9b756fb5dc588af739f14488146bff265",
+              "filesContainingWorkletHash": 258
+            }
+          ]
+        },
+        {
+          "sample": 0,
+          "mode": "babel",
+          "setupMs": 688.590458,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 12807.958,
+              "bytes": 14537382,
+              "sha256": "8a87710126722b732ab15df324fffc6e4ecb6b0d95df86194fcbc5273b5149d0",
+              "filesContainingWorkletHash": 253
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 14707.105542,
+              "bytes": 14537382,
+              "sha256": "8a87710126722b732ab15df324fffc6e4ecb6b0d95df86194fcbc5273b5149d0",
+              "filesContainingWorkletHash": 253
+            }
+          ]
+        },
+        {
+          "sample": 1,
+          "mode": "babel",
+          "setupMs": 1083.653458,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 13957.776957999999,
+              "bytes": 14537382,
+              "sha256": "8a87710126722b732ab15df324fffc6e4ecb6b0d95df86194fcbc5273b5149d0",
+              "filesContainingWorkletHash": 253
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 14404.938542,
+              "bytes": 14537382,
+              "sha256": "8a87710126722b732ab15df324fffc6e4ecb6b0d95df86194fcbc5273b5149d0",
+              "filesContainingWorkletHash": 253
+            }
+          ]
+        },
+        {
+          "sample": 1,
+          "mode": "one",
+          "setupMs": 857.604708,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 11508.686625,
+              "bytes": 14607619,
+              "sha256": "b9227ec647c94ca991fe139d396e45e9b756fb5dc588af739f14488146bff265",
+              "filesContainingWorkletHash": 258
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 10813.217749999998,
+              "bytes": 14607619,
+              "sha256": "b9227ec647c94ca991fe139d396e45e9b756fb5dc588af739f14488146bff265",
+              "filesContainingWorkletHash": 258
+            }
+          ]
+        },
+        {
+          "sample": 2,
+          "mode": "one",
+          "setupMs": 983.4186249999999,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 16832.461416,
+              "bytes": 14607619,
+              "sha256": "0b97df478f8ad98d81cb927294f2e7524c4412e3f5ad44212092fec285fbebaf",
+              "filesContainingWorkletHash": 258
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 18870.691000000003,
+              "bytes": 14607619,
+              "sha256": "0b97df478f8ad98d81cb927294f2e7524c4412e3f5ad44212092fec285fbebaf",
+              "filesContainingWorkletHash": 258
+            }
+          ]
+        },
+        {
+          "sample": 2,
+          "mode": "babel",
+          "setupMs": 903.256375,
+          "bundles": [
+            {
+              "temperature": "cold",
+              "bundleMs": 19669.659499999998,
+              "bytes": 14537382,
+              "sha256": "8a87710126722b732ab15df324fffc6e4ecb6b0d95df86194fcbc5273b5149d0",
+              "filesContainingWorkletHash": 253
+            },
+            {
+              "temperature": "warm",
+              "bundleMs": 15371.966291000004,
+              "bytes": 14537382,
+              "sha256": "8a87710126722b732ab15df324fffc6e4ecb6b0d95df86194fcbc5273b5149d0",
+              "filesContainingWorkletHash": 253
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

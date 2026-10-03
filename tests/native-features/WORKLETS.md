@@ -7,7 +7,8 @@ view geometry: runOnUI moves the drag view 40 points, layout changes width from
 72 to 180, and a physical pan finishes a timing animation at 120 points.
 The web run checks the same visible changes and reports web execution.
 
-Build the existing native-features app once with `bun run prebuild:native`,
+In `tests/native-features`, build the existing app once with
+`bun run prebuild:native`,
 then build its generated iOS and Android Debug projects under `bun heavy`.
 Claim an iOS 27 pool simulator with `~/team-machine/scripts/sim-claim.sh` and
 lease an Android emulator before using it. Reuse those binaries across runs.
@@ -63,3 +64,17 @@ For a queued server, wait on its ready log receipt with
 `tm wait`. The watcher observes file writes and process exit with kqueue;
 it rejects process exit without a ready receipt. RAN: both watcher outcomes
 passed a subprocess check.
+
+RAN: final proofs use the rebuilt compiler after automatic Babel fallback
+removal, production native JavaScript and the fixture at `af3dbde4c`. Native
+callbacks report UI execution; web callbacks report web execution. The iOS
+simulator initially ignored input in both the fixture and the native Settings
+app; rebooting only the claimed device restored input and all checks passed.
+Both device claims were released after recording the final captures.
+
+RAN: compiler tests 95/95; React Compiler/worklet/required-transform/source-map
+checks 27/27. The broader native engine suite remains red: filesystem HMR tests
+time out, and one full run failed a source-map assertion that passes in the
+focused run. These failures were retained. No retries, skips or timeout increases
+were added to the tests. They need separate investigation; this fixture proves the worklet
+path on the three targets, not the whole native engine suite.

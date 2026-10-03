@@ -109,8 +109,10 @@ existing transform and removing the automatic Babel worklet fallback.
 RAN: Reanimated 4.6.0's plugin delegates to `react-native-worklets/plugin`;
 Worklets is 0.12.2. The starter bundle contains worklet hashes in 28 source
 files under either backend. Contrast contains 258 under One and 253 under
-Babel: the old automatic Babel keyword gate misses newer gesture hook names.
-This count detects transformation coverage, not semantic equivalence.
+Babel. INFERRED from the five differing source files and the keyword gates:
+One covers gesture chain and hook forms omitted by the old automatic Babel
+gate. The marker count is a coverage diagnostic; it does not establish semantic
+equivalence.
 Runtime equivalence is checked separately by the layout, gesture and runOnUI
 fixture documented in `tests/native-features/WORKLETS.md`.
 

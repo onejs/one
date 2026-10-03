@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { chromium } from 'playwright'
 
@@ -14,6 +14,8 @@ const device = arg('--device')
 const artifactDir = resolve(arg('--artifacts', '/tmp/one-worklets-proof'), platform)
 const url = arg('--url', 'http://localhost:8095')
 mkdirSync(artifactDir, { recursive: true })
+rmSync(resolve(artifactDir, 'outcome.json'), { force: true })
+const startedAt = new Date().toISOString()
 
 type Node = {
   id?: string
@@ -249,6 +251,7 @@ try {
     `${JSON.stringify(
       {
         passed: true,
+        startedAt,
         platform,
         device,
         steps: history.map(({ step }) => step),
