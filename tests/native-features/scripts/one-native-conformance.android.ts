@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'portal' | 'pager' | 'updates'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|portal|pager|updates --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'portal' && value !== 'pager' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -901,6 +901,128 @@ async function run(config: Config) {
     return result.snapshot
   }
 
+  // One.UI.Portal: hosted content keeps its React context and state, lays
+  // out against the host (8dp in from its corner at any host size), returns
+  // to its own position when the host unmounts and follows a renamed host.
+  const portal = async () => {
+    await tapNavigation(config, 'nav-one-native-portal')
+    const portalBounds = (nodes: Node[], id: string) => matching(nodes, { id })[0]?.bounds
+    let dp = 0
+    const cornered = (nodes: Node[], host: string) => {
+      const box = portalBounds(nodes, host)
+      const badge = portalBounds(nodes, 'portal-badge')
+      return !!box && !!badge && dp > 0 &&
+        Math.abs(box.right - 8 * dp - badge.right) <= 2 &&
+        Math.abs(box.bottom - 8 * dp - badge.bottom) <= 2
+    }
+    const sized = (nodes: Node[], id: string, width: number, height: number) => {
+      const box = portalBounds(nodes, id)
+      return !!box && dp > 0 &&
+        Math.abs(box.right - box.left - width * dp) <= 2 &&
+        Math.abs(box.bottom - box.top - height * dp) <= 2
+    }
+    const inside = (nodes: Node[], inner: string, outer: string) => {
+      const a = portalBounds(nodes, inner)
+      const b = portalBounds(nodes, outer)
+      return !!a && !!b && a.left >= b.left && a.top >= b.top && a.right <= b.right && a.bottom <= b.bottom
+    }
+    const mounted = await expect(
+      'portal-mounted',
+      (nodes) =>
+        diagnose(nodes, [
+          ['host mounted', (n) => exactlyOneId(n, 'portal-host')],
+          ['other host mounted', (n) => exactlyOneId(n, 'portal-other')],
+          ['badge carries the source context', (n) => textIncludes(n, 'context:0')],
+          ['inline portal renders in place', (n) => textIncludes(n, 'inline child')],
+        ]),
+      'portal-host'
+    )
+    // the second host is a fixed 220dp wide, which gives the device density.
+    const other = portalBounds(mounted.nodes, 'portal-other')!
+    dp = (other.right - other.left) / 220
+    await expect('portal-hosted-layout', (nodes) =>
+      diagnose(nodes, [
+        ['host is 180x120', (n) => sized(n, 'portal-host', 180, 120)],
+        ['badge in host corner', (n) => cornered(n, 'portal-host')],
+      ]))
+    tapFresh(config, 'Portal badge', { id: 'portal-badge', clickable: true })
+    await expect('portal-hosted-press', (nodes) => textIncludes(nodes, 'context:1'))
+    tapFresh(config, 'Portal resize', { id: 'portal-resize', clickable: true })
+    await expect('portal-host-resize', (nodes) =>
+      diagnose(nodes, [
+        ['host is 280x180', (n) => sized(n, 'portal-host', 280, 180)],
+        ['badge follows the corner', (n) => cornered(n, 'portal-host')],
+        ['state kept', (n) => textIncludes(n, 'context:1')],
+      ]))
+    tapFresh(config, 'Portal resize back', { id: 'portal-resize', clickable: true })
+    await expect('portal-host-resize-back', (nodes) =>
+      sized(nodes, 'portal-host', 180, 120) && cornered(nodes, 'portal-host'))
+    tapFresh(config, 'Portal replace', { id: 'portal-replace', clickable: true })
+    await expect('portal-named-replacement', (nodes) =>
+      diagnose(nodes, [
+        ['replacement hosted', (n) => inside(n, 'portal-replacement', 'portal-host')],
+        ['first portal displaced', (n) => matching(n, { id: 'portal-badge' }).length === 0],
+      ]))
+    tapFresh(config, 'Portal restore', { id: 'portal-replace', clickable: true })
+    await expect('portal-replacement-removed', (nodes) =>
+      textIncludes(nodes, 'context:1') && cornered(nodes, 'portal-host') &&
+      matching(nodes, { id: 'portal-replacement' }).length === 0)
+    tapFresh(config, 'Portal host off', { id: 'portal-toggle-host', clickable: true })
+    await expect('portal-host-unmounted', (nodes) =>
+      diagnose(nodes, [
+        ['host gone', (n) => matching(n, { id: 'portal-host' }).length === 0],
+        ['badge back in its source', (n) => inside(n, 'portal-badge', 'portal-source')],
+        ['state kept', (n) => textIncludes(n, 'context:1')],
+      ]))
+    tapFresh(config, 'Portal host on', { id: 'portal-toggle-host', clickable: true })
+    await expect('portal-host-remounted', (nodes) =>
+      cornered(nodes, 'portal-host') && textIncludes(nodes, 'context:1'))
+    tapFresh(config, 'Portal switch host', { id: 'portal-switch', clickable: true })
+    await expect('portal-switched-host', (nodes) =>
+      diagnose(nodes, [
+        ['badge in the other host corner', (n) => cornered(n, 'portal-other')],
+        ['state kept', (n) => textIncludes(n, 'context:1')],
+      ]))
+  }
+  // One.UI.Pager on ViewPager2: commands, drags, disabled scrolling and
+  // removing the selected page, each judged by the reported page and the
+  // page actually filling the stage.
+  const pager = async () => {
+    await tapNavigation(config, 'nav-one-ui-pager')
+    const pagerSettled = (nodes: Node[], page: number) => {
+      const stage = matching(nodes, { id: 'one-ui-pager-stage' })[0]?.bounds
+      const slide = matching(nodes, { id: `one-ui-pager-slide-${page}` })[0]?.bounds
+      return diagnose(nodes, [
+        [`selected:${page}`, (n) => textIncludes(n, `selected:${page}`)],
+        ['state:idle', (n) => textIncludes(n, 'state:idle')],
+        [`slide ${page} fills the stage`, () =>
+          !!stage && !!slide && Math.abs(slide.left - stage.left) <= 2 && Math.abs(slide.top - stage.top) <= 2],
+      ])
+    }
+    const pagerTap = (id: string) => tapFresh(config, id, { id, clickable: true })
+    await expect('pager-initial-page', (nodes) => pagerSettled(nodes, 1), 'one-ui-pager-root')
+    pagerTap('one-ui-pager-page-3')
+    await expect('pager-set-page', (nodes) => pagerSettled(nodes, 3))
+    pagerTap('one-ui-pager-instant-2')
+    await expect('pager-set-page-without-animation', (nodes) => pagerSettled(nodes, 2))
+    swipeOnNode(config, 'Pager drag forward', { id: 'one-ui-pager-stage' }, 0.8, 0.2)
+    await expect('pager-drag-forward', (nodes) => pagerSettled(nodes, 3))
+    swipeOnNode(config, 'Pager drag back', { id: 'one-ui-pager-stage' }, 0.2, 0.8)
+    await expect('pager-drag-back', (nodes) => pagerSettled(nodes, 2))
+    pagerTap('one-ui-pager-scroll')
+    swipeOnNode(config, 'Pager drag while disabled', { id: 'one-ui-pager-stage' }, 0.8, 0.2)
+    await Bun.sleep(1000)
+    await expect('pager-drag-disabled', (nodes) => pagerSettled(nodes, 2))
+    pagerTap('one-ui-pager-page-0')
+    await expect('pager-set-page-while-disabled', (nodes) => pagerSettled(nodes, 0))
+    pagerTap('one-ui-pager-scroll')
+    pagerTap('one-ui-pager-page-3')
+    await expect('pager-last-page', (nodes) => pagerSettled(nodes, 3))
+    pagerTap('one-ui-pager-remove-last')
+    await expect('pager-remove-selected-last', (nodes) =>
+      pagerSettled(nodes, 2) && matching(nodes, { id: 'one-ui-pager-slide-3' }).length === 0)
+  }
+
   try {
     preflight(config)
     requireMetroReverse(config)
@@ -915,6 +1037,11 @@ async function run(config: Config) {
         textIncludes(nodes, 'One Native Test Suite'),
       'home-screen'
     )
+    if (config.suite === 'portal' || config.suite === 'pager') {
+      await (config.suite === 'portal' ? portal() : pager())
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
     await tapNavigation(config)
     await expect(
       'android-proof-mounted',
@@ -2898,126 +3025,10 @@ async function run(config: Config) {
       'one-native-ui-map-pins'
     )
 
-    // One.UI.Portal: hosted content keeps its React context and state, lays
-    // out against the host (8dp in from its corner at any host size), returns
-    // to its own position when the host unmounts and follows a renamed host.
     pressBack(config)
-    await tapNavigation(config, 'nav-one-native-portal')
-    const portalBounds = (nodes: Node[], id: string) => matching(nodes, { id })[0]?.bounds
-    let dp = 0
-    const cornered = (nodes: Node[], host: string) => {
-      const box = portalBounds(nodes, host)
-      const badge = portalBounds(nodes, 'portal-badge')
-      return !!box && !!badge && dp > 0 &&
-        Math.abs(box.right - 8 * dp - badge.right) <= 2 &&
-        Math.abs(box.bottom - 8 * dp - badge.bottom) <= 2
-    }
-    const sized = (nodes: Node[], id: string, width: number, height: number) => {
-      const box = portalBounds(nodes, id)
-      return !!box && dp > 0 &&
-        Math.abs(box.right - box.left - width * dp) <= 2 &&
-        Math.abs(box.bottom - box.top - height * dp) <= 2
-    }
-    const inside = (nodes: Node[], inner: string, outer: string) => {
-      const a = portalBounds(nodes, inner)
-      const b = portalBounds(nodes, outer)
-      return !!a && !!b && a.left >= b.left && a.top >= b.top && a.right <= b.right && a.bottom <= b.bottom
-    }
-    const mounted = await expect(
-      'portal-mounted',
-      (nodes) =>
-        diagnose(nodes, [
-          ['host mounted', (n) => exactlyOneId(n, 'portal-host')],
-          ['other host mounted', (n) => exactlyOneId(n, 'portal-other')],
-          ['badge carries the source context', (n) => textIncludes(n, 'context:0')],
-          ['inline portal renders in place', (n) => textIncludes(n, 'inline child')],
-        ]),
-      'portal-host'
-    )
-    // the second host is a fixed 220dp wide, which gives the device density.
-    const other = portalBounds(mounted.nodes, 'portal-other')!
-    dp = (other.right - other.left) / 220
-    await expect('portal-hosted-layout', (nodes) =>
-      diagnose(nodes, [
-        ['host is 180x120', (n) => sized(n, 'portal-host', 180, 120)],
-        ['badge in host corner', (n) => cornered(n, 'portal-host')],
-      ]))
-    tapFresh(config, 'Portal badge', { id: 'portal-badge', clickable: true })
-    await expect('portal-hosted-press', (nodes) => textIncludes(nodes, 'context:1'))
-    tapFresh(config, 'Portal resize', { id: 'portal-resize', clickable: true })
-    await expect('portal-host-resize', (nodes) =>
-      diagnose(nodes, [
-        ['host is 280x180', (n) => sized(n, 'portal-host', 280, 180)],
-        ['badge follows the corner', (n) => cornered(n, 'portal-host')],
-        ['state kept', (n) => textIncludes(n, 'context:1')],
-      ]))
-    tapFresh(config, 'Portal resize back', { id: 'portal-resize', clickable: true })
-    await expect('portal-host-resize-back', (nodes) =>
-      sized(nodes, 'portal-host', 180, 120) && cornered(nodes, 'portal-host'))
-    tapFresh(config, 'Portal replace', { id: 'portal-replace', clickable: true })
-    await expect('portal-named-replacement', (nodes) =>
-      diagnose(nodes, [
-        ['replacement hosted', (n) => inside(n, 'portal-replacement', 'portal-host')],
-        ['first portal displaced', (n) => matching(n, { id: 'portal-badge' }).length === 0],
-      ]))
-    tapFresh(config, 'Portal restore', { id: 'portal-replace', clickable: true })
-    await expect('portal-replacement-removed', (nodes) =>
-      textIncludes(nodes, 'context:1') && cornered(nodes, 'portal-host') &&
-      matching(nodes, { id: 'portal-replacement' }).length === 0)
-    tapFresh(config, 'Portal host off', { id: 'portal-toggle-host', clickable: true })
-    await expect('portal-host-unmounted', (nodes) =>
-      diagnose(nodes, [
-        ['host gone', (n) => matching(n, { id: 'portal-host' }).length === 0],
-        ['badge back in its source', (n) => inside(n, 'portal-badge', 'portal-source')],
-        ['state kept', (n) => textIncludes(n, 'context:1')],
-      ]))
-    tapFresh(config, 'Portal host on', { id: 'portal-toggle-host', clickable: true })
-    await expect('portal-host-remounted', (nodes) =>
-      cornered(nodes, 'portal-host') && textIncludes(nodes, 'context:1'))
-    tapFresh(config, 'Portal switch host', { id: 'portal-switch', clickable: true })
-    await expect('portal-switched-host', (nodes) =>
-      diagnose(nodes, [
-        ['badge in the other host corner', (n) => cornered(n, 'portal-other')],
-        ['state kept', (n) => textIncludes(n, 'context:1')],
-      ]))
-
-    // One.UI.Pager on ViewPager2: commands, drags, disabled scrolling and
-    // removing the selected page, each judged by the reported page and the
-    // page actually filling the stage.
+    await portal()
     pressBack(config)
-    await tapNavigation(config, 'nav-one-ui-pager')
-    const pagerSettled = (nodes: Node[], page: number) => {
-      const stage = matching(nodes, { id: 'one-ui-pager-stage' })[0]?.bounds
-      const slide = matching(nodes, { id: `one-ui-pager-slide-${page}` })[0]?.bounds
-      return diagnose(nodes, [
-        [`selected:${page}`, (n) => textIncludes(n, `selected:${page}`)],
-        ['state:idle', (n) => textIncludes(n, 'state:idle')],
-        [`slide ${page} fills the stage`, () =>
-          !!stage && !!slide && Math.abs(slide.left - stage.left) <= 2 && Math.abs(slide.top - stage.top) <= 2],
-      ])
-    }
-    const pagerTap = (id: string) => tapFresh(config, id, { id, clickable: true })
-    await expect('pager-initial-page', (nodes) => pagerSettled(nodes, 1), 'one-ui-pager-root')
-    pagerTap('one-ui-pager-page-3')
-    await expect('pager-set-page', (nodes) => pagerSettled(nodes, 3))
-    pagerTap('one-ui-pager-instant-2')
-    await expect('pager-set-page-without-animation', (nodes) => pagerSettled(nodes, 2))
-    swipeOnNode(config, 'Pager drag forward', { id: 'one-ui-pager-stage' }, 0.8, 0.2)
-    await expect('pager-drag-forward', (nodes) => pagerSettled(nodes, 3))
-    swipeOnNode(config, 'Pager drag back', { id: 'one-ui-pager-stage' }, 0.2, 0.8)
-    await expect('pager-drag-back', (nodes) => pagerSettled(nodes, 2))
-    pagerTap('one-ui-pager-scroll')
-    swipeOnNode(config, 'Pager drag while disabled', { id: 'one-ui-pager-stage' }, 0.8, 0.2)
-    await Bun.sleep(1000)
-    await expect('pager-drag-disabled', (nodes) => pagerSettled(nodes, 2))
-    pagerTap('one-ui-pager-page-0')
-    await expect('pager-set-page-while-disabled', (nodes) => pagerSettled(nodes, 0))
-    pagerTap('one-ui-pager-scroll')
-    pagerTap('one-ui-pager-page-3')
-    await expect('pager-last-page', (nodes) => pagerSettled(nodes, 3))
-    pagerTap('one-ui-pager-remove-last')
-    await expect('pager-remove-selected-last', (nodes) =>
-      pagerSettled(nodes, 2) && matching(nodes, { id: 'one-ui-pager-slide-3' }).length === 0)
+    await pager()
 
     // the webgpu path: a raw triangle pane plus an R3F cube on
     // WebGPURenderer. dawn needs vulkan; if the emulator image cannot
