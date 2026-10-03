@@ -24,6 +24,7 @@ export const docsScenes = {
   'ios-pickers': { title: 'iOS Pickers' },
   'ios-progress': { title: 'iOS Progress and Gauges' },
   'ios-text': { title: 'iOS Text and Fields' },
+  'ios-lists': { title: 'iOS Lists and Forms' },
 } satisfies Record<string, DocsScene>
 
 export type DocsSceneName = keyof typeof docsScenes
