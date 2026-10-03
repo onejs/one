@@ -11,23 +11,13 @@ export type PropDef = {
   description?: string
 }
 
-// a long camelCase name may wrap before each capital on phones. inline blocks give
-// those breaks while nowrap still holds them together on wider screens.
-const breakableName = (name: string) =>
-  name.split(/(?=[A-Z])/).map((part, index) => (
-    <span key={index} style={{ display: 'inline-block' }}>
-      {part}
-    </span>
-  ))
-
 const typeText = (row: PropDef) =>
   row.default === undefined ? row.type : `${row.type} = ${String(row.default)}`
 
 // a reference table in the docs' regular table style, with the table's title as the
 // first column header. cells share a baseline so a row's first lines align. phones
-// drop the type column and show the type under the name, where long generic types
-// may break anywhere so the table never scrolls sideways. a minimum width keeps short
-// types such as ReactNode on one line.
+// stack each row in one column: name, type, then description, where long generic
+// types may break anywhere so the table never scrolls sideways.
 export function PropsTable({
   title = 'Props',
   data,
@@ -43,21 +33,19 @@ export function PropsTable({
         <Tr>
           <Th>{title}</Th>
           <Th $sm={{ display: 'none' }}>Type</Th>
-          <Th>Description</Th>
+          <Th $sm={{ display: 'none' }}>Description</Th>
         </Tr>
       </Thead>
       <Tbody>
         {data.map((row) => (
           <Tr key={row.name}>
-            <Td verticalAlign="baseline" $sm={{ minWidth: 130 }}>
+            <Td verticalAlign="baseline">
               <YStack gap="$1.5" ai="flex-start">
                 <CodeInline
                   whiteSpace="nowrap"
-                  $sm={{ whiteSpace: 'normal' }}
-                  style={{ wordBreak: 'normal' }}
                   textDecorationLine={row.deprecated ? 'line-through' : 'none'}
                 >
-                  {breakableName(row.name)}
+                  {row.name}
                   {row.required ? ' (required)' : ''}
                 </CodeInline>
                 <Text
@@ -71,6 +59,9 @@ export function PropsTable({
                 >
                   {typeText(row)}
                 </Text>
+                <Text display="none" $sm={{ display: 'flex' }} fontSize="$4" color="$color12">
+                  {row.description}
+                </Text>
               </YStack>
             </Td>
             <Td
@@ -83,7 +74,9 @@ export function PropsTable({
             >
               {typeText(row)}
             </Td>
-            <Td verticalAlign="baseline">{row.description}</Td>
+            <Td $sm={{ display: 'none' }} verticalAlign="baseline">
+              {row.description}
+            </Td>
           </Tr>
         ))}
       </Tbody>
