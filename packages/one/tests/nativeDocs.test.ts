@@ -17,7 +17,15 @@ function block(text: string, start: number) {
   throw new Error(`unbalanced braces at ${text.slice(start, start + 40)}`)
 }
 
-const normalize = (type: string) => type.replace(/'/g, '"').replace(/\s+/g, ' ').trim()
+// generated types reach swiftui names through `import type * as Styles`; docs name them
+// bare. a union's optional leading bar is dropped.
+const normalize = (type: string) =>
+  type
+    .replace(/'/g, '"')
+    .replace(/\bStyles\./g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^\| /, '')
 
 // top level members of an object type body: `name?: type` and `name(args): result`.
 function members(body: string) {
@@ -37,7 +45,8 @@ function members(body: string) {
     if (!property) throw new Error(`unparsed member: ${member}`)
     result.set(property[1], normalize(property[2]))
   }
-  for (const line of body.split('\n')) {
+  // a union written one branch per line continues its member.
+  for (const line of body.replace(/\n\s*\|/g, ' |').split('\n')) {
     const code = line.replace(/\/\/.*$/, '')
     for (const char of code) {
       if ('{<(['.includes(char)) depth++
