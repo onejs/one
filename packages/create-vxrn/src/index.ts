@@ -57,7 +57,7 @@ const main = defineCommand({
     console.info() // this newline prevents the ascii art from breaking
     console.info(ansis.bold('Creating vxrn app...'))
 
-    await create({ template: args.template })
+    await create({ name: args.directory, template: args.template })
   },
 })
 
