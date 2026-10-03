@@ -7,7 +7,7 @@ template <typename Item>
 inline bool OneNativeMenuItemsEqual(const std::vector<Item> &a, const std::vector<Item> &b) {
   if (a.size() != b.size()) return false;
   for (size_t i = 0; i < a.size(); i++) {
-    if (a[i].parentId != b[i].parentId || a[i].type != b[i].type || a[i].id != b[i].id || a[i].title != b[i].title || a[i].systemImage != b[i].systemImage || a[i].role != b[i].role || a[i].disabled != b[i].disabled || a[i].hidden != b[i].hidden || a[i].help != b[i].help || a[i].controlGroupStyle != b[i].controlGroupStyle || a[i].values != b[i].values || a[i].menuOrder != b[i].menuOrder || a[i].menuActionDismissBehavior != b[i].menuActionDismissBehavior) return false;
+    if (a[i].parentId != b[i].parentId || a[i].type != b[i].type || a[i].id != b[i].id || a[i].title != b[i].title || a[i].systemImage != b[i].systemImage || a[i].role != b[i].role || a[i].disabled != b[i].disabled || a[i].hidden != b[i].hidden || a[i].help != b[i].help || a[i].controlGroupStyle != b[i].controlGroupStyle || a[i].values != b[i].values || a[i].selection != b[i].selection || a[i].menuOrder != b[i].menuOrder || a[i].menuActionDismissBehavior != b[i].menuActionDismissBehavior) return false;
   }
   return true;
 }
@@ -29,6 +29,7 @@ inline NSArray *OneNativeMenuPayload(const std::vector<Item> &items) {
       @"help": RCTNSStringFromString(item.help),
       @"controlGroupStyle": RCTNSStringFromString(item.controlGroupStyle),
       @"values": values,
+      @"selection": RCTNSStringFromString(item.selection),
       @"menuOrder": RCTNSStringFromString(item.menuOrder),
       @"menuActionDismissBehavior": RCTNSStringFromString(item.menuActionDismissBehavior)
     }];

@@ -1,0 +1,61 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:6:23). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.0 /Users/n8/.worktrees/one-native-view-slot-row-merge/packages/one
+
+stderr | src/platform/AndroidMenu.test.tsx > keeps onPickerChange off the Android trigger View without picker items
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+
+stderr | src/platform/AndroidMenu.test.tsx > rejects picker items before opening the Android popup
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+
+ ❯ |one| src/platform/AndroidMenu.test.tsx (3 tests | 2 failed) 7ms
+   × keeps onPickerChange off the Android trigger View without picker items 2ms
+   × rejects picker items before opening the Android popup 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |one| src/platform/AndroidMenu.test.tsx > keeps onPickerChange off the Android trigger View without picker items
+AssertionError: expected { ref: { current: null }, …(4) } to not have property "onPickerChange"
+
+- Expected:
+undefined
+
++ Received:
+[Function Mock]
+
+ ❯ src/platform/AndroidMenu.test.tsx:46:29
+     44|   const trigger = renderer!.root.findByType('View')
+     45|   expect(trigger.props.testID).toBe('android-menu')
+     46|   expect(trigger.props).not.toHaveProperty('onPickerChange')
+       |                             ^
+     47|   act(() => renderer!.unmount())
+     48| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  |one| src/platform/AndroidMenu.test.tsx > rejects picker items before opening the Android popup
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ src/platform/AndroidMenu.test.tsx:66:5
+     64|       )
+     65|     })
+     66|   ).toThrow('Menu picker items are not supported on Android')
+       |     ^
+     67| })
+     68|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 1 passed (3)
+   Start at  20:55:47
+   Duration  134ms (transform 19ms, setup 0ms, import 32ms, tests 7ms, environment 0ms)

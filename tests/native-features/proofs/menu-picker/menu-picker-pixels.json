@@ -1,0 +1,22 @@
+{
+  "initial native Picker checkmark marks Small": {
+    "Small": 123,
+    "Large": 0,
+    "Automatic": 0
+  },
+  "accepted native Picker checkmark marks Large": {
+    "Small": 0,
+    "Large": 123,
+    "Automatic": 0
+  },
+  "rejected native Picker checkmark remains Large": {
+    "Small": 0,
+    "Large": 123,
+    "Automatic": 0
+  },
+  "reset native Picker checkmark marks Small": {
+    "Small": 123,
+    "Large": 0,
+    "Automatic": 0
+  }
+}

@@ -60,6 +60,7 @@ declare module 'one' {
         | `/one-native-control-size`
         | `/one-native-controls`
         | `/one-native-cover-context`
+        | `/one-native-menu-picker`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`

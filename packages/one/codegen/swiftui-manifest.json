@@ -19009,6 +19009,28 @@
     },
     {
       "module": "SwiftUI",
+      "type": "Picker",
+      "parameters": [
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<SelectionValue>"
+        },
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        },
+        {
+          "label": "label",
+          "name": "label",
+          "type": "() -> Label"
+        }
+      ],
+      "ios": 13
+    },
+    {
+      "module": "SwiftUI",
       "type": "Divider",
       "parameters": [],
       "ios": 13

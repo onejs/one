@@ -69,3 +69,8 @@ fail-snapshot.json
 !proofs/menu-primary-action/*.png
 !proofs/menu-primary-action/*.webp
 !proofs/menu-primary-action/outcome.json
+
+# iOS 27 Menu Picker proposal proof for Nate's review.
+!proofs/menu-picker/*.png
+!proofs/menu-picker/*.webp
+!proofs/menu-picker/outcome.json

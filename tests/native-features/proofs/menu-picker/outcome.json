@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 1098
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 13420
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2357
+    },
+    {
+      "name": "home lists nav-one-native-menu-picker",
+      "durationMs": 2333
+    },
+    {
+      "name": "nav-one-native-menu-picker settles",
+      "durationMs": 4851
+    },
+    {
+      "name": "Menu Picker fixture mounted",
+      "durationMs": 2051
+    },
+    {
+      "name": "Menu presents native Picker row",
+      "durationMs": 2241
+    },
+    {
+      "name": "Picker opens native options submenu",
+      "durationMs": 2185
+    },
+    {
+      "name": "initial native Picker checkmark marks Small",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker selection reaches React",
+      "durationMs": 2135
+    },
+    {
+      "name": "accepted Picker row reopens",
+      "durationMs": 2233
+    },
+    {
+      "name": "accepted Picker options reopen",
+      "durationMs": 2170
+    },
+    {
+      "name": "accepted native Picker checkmark marks Large",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 2114
+    },
+    {
+      "name": "Picker rejection enabled",
+      "durationMs": 2020
+    },
+    {
+      "name": "Picker row reopens",
+      "durationMs": 2205
+    },
+    {
+      "name": "Picker options reopen",
+      "durationMs": 2196
+    },
+    {
+      "name": "rejected Picker selection keeps prop value",
+      "durationMs": 2122
+    },
+    {
+      "name": "rejected Picker row reopens",
+      "durationMs": 2179
+    },
+    {
+      "name": "rejected Picker options reopen",
+      "durationMs": 2277
+    },
+    {
+      "name": "rejected native Picker checkmark remains Large",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 2113
+    },
+    {
+      "name": "Picker revision resets selection",
+      "durationMs": 2055
+    },
+    {
+      "name": "reset Picker row reopens",
+      "durationMs": 2181
+    },
+    {
+      "name": "reset Picker options reopen",
+      "durationMs": 2199
+    },
+    {
+      "name": "reset native Picker checkmark marks Small",
+      "durationMs": 0
+    }
+  ],
+  "durationMs": 176624,
+  "simulatorId": "20A4D15A-8E8F-4D08-A8CC-1EBE7417552D",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "menu-picker"
+}
