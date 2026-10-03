@@ -1,0 +1,56 @@
+{
+  "releaseRun": 37142277754,
+  "source": "b92aafe9ceb9a9b6686be697851ddef48852e36b",
+  "receipts": [
+    {
+      "package": "one",
+      "version": "2.0.0-beta.167.1",
+      "sha256": "a3d907cd4e0ed8be4add43ae8a9ffd945b2ca7e71132bfeb8a6a3675ace581f1",
+      "files": [
+        {
+          "file": "ios/OneNativePortalHostView.mm",
+          "matches": true
+        },
+        {
+          "file": "src/platform/ui/Portal.native.tsx",
+          "matches": true
+        },
+        {
+          "file": "src/platform/ui/Pager.native.tsx",
+          "matches": true
+        },
+        {
+          "file": "src/native/appManifest.ts",
+          "matches": true
+        },
+        {
+          "file": "src/one.ts",
+          "matches": true
+        },
+        {
+          "file": "src/layouts/Stack.tsx",
+          "matches": true
+        }
+      ],
+      "exportTargets": 82,
+      "missingExports": []
+    },
+    {
+      "package": "vxrn",
+      "version": "2.0.0-beta.167.1",
+      "sha256": "162a22837273b86d54c86277954f714fe7917c941d2e7a7151ef6469916b43c3",
+      "files": [
+        {
+          "file": "src/utils/createNativeDevEngine.ts",
+          "matches": true
+        },
+        {
+          "file": "src/exports/prebuildWithoutExpo.ts",
+          "matches": true
+        }
+      ],
+      "exportTargets": 19,
+      "missingExports": []
+    }
+  ]
+}
