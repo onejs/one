@@ -4,9 +4,11 @@ import { StatusBar, View } from 'react-native'
 import { IconScene } from '../docs-captures/IconScene'
 import { ImageScene } from '../docs-captures/ImageScene'
 import { IosActionsScene } from '../docs-captures/IosActionsScene'
+import { IosGroupsScene } from '../docs-captures/IosGroupsScene'
 import { IosListsScene } from '../docs-captures/IosListsScene'
 import { IosPickersScene } from '../docs-captures/IosPickersScene'
 import { IosProgressScene } from '../docs-captures/IosProgressScene'
+import { IosStacksScene } from '../docs-captures/IosStacksScene'
 import { IosTextScene } from '../docs-captures/IosTextScene'
 import { MapScene } from '../docs-captures/MapScene'
 import { PagerScene } from '../docs-captures/PagerScene'
@@ -26,6 +28,8 @@ const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   'ios-progress': IosProgressScene,
   'ios-text': IosTextScene,
   'ios-lists': IosListsScene,
+  'ios-stacks': IosStacksScene,
+  'ios-groups': IosGroupsScene,
 }
 
 // the background alternates pure white and pure black so scripts/docs-capture.ts can

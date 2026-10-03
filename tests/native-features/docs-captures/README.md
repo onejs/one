@@ -19,9 +19,10 @@ rather than by hand.
 4. Scenes with a `hold` in `scenes.ts` drag across the subject and keep the
    finger down for the capture, so a pager can be shown mid swipe. A third
    frame must match the first, or the capture fails.
-5. Scenes with `home` leave the app once they show and capture the lower part
-   of the real screen with rounded corners. Picture in picture uses this,
-   since its window only exists outside the app.
+5. Scenes with `screen` capture the real screen, or its lower part, with
+   rounded corners, for views the system draws over the app such as sheets
+   and alerts. With `home` they leave the app first; picture in picture uses
+   this, since its window only exists outside the app.
 6. `scripts/docs-composite.ts` places each platform's capture side by side at
    the same scale on the brand yellow with a soft shadow, and writes a
    1600x1000 webp to `apps/onestack.dev/public/native/`.
@@ -47,6 +48,9 @@ Disable the Gemini app on the emulator first
 overlay covers the home screen.
 
 Look at the result before committing it.
+
+The dev server does not always see a newly added scene file; if the app shows
+`unknown docs scene`, restart the dev server and relaunch the app.
 
 On Android, start the dev server with `ONE_NATIVE_BUNDLER=rolldown`; Metro
 cannot bundle this app's Kotlin native-source fixture. Point the app at it with
