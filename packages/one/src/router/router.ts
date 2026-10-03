@@ -1343,7 +1343,9 @@ export async function linkTo(
         const routeLoading = (error as Promise<any>).catch(() => {})
         if (
           process.env.TAMAGUI_TARGET !== 'native' ||
-          process.env.NODE_ENV !== 'development'
+          process.env.NODE_ENV !== 'development' ||
+          process.env.ONE_SUSPEND_ROUTES_NATIVE === '0' ||
+          (globalThis as any).__ONE_DISABLE_SUSPENSE_ROUTES__ === true
         ) {
           await routeLoading
         }

@@ -18,6 +18,7 @@ import { existsSync, readFileSync, statSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
+import { nativeDevBytecodeCompiler } from '../utils/compileNativeDevBytecode'
 import { getBoundPort } from '../utils/getBoundPort'
 import {
   getNativeFramePlatform,
@@ -106,6 +107,7 @@ export function createReactNativeDevServerPlugin(
       const devEngineCreating: Record<string, Promise<unknown> | null> = {}
       const warnedProdBundleRequest = new Set<string>()
       const pendingReloadPlatforms = new Set<'ios' | 'android'>()
+      let compileBytecode: ReturnType<typeof nativeDevBytecodeCompiler> | undefined
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
@@ -511,6 +513,14 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
+          let body: string | Buffer = bundle.code
+          if (platform === 'ios' && url.searchParams.get('bytecode') === 'hermes') {
+            compileBytecode ||= nativeDevBytecodeCompiler(root)
+            body = await compileBytecode(
+              bundle,
+              `${url.origin}/index.bundle?platform=${platform}`
+            )
+          }
           // a client that connects after this response starts from the current
           // route map and does not need the pending reload intended for the
           // previous runtime.
@@ -523,7 +533,7 @@ export function createReactNativeDevServerPlugin(
             'Cache-Control': 'no-store',
             'Content-Type': 'text/javascript',
           })
-          res.end(bundle.code)
+          res.end(body)
         } catch (err) {
           console.error(` Error building React Native bundle`)
           console.error(err)
