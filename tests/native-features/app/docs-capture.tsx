@@ -3,6 +3,11 @@ import { Stack, useLocalSearchParams } from 'one'
 import { StatusBar, View } from 'react-native'
 import { IconScene } from '../docs-captures/IconScene'
 import { ImageScene } from '../docs-captures/ImageScene'
+import { IosActionsScene } from '../docs-captures/IosActionsScene'
+import { IosListsScene } from '../docs-captures/IosListsScene'
+import { IosPickersScene } from '../docs-captures/IosPickersScene'
+import { IosProgressScene } from '../docs-captures/IosProgressScene'
+import { IosTextScene } from '../docs-captures/IosTextScene'
 import { MapScene } from '../docs-captures/MapScene'
 import { PagerScene } from '../docs-captures/PagerScene'
 import { PipScene } from '../docs-captures/PipScene'
@@ -16,6 +21,11 @@ const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   image: ImageScene,
   icon: IconScene,
   pip: PipScene,
+  'ios-actions': IosActionsScene,
+  'ios-pickers': IosPickersScene,
+  'ios-progress': IosProgressScene,
+  'ios-text': IosTextScene,
+  'ios-lists': IosListsScene,
 }
 
 // the background alternates pure white and pure black so scripts/docs-capture.ts can
