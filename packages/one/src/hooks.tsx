@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from 'react'
+import { isNative } from './constants'
 import type { OneRouter } from './interfaces/router'
 import { router } from './router/imperative-api'
 import { RouteParamsContext, useRouteNode } from './router/Route'
@@ -183,7 +184,10 @@ export function useParams<TParams extends object = SearchParams>(): Partial<TPar
   const routeInfoParams = useRouteInfo().params
 
   const params = React.useMemo(
-    () => mergeDynamicParams(contextParams, routeNode?.dynamic, routeInfoParams),
+    () =>
+      isNative
+        ? contextParams
+        : mergeDynamicParams(contextParams, routeNode?.dynamic, routeInfoParams),
     [contextParams, routeInfoParams, routeNode]
   )
 
