@@ -1,0 +1,52 @@
+diff --git a/android/build.gradle b/android/build.gradle
+index f1526eccb43c87ec73a200c23acd8ab3f3549380..620fa712dfa2b2c5175e1cee7fca225456eccbde 100644
+--- a/android/build.gradle
++++ b/android/build.gradle
+@@ -6,23 +6,24 @@ def safeExtGet(prop, fallback) {
+ repositories {
+   mavenCentral()
+   google()
+-  jcenter()
++  mavenCentral()
+ }
+ 
+ buildscript {
+     repositories {
+         google()
+-        jcenter()
++        mavenCentral()
+     }
+ 
+     dependencies {
+-        classpath("com.android.tools.build:gradle:3.5.1")
++        classpath("com.android.tools.build:gradle:9.3.0")
+     }
+ }
+ 
+ apply plugin: 'com.android.library'
+ 
+ android {
++    namespace "com.sensors"
+     compileSdkVersion safeExtGet('compileSdkVersion', 23)
+ 
+     defaultConfig {
+@@ -42,7 +43,7 @@ android {
+ 
+ 
+ dependencies {
+-    implementation 'com.facebook.react:react-native:+'
++    implementation 'com.facebook.react:react-android'
+     implementation 'androidx.appcompat:appcompat:1.0.2'
+     implementation 'androidx.annotation:annotation:1.0.2'
+ }
+diff --git a/android/src/main/AndroidManifest.xml b/android/src/main/AndroidManifest.xml
+index 6d0f8b066dce33bfcad645ff98c1e250a1a8ac56..5f5d7a233b2cfd83e492191af109a583487ab528 100644
+--- a/android/src/main/AndroidManifest.xml
++++ b/android/src/main/AndroidManifest.xml
+@@ -1,5 +1,4 @@
+ 
+-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-          package="com.sensors">
++<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+ </manifest>

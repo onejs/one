@@ -20,7 +20,8 @@ export default function OneNativeImageManipulator() {
   async function run() {
     setStatus('running')
     try {
-      const source = One.iOS.FileSystem.getDirectories().cache + 'one-native-image-source.heic'
+      const source =
+        One.iOS.FileSystem.getDirectories().cache + 'one-native-image-source.heic'
       await One.iOS.FileSystem.writeFile(source, photoBase64, 'base64')
       const upright = await One.iOS.ImageManipulator.transform(source, { format: 'png' })
       const jpeg = await One.iOS.ImageManipulator.transform(source, {
@@ -61,7 +62,8 @@ export default function OneNativeImageManipulator() {
       } catch (error) {
         qualityError = errorCode(error)
       }
-      const invalid = One.iOS.FileSystem.getDirectories().cache + 'one-native-image-invalid.txt'
+      const invalid =
+        One.iOS.FileSystem.getDirectories().cache + 'one-native-image-invalid.txt'
       await One.iOS.FileSystem.writeFile(invalid, 'not an image')
       try {
         await One.iOS.ImageManipulator.transform(invalid)
@@ -69,26 +71,41 @@ export default function OneNativeImageManipulator() {
         decodeError = errorCode(error)
       }
       const passed =
-        upright.width === 80 && upright.height === 120 &&
-        uprightSize.width === 80 && uprightSize.height === 120 &&
-        jpeg.width === 15 && jpeg.height === 20 &&
-        jpegSize.width === 15 && jpegSize.height === 20 &&
-        png.width === 20 && png.height === 10 &&
-        pngSize.width === 20 && pngSize.height === 10 &&
-        jpegInfo.exists && jpegInfo.size === jpeg.size && jpeg.size > 0 &&
-        pngInfo.exists && pngInfo.size === png.size && png.size > 0 &&
-        jpegBytes[0] === 0xff && jpegBytes[1] === 0xd8 &&
-        pngBytes[0] === 0x89 && pngBytes[1] === 0x50 &&
-        pngBytes[2] === 0x4e && pngBytes[3] === 0x47
+        upright.width === 80 &&
+        upright.height === 120 &&
+        uprightSize.width === 80 &&
+        uprightSize.height === 120 &&
+        jpeg.width === 15 &&
+        jpeg.height === 20 &&
+        jpegSize.width === 15 &&
+        jpegSize.height === 20 &&
+        png.width === 20 &&
+        png.height === 10 &&
+        pngSize.width === 20 &&
+        pngSize.height === 10 &&
+        jpegInfo.exists &&
+        jpegInfo.size === jpeg.size &&
+        jpeg.size > 0 &&
+        pngInfo.exists &&
+        pngInfo.size === png.size &&
+        png.size > 0 &&
+        jpegBytes[0] === 0xff &&
+        jpegBytes[1] === 0xd8 &&
+        pngBytes[0] === 0x89 &&
+        pngBytes[1] === 0x50 &&
+        pngBytes[2] === 0x4e &&
+        pngBytes[3] === 0x47
       setPreview(jpeg.uri)
       setResult(
         `decoded=${passed}; upright=${upright.width}x${upright.height}; ` +
-        `jpeg=${jpeg.width}x${jpeg.height}; png=${png.width}x${png.height}; ` +
-        `uri=${uriError}; crop=${cropError}; quality=${qualityError}; decode=${decodeError}`
+          `jpeg=${jpeg.width}x${jpeg.height}; png=${png.width}x${png.height}; ` +
+          `uri=${uriError}; crop=${cropError}; quality=${qualityError}; decode=${decodeError}`
       )
       setStatus(passed ? 'passed' : 'failed')
     } catch (error) {
-      setStatus(`error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`)
+      setStatus(
+        `error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 
@@ -96,10 +113,20 @@ export default function OneNativeImageManipulator() {
     <View style={styles.screen}>
       <Text testID="one-native-image-manipulator-status">Status: {status}</Text>
       <Text testID="one-native-image-manipulator-result">Result: {result}</Text>
-      <Pressable testID="one-native-image-manipulator-run" style={styles.chip} onPress={run}>
+      <Pressable
+        testID="one-native-image-manipulator-run"
+        style={styles.chip}
+        onPress={run}
+      >
         <Text>Crop, resize, rotate, and encode</Text>
       </Pressable>
-      {preview ? <Image testID="one-native-image-manipulator-preview" source={{ uri: preview }} style={styles.preview} /> : null}
+      {preview ? (
+        <Image
+          testID="one-native-image-manipulator-preview"
+          source={{ uri: preview }}
+          style={styles.preview}
+        />
+      ) : null}
     </View>
   )
 }
@@ -109,3 +136,46 @@ const styles = StyleSheet.create({
   chip: { padding: 12, backgroundColor: '#eee', borderRadius: 8 },
   preview: { width: 150, height: 200, backgroundColor: '#ddd' },
 })
+
+export async function benchmarkImageManipulator(
+  transform: (
+    source: string,
+    format: 'jpeg' | 'png'
+  ) => Promise<{ uri: string; width: number; height: number }>,
+  source: string,
+  remove: (uri: string) => Promise<void>
+) {
+  const { distribution } = await import('./native-speed')
+  const results: Record<string, { samplesMs: number[]; median: number; p95: number }> = {}
+  const original = await imageSize(source)
+  if (original.width !== 4000 || original.height !== 3000)
+    throw new Error('image benchmark requires the same 12MP source')
+  for (const format of ['jpeg', 'png'] as const) {
+    const samplesMs: number[] = []
+    for (let index = 0; index < 5; index++) {
+      const started = performance.now()
+      const output = await transform(source, format)
+      samplesMs.push(performance.now() - started)
+      const size = await imageSize(output.uri)
+      if (
+        output.width !== 1000 ||
+        output.height !== 750 ||
+        size.width !== 1000 ||
+        size.height !== 750
+      ) {
+        throw new Error('image resize output dimensions did not match')
+      }
+      const bytes = new Uint8Array(await (await fetch(output.uri)).arrayBuffer())
+      if (
+        format === 'jpeg'
+          ? bytes[0] !== 255 || bytes[1] !== 216
+          : bytes[0] !== 137 || bytes[1] !== 80
+      ) {
+        throw new Error('image encoder did not produce the requested format')
+      }
+      await remove(output.uri)
+    }
+    results[format] = { samplesMs, ...distribution(samplesMs) }
+  }
+  return results
+}

@@ -165,3 +165,51 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
 })
+
+export interface StorageBenchmarkAdapter {
+  set(key: string, value: string): void
+  get(key: string): string | undefined | null
+  remove(key: string): void
+  keys(): string[]
+}
+
+export async function benchmarkStorage(storage: StorageBenchmarkAdapter) {
+  const { timeSync } = await import('./native-speed')
+  const count = 10000
+  const value = 'v'.repeat(64)
+  // own namespace only. an existing app's unrelated keys are preserved.
+  const prefix = 'one-speed-'
+  for (const key of storage.keys()) if (key.startsWith(prefix)) storage.remove(key)
+  const set = timeSync(count, (index) => storage.set(`${prefix}${index}`, value))
+  if (storage.keys().filter((key) => key.startsWith(prefix)).length !== count)
+    throw new Error('storage insert count did not match')
+  const get = timeSync(count, (index) => storage.get(`${prefix}${index}`))
+  for (let index = 0; index < count; index++)
+    if (storage.get(`${prefix}${index}`) !== value)
+      throw new Error('storage value did not match')
+  const overwrite = timeSync(count, (index) =>
+    storage.set(`${prefix}hot`, `${value}${index}`)
+  )
+  if (storage.get(`${prefix}hot`) !== `${value}${count - 1}`)
+    throw new Error('storage overwrite did not persist')
+  const allKeysUs: number[] = []
+  for (let index = 0; index < 100; index++) {
+    const started = performance.now()
+    const keys = storage.keys()
+    allKeysUs.push((performance.now() - started) * 1000)
+    if (keys.filter((key) => key.startsWith(prefix)).length !== count + 1)
+      throw new Error('storage allKeys count did not match')
+  }
+  const remove = timeSync(count, (index) => storage.remove(`${prefix}${index}`))
+  storage.remove(`${prefix}hot`)
+  if (storage.keys().some((key) => key.startsWith(prefix)))
+    throw new Error('storage delete failed')
+  const { distribution } = await import('./native-speed')
+  return {
+    set,
+    get,
+    overwrite,
+    remove,
+    allKeys: { samplesUs: allKeysUs, ...distribution(allKeysUs) },
+  }
+}

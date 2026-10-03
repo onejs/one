@@ -79,3 +79,7 @@ fail-snapshot.json
 !proofs/menu-picker/*.png
 !proofs/menu-picker/*.webp
 !proofs/menu-picker/outcome.json
+
+# native speed benchmark source photograph and runtime contract captures.
+!assets/one-speed-12mp.jpg
+!proofs/native-speed/*.png

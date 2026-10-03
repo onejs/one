@@ -51,7 +51,8 @@ export default function OneNativeFileSystem() {
       try {
         await fs.copy(note, moved)
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) existingError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          existingError = String(error.code)
       }
       stage = 'nested directory'
       await fs.makeDirectory(nested)
@@ -65,26 +66,31 @@ export default function OneNativeFileSystem() {
 
       stage = 'base64'
       await fs.writeFile(binary, 'AAECAw==', 'base64')
-      const bytes = Array.from(new Uint8Array(await (await fetch(binary)).arrayBuffer())).join(',')
+      const bytes = Array.from(
+        new Uint8Array(await (await fetch(binary)).arrayBuffer())
+      ).join(',')
       const entries = (await fs.readDirectory(dir)).map((entry) => entry.name).join(',')
       let encodingError = ''
       try {
         await fs.writeFile(new URL('bad.dat', dir).href, '!?', 'base64')
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) encodingError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          encodingError = String(error.code)
       }
       let rootError = ''
       try {
         await fs.delete(directories.cache)
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) rootError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          rootError = String(error.code)
       }
 
       let invalidURI = ''
       try {
         await fs.getInfo('https://example.com/file.txt')
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) invalidURI = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          invalidURI = String(error.code)
       }
 
       stage = 'delete'
@@ -97,7 +103,8 @@ export default function OneNativeFileSystem() {
       try {
         await fs.delete(note)
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) missingError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          missingError = String(error.code)
       }
 
       setResult(
@@ -107,8 +114,11 @@ export default function OneNativeFileSystem() {
       )
       setStatus('passed')
     } catch (error) {
-      const code = error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
-      setStatus(`error at ${stage}: ${code} ${error instanceof Error ? error.message : String(error)}`)
+      const code =
+        error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
+      setStatus(
+        `error at ${stage}: ${code} ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 
@@ -127,3 +137,42 @@ const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 12 },
   chip: { padding: 12, backgroundColor: '#eee', borderRadius: 8 },
 })
+
+export interface FileSystemBenchmarkAdapter {
+  write(uri: string, value: string): Promise<void>
+  info(uri: string): Promise<{ size: number }>
+  copy(from: string, to: string): Promise<void>
+  remove(uri: string): Promise<void>
+}
+
+export async function benchmarkFileSystem(
+  adapter: FileSystemBenchmarkAdapter,
+  root: string
+) {
+  const { timeAsync } = await import('./native-speed')
+  const small = root + 'small.txt'
+  const large = root + 'large.txt'
+  await adapter.write(small, 'v'.repeat(4096))
+  await adapter.write(large, 'v'.repeat(1024 * 1024))
+  const write4KB = await timeAsync(100, () => adapter.write(small, 'v'.repeat(4096)))
+  const stat = await timeAsync(100, () => adapter.info(small))
+  const copy1MB = await timeAsync(25, async (index) => {
+    const uri = root + `copy-${index}.txt`
+    await adapter.copy(large, uri)
+  })
+  if (
+    (await adapter.info(small)).size !== 4096 ||
+    (await adapter.info(large)).size !== 1024 * 1024
+  ) {
+    throw new Error('file benchmark source bytes did not match')
+  }
+  for (let index = 0; index < 25; index++) {
+    const uri = root + `copy-${index}.txt`
+    if ((await adapter.info(uri)).size !== 1024 * 1024)
+      throw new Error('file copy lost bytes')
+    await adapter.remove(uri)
+  }
+  await adapter.remove(small)
+  await adapter.remove(large)
+  return { write4KB, stat, copy1MB }
+}

@@ -28,8 +28,8 @@ if (availability.accelerometer) {
 
 `getAvailability()` returns `accelerometer`, `gyroscope`, `magnetometer`, and
 `deviceMotion` booleans. `addListener(sensor, intervalMs, onReading, onError)`
-accepts an interval from 16 through 1000 milliseconds and returns an idempotent
-remover. The requested interval is a target: iOS controls the actual sensor
+accepts an interval from 0 through 1000 milliseconds and returns an idempotent
+remover. Zero requests the fastest native hardware rate. The requested interval is a target: the operating system controls the actual sensor
 frequency, and callbacks may be less frequent. Multiple listeners share one
 sensor stream; each receives no more than its requested rate. Remove listeners
 when their screen unmounts to stop the hardware stream.

@@ -1,0 +1,9 @@
+node_modules/
+ios/
+android/
+.expo/
+dist/
+*.lockb
+build-device/
+build-sim/
+run-config.json

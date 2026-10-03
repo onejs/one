@@ -117,3 +117,23 @@ const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 8 },
   chip: { padding: 12, backgroundColor: '#eee', borderRadius: 8 },
 })
+
+export function benchmarkCrypto(source: {
+  getRandomValues: (view: Uint8Array<ArrayBuffer>) => unknown
+  randomUUID: () => string
+}) {
+  const small = new Uint8Array(16)
+  const large = new Uint8Array(4096)
+  source.getRandomValues(large)
+  const before = large.slice()
+  source.getRandomValues(large)
+  if (large.every((value, index) => value === before[index]))
+    throw new Error('random fill did not change bytes')
+  const uuid = source.randomUUID()
+  if (!UUID_V4.test(uuid)) throw new Error('random UUID was not v4')
+  return import('./native-speed').then(({ timeSync }) => ({
+    uuid: timeSync(10000, () => source.randomUUID()),
+    fill16: timeSync(10000, () => source.getRandomValues(small)),
+    fill4096: timeSync(10000, () => source.getRandomValues(large)),
+  }))
+}

@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "One Native Speed",
+    "slug": "one-native-speed",
+    "ios": {
+      "bundleIdentifier": "dev.one.native.speed"
+    },
+    "android": {
+      "package": "dev.onejs.nativespeed",
+      "permissions": [
+        "HIGH_SAMPLING_RATE_SENSORS"
+      ]
+    },
+    "scheme": "one-native-speed",
+    "plugins": [
+      "./withNativeSpeed.cjs"
+    ]
+  }
+}

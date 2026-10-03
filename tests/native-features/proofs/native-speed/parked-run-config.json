@@ -1,0 +1,20 @@
+{
+  "server": "http://127.0.0.1:4399",
+  "androidServer": "http://10.0.2.2:4399",
+  "device": "ios-sim-baseline",
+  "suite": "all",
+  "sourceCommit": "81558502baba61c7cb78eccbab3ef0028319d17f",
+  "sourceHashes": {
+    "packages/one/cpp/HybridOneCrypto.cpp": "971a38471ecc8d2fbbab1be7ab4f4525362b7960781b96351954562f83e3c283",
+    "packages/one/cpp/HybridOneStorage.cpp": "b4ce73b98546b82725429d19698fbccc321614d630df61eeff72e2d02d8d22ec",
+    "packages/one/ios/Nitro/HybridOneFileSystem.swift": "84a99076fd6126705d0877e7cdf5ace741d4e0aecd9af8173a294da31953366d",
+    "packages/one/ios/Nitro/HybridOneMotion.swift": "b5ae0b2b0b79f5beff0a62873aa2ace340c4d9c60480a5e8c1058a9942cf255a",
+    "packages/one/ios/Nitro/HybridOneImageManipulator.swift": "3a0b271417f7fbeae6bdaa9cdc8a4f82b65ba836e76c1501b231b8784faebdf1",
+    "packages/one/ios/Nitro/HybridOneFetch.swift": "e71b7987ee0672ee0d033f02ff78d4542fb2cac3e37f2b10959537d3eb784f47",
+    "packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneFileSystem.kt": "87856d8cf37bab55471d3b4c890666913cf672ff4f98ec382f5a43f93af1589e",
+    "packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneMotion.kt": "67572e956d439c7caa0b39a424a7956fad6398f89e8482a300adbb6e02247568",
+    "packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneImageManipulator.kt": "57333eabb36c9ec109cdadd744a3b75949b7787cbb27ddeb757f2dd32a95fc1f",
+    "packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneFetch.kt": "4d32f88ffc42ecbdcb4bd0cf4713e61874e7d790ef536b86e819a3c2da731aa0",
+    "tests/native-features/assets/one-speed-12mp.jpg": "b42e046c3947da5cc78468b38418b86d7f889783230408ef9669efe336061394"
+  }
+}
