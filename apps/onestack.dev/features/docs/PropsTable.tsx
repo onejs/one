@@ -28,6 +28,8 @@ export function PropsTable({
 }: {
   title?: string
   data: PropDef[]
+  // `file#Type` under packages/one/src/platform; nativeDocs.test.ts checks data against it
+  source?: string
   'aria-label'?: string
   'aria-labelledby'?: string
 }) {
@@ -36,7 +38,6 @@ export function PropsTable({
     <YStack
       borderWidth={1}
       borderColor="$borderColor"
-      f={1}
       aria-label={hasAriaLabel ? ariaLabel : 'Component Props'}
       aria-labelledby={ariaLabelledBy}
       my="$4"
@@ -62,15 +63,14 @@ export function PropsTable({
                 $sm={{ flexDirection: 'column' }}
               >
                 <YStack fullscreen backgroundColor="$background" zi={-1} o={0.5} />
-                <XStack miw="30%" ai="center" jc="space-between">
+                <XStack miw="30%" fs={0} ai="center" jc="space-between">
                   <H4
                     color="$color"
                     fow="700"
                     fontFamily="$mono"
                     textTransform="none"
                     textDecorationLine={deprecated ? 'line-through' : 'none'}
-                    size="$4"
-                    width={200}
+                    size="$3"
                   >
                     {name}
                     {required ? (
@@ -94,7 +94,7 @@ export function PropsTable({
                     <Separator als="stretch" vertical mx="$3.5" my="$2" />
 
                     <XStack
-                      f={2}
+                      fg={2}
                       miw="30%"
                       ai="center"
                       $xs={{

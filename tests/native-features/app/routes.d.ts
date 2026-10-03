@@ -19,6 +19,7 @@ declare module 'one' {
         | `/bars-probe/main/`
         | `/bars-probe/plain`
         | `/color-test`
+        | `/docs-capture`
         | `/menu-test`
         | `/one-native`
         | `/one-native-accessibility`

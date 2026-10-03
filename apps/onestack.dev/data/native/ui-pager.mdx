@@ -3,64 +3,269 @@ title: Pager
 description: Swipe between React Native pages on iOS, Android, and web
 ---
 
-`One.UI.Pager` fills its viewport with one direct child view per page.
+<NativeHero
+  src="/native/pager.webp"
+  alt="One.UI.Pager on iOS and Android, held mid swipe between two pages"
+/>
+
+`One.UI.Pager` shows one child view per page and swipes between them.
 iOS uses a paging `UIScrollView`, Android uses `ViewPager2`, and web uses
-CSS scroll snap. Give the pager a size, and keep a stable key on each page.
+CSS scroll snap.
+
+- Every page stays in the React tree, so state and context survive a swipe.
+- `onPageScroll` reports continuous progress during drags and settles.
+- The ref moves pages with or without animation.
+- It replaces `react-native-pager-view` without other changes.
+
+## Usage
+
+Give the pager a size and give each page a stable `key`. Each direct child
+fills the pager.
 
 ```tsx
 import { useRef, useState } from 'react'
 import { One, type PagerRef } from 'one'
-import { View, Text } from 'react-native'
+import { Button, Text, View } from 'react-native'
 
-const pager = useRef<PagerRef>(null)
-const [page, setPage] = useState(0)
+export function Onboarding() {
+  const pager = useRef<PagerRef>(null)
+  const [page, setPage] = useState(0)
+
+  return (
+    <View style={{ flex: 1 }}>
+      <One.UI.Pager
+        ref={pager}
+        style={{ flex: 1 }}
+        onPageSelected={({ nativeEvent }) => setPage(nativeEvent.position)}
+      >
+        <View key="welcome">
+          <Text>Welcome</Text>
+        </View>
+        <View key="sync">
+          <Text>Sync</Text>
+        </View>
+        <View key="done">
+          <Text>Done</Text>
+        </View>
+      </One.UI.Pager>
+      <Button
+        title={page === 2 ? 'Start' : 'Next'}
+        onPress={() => pager.current?.setPage(Math.min(page + 1, 2))}
+      />
+    </View>
+  )
+}
+```
+
+### Page indicators
+
+`onPageScroll` sends `position + offset` as a continuous value. Use it as the
+only writer of scroll progress, for example in a Reanimated shared value, and
+derive indicators from it.
+
+```tsx
+const progress = useSharedValue(0)
 
 <One.UI.Pager
-  ref={pager}
-  style={{ flex: 1 }}
-  initialPage={0}
+  style={{ height: 360 }}
   onPageScroll={({ nativeEvent }) => {
     progress.set(nativeEvent.position + nativeEvent.offset)
   }}
-  onPageSelected={({ nativeEvent }) => setPage(nativeEvent.position)}
 >
-  <View key="projects"><Text>Projects</Text></View>
-  <View key="chat"><Text>Chat</Text></View>
+  {pages}
 </One.UI.Pager>
-
-pager.current?.setPage(1)
-pager.current?.setPageWithoutAnimation(0)
-pager.current?.setScrollEnabled(false)
 ```
 
-`onPageScroll` delivers `{ position, offset }` throughout a drag or animated
-settle. A completed settle delivers the landing page with `offset: 0`.
-Use this event as the single writer of continuous progress;
-`onPageSelected` reports the selected page, and
-`onPageScrollStateChanged` reports `{ pageScrollState }`, one of `idle`,
-`dragging`, and `settling`.
+## API reference
 
-| Prop | Default | Behavior |
-| --- | --- | --- |
-| `initialPage` | `0` | Starting index, read on mount |
-| `scrollEnabled` | `true` | Enables user swipes; commands still work |
-| `orientation` | `horizontal` | `horizontal` or `vertical` |
-| `layoutDirection` | `ltr` | `ltr` or `rtl`; indices retain child order |
-| `pageMargin` | `0` | Space between pages in points |
-| `keyboardDismissMode` | `none` | `none` or `on-drag` |
-| `overdrag` | `false` | Enables bouncing at the ends on iOS |
-| `offscreenPageLimit` | `-1` | Android cache limit; `-1` or a positive integer |
-| `overScrollMode` | `auto` | Android edge effect: `auto`, `always`, or `never` |
+### Pager
 
-The ref methods take a nonnegative integer index. An index beyond the mounted
-pages does nothing. Removing the selected last page selects the last remaining
-page. A resize preserves the selected page. Invalid prop values and invalid
-index types throw synchronously on all platforms.
+Pager also accepts React Native `ViewProps`. `style` sizes the pager itself.
 
-The pager has no automatic safe-area or keyboard inset adjustment. Its children
-own those insets. Children stay in the React tree and inherit appearance changes.
+<PropsTable
+  title="Props"
+  source="ui/pagerTypes.ts#PagerProps"
+  data={[
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'One React Native element per page. Each child fills the pager. Anything other than an element throws.',
+    },
+    {
+      name: 'initialPage',
+      type: 'number',
+      default: '0',
+      description: 'The page shown on mount. Later changes are ignored; use the ref to move.',
+    },
+    {
+      name: 'scrollEnabled',
+      type: 'boolean',
+      default: 'true',
+      description: 'Allows user swipes. The ref methods still move pages when it is false.',
+    },
+    {
+      name: 'orientation',
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+      description: 'The swipe axis.',
+    },
+    {
+      name: 'layoutDirection',
+      type: '"ltr" | "rtl"',
+      default: '"ltr"',
+      description: 'Horizontal page order. Indices keep child order, so page 0 sits on the right in rtl.',
+    },
+    {
+      name: 'pageMargin',
+      type: 'number',
+      default: '0',
+      description: 'Gap between pages, visible only during a swipe. Must be zero or more.',
+    },
+    {
+      name: 'keyboardDismissMode',
+      type: '"none" | "on-drag"',
+      default: '"none"',
+      description: 'With on-drag, starting a swipe dismisses the keyboard.',
+    },
+    {
+      name: 'overdrag',
+      type: 'boolean',
+      default: 'false',
+      description: 'iOS only. Lets the first and last pages bounce past the edge.',
+    },
+    {
+      name: 'offscreenPageLimit',
+      type: 'number',
+      description: 'Android only. Pages kept laid out on each side of the current page: -1 for the ViewPager2 default, or a positive integer.',
+    },
+    {
+      name: 'overScrollMode',
+      type: '"auto" | "always" | "never"',
+      default: '"auto"',
+      description: 'Android only. The edge glow at the first and last pages.',
+    },
+  ]}
+/>
+
+<PropsTable
+  title="Events"
+  source="ui/pagerTypes.ts#PagerProps"
+  data={[
+    {
+      name: 'onPageScroll',
+      type: '(event: PagerScrollEvent) => void',
+      description: 'Every scroll frame during a drag or an animated settle, and once with offset 0 when a settle lands.',
+    },
+    {
+      name: 'onPageSelected',
+      type: '(event: PagerSelectedEvent) => void',
+      description: 'Once on mount with the initial page, then whenever the selected page changes.',
+    },
+    {
+      name: 'onPageScrollStateChanged',
+      type: '(event: PagerScrollStateEvent) => void',
+      description: 'The scroll state changes between idle, dragging, and settling.',
+    },
+  ]}
+/>
+
+### Event payloads
+
+Every event has the shape `{ nativeEvent }`.
+
+<PropsTable
+  title="PagerScrollEvent"
+  source="ui/pagerTypes.ts#PagerScrollEvent.nativeEvent"
+  data={[
+    {
+      name: 'position',
+      type: 'number',
+      description: 'The page at or before the current scroll position.',
+    },
+    {
+      name: 'offset',
+      type: 'number',
+      description: 'Progress from position toward the next page, from 0 up to 1.',
+    },
+  ]}
+/>
+
+<PropsTable
+  title="PagerSelectedEvent"
+  source="ui/pagerTypes.ts#PagerSelectedEvent.nativeEvent"
+  data={[
+    {
+      name: 'position',
+      type: 'number',
+      description: 'The selected page.',
+    },
+  ]}
+/>
+
+<PropsTable
+  title="PagerScrollStateEvent"
+  source="ui/pagerTypes.ts#PagerScrollStateEvent.nativeEvent"
+  data={[
+    {
+      name: 'pageScrollState',
+      type: '"idle" | "dragging" | "settling"',
+      description: 'dragging while a finger moves the pager, settling while it animates to a page, idle once it rests.',
+    },
+  ]}
+/>
+
+### PagerRef
+
+Import the type from `one` and pass a ref to the pager.
+
+<PropsTable
+  title="Methods"
+  source="ui/pagerTypes.ts#PagerRef"
+  data={[
+    {
+      name: 'setPage',
+      type: '(index: number) => void',
+      description: 'Animates to a page. Fires onPageScrollStateChanged with settling, then idle.',
+    },
+    {
+      name: 'setPageWithoutAnimation',
+      type: '(index: number) => void',
+      description: 'Jumps to a page with no animation.',
+    },
+    {
+      name: 'setScrollEnabled',
+      type: '(enabled: boolean) => void',
+      description: 'Allows or blocks user swipes without a render. The next change to the scrollEnabled prop replaces it.',
+    },
+  ]}
+/>
+
+An index must be a nonnegative integer; anything else throws. An index past
+the last page does nothing. A call made before the pager lays out moves it to
+that page on first layout.
+
+## Behavior
+
+- Removing the selected page when it is last selects the new last page.
+- A resize keeps the selected page.
+- Invalid prop values throw during render on every platform.
+- The pager adds no safe area or keyboard insets. Pages own them.
+- Nested pagers on Android hand a swipe to the inner pager until it reaches
+  its edge.
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Native view | `UIScrollView` with paging | `ViewPager2` | CSS scroll snap |
+| Pages mounted | All | All; `offscreenPageLimit` sets how many are attached | All |
+| `overdrag` | Bounce at the ends | Ignored | Ignored |
+| `offscreenPageLimit` | Ignored | Applied | Ignored |
+| `overScrollMode` | Ignored | Edge glow | Ignored |
+
 For SwiftUI pages with string selection and `One.iOS.Page` children, use
-`One.iOS.Pager`.
+[`One.iOS.Pager`](/native/ios-tabs-pager).
 
-To migrate from `react-native-pager-view`, replace its default import and JSX
-with `One.UI.Pager`, and type the ref as `PagerRef` from `one`.
+## Migrating from react-native-pager-view
+
+Replace the default import and JSX with `One.UI.Pager`, and type the ref as
+`PagerRef` from `one`. The props, events, and ref methods keep their names
+and payloads.
