@@ -290,14 +290,11 @@ function QualifiedNavigator({
     return hasScreen ? resolved : undefined
   }, [initialRouteName, screens, contextKey, screenFromParent])
 
-  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
-    router,
-    {
-      children: screens,
-      screenOptions,
-      initialRouteName: resolvedInitialRouteName,
-    }
-  )
+  const { state, navigation, descriptors, render } = useNavigationBuilder(router, {
+    children: screens,
+    screenOptions,
+    initialRouteName: resolvedInitialRouteName,
+  })
 
   // HYDRATION FIX: Use ref for descriptors to avoid context invalidation during hydration.
   // The descriptors object changes by reference on each render from useNavigationBuilder,
@@ -318,7 +315,7 @@ function QualifiedNavigator({
 
   return (
     <NavigatorContext.Provider value={value}>
-      <NavigationContent>{children}</NavigationContent>
+      {render(children)}
     </NavigatorContext.Provider>
   )
 }

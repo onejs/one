@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -31,5 +31,14 @@
     "@react-native-community/template": "^0.87.1",
     "@types/react": "^19.2.2",
     "vite": "^8.2.2"
+  },
+  "resolutions": {
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
+    "@react-navigation/drawer": "8.0.0-alpha.57",
+    "@react-navigation/elements": "3.0.0-alpha.54",
+    "@react-navigation/routers": "8.0.0-alpha.20",
+    "@react-navigation/core": "8.0.0-alpha.40"
   }
 }
