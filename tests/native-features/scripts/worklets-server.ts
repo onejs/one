@@ -57,9 +57,21 @@ const web = await build({
   },
 })
 
+for (const platform of ['ios', 'android'] as const) {
+  const bundle = await buildNativeBundle({
+    root,
+    platform,
+    dev: false,
+    minify: false,
+    entryFile: 'fixtures/worklets-entry.ts',
+    serverUrl: `http://localhost:${port}`,
+  })
+  bundles.set(platform, bundle.code)
+}
+
 Bun.serve({
   port,
-  async fetch(request) {
+  fetch(request) {
     const url = new URL(request.url)
     if (url.pathname === '/status') return new Response('packager-status:running')
     if (url.pathname === '/web.js')
@@ -70,17 +82,6 @@ Bun.serve({
       const platform = url.searchParams.get('platform')
       if (platform !== 'ios' && platform !== 'android')
         return new Response('platform required', { status: 400 })
-      if (!bundles.has(platform)) {
-        const bundle = await buildNativeBundle({
-          root,
-          platform,
-          dev: true,
-          minify: false,
-          entryFile: 'fixtures/worklets-entry.ts',
-          serverUrl: `http://localhost:${port}`,
-        })
-        bundles.set(platform, bundle.code)
-      }
       return new Response(bundles.get(platform), {
         headers: { 'content-type': 'application/javascript' },
       })

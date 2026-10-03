@@ -1,6 +1,10 @@
 import { createElement } from 'react'
 import { AppRegistry } from 'react-native'
-import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from '../../../packages/one/src/safe-area-context'
+import {
+  SafeAreaProvider,
+  SafeAreaView,
+  initialWindowMetrics,
+} from '../../../packages/one/src/safe-area-context'
 import WorkletsFixture from './one-native-gestures'
 
 function WorkletsApp() {

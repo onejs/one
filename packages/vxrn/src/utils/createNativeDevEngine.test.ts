@@ -1489,7 +1489,11 @@ describe('native required transform failures', () => {
       const spy = vi
         .spyOn(compiler, 'transformWorklets')
         .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: true,
+        enableNativeWorklets: true,
+      })
+      expect(compiler.isNativeWorkletsEnabled()).toBe(true)
 
       try {
         const plugin = vxrnCompilerPlugin('ios', dev, testRoot)
@@ -1505,7 +1509,10 @@ describe('native required transform failures', () => {
         ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
       } finally {
         spy.mockRestore()
-        compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+        compiler.configureVXRNCompilerPlugin({
+          enableReanimated: false,
+          enableNativeWorklets: false,
+        })
         await rm(testRoot, { recursive: true, force: true })
       }
     }
@@ -1517,7 +1524,11 @@ describe('native required transform failures', () => {
     const spy = vi
       .spyOn(compiler, 'transformWorklets')
       .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
-    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    expect(compiler.isNativeWorkletsEnabled()).toBe(true)
     let resolveOutput!: (output: unknown) => void
     const output = new Promise<unknown>((resolve) => {
       resolveOutput = resolve
@@ -1540,7 +1551,10 @@ describe('native required transform failures', () => {
     } finally {
       spy.mockRestore()
       await engine.close()
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
       await rm(testRoot, { recursive: true, force: true })
     }
   })
@@ -1551,7 +1565,11 @@ describe('native required transform failures', () => {
     const spy = vi
       .spyOn(compiler, 'transformWorklets')
       .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
-    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    expect(compiler.isNativeWorkletsEnabled()).toBe(true)
 
     try {
       await expect(
@@ -1563,7 +1581,10 @@ describe('native required transform failures', () => {
       ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
     } finally {
       spy.mockRestore()
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
       await rm(testRoot, { recursive: true, force: true })
     }
   })
@@ -1585,7 +1606,11 @@ describe('native required transform failures', () => {
   it('returns maps for every required production transform', async () => {
     const testRoot = await createWorkletsProject(false)
     const compiler = await import('@vxrn/compiler')
-    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    expect(compiler.isNativeWorkletsEnabled()).toBe(true)
 
     try {
       const compilerPlugin = vxrnCompilerPlugin('ios', false, testRoot, true)
@@ -1608,7 +1633,10 @@ describe('native required transform failures', () => {
       ])
       expect(hermesResult.map).toBeTruthy()
     } finally {
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
       await rm(testRoot, { recursive: true, force: true })
     }
   })

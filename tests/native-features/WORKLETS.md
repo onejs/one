@@ -22,10 +22,12 @@ Use port 8095 for the claimed iOS app's `RCT_jsLocation`. The iOS bundle ID is
 `dev.vxrn.native.tests`. On Android, package `dev.vxrn.nativefeatures.tests`,
 set `debug_http_host` in its default shared preferences to `localhost:8081`
 and reverse device port 8081 to host port 8095. The server uses the native
-bundler for both platforms and the same fixture through One's transform on
+production bundler for both platforms inside the Debug binaries, and the same
+fixture through One's transform on
 web. Its native entry registers `NativeFeatureTests` inside a safe area.
-Restart the server after changing either fixture file. Wait for both native
-bundles before restarting the apps:
+The focused entry does not initialize the full router or its Fast Refresh runtime.
+Restart the server after changing either fixture file. It builds both native
+bundles before printing its ready message. Save the served bundles for receipts:
 
 ```sh
 curl --fail 'http://localhost:8095/index.bundle?platform=ios' -o /tmp/worklets-ios.bundle
@@ -54,3 +56,9 @@ runtime and geometry checks on 2026-10-03. The native debug builds included
 concurrent native service/navigation edits, so this is a runtime fixture proof,
 not a clean-install proof of the complete real-app matrix. The retained
 observations are in `evidence/worklets/runtime.json`.
+
+For a queued server, wait on its ready log receipt with
+`scripts/watch-worklets-ready.py <admission-pid> <log>` inside one detached
+`tm wait`. The watcher observes file writes and process exit with kqueue;
+it rejects process exit without a ready receipt. RAN: both watcher outcomes
+passed a subprocess check.
