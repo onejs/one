@@ -19,8 +19,6 @@ export function LoginDemoButton() {
 
   return (
     <>
-      {/* the demo login is the one-tap path that works on every deploy — it
-          carries the accent as the primary action */}
       <Button
         accent
         size="lg"

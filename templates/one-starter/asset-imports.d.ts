@@ -7,7 +7,6 @@ declare module '*?raw' {
 
 // bundled image imports are typed as the resolved URL `string` — that is exactly
 // what tamagui's `<Image src>` accepts (`src?: string | number`) and what both
-// the dev preview bundler and the production build emit. pass the WHOLE import
 // to `src` and type image props as `string` — never read `.uri` (typing them as
 // `string` makes `.uri` a compile error, which is the point).
 declare module '*.jpg' {

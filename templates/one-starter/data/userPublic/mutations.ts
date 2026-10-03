@@ -12,6 +12,8 @@ import { ensureLoggedIn, mutations, serverWhere, zql } from 'on-zero'
 // users can only write their own public profile row. the row id IS the user
 // id — it is forced from auth on every slot, so it never appears in props.
 // insert is skip-if-exists by definition, so no read-guard is needed.
+import { validateImage, validateText } from '~/data/validate'
+
 const permissions = serverWhere('userPublic', (q, auth) => {
   return q.cmp('id', auth?.id || '')
 })
@@ -29,8 +31,15 @@ export const mutate = mutations(
         joinedAt: number
       },
     ) => {
+      validateImage(row.image)
+      validateText(row.name, 200)
+      validateText(row.username, 30)
       const auth = ensureLoggedIn()
-      await ctx.tx.mutate.userPublic.insert({ ...row, id: auth.id })
+      await ctx.tx.mutate.userPublic.insert({
+        ...row,
+        joinedAt: ctx.environment === 'server' ? Date.now() : row.joinedAt,
+        id: auth.id,
+      })
       await ctx.can(permissions, auth.id)
     },
     upsert: async (
@@ -43,6 +52,9 @@ export const mutate = mutations(
         image?: string | null
       },
     ) => {
+      validateImage(args.image)
+      validateText(args.name, 200)
+      validateText(args.username, 30)
       const auth = ensureLoggedIn()
       const existing = await ctx.tx.run(zql.userPublic.where('id', auth.id).one())
       if (existing) {
@@ -61,7 +73,7 @@ export const mutate = mutations(
         name: args.name ?? null,
         username: args.username ?? null,
         image: args.image ?? null,
-        joinedAt: args.joinedAt,
+        joinedAt: ctx.environment === 'server' ? Date.now() : args.joinedAt,
       })
       await ctx.can(permissions, auth.id)
     },

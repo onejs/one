@@ -14,7 +14,6 @@ export const { authClient, useAuth } = createAppBetterAuthClient({
   plugins: [
     emailOTPClient(),
     platformClient({
-      origin: `${APP_SCHEME}://`,
       tokenStore: nativeBearerTokenStore(nativeBearerToken),
     }),
   ],
@@ -24,6 +23,7 @@ export const useSession = authClient.useSession
 export const { signIn, signUp, signOut } = authClient
 
 export async function signInAsDemo() {
+  if (process.env.NODE_ENV !== 'development') throw new Error('demo login is development-only')
   await authClient.signUp.email({
     email: DEMO_EMAIL,
     name: DEMO_NAME,

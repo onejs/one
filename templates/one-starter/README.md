@@ -32,10 +32,10 @@ permissions.
 ## Develop
 
 Run `bun check` for types and lint. `bun generate` regenerates database
-migrations and Zero models. `bun build` emits the Cloudflare worker and web
-assets. Configure your deployment's SQLite Durable Object, Orez Lite sync host,
-auth secret, and upload storage before deploying that output. The local demo
-fixture is seeded only for development.
+migrations and Zero models. `bun build` emits the Node server and web
+assets. `bun serve` starts that server and its SQLite sync host together. Keep
+`.orez/` on a persistent volume when deploying. The demo account and feed fixture
+are available only in development.
 
 - `app/`: routes and API handlers.
 - `auth/`: session transport and authentication.
@@ -45,8 +45,18 @@ fixture is seeded only for development.
 - `tamagui/`: themes, fonts, and platform animations.
 
 Replace the development auth secret for deployment. Email OTP uses [Resend](https://resend.com/docs/api-reference/emails/send-email)
-in production: set `RESEND_API_KEY` and `AUTH_EMAIL_FROM`; the demo uses email and password. Development uploads are saved under `.orez/uploads` and served by One.
+in production: set `RESEND_API_KEY` and `AUTH_EMAIL_FROM`. Production accounts use
+email OTP; password login is enabled only for the development demo. Development uploads are saved under `.orez/uploads` and served by One.
 Set R2 credentials and the public bucket URL in `env.ts` for production uploads.
 
 The starter preserves Takeout's MIT license in `LICENSE`. Its canonical source
 is `templates/one-starter` in One.
+
+## Production
+
+Set `ONE_SERVER_URL`, `BETTER_AUTH_URL`, and `VITE_WEB_HOSTNAME` to your public
+origin (the hostname has no protocol). Set `BETTER_AUTH_SECRET` to a new random
+secret, configure email and R2 uploads in `env.ts`, then run `bun build` and
+`bun serve`. Terminating TLS belongs to your reverse proxy. The web server listens
+on port 4200; the sync service stays on loopback. A single server owns the SQLite
+volume. Back up `.orez/` with the application stopped.

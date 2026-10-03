@@ -40,7 +40,6 @@ function RouteSheetCard({ title, children }: { title?: string; children: ReactNo
     // under the adapt the portal frame stays mounted, fixed over the viewport
     // and empty, so it must not catch the taps meant for the sheet below it.
     // the frame is the <dialog> the browser focuses when the screen has no
-    // field of its own to take it, and the agent ring it draws then hugs the
     // whole viewport
     <TamaguiDialog.Portal
       z={500_000}

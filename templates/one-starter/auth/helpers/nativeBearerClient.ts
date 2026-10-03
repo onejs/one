@@ -9,7 +9,6 @@ export interface NativeBearerTokenStore {
 }
 
 export interface NativeBearerClientOptions {
-  origin?: string
   tokenStore: NativeBearerTokenStore
 }
 
@@ -62,12 +61,6 @@ export function nativeBearerClient(options: NativeBearerClientOptions) {
             credentials?: RequestCredentials
           }) {
             context.credentials = 'omit'
-
-            if (options.origin) {
-              if (!context.headers.has('mobile-origin')) {
-                context.headers.set('mobile-origin', options.origin)
-              }
-            }
 
             const token = await options.tokenStore.get()
             if (token && !context.headers.has('authorization')) {

@@ -34,7 +34,7 @@ function LogoMark({ size = 72 }: { size?: number }) {
 function LoginButtons() {
   return (
     <YStack width="100%" gap={18}>
-      <LoginDemoButton />
+      {process.env.NODE_ENV === 'development' && <LoginDemoButton />}
       <LoginEmailButton />
       <LoginLegalText />
     </YStack>
