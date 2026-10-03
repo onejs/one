@@ -16,8 +16,9 @@ type PageVirtualListProps<Item> = Omit<
 /**
  * @agent-rule
  * page-level virtualization is reserved for genuinely long or unbounded data.
- * this component keeps those lists clear of native safe areas and owns those
- * insets itself. ordinary collections use PageScrollView and map instead.
+ * this component keeps those lists clear of native safe areas, using automatic
+ * adjustment under ios native tabs and manual padding elsewhere. ordinary
+ * collections use PageScrollView and map instead.
  */
 export function PageVirtualList<Item>({
   contentPaddingBottom = 0,
@@ -34,7 +35,9 @@ export function PageVirtualList<Item>({
     <VirtualList
       {...props}
       style={[{ flex: 1, backgroundColor: theme.background?.val }, props.style]}
-      contentInsetAdjustmentBehavior="never"
+      contentInsetAdjustmentBehavior={
+        nativeTabsOwnInsets && Platform.OS === 'ios' ? 'automatic' : 'never'
+      }
       contentContainerStyle={{
         paddingTop: manualTop + contentPaddingTop,
         paddingBottom: Math.max(insets.bottom, 12) + contentPaddingBottom,

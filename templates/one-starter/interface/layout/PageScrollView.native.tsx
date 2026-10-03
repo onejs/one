@@ -41,9 +41,8 @@ export function PageScrollView({
   const insets = useSafeAreaInsets()
   const nativeTabsOwnInsets = useNativeTabInsetsOwned()
   // a tab root's bar floats transparent over its page. under ios native tabs
-  // the screens controller flips this scroll view to automatic adjustment,
-  // which already insets the status bar and that bar: adding insets.top again
-  // doubles it. android has no automatic adjustment, so under its tabs the page
+  // automatic adjustment clears the status bar and that bar. adding insets.top
+  // again doubles it. android has no automatic adjustment, so under its tabs the page
   // clears the header height (status bar included) itself, zero where the
   // screen shows no header. everywhere else (stacks, auth) manual status-bar
   // padding stays.
@@ -68,7 +67,9 @@ export function PageScrollView({
       keyboardDismissMode={keyboardDismissMode}
       keyboardShouldPersistTaps={keyboardShouldPersistTaps}
       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-      contentInsetAdjustmentBehavior="never"
+      contentInsetAdjustmentBehavior={
+        nativeTabsOwnInsets && Platform.OS === 'ios' ? 'automatic' : 'never'
+      }
       contentContainerStyle={{
         flexGrow: 1,
         paddingTop: manualTop + contentPaddingTop,
