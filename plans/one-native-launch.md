@@ -29,7 +29,7 @@ docs, unified primitives.
 | 1 | Contrast goal 4 | `one-native-next.md` done-means on Contrast main; Widgets hero shared to Nate; Android/browser mount blocker stays with the engine owner | s8153 / contrast-one-native-2 |
 | 2 | real-app matrix | the starter, every `create-one` template and Contrast's mobile template build and run on iOS 27 sim and Android emulator from a clean install of the current beta, each One native API they use exercised once; failures fixed on `v2-beta`; the matrix is a script anyone reruns | s8223 / one-native-realapps |
 | 3 | worklets and Reanimated first class | the proposal below, steps 1 to 4 landed on `v2-beta`; step 5 shared to Nate | s8225 / one-native-worklets |
-| 4 | speed rows | every "unmeasured" row in `one-native-speed.md` measured on device beside its rival, losers redesigned; physical-device Storage run | s8227 / one-native-speed |
+| 4 | speed rows | parked by Nate 2026-10-03 ("just leave speed for now"); s8227 saves its work and records state in `one-native-speed.md`. Android FileSystem, Motion and ImageManipulator (they throw on Android today) move to rank 6 | parked |
 | 5 | unified primitives | background work (`platform/background-tasks`) proven on iOS, Android and web in a real app, documented; next candidates chosen from what Contrast and the templates still import per platform | after rank 2 reports |
 | 6 | coverage gaps | Expo UI and Expo modules still imported by our apps or templates, closed by the path the split below assigns | after rank 2 reports |
 | 7 | docs | every shipped One native API has a page with props matching types (drift suite stays green), a hero where the page family has one, and a web behavior note | folded into each item; sweep last |
@@ -101,4 +101,4 @@ Proposal:
 | s8153 / contrast-one-native-2 | Codex xhigh | rank 1 | manager reviews assembled |
 | s8223 / one-native-realapps | Sol high | rank 2 | manager reviews assembled |
 | s8225 / one-native-worklets | Sol high | rank 3 | manager reviews assembled |
-| s8227 / one-native-speed | Sol high | rank 4 | manager reviews assembled |
+| s8227 / one-native-speed | Sol high | rank 4, parked; finishing | none |
