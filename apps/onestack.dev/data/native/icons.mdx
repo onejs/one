@@ -3,11 +3,22 @@ title: Icons
 description: Shared icon selection with responsive native colors
 ---
 
-`One.UI.Icon` selects the icon element your app provides for the current platform
-and applies a responsive native system color on iOS and Android. Pass a
-`One.iOS.Image` and a `One.Android.Icon`; this ensures both native elements can
-consume the shared color contract. Your app owns the glyph mapping, availability,
-size, variant, directionality, and accessibility label. An icon without a label is
+<NativeHero
+  src="/native/icon.webp"
+  alt="One.UI.Icon on iOS and Android: SF Symbols and Material Symbols in each color role"
+/>
+
+`One.UI.Icon` picks the icon element your app provides for the current
+platform and colors it with a native system color.
+
+- iOS draws an SF Symbol through `One.iOS.Image`.
+- Android draws a Material Symbol through `One.Android.Icon`.
+- Color roles follow light and dark mode without a React subscription.
+- Your app owns the glyphs, sizes, and accessibility labels.
+
+## Usage
+
+Pass one element per platform. An icon without an accessibility label is
 treated as decoration.
 
 ```tsx
@@ -29,21 +40,66 @@ const shareIcons = {
 <One.UI.Icon icons={shareIcons} color="#E5484D" />
 ```
 
-`colorRole` accepts `primary`, `secondary`, `tertiary`, `accent`, or `danger`.
-The role reaches SwiftUI or Compose unchanged and resolves from the active native
-color scheme. A light or dark mode change updates the mounted native icon without a
-React appearance subscription. If neither color prop is present, `primary` is the
-default. Use `color` for a React Native `ColorValue`, including an iOS dynamic color
-in iOS code or a regular color string. `color` and `colorRole` are mutually exclusive.
+## API reference
 
-One does not map these roles on web. When `icons.web` is present, One returns that
-React element unchanged so Tamagui or the app can style it. When it is absent, the
-component renders nothing on web.
+<PropsTable
+  title="Props"
+  source="ui/iconTypes.ts#IconProps"
+  data={[
+    {
+      name: 'icons',
+      required: true,
+      type: 'IconElements',
+      description: 'The element for each platform. See below.',
+    },
+    {
+      name: 'colorRole',
+      type: 'IconColorRole',
+      default: '"primary"',
+      description: 'A native system color. Cannot be set with color.',
+    },
+    {
+      name: 'color',
+      type: 'ColorValue',
+      description: 'A fixed color, including an iOS dynamic color. Cannot be set with colorRole.',
+    },
+  ]}
+/>
 
-### One.UI.Icon Props
+<PropsTable
+  title="IconElements"
+  source="ui/iconTypes.ts#IconElements"
+  data={[
+    {
+      name: 'ios',
+      type: 'ReactElement<ImageProps>',
+      description: 'A One.iOS.Image element. Anything else throws on iOS.',
+    },
+    {
+      name: 'android',
+      type: 'ReactElement<ComposeIconProps>',
+      description: 'A One.Android.Icon element. Anything else throws on Android.',
+    },
+    {
+      name: 'web',
+      type: 'ReactElement',
+      description: 'Returned unchanged on web. Without it, web renders nothing.',
+    },
+  ]}
+/>
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `icons` | `{ ios: ReactElement<ImageProps>; android: ReactElement<ComposeIconProps>; web?: ReactElement }` | App-owned platform icons using `One.iOS.Image` and `One.Android.Icon` |
-| `colorRole` | `'primary' \| 'secondary' \| 'tertiary' \| 'accent' \| 'danger'` | Responsive native system color |
-| `color` | `ColorValue` | Custom color, mutually exclusive with `colorRole` |
+`IconColorRole` is `"primary" | "secondary" | "tertiary" | "accent" | "danger"`.
+
+## Behavior
+
+- The role reaches SwiftUI or Compose unchanged and resolves from the active
+  color scheme, so a light or dark mode change recolors mounted icons.
+- On iOS the icon is sized from `swiftStyle.fontSize`, or `width` and `height`
+  when set, and 24 otherwise. On Android it is sized from `size`, 24 by default.
+- One does not map roles on web. Style the web element yourself.
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Element | `One.iOS.Image` | `One.Android.Icon` | `icons.web` |
+| Glyphs | SF Symbols | Material Symbols | Your own |
+| `colorRole` | SwiftUI system color | Material color scheme | Ignored |

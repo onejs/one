@@ -16,7 +16,8 @@ const typeText = (row: PropDef) =>
 
 // a reference table in the docs' regular table style, with the table's title as the
 // first column header. cells share a baseline so a row's first lines align. phones
-// drop the type column and show the type under the name.
+// drop the type column and show the type under the name, where long generic types
+// may break anywhere so the table never scrolls sideways.
 export function PropsTable({
   title = 'Props',
   data,
@@ -50,6 +51,7 @@ export function PropsTable({
                 <Text
                   display="none"
                   $sm={{ display: 'flex' }}
+                  style={{ overflowWrap: 'anywhere' }}
                   fontFamily="$mono"
                   fontSize={13}
                   lineHeight={18}
