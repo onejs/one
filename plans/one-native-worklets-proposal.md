@@ -29,42 +29,49 @@ The metadata also needs to distinguish an app-installed peer from a dependency
 already installed by `one`, so recommending a package does not imply adding
 another copy to every starter.
 
-## Full native library inventory for this proposal
+## Native libraries, traced to their consumers
 
-RAN: read One's dependency and peer manifests, native imports, sync installer,
-and the native coverage plan. The four original entries cover animation,
-worklets, gestures and navigation. The wider inventory is:
+The previous revision incorrectly proposed packages from the manifest without
+establishing their role in One Native. That inventory is withdrawn. A manifest
+entry does not establish a native implementation or a recommendation.
 
-| Package | Range/version in the review branch | What it supplies | Who installs it |
+RAN: read these native consumers and One's package manifest. These five
+libraries implement One's native runtime, services or navigation:
+
+| Package | Version/range | Native consumer | Installation |
 | --- | --- | --- | --- |
-| `react-native-worklets` | `~0.12.2` | UI runtime, worklet execution, One native sync state | Native app peer |
-| `react-native-reanimated` | `~4.6.0` | Animation drivers and layout transitions | Native app peer under the current proposed package contract |
-| `react-native-gesture-handler` | `~3.3.0` | Gesture worklets and drawer gestures | Starter; needed by apps using those features |
-| `react-native-screens` | `~4.27.0` | Native stack, tabs and split view | Native app peer |
-| `@op-engineering/op-sqlite` | `18.2.5` | One.Database's SQLite implementation | One dependency |
-| `react-native-nitro-modules` | `0.37.0` | One's native service bindings over JSI | One dependency |
-| `react-native-nitro-image` | `0.15.2` | One's native image implementation | One dependency |
-| `react-native-nitro-web-image` | `0.15.2` | Nitro Image's browser counterpart | One dependency; web side |
-| `@callstack/liquid-glass` | `^0.8.1` tested; peer `>=0.6.0` | Native Liquid Glass integration | Starter; optional feature peer |
-| `@tamagui/sheet` | `3.0.0-beta.1537.1` tested; peer `>=3.0.0-beta.1537.1 <4` | Optional Tamagui sheet integration | App using `one/tamagui` |
+| `react-native-worklets` | `~0.12.2` | `src/platform/syncInstaller.native.ts`: installs One's sync registry into the Worklets UI runtime | App peer |
+| `react-native-screens` | `~4.27.0` | Native navigation and `src/platform/split-view/split-view.native.tsx` | App peer |
+| `@op-engineering/op-sqlite` | `18.2.5` | `src/platform/database/index.native.ts`: imports `open` and `openAsync` for One.Database | One dependency |
+| `react-native-nitro-modules` | `0.37.0` | `src/platform/clipboard/index.native.ts` creates a Nitro hybrid object; `android/build.gradle` links Nitro | One dependency |
+| `react-native-nitro-image` | `0.15.2` | `src/platform/ui/Image.native.tsx`: renders `NativeNitroImage` | One dependency |
 
-Navigation also has its own aligned package family: `@react-navigation/core`,
-`native`, `routers`, `elements`, `native-stack`, `bottom-tabs` and optional
-`drawer`. React and React Native are the framework baseline. Those versions
-stay under the navigation and React Native upgrade contract; the real-app
-lane is currently updating navigation, so this document does not freeze its
-moving alpha versions.
+Two more packages support the app animation and gesture contract being tested
+in this assignment:
 
-The intended complete metadata includes the table above, with installation
-ownership recorded. The implementation on the branch currently synchronizes
-and checks the initial four peers. Extending it to One-owned dependencies must
-check their installed versions without requiring a duplicate app declaration.
+| Package | Version/range | Consumer | Installation |
+| --- | --- | --- | --- |
+| `react-native-reanimated` | `~4.6.0` | App animation hooks and layout transitions; native-features fixture | App peer; currently required on the review branch |
+| `react-native-gesture-handler` | `~3.3.0` | App gesture worklets and navigation drawer | App using those features; included in the starter |
 
-The old coverage plan also calls for a blessed file-system library without
-naming one. There is no extra package to list as selected: One now has its own
-FileSystem implementation. MMKV, quick-crypto, Expo modules and
-`react-native-pager-view` appear in benchmark or migration evidence; that alone
-does not make them a selected dependency.
+Reanimated is not the implementation of One's proposed per-frame storage.
+Its required status on the branch follows the original assignment, rather
+than a direct import in One's core. That package decision remains in review.
+
+The branch's generated list currently contains the original four app peers.
+The three One-installed dependencies above are the additional entries supported
+by native consumer evidence. Adding them to the metadata must preserve their
+installation ownership: an app should not need duplicate direct declarations.
+React, React Native and the aligned React Navigation packages are the framework
+baseline; their upgrade contract is maintained separately.
+
+One's glass and sheet are its own native implementations:
+`ios/OneNativeGlassView.swift` calls SwiftUI's `glassEffect`,
+`ios/OneNativeGlassEffectContainerView.swift` uses `GlassEffectContainer`, and
+`src/platform/Sheet.native.tsx` renders One's native sheet components.
+Neither implementation justifies recommending an external glass or sheet
+package. The previous Web Image, external Liquid Glass and Tamagui Sheet rows
+were wrong for this list and are removed.
 
 ## Exact per-frame API shapes
 
