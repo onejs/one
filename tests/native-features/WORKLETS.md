@@ -34,9 +34,10 @@ curl --fail 'http://localhost:8095/index.bundle?platform=ios' -o /tmp/worklets-i
 curl --fail 'http://localhost:8095/index.bundle?platform=android' -o /tmp/worklets-android.bundle
 ```
 
-The focused native entry uses One's safe area provider and initial metrics.
-The layout transition attaches on the first resize action, so startup inset
-changes cannot satisfy the callback assertion.
+The focused native entry uses One's standalone safe area view with its native
+initial metrics. The layout transition stays attached from mount; its callback
+reports only after an explicit resize request, so startup inset changes cannot
+satisfy the assertion.
 
 Run each proof against a fresh mounted fixture:
 
