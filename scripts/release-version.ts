@@ -1,3 +1,34 @@
+import { gt, inc, major, valid } from 'semver'
+import blockedVersions from './blocked-versions.json'
+
+type ReleaseMode = 'patch' | 'minor' | 'major'
+
+// stay above old npm versions so a caret range cannot select a legacy package.
+export function skipBlockedVersions(
+  version: string,
+  mode: ReleaseMode = 'patch'
+): string {
+  if (!valid(version)) throw new Error(`Invalid release version: ${version}`)
+  let highestBlocked: string | undefined
+  for (const blocked of blockedVersions.one) {
+    if (major(blocked) !== major(version)) continue
+    if (!highestBlocked || gt(blocked, highestBlocked)) highestBlocked = blocked
+  }
+  if (!highestBlocked || gt(version, highestBlocked)) return version
+  // a major bump already chose its major; clear collisions within that line.
+  return inc(highestBlocked, mode === 'patch' ? 'patch' : 'minor')!
+}
+
+export function resolveStableVersion(
+  currentVersion: string,
+  options: { mode: ReleaseMode; skipVersion?: boolean }
+): string {
+  if (options.skipVersion) return currentVersion
+  const next = inc(currentVersion, options.mode)
+  if (!next) throw new Error(`Invalid release version: ${currentVersion}`)
+  return skipBlockedVersions(next, options.mode)
+}
+
 export function resolveCanaryVersion(
   currentVersion: string,
   options: {
