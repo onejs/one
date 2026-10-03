@@ -5,7 +5,5 @@ dist
 .tamagui
 .one
 .orez
-.env
-.env.local
+.env*
 *.tsbuildinfo
-src/database/migrate-dist.js

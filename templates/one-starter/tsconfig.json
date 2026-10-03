@@ -1,50 +1,23 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist",
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ]
-    },
-    "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": true,
-    "esModuleInterop": true,
-    "target": "ES2022",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "rewriteRelativeImportExtensions": true,
-    "module": "Preserve",
-    "moduleResolution": "Bundler",
-    "strict": true,
     "jsx": "react-jsx",
-    "noImplicitReturns": false,
-    "noUncheckedIndexedAccess": true,
-    "preserveConstEnums": true,
+    "strict": true,
+    "allowArbitraryExtensions": true,
+    "strictFunctionTypes": false,
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "types": [
-      "node",
-      "react",
-      "vite/client",
-      "bun",
-      "one/env"
-    ],
-    "lib": [
-      "dom",
-      "esnext"
-    ]
+    "esModuleInterop": true,
+    "lib": ["dom", "esnext"],
+    "types": ["bun"],
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
-  "include": [
-    "./src",
-    "./scripts",
-    "./app",
-    "./*.ts"
-  ],
-  "exclude": [
-    "./packages"
-  ],
   "typeAcquisition": {
     "enable": true
-  }
+  },
+  "exclude": ["node_modules", "packages", "dist"]
 }

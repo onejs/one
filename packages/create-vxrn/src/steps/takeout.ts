@@ -8,13 +8,8 @@ ${ansis.green.bold('Done!')} Created ${ansis.greenBright(projectName)}
 To run:
 
   cd ${projectName}
-  bun backend
-
-In another terminal:
-
-  cd ${projectName}
   bun dev
 
-Open http://localhost:8081. See README.md for native setup.
+Open http://localhost:4200. See README.md for native setup.
 `)
 }

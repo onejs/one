@@ -1,0 +1,16 @@
+diff --git a/react-native-webgpu.podspec b/react-native-webgpu.podspec
+--- a/react-native-webgpu.podspec
++++ b/react-native-webgpu.podspec
+@@ -50,7 +50,11 @@
+   end
+ 
+   s.pod_target_xcconfig = {
+-    'HEADER_SEARCH_PATHS' => '$(PODS_TARGET_SRCROOT)/cpp',
++    # upstream nests headers under cpp/jsi, cpp/rnwgpu, and
++    # cpp/rnwgpu/api/descriptors without extending the search paths,
++    # so flat includes in those directories fail. resolve them here
++    # instead of rewriting every include.
++    'HEADER_SEARCH_PATHS' => '$(PODS_TARGET_SRCROOT)/cpp $(PODS_TARGET_SRCROOT)/cpp/jsi $(PODS_TARGET_SRCROOT)/cpp/rnwgpu $(PODS_TARGET_SRCROOT)/cpp/rnwgpu/api $(PODS_TARGET_SRCROOT)/cpp/rnwgpu/api/descriptors',
+     # Xcode's all-target headermaps let same-named headers leak across pods
+     # (e.g. @shopify/react-native-skia keeps a jsi/ helper layer with
+     # identical relative header paths). Resolve includes strictly through our

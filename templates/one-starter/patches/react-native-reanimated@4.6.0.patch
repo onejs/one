@@ -1,0 +1,15 @@
+diff --git a/android/src/main/java/com/swmansion/reanimated/NodesManager.kt b/android/src/main/java/com/swmansion/reanimated/NodesManager.kt
+index 67a85b8..5a35086 100644
+--- a/android/src/main/java/com/swmansion/reanimated/NodesManager.kt
++++ b/android/src/main/java/com/swmansion/reanimated/NodesManager.kt
+@@ -129,7 +129,9 @@ class NodesManager(
+     internal fun performOperationsRespectingDrawPass() {
+         mDrawPassDetector.initialize()
+         if (isInDrawPass()) {
+-            performNonLayoutOperations()
++            // events dispatched from inside a draw pass (svg layout, screen transition
++            // progress) still crash the native proxy if operations run here, so defer them
++            // to the next frame like the off-thread path in onEventDispatch does
+             startUpdatingOnAnimationFrame()
+             return
+         }
