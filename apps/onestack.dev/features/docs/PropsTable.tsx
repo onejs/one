@@ -1,15 +1,6 @@
-import {
-  H3,
-  H4,
-  ListItem,
-  Paragraph,
-  Separator,
-  View,
-  XStack,
-  YStack,
-  styled,
-} from 'tamagui'
-import { Code } from './Code'
+import { Text, YStack } from 'tamagui'
+import { CodeInline } from './Code'
+import { Table, Tbody, Td, Th, Thead, Tr } from './Table'
 
 export type PropDef = {
   name: string
@@ -20,147 +11,51 @@ export type PropDef = {
   description?: string
 }
 
+// a reference table in the docs' regular table style. the first column header is the
+// table's title, and each name carries its type and default so phones keep two columns.
 export function PropsTable({
   title = 'Props',
   data,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledBy,
 }: {
   title?: string
   data: PropDef[]
   // `file#Type` under packages/one/src/platform; nativeDocs.test.ts checks data against it
   source?: string
-  'aria-label'?: string
-  'aria-labelledby'?: string
 }) {
-  const hasAriaLabel = !!(ariaLabel || ariaLabelledBy)
   return (
-    <YStack
-      borderWidth={1}
-      borderColor="$borderColor"
-      aria-label={hasAriaLabel ? ariaLabel : 'Component Props'}
-      aria-labelledby={ariaLabelledBy}
-      my="$4"
-      br="$4"
-      ov="hidden"
-      mx="$-4"
-      $sm={{
-        mx: 0,
-      }}
-    >
-      <XStack ai="center" py="$2" px="$4" backgroundColor="$borderColor">
-        <H3 size="$3">{title}</H3>
-      </XStack>
-      {data.map(
-        ({ name, type, required, deprecated, default: defaultValue, description }, i) => (
-          <ListItem key={`${name}-${i}`} p={0}>
-            <YStack width="100%">
-              <XStack
-                pos="relative"
-                py="$2"
-                bg="$background"
-                px="$4"
-                $sm={{ flexDirection: 'column' }}
-              >
-                <YStack fullscreen backgroundColor="$background" zi={-1} o={0.5} />
-                <XStack miw="30%" fs={0} ai="center" jc="space-between">
-                  <H4
-                    color="$color"
-                    fow="700"
-                    fontFamily="$mono"
-                    textTransform="none"
-                    textDecorationLine={deprecated ? 'line-through' : 'none'}
-                    size="$3"
-                  >
-                    {name}
-                    {required ? (
-                      <Paragraph
-                        render="span"
-                        // @ts-ignore
-                        fontSize="inherit"
-                        o={0.5}
-                      >
-                        {' '}
-                        <Paragraph render="span" fontWeight="300">
-                          (required)
-                        </Paragraph>
-                      </Paragraph>
-                    ) : null}
-                  </H4>
-                </XStack>
-
-                {!!type && (
-                  <>
-                    <Separator als="stretch" vertical mx="$3.5" my="$2" />
-
-                    <XStack
-                      fg={2}
-                      miw="30%"
-                      ai="center"
-                      $xs={{
-                        flexDirection: 'column',
-                        ai: 'flex-start',
-                      }}
-                    >
-                      <Paragraph
-                        size="$3"
-                        o={0.8}
-                        fontFamily="$mono"
-                        overflow="hidden"
-                        textOverflow="ellipsis"
-                        mr="auto"
-                      >
-                        {type}
-                      </Paragraph>
-
-                      <XStack ai="center">
-                        {defaultValue ? (
-                          <XStack ai="center" gap="$1">
-                            <Paragraph o={0.5} size="$2">
-                              Default:&nbsp;
-                            </Paragraph>
-                            <Code my="$-1" bg="$backgroundPress">
-                              {defaultValue}
-                            </Code>
-                          </XStack>
-                        ) : null}
-
-                        {Boolean(defaultValue) && (
-                          <Separator als="stretch" vertical mx="$3.5" my="$2" />
-                        )}
-
-                        {deprecated ? (
-                          <View
-                            w="$8"
-                            ai="center"
-                            theme={'red_alt2' as any}
-                            bg="$red2"
-                            bw={1}
-                            br="$2"
-                          >
-                            <Paragraph render="span" size="$2" fontWeight="300">
-                              deprecated
-                            </Paragraph>
-                          </View>
-                        ) : null}
-                      </XStack>
-                    </XStack>
-                  </>
+    <Table aria-label={title}>
+      <Thead>
+        <Tr>
+          <Th>{title}</Th>
+          <Th>Description</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {data.map((row) => (
+          <Tr key={row.name}>
+            <Td width="45%">
+              <YStack gap="$1.5" ai="flex-start">
+                <CodeInline
+                  whiteSpace="nowrap"
+                  textDecorationLine={row.deprecated ? 'line-through' : 'none'}
+                >
+                  {row.name}
+                  {row.required ? ' (required)' : ''}
+                </CodeInline>
+                <Text fontFamily="$mono" fontSize={13} lineHeight={18} color="$color10">
+                  {row.type}
+                </Text>
+                {row.default !== undefined && (
+                  <Text fontFamily="$mono" fontSize={13} lineHeight={18} color="$color10">
+                    = {String(row.default)}
+                  </Text>
                 )}
-              </XStack>
-
-              {!!description && (
-                <YStack py="$2" px="$4">
-                  <Paragraph size="$3" o={0.65}>
-                    {description}
-                  </Paragraph>
-                </YStack>
-              )}
-            </YStack>
-            <Separator my={2} />
-          </ListItem>
-        )
-      )}
-    </YStack>
+              </YStack>
+            </Td>
+            <Td>{row.description}</Td>
+          </Tr>
+        ))}
+      </Tbody>
+    </Table>
   )
 }
