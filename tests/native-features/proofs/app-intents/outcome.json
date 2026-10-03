@@ -1,0 +1,122 @@
+{
+  "passed": false,
+  "failure": "spawnSync xcrun ETIMEDOUT",
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 879
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 2377
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2145
+    },
+    {
+      "name": "home lists nav-one-native-app-intents",
+      "durationMs": 2532
+    },
+    {
+      "name": "nav-one-native-app-intents settles",
+      "durationMs": 2323
+    },
+    {
+      "name": "app intents fixture mounted",
+      "durationMs": 1846
+    },
+    {
+      "name": "app intents receipt cleared",
+      "durationMs": 1992
+    },
+    {
+      "name": "app intents invalid input rejects",
+      "durationMs": 1820
+    },
+    {
+      "name": "Shortcuts library opens",
+      "durationMs": 3305
+    },
+    {
+      "name": "Shortcuts library after editor",
+      "durationMs": 669
+    },
+    {
+      "name": "Shortcuts library ready",
+      "durationMs": 667
+    },
+    {
+      "name": "Shortcuts editor ready",
+      "durationMs": 946
+    },
+    {
+      "name": "Shortcuts action search ready",
+      "durationMs": 2246
+    },
+    {
+      "name": "Shortcuts takes O",
+      "durationMs": 1133
+    },
+    {
+      "name": "One Echo Text discovered by Shortcuts",
+      "durationMs": 2794
+    },
+    {
+      "name": "One Echo Text inserted into editor",
+      "durationMs": 809
+    },
+    {
+      "name": "Shortcuts text parameter ready",
+      "durationMs": 754
+    },
+    {
+      "name": "Shortcuts text editor focused",
+      "durationMs": 956
+    },
+    {
+      "name": "Shortcuts takes W",
+      "durationMs": 1163
+    },
+    {
+      "name": "Shortcuts parameter is Warm-one",
+      "durationMs": 1845
+    },
+    {
+      "name": "Shortcuts play ready",
+      "durationMs": 737
+    },
+    {
+      "name": "app-intents-warm-result",
+      "durationMs": 4577
+    },
+    {
+      "name": "Shortcuts text parameter ready",
+      "durationMs": 779
+    },
+    {
+      "name": "Shortcuts text editor focused",
+      "durationMs": 2285
+    },
+    {
+      "name": "Shortcuts takes C",
+      "durationMs": 2352
+    },
+    {
+      "name": "Shortcuts parameter is Cold-two",
+      "durationMs": 1784
+    },
+    {
+      "name": "Shortcuts play ready",
+      "durationMs": 763
+    },
+    {
+      "name": "app-intents-cold-result",
+      "durationMs": 6439
+    }
+  ],
+  "durationMs": 277271,
+  "simulatorId": "C75DA2BC-721A-491D-A8C4-65943DA33F67",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "app-intents"
+}
