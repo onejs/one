@@ -81,4 +81,5 @@ export { Database } from './database/index';
 export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType, ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult, ImagePickerSuccessResult, } from './image-picker/index';
 export type { DocumentPickerAsset, DocumentPickerCanceledResult, DocumentPickerOptions, DocumentPickerResult, DocumentPickerSuccessResult, } from './document-picker/index';
 export { UI };
+export type { PortalProps, PortalHostProps } from './ui/portalTypes';
 //# sourceMappingURL=index.d.ts.map

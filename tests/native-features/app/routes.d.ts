@@ -113,6 +113,7 @@ declare module 'one' {
         | `/one-native-picker-palette`
         | `/one-native-pip`
         | `/one-native-popover`
+        | `/one-native-portal`
         | `/one-native-print`
         | `/one-native-protected-store`
         | `/one-native-purchases`
