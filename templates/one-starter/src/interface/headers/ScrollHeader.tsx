@@ -23,8 +23,9 @@ export const ScrollHeader = ({ children }: { children: ReactNode }) => {
       items="center"
       justify="center"
       w="100%"
+      flexShrink={0}
       position={{
-        web: 'fixed',
+        web: 'sticky',
       }}
       maxW={{
         web: '100vw',
