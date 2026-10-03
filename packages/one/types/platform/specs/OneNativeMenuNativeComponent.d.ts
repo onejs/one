@@ -12,6 +12,7 @@ export type NativeMenuItem = Readonly<{
     help: string;
     controlGroupStyle: string;
     values: ReadonlyArray<boolean>;
+    selection: string;
     menuOrder: string;
     menuActionDismissBehavior: string;
 }>;
@@ -25,6 +26,7 @@ interface NativeProps extends ViewProps {
     presentation: string;
     acknowledgedEvent: Int32;
     revision: Int32;
+    pickerAcknowledgedEvent: Int32;
     onNativeMenuAction?: DirectEventHandler<Readonly<{
         id: string;
     }>>;
@@ -35,6 +37,12 @@ interface NativeProps extends ViewProps {
         id: string;
         value: boolean;
         sourceIndex: Int32;
+        eventCount: Int32;
+        revision: Int32;
+    }>>;
+    onNativeMenuPickerChange?: DirectEventHandler<Readonly<{
+        id: string;
+        value: string;
         eventCount: Int32;
         revision: Int32;
     }>>;

@@ -56,8 +56,8 @@ The remaining partial surfaces are:
 
 | family | partial or missing behavior | priority |
 | --- | --- | --- |
-| menus and context menus | data-driven items and Menu primary actions work; context previews and a Picker embedded in menu content are not represented | after core views |
-| pickers | standalone `palette` presented as segmented on iOS 27 iPhone; earlier iOS, Picker inside Menu, and `navigationLink` context remain unproven | after core views |
+| menus and context menus | data-driven items, Menu primary actions, and a Picker item in Menu and ContextMenu work; context previews remain unrepresented | after core views |
+| pickers | standalone `palette` presented as segmented on iOS 27 iPhone; Menu Picker proven in Menu and ContextMenu on iOS 27; earlier iOS and `navigationLink` context remain unproven | after core views |
 | popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
 | navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
 | list editing | `EditButton` label toggles Edit/Done; `List` edit state has no independent observer and delete/move row actions are unavailable | after core views |
@@ -79,6 +79,17 @@ One high review per assembled batch (`tm run --group lg` while the Claude
 accounts are unavailable).
 
 ## Status
+
+- **RAN, 2026-10-02; API approved by Nate:** branch `menu-picker-land` adds a
+  `picker` item to the data-driven `One.iOS.Menu` and `One.iOS.ContextMenu`
+  APIs. A focused iPhone 17 Pro/iOS 27.0 run passed 49 checks: in Menu, the
+  SwiftUI submenu, checkmarks before and after accepted selection, an ignored
+  React update, and a `revision` reset; in ContextMenu, the same four states
+  through the UIKit single-selection submenu after a long press.
+  `tests/native-features/proofs/menu-picker` stores the AX/PNG states, sampled
+  checkmark pixels, build receipt, and side-by-side WebP. An Android contract
+  rejects Picker nodes before the popup and keeps `onPickerChange` off the
+  trigger View.
 
 - **RAN, 2026-09-27:** `One.iOS.Menu.primaryAction` calls SwiftUI's
   `Menu(content:label:primaryAction:)`. On iPhone 16 / iOS 27.0 with Xcode
@@ -201,8 +212,8 @@ accounts are unavailable).
   pairs, outcome, side-by-side WebP, and a receipt for suite source
   `972728c59`, regenerated JavaScript, and matching built/installed native
   debug dylib hashes. Picker Swift source blobs are identical to the earlier
-  binary build. Earlier iOS, Picker inside Menu, and `navigationLink` remain
-  unproven.
+  binary build. Earlier iOS and `navigationLink` remain unproven; the Menu
+  Picker proposal has its own focused proof above.
 
 - **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks
   (nine feature checks and four navigation/harness checks) on

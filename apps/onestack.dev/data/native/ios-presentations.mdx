@@ -106,12 +106,36 @@ Item shapes:
 | `'submenu'` | `id`, `title`, `systemImage`, `children`, `menuOrder` |
 | `'section'` | `id`, `title`, `children` |
 | `'controlGroup'` | `id`, `title`, `systemImage`, `children`, `controlGroupStyle` |
+| `'picker'` | `id`, `title`, `selection`, `children` (action options) |
 | `'divider'` | `id` |
 
 Item ids must be unique and nonempty. A menu with toggles requires
 `onValueChange`, which receives `(id, value, sourceIndex)`. `menuOrder` and
 `menuActionDismissBehavior` mirror the SwiftUI menu modifiers, and
 `disabled` disables the trigger.
+
+A `picker` item presents a native options submenu. Its `children` are action
+items with unique ids, and `selection` names one of those ids. Provide
+`onPickerChange(id, value)` and update the selected value in React state.
+The selected option carries SwiftUI's native checkmark. The iOS 27 proof
+covers accepting a choice, rejecting an update, and resetting `revision`.
+
+```tsx
+const [size, setSize] = useState('small')
+
+<One.iOS.Menu
+  items={[{
+    type: 'picker', id: 'size', title: 'Size', selection: size,
+    children: [
+      { type: 'action', id: 'small', title: 'Small' },
+      { type: 'action', id: 'large', title: 'Large' },
+    ],
+  }]}
+  onPickerChange={(_id, value) => setSize(value)}
+>
+  <Text>Choose size</Text>
+</One.iOS.Menu>
+```
 
 ```tsx
 import { One } from 'one'

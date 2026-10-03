@@ -16,8 +16,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.TabSection` | e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabViewBottomAccessory` | e2e:one-native-tabview | n/a |  |
 | `One.iOS.TabViewSlot` | tab-slot, tab-sidebar | n/a |  |
-| `One.iOS.Menu` | tabs-menu, menu-primary-action | n/a | primaryAction short tap, long-press menu, item callback, disabled behavior, and plain Menu tap proven on iOS 27; context previews and Picker inside menu content unbound |
-| `One.iOS.ContextMenu` | cover-context | n/a |  |
+| `One.iOS.Menu` | tabs-menu, menu-primary-action, menu-picker | n/a | primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound |
+| `One.iOS.ContextMenu` | cover-context, menu-picker | n/a |  |
 | `One.iOS.Sheet` | sheets, navigation | n/a |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a |  |
 | `One.iOS.Popover` | popover | n/a |  |

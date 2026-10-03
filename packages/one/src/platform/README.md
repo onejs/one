@@ -273,8 +273,8 @@ legacy `TabView`, which has no roles.
 />
 ```
 
-`One.iOS.Menu` renders actual SwiftUI `Menu`, `Button`, `Toggle`, `Section`,
-`Divider`, and `ControlGroup` views. Every node has a unique nonempty `id`.
+`One.iOS.Menu` renders actual SwiftUI `Menu`, `Button`, `Toggle`, `Picker`,
+`Section`, `Divider`, and `ControlGroup` views. Every node has a unique nonempty `id`.
 `primaryAction` maps to SwiftUI's menu initializer: a short tap calls it,
 while a long press presents the items. Without it, a tap presents the menu.
 Use `type: 'submenu'` for nested menus, `type: 'section'` for groups with optional
@@ -291,6 +291,14 @@ Checked and mixed states use SwiftUI's binding-based `Toggle`. A toggle node has
 for mixed source values. Provide `onValueChange(id, value, sourceIndex)` and update
 that source in React state. SwiftUI may update each source separately; use a
 functional state update to preserve every change. Button actions call `onAction`.
+
+A `picker` item uses SwiftUI's menu-style `Picker` within the Menu content.
+Set `selection` to one action child id and provide `onPickerChange(id, value)`;
+update the selection in React state. Its options open as a native submenu and
+SwiftUI marks the selected option. The iOS 27 proof covers accepted and rejected
+updates plus an external `revision` reset. Other iOS versions remain unproven.
+Android Menu rejects picker items until that popup supports native picker
+selection; `onPickerChange` is not forwarded to the Android trigger View.
 
 `One.iOS.Tabs` covers SwiftUI's TabView surface. Every prop mirrors the SwiftUI name and
 takes the SDK's own values; unsupported values, and values above the runtime iOS version,
@@ -472,8 +480,8 @@ values must be unique, and `selection` must match one of them. Supported
 `tabs`, and `palette`.
 `palette` is accepted outside Menu; on an iOS 27 iPhone it presented as a
 segmented Picker. Earlier iOS presentations are unproven. A Picker embedded
-in Menu content is not available through the current
-data-driven Menu API. `navigationLink` throws because it requires a native
+in Menu content uses the `Menu` item's `type: 'picker'` shape above.
+`navigationLink` throws because it requires a native
 navigation context. Outside a native Form, iOS renders the inline
 picker as a wheel; the standalone host reserves the same height.
 

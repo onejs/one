@@ -545,7 +545,7 @@ export type { ${enumTypes.join(', ')} } from './swiftui'
         (node) => `export interface ${node.name} {
   type: '${node.kind}'
 ${node.fields.map((name) => `  ${name}${(node.required as readonly string[]).includes(name) ? '' : '?'}: ${fieldType(fields[name].type, true)}`).join('\n')}
-${node.children ? '  children: readonly MenuItem[]\n' : ''}}
+${node.children ? `  children: readonly ${node.kind === 'picker' ? 'SwiftMenuAction' : 'MenuItem'}[]\n` : ''}}
 `
       )
       .join('\n') +
@@ -556,6 +556,7 @@ export interface MenuProps extends ViewProps {
   onAction: (id: string) => void
   primaryAction?: () => void
   onValueChange?: (id: string, value: boolean, sourceIndex: number) => void
+  onPickerChange?: (id: string, value: string) => void
   accessibilityLabel: string
   revision?: number
   disabled?: boolean

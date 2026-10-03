@@ -53,16 +53,28 @@ export interface MenuControlGroup {
     controlGroupStyle?: ControlGroupStyle;
     children: readonly MenuItem[];
 }
+export interface MenuPicker {
+    type: 'picker';
+    id: string;
+    title: string;
+    systemImage?: string;
+    selection: string;
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    children: readonly SwiftMenuAction[];
+}
 export interface MenuDivider {
     type: 'divider';
     id: string;
 }
-export type MenuItem = SwiftMenuAction | MenuToggle | MenuSubmenu | MenuSection | MenuControlGroup | MenuDivider;
+export type MenuItem = SwiftMenuAction | MenuToggle | MenuSubmenu | MenuSection | MenuControlGroup | MenuPicker | MenuDivider;
 export interface MenuProps extends ViewProps {
     items: readonly MenuItem[];
     onAction: (id: string) => void;
     primaryAction?: () => void;
     onValueChange?: (id: string, value: boolean, sourceIndex: number) => void;
+    onPickerChange?: (id: string, value: string) => void;
     accessibilityLabel: string;
     revision?: number;
     disabled?: boolean;
