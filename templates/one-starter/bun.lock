@@ -28,7 +28,6 @@
         "drizzle-zero": "1.0.0-beta.1",
         "on-zero": "0.16.19-canary.1790768320875",
         "one": "2.0.0-beta.159.1",
-        "orez-sync-executor": "0.13.2",
         "pg": "8.18.0",
         "react": "19.2.3",
         "react-dom": "19.2.3",
@@ -2393,7 +2392,7 @@
 
     "orez-sync-cf-host": ["orez-sync-cf-host@0.16.19-canary.1790768320875", "", { "dependencies": { "@opentelemetry/api": "^1.9.0", "orez-sync-executor": "0.16.19-canary.1790768320875" }, "peerDependencies": { "@rocicorp/zero": ">=1.7.0", "vite": ">=5" }, "optionalPeers": ["vite"] }, "sha512-/h3Ny4QwiH4dav7+f5IybyaQLCfmMK3tRZ5if3B9xs/9+iIRepL3rYUsrDNQ/cUBSxT4j5WTP8/S533dgNhG4A=="],
 
-    "orez-sync-executor": ["orez-sync-executor@0.13.2", "", { "peerDependencies": { "@rocicorp/zero": ">=1.7.0" } }, "sha512-UTSV4N2qhkmc2i7YfnnHzjSKcAWXW4eCtYU/MMBuGGdGGSwUzDcZ8w1ju/M3DyZEX8fUM+x+bn8cD8Q4aejSww=="],
+    "orez-sync-executor": ["orez-sync-executor@0.16.19-canary.1790768320875", "", { "peerDependencies": { "@rocicorp/zero": ">=1.7.0" } }, "sha512-bnqBLobY/rPGHeQKAd238HplwQjSWcbrBKtoiVvrX8VOqpFTa7yKl6g4yeU7JEHd+HBtH8ztFqcNPxkpKIssIg=="],
 
     "orez-sync-native": ["orez-sync-native@0.1.18", "", { "optionalDependencies": { "orez-sync-native-darwin-arm64": "0.1.18", "orez-sync-native-darwin-x64": "0.1.18", "orez-sync-native-linux-arm64-gnu": "0.1.18", "orez-sync-native-linux-arm64-musl": "0.1.18", "orez-sync-native-linux-x64-gnu": "0.1.18", "orez-sync-native-linux-x64-musl": "0.1.18", "orez-sync-native-win32-arm64": "0.1.18", "orez-sync-native-win32-x64": "0.1.18" }, "bin": { "sync-native": "bin/sync-native.cjs" } }, "sha512-lpcNGcfa8fi5MMTlVieTGdQL0pO5qF4zFMkxrODHHDay6XydeQxBrSd2s2WEIxVsoK313rFA1XPrp78AkjlBxw=="],
 
@@ -3258,10 +3257,6 @@
     "orez-lite/@noble/ciphers": ["@noble/ciphers@1.3.0", "", {}, "sha512-2I0gnIVPtfnMw9ee9h1dJG7tp81+8Ob3OJb3Mv37rx5L40/b0i7djjCVvGOVqc9AEIQyvyu1i6ypKdFw8R8gQw=="],
 
     "orez-lite/@noble/hashes": ["@noble/hashes@1.8.0", "", {}, "sha512-jCs9ldd7NwzpgXDIf6P3+NrHh9/sD6CQdxHyjQI+h/6rDNo88ypBxxz45UDuZHz9r3tNz7N/VInSVoVdtXEI4A=="],
-
-    "orez-lite/orez-sync-executor": ["orez-sync-executor@0.16.19-canary.1790768320875", "", { "peerDependencies": { "@rocicorp/zero": ">=1.7.0" } }, "sha512-bnqBLobY/rPGHeQKAd238HplwQjSWcbrBKtoiVvrX8VOqpFTa7yKl6g4yeU7JEHd+HBtH8ztFqcNPxkpKIssIg=="],
-
-    "orez-sync-cf-host/orez-sync-executor": ["orez-sync-executor@0.16.19-canary.1790768320875", "", { "peerDependencies": { "@rocicorp/zero": ">=1.7.0" } }, "sha512-bnqBLobY/rPGHeQKAd238HplwQjSWcbrBKtoiVvrX8VOqpFTa7yKl6g4yeU7JEHd+HBtH8ztFqcNPxkpKIssIg=="],
 
     "oxc-parser/@oxc-project/types": ["@oxc-project/types@0.112.0", "", {}, "sha512-m6RebKHIRsax2iCwVpYW2ErQwa4ywHJrE4sCK3/8JK8ZZAWOKXaRJFl/uP51gaVyyXlaS4+chU1nSCdzYf6QqQ=="],
 
