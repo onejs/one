@@ -2,12 +2,12 @@
 // `hold` drags across the subject from `from` to `to` (fractions of its width, at
 // `y` of its height) and keeps the finger down while both backgrounds are captured.
 // `screen` captures the real screen from `top` (a fraction of its height) down, with
-// rounded corners, for components drawn by the system: presented sheets and alerts,
-// and with `home`, picture in picture after leaving the app.
+// rounded corners, for components drawn by the system: with `press`, a sheet or alert
+// the scene presents on a long press, and with `home`, picture in picture after leaving the app.
 export type DocsScene = {
   title: string
   hold?: { from: number; to: number; y: number }
-  screen?: { cornerRadius: number; top: number; home?: boolean }
+  screen?: { cornerRadius: number; top: number; press?: boolean; home?: boolean }
 }
 
 export const docsScenes = {
@@ -27,6 +27,7 @@ export const docsScenes = {
   'ios-lists': { title: 'iOS Lists and Forms' },
   'ios-stacks': { title: 'iOS Stacks' },
   'ios-groups': { title: 'iOS Groups' },
+  'ios-presentations': { title: 'iOS Presentations', screen: { cornerRadius: 62, top: 0.3, press: true } },
 } satisfies Record<string, DocsScene>
 
 export type DocsSceneName = keyof typeof docsScenes
