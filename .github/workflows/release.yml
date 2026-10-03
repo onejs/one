@@ -1,6 +1,8 @@
 name: Release
 
 on:
+  push:
+    branches: [v2-beta]
   workflow_dispatch:
     inputs:
       release:
@@ -10,8 +12,6 @@ on:
         type: choice
         options:
           - canary
-          # Keep beta publishing manual so pushing v2-beta cannot publish by
-          # itself.
           - beta
           - patch
           - minor
@@ -33,11 +33,12 @@ on:
 permissions: {}
 
 concurrency:
-  group: npm-release
+  group: npm-release-${{ github.event_name == 'push' && 'canary' || inputs.release }}
   cancel-in-progress: false
 
 jobs:
   ensure-ci:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 90
     permissions:
@@ -51,7 +52,7 @@ jobs:
       - name: Require current release source
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_KIND: ${{ inputs.release }}
+          RELEASE_KIND: ${{ github.event_name == 'push' && 'canary' || inputs.release }}
           TARGET_REF: ${{ github.ref_name }}
           TARGET_SHA: ${{ github.sha }}
         shell: bash
@@ -61,12 +62,6 @@ jobs:
             [[ "$GITHUB_REF" == "refs/heads/v2-beta" ]]
           elif [[ "$RELEASE_KIND" != "canary" ]]; then
             [[ "$GITHUB_REF" == "refs/heads/main" ]]
-          fi
-          # v2-beta ships as 2.0.0-beta only. a canary from it looked like a 1.x
-          # main build and left consumers unsure which line they were on.
-          if [[ "$GITHUB_REF" == "refs/heads/v2-beta" && "$RELEASE_KIND" != "beta" ]]; then
-            echo "v2-beta publishes betas only: dispatch with -f release=beta" >&2
-            exit 1
           fi
 
           source_sha=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$TARGET_REF" --jq .object.sha)
@@ -145,6 +140,9 @@ jobs:
 
   publish:
     needs: ensure-ci
+    if: >-
+      always() &&
+      (github.event_name == 'push' || needs.ensure-ci.result == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:
@@ -159,7 +157,7 @@ jobs:
 
       - name: Validate release source
         env:
-          RELEASE_KIND: ${{ inputs.release }}
+          RELEASE_KIND: ${{ github.event_name == 'push' && 'canary' || inputs.release }}
           TARGET_REF: ${{ github.ref_name }}
           TARGET_SHA: ${{ github.sha }}
         shell: bash
@@ -167,10 +165,10 @@ jobs:
           set -euo pipefail
           git fetch --no-tags origin "$TARGET_REF"
           [[ "$(git rev-parse HEAD)" == "$TARGET_SHA" ]]
-          if [[ "$RELEASE_KIND" == "beta" ]]; then
+          if [[ "$RELEASE_KIND" == "beta" || "$RELEASE_KIND" == "canary" ]]; then
             # v2-beta moves every few minutes and a beta pushes nothing back, so
             # it ships any commit on the branch, not only a tip that outlived ci
-            [[ "$TARGET_REF" == "v2-beta" ]]
+            [[ "$RELEASE_KIND" == "canary" || "$TARGET_REF" == "v2-beta" ]]
             git merge-base --is-ancestor "$TARGET_SHA" FETCH_HEAD
           else
             [[ "$(git rev-parse FETCH_HEAD)" == "$TARGET_SHA" ]]
@@ -181,7 +179,6 @@ jobs:
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
           package-manager-cache: false
 
       - name: Setup Bun
@@ -191,6 +188,18 @@ jobs:
 
       - name: Install npm with trusted publishing support
         run: npm install --global npm@12.0.1
+
+      - name: Cache canary builds
+        if: github.event_name == 'push' || inputs.release == 'canary'
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.bun/install/cache
+            .turbo
+          key: one-canary-${{ runner.os }}-${{ hashFiles('bun.lock') }}-${{ github.sha }}
+          restore-keys: |
+            one-canary-${{ runner.os }}-${{ hashFiles('bun.lock') }}-
+            one-canary-${{ runner.os }}-
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
@@ -212,9 +221,9 @@ jobs:
       # republish takes the version exactly as main already has it, so there is
       # nothing to prepare and nothing to push.
       - name: Prepare release commit
-        if: inputs.release != 'republish' && inputs.release != 'beta'
+        if: github.event_name == 'push' || (inputs.release != 'republish' && inputs.release != 'beta')
         env:
-          RELEASE_KIND: ${{ inputs.release }}
+          RELEASE_KIND: ${{ github.event_name == 'push' && 'canary' || inputs.release }}
         shell: bash
         run: |
           set -euo pipefail
@@ -234,7 +243,7 @@ jobs:
       # this repo's history failed here. use `republish` instead, which expects
       # the version commit to already be on main via a normal pull request.
       - name: Push release commit
-        if: inputs.release != 'canary' && inputs.release != 'beta' && inputs.release != 'republish'
+        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta' && inputs.release != 'republish'
         env:
           GH_TOKEN: ${{ github.token }}
           TARGET_SHA: ${{ github.sha }}
@@ -261,7 +270,7 @@ jobs:
           bun scripts/release.ts "${flags[@]}"
 
       - name: Push stable tag
-        if: inputs.release != 'canary' && inputs.release != 'beta'
+        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
