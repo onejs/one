@@ -61,3 +61,21 @@ reviewer's recommended candidate above legacy 2.5.2. Source and prepared
 artifacts stay on branches; Nate retains stable version/publication approval.
 Production capture worker s8128 must use this corrected source before the
 final before/after share. No additional post review is requested.
+
+## Upstream hydration release verification
+
+RAN: the final upstream snapshot repair at Tamagui `9acbfd7147` is included
+in `e092672461`, whose full Checks run
+[37148867412](https://github.com/tamagui/tamagui/actions/runs/37148867412)
+passed, including the starter size gate. The prior run was cancelled when
+this newer source arrived; its starter and SSR jobs had already passed.
+
+RAN: freshly packed `@tamagui/web@3.0.0-0.canary.1791056644527` has a source
+hook byte-identical to the passed CI source. All five published web/native
+JavaScript variants use the private ref snapshot, have no process-wide
+`localStates` map, and pass Node syntax checks. Archive SHA-256:
+`cf08a6fbc11bff736ecb15a9f49629fd0ba1fa1228119325d3806e9c746876f4`.
+Raw pack metadata, source and distribution hashes, and checks are recorded
+in `~/.team-machine/handoffs/one-tamagui-launch-evidence/theme-published/receipt.json`.
+The normal auto-beta channel remains enabled and is being monitored
+separately. This site retains its already validated v2.6.2 backport.
