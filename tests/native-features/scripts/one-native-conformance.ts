@@ -129,6 +129,8 @@ const suites = [
   'image-picker',
   'camera-preview',
   'ui-map',
+  'portal',
+  'pager',
   'gpu',
   'updates',
 ] as const
@@ -766,6 +768,8 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'image-picker': imagePickerLoaded,
   'camera-preview': cameraLoaded,
   'ui-map': uiMapLoaded,
+  portal: (nodes: Node[]) => Boolean(id(nodes, 'portal-toggle-host')),
+  pager: (nodes: Node[]) => Boolean(id(nodes, 'one-ui-pager-root')),
   gpu: gpuLoaded,
   updates: updatesLoaded,
 }
@@ -873,6 +877,8 @@ const suiteHome: Record<Suite, string> = {
   'image-picker': 'nav-one-native-image-picker',
   'camera-preview': 'nav-one-native-camera',
   'ui-map': 'nav-one-native-ui-map',
+  portal: 'nav-one-native-portal',
+  pager: 'nav-one-ui-pager',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
   updates: 'nav-one-native-updates',
@@ -6742,6 +6748,136 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       status(n, 'Look Around dismissals', 1) &&
       !id(n, 'LookAroundLocationLabel'))
     screenshot('map-look-around-closed.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'portal') {
+    type Frame = { x: number; y: number; width: number; height: number }
+    const frame = (nodes: Node[], testID: string) => id(nodes, testID)?.frame
+    const within = (inner?: Frame, outer?: Frame) =>
+      Boolean(inner && outer &&
+        inner.x >= outer.x - 0.5 && inner.y >= outer.y - 0.5 &&
+        inner.x + inner.width <= outer.x + outer.width + 0.5 &&
+        inner.y + inner.height <= outer.y + outer.height + 0.5)
+    // hosted content lays out against the host, never the source portal's own
+    // 80pt box or the window: the badge sits 8pt in from the host's corner.
+    const cornered = (nodes: Node[], host: string) => {
+      const box = frame(nodes, host)
+      const badge = frame(nodes, 'portal-badge')
+      return Boolean(box && badge &&
+        Math.abs(box.x + box.width - 8 - (badge.x + badge.width)) <= 1 &&
+        Math.abs(box.y + box.height - 8 - (badge.y + badge.height)) <= 1)
+    }
+    const size = (nodes: Node[], testID: string, width: number, height: number) => {
+      const box = frame(nodes, testID)
+      return Boolean(box && Math.round(box.width) === width && Math.round(box.height) === height)
+    }
+    const badge = (nodes: Node[], label: string) => id(nodes, 'portal-badge')?.AXLabel === label
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-portal')
+    await wait('the badge renders inside the named host with the source context', (n) =>
+      badge(n, 'context:0') && size(n, 'portal-host', 180, 120) && cornered(n, 'portal-host'))
+    await wait('a portal without a host renders in place', (n) => has(n, 'inline child'))
+    tap({ id: 'portal-badge' })
+    await wait('a press inside the host updates the source state', (n) =>
+      badge(n, 'context:1') && cornered(n, 'portal-host'))
+    tap({ id: 'portal-resize' })
+    await wait('the hosted badge follows the host to its new size', (n) =>
+      size(n, 'portal-host', 280, 180) && cornered(n, 'portal-host') && badge(n, 'context:1'))
+    screenshot('portal-resized.png')
+    tap({ id: 'portal-resize' })
+    await wait('the host returns to its first size', (n) =>
+      size(n, 'portal-host', 180, 120) && cornered(n, 'portal-host'))
+    tap({ id: 'portal-replace' })
+    await wait('a second portal with the same name replaces the first', (n) =>
+      Boolean(id(n, 'portal-replacement')) && !id(n, 'portal-badge') &&
+      within(frame(n, 'portal-replacement'), frame(n, 'portal-host')))
+    tap({ id: 'portal-replace' })
+    await wait('removing the replacement brings the first back with its state', (n) =>
+      !id(n, 'portal-replacement') && badge(n, 'context:1') && cornered(n, 'portal-host'))
+    tap({ id: 'portal-toggle-host' })
+    await wait('an unmounted host returns its portals to their own position', (n) =>
+      !id(n, 'portal-host') && badge(n, 'context:1') &&
+      within(frame(n, 'portal-badge'), frame(n, 'portal-source')))
+    tap({ id: 'portal-toggle-host' })
+    await wait('a remounted host takes the portal back', (n) =>
+      badge(n, 'context:1') && cornered(n, 'portal-host'))
+    tap({ id: 'portal-switch' })
+    await wait('a portal moves to the host it names', (n) =>
+      badge(n, 'context:1') && size(n, 'portal-other', 220, 90) && cornered(n, 'portal-other') &&
+      !within(frame(n, 'portal-badge'), frame(n, 'portal-host')))
+    screenshot('portal-switched.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'pager') {
+    const selected = (nodes: Node[], page: number) => labels(nodes).includes(`selected:${page}`)
+    const idle = (nodes: Node[]) => labels(nodes).includes('state:idle')
+    // the selected page is the one filling the stage, not just the reported index.
+    const showing = (nodes: Node[], page: number) => {
+      const stage = id(nodes, 'one-ui-pager-stage')?.frame
+      const shown = id(nodes, `one-ui-pager-slide-${page}`)?.frame
+      return Boolean(stage && shown &&
+        Math.abs(shown.x - stage.x) <= 1 && Math.abs(shown.y - stage.y) <= 1)
+    }
+    const settled = (nodes: Node[], page: number) =>
+      selected(nodes, page) && idle(nodes) && showing(nodes, page)
+    const swipe = (dx: number, dy: number) => {
+      const stage = id(snapshot(config.simulatorId), 'one-ui-pager-stage')?.frame
+      if (!stage) throw new Error('pager stage has no frame')
+      const cx = stage.x + stage.width / 2
+      const cy = stage.y + stage.height / 2
+      axe([
+        'swipe', '--start-x', String(Math.round(cx + dx / 2)),
+        '--start-y', String(Math.round(cy + dy / 2)),
+        '--end-x', String(Math.round(cx - dx / 2)),
+        '--end-y', String(Math.round(cy - dy / 2)),
+        '--duration', '0.3',
+      ], config.simulatorId)
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-ui-pager')
+    await wait('the pager mounts on its initial page', (n) => settled(n, 1))
+    tap({ id: 'one-ui-pager-page-3' })
+    await wait('setPage animates to the last page', (n) => settled(n, 3))
+    tap({ id: 'one-ui-pager-instant-2' })
+    await wait('setPageWithoutAnimation jumps to the page', (n) => settled(n, 2))
+    swipe(200, 0)
+    await wait('a drag pages forward and reports the page', (n) => settled(n, 3))
+    swipe(-200, 0)
+    await wait('a drag pages back', (n) => settled(n, 2))
+    tap({ id: 'one-ui-pager-rtl' })
+    await wait('right-to-left keeps the selected page in view', (n) => settled(n, 2))
+    swipe(-200, 0)
+    await wait('right-to-left pages forward on a rightward drag', (n) => settled(n, 3))
+    tap({ id: 'one-ui-pager-rtl' })
+    await wait('left-to-right keeps the selected page in view', (n) => settled(n, 3))
+    tap({ id: 'one-ui-pager-vertical' })
+    await wait('vertical keeps the selected page in view', (n) => settled(n, 3))
+    swipe(0, -200)
+    await wait('a downward drag pages back vertically', (n) => settled(n, 2))
+    tap({ id: 'one-ui-pager-vertical' })
+    await wait('horizontal again keeps the selected page in view', (n) => settled(n, 2))
+    tap({ id: 'one-ui-pager-resize' })
+    await wait('resizing the pager keeps the selected page filling it', (n) => settled(n, 2))
+    tap({ id: 'one-ui-pager-resize' })
+    tap({ id: 'one-ui-pager-scroll' })
+    swipe(200, 0)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await wait('a drag does nothing while scrolling is disabled', (n) => settled(n, 2))
+    tap({ id: 'one-ui-pager-page-0' })
+    await wait('setPage still works while scrolling is disabled', (n) => settled(n, 0))
+    tap({ id: 'one-ui-pager-scroll' })
+    tap({ id: 'one-ui-pager-page-3' })
+    await wait('back on the last page before removing it', (n) => settled(n, 3))
+    tap({ id: 'one-ui-pager-remove-last' })
+    await wait('removing the selected last page selects the new last page', (n) =>
+      settled(n, 2) && !id(n, 'one-ui-pager-slide-3'))
+    screenshot('pager-after-removal.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
