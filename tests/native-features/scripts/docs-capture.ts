@@ -283,7 +283,12 @@ if (scene.screen) {
     else run(adb, ['-s', device, 'shell', 'input', 'keyevent', 'KEYCODE_HOME'])
   }
   await sleep(6000)
-  const frame = await screenshot()
+  // where the app still shows around the system ui, take it on the white background.
+  let frame = await screenshot()
+  while (background(frame) === 'black') {
+    await sleep(250)
+    frame = await screenshot()
+  }
   // the screen from `top` down, its corners rounded like the device's.
   const top = Math.round(frame.height * scene.screen.top)
   const height = frame.height - top
