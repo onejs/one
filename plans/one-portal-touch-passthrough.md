@@ -38,11 +38,18 @@ including `ios/OneNativePortalHostView.mm`. All 101 concrete export targets
 are present. Content receipts: `plans/one-portal-beta167.1-content.json`.
 The verified version was sent to s6466 for Contrast delivery.
 
-Next: full downstream Fabric validation remains open. Their
-`tm/ota-touch` branch at `437a16c3d7` adds Settings avatar, scroll and native
-Back checks. They will update the whole One dependency set and runtime to 84,
-build the Release simulator app, and run the real HID smoke for Build paging,
-design board portal controls, Settings scroll and Back. Runtime 83 is the
-negative control; its TestFlight workflow is held by the delivery owner until
-runtime 84 includes this source. Full downstream proof remains open until
-those checks pass. The source fix may ship as a beta while device tests run.
+TESTED (relayed from s6466): full Contrast Release OTA smoke on runtime 84
+passed all 13 checks in [run 37145006219](https://github.com/lightstrikelabs/contrast/actions/runs/37145006219),
+using branch `87a81266ac` with `one@2.0.0-beta.167.1`. Real HID touches passed
+Build paging (`buildPreviewPage`, `previewTabStepsRight`), design portal controls
+(`designTabEnabled`, `coldDesignAboveTabBar`), and Settings opening, scrolling
+and Back (`settingsOpensByTouch`, `settingsScrolls`, `settingsBackReturns`).
+Runtime-83 builds with One's root host failed the swipe, the negative control.
+
+RAN (relayed from s6466): another delivery owner had already landed
+`one@2.0.0-beta.168.1` and runtime 84 at `211a25e0aa`. Fresh 168.1 tarball
+`OneNativePortalHostView.mm`, `hooks.tsx`, and `Route.tsx` were byte-identical to
+`b92aafe9c`. The duplicate 167.1 pin was dropped; only the permanent Settings
+smoke checks landed at `371923e8ee`. TestFlight was re-enabled. Its uploaded
+runtime-84 build number remains with the delivery owner and is not established
+by the smoke receipt. The source regression has full downstream runtime proof.
