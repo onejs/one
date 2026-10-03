@@ -1,0 +1,348 @@
+{
+  "validatedSourceSha": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d",
+  "priorCaptureSourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+  "branch": "launch/one-v2-stable-captures",
+  "build": {
+    "exitCode": 0,
+    "pages": 171,
+    "cores": 2,
+    "existingExtractorDiagnostics": true,
+    "workspaceDistReuseSha": "9ea80d28b3d1843282df5855947faa694e2e90f5",
+    "unchangedPackageSources": true,
+    "sourceSha": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d"
+  },
+  "frozenInstall": 0,
+  "siteTypecheck": 0,
+  "captureExitCode": 0,
+  "nativeSourceRecaptureExitCode": 0,
+  "captureAssertionsUnchanged": true,
+  "unchangedCaptureSources": {
+    "finalSourceSha": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d",
+    "unchangedCaptureSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+    "files": [
+      {
+        "file": "apps/onestack.dev/data/blog/version-two.mdx",
+        "sha256": "9740656ddeceb209ff559bcbcb62b0383f10de999820f5ebfe8dfd484cfcb1ef"
+      },
+      {
+        "file": "apps/onestack.dev/data/docs/native-overview.mdx",
+        "sha256": "0e402395a2b914178528713530719d33aca3c304070735308bfb08253f3b70c6"
+      },
+      {
+        "file": "apps/onestack.dev/data/docs/native-setup.mdx",
+        "sha256": "8027d0248b9d09caea1fbcf756c3060373d037987675000dc6d4b0ff6057676d"
+      },
+      {
+        "file": "apps/onestack.dev/features/docs/docsRoutes.tsx",
+        "sha256": "ad139b5a0b5889ea0413623d1823c60f711a0633b057a336062559ef0e3b12c9"
+      }
+    ]
+  },
+  "links": {
+    "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+    "files": [
+      "apps/onestack.dev/data/blog/version-two.mdx",
+      "apps/onestack.dev/data/docs/native-overview.mdx",
+      "apps/onestack.dev/data/docs/native-setup.mdx",
+      "apps/onestack.dev/data/docs/native-source.mdx"
+    ],
+    "checked": 348,
+    "uniqueRoutes": 89,
+    "errors": [],
+    "hrefSetsUnchangedAtFinalSource": true
+  },
+  "rssTests": {
+    "exitCode": 0,
+    "passed": 5
+  },
+  "rss": {
+    "status": 200,
+    "containsPublishedControl": true,
+    "containsVersionTwo": false,
+    "draft": true,
+    "blogContentHashUnchangedAtFinalSource": true
+  },
+  "serverStopped": true,
+  "browserClosed": true,
+  "runtime": [
+    {
+      "route": "/docs/native-source",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "dom": {
+        "h1": " Swift and Kotlin\u00a0Imports",
+        "reactMounted": true,
+        "mounted": true,
+        "textLength": 6092,
+        "overflow": false,
+        "doubled": 0,
+        "firstLine": "// swift-tools-version: 6.2"
+      },
+      "server": {
+        "doubled": 0
+      },
+      "sourceSha": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d"
+    },
+    {
+      "route": "/docs/native-setup",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "server": {
+        "doubled": 0
+      },
+      "dom": {
+        "title": "Native Setup | One | Create a One app and configure its native projects in Vite, with or without Expo",
+        "h1": " Native\u00a0Setup",
+        "mounted": true,
+        "reactMounted": true,
+        "doubled": 0,
+        "codes": 32,
+        "overflow": false,
+        "textLength": 6530,
+        "height": 5109
+      },
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "contentIdenticalAtFinalSource": true
+    },
+    {
+      "route": "/docs/native-overview",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "server": {
+        "doubled": 0
+      },
+      "dom": {
+        "title": "One Native | Full SwiftUI and Compose access, shared native UI, and device APIs included in One",
+        "h1": " One\u00a0Native",
+        "mounted": true,
+        "reactMounted": true,
+        "doubled": 0,
+        "codes": 20,
+        "overflow": false,
+        "textLength": 4529,
+        "height": 3168
+      },
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "contentIdenticalAtFinalSource": true
+    },
+    {
+      "route": "/blog/version-two",
+      "width": 1440,
+      "status": 200,
+      "errors": [],
+      "server": {
+        "doubled": 0
+      },
+      "dom": {
+        "title": "One v2 | Full SwiftUI and Compose access, native UI included, and one Vite plugin for web, iOS, and Android.",
+        "h1": "One v2",
+        "mounted": true,
+        "reactMounted": true,
+        "doubled": 0,
+        "codes": 9,
+        "overflow": false,
+        "textLength": 6183,
+        "height": 4383
+      },
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "contentIdenticalAtFinalSource": true
+    },
+    {
+      "route": "/docs/native-source",
+      "width": 390,
+      "status": 200,
+      "errors": [],
+      "dom": {
+        "h1": " Swift and Kotlin\u00a0Imports",
+        "reactMounted": true,
+        "mounted": true,
+        "textLength": 5018,
+        "overflow": false,
+        "doubled": 0,
+        "firstLine": "// swift-tools-version: 6.2"
+      },
+      "server": {
+        "doubled": 0
+      },
+      "sourceSha": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d"
+    },
+    {
+      "route": "/docs/native-setup",
+      "width": 390,
+      "status": 200,
+      "errors": [],
+      "server": {
+        "doubled": 0
+      },
+      "dom": {
+        "title": "Native Setup | One | Create a One app and configure its native projects in Vite, with or without Expo",
+        "h1": " Native\u00a0Setup",
+        "mounted": true,
+        "reactMounted": true,
+        "doubled": 0,
+        "codes": 32,
+        "overflow": false,
+        "textLength": 5430,
+        "height": 6857
+      },
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "contentIdenticalAtFinalSource": true
+    },
+    {
+      "route": "/docs/native-overview",
+      "width": 390,
+      "status": 200,
+      "errors": [],
+      "server": {
+        "doubled": 0
+      },
+      "dom": {
+        "title": "One Native | Full SwiftUI and Compose access, shared native UI, and device APIs included in One",
+        "h1": " One\u00a0Native",
+        "mounted": true,
+        "reactMounted": true,
+        "doubled": 0,
+        "codes": 20,
+        "overflow": false,
+        "textLength": 3469,
+        "height": 4326
+      },
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "contentIdenticalAtFinalSource": true
+    },
+    {
+      "route": "/blog/version-two",
+      "width": 390,
+      "status": 200,
+      "errors": [],
+      "server": {
+        "doubled": 0
+      },
+      "dom": {
+        "title": "One v2 | Full SwiftUI and Compose access, native UI included, and one Vite plugin for web, iOS, and Android.",
+        "h1": "One v2",
+        "mounted": true,
+        "reactMounted": true,
+        "doubled": 0,
+        "codes": 9,
+        "overflow": false,
+        "textLength": 6183,
+        "height": 6865
+      },
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "contentIdenticalAtFinalSource": true
+    }
+  ],
+  "fontChecks": [
+    {
+      "route": "/blog/version-two",
+      "width": 1440,
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "usedFontsLoaded": true
+    },
+    {
+      "route": "/docs/native-overview",
+      "width": 1440,
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "usedFontsLoaded": true
+    },
+    {
+      "route": "/docs/native-setup",
+      "width": 1440,
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "usedFontsLoaded": true
+    },
+    {
+      "route": "/docs/native-source",
+      "width": 1440,
+      "sourceSha": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d",
+      "usedFontsLoaded": true
+    },
+    {
+      "route": "/blog/version-two",
+      "width": 390,
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "usedFontsLoaded": true
+    },
+    {
+      "route": "/docs/native-overview",
+      "width": 390,
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "usedFontsLoaded": true
+    },
+    {
+      "route": "/docs/native-setup",
+      "width": 390,
+      "sourceSha": "cb97e06e772ee881d12a513225d9c0a8ae8ab5ec",
+      "usedFontsLoaded": true
+    },
+    {
+      "route": "/docs/native-source",
+      "width": 390,
+      "sourceSha": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d",
+      "usedFontsLoaded": true
+    }
+  ],
+  "artifacts": {
+    "blog-version-two.png": {
+      "size": 647053,
+      "sha256": "316579c189762390c5f9a93a1a44af9426606682f441827b28359f5e8179a5a7"
+    },
+    "blog-version-two-mobile.png": {
+      "size": 646043,
+      "sha256": "fbb3de0e72bcad944068709ec48cf720ada25763e9e7c7f5995634062562b638"
+    },
+    "blog-version-two.pdf": {
+      "size": 288647,
+      "sha256": "51efaee0b17d969876df9220e2d3fa63376a409ae12f89bfa6746ad3dc38aec7"
+    },
+    "blog-version-two-mobile.pdf": {
+      "size": 286254,
+      "sha256": "67c31be724794b8c220087338e37291c517c8faa112c592fb5b3ae97b4df27af"
+    },
+    "docs-native-overview.png": {
+      "size": 413811,
+      "sha256": "d626c457a81cf05a422467aa2323f58099cac7dad14254764a2d3d966e8f0c70"
+    },
+    "docs-native-overview-mobile.png": {
+      "size": 364236,
+      "sha256": "ec70c5d41ed30bc2a1596f7052929215944a1c9dff60e87c7306e6c5c7444eb2"
+    },
+    "docs-native-setup.png": {
+      "size": 630092,
+      "sha256": "22d05ed43da0b3d92520cddae83e135b293a73d8b02eadd60bcb6462df5a4b64"
+    },
+    "docs-native-setup-mobile.png": {
+      "size": 560817,
+      "sha256": "536d0f8008c4485a9ae26c81ae3799eb1ef50677171d8f93b314456e4290c501"
+    },
+    "docs-native-source.png": {
+      "size": 624986,
+      "sha256": "d318ee37a72bf45e5f7b9e6ce3df87fe35d9f2823572026db1724b2cde5d5b71"
+    },
+    "docs-native-source-mobile.png": {
+      "size": 549520,
+      "sha256": "7118d1c8d0b2580fb217aed4a1cca7d313acae11374dd04657f6b85e02a2c67a"
+    },
+    "blog-before-after-full.webp": {
+      "size": 1406916,
+      "sha256": "22b4988d8ae3ea6da54a213e5997d9eb09630ff087840006868cf8bdc5496818"
+    },
+    "blog-before-after-opening.webp": {
+      "size": 145036,
+      "sha256": "6299e25bc4e6c6a4b406c755bf7a04ad63e74ede63cc67136b08a6e8bb3f5ec8"
+    },
+    "blog-before-after-mobile-full.webp": {
+      "size": 1346890,
+      "sha256": "5e2b5d7ee5c504721d5beca1601fcf9fb3ed815100efb354350223e5941cb247"
+    },
+    "blog-before-after-mobile-opening.webp": {
+      "size": 91014,
+      "sha256": "9351392667052d9c23fb35d2b43d6ee933b3d9755ce05ef111454fc0367b400b"
+    }
+  },
+  "cache": "/Users/n8/Library/Caches/one-v2-stable-launch"
+}
