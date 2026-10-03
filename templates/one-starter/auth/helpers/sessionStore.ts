@@ -15,6 +15,7 @@ type BetterAuthSessionState = {
 type BetterAuthSessionAtom = {
   get(): BetterAuthSessionState
   set(value: BetterAuthSessionState): void
+  listen(listener: () => void): () => void
 }
 
 export interface BetterAuthWritableSessionStoreClient extends BetterAuthSessionStoreClient {
@@ -94,6 +95,26 @@ export async function reestablishAuthSession(
   if (authSessionGenerations.get(authClient) !== generation) {
     throw new Error('Auth session confirmation was superseded')
   }
+  // Better Auth may replace the refetch when its sign-in signal runs. the
+  // canceled request resolves before its replacement, so confirm only the
+  // authoritative atom's settled response.
+  await new Promise<void>((resolve, reject) => {
+    let unsubscribe: (() => void) | undefined
+    const settle = () => {
+      if (authSessionGenerations.get(authClient) !== generation) {
+        unsubscribe?.()
+        reject(new Error('Auth session confirmation was superseded'))
+        return
+      }
+      const latest = fencedSessionStates.get(authClient)
+      if (!latest || latest.generation !== generation) return
+      if (latest.state.isPending || latest.state.isRefetching) return
+      unsubscribe?.()
+      resolve()
+    }
+    unsubscribe = sessionAtom.listen(settle)
+    settle()
+  })
   const fenced = fencedSessionStates.get(authClient)
   if (!fenced || fenced.generation !== generation) {
     throw new Error('Auth session confirmation did not produce a current response')

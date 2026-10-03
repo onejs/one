@@ -1,4 +1,5 @@
 import { authClient } from '~/auth/client/authClient'
+import { reestablishAuthSession } from '~/auth/helpers'
 
 type AuthError = {
   code: string
@@ -97,49 +98,55 @@ async function validateLoginOtpCodeInfinite(method: 'email', to: string): Promis
 }
 
 export async function otpLogin(method: 'email', email: string, otp: string): Promise<Result> {
-  switch (method) {
-    case 'email': {
-      const { error } = await authClient.signIn.emailOtp({
-        email,
-        otp,
-      })
+  try {
+    switch (method) {
+      case 'email': {
+        const { error } = await authClient.signIn.emailOtp({
+          email,
+          otp,
+        })
 
-      if (!error) {
-        return { success: true }
-      }
+        if (!error) {
+          await reestablishAuthSession(authClient)
+          return { success: true }
+        }
 
-      const { code, message } = standardizeBetterAuthError(error)
+        const { code, message } = standardizeBetterAuthError(error)
 
-      if (code === 'INVALID_OTP') {
+        if (code === 'INVALID_OTP') {
+          return {
+            success: false,
+            error: {
+              code,
+              title: 'Invalid OTP',
+              message: 'The OTP you entered is invalid. Please check the code and try again.',
+            },
+          }
+        }
+
+        if (code === 'OTP_EXPIRED') {
+          return {
+            success: false,
+            error: {
+              code,
+              title: 'OTP Expired',
+              message: 'Your OTP has expired. Please request a new one.',
+            },
+          }
+        }
+
         return {
           success: false,
           error: {
             code,
-            title: 'Invalid OTP',
-            message: 'The OTP you entered is invalid. Please check the code and try again.',
+            title: 'An Error Occurred',
+            message: `Failed to log in: "${message}" (${code}). Please try again.`,
           },
         }
-      }
-
-      if (code === 'OTP_EXPIRED') {
-        return {
-          success: false,
-          error: {
-            code,
-            title: 'OTP Expired',
-            message: 'Your OTP has expired. Please request a new one.',
-          },
-        }
-      }
-
-      return {
-        success: false,
-        error: {
-          code,
-          title: 'An Error Occurred',
-          message: `Failed to log in: "${message}" (${code}). Please try again.`,
-        },
       }
     }
+  } catch (error) {
+    const { code, message } = standardizeBetterAuthError(error)
+    return { success: false, error: { code, title: 'Could not sign in', message } }
   }
 }

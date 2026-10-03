@@ -1,11 +1,11 @@
-import { useRouter } from 'one'
 import { isWeb, Paragraph, View, XStack, YStack } from 'tamagui'
-import { signOut, useSession } from '~/auth/client/authClient'
+import { useSession } from '~/auth/client/authClient'
 import { postsByUserId } from '~/data/post/queries'
 import { userById } from '~/data/userPublic/queries'
 import { useQuery } from '~/data/zero-client'
 import { AccountToolbarButton } from '~/features/account/AccountToolbarButton'
 import { APP_SETTINGS_HREF } from '~/features/app/routes'
+import { useLogout } from '~/features/auth/useLogout'
 import { Link } from '~/interface/app/Link'
 import { Avatar } from '~/interface/avatars/Avatar'
 import { Button } from '~/interface/buttons/Button'
@@ -13,7 +13,7 @@ import { PostCard } from '~/interface/feed/PostCard'
 import { PageScrollView } from '~/interface/layout/PageScrollView'
 
 export default function ProfilePage() {
-  const router = useRouter()
+  const { logout: onLogout } = useLogout()
   const { data: session } = useSession()
   const userId = session?.user?.id ?? ''
   const [user] = useQuery(userById, { userId }, { enabled: !!userId })
@@ -21,11 +21,6 @@ export default function ProfilePage() {
   const displayName = user?.name || session?.user?.name || 'You'
   const username = user?.username || session?.user?.email?.split('@')[0] || 'user'
   const avatarImage = user?.image || session?.user?.image
-
-  const onLogout = async () => {
-    await signOut()
-    router.replace('/auth/login')
-  }
 
   return (
     <PageScrollView contentPaddingTop={12} startUnderBar>
