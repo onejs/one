@@ -20,6 +20,10 @@ export const docsScenes = {
   image: { title: 'Image' },
   icon: { title: 'Icon' },
   pip: { title: 'Picture in Picture', home: { cornerRadius: 48, top: 0.5 } },
+  'ios-actions': { title: 'iOS Buttons and Toggles' },
+  'ios-pickers': { title: 'iOS Pickers' },
+  'ios-progress': { title: 'iOS Progress and Gauges' },
+  'ios-text': { title: 'iOS Text and Fields' },
 } satisfies Record<string, DocsScene>
 
 export type DocsSceneName = keyof typeof docsScenes
