@@ -15,7 +15,6 @@ import {
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
-import '../polyfills-server'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { createRouteIndex } from '../utils/routeIndex'

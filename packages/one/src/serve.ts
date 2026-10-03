@@ -1,5 +1,3 @@
-import './polyfills-server'
-
 import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import type { VXRNOptions } from 'vxrn'
