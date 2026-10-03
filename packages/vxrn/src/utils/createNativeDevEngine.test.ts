@@ -1738,7 +1738,7 @@ export async function* probe() { throw new Error("MARKER"); }
     }
   })
 
-  it('transforms worklets via native Rust/Wasm SWC with zero Babel execution and accurate sourcemaps', async () => {
+  it('transforms worklets via One OXC with zero Babel execution and accurate sourcemaps', async () => {
     const { TraceMap, originalPositionFor } = await import('@jridgewell/trace-mapping')
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
@@ -1800,7 +1800,7 @@ export function Box() {
     }
   })
 
-  it('retains the existing Babel backend by default when enableNativeWorklets is false for auto-detected Reanimated and ordinary configured worklets plugin', async () => {
+  it('respects an explicitly configured Babel plugin when One worklet compilation is disabled', async () => {
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
     const babelSpy = vi.spyOn(compiler, 'transformBabel').mockResolvedValue({
@@ -1808,7 +1808,7 @@ export function Box() {
     } as any)
     const workletSpy = vi.spyOn(compiler, 'transformWorklets')
 
-    // enableReanimated is auto-detected, but enableNativeWorklets is NOT explicitly enabled
+    // this tests explicit Babel configuration, not automatic backend selection.
     compiler.configureVXRNCompilerPlugin({
       enableReanimated: true,
       enableNativeWorklets: false,
@@ -1830,7 +1830,7 @@ export function Box() {
       const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
 
       expect(result).toBeDefined()
-      // Retained existing Babel backend: Babel was called with the plugin
+      // the caller explicitly supplied this Babel plugin.
       expect(babelSpy).toHaveBeenCalledWith(
         id,
         inputCode,
@@ -1838,7 +1838,7 @@ export function Box() {
           plugins: expect.arrayContaining(['react-native-reanimated/plugin']),
         })
       )
-      // Native SWC was NOT called
+      // One compilation was disabled by the caller.
       expect(workletSpy).not.toHaveBeenCalled()
     } finally {
       babelSpy.mockRestore()
@@ -1851,7 +1851,7 @@ export function Box() {
     }
   })
 
-  it('intercepts tuple worklet plugins with options, executes native SWC with options, and skips Babel when enableNativeWorklets is true', async () => {
+  it('intercepts tuple worklet plugins with options, executes One OXC with options, and skips Babel when enableNativeWorklets is true', async () => {
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
     const babelSpy = vi.spyOn(compiler, 'transformBabel')

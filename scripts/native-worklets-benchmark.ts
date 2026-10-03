@@ -14,6 +14,7 @@ const output = resolve(value('--output', '/tmp/one-worklets-benchmark.json'))
 const samples = Number(value('--samples', '3'))
 if (!Number.isInteger(samples) || samples < 1) throw new Error('samples must be positive')
 const repo = resolve(import.meta.dirname, '..')
+const babelBaseline = resolve(value('--babel-baseline', repo))
 
 if (args.includes('--child')) {
   const mode = args[args.indexOf('--mode') + 1]
@@ -45,6 +46,25 @@ if (args.includes('--child')) {
   })
   const { buildNativeBundle } =
     await import('../packages/vxrn/src/utils/createNativeDevEngine')
+  if (mode === 'babel') {
+    const probe = compiler.getBabelOptions({
+      id: resolve(root, 'worklets-benchmark-probe.ts'),
+      code: "export function probe() { 'worklet'; return 1 }",
+      projectRoot: root,
+      development: false,
+      environment: 'ios',
+      reactForRNVersion: '19',
+    })
+    if (
+      !probe?.plugins?.some(
+        (plugin: unknown) => typeof plugin === 'string' && plugin.includes('worklets')
+      )
+    ) {
+      throw new Error(
+        'The automatic Babel path has been removed. Pass --babel-baseline pointing to a built checkout of baseline 99e6e988e.'
+      )
+    }
+  }
   const setupMs = performance.now() - startup
   const results = []
   for (const temperature of ['cold', 'warm']) {
@@ -90,7 +110,9 @@ for (let sample = 0; sample < samples; sample++) {
     const result = spawnSync(
       process.execPath,
       [
-        import.meta.filename,
+        mode === 'babel'
+          ? resolve(babelBaseline, 'scripts/native-worklets-benchmark.ts')
+          : import.meta.filename,
         '--child',
         '--mode',
         mode,
@@ -134,6 +156,7 @@ writeFileSync(
         commit: git(repo, 'rev-parse', 'HEAD'),
         dirty: git(repo, 'status', '--short'),
         appCommit: git(root, 'rev-parse', 'HEAD'),
+        babelBaselineCommit: git(babelBaseline, 'rev-parse', 'HEAD'),
       },
       method:
         'counterbalanced fresh processes, first and second full iOS production bundles in each process; minify and source maps off; setup measured separately; no OS page-cache purge',

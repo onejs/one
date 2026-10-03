@@ -24,7 +24,17 @@ set `debug_http_host` in its default shared preferences to `localhost:8081`
 and reverse device port 8081 to host port 8095. The server uses the native
 bundler for both platforms and the same fixture through One's transform on
 web. Its native entry registers `NativeFeatureTests` inside a safe area.
-Restart the server after changing either fixture file, then restart the app.
+Restart the server after changing either fixture file. Wait for both native
+bundles before restarting the apps:
+
+```sh
+curl --fail 'http://localhost:8095/index.bundle?platform=ios' -o /tmp/worklets-ios.bundle
+curl --fail 'http://localhost:8095/index.bundle?platform=android' -o /tmp/worklets-android.bundle
+```
+
+The focused native entry uses One's safe area provider and initial metrics.
+The layout transition attaches on the first resize action, so startup inset
+changes cannot satisfy the callback assertion.
 
 Run each proof against a fresh mounted fixture:
 

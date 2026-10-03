@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs'
-import { extname, join, relative } from 'node:path'
+import { extname, join } from 'node:path'
 // type-only, so that importing this module does not drag babel in. every metro
 // worker loads it through the package index, and on the native transform path
 // babel is never called at all: loading it there is pure startup cost.
@@ -115,17 +115,6 @@ const getOptions = (
     if (!props.id.includes('node_modules')) {
       plugins.push(resolvePath('react-native-css-interop/dist/babel-plugin.js'))
     }
-  }
-
-  if (enableNativewind || shouldBabelReanimated(props)) {
-    try {
-      const workletsPlugin = resolvePath(
-        'react-native-worklets/plugin',
-        props.projectRoot
-      )
-      debug?.(`Using babel worklets on file ${props.id}`)
-      plugins.push(workletsPlugin)
-    } catch {}
   }
 
   if (shouldBabelReactCompiler(props)) {
@@ -416,75 +405,4 @@ function shouldBabelGenerators({ code }: Props) {
   if (process.env.VXRN_USE_BABEL_FOR_GENERATORS) {
     return asyncGeneratorRegex.test(code)
   }
-}
-
-/**
- * ------- reanimated --------
- */
-
-/**
- * Taken from https://github.com/software-mansion/react-native-reanimated/blob/3.15.1/packages/react-native-reanimated/plugin/src/autoworkletization.ts#L19-L59, need to check if this is up-to-date when supporting newer versions of react-native-reanimated.
- */
-const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
-  'worklet',
-  'useAnimatedGestureHandler',
-  'useAnimatedScrollHandler',
-  'useFrameCallback',
-  'useAnimatedStyle',
-  'useAnimatedProps',
-  'createAnimatedPropAdapter',
-  'useDerivedValue',
-  'useAnimatedReaction',
-  'useWorkletCallback',
-  'withTiming',
-  'withSpring',
-  'withDecay',
-  'withRepeat',
-  'runOnUI',
-  'executeOnUIRuntimeSync',
-]
-
-/**
- * Regex to test if a piece of code should be processed by react-native-reanimated's Babel plugin.
- */
-const REANIMATED_REGEX = new RegExp(REANIMATED_AUTOWORKLETIZATION_KEYWORDS.join('|'))
-
-// Packages to skip for reanimated babel transform
-// These either have false positives (mention keywords but don't use worklets)
-// or cause issues when transformed
-const REANIMATED_IGNORED_PATHS = [
-  // Prebuilt/vendored react-native that shouldn't be transformed
-  'react-native-prebuilt',
-  'node_modules/.vxrn/react-native',
-  // Known false positives - they mention worklet keywords in comments/strings but don't use them
-  'node_modules/react/',
-  'node_modules/react-dom/',
-  'node_modules/react-native/',
-  'node_modules/react-native-web/',
-]
-
-// `id`s are normalized to forward slashes at getBabelOptions' entry, so these
-// plain forward-slash paths match on every OS. before that normalization the
-// backslash `id`s Windows hands us slipped past this list, pushing react-native's
-// own files through the reanimated babel pass, which has no JSX/TS parser.
-const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(REANIMATED_IGNORED_PATHS.join('|'))
-
-function shouldBabelReanimated({ code, id }: Props) {
-  if (!configuration.enableReanimated) {
-    return false
-  }
-
-  // Check if path should be ignored
-  if (REANIMATED_IGNORED_PATHS_REGEX.test(id)) {
-    return false
-  }
-
-  // Check regex for all files (both node_modules and user code)
-  if (REANIMATED_REGEX.test(code)) {
-    const location = id.includes('node_modules') ? 'node_modules' : 'user-code'
-    debug?.(` 🪄 [reanimated/${location}] ${relative(process.cwd(), id)}`)
-    return true
-  }
-
-  return false
 }

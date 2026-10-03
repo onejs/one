@@ -19,6 +19,7 @@ export default function OneNativeGestures() {
   const [ui, setUi] = useState('pending')
   const [gestureRuntime, setGestureRuntime] = useState('pending')
   const [layout, setLayout] = useState('pending')
+  const [layoutStarted, setLayoutStarted] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const native = Platform.OS !== 'web'
   const offset = useSharedValue(0)
@@ -68,6 +69,7 @@ export default function OneNativeGestures() {
         testID="worklets-resize"
         accessibilityRole="button"
         onPress={() => {
+          setLayoutStarted(true)
           setLayout('pending')
           setExpanded((value) => !value)
         }}
@@ -78,7 +80,7 @@ export default function OneNativeGestures() {
         testID="worklets-layout-box"
         accessible
         accessibilityLabel="Layout box"
-        layout={layoutTransition}
+        layout={layoutStarted ? layoutTransition : undefined}
         style={[styles.box, { width: expanded ? 180 : 72 }]}
       />
       <View style={styles.track}>
