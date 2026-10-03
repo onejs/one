@@ -5,8 +5,8 @@ export type { PortalProps, PortalHostProps } from './portalTypes'
 export function Portal({ hostName = '', name = '', ...props }: PortalProps) {
   return <NativePortal {...props} hostName={hostName} name={name} />
 }
-// a host is never a touch target itself: a full-screen host would otherwise
-// swallow every touch meant for the views beneath it.
+// the native host is never a touch target itself (OneNativePortalHostView
+// hitTest, OnePortalHost's BOX_NONE), so a full-screen host blocks nothing.
 export function PortalHost(props: PortalHostProps) {
-  return <NativePortalHost pointerEvents="box-none" {...props} />
+  return <NativePortalHost {...props} />
 }
