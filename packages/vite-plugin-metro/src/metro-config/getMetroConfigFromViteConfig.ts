@@ -87,7 +87,10 @@ function rewriteMainModuleBundleUrl(
   })
 
   if (rootIndexBundleRequestPattern.test(url)) {
-    return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
+    return url.replace(
+      rootIndexBundleRequestPattern,
+      `$1/${resolvedMainModulePath}.bundle`
+    )
   }
   return url.replace(
     expoVirtualEntryBundleRequestPattern,
@@ -118,19 +121,38 @@ function bareMainModuleForRequest(
 }
 
 // defaultConfigOverrides and Metro config loading can replace the resolver.
-// enforce package semantics on the final config while leaving every other
-// request on the resolver selected by that composition.
-function enforceBareMainModuleEntry(config: any, mainModuleName: string | undefined) {
-  if (!mainModuleName || !isBareSpecifier(mainModuleName)) return config
-  const innerResolveRequest = config?.resolver?.resolveRequest
+// enforce entry and vite dedupe semantics on the final resolver while
+// preserving its platform, export conditions and custom resolution policy.
+function enforcePackageResolution(
+  config: MetroInputConfig,
+  mainModuleName: string | undefined,
+  dedupe: readonly string[],
+  projectRoot: string
+): MetroInputConfig {
+  const dedupedPackages = new Set(dedupe)
+  if ((!mainModuleName || !isBareSpecifier(mainModuleName)) && !dedupedPackages.size) {
+    return config
+  }
+  const rootOrigin = resolve(projectRoot, 'package.json')
+  const innerResolveRequest = config.resolver?.resolveRequest
   return {
     ...config,
     resolver: {
-      ...config?.resolver,
-      resolveRequest: (context: any, moduleName: string, platform: string) => {
+      ...config.resolver,
+      resolveRequest: (context, moduleName, platform) => {
         const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
+        const request = bareMain ?? moduleName
+        const packageEnd = request.indexOf(
+          '/',
+          request.startsWith('@') ? request.indexOf('/') + 1 : 0
+        )
+        const packageName = packageEnd === -1 ? request : request.slice(0, packageEnd)
+        const resolutionContext =
+          isBareSpecifier(request) && dedupedPackages.has(packageName)
+            ? { ...context, originModulePath: rootOrigin }
+            : context
         const resolveRequest = innerResolveRequest || context.resolveRequest
-        return resolveRequest(context, bareMain ?? moduleName, platform)
+        return resolveRequest(resolutionContext, request, platform)
       },
     },
   }
@@ -352,9 +374,11 @@ export async function buildMetroConfigInputFromViteConfig(
   }
 
   return {
-    defaultConfig: enforceBareMainModuleEntry(
+    defaultConfig: enforcePackageResolution(
       enforceWorkspaceVisibility(merged, projectRoot),
-      mainModuleName
+      mainModuleName,
+      config.resolve?.dedupe ?? [],
+      projectRoot
     ),
     projectRoot,
     extraConfig,
@@ -513,9 +537,11 @@ export async function getMetroConfigFromViteConfig(
   )
 
   return {
-    ...enforceBareMainModuleEntry(
+    ...enforcePackageResolution(
       enforceWorkspaceVisibility(metroConfig, projectRoot),
-      mainModuleName
+      mainModuleName,
+      config.resolve?.dedupe ?? [],
+      projectRoot
     ),
     ...extraConfig,
   } as MetroConfigExtended
