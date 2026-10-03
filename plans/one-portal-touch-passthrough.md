@@ -39,7 +39,7 @@ are present. Content receipts: `plans/one-portal-beta167.1-content.json`.
 The verified version was sent to s6466 for Contrast delivery.
 
 TESTED (relayed from s6466): full Contrast Release OTA smoke on runtime 84
-passed all 13 checks in [run 37145006219](https://github.com/lightstrikelabs/contrast/actions/runs/37145006219),
+passed all 13 checks in [run 37145006219](https://github.com/sootbean/soot/actions/runs/37145006219),
 using branch `87a81266ac` with `one@2.0.0-beta.167.1`. Real HID touches passed
 Build paging (`buildPreviewPage`, `previewTabStepsRight`), design portal controls
 (`designTabEnabled`, `coldDesignAboveTabBar`), and Settings opening, scrolling
