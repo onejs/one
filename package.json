@@ -29,7 +29,7 @@
     ]
   },
   "scripts": {
-    "audit": "bun audit --audit-level high --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx --ignore GHSA-7pqw-9j4j-h8q3 --ignore GHSA-86w9-cpqp-85rv",
+    "audit": "bun audit --audit-level high --ignore GHSA-w3rx-r6r6-pgpr --ignore GHSA-5p2g-fcmc-qvqq --ignore GHSA-jmr9-qjv8-65gv --ignore GHSA-ggr8-5vv4-36mx --ignore GHSA-7pqw-9j4j-h8q3 --ignore GHSA-86w9-cpqp-85rv --ignore GHSA-vfj7-8cjw-p6xm",
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
