@@ -8,7 +8,7 @@ Two steps, because `main` is protected by a merge queue.
 
    ```sh
    bun scripts/release.ts --minor --ci --dirty \
-     --skip-publish --skip-push --skip-tests --skip-native-tests
+     --skip-publish --skip-finish --skip-push --skip-tests --skip-native-tests
    ```
 
    That rewrites the workspace `package.json` versions and leaves them

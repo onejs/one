@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-03T20:02:42.740Z",
+  "manifests": 66,
+  "sourceCommit": "61ade49bccaf4b207f810f9b60d9074c1c3e86ed",
+  "legacy": {
+    "2.0.0": {
+      "time": "2013-02-07T14:11:48.850Z",
+      "description": "Transform NodeJS packages into single stand-alone script files.",
+      "tarball": "https://registry.npmjs.org/one/-/one-2.0.0.tgz"
+    },
+    "2.5.0": {
+      "time": "2013-04-18T11:39:45.954Z",
+      "description": "Transform NodeJS packages into single stand-alone script files.",
+      "tarball": "https://registry.npmjs.org/one/-/one-2.5.0.tgz"
+    },
+    "2.5.2": {
+      "time": "2013-04-18T22:22:58.946Z",
+      "description": "Transform NodeJS packages into single stand-alone script files.",
+      "tarball": "https://registry.npmjs.org/one/-/one-2.5.2.tgz"
+    }
+  },
+  "available": [
+    "vxrn",
+    "@vxrn/debug",
+    "@vxrn/vendor",
+    "@vxrn/color-scheme",
+    "@vxrn/compiler",
+    "create-vxrn",
+    "@vxrn/mdx-rust",
+    "@vxrn/vite-native-client",
+    "@vxrn/tslib-lite",
+    "@vxrn/url-parse",
+    "@vxrn/test-package",
+    "@vxrn/vite-plugin-metro",
+    "one",
+    "@vxrn/vite-flow",
+    "@vxrn/vite-native-hmr",
+    "@vxrn/utils",
+    "@vxrn/use-isomorphic-layout-effect",
+    "@vxrn/query-string",
+    "lllink",
+    "@vxrn/resolve",
+    "@vxrn/emitter",
+    "@vxrn/rn-proxy",
+    "@vxrn/mdx",
+    "@vxrn/react-native-prebuilt"
+  ]
+}
