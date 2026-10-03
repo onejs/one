@@ -79,3 +79,12 @@ Raw pack metadata, source and distribution hashes, and checks are recorded
 in `~/.team-machine/handoffs/one-tamagui-launch-evidence/theme-published/receipt.json`.
 The normal auto-beta channel remains enabled and is being monitored
 separately. This site retains its already validated v2.6.2 backport.
+
+RAN: the production capture worker found the Swift manifest's required
+tools-version directive missing from the rendered code. Expressive Code
+mistook its first-line comment for a filename. The manifest fence now sets
+the explicit `Package.swift` title, preserving the literal source line.
+TESTED: the actual site MDX compiler and frame configuration remove the
+directive from both display and copy text before the correction and preserve
+both afterward. Native generator and strict TypeScript checks still pass.
+The final production capture will assert the displayed and copied directive.
