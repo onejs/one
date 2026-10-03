@@ -121,12 +121,9 @@ export namespace One {
 
     /**
      * Per-file control over how code transforms.
-     * Defaults to SWC, runs babel before SWC if:
-     *
-     *  - options.react.compiler is `true`, on tsx files in your app
-     *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
-     *
-     * Otherwise One defaults to using `@swc/core`.
+     * One uses OXC for worklets and React Compiler. Reanimated callbacks,
+     * gesture callbacks and explicit worklets do not require a Babel plugin.
+     * Babel still runs for configured Babel transforms and syntax that needs it.
      *
      * Accepts a function:
      *
@@ -168,10 +165,6 @@ export namespace One {
      *
      */
     transform?: GetTransform
-
-    // compiler?: {
-    //   workletTransform?: 'reanimated' | 'worklets'
-    // }
 
     router?: {
       /**

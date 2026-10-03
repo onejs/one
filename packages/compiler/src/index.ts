@@ -163,10 +163,14 @@ async function performBabelTransform({
   }
 
   if (userTransform !== 'swc' && userTransform !== 'oxc') {
-    const babelOptions = getBabelOptions({
+    let babelOptions = getBabelOptions({
       ...transformProps,
       userSetting: userTransform,
     })
+    // worklets run without requesting a babel pass.
+    if (!babelOptions && shouldTransformWorklets({ id, code })) {
+      babelOptions = { plugins: [] }
+    }
 
     if (babelOptions) {
       const hasCompilerPlugin = babelOptions.plugins?.some(
