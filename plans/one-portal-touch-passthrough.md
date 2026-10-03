@@ -30,7 +30,15 @@ confirms its default hitTest returns self for otherwise unclaimed in-bounds
 points; its BOX_NONE mode uses the same self-to-nil policy. Android's host
 manager already configures BOX_NONE, so no Android change is needed.
 
-Next: publish the v2-beta fix and give s6466 the exact version. Their
+RAN: normal beta Release [37142277754](https://github.com/onejs/one/actions/runs/37142277754)
+completed successfully for source `b92aafe9c`. Its full-CI and current-source
+gates passed. Fresh npm tarballs of `one` and `vxrn` version
+`2.0.0-beta.167.1` match eight relevant source files from that commit,
+including `ios/OneNativePortalHostView.mm`. All 101 concrete export targets
+are present. Content receipts: `plans/one-portal-beta167.1-content.json`.
+The verified version was sent to s6466 for Contrast delivery.
+
+Next: full downstream Fabric validation remains open. Their
 `tm/ota-touch` branch at `437a16c3d7` adds Settings avatar, scroll and native
 Back checks. They will update the whole One dependency set and runtime to 84,
 build the Release simulator app, and run the real HID smoke for Build paging,
