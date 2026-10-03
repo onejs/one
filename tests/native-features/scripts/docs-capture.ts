@@ -266,9 +266,18 @@ for (let attempt = 0; !rest; attempt++) {
   }
 }
 const scale = density(rest.white)
-// screen scenes are found like the others, then present system ui (a sheet scene
-// presents it after a delay) and capture the screen once it settles.
+// screen scenes are found like the others, then present system ui (a long press on the
+// scene, or leaving the app) and capture the screen once it settles.
 if (scene.screen) {
+  if (scene.screen.press) {
+    const box = bounds(rest)
+    const factor = platform === 'ios' ? scale : 1
+    const x = (box.left + box.width / 2) / factor
+    const y = (box.top + box.height / 2) / factor
+    touch('down', x, y)
+    await sleep(1000)
+    touch('up', x, y)
+  }
   if (scene.screen.home) {
     if (platform === 'ios') run('axe', ['button', 'home', '--udid', device])
     else run(adb, ['-s', device, 'shell', 'input', 'keyevent', 'KEYCODE_HOME'])
