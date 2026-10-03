@@ -2477,6 +2477,23 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         !!app.ios?.appIntents
       )
       rendered = nativeProjectPatches.holdLaunchScreenOverRootView(rendered)
+      // the one native template uses hermes. request precompiled dev bytes so
+      // lazy routes do not compile on the device while navigation is pending.
+      const bundleURLProvider =
+        'RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")'
+      if (!rendered.includes(bundleURLProvider)) {
+        throw new Error(
+          '[vxrn] cannot request hermes dev bytecode: expected the template bundle URL provider'
+        )
+      }
+      rendered = rendered.replace(
+        bundleURLProvider,
+        `guard let bundleURL = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index") else { return nil }
+    if bundleURL.isFileURL { return bundleURL }
+    var components = URLComponents(url: bundleURL, resolvingAgainstBaseURL: false)!
+    components.queryItems!.append(URLQueryItem(name: "bytecode", value: "hermes"))
+    return components.url`
+      )
       if (app.updates !== undefined) {
         rendered = nativeProjectPatches.pointReleaseBundleURLAtOneUpdates(rendered)
       }
