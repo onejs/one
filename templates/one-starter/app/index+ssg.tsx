@@ -14,8 +14,6 @@ import { SiteShell } from '~/interface/site/SiteShell'
 // (index parked as a back-stack entry) keeps its own destination, and the
 // auth/home layouts keep their protection for direct entry, sign-out, and
 // expiry. rendering a surface directly here kept the URL at "/", so every
-// signed-out capture recorded observed "/" against a declared route and the
-// evaluation's route receipt invalidated the capture.
 
 // native-only route: hooks stay out of the shared web/native Index below,
 // and the web landing keeps no auth subscription.

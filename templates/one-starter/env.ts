@@ -37,10 +37,10 @@ const result = createEnv({
     ZERO_MUTATE_URL: `http://127.0.0.1:${ports.web}/api/zero/push`,
     ZERO_QUERY_URL: `http://127.0.0.1:${ports.web}/api/zero/pull`,
     ALLOW_MISSING_ENV: '1',
-
   }),
 
   production: {
+    ONE_SERVER_URL: expected,
     VITE_PROTOCOL: 'https',
     VITE_WEB_HOSTNAME: expected,
     BETTER_AUTH_URL: expected,

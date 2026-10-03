@@ -13,7 +13,7 @@ export default {
   root: import.meta.dirname,
 
   plugins: [
-    ...orezSyncCfHostWasm({ runtime: 'workerd' }),
+    ...orezSyncCfHostWasm({ runtime: 'node' }),
     orez(),
     tamaguiPlugin({ config: './tamagui/tamagui.config.ts' }),
 
@@ -50,10 +50,6 @@ export default {
       web: {
         defaultRenderMode: 'spa',
         skewProtection: 'proactive',
-        deploy: {
-          target: 'cloudflare',
-          url: process.env.ONE_SERVER_URL,
-        },
       },
 
       build: {

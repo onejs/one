@@ -33,14 +33,12 @@ export const {
 } = zeroClient
 export const zeroEvents: ZeroEventsEmitter = zeroClient.zeroEvents
 
-// one pull endpoint in every environment: local dev proxies it to the native
-// routes it to the browser host. the application executor remains the one push owner.
+// dev and production proxy pulls to the SQLite sync host and send mutations
+// to the application executor. HTTP polling keeps both transports identical.
 const SYNC_URL = `${SERVER_URL}/zero-http`
 const SYNC_TRANSPORT = createZeroClientTransport({
-  // local previews do not expose an authenticated wake route. cloudflare
-  // deployments do, and Zero's existing auth token authorizes that socket.
-  wake: process.env.NODE_ENV === 'production',
-  pushOrigin: process.env.NODE_ENV === 'development' ? `${SERVER_URL}/api/zero` : undefined,
+  pushOrigin: `${SERVER_URL}/api/zero`,
+  pullIntervalMs: 2_000,
 })
 
 // how many screens' worth of queries keep syncing after their screen unmounts.

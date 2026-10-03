@@ -35,11 +35,7 @@ export async function migrateApplicationDatabase(
       sql: await readFile(join(migrationsDir, name, 'migration.sql'), 'utf8'),
     })),
   )
-  // every project with a database ships database/seed.ts, even when its rows
-  // are empty, so this import is unconditional. guarding it on existsSync made
-  // the file optional in a way typescript cannot follow: a project that dropped
-  // it failed `check:templates` with an unresolvable import instead of being
-  // the clean no-op the guard promised.
+  // seed rows are optional and only inserted during development.
   const seed: SeedRows | undefined = options.seed
     ? (await import('./seed.ts')).default
     : undefined
@@ -60,11 +56,7 @@ export async function migrateApplicationDatabase(
     for (const migration of migrations) {
       if (applied.has(migration.name)) continue
       for (const statement of migration.sql.split('--> statement-breakpoint')) {
-        // a repair statement can carry a column guard on its own comment line,
-        // with the same spelling and semantics as the platform and cloudflare
-        // runners (src/database/applicationMigrationStatement.ts, inlined here
-        // because this file ships into user projects): exists runs only where
-        // the column is present, missing only where it is absent.
+        // migration directives guard column repairs on existing databases.
         let guard: { column: string; missing: boolean; table: string } | null = null
         for (const line of statement.split('\n')) {
           const trimmed = line.trim()
@@ -89,9 +81,7 @@ export async function migrateApplicationDatabase(
           const hasColumn = columns.some((column) => column.name === guard.column)
           if (guard.missing ? hasColumn : !hasColumn) continue
         }
-        // a regenerated baseline replays against databases that already hold
-        // the table, so a column add it inlines from baseline-repair.sql must
-        // skip when the column is present, matching the platform runner.
+        // skip columns already present when applying a regenerated baseline.
         const added =
           /^ALTER TABLE\s+[`"]?([A-Za-z_][A-Za-z0-9_]*)[`"]?\s+ADD\s+(?:COLUMN\s+)?[`"]?([A-Za-z_][A-Za-z0-9_]*)[`"]?/i.exec(
             sql,

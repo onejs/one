@@ -186,9 +186,7 @@ export const GlobalTooltipProvider = memo(
     useEffect(() => {
       if (!isWeb) return
       const controller = new AbortController()
-      // capture phase: many controls (pane chrome traffic lights, menu items)
-      // stopPropagation in their own click handlers, which strands the open
-      // tooltip if this listens on bubble.
+      // capture clicks so stopped bubbling still closes the open tooltip.
       document.addEventListener('click', closeOpenTooltips, {
         capture: true,
         signal: controller.signal,

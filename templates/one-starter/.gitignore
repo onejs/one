@@ -7,3 +7,5 @@ dist
 .orez
 .env*
 *.tsbuildinfo
+
+.wrangler/

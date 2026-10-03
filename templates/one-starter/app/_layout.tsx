@@ -106,11 +106,11 @@ export default function Layout() {
               <meta property="og:image" content={imageUrl} />
               <meta
                 property="og:image:width"
-                content={pathname === '/' ? '1694' : '816'}
+                content="1200"
               />
               <meta
                 property="og:image:height"
-                content={pathname === '/' ? '837' : '383'}
+                content="630"
               />
               <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:title" content={pageTitle} />
