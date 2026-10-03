@@ -101,7 +101,7 @@ const nextVersion = (() => {
   }
 
   if (canary) {
-    return resolveCanaryVersion(curVersion, { rePublish })
+    return resolveCanaryVersion(curVersion, { rePublish, baseVersion: '2.0.0' })
   }
 
   if (rePublish) {
@@ -390,7 +390,7 @@ async function run() {
       }
     }
 
-    if (!skipVersion && !finish) {
+    if (!skipVersion && !finish && !canary) {
       await Promise.all(
         allPackageJsons.map(async ({ json, path }) => {
           // Skip packages that opt out of version bumping (e.g., test containers for native build caching)
@@ -482,6 +482,7 @@ async function run() {
         // replace workspace:* with version in temp copy
         const pkgJsonPath = join(tmpPackageDir, 'package.json')
         const pkgJson = await fs.readJSON(pkgJsonPath)
+        pkgJson.version = version
         pkgJson.releaseSourceCommit = (
           await execFile('git', ['rev-parse', 'HEAD'])
         ).stdout.trim()
@@ -498,7 +499,10 @@ async function run() {
         ]) {
           if (!pkgJson[field]) continue
           for (const depName in pkgJson[field]) {
-            if (pkgJson[field][depName].startsWith('workspace:')) {
+            if (
+              pkgJson[field][depName].startsWith('workspace:') ||
+              packageJsons.some((pkg) => pkg.name === depName)
+            ) {
               pkgJson[field][depName] = version
             }
           }
