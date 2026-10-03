@@ -40,3 +40,8 @@ Built apps available for reuse:
 - `tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk`
 
 Steps 3 and 4 remain unlanded until validation finishes. Step 5 is design only.
+
+Wait on the admitted measurement's heavy wrapper PID without polling:
+`tm wait --exec 'python3 scripts/watch-worklets-process.py <pid>' --timeout 45m`.
+The watcher uses macOS process exit events and wakes on success or failure;
+inspect both receipt files and tool output after waking.
