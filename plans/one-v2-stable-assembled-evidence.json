@@ -1,0 +1,69 @@
+{
+  "buildSourceCommit": "488deb56e",
+  "declarationsSourceCommit": "82cacbef1dc056cc8fcf0a6dac720220dd97eb9e",
+  "nativeReferencesPreservedFrom": "5123589ac3b1d4be8028ec5e138083d6c1d46e9b",
+  "approvedCopyUnchangedFrom": "031be1ae5a952f8c5c7c55e97aaa2e1b53630a0d",
+  "sourceFileSha256": {
+    "apps/onestack.dev/data/blog/version-two.mdx": "9740656ddeceb209ff559bcbcb62b0383f10de999820f5ebfe8dfd484cfcb1ef",
+    "apps/onestack.dev/data/docs/native-overview.mdx": "0e402395a2b914178528713530719d33aca3c304070735308bfb08253f3b70c6",
+    "apps/onestack.dev/data/docs/native-setup.mdx": "8027d0248b9d09caea1fbcf756c3060373d037987675000dc6d4b0ff6057676d",
+    "apps/onestack.dev/data/docs/native-source.mdx": "433af5c7f56567f98a84441a182a619e725eb473cf4b94e9e6c591bf843f7180"
+  },
+  "browserObservations": 28,
+  "fontObservations": 8,
+  "servedLinks": 348,
+  "servedRoutes": 89,
+  "displayAndCopySwiftDirective": true,
+  "packChecks": {
+    "prepared": 24,
+    "packed": [
+      {
+        "name": "vxrn",
+        "sha256": "b291ef34b6724fd41896bc3463a2bf432217b4b5d6975cdfdea18d22c843eafc",
+        "size": 752533,
+        "version": "2.6.0",
+        "source": "82cacbef1dc056cc8fcf0a6dac720220dd97eb9e",
+        "byteCheckedFiles": [
+          "dist/index.mjs",
+          "types/index.d.ts"
+        ]
+      },
+      {
+        "name": "create-vxrn",
+        "sha256": "67152c4a6bee339acbb9c59c7dedc939dbab583b07963633747301aa8502028a",
+        "size": 55835,
+        "version": "2.6.0",
+        "source": "82cacbef1dc056cc8fcf0a6dac720220dd97eb9e",
+        "byteCheckedFiles": [
+          "dist/esm/create.mjs",
+          "dist/esm/templates.mjs",
+          "dist/cjs/index.cjs",
+          "src/create.ts",
+          "src/helpers/cloneStarter.ts",
+          "types/index.d.ts"
+        ]
+      },
+      {
+        "name": "one",
+        "sha256": "9f55b5c58b6c54c27e654b6cb93ce80deee3c2f95232969fc66905f524cf5d07",
+        "size": 7595844,
+        "version": "2.6.0",
+        "source": "82cacbef1dc056cc8fcf0a6dac720220dd97eb9e",
+        "byteCheckedFiles": [
+          "ios/OneNativePortalHostView.mm",
+          "dist/esm/index.mjs",
+          "types/index.d.ts"
+        ]
+      }
+    ]
+  },
+  "unmodifiedAssertions": true,
+  "harnessAdaptations": [
+    "worktree and browser executable paths",
+    "port4397",
+    "added five newly landed routes without relaxing assertions"
+  ],
+  "pipelineOwnBetaSource": "c3c9d2252ae1c269a5da54b9d792ce258dae57cb",
+  "betaChecksRun": 37152648456,
+  "betaCanaryRun": 37152648483
+}

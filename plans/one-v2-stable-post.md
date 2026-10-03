@@ -1,90 +1,90 @@
 # One v2 stable launch post
 
-Owner: r54299. Branch: `launch/one-v2-stable-post`, derived from assembled
-`9ea80d28b3d1843282df5855947faa694e2e90f5` and its durable site hydration patch.
-Nate requested this rewrite directly after reviewing the earlier beta draft.
+Owner: r54299. Review source: launch/one-v2-stable-post031be1ae5.
+Final assembly: launch/one-v2-stable-assembled, preserving v2-beta5123589ac
+and its newly landed native references. The post, overview, setup and native
+source guide remain byte-identical to the approved review source.
 
-The post announces the full stable release. One Native leads: full SwiftUI
-and Compose access, native UI already included, shared components, and the
-expanding UIKit collection. Native services stay in that story. The package
-replacement comparisons and separate tabs inventory are removed. The rest
-of the framework work since the v1 beta is grouped by what it enables.
+The post announces the full stable release. It leads with 100% SwiftUI and
+Compose access, included native UI, shared components, and the growing UIKit
+collection. Source imports make the complete frameworks available; this
+does not claim every SDK symbol has a predefined JSX wrapper. Device APIs
+stay within that story. Setup uses npx one and Vite configuration. Package
+replacement comparisons, tabs inventory and the beta announcement are gone.
 
-RAN: read the generated SwiftUI catalog, Compose adapter, One namespaces,
-Swift package module generator, and Kotlin source plugin. Full framework
-access includes custom native views imported into React; this wording does
-not claim that every SDK symbol has a predefined JSX wrapper. Built-in
-native UI has no separate per-component installation. Existing framework
-peer dependencies remain documented in the setup and installation guides.
+## Review and approval
 
-The post and setup guide use `npx one`, with application configuration in
-Vite. Source CLI repair is assigned to s8122 on studio-64, off `v2-beta`.
-It must preserve `v2-beta-starter`, select the matching native configuration,
-and exercise the actual scaffold, installation, web build, and generated
-native projects. No new setup command or migration API is requested.
+Assigned Claude Opus s8126 reviewed the post and CLI. Its two material
+findings are corrected: unrelated legacy npm One2.x versions can win broad
+ranges, and Swift view props are JSON rather than a specific generated
+interface. Installation uses --save-exact; the CLI uses exact release pins.
+The native source guide documents Swift packages, Compose views, methods,
+declarations, JSON boundaries, platform files, rebuilds and One prebuild.
+Existing API and protocol names remain unchanged.
 
-The existing assembled branch's full CI run 37147404328 passed. That result
-validates its code and hydration patch, not this later prose revision.
-This revision still needs mounted desktop/mobile captures, served links,
-and the assigned Claude Opus review before Nate sees it. Stable publication
-and public-main landing remain gated. The post stays `draft: true`; its
-October 5 date is the planned Monday launch and must match publication.
+TESTED: actual native source generators parse both Swift examples and the
+Compose example; three TypeScript snippets pass. Wrong Compose prop and
+Swift method argument types fail as negative controls. This is not a native
+binary compilation claim. Cache: one-v2-stable-source-docs.
 
-## Assigned review corrections
+TESTED: the actual site MDX compiler removed the required Swift tools
+directive before the explicit Package.swift fence title and preserves it
+in display and clipboard data afterward. Both production guide widths
+assert the exact first line // swift-tools-version: 6.2.
 
-Claude Opus s8126 reviewed the stable post at `a187f637e` and CLI selection
-at `703d1ecd2`. Its final handoff is
-`~/.team-machine/handoffs/launch-one-stable-opus.md`. It accepted the Native
-positioning and found two material problems before sharing: historical
-unrelated npm One 2.x versions resolve broad ranges to 2.5.2, and imported
-Swift view props are JSON rather than a derived specific TypeScript interface.
+Nate directly approved both before/after shares in this session, saying
+“I approve this shared item” and naming the stable post on mobile and desktop:
+- share-file-r54299-7cce714b44841b32-1a10373d4be-d3938ad992c8c81b
+- share-file-r54299-eb39135d65891695-1a10373cfa4-2adc298a798d5ad8
 
-The setup guide now installs `one@latest --save-exact` and reads the default
-tag's peers. The post describes generated declarations and native glue,
-without promising typed Swift view props. The new source-import guide shows
-Swift packages, Compose views, native methods, declarations, platform files,
-and native rebuilds, and explicitly documents the `one prebuild` requirement.
-Existing protocols and APIs retain their names. The guide is linked from the
-post, overview, setup, and native sidebar. The framework section is shortened
-to outcomes with links, and the historical wording is corrected to “since v1.”
+Copy approval is recorded. One main landing remains Nate-owned. Version
+2.6.0 and stable publication need separate approval. The post stays draft
+until release; its October5 date must match the actual publication date.
 
-TESTED: actual native-source generator reads both Swift examples and the
-Compose example. The Swift manifest selects language mode 6; the declarations
-typecheck all three React/TypeScript examples. A wrong Compose title type and
-wrong Swift method argument both fail TypeScript as a negative control.
-These checks do not claim a newly compiled native binary. Local script and
-receipt: `~/Library/Caches/one-v2-stable-source-docs/`.
+## Validation and delivery
 
-CLI s8122 also owns exact generated dependency versions and packaging repair.
-Release preparation r54397 owns stable version selection, with 2.6.0 as the
-reviewer's recommended candidate above legacy 2.5.2. Source and prepared
-artifacts stay on branches; Nate retains stable version/publication approval.
-Production capture worker s8128 must use this corrected source before the
-final before/after share. No additional post review is requested.
+TESTED relay s8128: production build171pages;18strict route observations,
+eight font probes,348served links/anchors across89routes, five RSS tests,
+and final guide directive display/copy probes passed. All mounted with zero
+console/hydration errors and no horizontal document overflow. Evidence
+branch launch/one-v2-stable-capturesa336803b0. Full desktop/mobile PNGs,
+PDFs and inspected Q90 before/after comparisons are saved and shared.
 
-## Upstream hydration release verification
+TESTED relay s8122: installed default and explicit Basic npm scaffolds use
+the unchanged v2-beta-starter and exact beta/stable pins; creator build,
+typecheck, export targets, six-page production web build/HTTP, and parsed
+iOS/Android native.app prebuild manifests pass. Beta installed bytes match
+the registry tarball. Caret ranges installed legacy One2.5.2 as negatives.
+An extra existing dev Content-Type assertion fails on unchanged beta, while
+HTTP200 HTML passes. No native binary build or launch was claimed.
+CLI branchfix/launch-cli-setup52b7c6186; source144569013.
 
-RAN: the final upstream snapshot repair at Tamagui `9acbfd7147` is included
-in `e092672461`, whose full Checks run
-[37148867412](https://github.com/tamagui/tamagui/actions/runs/37148867412)
-passed, including the starter size gate. The prior run was cancelled when
-this newer source arrived; its starter and SSR jobs had already passed.
+RAN: CLI and release resolver fixes delivered tov2-beta c3c9d2252. Parent
+monitors Checks37152648456 and canary Release37152648483. Final assembly
+prepares2.6.0 without publishing, tagging, dispatching stable workflows,
+pushing main or changing the starter branch.
 
-RAN: freshly packed `@tamagui/web@3.0.0-0.canary.1791056644527` has a source
-hook byte-identical to the passed CI source. All five published web/native
-JavaScript variants use the private ref snapshot, have no process-wide
-`localStates` map, and pass Node syntax checks. Archive SHA-256:
-`cf08a6fbc11bff736ecb15a9f49629fd0ba1fa1228119325d3806e9c746876f4`.
-Raw pack metadata, source and distribution hashes, and checks are recorded
-in `~/.team-machine/handoffs/one-tamagui-launch-evidence/theme-published/receipt.json`.
-The normal auto-beta channel remains enabled and is being monitored
-separately. This site retains its already validated v2.6.2 backport.
+RAN: final local package build14workspaces, site typecheck, production site
+build,28release tests/76assertions and dry npm packs pass. All79literal One
+export targets and seven creator targets exist in packs. Generated release
+declarations match current source. TESTED: all28desktop/mobile observations, eight font probes,348served
+links across89routes, exact Swift display/copy directives,48native docs
+tests and five RSS tests pass on the final assembly. All24publication
+manifests were prepared with the actual release writer; internal dependencies
+are exactly2.6.0. Local One, vxrn and creator tarballs retain current built
+bytes; the native host also matches the Fabric-validated b92aafe9c.
+Runtime probes and prepared pack receipts
+live in ~/Library/Caches/one-v2-stable-assembled/; final CI remains separate.
 
-RAN: the production capture worker found the Swift manifest's required
-tools-version directive missing from the rendered code. Expressive Code
-mistook its first-line comment for a filename. The manifest fence now sets
-the explicit `Package.swift` title, preserving the literal source line.
-TESTED: the actual site MDX compiler and frame configuration remove the
-directive from both display and copy text before the correction and preserve
-both afterward. Native generator and strict TypeScript checks still pass.
-The final production capture will assert the displayed and copied directive.
+## Hydration release
+
+RAN: Tamagui9acbfd7147 is in e092672461, full Checks37148867412 passed with
+the unchanged size gate. Normal Beta Release37149918452 passed. Fresh npm
+@tamagui/web3.0.0-beta.1571.1 hook bytes match that CI source. Archive SHA256:
+3c0a01bcd7f10f196dfcc2da29a3eb25e36e1c7a1809135a8e4551174f1f0402.
+The earlier canary matched source and all five JavaScript variants passed
+private-ref and syntax checks. No microbenchmark speedup is claimed.
+
+The site retains its validated durable web2.6.2 backport. Tamagui normal
+auto-beta publication stays enabled. Detailed artifact receipts are under
+~/.team-machine/handoffs/one-tamagui-launch-evidence/.
