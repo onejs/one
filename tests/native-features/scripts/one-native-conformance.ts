@@ -9198,7 +9198,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'app-intents') {
     const shortcutBundle = 'com.apple.shortcuts'
     const shortcutTitles = ['One Echo Text', 'One Unhandled Action']
-    let pendingDraft = false
     const shortcutNodes = (): Node[] => {
       const [root] = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
       const nodes: Node[] = []
@@ -9233,11 +9232,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       if (!frame) throw new Error(`Shortcuts did not expose ${label}`)
       touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
     }
-    const shortcutType = async (value: string) => {
+    const shortcutType = async (value: string, shows: (nodes: Node[], text: string) => boolean) => {
       axe(['type', value[0]], config.simulatorId)
-      await waitShortcut(`Shortcuts takes ${value[0]}`, (nodes) =>
-        nodes.some((node) => node.type === 'TextField' &&
-          String(node.AXValue ?? '').includes(value[0])))
+      await waitShortcut(`Shortcuts takes ${value[0]}`, (nodes) => shows(nodes, value[0]))
       if (value.length > 1) axe(['type', value.slice(1)], config.simulatorId)
     }
     const openShortcuts = async () => {
@@ -9262,24 +9259,35 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const addShortcut = async (title: string) => {
       const library = await waitShortcut('Shortcuts library ready', (n) => has(n, 'New Shortcut'))
       shortcutTap('New Shortcut', library)
-      pendingDraft = true
       const editor = await waitShortcut('Shortcuts editor ready', (n) => has(n, 'Editor'))
       shortcutTap('Editor', editor)
-      const search = await waitShortcut('Shortcuts action search ready', (n) =>
-        n.some((node) => node.type === 'TextField' && node.AXValue === 'Search' &&
-          node.frame && node.frame.y < (n.find((entry) => entry.type === 'Application')?.frame?.height ?? 0)))
+      // the action sheet slides up after Editor; a tap before it settles lands on a category chip.
+      let searchY = -1
+      const search = await waitShortcut('Shortcuts action search ready', (n) => {
+        const y = n.find((node) => node.type === 'TextField' && node.AXValue === 'Search' &&
+          node.frame && node.frame.y < (n.find((entry) => entry.type === 'Application')?.frame?.height ?? 0))?.frame?.y ?? -1
+        const settled = y >= 0 && y === searchY
+        searchY = y
+        return settled
+      })
       const displayHeight = search.find((node) => node.type === 'Application')?.frame?.height ?? 0
       const searchField = search.find((node) => node.type === 'TextField' &&
         node.AXValue === 'Search' && node.frame && node.frame.y < displayHeight)?.frame
       if (!searchField) throw new Error('Shortcuts action search field had no frame')
       touch(searchField.x + searchField.width / 2, searchField.y + searchField.height / 2)
-      await shortcutType(title)
-      const result = await waitShortcut(`${title} discovered by Shortcuts`, (n) =>
-        n.some((node) => node.AXLabel === title))
-      shortcutTap(title, result)
+      await shortcutType(title, (nodes, text) => nodes.some((node) => node.type === 'TextField' &&
+        String(node.AXValue ?? '').includes(text)))
+      // the result's title text sits inside its row; a hidden text node with the same label sits over the category chips.
+      const resultTitle = (n: Node[]) => {
+        const row = n.find((node) => node.type === 'GenericElement' && node.AXLabel === title && node.frame)?.frame
+        return row && n.find((node) => node.type === 'StaticText' && node.AXLabel === title && node.frame &&
+          node.frame.y >= row.y && node.frame.y + node.frame.height <= row.y + row.height)?.frame
+      }
+      const result = resultTitle(await waitShortcut(`${title} discovered by Shortcuts`, (n) =>
+        Boolean(resultTitle(n))))!
+      touch(result.x + result.width / 2, result.y + result.height / 2)
       await waitShortcut(`${title} inserted into editor`, (n) =>
         !has(n, 'Add actions from below to create a shortcut.') && has(n, 'play'))
-      pendingDraft = false
       screenshot(`${title === shortcutTitles[0] ? 'app-intents-echo' : 'app-intents-unhandled'}-editor.png`,
         shortcutNodes())
     }
@@ -9287,13 +9295,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const editor = await waitShortcut('Shortcuts text parameter ready', (n) =>
         n.some((node) => node.AXLabel === 'Text' && node.type === 'Button'))
       shortcutTap('Text', editor)
-      await waitShortcut('Shortcuts text editor focused', (n) =>
-        n.some((node) => node.type === 'TextField' && node.AXValue !== 'Search' &&
-          node.frame && node.frame.y < (n.find((entry) => entry.type === 'Application')?.frame?.height ?? 0)))
+      // the inline parameter editor is not an accessibility text field; its variable bar shows it is editing.
+      await waitShortcut('Shortcuts text editor focused', (n) => has(n, 'Ask Each Time'))
       axe(['key-combo', '--modifiers', '227', '--key', '4'], config.simulatorId)
-      await shortcutType(value)
-      await waitShortcut(`Shortcuts parameter is ${value}`, (n) =>
-        n.some((node) => String(node.AXValue ?? '') === value))
+      // the inline parameter reports its text in the action's label, as "<title> , <text>".
+      const parameterShows = (nodes: Node[], text: string) => labels(nodes).includes(`${shortcutTitles[0]} , ${text}`)
+      await shortcutType(value, parameterShows)
+      await waitShortcut(`Shortcuts parameter is ${value}`, (n) => parameterShows(n, value))
       const close = shortcutNodes().find((node) => node.AXLabel === 'Close')
       if (close) shortcutTap('Close')
     }
@@ -9330,10 +9338,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await restartShortcutsToLibrary()
       const nodes = shortcutNodes()
       if (!has(nodes, 'Select')) return
-      const present = shortcutTitles.map((title) => `${title}, 1 action`)
-        .filter((label) => has(nodes, label))
-      if (pendingDraft && has(nodes, 'New Shortcut, No actions'))
-        present.push('New Shortcut, No actions')
+      // Shortcuts keeps the default name for a shortcut built in the editor, and a failed
+      // run can leave one behind, so every proof card goes whatever its action count.
+      const proofCard = /^(?:New Shortcut|One Echo Text|One Unhandled Action), (?:No actions|\d+ actions?)$/
+      const present = [...new Set(labels(nodes).filter((label) => proofCard.test(label)))]
       if (!present.length) return
       shortcutTap('Select', nodes)
       for (const label of present) {
@@ -9365,7 +9373,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const warmPid = Number(/: (\d+)/.exec(launchApp())?.[1])
     if (!Number.isInteger(warmPid) || warmPid <= 0)
       throw new Error('simctl did not report the warm One process PID')
-    await openShortcuts()
+    await cleanup()
     try {
       await addShortcut(shortcutTitles[0])
       await setText('Warm-one')
