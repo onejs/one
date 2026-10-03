@@ -3,6 +3,22 @@ import * as TakeoutTemplateSteps from './steps/takeout'
 
 export const templates = [
   {
+    title: `Takeout`,
+    value: 'Takeout',
+    description: 'One, Tamagui, SQLite, Orez Lite, Better Auth',
+    type: 'included-in-monorepo',
+    hidden: false,
+    packageManager: 'bun',
+    repo: {
+      url: `https://github.com/onejs/one.git`,
+      sshFallback: `git@github.com:onejs/one.git`,
+      dir: [`templates`, `one-starter`],
+      branch: 'v2-beta-starter',
+    },
+    ...TakeoutTemplateSteps,
+  },
+
+  {
     title: `Basic`,
     value: 'Basic',
     description: 'The simplest starting point, vanilla React Native',
@@ -15,22 +31,6 @@ export const templates = [
       branch: 'v2-beta',
     },
     ...BasicTemplateSteps,
-  },
-
-  {
-    title: `Takeout`,
-    value: 'Takeout',
-    description: 'One, Tamagui, SQLite, Orez Lite, Better Auth',
-    type: 'included-in-monorepo',
-    hidden: true,
-    packageManager: 'bun',
-    repo: {
-      url: `https://github.com/onejs/one.git`,
-      sshFallback: `git@github.com:onejs/one.git`,
-      dir: [`templates`, `one-starter`],
-      branch: 'v2-beta-starter',
-    },
-    ...TakeoutTemplateSteps,
   },
 
   {
