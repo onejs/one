@@ -3,6 +3,7 @@
  */
 import { parentPort } from 'node:worker_threads'
 import { workerImport } from '../utils/workerImport'
+import { setServerGlobals } from '../server/setServerGlobals'
 
 if (!parentPort) {
   console.error('Must be run as a worker thread')
@@ -10,8 +11,7 @@ if (!parentPort) {
 }
 
 // set up server environment (must happen before imports)
-process.env.VXRN_REACT_19 = '1'
-process.env.VITE_ENVIRONMENT = 'ssr'
+setServerGlobals()
 // inherit NODE_ENV from parent process, default to production
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'production'
