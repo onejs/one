@@ -6,6 +6,7 @@ import { ImageScene } from '../docs-captures/ImageScene'
 import { IosActionsScene } from '../docs-captures/IosActionsScene'
 import { IosGroupsScene } from '../docs-captures/IosGroupsScene'
 import { IosListsScene } from '../docs-captures/IosListsScene'
+import { IosPresentationsScene } from '../docs-captures/IosPresentationsScene'
 import { IosPickersScene } from '../docs-captures/IosPickersScene'
 import { IosProgressScene } from '../docs-captures/IosProgressScene'
 import { IosStacksScene } from '../docs-captures/IosStacksScene'
@@ -30,6 +31,7 @@ const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   'ios-lists': IosListsScene,
   'ios-stacks': IosStacksScene,
   'ios-groups': IosGroupsScene,
+  'ios-presentations': IosPresentationsScene,
 }
 
 // the background alternates pure white and pure black so scripts/docs-capture.ts can
