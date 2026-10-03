@@ -96,9 +96,10 @@ pager.current?.setPage(1)
   drags above it.
 - RAN, Android emulator (`android_lane_pixel_8`, debug build with Metro):
   `--suite portal` 11 checks and `--suite pager` 10 checks pass.
-- Peach seams and library cases exist in Contrast
-  (`OnePortalLibraryCase`, `OneUIPagerLibraryCase`); their comparison against
-  iOS captures is still to run.
+- RAN, Peach against iOS 27 (Contrast `5ae0cd754ff`, paired library proof):
+  `OneUIPagerLibraryCase` matches iOS at 0% on both settled checkpoints;
+  `OnePortalLibraryCase` differs by 0.17 to 0.24% across four, under the 1%
+  gate. Both cases pass their 10 assertions on each side.
 - Contrast main carries One 2.0.0-beta.163.1 and Tamagui
   3.0.0-beta.1562.1 with `setup-one-portal`; react-native-teleport and
   react-native-pager-view left contrast-mobile (OTA runtime 80).
