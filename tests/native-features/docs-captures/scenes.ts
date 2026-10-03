@@ -28,6 +28,9 @@ export const docsScenes = {
   'ios-stacks': { title: 'iOS Stacks' },
   'ios-groups': { title: 'iOS Groups' },
   'ios-presentations': { title: 'iOS Presentations', screen: { cornerRadius: 62, top: 0.3, press: true } },
+  'ios-tabs': { title: 'iOS Tabs' },
+  'ios-navigation': { title: 'iOS Navigation' },
+  'ios-media': { title: 'iOS Media' },
 } satisfies Record<string, DocsScene>
 
 export type DocsSceneName = keyof typeof docsScenes
