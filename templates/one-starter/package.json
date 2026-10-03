@@ -50,7 +50,6 @@
     "drizzle-orm": "1.0.0-beta.9-e89174b",
     "on-zero": "0.16.19-canary.1790768320875",
     "one": "2.0.0-beta.159.1",
-    "orez-sync-executor": "0.13.2",
     "pg": "8.18.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
