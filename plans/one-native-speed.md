@@ -80,3 +80,59 @@ seven counterbalanced runs and retained raw data; run physical Storage and live
 Motion; investigate any losing API, redesign its cause and remeasure. The save
 branch documents that Motion callback timings currently cover the shared handler
 only. No performance or platform-parity claim follows from compilation.
+
+
+## worklet compilation (launch rank 3)
+
+RAN: three counterbalanced pairs per app on studio-64, Apple M5 Max (18 cores),
+2026-10-03, under `bun heavy --exclusive`. Each backend runs in a fresh Bun
+process and builds the complete iOS production bundle twice, with minification
+and source maps off. Cold is the first bundle; warm is the second complete
+bundle in that process. Config loading is timed separately and excluded.
+The OS page cache is not purged. These are bundle times, not isolated transform
+times or native build times.
+
+| app | backend | cold samples (ms) | cold median (ms) | warm samples (ms) | warm median (ms) |
+| --- | --- | --- | --- | --- | --- |
+| one-basic | One OXC | 3896.3, 4100.6, 2810.6 | 3896.3 | 2669.3, 3029.3, 2266.7 | 2669.3 |
+| one-basic | Worklets Babel plugin | 4535.6, 4029.8, 3339.4 | 4029.8 | 3357.5, 3285.1, 2710.6 | 3285.1 |
+| Contrast mobile | One OXC | 11311.0, 11508.7, 16832.5 | 11508.7 | 9280.6, 10813.2, 18870.7 | 10813.2 |
+| Contrast mobile | Worklets Babel plugin | 12808.0, 13957.8, 19669.7 | 13957.8 | 14707.1, 14404.9, 15372.0 | 14707.1 |
+
+INFERRED from these medians: One reduces cold/warm bundle time by 3.3%/18.7%
+on the starter and 17.5%/26.5% on Contrast mobile. All samples are retained;
+One loses the third mobile warm pair. Shared host activity produces substantial
+variance, so the smaller starter cold difference needs repeated measurement
+before treating it as a reliable speed gain. The results support keeping One's
+existing transform and removing the automatic Babel worklet fallback.
+
+RAN: Reanimated 4.6.0's plugin delegates to `react-native-worklets/plugin`;
+Worklets is 0.12.2. The starter bundle contains worklet hashes in 28 source
+files under either backend. Contrast contains 258 under One and 253 under
+Babel. INFERRED from the five differing source files and the keyword gates:
+One covers gesture chain and hook forms omitted by the old automatic Babel
+gate. The marker count is a coverage diagnostic; it does not establish semantic
+equivalence.
+Runtime equivalence is checked separately by the layout, gesture and runOnUI
+fixture documented in `tests/native-features/WORKLETS.md`.
+
+The starter run used One `fcdfa011a`; mobile used `548f0155f` and Contrast
+`1301762085bf5fb61145243d4c687a1d30852add`. Concurrent dirty native service and
+fixture files are listed in the receipts; compiler source was unchanged for
+both timing runs. Bundles differ in bytes because the transforms produce
+different code. Samples, bundle hashes, sizes and configuration are retained
+in `tests/native-features/evidence/worklets/bundles.json`.
+
+Runner: `scripts/native-worklets-benchmark.ts`. To repeat the comparison after
+fallback removal, pass `--babel-baseline` with a built checkout of
+`99e6e988e` (the last validation checkpoint with automatic Babel selection).
+Install and build that checkout's compiler dependencies once, then run both
+commands under the same exclusive measurement reservation:
+
+```sh
+bun scripts/native-worklets-benchmark.ts --root examples/one-basic --babel-baseline "$ONE_BABEL_BASELINE" --output /tmp/worklets-starter.json
+bun scripts/native-worklets-benchmark.ts --root ~/contrast/templates/contrast-mobile --babel-baseline "$ONE_BABEL_BASELINE" --output /tmp/worklets-mobile.json
+```
+
+The Babel baseline runs its own benchmark child and compiler. The current
+checkout runs One's path. No Babel fallback remains in the production compiler.
