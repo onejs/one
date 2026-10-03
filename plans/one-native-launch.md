@@ -47,6 +47,11 @@ proof exists three times.
   compile and bridge simulation belong to s7979 / peach-swift. They do not re-prove One
   behaviors; One's generated SwiftUI views take their visual conformance
   from s7767's evidence instead of a second capture.
+- Apple frameworks (m19590 / apple-native-manager, split in Contrast
+  `plans/peach/apple-native-coverage.md` "one proof per surface"): WebKit,
+  Combine, Security, Network, ATT, notifications and location prove the Swift
+  API once in that lane; One reuses or links that proof. MapKit (`Swift.Map`)
+  is led by this lane.
 - Expo UI: only what One does not cover. Expo UI parity is a pixel oracle for
   Peach, owned by s7767 (iOS) and r53511 (Android); One's lane does not build
   Expo UI proofs.
