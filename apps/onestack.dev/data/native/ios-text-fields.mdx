@@ -3,101 +3,178 @@ title: iOS Text and Fields
 description: Text, Label, TextField, SecureField, and TextEditor under One.iOS
 ---
 
-Text display and text entry under `One.iOS`. `TextField` and `SecureField`
-take a plain string or a `NativeState` handle from
-`useNativeState`, so keystrokes stay correct without a React render.
-Both follow the controlled pattern with `revision`, focus props
-(`focused`, `onFocusChange`, `focusRevision`), and `onSubmit`.
+<NativeHero
+  src="/native/ios-text.webp"
+  alt="One.iOS TextField, SecureField, and TextEditor in a native SwiftUI form"
+/>
 
-## Text
+Text display and text entry under `One.iOS`, drawn by SwiftUI.
 
-`One.iOS.Text` renders one string with `text`. It takes no other props
-beyond the shared view props.
+- `TextField`, `SecureField`, and `TextEditor` take a string or a
+  `NativeState` handle, so typing stays correct without a React render.
+- Focus is controlled with `focused`, `onFocusChange`, and `focusRevision`.
+- Keyboard, autocapitalization, and AutoFill hints map to UIKit.
+- These views throw outside iOS. For a field that also runs on Android and web,
+  use [One.UI.TextInput](/native/text-input).
 
-## Label
-
-`One.iOS.Label` renders a title with an icon: `label` plus `systemImage`,
-an SF Symbol name.
-
-```tsx
-import { One } from 'one'
-
-<One.iOS.Label label="Favorites" systemImage="star" />
-```
-
-## TextField
-
-`One.iOS.TextField` is a single or multi-line field. `prompt` is the
-placeholder, `textFieldStyle` selects the SwiftUI text field style, and
-`axis` switches between horizontal and multi-line layout.
-
-| Prop | Type |
-|------|------|
-| `text` | `string` or `NativeState<string>` |
-| `onTextChange` | `(value: string) => void` |
-| `revision` | `number` |
-| `focused`, `focusRevision` | `boolean`, `number` |
-| `onFocusChange` | `(focused: boolean) => void` |
-| `onSubmit` | `() => void` |
-| `prompt` | `string` |
-| `textFieldStyle` | SwiftUI text field style |
-| `submitLabel` | SwiftUI submit label, or `''` |
-| `textInputAutocapitalization` | SwiftUI text input autocapitalization, or `''` |
-| `autocorrectionDisabled` | `boolean` |
-| `keyboardType` | keyboard type, or `''` |
-| `textContentType` | text content type, or `''` |
-| `axis` | SwiftUI axis |
+## Usage
 
 ```tsx
 import { One, useNativeState } from 'one'
 
-function NameField() {
-  const name = useNativeState('')
+export function SignIn() {
+  const email = useNativeState('')
+  const password = useNativeState('')
 
   return (
-    <One.iOS.TextField
-      label="Name"
-      text={name}
-      onTextChange={(value) => name.set(value)}
-      prompt="Ada Lovelace"
-    />
+    <One.iOS.Form style={{ flex: 1 }}>
+      <One.iOS.Section>
+        <One.iOS.TextField
+          label="Email"
+          prompt="you@example.com"
+          text={email}
+          onTextChange={(value) => email.set(value)}
+          keyboardType="emailAddress"
+          textContentType="username"
+          textInputAutocapitalization="never"
+          submitLabel="next"
+        />
+        <One.iOS.SecureField
+          label="Password"
+          prompt="Password"
+          text={password}
+          onTextChange={(value) => password.set(value)}
+          textContentType="password"
+          submitLabel="go"
+          onSubmit={signIn}
+        />
+      </One.iOS.Section>
+    </One.iOS.Form>
   )
 }
 ```
 
+Every view on this page also accepts `accessibilityLabel`,
+`accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
+`swiftStyle`.
+
+## TextField
+
+`One.iOS.TextField` is a single line field, or a growing multi-line field with
+`axis="vertical"`.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#TextFieldProps"
+  data={[
+    { name: 'text', required: true, type: 'string | NativeState<string>', description: 'The text. A NativeState handle from useNativeState keeps keystrokes off the React render.' },
+    { name: 'onTextChange', required: true, type: '(value: string) => void', description: 'A native edit, with the new text.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new text to reset it from outside.' },
+    { name: 'focused', type: 'boolean', description: 'Whether the field has focus. Controlled like text.' },
+    { name: 'onFocusChange', type: '(focused: boolean) => void', description: 'Focus moved in or out.' },
+    { name: 'focusRevision', type: 'number', default: '0', description: 'Increase with a new focused to apply it from outside.' },
+    { name: 'onSubmit', type: '() => void', description: 'Return was pressed.' },
+    { name: 'label', type: 'string', default: '""', description: 'The accessibility label.' },
+    { name: 'prompt', type: 'string', default: '""', description: 'The placeholder.' },
+    { name: 'textFieldStyle', type: 'TextFieldStyle', default: '"automatic"', description: 'automatic, roundedBorder, bordered, or plain.' },
+    { name: 'submitLabel', type: 'SubmitLabel | ""', default: '""', description: 'The return key title: done, go, send, join, route, search, return, next, or continue.' },
+    { name: 'textInputAutocapitalization', type: 'TextInputAutocapitalization | ""', default: '""', description: 'never, words, sentences, or characters.' },
+    { name: 'autocorrectionDisabled', type: 'boolean', default: 'false', description: 'Turns autocorrection off.' },
+    { name: 'keyboardType', type: 'KeyboardType | ""', default: '""', description: 'The keyboard, such as emailAddress or numberPad.' },
+    { name: 'textContentType', type: 'TextContentType | ""', default: '""', description: 'The content hint for AutoFill, such as username or oneTimeCode.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the field and blocks editing.' },
+    { name: 'axis', type: 'Axis', default: '"horizontal"', description: 'vertical grows the field to more lines as text wraps.' },
+  ]}
+/>
+
 ## SecureField
 
-`One.iOS.SecureField` has the same props as `TextField` and obscures its
-input for passwords.
+`One.iOS.SecureField` obscures its input for passwords. It has the same props
+as `TextField` except `axis`.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#SecureFieldProps"
+  data={[
+    { name: 'text', required: true, type: 'string | NativeState<string>', description: 'The text. A NativeState handle from useNativeState keeps keystrokes off the React render.' },
+    { name: 'onTextChange', required: true, type: '(value: string) => void', description: 'A native edit, with the new text.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new text to reset it from outside.' },
+    { name: 'focused', type: 'boolean', description: 'Whether the field has focus. Controlled like text.' },
+    { name: 'onFocusChange', type: '(focused: boolean) => void', description: 'Focus moved in or out.' },
+    { name: 'focusRevision', type: 'number', default: '0', description: 'Increase with a new focused to apply it from outside.' },
+    { name: 'onSubmit', type: '() => void', description: 'Return was pressed.' },
+    { name: 'label', type: 'string', default: '""', description: 'The accessibility label.' },
+    { name: 'prompt', type: 'string', default: '""', description: 'The placeholder.' },
+    { name: 'textFieldStyle', type: 'TextFieldStyle', default: '"automatic"', description: 'automatic, roundedBorder, bordered, or plain.' },
+    { name: 'submitLabel', type: 'SubmitLabel | ""', default: '""', description: 'The return key title: done, go, send, join, route, search, return, next, or continue.' },
+    { name: 'textInputAutocapitalization', type: 'TextInputAutocapitalization | ""', default: '""', description: 'never, words, sentences, or characters.' },
+    { name: 'autocorrectionDisabled', type: 'boolean', default: 'false', description: 'Turns autocorrection off.' },
+    { name: 'keyboardType', type: 'KeyboardType | ""', default: '""', description: 'The keyboard, such as emailAddress or numberPad.' },
+    { name: 'textContentType', type: 'TextContentType | ""', default: '""', description: 'The content hint for AutoFill, such as username or oneTimeCode.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the field and blocks editing.' },
+  ]}
+/>
 
 ## TextEditor
 
 `One.iOS.TextEditor` is SwiftUI's multi-line editor. Return inserts a newline,
-and the editor scrolls its text inside the box React Native gives it, so give
-it a height. It takes the controlled `text`, `onTextChange`, `revision`, the
-focus props, `textInputAutocapitalization`, `autocorrectionDisabled`,
-`keyboardType`, and `textContentType`. SwiftUI's `TextEditor` has no label,
-placeholder, style, or submit, so neither does this one; name it with
+and the editor scrolls its text inside its box, so give it a height. SwiftUI's
+editor has no label, placeholder, style, or submit; name it with
 `accessibilityLabel`.
 
 ```tsx
-import { useState } from 'react'
-import { One } from 'one'
-
-function Notes() {
-  const [notes, setNotes] = useState('')
-
-  return (
-    <One.iOS.TextEditor
-      text={notes}
-      onTextChange={setNotes}
-      accessibilityLabel="Notes"
-      style={{ height: 160 }}
-    />
-  )
-}
+<One.iOS.TextEditor
+  text={notes}
+  onTextChange={setNotes}
+  accessibilityLabel="Notes"
+  style={{ height: 160 }}
+/>
 ```
 
-For a cross-platform field that also runs on Android and web, use
-[One.UI.TextInput](/native/text-input) instead. The iOS fields here throw
-outside iOS builds.
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#TextEditorProps"
+  data={[
+    { name: 'text', required: true, type: 'string | NativeState<string>', description: 'The text. A NativeState handle from useNativeState keeps keystrokes off the React render.' },
+    { name: 'onTextChange', required: true, type: '(value: string) => void', description: 'A native edit, with the new text.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new text to reset it from outside.' },
+    { name: 'focused', type: 'boolean', description: 'Whether the field has focus. Controlled like text.' },
+    { name: 'onFocusChange', type: '(focused: boolean) => void', description: 'Focus moved in or out.' },
+    { name: 'focusRevision', type: 'number', default: '0', description: 'Increase with a new focused to apply it from outside.' },
+    { name: 'textInputAutocapitalization', type: 'TextInputAutocapitalization | ""', default: '""', description: 'never, words, sentences, or characters.' },
+    { name: 'autocorrectionDisabled', type: 'boolean', default: 'false', description: 'Turns autocorrection off.' },
+    { name: 'keyboardType', type: 'KeyboardType | ""', default: '""', description: 'The keyboard, such as emailAddress or numberPad.' },
+    { name: 'textContentType', type: 'TextContentType | ""', default: '""', description: 'The content hint for AutoFill, such as username or oneTimeCode.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the field and blocks editing.' },
+  ]}
+/>
+
+## Text
+
+`One.iOS.Text` renders one string.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#TextProps"
+  data={[
+    { name: 'text', type: 'string', description: 'The string to show.' },
+  ]}
+/>
+
+## Label
+
+`One.iOS.Label` renders a title with an SF Symbol.
+
+```tsx
+<One.iOS.Label label="Favorites" systemImage="star" />
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#LabelProps"
+  data={[
+    { name: 'label', type: 'string', description: 'The title.' },
+    { name: 'systemImage', type: 'string', description: 'An SF Symbol before the title.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the label.' },
+  ]}
+/>
