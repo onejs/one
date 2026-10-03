@@ -3914,6 +3914,55 @@
         }
       ],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePortalView",
+      "publicName": "Portal",
+      "props": {
+        "hostName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePortalHostView",
+      "publicName": "PortalHost",
+      "props": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
     }
   ],
   "payloads": {

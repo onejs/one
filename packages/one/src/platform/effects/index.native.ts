@@ -19,3 +19,6 @@ export type {
   MapPolyline,
   MapProps,
 } from '../ui/Map'
+
+export { Portal, PortalHost } from '../ui/Portal.native'
+export type { PortalProps, PortalHostProps } from '../ui/portalTypes'

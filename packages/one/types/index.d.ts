@@ -1,3 +1,4 @@
+export type { PortalProps, PortalHostProps } from './platform';
 export { createApp } from './createApp';
 export { One } from './one';
 export { useFonts, useNativeState, useNetworkState, useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform';

@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig, type Plugin } from 'vite'
 import { one } from 'one/vite'
 
@@ -127,12 +128,24 @@ const nativeBundler = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
             ...config,
             resolver: {
               ...config.resolver,
-              resolveRequest: (context, moduleName, platform) =>
-                (resolveRequest ?? context.resolveRequest)(
+              resolveRequest: (context, moduleName, platform) => {
+                // the focused android entry excludes the separate native-source demo.
+                if (
+                  process.env.ONE_NATIVE_PORTAL_FIXTURE === '1' &&
+                  platform === 'android' &&
+                  moduleName === 'one/metro-entry'
+                ) {
+                  return {
+                    type: 'sourceFile',
+                    filePath: fileURLToPath(new URL('./fixtures/portal-entry.ts', import.meta.url)),
+                  }
+                }
+                return (resolveRequest ?? context.resolveRequest)(
                   context,
                   nativeWebgpuTarget(moduleName) ?? moduleName,
                   platform
-                ),
+                )
+              },
             },
           }
         },
