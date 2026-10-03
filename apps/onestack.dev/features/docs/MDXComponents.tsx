@@ -26,6 +26,7 @@ import { NativeHero } from './NativeHero'
 import { Notice } from './Notice'
 import { PropsTable } from './PropsTable'
 import { RouteTree } from './RouteTree'
+import { Table, Tbody, Td, Th, Thead, Tr } from './Table'
 import { unwrapText } from './unwrapText'
 
 const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
@@ -60,72 +61,6 @@ const UL = styled(YStack, {
   my: '$1',
   ml: '$4',
   mr: '$2',
-})
-
-const TableBase = styled(View, {
-  render: 'table',
-  display: 'table' as any,
-  width: '100%',
-  my: '$4',
-})
-
-const TableWrapper = styled(View, {
-  width: '100%',
-  overflowX: 'auto' as any,
-  my: '$4',
-})
-
-const Table = (props: any) => (
-  <TableWrapper>
-    <TableBase
-      className="mdx-table"
-      my={0}
-      style={{ borderCollapse: 'collapse' }}
-      {...props}
-    />
-  </TableWrapper>
-)
-
-const Thead = styled(View, {
-  render: 'thead',
-  display: 'table-header-group' as any,
-})
-
-const Tbody = styled(View, {
-  render: 'tbody',
-  display: 'table-row-group' as any,
-})
-
-const Tr = styled(View, {
-  render: 'tr',
-  display: 'table-row' as any,
-})
-
-const Th = styled(Text, {
-  render: 'th',
-  display: 'table-cell' as any,
-  py: '$2.5',
-  px: '$3',
-  fontWeight: '600',
-  fontSize: '$4',
-  color: '$color11',
-  textAlign: 'left' as any,
-  verticalAlign: 'bottom' as any,
-  borderBottomWidth: 1,
-  borderColor: '$color7',
-})
-
-const Td = styled(Text, {
-  render: 'td',
-  display: 'table-cell' as any,
-  py: '$2.5',
-  px: '$3',
-  fontSize: '$4',
-  color: '$color12',
-  textAlign: 'left' as any,
-  verticalAlign: 'top' as any,
-  borderBottomWidth: 1,
-  borderColor: '$color4',
 })
 
 const HR = () => (
