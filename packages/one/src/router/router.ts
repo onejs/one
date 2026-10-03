@@ -1338,8 +1338,15 @@ export async function linkTo(
     } catch (error) {
       // Handle Suspense promises thrown by loadRoute in dev mode
       if (error && typeof (error as any).then === 'function') {
-        // Wait for the route to load and skip validation for this navigation
-        await (error as Promise<any>).catch(() => {})
+        // native dev screens own module suspension. dispatch now so a cold
+        // route does not hold navigation on the redirect screen while it loads.
+        const routeLoading = (error as Promise<any>).catch(() => {})
+        if (
+          process.env.TAMAGUI_TARGET !== 'native' ||
+          process.env.NODE_ENV !== 'development'
+        ) {
+          await routeLoading
+        }
         setValidationState({ status: 'valid', lastValidatedHref: href })
       } else if (
         error instanceof ParamValidationError ||
