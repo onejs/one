@@ -6827,14 +6827,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const swipe = (dx: number, dy: number) => {
       const stage = id(snapshot(config.simulatorId), 'one-ui-pager-stage')?.frame
       if (!stage) throw new Error('pager stage has no frame')
-      const cx = stage.x + stage.width / 2
-      const cy = stage.y + stage.height / 2
+      // drags start off the page text input, which keeps the touch in pager-view
+      // and One alike, and last 0.8s since a faster axe drag never begins a pan.
+      const cx = dy ? stage.x + 40 : stage.x + stage.width / 2
+      const cy = dy ? stage.y + stage.height / 2 : stage.y + stage.height / 4
       axe([
         'swipe', '--start-x', String(Math.round(cx + dx / 2)),
         '--start-y', String(Math.round(cy + dy / 2)),
         '--end-x', String(Math.round(cx - dx / 2)),
         '--end-y', String(Math.round(cy - dy / 2)),
-        '--duration', '0.3',
+        '--duration', '0.8',
       ], config.simulatorId)
     }
 
