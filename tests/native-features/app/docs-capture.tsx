@@ -1,11 +1,21 @@
 import { useEffect, useState } from 'react'
 import { Stack, useLocalSearchParams } from 'one'
 import { StatusBar, View } from 'react-native'
+import { IconScene } from '../docs-captures/IconScene'
+import { ImageScene } from '../docs-captures/ImageScene'
+import { MapScene } from '../docs-captures/MapScene'
 import { PagerScene } from '../docs-captures/PagerScene'
+import { PipScene } from '../docs-captures/PipScene'
+import { PortalScene } from '../docs-captures/PortalScene'
 import type { DocsSceneName } from '../docs-captures/scenes'
 
 const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   pager: PagerScene,
+  portal: PortalScene,
+  map: MapScene,
+  image: ImageScene,
+  icon: IconScene,
+  pip: PipScene,
 }
 
 // the background alternates pure white and pure black so scripts/docs-capture.ts can
