@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process'
 import FSExtra from 'fs-extra'
 import colors from 'picocolors'
 import { debounce } from 'perfect-debounce'
-import { normalizePath, type ViteDevServer } from 'vite'
+import { normalizePath, type PluginOption, type ViteDevServer } from 'vite'
 import type { VXRNOptions } from '../types'
 
 const { ensureDir } = FSExtra
@@ -133,6 +133,7 @@ export default defineConfig({
     process.exit(0)
   }
 
+  let extraPlugins: PluginOption[] = []
   if (optionsIn.extraConfig) {
     const { resolve } = await import('node:path')
     const extraConfigPath = resolve(optionsIn.extraConfig)
@@ -142,6 +143,7 @@ export default defineConfig({
     )
     if (extraResult?.config) {
       const { mergeConfig } = await import('vite')
+      extraPlugins = extraResult.config.plugins || []
       config = mergeConfig(config, extraResult.config)
       console.info(colors.cyan(`Merged extra config from ${extraConfigPath}`))
     } else {
@@ -195,6 +197,8 @@ export default defineConfig({
   await ensureDir(`${cacheDir}/compiler-cache`)
 
   const serverConfig = await getViteServerConfig(options, config)
+  // the base config reloads through vite; extra config plugins must travel inline.
+  serverConfig.plugins = [...(serverConfig.plugins || []), ...extraPlugins]
 
   let viteServer: ViteDevServer | null = null
   // Track if server is closing to prevent work during shutdown
