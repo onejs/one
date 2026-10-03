@@ -160,7 +160,7 @@ export default function PagerFixture() {
         {colors.slice(0, count).map((color, index) => (
           <View
             key={color}
-            testID={`one-ui-pager-page-${index}`}
+            testID={`one-ui-pager-slide-${index}`}
             style={{
               flex: 1,
               backgroundColor: color,
