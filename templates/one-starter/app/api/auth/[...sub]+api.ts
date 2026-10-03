@@ -1,4 +1,6 @@
+import { authServer } from '~/auth/server/authServer'
 import type { Endpoint } from 'one'
-import { authServer } from '~/features/auth/server/authServer'
-export const GET: Endpoint = authServer.handler
-export const POST: Endpoint = authServer.handler
+
+const handler: Endpoint = (request) => authServer.handler(request)
+export const GET = handler
+export const POST = handler

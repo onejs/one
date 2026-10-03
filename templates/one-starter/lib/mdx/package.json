@@ -1,0 +1,33 @@
+{
+  "name": "starter-mdx",
+  "version": "0.1.0",
+  "description": "Render HAST as React and compile MDX with Satteri in server and Worker runtimes.",
+  "type": "module",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
+  "exports": {
+    ".": "./src/index.tsx",
+    "./build": "./src/server.node.ts",
+    "./server": {
+      "types": "./src/server.node.ts",
+      "node": "./src/server.node.ts",
+      "default": "./src/server.workerd.ts"
+    },
+    "./vite": "./src/vite.ts",
+    "./runtime.wasm": {
+      "types": "./src/runtime-wasm.d.ts",
+      "default": "./vendor/satteri-wasm/wasm/satteri_runtime_bg.wasm"
+    }
+  },
+  "files": [
+    "src",
+    "vendor",
+    "README.md"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "private": true
+}
