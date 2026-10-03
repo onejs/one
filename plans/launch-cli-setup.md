@@ -34,3 +34,18 @@ published beta runtime without rebuilding the unrelated native/router framework.
 
 No main push, stable publication, or native binary launch is authorized here.
 The parent owns landing and subsequent CI/release monitoring.
+
+RAN: the first concrete-export check passed One's 82 targets and failed
+create-vxrn on `types/index.d.ts`, `types/create.d.ts`, `dist/cjs/index.js`,
+and `dist/cjs/create.js`. The published beta has no declarations, and its
+CommonJS emit is `.cjs`. Creator package metadata now names the actual
+CommonJS files, and its build generates the declarations it advertises.
+
+RAN: targeted formatting passes for the changed creator files and cli/main.ts;
+cli.ts has an existing unrelated formatting issue at intermediatesOut's
+description, preserved to keep this repair narrow. `git diff --check` passes.
+
+Sync: rebased the repair onto `106ffc430` before the first push. Incoming
+changes were release scripts/workflow and AGENTS.md, disjoint from this repair.
+First repair commit: `703d1ecd2` (pushed). Artifact source versions remain the
+pinned beta above, with changed CLI source compiled locally.
