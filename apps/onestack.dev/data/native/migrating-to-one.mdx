@@ -68,7 +68,8 @@ From `expo-secure-store`. See [SecureStore](/native/secure-store).
 ## Storage
 
 Use [One.Storage](/native/storage) for string settings and caches on iOS,
-Android, and web. It replaces the earlier iOS-only Preferences service.
+Android, and web. It replaces the iOS-only Preferences service from earlier
+v2 betas; Preferences was not part of v1.
 The verbs are synchronous:
 
 | Previous One API | Current API |
@@ -78,8 +79,18 @@ The verbs are synchronous:
 | `One.iOS.Preferences.deleteItem(key)` or `deleteItemSync(key)` | `One.Storage.removeItem(key)` |
 
 Storage uses its own log. Existing Preferences values are not migrated
-from UserDefaults automatically. Transfer any settings you need before
-removing the previous implementation. Keep secrets in SecureStore.
+automatically. They remain in `UserDefaults.standard` under keys prefixed
+with `One.Preferences.`, such as `One.Preferences.theme` for the key `theme`.
+To retain them, add app-owned native migration code that reads those string
+values and passes them to JavaScript, then write them with
+`One.Storage.setItem` using the original keys without the prefix. Complete
+the copy before deleting the old defaults.
+
+The new beta has no Preferences JavaScript API, and the older betas with
+Preferences have no Storage API, so this requires a native bridge in your
+app; it cannot be done by calling both services in JavaScript. Without that
+migration, Storage starts without your previous settings. Keep secrets in
+SecureStore.
 
 ## Portals and pages
 

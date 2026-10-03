@@ -19,11 +19,16 @@ write file-system routes, and choose how each web page renders. Native routes
 run in React Native. That structure stays the same in v2; the new work gives
 you more of the platform underneath it.
 
-You can try the beta with:
+For an existing One app, install the beta with:
 
 ```bash
-npx one@beta
+npm install one@beta
 ```
+
+For a new app, follow [native setup](/docs/native-setup) to copy the existing
+`v2-beta-starter` example and install the beta. The current scaffolding CLI
+still selects a main-branch starter with incompatible native configuration;
+use the explicit source-copy command in that guide.
 
 This is a beta. The native interfaces require the New Architecture, and the
 navigation packages are alpha versions. Check the requirements and your native
@@ -107,8 +112,8 @@ available through `One.iOS` too.
 
 [One.Storage](/native/storage) stores string keys and values synchronously on
 iOS, Android, and web. The native implementation uses a shared C++ engine over
-a memory-mapped log; web uses localStorage. It replaces the earlier
-`One.iOS.Preferences` surface. Use it for settings and caches, and use
+a memory-mapped log; web uses localStorage. It replaces `One.iOS.Preferences`,
+which appeared in earlier v2 betas. Use it for settings and caches, and use
 SecureStore for secrets.
 
 Each service has its own permission and platform requirements. Some depend on
@@ -160,18 +165,18 @@ The default native bundler now uses Rolldown for both development and production
 Development supports React Refresh and incremental updates. The default
 transform pipeline uses Oxc and the native Worklets transform, and can bundle
 supported imports into worklet runtimes. The web build also uses Vite 8 and
-Rolldown. iOS development bundles can be served as Hermes bytecode compiled
-with the native project's matching compiler, and cold route navigation dispatches
-without waiting for route preloading.
+Rolldown. In native development, iOS bundles can be served as Hermes bytecode
+compiled with the native project's matching compiler, and cold route navigation
+dispatches without waiting for route preloading.
 
 [Metro mode](/docs/metro-mode) remains available for apps whose dependencies
 need it. `one/babel-preset` and `one/metro-config` share One's configuration
 with Metro, and `one metro-eject` lets an app own those files. Configuration
 and lockfile changes invalidate Metro's cache.
 
-Production asset serving gained precompressed Brotli, Zstandard, and gzip
-files, with freshness checks against the source asset. Native updates can use
-One's own update service or the integrations described in the
+Production asset serving supports precompressed Brotli, Zstandard, and gzip
+siblings when present, skipping any older than the source asset. Native
+updates can use One's own update service or the integrations described in the
 [OTA guide](/docs/guides-ota-updates). `One.Updates` checks, downloads, stages,
 and reloads bundles. The native launcher handles early-failure rollback and
 cache pruning; choosing and hosting an update is still the application's
@@ -267,8 +272,7 @@ your
 React Navigation dependencies with One's 8 alpha peers rather than mixing
 navigation versions.
 
-Start with the [installation guide](/docs/installation), then read
-[native setup](/docs/native-setup) and the
+Start with [native setup](/docs/native-setup), then read the
 [platform notes](/docs/native-platforms) for the APIs your app uses. For the
 individual fixes and releases behind this post, see the
 [release history](https://github.com/onejs/one/releases).

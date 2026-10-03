@@ -9,22 +9,18 @@ CSS scroll snap. Give the pager a size, and keep a stable key on each page.
 
 ```tsx
 import { useRef, useState } from 'react'
-import { One, useNativeState, type PagerRef } from 'one'
+import { One, type PagerRef } from 'one'
 import { View, Text } from 'react-native'
 
 export function ProjectPages() {
   const pager = useRef<PagerRef>(null)
   const [page, setPage] = useState(0)
-  const progress = useNativeState(0)
 
   return (
     <One.UI.Pager
       ref={pager}
       style={{ flex: 1 }}
       initialPage={0}
-      onPageScroll={({ nativeEvent }) => {
-        progress.set(nativeEvent.position + nativeEvent.offset)
-      }}
       onPageSelected={({ nativeEvent }) => setPage(nativeEvent.position)}
     >
       <View key="projects">

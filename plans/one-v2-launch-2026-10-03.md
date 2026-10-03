@@ -151,3 +151,84 @@ outerHTML, and parents. Storage and Pager each emit one console error and
 zero page exceptions. Their first inline code is CODE inside SPAN inside P on
 both sides. These observations do not establish a cause. Raw HTML snapshots
 are retained beside the captures in the evidence directory.
+
+## Assigned review fixes
+
+Owner: one-launch-docs-review-fixes; parent r54299, task t-musq7g0o-1j6d0.
+Review: `~/.team-machine/handoffs/launch-one-opus-review.md`, against 4b61c63f3.
+REVIEW: none, reviewed as part of the assembled One launch by s8086.
+The existing branch and worktree are retained. No starter, CLI template,
+renderer, native runtime, or public main change belongs to this lane.
+
+RAN: fetched and inspected `origin/v2-beta-starter` at
+`95b754cbd881af6f00ac32e682d0700b0531ca0d`. Its one-basic example configures
+`native.app`, imports `one/vite`, and requires `one/react-native-config`.
+The example's only workspace dependency is `one: workspace:*`.
+The published create-vxrn template still names `main`. Node resolution against
+the published One beta confirms that `one/vite` and `one/react-native-config`
+resolve, while `one/expo-plugin` and `one/react-native-commands` reject with
+`ERR_PACKAGE_PATH_NOT_EXPORTED`. The React Native config exports its `bundle`
+command. Strict TypeScript checking of the unmodified starter config against
+the published declarations passed.
+
+TESTED: the exact new-app sequence in native-setup works from a fresh folder:
+`npx --yes degit onejs/one/examples/one-basic#v2-beta-starter my-app`,
+`cd my-app`, `npm pkg set dependencies.one=beta`, `npm install`.
+It installed `one@2.0.0-beta.167.1`; `npm run build:web` built six pages,
+and `npx one prebuild --no-install` generated iOS and Android projects with
+community native dependency discovery. A production browser loaded the home
+and `/tabs/profile`, then followed the home link to `/test`; both probes had
+zero console errors and page exceptions. Native compilation, CocoaPods
+installation, device launch, and Android Gradle compilation were not run.
+The native generation receipt does not establish native runtime behavior.
+
+RAN: existing-app `npm install one@beta` succeeded on beta167.1.
+The tag advanced during this task: an earlier npm attempt returned ETARGET
+for beta167.1 before it became available. A fresh Bun copy installed
+successfully but its web build failed with React error 130 on `/tabs/profile`
+under both beta166.1 and beta167.1. An npm upgrade of the first copy passed;
+the separate fresh npm copy also passed. The docs therefore specify npm for
+the acquisition sequence. No package-manager cause is established by those
+results, and no starter dependency or template was edited.
+
+The blog uses the existing-app upgrade command and links native-setup in
+place of the v1 installation guide. Preferences is attributed to earlier
+v2 betas. Migration documents `UserDefaults.standard`, the
+`One.Preferences.` prefix, an app-owned native bridge to copy string values
+into Storage under unprefixed keys, and the absence of a beta with both
+JavaScript services. The Pager example no longer subscribes to unused
+continuous progress. Asset serving describes existing precompressed siblings
+and stale-file rejection; cold-route dispatch is qualified as native
+development. The blog remains `draft: true`. Its publication date still needs
+updating when the parent publishes it.
+
+RAN: the final site build passed under the heavy guardian, generating 170
+pages. The existing Tamagui extractor still reports config bundling errors,
+including `Cannot read properties of undefined (reading 'fileExists')`.
+This is a successful build with extractor errors, not a clean extractor run.
+Site typecheck, ten strict public-API snippets, 143 served local links and
+anchors across 90 routes, five existing RSS tests, and served RSS exclusion
+of the v2 draft passed. `git diff --check` passed.
+
+RAN: final blog and native-overview captures pass at 1440x1000 and 390x844:
+HTTP 200, visible heading, substantial content, mounted Tamagui root, loaded
+fonts, no horizontal overflow, zero console errors and page exceptions.
+The final native-setup captures pass the same checks at both widths.
+Final Pager and migration references mount without exceptions or overflow,
+but each emits React error 418 at both widths with an inline-code component
+stack. The additional capture retains its zero-error assertions and exits 1
+for those four failures. An earlier build in this task passed those pages;
+those earlier passes do not establish that hydration was repaired. These
+final receipts supersede that transient result. The parent still owns the
+Theme hydration repair, including the migration page now observed here.
+
+Current receipts are in
+`/Users/n8/Library/Caches/one-v2-launch-review-2026-10-03/`:
+`site-build-final.log`, `typecheck.log`, `snippets.log`, `link-checks.json`,
+`rss-tests.log`, `rss-publication.json`, `required-render-checks.json`,
+`edited-render-checks.json`, `npm-acquisition.log`, `npm-fresh-install.log`,
+`npm-fresh-web-build.log`, `npm-fresh-prebuild.log`,
+`npm-starter-config-types.log`, `npm-starter-exports.json`, and
+`starter-browser.json`. Required and additional render results remain
+separate. Full blog/overview PDFs and desktop/mobile PNGs are preserved.
+The parent owns assembled review, renderer repair, CI, share, and publication.
