@@ -46,6 +46,9 @@
         },
         "revision": {
           "type": "Int32"
+        },
+        "pickerAcknowledgedEvent": {
+          "type": "Int32"
         }
       },
       "events": {
@@ -68,6 +71,20 @@
           },
           "sourceIndex": {
             "type": "Int32"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeMenuPickerChange": {
+          "id": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
           },
           "eventCount": {
             "type": "Int32"
@@ -3993,6 +4010,10 @@
           "type": "boolean[]",
           "default": []
         },
+        "selection": {
+          "type": "string",
+          "default": ""
+        },
         "menuOrder": {
           "type": "MenuOrder",
           "default": ""
@@ -4094,6 +4115,26 @@
           ],
           "children": true,
           "swiftType": "ControlGroup"
+        },
+        {
+          "kind": "picker",
+          "name": "MenuPicker",
+          "fields": [
+            "id",
+            "title",
+            "systemImage",
+            "selection",
+            "disabled",
+            "hidden",
+            "help"
+          ],
+          "required": [
+            "id",
+            "title",
+            "selection"
+          ],
+          "children": true,
+          "swiftType": "Picker"
         },
         {
           "kind": "divider",

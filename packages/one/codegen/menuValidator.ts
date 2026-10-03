@@ -65,6 +65,9 @@ function emitKind(node: (typeof nodes)[number]): string {
   const children = node.children
     ? `
           if (!Array.isArray(input.children)) throw new Error('Swift.Menu ' + item.type + ' requires children')
+${node.kind === 'picker' ? `          if (!input.children.length || input.children.some((child: any) => child?.type !== 'action')) throw new Error('Swift.Menu picker children must be actions')
+          if (!input.children.some((child: any) => child.id === input.selection)) throw new Error('Swift.Menu picker selection must match a child id')
+` : ''}
           append(input.children, item.id, Boolean(${inheritedDisabled}), Boolean(${inheritedHidden}))`
     : ''
   return `        case '${node.kind}': {

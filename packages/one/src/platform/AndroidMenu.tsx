@@ -46,6 +46,7 @@ function MenuPresentation({
   items,
   onAction,
   onValueChange,
+  onPickerChange: _onPickerChange,
   primaryAction: _primaryAction,
   children,
   disabled = false,
@@ -58,6 +59,9 @@ function MenuPresentation({
   const anchor = useRef<View>(null)
   const contextAnchor = useRef<ComponentRef<typeof NativeContextTrigger>>(null)
   const nativeItems = flattenMenuItems(items)
+  if (nativeItems.some((item) => item.type === 'picker')) {
+    throw new Error('Menu picker items are not supported on Android')
+  }
   if (!onValueChange && nativeItems.some((item) => item.type === 'toggle')) {
     throw new Error('Menu with toggles requires onValueChange')
   }
