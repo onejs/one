@@ -90,20 +90,9 @@ function MyLayout() {
 }
 ```
 
-## Link-Level Control
+## Navigation-Level Control
 
-Disable scroll behavior for individual navigation actions using the `scroll` prop on `Link`:
-
-```tsx
-import { Link } from 'one'
-
-// This navigation won't affect scroll position
-<Link href="/next-page" scroll={false}>
-  Stay in place
-</Link>
-```
-
-Or with `useRouter`:
+Disable scroll behavior for an individual navigation by passing `scroll: false` to the router:
 
 ```tsx
 import { useRouter } from 'one'
@@ -181,9 +170,7 @@ export default function TabLayout() {
 Don't scroll when opening modals:
 
 ```tsx
-<Link href="/modal" scroll={false}>
-  Open Modal
-</Link>
+router.push('/modal', { scroll: false })
 ```
 
 ## Related

@@ -1,0 +1,49 @@
+PASS simulator automation session ready
+PASS home screen mounted
+PASS no warning overlay intercepts interaction
+PASS home lists nav-one-native-menu-picker
+PASS nav-one-native-menu-picker settles
+PASS Menu Picker fixture mounted
+PASS Menu presents native Picker row
+PASS Picker opens native options submenu
+PASS initial native Picker checkmark marks Small
+PASS Picker selection reaches React
+PASS accepted Picker row reopens
+PASS accepted Picker options reopen
+PASS accepted native Picker checkmark marks Large
+PASS Picker menu dismissed
+PASS Picker rejection enabled
+PASS Picker row reopens
+PASS Picker options reopen
+PASS rejected Picker selection keeps prop value
+PASS rejected Picker row reopens
+PASS rejected Picker options reopen
+PASS rejected native Picker checkmark remains Large
+PASS Picker menu dismissed
+PASS Picker revision resets selection
+PASS reset Picker row reopens
+PASS reset Picker options reopen
+PASS reset native Picker checkmark marks Small
+PASS Picker menu dismissed
+PASS context Picker rejection disabled
+PASS initial context menu opens
+PASS initial context Picker options open
+PASS initial context Picker checkmark marks Small
+PASS context Picker selection reaches React
+PASS accepted context menu opens
+PASS accepted context Picker options open
+PASS accepted context Picker checkmark marks Large
+PASS Picker menu dismissed
+PASS context Picker rejection enabled
+PASS rejecting context menu opens
+PASS rejecting context Picker options open
+PASS rejected context Picker selection keeps prop value
+PASS rejected context menu opens
+PASS rejected context Picker options open
+PASS rejected context Picker checkmark remains Large
+PASS Picker menu dismissed
+PASS context Picker revision resets selection
+PASS reset context menu opens
+PASS reset context Picker options open
+PASS reset context Picker checkmark marks Small
+PASS Picker menu dismissed

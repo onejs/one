@@ -36,7 +36,7 @@ export const RouteTree = ({
       <ScrollView
         horizontal
         contentContainerStyle={{
-          flex: 1,
+          flexGrow: 1,
           miw: '100%',
         }}
       >

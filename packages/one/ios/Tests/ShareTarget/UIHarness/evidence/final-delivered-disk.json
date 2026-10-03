@@ -1,0 +1,47 @@
+{
+  "drafts": [
+    {
+      "destinationId": "team",
+      "text": "Check out One's share target\nCheck out One's share target",
+      "id": "8C25CA9A-3CEC-4EA3-B4E1-2E0C66F35599",
+      "items": [
+        {
+          "url": "https://example.com/one-share-target",
+          "kind": "url"
+        }
+      ],
+      "createdAt": "2026-10-01T19:57:15Z"
+    },
+    {
+      "createdAt": "2026-10-01T20:06:25Z",
+      "destinationId": "personal",
+      "id": "DDBC7AAD-C297-4269-9334-4F6CC0ED7076",
+      "text": "Edited native share",
+      "items": [
+        {
+          "kind": "url",
+          "url": "https://example.com/one-share-target"
+        }
+      ]
+    },
+    {
+      "id": "465C71BC-E0A6-4FBB-84D7-C31EFBBD7AC2",
+      "destinationId": "team",
+      "items": [
+        {
+          "kind": "url",
+          "url": "https://example.com/one-share-target"
+        }
+      ],
+      "createdAt": "2026-10-01T20:01:09Z",
+      "text": "Check out One's share target"
+    }
+  ],
+  "receipts": {
+    "accepted.receipt": "{\"id\":\"4219DF94-6B0E-428C-A5B9-9053350B0BDB\",\"destinationId\":\"personal\",\"items\":[{\"kind\":\"url\",\"url\":\"https:\\/\\/example.com\\/one-share-target\"}],\"text\":\"Edited native share\"}",
+    "send-entered.receipt": "",
+    "submission-0022F358-E181-4926-BB93-66DE28B4FDF5.receipt": "{\"destinationId\":\"personal\",\"id\":\"DDBC7AAD-C297-4269-9334-4F6CC0ED7076\",\"text\":\"Edited native share\",\"items\":[{\"kind\":\"url\",\"url\":\"https:\\/\\/example.com\\/one-share-target\"}]}",
+    "destinations-entered.receipt": "",
+    "submission-42EBEA85-3B4F-47E8-BB0A-1116CB45A15A.receipt": "{\"id\":\"4219DF94-6B0E-428C-A5B9-9053350B0BDB\",\"destinationId\":\"personal\",\"items\":[{\"url\":\"https:\\/\\/example.com\\/one-share-target\",\"kind\":\"url\"}],\"text\":\"Edited native share\"}"
+  }
+}

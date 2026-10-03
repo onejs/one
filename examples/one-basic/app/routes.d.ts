@@ -14,6 +14,7 @@ declare module 'one' {
         | `/tabs/profile`
         | `/tabs/settings`
         | `/test`
+        | `/widget-demo`
       DynamicRoutes: never
       DynamicRouteTemplate: never
       IsTyped: true

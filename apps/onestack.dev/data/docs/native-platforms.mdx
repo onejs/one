@@ -1,0 +1,95 @@
+---
+title: Native Platform Notes
+description: Understand OS requirements, unsupported platforms, permissions, and native build limits
+---
+
+The v2 native surface targets React Native 0.87 and the New Architecture.
+One's iOS package floor is 17. That deployment target is separate from the OS
+version required by an individual API.
+
+## iOS availability
+
+Modern SwiftUI tabs need iOS 18; an older TabView path serves earlier supported
+iOS versions. Presentation sizing also needs iOS 18. Liquid Glass, glass button
+styles, WebView, and tab-bar minimization require iOS 26. Some generated
+modifiers require newer SDKs and runtime versions.
+
+Unavailable behavior depends on the component. Unsupported enum values are
+validated before reaching native code. WebView renders empty below iOS 26;
+Glass uses its configured material fallback on older systems. Read the
+[component reference](/docs/native-components) before relying on a newer
+feature. A lower deployment target does not make a newer API available.
+
+Hardware and system policy matter too. Cameras, motion sensors, successful
+device attestation, store purchases, printer delivery, and background scheduling
+have limits that a simulator cannot fully prove. Review prompts are requests to
+iOS, not a promise that a dialog will appear. BackgroundTasks follows the OS's
+scheduling policy rather than a JavaScript timer.
+
+## Android availability
+
+Compose components require an Android native binary and the New Architecture.
+Their controls and default colors come from Material. Native menus use
+Android popup surfaces; they are distinct from the iOS menu contract.
+Google Maps needs the app's API key and build configuration. Push notifications
+need their platform configuration as well. See the
+[Map](/native/map) and [Notifications](/native/notifications) references.
+
+Use the generated project's Android SDK settings and JDK 17. Raising or
+lowering `native.app.android` SDK levels must remain compatible with React
+Native and the native dependencies your app installs.
+
+## Web behavior
+
+Platform-only SwiftUI and Compose components throw when rendered on the wrong
+platform. Select a platform branch or use platform-specific files. Shared
+components and services have individual web behavior:
+
+| Surface | Web behavior |
+| --- | --- |
+| Image, TextInput, Icon | Render web content; Icon needs your web element |
+| EdgeFade | CSS rendering |
+| Blur, Mask | Require native and throw |
+| Map | Renders no map |
+| PictureInPicture | Renders inline content |
+| SafeArea | Uses CSS safe-area environment values |
+| Clipboard, Network, Browser | Use the corresponding browser facilities |
+| Haptics, Notifications | Inert feedback or permission results; see each API |
+| SecureStore | Rejects; synchronous verbs throw |
+| iOS services | Generally reject unsupported calls; check the service reference |
+
+The UIKit toolbar, menu-action, and zoom integrations return `null` on
+unsupported platforms. SplitView renders its routed slot without native
+columns on Android and web. These exceptions do not make arbitrary
+`One.iOS` components safe to render everywhere.
+
+See the [per-feature platform table](/native/platform-support) for more detail.
+
+## Native rebuilds and updates
+
+Adding a native dependency, changing permissions or entitlements, generating a
+widget extension, or editing Swift or Kotlin requires a native rebuild. Hot
+reload updates JavaScript; it does not replace compiled native code.
+
+OTA updates must match the runtime and native capabilities of the installed
+binary. A JavaScript bundle cannot add a missing native module. Configure the
+[Updates service](/native/updates) or another supported
+[OTA integration](/docs/guides-ota-updates) around that boundary.
+
+## Layout and accessibility
+
+Use React Native `style` for a native host's outer bounds, and `swiftStyle` or
+`composeStyle` for the corresponding native content. Avoid having a
+content-sized parent and a filling child depend on each other's size.
+Scrolling and presentation content needs a defined viewport.
+
+Imported Kotlin composables contribute their natural content size to the React
+Native layout. The surrounding Yoga container retains parent stretch, flex,
+and minimum or maximum dimensions. Content height updates when composable
+props or Kotlin state changes.
+
+Keep labels, accessibility props, and native control state aligned with what
+the user sees. Verify the actual platform screen, including Dynamic Type,
+keyboard, safe areas, dark appearance, and the OS versions you support. A web
+preview establishes the web implementation; it does not establish native
+behavior.

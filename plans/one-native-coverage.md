@@ -29,7 +29,7 @@ content-sized layout engine.
 
 ## Coverage target
 
-The comparison inventory read `@vxrn/native` 1.26.0 in this checkout and official
+The comparison inventory read `one` 1.26.0 in this checkout and official
 Expo UI source reporting 58.0.0. Expo's SwiftUI export list was last changed by
 `5ad6930946f1` when inspected. The SDK 57 documentation and Expo main differ; this
 matrix uses the source inventory, not a claim of exact SDK 57 parity.
@@ -61,7 +61,7 @@ tab/menu suite also passes native selection, reordered RN state retention, kept-
 checked/mixed controls, nested actions, and two accessible remounts with identical
 menu data.
 
-## `@vxrn/native` boundary
+## `one` boundary
 
 | Existing surface | Migration requirement |
 | --- | --- |
@@ -91,6 +91,17 @@ runtime behavior. The current package remains usable during migration.
   quality control. Broad parity is an ongoing target, not a percentage inferred
   from the SDK declaration inventory.
 
+Open items:
+
+- native-features under Metro (the default dev bundler) fails to bundle the gpu
+  fixture: `@react-three/fiber` resolves to its native entry, which requires
+  `expo-gl`, because the web-entry alias in `vite.config.ts` is a vite-only
+  resolveId plugin. `ONE_NATIVE_BUNDLER=rolldown` works. Needs the alias for
+  Metro too, owned by whoever owns the r3f path.
+- picture in picture with a VideoPlayer inside (branch `tm/one-lane-quality-2`,
+  480e6e46e) needs a device run showing live playback before it merges; iPhone
+  simulators report `isPictureInPictureSupported` NO.
+
 ## Baseline at 3dcfe61d2
 
 | Measurement | Result | Meaning |
@@ -112,7 +123,7 @@ The transport is Fabric props/events plus direct native Fabric state updates for
 tab geometry. There is no Nitro dependency. Review whether any new operation
 actually needs synchronous non-view transport before adding one.
 
-Reproduce the JS baseline with `bun packages/native/codegen/measure.ts`.
+Reproduce the JS baseline with `bun packages/one/codegen/measure.ts`.
 Native baseline command: `xcodebuildmcp simulator build --project-path
 tests/native-features/ios/Pods/Pods.xcodeproj --scheme OneNative --configuration
 Release --simulator-id <uuid>`. Inspect the arm64 archive under
@@ -178,3 +189,28 @@ rediscovered: a presented dialog owns the accessibility tree, so the app's own s
 rows are invisible while it is up; a SecureField reports as a `TextField` carrying the
 `AXSecureTextField` subrole; and an attached hardware keyboard suppresses the software
 keyboard, so there is no keyboard element to wait on before typing.
+
+## Beyond SwiftUI
+
+Common native patterns that no SwiftUI view covers: app services, system windows,
+and OS integrations. A queue, not a spec. Each ships as a uniform `One.UI` component
+or service where iOS and Android can agree, plus raw `One.iOS` / `One.Android`
+access under the platform's own names where they cannot.
+
+| Pattern | Status |
+| --- | --- |
+| Haptics, Clipboard, Browser, ImagePicker, DocumentPicker, Fonts, Network, AppInfo, Crypto | shipped, both platforms (Nitro) |
+| Notifications | shipped, both platforms (Nitro) |
+| Widgets, Live Activities | shipped, iOS only (`One.iOS`); Android Glance widgets not started |
+| Picture in Picture (any view) | shipped, both platforms: `One.UI.PictureInPicture`, `native.app.pictureInPicture` |
+| Picture in Picture (video, custom controls) | not started: AVPlayerLayer PiP for a real player (the any-view path snapshots video), Android `setActions` remote actions |
+| Share sheet (imperative) | not started; ShareLink covers the SwiftUI button form only |
+| Secure storage (Keychain, Keystore) | not started |
+| Biometrics (LocalAuthentication, BiometricPrompt) | not started |
+| Keep awake, screen brightness | not started |
+| Store review prompt | not started |
+| Splash screen control | not started |
+| Now Playing / media session and remote commands | not started |
+| Background tasks (BGTaskScheduler, WorkManager) | not started |
+| App Intents, Shortcuts, Siri, App Actions | not started |
+| CallKit / ConnectionService | not started |

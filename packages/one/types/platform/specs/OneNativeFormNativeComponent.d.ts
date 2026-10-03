@@ -1,0 +1,13 @@
+import type { ColorValue, ViewProps } from 'react-native';
+interface NativeProps extends ViewProps {
+    sizing: string;
+    colorScheme: string;
+    dynamicTypeSize: string;
+    controlSize: string;
+    locale: string;
+    tint?: ColorValue;
+    isEnabled: string;
+}
+declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
+export default _default;
+//# sourceMappingURL=OneNativeFormNativeComponent.d.ts.map

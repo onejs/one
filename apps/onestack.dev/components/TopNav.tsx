@@ -1,9 +1,9 @@
 import { Search } from '@tamagui/lucide-icons-2'
 import { useContext, useRef } from 'react'
-import { Separator, styled, View, XStack, YStack } from 'tamagui'
+import { styled, View, XStack, YStack } from 'tamagui'
 import { Link, usePathname } from 'one'
 import { OneLogo } from '~/features/brand/Logo'
-import { ReleaseStatus } from '~/components/ReleaseStatus'
+import { DocsSectionTabs } from '~/features/docs/DocsSectionTabs'
 import { SearchContext } from '~/features/search/SearchContext'
 import { HeaderMenu } from '~/features/site/HeaderMenu'
 import { SocialLinksRow } from '~/features/site/SocialLinksRow'
@@ -34,6 +34,7 @@ export const TopNav = () => {
   const { onOpen } = useContext(SearchContext)
   const pathname = usePathname()
   const isBlog = pathname.startsWith('/blog')
+  const isDocs = pathname.startsWith('/docs') || pathname.startsWith('/native')
 
   return (
     <>
@@ -79,7 +80,7 @@ export const TopNav = () => {
               pointerEvents="none"
               y={-2}
             >
-              <OneLogo size={0.5} animate minimal />
+              <OneLogo size={0.5} animate />
             </View>
           </Link>
         </XStack>
@@ -103,28 +104,18 @@ export const TopNav = () => {
             fg={10}
             $sm={{ dsp: 'none' }}
           >
-            <View
-              transition="quickest"
-              mt={2}
-              pe="auto"
-              hoverStyle={{
-                y: -1,
-              }}
-              pressStyle={{
-                y: 2,
-              }}
-            >
-              <ReleaseStatus />
-            </View>
-
             <XStack pe="auto" y={-2} mx="$4">
-              <Separator vertical />
               <SocialLinksRow />
-              <Separator vertical />
             </XStack>
           </XStack>
 
           <XStack pe="none" ai="center">
+            {isDocs && (
+              <View pe="auto" mr="$2" $sm={{ dsp: 'none' }}>
+                <DocsSectionTabs />
+              </View>
+            )}
+
             <SimpleButton marginTop={-3} mr={8} onPress={onOpen}>
               <Search width={24} height={24} color="$color12" strokeWidth={2} />
             </SimpleButton>

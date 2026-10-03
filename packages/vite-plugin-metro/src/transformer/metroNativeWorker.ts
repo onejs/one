@@ -13,6 +13,9 @@ import {
   transformHermesLoops,
   transformReactNativeCodegen,
 } from '@vxrn/compiler'
+import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
+
+import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
 import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
 
 /**
@@ -150,7 +153,7 @@ export type WrapModuleOptions = {
 
 // bump whenever this worker's output changes, or metro serves cached modules
 // transformed by the previous version.
-const WORKER_CACHE_KEY_VERSION = '5'
+const WORKER_CACHE_KEY_VERSION = '6'
 
 /**
  * react-native ships jsx inside plain .js files, and oxc disables jsx for .js
@@ -515,16 +518,15 @@ export function applyModuleResolverAliases(
 }
 
 /**
- * Native port of babel-preset-expo's `expo-inline-or-reference-env-vars` and
- * one's `babel-plugin-inline-one-server-url`. In production every
- * `process.env.EXPO_PUBLIC_*` read is inlined as a literal; in development each
- * one is routed through the `expo/virtual/env` module so edits to .env take
- * effect without a full rebuild. Without this the reads survive into the bundle
- * and every EXPO_PUBLIC_ value is undefined at runtime.
+ * Native port of one's `babel-plugin-inline-one-server-url` for public env.
+ * Every `process.env.ONE_PUBLIC_*` or `process.env.EXPO_PUBLIC_*` read is
+ * inlined as a literal in both modes,
+ * matching the rolldown native defines: a native runtime has no `process.env`
+ * to read it back out of, and without this the reads survive into the bundle
+ * and every public value is undefined at runtime.
  *
  * `process.env.ONE_SERVER_URL` is inlined in both modes, matching one's plugin:
- * it is how a native bundle knows where to fetch loader data from, and a native
- * runtime has no `process.env` to read it back out of.
+ * it is how a native bundle knows where to fetch loader data from.
  *
  * Both live in one pass because they are the same rewrite over the same walk,
  * and a second parse of every file is the cost this transformer exists to avoid.
@@ -543,8 +545,14 @@ export function applyInlineEnvVars(
   }
   if (!parsed?.program) return code
 
+  const processPublicEnv = Object.fromEntries(
+    Object.entries(process.env).filter(
+      ([key]) => key.startsWith('ONE_PUBLIC_') || key.startsWith('EXPO_PUBLIC_')
+    )
+  )
+  const effectiveEnv = withExpoPublicEnvAliases({ ...processPublicEnv, ...env })
+
   const ms = new MagicString(code)
-  let needsEnvImport = false
 
   // edits are collected rather than written straight through, because a folded
   // dead branch swallows the range an inner edit sits in and MagicString throws
@@ -597,13 +605,12 @@ export function applyInlineEnvVars(
         return
       }
 
-      if (isProcessEnv && !isAssignmentTarget && key?.startsWith('EXPO_PUBLIC_')) {
-        if (isProduction) {
-          replace(node, process.env[key] ?? undefined)
-        } else {
-          edits.push({ start: node.start, end: node.end, text: `_$$_EXPO_ENV.${key}` })
-          needsEnvImport = true
-        }
+      if (
+        isProcessEnv &&
+        !isAssignmentTarget &&
+        (key?.startsWith('ONE_PUBLIC_') || key?.startsWith('EXPO_PUBLIC_'))
+      ) {
+        replace(node, effectiveEnv[key] ?? undefined)
         return
       }
 
@@ -616,21 +623,30 @@ export function applyInlineEnvVars(
         keyOf(obj.property, obj.computed) === 'env' &&
         key !== undefined
       ) {
-        replace(node, env[key])
+        replace(node, effectiveEnv[key])
         return
       }
 
       // bare `import.meta.env`, spread or passed around whole.
       if (!isAssignmentTarget && isImportMeta(obj) && key === 'env') {
-        edits.push({ start: node.start, end: node.end, text: JSON.stringify(env) })
+        edits.push({
+          start: node.start,
+          end: node.end,
+          text: JSON.stringify(effectiveEnv),
+        })
         return
       }
 
       // `process.env.X` for anything the vite env map defines. runs after the
-      // two branches above so ONE_SERVER_URL and EXPO_PUBLIC_ keep their own
+      // branches above so ONE_SERVER_URL and public env keep their own
       // handling.
-      if (isProcessEnv && !isAssignmentTarget && key !== undefined && key in env) {
-        replace(node, env[key])
+      if (
+        isProcessEnv &&
+        !isAssignmentTarget &&
+        key !== undefined &&
+        key in effectiveEnv
+      ) {
+        replace(node, effectiveEnv[key])
         return
       }
     }
@@ -726,9 +742,6 @@ export function applyInlineEnvVars(
     ms.overwrite(edit.start, edit.end, edit.text)
   }
 
-  if (needsEnvImport) {
-    ms.prepend(`import { env as _$$_EXPO_ENV } from "expo/virtual/env";\n`)
-  }
   return ms.hasChanged() ? ms.toString() : code
 }
 
@@ -1831,7 +1844,13 @@ let workletsConfigured = false
  * Turns on @vxrn/compiler's reanimated transform inside this metro worker
  * process when the project actually depends on reanimated.
  */
-type OneNativeTransforms = typeof import('one/native-transforms')
+type OneNativeTransforms = typeof import('one/native-transforms') & {
+  renderSwiftPackageModule: (
+    id: string,
+    platform: string,
+    root: string
+  ) => { code: string; watchFiles: string[] }
+}
 
 let oneNativeTransforms: OneNativeTransforms | null | undefined
 
@@ -1884,40 +1903,27 @@ export async function transform(
   assertNoUnportedBabelPlugins(options)
 
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
-
-  // expo's own transform worker substitutes the source of two virtual files
-  // before transforming them. this worker replaces that worker outright, so
-  // without the same substitution `expo/virtual/env` stays a bare
-  // `process.env` re-export and no .env file ever reaches the bundle.
-  const environment = options.customTransformOptions?.environment
-  const isClientEnvironment = environment !== 'node' && environment !== 'react-server'
-
-  if (isClientEnvironment && /[\\/]expo[\\/]virtual[\\/]env\.js$/.test(filename)) {
-    if (options.dev) {
-      const rel = path
-        .relative(path.dirname(filename), projectRoot)
-        .split(path.sep)
-        .join('/')
-      sourceCode = `const dotEnvModules = require.context(${JSON.stringify(rel)},false,/^\\.\\/\\.env/);
-export const env = !dotEnvModules.keys().length ? process.env : { ...process.env, ...['.env', '.env.development', '.env.local', '.env.development.local'].reduce((acc, file) => {
-  return { ...acc, ...(dotEnvModules(file)?.default ?? {}) };
-}, {}) };`
-    } else {
-      // production inlines every value at its use site, so reaching this module
-      // at all is a bug worth naming rather than silently returning undefined.
-      sourceCode = `export const env = new Proxy({}, {
-  get(target, key) {
-    throw new Error(\`Attempting to access internal environment variable "\${String(key)}" is not supported in production bundles.\`);
-  },
-});`
-    }
-  } else if (
-    /(^|[\\/])\.env(\.(local|(development|production)(\.local)?))?$/.test(filename)
-  ) {
-    const { parseEnvFile } =
-      await import('@expo/metro-config/build/transform-worker/dot-env-development')
-    sourceCode = `export default ${JSON.stringify(parseEnvFile(sourceCode, isClientEnvironment))};`
+  if (filename.endsWith('.swift')) {
+    const oneTransforms = loadOneNativeTransforms(projectRoot)
+    if (!oneTransforms)
+      throw new Error(`[vxrn/metro] ${filename} requires One native transforms`)
+    sourceCode = oneTransforms.renderSwiftPackageModule(
+      path.isAbsolute(filename) ? filename : path.resolve(projectRoot, filename),
+      options.platform ?? '',
+      projectRoot
+    ).code
   }
+
+  // narrow optional Expo compatibility, shared with the babel
+  // transformer: only expo/virtual/env.js and .env files are special, and
+  // apps without Expo installed never resolve or load any Expo module.
+  sourceCode = substituteExpoVirtualEnvSource({
+    filename,
+    src: sourceCode,
+    projectRoot,
+    dev: options.dev,
+    environment: options.customTransformOptions?.environment,
+  })
 
   checkReservedStrings(sourceCode, config, options)
 
@@ -2177,9 +2183,9 @@ export const env = !dotEnvModules.keys().length ? process.env : { ...process.env
     }
   }
 
-  // Step A2: expo public env vars, one's server url, and `import.meta.env`.
-  // after flow stripping so the parse succeeds, before extraction so both the
-  // injected `expo/virtual/env` import and any folded-away dead branch are seen.
+  // Step A2: one public env vars, one's server url, and `import.meta.env`.
+  // after flow stripping so the parse succeeds, before extraction so any
+  // folded-away dead branch is seen.
   // the substring guards keep the extra parse off files with no such read at all.
   if (code.includes('process.env') || code.includes('import.meta')) {
     code = applyInlineEnvVars(code, filename, !options.dev, getImportMetaEnv(options))

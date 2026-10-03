@@ -66,6 +66,7 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
   ) {
     if (props.userSetting?.excludeDefaultPlugins) {
       return {
+        caller: getBabelCaller(props),
         ...props.userSetting,
         ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
       }
@@ -135,11 +136,27 @@ const getOptions = (
   if (plugins.length || userBabelConfig) {
     return {
       plugins,
+      caller: getBabelCaller(props),
       ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
     }
   }
 
   return null
+}
+
+function getBabelCaller(props: Props): babel.TransformOptions['caller'] {
+  // babel hands every caller field to presets (babel-preset-expo reads platform
+  // and isDev), but its types list only the esm support flags, so the extra
+  // fields go through a named value rather than a checked literal.
+  const caller = {
+    name: 'vxrn',
+    platform:
+      props.environment === 'ios' || props.environment === 'android'
+        ? props.environment
+        : 'web',
+    isDev: props.development,
+  }
+  return caller
 }
 
 /**
@@ -216,7 +233,7 @@ export async function transformBabel(
   const extension = extname(id)
   const isTSX = extension === '.tsx'
   const isTS = isTSX || extension === '.ts'
-  const babelOptions = {
+  const babelOptions: babel.TransformOptions = {
     filename: id,
     compact: false,
     babelrc: options.babelrc ?? false,
@@ -224,10 +241,19 @@ export async function transformBabel(
     sourceMaps: false,
     minified: false,
     ...options,
+    ...(!isTS
+      ? {
+          parserOpts: {
+            ...options.parserOpts,
+            plugins: [...(options.parserOpts?.plugins || []), 'jsx'],
+          },
+        }
+      : {}),
     // vite and rolldown own module syntax and import.meta, so presets written for
     // metro (babel-preset-expo) must keep esm instead of rewriting it for metro's runtime
     caller: {
       name: 'vxrn',
+      ...options.caller,
       supportsStaticESM: true,
       supportsDynamicImport: true,
     },

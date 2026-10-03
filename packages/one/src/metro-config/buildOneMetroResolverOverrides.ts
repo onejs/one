@@ -1,5 +1,6 @@
 import module from 'node:module'
 import path from 'node:path'
+import { absorbedPackageAliases } from '../utils/absorbedPackages'
 
 export type BuildOneMetroResolverOverridesOptions = {
   projectRoot: string
@@ -12,7 +13,7 @@ export type MetroConfigLike = { resolver?: Record<string, any> } | undefined
  *
  * Used by getViteMetroPluginOptions, which feeds these into the same
  * getMetroConfigFromViteConfig pipeline both production native bundles and
- * standalone Metro invocations (expo export, eas update) go through. The
+ * standalone Metro invocations go through. The
  * overrides handle One-specific concerns: server-only stripping, .css → empty,
  * _middleware → empty, native singleton ownership, and react-native-svg's
  * compiled entry point.
@@ -30,10 +31,12 @@ export function buildOneMetroResolverOverrides({
     paths: [projectRoot],
   })
   const projectPackagePath = path.join(projectRoot, 'package.json')
+  const absorbed = absorbedPackageAliases(projectRoot, 'native')
 
   return <T extends MetroConfigLike>(defaultConfig: T): T => {
     const resolver: Record<string, any> = {
       ...defaultConfig?.resolver,
+      assetExts: [...new Set([...(defaultConfig?.resolver?.assetExts ?? []), 'txt'])],
       extraNodeModules: {
         ...defaultConfig?.resolver?.extraNodeModules,
       },
@@ -52,6 +55,11 @@ export function buildOneMetroResolverOverrides({
             moduleName,
             platform
           )
+        }
+
+        // packages one absorbs resolve to one's copy
+        if (moduleName in absorbed) {
+          return { type: 'sourceFile', filePath: absorbed[moduleName] }
         }
 
         if (moduleName.endsWith('.css')) {

@@ -1,0 +1,69 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 1050
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 14023
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2575
+    },
+    {
+      "name": "home lists nav-one-native-menu-primary-action",
+      "durationMs": 2559
+    },
+    {
+      "name": "nav-one-native-menu-primary-action settles",
+      "durationMs": 6112
+    },
+    {
+      "name": "Menu primary action fixture mounted",
+      "durationMs": 2166
+    },
+    {
+      "name": "short tap runs primary action without opening menu",
+      "durationMs": 2092
+    },
+    {
+      "name": "long press opens native menu without primary action",
+      "durationMs": 2249
+    },
+    {
+      "name": "native menu item reaches its separate callback",
+      "durationMs": 2123
+    },
+    {
+      "name": "native menu becomes disabled",
+      "durationMs": 2048
+    },
+    {
+      "name": "disabled Menu rejects short and long press",
+      "durationMs": 700
+    },
+    {
+      "name": "Menu re-enabled",
+      "durationMs": 2075
+    },
+    {
+      "name": "primary action works again after enabling",
+      "durationMs": 2027
+    },
+    {
+      "name": "plain Menu still opens on short tap",
+      "durationMs": 2165
+    },
+    {
+      "name": "plain Menu item keeps primary callback separate",
+      "durationMs": 2103
+    }
+  ],
+  "durationMs": 153625,
+  "simulatorId": "20A4D15A-8E8F-4D08-A8CC-1EBE7417552D",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "menu-primary-action"
+}

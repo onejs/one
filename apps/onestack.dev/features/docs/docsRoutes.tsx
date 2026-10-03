@@ -22,6 +22,18 @@ export const docsRoutes = [
   },
 
   {
+    title: 'One Native',
+    pages: [
+      { title: 'Overview', route: '/docs/native-overview' },
+      { title: 'Setup', route: '/docs/native-setup' },
+      { title: 'Components', route: '/docs/native-components' },
+      { title: 'Swift and Kotlin', route: '/docs/native-source' },
+      { title: 'Platform APIs', route: '/docs/native-apis' },
+      { title: 'Platform Notes', route: '/docs/native-platforms' },
+    ],
+  },
+
+  {
     title: 'Routing',
     pages: [
       { title: 'Overview', route: '/docs/routing' },
@@ -79,6 +91,7 @@ export const docsRoutes = [
       { title: 'useTabs', route: '/docs/hooks-useTabs' },
       { title: 'useDrawer', route: '/docs/hooks-useDrawer' },
       { title: 'useLinkTo', route: '/docs/hooks-useLinkTo' },
+      { title: 'useHeaderHeight', route: '/docs/hooks-useHeaderHeight' },
       { title: 'useIsFocused', route: '/docs/hooks-useIsFocused' },
       { title: 'useSitemap', route: '/docs/hooks-useSitemap' },
     ],
@@ -103,7 +116,6 @@ export const docsRoutes = [
       },
       { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
       { title: 'Skew Protection', route: '/docs/guides-skew-protection' },
-      { title: 'Native Features (Alpha)', route: '/docs/native-features' },
     ],
   },
 

@@ -1,0 +1,38 @@
+---
+title: Launch screen
+description: Hold the native launch screen until your app is ready.
+---
+
+`One.LaunchScreen` controls the native launch screen during app startup. One
+prebuild keeps the iOS storyboard and Android system splash visible until React
+Native draws its first content. An Expo-prebuilt app needs
+`holdLaunchScreen: true` in `vxrn/expo-plugin` for the same behavior.
+
+Call `preventAutoHide()` at module evaluation time, before the first render,
+when startup work needs longer. Call `hide()` after that work completes:
+
+```tsx
+import { One } from 'one'
+
+One.LaunchScreen.preventAutoHide()
+
+async function startApp() {
+  try {
+    await loadInitialData()
+  } finally {
+    One.LaunchScreen.hide({ fade: true })
+  }
+}
+
+void startApp()
+```
+
+Both methods are synchronous. `hide()` is safe to call again after the launch
+screen is gone. `fade: true` fades the iOS launch view instead of removing it
+immediately; Android uses its system splash exit animation. The hold applies
+only to the current app launch, so call `preventAutoHide()` on each cold start
+that needs it.
+
+The iOS 27 simulator proof held the storyboard over a rendered React Native
+home screen, then used a link handled in the app's JS startup module to call
+`hide()`. The fixture became visible, and a second `hide()` completed safely.

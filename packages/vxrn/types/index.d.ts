@@ -15,6 +15,8 @@ export * from './config/getBaseVitePlugins';
 export * from './utils/patches';
 export * from './utils/environmentUtils';
 export * from './utils/getServerEntry';
+export * from './utils/nearestPackageJson';
+export * from './utils/swiftPackageId';
 export * from './plugins/rollupRemoveUnusedImports';
 export * from './plugins/autoDepOptimizePlugin';
 export * from './plugins/rnCodegenPlugin';

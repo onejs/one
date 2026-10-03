@@ -48,6 +48,7 @@ import { labelProcess } from './label-process'
 import { getRouteExports } from './serverRouteModules'
 import { pLimit } from '../utils/pLimit'
 import { getCriticalCSSOutputPaths } from '../vite/plugins/criticalCSSPlugin'
+import { absorbedPackageAliases } from '../utils/absorbedPackages'
 
 const { ensureDir, writeJSON } = FSExtra
 
@@ -129,9 +130,7 @@ installPrepareStackTraceGuard()
 
 // these handlers must only attach when `build` is actually invoked. attaching
 // them at module load leaks into `one dev`, because `one/vite` re-exports from
-// this file — and dev intentionally does NOT exit on unhandled rejection (see
-// dev.ts). a stray rejection from expo's manifest middleware (client closing
-// the connection mid-stream) was killing the dev server.
+// this file and dev intentionally does not exit on unhandled rejection.
 let buildErrorHandlersInstalled = false
 function installBuildErrorHandlers() {
   if (buildErrorHandlersInstalled) return
@@ -1429,24 +1428,24 @@ export default {
               // react native 0.87 removed @react-native/assets-registry, but libraries
               // like react-native-svg still import its registry
               find: /^(react-native\/asset-registry|@react-native\/assets-registry\/registry)$/,
-              replacement: resolvePath(
-                'react-native-web/dist/modules/AssetRegistry',
-                options.root
-              ),
+              replacement: 'react-native-web/dist/modules/AssetRegistry',
             },
             {
               find: 'react-native/package.json',
-              replacement: resolvePath('react-native-web/package.json', options.root),
+              replacement: 'react-native-web/package.json',
             },
             {
               find: 'react-native',
-              replacement: resolvePath('react-native-web', options.root),
+              replacement: 'react-native-web',
             },
-            {
-              find: 'react-native-safe-area-context',
-              replacement: resolvePath('@vxrn/safe-area', options.root),
-            },
+            ...Object.entries(absorbedPackageAliases(options.root, 'web')).map(
+              ([find, replacement]) => ({ find, replacement })
+            ),
           ],
+          // the aliases name react-native-web by package, so it resolves from
+          // the app root only once something imports react-native: an app
+          // with no react-native imports needs no react-native-web.
+          dedupe: ['react-native-web'],
         },
         build: {
           outDir,

@@ -2,7 +2,6 @@ import { ChevronRight } from '@tamagui/lucide-icons-2'
 import { Link } from 'one'
 import React from 'react'
 import {
-  EnsureFlexed,
   H1,
   H2,
   H3,
@@ -23,9 +22,11 @@ import { SubTitle } from '../site/SubTitle'
 import { Badge } from './Badge'
 import { Code, CodeInline } from './Code'
 import { LinkHeading } from './LinkHeading'
+import { NativeHero } from './NativeHero'
 import { Notice } from './Notice'
 import { PropsTable } from './PropsTable'
 import { RouteTree } from './RouteTree'
+import { Table, Tbody, Td, Th, Thead, Tr } from './Table'
 import { unwrapText } from './unwrapText'
 
 const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
@@ -62,74 +63,15 @@ const UL = styled(YStack, {
   mr: '$2',
 })
 
-const TableBase = styled(View, {
-  render: 'table',
-  display: 'table' as any,
-  width: '100%',
-  my: '$4',
-  // @ts-ignore
-  borderCollapse: 'collapse' as any,
-})
-
-const TableWrapper = styled(View, {
-  width: '100%',
-  overflowX: 'auto' as any,
-  my: '$4',
-})
-
-const Table = (props: any) => (
-  <TableWrapper>
-    <TableBase className="mdx-table" my={0} {...props} />
-  </TableWrapper>
-)
-
-const Thead = styled(View, {
-  render: 'thead',
-  display: 'table-header-group' as any,
-})
-
-const Tbody = styled(View, {
-  render: 'tbody',
-  display: 'table-row-group' as any,
-})
-
-const Tr = styled(View, {
-  render: 'tr',
-  display: 'table-row' as any,
-})
-
-const Th = styled(Text, {
-  render: 'th',
-  display: 'table-cell' as any,
-  py: '$2.5',
-  px: '$3',
-  fontWeight: '600',
-  fontSize: '$4',
-  color: '$color11',
-  textAlign: 'left' as any,
-  verticalAlign: 'bottom' as any,
-  borderBottomWidth: 1,
-  borderColor: '$color7',
-})
-
-const Td = styled(Text, {
-  render: 'td',
-  display: 'table-cell' as any,
-  py: '$2.5',
-  px: '$3',
-  fontSize: '$4',
-  color: '$color12',
-  textAlign: 'left' as any,
-  verticalAlign: 'top' as any,
-  borderBottomWidth: 1,
-  borderColor: '$color4',
-})
-
 const HR = () => (
-  <YStack mt="$9" mb="$5" mx="auto" maxWidth="50%">
-    <EnsureFlexed />
-    <YStack borderBottomColor="$color5" borderBottomWidth={1} flex={1} />
-  </YStack>
+  <YStack
+    mt="$9"
+    mb="$5"
+    mx="auto"
+    width="50%"
+    borderBottomColor="$color5"
+    borderBottomWidth={1}
+  />
 )
 
 // code blocks are fully rendered by Expressive Code (a self-contained
@@ -173,6 +115,7 @@ const componentsIn = {
   Text,
   Theme,
   Code,
+  NativeHero,
   Notice,
   SubTitle,
   RouteTree,
@@ -198,7 +141,7 @@ const componentsIn = {
         pressStyle={{ y: 2, bg: '$color1' }}
       >
         <XStack ai="center" jc="space-between" f={1} w="100%">
-          <YStack>
+          <YStack flexShrink={1}>
             <Heading size="$4" color="$color7" {...(!!category && { mt: '$-2' })}>
               {category}
             </Heading>

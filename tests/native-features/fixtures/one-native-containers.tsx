@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 export default function OneNativeContainers() {
   const [isOn, setIsOn] = useState(false)
@@ -50,12 +50,12 @@ export default function OneNativeContainers() {
       </View>
 
       <View style={styles.row}>
-        <Swift.Text
+        <One.iOS.Text
           text="Standalone text"
           style={styles.leaf}
           testID="one-native-container-text"
         />
-        <Swift.Label
+        <One.iOS.Label
           label="Standalone label"
           systemImage="star.fill"
           style={styles.leaf}
@@ -64,13 +64,13 @@ export default function OneNativeContainers() {
       </View>
 
       {environment ? (
-        <Swift.Host {...environmentProps} axis="horizontal" spacing={8}>
-          <Swift.Text text="Host environment" />
-          <Swift.Button label="Host disabled" />
-        </Swift.Host>
+        <One.iOS.Host {...environmentProps} axis="horizontal" spacing={8}>
+          <One.iOS.Text text="Host environment" />
+          <One.iOS.Button label="Host disabled" />
+        </One.iOS.Host>
       ) : null}
 
-      <Swift.Form
+      <One.iOS.Form
         {...environmentProps}
         style={styles.form}
         onLayout={({ nativeEvent }) =>
@@ -80,11 +80,11 @@ export default function OneNativeContainers() {
           })
         }
       >
-        <Swift.Section title="Details" footer={footer ? 'Two of two' : ''}>
-          <Swift.Text text="Composed text" />
-          <Swift.Label label="Composed label" systemImage="star.fill" />
-          <Swift.Toggle label="Notify" isOn={isOn} onIsOnChange={setIsOn} />
-          <Swift.Slot height={44}>
+        <One.iOS.Section title="Details" footer={footer ? 'Two of two' : ''}>
+          <One.iOS.Text text="Composed text" />
+          <One.iOS.Label label="Composed label" systemImage="star.fill" />
+          <One.iOS.Toggle label="Notify" isOn={isOn} onIsOnChange={setIsOn} />
+          <One.iOS.Slot height={44}>
             <Pressable
               testID="one-native-container-slot"
               style={styles.slot}
@@ -92,21 +92,21 @@ export default function OneNativeContainers() {
             >
               <Text>React Native row</Text>
             </Pressable>
-          </Swift.Slot>
-        </Swift.Section>
+          </One.iOS.Slot>
+        </One.iOS.Section>
         {extra ? (
-          <Swift.Section title="More">
-            <Swift.Button
+          <One.iOS.Section title="More">
+            <One.iOS.Button
               label="Section button"
               onPress={() => setSectionTaps((count) => count + 1)}
             />
-            <Swift.Host axis="horizontal" spacing={12}>
-              <Swift.Text text="In host" />
-              <Swift.Button
+            <One.iOS.Host axis="horizontal" spacing={12}>
+              <One.iOS.Text text="In host" />
+              <One.iOS.Button
                 label="Host button"
                 onPress={() => setHostTaps((count) => count + 1)}
               />
-              <Swift.Slot height={30} width={90}>
+              <One.iOS.Slot height={30} width={90}>
                 <Pressable
                   testID="one-native-container-nested-slot"
                   style={styles.slot}
@@ -114,11 +114,11 @@ export default function OneNativeContainers() {
                 >
                   <Text>Nested row</Text>
                 </Pressable>
-              </Swift.Slot>
-            </Swift.Host>
-          </Swift.Section>
+              </One.iOS.Slot>
+            </One.iOS.Host>
+          </One.iOS.Section>
         ) : null}
-      </Swift.Form>
+      </One.iOS.Form>
 
       <View style={styles.row}>
         <Text

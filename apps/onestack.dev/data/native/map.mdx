@@ -1,0 +1,261 @@
+---
+title: Map
+description: One map on both platforms, MapKit on iOS and Google Maps on Android
+---
+
+<NativeHero
+  src="/native/map.webp"
+  alt="One.UI.Map on iOS: MapKit with markers, a walking route, and a radius over San Francisco"
+/>
+
+`One.UI.Map` is one map API on both platforms: MapKit on iOS and Google Maps
+on Android.
+
+- A Google-style camera with `zoom`, seeded from props.
+- Markers, polylines, polygons, and circles as plain arrays.
+- Camera, marker, and map tap events with the same payloads on both.
+- iOS needs no key. Android needs a Google Maps key.
+
+## Usage
+
+```tsx
+import { One } from 'one'
+
+<One.UI.Map
+  style={{ flex: 1 }}
+  cameraPosition={{
+    coordinates: { latitude: 37.7955, longitude: -122.3937 },
+    zoom: 12,
+  }}
+  markers={[
+    {
+      id: 'ferry',
+      coordinates: { latitude: 37.7955, longitude: -122.3937 },
+      title: 'Ferry Building',
+      tintColor: '#ff3b30',
+    },
+  ]}
+  onCameraMove={({ coordinates, zoom }) => recordCamera(coordinates, zoom)}
+  onMarkerClick={(marker) => selectPlace(marker.id)}
+  onMapClick={({ coordinates }) => dropPin(coordinates)}
+/>
+```
+
+The camera seeds from `cameraPosition` and seeds again only when its value
+changes. In between, people pan and zoom freely. Never feed `onCameraMove`
+back into `cameraPosition`; that seeds the camera at the end of every gesture
+and fights the pan.
+
+### Android key
+
+Android needs a maps key in the app manifest, or mounting throws. The Maps SDK
+compiles into Android builds only when the key is set.
+
+```ts
+one({
+  native: {
+    app: {
+      android: {
+        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
+    },
+  },
+})
+```
+
+## API reference
+
+Every prop is optional. An empty map shows the default camera over San
+Francisco. Colors are `#rrggbb` or `#rrggbbaa` strings.
+
+<PropsTable
+  title="Props"
+  source="ui/mapTypes.ts#MapProps"
+  data={[
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Sizes the map.' },
+    { name: 'testID', type: 'string', description: 'Test identifier for the native view.' },
+    { name: 'accessibilityLabel', type: 'string', description: 'Label read by screen readers.' },
+    {
+      name: 'cameraPosition',
+      type: 'CameraPosition',
+      description: 'Center and Google zoom. Applied on mount and whenever the value changes.',
+    },
+    { name: 'markers', type: 'readonly MapMarker[]', description: 'Pins. Ids must be unique.' },
+    { name: 'polylines', type: 'readonly MapPolyline[]', description: 'Open lines through coordinates.' },
+    { name: 'polygons', type: 'readonly MapPolygon[]', description: 'Closed, filled shapes.' },
+    { name: 'circles', type: 'readonly MapCircle[]', description: 'Filled circles with a radius in meters.' },
+  ]}
+/>
+
+<PropsTable
+  title="Events"
+  source="ui/mapTypes.ts#MapProps"
+  data={[
+    {
+      name: 'onCameraMove',
+      type: '(event: { coordinates: Coordinates; zoom: number }) => void',
+      description: 'Once when a pan or zoom gesture ends, with the new camera.',
+    },
+    {
+      name: 'onMarkerClick',
+      type: '(marker: MapMarker) => void',
+      description: 'A marker was tapped. Receives the marker object from props, matched by id.',
+    },
+    {
+      name: 'onMapClick',
+      type: '(event: { coordinates: Coordinates }) => void',
+      description: 'The map was tapped away from a marker. Marker taps never also fire this.',
+    },
+  ]}
+/>
+
+### Shapes
+
+<PropsTable
+  title="CameraPosition"
+  source="ui/mapTypes.ts#CameraPosition"
+  data={[
+    { name: 'coordinates', type: 'Coordinates', description: 'The center.' },
+    { name: 'zoom', type: 'number', description: 'Google zoom level, the same scale on both platforms.' },
+  ]}
+/>
+
+<PropsTable
+  title="Coordinates"
+  source="ui/mapTypes.ts#Coordinates"
+  data={[
+    { name: 'latitude', type: 'number', description: 'Degrees north.' },
+    { name: 'longitude', type: 'number', description: 'Degrees east.' },
+  ]}
+/>
+
+<PropsTable
+  title="MapMarker"
+  source="ui/mapTypes.ts#MapMarker"
+  data={[
+    { name: 'id', type: 'string', description: 'Unique among markers.' },
+    { name: 'coordinates', type: 'Coordinates', description: 'Where the pin sits.' },
+    { name: 'title', type: 'string', description: 'Shown with the pin.' },
+    { name: 'tintColor', type: 'string', description: 'Pin color.' },
+  ]}
+/>
+
+<PropsTable
+  title="MapPolyline"
+  source="ui/mapTypes.ts#MapPolyline"
+  data={[
+    { name: 'id', type: 'string', description: 'Unique among polylines.' },
+    { name: 'coordinates', type: 'readonly Coordinates[]', description: 'The points, in order.' },
+    { name: 'color', type: 'string', description: 'Line color.' },
+    { name: 'width', type: 'number', description: 'Line width in points.' },
+  ]}
+/>
+
+<PropsTable
+  title="MapPolygon"
+  source="ui/mapTypes.ts#MapPolygon"
+  data={[
+    { name: 'id', type: 'string', description: 'Unique among polygons.' },
+    { name: 'coordinates', type: 'readonly Coordinates[]', description: 'The corners, in order.' },
+    { name: 'color', type: 'string', description: 'Fill color.' },
+    { name: 'lineColor', type: 'string', description: 'Outline color.' },
+    { name: 'lineWidth', type: 'number', description: 'Outline width in points.' },
+  ]}
+/>
+
+<PropsTable
+  title="MapCircle"
+  source="ui/mapTypes.ts#MapCircle"
+  data={[
+    { name: 'id', type: 'string', description: 'Unique among circles.' },
+    { name: 'center', type: 'Coordinates', description: 'The center.' },
+    { name: 'radius', type: 'number', description: 'Radius in meters.' },
+    { name: 'color', type: 'string', description: 'Fill color.' },
+    { name: 'lineColor', type: 'string', description: 'Outline color.' },
+    { name: 'lineWidth', type: 'number', description: 'Outline width in points.' },
+  ]}
+/>
+
+## Behavior
+
+- Invalid values throw during render: coordinates out of range, colors that
+  are not hex strings, negative widths, and duplicate ids within one array.
+- Unset colors and widths use each platform's defaults.
+
+Left out on purpose: custom marker views and callouts, user location, map type
+and styling, tilt and bearing, gesture toggles, and imperative camera refs.
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Native view | MapKit | Google Maps | Renders nothing |
+| Key | None | `googleMapsApiKey`, or mounting throws | None |
+
+On web, pair it with a web map library.
+
+## iOS search and directions
+
+`One.iOS.Map` also supports MapKit Look Around through the generated SwiftUI
+`lookAroundViewer` style. Keep `isPresented` controlled; MapKit asks for a scene
+at the supplied coordinates and calls `onChange(false)` when the viewer closes
+or no scene is available. Look Around needs network access and is available on
+iOS 17 or later.
+
+```tsx
+const [showLookAround, setShowLookAround] = useState(false)
+
+<One.iOS.Map
+  latitude={37.7955}
+  longitude={-122.3937}
+  markers={[]}
+  style={{ height: 240 }}
+  swiftStyle={{
+    lookAroundViewer: {
+      isPresented: { value: showLookAround, onChange: setShowLookAround },
+      latitude: 37.7934,
+      longitude: -122.3950,
+    },
+  }}
+/>
+// Set showLookAround to true from a button to present the viewer.
+```
+
+`One.iOS.MapServices` uses MapKit's local search and route service. It needs a
+network connection, but no location permission when you provide coordinates.
+The map view's marker and polyline props accept coordinates from these results.
+
+```ts
+const center = { latitude: 37.7955, longitude: -122.3937 }
+const places = await One.iOS.MapServices.search('Ferry Building', center, 3000)
+const suggestions = await One.iOS.MapServices.autocomplete('Ferry Bu', center, 3000)
+const selected = suggestions[0]
+if (selected) {
+  const place = await One.iOS.MapServices.resolveSuggestion(selected.id)
+  // place has the selected suggestion's name, address, and coordinates.
+}
+const route = await One.iOS.MapServices.directions(
+  center,
+  { latitude: 37.7786, longitude: -122.3893 },
+  'walking'
+)
+// route.polyline can be passed to One.UI.Map's polylines coordinates.
+```
+
+`search(query, center, radiusMeters = 5000)` returns names, addresses, and
+coordinates. Radius must be 100 to 50,000 metres and hints the search region;
+MapKit may return results outside that region. `directions(origin, destination,
+transport = 'driving')` returns the first route's distance in metres, expected
+travel time in seconds, polyline coordinates, and instruction steps. The
+transport is `driving` or `walking`. Search can return an empty array. Invalid
+input rejects with `E_MAP_INPUT`; service and routing failures reject with
+`E_MAP_SEARCH` and `E_MAP_DIRECTIONS`.
+
+`autocomplete(query, center, radiusMeters = 5000)` returns MapKit text
+suggestions with an `id`, `title`, and `subtitle`. Pass the selected `id` to
+`resolveSuggestion(id)` to get its exact MapKit place. IDs remain valid until
+the next successful autocomplete result replaces them. A newer query cancels
+an unfinished query, which rejects with `E_MAP_CANCELED`; handle that when
+updating suggestions as someone types. Invalid input or an old ID rejects
+with `E_MAP_INPUT`. MapKit failures use `E_MAP_AUTOCOMPLETE` or `E_MAP_SEARCH`;
+a query that does not finish in 20 seconds uses `E_MAP_TIMEOUT`. See
+[Apple's MapKit completion guide](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter)
+for how suggestion fragments are produced.

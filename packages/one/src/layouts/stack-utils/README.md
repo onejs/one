@@ -209,3 +209,79 @@ Accepts all props from `react-native-screens` SearchBarProps.
 ```
 
 Both approaches work, choose based on your preference. The composition API can be more readable for complex configurations.
+
+## Stack Toolbar Composition API
+
+Declarative native toolbar items in the same compound style as the header.
+One `Stack.Toolbar` declares one `placement`: `left` and `right` compile to
+react-navigation 8 alpha iOS header items (`unstable_headerLeftItems` /
+`unstable_headerRightItems`); `bottom` (the default) renders the
+navigation-controller toolbar in place through the retained `ToolbarHost`
+capability, so it must mount in screen content where the responder chain
+reaches the screen view controller, and only on iOS.
+
+```tsx
+<Stack.Screen name="index">
+  <Stack.Toolbar placement="left">
+    <Stack.Toolbar.Button icon="pencil" onPress={edit}>
+      Edit
+    </Stack.Toolbar.Button>
+  </Stack.Toolbar>
+  <Stack.Toolbar placement="right">
+    <Stack.Toolbar.Menu title="More" icon="ellipsis.circle">
+      <Stack.Toolbar.MenuAction icon="square.and.arrow.up" onPress={share}>
+        Share
+      </Stack.Toolbar.MenuAction>
+    </Stack.Toolbar.Menu>
+  </Stack.Toolbar>
+</Stack.Screen>
+```
+
+```tsx
+// inside screen content, iOS only
+<Stack.Toolbar>
+  <Stack.Toolbar.Button icon="plus" onPress={add}>
+    Add
+  </Stack.Toolbar.Button>
+  <Stack.Toolbar.Spacer />
+  <Stack.Toolbar.SearchBarSlot />
+</Stack.Toolbar>
+```
+
+Children are `Button`, `Menu`, `MenuAction`, `Spacer`, `SearchBarSlot`,
+`Label`, `Icon`, and `Badge`. A `Button` label is its text children or a
+`Label` child; `icon` takes an SF Symbol name or an image source, and an
+`Icon` child takes `sf`, `xcasset`, or `src`. `tintColor` passes through as
+a platform `ColorValue`, including dynamic iOS values. `variant` selects
+`plain`, `done`, or `prominent`. `separateBackground` opts out of the shared
+background (iOS 26 Liquid Glass); `hidesSharedBackground` hides it behind
+the item. A `Menu` title feeds the menu title and, without a `Label` child,
+the bar label; nested `Menu` children become submenus, with `inline` and
+`palette` for submenus and `elementSize` for bottom menus. `MenuAction`
+takes `isOn`, `destructive`, `subtitle`, and `unstable_keepPresented`.
+`Spacer` is flexible, or fixed with `width` (required in left/right).
+`SearchBarSlot` is bottom only. `Badge` renders in any placement.
+
+An explicit toolbar always wins over incoming options on its own side: a
+toolbar whose items are all hidden writes an empty array and clears
+inherited items, while an absent toolbar preserves them. A bottom toolbar in
+layout config warns and is ignored. `asChild` renders children as a custom
+header element instead of header items (left/right only).
+
+Screen state can drive right items without a new API: render a nameless
+`Stack.Screen` with a `Stack.Toolbar` in route content and its options apply
+to the current route through `setOptions`.
+
+```tsx
+// inside screen content, driven by screen state
+const [hidden, setHidden] = useState(false)
+return (
+  <Stack.Screen>
+    <Stack.Toolbar placement="right">
+      <Stack.Toolbar.Button icon="magnifyingglass" hidden={hidden} onPress={probe}>
+        Probe
+      </Stack.Toolbar.Button>
+    </Stack.Toolbar>
+  </Stack.Screen>
+)
+```

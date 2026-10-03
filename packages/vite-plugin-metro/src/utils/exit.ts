@@ -191,7 +191,7 @@ function killActiveChildProcesses(signal: NodeJS.Signals): number {
  *
  * @example ```bash
  * Done writing bundle output
- * Detected 2 processes preventing Expo from exiting, forcefully exiting now.
+ * Detected 2 processes preventing the command from exiting, forcefully exiting now.
  *   - node /Users/cedric/../node_modules/nativewind/dist/metro/tailwind/v3/child.js
  *   - node /Users/cedric/../node_modules/nativewind/dist/metro/tailwind/v3/child.js
  * ```
@@ -213,7 +213,7 @@ function tryWarnActiveProcesses() {
   }
 
   if (!activeProcesses.length) {
-    warn('Something prevented Expo from exiting, forcefully exiting now.')
+    warn('Something prevented the command from exiting, forcefully exiting now.')
   } else {
     const singularOrPlural =
       activeProcesses.length === 1 ? '1 process' : `${activeProcesses.length} processes`

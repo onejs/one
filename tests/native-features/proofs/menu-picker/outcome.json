@@ -1,0 +1,205 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 876
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 7507
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2018
+    },
+    {
+      "name": "home lists nav-one-native-menu-picker",
+      "durationMs": 2057
+    },
+    {
+      "name": "nav-one-native-menu-picker settles",
+      "durationMs": 4771
+    },
+    {
+      "name": "Menu Picker fixture mounted",
+      "durationMs": 4490
+    },
+    {
+      "name": "Menu presents native Picker row",
+      "durationMs": 2007
+    },
+    {
+      "name": "Picker opens native options submenu",
+      "durationMs": 2096
+    },
+    {
+      "name": "initial native Picker checkmark marks Small",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker selection reaches React",
+      "durationMs": 2037
+    },
+    {
+      "name": "accepted Picker row reopens",
+      "durationMs": 1905
+    },
+    {
+      "name": "accepted Picker options reopen",
+      "durationMs": 1879
+    },
+    {
+      "name": "accepted native Picker checkmark marks Large",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 1859
+    },
+    {
+      "name": "Picker rejection enabled",
+      "durationMs": 1782
+    },
+    {
+      "name": "Picker row reopens",
+      "durationMs": 1872
+    },
+    {
+      "name": "Picker options reopen",
+      "durationMs": 1901
+    },
+    {
+      "name": "rejected Picker selection keeps prop value",
+      "durationMs": 1871
+    },
+    {
+      "name": "rejected Picker row reopens",
+      "durationMs": 1904
+    },
+    {
+      "name": "rejected Picker options reopen",
+      "durationMs": 3610
+    },
+    {
+      "name": "rejected native Picker checkmark remains Large",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 1912
+    },
+    {
+      "name": "Picker revision resets selection",
+      "durationMs": 2033
+    },
+    {
+      "name": "reset Picker row reopens",
+      "durationMs": 1963
+    },
+    {
+      "name": "reset Picker options reopen",
+      "durationMs": 2816
+    },
+    {
+      "name": "reset native Picker checkmark marks Small",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 1868
+    },
+    {
+      "name": "context Picker rejection disabled",
+      "durationMs": 2319
+    },
+    {
+      "name": "initial context menu opens",
+      "durationMs": 2293
+    },
+    {
+      "name": "initial context Picker options open",
+      "durationMs": 3588
+    },
+    {
+      "name": "initial context Picker checkmark marks Small",
+      "durationMs": 0
+    },
+    {
+      "name": "context Picker selection reaches React",
+      "durationMs": 3216
+    },
+    {
+      "name": "accepted context menu opens",
+      "durationMs": 2556
+    },
+    {
+      "name": "accepted context Picker options open",
+      "durationMs": 3117
+    },
+    {
+      "name": "accepted context Picker checkmark marks Large",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 2083
+    },
+    {
+      "name": "context Picker rejection enabled",
+      "durationMs": 2085
+    },
+    {
+      "name": "rejecting context menu opens",
+      "durationMs": 1953
+    },
+    {
+      "name": "rejecting context Picker options open",
+      "durationMs": 3582
+    },
+    {
+      "name": "rejected context Picker selection keeps prop value",
+      "durationMs": 1908
+    },
+    {
+      "name": "rejected context menu opens",
+      "durationMs": 1936
+    },
+    {
+      "name": "rejected context Picker options open",
+      "durationMs": 2033
+    },
+    {
+      "name": "rejected context Picker checkmark remains Large",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 2050
+    },
+    {
+      "name": "context Picker revision resets selection",
+      "durationMs": 1916
+    },
+    {
+      "name": "reset context menu opens",
+      "durationMs": 1905
+    },
+    {
+      "name": "reset context Picker options open",
+      "durationMs": 2039
+    },
+    {
+      "name": "reset context Picker checkmark marks Small",
+      "durationMs": 0
+    },
+    {
+      "name": "Picker menu dismissed",
+      "durationMs": 2151
+    }
+  ],
+  "durationMs": 309429,
+  "simulatorId": "C75DA2BC-721A-491D-A8C4-65943DA33F67",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "menu-picker"
+}

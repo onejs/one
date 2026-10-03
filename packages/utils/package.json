@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/utils",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "sideEffects": false,
   "type": "module",
   "types": "./types/index.d.ts",
@@ -13,6 +13,16 @@
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
+    },
+    "./publicEnv": {
+      "types": "./types/publicEnv.d.ts",
+      "import": "./dist/esm/publicEnv.mjs",
+      "require": "./dist/cjs/publicEnv.cjs"
+    },
+    "./nativeAppManifest": {
+      "types": "./types/nativeAppManifest.d.ts",
+      "import": "./dist/esm/nativeAppManifest.mjs",
+      "require": "./dist/cjs/nativeAppManifest.cjs"
     }
   },
   "files": [
@@ -27,6 +37,7 @@
     "lint:fix": "npx biome check --write --unsafe src",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",
+    "test": "vitest run --dir src",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -35,8 +46,9 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
-    "@tamagui/build": "3.0.0-beta.1309.1",
-    "@types/ws": "^8.18.1"
+    "@tamagui/build": "3.0.0-beta.1432.1",
+    "@types/ws": "^8.18.1",
+    "vitest": "^4.1.0"
   },
   "publishConfig": {
     "access": "public"

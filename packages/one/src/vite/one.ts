@@ -1,16 +1,17 @@
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
-import {
-  type ExpoManifestRequestHandlerPluginPluginOptions,
-  type MetroPluginOptions,
-  getPlatformEnvDefine,
-} from '@vxrn/vite-plugin-metro'
+import { type MetroPluginOptions, getPlatformEnvDefine } from '@vxrn/vite-plugin-metro'
 import events from 'node:events'
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 import { exactRegex } from 'rolldown/filter'
 import { normalizePath, type Plugin, type PluginOption } from 'vite'
-import { autoDepOptimizePlugin, getOptionsFilled, loadEnv } from 'vxrn'
+import {
+  autoDepOptimizePlugin,
+  getOptionsFilled,
+  loadEnv,
+  nearestPackageJson,
+} from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
@@ -18,8 +19,10 @@ import '../polyfills-server'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { createRouteIndex } from '../utils/routeIndex'
+import { absorbedPackageAliases } from '../utils/absorbedPackages'
 import { ensureTSConfig } from './ensureTsConfig'
 import { setOneOptions } from './loadConfig'
+import { resolveNativeBundler } from './nativeBundler'
 import { bundledDevPlugin } from './plugins/bundledDevPlugin'
 import { clientTreeShakePlugin } from './plugins/clientTreeShakePlugin'
 import { createDevtoolsPlugin } from './plugins/devtoolsPlugin'
@@ -30,6 +33,8 @@ import { criticalCSSPlugin } from './plugins/criticalCSSPlugin'
 import { imageDataPlugin } from './plugins/imageDataPlugin'
 import { createRouteModuleHmrPlugin } from './plugins/routeModuleHmrPlugin'
 import { sourceInspectorPlugin } from './plugins/sourceInspectorPlugin'
+import { swiftPackagePlugin } from './plugins/swiftPackagePlugin'
+import { kotlinSourcePlugin } from './plugins/kotlinSourcePlugin'
 import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
@@ -74,6 +79,12 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // and all native-only globals — One runs as a pure web framework.
   const nativeDisabled = options.native === false
   const nativeOptions = options.native === false ? undefined : options.native
+  const nativeAppName = nativeOptions?.app?.name || nativeOptions?.key
+  // build-time manifest version for One.AppInfo on web, where no installed
+  // binary exists. build and application id have no honest web value, so no
+  // defines are injected for them and the web entry reads null.
+  const nativeApp = nativeOptions?.app
+  const nativeAppVersion = nativeApp?.version
 
   if (nativeDisabled) {
     // tamagui compiler reads this to decide whether to process the native env
@@ -83,11 +94,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   /**
    * A non-null value means that we are going to use Metro.
    */
-  const metroOptions:
-    | (MetroOptions & ExpoManifestRequestHandlerPluginPluginOptions)
-    | null = (() => {
+  const metroOptions: MetroOptions | null = (() => {
     if (nativeDisabled) return null
-    if (nativeOptions?.bundler !== 'metro' && !process.env.ONE_METRO_MODE) {
+    if (resolveNativeBundler({ bundler: nativeOptions?.bundler }) !== 'metro') {
       // the vite native bundler runs no babel and has nowhere to put a babel
       // plugin, so anything configured here is dropped. that is silent by
       // default, and a dropped plugin usually means a broken bundle rather than
@@ -143,7 +152,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
             : []),
         ],
       },
-      mainModuleName: 'one/metro-entry', // So users won't need to write `"main": "one/metro-entry"` in their `package.json` like ordinary Expo apps.
+      mainModuleName: 'one/metro-entry',
       // allow env var to enable lazy startup
       startup: process.env.ONE_METRO_LAZY ? 'lazy' : userMetroOptions?.startup,
     }
@@ -293,6 +302,104 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     },
   }
 
+  // packages one absorbs resolve to one's copy, unless the app declares its own
+  const withAbsorbedAliases = (
+    alias: One.PluginOptions['alias']
+  ): NonNullable<One.PluginOptions['alias']> => {
+    const root = process.cwd()
+    // web takes them through resolve.alias in the one:alias config hook
+    return {
+      ...alias,
+      native: { ...absorbedPackageAliases(root, 'native'), ...alias?.native },
+    }
+  }
+
+  // resolveId-based aliases that work during vite transforms, rolldown dep
+  // pre-bundling (where resolve.alias is not applied), and the standalone
+  // native bundler, which has no vite environment and so is told its platform
+  const createAliasPlugin = (
+    alias: NonNullable<One.PluginOptions['alias']>,
+    nativePlatform?: 'ios' | 'android'
+  ) => {
+    const resolveMap = (map?: Record<string, string>) => {
+      if (!map) return null
+      const out: Record<string, string> = {}
+      for (const [key, value] of Object.entries(map)) {
+        try {
+          out[key] = path.isAbsolute(value) ? value : resolvePath(value)
+        } catch {
+          out[key] = value
+        }
+      }
+      return out
+    }
+
+    const resolved = {
+      web: resolveMap(alias.web),
+      native: resolveMap(alias.native),
+      client: resolveMap(alias.client),
+      ssr: resolveMap(alias.ssr),
+      ios: resolveMap(alias.ios),
+      android: resolveMap(alias.android),
+    }
+
+    // every alias is an exact source match, so the union of all keys is
+    // an exact rust-side filter. anything else never enters js.
+    const aliasKeys = [
+      ...new Set(Object.values(resolved).flatMap((m) => (m ? Object.keys(m) : []))),
+    ]
+    const aliasFilter = aliasKeys.length
+      ? new RegExp(
+          `^(?:${aliasKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`
+        )
+      : /(?!)/
+
+    return {
+      name: 'one:alias',
+      enforce: 'pre',
+      // vite's dep optimizer resolves its include list without plugins, so the
+      // absorbed packages also go in resolve.alias, which only web resolves with
+      config: nativePlatform
+        ? undefined
+        : () => ({
+            resolve: {
+              alias: Object.entries(absorbedPackageAliases(process.cwd(), 'web')).map(
+                ([name, replacement]) => ({ find: new RegExp(`^${name}$`), replacement })
+              ),
+            },
+          }),
+      resolveId: {
+        filter: { id: aliasFilter },
+        handler(source) {
+          const env = nativePlatform ?? this.environment?.name
+
+          // specific env wins over general
+          const specific = env ? resolved[env as keyof typeof resolved] : null
+          if (specific && source in specific) {
+            const id = specific[source]
+            return {
+              id,
+              external: false,
+              packageJsonPath: nearestPackageJson(id),
+            }
+          }
+
+          // fall back to general (web/native)
+          const isWeb = !env || env === 'client' || env === 'ssr'
+          const general = isWeb ? resolved.web : resolved.native
+          if (general && source in general) {
+            const id = general[source]
+            return {
+              id,
+              external: false,
+              packageJsonPath: nearestPackageJson(id),
+            }
+          }
+        },
+      },
+    } satisfies Plugin
+  }
+
   const devAndProdPlugins: Plugin[] = [
     {
       name: 'one:config',
@@ -305,7 +412,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         // only set default if user hasn't configured envPrefix
         if (userConfig.envPrefix) return
         return {
-          envPrefix: ['VITE_', 'EXPO_PUBLIC_'],
+          envPrefix: ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'],
         }
       },
     },
@@ -451,6 +558,10 @@ export function one(options: One.PluginOptions = {}): PluginOption {
               resolveId: {
                 filter: { id: tsconfigPathsFilter },
                 handler(source: string) {
+                  const resolved = (id: string) => ({
+                    id,
+                    packageJsonPath: nearestPackageJson(id),
+                  })
                   const jsExts = [
                     '.ts',
                     '.tsx',
@@ -472,17 +583,18 @@ export function one(options: One.PluginOptions = {}): PluginOption {
                     }
                     if (!candidate) continue
                     // already has a js/ts extension
-                    if (jsExts.includes(path.extname(candidate))) return candidate
+                    if (jsExts.includes(path.extname(candidate)))
+                      return resolved(candidate)
                     // try appending extensions
                     for (const e of jsExts) {
-                      if (existsSync(candidate + e)) return candidate + e
+                      if (existsSync(candidate + e)) return resolved(candidate + e)
                     }
                     // try /index
                     for (const e of jsExts) {
                       if (existsSync(candidate + '/index' + e))
-                        return candidate + '/index' + e
+                        return resolved(candidate + '/index' + e)
                     }
-                    return candidate
+                    return resolved(candidate)
                   }
                 },
               },
@@ -490,73 +602,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
           })(),
         ]),
 
-    // resolveId-based aliases that work during both vite transforms AND
-    // rolldown dep pre-bundling (where resolve.alias is not applied)
-    ...(options.alias
-      ? [
-          (() => {
-            const resolveMap = (map?: Record<string, string>) => {
-              if (!map) return null
-              const out: Record<string, string> = {}
-              for (const [key, value] of Object.entries(map)) {
-                try {
-                  out[key] = path.isAbsolute(value) ? value : resolvePath(value)
-                } catch {
-                  out[key] = value
-                }
-              }
-              return out
-            }
-
-            const a = options.alias!
-            const resolved = {
-              web: resolveMap(a.web),
-              native: resolveMap(a.native),
-              client: resolveMap(a.client),
-              ssr: resolveMap(a.ssr),
-              ios: resolveMap(a.ios),
-              android: resolveMap(a.android),
-            }
-
-            // every alias is an exact source match, so the union of all keys is
-            // an exact rust-side filter. anything else never enters js.
-            const aliasKeys = [
-              ...new Set(
-                Object.values(resolved).flatMap((m) => (m ? Object.keys(m) : []))
-              ),
-            ]
-            const aliasFilter = aliasKeys.length
-              ? new RegExp(
-                  `^(?:${aliasKeys.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})$`
-                )
-              : /(?!)/
-
-            return {
-              name: 'one:alias',
-              enforce: 'pre',
-              resolveId: {
-                filter: { id: aliasFilter },
-                handler(source) {
-                  const env = this.environment?.name
-
-                  // specific env wins over general
-                  const specific = env ? resolved[env as keyof typeof resolved] : null
-                  if (specific && source in specific) {
-                    return { id: specific[source], external: false }
-                  }
-
-                  // fall back to general (web/native)
-                  const isWeb = !env || env === 'client' || env === 'ssr'
-                  const general = isWeb ? resolved.web : resolved.native
-                  if (general && source in general) {
-                    return { id: general[source], external: false }
-                  }
-                },
-              },
-            } satisfies Plugin
-          })(),
-        ]
-      : []),
+    createAliasPlugin(withAbsorbedAliases(options.alias)),
 
     {
       // rolldown fails on deep react-native/Libraries/* imports during dep pre-bundling.
@@ -864,11 +910,35 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         ? undefined
         : (nativeOptions?.bundlerOptions as any)
 
-    globalThis.__vxrnAddNativePlugins = [
+    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => [
+      ...(nativeApp
+        ? [
+            {
+              name: 'one:externalize-expo-for-native-app',
+              resolveId(source) {
+                // native.app binaries have no expo runtime, even when the
+                // workspace hoists an expo package used by another app.
+                if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
+                  return { id: source, external: true }
+                }
+              },
+            } satisfies Plugin,
+          ]
+        : []),
+      createAliasPlugin(withAbsorbedAliases(options.alias), platform),
       clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
       ...(viteBundlerOptions?.plugins ?? []),
+      // last, so an app plugin that compiles .swift itself (a simulator) wins
+      swiftPackagePlugin(platform, root),
+      kotlinSourcePlugin(platform, root),
     ]
-    ;(globalThis as any).__vxrnNativeUserDefine = viteBundlerOptions?.define
+    ;(globalThis as any).__vxrnNativeUserDefine = {
+      ...viteBundlerOptions?.define,
+      ...(nativeAppName && {
+        'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+        'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+      }),
+    }
   }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins
 
@@ -879,6 +949,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   })
 
   // pass config to the rolldown native entry (createNativeDevEngine reads this)
+  // and the app manifest to the native dev server's manifest endpoint
   if (!nativeDisabled) {
     globalThis.__vxrnNativeEntryConfig = {
       routerRoot: routerRoot,
@@ -886,6 +957,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       linking: options.router?.linking,
       setupFile: options.setupFile,
       flags,
+      app: nativeApp,
     }
   }
 
@@ -931,9 +1003,13 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       config() {
         return {
           define: {
-            ...(nativeOptions?.key && {
-              'process.env.ONE_APP_NAME': JSON.stringify(nativeOptions.key),
-              'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeOptions.key),
+            ...(nativeAppName && {
+              'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+              'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
+            }),
+            ...(nativeAppVersion && {
+              'process.env.ONE_APP_VERSION': JSON.stringify(nativeAppVersion),
+              'import.meta.env.ONE_APP_VERSION': JSON.stringify(nativeAppVersion),
             }),
 
             'process.env.ONE_CACHE_KEY': JSON.stringify(CACHE_KEY),

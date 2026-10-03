@@ -36,10 +36,6 @@ export const EXCLUDE_LIST = [
 
   '@sentry/react-native',
 
-  // not ever to be used in app
-  '@expo/cli',
-  'expo-structured-headers',
-
   // not used by web anyway
   // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
   // /lib/module/Platform/Platform.web.js:132:20
@@ -71,9 +67,6 @@ export const EXCLUDE_LIST = [
   'react-native-fast-squircle',
   'react-native-device-info',
 
-  // dev server UI only, lazy-imported at runtime
-  'qrcode-terminal',
-
   // CLI/scripts shouldn't be used in SSR runtime
   '@tamagui/cli',
   // only used by static/plugin
@@ -91,12 +84,10 @@ export const EXCLUDE_LIST = [
 
   // native-only or not needed in SSR
   '@nandorojo/galeria',
-  'expo-video',
   'react-native-pager-view',
   '@react-native/debugger-shell',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
-  'expo/internal/unstable-autolinking-exports',
   'validator',
   'zlib',
 ]
@@ -161,7 +152,10 @@ export async function scanDepsToOptimize(
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
   const deps = Object.keys(pkgJson.dependencies || {})
 
-  let hasReanimated = !!pkgJson.dependencies?.['react-native-reanimated']
+  // worklets without reanimated still needs the worklets transform, as the metro path assumes.
+  const needsWorklets = (json: typeof pkgJson) =>
+    !!(json.dependencies?.['react-native-reanimated'] || json.dependencies?.['react-native-worklets'])
+  let hasReanimated = needsWorklets(pkgJson)
 
   const prebundleDeps = (
     await Promise.all(
@@ -189,8 +183,18 @@ export async function scanDepsToOptimize(
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
-        if (depPkgJson.dependencies?.['react-native-reanimated']) {
+        if (needsWorklets(depPkgJson)) {
           hasReanimated = true
+        }
+
+        // A package declaring `codegenConfig` is a native Fabric component or
+        // TurboModule library. Its codegen entry points import from
+        // `react-native/Libraries/...`, which do not exist under SSR where
+        // react-native is aliased to a web implementation, so it can never be
+        // pre-bundled. Exclude the whole class instead of naming packages.
+        if (depPkgJson.codegenConfig != null) {
+          debug?.(`${dep} skipped: declares codegenConfig (native codegen package)`)
+          return []
         }
 
         const subDeps = await scanDepsToOptimize(depPkgJsonPath, {
@@ -216,7 +220,9 @@ export async function scanDepsToOptimize(
           !!depPkgJson.peerDependencies?.react ||
           hasRequiredDep(depPkgJson, 'react-native') ||
           hasRequiredDep(depPkgJson, 'expo-modules-core') ||
-          // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
+          // expo packages publish extensionless ESM imports that Node cannot
+          // execute directly. Keep installed Expo modules inside Vite's SSR
+          // graph without making Expo a framework dependency.
           dep.startsWith('@expo/') ||
           dep.startsWith('expo-')
 

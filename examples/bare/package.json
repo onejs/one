@@ -1,6 +1,6 @@
 {
   "name": "example-bare",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "private": true,
   "type": "module",
   "main": "index.js",
@@ -13,10 +13,9 @@
     "dev:clean": "vxrn dev --clean",
     "ios": "react-native run-ios",
     "serve": "vxrn serve",
-    "prebuild": "vxrn prebuild --expo false"
+    "prebuild": "vxrn prebuild --app-name bare --display-name bare --bundle-id dev.one.bare --application-id dev.one.bare"
   },
   "dependencies": {
-    "expo-constants": "58.0.0-canary-20260909-ea7a89a",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.87.1"

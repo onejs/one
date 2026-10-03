@@ -4,17 +4,14 @@ import { getAdditionalViteConfig } from './config/getAdditionalViteConfig'
 import { getBaseVitePlugins } from './config/getBaseVitePlugins'
 import { getNonCliModeOnlyVitePlugins } from './config/getNonCliModeOnlyVitePlugins'
 import { getReactNativePlugins } from './config/getReactNativePlugins'
-import type {
-  MetroPluginOptions,
-  ExpoManifestRequestHandlerPluginPluginOptions,
-} from '@vxrn/vite-plugin-metro'
+import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
 
 /**
  * This is considered private API for now, and may change anytime.
  */
 type VxrnPluginOptions = {
   /** Passing a non-null value will enable metro mode. */
-  metro?: (MetroPluginOptions & ExpoManifestRequestHandlerPluginPluginOptions) | null
+  metro?: MetroPluginOptions | null
   /**
    * When true, skip all native (React Native / Metro) plugins so the host
    * runs as a pure web framework.

@@ -1,0 +1,19 @@
+// the release build the android updates suite drives. it reads the
+// launcher's files through run-as, which only a debuggable package allows
+// (the stock emulator images refuse adb root), and its static update server
+// is plain http on the host, which release blocks without cleartext traffic.
+// neither changes bundle selection: react native's dev support follows
+// BuildConfig.DEBUG, which stays false in release.
+// react native's plugin writes the release placeholder in finalizeDsl, so
+// this registers after it there and runs last.
+allprojects {
+  afterEvaluate { project ->
+    if (project.name == 'app') {
+      project.extensions.getByName('androidComponents').finalizeDsl { ext ->
+        def release = ext.buildTypes.getByName('release')
+        release.debuggable = true
+        release.manifestPlaceholders.usesCleartextTraffic = 'true'
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+---
+title: iOS Color
+description: Type-safe UIKit semantic colors
+---
+
+Type-safe UIKit semantic colors. These stay as native color values and respond to trait
+changes without a React appearance subscription.
+
+```tsx
+import { One } from 'one'
+
+<View style={{ backgroundColor: One.iOS.Color.systemBlue }} />
+<Text style={{ color: One.iOS.Color.label }} />
+```
+
+### iOS Colors
+
+All UIKit semantic colors: `systemBlue`, `systemBrown`, `systemCyan`,
+`systemGreen`, `systemIndigo`, `systemMint`, `systemOrange`, `systemPink`,
+`systemPurple`, `systemRed`, `systemTeal`, `systemYellow`, `systemGray`
+through `systemGray6`, `label`, `secondaryLabel`, `tertiaryLabel`,
+`quaternaryLabel`, `systemFill`, `secondarySystemFill`,
+`tertiarySystemFill`, `quaternarySystemFill`, `placeholderText`,
+`systemBackground`, `secondarySystemBackground`,
+`systemGroupedBackground`, `secondarySystemGroupedBackground`,
+`tertiarySystemGroupedBackground`, `separator`, `opaqueSeparator`, `link`,
+`darkText`, and `lightText`.
+
+On web every color reads `null`, so gate native styling behind a platform
+check or fall back to a web color.

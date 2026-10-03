@@ -14,6 +14,8 @@ Second, One ensures that all environment variables loaded are only available to 
 
 So, for example `ONE_PUBLIC_DAYTIME=false one dev` would set both `process.env.ONE_PUBLIC_DAYTIME` and `import.meta.env.ONE_PUBLIC_DAYTIME` to be the string "false" on both server and client.
 
+`ONE_PUBLIC_` is One's default naming convention, while `EXPO_PUBLIC_` remains fully supported. A `ONE_PUBLIC_` variable is also exposed under the matching `EXPO_PUBLIC_` name when that Expo variable is absent. One does not create `ONE_PUBLIC_` variables from Expo variables, and an explicitly defined Expo variable keeps its own value.
+
 But, `SOME_RANDOM_VAR=2` would *not* be exposed to the client side, because it lacks the appropriate prefix.
 
 ### Preset environment variables
@@ -35,15 +37,15 @@ Port priority (highest wins):
 #### Core Variables
 
 - `ONE_CACHE_KEY` is set to a random number for each production build, or stable per dev server run. Useful for cache keys.
-- `ONE_APP_NAME` is set to your [app.key setting](/docs/configuration#app-key).
+- `ONE_APP_NAME` is set to your `native.app.name` setting, falling back to [`native.key`](/docs/configuration#nativekey).
 - `ONE_SERVER_URL` is set in development mode to the current running server URL, like `http://0.0.0.0:8081`. You are expected to set this yourself for production builds.
-- `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#web-defaultRenderMode).
+- `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#webdefaultrendermode).
 
 #### Platform Detection
 
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
 - `VITE_NATIVE` is `"1"` for native platforms (iOS and Android), or `""` for web (client and SSR). Uses truthy/falsy strings to avoid polluting `process.env` types. Useful for tree-shaking native-only code.
-- `EXPO_OS` is set to `"web"` for web builds (both client and SSR), or `"ios"` / `"android"` for native platforms. This matches the Expo convention for platform detection.
+- `ONE_PLATFORM` is `"web"`, `"ios"`, or `"android"`. Expo packages also receive `EXPO_OS` as `"ios"` or `"android"` in native builds; One does not define it on web.
 
 #### React Native
 

@@ -1,36 +1,77 @@
-import type { ResolvedConfig } from 'vite'
+import { searchForWorkspaceRoot, type ResolvedConfig } from 'vite'
 import { spawn } from 'node:child_process'
 import { resolve } from 'node:path'
 import micromatch from 'micromatch'
+import { getDefaultConfig } from '@react-native/metro-config'
 
-// For Metro and Expo, we only import types here.
-// We use `projectImport` to dynamically import the actual modules
-// at runtime to ensure they are loaded from the user's project root.
+// metro itself is loaded from the app so its cli and config stay aligned.
+// the base config belongs to this package and matches its react-native peer.
 import type { loadConfig as loadConfigT } from 'metro'
-import type { getDefaultConfig as getDefaultConfigT } from '@expo/metro-config'
 
 import { findUserBabelConfig } from '@vxrn/compiler'
 import { projectImport, projectResolve } from '../utils/projectImport'
 import { getTerminalReporter } from '../utils/getTerminalReporter'
-import { patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName } from '../utils/patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
 import type { ExtraConfig, MetroConfigExtended } from './types'
 
-type MetroInputConfig = Parameters<typeof loadConfigT>[1]
+type MetroInputConfig = NonNullable<Parameters<typeof loadConfigT>[1]>
 
 const WATCHMAN_PROBE_TIMEOUT_MS = 2000
+const expoEnvAdditionalExts = ['env', 'local', 'development']
+// keep js before mjs so platform-aware .native.js wins for one dist.
+const metroSourceExts = ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs', 'swift']
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
 const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
+// expo prebuild writes an AppDelegate (ios) and MainApplication (android) whose
+// debug bundle url is `.expo/.virtual-metro-entry`. expo maps it to the main
+// entry through server.rewriteRequestUrl (see @expo/metro-config
+// src/rewriteRequestUrl.ts: `url.includes('/.expo/.virtual-metro-entry.bundle?')`
+// rewrites to the resolved entry, preserving relative vs absolute shape and
+// query). match that path to the same main entry as index.
+const expoVirtualEntryBundleRequestPattern =
+  /^(https?:\/\/[^/]+)?\/\.expo\/\.virtual-metro-entry\.bundle(?=$|[?#])/
 // keep app build output and volatile caches out of Metro's fallback watcher.
-// package dist directories remain visible because Metro resolves modules from them.
+// package dist directories remain visible because Metro resolves modules from
+// them, including a dependency's own dist/server, so the app build output
+// pattern never matches inside node_modules.
 const metroWatchExclusions = [
-  /[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
+  /^(?!.*[/\\]node_modules[/\\]).*[/\\]dist[/\\](?:static|server)(?:[/\\]|$)/,
   /[/\\]tests[/\\][^/\\]+[/\\]dist(?:[/\\]|$)/,
   /[/\\]\.docker(?:[/\\]|$)/,
   /[/\\]\.vite(?:[/\\]|$)/,
   /[/\\]node_modules[/\\]\.vxrn(?:[/\\]|$)/,
 ]
+
+function enforceWorkspaceVisibility(
+  config: MetroInputConfig,
+  projectRoot: string
+): MetroInputConfig {
+  const workspaceRoot = searchForWorkspaceRoot(projectRoot)
+  if (workspaceRoot === projectRoot) return config
+
+  return {
+    ...config,
+    watchFolders: [...new Set([...(config.watchFolders ?? []), workspaceRoot])],
+    resolver: {
+      ...config.resolver,
+      nodeModulesPaths: [
+        ...new Set([
+          ...(config.resolver?.nodeModulesPaths ?? []),
+          resolve(projectRoot, 'node_modules'),
+          resolve(workspaceRoot, 'node_modules'),
+        ]),
+      ],
+    },
+  }
+}
+
+function getReactNativeDefaultConfig(projectRoot: string): MetroInputConfig {
+  return enforceWorkspaceVisibility(
+    getDefaultConfig(projectRoot) as MetroInputConfig,
+    projectRoot
+  )
+}
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
   const platform = url.match(/[?&]platform=(ios|android)(?:&|$)/)?.[1]
@@ -45,11 +86,76 @@ function rewriteMainModuleBundleUrl(
     platform: getPlatformFromBundleUrl(url),
   })
 
-  if (url.includes('/.expo/.virtual-metro-entry.bundle?')) {
-    return url.replace('.expo/.virtual-metro-entry', resolvedMainModulePath)
+  if (rootIndexBundleRequestPattern.test(url)) {
+    return url.replace(
+      rootIndexBundleRequestPattern,
+      `$1/${resolvedMainModulePath}.bundle`
+    )
   }
+  return url.replace(
+    expoVirtualEntryBundleRequestPattern,
+    `$1/${resolvedMainModulePath}.bundle`
+  )
+}
 
-  return url.replace(rootIndexBundleRequestPattern, `$1/${resolvedMainModulePath}.bundle`)
+function isMainModuleBundleRequest(url: string) {
+  return (
+    rootIndexBundleRequestPattern.test(url) ||
+    expoVirtualEntryBundleRequestPattern.test(url)
+  )
+}
+
+function isBareSpecifier(name: string) {
+  return name !== '' && !name.startsWith('.') && !name.startsWith('/')
+}
+
+// metro parses `/one/metro-entry.bundle` to the entry `./one/metro-entry`
+// relative to the server root, which misses node_modules package lookup.
+function bareMainModuleForRequest(
+  moduleName: string,
+  mainModuleName: string | undefined
+) {
+  if (!mainModuleName || !isBareSpecifier(mainModuleName)) return undefined
+  if (moduleName === `./${mainModuleName}`) return mainModuleName
+  return undefined
+}
+
+// defaultConfigOverrides and Metro config loading can replace the resolver.
+// enforce entry and vite dedupe semantics on the final resolver while
+// preserving its platform, export conditions and custom resolution policy.
+function enforcePackageResolution(
+  config: MetroInputConfig,
+  mainModuleName: string | undefined,
+  dedupe: readonly string[],
+  projectRoot: string
+): MetroInputConfig {
+  const dedupedPackages = new Set(dedupe)
+  if ((!mainModuleName || !isBareSpecifier(mainModuleName)) && !dedupedPackages.size) {
+    return config
+  }
+  const rootOrigin = resolve(projectRoot, 'package.json')
+  const innerResolveRequest = config.resolver?.resolveRequest
+  return {
+    ...config,
+    resolver: {
+      ...config.resolver,
+      resolveRequest: (context, moduleName, platform) => {
+        const bareMain = bareMainModuleForRequest(moduleName, mainModuleName)
+        const request = bareMain ?? moduleName
+        const packageEnd = request.indexOf(
+          '/',
+          request.startsWith('@') ? request.indexOf('/') + 1 : 0
+        )
+        const packageName = packageEnd === -1 ? request : request.slice(0, packageEnd)
+        const resolutionContext =
+          isBareSpecifier(request) && dedupedPackages.has(packageName)
+            ? { ...context, originModulePath: rootOrigin }
+            : context
+        const resolveRequest = innerResolveRequest || context.resolveRequest
+        return resolveRequest(resolutionContext, request, platform)
+      },
+    },
+  }
 }
 
 async function isWatchmanResponsive(projectRoot: string) {
@@ -135,7 +241,7 @@ function resolveNativeTransforms(
  * Build the Metro config input WITHOUT calling Metro's `loadConfig`. Returns
  * the same shape Metro `loadConfig` expects as its second argument. Use this
  * from a project's `metro.config.cjs` so the outer `loadConfig` (driven by
- * Expo CLI / Metro CLI) is the only one that runs — avoids infinite
+ * the Metro CLI) is the only one that runs. this avoids infinite
  * recursion that would happen if the inner pipeline also called `loadConfig`
  * and re-read the same metro.config.cjs.
  */
@@ -156,53 +262,20 @@ export async function buildMetroConfigInputFromViteConfig(
     )
   }
 
-  const { getDefaultConfig } = await projectImport<{
-    getDefaultConfig: typeof getDefaultConfigT
-  }>(projectRoot, '@expo/metro-config')
-
-  const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
+  const _defaultConfig = getReactNativeDefaultConfig(projectRoot)
 
   if (mainModuleName) {
-    const origRewriteRequestUrl = _defaultConfig!.server!.rewriteRequestUrl!
-
-    const resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string =
-      await (async () => {
-        const ExpoGoManifestHandlerMiddleware = (
-          await projectImport(
-            projectRoot,
-            '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
-          )
-        ).default.ExpoGoManifestHandlerMiddleware
-
-        const manifestHandlerMiddleware = new ExpoGoManifestHandlerMiddleware(
-          projectRoot,
-          {}
-        )
-
-        patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
-          manifestHandlerMiddleware,
-          mainModuleName
-        )
-
-        return (p) => {
-          return manifestHandlerMiddleware.resolveMainModuleName({
-            pkg: { main: mainModuleName },
-            platform: p.platform,
-          })
-        }
-      })()
+    const origRewriteRequestUrl = _defaultConfig!.server?.rewriteRequestUrl
+    const resolveMainModuleName = () => mainModuleName
 
     extraConfig.getResolveMainModuleName = resolveMainModuleName
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (
-        url.includes('/.expo/.virtual-metro-entry.bundle?') ||
-        rootIndexBundleRequestPattern.test(url)
-      ) {
+      if (isMainModuleBundleRequest(url)) {
         return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
-      return origRewriteRequestUrl(url)
+      return origRewriteRequestUrl?.(url) ?? url
     }
   }
 
@@ -233,11 +306,20 @@ export async function buildMetroConfigInputFromViteConfig(
 
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
+    watcher: {
+      ..._defaultConfig?.watcher,
+      additionalExts: [
+        ...new Set([
+          ...(_defaultConfig?.watcher?.additionalExts ?? []),
+          ...expoEnvAdditionalExts,
+        ]),
+      ],
+    },
     resolver: {
       ..._defaultConfig?.resolver,
       useWatchman,
       blockList,
-      sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This fixes `.native` files not being resolved correctly when `.mjs` files are present.
+      sourceExts: metroSourceExts,
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
@@ -269,6 +351,10 @@ export async function buildMetroConfigInputFromViteConfig(
     },
     transformer: {
       ..._defaultConfig?.transformer,
+      // one's router and Expo's optional development env module both use
+      // require.context. Metro installs a throwing runtime stub unless this
+      // graph feature is enabled.
+      unstable_allowRequireContext: true,
       babelTransformerPath: projectResolve(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'
@@ -287,7 +373,16 @@ export async function buildMetroConfigInputFromViteConfig(
       : defaultConfigOverrides),
   }
 
-  return { defaultConfig: merged, projectRoot, extraConfig }
+  return {
+    defaultConfig: enforcePackageResolution(
+      enforceWorkspaceVisibility(merged, projectRoot),
+      mainModuleName,
+      config.resolve?.dedupe ?? [],
+      projectRoot
+    ),
+    projectRoot,
+    extraConfig,
+  }
 }
 
 export async function getMetroConfigFromViteConfig(
@@ -313,60 +408,21 @@ export async function getMetroConfigFromViteConfig(
   const { loadConfig } = await projectImport<{
     loadConfig: typeof loadConfigT
   }>(projectRoot, 'metro')
-  const { getDefaultConfig } = await projectImport<{
-    getDefaultConfig: typeof getDefaultConfigT
-  }>(projectRoot, '@expo/metro-config')
-
-  const _defaultConfig: MetroInputConfig = getDefaultConfig(projectRoot) as any
+  const _defaultConfig = getReactNativeDefaultConfig(projectRoot)
 
   if (mainModuleName) {
-    const origRewriteRequestUrl = _defaultConfig!.server!.rewriteRequestUrl!
-
-    // We need to patch Expo's default `config.server.rewriteRequestUrl`
-    // to change how URLs like '/.expo/.virtual-metro-entry.bundle?' are
-    // rewritten.
-    // But since that function is difficult to override, here we borrow
-    // the ExpoGoManifestHandlerMiddleware and use it to resolve the
-    // URL to the main module name.
-    const resolveMainModuleName: (p: { platform: 'ios' | 'android' }) => string =
-      await (async () => {
-        const ExpoGoManifestHandlerMiddleware = (
-          await projectImport(
-            projectRoot,
-            '@expo/cli/build/src/start/server/middleware/ExpoGoManifestHandlerMiddleware.js'
-          )
-        ).default.ExpoGoManifestHandlerMiddleware
-
-        const manifestHandlerMiddleware = new ExpoGoManifestHandlerMiddleware(
-          projectRoot,
-          {}
-        )
-
-        patchExpoGoManifestHandlerMiddlewareWithCustomMainModuleName(
-          manifestHandlerMiddleware,
-          mainModuleName
-        )
-
-        return (p) => {
-          return manifestHandlerMiddleware.resolveMainModuleName({
-            pkg: { main: mainModuleName },
-            platform: p.platform,
-          })
-        }
-      })()
+    const origRewriteRequestUrl = _defaultConfig!.server?.rewriteRequestUrl
+    const resolveMainModuleName = () => mainModuleName
 
     extraConfig.getResolveMainModuleName = resolveMainModuleName
 
     // @ts-expect-error Metro 0.83 made this read-only in types but we need to patch it
     _defaultConfig!.server!.rewriteRequestUrl = (url) => {
-      if (
-        url.includes('/.expo/.virtual-metro-entry.bundle?') ||
-        rootIndexBundleRequestPattern.test(url)
-      ) {
+      if (isMainModuleBundleRequest(url)) {
         return rewriteMainModuleBundleUrl(url, resolveMainModuleName)
       }
 
-      return origRewriteRequestUrl(url)
+      return origRewriteRequestUrl?.(url) ?? url
     }
   }
 
@@ -397,11 +453,20 @@ export async function getMetroConfigFromViteConfig(
 
   const defaultConfig: MetroInputConfig = {
     ..._defaultConfig,
+    watcher: {
+      ..._defaultConfig?.watcher,
+      additionalExts: [
+        ...new Set([
+          ...(_defaultConfig?.watcher?.additionalExts ?? []),
+          ...expoEnvAdditionalExts,
+        ]),
+      ],
+    },
     resolver: {
       ..._defaultConfig?.resolver,
       useWatchman,
       blockList,
-      sourceExts: ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs'], // `one` related packages are using `.mjs` extensions. This somehow fixes `.native` files not being resolved correctly when `.mjs` files are present.
+      sourceExts: metroSourceExts,
       resolveRequest: (context, moduleName, platform) => {
         const origResolveRequestFn =
           _defaultConfig?.resolver?.resolveRequest || context.resolveRequest
@@ -441,6 +506,10 @@ export async function getMetroConfigFromViteConfig(
     },
     transformer: {
       ..._defaultConfig?.transformer,
+      // one's router and Expo's optional development env module both use
+      // require.context. Metro installs a throwing runtime stub unless this
+      // graph feature is enabled.
+      unstable_allowRequireContext: true,
       babelTransformerPath: projectResolve(
         projectRoot,
         '@vxrn/vite-plugin-metro/babel-transformer'
@@ -468,7 +537,12 @@ export async function getMetroConfigFromViteConfig(
   )
 
   return {
-    ...metroConfig,
+    ...enforcePackageResolution(
+      enforceWorkspaceVisibility(metroConfig, projectRoot),
+      mainModuleName,
+      config.resolve?.dedupe ?? [],
+      projectRoot
+    ),
     ...extraConfig,
   } as MetroConfigExtended
 }

@@ -27,6 +27,7 @@ import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
@@ -123,8 +124,11 @@ function getNativeResolveConfig(platform: 'ios' | 'android') {
     // both here makes a CommonJS require eligible for an export map's ESM
     // `import` target (for example @babel/runtime), which turns callable CJS
     // helpers into namespace objects at runtime.
-    conditionNames: ['react-native'],
-    mainFields: ['react-native', 'module', 'main'],
+    conditionNames: ['react-native', 'browser'],
+    // Native CommonJS consumers need the package's main export shape (punycode
+    // exposes ucs2 there, but only its default export contains it in module).
+    mainFields: ['react-native', 'browser', 'main', 'module'],
+    aliasFields: [['react-native'], ['browser']],
   }
 }
 
@@ -171,11 +175,11 @@ export function getNativeTransformConfig(
 
   const mode = dev ? 'development' : 'production'
 
-  // Match One's Vite client contract: load public values from process.env and
-  // the mode-specific env files, with shell values taking precedence. Native
-  // apps commonly use Expo's EXPO_PUBLIC_ prefix; accepting only VITE_ here
-  // made the same source silently receive `undefined` after leaving Metro.
-  const publicEnv = loadViteEnv(mode, root, ['VITE_', 'EXPO_PUBLIC_'])
+  // One defaults to ONE_PUBLIC_ while retaining Expo's established public env
+  // contract. Missing Expo names receive exact One values; explicit values stay distinct.
+  const publicEnv = withExpoPublicEnvAliases(
+    loadViteEnv(mode, root, ['VITE_', 'ONE_PUBLIC_', 'EXPO_PUBLIC_'])
+  )
   const envDefines: Record<string, string> = {}
   for (const [key, value] of Object.entries(publicEnv)) {
     envDefines[`import.meta.env.${key}`] = JSON.stringify(value)
@@ -195,6 +199,7 @@ export function getNativeTransformConfig(
     SSR: false,
     VITE_ENVIRONMENT: platform,
     VITE_NATIVE: '1',
+    ONE_PLATFORM: platform,
     EXPO_OS: platform,
     TAMAGUI_TARGET: 'native',
     TAMAGUI_ENVIRONMENT: platform,
@@ -217,6 +222,7 @@ export function getNativeTransformConfig(
       'process.env.VXRN_REACT_19': 'false',
       'process.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'process.env.VITE_NATIVE': '"1"',
+      'process.env.ONE_PLATFORM': JSON.stringify(platform),
       'process.env.EXPO_OS': JSON.stringify(platform),
       'process.env.TAMAGUI_TARGET': '"native"',
       'process.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
@@ -230,6 +236,7 @@ export function getNativeTransformConfig(
       'import.meta.env.SSR': 'false',
       'import.meta.env.VITE_ENVIRONMENT': JSON.stringify(platform),
       'import.meta.env.VITE_NATIVE': '"1"',
+      'import.meta.env.ONE_PLATFORM': JSON.stringify(platform),
       'import.meta.env.EXPO_OS': JSON.stringify(platform),
       'import.meta.env.TAMAGUI_TARGET': '"native"',
       'import.meta.env.TAMAGUI_ENVIRONMENT': JSON.stringify(platform),
@@ -256,7 +263,7 @@ function getNativePlugins(
   const context: NativePluginContext = { root, platform, dev }
   return [
     // plugins provided by One (clientTreeShakePlugin for loader removal, etc.)
-    ...(globalThis.__vxrnAddNativePlugins || []),
+    ...(globalThis.__vxrnAddNativePlugins?.(platform) || []),
     // block .server.* and _middleware.* files from entering the native bundle
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
@@ -265,19 +272,18 @@ function getNativePlugins(
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
     hmrClientNoopPlugin(),
-    // react native 0.87 removed @react-native/assets-registry. libraries like
-    // react-native-svg still import its registry, which is now the same
-    // singleton at react-native/asset-registry. unresolved, rolldown would
-    // leave it as an external import that throws when the module runs.
-    {
-      name: 'vxrn:legacy-asset-registry',
-      resolveId(source, importer) {
-        if (source === '@react-native/assets-registry/registry') {
-          return this.resolve('react-native/asset-registry', importer, { skipSelf: true })
-        }
-      },
-    } satisfies Plugin,
-    ...(dev ? [reactNativeDedupePlugin(root)] : []),
+    nativeIdentityAliasPlugin(platform),
+    nativeAssetRegistryPlugin(root),
+    // route every `react-native/*` import through the app's react native copy.
+    // two reasons: package managers can install the same react native version at
+    // multiple physical paths and rolldown assigns each path its own module
+    // identity (resolving to one copy keeps initializeCore from running twice),
+    // and react native 0.87 narrowed its package.json `exports` (dropping `./*`
+    // and `./src/*`), so deep imports such as
+    // `react-native/src/private/featureflags/ReactNativeFeatureFlags` — which
+    // @react-native/virtualized-lists itself makes — fail resolution against
+    // the export map. metro resolves those from the filesystem, so do the same.
+    reactNativeDedupePlugin(root),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -304,6 +310,8 @@ function getNativePlugins(
     // loops the earlier lowering steps emit.
     hermesLoopsPlugin(sourceMaps),
     ...userPlugins,
+    nativeExportsPrecedencePlugin(root, platform),
+    nativeDeclarationAliasPlugin(root, platform),
   ].map((plugin: Plugin) =>
     plugin.api?.vxrnNative ? plugin.api.vxrnNative(context) : plugin
   )
@@ -432,28 +440,13 @@ export function postProcessNativeBundle(code: string): string {
 }
 
 /**
- * Wrap the dev bundle body in a function scope so module top-level
- * `var`/`function` declarations don't leak onto the global object.
+ * wrap dev module declarations in a function scope. script-level declarations
+ * create global properties that can block react native's lazy polyfills.
+ * production uses rolldown's iife format; the dev engine needs this wrapper.
  *
- * rolldown's dev() emits the bundle as a *script*. A top-level `var` in a
- * script creates a NON-configurable property on the global object. RN's
- * `Libraries/Network/fetch.js` declares `var ... Headers, Request, ...`, so
- * `global.Headers`/`global.Request` become non-configurable. RN's `setUpXHR`
- * then calls `polyfillGlobal('Headers', ...)`, whose `polyfillObjectProperty`
- * does `Object.defineProperty(global, 'Headers', { configurable: true, ... })`
- * — which throws "Cannot redefine property" and RN converts to
- * `console.error('Failed to set polyfill. Headers is not configurable.')`.
- * In dev that console.error becomes a blocking LogBox redbox, so the app never
- * mounts (every appium navigation then times out). The prod build is immune:
- * its modules are wrapped in closures (no global leak) and it has no LogBox.
- *
- * Wrapping everything after the prelude in an IIFE makes those module vars
- * function-scoped, matching prod, so `polyfillGlobal` succeeds. The prelude
- * stays at script scope because it intentionally installs globals
- * (`globalThis.global`/`__DEV__`/`process`/...). Intentional globals survive:
- * the runtime is assigned via `globalThis.__rolldown_runtime__ = ...`, and HMR
- * updates run through a *direct* `eval` inside this scope, so they still see
- * the closure's `__esmMin`/`__toCommonJS`/module bindings.
+ * keep the prelude at script scope because it installs intentional globals.
+ * the dev runtime assigns itself to globalThis, and hmr's direct eval stays
+ * inside this closure so it can reach module bindings and runtime helpers.
  */
 export function wrapNativeBundleModuleScope(code: string): string {
   // the prelude (intro) ends right before the rolldown runtime region
@@ -947,7 +940,11 @@ export async function buildNativeBundle(
       // last, so it sees what every other plugin produced
       nativeBundlePostProcessPlugin(),
     ],
-    output: getNativeOutputOptions(prelude, sourcemap, minify),
+    output: {
+      ...getNativeOutputOptions(prelude, sourcemap, minify),
+      // native hosts evaluate a script; module bindings must stay out of globals.
+      format: 'iife',
+    },
   })
   const chunk = result.output.find((o) => o.type === 'chunk' && o.isEntry)
 
@@ -1302,20 +1299,210 @@ export function hmrClientNoopPlugin(): Plugin {
   }
 }
 
+function nativeIdentityAliasPlugin(platform: 'ios' | 'android'): Plugin {
+  const packages = new Map<
+    string,
+    { root: string; aliases: Record<string, unknown> } | null
+  >()
+  let resolver: import('rolldown/experimental').ResolverFactory | undefined
+  const findPackage = (
+    directory: string
+  ): { root: string; aliases: Record<string, unknown> } | null => {
+    if (packages.has(directory)) return packages.get(directory)!
+    let result: { root: string; aliases: Record<string, unknown> } | null = null
+    const manifest = join(directory, 'package.json')
+    if (existsSync(manifest)) {
+      try {
+        const field = JSON.parse(readFileSync(manifest, 'utf8'))['react-native']
+        result = {
+          root: directory,
+          aliases: field && typeof field === 'object' ? field : {},
+        }
+      } catch {}
+    } else {
+      const parent = dirname(directory)
+      if (parent !== directory) result = findPackage(parent)
+    }
+    packages.set(directory, result)
+    return result
+  }
+  return {
+    name: 'vxrn:native-identity-alias',
+    async resolveId(source, importer) {
+      if (!importer || !source.startsWith('.')) return
+      const pkg = findPackage(dirname(importer))
+      if (!pkg) return
+      const key = `./${normalizePath(relative(pkg.root, resolve(dirname(importer), source)))}`
+      if (pkg.aliases[key] !== key) return
+      // A native identity mapping deliberately keeps the original implementation
+      // even when the browser field maps it elsewhere. Avoid alias recursion.
+      if (!resolver) {
+        const { ResolverFactory } = await import('rolldown/experimental')
+        resolver = new ResolverFactory({
+          ...getNativeResolveConfig(platform),
+          aliasFields: [],
+        })
+      }
+      const result = resolver.sync(dirname(importer), source)
+      if (result.path) return result.path
+    },
+  }
+}
+
+// export maps resolve in key order, so a package listing `browser` before
+// `react-native` would give native its web build. the browser fallback is for
+// packages without a native target: where a package's exports name both,
+// resolve it as metro does, without `browser`.
+function nativeExportsPrecedencePlugin(root: string, platform: 'ios' | 'android'): Plugin {
+  const manifests = new Map<string, { name?: string; exports?: unknown } | null>()
+  const readManifest = (directory: string) => {
+    if (!manifests.has(directory)) {
+      let manifest = null
+      try {
+        manifest = JSON.parse(readFileSync(join(directory, 'package.json'), 'utf8'))
+      } catch {}
+      manifests.set(directory, manifest)
+    }
+    return manifests.get(directory)
+  }
+  const resolvers = new Map<string, import('rolldown/experimental').ResolverFactory>()
+  return {
+    name: 'vxrn:native-exports-precedence',
+    async resolveId(source, importer, options) {
+      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
+      const resolved = await this.resolve(source, importer, {
+        skipSelf: true,
+        kind: options.kind,
+      })
+      if (!resolved || resolved.external || resolved.id.startsWith('\0')) return resolved
+      const name = source
+        .split('/')
+        .slice(0, source.startsWith('@') ? 2 : 1)
+        .join('/')
+      let directory = dirname(resolved.id)
+      while (readManifest(directory)?.name !== name) {
+        if (dirname(directory) === directory) return resolved
+        directory = dirname(directory)
+      }
+      const exportsMap = JSON.stringify(readManifest(directory)?.exports ?? null)
+      if (!exportsMap.includes('"react-native"') || !exportsMap.includes('"browser"')) {
+        return resolved
+      }
+      const kind = options.kind === 'require-call' ? 'require' : 'import'
+      let resolver = resolvers.get(kind)
+      if (!resolver) {
+        const { ResolverFactory } = await import('rolldown/experimental')
+        resolver = new ResolverFactory({
+          ...getNativeResolveConfig(platform),
+          conditionNames: ['react-native', kind, 'default'],
+        })
+        resolvers.set(kind, resolver)
+      }
+      const native = resolver.sync(importer ? dirname(importer) : root, source)
+      if (!native.path || native.path === resolved.id) return resolved
+      return this.resolve(native.path, importer, { skipSelf: true, kind: options.kind })
+    },
+  }
+}
+
+function nativeDeclarationAliasPlugin(root: string, platform: 'ios' | 'android'): Plugin {
+  const resolvers = new Map<string, import('rolldown/experimental').ResolverFactory>()
+  return {
+    name: 'vxrn:declaration-alias',
+    async resolveId(source, importer, options) {
+      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
+      const resolved = await this.resolve(source, importer, {
+        skipSelf: true,
+        kind: options.kind,
+      })
+      if (!resolved || resolved.external || !/\.d\.[cm]?ts$/.test(resolved.id)) {
+        return resolved
+      }
+      // tsconfig paths can supply types for a package without replacing its
+      // runtime export. Resolve that package with the same native conditions,
+      // but without the declaration alias, and preserve import/require selection.
+      const kind = options.kind === 'require-call' ? 'require' : 'import'
+      let resolver = resolvers.get(kind)
+      if (!resolver) {
+        const { ResolverFactory } = await import('rolldown/experimental')
+        resolver = new ResolverFactory({
+          ...getNativeResolveConfig(platform),
+          conditionNames: ['react-native', 'browser', kind, 'default'],
+        })
+        resolvers.set(kind, resolver)
+      }
+      const runtime = resolver.sync(importer ? dirname(importer) : root, source)
+      if (!runtime.path || /\.d\.[cm]?ts$/.test(runtime.path)) {
+        this.error(
+          `Native import ${source} resolves to a declaration without a runtime export`
+        )
+      }
+      return this.resolve(runtime.path, importer, { skipSelf: true, kind: options.kind })
+    },
+  }
+}
+
+function nativeAssetRegistryPlugin(root: string): Plugin {
+  let registryPath: string | null | undefined
+  return {
+    name: 'vxrn:asset-registry',
+    async resolveId(source, importer) {
+      if (
+        source !== 'react-native/asset-registry' &&
+        source !== '@react-native/assets-registry/registry'
+      ) {
+        return
+      }
+      if (registryPath === undefined) {
+        try {
+          const reactNativeRoot = dirname(resolvePath('react-native/package.json', root))
+          // RN 0.87 moved the singleton into RN and exports this file as
+          // react-native/asset-registry. Older RN versions own it in a package.
+          const exportedRegistry = join(reactNativeRoot, 'src/asset-registry.js')
+          registryPath = existsSync(exportedRegistry)
+            ? exportedRegistry
+            : resolvePath('@react-native/assets-registry/registry', reactNativeRoot)
+        } catch {
+          registryPath = null
+        }
+      }
+      if (registryPath) {
+        return this.resolve(normalizePath(registryPath), importer, { skipSelf: true })
+      }
+    },
+  }
+}
+
 function reactNativeDedupePlugin(root: string): Plugin {
   // package managers can install the same react native version at multiple
   // physical paths. rolldown assigns each path a module identity, so resolving
   // every entry through the app's instance prevents initializeCore from running twice.
-  let reactNativeRoot: string | undefined
+  //
+  // resolving through the filesystem also keeps react native 0.87's narrow
+  // package.json `exports` (it dropped `./*` and `./src/*`) from rejecting deep
+  // imports such as `react-native/src/private/featureflags/*`, which
+  // @react-native/virtualized-lists makes and metro resolves off disk.
+  let reactNativeRoot: string | null | undefined
 
   return {
     name: 'vxrn:react-native-dedupe',
     async resolveId(source, importer) {
       if (source !== 'react-native' && !source.startsWith('react-native/')) return
 
-      reactNativeRoot ||= realpathSync(
-        dirname(resolvePath('react-native/package.json', root))
-      )
+      if (reactNativeRoot === undefined) {
+        try {
+          reactNativeRoot = realpathSync(
+            dirname(resolvePath('react-native/package.json', root))
+          )
+        } catch {
+          // no react native to resolve (for example a project that only stubs
+          // `react-native/asset-registry`). fall through to rolldown's own
+          // resolution instead of failing the build.
+          reactNativeRoot = null
+        }
+      }
+      if (!reactNativeRoot) return
+
       const subpath =
         source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
       return this.resolve(normalizePath(resolve(reactNativeRoot, subpath)), importer, {
@@ -1899,7 +2086,7 @@ function copyNativeAssetFiles(
 
 /**
  * SWC transform for Hermes compatibility.
- * Transforms class properties and private fields that Hermes doesn't support.
+ * Lowers classes, lexical bindings, and async syntax for legacy Hermes.
  * Inspired by rollipop's swc-plugin.ts.
  */
 export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin {
@@ -1911,14 +2098,14 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
       if (!/\.[cm]?[jt]sx?$/.test(id)) return
       if (id.includes('\0') || id.includes('virtual:')) return
       // skip files that don't need transformation
-      const hasClass = code.includes('class ') || code.includes('class{')
+      const hasClass = /\bclass(?:\s|\{)/.test(code)
       const hasAsync = code.includes('async')
-      const hasBlockScopedLoop = /\bfor\s*\(\s*(?:const|let)\b/.test(code)
-      if (!hasClass && !hasAsync && !hasBlockScopedLoop) return
+      const hasBlockScopedBinding = /\b(?:const|let)\s/.test(code)
+      if (!hasClass && !hasAsync && !hasBlockScopedBinding) return
       let output: { code: string; map?: any } | undefined
-      // keep the existing oxc limit for large prebuilt files. async lowering
-      // below has no size exemption and runs after the worklet transform.
-      if (code.length <= 500_000) {
+      // Keep the Oxc limit for other large prebuilt files. Class, lexical binding,
+      // and async lowering below have no size exemption for legacy Hermes.
+      if (code.length <= 500_000 || hasClass) {
         if (!oxc) oxc = await import('oxc-transform')
         const lang = /\.[cm]?ts$/.test(id) ? 'ts' : id.endsWith('.tsx') ? 'tsx' : 'jsx'
         const result = oxc.transformSync(id, code, {
@@ -1936,6 +2123,17 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
         output = {
           code: result.code,
           map: sourceMaps ? result.map : undefined,
+        }
+      }
+      if (hasClass || hasBlockScopedBinding) {
+        const { transformHermesClasses } = await import('@vxrn/compiler')
+        const classes = await transformHermesClasses(output?.code ?? code, id, sourceMaps)
+        if (classes) {
+          if (classes.map && output?.map) {
+            const remapping = (await import('@jridgewell/remapping')).default
+            classes.map = remapping([classes.map, output.map], () => null)
+          }
+          output = classes
         }
       }
       const lowered = await transformHermesAsync(output?.code ?? code, id, sourceMaps)

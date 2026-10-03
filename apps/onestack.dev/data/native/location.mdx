@@ -1,0 +1,93 @@
+---
+title: Location
+description: Request location permission and read foreground or background position updates on iOS
+---
+
+`One.iOS.Location` uses Core Location for foreground permission, one-shot and
+continuous position updates, and address geocoding. Add the prompt text to the
+native app manifest:
+
+```ts
+native: {
+  app: {
+    location: {
+      whenInUse: 'Show places near you.',
+    },
+  },
+}
+```
+
+For Expo prebuild, pass the same text to the `vxrn/expo-plugin` option
+`location: { whenInUse: 'Show places near you.' }`.
+
+Call the permission request while the app is active, usually after a tap:
+
+```tsx
+import { One } from 'one'
+
+const permission = await One.iOS.Location.requestWhenInUsePermission()
+if (permission === 'whenInUse' || permission === 'always') {
+  const position = await One.iOS.Location.getCurrentPosition()
+  console.log(position.latitude, position.longitude)
+
+  const stop = One.iOS.Location.watchPosition(
+    (next) => console.log(next.latitude, next.longitude),
+    (error) => console.error(error.code, error.message)
+  )
+  // call stop() when the screen no longer needs updates.
+}
+```
+
+`getPermissionStatus()` reads the current authorization synchronously and
+returns `notDetermined`, `restricted`, `denied`, `whenInUse`, or `always`.
+`requestWhenInUsePermission()` resolves with the resulting status. If the user
+already decided, it returns that status without another prompt.
+
+`getCurrentPosition()` requests one location fix. While a watch is active, it
+can return that watch's recent fix or wait for its next update. The result
+contains latitude, longitude, horizontal accuracy,
+altitude, vertical accuracy, course, speed, and a Unix timestamp in
+milliseconds. Apple uses negative values for unavailable accuracy, course, or
+speed fields.
+
+`watchPosition(onPosition, onError)` starts continuous foreground updates and
+returns a function that stops them. Call the returned function when the
+subscriber unmounts. One native stops Core Location when the last subscriber
+leaves. The error callback receives `E_LOCATION_PERMISSION` if permission is
+missing or revoked; that ends the subscription. Other location failures report
+`E_LOCATION_UNAVAILABLE`, and the subscription stays active until `stop()`.
+
+Pass `{ background: true }` as the third argument to keep receiving updates
+while another app is in front. Set `location.background: true` in the manifest
+or the `vxrn/expo-plugin` option first; it adds `location` to
+`UIBackgroundModes`. Start this watch while your
+app is active, after the user grants location permission. It uses the same
+stop function and displays iOS's background location indicator. Tracking
+stops when the watch is removed; apps should restore a wanted watch after a
+fresh launch. This path does not monitor regions or restart a terminated app.
+Background mode without the manifest calls the error callback with
+`E_LOCATION_MANIFEST`; starting the background watch while inactive calls it
+with `E_LOCATION_BACKGROUND`.
+Background watches keep location hardware active even while stationary, so stop
+them promptly when tracking ends to limit battery use.
+
+```tsx
+const stopBackgroundWatch = One.iOS.Location.watchPosition(
+  (position) => console.log(position.latitude, position.longitude),
+  (error) => console.error(error.code, error.message),
+  { background: true }
+)
+```
+
+`geocodeAddress(address)` converts an address into matching places, and
+`reverseGeocode(latitude, longitude)` looks up places near a coordinate. Each
+place includes coordinates and any address fields Apple returns. These methods
+work without location permission because the app provides the address or
+coordinate. No match resolves to an empty array. They need Apple's geocoding
+service; other failures reject with `E_LOCATION_GEOCODE`.
+
+The permission request rejects with `E_LOCATION_MANIFEST` if the usage text is
+missing and `E_LOCATION_BACKGROUND` if the app is inactive. Reading a position
+without permission rejects with `E_LOCATION_PERMISSION`. A failed location fix
+rejects with `E_LOCATION_UNAVAILABLE`. Error codes are available on `error.code`.
+This API is iOS only and throws on Android or web.

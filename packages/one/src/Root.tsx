@@ -27,6 +27,7 @@ import type { GlobbedRouteImports } from './types'
 import { evictOldest } from './utils/evictOldest'
 import { ServerRenderID } from './useServerHeadInsertion'
 import { PreloadLinks } from './views/PreloadLinks'
+import { SafeAreaProvider, initialWindowMetrics } from './safe-area-context'
 import { RootErrorBoundary } from './views/RootErrorBoundary'
 import { ScrollBehavior } from './views/ScrollBehavior'
 import type { One } from './vite/types'
@@ -102,8 +103,13 @@ export function Root(props: RootProps) {
     routeOptions,
     globalThis['__vxrnVersion']
   )
-  const location =
-    typeof window !== 'undefined' && window.location
+  // native starts with no location: a cold deep link wins through the
+  // async Linking.getInitialURL instead of a '/' initial state that would
+  // override it. a launch with no link still resolves '/' from the same
+  // getter, so home is unchanged.
+  const location = isNative
+    ? undefined
+    : typeof window !== 'undefined' && window.location
       ? new URL(path || window.location.href || '/', window.location.href)
       : getCachedSSRLocation(path || '/')
 
@@ -138,28 +144,32 @@ export function Root(props: RootProps) {
           deferredPreloads?.map((src) => (
             <link key={src} rel="modulepreload" fetchPriority="low" href={src} />
           ))}
-        <UpstreamNavigationContainer
-          ref={store.navigationRef}
-          initialState={store.initialState}
-          linking={getResolvedLinking()}
-          onUnhandledAction={onUnhandledAction}
-          onStateChange={handleNavigationContainerStateChange}
-          theme={userScheme.value === 'dark' ? DarkTheme : DefaultTheme}
-          documentTitle={{
-            enabled: false,
-          }}
-          {...navigationContainerProps}
-        >
-          <ServerLocationContext.Provider value={location}>
-            <>
-              <ScrollBehavior />
+        {/* one owns the safe area provider on every platform: apps read it
+            through One.UI.SafeArea and never mount their own */}
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <UpstreamNavigationContainer
+            ref={store.navigationRef}
+            initialState={store.initialState}
+            linking={getResolvedLinking()}
+            onUnhandledAction={onUnhandledAction}
+            onStateChange={handleNavigationContainerStateChange}
+            theme={userScheme.value === 'dark' ? DarkTheme : DefaultTheme}
+            documentTitle={{
+              enabled: false,
+            }}
+            {...navigationContainerProps}
+          >
+            <ServerLocationContext.Provider value={location}>
+              <>
+                <ScrollBehavior />
 
-              <RootErrorBoundary>
-                <Component />
-              </RootErrorBoundary>
-            </>
-          </ServerLocationContext.Provider>
-        </UpstreamNavigationContainer>
+                <RootErrorBoundary>
+                  <Component />
+                </RootErrorBoundary>
+              </>
+            </ServerLocationContext.Provider>
+          </UpstreamNavigationContainer>
+        </SafeAreaProvider>
         {typeof window !== 'undefined' && <PreloadLinks key="preload-links" />}
       </ServerRenderID.Provider>
     </ServerAsyncLocalIDContext.Provider>

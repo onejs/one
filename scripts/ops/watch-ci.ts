@@ -1,7 +1,8 @@
 // watches every github actions run for one sha to a terminal state.
 // exit 0: all runs completed successfully (or were skipped).
 // exit 1: any run failed, was cancelled, or timed out.
-// usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo onejs/one]
+// usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo onejs/one] [--workflow "Checks and Tests" ...]
+// workflow names filter runs; path filters may prevent a named workflow from starting.
 //
 // polls the api once a minute inside this process so the caller can sleep
 // through it with `tm wait --exec` instead of burning turns.
@@ -14,8 +15,9 @@ const readFlag = (name: string) => {
 
 const shaArg = readFlag('sha')
 const repo = readFlag('repo') ?? 'onejs/one'
-if (!shaArg) {
-  console.error('usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo owner/name]')
+const workflows = [...new Set(args.flatMap((arg, index) => arg === '--workflow' ? [args[index + 1]] : []))]
+if (!shaArg || workflows.some((name) => !name || name.startsWith('--'))) {
+  console.error('usage: bun scripts/ops/watch-ci.ts --sha <sha> [--repo owner/name] [--workflow name ...]')
   process.exit(2)
 }
 
@@ -90,29 +92,33 @@ while (true) {
   // crowd out the push that actually verifies this sha
   const direct = runs.filter(
     (run) =>
-      run.event === 'push' ||
-      run.event === 'workflow_dispatch' ||
-      run.event === 'pull_request'
+      (run.event === 'push' ||
+        run.event === 'workflow_dispatch' ||
+        run.event === 'pull_request') &&
+      (workflows.length === 0 || workflows.includes(run.name))
   )
-  const failed = direct.filter((run) => run.conclusion && bad.has(run.conclusion))
-  const pending = direct.filter((run) => run.status !== 'completed')
+  // duplicate push runs can cancel an older attempt for the same workflow and sha.
+  const latest = [...new Map(direct.sort((a, b) => a.databaseId - b.databaseId)
+    .map((run) => [run.name, run])).values()]
+  const failed = latest.filter((run) => run.conclusion && bad.has(run.conclusion))
+  const pending = latest.filter((run) => run.status !== 'completed')
   if (failed.length > 0) {
     for (const run of failed) {
       console.error(`failed: ${run.name} (${run.conclusion}) run ${run.databaseId}`)
     }
     process.exit(1)
   }
-  if (direct.length > 0 && pending.length === 0) {
-    const unproven = direct.filter((run) => !ok.has(run.conclusion ?? ''))
+  if (latest.length > 0 && pending.length === 0) {
+    const unproven = latest.filter((run) => !ok.has(run.conclusion ?? ''))
     if (unproven.length > 0) {
       for (const run of unproven) {
         console.error(`unproven: ${run.name} (${run.conclusion}) run ${run.databaseId}`)
       }
       process.exit(1)
     }
-    for (const run of direct) console.log(`ok: ${run.name} (${run.conclusion})`)
+    for (const run of latest) console.log(`ok: ${run.name} (${run.conclusion})`)
     process.exit(0)
   }
-  console.log(`${direct.length - pending.length}/${direct.length} complete`)
+  console.log(`${latest.length - pending.length}/${latest.length} complete`)
   await new Promise((resolve) => setTimeout(resolve, 60_000))
 }

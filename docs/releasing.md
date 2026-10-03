@@ -8,7 +8,7 @@ Two steps, because `main` is protected by a merge queue.
 
    ```sh
    bun scripts/release.ts --minor --ci --dirty \
-     --skip-publish --skip-push --skip-tests --skip-native-tests
+     --skip-publish --skip-finish --skip-push --skip-tests --skip-native-tests
    ```
 
    That rewrites the workspace `package.json` versions and leaves them
@@ -79,8 +79,16 @@ then publishes versions named `2.0.0-beta.<workflow-run>.<attempt>` on the npm
 `beta` dist-tag. It does not push a version commit, create a tag, or create a
 GitHub release. Packages marked `skipPublish` remain excluded.
 
-Verify a beta by its content after publication:
+The publish step verifies itself: after `npm publish` returns it polls the
+registry for every package in the publish set and fails the run if any version
+is still missing, so a green Release run means those versions are readable on
+npm. The registry publishes version documents asynchronously and can take
+several minutes per package, which is why this polls rather than checking once.
+A registry check in the first few minutes after a run is not evidence that a
+package was skipped.
+
+Inspect a published beta by its content:
 
 ```sh
-npm pack one@2.0.0-beta.<workflow-run>.<attempt> one-native@2.0.0-beta.<workflow-run>.<attempt>
+npm pack one@2.0.0-beta.<workflow-run>.<attempt>
 ```

@@ -1,0 +1,6 @@
+export declare const keyboardTypes: readonly ['default', 'asciiCapable', 'numbersAndPunctuation', 'url', 'numberPad', 'phonePad', 'namePhonePad', 'emailAddress', 'decimalPad', 'twitter', 'webSearch', 'asciiCapableNumberPad'];
+export type KeyboardType = (typeof keyboardTypes)[number];
+export declare const textContentTypes: readonly ['none', 'URL', 'addressCity', 'addressCityAndState', 'addressState', 'countryName', 'creditCardNumber', 'creditCardExpiration', 'creditCardExpirationMonth', 'creditCardExpirationYear', 'creditCardSecurityCode', 'creditCardType', 'creditCardName', 'creditCardGivenName', 'creditCardMiddleName', 'creditCardFamilyName', 'emailAddress', 'familyName', 'fullStreetAddress', 'givenName', 'jobTitle', 'location', 'middleName', 'name', 'namePrefix', 'nameSuffix', 'nickname', 'organizationName', 'postalCode', 'streetAddressLine1', 'streetAddressLine2', 'sublocality', 'telephoneNumber', 'username', 'password', 'newPassword', 'oneTimeCode', 'birthdate', 'birthdateDay', 'birthdateMonth', 'birthdateYear', 'cellularEID', 'cellularIMEI', 'dateTime', 'flightNumber', 'shipmentTrackingNumber'];
+export type TextContentType = (typeof textContentTypes)[number];
+export declare function assertTextInputOptions(owner: string, keyboardType: string, textContentType: string): void;
+//# sourceMappingURL=textTypes.d.ts.map

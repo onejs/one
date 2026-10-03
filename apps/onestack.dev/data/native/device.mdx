@@ -1,0 +1,37 @@
+---
+title: Device
+description: Read the current iOS device and operating system
+---
+
+`One.iOS.Device.getInfo()` returns a snapshot of the current iOS device. It
+reads `UIDevice` on the main thread and does not request a permission.
+
+```tsx
+import { One } from 'one'
+
+const info = await One.iOS.Device.getInfo()
+console.log(info.model, info.systemName, info.systemVersion)
+console.log(info.interfaceIdiom, info.isSimulator, info.vendorIdentifier)
+
+const locale = await One.iOS.Device.getLocalizationInfo()
+console.log(locale.localeIdentifier, locale.preferredLanguages)
+console.log(locale.calendarIdentifier, locale.timeZoneIdentifier)
+```
+
+`model` is Apple's device family string, such as `iPhone`, rather than a retail
+model name. `interfaceIdiom` is `phone`, `pad`, `tv`, `carPlay`, `mac`, `vision`, or
+`unspecified`. `vendorIdentifier` is optional because iOS can return no vendor
+ID until after the user unlocks the device. It can also change after all of a
+vendor's apps are removed, so do not use it as a permanent account ID. See
+[Apple's identifierForVendor reference](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
+
+`isSimulator` reports whether this binary runs in the iOS simulator. The API
+throws on Android or web. For the installed app's version, build, and bundle
+ID, use [`One.AppInfo`](/native/app-info).
+
+`getLocalizationInfo()` reads the app's effective locale as a BCP 47 tag,
+the device's preferred language tags, calendar identifier, time zone
+identifier, current UTC offset in seconds, and optional currency code. The
+offset is positive east of UTC and reflects daylight saving time at the
+moment of the call. These values are a snapshot. The API needs no permission
+and throws on Android or web.

@@ -28,9 +28,9 @@ export async function buildBundle(
     // `--reset-cache` drops the compiler's transform cache, the only cache a
     // rolldown production build reads.
     resetCache,
-    // `--entry-file` names the React Native root module. One generates its own
-    // native entry from the route tree instead, and __vxrnNativeEntryFile is
-    // the supported way to point the build somewhere else.
+    // `--entry-file` is a placeholder in generated native projects. VxRN apps
+    // configure entries.native through vxrn/react-native-commands, while One
+    // generates its native entry from the route tree.
     // `--read-global-cache` / `--max-workers` / `--config` / `--transformer` /
     // `--resolver-option` configure Metro's global cache, worker pool and
     // resolver. A rolldown production build has none of them: it transforms
@@ -72,13 +72,15 @@ export async function buildBundle(
   }
 
   console.info(`[vxrn] building native bundle for ${platform}...`)
-  const nativeEntryFile = (globalThis as { __vxrnNativeEntryFile?: unknown })
-    .__vxrnNativeEntryFile
+  const nativeEntryFile = ctx.vxrnEntries?.native
+  if (nativeEntryFile !== undefined && typeof nativeEntryFile !== 'string') {
+    throw new Error('Expected entries.native to be a string')
+  }
   const result = await buildNativeBundle({
     root,
     platform,
     dev,
-    entryFile: typeof nativeEntryFile === 'string' ? nativeEntryFile : undefined,
+    entryFile: nativeEntryFile,
     // pass through ONE_SERVER_URL so the native prelude can inject it into
     // process.env. without this, getURL.native falls back to the dummy
     // 'http://one-server.example.com' and runtime loader fetches fail in prod.
@@ -91,11 +93,11 @@ export async function buildBundle(
 
   // write sourcemap if available and requested
   if (result.map && args.sourcemapOutput) {
-    FSExtra.writeFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
+    FSExtra.outputFileSync(args.sourcemapOutput, result.map, { encoding: 'utf8' })
   }
 
   console.info(`Writing bundle to ${bundleOutput}...`)
-  FSExtra.writeFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
+  FSExtra.outputFileSync(bundleOutput, builtBundle, { encoding: bundleEncoding })
   console.info('Done.')
 
   // Prevent the process not getting exited for some unknown reason.

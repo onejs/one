@@ -1,4 +1,4 @@
-import { SplitView } from '@vxrn/native'
+import { One } from 'one'
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
@@ -14,8 +14,8 @@ export function NativeSplitView({ onExit }: { onExit: () => void }) {
   const [selection, setSelection] = useState('first')
 
   return (
-    <SplitView slot={Detail}>
-      <SplitView.Column>
+    <One.iOS.SplitView slot={Detail}>
+      <One.iOS.SplitView.Column>
         <View style={styles.sidebar} testID="native-split-sidebar">
           <Text style={styles.title}>Retained SplitView mounted</Text>
           <Pressable
@@ -36,8 +36,8 @@ export function NativeSplitView({ onExit }: { onExit: () => void }) {
             <Text style={styles.actionText}>Return to profile</Text>
           </Pressable>
         </View>
-      </SplitView.Column>
-    </SplitView>
+      </One.iOS.SplitView.Column>
+    </One.iOS.SplitView>
   )
 }
 

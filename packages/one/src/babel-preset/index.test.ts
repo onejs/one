@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import oneBabelPreset, { buildOneBabelPlugins } from './index'
 
 const projectRoot = path.resolve(__dirname, '../../')
@@ -10,24 +10,24 @@ const fakeApi = (cwd: string) => ({
 })
 
 describe('one/babel-preset', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
   it('returns presets and plugins', () => {
-    const result = oneBabelPreset(fakeApi(projectRoot), {
-      projectRoot,
-      // skip the babel-preset-expo lookup so this test runs without the
-      // expo SDK installed in the workspace root
-      includeExpoPreset: false,
-    })
+    const result = oneBabelPreset(fakeApi(projectRoot), { projectRoot })
 
     expect(result).toHaveProperty('plugins')
     expect(Array.isArray(result.plugins)).toBe(true)
     // 5 One plugins + import-meta-env-plugin baked in for standalone Metro
     expect(result.plugins).toHaveLength(6)
+    // @react-native/babel-preset base for TS/Flow syntax + platform transforms
+    expect(result.presets).toHaveLength(1)
   })
 
   it('orders the plugin chain so server code is removed before router transforms', () => {
     const { plugins } = oneBabelPreset(fakeApi(projectRoot), {
       projectRoot,
-      includeExpoPreset: false,
     })
 
     const names = (plugins ?? []).map((p) => (Array.isArray(p) ? p[0] : p))
@@ -44,7 +44,6 @@ describe('one/babel-preset', () => {
   it('defaults routerRoot to "app"', () => {
     const { plugins } = oneBabelPreset(fakeApi(projectRoot), {
       projectRoot,
-      includeExpoPreset: false,
     })
 
     const removeServer = (plugins ?? []).find(
@@ -59,7 +58,6 @@ describe('one/babel-preset', () => {
     const { plugins } = oneBabelPreset(fakeApi(projectRoot), {
       projectRoot,
       routerRoot: 'src/routes',
-      includeExpoPreset: false,
     })
 
     const removeServer = (plugins ?? []).find(
@@ -80,11 +78,13 @@ describe('one/babel-preset', () => {
       },
       {
         projectRoot,
-        includeExpoPreset: false,
       }
     )
 
     expect(result.plugins).toEqual([])
+    // the one dev path still needs the RN base: the Vite plugin only
+    // injected the One chain, not syntax transforms
+    expect(result.presets).toHaveLength(1)
   })
 
   it('adds nothing when @vxrn/compiler applies it inside the vite and rolldown pipeline', () => {
@@ -98,6 +98,47 @@ describe('one/babel-preset', () => {
     )
 
     expect(result).toEqual({ presets: [], plugins: [] })
+  })
+
+  it('builds the standalone Metro environment with one-way Expo aliases', () => {
+    vi.stubEnv('ONE_PUBLIC_FROM_ONE', 'one')
+    vi.stubEnv('ONE_PUBLIC_CONFLICT', 'one-conflict')
+    vi.stubEnv('EXPO_PUBLIC_CONFLICT', 'expo-conflict')
+    vi.stubEnv('EXPO_PUBLIC_EXPO_ONLY', 'expo-only')
+    vi.stubEnv('ONE_PLATFORM', 'web')
+    vi.stubEnv('EXPO_OS', 'web')
+
+    const webResult = oneBabelPreset(fakeApi(projectRoot), {
+      projectRoot,
+    })
+
+    expect(webResult.plugins?.[0]).toEqual([
+      '@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin',
+      {
+        env: expect.objectContaining({
+          ONE_PUBLIC_FROM_ONE: 'one',
+          EXPO_PUBLIC_FROM_ONE: 'one',
+          ONE_PUBLIC_CONFLICT: 'one-conflict',
+          EXPO_PUBLIC_CONFLICT: 'expo-conflict',
+          EXPO_PUBLIC_EXPO_ONLY: 'expo-only',
+          ONE_PLATFORM: 'web',
+        }),
+      },
+    ])
+    expect(webResult.plugins?.[0]).not.toHaveProperty('1.env.ONE_PUBLIC_EXPO_ONLY')
+    expect(webResult.plugins?.[0]).not.toHaveProperty('1.env.EXPO_OS')
+
+    vi.stubEnv('ONE_PLATFORM', 'ios')
+    const iosResult = oneBabelPreset(fakeApi(projectRoot), {
+      projectRoot,
+    })
+    expect(iosResult.plugins?.[0]).toHaveProperty('1.env.EXPO_OS', 'ios')
+
+    vi.stubEnv('ONE_PLATFORM', 'android')
+    const androidResult = oneBabelPreset(fakeApi(projectRoot), {
+      projectRoot,
+    })
+    expect(androidResult.plugins?.[0]).toHaveProperty('1.env.EXPO_OS', 'android')
   })
 })
 

@@ -1,0 +1,144 @@
+---
+title: 'One v2'
+publishedAt: '2026-10-05'
+description: 'Full SwiftUI and Compose access, native UI included, and one Vite plugin for web, iOS, and Android.'
+by: nate
+draft: true
+---
+
+<IntroParagraph>
+  One v2 is here. Build for web, iOS, and Android with a single Vite plugin,
+  and bring the full native platform into your React app. One Native gives
+  you access to **100% of SwiftUI and Compose**, a library of shared native
+  components, and a growing collection of UIKit components, included in One.
+</IntroParagraph>
+
+We've spent the time since v1 making One a framework you can build
+your whole app with. V2 brings native UI, native APIs, native project
+generation, and Rolldown together with the routing, data loading, and web
+rendering that made One simple in the first place.
+
+Get started with:
+
+```bash
+npx one
+```
+
+One sets up your app. Your routes live in files, your configuration lives in
+Vite, and you can share code across all three platforms.
+
+## One Native: the whole platform, in your React app
+
+One Native gives you full access to SwiftUI on iOS and Jetpack Compose on
+Android. Use the native controls, layouts, and visual effects that make each
+platform feel right, alongside your existing React Native components.
+
+The built-in React components put native UI within reach of an import:
+`One.iOS` for SwiftUI, `One.Android` for Compose, and `One.UI` for shared
+components. Build with Apple's Liquid Glass, native forms and menus, Material
+controls, maps, and media. The operating system renders the native UI, with
+its own appearance and behavior.
+
+And you have the full native languages available. Import Swift and Kotlin
+source directly into React. One generates the TypeScript declarations and
+native glue, so a custom view or module works like any other import.
+Custom SwiftUI and Compose views can use the complete platform frameworks.
+You can build a native view for your app and use it like a React component,
+without writing a bridge by hand.
+
+One also includes the shared components you reach for across apps: images,
+maps, icons, text inputs, blur, masks, safe areas, pagers, portals, and Picture
+in Picture. We're continuing to expand the UIKit collection alongside the
+SwiftUI and Compose components. The native UI ships with One, so each
+component is already there when you need it, with no separate component
+packages to find and install.
+
+The same package gives you access to the device. Notifications, haptics,
+authentication, secure storage, SQLite, synchronous storage, file picking,
+and over-the-air updates are built in. On iOS you can also work with the
+camera, audio, Photos, location, contacts, calendar, purchases, and more.
+Widgets and Live Activities extend your app onto the Home Screen and Lock
+Screen, with layouts rendered in SwiftUI even when your app's JavaScript
+isn't running.
+
+You can share your app's logic and use the best UI for each platform. A
+native screen, a shared screen, and a web page all belong in the same One
+project.
+
+Explore [One Native](/docs/native-overview), the
+[components](/docs/native-components), the
+[Swift and Kotlin import guide](/docs/native-source), and the
+[native reference](/native).
+
+## Native apps, configured in Vite
+
+One can now generate your iOS and Android projects directly. Set your app's
+name, bundle identifiers, icons, permissions, and other native settings in
+`native.app` in your Vite configuration, then run `one prebuild`.
+
+The starter has the configuration in place. You can build and run with
+`one run:ios` or `one run:android`, and keep your native settings beside the
+rest of your app's configuration. If you use Expo, One also works with Expo
+prebuild, modules, and config plugins.
+
+Read the [native setup guide](/docs/native-setup) to get your app running.
+
+## Rolldown across web and native
+
+V2 brings Rolldown to native development and production, alongside Vite 8
+on the web. The native pipeline uses Oxc, supports React Refresh, and
+integrates Worklets. One brings web and native into the same Vite development
+loop, with incremental updates as you edit.
+
+Metro is also available when your app needs it. Both bundlers use the same
+routes and One configuration, and you can eject the Metro configuration when
+you want to own it. See [Metro mode](/docs/metro-mode).
+
+## Everything your app needs beyond the screen
+
+The work since v1 reaches through the rest of the framework too.
+One remains a Vite plugin with file-system routing, typed loaders, and a
+choice of web render modes, now with more control over how your app loads,
+navigates, and ships.
+
+**Routing and navigation.** Share a typed route tree across platforms and
+give each one its own navigation UI. Nested layouts, protected routes,
+deep links, and platform-specific files fit together, with custom web
+presentations and native headers and toolbars. Start with the
+[routing guide](/docs/routing).
+
+**Data loading and server code.** Keep your backend beside your app, with
+typed loaders, API routes, and middleware. Share request context, cache
+concurrent loads, refetch changing data, and refresh content as you edit.
+Read about [loaders](/docs/routing-loader), [API routes](/docs/routing-api-routes),
+and [middleware](/docs/routing-middlewares).
+
+**Web rendering.** Mix static, server-rendered, and client-rendered pages
+in one app. Streaming, CDN revalidation, and rendered app shells help
+deliver content early; CSS inlining, image metadata, script controls, and
+link prefetching give you control over loading. See [render modes](/docs/render-modes).
+
+**Deployment and updates.** Ship to Vercel, Cloudflare Workers, or your
+own host. Native apps can check, download, and apply updates with rollback
+for early failures, while web deployment handles open pages across builds.
+Read the [deployment](/docs/guides-deployment) and [OTA](/docs/guides-ota-updates) guides.
+
+**Development tools.** Inspect routes, loader timing, SEO, errors, and
+source in one DevTools panel. Content hot reload and React Compiler
+configuration fit into your Vite setup, with environment guards and
+dependency patches for your app's needs. See [DevTools](/docs/dev-tools)
+and [configuration](/docs/configuration).
+
+The [release history](https://github.com/onejs/one/releases) has the individual
+changes and fixes behind v2.
+
+## Build with One v2
+
+Create your app with `npx one`, then follow the
+[introduction](/docs/introduction) or jump into [One Native](/docs/native-overview).
+For an existing app, the [installation guide](/docs/installation) and
+[migration guide](/native/migrating-to-one) cover the v2 requirements and
+upgrade steps.
+
+We want you to be able to build the app you have in mind: a great website,
+a fully native mobile app, or both, with the same React framework.

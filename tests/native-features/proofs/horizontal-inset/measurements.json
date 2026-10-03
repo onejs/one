@@ -1,0 +1,43 @@
+{
+  "suiteSourceRevision": "216c1569243f61913e03d727bd25c28a6797aea5",
+  "frames": {
+    "one-native-horizontal-inset-leading": {
+      "y": 215,
+      "width": 280,
+      "height": 180,
+      "x": 20
+    },
+    "Leading inset action": {
+      "y": 295,
+      "width": 152.66666666666666,
+      "height": 20.333333333333314,
+      "x": 29
+    },
+    "Leading base": {
+      "y": 294.8333333333333,
+      "height": 20.333333333333314,
+      "width": 101.33333333333331,
+      "x": 189.66666666666669
+    },
+    "one-native-horizontal-inset-trailing": {
+      "y": 436,
+      "height": 180,
+      "width": 280,
+      "x": 20
+    },
+    "Trailing base": {
+      "y": 515.8333333333334,
+      "height": 20.333333333333258,
+      "width": 96,
+      "x": 34.33333333333334
+    },
+    "Trailing inset action": {
+      "y": 516,
+      "width": 147.33333333333331,
+      "height": 20.33333333333337,
+      "x": 138.33333333333331
+    }
+  },
+  "leadingGapPoints": 8.000000000000028,
+  "trailingGapPoints": 7.999999999999972
+}

@@ -21,7 +21,7 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
     const normalized = source.replace(/\\/g, '/')
     if (
       isBuiltin(source) ||
-      /(?:^|\/node_modules\/)(?:react|react-native|react-native-worklets|react-native-reanimated|expo-modules-core)(?:\/|$)/.test(
+      /(?:^|\/node_modules\/)(?:react|react-native|react-native-worklets|react-native-reanimated)(?:\/|$)/.test(
         normalized
       ) ||
       /(?:^|\/node_modules\/)@react-native\//.test(normalized)

@@ -1,0 +1,52 @@
+import type { ViewProps } from 'react-native';
+import type { DirectEventHandler, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+export type NativeMenuItem = Readonly<{
+    parentId: string;
+    type: string;
+    id: string;
+    title: string;
+    systemImage: string;
+    role: string;
+    disabled: boolean;
+    hidden: boolean;
+    help: string;
+    controlGroupStyle: string;
+    values: ReadonlyArray<boolean>;
+    selection: string;
+    menuOrder: string;
+    menuActionDismissBehavior: string;
+}>;
+interface NativeProps extends ViewProps {
+    items: ReadonlyArray<NativeMenuItem>;
+    triggerLabel: string;
+    disabled: boolean;
+    hasPrimaryAction: boolean;
+    menuOrder: string;
+    menuActionDismissBehavior: string;
+    presentation: string;
+    acknowledgedEvent: Int32;
+    revision: Int32;
+    pickerAcknowledgedEvent: Int32;
+    onNativeMenuAction?: DirectEventHandler<Readonly<{
+        id: string;
+    }>>;
+    onNativeMenuPrimaryAction?: DirectEventHandler<Readonly<{
+        kind: string;
+    }>>;
+    onNativeMenuValueChange?: DirectEventHandler<Readonly<{
+        id: string;
+        value: boolean;
+        sourceIndex: Int32;
+        eventCount: Int32;
+        revision: Int32;
+    }>>;
+    onNativeMenuPickerChange?: DirectEventHandler<Readonly<{
+        id: string;
+        value: string;
+        eventCount: Int32;
+        revision: Int32;
+    }>>;
+}
+declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
+export default _default;
+//# sourceMappingURL=OneNativeMenuNativeComponent.d.ts.map

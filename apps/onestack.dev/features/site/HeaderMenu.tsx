@@ -13,6 +13,7 @@ import {
 import { useDocsMenu } from '~/features/docs/useDocsMenu'
 import { OneBall } from '../brand/Logo'
 import { DocsMenuContents } from '../docs/DocsMenuContents'
+import { DocsSectionTabs } from '../docs/DocsSectionTabs'
 import { ScrollView } from './ScrollView'
 import { useIsScrolled } from './useIsScrolled'
 import { SocialLinksRow } from './SocialLinksRow'
@@ -193,6 +194,7 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
 
       <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: '100%' }}>
         <YStack aria-label="Home menu contents" w="100%" p="$4" ai="flex-end">
+          <DocsSectionTabs />
           <DocsMenuContents inMenu />
         </YStack>
       </ScrollView>

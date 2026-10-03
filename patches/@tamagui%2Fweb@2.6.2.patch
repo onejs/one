@@ -1,0 +1,289 @@
+diff --git a/src/hooks/useThemeState.ts b/src/hooks/useThemeState.ts
+--- a/src/hooks/useThemeState.ts
++++ b/src/hooks/useThemeState.ts
+@@ -29,7 +29,6 @@
+ 
+ // TODO this will gain memory over time but its not going to be a ton
+ const states: Map<ID, ThemeState | undefined> = new Map()
+-const localStates: Map<ID, ThemeState | undefined> = new Map()
+ 
+ let shouldForce = false
+ export const forceUpdateThemes = () => {
+@@ -156,7 +155,7 @@
+     // strict-mode contract, setup restores whatever cleanup tore down.
+     if (r.lastSnap && !states.has(r.id)) {
+       states.set(r.id, r.lastSnap)
+-      localStates.set(r.id, r.lastSnap)
++      r.localState = r.lastSnap
+     }
+ 
+     if (r.unsubscribe && r.subscribedParentId !== r.parentId) {
+@@ -185,7 +184,7 @@
+         r.unsubscribe = () => {
+           allListeners.delete(sid)
+           listenersByParent[pid]?.delete(sid)
+-          localStates.delete(sid)
++          r.localState = undefined
+           states.delete(sid)
+           PendingUpdate.delete(sid)
+           r.unsubscribe = undefined
+@@ -233,6 +232,7 @@
+ }
+ 
+ type SnapshotRef = {
++  localState?: ThemeState
+   id: string
+   parentId: string
+   props: UseThemeWithStateProps
+@@ -264,7 +264,7 @@
+   if (r.unsubscribe) {
+     cleanupThemeSubscription(r)
+   } else {
+-    localStates.delete(r.id)
++    r.localState = undefined
+     states.delete(r.id)
+     PendingUpdate.delete(r.id)
+   }
+@@ -272,7 +272,8 @@
+ 
+ const getSnapshotImpl = (r: SnapshotRef): ThemeState => {
+   const { id, parentId, props, propsKey, isRoot, keys, schemeKeys } = r
+-  let local = localStates.get(id)
++  // useId values repeat across server renders; each hook owns its snapshot.
++  let local = r.localState
+   const parentState = states.get(parentId)
+ 
+   // fast path: nothing changed since last snapshot
+@@ -334,7 +335,7 @@
+   // the global state (states) should always be up to date with the latest
+   if (!local || rerender) {
+     local = { ...next }
+-    localStates.set(id, local)
++    r.localState = local
+   }
+ 
+   if (process.env.NODE_ENV === 'development' && props.debug === 'verbose') {
+diff --git a/dist/esm/hooks/useThemeState.mjs b/dist/esm/hooks/useThemeState.mjs
+--- a/dist/esm/hooks/useThemeState.mjs
++++ b/dist/esm/hooks/useThemeState.mjs
+@@ -9,7 +9,6 @@
+ const HadTheme = /* @__PURE__ */new WeakMap();
+ const PendingUpdate = /* @__PURE__ */new Map();
+ const states = /* @__PURE__ */new Map();
+-const localStates = /* @__PURE__ */new Map();
+ let shouldForce = false;
+ const forceUpdateThemes = () => {
+   cacheVersion++;
+@@ -70,7 +69,7 @@
+     const renderVersion = r.renderVersion;
+     if (r.lastSnap && !states.has(r.id)) {
+       states.set(r.id, r.lastSnap);
+-      localStates.set(r.id, r.lastSnap);
++      r.localState = r.lastSnap;
+     }
+     if (r.unsubscribe && r.subscribedParentId !== r.parentId) cleanupThemeSubscription(r);
+     if (shouldSubscribeToTheme(r, cascadeOnChange)) {
+@@ -94,7 +93,7 @@
+         r.unsubscribe = () => {
+           allListeners.delete(sid);
+           listenersByParent[pid]?.delete(sid);
+-          localStates.delete(sid);
++          r.localState = undefined;
+           states.delete(sid);
+           PendingUpdate.delete(sid);
+           r.unsubscribe = void 0;
+@@ -128,7 +127,7 @@
+ }
+ function cleanupThemeState(r) {
+   if (r.unsubscribe) cleanupThemeSubscription(r);else {
+-    localStates.delete(r.id);
++    r.localState = undefined;
+     states.delete(r.id);
+     PendingUpdate.delete(r.id);
+   }
+@@ -143,7 +142,7 @@
+     keys,
+     schemeKeys
+   } = r;
+-  let local = localStates.get(id);
++  let local = r.localState;
+   const parentState = states.get(parentId);
+   if (local && !PendingUpdate.has(id)) {
+     if (parentState && local._parentName === parentState.name && local._propsKey === propsKey) return local;
+@@ -159,7 +158,7 @@
+     local = {
+       ...next
+     };
+-    localStates.set(id, local);
++    r.localState = local;
+   }
+   if (process.env.NODE_ENV === "development" && props.debug === "verbose") {
+     console.groupCollapsed(` ${id} getSnapshot ${rerender}`, local.name, ">", next.name);
+diff --git a/dist/esm/hooks/useThemeState.native.js b/dist/esm/hooks/useThemeState.native.js
+--- a/dist/esm/hooks/useThemeState.native.js
++++ b/dist/esm/hooks/useThemeState.native.js
+@@ -9,7 +9,6 @@
+ var HadTheme = /* @__PURE__ */new WeakMap();
+ var PendingUpdate = /* @__PURE__ */new Map();
+ var states = /* @__PURE__ */new Map();
+-var localStates = /* @__PURE__ */new Map();
+ var shouldForce = false;
+ var forceUpdateThemes = function () {
+   cacheVersion++;
+@@ -85,7 +84,7 @@
+     var renderVersion = r.renderVersion;
+     if (r.lastSnap && !states.has(r.id)) {
+       states.set(r.id, r.lastSnap);
+-      localStates.set(r.id, r.lastSnap);
++      r.localState = r.lastSnap;
+     }
+     if (r.unsubscribe && r.subscribedParentId !== r.parentId) cleanupThemeSubscription(r);
+     if (shouldSubscribeToTheme(r, cascadeOnChange)) {
+@@ -110,7 +109,7 @@
+           var _listenersByParent_pid;
+           allListeners.delete(sid);
+           (_listenersByParent_pid = listenersByParent[pid]) === null || _listenersByParent_pid === void 0 || _listenersByParent_pid.delete(sid);
+-          localStates.delete(sid);
++          r.localState = undefined;
+           states.delete(sid);
+           PendingUpdate.delete(sid);
+           r.unsubscribe = void 0;
+@@ -151,7 +150,7 @@
+ }
+ function cleanupThemeState(r) {
+   if (r.unsubscribe) cleanupThemeSubscription(r);else {
+-    localStates.delete(r.id);
++    r.localState = undefined;
+     states.delete(r.id);
+     PendingUpdate.delete(r.id);
+   }
+@@ -167,7 +166,7 @@
+     keys,
+     schemeKeys
+   } = r;
+-  var local = localStates.get(id);
++  var local = r.localState;
+   var parentState = states.get(parentId);
+   if (local && !PendingUpdate.has(id)) {
+     if (parentState && local._parentName === parentState.name && local._propsKey === propsKey) return local;
+@@ -185,7 +184,7 @@
+     local = {
+       ...next
+     };
+-    localStates.set(id, local);
++    r.localState = local;
+   }
+   if (process.env.NODE_ENV === "development" && props.debug === "verbose") {
+     console.groupCollapsed(` ${id} getSnapshot ${rerender}`, local.name, ">", next.name);
+diff --git a/dist/cjs/hooks/useThemeState.cjs b/dist/cjs/hooks/useThemeState.cjs
+--- a/dist/cjs/hooks/useThemeState.cjs
++++ b/dist/cjs/hooks/useThemeState.cjs
+@@ -41,7 +41,6 @@
+ const HadTheme = /* @__PURE__ */new WeakMap();
+ const PendingUpdate = /* @__PURE__ */new Map();
+ const states = /* @__PURE__ */new Map();
+-const localStates = /* @__PURE__ */new Map();
+ let shouldForce = false;
+ const forceUpdateThemes = () => {
+   cacheVersion++;
+@@ -102,7 +101,7 @@
+     const renderVersion = r.renderVersion;
+     if (r.lastSnap && !states.has(r.id)) {
+       states.set(r.id, r.lastSnap);
+-      localStates.set(r.id, r.lastSnap);
++      r.localState = r.lastSnap;
+     }
+     if (r.unsubscribe && r.subscribedParentId !== r.parentId) cleanupThemeSubscription(r);
+     if (shouldSubscribeToTheme(r, cascadeOnChange)) {
+@@ -126,7 +125,7 @@
+         r.unsubscribe = () => {
+           allListeners.delete(sid);
+           listenersByParent[pid]?.delete(sid);
+-          localStates.delete(sid);
++          r.localState = undefined;
+           states.delete(sid);
+           PendingUpdate.delete(sid);
+           r.unsubscribe = void 0;
+@@ -160,7 +159,7 @@
+ }
+ function cleanupThemeState(r) {
+   if (r.unsubscribe) cleanupThemeSubscription(r);else {
+-    localStates.delete(r.id);
++    r.localState = undefined;
+     states.delete(r.id);
+     PendingUpdate.delete(r.id);
+   }
+@@ -175,7 +174,7 @@
+     keys,
+     schemeKeys
+   } = r;
+-  let local = localStates.get(id);
++  let local = r.localState;
+   const parentState = states.get(parentId);
+   if (local && !PendingUpdate.has(id)) {
+     if (parentState && local._parentName === parentState.name && local._propsKey === propsKey) return local;
+@@ -191,7 +190,7 @@
+     local = {
+       ...next
+     };
+-    localStates.set(id, local);
++    r.localState = local;
+   }
+   if (process.env.NODE_ENV === "development" && props.debug === "verbose") {
+     console.groupCollapsed(` ${id} getSnapshot ${rerender}`, local.name, ">", next.name);
+diff --git a/dist/cjs/hooks/useThemeState.native.js b/dist/cjs/hooks/useThemeState.native.js
+--- a/dist/cjs/hooks/useThemeState.native.js
++++ b/dist/cjs/hooks/useThemeState.native.js
+@@ -43,7 +43,6 @@
+ var HadTheme = /* @__PURE__ */new WeakMap();
+ var PendingUpdate = /* @__PURE__ */new Map();
+ var states = /* @__PURE__ */new Map();
+-var localStates = /* @__PURE__ */new Map();
+ var shouldForce = false;
+ var forceUpdateThemes = function () {
+   cacheVersion++;
+@@ -119,7 +118,7 @@
+     var renderVersion = r.renderVersion;
+     if (r.lastSnap && !states.has(r.id)) {
+       states.set(r.id, r.lastSnap);
+-      localStates.set(r.id, r.lastSnap);
++      r.localState = r.lastSnap;
+     }
+     if (r.unsubscribe && r.subscribedParentId !== r.parentId) cleanupThemeSubscription(r);
+     if (shouldSubscribeToTheme(r, cascadeOnChange)) {
+@@ -144,7 +143,7 @@
+           var _listenersByParent_pid;
+           allListeners.delete(sid);
+           (_listenersByParent_pid = listenersByParent[pid]) === null || _listenersByParent_pid === void 0 || _listenersByParent_pid.delete(sid);
+-          localStates.delete(sid);
++          r.localState = undefined;
+           states.delete(sid);
+           PendingUpdate.delete(sid);
+           r.unsubscribe = void 0;
+@@ -185,7 +184,7 @@
+ }
+ function cleanupThemeState(r) {
+   if (r.unsubscribe) cleanupThemeSubscription(r);else {
+-    localStates.delete(r.id);
++    r.localState = undefined;
+     states.delete(r.id);
+     PendingUpdate.delete(r.id);
+   }
+@@ -201,7 +200,7 @@
+     keys,
+     schemeKeys
+   } = r;
+-  var local = localStates.get(id);
++  var local = r.localState;
+   var parentState = states.get(parentId);
+   if (local && !PendingUpdate.has(id)) {
+     if (parentState && local._parentName === parentState.name && local._propsKey === propsKey) return local;
+@@ -219,7 +218,7 @@
+     local = {
+       ...next
+     };
+-    localStates.set(id, local);
++    r.localState = local;
+   }
+   if (process.env.NODE_ENV === "development" && props.debug === "verbose") {
+     console.groupCollapsed(` ${id} getSnapshot ${rerender}`, local.name, ">", next.name);

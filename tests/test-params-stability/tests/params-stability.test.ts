@@ -241,4 +241,49 @@ describe('useParams stability on dynamic route hydration', { retry: 1 }, () => {
       }
     }
   )
+
+  test(
+    'urgent layout render keeps the committed pathname during a pending push',
+    { retry: 0 },
+    async () => {
+      const page = await context.newPage()
+      const errors: string[] = []
+      page.on('pageerror', (err) => errors.push(err.message))
+
+      try {
+        await page.goto(`${serverUrl}/project/default_anon-123/main`, {
+          waitUntil: 'domcontentloaded',
+        })
+        await page.waitForSelector('#project-page', { timeout: 15000 })
+        expect((await collectProjectState(page)).pathname).toBe(
+          '/project/default_anon-123/main'
+        )
+
+        await page.evaluate(() => {
+          ;(window as any).__simulateProjectPendingTransitionRace()
+        })
+        await page.waitForFunction(
+          () => document.querySelector('#project-render-tick')?.textContent === '1'
+        )
+
+        const afterUrgentRender = await collectProjectState(page)
+        const urgentRender = afterUrgentRender.renders.find((render) => render.tick === 1)
+        expect(urgentRender?.url).toBe('/project/default_anon-123/main')
+        expect(
+          urgentRender?.pathname,
+          `urgent render saw pending route info before navigation committed.\n` +
+            `actual: ${JSON.stringify(afterUrgentRender, null, 2)}`
+        ).toBe('/project/default_anon-123/main')
+
+        await page.waitForFunction(
+          () =>
+            document.querySelector('#project-topbar-pathname')?.textContent ===
+            '/project/new/main'
+        )
+        expect(errors).toEqual([])
+      } finally {
+        await page.close()
+      }
+    }
+  )
 })

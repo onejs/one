@@ -17,6 +17,10 @@ ignores:
   # Imported by @react-navigation components (drawer/bottom-tabs), needed for native builds
   - "@react-native-masked-view/masked-view"
 
+  # pins the elements bottom-tabs and native-stack resolve: their caret on a
+  # prerelease otherwise installs a newer alpha that peers a newer native
+  - "@react-navigation/elements"
+
   # Used in metro-config (see getViteMetroPluginOptions)
   - babel-plugin-module-resolver
 
@@ -25,3 +29,7 @@ ignores:
 
   # Used in metro-entry (can definitely import from self)
   - "one"
+  # metro resolves this from the app; one does not install it
+  - "babel-preset-expo"
+  # native only: its nitro hybrid objects load one.ui.image urls, linked through react-native-config
+  - "react-native-nitro-web-image"

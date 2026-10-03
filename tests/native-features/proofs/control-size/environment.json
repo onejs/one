@@ -1,0 +1,21 @@
+{
+  "sourceRevision": "6535b36e6b6e23697684ee95a0c43d8171993007",
+  "suiteRevision": "6535b36e6b6e23697684ee95a0c43d8171993007",
+  "nativeBuildSourceRevision": "c593ca7e2ebf8ee245e02066773ac19ce2d8616f",
+  "nativeSourceTree": "96f68d9974116519ab93458ee5479312d03ba7c3",
+  "nativeSourceTreeAtBuildRevision": "96f68d9974116519ab93458ee5479312d03ba7c3",
+  "device": "iPhone 17 Pro",
+  "deviceTypeIdentifier": "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro",
+  "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
+  "runtimeIdentifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0",
+  "xcode": "Xcode 27.1\nBuild version 27A9269",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "control-size",
+  "builtAppDebugDylibSHA256": "56f04578fd4eefc42dc9833ca875daf7938d7b06a723856227f255bd202c9de3",
+  "installedAppDebugDylibSHA256": "56f04578fd4eefc42dc9833ca875daf7938d7b06a723856227f255bd202c9de3",
+  "locale": "en_US",
+  "appearance": "light",
+  "appearanceSource": "same simulator; set light with simctl ui before this run and captured at native build proof",
+  "builderHostname": "MacBookPros-MacBook-Pro.local",
+  "artifactDir": "tests/native-features/build/control-size-final-proof"
+}

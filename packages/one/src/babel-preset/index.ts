@@ -1,8 +1,9 @@
-import module from 'node:module'
 import path from 'node:path'
+import { createRequire } from 'node:module'
 import type { PluginItem, TransformOptions } from '@babel/core'
 import mm from 'micromatch'
 import tsconfigPaths from 'tsconfig-paths'
+import { pickOnePublicEnv } from '../native/env'
 import {
   API_ROUTE_GLOB_PATTERN,
   ROUTE_NATIVE_EXCLUSION_GLOB_PATTERNS,
@@ -40,13 +41,11 @@ export type OneBabelPresetOptions = {
   linking?: unknown
   /** Path to a native setup file, relative to the project root. */
   setupFile?: string | { native?: string; ios?: string; android?: string }
-  /** Whether to include `babel-preset-expo` as the base preset. Defaults to true. */
-  includeExpoPreset?: boolean
   /**
    * Whether to include `@vxrn/vite-plugin-metro/babel-plugins/import-meta-env-plugin`.
    * Defaults to true. The Vite-driven Metro server injects this separately via
    * `patchMetroServerWithViteConfigAndMetroPluginOptions` using the user's Vite
-   * `define` config — so the Vite path passes `false`. Re-applying is idempotent.
+   * `define` config, so the Vite path passes `false`. Re-applying is idempotent.
    */
   includeImportMetaEnv?: boolean
 }
@@ -54,6 +53,8 @@ export type OneBabelPresetOptions = {
 /**
  * Standalone babel preset that drops the same plugin chain that the
  * Vite-driven Metro path applies into any `babel.config.{cjs,js,mjs}` file.
+ * Builds on `@react-native/babel-preset` for syntax and platform transforms;
+ * one's default Rolldown path does not use babel.
  *
  * @example
  * ```js
@@ -71,7 +72,7 @@ export default function oneBabelPreset(
       : false
 
   // @vxrn/compiler applies a user babel config inside the vite and rolldown
-  // pipeline, which already runs the One chain and handles what babel-preset-expo does for metro
+  // pipeline, which already runs the One chain and React Native transforms
   const isVxrnCompiler =
     typeof api?.caller === 'function'
       ? api.caller((caller) => (caller as { name?: string } | undefined)?.name === 'vxrn')
@@ -88,24 +89,22 @@ export default function oneBabelPreset(
     options.projectRoot ?? (typeof api?.cwd === 'function' ? api.cwd() : process.cwd())
   )
 
-  const presets: PluginItem[] = []
-
-  if (options.includeExpoPreset !== false) {
-    const require = module.createRequire(projectRoot + '/')
-    try {
-      const expoPresetPath = require.resolve('babel-preset-expo')
-      presets.push(require(expoPresetPath))
-    } catch (e) {
-      throw new Error(
-        `[one/babel-preset] Could not resolve 'babel-preset-expo' from ${projectRoot}. ` +
-          `Install it as a project dependency (it ships with the Expo SDK). ` +
-          `If you don't want the Expo base preset, pass { includeExpoPreset: false }.`
-      )
-    }
+  // Babel is the opt-in path, so the RN base resolves from the project, not
+  // from one's own dependencies. only the resolve is guarded: a throw from
+  // inside the preset itself must surface as-is, not as "not installed".
+  const require = createRequire(projectRoot + '/')
+  let reactNativePresetPath: string
+  try {
+    reactNativePresetPath = require.resolve('@react-native/babel-preset')
+  } catch {
+    throw new Error(
+      `[one/babel-preset] Could not resolve '@react-native/babel-preset' from ${projectRoot}. ` +
+        `Install it as a project dependency (it ships with every React Native app template).`
+    )
   }
 
   return {
-    presets,
+    presets: [require(reactNativePresetPath)],
     plugins: hasViteInjectedOnePlugins
       ? []
       : buildOneBabelPlugins({
@@ -145,7 +144,7 @@ export function buildOneBabelPlugins({
     throw new Error('[one/babel-preset] tsconfig.json paths could not be loaded')
   }
 
-  const require = module.createRequire(projectRoot + '/')
+  const require = createRequire(projectRoot + '/')
   const metroEntryPath = require.resolve('one/metro-entry', {
     paths: [projectRoot],
   })
@@ -157,7 +156,7 @@ export function buildOneBabelPlugins({
         ? setupFile
         : setupFile.native || setupFile.ios || setupFile.android
     if (!file) return undefined
-    // posix-only — embedded as a JS import specifier in `one-router-metro` (becomes
+    // posix-only, embedded as a JS import specifier in `one-router-metro` (becomes
     // literal `import "..."`); backslashes on Windows produce platform-conditional AST
     // and silently break rolldown/Vite POSIX module-graph keys for source-map / snapshot
     // consumers downstream.
@@ -167,7 +166,7 @@ export function buildOneBabelPlugins({
   })()
 
   return [
-    // standalone Metro CLI (expo export, eas update) needs `import.meta.env.*` /
+    // standalone Metro CLI needs `import.meta.env.*` /
     // `process.env.*` baked in. The Vite path passes `false` here and injects
     // its own version with the user's `define` env via the server hook.
     ...(includeImportMetaEnv
@@ -198,7 +197,7 @@ export function buildOneBabelPlugins({
     [
       'one/babel-plugin-one-router-metro',
       {
-        // posix-only — becomes the first arg of `require.context()` in `one-router-metro`;
+        // posix-only, becomes the first arg of `require.context()` in `one-router-metro`;
         // backslashes on Windows drift the babel-emitted AST per platform.
         ONE_ROUTER_APP_ROOT_RELATIVE_TO_ENTRY: toPosixRelativePath(
           path.relative(
@@ -220,23 +219,29 @@ export function buildOneBabelPlugins({
 /**
  * Build the `import.meta.env` substitution map for standalone Metro use.
  * Mirrors Vite's default `define`: MODE/BASE_URL/PROD/DEV/SSR plus any
- * `EXPO_PUBLIC_*` / `ONE_*` / `VITE_*` env var from `process.env`.
+ * `ONE_PUBLIC_*` / `EXPO_PUBLIC_*` / `ONE_*` / `VITE_*` env var from
+ * `process.env`.
  */
 function buildStandaloneImportMetaEnv(): Record<string, unknown> {
   const isProduction = process.env.NODE_ENV !== 'development'
+  const expoPlatform =
+    process.env.ONE_PLATFORM === 'ios' || process.env.ONE_PLATFORM === 'android'
+      ? process.env.ONE_PLATFORM
+      : process.env.EXPO_OS === 'ios' || process.env.EXPO_OS === 'android'
+        ? process.env.EXPO_OS
+        : undefined
   const env: Record<string, unknown> = {
+    ...pickOnePublicEnv(process.env),
     MODE: isProduction ? 'production' : 'development',
     BASE_URL: '/',
     PROD: isProduction,
     DEV: !isProduction,
     SSR: false,
+    ONE_PLATFORM: process.env.ONE_PLATFORM ?? 'web',
+    ...(expoPlatform ? { EXPO_OS: expoPlatform } : {}),
   }
   for (const [key, value] of Object.entries(process.env)) {
-    if (
-      key.startsWith('EXPO_PUBLIC_') ||
-      key.startsWith('ONE_') ||
-      key.startsWith('VITE_')
-    ) {
+    if (key.startsWith('ONE_') || key.startsWith('VITE_')) {
       env[key] = value
     }
   }

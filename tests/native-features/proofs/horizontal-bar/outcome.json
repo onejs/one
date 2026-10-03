@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "simulator automation session ready",
+      "durationMs": 2200
+    },
+    {
+      "name": "home screen mounted",
+      "durationMs": 6834
+    },
+    {
+      "name": "no warning overlay intercepts interaction",
+      "durationMs": 2091
+    },
+    {
+      "name": "home lists nav-one-native-horizontal-bar",
+      "durationMs": 2304
+    },
+    {
+      "name": "nav-one-native-horizontal-bar settles",
+      "durationMs": 3354
+    },
+    {
+      "name": "native leading and trailing safe-area bars mount",
+      "durationMs": 3835
+    },
+    {
+      "name": "native horizontal bars are edge-adjacent inside each host",
+      "durationMs": 0
+    },
+    {
+      "name": "leading safe-area bar action reaches React",
+      "durationMs": 1220
+    },
+    {
+      "name": "trailing safe-area bar action reaches React",
+      "durationMs": 1478
+    }
+  ],
+  "durationMs": 49216,
+  "simulatorId": "41E95D83-2AEC-4124-9655-5462F2A770DE",
+  "bundleId": "dev.vxrn.native.tests",
+  "suite": "horizontal-bar"
+}

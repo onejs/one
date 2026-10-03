@@ -1,0 +1,5 @@
+ ✓ |one| src/platform/AndroidMenu.test.tsx > keeps the iOS primaryAction callback off the Android trigger View
+ ✓ |one| src/platform/AndroidMenu.test.tsx > keeps onPickerChange off the Android trigger View without picker items
+ ✓ |one| src/platform/AndroidMenu.test.tsx > rejects picker items before opening the Android popup
+ Test Files  1 passed (1)
+      Tests  3 passed (3)

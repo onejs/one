@@ -156,12 +156,23 @@ export function createFileSystemRouterPlugin(
 
           if (route.type === 'spa' && !isSpaShell) {
             // render just the layouts? route.layouts
-            return `<!DOCTYPE html><html><head>
+            const shell = `<!DOCTYPE html><html><head>
             ${getSpaHeaderElements({ serverContext: { mode: 'spa' } })}
             <script type="module" src="/@one/dev.js"></script>
             <script type="module" src="/@vite/client" async=""></script>
             <script type="module" src="/@id/__x00__virtual:one-entry" async=""></script>
           </head></html>`
+            // the client still renders +not-found from the shell, but the status
+            // must say 404: an import of a file that does not exist lands here
+            // too, and a 200 html reply reads to the browser as a bad mime type
+            // instead of a missing module.
+            if (route.isNotFound) {
+              return new Response(shell, {
+                status: 404,
+                headers: { 'Content-Type': 'text/html' },
+              })
+            }
+            return shell
           }
 
           if (renderPromise) {
@@ -486,17 +497,21 @@ export function createFileSystemRouterPlugin(
           const routeFile = path.join(routerRoot, route.file)
 
           // this will remove all loaders
-          let transformedJS = (await server.transformRequest(routeFile))?.code
+          const transformedJS = (await server.transformRequest(routeFile))?.code
           if (!transformedJS) {
             throw new Error(`No transformed js returned`)
           }
+
+          const platform = url.searchParams.get('platform')
 
           // the client tree-shake plugin replaces loader exports with stubs
           // like "export function loader()". if no stub exists, this route has
           // no loader - skip the SSR module import to avoid evaluating modules
           // with potentially SSR-incompatible deps (e.g. tamagui in SSR)
           if (!/export function loader\(\)/.test(transformedJS)) {
-            return transformedJS
+            return platform === 'ios' || platform === 'android' || platform === 'native'
+              ? 'exports.loader = () => undefined;'
+              : 'export function loader() { return undefined }'
           }
 
           const exported = await runner.import(routeFile)
@@ -560,8 +575,6 @@ export function createFileSystemRouterPlugin(
             }
           }
 
-          const platform = url.searchParams.get('platform')
-
           if (platform === 'ios' || platform === 'android' || platform === 'native') {
             // Need to transpile to CommonJS for React Native
 
@@ -576,13 +589,8 @@ export function createFileSystemRouterPlugin(
             return `exports.loader = () => (${JSON.stringify(loaderData)});`
           }
 
-          if (loaderData) {
-            // the client only reads loader() off this module, so serve the data
-            // alone instead of the whole route module with its stub rewritten
-            return `export function loader(){return ${JSON.stringify(loaderData)}}`
-          }
-
-          return transformedJS
+          // the loader endpoint never evaluates the client page module.
+          return `export function loader(){return ${JSON.stringify(loaderData)}}`
         },
 
         async handleAPI({ route }) {

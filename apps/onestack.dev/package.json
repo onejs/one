@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -25,6 +25,7 @@
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/lucide-icons-2": "2.6.2",
     "@tamagui/react-native-web": "2.6.2",
+    "@tamagui/sheet": "2.6.2",
     "@tamagui/themes": "2.6.2",
     "@tamagui/use-store": "2.6.2",
     "@vxrn/color-scheme": "workspace:*",
@@ -33,7 +34,6 @@
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
-    "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.27.0",
     "tamagui": "2.6.2"
   },

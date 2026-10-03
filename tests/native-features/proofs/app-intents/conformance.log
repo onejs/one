@@ -1,0 +1,31 @@
+PASS simulator automation session ready
+PASS home screen mounted
+PASS no warning overlay intercepts interaction
+PASS home lists nav-one-native-app-intents
+PASS nav-one-native-app-intents settles
+PASS app intents fixture mounted
+PASS app intents receipt cleared
+PASS app intents invalid input rejects
+PASS Shortcuts library opens
+PASS Shortcuts library after editor
+PASS Shortcuts library ready
+PASS Shortcuts editor ready
+PASS Shortcuts action search ready
+PASS Shortcuts takes O
+PASS One Echo Text discovered by Shortcuts
+PASS One Echo Text inserted into editor
+PASS Shortcuts text parameter ready
+PASS Shortcuts text editor focused
+PASS Shortcuts takes W
+PASS Shortcuts parameter is Warm-one
+PASS Shortcuts play ready
+PASS app-intents-warm-result: JS:Warm-one
+PASS app-intents-warm-result
+PASS Shortcuts text parameter ready
+PASS Shortcuts text editor focused
+PASS Shortcuts takes C
+PASS Shortcuts parameter is Cold-two
+PASS Shortcuts play ready
+PASS app-intents-cold-result: JS:Cold-two
+PASS app-intents-cold-process 88753->79162
+spawnSync xcrun ETIMEDOUT

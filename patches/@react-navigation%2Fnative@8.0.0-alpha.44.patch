@@ -1,0 +1,13 @@
+diff --git a/android/src/main/java/org/reactnavigation/MaterialSymbolModule.kt b/android/src/main/java/org/reactnavigation/MaterialSymbolModule.kt
+index 1f21c13..f411bd9 100644
+--- a/android/src/main/java/org/reactnavigation/MaterialSymbolModule.kt
++++ b/android/src/main/java/org/reactnavigation/MaterialSymbolModule.kt
+@@ -46,7 +46,7 @@
+     }
+ 
+     val resolvedColor = ColorPropConverter.getColor(
+-      colorValue, currentActivity ?: reactApplicationContext
++      colorValue, getCurrentActivity() ?: reactApplicationContext
+     ) ?: throw IllegalArgumentException("Could not resolve color")
+ 
+     val density = reactApplicationContext.resources.displayMetrics.density

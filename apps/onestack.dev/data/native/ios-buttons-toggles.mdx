@@ -1,0 +1,251 @@
+---
+title: iOS Buttons and Toggles
+description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, and EditButton under One.iOS
+---
+
+<NativeHero
+  src="/native/ios-actions.webp"
+  alt="One.iOS Toggle, Slider, Stepper, and Button in a native SwiftUI form"
+/>
+
+Pressable and value controls under `One.iOS`, drawn by SwiftUI.
+
+- `Toggle`, `Slider`, and `Stepper` are controlled: a value, a change
+  callback, and a `revision` for external resets.
+- `Button` takes a label and SF Symbol, or React children.
+- `PasteButton`, `ShareLink`, and `SignInWithAppleButton` wrap system flows.
+- Every control throws on web and Android. Keep them in an iOS branch or an
+  `.ios.tsx` file.
+
+## Usage
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+export function SoundSettings() {
+  const [muted, setMuted] = useState(false)
+  const [volume, setVolume] = useState(50)
+
+  return (
+    <One.iOS.Form style={{ flex: 1 }}>
+      <One.iOS.Section title="Sound">
+        <One.iOS.Toggle label="Mute" isOn={muted} onIsOnChange={setMuted} />
+        <One.iOS.Slider
+          label="Volume"
+          value={volume}
+          onValueChange={setVolume}
+          minimumValueImage="speaker.fill"
+          maximumValueImage="speaker.wave.3.fill"
+        />
+        <One.iOS.Button label="Save" systemImage="checkmark" onPress={save} />
+      </One.iOS.Section>
+    </One.iOS.Form>
+  )
+}
+```
+
+To reset a controlled value from outside, set the new value and increase
+`revision` in the same render.
+
+## Shared props
+
+Every control on this page also accepts `accessibilityLabel`,
+`accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
+`swiftStyle`. Most accept `disabled`; `EditButton` and
+`SignInWithAppleButton` do not.
+
+## Button
+
+`One.iOS.Button` runs `onPress` when tapped. It takes either a label or
+children, never both, and needs at least a `label`, a `systemImage`, or
+children.
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#ButtonProps"
+  data={[
+    { name: 'onPress', type: '() => void', description: 'Runs when tapped.' },
+    { name: 'label', type: 'string', default: '""', description: 'The title.' },
+    { name: 'systemImage', type: 'string', default: '""', description: 'An SF Symbol shown with the title.' },
+    { name: 'subtitle', type: 'string', default: '""', description: 'A second line under the title.' },
+    {
+      name: 'buttonRole',
+      type: 'ButtonRole | ""',
+      default: '""',
+      description: 'destructive, cancel, confirm, or close.',
+    },
+    {
+      name: 'buttonStyle',
+      type: 'PrimitiveButtonStyle',
+      default: '"automatic"',
+      description: 'automatic, glass, glassProminent, borderless, plain, bordered, or borderedProminent.',
+    },
+    {
+      name: 'disclosureIndicator',
+      type: 'boolean',
+      default: 'false',
+      description: 'Shows a chevron, as in a navigation row.',
+    },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
+    { name: 'children', type: 'ReactNode', description: 'Custom content in place of label and systemImage.' },
+  ]}
+/>
+
+Use `swiftStyle={{ controlSize: 'extraLarge' }}` to apply SwiftUI's
+`.controlSize(_:)` to a standalone Button. On an iOS 27 simulator, a bordered
+prominent Button grew from 28 to 50.33 points when changed from `mini` to
+`extraLarge`, then returned to 28 points.
+
+## Toggle
+
+`One.iOS.Toggle` is a labeled switch.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ToggleProps"
+  data={[
+    { name: 'isOn', required: true, type: 'boolean', description: 'Whether the switch is on.' },
+    { name: 'onIsOnChange', required: true, type: '(value: boolean) => void', description: 'A native flip, with the new value.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isOn to reset it from outside.' },
+    { name: 'label', type: 'string', description: 'The text before the switch.' },
+    { name: 'systemImage', type: 'string', description: 'An SF Symbol before the label.' },
+    { name: 'toggleStyle', type: 'ToggleStyle', default: '"automatic"', description: 'automatic, switch, or button.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the toggle and ignores taps.' },
+  ]}
+/>
+
+## Slider
+
+`One.iOS.Slider` picks a number in a range.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#SliderProps"
+  data={[
+    { name: 'value', required: true, type: 'number', description: 'The current value.' },
+    { name: 'onValueChange', required: true, type: '(value: number) => void', description: 'A native drag, with the new value.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
+    { name: 'label', type: 'string', description: 'Read by VoiceOver. A form row does not draw it.' },
+    { name: 'minimumValue', type: 'number', default: '0', description: 'The low end of the range.' },
+    { name: 'maximumValue', type: 'number', default: '100', description: 'The high end of the range.' },
+    { name: 'step', type: 'number', default: '1', description: 'The increment between values.' },
+    { name: 'minimumValueLabel', type: 'string', description: 'Text at the low end.' },
+    { name: 'maximumValueLabel', type: 'string', description: 'Text at the high end.' },
+    { name: 'minimumValueImage', type: 'string', description: 'An SF Symbol at the low end.' },
+    { name: 'maximumValueImage', type: 'string', description: 'An SF Symbol at the high end.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the slider and ignores drags.' },
+  ]}
+/>
+
+The value must lie within the range, the minimum must be below the maximum,
+and the step must be above zero, or the slider throws during render.
+
+## Stepper
+
+`One.iOS.Stepper` steps a number up and down.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#StepperProps"
+  data={[
+    { name: 'value', required: true, type: 'number', description: 'The current value.' },
+    { name: 'onValueChange', required: true, type: '(value: number) => void', description: 'A native step, with the new value.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
+    { name: 'label', type: 'string', description: 'The text before the buttons.' },
+    { name: 'minimumValue', type: 'number', default: '0', description: 'The lowest value.' },
+    { name: 'maximumValue', type: 'number', default: '100', description: 'The highest value.' },
+    { name: 'step', type: 'number', default: '1', description: 'The amount each tap adds or removes.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the stepper and ignores taps.' },
+  ]}
+/>
+
+Stepper throws on the same invalid ranges as Slider.
+
+## PasteButton
+
+`One.iOS.PasteButton` renders SwiftUI's system Paste button for strings.
+SwiftUI performs the paste without the usual pasteboard prompt. It has the
+system label, so `label` and `systemImage` are not props.
+
+```tsx
+<One.iOS.PasteButton onPaste={(values) => setText(values.join('\n'))} />
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#PasteButtonProps"
+  data={[
+    { name: 'onPaste', type: '(values: readonly string[]) => void', description: 'Every string from one paste.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the button and ignores taps.' },
+  ]}
+/>
+
+## ShareLink
+
+`One.iOS.ShareLink` opens the system share sheet for one item. It does not
+report completion.
+
+```tsx
+<One.iOS.ShareLink label="Share" item="https://onestack.dev" itemType="url" />
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ShareLinkProps"
+  data={[
+    { name: 'label', type: 'string', description: 'The button title.' },
+    { name: 'systemImage', type: 'string', description: 'An SF Symbol shown with the title.' },
+    { name: 'item', type: 'string', description: 'The text or URL to share.' },
+    { name: 'itemType', type: '"text" | "url"', description: 'How iOS receives the item. A URL gets a link preview.' },
+    { name: 'subject', type: 'string', description: 'A subject, for activities such as Mail.' },
+    { name: 'message', type: 'string', description: 'Text shared with the item.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the button and ignores taps.' },
+  ]}
+/>
+
+For a text item, the system Copy activity copies the item and message as
+text. Changing `item` and `itemType` changes what the next share sheet
+receives.
+
+## SignInWithAppleButton
+
+`One.iOS.SignInWithAppleButton` starts the Apple sign in flow.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#SignInWithAppleButtonProps"
+  data={[
+    {
+      name: 'onCompletion',
+      type: '(completion: SignInWithAppleButtonCompletion) => void',
+      description: 'The result: success, failed, or cancelled.',
+    },
+    { name: 'requestedScopes', type: 'readonly ("fullName" | "email")[]', description: 'The user details to request.' },
+    { name: 'nonce', type: 'string', description: 'A replay protection nonce passed through to Apple.' },
+    { name: 'label', type: '"signIn" | "continue" | "signUp"', description: 'The system button title.' },
+  ]}
+/>
+
+A completion is `{ type: 'success', user, email, givenName, familyName,
+identityToken, authorizationCode }`, `{ type: 'failed', message }`, or
+`{ type: 'cancelled' }`.
+
+## EditButton
+
+`One.iOS.EditButton` is SwiftUI's edit button, with only the shared props.
+Put it inside a native `One.iOS.List`. Its label changes from **Edit** to
+**Done** and back when tapped.
+
+```tsx
+<One.iOS.List>
+  <One.iOS.Section title="Items">
+    <One.iOS.EditButton />
+    <One.iOS.Text text="Alpha" />
+    <One.iOS.Text text="Beta" />
+  </One.iOS.Section>
+</One.iOS.List>
+```
+
+`List` does not expose SwiftUI row deletion or moves yet, so the button only
+switches its own label.

@@ -9,6 +9,8 @@ export const DEFAULT_ASSET_EXTS = [
   'psd',
   'svg',
   'webp',
+  // dotLottie animation archives
+  'lottie',
   // Video formats
   'm4v',
   'mov',
@@ -26,11 +28,14 @@ export const DEFAULT_ASSET_EXTS = [
   // Document formats
   'html',
   'pdf',
+  'txt',
   'yaml',
   'yml',
   // Font formats
   'otf',
   'ttf',
+  'woff',
+  'woff2',
   // Archives (virtual files)
   'zip',
 ]
