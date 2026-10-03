@@ -1,9 +1,11 @@
+import { checkNativePackages } from './checkNativePackages'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
 export async function run(args: {}) {
   const root = process.cwd()
+  checkNativePackages(root, 'android')
 
   // same guarantee as run:ios: never hand the community cli a project
   // without generated android sources.

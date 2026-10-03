@@ -1,9 +1,11 @@
+import { checkNativePackages } from './checkNativePackages'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
 export async function run(args: { simulator?: string; udid?: string }) {
   const root = process.cwd()
+  checkNativePackages(root, 'ios')
 
   // resolve the app's dev server port from its vite config so the launched
   // app points at the real dev server (vxrn passes it as the community cli

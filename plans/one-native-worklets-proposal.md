@@ -17,9 +17,10 @@ type BlessedNativePackage = Readonly<{
 The source list is `packages/one/src/native-packages.ts`. It drives the starter
 manifest, installation example, native setup table, peer version ranges and
 native checks. `bun sync:native-packages` refreshes generated consumers;
-`bun check:native-packages` rejects drift. `one prebuild` checks installed
+`bun check:native-packages` rejects drift and runs in `check:deps`. `one prebuild` checks installed
 versions before writing projects; `one doctor --platform ios|android|web`
-checks them without generating a project. Without a platform, doctor reads
+checks them without generating a project. `run:ios` and `run:android` check
+the same contract even when a generated project already exists. Without a platform, doctor reads
 `native.app` and skips native peers for web-only configurations.
 
 Worklets is required by One's native sync installer. Reanimated is required by
@@ -75,6 +76,6 @@ and the zero value for unsupported sensors. Then prove native thread ownership,
 subscription cleanup and no JS delivery per frame in the fixture, alongside
 React Compiler and worklet transform behavior.
 
-Validation: package contract and prebuild tests, 18 passing; generated consumer
+Validation: package contract and prebuild tests, 27 passing; generated consumer
 drift check and narrow lint passing. Native runtime and benchmark receipts are
 tracked separately in `plans/one-native-speed.md`.

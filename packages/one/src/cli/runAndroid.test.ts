@@ -3,14 +3,13 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { run } from './runAndroid'
+import { blessedNativePackages } from '../native-packages'
 
-const { loadUserOneOptionsMock, runAndroidMock, prebuildRunMock } = vi.hoisted(
-  () => ({
-    loadUserOneOptionsMock: vi.fn(),
-    runAndroidMock: vi.fn(),
-    prebuildRunMock: vi.fn(),
-  })
-)
+const { loadUserOneOptionsMock, runAndroidMock, prebuildRunMock } = vi.hoisted(() => ({
+  loadUserOneOptionsMock: vi.fn(),
+  runAndroidMock: vi.fn(),
+  prebuildRunMock: vi.fn(),
+}))
 
 vi.mock('../vite/loadConfig', () => ({
   loadUserOneOptions: loadUserOneOptionsMock,
@@ -30,7 +29,23 @@ describe('one run:android', () => {
 
   beforeEach(() => {
     projectRoot = mkdtempSync(join(tmpdir(), 'one-run-android-'))
-    writeFileSync(join(projectRoot, 'package.json'), '{"private":true}')
+    writeFileSync(
+      join(projectRoot, 'package.json'),
+      JSON.stringify({
+        private: true,
+        dependencies: Object.fromEntries(
+          blessedNativePackages.map(({ name, range }) => [name, range])
+        ),
+      })
+    )
+    for (const { name, range } of blessedNativePackages) {
+      const dir = join(projectRoot, 'node_modules', name)
+      mkdirSync(dir, { recursive: true })
+      writeFileSync(
+        join(dir, 'package.json'),
+        JSON.stringify({ name, version: range.slice(1) })
+      )
+    }
     process.chdir(projectRoot)
     loadUserOneOptionsMock.mockReset()
     runAndroidMock.mockReset()
@@ -43,6 +58,13 @@ describe('one run:android', () => {
   afterEach(() => {
     process.chdir(originalCwd)
     rmSync(projectRoot, { recursive: true, force: true })
+  })
+
+  it('rejects missing peers even when the native project exists', async () => {
+    mkdirSync(join(projectRoot, 'android'))
+    writeFileSync(join(projectRoot, 'package.json'), '{}')
+    await expect(run({})).rejects.toThrow('react-native-worklets')
+    expect(runAndroidMock).not.toHaveBeenCalled()
   })
 
   it('prebuilds the native project when android/ is missing', async () => {
