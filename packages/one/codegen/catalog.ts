@@ -1107,4 +1107,28 @@ export const components = [
     ],
     interfaceOnly: false,
   },
+  {
+    name: 'OneNativePortalView',
+    publicName: 'Portal',
+    props: { hostName: 'string', name: 'string' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      { name: 'children', content: 'react-native', cardinality: 'many', layout: 'yoga' },
+    ],
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativePortalHostView',
+    publicName: 'PortalHost',
+    props: { name: 'string' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      { name: 'children', content: 'react-native', cardinality: 'many', layout: 'yoga' },
+    ],
+    interfaceOnly: false,
+  },
 ] as const

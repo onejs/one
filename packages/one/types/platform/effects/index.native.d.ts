@@ -11,4 +11,6 @@ export { sampleCurve, serializeCurve } from './curves';
 export type * from './types';
 export type { IconColorRole, IconElements, IconProps } from '../ui/Icon';
 export type { CameraPosition, Coordinates, MapCircle, MapMarker, MapPolygon, MapPolyline, MapProps, } from '../ui/Map';
+export { Portal, PortalHost } from '../ui/Portal.native';
+export type { PortalProps, PortalHostProps } from '../ui/portalTypes';
 //# sourceMappingURL=index.native.d.ts.map

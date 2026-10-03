@@ -7,6 +7,7 @@ import { updatesBoot } from '../fixtures/updates-boot'
 // entry-chunk throw and delay, which must run before anything mounts).
 
 const testScreens = [
+  { href: '/one-native-portal', label: 'One Portal', testID: 'nav-one-native-portal' },
   { href: '/color-test', label: 'Color API', testID: 'nav-color-test' },
   { href: '/zoom-test', label: 'Zoom Transitions', testID: 'nav-zoom-test' },
   { href: '/one-native-gestures', label: 'Native Gestures', testID: 'nav-one-native-gestures' },

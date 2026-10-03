@@ -7,6 +7,8 @@ import com.facebook.react.module.model.ReactModuleInfo
 import com.facebook.react.module.model.ReactModuleInfoProvider
 import com.facebook.react.uimanager.ViewManager
 import com.margelo.nitro.one.OneOnLoad
+import dev.onejs.onenative.OneNativePortalViewManager
+import dev.onejs.onenative.OneNativePortalHostViewManager
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
@@ -78,6 +80,8 @@ class OnePackage : BaseReactPackage() {
             OneNativeReservedRegionsProviderManager(),
             OneNativeEdgeFadeManager(),
             OneNativeBlurManager(),
+            OneNativePortalViewManager(),
+            OneNativePortalHostViewManager(),
             OneNativeMaskManager(),
             OneNativeUiMapManager(),
             OneNativePictureInPictureManager(),

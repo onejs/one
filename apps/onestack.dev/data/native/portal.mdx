@@ -1,0 +1,41 @@
+---
+title: Portal
+description: Move React content into a named native host.
+---
+
+# Portal
+
+`One.UI.Portal` renders children inside a `One.UI.PortalHost`. The children keep
+React context, state, and event handlers. No provider is required.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.PortalHost name="overlay" style={{ width: 240, height: 160 }} />
+<One.UI.Portal hostName="overlay" name="status">
+  <StatusBadge />
+</One.UI.Portal>
+```
+
+`Portal` accepts `hostName?: string`, `name?: string`, `style`, and `children`.
+`PortalHost` accepts a required `name`, `style`, and optional `children`. Both
+accept React Native view props.
+
+Children lay out against the host's size, including percentage dimensions and
+absolute right and bottom offsets. Portals appear in mount order above the
+host's own children. A later portal with the same `name` replaces the earlier
+one; unnamed portals coexist. Removing the replacement reveals the earlier portal.
+
+Without `hostName`, children render at their source. If a named host has not
+mounted yet, the portal waits at its source and moves when the host mounts.
+Removing a host returns its portals to their source. Changing `hostName` moves
+the same children to the new destination.
+
+On web, React renders into a stable DOM container in the host. iOS uses Fabric
+views and Android uses native view groups. Host measurement updates native
+layout without a JS layout round trip.
+
+Replace imports from `react-native-teleport` with `One.UI.Portal` and
+`One.UI.PortalHost`, remove `PortalProvider`, and mount any root overlay host
+explicitly. `@tamagui/native/setup-teleport` keeps its existing import path and
+binds Tamagui portals to these components.

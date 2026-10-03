@@ -17,6 +17,8 @@ export {
   useSpanning,
 } from './platform'
 export type {
+  PortalProps,
+  PortalHostProps,
   FontMap,
   FontSource,
   UseFontsResult,

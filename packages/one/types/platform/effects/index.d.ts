@@ -13,4 +13,6 @@ export type { PictureInPictureProps } from '../ui/PictureInPicture.native';
 export type { CameraPosition, Coordinates, MapCircle, MapMarker, MapPolygon, MapPolyline, MapProps, } from '../ui/Map';
 export declare function Blur(_props: BlurProps): ReactElement;
 export declare function Mask(_props: MaskProps): ReactElement;
+export { Portal, PortalHost } from '../ui/Portal';
+export type { PortalProps, PortalHostProps } from '../ui/portalTypes';
 //# sourceMappingURL=index.d.ts.map

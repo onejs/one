@@ -191,4 +191,5 @@ export { Database } from './database/index.native';
 export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType, ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult, ImagePickerSuccessResult, } from './image-picker/index.native';
 export type { DocumentPickerAsset, DocumentPickerCanceledResult, DocumentPickerOptions, DocumentPickerResult, DocumentPickerSuccessResult, } from './document-picker/index.native';
 export { UI };
+export type { PortalProps, PortalHostProps } from './ui/portalTypes';
 //# sourceMappingURL=index.native.d.ts.map

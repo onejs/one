@@ -32,3 +32,6 @@ export function Blur(_props: BlurProps): ReactElement {
 export function Mask(_props: MaskProps): ReactElement {
   throw new Error('Mask requires a native build')
 }
+
+export { Portal, PortalHost } from '../ui/Portal'
+export type { PortalProps, PortalHostProps } from '../ui/portalTypes'

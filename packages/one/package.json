@@ -179,6 +179,7 @@
     "ios",
     "android/build.gradle",
     "android/CMakeLists.txt",
+    "android/portal",
     "android/src",
     "cpp",
     "nitrogen",
@@ -462,7 +463,9 @@
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
-        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView",
+        "OneNativePortalView": "OneNativePortalViewComponentView",
+        "OneNativePortalHostView": "OneNativePortalHostViewComponentView"
       }
     }
   }
