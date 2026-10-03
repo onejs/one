@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/rn-proxy",
   "sideEffects": false,
-  "version": "1.27.1",
+  "version": "2.6.0",
   "type": "module",
   "publishConfig": {
     "access": "public"
