@@ -14,12 +14,7 @@ export const cloneStarter = async (
 ) => {
   const dir = await setupVxrnDotDir(
     template,
-    join(
-      vxrnDir,
-      'vxrn',
-      template.repo.url.split('/').at(-1)!,
-      encodeURIComponent(template.repo.branch)
-    )
+    join(vxrnDir, 'vxrn', template.repo.url.split('/').at(-1)!)
   )
 
   if (!(await pathExists(dir))) {
