@@ -198,6 +198,9 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.UI.PictureInPicture` | missing | missing | fixture exists; simulators report no PiP, needs a device run |
 | `One.UI.Blur` | missing | missing | effects fixture has a capture proof script, not a suite |
 | `One.UI.Mask` | missing | missing | effects fixture has a capture proof script, not a suite |
+| `One.UI.Portal` | portal | portal |  |
+| `One.UI.PortalHost` | portal | portal |  |
+| `One.UI.Pager` | pager | nav-one-ui-pager |  |
 | `One.UI.Fonts` | fonts | fonts |  |
 | `One.UI.SafeArea` | safe-area | safe-area |  |
 | `One.UI.TextInput` | missing | missing | no fixture or suite |
