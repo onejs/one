@@ -1,17 +1,17 @@
 ---
 title: Native Setup
-description: Install One Native and generate iOS or Android projects with or without Expo
+description: Create a One app and configure its native projects in Vite, with or without Expo
 ---
 
 One Native is included in the `one` package. There is no separate native UI
-package to install. The v2 beta uses React 19.2.3 and React Native 0.87;
+package to install. One v2 uses React 19.2.3 and React Native 0.87;
 the current examples use 0.87.1. Native components require the New Architecture.
-Check the beta package's peer dependencies for the complete version requirements,
+Check the package's peer dependencies for the complete version requirements,
 including screens, Worklets, Liquid Glass, and the native sheet renderer.
 The iOS deployment floor is 17. See the
 [platform notes](/docs/native-platforms) for feature-specific requirements.
 
-For an existing One app, update `one` to the beta and align its React, React
+For an existing One app, update `one` to v2 and align its React, React
 Native, and React Navigation peers. Use your package manager to inspect the
 installed package's peer dependencies. The navigation peers are 8 alpha
 versions, so keep their versions aligned. The native sheet integration requires
@@ -19,28 +19,25 @@ versions, so keep their versions aligned. The native sheet integration requires
 renderer contract this version of One uses.
 
 ```bash
-npm install one@beta
-npm view one@beta peerDependencies
+npm install one@^2
+npm view one@2 peerDependencies
 ```
 
 ## A new app
 
-The current `npx one@beta` scaffolder selects the main-branch starter, whose
-native configuration is incompatible with this beta. The existing
-`v2-beta-starter` example uses `native.app` and the exported
-`one/react-native-config` entry instead. With Node.js and npm installed, copy
-that example explicitly:
+With Node.js and npm installed, create an app:
 
 ```bash
-npx --yes degit onejs/one/examples/one-basic#v2-beta-starter my-app
+npx one my-app
 cd my-app
-npm pkg set dependencies.one=beta
-npm install
 ```
 
-The dependency edit replaces the example's monorepo-only `workspace:*` value.
-Before generating native projects, give your app its own name and bundle
-identifiers in `native.app`. Check the web build with `npm run build:web`,
+Choose the Basic starter. The CLI creates the project and installs its
+dependencies, including One. Its Vite configuration and native integration
+are already in place.
+
+Give your app its own name and bundle identifiers in `native.app` before
+generating native projects. Check the web build with `npm run build:web`,
 then follow the native project and run steps below.
 
 ## A project without Expo
