@@ -133,9 +133,11 @@ export function PortalHost({
       data-testid={testID}
       id={nativeID}
       aria-label={accessibilityLabel}
-      style={{ ...VIEW_BASE, ...domStyle(style) }}
+      // the host passes touches through; its own children and portaled
+      // content take them back, so a full-screen host blocks nothing beneath it.
+      style={{ ...VIEW_BASE, ...domStyle(style), pointerEvents: 'none' }}
     >
-      <div style={{ display: 'contents' }}>{children}</div>
+      <div style={{ display: 'contents', pointerEvents: 'auto' }}>{children}</div>
     </div>
   )
 }
