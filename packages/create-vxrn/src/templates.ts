@@ -20,7 +20,7 @@ export const templates = [
   {
     title: `Takeout`,
     value: 'Takeout',
-    description: 'One, Tamagui, Zero, Better Auth',
+    description: 'One, Tamagui, SQLite, Orez Lite, Better Auth',
     type: 'included-in-monorepo',
     hidden: true,
     packageManager: 'bun',
@@ -28,7 +28,7 @@ export const templates = [
       url: `https://github.com/onejs/one.git`,
       sshFallback: `git@github.com:onejs/one.git`,
       dir: [`templates`, `one-starter`],
-      branch: 'v2-beta',
+      branch: 'v2-beta-starter',
     },
     ...TakeoutTemplateSteps,
   },
