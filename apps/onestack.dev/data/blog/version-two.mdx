@@ -1,238 +1,144 @@
 ---
-title: 'One v2 Beta'
-publishedAt: '2026-10-01'
-description: 'SwiftUI and Compose components, native services, Rolldown, and the framework work since the v1 release candidate.'
+title: 'One v2'
+publishedAt: '2026-10-05'
+description: 'Full SwiftUI and Compose access, native UI included, and one Vite plugin for web, iOS, and Android.'
 by: nate
 draft: true
 ---
 
 <IntroParagraph>
-  One v2 brings native platform components and services into the same package as
-  the router. It also moves the default bundler to Rolldown, adds a native
-  project generator that works without Expo, and updates navigation to React
-  Navigation 8 alphas. The beta includes the routing, data loading, web rendering,
-  and deployment work from the v1 line through 1.27.
+  One v2 is here. Build for web, iOS, and Android with a single Vite plugin,
+  and bring the full native platform into your React app. One Native gives
+  you access to **100% of SwiftUI and Compose**, a library of shared native
+  components, and a growing collection of UIKit components, included in One.
 </IntroParagraph>
 
-One is a React framework for web, iOS, and Android. You configure a Vite plugin,
-write file-system routes, and choose how each web page renders. Native routes
-run in React Native. That structure stays the same in v2; the new work gives
-you more of the platform underneath it.
+We've spent the time since v1 making One a framework you can build
+your whole app with. V2 brings native UI, native APIs, native project
+generation, and Rolldown together with the routing, data loading, and web
+rendering that made One simple in the first place.
 
-You can try the beta with:
+Get started with:
 
 ```bash
-npx one@beta
+npx one
 ```
 
-This is a beta. The native interfaces require the New Architecture, and the
-navigation packages are alpha versions. Check the requirements and your native
-dependencies before upgrading an existing app.
+One sets up your app. Your routes live in files, your configuration lives in
+Vite, and you can share code across all three platforms.
 
-## One Native
+## One Native: the whole platform, in your React app
 
-One Native ships inside `one`. You can use SwiftUI components through
-`One.iOS`, Jetpack Compose components through `One.Android`, and shared
-components through `One.UI`. You can keep using React Native views alongside
-them.
+One Native gives you full access to SwiftUI on iOS and Jetpack Compose on
+Android. Use the native controls, layouts, and visual effects that make each
+platform feel right, alongside your existing React Native components.
 
-On iOS, the components cover the parts of a screen you would normally build in
-SwiftUI: stacks and grids, lists and forms, buttons and toggles, text fields
-and editors, pickers, progress indicators, shapes, sheets, popovers, menus,
-and tabs. There are bindings for maps, photo picking, video and Live Photo
-playback, web views, sharing, and Quick Look. `Glass` and
-`GlassEffectContainer` expose Liquid Glass on supported iOS versions.
+The built-in React components put native UI within reach of an import:
+`One.iOS` for SwiftUI, `One.Android` for Compose, and `One.UI` for shared
+components. Build with Apple's Liquid Glass, native forms and menus, Material
+controls, maps, and media. The operating system renders the native UI, with
+its own appearance and behavior.
 
-The iOS bindings are generated from the SDK with explicit mappings for props,
-child slots, and events. Native hosts carry React Native content into SwiftUI
-containers, and the layout boundary determines which system sizes the content.
-`swiftStyle` configures native appearance and modifiers; React Native `style`
-positions the host in its surrounding layout.
+And you have the full native languages available. Import Swift and Kotlin
+source directly into React. One generates the TypeScript declarations and
+native glue, so a custom view or module works like any other import.
+Custom SwiftUI and Compose views can use the complete platform frameworks.
+You can build a native view for your app and use it like a React component,
+without writing a bridge by hand.
 
-On Android, Compose covers rows, columns, wrapping layouts, cards, surfaces,
-text, icons, buttons and floating action buttons, switches, checkboxes, radio
-buttons, text fields, sliders, segmented controls, chips, badges, list items,
-dialogs, and progress and loading indicators. These use Android's Material
-controls and theme defaults. The Android surface has its own props and layout
-rules; it does not translate a SwiftUI screen into Compose.
+One also includes the shared components you reach for across apps: images,
+maps, icons, text inputs, blur, masks, safe areas, pagers, portals, and Picture
+in Picture. We're continuing to expand the UIKit collection alongside the
+SwiftUI and Compose components. The native UI ships with One, so each
+component is already there when you need it, with no separate component
+packages to find and install.
 
-Shared components include `Image`, `Map`, `Icon`, `TextInput`, `EdgeFade`,
-`Blur`, `Mask`, safe areas, and Picture in Picture. `Icon` accepts an element
-for each platform and a semantic color role or explicit color. `useNativeState`
-is a named import from `one`; it creates an observable value that native
-controls can share. Native edits update that store directly, and React
-subscribers receive the updated value.
+The same package gives you access to the device. Notifications, haptics,
+authentication, secure storage, SQLite, synchronous storage, file picking,
+and over-the-air updates are built in. On iOS you can also work with the
+camera, audio, Photos, location, contacts, calendar, purchases, and more.
+Widgets and Live Activities extend your app onto the Home Screen and Lock
+Screen, with layouts rendered in SwiftUI even when your app's JavaScript
+isn't running.
 
-Native tabs have two separate uses. The router's `Tabs` connects file routes to
-React Navigation. `One.iOS.Tabs` and `One.iOS.Tab` let you compose a SwiftUI
-`TabView` directly, including sections, badges, action tabs, and supported
-accessory slots. Likewise, `One.iOS.NavigationStack` and its toolbar components
-are available for explicit native composition alongside the routed `Stack`.
+You can share your app's logic and use the best UI for each platform. A
+native screen, a shared screen, and a web page all belong in the same One
+project.
 
-The [One Native guide](/docs/native-overview) explains setup and platform
-boundaries. The [component references](/docs/native-components) link to the
-individual APIs.
+Explore [One Native](/docs/native-overview), the
+[components](/docs/native-components), the
+[Swift and Kotlin import guide](/docs/native-source), and the
+[native reference](/native).
 
-## Native services
+## Native apps, configured in Vite
 
-The package now includes services you previously had to assemble from separate
-native dependencies. Shared namespaces cover notifications, clipboard,
-connection state, haptics, browser and authentication sessions, image and
-document picking, secure storage, speech recognition, SQLite, app information,
-launch-screen control, and over-the-air updates. `One.Auth.Apple` provides
-Apple authentication. `One.openURL`, `One.openShare`, and `One.openSettings`
-open the corresponding system surfaces. Native `fetch` supports streaming
-responses and React Native file parts in `FormData`; the global `crypto`
-provides secure random values and UUIDs.
+One can now generate your iOS and Android projects directly. Set your app's
+name, bundle identifiers, icons, permissions, and other native settings in
+`native.app` in your Vite configuration, then run `one prebuild`.
 
-There is also a larger iOS-only surface: foreground and configured background
-location, geocoding, MapKit search and directions, sandbox files, audio playback
-and recording, camera preview and code scanning, Photos assets and albums,
-image transformations, contacts, calendar events and reminders, localization
-and device information, motion sensors, orientation, screen capture,
-preferences, protected Keychain storage, purchases, and system review and
-print requests. Background tasks, device attestation, alternate app icons,
-tracking permission, keep-awake control, and Home Screen quick actions are
-available through `One.iOS` too.
+The starter has the configuration in place. You can build and run with
+`one run:ios` or `one run:android`, and keep your native settings beside the
+rest of your app's configuration. If you use Expo, One also works with Expo
+prebuild, modules, and config plugins.
 
-Each service has its own permission and platform requirements. Some depend on
-hardware, signing capabilities, a configured account, or an OS decision to show
-a system surface. An exported API is not a guarantee that a simulator can
-exercise all of it. The [platform API guide](/docs/native-apis) links to the
-contracts and their limits.
+Read the [native setup guide](/docs/native-setup) to get your app running.
 
-Widgets and Live Activities use a generated WidgetKit extension. You can write
-a typed payload or a JSX layout built from `One.iOS.WidgetUI`; the extension
-renders it in SwiftUI without starting the app's JavaScript. The generated
-extension, App Group, and signing capabilities need to be configured before
-these calls can work.
+## Rolldown across web and native
 
-## Native projects with or without Expo
+V2 brings Rolldown to native development and production, alongside Vite 8
+on the web. The native pipeline uses Oxc, supports React Refresh, and
+integrates Worklets. One brings web and native into the same Vite development
+loop, with incremental updates as you edit.
 
-For an app without Expo, `one prebuild` generates iOS and Android projects
-from `native.app` in `vite.config.ts`. The manifest holds the app name,
-identifiers, icons, launch screens, fonts, orientation, appearance, links,
-permissions, entitlements, and platform build settings. There is no Expo app
-config or config plugin on that path.
+Metro is also available when your app needs it. Both bundlers use the same
+routes and One configuration, and you can eject the Metro configuration when
+you want to own it. See [Metro mode](/docs/metro-mode).
 
-Apps that install Expo keep using Expo prebuild with `vxrn/expo-plugin`.
-That adapter connects the generated project to One while preserving Expo
-modules and config plugins. `one run:ios` and `one run:android` launch the
-native projects against your running One development server.
+## Everything your app needs beyond the screen
 
-You can also import Swift and Kotlin source from application code. One derives
-a typed contract for supported native functions and generates the glue used by
-the native build. Swift packages can expose native views. Editing native source
-still requires rebuilding the native binary; JavaScript hot reload cannot
-replace compiled Swift or Kotlin.
+The work since v1 reaches through the rest of the framework too.
+One remains a Vite plugin with file-system routing, typed loaders, and a
+choice of web render modes, now with more control over how your app loads,
+navigates, and ships.
 
-Environment variables use `ONE_PUBLIC_` by default. `EXPO_PUBLIC_` remains
-supported for Expo dependencies. A `ONE_PUBLIC_X` value is available as
-`EXPO_PUBLIC_X` when that name has not already been defined; an explicit Expo
-value keeps its own value. See [environment](/docs/environment) and
-[native setup](/docs/native-setup).
+**Routing and navigation.** Share a typed route tree across platforms and
+give each one its own navigation UI. Nested layouts, protected routes,
+deep links, and platform-specific files fit together, with custom web
+presentations and native headers and toolbars. Start with the
+[routing guide](/docs/routing).
 
-## Rolldown and Metro
+**Data loading and server code.** Keep your backend beside your app, with
+typed loaders, API routes, and middleware. Share request context, cache
+concurrent loads, refetch changing data, and refresh content as you edit.
+Read about [loaders](/docs/routing-loader), [API routes](/docs/routing-api-routes),
+and [middleware](/docs/routing-middlewares).
 
-The default native bundler now uses Rolldown for both development and production.
-Development supports React Refresh and incremental updates. The default
-transform pipeline uses Oxc and the native Worklets transform, and can bundle
-supported imports into worklet runtimes. The web build also uses Vite 8 and
-Rolldown.
+**Web rendering.** Mix static, server-rendered, and client-rendered pages
+in one app. Streaming, CDN revalidation, and rendered app shells help
+deliver content early; CSS inlining, image metadata, script controls, and
+link prefetching give you control over loading. See [render modes](/docs/render-modes).
 
-[Metro mode](/docs/metro-mode) remains available for apps whose dependencies
-need it. `one/babel-preset` and `one/metro-config` share One's configuration
-with Metro, and `one metro-eject` lets an app own those files. Configuration
-and lockfile changes invalidate Metro's cache.
+**Deployment and updates.** Ship to Vercel, Cloudflare Workers, or your
+own host. Native apps can check, download, and apply updates with rollback
+for early failures, while web deployment handles open pages across builds.
+Read the [deployment](/docs/guides-deployment) and [OTA](/docs/guides-ota-updates) guides.
 
-Production asset serving gained precompressed Brotli, Zstandard, and gzip
-files, with freshness checks against the source asset. Native updates can use
-One's own update service or the integrations described in the
-[OTA guide](/docs/guides-ota-updates). `One.Updates` checks, downloads, stages,
-and reloads bundles. The native launcher handles early-failure rollback and
-cache pruning; choosing and hosting an update is still the application's
-responsibility.
+**Development tools.** Inspect routes, loader timing, SEO, errors, and
+source in one DevTools panel. Content hot reload and React Compiler
+configuration fit into your Vite setup, with environment guards and
+dependency patches for your app's needs. See [DevTools](/docs/dev-tools)
+and [configuration](/docs/configuration).
 
-## Routing and navigation
+The [release history](https://github.com/onejs/one/releases) has the individual
+changes and fixes behind v2.
 
-The routing work since the v1 release candidate is included: typed paths and links, nested
-layouts and groups, platform-specific route files, protected routes, route
-validation, navigation blocking, and route masks. You can display a short URL
-while navigating to a more detailed route, or preserve a scroll position while
-moving between child pages.
+## Build with One v2
 
-React Navigation 8 alphas are the basis of v2 navigation. Web navigators have
-headless renderers, and `Presentations` composes their output. The web path
-keeps React Native out of its module graph. `Stack.Header` and `Stack.Toolbar`
-provide declarative native header and toolbar composition. `Tabs.Protected`
-adds guards to tab routes, and route loading can suspend on native and web.
+Create your app with `npx one`, then follow the
+[introduction](/docs/introduction) or jump into [One Native](/docs/native-overview).
+For an existing app, the [installation guide](/docs/installation) and
+[migration guide](/native/migrating-to-one) cover the v2 requirements and
+upgrade steps.
 
-`getLinking` exposes the linking configuration, and `useSitemap` reads the route
-tree. Deep-link handling includes nested routes and cold launches.
-[Environment guard imports](/docs/configuration#environmentguards), such as
-`server-only` and `native-only`, catch modules imported into the wrong build.
-
-## Data loading
-
-[Typed loaders](/docs/routing-loader) run with the route's params and request
-context, and their results flow into `useLoader`. Refetching and
-`useLoaderState` cover changes after the first load. `useMatches`, `useMatch`,
-and `usePageMatch` give layouts access to matched routes and their data;
-`useSearchParams` provides the familiar URLSearchParams interface.
-
-`loaderCache` deduplicates concurrent server loader calls and optionally keeps
-results for a configured TTL. During development, `watchFile` lets a loader
-track a local content file and refresh when it changes. Loaders can validate
-params and redirect. Middleware supplies shared request context, and
-`setServerData` and `getServerData` pass server data into rendering.
-`setResponseHeaders` sets cache headers, cookies, and other response metadata.
-Headless server loaders can run without a built route map.
-
-## Web rendering and deployment
-
-You can still choose SSG, SSR, or SPA globally or per route, and mix them in the
-same app. Root layout render modes and SPA shell rendering let the initial
-HTML include shared navigation, head tags, and CSS while page content loads
-on the client. Static generation uses worker threads to render pages in
-parallel.
-
-The web work includes layout CSS inlining, improved CSS collection during
-navigation, configurable script loading, intent-based link prefetching, and
-`?imagedata` imports for image dimensions and blur placeholders. Skew protection
-handles deployments where an open page and the server have different builds,
-including an optional proactive check and retries for transient module loads.
-Sitemaps support per-route overrides.
-
-[Deployment](/docs/guides-deployment) targets include Vercel and Cloudflare
-Workers. Cloudflare builds use its Vite plugin, merge the app's Wrangler
-configuration, load modules lazily, and expose the worker environment and
-execution context to API handlers. The output stays an ordinary build
-artifact you can host yourself.
-
-## Development tools
-
-The [DevTools panel](/docs/dev-tools) brings together route inspection, loader
-timing, SEO preview, error reporting, and a source inspector. Source inspection
-includes an element picker and input recording. MDX content participates in
-loader hot reload and supports smart typography.
-
-Route warming and dependency tracking reduce repeated startup work. Web-only
-apps can set `native: false`, and React Compiler configuration is available
-through the plugin. The CLI also includes a daemon for managing development
-across multiple apps. These changes support the same development loop: edit a
-route or its data, see the result, and inspect the code that produced it.
-
-## Upgrading
-
-The v2 package requires React 19.2.3 or later within React 19 and React Native
-0.87, with 0.87.1 used by the current native examples. Native views require the
-New Architecture. The package's iOS deployment floor is 17; newer APIs have
-separate runtime requirements, including iOS 26 for Liquid Glass. Align your
-React Navigation dependencies with One's 8 alpha peers rather than mixing
-navigation versions.
-
-Start with the [installation guide](/docs/installation), then read
-[native setup](/docs/native-setup) and the
-[platform notes](/docs/native-platforms) for the APIs your app uses. For the
-individual fixes and releases behind this post, see the
-[release history](https://github.com/onejs/one/releases).
+We want you to be able to build the app you have in mind: a great website,
+a fully native mobile app, or both, with the same React framework.

@@ -1,0 +1,172 @@
+---
+title: Swift and Kotlin Imports
+description: Import custom SwiftUI and Compose views and native modules into your React app
+---
+
+One lets you import application Swift and Kotlin source directly from your
+React code. Use it to build with the full SwiftUI or Compose framework,
+or expose a native function to JavaScript. One generates the declarations
+and integration for the native build.
+
+Start with a project using `native.app` and `one prebuild`, as described in
+[Native Setup](/docs/native-setup). Direct source imports use this generation
+path; apps using Expo prebuild cannot load them.
+
+## A SwiftUI view
+
+Place a Swift package inside your app, outside `ios/`, `android/`, and
+`node_modules/`. For example, create `native/Badge/Package.swift`:
+
+```swift title="Package.swift"
+// swift-tools-version: 6.2
+import PackageDescription
+
+let package = Package(
+  name: "Badge",
+  targets: [
+    .executableTarget(
+      name: "Badge",
+      path: ".",
+      swiftSettings: [.swiftLanguageMode(.v6)]
+    ),
+  ]
+)
+```
+
+Add `native/Badge/Badge.swift`:
+
+```swift
+import SwiftUI
+
+@main struct Badge: RNXPackage {
+  init() {}
+
+  func view(props: JSON) -> some View {
+    Text(props["title"]?.stringValue ?? "Hello")
+      .padding()
+      .background(.blue, in: Capsule())
+      .foregroundStyle(.white)
+  }
+}
+```
+
+`RNXPackage` and `JSON` come from One's generated native integration.
+The `@main` entry supplies the package's default React component. Import it
+from an iOS route, such as `app/badge.ios.tsx`:
+
+```tsx
+import Badge from '../native/Badge/Badge.swift'
+
+export default function BadgeScreen() {
+  return <Badge title="Hello from SwiftUI" />
+}
+```
+
+Swift view props are JSON values. The generated component accepts
+`Record<string, unknown>`; One does not derive a specific TypeScript prop
+interface from `view(props: JSON)`. Check the fields you consume in Swift.
+An existing SwiftUI `@main App` with a `WindowGroup` can also supply a
+package's root view. Each package must have at most one `@main` entry.
+
+The package must have a `Package.swift` above its source file. One generates
+a local CocoaPods target from those sources; it does not resolve SwiftPM
+`.package(...)` dependencies on this path.
+
+## A Compose view
+
+Create `native/Greeting.kt` inside the app:
+
+```kotlin
+package app.greeting
+
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+@Composable
+fun Greeting(title: String, onTap: () -> Unit) {
+    Button(onClick = onTap) {
+        Text(title)
+    }
+}
+```
+
+Public top-level composables become named React components. Import one
+from an Android route, such as `app/greeting.android.tsx`:
+
+```tsx
+import { useState } from 'react'
+import { Greeting } from '../native/Greeting.kt'
+
+export default function GreetingScreen() {
+  const [taps, setTaps] = useState(0)
+
+  return (
+    <Greeting
+      title={`Tapped ${taps} times`}
+      onTap={() => setTaps((value) => value + 1)}
+    />
+  )
+}
+```
+
+One derives the prop types from the function parameters, including callbacks
+that return `Unit`. Use a capitalized component name. Supported props include
+strings, booleans, numbers, nullable values, lists, and string-keyed maps.
+An optional parameter may default to `null`; other default values, generic
+composables, and extension composables are not exported by this importer.
+You can use the full Compose framework inside the function.
+
+## Native functions
+
+Swift classes that implement `RNXModule` and Kotlin objects that implement
+`OneModule` expose their methods as named imports. For example, add this
+class to the Swift package:
+
+```swift
+@MainActor final class GreetingMath: RNXModule {
+  init() {}
+
+  func double(_ value: Double) -> Double {
+    value * 2
+  }
+}
+```
+
+The JavaScript import is asynchronous even when the Swift method is
+synchronous:
+
+```ts
+import { GreetingMath } from '../native/Badge/Badge.swift'
+
+const result = await GreetingMath.double(21)
+```
+
+For Kotlin, import `dev.onejs.one.source.OneModule` and implement it with
+an `object`. One generates typed `Promise` results for both languages.
+Exported method parameters and results must use supported JSON-compatible
+types: strings, booleans, numbers, nullable values, lists, string-keyed maps,
+or a void result. Methods need explicit signatures without default arguments.
+
+## Generate and build
+
+Run these commands from the app directory through your package manager's
+local executable:
+
+```bash
+one typegen
+one prebuild
+```
+
+One writes declaration files beside the native sources and includes the
+native targets in the generated projects. Run `one dev`, then build the app
+with `one run:ios` or `one run:android` in another terminal.
+
+Keep Swift imports in iOS files and Kotlin imports in Android files. A shared
+route can import a `.ios.tsx` / `.android.tsx` component, with a `.tsx`
+implementation for web. Importing Swift in Android or Kotlin in iOS is an
+error.
+
+Editing native source or changing its exported contract requires rebuilding
+the native app. JavaScript hot reload and OTA updates cannot replace compiled
+Swift or Kotlin. See [Native Platform Notes](/docs/native-platforms).
