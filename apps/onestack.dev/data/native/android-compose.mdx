@@ -3,246 +3,532 @@ title: Android Compose
 description: Jetpack Compose views under One.Android
 ---
 
-Jetpack Compose views under `One.Android`. Layout nodes (`Column`, `Row`, `FlowRow`,
-`Box`, `BadgedBox`, `Badge`, `ListItem`, `Card`, `ElevatedCard`, `OutlinedCard`, `AssistChip`, `FilterChip`,
-`InputChip`, `SuggestionChip`, `IconButton`, `FilledIconButton`, `FilledTonalIconButton`,
-`OutlinedIconButton`) take children;
-`Text`, `Icon`,
-`Button`, `Switch`, `Checkbox`, `RadioButton`, `Spacer`, `HorizontalDivider`,
-`VerticalDivider`, `TextField`,
-`Slider`, `AlertDialog`, and `ProgressIndicator` are leaves. `Dialog`
-takes children and shows them in a dialog window. Every node takes the
-shared props (`accessibilityLabel`, `accessibilityState`,
-`accessibilityValue`, `accessibilityRole`, `testID`, `style`) plus
-`composeStyle`: background and foreground colors, padding, width, height,
-`fillMaxWidth`, `fillMaxHeight`, `weight`, `cornerRadius`, `opacity`, border color
-and width. A node nested in a Compose tree styles through `composeStyle`;
-`style` applies only at the root of the tree.
+<NativeHero
+  src="/native/android-compose.webp"
+  alt="One.Android Compose card with a switch, slider, chips, buttons, and a progress indicator"
+/>
+
+Jetpack Compose views under `One.Android`, drawn by Material 3.
+
+- Layout nodes such as `Column`, `Row`, `Box`, cards, chips, and icon buttons
+  take Compose children.
+- Leaves such as `Text`, `Icon`, `Button`, `Switch`, `TextField`, and `Slider`
+  take none.
+- Controls are controlled: a value, a change callback, and a `revision` for
+  external resets.
+- Every view throws outside an Android build, including on web. Keep them in
+  an Android branch or an `.android.tsx` file.
+
+## Usage
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+export function Settings() {
+  const [on, setOn] = useState(true)
+
+  return (
+    <One.Android.Card composeStyle={{ padding: 16 }}>
+      <One.Android.Switch label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+    </One.Android.Card>
+  )
+}
+```
+
+## Shared props
+
+Every node takes these. A node inside a Compose tree styles through
+`composeStyle`; `style` applies only at the root of the tree.
+
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeNodeProps"
+  data={[
+    { name: 'children', type: 'ReactNode', description: 'Compose children, on layout nodes.' },
+    { name: 'accessibilityRole', type: 'ComposeAccessibilityRole', description: 'button, switch, checkbox, radio, header, text, adjustable, alert, or progressbar.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'React Native style, at the root of a Compose tree only.' },
+    { name: 'composeStyle', type: 'ComposeStyle', description: 'Compose modifiers. See below.' },
+  ]}
+/>
+
+Nodes also take `accessibilityLabel`, `accessibilityState`,
+`accessibilityValue`, and `testID`.
+
+<PropsTable
+  title="ComposeStyle"
+  source="composeTypes.ts#ComposeStyle"
+  data={[
+    { name: 'backgroundColor', type: 'ColorValue', description: 'The fill behind the node.' },
+    { name: 'foregroundColor', type: 'ColorValue', description: 'The content color, such as an icon tint.' },
+    { name: 'padding', type: 'number', description: 'Padding on every side, in dp.' },
+    { name: 'paddingTop', type: 'number', description: 'Top padding, in dp.' },
+    { name: 'paddingRight', type: 'number', description: 'Right padding, in dp.' },
+    { name: 'paddingBottom', type: 'number', description: 'Bottom padding, in dp.' },
+    { name: 'paddingLeft', type: 'number', description: 'Left padding, in dp.' },
+    { name: 'width', type: 'number', description: 'A fixed width, in dp.' },
+    { name: 'height', type: 'number', description: 'A fixed height, in dp.' },
+    { name: 'fillMaxWidth', type: 'boolean', description: 'Fills the parent width.' },
+    { name: 'fillMaxHeight', type: 'boolean', description: 'Fills the parent height.' },
+    { name: 'weight', type: 'number', description: 'A share of the free space in a Row or Column.' },
+    { name: 'cornerRadius', type: 'number', description: 'Rounds the node, in dp.' },
+    { name: 'opacity', type: 'number', description: 'From 0 to 1.' },
+    { name: 'borderColor', type: 'ColorValue', description: 'The border color.' },
+    { name: 'borderWidth', type: 'number', description: 'The border width, in dp.' },
+  ]}
+/>
 
 ## Column, Row, Box
 
-`One.Android.Column` stacks children vertically with
-`horizontalAlignment` (`'start'`, `'centerHorizontally'`, `'end'`) and
-`verticalArrangement` (`'top'`, `'center'`, `'bottom'`, `'spaceBetween'`,
-`'spaceAround'`, `'spaceEvenly'`). `One.Android.Row` is the horizontal
-mirror with `verticalAlignment` (`'top'`, `'centerVertically'`,
-`'bottom'`) and `horizontalArrangement` (same six values). Both take
-`spacing` in dp. `One.Android.Box` layers children with
-`contentAlignment` (`'topStart'`, `'topCenter'`, `'topEnd'`,
-`'centerStart'`, `'center'`, `'centerEnd'`, `'bottomStart'`,
-`'bottomCenter'`, `'bottomEnd'`, `'top'`, `'bottom'`, `'start'`, `'end'`).
-`One.Android.FlowRow` wraps children across rows. Its horizontal and vertical
-arrangements accept the same distribution names as `Row` and `Column`, or
-`{ spacedBy: number }` for spacing in dp on that axis.
-`One.Android.Spacer` occupies available space when it is a direct child of a
-`Row` or `Column` with `composeStyle={{ weight: 1 }}`. The same positive
-`weight` works on other direct children. Pass `width` or `height` for a fixed
-spacer.
+`One.Android.Column` stacks children vertically, `Row` horizontally, and
+`Box` layers them.
 
-```tsx
-import { One } from 'one'
+<PropsTable
+  title="Column"
+  source="composeTypes.ts#ComposeColumnProps"
+  data={[
+    { name: 'horizontalAlignment', type: 'ComposeHorizontalAlignment', default: '"start"', description: 'start, centerHorizontally, or end.' },
+    { name: 'verticalArrangement', type: 'ComposeVerticalArrangement', default: '"top"', description: 'top, center, bottom, spaceBetween, spaceAround, or spaceEvenly.' },
+    { name: 'spacing', type: 'number', description: 'The gap between children, in dp.' },
+  ]}
+/>
 
-<One.Android.Column spacing={12}>
-  <One.Android.Text text="Airplane mode" />
-  <One.Android.Switch isOn={on} onIsOnChange={setOn} />
-</One.Android.Column>
-```
+<PropsTable
+  title="Row"
+  source="composeTypes.ts#ComposeRowProps"
+  data={[
+    { name: 'verticalAlignment', type: 'ComposeVerticalAlignment', default: '"top"', description: 'top, centerVertically, or bottom.' },
+    { name: 'horizontalArrangement', type: 'ComposeHorizontalArrangement', default: '"start"', description: 'start, center, end, spaceBetween, spaceAround, or spaceEvenly.' },
+    { name: 'spacing', type: 'number', description: 'The gap between children, in dp.' },
+  ]}
+/>
+
+<PropsTable
+  title="Box"
+  source="composeTypes.ts#ComposeBoxProps"
+  data={[
+    {
+      name: 'contentAlignment',
+      type: 'ComposeContentAlignment',
+      description: 'Where children sit: topStart through bottomEnd, or top, bottom, start, end.',
+    },
+  ]}
+/>
+
+`One.Android.FlowRow` wraps children across rows.
+
+<PropsTable
+  title="FlowRow"
+  source="composeTypes.ts#ComposeFlowRowProps"
+  data={[
+    {
+      name: 'horizontalArrangement',
+      type: 'ComposeHorizontalArrangement | Readonly<{ spacedBy: number }>',
+      default: '"start"',
+      description: 'A Row arrangement, or a fixed gap in dp.',
+    },
+    {
+      name: 'verticalArrangement',
+      type: 'ComposeVerticalArrangement | Readonly<{ spacedBy: number }>',
+      default: '"top"',
+      description: 'A Column arrangement, or a fixed gap between rows in dp.',
+    },
+  ]}
+/>
+
+`One.Android.Spacer` takes the shared props only. As a direct child of a `Row`
+or `Column` with `composeStyle={{ weight: 1 }}` it takes the free space; with
+`width` or `height` it is a fixed gap. Any other direct child takes a positive
+`weight` the same way.
 
 ## Text
 
-`One.Android.Text` renders `text` with `fontSize` in sp, `fontWeight`
-(`'thin'` through `'black'`), `textAlign` (`'unspecified'`, `'left'`,
-`'right'`, `'center'`, `'justify'`, `'start'`, `'end'`), and `maxLines`.
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeTextProps"
+  data={[
+    { name: 'text', required: true, type: 'string', description: 'The text.' },
+    { name: 'fontSize', type: 'number', description: 'The size in sp. The theme body size when unset.' },
+    { name: 'fontWeight', type: 'ComposeFontWeight', description: 'thin, extraLight, light, normal, medium, semiBold, bold, extraBold, or black.' },
+    { name: 'textAlign', type: 'ComposeTextAlign', description: 'unspecified, left, right, center, justify, start, or end.' },
+    { name: 'maxLines', type: 'number', description: 'The most lines shown.' },
+  ]}
+/>
 
 ## Icon
 
-`One.Android.Icon` renders a Material icon by `name` with `size` in dp
-(default 24) and `filled` for the filled variant. For a cross-platform icon
-that also renders on iOS and web, use [One.UI.Icon](/native/icons) with
-per-platform elements instead.
+`One.Android.Icon` draws a Material Symbol. See [Android Icons](/native/android-icons).
+For an icon on every platform, use [One.UI.Icon](/native/icons).
 
-## Button
+## Buttons
 
-`One.Android.Button` shows `label` with an optional `icon` (and
-`iconFilled`). `variant` is `'filled'`, `'tonal'`, `'elevated'`,
-`'outlined'`, or `'text'`; `tone`
-is `'default'` or `'danger'`; `disabled` disables it; `onPress` handles
-taps.
+`One.Android.Button` shows a label with an optional leading icon.
 
-`One.Android.IconButton`, `FilledIconButton`, `FilledTonalIconButton`, and
-`OutlinedIconButton` wrap an `Icon` child. Each accepts `enabled`, `onClick`,
-and `colors` with `containerColor`, `contentColor`, `disabledContainerColor`,
-and `disabledContentColor`. Omitted colors use the current Material theme.
+<PropsTable
+  title="Button"
+  source="composeTypes.ts#ComposeButtonProps"
+  data={[
+    { name: 'label', required: true, type: 'string', description: 'The title.' },
+    { name: 'onPress', type: '() => void', description: 'Runs when tapped.' },
+    { name: 'variant', type: 'ComposeButtonVariant', default: '"filled"', description: 'filled, tonal, elevated, outlined, or text.' },
+    { name: 'tone', type: 'ComposeButtonTone', default: '"default"', description: 'default, or danger for the error colors.' },
+    { name: 'icon', type: 'ComposeIconName', description: 'A Material Symbol before the label.' },
+    { name: 'iconFilled', type: 'boolean', default: 'false', description: 'Uses the filled icon font.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
+  ]}
+/>
 
-`One.Android.FloatingActionButton`, `SmallFloatingActionButton`,
-`LargeFloatingActionButton`, and `ExtendedFloatingActionButton` render the
-Material 3 floating button sizes. Put an `Icon` in their `.Icon` slot and, for
-the extended variant, `Text` in `.Text`. `containerColor` overrides the theme,
-`onClick` handles taps, and `expanded` controls the extended label.
+`IconButton`, `FilledIconButton`, `FilledTonalIconButton`, and
+`OutlinedIconButton` wrap an `Icon` child.
 
-`One.Android.ToggleButton`, `IconToggleButton`, `FilledIconToggleButton`, and
-`OutlinedIconToggleButton` render the Material 3 toggle variants. Each accepts
-controlled `checked`, optional `onCheckedChange`, `enabled`, and `colors` for
-normal, checked, and disabled container and content colors. The `revision`
-prop applies an external state reset.
+<PropsTable
+  title="IconButton"
+  source="composeTypes.ts#ComposeIconButtonProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The Icon.' },
+    { name: 'onClick', type: '() => void', description: 'Runs when tapped.' },
+    { name: 'enabled', type: 'boolean', description: 'false dims the button and ignores taps.' },
+    { name: 'colors', type: 'ComposeIconButtonColors', description: 'Container and content colors, enabled and disabled.' },
+  ]}
+/>
 
-`One.Android.SingleChoiceSegmentedButtonRow` and
-`MultiChoiceSegmentedButtonRow` arrange `SegmentedButton` children. Pass
-`selected` with `onClick` to a button in the single-choice row, or controlled
-`checked` with `onCheckedChange` in the multi-choice row. `enabled={false}`
-disables a segment; `revision` resets a controlled checked value after an
-external state change. Each segment accepts `colors` for active, inactive,
-and disabled border, content, and container colors.
+`FloatingActionButton`, `SmallFloatingActionButton`, and
+`LargeFloatingActionButton` take an `Icon` in their `.Icon` slot.
+`ExtendedFloatingActionButton` also takes `Text` in `.Text`.
 
-`One.Android.LoadingIndicator` and `ContainedLoadingIndicator` render the
-Material 3 expressive loading shapes. Omit `progress` for indeterminate
-animation, or pass a value from `0` to `1` for determinate progress. Both accept
-`color`; the contained variant also accepts `containerColor`.
+<PropsTable
+  title="FloatingActionButton"
+  source="composeTypes.ts#ComposeFloatingActionButtonProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The .Icon and, when extended, .Text slots.' },
+    { name: 'containerColor', type: 'ColorValue', description: 'The button color. The theme when unset.' },
+    { name: 'onClick', type: '() => void', description: 'Runs when tapped.' },
+  ]}
+/>
 
-`One.Android.Surface` renders a Material 3 surface. It accepts `color`,
-`contentColor`, `tonalElevation`, `shadowElevation`, and `border`; use
-`composeStyle.cornerRadius` for rounded corners. `onClick` makes it clickable,
-`selected` with `onClick` makes it selectable, and controlled `checked` with
-`onCheckedChange` makes it toggleable. `enabled` and `revision` control
-interaction and external state resets.
+`ExtendedFloatingActionButton` adds `expanded`, which shows or hides its text.
 
-`One.Android.LinearProgressIndicator`, `CircularProgressIndicator`,
-`LinearWavyProgressIndicator`, and `CircularWavyProgressIndicator` render the
-Material 3 progress variants. Pass `progress` from `0` to `1`, or omit it for
-indeterminate animation. `color` and `trackColor` override the theme. The
-regular linear indicator accepts `strokeCap`, `gapSize`, and a determinate
-`drawStopIndicator` with color, cap, and size. The regular circular indicator
-accepts `strokeWidth`, `strokeCap`, and determinate `gapSize`. Wavy indicators
-accept `amplitude`, `wavelength`, and `waveSpeed`; linear wavy also accepts
-`stopSize`. The existing `ProgressIndicator` accepts these options and a
-`variant` value.
+`ToggleButton`, `IconToggleButton`, `FilledIconToggleButton`, and
+`OutlinedIconToggleButton` are the Material 3 toggles.
+
+<PropsTable
+  title="ToggleButton"
+  source="composeTypes.ts#ComposeToggleButtonProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The content, such as an Icon.' },
+    { name: 'checked', required: true, type: 'boolean', description: 'Whether the toggle is on.' },
+    { name: 'onCheckedChange', type: '(checked: boolean) => void', description: 'A tap, with the new value.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'false dims the toggle and ignores taps.' },
+    { name: 'colors', type: 'ComposeToggleButtonColors', description: 'Container and content colors, normal, checked, and disabled.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new checked to reset it from outside.' },
+  ]}
+/>
+
+## Segmented buttons
+
+`SingleChoiceSegmentedButtonRow` and `MultiChoiceSegmentedButtonRow` hold
+`SegmentedButton` children. In a single choice row, pass `selected` and
+`onClick`; in a multiple choice row, pass `checked` and `onCheckedChange`.
+
+<PropsTable
+  title="SegmentedButton"
+  source="composeTypes.ts#ComposeSegmentedButtonProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The segment label.' },
+    { name: 'selected', type: 'boolean', description: 'Whether the segment is chosen, in a single choice row.' },
+    { name: 'onClick', type: '() => void', description: 'A tap, in a single choice row.' },
+    { name: 'checked', type: 'boolean', description: 'Whether the segment is on, in a multiple choice row.' },
+    { name: 'onCheckedChange', type: '(checked: boolean) => void', description: 'A tap, in a multiple choice row.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'false dims the segment and ignores taps.' },
+    { name: 'colors', type: 'ComposeSegmentedButtonColors', description: 'Border, content, and container colors, active, inactive, and disabled.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new checked to reset it from outside.' },
+  ]}
+/>
 
 ## Switch
 
-`One.Android.Switch` is the Compose toggle: `isOn` with `onIsOnChange`
-(required), an optional `label`, `disabled`, and `revision` for external
-resets. `colors` overrides checked, unchecked, disabled checked, and disabled
-unchecked thumb, track, border, and icon colors.
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeSwitchProps"
+  data={[
+    { name: 'isOn', required: true, type: 'boolean', description: 'Whether the switch is on.' },
+    { name: 'onIsOnChange', required: true, type: '(value: boolean) => void', description: 'A flip, with the new value.' },
+    { name: 'label', type: 'string', default: '""', description: 'Text before the switch. The whole row toggles.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the switch and ignores taps.' },
+    { name: 'colors', type: 'ComposeSwitchColors', description: 'Thumb, track, border, and icon colors for each state.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isOn to reset it from outside.' },
+  ]}
+/>
 
-## Checkbox
+## Checkbox, RadioButton
 
-`One.Android.Checkbox` uses a controlled `value` and optional
-`onCheckedChange`. With no callback it is read only. `disabled` prevents
-interaction, and `revision` applies an external reset. `colors` accepts
-`checkedColor`, `disabledCheckedColor`, `uncheckedColor`,
-`disabledUncheckedColor`, and `checkmarkColor`; omitted colors use the
-current Material theme.
+Without a callback, each is read only. Omitted colors use the Material theme.
 
-## RadioButton
+<PropsTable
+  title="Checkbox"
+  source="composeTypes.ts#ComposeCheckboxProps"
+  data={[
+    { name: 'value', required: true, type: 'boolean', description: 'Whether the box is checked.' },
+    { name: 'onCheckedChange', type: '(value: boolean) => void', description: 'A tap, with the new value.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the box and ignores taps.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
+    {
+      name: 'colors',
+      type: 'Readonly<{ checkedColor?: ColorValue disabledCheckedColor?: ColorValue uncheckedColor?: ColorValue disabledUncheckedColor?: ColorValue checkmarkColor?: ColorValue }>',
+      description: 'Box and checkmark colors.',
+    },
+  ]}
+/>
 
-`One.Android.RadioButton` takes a controlled `selected` value and optional
-`onClick`. Without a callback it is read only. `disabled` prevents clicks.
-The `colors` prop accepts `selectedColor`, `unselectedColor`,
-`disabledSelectedColor`, and `disabledUnselectedColor`; omitted colors use
-the current Material theme.
+<PropsTable
+  title="RadioButton"
+  source="composeTypes.ts#ComposeRadioButtonProps"
+  data={[
+    { name: 'selected', required: true, type: 'boolean', description: 'Whether the button is chosen.' },
+    { name: 'onClick', type: '() => void', description: 'A tap. Set selected yourself.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
+    {
+      name: 'colors',
+      type: 'Readonly<{ selectedColor?: ColorValue unselectedColor?: ColorValue disabledSelectedColor?: ColorValue disabledUnselectedColor?: ColorValue }>',
+      description: 'Ring and dot colors.',
+    },
+  ]}
+/>
 
-## Cards
+## Cards, Surface
 
-`One.Android.Card`, `ElevatedCard`, and `OutlinedCard` wrap Compose children
-in the corresponding Material 3 surface. Each accepts `colors` with optional
-`containerColor` and `contentColor`, plus an optional nonnegative `elevation`
-in dp. `Card` and `OutlinedCard` also accept `border` with optional `width`
-in dp (default 1) and `color`. An omitted border leaves `Card` unbordered and
-uses the Material theme's outline for `OutlinedCard`.
+`Card`, `ElevatedCard`, and `OutlinedCard` wrap children in the Material 3
+card surfaces. `ElevatedCard` takes no `border`. Without one, `Card` has no
+border and `OutlinedCard` uses the theme outline.
 
-## List items
+<PropsTable
+  title="Card"
+  source="composeTypes.ts#ComposeCardProps"
+  data={[
+    { name: 'colors', type: 'ComposeCardColors', description: '{ containerColor, contentColor }.' },
+    { name: 'elevation', type: 'number', description: 'The shadow depth in dp. Zero or more.' },
+    { name: 'border', type: 'ComposeCardBorder', description: '{ width, color }, width in dp, 1 by default.' },
+  ]}
+/>
 
-`One.Android.ListItem` renders a Material 3 row. Put Compose content in its
-`.HeadlineContent`, `.OverlineContent`, `.SupportingContent`, `.LeadingContent`,
-and `.TrailingContent` slots. The headline is the main line; the other slots
-are optional. `colors` accepts `containerColor`, `contentColor`,
-`leadingContentColor`, `trailingContentColor`, `supportingContentColor`, and
-`overlineContentColor`. `tonalElevation` and `shadowElevation` are nonnegative
-dp values; omitted values use the Material defaults.
+`One.Android.Surface` is a Material 3 surface. Round it with
+`composeStyle.cornerRadius`. With `onClick` it is clickable, with `selected`
+and `onClick` selectable, and with `checked` and `onCheckedChange` toggleable.
+
+<PropsTable
+  title="Surface"
+  source="composeTypes.ts#ComposeSurfaceProps"
+  data={[
+    { name: 'color', type: 'ColorValue', description: 'The surface color.' },
+    { name: 'contentColor', type: 'ColorValue', description: 'The color of content on it.' },
+    { name: 'tonalElevation', type: 'number', description: 'Tints the surface by depth, in dp.' },
+    { name: 'shadowElevation', type: 'number', description: 'The shadow depth, in dp.' },
+    { name: 'border', type: 'ComposeCardBorder', description: '{ width, color }.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'false ignores taps.' },
+    { name: 'selected', type: 'boolean', description: 'Makes it selectable, with onClick.' },
+    { name: 'checked', type: 'boolean', description: 'Makes it toggleable, with onCheckedChange.' },
+    { name: 'onClick', type: '() => void', description: 'Runs when tapped.' },
+    { name: 'onCheckedChange', type: '(checked: boolean) => void', description: 'A tap, with the new checked value.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new checked to reset it from outside.' },
+  ]}
+/>
+
+## ListItem
+
+`One.Android.ListItem` is a Material 3 row. Put Compose content in its
+`.HeadlineContent` slot, and optionally `.OverlineContent`,
+`.SupportingContent`, `.LeadingContent`, and `.TrailingContent`.
+
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeListItemProps"
+  data={[
+    { name: 'colors', type: 'ComposeListItemColors', description: 'Container and per slot content colors.' },
+    { name: 'tonalElevation', type: 'number', description: 'Tints the row by depth, in dp.' },
+    { name: 'shadowElevation', type: 'number', description: 'The shadow depth, in dp.' },
+  ]}
+/>
 
 ## Dividers
 
-`One.Android.HorizontalDivider` and `VerticalDivider` draw Material 3 lines
-inside a Compose layout. Both accept optional `thickness` in dp and `color`;
-omitted values use the current Material theme. Give a vertical divider a height
-through its parent layout or `composeStyle`.
+`HorizontalDivider` and `VerticalDivider` draw Material 3 lines. Give a
+vertical divider a height through its parent or `composeStyle`.
+
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeDividerProps"
+  data={[
+    { name: 'thickness', type: 'number', description: 'The line width in dp.' },
+    { name: 'color', type: 'ColorValue', description: 'The line color. The theme when unset.' },
+  ]}
+/>
 
 ## Badges
 
-`One.Android.Badge` renders a Material 3 indicator dot with no children, or a
-count pill when given Compose content. `containerColor` and `contentColor`
-override the Material defaults. `One.Android.BadgedBox` places a badge at the
-top end of its content. Put a `Badge` inside its `BadgedBox.Badge` slot; without
-the slot it renders the default indicator dot.
+`One.Android.Badge` is a dot, or a count when it has Compose children.
+`One.Android.BadgedBox` puts a `Badge` from its `.Badge` slot at the top end of
+its content; with no slot it shows a dot.
+
+<PropsTable
+  title="Badge"
+  source="composeTypes.ts#ComposeBadgeProps"
+  data={[
+    { name: 'containerColor', type: 'ColorValue', description: 'The badge color.' },
+    { name: 'contentColor', type: 'ColorValue', description: 'The count color.' },
+  ]}
+/>
 
 ## Chips
 
-`One.Android.AssistChip`, `FilterChip`, `InputChip`, and `SuggestionChip`
-use the corresponding Material 3 components. Every chip accepts `enabled`,
-`onClick`, optional `colors`, `elevation` in dp, and `border` with optional
-`width` in dp and `color`.
+`AssistChip`, `FilterChip`, `InputChip`, and `SuggestionChip` are the Material
+3 chips. Each takes its label in a `.Label` slot. `AssistChip` and
+`FilterChip` also have `.LeadingIcon` and `.TrailingIcon`, `InputChip` has
+`.Avatar` and `.TrailingIcon`, and `SuggestionChip` has `.Icon`.
 
-Each chip takes Compose children in named slots. All four have `.Label`.
-`AssistChip` and `FilterChip` also have `.LeadingIcon` and `.TrailingIcon`;
-`InputChip` has `.Avatar` and `.TrailingIcon`; `SuggestionChip` has `.Icon`.
+Every chip takes `enabled`, `onClick`, `elevation` in dp, `border`
+(`{ width, color }`), and `colors`. A tap calls `onClick`; set the next
+`selected` yourself.
 
-`FilterChip` requires `selected`; `InputChip` accepts optional `selected`.
-Clicks report through `onClick`, while the caller supplies the next selected
-value. The available color keys match Expo UI's per-variant keys: `AssistChip`
-has `containerColor`, `labelColor`, `leadingIconContentColor`, and
-`trailingIconContentColor`; `FilterChip` has `containerColor`, `labelColor`, `iconColor`,
-`selectedContainerColor`, `selectedLabelColor`, `selectedLeadingIconColor`,
-and `selectedTrailingIconColor`; `InputChip` also has `leadingIconColor` and
-`trailingIconColor` in place of `iconColor`; `SuggestionChip` has
-`containerColor`, `labelColor`, and `iconContentColor`.
+<PropsTable
+  title="FilterChip"
+  source="composeTypes.ts#ComposeFilterChipProps"
+  data={[
+    { name: 'selected', required: true, type: 'boolean', description: 'Whether the filter is on.' },
+    { name: 'colors', type: 'ComposeFilterChipColors', description: 'Container, label, and icon colors, normal and selected.' },
+  ]}
+/>
+
+<PropsTable
+  title="InputChip"
+  source="composeTypes.ts#ComposeInputChipProps"
+  data={[
+    { name: 'selected', type: 'boolean', default: 'false', description: 'Whether the chip is selected.' },
+    { name: 'colors', type: 'ComposeInputChipColors', description: 'Container, label, and icon colors, normal and selected.' },
+  ]}
+/>
+
+`AssistChip` colors are `containerColor`, `labelColor`,
+`leadingIconContentColor`, and `trailingIconContentColor`. `SuggestionChip`
+colors are `containerColor`, `labelColor`, and `iconContentColor`.
 
 ## TextField
 
-`One.Android.TextField` edits `text` (a string or a native state handle
-from `useNativeState`) and reports `onTextChange` (required).
-`revision` resets externally.
+`One.Android.TextField` edits `text`, a string or a native state handle from
+`useNativeState`. For a field on every platform, use
+[One.UI.TextInput](/native/text-input).
 
-| Prop | Type |
-|------|------|
-| `label`, `placeholder` | `string` |
-| `variant` | `'filled'` or `'outlined'` |
-| `keyboardType` | `'default'`, `'number'`, `'decimal'`, `'email'`, `'password'`, `'phone'`, `'url'` |
-| `secureText` | `boolean` |
-| `disabled` | `boolean` |
-| `focused`, `focusRevision` | `boolean`, `number` |
-| `onFocusChange` | `(focused: boolean) => void` |
-| `imeAction` | `'default'`, `'none'`, `'go'`, `'search'`, `'send'`, `'previous'`, `'next'`, `'done'` |
-| `onSubmit` | `() => void` |
-| `maxLength` | `number` |
-| `multiline` | `boolean` |
-| `capitalization` | `'none'`, `'characters'`, `'words'`, `'sentences'` |
-| `autoCorrect` | `boolean` |
-| `textAlign` | text align |
-
-For a cross-platform field that also runs on iOS and web, use
-[One.UI.TextInput](/native/text-input) instead.
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeTextFieldProps"
+  data={[
+    { name: 'text', required: true, type: 'string | NativeState<string>', description: 'The text, or a native state handle.' },
+    { name: 'onTextChange', required: true, type: '(value: string) => void', description: 'An edit, with the new text.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new text to reset it from outside.' },
+    { name: 'label', type: 'string', description: 'The floating label.' },
+    { name: 'placeholder', type: 'string', description: 'Shown while empty.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the field and blocks editing.' },
+    { name: 'variant', type: 'ComposeTextFieldVariant', default: '"filled"', description: 'filled or outlined.' },
+    { name: 'keyboardType', type: 'ComposeTextFieldKeyboardType', default: '"default"', description: 'default, number, decimal, email, password, phone, or url.' },
+    { name: 'secureText', type: 'boolean', default: 'false', description: 'Hides the text.' },
+    { name: 'focused', type: 'boolean', description: 'Whether the field has focus, controlled.' },
+    { name: 'focusRevision', type: 'number', default: '0', description: 'Increase with a new focused to apply it.' },
+    { name: 'onFocusChange', type: '(focused: boolean) => void', description: 'Focus moved.' },
+    { name: 'imeAction', type: 'ComposeTextFieldImeAction', description: 'The keyboard action: default, none, go, search, send, previous, next, or done.' },
+    { name: 'onSubmit', type: '() => void', description: 'The keyboard action key was pressed.' },
+    { name: 'maxLength', type: 'number', description: 'The most characters allowed.' },
+    { name: 'multiline', type: 'boolean', default: 'false', description: 'Allows line breaks.' },
+    { name: 'capitalization', type: 'ComposeTextFieldCapitalization', description: 'none, characters, words, or sentences.' },
+    { name: 'autoCorrect', type: 'boolean', description: 'Whether the keyboard corrects words.' },
+    { name: 'textAlign', type: 'ComposeTextAlign', description: 'How the text aligns.' },
+  ]}
+/>
 
 ## Slider
 
-`One.Android.Slider` picks a number with `value` and `onValueChange`
-(required), `revision`, `minimumValue`, `maximumValue`, `step`, and
-`disabled`. `lowerLimit` and `upperLimit` restrict thumb movement while the
-track still spans the full minimum and maximum range. `colors` overrides
-thumb, active and inactive track, and active and inactive tick colors.
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeSliderProps"
+  data={[
+    { name: 'value', required: true, type: 'number', description: 'The current value.' },
+    { name: 'onValueChange', required: true, type: '(value: number) => void', description: 'A drag, with the new value.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
+    { name: 'minimumValue', type: 'number', default: '0', description: 'The low end of the track.' },
+    { name: 'maximumValue', type: 'number', default: '1', description: 'The high end of the track.' },
+    { name: 'lowerLimit', type: 'number', description: 'The lowest the thumb may go. The track still spans the full range.' },
+    { name: 'upperLimit', type: 'number', description: 'The highest the thumb may go.' },
+    { name: 'step', type: 'number', default: '0', description: 'The increment. 0 is continuous.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the slider and ignores drags.' },
+    {
+      name: 'colors',
+      type: 'Readonly<{ thumbColor?: ColorValue activeTrackColor?: ColorValue inactiveTrackColor?: ColorValue activeTickColor?: ColorValue inactiveTickColor?: ColorValue }>',
+      description: 'Thumb, track, and tick colors.',
+    },
+  ]}
+/>
 
 ## AlertDialog, Dialog
 
 `One.Android.AlertDialog` shows a confirmation while `visible` is true.
-`title` and `message` are strings; `confirmLabel` (required) and
-`dismissLabel` name the buttons; `onConfirm` and `onDismiss` (both
-required) handle them. `One.Android.Dialog` shows its children in a dialog
-window while `visible` is true and reports dismissal through `onDismiss`.
+`One.Android.Dialog` shows its children in a dialog window.
 
-## ProgressIndicator
+<PropsTable
+  title="AlertDialog"
+  source="composeTypes.ts#ComposeAlertDialogProps"
+  data={[
+    { name: 'visible', required: true, type: 'boolean', description: 'Whether the dialog shows.' },
+    { name: 'title', type: 'string', description: 'The headline.' },
+    { name: 'message', type: 'string', description: 'The body text.' },
+    { name: 'confirmLabel', required: true, type: 'string', description: 'The confirm button title.' },
+    { name: 'dismissLabel', type: 'string', description: 'The dismiss button title. No button when unset.' },
+    { name: 'onConfirm', required: true, type: '() => void', description: 'The confirm button was tapped.' },
+    { name: 'onDismiss', required: true, type: '() => void', description: 'Dismissed by the button, a tap outside, or back.' },
+  ]}
+/>
 
-`One.Android.ProgressIndicator` defaults to circular; select `'linear'`,
-`'linearWavy'`, or `'circularWavy'` with `variant`. Leave `progress` undefined
-for an indeterminate indicator.
+<PropsTable
+  title="Dialog"
+  source="composeTypes.ts#ComposeDialogProps"
+  data={[
+    { name: 'visible', required: true, type: 'boolean', description: 'Whether the dialog shows.' },
+    { name: 'onDismiss', required: true, type: '() => void', description: 'A tap outside or back asked to close it.' },
+  ]}
+/>
 
-`One.Android` components throw when rendered outside an Android build, so
-keep those branches behind platform checks.
+## Progress and loading
+
+`ProgressIndicator` is circular unless `variant` says otherwise.
+`LinearProgressIndicator`, `CircularProgressIndicator`,
+`LinearWavyProgressIndicator`, and `CircularWavyProgressIndicator` fix the
+variant. Leave `progress` unset for an indeterminate indicator.
+
+<PropsTable
+  title="ProgressIndicator"
+  source="composeTypes.ts#ComposeProgressIndicatorProps"
+  data={[
+    { name: 'variant', type: 'ComposeProgressVariant', default: '"circular"', description: 'linear, circular, linearWavy, or circularWavy.' },
+    { name: 'progress', type: 'number | null', description: 'From 0 to 1. Unset spins.' },
+    { name: 'color', type: 'ColorValue', description: 'The indicator color.' },
+    { name: 'trackColor', type: 'ColorValue', description: 'The track color.' },
+    { name: 'strokeCap', type: 'ComposeProgressStrokeCap', description: 'round, butt, or square. Linear and circular.' },
+    { name: 'gapSize', type: 'number', description: 'The gap between indicator and track, in dp.' },
+    { name: 'strokeWidth', type: 'number', description: 'The line width, in dp. Circular.' },
+    { name: 'drawStopIndicator', type: 'ComposeProgressStopIndicator', description: 'The end dot of a determinate linear bar: { color, strokeCap, stopSize }.' },
+    { name: 'stopSize', type: 'number', description: 'The end dot size, in dp. Linear wavy.' },
+    { name: 'amplitude', type: 'number', description: 'The wave height. Wavy.' },
+    { name: 'wavelength', type: 'number', description: 'The wave length, in dp. Wavy.' },
+    { name: 'waveSpeed', type: 'number', description: 'How fast the wave moves. Wavy.' },
+  ]}
+/>
+
+`LoadingIndicator` and `ContainedLoadingIndicator` are the Material 3
+expressive loading shapes, with `progress` and `color`; the contained one adds
+`containerColor`.
+
+<PropsTable
+  title="LoadingIndicator"
+  source="composeTypes.ts#ComposeLoadingIndicatorProps"
+  data={[
+    { name: 'progress', type: 'number | null', description: 'From 0 to 1. Unset animates.' },
+    { name: 'color', type: 'ColorValue', description: 'The shape color.' },
+  ]}
+/>
