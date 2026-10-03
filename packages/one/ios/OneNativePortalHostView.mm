@@ -22,6 +22,10 @@ using namespace facebook::react;
   [super mountChildComponentView:child index:index];
   [[OneNativePortalRegistry shared] refresh];
 }
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+  UIView *hit = [super hitTest:point withEvent:event];
+  return hit == self ? nil : hit;
+}
 - (void)layoutSubviews { [super layoutSubviews]; [[OneNativePortalRegistry shared] publishLayouts]; }
 - (void)didMoveToWindow { [super didMoveToWindow]; [[OneNativePortalRegistry shared] refresh]; }
 - (void)prepareForRecycle {
