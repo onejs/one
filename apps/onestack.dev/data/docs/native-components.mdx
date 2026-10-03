@@ -131,6 +131,11 @@ export function AndroidSettings() {
 | `One.UI.Fonts`, `useFonts` | [Bundled and loaded fonts](/native/fonts) |
 | `One.UI.ReservedRegions` | [View-scoped reserved areas, size class, hinges, and window segments](/native/text-input#adaptive-layout) |
 
+The shared [One.UI.Portal and PortalHost](/native/portal) render content in a
+named host while preserving React context and state.
+[One.UI.Pager](/native/ui-pager) accepts ordinary React Native page views and
+provides scroll events and imperative page commands on iOS, Android, and web.
+
 The One router installs its root safe-area provider. Use an additional provider
 only when a subtree needs its own coordinate space. Shared does not imply
 identical web behavior: Map renders no web view, Blur and Mask require native,

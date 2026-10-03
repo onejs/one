@@ -1,0 +1,979 @@
+{
+  "observedAt": "2026-10-03T18:10:13.744Z",
+  "sourceBase": "b92aafe9c",
+  "productionBuild": "final-site-build.log",
+  "receipts": [
+    {
+      "route": "/native/storage",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "states": {
+        "serverDOM": {
+          "status": 200,
+          "javaScriptEnabled": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "dom": {
+            "title": "Storage | One | Fast synchronous key-value storage on iOS, Android, and web",
+            "paragraphs": [
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.Storage</code></span> is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">localStorage</code></span></span>. Use it for app state, caches, and settings. Use <a href=\"/native/secure-store\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">SecureStore</a> for secrets and <a href=\"/native/database\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">Database</a> for structured or large data.</p>",
+                "text": "One.Storage is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s localStorage. Use it for app state, caches, and settings. Use SecureStore for secrets and Database for structured or large data."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\">On iOS and Android a shared C++ engine serves calls over JSI. A process-local\nmap indexes values in a memory-mapped log in the app\u2019s private storage. Writes\nappend records; when the log fills, it compacts live entries if enough space is\nunused, or grows the mapping. Compaction writes a snapshot and renames it over\nthe old log. The store belongs to one process; app extensions do not share it.</p>",
+                "text": "On iOS and Android a shared C++ engine serves calls over JSI. A process-local\nmap indexes values in a memory-mapped log in the app\u2019s private storage. Writes\nappend records; when the log fills, it compacts live entries if enough space is\nunused, or grows the mapping. Compaction writes a snapshot and renames it over\nthe old log. The store belongs to one process; app extensions do not share it."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\">This is ordinary persistent app storage. It provides no encryption or explicit\nflush API, and a completed write is not a guarantee against device power loss.</p>",
+                "text": "This is ordinary persistent app storage. It provides no encryption or explicit\nflush API, and a completed write is not a guarantee against device power loss."
+              }
+            ],
+            "firstParagraph": {
+              "tag": "P",
+              "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.Storage</code></span> is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">localStorage</code></span></span>. Use it for app state, caches, and settings. Use <a href=\"/native/secure-store\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">SecureStore</a> for secrets and <a href=\"/native/database\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">Database</a> for structured or large data.</p>",
+              "text": "One.Storage is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s localStorage. Use it for app state, caches, and settings. Use SecureStore for secrets and Database for structured or large data."
+            },
+            "inlineCodes": [
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.Storage</code>",
+                "text": "One.Storage",
+                "parentTag": "SPAN",
+                "parentHTML": "<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.Storage</code></span>",
+                "grandparentTag": "P",
+                "grandparentHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.Storage</code></span> is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">localStorage</code></span></span>. Use it for app state, caches, and settings. Use <a href=\"/native/secure-store\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">SecureStore</a> for secrets and <a href=\"/native/database\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">Database</a> for structured or large data.</p>"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">localStorage</code>",
+                "text": "localStorage",
+                "parentTag": "SPAN",
+                "grandparentTag": "SPAN"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">localStorage</code>",
+                "text": "localStorage",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">getAllKeys</code>",
+                "text": "getAllKeys",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.Storage</code>",
+                "text": "One.Storage",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">null</code>",
+                "text": "null",
+                "parentTag": "SPAN",
+                "grandparentTag": "SPAN"
+              }
+            ],
+            "width": 1440,
+            "scrollWidth": 1440
+          }
+        },
+        "mounted": {
+          "status": 200,
+          "javaScriptEnabled": true,
+          "consoleErrors": [
+            {
+              "text": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Ki (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:31196)\n    at Ic (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:81671)\n    at Mu (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:115484)\n    at ju (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:115457)\n    at Au (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:115319)\n    at gu (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:110925)\n    at cd (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:122764)\n    at MessagePort.ae (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:5:5609) {componentStack: \n    at code (<anonymous>)\n    at http://127.0.0.1\u2026918/assets/_virtual_one-entry-DJPi0DAQ.js:5:2166)}",
+              "location": {
+                "url": "http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js",
+                "lineNumber": 12,
+                "columnNumber": 37667
+              },
+              "args": [
+                {
+                  "name": "Error"
+                },
+                {
+                  "componentStack": "\n    at code (<anonymous>)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:3:3628\n    at span (<anonymous>)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:2:21973\n    at de (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:7482)\n    at code (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:17041)\n    at ke (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:17515)\n    at n (<anonymous>)\n    at p (<anonymous>)\n    at c.Provider (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:1:1879)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:3:3628\n    at p (<anonymous>)\n    at ke (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:17515)\n    at n (<anonymous>)\n    at MDXContent (<anonymous>)\n    at h (http://127.0.0.1:3918/assets/_slug_-CCOp1hhY.js:1:460)\n    at xf (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:16706)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16620\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Si (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16797)\n    at nn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25990)\n    at cn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:26409)\n    at Em (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:15816)\n    at ri (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:14054)\n    at tn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25559)\n    at _i (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16537)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16301\n    at Cm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14602)\n    at Sm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14077)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:16558\n    at div (<anonymous>)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:3:3628\n    at T (http://127.0.0.1:3918/assets/DocsLayout-DcZuTGtV.js:1:640)\n    at xf (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:16706)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16620\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Si (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16797)\n    at nn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25990)\n    at cn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:26409)\n    at Em (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:15816)\n    at ri (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:14054)\n    at tn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25559)\n    at _i (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16537)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16301\n    at Cm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14602)\n    at Sm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14077)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:16558\n    at http://127.0.0.1:3918/assets/_layout-D8PaNB-o.js:2:993\n    at D (http://127.0.0.1:3918/assets/_layout-D8PaNB-o.js:2:3044)\n    at xf (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:16706)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16620\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Si (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16797)\n    at nn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25990)\n    at cn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:26409)\n    at Em (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:15816)\n    at ri (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:14054)\n    at tn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25559)\n    at _i (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16537)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16301\n    at Cm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14602)\n    at Sm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14077)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:16558\n    at http://127.0.0.1:3918/assets/GorhomPortal-CjCWLWI9.js:1:1478\n    at span (<anonymous>)\n    at Qa (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:5394)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:2:21973\n    at $a (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:5970)\n    at c.Provider (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:1:1879)\n    at ro (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:6235)\n    at Wo (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:11505)\n    at se (http://127.0.0.1:3918/assets/_layout-D0u3CaJx.js:16:2166)\n    at je (http://127.0.0.1:3918/assets/_layout-D0u3CaJx.js:18:2752)\n    at F (http://127.0.0.1:3918/assets/_layout-D0u3CaJx.js:1:617)\n    at bu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:1446)\n    at Fu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:3366)\n    at body (<anonymous>)\n    at html (<anonymous>)\n    at of (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:11547)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at yr (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:2:21390)\n    at at (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:14731)\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Pt (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:18237)\n    at jn (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:2:12617)\n    at bu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:1446)\n    at Fu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:3366)\n    at zr (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:5:2166)"
+                }
+              ]
+            }
+          ],
+          "pageErrors": [],
+          "dom": {
+            "title": "Storage | One | Fast synchronous key-value storage on iOS, Android, and web",
+            "paragraphs": [
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.Storage</code></span> is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">localStorage</code></span>. Use it for app state, caches, and settings. Use <a href=\"/native/secure-store\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">SecureStore</a> for secrets and <a href=\"/native/database\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">Database</a> for structured or large data.</p>",
+                "text": "One.Storage is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s localStorage. Use it for app state, caches, and settings. Use SecureStore for secrets and Database for structured or large data."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\">On iOS and Android a shared C++ engine serves calls over JSI. A process-local\nmap indexes values in a memory-mapped log in the app\u2019s private storage. Writes\nappend records; when the log fills, it compacts live entries if enough space is\nunused, or grows the mapping. Compaction writes a snapshot and renames it over\nthe old log. The store belongs to one process; app extensions do not share it.</p>",
+                "text": "On iOS and Android a shared C++ engine serves calls over JSI. A process-local\nmap indexes values in a memory-mapped log in the app\u2019s private storage. Writes\nappend records; when the log fills, it compacts live entries if enough space is\nunused, or grows the mapping. Compaction writes a snapshot and renames it over\nthe old log. The store belongs to one process; app extensions do not share it."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\">This is ordinary persistent app storage. It provides no encryption or explicit\nflush API, and a completed write is not a guarantee against device power loss.</p>",
+                "text": "This is ordinary persistent app storage. It provides no encryption or explicit\nflush API, and a completed write is not a guarantee against device power loss."
+              }
+            ],
+            "firstParagraph": {
+              "tag": "P",
+              "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.Storage</code></span> is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">localStorage</code></span>. Use it for app state, caches, and settings. Use <a href=\"/native/secure-store\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">SecureStore</a> for secrets and <a href=\"/native/database\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">Database</a> for structured or large data.</p>",
+              "text": "One.Storage is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s localStorage. Use it for app state, caches, and settings. Use SecureStore for secrets and Database for structured or large data."
+            },
+            "inlineCodes": [
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.Storage</code>",
+                "text": "One.Storage",
+                "parentTag": "SPAN",
+                "parentHTML": "<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.Storage</code></span>",
+                "grandparentTag": "P",
+                "grandparentHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.Storage</code></span> is the app\u2019s key-value store: string keys, string values, every call synchronous, with the same verbs as the web\u2019s <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">localStorage</code></span>. Use it for app state, caches, and settings. Use <a href=\"/native/secure-store\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">SecureStore</a> for secrets and <a href=\"/native/database\" role=\"link\" class=\"is_Paragraph is_Text font_body _ff-f-family _col-color _fow-f-weight-4 _ls-f-letterSpa1360334202 _fos-inherit _lh-f-lineHeigh112923 _ussel-auto _ws-normal _dsp-inline _cur-pointer link\">Database</a> for structured or large data.</p>"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">localStorage</code>",
+                "text": "localStorage",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">localStorage</code>",
+                "text": "localStorage",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">getAllKeys</code>",
+                "text": "getAllKeys",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.Storage</code>",
+                "text": "One.Storage",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">null</code>",
+                "text": "null",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              }
+            ],
+            "width": 1440,
+            "scrollWidth": 1440
+          }
+        }
+      },
+      "rawServerHtmlArtifact": "/Users/n8/Library/Caches/one-v2-launch-2026-10-03/storage-server.html"
+    },
+    {
+      "route": "/native/ui-pager",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "states": {
+        "serverDOM": {
+          "status": 200,
+          "javaScriptEnabled": false,
+          "consoleErrors": [],
+          "pageErrors": [],
+          "dom": {
+            "title": "Pager | One | Swipe between React Native pages on iOS, Android, and web",
+            "paragraphs": [
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.UI.Pager</code></span> fills its viewport with one direct child view per page.\niOS uses a paging <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">UIScrollView</code></span></span>, Android uses <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">ViewPager2</code></span>, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page.</p>",
+                "text": "One.UI.Pager fills its viewport with one direct child view per page.\niOS uses a paging UIScrollView, Android uses ViewPager2, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">onPageScroll</code></span> delivers <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">{ position, offset }</code></span> throughout a drag or animated\nsettle. A completed settle delivers the landing page with <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">offset: 0</code></span>.\nUse this event as the single writer of continuous progress;\n<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">onPageSelected</code></span> reports the selected page, and\n<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">onPageScrollStateChanged</code></span> reports <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">{ pageScrollState }</code></span></span>, one of <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">idle</code></span>,\n<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">dragging</code></span>, and <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">settling</code></span>.</p>",
+                "text": "onPageScroll delivers { position, offset } throughout a drag or animated\nsettle. A completed settle delivers the landing page with offset: 0.\nUse this event as the single writer of continuous progress;\nonPageSelected reports the selected page, and\nonPageScrollStateChanged reports { pageScrollState }, one of idle,\ndragging, and settling."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">setPage(index)</code></span></span> animates to a page; <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">setPageWithoutAnimation(index)</code></span></span> moves\nimmediately. <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">setScrollEnabled(enabled)</code></span></span> changes whether user swipes are enabled.\nThe page commands take a nonnegative integer index. An index beyond the mounted\npages does nothing. Removing the selected last page selects the last remaining\npage. A resize preserves the selected page. Invalid prop values and invalid\nindex types throw synchronously on all platforms.</p>",
+                "text": "setPage(index) animates to a page; setPageWithoutAnimation(index) moves\nimmediately. setScrollEnabled(enabled) changes whether user swipes are enabled.\nThe page commands take a nonnegative integer index. An index beyond the mounted\npages does nothing. Removing the selected last page selects the last remaining\npage. A resize preserves the selected page. Invalid prop values and invalid\nindex types throw synchronously on all platforms."
+              }
+            ],
+            "firstParagraph": {
+              "tag": "P",
+              "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.UI.Pager</code></span> fills its viewport with one direct child view per page.\niOS uses a paging <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">UIScrollView</code></span></span>, Android uses <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">ViewPager2</code></span>, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page.</p>",
+              "text": "One.UI.Pager fills its viewport with one direct child view per page.\niOS uses a paging UIScrollView, Android uses ViewPager2, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page."
+            },
+            "inlineCodes": [
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.UI.Pager</code>",
+                "text": "One.UI.Pager",
+                "parentTag": "SPAN",
+                "parentHTML": "<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.UI.Pager</code></span>",
+                "grandparentTag": "P",
+                "grandparentHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.UI.Pager</code></span> fills its viewport with one direct child view per page.\niOS uses a paging <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">UIScrollView</code></span></span>, Android uses <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color:var(--color);display:contents\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">ViewPager2</code></span>, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page.</p>"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">UIScrollView</code>",
+                "text": "UIScrollView",
+                "parentTag": "SPAN",
+                "grandparentTag": "SPAN"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">ViewPager2</code>",
+                "text": "ViewPager2",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">onPageScroll</code>",
+                "text": "onPageScroll",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">{ position, offset }</code>",
+                "text": "{ position, offset }",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">offset: 0</code>",
+                "text": "offset: 0",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">onPageSelected</code>",
+                "text": "onPageSelected",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">onPageScrollStateChanged</code>",
+                "text": "onPageScrollStateChanged",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">{ pageScrollState }</code>",
+                "text": "{ pageScrollState }",
+                "parentTag": "SPAN",
+                "grandparentTag": "SPAN"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">idle</code>",
+                "text": "idle",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">dragging</code>",
+                "text": "dragging",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">settling</code>",
+                "text": "settling",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">initialPage</code>",
+                "text": "initialPage",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">0</code>",
+                "text": "0",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">scrollEnabled</code>",
+                "text": "scrollEnabled",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">true</code>",
+                "text": "true",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">orientation</code>",
+                "text": "orientation",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">horizontal</code>",
+                "text": "horizontal",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">horizontal</code>",
+                "text": "horizontal",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">vertical</code>",
+                "text": "vertical",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">layoutDirection</code>",
+                "text": "layoutDirection",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">ltr</code>",
+                "text": "ltr",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">ltr</code>",
+                "text": "ltr",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">rtl</code>",
+                "text": "rtl",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">pageMargin</code>",
+                "text": "pageMargin",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">0</code>",
+                "text": "0",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">keyboardDismissMode</code>",
+                "text": "keyboardDismissMode",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">none</code>",
+                "text": "none",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">none</code>",
+                "text": "none",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">on-drag</code>",
+                "text": "on-drag",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">overdrag</code>",
+                "text": "overdrag",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">false</code>",
+                "text": "false",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">offscreenPageLimit</code>",
+                "text": "offscreenPageLimit",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">-1</code>",
+                "text": "-1",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">-1</code>",
+                "text": "-1",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">overScrollMode</code>",
+                "text": "overScrollMode",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">auto</code>",
+                "text": "auto",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">auto</code>",
+                "text": "auto",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">always</code>",
+                "text": "always",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">never</code>",
+                "text": "never",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">setPage(index)</code>",
+                "text": "setPage(index)",
+                "parentTag": "SPAN",
+                "grandparentTag": "SPAN"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">setPageWithoutAnimation(index)</code>",
+                "text": "setPageWithoutAnimation(index)",
+                "parentTag": "SPAN",
+                "grandparentTag": "SPAN"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">setScrollEnabled(enabled)</code>",
+                "text": "setScrollEnabled(enabled)",
+                "parentTag": "SPAN",
+                "grandparentTag": "SPAN"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.iOS.Page</code>",
+                "text": "One.iOS.Page",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.iOS.Pager</code>",
+                "text": "One.iOS.Pager",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">react-native-pager-view</code>",
+                "text": "react-native-pager-view",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">One.UI.Pager</code>",
+                "text": "One.UI.Pager",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">PagerRef</code>",
+                "text": "PagerRef",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break:break-word\">one</code>",
+                "text": "one",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              }
+            ],
+            "width": 1440,
+            "scrollWidth": 1440
+          }
+        },
+        "mounted": {
+          "status": 200,
+          "javaScriptEnabled": true,
+          "consoleErrors": [
+            {
+              "text": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Ki (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:31196)\n    at Ic (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:81671)\n    at Mu (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:115484)\n    at ju (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:115457)\n    at Au (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:115319)\n    at gu (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:110925)\n    at cd (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:12:122764)\n    at MessagePort.ae (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:5:5609) {componentStack: \n    at code (<anonymous>)\n    at http://127.0.0.1\u2026918/assets/_virtual_one-entry-DJPi0DAQ.js:5:2166)}",
+              "location": {
+                "url": "http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js",
+                "lineNumber": 12,
+                "columnNumber": 37667
+              },
+              "args": [
+                {
+                  "name": "Error"
+                },
+                {
+                  "componentStack": "\n    at code (<anonymous>)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:3:3628\n    at span (<anonymous>)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:2:21973\n    at de (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:7482)\n    at code (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:17041)\n    at ke (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:17515)\n    at n (<anonymous>)\n    at p (<anonymous>)\n    at c.Provider (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:1:1879)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:3:3628\n    at p (<anonymous>)\n    at ke (http://127.0.0.1:3918/assets/MDXComponents-sPAS3Sp-.js:1:17515)\n    at n (<anonymous>)\n    at MDXContent (<anonymous>)\n    at h (http://127.0.0.1:3918/assets/_slug_-CCOp1hhY.js:1:460)\n    at xf (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:16706)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16620\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Si (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16797)\n    at nn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25990)\n    at cn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:26409)\n    at Em (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:15816)\n    at ri (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:14054)\n    at tn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25559)\n    at _i (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16537)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16301\n    at Cm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14602)\n    at Sm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14077)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:16558\n    at div (<anonymous>)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:3:3628\n    at T (http://127.0.0.1:3918/assets/DocsLayout-DcZuTGtV.js:1:640)\n    at xf (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:16706)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16620\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Si (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16797)\n    at nn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25990)\n    at cn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:26409)\n    at Em (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:15816)\n    at ri (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:14054)\n    at tn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25559)\n    at _i (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16537)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16301\n    at Cm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14602)\n    at Sm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14077)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:16558\n    at http://127.0.0.1:3918/assets/_layout-D8PaNB-o.js:2:993\n    at D (http://127.0.0.1:3918/assets/_layout-D8PaNB-o.js:2:3044)\n    at xf (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:16706)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16620\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Si (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16797)\n    at nn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25990)\n    at cn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:26409)\n    at Em (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:15816)\n    at ri (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:14054)\n    at tn (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:25559)\n    at _i (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16537)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:4:16301\n    at Cm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14602)\n    at Sm (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:14077)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:27:16558\n    at http://127.0.0.1:3918/assets/GorhomPortal-CjCWLWI9.js:1:1478\n    at span (<anonymous>)\n    at Qa (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:5394)\n    at http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:2:21973\n    at $a (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:5970)\n    at c.Provider (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:1:1879)\n    at ro (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:6235)\n    at Wo (http://127.0.0.1:3918/assets/Paragraph-EQyBSGq0.js:26:11505)\n    at se (http://127.0.0.1:3918/assets/_layout-D0u3CaJx.js:16:2166)\n    at je (http://127.0.0.1:3918/assets/_layout-D0u3CaJx.js:18:2752)\n    at F (http://127.0.0.1:3918/assets/_layout-D0u3CaJx.js:1:617)\n    at bu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:1446)\n    at Fu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:3366)\n    at body (<anonymous>)\n    at html (<anonymous>)\n    at of (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:11547)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:13870\n    at od (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:5746)\n    at gd (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:6828)\n    at http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:14957\n    at yr (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:2:21390)\n    at at (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:14731)\n    at Ne (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:13061)\n    at Pt (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:1:18237)\n    at jn (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:2:12617)\n    at bu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:1446)\n    at Fu (http://127.0.0.1:3918/assets/router-BR2rYhCK.js:22:3366)\n    at zr (http://127.0.0.1:3918/assets/_virtual_one-entry-DJPi0DAQ.js:5:2166)"
+                }
+              ]
+            }
+          ],
+          "pageErrors": [],
+          "dom": {
+            "title": "Pager | One | Swipe between React Native pages on iOS, Android, and web",
+            "paragraphs": [
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.UI.Pager</code></span> fills its viewport with one direct child view per page.\niOS uses a paging <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">UIScrollView</code></span>, Android uses <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">ViewPager2</code></span>, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page.</p>",
+                "text": "One.UI.Pager fills its viewport with one direct child view per page.\niOS uses a paging UIScrollView, Android uses ViewPager2, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">onPageScroll</code></span> delivers <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">{ position, offset }</code></span> throughout a drag or animated\nsettle. A completed settle delivers the landing page with <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">offset: 0</code></span>.\nUse this event as the single writer of continuous progress;\n<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">onPageSelected</code></span> reports the selected page, and\n<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">onPageScrollStateChanged</code></span> reports <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">{ pageScrollState }</code></span>, one of <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">idle</code></span>,\n<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">dragging</code></span>, and <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">settling</code></span>.</p>",
+                "text": "onPageScroll delivers { position, offset } throughout a drag or animated\nsettle. A completed settle delivers the landing page with offset: 0.\nUse this event as the single writer of continuous progress;\nonPageSelected reports the selected page, and\nonPageScrollStateChanged reports { pageScrollState }, one of idle,\ndragging, and settling."
+              },
+              {
+                "tag": "P",
+                "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">setPage(index)</code></span> animates to a page; <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">setPageWithoutAnimation(index)</code></span> moves\nimmediately. <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">setScrollEnabled(enabled)</code></span> changes whether user swipes are enabled.\nThe page commands take a nonnegative integer index. An index beyond the mounted\npages does nothing. Removing the selected last page selects the last remaining\npage. A resize preserves the selected page. Invalid prop values and invalid\nindex types throw synchronously on all platforms.</p>",
+                "text": "setPage(index) animates to a page; setPageWithoutAnimation(index) moves\nimmediately. setScrollEnabled(enabled) changes whether user swipes are enabled.\nThe page commands take a nonnegative integer index. An index beyond the mounted\npages does nothing. Removing the selected last page selects the last remaining\npage. A resize preserves the selected page. Invalid prop values and invalid\nindex types throw synchronously on all platforms."
+              }
+            ],
+            "firstParagraph": {
+              "tag": "P",
+              "outerHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.UI.Pager</code></span> fills its viewport with one direct child view per page.\niOS uses a paging <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">UIScrollView</code></span>, Android uses <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">ViewPager2</code></span>, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page.</p>",
+              "text": "One.UI.Pager fills its viewport with one direct child view per page.\niOS uses a paging UIScrollView, Android uses ViewPager2, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page."
+            },
+            "inlineCodes": [
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.UI.Pager</code>",
+                "text": "One.UI.Pager",
+                "parentTag": "SPAN",
+                "parentHTML": "<span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.UI.Pager</code></span>",
+                "grandparentTag": "P",
+                "grandparentHTML": "<p class=\"is_Paragraph is_Text font_body _ff-f-family _fow-f-weight-6 _ls-f-letterSpa1360334200 _fos-f-size-6 _lh-30px _col-color _ussel-auto _ws-normal _dsp-block _mt-t-space-3 _mb-t-space-3 docs-paragraph\"><span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.UI.Pager</code></span> fills its viewport with one direct child view per page.\niOS uses a paging <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">UIScrollView</code></span>, Android uses <span class=\"t_sub_theme t_yellow is_Theme\" style=\"color: var(--color); display: contents;\"><code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">ViewPager2</code></span>, and web uses\nCSS scroll snap. Give the pager a size, and keep a stable key on each page.</p>"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">UIScrollView</code>",
+                "text": "UIScrollView",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">ViewPager2</code>",
+                "text": "ViewPager2",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">onPageScroll</code>",
+                "text": "onPageScroll",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">{ position, offset }</code>",
+                "text": "{ position, offset }",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">offset: 0</code>",
+                "text": "offset: 0",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">onPageSelected</code>",
+                "text": "onPageSelected",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">onPageScrollStateChanged</code>",
+                "text": "onPageScrollStateChanged",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">{ pageScrollState }</code>",
+                "text": "{ pageScrollState }",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">idle</code>",
+                "text": "idle",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">dragging</code>",
+                "text": "dragging",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">settling</code>",
+                "text": "settling",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">initialPage</code>",
+                "text": "initialPage",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">0</code>",
+                "text": "0",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">scrollEnabled</code>",
+                "text": "scrollEnabled",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">true</code>",
+                "text": "true",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">orientation</code>",
+                "text": "orientation",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">horizontal</code>",
+                "text": "horizontal",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">horizontal</code>",
+                "text": "horizontal",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">vertical</code>",
+                "text": "vertical",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">layoutDirection</code>",
+                "text": "layoutDirection",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">ltr</code>",
+                "text": "ltr",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">ltr</code>",
+                "text": "ltr",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">rtl</code>",
+                "text": "rtl",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">pageMargin</code>",
+                "text": "pageMargin",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">0</code>",
+                "text": "0",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">keyboardDismissMode</code>",
+                "text": "keyboardDismissMode",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">none</code>",
+                "text": "none",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">none</code>",
+                "text": "none",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">on-drag</code>",
+                "text": "on-drag",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">overdrag</code>",
+                "text": "overdrag",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">false</code>",
+                "text": "false",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">offscreenPageLimit</code>",
+                "text": "offscreenPageLimit",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">-1</code>",
+                "text": "-1",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">-1</code>",
+                "text": "-1",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">overScrollMode</code>",
+                "text": "overScrollMode",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">auto</code>",
+                "text": "auto",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">auto</code>",
+                "text": "auto",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">always</code>",
+                "text": "always",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">never</code>",
+                "text": "never",
+                "parentTag": "SPAN",
+                "grandparentTag": "TD"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">setPage(index)</code>",
+                "text": "setPage(index)",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">setPageWithoutAnimation(index)</code>",
+                "text": "setPageWithoutAnimation(index)",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">setScrollEnabled(enabled)</code>",
+                "text": "setScrollEnabled(enabled)",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.iOS.Page</code>",
+                "text": "One.iOS.Page",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.iOS.Pager</code>",
+                "text": "One.iOS.Pager",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">react-native-pager-view</code>",
+                "text": "react-native-pager-view",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">One.UI.Pager</code>",
+                "text": "One.UI.Pager",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">PagerRef</code>",
+                "text": "PagerRef",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              },
+              {
+                "tag": "CODE",
+                "outerHTML": "<code class=\"is_CodeInline is_Text font_mono _ff-f-family _col-color12 _bg-background056 _cur-inherit _btlr-t-radius-3 _btrr-t-radius-3 _bbrr-t-radius-3 _bblr-t-radius-3 _fos-8837 _pt-t-space-1--53 _pr-t-space-1--53 _pb-t-space-1--53 _pl-t-space-1--53 _ws-pre-wrap\" style=\"word-break: break-word;\">one</code>",
+                "text": "one",
+                "parentTag": "SPAN",
+                "grandparentTag": "P"
+              }
+            ],
+            "width": 1440,
+            "scrollWidth": 1440
+          }
+        }
+      },
+      "rawServerHtmlArtifact": "/Users/n8/Library/Caches/one-v2-launch-2026-10-03/ui-pager-server.html"
+    }
+  ]
+}

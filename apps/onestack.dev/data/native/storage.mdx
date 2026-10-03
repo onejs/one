@@ -14,8 +14,17 @@ One.Storage.removeItem('theme')
 const keys = One.Storage.getAllKeys() // every key this store holds
 ```
 
-On iOS and Android one C++ engine serves every call directly over JSI. Every entry lives in one in-memory map per app process, so a read is a hash lookup and never touches disk. Each write appends one record to a memory-mapped log in the app's private storage, with no system call, and the mapped pages belong to the operating system, so a value survives an app crash as soon as `setItem` returns. When the log grows past twice the live data it is rewritten as a snapshot, atomically, so a crash during the rewrite leaves the old log whole. The store belongs to one process: an app extension does not share it.
+On iOS and Android a shared C++ engine serves calls over JSI. A process-local
+map indexes values in a memory-mapped log in the app's private storage. Writes
+append records; when the log fills, it compacts live entries if enough space is
+unused, or grows the mapping. Compaction writes a snapshot and renames it over
+the old log. The store belongs to one process; app extensions do not share it.
 
-On web the same verbs use `localStorage` under keys reserved for this store, so `getAllKeys` lists only `One.Storage` entries.
+This is ordinary persistent app storage. It provides no encryption or explicit
+flush API, and a completed write is not a guarantee against device power loss.
+
+On web the same verbs use `localStorage` under keys reserved for this store, so
+`getAllKeys` lists only `One.Storage` entries. Call it from browser code;
+localStorage is unavailable during server rendering.
 
 Keys must be non-empty strings. Values must be strings, including the empty string. Invalid input throws at the JavaScript boundary without coercion. Missing reads return `null`; removing a missing key succeeds.

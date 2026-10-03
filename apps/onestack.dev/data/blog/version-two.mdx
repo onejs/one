@@ -1,7 +1,7 @@
 ---
 title: 'One v2 Beta'
 publishedAt: '2026-10-01'
-description: 'SwiftUI and Compose components, native services, Rolldown, and the framework work since the v1 release candidate.'
+description: 'SwiftUI and Compose components, native services, Rolldown, and the framework work since the v1 beta.'
 by: nate
 draft: true
 ---
@@ -11,7 +11,7 @@ draft: true
   the router. It also moves the default bundler to Rolldown, adds a native
   project generator that works without Expo, and updates navigation to React
   Navigation 8 alphas. The beta includes the routing, data loading, web rendering,
-  and deployment work from the v1 line through 1.27.
+  and deployment work from the v1 beta through 1.27.
 </IntroParagraph>
 
 One is a React framework for web, iOS, and Android. You configure a Vite plugin,
@@ -57,11 +57,19 @@ controls and theme defaults. The Android surface has its own props and layout
 rules; it does not translate a SwiftUI screen into Compose.
 
 Shared components include `Image`, `Map`, `Icon`, `TextInput`, `EdgeFade`,
-`Blur`, `Mask`, safe areas, and Picture in Picture. `Icon` accepts an element
+`Blur`, `Mask`, safe areas, Picture in Picture, portals, and a pager. `Icon`
+accepts an element
 for each platform and a semantic color role or explicit color. `useNativeState`
 is a named import from `one`; it creates an observable value that native
 controls can share. Native edits update that store directly, and React
 subscribers receive the updated value.
+
+[Portals](/native/portal) move React content into a named host while preserving
+context, state, and events. `One.UI.Portal` and `PortalHost` need no provider.
+The shared [Pager](/native/ui-pager) takes ordinary React Native page views,
+using a paging UIScrollView on iOS, ViewPager2 on Android, and scroll snap on
+web. It exposes scroll and selection events plus imperative page commands.
+These replace `react-native-teleport` and `react-native-pager-view` in One apps.
 
 Native tabs have two separate uses. The router's `Tabs` connects file routes to
 React Navigation. `One.iOS.Tabs` and `One.iOS.Tab` let you compose a SwiftUI
@@ -79,7 +87,8 @@ The package now includes services you previously had to assemble from separate
 native dependencies. Shared namespaces cover notifications, clipboard,
 connection state, haptics, browser and authentication sessions, image and
 document picking, secure storage, speech recognition, SQLite, app information,
-launch-screen control, and over-the-air updates. `One.Auth.Apple` provides
+launch-screen control, synchronous key-value storage, and over-the-air updates.
+`One.Auth.Apple` provides
 Apple authentication. `One.openURL`, `One.openShare`, and `One.openSettings`
 open the corresponding system surfaces. Native `fetch` supports streaming
 responses and React Native file parts in `FormData`; the global `crypto`
@@ -90,10 +99,17 @@ location, geocoding, MapKit search and directions, sandbox files, audio playback
 and recording, camera preview and code scanning, Photos assets and albums,
 image transformations, contacts, calendar events and reminders, localization
 and device information, motion sensors, orientation, screen capture,
-preferences, protected Keychain storage, purchases, and system review and
+protected Keychain storage, purchases, and system review and
 print requests. Background tasks, device attestation, alternate app icons,
-tracking permission, keep-awake control, and Home Screen quick actions are
+tracking permission, keep-awake control, Home Screen quick actions, and
+[build-time Shortcuts actions](/native/app-intents) are
 available through `One.iOS` too.
+
+[One.Storage](/native/storage) stores string keys and values synchronously on
+iOS, Android, and web. The native implementation uses a shared C++ engine over
+a memory-mapped log; web uses localStorage. It replaces the earlier
+`One.iOS.Preferences` surface. Use it for settings and caches, and use
+SecureStore for secrets.
 
 Each service has its own permission and platform requirements. Some depend on
 hardware, signing capabilities, a configured account, or an OS decision to show
@@ -115,6 +131,11 @@ identifiers, icons, launch screens, fonts, orientation, appearance, links,
 permissions, entitlements, and platform build settings. There is no Expo app
 config or config plugin on that path.
 
+The package also ships native share-target receiver and composer sources for
+iOS extensions and Android activities. Apps supply a native adapter to list
+destinations and deliver submissions. Integrating those sources requires native
+project work; they are separate from the outgoing `One.openShare` API.
+
 Apps that install Expo keep using Expo prebuild with `vxrn/expo-plugin`.
 That adapter connects the generated project to One while preserving Expo
 modules and config plugins. `one run:ios` and `one run:android` launch the
@@ -122,8 +143,9 @@ native projects against your running One development server.
 
 You can also import Swift and Kotlin source from application code. One derives
 a typed contract for supported native functions and generates the glue used by
-the native build. Swift packages can expose native views. Editing native source
-still requires rebuilding the native binary; JavaScript hot reload cannot
+the native build. Swift packages can expose native views, and public Kotlin
+composables import as typed React components whose content is measured inside
+the React Native layout. Editing native source still requires rebuilding the native binary; JavaScript hot reload cannot
 replace compiled Swift or Kotlin.
 
 Environment variables use `ONE_PUBLIC_` by default. `EXPO_PUBLIC_` remains
@@ -138,7 +160,9 @@ The default native bundler now uses Rolldown for both development and production
 Development supports React Refresh and incremental updates. The default
 transform pipeline uses Oxc and the native Worklets transform, and can bundle
 supported imports into worklet runtimes. The web build also uses Vite 8 and
-Rolldown.
+Rolldown. iOS development bundles can be served as Hermes bytecode compiled
+with the native project's matching compiler, and cold route navigation dispatches
+without waiting for route preloading.
 
 [Metro mode](/docs/metro-mode) remains available for apps whose dependencies
 need it. `one/babel-preset` and `one/metro-config` share One's configuration
@@ -155,16 +179,20 @@ responsibility.
 
 ## Routing and navigation
 
-The routing work since the v1 release candidate is included: typed paths and links, nested
+The routing features developed through the v1 line remain available: typed paths
+and links, nested
 layouts and groups, platform-specific route files, protected routes, route
 validation, navigation blocking, and route masks. You can display a short URL
 while navigating to a more detailed route, or preserve a scroll position while
 moving between child pages.
 
 React Navigation 8 alphas are the basis of v2 navigation. Web navigators have
-headless renderers, and `Presentations` composes their output. The web path
+headless renderers, and `Presentations` composes their output. Custom layouts
+read navigator state through `useStack`, `useTabs`, and `useDrawer`. The drawer
+is available through the separate `one/drawer` entry. The web path
 keeps React Native out of its module graph. `Stack.Header` and `Stack.Toolbar`
-provide declarative native header and toolbar composition. `Tabs.Protected`
+provide declarative native header and toolbar composition. `useHeaderHeight`,
+imported from `one`, reads the navigator header height. `Tabs.Protected`
 adds guards to tab routes, and route loading can suspend on native and web.
 
 `getLinking` exposes the linking configuration, and `useSitemap` reads the route
@@ -183,7 +211,8 @@ and `usePageMatch` give layouts access to matched routes and their data;
 `loaderCache` deduplicates concurrent server loader calls and optionally keeps
 results for a configured TTL. During development, `watchFile` lets a loader
 track a local content file and refresh when it changes. Loaders can validate
-params and redirect. Middleware supplies shared request context, and
+params and redirect. [API routes](/docs/routing-api-routes) use typed handlers
+with `createAPIRoute`. Middleware supplies shared request context, and
 `setServerData` and `getServerData` pass server data into rendering.
 `setResponseHeaders` sets cache headers, cookies, and other response metadata.
 Headless server loaders can run without a built route map.
@@ -191,7 +220,9 @@ Headless server loaders can run without a built route map.
 ## Web rendering and deployment
 
 You can still choose SSG, SSR, or SPA globally or per route, and mix them in the
-same app. Root layout render modes and SPA shell rendering let the initial
+same app. SSR streams responses, and [ISR](/docs/guides-isr) uses response headers
+and CDN caching to revalidate SSR pages. Root layout render modes and SPA shell
+rendering let the initial
 HTML include shared navigation, head tags, and CSS while page content loads
 on the client. Static generation uses worker threads to render pages in
 parallel.
@@ -218,7 +249,9 @@ loader hot reload and supports smart typography.
 
 Route warming and dependency tracking reduce repeated startup work. Web-only
 apps can set `native: false`, and React Compiler configuration is available
-through the plugin. The CLI also includes a daemon for managing development
+through the plugin. Per-environment aliases and
+[dependency patches](/docs/configuration#patches) help integrate packages that
+need build-specific configuration. The CLI also includes a daemon for managing development
 across multiple apps. These changes support the same development loop: edit a
 route or its data, see the result, and inspect the code that produced it.
 
@@ -227,7 +260,10 @@ route or its data, see the result, and inspect the code that produced it.
 The v2 package requires React 19.2.3 or later within React 19 and React Native
 0.87, with 0.87.1 used by the current native examples. Native views require the
 New Architecture. The package's iOS deployment floor is 17; newer APIs have
-separate runtime requirements, including iOS 26 for Liquid Glass. Align your
+separate runtime requirements, including iOS 26 for Liquid Glass. The
+[migration guide](/native/migrating-to-one) covers service and component
+replacements, including the Storage verbs and existing Preferences data. Align
+your
 React Navigation dependencies with One's 8 alpha peers rather than mixing
 navigation versions.
 

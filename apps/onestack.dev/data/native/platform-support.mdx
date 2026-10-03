@@ -14,7 +14,11 @@ description: What every native API does on iOS, Android, and web
 | Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
 | SwiftUI controls and containers | One.iOS.* | unsupported (throws) | unsupported (throws) |
 | Compose views | unsupported (throws) | One.Android.* | unsupported (throws) |
-| EdgeFade, Blur, Mask | native primitive | native primitive | throws |
+| EdgeFade | native primitive | native primitive | CSS |
+| Blur, Mask | native primitive | native primitive | throws |
+| Portal, PortalHost | Fabric views | native view groups | DOM portals |
+| Pager | paging UIScrollView | ViewPager2 | CSS scroll snap |
+| Storage | C++ mapped log | C++ mapped log | localStorage |
 | Gradients | RN 0.87 `backgroundImage` (see Gradients) | RN 0.87 `backgroundImage` (see Gradients) | see Gradients |
 | TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
 | Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |

@@ -9,28 +9,37 @@ CSS scroll snap. Give the pager a size, and keep a stable key on each page.
 
 ```tsx
 import { useRef, useState } from 'react'
-import { One, type PagerRef } from 'one'
+import { One, useNativeState, type PagerRef } from 'one'
 import { View, Text } from 'react-native'
 
-const pager = useRef<PagerRef>(null)
-const [page, setPage] = useState(0)
+export function ProjectPages() {
+  const pager = useRef<PagerRef>(null)
+  const [page, setPage] = useState(0)
+  const progress = useNativeState(0)
 
-<One.UI.Pager
-  ref={pager}
-  style={{ flex: 1 }}
-  initialPage={0}
-  onPageScroll={({ nativeEvent }) => {
-    progress.set(nativeEvent.position + nativeEvent.offset)
-  }}
-  onPageSelected={({ nativeEvent }) => setPage(nativeEvent.position)}
->
-  <View key="projects"><Text>Projects</Text></View>
-  <View key="chat"><Text>Chat</Text></View>
-</One.UI.Pager>
-
-pager.current?.setPage(1)
-pager.current?.setPageWithoutAnimation(0)
-pager.current?.setScrollEnabled(false)
+  return (
+    <One.UI.Pager
+      ref={pager}
+      style={{ flex: 1 }}
+      initialPage={0}
+      onPageScroll={({ nativeEvent }) => {
+        progress.set(nativeEvent.position + nativeEvent.offset)
+      }}
+      onPageSelected={({ nativeEvent }) => setPage(nativeEvent.position)}
+    >
+      <View key="projects">
+        <Text>Projects, page {page + 1}</Text>
+        <Text onPress={() => pager.current?.setPage(1)}>Open chat</Text>
+      </View>
+      <View key="chat">
+        <Text>Chat, page {page + 1}</Text>
+        <Text onPress={() => pager.current?.setPageWithoutAnimation(0)}>
+          Back to projects
+        </Text>
+      </View>
+    </One.UI.Pager>
+  )
+}
 ```
 
 `onPageScroll` delivers `{ position, offset }` throughout a drag or animated
@@ -52,7 +61,9 @@ Use this event as the single writer of continuous progress;
 | `offscreenPageLimit` | `-1` | Android cache limit; `-1` or a positive integer |
 | `overScrollMode` | `auto` | Android edge effect: `auto`, `always`, or `never` |
 
-The ref methods take a nonnegative integer index. An index beyond the mounted
+`setPage(index)` animates to a page; `setPageWithoutAnimation(index)` moves
+immediately. `setScrollEnabled(enabled)` changes whether user swipes are enabled.
+The page commands take a nonnegative integer index. An index beyond the mounted
 pages does nothing. Removing the selected last page selects the last remaining
 page. A resize preserves the selected page. Invalid prop values and invalid
 index types throw synchronously on all platforms.

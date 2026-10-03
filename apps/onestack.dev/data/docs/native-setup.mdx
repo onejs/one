@@ -5,9 +5,10 @@ description: Install One Native and generate iOS or Android projects with or wit
 
 One Native is included in the `one` package. There is no separate native UI
 package to install. The v2 beta uses React 19.2.3 and React Native 0.87;
-the current examples use 0.87.1. Native components require the New Architecture. The
-[installation guide](/docs/installation) lists the full dependency set,
-including screens, Worklets, and Liquid Glass.
+the current examples use 0.87.1. Native components require the New Architecture.
+The [installation guide](/docs/installation) covers the common dependencies.
+Check the beta package's peer dependencies for the complete version requirements,
+including screens, Worklets, Liquid Glass, and the native sheet renderer.
 The iOS deployment floor is 17. See the
 [platform notes](/docs/native-platforms) for feature-specific requirements.
 
@@ -20,7 +21,9 @@ npx one@beta
 For an existing One app, update `one` to the beta and align its React, React
 Native, and React Navigation peers. Use your package manager to inspect the
 installed package's peer dependencies. The navigation peers are 8 alpha
-versions, so keep their versions aligned.
+versions, so keep their versions aligned. The native sheet integration requires
+`@tamagui/sheet >=3.0.0-beta.1537.1 <4`; older v3 betas do not expose the
+renderer contract this version of One uses.
 
 ## A project without Expo
 

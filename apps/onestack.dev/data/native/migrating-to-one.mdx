@@ -65,6 +65,30 @@ From `expo-secure-store`. See [SecureStore](/native/secure-store).
 | `getItem(key)` | `One.SecureStore.getItemSync(key)` |
 | `setItem(key, value)` | `One.SecureStore.setItemSync(key, value)` |
 
+## Storage
+
+Use [One.Storage](/native/storage) for string settings and caches on iOS,
+Android, and web. It replaces the earlier iOS-only Preferences service.
+The verbs are synchronous:
+
+| Previous One API | Current API |
+| --- | --- |
+| `One.iOS.Preferences.getItem(key)` or `getItemSync(key)` | `One.Storage.getItem(key)` |
+| `One.iOS.Preferences.setItem(key, value)` or `setItemSync(key, value)` | `One.Storage.setItem(key, value)` |
+| `One.iOS.Preferences.deleteItem(key)` or `deleteItemSync(key)` | `One.Storage.removeItem(key)` |
+
+Storage uses its own log. Existing Preferences values are not migrated
+from UserDefaults automatically. Transfer any settings you need before
+removing the previous implementation. Keep secrets in SecureStore.
+
+## Portals and pages
+
+Replace `react-native-teleport` with [One.UI.Portal and PortalHost](/native/portal),
+remove `PortalProvider`, and mount a named host for each overlay destination.
+Replace `react-native-pager-view` with [One.UI.Pager](/native/ui-pager) and import
+`PagerRef` from `one` for its ref. Give the pager finite bounds and each direct
+page view a stable key. It is separate from the SwiftUI `One.iOS.Pager`.
+
 ## Image picker
 
 From `expo-image-picker`. See [ImagePicker](/native/image-picker).

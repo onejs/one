@@ -21,6 +21,7 @@ behavior, event cleanup, and errors.
 | [One.AppInfo](/native/app-info) | Read the installed version, build, and application identifier |
 | [One.ImagePicker](/native/image-picker) | Pick library media or use the system camera picker |
 | [One.DocumentPicker](/native/document-picker) | Select documents with cancellation and file metadata |
+| [One.Storage](/native/storage) | Store string keys and values synchronously on iOS, Android, and web |
 | [One.SecureStore](/native/secure-store) | Store strings in Keychain or encrypted Android storage, asynchronously or synchronously |
 | [One.Database](/native/database) | Open and query SQLite databases through OP SQLite |
 | `One.Speech` | Request permission and start or stop speech recognition; see the dictation section below |
@@ -32,6 +33,10 @@ behavior, event cleanup, and errors.
 
 `One.Auth.Apple` is grouped under the shared authentication namespace, but Apple
 authorization is an iOS operation. On Android and web, `isAvailable` is false and authorization calls reject.
+
+`One.Storage` is shared across iOS, Android, and web. It replaces the earlier
+`One.iOS.Preferences` namespace; there is no `One.iOS.Storage` API. Use
+[Storage](/native/storage) for settings and caches, and SecureStore for secrets.
 
 Secure storage uses string keys and values:
 
@@ -64,7 +69,6 @@ because the same app also uses Compose.
 | --- | --- |
 | [LocalAuthentication](/native/local-authentication) | Check biometric support and request system authentication |
 | [ProtectedStore](/native/protected-store) | Protect Keychain items with biometric or device-passcode access policies |
-| [Storage](/native/storage) | Fast synchronous key-value storage |
 | [Location](/native/location) | Request permission, locate, watch position, and geocode; background updates need configuration |
 | [MapServices](/native/map#ios-search-and-directions) | Search places, request suggestions, reverse-geocode, and obtain directions |
 | [FileSystem](/native/file-system) | Read and write sandbox files, inspect directories, and manage files |
@@ -87,6 +91,7 @@ because the same app also uses Compose.
 | [KeepAwake](/native/keep-awake) | Control the app's idle-timer flag |
 | [Print](/native/print) | Present the system print sheet for a local PDF |
 | [StoreReview](/native/store-review) | Request a system review prompt; iOS decides whether to display it |
+| [AppIntents](/native/app-intents) | Declare build-time Shortcuts actions and register string input/output handlers |
 | [QuickActions](/native/quick-actions) | Manage Home Screen actions and receive warm or cold selections |
 | [Widgets, LiveActivities, WidgetUI](/native/ios-widgets) | Update a generated WidgetKit extension and ActivityKit presentations |
 
