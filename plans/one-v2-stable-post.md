@@ -29,3 +29,35 @@ This revision still needs mounted desktop/mobile captures, served links,
 and the assigned Claude Opus review before Nate sees it. Stable publication
 and public-main landing remain gated. The post stays `draft: true`; its
 October 5 date is the planned Monday launch and must match publication.
+
+## Assigned review corrections
+
+Claude Opus s8126 reviewed the stable post at `a187f637e` and CLI selection
+at `703d1ecd2`. Its final handoff is
+`~/.team-machine/handoffs/launch-one-stable-opus.md`. It accepted the Native
+positioning and found two material problems before sharing: historical
+unrelated npm One 2.x versions resolve broad ranges to 2.5.2, and imported
+Swift view props are JSON rather than a derived specific TypeScript interface.
+
+The setup guide now installs `one@latest --save-exact` and reads the default
+tag's peers. The post describes generated declarations and native glue,
+without promising typed Swift view props. The new source-import guide shows
+Swift packages, Compose views, native methods, declarations, platform files,
+and native rebuilds, and explicitly documents the `one prebuild` requirement.
+Existing protocols and APIs retain their names. The guide is linked from the
+post, overview, setup, and native sidebar. The framework section is shortened
+to outcomes with links, and the historical wording is corrected to “since v1.”
+
+TESTED: actual native-source generator reads both Swift examples and the
+Compose example. The Swift manifest selects language mode 6; the declarations
+typecheck all three React/TypeScript examples. A wrong Compose title type and
+wrong Swift method argument both fail TypeScript as a negative control.
+These checks do not claim a newly compiled native binary. Local script and
+receipt: `~/Library/Caches/one-v2-stable-source-docs/`.
+
+CLI s8122 also owns exact generated dependency versions and packaging repair.
+Release preparation r54397 owns stable version selection, with 2.6.0 as the
+reviewer's recommended candidate above legacy 2.5.2. Source and prepared
+artifacts stay on branches; Nate retains stable version/publication approval.
+Production capture worker s8128 must use this corrected source before the
+final before/after share. No additional post review is requested.

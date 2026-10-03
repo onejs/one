@@ -13,7 +13,7 @@ draft: true
   components, and a growing collection of UIKit components, included in One.
 </IntroParagraph>
 
-We've spent the time since the v1 beta making One a framework you can build
+We've spent the time since v1 making One a framework you can build
 your whole app with. V2 brings native UI, native APIs, native project
 generation, and Rolldown together with the routing, data loading, and web
 rendering that made One simple in the first place.
@@ -40,7 +40,8 @@ controls, maps, and media. The operating system renders the native UI, with
 its own appearance and behavior.
 
 And you have the full native languages available. Import Swift and Kotlin
-views directly into React, with typed props and generated integration.
+source directly into React. One generates the TypeScript declarations and
+native glue, so a custom view or module works like any other import.
 Custom SwiftUI and Compose views can use the complete platform frameworks.
 You can build a native view for your app and use it like a React component,
 without writing a bridge by hand.
@@ -65,7 +66,9 @@ native screen, a shared screen, and a web page all belong in the same One
 project.
 
 Explore [One Native](/docs/native-overview), the
-[components](/docs/native-components), and the [native reference](/native).
+[components](/docs/native-components), the
+[Swift and Kotlin import guide](/docs/native-source), and the
+[native reference](/native).
 
 ## Native apps, configured in Vite
 
@@ -93,52 +96,38 @@ you want to own it. See [Metro mode](/docs/metro-mode).
 
 ## Everything your app needs beyond the screen
 
-The work since the v1 beta reaches through the rest of the framework too.
+The work since v1 reaches through the rest of the framework too.
 One remains a Vite plugin with file-system routing, typed loaders, and a
 choice of web render modes, now with more control over how your app loads,
 navigates, and ships.
 
-**Routing and navigation.** Typed routes and links, nested layouts, route
-groups, and platform-specific files let you organize a shared app without
-losing platform control. Protected routes, validated params, navigation
-blocking, route masks, and scroll groups cover the interactions real apps
-need. V2 adds headless web navigators, custom presentations, and hooks for
-building your own navigation UI, alongside declarative native headers and
-toolbars. Deep links work with nested routes and cold launches. Start with
-the [routing guide](/docs/routing).
+**Routing and navigation.** Share a typed route tree across platforms and
+give each one its own navigation UI. Nested layouts, protected routes,
+deep links, and platform-specific files fit together, with custom web
+presentations and native headers and toolbars. Start with the
+[routing guide](/docs/routing).
 
-**Data loading and server code.** Typed loaders carry route params and
-request context into your page, with refetching and loader state for later
-updates. Layouts can read matched routes and their data. Loader caching
-deduplicates concurrent requests and can keep results for a configured
-lifetime. API routes, middleware, redirects, server data, and response
-headers let you build the backend alongside the app. In development,
-`watchFile` refreshes a loader when its content changes. Read about
-[loaders](/docs/routing-loader), [API routes](/docs/routing-api-routes), and
-[middleware](/docs/routing-middlewares).
+**Data loading and server code.** Keep your backend beside your app, with
+typed loaders, API routes, and middleware. Share request context, cache
+concurrent loads, refetch changing data, and refresh content as you edit.
+Read about [loaders](/docs/routing-loader), [API routes](/docs/routing-api-routes),
+and [middleware](/docs/routing-middlewares).
 
-**Web rendering.** Choose static generation, server rendering, or a
-client-rendered app globally or per route. One supports streaming SSR, ISR
-through CDN caching, and a rendered app shell so navigation and shared
-content appear before client pages load. Parallel static generation, CSS
-inlining, script loading controls, image metadata imports, and intent-based
-link prefetching give you control over loading performance. Skew protection
-handles open pages across deployments. See [render modes](/docs/render-modes).
+**Web rendering.** Mix static, server-rendered, and client-rendered pages
+in one app. Streaming, CDN revalidation, and rendered app shells help
+deliver content early; CSS inlining, image metadata, script controls, and
+link prefetching give you control over loading. See [render modes](/docs/render-modes).
 
-**Deployment and updates.** Build for Vercel, Cloudflare Workers, or your own
-host. One produces a build artifact you can deploy, with Cloudflare
-configuration and request context integrated into the framework. Native
-apps have built-in APIs for checking, downloading, and applying updates,
-with early-failure rollback in the launcher. Choose your update hosting
-alongside your deployment. Read the [deployment](/docs/guides-deployment) and
-[OTA](/docs/guides-ota-updates) guides.
+**Deployment and updates.** Ship to Vercel, Cloudflare Workers, or your
+own host. Native apps can check, download, and apply updates with rollback
+for early failures, while web deployment handles open pages across builds.
+Read the [deployment](/docs/guides-deployment) and [OTA](/docs/guides-ota-updates) guides.
 
-**Development tools.** The DevTools panel brings route inspection, loader
-timing, SEO preview, error reporting, and a source inspector into your app.
-MDX supports content hot reload. React Compiler configuration, environment
-guards, per-environment aliases, dependency patches, and web-only builds
-fit into the same Vite configuration. See [DevTools](/docs/dev-tools) and
-[configuration](/docs/configuration).
+**Development tools.** Inspect routes, loader timing, SEO, errors, and
+source in one DevTools panel. Content hot reload and React Compiler
+configuration fit into your Vite setup, with environment guards and
+dependency patches for your app's needs. See [DevTools](/docs/dev-tools)
+and [configuration](/docs/configuration).
 
 The [release history](https://github.com/onejs/one/releases) has the individual
 changes and fixes behind v2.
