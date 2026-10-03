@@ -47,7 +47,7 @@ function WebStackNavigator({
   headlessChildren,
   ...rest
 }: WebStackNavigatorProps) {
-  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder<
+  const { state, navigation, descriptors, render } = useNavigationBuilder<
     StackNavigationState<ParamListBase>,
     StackRouterOptions,
     StackActionHelpers<ParamListBase>,
@@ -80,7 +80,12 @@ function WebStackNavigator({
           stale: true,
           routes: [
             { name: initialRouteName, params: undefined },
-            ...current.routes.map(({ key, name, params, path }) => ({ key, name, params, path })),
+            ...current.routes.map(({ key, name, params, path }) => ({
+              key,
+              name,
+              params,
+              path,
+            })),
           ],
           index: current.routes.length,
         }),
@@ -106,15 +111,13 @@ function WebStackNavigator({
     })
   }, [navigation, state.index, state.key])
 
-  return (
-    <NavigationContent>
-      <WebStackView
-        state={state}
-        navigation={navigation as any}
-        descriptors={descriptors as any}
-        customChildren={headlessChildren}
-      />
-    </NavigationContent>
+  return render(
+    <WebStackView
+      state={state}
+      navigation={navigation as any}
+      descriptors={descriptors as any}
+      customChildren={headlessChildren}
+    />
   )
 }
 

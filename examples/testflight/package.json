@@ -23,8 +23,8 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
-    "@react-navigation/native-stack": "8.0.0-alpha.52",
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
     "@tamagui/config": "2.6.2",
     "@tamagui/lucide-icons-2": "2.6.2",
     "@vxrn/color-scheme": "workspace:*",
@@ -52,5 +52,14 @@
     "@tamagui/vite-plugin": "2.6.2",
     "tsx": "^4.20.6",
     "vite": "^8.2.2"
+  },
+  "resolutions": {
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
+    "@react-navigation/drawer": "8.0.0-alpha.57",
+    "@react-navigation/elements": "3.0.0-alpha.54",
+    "@react-navigation/routers": "8.0.0-alpha.20",
+    "@react-navigation/core": "8.0.0-alpha.40"
   }
 }

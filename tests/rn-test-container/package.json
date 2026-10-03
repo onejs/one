@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
