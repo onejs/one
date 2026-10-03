@@ -1,54 +1,67 @@
-# Menu Picker iOS 27 proposal proof
+# Menu Picker iOS 27 proof
 
-RAN on pro-128 with Xcode 27.1 and an iPhone 16 running iOS 27.0.
-`outcome.json` records 26 passing checks. The suite source is
-`ee2cbe2a61302ff206c1a731e2fada33d624ed71`; the native build source is
-`1cbf6cb5b5d5b977f43add43c7c9c7124e9c6427`. Both have the same
-`packages/one/ios` tree, `6fe09f5405e00b542455296e9386d69b24e1cf49`.
-`environment.json` records matching SHA-256 values for the built and installed
-code-bearing debug dylib and app executable. `xcodebuild.log.gz` ends in
-`BUILD SUCCEEDED`; `generate-check.log.gz` ends in `verified`.
+RAN on studio-64 with Xcode 27.0 and an iPhone 17 Pro running iOS 27.0.
+`outcome.json` records 49 passing checks; `conformance.log` is the run's
+output. The native build is `776768955` on `menu-picker-land` (the squash of
+`one-native-menu-picker` onto v2-beta's UIKit context-menu builder), with
+`packages/one/ios` tree `b2007d191cbe58e1c2616ee743c98c014fde0273`; the
+fixture and suite changes that followed are JavaScript only. `environment.json`
+records the SHA-256 of the built and installed app binaries. `xcodebuild.log.gz`
+ends in `BUILD SUCCEEDED`; `generate-check.log.gz` ends in `verified`.
 
-The nine PNG/compressed-AX pairs show the trigger, outer menu, options submenu,
-accepted selection, rejected selection, and revision reset. The left-to-right
-panels in `side-by-side.webp` are initial Small, accepted Large, rejected
-Automatic with Large still selected, and reset Small. The labels are visible
-in the screenshots; no title overlay was added. `menu-picker-pixels.json`
-records the native checkmark samples: 123 dark pixels beside the selected
-option and zero beside the other two options in each of four states. The gate
-requires at least 80 selected and at most 10 unselected dark pixels.
+Nate approved the `picker` item shape as public API.
 
-The runtime checks prove a SwiftUI Picker row in Menu, a native options
-submenu, action delivery to React, selection acceptance, rejection when React
-keeps its previous prop, and external reset with `revision`. The chosen option
-appears with SwiftUI's checkmark. Context-menu hosting, other iOS versions,
-and accessibility selection traits remain unproven. The item shape is a new
-public API proposal, so this branch awaits Nate's approval before v2-beta.
+## Menu
 
-The shared Menu item type also reaches Android. `android-contract-red.txt`
-records the focused real-flattener contract before the guard: two failures,
-because `onPickerChange` reached the core View and a Picker node did not throw.
-`android-contract-green.txt` records all three Android Menu tests passing after
-the narrow guard: Android rejects Picker items before popup presentation and
-never forwards `onPickerChange` to the trigger View. Android picker parity is
-outside this proposal.
+The first half drives `One.iOS.Menu`: the trigger opens SwiftUI's menu, the
+Size row opens the native options submenu, and choosing Large reaches React
+through `onPickerChange`. With rejection on, choosing Automatic is reported
+(`Requested: automatic`) but React keeps `large`, and the reopened submenu
+still checks Large. Reset bumps `revision` and the submenu checks Small again.
 
-Conformance invocation from the suite source checkout:
+## ContextMenu
+
+The second half hosts the same items in `One.iOS.ContextMenu`. A long press
+opens the UIKit context menu; Size is a `.singleSelection` submenu built from
+the same model. It goes through the same four states: initial Small, accepted
+Large, rejected Automatic with Large still checked, and reset Small. Each
+selection reaches React once (`Picker events` counts 3 and 4) and never calls
+`onAction` (`Other action: none`).
+
+## Evidence
+
+Each `menu-picker-*.png` has a compressed AX capture beside it.
+`menu-picker-pixels.json` records the dark pixels in a 24-point square
+before each option in eight open submenus: 123 (Menu) or 124 (ContextMenu)
+beside the selected option and zero beside the other two. The gate requires
+at least 80 for the selected option and at most 10 for the others, so a
+checkmark on the wrong row fails. `side-by-side.webp`, left to right:
+initial screen, Menu accepted Large, ContextMenu initial Small, ContextMenu
+rejected (Large kept, Automatic requested), and ContextMenu reset Small.
+
+Android rejects Picker items before its popup opens.
+`android-contract-red.txt` is the earlier run before that guard: two
+failures, because `onPickerChange` reached the core View and a Picker node did
+not throw. `android-contract-green.txt` is the current run of all three
+Android Menu tests passing.
+
+Other iOS versions and accessibility selection traits remain unproven.
+
+## Rerun
+
+Build the `NativeFeatureTests` scheme for the simulator, install it, start
+the fixture server with `bun run dev --port 8081` in `tests/native-features`,
+then:
 
 ```sh
 bun tests/native-features/scripts/one-native-conformance.ts \
-  --simulator-id 20A4D15A-8E8F-4D08-A8CC-1EBE7417552D \
+  --simulator-id <IPHONE_17_PRO_UDID> \
   --bundle-id dev.vxrn.native.tests --suite menu-picker \
   --timeout 45000 \
   --app-path tests/native-features/build/derivedData/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app \
   --js-location 127.0.0.1:8081 \
-  --artifact-dir tests/native-features/build/menu-picker/proof2
+  --artifact-dir <DIR_OUTSIDE_THE_APP>
 ```
 
-The build command is in the tracked `xcodebuild.log.gz` output and uses the
-`NativeFeatureTests` workspace/scheme, Debug simulator SDK, the simulator id
-above, and three Xcode jobs. The environment hashes were read with
-`git rev-parse`, `shasum -a 256` on the built and `simctl get_app_container`
-app paths, `xcodebuild -version`, `simctl list devices/runtimes`, and
-`simctl ui ... appearance`. English was observed in AX but not pinned as a
-simulator locale prerequisite.
+Keep `--artifact-dir` outside `tests/native-features`: the dev server watches
+that tree, and screenshots written there trigger a reload mid-run.

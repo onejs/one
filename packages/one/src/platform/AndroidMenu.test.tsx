@@ -38,13 +38,13 @@ it('keeps onPickerChange off the Android trigger View without picker items', () 
   let renderer: TestRenderer.ReactTestRenderer
   act(() => {
     renderer = TestRenderer.create(
-      <Menu items={[]} onAction={vi.fn()} onPickerChange={onPickerChange} testID="android-menu">
+      <Menu items={[]} onAction={vi.fn()} onPickerChange={onPickerChange} accessibilityLabel="Android menu" testID="android-menu">
         Trigger
       </Menu>
     )
   })
 
-  const trigger = renderer!.root.findByType('View')
+  const trigger = renderer!.root.findByType(View)
   expect(trigger.props.testID).toBe('android-menu')
   expect(trigger.props).not.toHaveProperty('onPickerChange')
   act(() => renderer!.unmount())
@@ -61,6 +61,7 @@ it('rejects picker items before opening the Android popup', () => {
           }]}
           onAction={vi.fn()}
           onPickerChange={vi.fn()}
+          accessibilityLabel="Android menu"
         >
           Trigger
         </Menu>

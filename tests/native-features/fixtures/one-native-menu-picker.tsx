@@ -9,6 +9,23 @@ export default function OneNativeMenuPicker() {
   const [reject, setReject] = useState(false)
   const [revision, setRevision] = useState(0)
   const [otherAction, setOtherAction] = useState('none')
+  const items = [
+    {
+      type: 'picker' as const, id: 'size', title: 'Size', selection,
+      children: [
+        { type: 'action' as const, id: 'small', title: 'Small' },
+        { type: 'action' as const, id: 'large', title: 'Large' },
+        { type: 'action' as const, id: 'automatic', title: 'Automatic' },
+      ],
+    },
+    { type: 'action' as const, id: 'other', title: 'Other action' },
+  ]
+  const onPickerChange = (id: string, value: string) => {
+    if (id !== 'size') throw new Error(`Unexpected picker: ${id}`)
+    setRequested(value)
+    setPickerEvents((count) => count + 1)
+    if (!reject) setSelection(value)
+  }
 
   return (
     <View style={styles.screen} testID="one-native-menu-picker-screen">
@@ -27,27 +44,22 @@ export default function OneNativeMenuPicker() {
         accessibilityLabel="Menu with picker"
         testID="one-native-menu-picker-menu"
         revision={revision}
-        items={[
-          {
-            type: 'picker', id: 'size', title: 'Size', selection,
-            children: [
-              { type: 'action', id: 'small', title: 'Small' },
-              { type: 'action', id: 'large', title: 'Large' },
-              { type: 'action', id: 'automatic', title: 'Automatic' },
-            ],
-          },
-          { type: 'action', id: 'other', title: 'Other action' },
-        ]}
+        items={items}
         onAction={setOtherAction}
-        onPickerChange={(id, value) => {
-          if (id !== 'size') throw new Error(`Unexpected picker: ${id}`)
-          setRequested(value)
-          setPickerEvents((count) => count + 1)
-          if (!reject) setSelection(value)
-        }}
+        onPickerChange={onPickerChange}
       >
         <View style={styles.trigger}><Text>Choose size</Text></View>
       </One.iOS.Menu>
+      <One.iOS.ContextMenu
+        accessibilityLabel="Context menu with picker"
+        testID="one-native-menu-picker-context"
+        revision={revision}
+        items={items}
+        onAction={setOtherAction}
+        onPickerChange={onPickerChange}
+      >
+        <View style={styles.trigger}><Text>Hold for size</Text></View>
+      </One.iOS.ContextMenu>
     </View>
   )
 }

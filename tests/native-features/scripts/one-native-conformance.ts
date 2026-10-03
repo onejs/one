@@ -5840,6 +5840,57 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Size' })
     const resetOptions = await wait('reset Picker options reopen', options)
     checkSelection('reset native Picker checkmark marks Small', 'Small', resetOptions, screenshot('menu-picker-reset-options.png', resetOptions))
+    await dismissPicker()
+
+    // the same picker hosted by a context menu: a long press opens the UIKit menu,
+    // and the picker is a single-selection submenu built from the same model.
+    const longPress = () => {
+      const frame = id(snapshot(config.simulatorId), 'one-native-menu-picker-context')?.frame
+      if (!frame) throw new Error('Context menu picker trigger has no frame')
+      const output = axe([
+        'touch', '-x', String(Math.round(frame.x + frame.width / 2)),
+        '-y', String(Math.round(frame.y + frame.height / 2)),
+        '--down', '--up', '--delay', '0.9',
+      ], config.simulatorId)
+      if (output.includes('could not establish simulator input'))
+        throw new Error('Context menu picker long press lost simulator input')
+    }
+    const openContextOptions = async (name: string) => {
+      longPress()
+      const outer = await wait(`${name} context menu opens`, (nodes) =>
+        labels(nodes).includes('Size') && labels(nodes).includes('Other action'))
+      tap({ label: 'Size' })
+      return { outer, options: await wait(`${name} context Picker options open`, options) }
+    }
+    tap({ label: 'Toggle rejection' })
+    await wait('context Picker rejection disabled', (nodes) => has(nodes, 'Reject: off') && shows(nodes, 'small', 'none', 2))
+    const context = await openContextOptions('initial')
+    screenshot('menu-picker-context-outer.png', context.outer)
+    checkSelection('initial context Picker checkmark marks Small', 'Small', context.options, screenshot('menu-picker-context-options.png', context.options))
+    tap({ label: 'Large' })
+    const contextSelected = await wait('context Picker selection reaches React', (nodes) =>
+      shows(nodes, 'large', 'large', 3) && has(nodes, 'Other action: none')
+    )
+    screenshot('menu-picker-context-selected.png', contextSelected)
+    const contextAccepted = (await openContextOptions('accepted')).options
+    checkSelection('accepted context Picker checkmark marks Large', 'Large', contextAccepted, screenshot('menu-picker-context-accepted-options.png', contextAccepted))
+    await dismissPicker()
+    tap({ label: 'Toggle rejection' })
+    await wait('context Picker rejection enabled', (nodes) => has(nodes, 'Reject: on'))
+    await openContextOptions('rejecting')
+    tap({ label: 'Automatic' })
+    const contextRejected = await wait('rejected context Picker selection keeps prop value', (nodes) =>
+      shows(nodes, 'large', 'automatic', 4) && has(nodes, 'Reject: on')
+    )
+    screenshot('menu-picker-context-rejected.png', contextRejected)
+    const contextRejectedOptions = (await openContextOptions('rejected')).options
+    checkSelection('rejected context Picker checkmark remains Large', 'Large', contextRejectedOptions, screenshot('menu-picker-context-rejected-options.png', contextRejectedOptions))
+    await dismissPicker()
+    tap({ label: 'Reset picker' })
+    await wait('context Picker revision resets selection', (nodes) => shows(nodes, 'small', 'none', 4))
+    const contextReset = (await openContextOptions('reset')).options
+    checkSelection('reset context Picker checkmark marks Small', 'Small', contextReset, screenshot('menu-picker-context-reset-options.png', contextReset))
+    await dismissPicker()
     fs.writeFileSync(path.join(config.artifactDir, 'menu-picker-pixels.json'), JSON.stringify(pixelEvidence, null, 2))
     return
   }

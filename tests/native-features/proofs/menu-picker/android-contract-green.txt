@@ -1,11 +1,5 @@
-(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
-  - `__dirname` (vitest.config.ts:6:23). Use `import.meta.dirname` instead
-Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
-
- RUN  v4.1.0 /Users/n8/.worktrees/one-native-view-slot-row-merge/packages/one
-
-
+ ✓ |one| src/platform/AndroidMenu.test.tsx > keeps the iOS primaryAction callback off the Android trigger View
+ ✓ |one| src/platform/AndroidMenu.test.tsx > keeps onPickerChange off the Android trigger View without picker items
+ ✓ |one| src/platform/AndroidMenu.test.tsx > rejects picker items before opening the Android popup
  Test Files  1 passed (1)
       Tests  3 passed (3)
-   Start at  20:56:11
-   Duration  147ms (transform 20ms, setup 0ms, import 35ms, tests 7ms, environment 0ms)

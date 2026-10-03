@@ -60,7 +60,6 @@ declare module 'one' {
         | `/one-native-control-size`
         | `/one-native-controls`
         | `/one-native-cover-context`
-        | `/one-native-menu-picker`
         | `/one-native-crypto`
         | `/one-native-database`
         | `/one-native-device`
@@ -102,6 +101,7 @@ declare module 'one' {
         | `/one-native-map`
         | `/one-native-map-services`
         | `/one-native-media`
+        | `/one-native-menu-picker`
         | `/one-native-menu-primary-action`
         | `/one-native-mesh-gradient`
         | `/one-native-motion`
@@ -113,7 +113,6 @@ declare module 'one' {
         | `/one-native-picker-palette`
         | `/one-native-pip`
         | `/one-native-popover`
-        | `/one-native-preferences`
         | `/one-native-print`
         | `/one-native-protected-store`
         | `/one-native-purchases`
@@ -131,6 +130,7 @@ declare module 'one' {
         | `/one-native-source`
         | `/one-native-speech`
         | `/one-native-state`
+        | `/one-native-storage`
         | `/one-native-store-review`
         | `/one-native-swipe-actions`
         | `/one-native-system`

@@ -18,5 +18,25 @@
     "Small": 123,
     "Large": 0,
     "Automatic": 0
+  },
+  "initial context Picker checkmark marks Small": {
+    "Small": 124,
+    "Large": 0,
+    "Automatic": 0
+  },
+  "accepted context Picker checkmark marks Large": {
+    "Small": 0,
+    "Large": 124,
+    "Automatic": 0
+  },
+  "rejected context Picker checkmark remains Large": {
+    "Small": 0,
+    "Large": 124,
+    "Automatic": 0
+  },
+  "reset context Picker checkmark marks Small": {
+    "Small": 124,
+    "Large": 0,
+    "Automatic": 0
   }
 }
