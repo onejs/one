@@ -266,15 +266,19 @@ for (let attempt = 0; !rest; attempt++) {
   }
 }
 const scale = density(rest.white)
-if (scene.home) {
-  if (platform === 'ios') run('axe', ['button', 'home', '--udid', device])
-  else run(adb, ['-s', device, 'shell', 'input', 'keyevent', 'KEYCODE_HOME'])
-  await sleep(4000)
+// screen scenes are found like the others, then present system ui (a sheet scene
+// presents it after a delay) and capture the screen once it settles.
+if (scene.screen) {
+  if (scene.screen.home) {
+    if (platform === 'ios') run('axe', ['button', 'home', '--udid', device])
+    else run(adb, ['-s', device, 'shell', 'input', 'keyevent', 'KEYCODE_HOME'])
+  }
+  await sleep(6000)
   const frame = await screenshot()
   // the screen from `top` down, its corners rounded like the device's.
-  const top = Math.round(frame.height * scene.home.top)
+  const top = Math.round(frame.height * scene.screen.top)
   const height = frame.height - top
-  const radius = Math.round(scene.home.cornerRadius * scale)
+  const radius = Math.round(scene.screen.cornerRadius * scale)
   const mask = Buffer.from(
     `<svg width="${frame.width}" height="${height}"><rect width="100%" height="100%" rx="${radius}" ry="${radius}"/></svg>`
   )
