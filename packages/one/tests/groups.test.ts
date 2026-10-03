@@ -416,7 +416,7 @@ describe('group schema', () => {
       'OneNativeOverlayContent',
       'OneNativeSwipeActions',
       'OneNativeSwipeActionsActions',
-      'OneNativePager',
+      'OneNativeSwiftPager',
     ])
       expect(metadata.codegenConfig.ios.componentProvider[name]).toBe(
         `${name}ComponentView`

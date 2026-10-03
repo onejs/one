@@ -1,4 +1,4 @@
-import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, Preferences, KeepAwake, Print, StoreReview, QuickActions, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, Purchases, ImageManipulator, Device, Motion, BackgroundTasks, AppIntents, DeviceAttestation, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
+import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, KeepAwake, Print, StoreReview, QuickActions, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, Purchases, ImageManipulator, Device, Motion, BackgroundTasks, AppIntents, DeviceAttestation, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Storage, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx';
 export type OneIOS = typeof Swift & {
@@ -7,7 +7,6 @@ export type OneIOS = typeof Swift & {
     readonly WidgetUI: typeof WidgetUI;
     readonly LocalAuthentication: typeof LocalAuthentication;
     readonly ProtectedStore: typeof ProtectedStore;
-    readonly Preferences: typeof Preferences;
     readonly KeepAwake: typeof KeepAwake;
     readonly Print: typeof Print;
     readonly StoreReview: typeof StoreReview;
@@ -78,6 +77,7 @@ export type OneAPI = {
     readonly ImagePicker: typeof ImagePicker;
     readonly DocumentPicker: typeof DocumentPicker;
     readonly SecureStore: typeof NativeSecureStore;
+    readonly Storage: typeof Storage;
     readonly Speech: typeof NativeSpeech;
     readonly Updates: typeof NativeUpdates;
 };

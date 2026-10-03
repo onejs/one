@@ -67,12 +67,17 @@ export function rewriteDistSpecs(
       const result = transformSync(staticModule, {
         loader: 'ts',
         format,
+        // exported command names stay public aliases; Metro reserves the local
+        // Commands binding for raw codegenNativeCommands calls.
+        minifyIdentifiers: true,
         sourcemap: withMap ? 'external' : false,
         sourcefile: relative(root, specPath),
         sourcesContent: true,
       })
       if (CODEGEN_CALL_RE.test(result.code)) {
-        throw new Error(`staticSpecs: stripped ${relative(root, mirror)} still has a codegen call`)
+        throw new Error(
+          `staticSpecs: stripped ${relative(root, mirror)} still has a codegen call`
+        )
       }
       let code = result.code
       if (withMap) {
@@ -88,6 +93,9 @@ export function rewriteDistSpecs(
 
 if (import.meta.main) {
   const root = join(dirname(fileURLToPath(import.meta.url)), '..')
-  const { specs, mirrors } = rewriteDistSpecs(join(root, 'src', 'platform', 'specs'), join(root, 'dist'))
+  const { specs, mirrors } = rewriteDistSpecs(
+    join(root, 'src', 'platform', 'specs'),
+    join(root, 'dist')
+  )
   console.log(`staticSpecs: ${specs} specs, ${mirrors} dist mirrors rewritten`)
 }

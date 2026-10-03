@@ -18,7 +18,7 @@ private final class PagerModel: ObservableObject {
 }
 
 @objcMembers
-public final class OneNativePagerView: UIView {
+public final class OneNativeSwiftPagerView: UIView {
   public var onSelection: ((String, Int, Int) -> Void)?
   private var model = PagerModel()
   private let bridge = OneNativeSchemeBridge()
@@ -28,7 +28,7 @@ public final class OneNativePagerView: UIView {
   public override init(frame: CGRect) {
     super.init(frame: frame)
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
-      [weak bridge] (view: OneNativePagerView, _: UITraitCollection) in
+      [weak bridge] (view: OneNativeSwiftPagerView, _: UITraitCollection) in
       bridge?.sync(view.traitCollection)
     }
   }
@@ -90,7 +90,7 @@ public final class OneNativePagerView: UIView {
 
 private struct PagerContent: View {
   @ObservedObject var model: PagerModel
-  weak var host: OneNativePagerView?
+  weak var host: OneNativeSwiftPagerView?
   @ObservedObject var bridge: OneNativeSchemeBridge
 
   // tag-based pages and the page style are both old API, so a pager needs none of

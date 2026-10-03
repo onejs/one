@@ -634,7 +634,7 @@
       "interfaceOnly": true
     },
     {
-      "name": "OneNativePager",
+      "name": "OneNativeSwiftPager",
       "publicName": "Pager",
       "props": {
         "selection": {

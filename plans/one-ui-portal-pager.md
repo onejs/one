@@ -1,8 +1,8 @@
 # One.UI.Portal and One.UI.Pager
 
 Two uniform components that retire `react-native-teleport` and
-`react-native-pager-view` in One apps. Both are public API, so they wait on the
-owner's approval of this surface before landing on v2-beta.
+`react-native-pager-view` in One apps. Nate approved this surface on
+2026-10-02; they land on v2-beta once the proof below passes.
 
 With One.Storage (landed, retires `react-native-mmkv`) and `useHeaderHeight`
 from `one` (landed, retires the direct `@react-navigation/elements` import),

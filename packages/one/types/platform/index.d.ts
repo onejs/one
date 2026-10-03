@@ -22,7 +22,7 @@ export { LocalAuthentication } from './local-authentication/index';
 export type { LocalAuthenticationStatus } from './local-authentication/index';
 export { ProtectedStore } from './protected-store/index';
 export type { ProtectedStorePolicy } from './protected-store/index';
-export { Preferences } from './preferences/index';
+export { Storage } from './storage/index';
 export { KeepAwake } from './keep-awake/index';
 export { Print } from './print/index';
 export { StoreReview } from './store-review/index';
@@ -82,4 +82,5 @@ export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType,
 export type { DocumentPickerAsset, DocumentPickerCanceledResult, DocumentPickerOptions, DocumentPickerResult, DocumentPickerSuccessResult, } from './document-picker/index';
 export { UI };
 export type { PortalProps, PortalHostProps } from './ui/portalTypes';
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './ui/pagerTypes';
 //# sourceMappingURL=index.d.ts.map

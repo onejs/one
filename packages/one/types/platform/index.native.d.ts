@@ -9,7 +9,7 @@ import { Compose } from './compose';
 import * as UI from './effects';
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index.native';
 export * from './extras';
-export { Preferences } from './preferences/index.native';
+export { Storage } from './storage/index.native';
 export { KeepAwake } from './keep-awake/index.native';
 export { Print } from './print/index.native';
 export { StoreReview } from './store-review/index.native';
@@ -192,4 +192,5 @@ export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType,
 export type { DocumentPickerAsset, DocumentPickerCanceledResult, DocumentPickerOptions, DocumentPickerResult, DocumentPickerSuccessResult, } from './document-picker/index.native';
 export { UI };
 export type { PortalProps, PortalHostProps } from './ui/portalTypes';
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './ui/pagerTypes';
 //# sourceMappingURL=index.native.d.ts.map
