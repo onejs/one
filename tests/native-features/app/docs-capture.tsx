@@ -7,9 +7,12 @@ import { IosActionsScene } from '../docs-captures/IosActionsScene'
 import { IosGroupsScene } from '../docs-captures/IosGroupsScene'
 import { IosListsScene } from '../docs-captures/IosListsScene'
 import { IosPresentationsScene } from '../docs-captures/IosPresentationsScene'
+import { IosMediaScene } from '../docs-captures/IosMediaScene'
+import { IosNavigationScene } from '../docs-captures/IosNavigationScene'
 import { IosPickersScene } from '../docs-captures/IosPickersScene'
 import { IosProgressScene } from '../docs-captures/IosProgressScene'
 import { IosStacksScene } from '../docs-captures/IosStacksScene'
+import { IosTabsScene } from '../docs-captures/IosTabsScene'
 import { IosTextScene } from '../docs-captures/IosTextScene'
 import { MapScene } from '../docs-captures/MapScene'
 import { PagerScene } from '../docs-captures/PagerScene'
@@ -32,6 +35,9 @@ const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   'ios-stacks': IosStacksScene,
   'ios-groups': IosGroupsScene,
   'ios-presentations': IosPresentationsScene,
+  'ios-tabs': IosTabsScene,
+  'ios-navigation': IosNavigationScene,
+  'ios-media': IosMediaScene,
 }
 
 // the background alternates pure white and pure black so scripts/docs-capture.ts can
