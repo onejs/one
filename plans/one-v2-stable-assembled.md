@@ -41,3 +41,24 @@ failing on unchanged beta, while HTTP200 HTML and production headers pass.
 The site reuses unchanged package artifacts only where source is identical;
 the14package chain was rebuilt, all changed site targets were rebuilt.
 Full exact-SHA CI remains required independently of these local checks.
+
+CI disposition: Checks37153537611 failed only the packed Metro fixture: it
+packed four packages, then requested unpublished2.6.0 internal packages from
+npm. The fixture now follows the local dependency closure and overrides each
+internal package with its own tarball. It also checks every installed manifest
+against the packed manifest and requires consumer-local real paths.
+RAN: all five packed-artifact tests pass in34.88s, including Expo-free default
+closure, missing-preset negative control, and both Metro bundle modes. Prior
+assertions and timeouts are unchanged. Fresh exact-SHA CI remains required.
+
+RAN: beta source c3c9d2252 Checks37152648456 and canary37152648483 passed.
+TESTED: fresh npm One/vxrn/create-vxrn2.0.0-0.canary.1791060754750 tarballs
+record that source revision, all literal export targets exist, CLI source
+files match, and the native host matches Fabric-validatedb92. Executing the
+published version-rewriting function produces exact canary/beta/stable pins
+and leaves React unchanged. This probe is narrower than the worker's complete
+installed CLI/scaffolding/web/prebuild checks; it verifies published bytes.
+
+Native docs subsequently landed on v2-beta throughcca9d8a38. This candidate
+preserves references through5123589ac; Nate should keep later docs when
+landing. No later native docs were removed from v2-beta or main.

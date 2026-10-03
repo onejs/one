@@ -65,5 +65,100 @@
   ],
   "pipelineOwnBetaSource": "c3c9d2252ae1c269a5da54b9d792ce258dae57cb",
   "betaChecksRun": 37152648456,
-  "betaCanaryRun": 37152648483
+  "betaCanaryRun": 37152648483,
+  "packagingFixtureRepair": {
+    "failedRun": 37153537611,
+    "failure": "The fixture packed four packages and fetched the remaining unpublished 2.6.0 family from npm.",
+    "testCommand": "bash ~/contrast/scripts/heavy.sh --cores 2 -- bun run vitest --run src/native/packedClosure.test.ts",
+    "testsPassed": 5,
+    "durationSeconds": 34.88,
+    "localPackageClosure": [
+      "@vxrn/color-scheme",
+      "@vxrn/compiler",
+      "@vxrn/debug",
+      "@vxrn/query-string",
+      "@vxrn/resolve",
+      "@vxrn/tslib-lite",
+      "@vxrn/url-parse",
+      "@vxrn/use-isomorphic-layout-effect",
+      "@vxrn/utils",
+      "@vxrn/vendor",
+      "@vxrn/vite-flow",
+      "@vxrn/vite-native-client",
+      "@vxrn/vite-plugin-metro",
+      "create-vxrn",
+      "one",
+      "vxrn"
+    ],
+    "assertions": "All prior Expo/import/Metro dev+production assertions retained; every installed internal manifest must equal the local packed manifest and resolve within the isolated consumer."
+  },
+  "betaChecksConclusion": "success",
+  "betaCanaryConclusion": "success",
+  "publishedCanary": [
+    {
+      "name": "one",
+      "version": "2.0.0-0.canary.1791060754750",
+      "source": "c3c9d2252ae1c269a5da54b9d792ce258dae57cb",
+      "sha256": "e11a11d8533227cc7770b84ad8472e91ed888b7bcb108c3b11a5f551db621c5a",
+      "exportTargets": 79,
+      "sourceBytesCompared": [
+        "ios/OneNativePortalHostView.mm"
+      ]
+    },
+    {
+      "name": "create-vxrn",
+      "version": "2.0.0-0.canary.1791060754750",
+      "source": "c3c9d2252ae1c269a5da54b9d792ce258dae57cb",
+      "sha256": "899a79ef730e993fd76b22fc1ac77691fab34835fc17ebee7f4b5f8c81a10983",
+      "exportTargets": 7,
+      "sourceBytesCompared": [
+        "src/create.ts",
+        "src/index.ts",
+        "src/templates.ts",
+        "src/helpers/cloneStarter.ts"
+      ]
+    },
+    {
+      "name": "vxrn",
+      "version": "2.0.0-0.canary.1791060754750",
+      "source": "c3c9d2252ae1c269a5da54b9d792ce258dae57cb",
+      "sha256": "d7d9db4bbb41940afc3f499d921d612b1a720c5525bb9a6c895cfa414f672fa2",
+      "exportTargets": 19,
+      "sourceBytesCompared": [
+        "src/index.ts"
+      ]
+    }
+  ],
+  "publishedCliPinProbe": {
+    "artifact": "create-vxrn/dist/esm/create.mjs",
+    "cases": [
+      {
+        "version": "2.0.0-0.canary.1791060754750",
+        "pins": {
+          "one": "2.0.0-0.canary.1791060754750",
+          "vxrn": "2.0.0-0.canary.1791060754750",
+          "@vxrn/utils": "2.0.0-0.canary.1791060754750",
+          "react": "19.2.3"
+        }
+      },
+      {
+        "version": "2.0.0-beta.168.1",
+        "pins": {
+          "one": "2.0.0-beta.168.1",
+          "vxrn": "2.0.0-beta.168.1",
+          "@vxrn/utils": "2.0.0-beta.168.1",
+          "react": "19.2.3"
+        }
+      },
+      {
+        "version": "2.6.0",
+        "pins": {
+          "one": "2.6.0",
+          "vxrn": "2.6.0",
+          "@vxrn/utils": "2.6.0",
+          "react": "19.2.3"
+        }
+      }
+    ]
+  }
 }
