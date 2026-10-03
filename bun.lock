@@ -107,6 +107,7 @@
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
+        "react-native-gesture-handler": "~3.3.0",
         "react-native-reanimated": "~4.6.0",
         "react-native-screens": "~4.27.0",
         "react-native-web": "^0.21.2",
@@ -377,6 +378,7 @@
         "react-native-nitro-image": "0.15.2",
         "react-native-nitro-modules": "0.37.0",
         "react-native-nitro-web-image": "0.15.2",
+        "semver": "^7.8.5",
         "ts-pattern": "^5.6.2",
         "tsconfig-paths": "^4",
         "use-latest-callback": "^0.2.3",
@@ -398,6 +400,7 @@
         "@types/node": "^24.10.0",
         "@types/react-dom": "^19.2.2",
         "@types/react-test-renderer": "^19.1.0",
+        "@types/semver": "^7.7.1",
         "@types/xxhashjs": "^0.2.4",
         "depcheck": "^1.4.7",
         "esbuild": "^0.25.12",
@@ -428,11 +431,11 @@
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
         "react-native": "^0.87.0",
-        "react-native-gesture-handler": ">=3.0.0",
-        "react-native-reanimated": ">=4.0.0",
-        "react-native-screens": ">=4.25.0",
+        "react-native-gesture-handler": "~3.3.0",
+        "react-native-reanimated": "~4.6.0",
+        "react-native-screens": "~4.27.0",
         "react-native-web": "^0.21.2",
-        "react-native-worklets": ">=0.12.2",
+        "react-native-worklets": "~0.12.2",
         "sharp": "^0.35.4",
       },
       "optionalPeers": [
@@ -2901,6 +2904,8 @@
     "@types/react-test-renderer": ["@types/react-test-renderer@19.1.0", "", { "dependencies": { "@types/react": "*" } }, "sha512-XD0WZrHqjNrxA/MaR9O22w/RNidWR9YZmBdRGI7wcnWGrv/3dA8wKCJ8m63Sn+tLJhcjmuhOi629N66W6kgWzQ=="],
 
     "@types/resolve": ["@types/resolve@1.20.2", "", {}, "sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q=="],
+
+    "@types/semver": ["@types/semver@7.8.0", "", {}, "sha512-1mAINjtQCXXeLkJ9ehXkwOcBpqtLxiVtKhpUf83DdRNdQKV0iXZpaHYqRr7nj+wvxuJzoAmAwXI+sCNMv1CzLQ=="],
 
     "@types/sinonjs__fake-timers": ["@types/sinonjs__fake-timers@8.1.5", "", {}, "sha512-mQkU2jY8jJEF7YHjHvsQO8+3ughTL1mcnn96igfhONmR+fUPSKIkefQYpSe8bsly2Ep7oQbn/6VG5/9/0qcArQ=="],
 

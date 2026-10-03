@@ -153,6 +153,11 @@
       "types": "./types/tamagui.d.ts",
       "import": "./dist/esm/tamagui.mjs",
       "require": "./dist/cjs/tamagui.cjs"
+    },
+    "./native-packages": {
+      "types": "./types/native-packages.d.ts",
+      "import": "./dist/esm/native-packages.mjs",
+      "require": "./dist/cjs/native-packages.cjs"
     }
   },
   "main": "dist/cjs",
@@ -255,7 +260,8 @@
     "vxrn": "workspace:*",
     "web-streams-polyfill": "^4.3.0",
     "ws": "^8.21.0",
-    "xxhashjs": "^0.2.2"
+    "xxhashjs": "^0.2.2",
+    "semver": "^7.8.5"
   },
   "peerDependencies": {
     "@callstack/liquid-glass": ">=0.6.0",
@@ -266,11 +272,11 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-native": "^0.87.0",
-    "react-native-gesture-handler": ">=3.0.0",
-    "react-native-reanimated": ">=4.0.0",
-    "react-native-screens": ">=4.25.0",
+    "react-native-gesture-handler": "~3.3.0",
+    "react-native-reanimated": "~4.6.0",
+    "react-native-screens": "~4.27.0",
     "react-native-web": "^0.21.2",
-    "react-native-worklets": ">=0.12.2",
+    "react-native-worklets": "~0.12.2",
     "sharp": "^0.35.4",
     "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4"
   },
@@ -333,7 +339,8 @@
     "sharp": "^0.35.4",
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
-    "yoga-layout": "^3.2.1"
+    "yoga-layout": "^3.2.1",
+    "@types/semver": "^7.7.1"
   },
   "publishConfig": {
     "access": "public"

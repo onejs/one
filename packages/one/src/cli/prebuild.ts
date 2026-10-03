@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
+import { checkNativePackages } from './checkNativePackages'
 import { validateNativeApp } from '../native/appManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
@@ -37,6 +38,7 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     )
   }
   validateNativeApp(app, args.platform)
+  checkNativePackages(root, args.platform)
   if ((app.ios?.backgroundTasks || app.ios?.appIntents) && args.platform !== 'android') {
     const configured = oneOptions?.setupFile
     const setupFile = typeof configured === 'string'

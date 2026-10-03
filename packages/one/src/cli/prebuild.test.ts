@@ -10,6 +10,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { run } from './prebuild'
+import { blessedNativePackages } from '../native-packages'
 
 const { loadUserOneOptionsMock, prebuildMock } = vi.hoisted(() => ({
   loadUserOneOptionsMock: vi.fn(),
@@ -36,7 +37,23 @@ describe('one prebuild', () => {
 
   beforeEach(() => {
     projectRoot = mkdtempSync(join(tmpdir(), 'one-prebuild-'))
-    writeFileSync(join(projectRoot, 'package.json'), '{"private":true}')
+    writeFileSync(
+      join(projectRoot, 'package.json'),
+      JSON.stringify({
+        private: true,
+        dependencies: Object.fromEntries(
+          blessedNativePackages.map(({ name, range }) => [name, range])
+        ),
+      })
+    )
+    for (const { name, range } of blessedNativePackages) {
+      const dir = join(projectRoot, 'node_modules', name)
+      mkdirSync(dir, { recursive: true })
+      writeFileSync(
+        join(dir, 'package.json'),
+        JSON.stringify({ name, version: range.slice(1) })
+      )
+    }
     process.chdir(projectRoot)
     loadUserOneOptionsMock.mockReset()
     prebuildMock.mockReset()
@@ -113,6 +130,14 @@ describe('one prebuild', () => {
       'one/react-native-config'
     )
     expect(prebuildMock).not.toHaveBeenCalled()
+  })
+
+  it('rejects missing required native peers before writing a project', async () => {
+    writeFileSync(join(projectRoot, 'package.json'), '{}')
+    loadUserOneOptionsMock.mockResolvedValueOnce({ oneOptions: { native: { app } } })
+    await expect(run({ platform: 'ios' })).rejects.toThrow('react-native-worklets')
+    expect(prebuildMock).not.toHaveBeenCalled()
+    expect(existsSync(join(projectRoot, 'react-native.config.cjs'))).toBe(false)
   })
 
   it('rejects a missing native.app before calling vxrn', async () => {

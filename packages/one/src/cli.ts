@@ -27,6 +27,7 @@ const docsLinks = {
   build: `${DOCS_BASE}/one-build`,
   serve: `${DOCS_BASE}/one-serve`,
   prebuild: `${DOCS_BASE}/guides-ios-native`,
+  doctor: `${DOCS_BASE}/native-setup`,
   'run:ios': `${DOCS_BASE}/guides-ios-native`,
   'run:android': `${DOCS_BASE}/guides-ios-native`,
   clean: `${DOCS_BASE}/configuration`,
@@ -206,6 +207,19 @@ const serveCommand = defineCommand({
       outDir: lastValue(args.outDir),
       cluster: clusterArg !== undefined ? (clusterArg ? +clusterArg : true) : undefined,
     })
+  },
+})
+
+const doctor = defineCommand({
+  meta: {
+    name: 'doctor',
+    version,
+    description: withDocsLink('Check installed native packages', 'doctor'),
+  },
+  args: { platform: { type: 'string', description: 'ios, android or web' } },
+  async run({ args }) {
+    const { run } = await import('./cli/doctor')
+    await run(args)
   },
 })
 
@@ -455,7 +469,8 @@ const updatesPublish = defineCommand({
     },
     intermediatesOut: {
       type: 'string',
-      description: 'Separate directory for local debug bundle and composed source map; never upload it',
+      description:
+        'Separate directory for local debug bundle and composed source map; never upload it',
     },
   },
   async run({ args }) {
@@ -480,6 +495,7 @@ const subCommands = {
   clean,
   build: buildCommand,
   prebuild,
+  doctor,
   'run:ios': runIos,
   'run:android': runAndroid,
   patch,
