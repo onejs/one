@@ -22,6 +22,7 @@ import { SubTitle } from '../site/SubTitle'
 import { Badge } from './Badge'
 import { Code, CodeInline } from './Code'
 import { LinkHeading } from './LinkHeading'
+import { NativeHero } from './NativeHero'
 import { Notice } from './Notice'
 import { PropsTable } from './PropsTable'
 import { RouteTree } from './RouteTree'
@@ -179,6 +180,7 @@ const componentsIn = {
   Text,
   Theme,
   Code,
+  NativeHero,
   Notice,
   SubTitle,
   RouteTree,

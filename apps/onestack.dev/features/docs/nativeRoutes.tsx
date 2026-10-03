@@ -10,6 +10,7 @@ export const nativeRoutes = [
       { title: 'Icons', route: '/native/icons' },
       { title: 'Effects', route: '/native/effects' },
       { title: 'Map', route: '/native/map' },
+      { title: 'Pager', route: '/native/ui-pager' },
       { title: 'Picture in Picture', route: '/native/picture-in-picture' },
       { title: 'Text Input', route: '/native/text-input' },
       { title: 'Gradients', route: '/native/gradients' },
