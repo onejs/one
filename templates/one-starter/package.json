@@ -50,7 +50,7 @@
     "drizzle-orm": "1.0.0-beta.9-e89174b",
     "drizzle-zero-sqlite": "0.16.19-canary.1790768320875",
     "on-zero": "0.16.19-canary.1790768320875",
-    "one": "2.0.0-beta.159.1",
+    "one": "2.0.0-beta.161.1",
     "orez-lite": "0.16.19-canary.1790768320875",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -68,7 +68,7 @@
     "valibot": "^1.1.0",
     "sf-symbols-typescript": "2.2.0",
     "@tamagui/menu": "3.0.0-beta.1540.1",
-    "vxrn": "2.0.0-beta.159.1",
+    "vxrn": "2.0.0-beta.161.1",
     "starter-mdx": "file:lib/mdx",
     "@op-engineering/op-sqlite": "18.2.5",
     "hono": "^4.12.8"
