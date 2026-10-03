@@ -47,6 +47,16 @@ const app = {
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 } satisfies PrebuildAppConfig
 
+const templateRnDelegate = readFileSync(
+  fileURLToPath(
+    new URL(
+      '../../../../node_modules/@react-native-community/template/template/ios/HelloWorld/AppDelegate.swift',
+      import.meta.url
+    )
+  ),
+  'utf8'
+).split('class ReactNativeDelegate:')[1]
+
 describe('native.app prebuild validation', () => {
   // smoke for the shared definition re-export; the full cases live beside
   // the canonical definition in @vxrn/utils.
@@ -642,8 +652,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 }
-class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
-}`,
+class ReactNativeDelegate:${templateRnDelegate}`,
       platform: 'ios',
       app: push,
     })
@@ -900,8 +909,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     const rendered = renderPrebuildFile({
       relativePath: 'HelloWorld/AppDelegate.swift',
       content: `${templateAppDelegate}
-class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
-}`,
+class ReactNativeDelegate:${templateRnDelegate}`,
       platform: 'ios',
       app,
     })
@@ -913,6 +921,15 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
     expect(rendered.content).toContain('var reactNativeFactory')
     expect(rendered.content).toContain('override func customize(_ rootView: RCTRootView)')
     expect(rendered.content).toContain('OneHoldLaunchScreen(rootView)')
+  })
+
+  it('rejects a template that cannot request dev bytecode', () => {
+    expect(() => renderPrebuildFile({
+      relativePath: 'HelloWorld/AppDelegate.swift',
+      content: `${templateAppDelegate}class ReactNativeDelegate:${templateRnDelegate.replace('forBundleRoot: "index"', 'forBundleRoot: "changed"')}`,
+      platform: 'ios',
+      app,
+    })).toThrow('expected the template bundle URL provider')
   })
 
   it('throws instead of shipping a non-scene AppDelegate', () => {
