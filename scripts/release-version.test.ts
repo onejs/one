@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'bun:test'
+import { maxSatisfying, satisfies } from 'semver'
 import {
   resolveBetaVersion,
   resolveCanaryVersion,
@@ -32,7 +33,7 @@ test('V2 canaries identify their source line even before the beta version bump',
       baseVersion: '2.0.0',
       now: () => 1787823968463,
     })
-  ).toBe('2.0.0-canary.1787823968463')
+  ).toBe('2.0.0-0.canary.1787823968463')
 })
 
 describe('resolveBetaVersion', () => {
@@ -74,4 +75,18 @@ describe('resolvePublishTag', () => {
     expect(resolvePublishTag('1.26.0-1787823968463', { canary: true })).toBe('canary')
     expect(resolvePublishTag('2.0.0', { canary: false })).toBe('latest')
   })
+})
+
+test('push canaries cannot replace a beta through its dependency range', () => {
+  for (const major of [2, 3]) {
+    const canary = resolveCanaryVersion('1.27.1', {
+      rePublish: false,
+      baseVersion: `${major}.0.0`,
+      now: () => 1787823968463,
+    })
+    const beta = `${major}.0.0-beta.200.1`
+    const range = `^${major}.0.0-beta.168.1`
+    expect(satisfies(canary, range)).toBe(false)
+    expect(maxSatisfying([`${major}.0.0-beta.168.1`, beta, canary], range)).toBe(beta)
+  }
 })
