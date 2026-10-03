@@ -69,3 +69,8 @@ fail-snapshot.json
 !proofs/menu-primary-action/*.png
 !proofs/menu-primary-action/*.webp
 !proofs/menu-primary-action/outcome.json
+
+# Reviewed iOS 27 App Intents Shortcuts evidence.
+!proofs/app-intents/*.png
+!proofs/app-intents/*.webp
+!proofs/app-intents/outcome.json
