@@ -56,3 +56,9 @@ describes that package as a Node package bundler, rather than this framework.
 Parent requested exact version pins and removal of the new One template
 argument; both are applied. Validation moves to Pro64 LAN 192.168.0.64.
 Studio watcher w-fc1f and this lane's two queued jobs were canceled.
+
+RAN on Pro64: creator JS build completed in 82 ms. Adding the root `types`
+field is necessary because tamagui-build selects declaration output from that
+field (or its outputs config), rather than from nested export targets. With
+that field, the full creator build completed in 141 ms and emitted declarations.
+RAN: concrete export checks now pass One (82) and create-vxrn (7).
