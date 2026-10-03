@@ -4,6 +4,7 @@ import { StatusBar, View } from 'react-native'
 import { IconScene } from '../docs-captures/IconScene'
 import { ImageScene } from '../docs-captures/ImageScene'
 import { IosActionsScene } from '../docs-captures/IosActionsScene'
+import { IosListsScene } from '../docs-captures/IosListsScene'
 import { IosPickersScene } from '../docs-captures/IosPickersScene'
 import { IosProgressScene } from '../docs-captures/IosProgressScene'
 import { IosTextScene } from '../docs-captures/IosTextScene'
@@ -24,6 +25,7 @@ const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   'ios-pickers': IosPickersScene,
   'ios-progress': IosProgressScene,
   'ios-text': IosTextScene,
+  'ios-lists': IosListsScene,
 }
 
 // the background alternates pure white and pure black so scripts/docs-capture.ts can
