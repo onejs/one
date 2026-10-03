@@ -101,7 +101,7 @@ export type RouteNode = {
     /** For layouts: map of slot names to their configurations */
     slots?: Map<string, SlotConfig>;
 };
-export declare const RouteParamsContext: React.Context<Record<string, string | undefined> | undefined>;
+export declare const RouteParamsContext: React.Context<Record<string, string | string[] | undefined> | undefined>;
 /** Allows a layout to provide a Suspense fallback for its child routes. */
 export declare const SuspenseFallbackContext: React.Context<React.ComponentType<SuspenseFallbackProps> | undefined>;
 /** Return the RouteNode at the current contextual boundary. */
@@ -114,7 +114,7 @@ export declare function Route({ children, node, route, }: {
     node: RouteNode;
     route?: {
         path?: string;
-        params?: Record<string, string | undefined>;
+        params?: Record<string, string | string[] | undefined>;
     };
 }): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=Route.d.ts.map
