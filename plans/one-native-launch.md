@@ -42,8 +42,9 @@ proof exists three times.
 - One native (`One.*`, `One.UI.*`, `One.iOS.*`, `One.Android.*`): the deep
   path. Every behavior an app needs gets its runtime proof here, on device,
   iOS and Android.
-- Pure SwiftUI (s7767 / swiftui-coverage, s7979 / peach-swift): Peach
-  rendering conformance of SwiftUI itself. They do not re-prove One
+- Pure SwiftUI (s7767 / swiftui-coverage): Peach rendering conformance of
+  SwiftUI itself. Swift language, runtime, Foundation, UIKit from Swift and
+  compile and bridge simulation belong to s7979 / peach-swift. They do not re-prove One
   behaviors; One's generated SwiftUI views take their visual conformance
   from s7767's evidence instead of a second capture.
 - Expo UI: only what One does not cover. Expo UI parity is a pixel oracle for
