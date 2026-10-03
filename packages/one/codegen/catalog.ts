@@ -7,6 +7,7 @@ export const frameworks = ['PhotosUI', 'WebKit'] as const
 
 // native hosts with handwritten Fabric specs live outside SDK view generation.
 export const handwrittenComponents = [
+  'OneNativePager',
   'OneSwiftHost',
   'OneNativeArrangementView',
   'OneNativeArrangementSlot',
@@ -874,7 +875,7 @@ export const components = [
     interfaceOnly: true,
   },
   {
-    name: 'OneNativePager',
+    name: 'OneNativeSwiftPager',
     publicName: 'Pager',
     props: {
       selection: 'string',

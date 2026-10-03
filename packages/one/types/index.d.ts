@@ -37,6 +37,7 @@ export type LinkProps<T extends string | object = string> = OneRouter.LinkProps<
  */
 export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>;
 export { useIsFocused } from '@react-navigation/core';
+export { useHeaderHeight } from './useHeaderHeight';
 export * from '@vxrn/color-scheme';
 export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';
@@ -95,4 +96,5 @@ export type { SuspenseFallbackProps } from './views/SuspenseFallback';
 export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try';
 export { useScrollGroup } from './useScrollGroup';
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only';
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './platform/ui/pagerTypes';
 //# sourceMappingURL=index.d.ts.map

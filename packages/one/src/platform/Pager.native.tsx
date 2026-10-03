@@ -2,7 +2,7 @@ import { useControlled } from './controlled'
 import { Children, isValidElement, useMemo } from 'react'
 import type { PageProps, PagerProps } from './groupTypes'
 import NativeTab from './specs/OneNativeTabNativeComponent'
-import NativePager from './specs/OneNativePagerNativeComponent'
+import NativePager from './specs/OneNativeSwiftPagerNativeComponent'
 import { viewportStyle } from './viewportStyle'
 
 const PAGE_STYLE = {

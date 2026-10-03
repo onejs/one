@@ -15,4 +15,6 @@ export declare function Blur(_props: BlurProps): ReactElement;
 export declare function Mask(_props: MaskProps): ReactElement;
 export { Portal, PortalHost } from '../ui/Portal';
 export type { PortalProps, PortalHostProps } from '../ui/portalTypes';
+export { Pager } from '../ui/Pager';
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent, } from '../ui/pagerTypes';
 //# sourceMappingURL=index.d.ts.map

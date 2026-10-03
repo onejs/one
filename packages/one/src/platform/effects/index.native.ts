@@ -22,3 +22,11 @@ export type {
 
 export { Portal, PortalHost } from '../ui/Portal.native'
 export type { PortalProps, PortalHostProps } from '../ui/portalTypes'
+export { Pager } from '../ui/Pager.native'
+export type {
+  PagerProps,
+  PagerRef,
+  PagerScrollEvent,
+  PagerSelectedEvent,
+  PagerScrollStateEvent,
+} from '../ui/pagerTypes'

@@ -12,6 +12,7 @@ import dev.onejs.onenative.OneNativePortalHostViewManager
 import dev.onejs.onenative.OneNativeBlurManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
+import dev.onejs.onenative.OneNativePagerManager
 import dev.onejs.onenative.OneNativeMaskManager
 import dev.onejs.onenative.OneNativeMenuPopupModule
 import dev.onejs.onenative.OneNativeMenuTriggerManager
@@ -83,6 +84,7 @@ class OnePackage : BaseReactPackage() {
             OneNativePortalViewManager(),
             OneNativePortalHostViewManager(),
             OneNativeMaskManager(),
+            OneNativePagerManager(),
             OneNativeUiMapManager(),
             OneNativePictureInPictureManager(),
             OneKotlinHostManager(),
