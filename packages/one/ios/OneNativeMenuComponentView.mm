@@ -45,6 +45,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeMenuValueChange({.id = std::string(identifier.UTF8String), .value = (bool)value, .sourceIndex = (int)sourceIndex, .eventCount = (int)eventCount, .revision = (int)revision});
     };
+    _menuView.onPickerChange = ^(NSString *identifier, NSString *value, NSInteger eventCount, NSInteger revision) {
+      OneNativeMenuComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeMenuEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeMenuPickerChange({.id = std::string(identifier.UTF8String), .value = std::string(value.UTF8String), .eventCount = (int)eventCount, .revision = (int)revision});
+    };
   }
   return self;
 }
@@ -72,7 +78,8 @@ using namespace facebook::react;
               menuOrder:RCTNSStringFromString(next.menuOrder)
               menuActionDismissBehavior:RCTNSStringFromString(next.menuActionDismissBehavior)
               presentation:RCTNSStringFromString(next.presentation)
-              acknowledgedEvent:next.acknowledgedEvent revision:next.revision];
+              acknowledgedEvent:next.acknowledgedEvent
+              pickerAcknowledgedEvent:next.pickerAcknowledgedEvent revision:next.revision];
   [super updateProps:props oldProps:oldProps];
 }
 

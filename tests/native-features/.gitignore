@@ -74,3 +74,8 @@ fail-snapshot.json
 !proofs/app-intents/*.png
 !proofs/app-intents/*.webp
 !proofs/app-intents/outcome.json
+
+# Reviewed iOS 27 Menu Picker evidence.
+!proofs/menu-picker/*.png
+!proofs/menu-picker/*.webp
+!proofs/menu-picker/outcome.json

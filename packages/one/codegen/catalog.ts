@@ -271,6 +271,7 @@ export const fields = {
   help: { type: 'string', default: '' },
   controlGroupStyle: { type: 'ControlGroupStyle', default: 'automatic' },
   values: { type: 'boolean[]', default: [] },
+  selection: { type: 'string', default: '' },
   menuOrder: { type: 'MenuOrder', default: '' },
   menuActionDismissBehavior: { type: 'MenuActionDismissBehavior', default: '' },
 } as const
@@ -397,6 +398,22 @@ export const nodes = [
       'ControlGroup { OneNativeGeneratedMenuContent(model: model, parentId: item.id) } label: { OneNativeMenuLabel(item: item) }.oneNativeControlGroupStyle(item.controlGroupStyle)',
   },
   {
+    kind: 'picker',
+    constructor: {
+      type: 'Picker',
+      parameters: [
+        { label: 'selection', type: 'SwiftUICore.Binding<SelectionValue>' },
+        { label: 'content', type: '() -> Content' },
+        { label: 'label', type: '() -> Label' },
+      ],
+    },
+    name: 'MenuPicker',
+    fields: ['id', 'title', 'systemImage', 'selection', 'disabled', 'hidden', 'help'],
+    required: ['id', 'title', 'selection'],
+    children: true,
+    swift: 'OneNativeMenuPicker(model: model, item: item)',
+  },
+  {
     kind: 'divider',
     constructor: { type: 'Divider', parameters: [] },
     name: 'MenuDivider',
@@ -446,6 +463,7 @@ export const components = [
       // leaves the trigger interactive.
       presentation: 'string',
       ...controlledProps,
+      pickerAcknowledgedEvent: 'Int32',
     },
     events: {
       onNativeMenuAction: { id: 'string' },
@@ -454,6 +472,11 @@ export const components = [
         id: 'string',
         value: 'boolean',
         sourceIndex: 'Int32',
+        ...controlledEvent,
+      },
+      onNativeMenuPickerChange: {
+        id: 'string',
+        value: 'string',
         ...controlledEvent,
       },
     },

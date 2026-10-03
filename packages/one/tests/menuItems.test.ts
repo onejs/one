@@ -12,6 +12,7 @@ const actionDefaults = {
   values: [],
   menuOrder: '',
   menuActionDismissBehavior: '',
+  selection: '',
 }
 
 describe('native menu payload', () => {

@@ -513,6 +513,11 @@ const testScreens = [
     testID: 'nav-one-native-menu-primary-action',
   },
   {
+    href: '/one-native-menu-picker',
+    label: 'One Native Menu Picker',
+    testID: 'nav-one-native-menu-picker',
+  },
+  {
     href: '/one-native-system',
     label: 'One Native System',
     testID: 'nav-one-native-system',
