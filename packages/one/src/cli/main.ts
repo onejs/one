@@ -25,7 +25,7 @@ async function getLatestVersion(packageName: string) {
   }
 }
 
-export async function cliMain(args: { name?: string } = {}) {
+export async function cliMain(args: { name?: string; template?: string } = {}) {
   // async as the flow takes a minute anyway
   void getLatestVersion('one')
 
