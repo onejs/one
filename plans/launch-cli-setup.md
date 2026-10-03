@@ -7,15 +7,15 @@ Starter branch: `v2-beta-starter`, observed at `95b754cbd881af6f00ac32e682d0700b
 ## Change
 
 Basic clones the v2 starter. Clone caches include the branch so a cached main
-checkout cannot be rebased into the new starter. One declares the existing
-`--template` option and passes it through. The standalone creator passes its
+checkout cannot be rebased into the new starter. One keeps its existing interactive selection without new arguments.
+The standalone creator passes its
 positional directory to create. Interactive Basic/Takeout selection and One's
 existing `vite.config.ts` dev path remain in place.
 
-Version substitution uses create-vxrn's released package version, as before.
-There is no dependency on a permanent `@beta` tag. The CLI and creator are
-released together; the starter's `workspace:*` becomes that release version's
-existing caret range, including its prerelease identifier for beta builds.
+Version substitution pins all workspace dependencies to create-vxrn's exact
+released package version. There is no permanent `@beta` tag or range. The CLI
+and creator are released together. This avoids npm selecting the unrelated
+legacy one@2.5.2 package for beta or stable v2 caret ranges.
 
 ## Validation receipt
 
@@ -49,3 +49,10 @@ Sync: rebased the repair onto `106ffc430` before the first push. Incoming
 changes were release scripts/workflow and AGENTS.md, disjoint from this repair.
 First repair commit: `703d1ecd2` (pushed). Artifact source versions remain the
 pinned beta above, with changed CLI source compiled locally.
+
+RAN: scripts/blocked-versions.json lists one@2.5.2. npm view for both
+`one@^2.0.0-beta.168.1` and `one@^2.0.2` includes 2.5.2. Registry metadata
+describes that package as a Node package bundler, rather than this framework.
+Parent requested exact version pins and removal of the new One template
+argument; both are applied. Validation moves to Pro64 LAN 192.168.0.64.
+Studio watcher w-fc1f and this lane's two queued jobs were canceled.

@@ -513,11 +513,6 @@ const main = defineCommand({
       description: 'Folder name to place the app into',
       required: false,
     },
-    template: {
-      type: 'string',
-      description: 'Choose a template in advance (avoid selection screen).',
-      required: false,
-    },
   },
   async run({ args }) {
     if (subCommands[args.name]) {
