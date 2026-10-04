@@ -68,3 +68,14 @@ Expected CI after Contrast main push: compile-catalog cutover/pin gates,
 factory checks and package/template checks. Manager owns that watch unless
 assigned here. Known limits are the full-heavy/full-game scope above; no known
 adapter failure remains after the recorded checks.
+
+Assigned review follow-up
+
+Review ofb5f14fddd requested two changes. Candidate8f3896a221 restores ordinary
+resolver defaults and scopes browser/import conditions to one/background and
+its pure graph. It retains the Blob URL until first message, error or disposal,
+and cleans up constructor failures. Nine adapter tests pass. Both exact reviewed
+behaviors fail their strengthened negative controls; receipts are retained in
+contrast-preview/review-fixes/. Actual WebKit and repeat runtime/factory/fast
+checks are running before the review is requested again. The earlier passing
+receipts identify their source commits and do not claim this revision passed.

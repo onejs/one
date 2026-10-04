@@ -1,0 +1,12 @@
+[
+  {
+    "case": "global web resolution before",
+    "exitCode": 1,
+    "output": "bun test v1.4.2 (744846f84)\n\npackages/contrast-bundler/test/background-computation.test.ts:\n147 |     const bundle = new Bundler(input, {\n148 |       projectRoot: '/app',\n149 |       platform,\n150 |       dev: false,\n151 |     }).bundle('/app/index.ts')\n152 |     expect(answer(bundle.code)).toBe(expected)\n                                      ^\nerror: expect(received).toBe(expected)\n\nExpected: \"native:browser-import\"\nReceived: \"web:browser-import\"\n\n      at <anonymous> (/Users/n8/.worktrees/contrast-contrast-background-computation-final/packages/contrast-bundler/test/background-computation.test.ts:152:33)\n(fail) browser and import conditions apply only to the background contract [17.32ms]\n\n 0 pass\n 8 filtered out\n 1 fail\n 1 expect() calls\nRan 1 test across 1 file. [492.00ms]\n"
+  },
+  {
+    "case": "immediate revoke before",
+    "exitCode": 1,
+    "output": "bun test v1.4.2 (744846f84)\n\npackages/contrast-bundler/test/background-computation.test.ts:\n185 |   runtime.run(bundler.bundle('/app/index.ts').code)\n186 |   const createWorker = runtime.report().createWorker as () => EventTarget & {\n187 |     terminate(): void\n188 |   }\n189 |   const worker = createWorker()\n190 |   expect(revoked).toEqual([])\n                        ^\nerror: expect(received).toEqual(expected)\n\n- []\n+ [\n+   \"blob:calculation\",\n+ ]\n\n- Expected  - 1\n+ Received  + 3\n\n      at <anonymous> (/Users/n8/.worktrees/contrast-contrast-background-computation-final/packages/contrast-bundler/test/background-computation.test.ts:190:19)\n(fail) worker URLs survive startup and release on a reply, failure or disposal [49.03ms]\n\n 0 pass\n 8 filtered out\n 1 fail\n 1 expect() calls\nRan 1 test across 1 file. [329.00ms]\n"
+  }
+]
