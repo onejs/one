@@ -1,0 +1,38 @@
+{
+  "web": {
+    "modules": 276,
+    "bytes": 1547847,
+    "buildMs": 895,
+    "packages": [
+      "react",
+      "react-dom",
+      "react-native-web",
+      "one",
+      "scheduler",
+      "@babel/runtime",
+      "inline-style-prefixer",
+      "css-in-js-utils",
+      "hyphenate-style-name",
+      "styleq",
+      "postcss-value-parser",
+      "fbjs",
+      "nullthrows"
+    ],
+    "errors": [],
+    "workers": [
+      "blob:http://127.0.0.1:61679/0c6bcc6c-9b00-4d81-acbd-c3830cdb91b8"
+    ],
+    "logs": [],
+    "requests": [],
+    "status": "passed revision=1 checkpoints=4 legs=4 objects=57",
+    "browser": "webkit",
+    "urlLifecycle": [
+      {
+        "url": "blob:http://127.0.0.1:61679/0c6bcc6c-9b00-4d81-acbd-c3830cdb91b8",
+        "firstMessage": true,
+        "revoked": true,
+        "revokedBeforeMessage": false
+      }
+    ]
+  }
+}
