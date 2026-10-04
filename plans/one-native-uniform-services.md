@@ -44,6 +44,11 @@ three native modules, 68 operations across the other 24 unavailable namespaces,
 independent pixel/transparency checks, seeded motion vectors, and a rejected
 wrong-rotation negative control. Screenshot inspected. Root iOS runtime pending.
 Local simulator launch stalled before the app started; this is no runtime proof.
+RAN: the remote iOS root fixture reached FileSystem and exposed APFS returning
+a decomposed filename where the fixture supplied a precomposed one. The fixture
+now supplies the same decomposed spelling on both platforms, retains exact name
+equality, and checks the listed URI roundtrip. Both runtime proofs are rerunning;
+the Swift and Kotlin implementations are unchanged.
 No speed benchmarks were run.
 
 RAN: docs props/type drift and the unavailable SSR contract passed 125 tests after
