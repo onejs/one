@@ -57,7 +57,9 @@ One runs one calculation per owner at a time. Updates replace its single waiting
 input. An executing calculation can finish, but its obsolete result or error
 never publishes. An update withdraws the previously accepted result immediately.
 Native owners share one runtime and serial queue; obsolete queued requests are
-skipped before dispatch. Web owners get separate workers. Disposal terminates a
+skipped before dispatch. Web creates one Worker per mounted hook owner (or explicit
+`createLatestComputation` owner), so each owner has its own worker startup and memory
+cost. Native owners share the runtime and queue across the app. Disposal terminates a
 web worker and withdraws publication rights on native. This is not cooperative
 cancellation inside the calculation.
 
