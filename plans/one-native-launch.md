@@ -129,3 +129,4 @@ spec, `syncStore.ts`, and s8225's `plans/one-native-worklets-proposal.md` on
 | s8227 / one-native-speed | Sol high | rank 4, parked; finished | none |
 | s8377 / one-native-android-modules | Sol xhigh | rank 6 | manager reviews assembled |
 | s8381 / one-native-background | Sol high | rank 5 | manager reviews assembled |
+| s8395 / one-native-pager-reanimated | Opus high | per-frame values decision | manager reviews assembled |
