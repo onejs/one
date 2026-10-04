@@ -265,14 +265,17 @@ headless component may offer worklet callbacks, and the app brings its own UI
 (page dots and the like). Reanimated stays an app choice: not required, not
 blessed into One's UI. Per-frame value hooks and shared-value props are off.
 
+## bundle speed (moved to lane one-native-bundle-speed, 2026-10-04)
+
+Profile: `/tmp/claude-501/prof/CPU.20261003.201642.89416.0.001.md` on air-32 (968s, box at 0% idle, so absolute times are inflated).
+- RAN: about 40% of JS CPU is Babel (`@babel/parser` 14.3%, traverse about 18%, generator 1.7%). Wrangler, miniflare and the Cloudflare Vite plugin load during config (wrangler `cli.js` 3.1%).
+- INFERRED cause: `~/contrast/templates/contrast-mobile/babel.config.cjs` is the `one metro-eject --eject` output (it delegates to `one/babel-preset`, kept for Metro OTA in 983e5c0001). `findUserBabelConfig` in `packages/compiler/src/transformBabel.ts` treats it as a user config, so the Rolldown native path reruns the whole Metro preset through Babel on every project file, on top of OXC/SWC.
+- Open: whether Contrast OTA (`scripts/ota-publish.mjs`) still needs Metro. If not, delete both ejected configs. Either way, One's own bundler should not run a config that only re-applies its own preset. `stripFlowTypes` also uses Babel. In `compiler/src/index.ts`, `babelOptions = { plugins: [] }` for worklets is a confusing no-op name.
+
 ## workers
 
 | session | runner | item | review |
 | --- | --- | --- | --- |
-| s8153 / contrast-one-native-2 | Codex xhigh | rank 1 | manager reviews assembled |
-| s8223 / one-native-realapps | Sol high | rank 2 | manager reviews assembled |
-| s8225 / one-native-worklets | Sol high | rank 3; finished | reviewed |
-| s8227 / one-native-speed | Sol high | rank 4, parked; finished | none |
-| s8377 / one-native-android-modules | Sol xhigh | rank 6 | manager reviews assembled |
-| s8381 / one-native-background | Sol high | rank 5 | manager reviews assembled |
-| s8395 / one-native-pager-reanimated | Opus high | per-frame values decision | manager reviews assembled |
+| s8223 / one-native-realapps | Sol high | rank 2, live | manager reviews assembled |
+| one-native-bundle-speed (coordinator) | Sol high, pro-64 | bundle speed | manager reviews assembled One diff |
+| finished | s8153 rank 1, s8225 rank 3, s8227 rank 4 (parked), s8377 rank 6, s8381 rank 5, s8395 stopped (Reanimated scope dropped) | | |
