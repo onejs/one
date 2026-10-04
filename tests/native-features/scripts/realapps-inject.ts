@@ -90,12 +90,14 @@ const component = t.isIdentifier(value)
   : value
 if (!t.isFunctionDeclaration(component) && !t.isArrowFunctionExpression(component))
   throw new Error('Expected a function root layout')
-function registerFixtureScreens(node: any) {
-  if (!node || typeof node !== 'object') return
+let hasRootStack = false
+function registerFixtureScreens(node: any): any {
+  if (!node || typeof node !== 'object') return node
   if (
     t.isJSXElement(node) &&
     t.isJSXIdentifier(node.openingElement.name, { name: 'Stack' })
   ) {
+    hasRootStack = true
     node.openingElement.selfClosing = false
     node.closingElement ??= t.jsxClosingElement(t.jsxIdentifier('Stack'))
     for (const name of [
@@ -109,9 +111,15 @@ function registerFixtureScreens(node: any) {
       ))
     }
   }
-  for (const key of t.VISITOR_KEYS[node.type] ?? [])
-    for (const child of Array.isArray(node[key]) ? node[key] : [node[key]])
-      registerFixtureScreens(child)
+  const isRootStack = t.isJSXElement(node) &&
+    t.isJSXIdentifier(node.openingElement.name, { name: 'Stack' })
+  for (const key of t.VISITOR_KEYS[node.type] ?? []) {
+    node[key] = Array.isArray(node[key])
+      ? node[key].map(registerFixtureScreens)
+      : registerFixtureScreens(node[key])
+  }
+  // the menu must mount with the router, after any app readiness gates.
+  return isRootStack ? wrapOutput(node) : node
 }
 registerFixtureScreens(component)
 function wrapOutput(node: any): any {
@@ -149,8 +157,10 @@ function wrapReturns(node: any) {
     }
   }
 }
-if (t.isBlockStatement(component.body)) wrapReturns(component.body)
-else component.body = wrapOutput(component.body)
+if (!hasRootStack) {
+  if (t.isBlockStatement(component.body)) wrapReturns(component.body)
+  else component.body = wrapOutput(component.body)
+}
 ast.program.body.unshift(
   parse("import RealAppsMenu from '../realapps-fixtures/realapps-menu'", {
     sourceType: 'module',

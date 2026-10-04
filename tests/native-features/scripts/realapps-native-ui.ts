@@ -13,6 +13,7 @@ const { values } = parseArgs({
     'package-root': { type: 'string' },
     text: { type: 'string' },
     mode: { type: 'string', default: 'home' },
+    apis: { type: 'string' },
     out: { type: 'string' },
   },
   strict: true,
@@ -40,7 +41,7 @@ const appId =
         /applicationId\s+["']([^"']+)/
       )?.[1]
 if (!appId) throw new Error('No generated application id')
-let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: false\n    permissions: {}\n`
+let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: true\n    permissions: {}\n`
 const visible = (text: string) => {
   flow += `- assertVisible: ${JSON.stringify(text)}\n`
 }
@@ -53,7 +54,10 @@ const scrollTap = (id: string) => {
 }
 const results: Record<string, any> = {}
 let receiptReady: (() => void) | undefined
-const required = modeAPIs(values.mode!, values.platform!)
+const modeRequired = modeAPIs(values.mode!, values.platform!)
+const required = values.apis ? values.apis.split(',') : modeRequired
+if (required.some((api) => !modeRequired.includes(api)))
+  throw new Error('Requested API is not covered by this mode')
 const collector = required.length
   ? Bun.serve({
       port: 8149,
@@ -84,6 +88,8 @@ const collector = required.length
 const received = new Promise<void>((resolve) => {
   receiptReady = resolve
 })
+if (values.mode !== 'home')
+  flow += '- extendedWaitUntil:\n    visible:\n      id: realapps-open-api\n    timeout: 60000\n'
 if (values.mode === 'home') {
   if (!values.text) throw new Error('Expected --text for original home check')
   visible(values.text)
@@ -169,26 +175,39 @@ if (values.mode === 'home') {
   tap('realapps-api-native-button')
   flow += '- takeScreenshot: swiftui-leaves\n'
   scrollTap('realapps-api-glass-toggle')
-  scrollTap('realapps-api-apple-signin')
-  flow += '- takeScreenshot: apple-signin\n'
-  flow += '- tapOn: "Cancel"\n'
-  scrollTap('realapps-api-zoom-open')
-  tap('realapps-api-zoom-back')
-  tap('realapps-api-ios-tabs')
-  flow += '- tapOn: "Second"\n'
-  visible('Second native tab')
-  flow += '- tapOn: "First"\n'
-  visible('First native tab')
-  flow += '- tapOn: "Item hit"\n- tapOn: "Group hit"\n'
-  tap('realapps-api-ios-split')
-  tap('realapps-api-split-hit')
-  flow += '- takeScreenshot: split-view\n'
-  tap('realapps-api-ios-arrangement')
-  tap('realapps-api-arrangement-hit')
-  visible('Secondary pane')
-  flow += '- takeScreenshot: arrangement-view\n'
-  tap('realapps-api-ios-toolbar')
-  flow += '- tapOn: "realapps API bar hit"\n- tapOn: "Menu"\n- tapOn: "Menu hit"\n'
+  if (required.includes('One.iOS.SignInWithAppleButton')) {
+    scrollTap('realapps-api-apple-signin')
+    visible('You need to sign in to your Apple.Account in Settings.')
+    flow += '- takeScreenshot: apple-signin\n'
+    flow += '- tapOn: "Close"\n'
+  }
+  if (required.some((api) => api.startsWith('One.iOS.ZoomTransition'))) {
+    scrollTap('realapps-api-zoom-open')
+    tap('realapps-api-zoom-back')
+  }
+  if (required.some((api) => ['One.iOS.Tabs', 'One.iOS.Tab', 'One.iOS.Toolbar', 'One.iOS.ToolbarItem', 'One.iOS.ToolbarItemGroup'].includes(api))) {
+    tap('realapps-api-ios-tabs')
+    flow += '- tapOn: "Second"\n'
+    visible('Second native tab')
+    flow += '- tapOn: "First"\n'
+    visible('First native tab')
+    flow += '- tapOn: "Item hit"\n- tapOn: "Group hit"\n'
+  }
+  if (required.includes('One.iOS.SplitView')) {
+    tap('realapps-api-ios-split')
+    tap('realapps-api-split-hit')
+    flow += '- takeScreenshot: split-view\n'
+  }
+  if (required.includes('One.iOS.ArrangementView')) {
+    tap('realapps-api-ios-arrangement')
+    tap('realapps-api-arrangement-hit')
+    visible('Secondary pane')
+    flow += '- takeScreenshot: arrangement-view\n'
+  }
+  if (required.some((api) => ['One.iOS.ToolbarHost', 'One.iOS.BarButtonItem', 'One.iOS.MenuAction'].includes(api))) {
+    tap('realapps-api-ios-toolbar')
+    flow += '- tapOn: "realapps API bar hit"\n- tapOn: "Menu"\n- tapOn: "Menu hit"\n'
+  }
 } else if (values.mode === 'widgets') {
   if (values.platform !== 'ios') throw new Error('Widgets require iOS')
   tap('realapps-open-api')
