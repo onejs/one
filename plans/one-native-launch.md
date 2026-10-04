@@ -335,11 +335,9 @@ on the remaining React Native dependency graph. Flow stripping and native
 codegen must preserve their ordering and output semantics; removing required
 transforms would invalidate these bundle gains.
 
-## runtime 84 OTA canary (2026-10-04)
+## runtime 84 and 85 (2026-10-04)
 
-Contrast main pins One canary 1791084352120 against the runtime-84 binary. Newer canaries change native code (for example `ios/Nitro/HybridOneMotion.swift`), so they cannot ship by OTA to runtime 84. Published: `one@2.0.0-0.canary.1791113593697`, from `ci-runtime84-ws-backport` d0b0afa8a (baseline 6b5302bdc plus the ws/headless fixes 48b7e7d8d and 8c2eb5e22). RAN on the npm tarball: same native file set as 1791084352120, all 1392 native files byte-identical. Canaries need no owner approval from any branch (`release.yml` dispatch, release=canary).
-
-Contrast `fix/one-native-uniform-final` (4390d6d113) needs the root namespaces, which only post-runtime-84 canaries have (RAN: shell tsc fails on 1791084352120). It lands with the next runtime bump.
+Contrast main is on runtime 85 (f41dd86ee3) with One 1791109310273; the root `One.Device` caller landed there as c2ae2ada63, which supersedes `fix/one-native-uniform-final` 4390d6d113. `one@2.0.0-0.canary.1791113593697` (baseline 6b5302bdc plus the ws/headless fixes; RAN: all 1392 native files byte-identical to 1791084352120) is for installed runtime-84 builds only and stays off main. Canaries need no owner approval from any branch (`release.yml` dispatch, release=canary).
 
 ## workers
 
