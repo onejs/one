@@ -32,20 +32,32 @@ describe('expo-free run commands', () => {
   })
 
   it('forwards an explicit simulator target instead of letting the cli pick', () => {
-    expect(
-      buildNativeRunCommand({ platform: 'ios', simulator: 'iPhone 16' })
-    ).toEqual({
+    expect(buildNativeRunCommand({ platform: 'ios', simulator: 'iPhone 16' })).toEqual({
       command: 'run-ios',
       argv: ['--no-packager', '--port', '8081', '--simulator', 'iPhone 16'],
       port: 8081,
     })
-    expect(
-      buildNativeRunCommand({ platform: 'ios', udid: 'some-udid' })
-    ).toEqual({
+    expect(buildNativeRunCommand({ platform: 'ios', udid: 'some-udid' })).toEqual({
       command: 'run-ios',
       argv: ['--no-packager', '--port', '8081', '--udid', 'some-udid'],
       port: 8081,
     })
+  })
+
+  it('targets the selected Android device rather than launching on every emulator', () => {
+    vi.stubEnv('ANDROID_SERIAL', 'emulator-5582')
+    try {
+      expect(buildNativeRunCommand({ platform: 'android', port: 8097 }).argv).toEqual([
+        '--no-packager',
+        '--port',
+        '8097',
+        '--device',
+        'emulator-5582',
+      ])
+      expect(buildNativeRunCommand({ platform: 'ios' }).argv).not.toContain('--device')
+    } finally {
+      vi.unstubAllEnvs()
+    }
   })
 
   it('never resolves the expo cli', () => {
