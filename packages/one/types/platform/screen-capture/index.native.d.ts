@@ -1,5 +1,5 @@
 import type { ScreenCaptureResult, ScreenCaptureState } from '../specs/OneScreenCapture.nitro';
-export type { ScreenCaptureResult, ScreenCaptureState } from '../specs/OneScreenCapture.nitro';
+export type { ScreenCaptureResult, ScreenCaptureState, } from '../specs/OneScreenCapture.nitro';
 declare function getState(): Promise<ScreenCaptureState>;
 declare function captureWindow(): Promise<ScreenCaptureResult>;
 declare function captureView(viewTag: number): Promise<ScreenCaptureResult>;

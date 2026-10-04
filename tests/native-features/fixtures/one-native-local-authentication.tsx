@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 const statusText = () => {
-  const status = One.iOS.LocalAuthentication.canEvaluatePolicy()
+  const status = One.LocalAuthentication.canEvaluatePolicy()
   return `${status.available}:${status.biometryType}:${status.errorCode ?? 'none'}`
 }
 
@@ -26,7 +26,7 @@ export default function OneNativeLocalAuthentication() {
         testID="one-native-local-auth-evaluate"
         style={styles.chip}
         onPress={() =>
-          One.iOS.LocalAuthentication.evaluatePolicy('Unlock the native fixture').then(
+          One.LocalAuthentication.evaluatePolicy('Unlock the native fixture').then(
             (ok) => setResult(ok ? 'success' : 'cancel'),
             (error) => setResult(`error: ${error.code ?? 'unknown'}`)
           )

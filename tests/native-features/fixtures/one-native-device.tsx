@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
-type DeviceInfo = Awaited<ReturnType<typeof One.iOS.Device.getInfo>>
-type LocalizationInfo = Awaited<ReturnType<typeof One.iOS.Device.getLocalizationInfo>>
+type DeviceInfo = Awaited<ReturnType<typeof One.Device.getInfo>>
+type LocalizationInfo = Awaited<ReturnType<typeof One.Device.getLocalizationInfo>>
 
 export default function OneNativeDevice() {
   const [info, setInfo] = useState<DeviceInfo | null>(null)
@@ -12,8 +12,8 @@ export default function OneNativeDevice() {
 
   const read = async () => {
     try {
-      setInfo(await One.iOS.Device.getInfo())
-      setLocalization(await One.iOS.Device.getLocalizationInfo())
+      setInfo(await One.Device.getInfo())
+      setLocalization(await One.Device.getLocalizationInfo())
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause))
     }

@@ -106,6 +106,11 @@ try {
 }
 assert(rejected, 'counterclockwise negative control must fail')
 if (runtime.platform === 'android') {
+  assert.equal(runtime.unavailable?.passed, true, 'unavailable root service contract')
+  assert(
+    runtime.unavailable.checks.length > 60,
+    'unavailable service operations exercised'
+  )
   const expected: Record<string, number[]> = {
     accelerometer: [0, 0, -1],
     gyroscope: [0, 0, 0.25],

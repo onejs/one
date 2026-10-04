@@ -3,17 +3,17 @@ title: Device
 description: Read the current iOS device and operating system
 ---
 
-`One.iOS.Device.getInfo()` returns a snapshot of the current iOS device. It
+`One.Device.getInfo()` returns a snapshot of the current iOS device. It
 reads `UIDevice` on the main thread and does not request a permission.
 
 ```tsx
 import { One } from 'one'
 
-const info = await One.iOS.Device.getInfo()
+const info = await One.Device.getInfo()
 console.log(info.model, info.systemName, info.systemVersion)
 console.log(info.interfaceIdiom, info.isSimulator, info.vendorIdentifier)
 
-const locale = await One.iOS.Device.getLocalizationInfo()
+const locale = await One.Device.getLocalizationInfo()
 console.log(locale.localeIdentifier, locale.preferredLanguages)
 console.log(locale.calendarIdentifier, locale.timeZoneIdentifier)
 ```
@@ -25,8 +25,7 @@ ID until after the user unlocks the device. It can also change after all of a
 vendor's apps are removed, so do not use it as a permanent account ID. See
 [Apple's identifierForVendor reference](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
-`isSimulator` reports whether this binary runs in the iOS simulator. The API
-throws on Android or web. For the installed app's version, build, and bundle
+`isSimulator` reports whether this binary runs in the iOS simulator. On Android and web, device strings are empty, `isSimulator` is `false`, and the vendor identifier is absent. For the installed app's version, build, and bundle
 ID, use [`One.AppInfo`](/native/app-info).
 
 `getLocalizationInfo()` reads the app's effective locale as a BCP 47 tag,
@@ -34,4 +33,4 @@ the device's preferred language tags, calendar identifier, time zone
 identifier, current UTC offset in seconds, and optional currency code. The
 offset is positive east of UTC and reflects daylight saving time at the
 moment of the call. These values are a snapshot. The API needs no permission
-and throws on Android or web.
+On Android and web, localization strings and language lists are empty, the UTC offset is zero, and the currency code is absent.

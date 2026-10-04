@@ -8,6 +8,7 @@ import type {
   OneMotion,
 } from '../../../packages/one/src/platform/specs/OneMotion.nitro'
 import { photoBase64 } from './photo-library-proof-media'
+import { proveUnavailableServices } from './one-unavailable-services'
 
 // replaced by the proof server for both native bundles.
 const endpoint = '__ONE_MODULE_PROOF_URL__'
@@ -34,7 +35,7 @@ const size = (uri: string): Promise<{ width: number; height: number }> =>
   )
 
 async function fileSystem() {
-  const fs = One.iOS.FileSystem
+  const fs = One.FileSystem
   const directories = fs.getDirectories()
   for (const uri of Object.values(directories))
     check(uri.startsWith('file://') && uri.endsWith('/'), `directory URI: ${uri}`)
@@ -126,7 +127,7 @@ async function fileSystem() {
 }
 
 async function images() {
-  const fs = One.iOS.FileSystem
+  const fs = One.FileSystem
   const source = `${fs.getDirectories().cache}one-modules-image-${Date.now()}.heic`
   const invalid = source + '.txt'
   await fs.writeFile(source, photoBase64, 'base64')
@@ -138,11 +139,11 @@ async function images() {
   async function transform(
     name: string,
     uri: string,
-    options: Parameters<typeof One.iOS.ImageManipulator.transform>[1],
+    options: Parameters<typeof One.ImageManipulator.transform>[1],
     width: number,
     height: number
   ) {
-    const result = await One.iOS.ImageManipulator.transform(uri, options)
+    const result = await One.ImageManipulator.transform(uri, options)
     check(result.uri.startsWith('file://'), `${name} output URI`)
     output.push(result.uri)
     const decoded = await size(result.uri).catch((error) => {
@@ -231,18 +232,18 @@ async function images() {
     }
     errors.push(
       await rejects(
-        () => One.iOS.ImageManipulator.transform('https://example.com/image'),
+        () => One.ImageManipulator.transform('https://example.com/image'),
         'E_IMAGE_URI'
       )
     )
     errors.push(
       await rejects(
-        () => One.iOS.ImageManipulator.transform(source + '.missing'),
+        () => One.ImageManipulator.transform(source + '.missing'),
         'E_IMAGE_FILE'
       )
     )
     errors.push(
-      await rejects(() => One.iOS.ImageManipulator.transform(invalid), 'E_IMAGE_DECODE')
+      await rejects(() => One.ImageManipulator.transform(invalid), 'E_IMAGE_DECODE')
     )
     for (const options of [
       { crop: { x: 1000, y: 0, width: 20, height: 20 } },
@@ -258,7 +259,7 @@ async function images() {
     ])
       errors.push(
         await rejects(
-          () => One.iOS.ImageManipulator.transform(source, options),
+          () => One.ImageManipulator.transform(source, options),
           'E_IMAGE_INPUT'
         )
       )
@@ -272,7 +273,7 @@ async function images() {
 }
 
 async function motion() {
-  const api = One.iOS.Motion
+  const api = One.Motion
   const availability = api.getAvailability()
   const sensors: MotionSensor[] = [
     'accelerometer',
@@ -435,6 +436,8 @@ export default function NativeModulesProof() {
           setStatus(`running ${name}`)
           result[name] = await proof()
         }
+        if (Platform.OS === 'android')
+          result.unavailable = await proveUnavailableServices(One)
         result.passed = true
         setStatus('passed')
       } catch (error) {
