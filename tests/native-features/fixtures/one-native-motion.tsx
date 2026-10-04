@@ -33,7 +33,7 @@ export default function OneNativeMotion() {
 
   const checkInvalid = () => {
     try {
-      One.iOS.Motion.addListener('accelerometer', 0, () => {}, () => {})
+      One.iOS.Motion.addListener('accelerometer', -1, () => {}, () => {})
       setInvalid('accepted')
     } catch (error) {
       setInvalid(error instanceof RangeError ? 'RangeError' : String(error))

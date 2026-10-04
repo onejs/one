@@ -28,10 +28,15 @@
 #include "JFunc_void_FetchNativeResponse.hpp"
 #include "JFunc_void_std__shared_ptr_ArrayBuffer_.hpp"
 #include "JFunc_void_std__string.hpp"
+#include "JHybridOneFileSystemSpec.hpp"
 #include "JHybridOneFontsSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
+#include "JHybridOneImageManipulatorSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
 #include "JHybridOneLaunchScreenSpec.hpp"
+#include "JHybridOneMotionSpec.hpp"
+#include "JFunc_void_MotionReading.hpp"
+#include "JFunc_void_std__string_std__string.hpp"
 #include "JHybridOneNativeModulesSpec.hpp"
 #include "JHybridOneNetworkSpec.hpp"
 #include "JFunc_void_NetworkState.hpp"
@@ -176,6 +181,30 @@ struct JHybridOneAppleAuthSpecImpl: public jni::JavaClass<JHybridOneAppleAuthSpe
     return javaPart->getJHybridOneAppleAuthSpec();
   }
 };
+struct JHybridOneFileSystemSpecImpl: public jni::JavaClass<JHybridOneFileSystemSpecImpl, JHybridOneFileSystemSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneFileSystem;";
+  static std::shared_ptr<JHybridOneFileSystemSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneFileSystemSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneFileSystemSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneFileSystemSpec();
+  }
+};
+struct JHybridOneImageManipulatorSpecImpl: public jni::JavaClass<JHybridOneImageManipulatorSpecImpl, JHybridOneImageManipulatorSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneImageManipulator;";
+  static std::shared_ptr<JHybridOneImageManipulatorSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneImageManipulatorSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneImageManipulatorSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneImageManipulatorSpec();
+  }
+};
+struct JHybridOneMotionSpecImpl: public jni::JavaClass<JHybridOneMotionSpecImpl, JHybridOneMotionSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneMotion;";
+  static std::shared_ptr<JHybridOneMotionSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneMotionSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneMotionSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneMotionSpec();
+  }
+};
 struct JHybridOneUpdatesSpecImpl: public jni::JavaClass<JHybridOneUpdatesSpecImpl, JHybridOneUpdatesSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneUpdates;";
   static std::shared_ptr<JHybridOneUpdatesSpec> create() {
@@ -211,10 +240,15 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_FetchNativeResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_std__shared_ptr_ArrayBuffer__cxx::registerNatives();
   margelo::nitro::one::JFunc_void_std__string_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneFileSystemSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneFontsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneImageManipulatorSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneLaunchScreenSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneMotionSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_MotionReading_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_std__string_std__string_cxx::registerNatives();
   margelo::nitro::one::JHybridOneNativeModulesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
@@ -335,6 +369,24 @@ void registerAllNatives() {
                     "The HybridObject \"HybridOneStorage\" is not default-constructible! "
                     "Create a public constructor that takes zero arguments to be able to autolink this HybridObject.");
       return std::make_shared<HybridOneStorage>();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneFileSystem",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneFileSystemSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneImageManipulator",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneImageManipulatorSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneMotion",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneMotionSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

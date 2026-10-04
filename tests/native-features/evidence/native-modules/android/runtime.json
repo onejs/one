@@ -1,0 +1,413 @@
+{
+  "platform": "android",
+  "fileSystem": {
+    "directories": {
+      "documents": "file:///data/user/0/dev.vxrn.nativefeatures.tests/files/Documents/",
+      "cache": "file:///data/user/0/dev.vxrn.nativefeatures.tests/cache/",
+      "applicationSupport": "file:///data/user/0/dev.vxrn.nativefeatures.tests/files/",
+      "temporary": "file:///data/user/0/dev.vxrn.nativefeatures.tests/cache/tmp/"
+    },
+    "names": [
+      "bytes.dat",
+      "nested",
+      "note ü.txt"
+    ],
+    "errors": [
+      "E_FILE_EXISTS",
+      "E_FILE_EXISTS",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_NOT_FOUND",
+      "E_FILE_NOT_FOUND"
+    ]
+  },
+  "images": {
+    "results": {
+      "upright.png": {
+        "width": 80,
+        "height": 120,
+        "size": 631
+      },
+      "crop-resize-rotate.jpg": {
+        "width": 15,
+        "height": 20,
+        "size": 833
+      },
+      "height-resize.png": {
+        "width": 40,
+        "height": 60,
+        "size": 384
+      },
+      "rotate180.png": {
+        "width": 80,
+        "height": 120,
+        "size": 629
+      },
+      "rotate270.png": {
+        "width": 120,
+        "height": 80,
+        "size": 670
+      },
+      "png-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 320
+      },
+      "png-crop.png": {
+        "width": 60,
+        "height": 40,
+        "size": 161
+      },
+      "png-rotate90.png": {
+        "width": 80,
+        "height": 120,
+        "size": 371
+      },
+      "png-stretch.png": {
+        "width": 60,
+        "height": 60,
+        "size": 205
+      },
+      "jpeg-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 312
+      },
+      "bmp-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 300
+      },
+      "exif1-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 312
+      },
+      "exif2-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 314
+      },
+      "exif3-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 316
+      },
+      "exif4-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 311
+      },
+      "exif5-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 268
+      },
+      "exif6-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 267
+      },
+      "exif7-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 268
+      },
+      "exif8-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 268
+      }
+    },
+    "errors": [
+      "E_IMAGE_URI",
+      "E_IMAGE_FILE",
+      "E_IMAGE_DECODE",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT"
+    ]
+  },
+  "motion": {
+    "availability": {
+      "accelerometer": true,
+      "gyroscope": true,
+      "magnetometer": true,
+      "deviceMotion": true
+    },
+    "validation": [
+      "-1",
+      "1001",
+      "NaN",
+      "Infinity"
+    ],
+    "streams": {
+      "accelerometer": {
+        "samples": [
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791076991882.7126,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          },
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791076991982.7126,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          },
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791076992126.0466,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          },
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791076992259.3806,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      },
+      "gyroscope": {
+        "samples": [
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791076992275.648,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          },
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791076992375.648,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          },
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791076992481.6028,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          },
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791076992581.6028,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      },
+      "magnetometer": {
+        "samples": [
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791076992596.8572,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          },
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791076992696.8572,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          },
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791076992799.6255,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          },
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791076992899.6255,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      },
+      "deviceMotion": {
+        "samples": [
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791076992946.0508,
+            "value": {
+              "x": -0.000003748548386616387,
+              "y": 0.00000749715687046853,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.000003748548386616387,
+              "y": 0.00000749715687046853,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0,
+              "y": 0,
+              "z": -1.5707962925663537
+            }
+          },
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791076993046.0508,
+            "value": {
+              "x": -0.00005094892291409487,
+              "y": 0.00007433086094517072,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0.00004615989439115479,
+              "y": -0.00006463770804758207,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.00005094892291409487,
+              "y": 0.00007433086094517072,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0.0000646377101829818,
+              "y": 0.00004615989362694993,
+              "z": -1.570735602119936
+            }
+          },
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791076993156.0508,
+            "value": {
+              "x": -0.000053174052003674285,
+              "y": 0.00004202835336950537,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0.000019286269865584602,
+              "y": -0.000019286867870177438,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.000053174052003674285,
+              "y": 0.00004202835336950537,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0.000019286867919585385,
+              "y": 0.000019286269831968192,
+              "z": -1.570766621404594
+            }
+          },
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791076993256.0508,
+            "value": {
+              "x": -0.0001070267130902134,
+              "y": 0.00010780822051175176,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0.00007958605408063627,
+              "y": -0.00007537649942756348,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.0001070267130902134,
+              "y": 0.00010780822051175176,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0.00007537650174289063,
+              "y": 0.00007958605474028825,
+              "z": -1.5707094719459571
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      }
+    }
+  },
+  "passed": true
+}

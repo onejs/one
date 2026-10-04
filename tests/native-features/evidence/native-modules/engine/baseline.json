@@ -1,0 +1,1300 @@
+{
+  "revision": "7b75e8f0b7a920147fd3140b6e68da96fdb61be4",
+  "compilerRebuilt": true,
+  "total": 258,
+  "passed": 258,
+  "failed": 0,
+  "pending": 0,
+  "tests": [
+    {
+      "file": "getOptimizeDeps.test.ts",
+      "name": "getOptimizeDeps does not force NativeWind JSX runtime subpaths into dev optimization",
+      "status": "passed"
+    },
+    {
+      "file": "getOptimizeDeps.test.ts",
+      "name": "getOptimizeDeps defines the expo platform for pre-bundled deps, which never see babel",
+      "status": "passed"
+    },
+    {
+      "file": "getServerOptionsFilled.test.ts",
+      "name": "getServerOptionsFilled uses the configured TLS protocol in the public server URL",
+      "status": "passed"
+    },
+    {
+      "file": "getViteServerConfig.test.ts",
+      "name": "getViteServerConfig preserves the resolved CLI address over a static Vite server block",
+      "status": "passed"
+    },
+    {
+      "file": "mergeUserConfig.test.ts",
+      "name": "deepMergeOptimizeDeps filters excluded deps from include list",
+      "status": "passed"
+    },
+    {
+      "file": "mergeUserConfig.test.ts",
+      "name": "deepMergeOptimizeDeps filters excluded deps from noExternal list",
+      "status": "passed"
+    },
+    {
+      "file": "mergeUserConfig.test.ts",
+      "name": "deepMergeOptimizeDeps filters excluded deps from needsInterop list",
+      "status": "passed"
+    },
+    {
+      "file": "mergeUserConfig.test.ts",
+      "name": "deepMergeOptimizeDeps merges excludes from all sources",
+      "status": "passed"
+    },
+    {
+      "file": "mergeUserConfig.test.ts",
+      "name": "deepMergeOptimizeDeps preserves noExternal: true when set",
+      "status": "passed"
+    },
+    {
+      "file": "mergeUserConfig.test.ts",
+      "name": "deepMergeOptimizeDeps handles RegExp in noExternal",
+      "status": "passed"
+    },
+    {
+      "file": "clean.test.ts",
+      "name": "prepareCacheForVersion lets one process clean a stale same-root cache",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn Expo project patches replaces Expo bundle defaults with One bundle configuration",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn Expo project patches replaces the Expo Android react block and applies build patches",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn Expo project patches applies the shared Podfile patches idempotently",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn Expo project patches applies the shared Android screens fix",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn/expo-plugin combines background location and audio modes",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn/expo-plugin stamps separate Photos save and read usage descriptions",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn/expo-plugin stamps the same notification entries as one prebuild",
+      "status": "passed"
+    },
+    {
+      "file": "expoPlugin.test.mjs",
+      "name": "vxrn/expo-plugin resolves Expo config plugins from the app and binds the dangerous mod",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv generates dot-notation define keys for process.env",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv generates dot-notation define keys for import.meta.env",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv creates only missing Expo aliases for One values",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv preserves explicit conflicting One and Expo values",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv does not generate bracket-notation keys (rolldown/oxc rejects them in define)",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv does not generate define keys for non-public env vars",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv includes VITE_ prefixed vars in clientEnvDefine",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv includes TAMAGUI_ prefixed vars in clientEnvDefine",
+      "status": "passed"
+    },
+    {
+      "file": "loadEnv.test.ts",
+      "name": "loadEnv includes vars matching custom userPrefix",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "native.app prebuild validation accepts a valid manifest and rejects invalid ones before writing",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering applies names, ids, and platform versions",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering stamps marketing and build versions from the manifest",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering keeps template defaults when version fields are absent",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering omits camera entries when imagePicker.camera is unset",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering stamps the maps key and flag only when googleMapsApiKey is set",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering omits notification entries when notifications is unset",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering fails loudly when a notification anchor is missing",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering stamps push entries only when notifications.push is set",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering throws instead of silently skipping a missing camera anchor",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering resolves the gradle plugin from the react-native package without hoisting",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering resolves codegen and hermes from react-native without hoisting",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering passes binaries through untouched",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "template rendering renders byte-identically across runs",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle trims the AppDelegate to app-level work and keeps the RN delegate",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle rejects a template that cannot request dev bytecode",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle throws instead of shipping a non-scene AppDelegate",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle stamps the scene manifest and delegate into the project",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle throws when the template loses a scene anchor",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle bundles native.app fonts into both platforms from the real template",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle bundles firebase config files and applies the google-services plugin",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle generates a scene project from the real template",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios scene lifecycle shares one app entitlement file when widgets and notification push are enabled",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "community autolink inventory discovers installed packages through community config, sorted",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "native dependency patches adds the screens activity patch only when Android autolinking finds screens",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "generateForPlatform determinism generates complete native launch assets",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "generateForPlatform determinism fills the ios launch screen with an untrimmed cover splash",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "generateForPlatform determinism gives a dark launch its own background and artwork on both platforms",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "generateForPlatform determinism lays a full-bleed background image under the ios launch artwork",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "generateForPlatform determinism writes the accent color asset and names it in the Info.plist",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "generateForPlatform determinism regenerates byte-identical projects from the same manifest",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios widgets generates one extension target with consistent ids and a null push token",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios widgets renders every WidgetUI node and slot the serializer can emit",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios widgets regenerates byte-identical widget projects and adds nothing without the config",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "ios widgets merges the app group into the push entitlements instead of a duplicate setting",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "app kotlin source discovery generates app sources without harvesting nested javascript packages",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "swift cxx interop maps the same package names as prebuild and rejects collisions",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "swift cxx interop emits cxx flags for swift packages",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild validates the updates config",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild points the release bundleURL at the launcher",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild points every app target at the One bridging header",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild throws instead of shipping a stock bundleURL with updates configured",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild locks userInterfaceStyle on both platforms, and follows the system when unset",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild writes the app entitlements file for links, apple sign in and custom keys",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild stamps extra Info.plist keys and rejects ones already written",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild stamps android permissions, blocked permissions, app links and sdk levels",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild turns on release minify, resource shrinking and extra proguard rules",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild stamps orientation as expo does, and nothing when unset",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild stamps the updates url and runtime version into Info.plist",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild writes the embedded manifest from the ios bundle phase",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild points MainApplication at the One host factory",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild stamps the updates config into the android manifest",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "one updates prebuild writes the embedded manifest from the android bundle task",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "kotlin compose app integration enables compose plugin, buildFeatures, and dependencies in gradle files",
+      "status": "passed"
+    },
+    {
+      "file": "prebuildWithoutExpo.test.ts",
+      "name": "kotlin compose app integration enables compose only when .kt has views, keeping module-only prebuild unchanged",
+      "status": "passed"
+    },
+    {
+      "file": "autoDepOptimizePlugin.test.ts",
+      "name": "getScannedOptimizeDepsConfig filters excluded deps from scanned results",
+      "status": "passed"
+    },
+    {
+      "file": "autoDepOptimizePlugin.test.ts",
+      "name": "getScannedOptimizeDepsConfig handles RegExp exclude patterns (ignores them for dep name filtering)",
+      "status": "passed"
+    },
+    {
+      "file": "resolveIdScan.test.ts",
+      "name": "resolveId hooks should skip during dep optimization scan platform-specific-resolve should return undefined when options.scan is true",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin generates view-config replacement for codegenNativeComponent default export",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin leaves already-generated output alone on a second pass",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin removes export const Commands = codegenNativeCommands(...) and generates runtime commands",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin throws an error if native commands are exported with a name other than Commands",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin throws an error if 'Commands' is exported without codegenNativeCommands",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin throws an error if 'Commands' is exported via export specifier without codegenNativeCommands",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin ignores files that do not match the codegen pattern",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin ignores matching files without codegenNativeComponent",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin supports files inside specs/ directory",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin works through the Vite plugin interface",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin removes export const Commands with sequence expression (e.g. coverage instrumentation)",
+      "status": "passed"
+    },
+    {
+      "file": "rnCodegenPlugin.test.ts",
+      "name": "rnCodegenPlugin transforms Flow component specs correctly",
+      "status": "passed"
+    },
+    {
+      "file": "serverExtensions.test.ts",
+      "name": "platform-specific-resolve .server extension filters out extensionless sources, leaving them to resolve.extensions",
+      "status": "passed"
+    },
+    {
+      "file": "serverExtensions.test.ts",
+      "name": "platform-specific-resolve .server extension prefers a platform sibling for an import that already has an extension",
+      "status": "passed"
+    },
+    {
+      "file": "serverExtensions.test.ts",
+      "name": "platform-specific-resolve .server extension stubs .server file when explicitly imported on client",
+      "status": "passed"
+    },
+    {
+      "file": "serverExtensions.test.ts",
+      "name": "platform-specific-resolve .server extension stubs .server file when explicitly imported on ios",
+      "status": "passed"
+    },
+    {
+      "file": "serverExtensions.test.ts",
+      "name": "platform-specific-resolve .server extension allows .server file import on ssr",
+      "status": "passed"
+    },
+    {
+      "file": "serverExtensions.test.ts",
+      "name": "platform-specific-resolve config extensions ssr includes .server extensions",
+      "status": "passed"
+    },
+    {
+      "file": "serverExtensions.test.ts",
+      "name": "platform-specific-resolve config extensions client does not include .server extensions",
+      "status": "passed"
+    },
+    {
+      "file": "node.test.ts",
+      "name": "honoServeNode rejects when the listener cannot bind",
+      "status": "passed"
+    },
+    {
+      "file": "node.test.ts",
+      "name": "honoServeNode overwrites the trusted peer address header from the socket",
+      "status": "passed"
+    },
+    {
+      "file": "bindKeypressInput.test.ts",
+      "name": "bindKeypressInput does not warn when stdin is not interactive",
+      "status": "passed"
+    },
+    {
+      "file": "bindKeypressInput.test.ts",
+      "name": "startUserInterface does not print keyboard commands when stdin is not interactive",
+      "status": "passed"
+    },
+    {
+      "file": "compileNativeDevBytecode.test.ts",
+      "name": "shares compiled bytes and retries failures with prebuilt hermes",
+      "status": "passed"
+    },
+    {
+      "file": "compileNativeDevBytecode.test.ts",
+      "name": "shares compiled bytes and retries failures with source hermes",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native plugin adapters on ios binds configured plugins to the dev bundle",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native plugin adapters on ios binds configured plugins to the build bundle",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native plugin adapters on android binds configured plugins to the dev bundle",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native plugin adapters on android binds configured plugins to the build bundle",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native async through rolldown-dev preserves defaults, lexical bindings, bigint, rejection, and iterator cleanup",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native async through rolldown-build preserves defaults, lexical bindings, bigint, rejection, and iterator cleanup",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native async through metro-module preserves defaults, lexical bindings, bigint, rejection, and iterator cleanup",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native async through metro-script preserves defaults, lexical bindings, bigint, rejection, and iterator cleanup",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through shared preserves block callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through shared preserves expression callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through shared preserves object callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through shared preserves nested callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through shared preserves gesture callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through rolldown preserves block callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through rolldown preserves expression callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through rolldown preserves object callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through rolldown preserves nested callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through rolldown preserves gesture callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through metro preserves block callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through metro preserves expression callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through metro preserves object callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through metro preserves nested callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "React Compiler worklets through metro preserves gesture callbacks on the UI runtime and memoizes stable inputs",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native prelude sets matching One and Expo platform values",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native prelude does not advertise a host event API that cannot remove listeners",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native prelude preserves a complete host event API",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native pure-function worklet imports keeps live module versions isolated across a transitive HMR update",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native pure-function worklet imports rejects unselected through the native engine",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native pure-function worklet imports rejects missing through the native engine",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native pure-function worklet imports rejects builtin through the native engine",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native pure-function worklet imports rejects global through the native engine",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native pure-function worklet imports rejects dynamic through the native engine",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native Rolldown HMR runtime keeps CommonJS default components callable through the native HMR wire path (Babel=true)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native Rolldown HMR runtime keeps CommonJS default components callable through the native HMR wire path (Babel=false)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native Rolldown HMR runtime registers a Rolldown 1.2 client and applies a self-accepted patch",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native Rolldown HMR runtime propagates a non-component update to a React Refresh boundary",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production import.meta lowering emits a Hermes-compatible bundle for guarded import.meta.env reads",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production react-native deep imports resolves react native subpaths that are missing from its exports map",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native animated guard transform preserves line count and returns a composable source map",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getNativeTransformConfig platform env defines injects TAMAGUI_TARGET=native for ios (dev=true)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getNativeTransformConfig platform env defines injects TAMAGUI_TARGET=native for ios (dev=false)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getNativeTransformConfig platform env defines injects TAMAGUI_TARGET=native for android (dev=true)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getNativeTransformConfig platform env defines injects TAMAGUI_TARGET=native for android (dev=false)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getNativeTransformConfig platform env defines inlines One and Expo aliases supplied by the native build environment",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getNativeTransformConfig platform env defines accepts Expo public input without creating a One alias",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getNativeTransformConfig platform env defines keeps native platform values authoritative over inherited SSR env",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "wrapNativeBundleModuleScope wraps module code after the prelude so top-level vars do not leak to global",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "wrapNativeBundleModuleScope is a no-op when the runtime marker is absent (e.g. prod bundle)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes always includes the full Hermes class-transform set (dev and prod)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes adds transform-async-to-generator in development and production",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes lowers async generators for the Hermes development interpreter",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes lowers complete class hierarchies for Hermes (dev=true)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes lowers complete class hierarchies for Hermes (dev=false)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes lowers constructor block bindings before production name mangling",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes preserves class-free parameter shadowing for Hermes (dev=true)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes preserves class-free parameter shadowing for Hermes (dev=false)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes lowers classes in large prebuilt modules",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes downlevels private fields, public class fields, and static blocks for Hermes",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes preserves per-iteration bindings used by lazy method getters",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "getHermesSWCIncludes bundles lowered classes whose constructors use default and rest parameters",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin aliases RN HMRClient specifier \"react-native/Libraries/Utilities/HMRClient\" to the no-op virtual module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin aliases RN HMRClient specifier \"../Utilities/HMRClient\" to the no-op virtual module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin aliases RN HMRClient specifier \"../../Utilities/HMRClient.js\" to the no-op virtual module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin aliases RN HMRClient specifier \"..\\\\Utilities\\\\HMRClient.js\" to the no-op virtual module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin aliases RN HMRClient specifier \"../Utilities/HMRClient.ts\" to the no-op virtual module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin aliases RN HMRClient specifier \"../Utilities/HMRClient.tsx\" to the no-op virtual module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin aliases RN HMRClient specifier \"../Utilities/HMRClient.cjs\" to the no-op virtual module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin does not touch unrelated specifier \"react-native/Libraries/Utilities/HMRClientRegistry\"",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin does not touch unrelated specifier \"some/MyUtilities/HMRClient\"",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin does not touch unrelated specifier \"react-native/Libraries/Core/setUpDeveloperTools\"",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin does not touch unrelated specifier \"react\"",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin does not alias an app-authored Utilities/HMRClient module",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin loads a no-op module exposing every HMRClient method RN calls",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "hmrClientNoopPlugin does not load unrelated ids",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "vxrnCompilerPlugin React Refresh registration keeps initial-bundle registrations visible to rolldown",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures rejects valid worklet source when its required compiler transform fails (dev=true)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures rejects valid worklet source when its required compiler transform fails (dev=false)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures returns a dev build error and no output when the required compiler transform fails",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures emits no production bundle when the required compiler transform fails",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures rejects Hermes compatibility transform errors instead of returning source",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures returns maps for every required production transform",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures composes source maps across React Compiler, Fast Refresh, and module wrapper back to original source lines",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures composes source maps accurately across mixed path (React Compiler + Babel + Fast Refresh + module wrapper)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures transforms worklets via native Rust/Wasm SWC with zero Babel execution and accurate sourcemaps",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures retains the existing Babel backend by default when enableNativeWorklets is false for auto-detected Reanimated and ordinary configured worklets plugin",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native required transform failures intercepts tuple worklet plugins with options, executes native SWC with options, and skips Babel when enableNativeWorklets is true",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production minification minifies when asked, leaves the bundle alone when not, and both behave the same",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production minification defaults to react native's rule: minify a production bundle, never a dev one",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production assets preserves CommonJS package main exports on ios",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production assets preserves CommonJS package main exports on android",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production assets uses browser fallbacks and mappings after React Native overrides",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production assets uses runtime exports for declaration aliases while preserving source aliases",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production assets shares the legacy React Native asset registry with library imports",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production assets shares the exported React Native asset registry with library imports",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native production assets registers scale siblings and keeps monorepo assets inside assetsDest",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native conditional exports uses the require condition for CommonJS calls",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native conditional exports unwraps the default export of Babel CommonJS modules in dev output",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native conditional exports unwraps the default export of Babel CommonJS modules in production output",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native Flow sources strips typed arrows and class fields without a Flow pragma or type import",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native Flow sources strips third-party Flow following a license header (0)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native Flow sources strips third-party Flow following a license header (1)",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "native bundle source maps resolves a frame to the authored file and line across an app file and a package file",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "postProcessNativeBundle keeps the blank line above an export default",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngine.test.ts",
+      "name": "postProcessNativeBundle keeps the lines of a multi-line export statement",
+      "status": "passed"
+    },
+    {
+      "file": "createNativeDevEngineFailure.test.ts",
+      "name": "createNativeDevEngine initial build failure rejects the bundle request immediately with the Rolldown error",
+      "status": "passed"
+    },
+    {
+      "file": "getBoundPort.test.ts",
+      "name": "getBoundPort returns the actually-bound port from httpServer.address(), ignoring a stale/undefined config port (the 8081 trap)",
+      "status": "passed"
+    },
+    {
+      "file": "getBoundPort.test.ts",
+      "name": "getBoundPort prefers the bound port even when config.server.port disagrees",
+      "status": "passed"
+    },
+    {
+      "file": "getBoundPort.test.ts",
+      "name": "getBoundPort falls back to config.server.port when the server is not yet listening",
+      "status": "passed"
+    },
+    {
+      "file": "getBoundPort.test.ts",
+      "name": "getBoundPort falls back to 8081 when nothing is available",
+      "status": "passed"
+    },
+    {
+      "file": "getBoundPort.test.ts",
+      "name": "getBoundPort ignores a unix-socket/pipe address (string) and falls back to config",
+      "status": "passed"
+    },
+    {
+      "file": "getBoundPort.test.ts",
+      "name": "getBoundPort reads the real bound port from a live http server, not the config value",
+      "status": "passed"
+    },
+    {
+      "file": "imageSizePatch.test.ts",
+      "name": "image-size malformed container handling rejects malformed 'icns' data",
+      "status": "passed"
+    },
+    {
+      "file": "imageSizePatch.test.ts",
+      "name": "image-size malformed container handling rejects malformed 'jxl' data",
+      "status": "passed"
+    },
+    {
+      "file": "imageSizePatch.test.ts",
+      "name": "image-size malformed container handling rejects malformed 'heif' data",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands delegates build/install/launch to community cli with no packager",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands forwards an explicit simulator target instead of letting the cli pick",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands never resolves the expo cli",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands owns server, port, and launch args without starting devices",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands waits for dependency patches before starting the native build",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands passes the simulator target through to the community cli",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands resolves the ios bundle id from the prebuilt ios project",
+      "status": "passed"
+    },
+    {
+      "file": "nativeRun.test.ts",
+      "name": "expo-free run commands fails before launching when no dev server is running",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract derives matching typed exports from Swift and Kotlin module sources",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract declares a Swift default view only from the file with @main",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract imports public Kotlin composables as typed components with callbacks",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract rejects unsupported signatures at their source location",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract does not export a private method or hide the method after it",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract reads modifiers from the method alone, not from a property declared above it",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract generates adjacent declarations and removes only obsolete generated ones",
+      "status": "passed"
+    },
+    {
+      "file": "nativeSourceContract.test.ts",
+      "name": "native source contract uses the declared Swift language mode and rejects dependencies a pod cannot link",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "moduleToPnpmStorePattern converts scoped package names",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "moduleToPnpmStorePattern converts other scoped packages",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "moduleToPnpmStorePattern passes through unscoped packages unchanged",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "applyDependencyPatches discovers packages in pnpm content-addressable store (non-hoisted)",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "applyDependencyPatches deduplicates symlink and store entry pointing to same files",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "applyDependencyPatches patches flat node_modules (non-pnpm regression)",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "applyDependencyPatches respects version constraints across multiple store versions",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "applyDependencyPatches deduplicates when hoisted symlink and store entry coexist",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "applyDependencyPatches warns when a patch matches nothing, and stays quiet when it applies",
+      "status": "passed"
+    },
+    {
+      "file": "patches.test.ts",
+      "name": "applyDependencyPatches transforms strategy-array patches as production, never the dev JSX runtime",
+      "status": "passed"
+    },
+    {
+      "file": "scanDepsToOptimize.test.ts",
+      "name": "scanDepsToOptimize codegenConfig excludes native codegen packages but keeps plain react deps",
+      "status": "passed"
+    },
+    {
+      "file": "scanDepsToOptimize.test.ts",
+      "name": "scanDepsToOptimize codegenConfig prebundles installed Expo modules without requiring Expo in the app",
+      "status": "passed"
+    },
+    {
+      "file": "symbolicateNativeStack.test.ts",
+      "name": "isNativeBundleFrame accepts the bundle urls react native reports and rejects everything else",
+      "status": "passed"
+    },
+    {
+      "file": "symbolicateNativeStack.test.ts",
+      "name": "getNativeFramePlatform reads the platform out of either query separator react native uses",
+      "status": "passed"
+    },
+    {
+      "file": "symbolicateNativeStack.test.ts",
+      "name": "symbolicateNativeStack resolves a bundle frame to the authored file and line",
+      "status": "passed"
+    },
+    {
+      "file": "symbolicateNativeStack.test.ts",
+      "name": "symbolicateNativeStack hands back frames that did not come from the bundle",
+      "status": "passed"
+    },
+    {
+      "file": "symbolicateNativeStack.test.ts",
+      "name": "symbolicateNativeStack leaves a bundle frame alone when the map has no mapping for it",
+      "status": "passed"
+    }
+  ]
+}
