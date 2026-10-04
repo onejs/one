@@ -22,6 +22,7 @@ export interface MotionReading {
 }
 export interface OneMotion extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getAvailability(): MotionAvailability;
     addListener(sensor: MotionSensor, intervalMs: number, onReading: (reading: MotionReading) => void, onError: (code: string, message: string) => void): () => void;

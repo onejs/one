@@ -29,6 +29,9 @@ export interface ImageTransformResult {
   size: number
 }
 
-export interface OneImageManipulator extends HybridObject<{ ios: 'swift' }> {
+export interface OneImageManipulator extends HybridObject<{
+  ios: 'swift'
+  android: 'kotlin'
+}> {
   transform(uri: string, options: ImageTransformOptions): Promise<ImageTransformResult>
 }
