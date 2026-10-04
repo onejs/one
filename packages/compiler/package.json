@@ -8,6 +8,11 @@
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
+    },
+    "./worklet-utils": {
+      "types": "./types/workletUtils.d.ts",
+      "import": "./dist/esm/workletUtils.mjs",
+      "require": "./dist/cjs/workletUtils.cjs"
     }
   },
   "main": "dist/cjs",

@@ -89,3 +89,10 @@ owner.dispose() // idempotent; future update calls have no effect
 
 Revisions increase within an owner. A newly mounted or re-enabled owner starts
 again at revision one. Compare results within the same owner, not across mounts.
+
+
+Custom preview compilers can integrate the browser-safe
+`vxrn/background-computation` transform with their module resolver and worker transport.
+The calculation definition and latest-revision contract stay the same in the app. Native
+hosts serialize the complete pure dependency graph as a worklet and validate its globals
+before compilation; helpers do not need separate worklet annotations.
