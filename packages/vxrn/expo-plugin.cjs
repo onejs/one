@@ -41,6 +41,7 @@ module.exports = function withVxrn(config, options = {}) {
     withGradleProperties,
     withInfoPlist,
     withMainActivity,
+    withMainApplication,
     withPlugins,
     withXcodeProject,
   } = projectRequire('@expo/config-plugins')
@@ -378,6 +379,23 @@ module.exports = function withVxrn(config, options = {}) {
         )
         contents = nativeProjectPatches.addDepsPatchToAppBuildGradle(contents)
         nextConfig.modResults.contents = contents
+        return nextConfig
+      },
+    ],
+    [
+      withMainApplication,
+      (nextConfig) => {
+        const anchor = 'context = applicationContext,'
+        const contents = nextConfig.modResults.contents
+        if (!contents.includes('ExpoReactHostFactory.getDefaultReactHost(') || !contents.includes(anchor)) {
+          throw new Error('[vxrn/expo-plugin] expected ExpoReactHostFactory in MainApplication')
+        }
+        const configured = `${anchor}\n      jsMainModulePath = "index",\n      useDevSupport = BuildConfig.DEBUG,`
+        // the prebuilt react library has DEBUG=false. use the application build
+        // flag and One's entry instead of Expo's virtual Metro entry.
+        nextConfig.modResults.contents = contents.includes(configured)
+          ? contents
+          : contents.replace(anchor, configured)
         return nextConfig
       },
     ],
