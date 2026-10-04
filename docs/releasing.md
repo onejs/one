@@ -45,15 +45,19 @@ failure stays visible rather than looking like a missing feature. Use
 
 ## Canaries
 
-Canaries are unaffected: they publish the prepared tree to the `canary`
-dist-tag and mutate no git at all, so they work from any branch.
+Pushing `v2-beta` publishes a canary automatically. Canaries publish the
+prepared tree to the `canary` dist-tag and mutate no git at all. They build
+the packages without requiring full CI and never move `latest`.
+
+For an explicit branch canary:
 
 ```sh
-gh workflow run release.yml --repo onejs/one --ref main -f release=canary
+gh workflow run release.yml --repo onejs/one --ref <branch> -f release=canary
 ```
 
-Canary publishing is on-demand only. Keep well under ~20/day across all repos
-sharing this infrastructure.
+One V2 canaries use `2.0.0-0.canary.<timestamp>`. Pin the printed version
+because the shared `canary` tag moves. A main-branch canary needs the owner's
+approval. Branch canaries and normal beta releases use separate queues.
 
 To test an upstream fix downstream without publishing anything at all, prefer:
 
@@ -61,14 +65,15 @@ To test an upstream fix downstream without publishing anything at all, prefer:
 bun release --into ~/<downstream>
 ```
 
-Verify a canary by its content, never its version string: a local `--into`
-build and a published npm canary have carried the same version with different
-code. `npm pack <pkg>@<version>` and grep the built output.
+Verify a canary by its content: run `npm pack <pkg>@<version> --ignore-scripts`,
+extract it, check `releaseSourceCommit` in its manifest, and inspect the changed
+source or built output. A local `--into` build can keep a version while changing
+code, so the version string alone is insufficient.
 
 ## V2 beta branch
 
-Pushing `v2-beta` cannot publish a package. Publish a V2 beta with a manual
-workflow dispatch:
+Pushing `v2-beta` publishes a canary. Publish a V2 beta on the `beta` dist-tag
+with a manual workflow dispatch:
 
 ```sh
 gh workflow run release.yml --repo onejs/one --ref v2-beta -f release=beta
