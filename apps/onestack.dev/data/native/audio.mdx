@@ -124,4 +124,16 @@ to playback and can replace another feature's audio session configuration,
 including picture in picture. Stop this audio before starting speech recognition
 or another audio feature. Background recording is not configured by this API.
 
-Audio is implemented on iOS. Android and web report denied recording permission and idle status. Stop and metadata effects do nothing; listeners return a remover that does nothing. Starting playback or recording and requesting a recording file reject with `Audio.<verb> needs an iOS or Android build`.
+Audio is implemented on iOS. Android and SSR report denied recording permission and idle status. Stop and metadata effects do nothing; listeners return a remover that does nothing. Starting playback or recording and requesting a recording file reject with `Audio.<verb> needs an iOS or Android build`.
+
+On web, HTMLAudioElement provides playback, pause, resume, millisecond seek,
+status, and stop. URI inputs use browser HTTP, HTTPS, data, or blob URLs.
+Autoplay policy can reject playback without a user gesture. MediaRecorder and
+getUserMedia provide microphone permission, recording, pause, resume, and stop.
+Playback and recording cannot run together. Recording duration excludes pauses,
+and a stopped recording returns its encoded byte length and a blob URL; the
+browser chooses the audio codec. Release returned URLs with
+`URL.revokeObjectURL` when finished. Media Session supplies metadata and remote
+commands when present. Operating-system audio interruptions have no equivalent
+browser event, so `watchInterruptions` retains its inert remover. Missing media
+capabilities and invalid operations reject rather than report success.

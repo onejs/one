@@ -1,11 +1,12 @@
 ---
 title: Effects
-description: Edge fades, blur, and masks on both platforms
+description: Edge fades, blur, and masks on native and web
 ---
 
 Cross-platform effects under `One.UI`. The mask and blur modes render through
-the native primitives on iOS and Android and throw on web. Overlay mode paints
-through React Native core gradients with no native code.
+the native primitives on iOS and Android. Web uses CSS masks and backdrop
+filters. Overlay mode paints through React Native core gradients on native
+and CSS gradients on web.
 
 `EdgeFade` fades children toward the enabled edges. Each edge takes `true`,
 a size in dp, or `{ size, curve, color }`. `curve` is a preset (`smooth`,
@@ -32,3 +33,18 @@ import { One } from 'one'
   <OverlayCard />
 </One.UI.Blur>
 ```
+
+On web, `Blur` clamps intensity to 0–100 and maps it to a CSS backdrop blur
+radius of 0–20 pixels. Zero intensity paints no frost veil. Light and dark
+tints choose explicit veils; regular and unsuffixed system materials follow
+the browser color scheme. Material thickness changes the veil opacity.
+Children stay sharp above the backdrop. Browser materials approximate the
+native material meanings rather than UIKit's exact pixels.
+
+Web `Mask` uses CSS `mask-image` in alpha mode. The mounted mask subtree is
+hidden from sight, pointer input, and accessibility, then serialized with its
+computed styles into an SVG image. Opaque mask pixels reveal the content and
+transparent pixels reveal the background; the mask fills the content bounds.
+DOM or size changes update the image. External resources inside SVG images and
+continuous CSS animations are subject to browser image rendering restrictions.
+Invalid mask elements retain the warning and unmasked rendering contract.

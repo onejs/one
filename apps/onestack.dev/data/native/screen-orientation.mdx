@@ -39,6 +39,6 @@ manifest or current window rejects with `E_SCREEN_ORIENTATION_UNSUPPORTED`.
 If the scene does not reach a requested orientation, it rejects with
 `E_SCREEN_ORIENTATION_TIMEOUT` after ten seconds.
 
-Orientation is implemented on iOS. On Android and web, orientation reads, lock, and unlock resolve `unknown`; listeners return a remover that does nothing. The implementation
+Orientation is implemented on iOS. On Android and SSR, orientation reads, lock, and unlock resolve `unknown`; listeners return a remover that does nothing. Web reads `screen.orientation`, maps primary portrait and landscape to `portrait` and `landscapeLeft`, and secondary values to `portraitUpsideDown` and `landscapeRight`. Changes use the orientation change event. Locks use the browser’s native orientation lock and reject when unsupported, restricted by fullscreen policy, or unable to reach the requested orientation. Unlock rejects when the browser lacks it. The implementation
 uses [Apple's window scene geometry preferences](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/ios)
 and observes [effective geometry](https://developer.apple.com/documentation/uikit/uiwindowscene/effectivegeometry).

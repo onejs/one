@@ -23,7 +23,7 @@ const info = await fs.getInfo(note)
 console.log(text, info.size)
 ```
 
-Use `fetch(uri)` to read text or bytes, including files returned by
+On native, use `fetch(uri)` to read text or bytes, including files returned by
 `One.DocumentPicker` and `One.ImagePicker`. `writeFile(uri, contents)` writes
 UTF-8 text and replaces an existing file. Pass `'base64'` as the third argument
 to write binary data. Parent directories must already exist.
@@ -39,5 +39,12 @@ root directories cannot be moved or deleted.
 Operations run on a serial background queue. Calls awaited in sequence observe the
 previous operation's result. A failed operation rejects with `error.code`:
 `E_FILE_URI`, `E_FILE_ENCODING`, `E_FILE_NOT_FOUND`, `E_FILE_EXISTS`,
-`E_FILE_PERMISSION`, or `E_FILE_FAILED`. File operations are implemented on iOS and Android. On web, directory paths are empty strings, file info reports `exists: false`, directory reads resolve `[]`, and mutations do nothing.
+`E_FILE_PERMISSION`, or `E_FILE_FAILED`. File operations are implemented on iOS and Android. On web, files live in the Origin Private File System (OPFS), isolated by origin. Directory URIs use `opfs://one/` and end in `/`. All operations, including reads and competing writes, run in order. A write resolves only after its writable stream closes. Browser storage quota, privacy policy, or an unavailable OPFS implementation can reject an operation. SSR keeps empty paths and inert operations.
 Base64 input must use standard padded base64 without line breaks.
+
+OPFS URIs identify private storage entries; browser `fetch` and image elements do
+not understand them. To read stored bytes on web, use the browser's
+`navigator.storage.getDirectory()` and its file handles. Documents, cache,
+application support, and temporary entries are folders within that origin's OPFS;
+cache and temporary files are not automatically purged. Browser errors retain
+their DOMException names rather than the native error codes.

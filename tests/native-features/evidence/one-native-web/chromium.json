@@ -1,0 +1,137 @@
+{
+  "engine": "chromium",
+  "version": "149.0.7827.55",
+  "checks": [
+    {
+      "namespace": "FileSystem",
+      "negative": "byte reads, invalid encoding, missing parent, overlapping paths and protected root"
+    },
+    {
+      "namespace": "ImageManipulator",
+      "exifOrientations": 8,
+      "oneImage": true,
+      "negative": "independent wrong-rotation pixels, invalid crop, rotation, format quality, size and decoder"
+    },
+    {
+      "namespace": "Device",
+      "info": {
+        "model": "",
+        "systemName": "MacIntel",
+        "systemVersion": "",
+        "interfaceIdiom": "unspecified",
+        "isSimulator": false
+      },
+      "locale": {
+        "localeIdentifier": "en-US",
+        "preferredLanguages": [
+          "en-US"
+        ],
+        "calendarIdentifier": "gregory",
+        "timeZoneIdentifier": "Pacific/Honolulu",
+        "timeZoneOffsetSeconds": -36000
+      },
+      "negative": "known non-UTC zone and no invented hardware id"
+    },
+    {
+      "namespace": "Location",
+      "point": {
+        "latitude": 21.3069,
+        "longitude": -157.8583,
+        "accuracy": 5,
+        "altitude": 0,
+        "altitudeAccuracy": -1,
+        "course": -1,
+        "speed": -1,
+        "timestamp": 1791147018714
+      },
+      "negative": "background watch rejected; geocoder remains unavailable"
+    },
+    {
+      "namespace": "KeepAwake",
+      "negative": "released sentinel reports false and invalid input rejects"
+    },
+    {
+      "namespace": "Motion",
+      "seeded": true,
+      "realEventConstructors": true,
+      "samples": 8,
+      "negative": "removed subscription, unavailable magnetometer and invalid interval"
+    },
+    {
+      "namespace": "ScreenOrientation",
+      "lockOutcome": "Error: ScreenOrientation.lock: screen did not reach the requested orientation",
+      "negative": "unsupported rotation must reject and removed listener must stay silent"
+    },
+    {
+      "namespace": "Print",
+      "unavailable": true,
+      "negative": "PDF result contract has no browser equivalent"
+    },
+    {
+      "namespace": "Share",
+      "browserHasShare": false,
+      "adapterSeeded": true,
+      "negative": "absent capability, empty items and cancellation"
+    },
+    {
+      "namespace": "Contacts",
+      "realPickerUnavailable": true,
+      "adapterSeeded": true,
+      "negative": "absent picker and unavailable mutations reject"
+    },
+    {
+      "namespace": "Speech",
+      "realConstructorPresent": true,
+      "adapterSeeded": true,
+      "negative": "missing constructor, replaced callback, abort silence and exactly one terminal event"
+    },
+    {
+      "namespace": "Audio",
+      "recording": {
+        "uri": "blob:http://127.0.0.1:4387/6eef1594-15ab-4787-982d-c3960e365733",
+        "durationMs": 525.1000000238419,
+        "size": 289
+      },
+      "mimeType": "audio/webm",
+      "negative": "absent operation, concurrent recording, paused duration, negative seek and invalid metadata"
+    },
+    {
+      "namespace": "Blur",
+      "negative": "zero-filter pixel comparison below",
+      "filter": "blur(20px)"
+    },
+    {
+      "namespace": "Mask",
+      "pixels": [
+        [
+          255,
+          0,
+          0,
+          255
+        ],
+        [
+          0,
+          0,
+          255,
+          255
+        ],
+        [
+          255,
+          0,
+          0,
+          255
+        ]
+      ],
+      "negative": "opaque/transparent sides plus invalid mask passthrough"
+    },
+    {
+      "namespace": "Blur pixels",
+      "snapshotContrast": 1,
+      "compositorContrast": 1,
+      "controlContrast": 178,
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "limitations": []
+}

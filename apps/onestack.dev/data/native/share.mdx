@@ -28,4 +28,4 @@ at a time. Invalid input and presentation failures reject with `error.code`:
 `E_SHARE_PRESENTATION`, or `E_SHARE_FAILED`.
 
 Call it while the app is active. For a visible share button with a fixed item,
-use `One.iOS.ShareLink` instead. Sharing is implemented on iOS. Android and web reject with `Share.share needs an iOS or Android build`.
+use `One.iOS.ShareLink` instead. Sharing is implemented on iOS. Android and SSR reject with `Share.share needs an iOS or Android build`. On web, `navigator.share` receives text, one URL, and browser-readable files. It requires browser support and a user gesture; missing support rejects. Multiple text items are joined with newlines. More than one URL rejects because a browser share request carries one URL. File URLs must use blob, data, HTTP, or HTTPS and permit fetching. Cancellation resolves `{ completed: false }`; only a fulfilled browser share resolves `{ completed: true }`. Browsers do not expose an activity type.
