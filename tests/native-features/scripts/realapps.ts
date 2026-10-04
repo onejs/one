@@ -105,7 +105,7 @@ const heavy = join(values.contrast!, 'scripts/heavy.sh')
 if (!existsSync(heavy) && values.phase !== 'inventory')
   throw new Error(`Missing build admission wrapper: ${heavy}`)
 const appSources: Record<string, string> = {
-  'one-basic': join(repo, 'examples/one-basic'),
+  'one-basic': join(runDir, 'sources/one-basic'),
   testflight: join(repo, 'examples/testflight'),
   'contrast-mobile': join(values.contrast!, 'templates/contrast-mobile'),
   'takeout-free': join(runDir, 'sources/takeout-free'),
@@ -503,6 +503,24 @@ function writeReport() {
 for (const name of appNames) {
   if (!appSources[name]) throw new Error(`Unknown app ${name}`)
   const source = appSources[name]
+  if (name === 'one-basic' && !existsSync(source)) {
+    command(['git', 'fetch', 'origin', 'v2-beta-starter'])
+    mkdirSync(source, { recursive: true })
+    const archive = spawnSync(
+      'git',
+      ['archive', 'origin/v2-beta-starter:examples/one-basic'],
+      { cwd: repo, maxBuffer: 64 * 1024 * 1024 }
+    )
+    if (archive.status !== 0) throw new Error(String(archive.stderr))
+    const extracted = spawnSync('tar', ['-xf', '-', '-C', source], {
+      input: archive.stdout,
+    })
+    if (extracted.status !== 0) throw new Error(String(extracted.stderr))
+    writeFileSync(
+      join(source, '.realapps-source-revision'),
+      command(['git', 'rev-parse', 'origin/v2-beta-starter']) + '\n'
+    )
+  }
   if (name === 'takeout-free' && !existsSync(source)) {
     mkdirSync(dirname(source), { recursive: true })
     command([
@@ -514,7 +532,9 @@ for (const name of appNames) {
       source,
     ])
   }
-  const revision = command(['git', 'rev-parse', 'HEAD'], source)
+  const revision = name === 'one-basic'
+    ? readFileSync(join(source, '.realapps-source-revision'), 'utf8').trim()
+    : command(['git', 'rev-parse', 'HEAD'], source)
   const app = (state.apps[name] ??= {
     source,
     revision,
