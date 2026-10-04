@@ -1,0 +1,10 @@
+{
+  "mode": "rally-production",
+  "status": "passed revision=1 checkpoints=3 legs=3 objects=37",
+  "workers": [
+    "http://localhost:8107/assets/rallyTrack.__one_background_worker_6275696c6452616c6c79436f75727365-DsS0UGuX.js"
+  ],
+  "errors": [],
+  "browser": "145.0.7632.6",
+  "observedAt": "2026-10-04T02:07:17.516Z"
+}

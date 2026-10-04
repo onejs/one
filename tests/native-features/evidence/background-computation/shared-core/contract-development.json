@@ -1,0 +1,12 @@
+{
+  "mode": "contract-development",
+  "status": "latest=3 value=6 runtime=worker error=handled dispose=silent",
+  "workers": [
+    "http://localhost:8098/calculate.__one_background_worker_63616c63756c617465.js?worker_file&type=module",
+    "http://localhost:8098/calculate.__one_background_worker_63616c63756c617465.js?worker_file&type=module",
+    "http://localhost:8098/calculate.__one_background_worker_63616c63756c617465.js?worker_file&type=module"
+  ],
+  "errors": [],
+  "browser": "145.0.7632.6",
+  "observedAt": "2026-10-04T01:32:41.742Z"
+}

@@ -75,6 +75,21 @@ TESTED: real Rally hook on iOS 27, Android 37, Chromium development and producti
 
 One source commit `f8e56cdc`; Contrast migration `fe0484e86f`. The One change is based on v2-beta `5808e174d`, including the explicit Android device selector fix. Main is untouched.
 
+RAN: One API and docs landed on v2-beta `4395848b3`; result-retention fix
+`75982e8ee` removes output references from React state while retaining exact current
+result identity. The browser retention probe proves replacement, disposal, reactivation,
+and six accepted executions; it makes no heap-collection or phone-memory claim.
+
+Shared compiler follow-up: One branch `feat/background-computation-preview` at
+`30bcc005b`; Contrast branch at `82b35077f8`. Vite and Contrast use one portable
+`vxrn/background-computation` transform. RAN: current One/compiler probes pass 39 tests;
+Contrast passes 130 tests / 348 assertions. The emitted browser bundler is 96.6 KB gzip.
+RAN: real Rally passes through Contrast's generated Blob Worker and One's production
+Vite Worker. Native custom preview and full factory seed build remain pending. The branch
+canary is publishing via https://github.com/onejs/one/actions/runs/37169679013; the manager
+owns CI. Contrast main waits for verified npm contents, a matching family pin and both
+compile catalogs. Assembled follow-up review remains with m19584.
+
 Proposed public shape (`one/background`):
 
 ```ts
