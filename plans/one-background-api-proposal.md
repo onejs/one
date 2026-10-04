@@ -44,7 +44,7 @@ document-picker migration, and a GPU canvas integration.
 
 Nate approved this shared API and migration directly on 2026-10-03, referencing
 share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187. Assigned assembled
-review passed. One API and compiler are on v2-beta; Contrast main landing is
+review passed. One API and compiler are on v2-beta; Contrast migration has landed; its cache follow-up is
 pending with the coordinator after the scoped tool guard blocked this lane.
 
 
@@ -75,9 +75,13 @@ Nate directly approved the shared compiler integration and custom-preview proof
 via “Rally passes on both custom preview runtimes”
 (`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`).
 The publication, complete factory build and final merge-candidate checks passed.
-Assigned adapter review and re-review passed. Contrast landing mergedf23ed5000
-is pushed with the One pin and goals row removed; coordinator m18386 owns the
-remaining main push after the tool guard rejected the Contrast target as One.
+Assigned adapter review and re-review passed. RAN: Contrast main now contains
+migration/pin df23ed5000 and the composed geometry reuse hook88970f9985, with its
+goals row removed. Main-sync p58675 owns final follow-up a0bbcb5b92: retain the
+module-scope One definition and reject stale completions before caching. No API
+shape changed. TESTED: current cache/edits/stale/disposal proof passes Chromium,
+WebKit and native preview; RAN bun check46.7s and complete450-file factory pass.
+Repeat commands and observations are in contrast-preview/geometry-reuse/.
 
 RAN: compiler integration landed on v2-beta as `c2a262012`, with logical proof
 commit `6b5302bdc`. A fresh build passed14 targets and the compiler suite passed39

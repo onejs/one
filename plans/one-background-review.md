@@ -61,10 +61,21 @@ proposal. Nothing new from that list is implemented. Expected Contrast CI after
 main push: pin/catalog cutover, factory and package/template checks. Manager owns
 that watch unless assigned here. No known failure remains after these fresh gates.
 
-Disposition: m19584 re-review passed8f3896a221. Synced Contrast landing merge
-df23ed5000 includes the exact One pin and removes the shovel-ready goals row;
-final nine adapter tests, catalog gate and all seven synchronous reference fields
-pass. The One-scoped guard blocked even an explicit Contrast git -C main push
-before execution. Manager routed the main push to coordinator m18386 in a
-Contrast-context session and directed this lane to finish with that open item.
-Global defect t-mutdjr1u-v5o0 records the attribution failure; no bypass was used.
+Disposition: m19584 re-review passed8f3896a221. RAN: Contrast main contains
+the reviewed migration/pin df23ed5000 and composed hook88970f9985. The guard
+prevented this One-scoped session's main push; m19584 assigned main-sync p58675.
+
+Following the requested main conflict composition, main's geometry reuse remains
+at module scope. Follow-up a0bbcb5b92 checks isCurrent after awaited execution,
+preventing a superseded completion from replacing the exact accepted cache.
+TESTED: actual Chromium, WebKit and native preview produce
+reuse=2 stale=1 edits=2 owners=2 calls=6 disposals=2, full synchronous course
+comparison and exact admission identity. Both browser Workers reply before Blob
+URL retirement. Cache and stale guards removed in virtual source fail distinct
+computation-count assertions. RAN:131 tests/356 assertions, Home typecheck,
+bun check46.7s and complete factory15 routes/450 files/14,469,639 bytes pass.
+Evidence: contrast-preview/geometry-reuse/. No new API or executor path.
+
+The final fix/rally-background-cache-owner branch is pushed and assigned to
+p58675 for a synced main merge. That final landing is pending; original migration
+is landed. Global defect t-mutdjr1u-v5o0 records the tool attribution failure.
