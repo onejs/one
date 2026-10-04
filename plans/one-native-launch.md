@@ -335,10 +335,16 @@ on the remaining React Native dependency graph. Flow stripping and native
 codegen must preserve their ordering and output semantics; removing required
 transforms would invalidate these bundle gains.
 
+## runtime 84 OTA canary (2026-10-04)
+
+Contrast main pins One canary 1791084352120 against the runtime-84 binary. Newer canaries change native code (for example `ios/Nitro/HybridOneMotion.swift`), so they cannot ship by OTA to runtime 84. Branch `release/ota84-js-canary` (8c58c075b) is the baseline 6b5302bdc plus the ws/headless fixes 48b7e7d8d and 8c2eb5e22. RAN: all 1392 native files in the published baseline match 6b5302bdc byte for byte. Publishing it is a `release.yml` workflow_dispatch with release=canary on that branch, waiting for Nate. Until then Contrast carries the two fixes as a patch.
+
+Contrast `fix/one-native-uniform-final` (4390d6d113) needs the root namespaces, which only post-runtime-84 canaries have (RAN: shell tsc fails on 1791084352120). It lands with the next runtime bump.
+
 ## workers
 
 | session | runner | item | review |
 | --- | --- | --- | --- |
-| s8223 / one-native-realapps | Sol high | rank 2, live | manager reviews assembled |
+| s8223 / one-native-realapps | Sol high | rank 2, finished (aaed02fbf); reviewed by m19584 2026-10-04 | done |
 | one-native-bundle-speed (coordinator) | Sol high, pro-64 | bundle speed | manager reviews assembled One diff |
-| finished | s8153 rank 1, s8225 rank 3, s8227 rank 4 (parked), s8377 rank 6, s8381 rank 5, s8395 stopped (Reanimated scope dropped) | | |
+| finished | s8223 rank 2, s8153 rank 1, s8225 rank 3, s8227 rank 4 (parked), s8377 rank 6, s8381 rank 5, s8395 stopped (Reanimated scope dropped) | | |
