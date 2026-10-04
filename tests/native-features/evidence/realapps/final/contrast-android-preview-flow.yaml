@@ -1,0 +1,21 @@
+appId: com.sootbean.mobile
+---
+- launchApp:
+    stopApp: true
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Build everywhere, together."
+    timeout: 60000
+- openLink: contrast://native-engine-poc
+- runFlow:
+    when:
+      visible: Open
+    commands:
+      - tapOn: Open
+- extendedWaitUntil:
+    visible:
+      id: photos-webview-baseline
+    timeout: 60000
+- assertVisible:
+    id: photos-webview-baseline
+- takeScreenshot: android-native-preview-host

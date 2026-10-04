@@ -1,0 +1,927 @@
+{
+  "schema": "xcodebuildmcp.output.build-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "request": {
+      "scheme": "Contrast",
+      "workspacePath": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Contrast.xcworkspace",
+      "derivedDataPath": "/tmp/one-realapps-contrast-ci-derived",
+      "platform": "iOS Simulator",
+      "simulatorId": "77CF5380-9F61-401E-A296-9375B66F968E"
+    },
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 700713,
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/one-948fcdddd279/logs/build_sim_2026-10-04T04-39-59-684Z_pid91477_b02d2887.log"
+    },
+    "diagnostics": {
+      "warnings": [
+        {
+          "message": "Run script build phase '[CP-User] [Hermes] Replace Hermes for the right configuration, if needed' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking \"Based on dependency analysis\" in the script phase. (in target 'hermes-engine' from project 'Pods')"
+        },
+        {
+          "message": "'EventEmitters-2dd0857d7294b9a36d1bdc85e471e0e9.o' has no symbols"
+        },
+        {
+          "message": "'EventEmitters-bcacc981a6c8af8e8ea4c1d589d296ae.o' has no symbols"
+        },
+        {
+          "message": "'EventEmitters-270080586e956718fb58456bdaee8a39.o' has no symbols"
+        },
+        {
+          "message": "'EventEmitters-689b2d8e5c73371a5ff58cb86c1ba2f7.o' has no symbols"
+        },
+        {
+          "message": "'EventEmitters-30bd21aaf46800a087282099a1a13139.o' has no symbols"
+        },
+        {
+          "message": "'States-f91c18f0d990c5ccc27e863f43e13fb5.o' has no symbols"
+        },
+        {
+          "message": "'States-14558cb4d228468c06e20403611b20a0.o' has no symbols"
+        },
+        {
+          "message": "'States-6259fcc4ce01b9f532eab526d657b2a2.o' has no symbols"
+        },
+        {
+          "message": "'States-432577fd1c8efb12e9982e0f42113079.o' has no symbols"
+        },
+        {
+          "message": "'States-79054d9b843eca0b30806722cd4c6c84.o' has no symbols"
+        },
+        {
+          "message": "'States-66e7dc24c334547c73f1b8f96ecfd796.o' has no symbols"
+        },
+        {
+          "message": "'States-5852e4495c91820abb52e4fce8c13b2f.o' has no symbols"
+        },
+        {
+          "message": "'States-d3674645b1fe6ed42f9c257afd5e0a02.o' has no symbols"
+        },
+        {
+          "message": "'States-27b71a6c4998e7e2376b34959ae3cb10.o' has no symbols"
+        },
+        {
+          "message": "'States-edf7ba20fb5692e7898d127912e2f686.o' has no symbols"
+        },
+        {
+          "message": "'States-40993f0e12965f41f4bcbcd7bf7614a0.o' has no symbols"
+        },
+        {
+          "message": "'TeleportViewSpec-generated.o' has no symbols"
+        },
+        {
+          "message": "'NativeNitroModules+OldArch.o' has no symbols"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/One/OneBackgroundTasksBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/One/OneBackgroundTasksBridge.h:12"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/One/OneAppIntentsBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/One/OneAppIntentsBridge.h:11"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/One/OneAppIntentsBridge.h:13"
+        },
+        {
+          "message": "implementing deprecated method [-Wdeprecated-implementations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeEdgeFadeComponentView.mm:331"
+        },
+        {
+          "message": "'traitCollectionDidChange:' is deprecated: first deprecated in iOS 17.0 - Use the trait change registration APIs declared in the UITraitChangeObservable protocol [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeEdgeFadeComponentView.mm:332"
+        },
+        {
+          "message": "unused variable 'op' [-Wunused-variable]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeBlurComponentView.mm:96"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/OneAppIntentsBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/OneAppIntentsBridge.h:11"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/OneAppIntentsBridge.h:13"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/OneHeadlessHost.h:6"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture. [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Private/React-RCTAppDelegate/RCTUIConfiguratorProtocol.h:40"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAppIntents.swift:51"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeGlassView.swift:85"
+        },
+        {
+          "message": "'WorkletsNetworking.o' has no symbols"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeKeyboard.swift:36"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeKeyboard.swift:46"
+        },
+        {
+          "message": "'naturalSize' was deprecated in iOS 16.0: Use load(.naturalSize) instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneImagePicker.swift:333"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneMapServices.swift:81"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneMapServices.swift:104"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/OneBackgroundTasksBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/OneBackgroundTasksBridge.h:12"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2172"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2173"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2174"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2175"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2176"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2177"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2178"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2179"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2180"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2181"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2182"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2183"
+        },
+        {
+          "message": "'frame()' is deprecated: Please pass one or more parameters. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:4502"
+        },
+        {
+          "message": "'function' was deprecated in iOS 15.0: Function modifier is reserved for system applications [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:5084"
+        },
+        {
+          "message": "'function' was deprecated in iOS 15.0: Function modifier is reserved for system applications [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:5129"
+        },
+        {
+          "message": "'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:6359"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:475"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:486"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:499"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:510"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:528"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:534"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:538"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:541"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:549"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:553"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:560"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:571"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:588"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:605"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:617"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:624"
+        },
+        {
+          "message": "'appendInterpolation' is deprecated: Localized string interpolation produces an unlocalized, debug description for this type of value. Use a type supported by LocalizedStringKey.StringInterpolation or initialize a LocalizedStringResource instead with an interpolated value that conforms to CustomLocalizedStringResourceConvertible. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/OneSwiftPackage.swift:93"
+        },
+        {
+          "message": "'applicationIconBadgeNumber' was deprecated in iOS 17.0: Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneNotifications.swift:76"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOnePhotoLibrary.swift:80"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOnePurchases.swift:149"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneScreenOrientation.swift:83"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneScreenOrientation.swift:91"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneShare.swift:62"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneShare.swift:79"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAppleAuth.swift:40"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:109"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:112"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:120"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:309"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneBrowser.swift:155"
+        },
+        {
+          "message": "'authorized' was deprecated in iOS 17.0: Check for full access or write only access [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneCalendar.swift:417"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'absoluteY' will be initialized after field 'absoluteX' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:94"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'absoluteX' will be initialized after field 'height' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:95"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'height' will be initialized after field 'width' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:96"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'width' will be initialized after field 'x' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:97"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'NSInteger' (aka 'long') to 'int' [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:75"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'NSInteger' (aka 'long') to 'int' [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:76"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'NSInteger' (aka 'long') to 'int' [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:120"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'NSInteger' (aka 'long') to 'int' [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:125"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'NSInteger' (aka 'long') to 'int' [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardControllerView.mm:126"
+        },
+        {
+          "message": "implementing deprecated method [-Wdeprecated-implementations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardBackgroundViewManager.mm:154"
+        },
+        {
+          "message": "'traitCollectionDidChange:' is deprecated: first deprecated in iOS 17.0 - Use the trait change registration APIs declared in the UITraitChangeObservable protocol [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-keyboard-controller/ios/views/KeyboardBackgroundViewManager.mm:156"
+        },
+        {
+          "message": "'NSObject+SafeKVC.o' has no symbols"
+        },
+        {
+          "message": "'RCTUIManager+LayoutAnimationManager.o' has no symbols"
+        },
+        {
+          "message": "'TextInput+DelegateManager.o' has no symbols"
+        },
+        {
+          "message": "unused function 'ghSpherical2tilt' [-Wunused-function]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGHStylusData.h:23"
+        },
+        {
+          "message": "implementing deprecated method [-Wdeprecated-implementations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerButtonComponentView.mm:627"
+        },
+        {
+          "message": "'traitCollectionDidChange:' is deprecated: first deprecated in iOS 17.0 - Use the trait change registration APIs declared in the UITraitChangeObservable protocol [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerButtonComponentView.mm:629"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerPointerTracker.mm:109"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerPointerTracker.mm:130"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerPointerTracker.mm:163"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerPointerTracker.mm:215"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerPointerTracker.mm:275"
+        },
+        {
+          "message": "auto property synthesis will not synthesize property 'dispatchToJSThread' declared in protocol 'RCTJSDispatcherModule' [-Wobjc-protocol-property-synthesis]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerModule.mm:37"
+        },
+        {
+          "message": "method possibly missing a [super invalidate] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerModule.mm:82"
+        },
+        {
+          "message": "block implicitly retains 'self'; explicitly mention 'self' to indicate this is intended behavior [-Wimplicit-retain-self]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerManager.mm:160"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'pointerType' will be initialized after field 'numberOfTouches' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerManager.mm:465"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'changedTouches' will be initialized after field 'allTouches' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerManager.mm:468"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'pointerType' will be initialized after field 'numberOfTouches' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerManager.mm:497"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'changedTouches' will be initialized after field 'allTouches' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerManager.mm:500"
+        },
+        {
+          "message": "'sendDeviceEventWithName:body:' is deprecated: Subclass RCTEventEmitter instead [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerManager.mm:562"
+        },
+        {
+          "message": "declaration is marked with '@deprecated' command but does not have a deprecation attribute [-Wdocumentation-deprecated-sync]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/React-Core-prebuilt/react/renderer/mounting/ShadowViewMutation.h:46"
+        },
+        {
+          "message": "declaration is marked with '@deprecated' command but does not have a deprecation attribute [-Wdocumentation-deprecated-sync]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/React-Core-prebuilt/react/renderer/mounting/ShadowViewMutation.h:60"
+        },
+        {
+          "message": "declaration is marked with '@deprecated' command but does not have a deprecation attribute [-Wdocumentation-deprecated-sync]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Public/React-Core-prebuilt/react/renderer/mounting/ShadowViewMutation.h:74"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'state' will be initialized after field 'handlerTag' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerDetector.mm:120"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'right' will be initialized after field 'top' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-gesture-handler/apple/RNGestureHandlerDetector.mm:199"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'size_type' (aka 'unsigned long') to 'int' [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Private/RNReanimated/reanimated/LayoutAnimations/LayoutAnimationsUtils.h:90"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Private/RNReanimated/reanimated/apple/REANodesManager.h:6"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Private/RNReanimated/reanimated/apple/REANodesManager.h:18"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Private/RNReanimated/reanimated/apple/REANodesManager.h:19"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Private/RNReanimated/reanimated/apple/REANodesManager.h:20"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Pods/Headers/Private/RNReanimated/reanimated/apple/REANodesManager.h:22"
+        },
+        {
+          "message": "'RCTUIView+Reanimated.o' has no symbols"
+        },
+        {
+          "message": "'SynchronousPropsBufferSerializer.o' has no symbols"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Shapes/RNSVGCircle.mm:66"
+        },
+        {
+          "message": "unused function 'intToRNSVGVBMOS' [-Wunused-function]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Utils/RNSVGFabricConversions.h:246"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGMask.mm:75"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGPath.mm:55"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Text/RNSVGTextPath.mm:62"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGMarker.mm:81"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGUse.mm:71"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Text/RNSVGText.mm:62"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Text/RNSVGTSpan.mm:74"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Text/RNSVGTSpan.mm:930"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Text/RNSVGTSpan.mm:931"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Text/RNSVGTSpan.mm:932"
+        },
+        {
+          "message": "variable length arrays in C++ are a Clang extension [-Wvla-cxx-extension]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Text/RNSVGTSpan.mm:943"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGSymbol.mm:59"
+        },
+        {
+          "message": "auto property synthesis will not synthesize property 'hitTestEdgeInsets'; it will be implemented by its superclass, use @dynamic to acknowledge intention [-Wobjc-property-synthesis]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGSvgView.h:37"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Shapes/RNSVGRect.mm:78"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGRadialGradient.mm:93"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGPattern.mm:89"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGLinearGradient.mm:87"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Shapes/RNSVGLine.mm:70"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGGroup.mm:56"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGForeignObject.mm:71"
+        },
+        {
+          "message": "'static' function 'RNSVGConvertFollyDynamicToId' declared in header file should be declared 'static inline' [-Wunneeded-internal-declaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Utils/RNSVGFabricConversions.h:17"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFilter.mm:72"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFeOffset.mm:57"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFeMerge.mm:51"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFeGaussianBlur.mm:51"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFeFlood.mm:51"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFeComposite.mm:57"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFeColorMatrix.mm:55"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Filters/RNSVGFeBlend.mm:49"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Shapes/RNSVGEllipse.mm:70"
+        },
+        {
+          "message": "method possibly missing a [super updateProps:oldProps:] call [-Wobjc-missing-super-calls]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-svg/apple/Elements/RNSVGClipPath.mm:51"
+        },
+        {
+          "message": "enumeration value 'RNSTabsScreenSystemItemNone' not handled in switch [-Wswitch]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/conversion/RNSConversions-Tabs.mm:330"
+        },
+        {
+          "message": "enum values with underlying type 'NSInteger' should not be used as format arguments; add an explicit cast to 'long' instead [-Wformat]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/conversion/RNSConversions-Tabs.mm:356"
+        },
+        {
+          "message": "implementing deprecated method [-Wdeprecated-implementations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/tabs/host/RNSTabBarController.mm:253"
+        },
+        {
+          "message": "'traitCollectionDidChange:' is deprecated: first deprecated in iOS 17.0 - Use the trait change registration APIs declared in the UITraitChangeObservable protocol [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/tabs/host/RNSTabBarController.mm:255"
+        },
+        {
+          "message": "'setOverrideTraitCollection:forChildViewController:' is deprecated: first deprecated in iOS 17.0 - Use the traitOverrides property on the child view controller instead [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/tabs/host/RNSTabBarController.mm:1304"
+        },
+        {
+          "message": "'keyWindow' is deprecated: first deprecated in iOS 13.0 - Should not be used for applications that support multiple scenes as it returns a key window across all connected scenes [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/RNSScreenWindowTraits.mm:157"
+        },
+        {
+          "message": "'attemptRotationToDeviceOrientation' is deprecated: first deprecated in iOS 16.0 - Please use instance method `setNeedsUpdateOfSupportedInterfaceOrientations`. [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/RNSScreenWindowTraits.mm:167"
+        },
+        {
+          "message": "'statusBarFrame' is deprecated: first deprecated in iOS 13.0 - Use the statusBarManager property of the window scene instead. [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/RNSScreen.mm:1636"
+        },
+        {
+          "message": "implementing deprecated method [-Wdeprecated-implementations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/RNSModalScreen.mm:14"
+        },
+        {
+          "message": "'traitCollectionDidChange:' is deprecated: first deprecated in iOS 17.0 - Use the trait change registration APIs declared in the UITraitChangeObservable protocol [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-screens/ios/RNSModalScreen.mm:16"
+        },
+        {
+          "message": "'NSString+RNSUtility.o' has no symbols"
+        },
+        {
+          "message": "'RCTConvert+RNSTabs.o' has no symbols"
+        },
+        {
+          "message": "'RCTSurfaceTouchHandler+RNSUtility.o' has no symbols"
+        },
+        {
+          "message": "'RNSConversions-ScrollViewMarker.o' has no symbols"
+        },
+        {
+          "message": "'RNSConversions-Stack.o' has no symbols"
+        },
+        {
+          "message": "'RNSFormSheetHostState.o' has no symbols"
+        },
+        {
+          "message": "'RNSScreenShadowNodeCommitHook.o' has no symbols"
+        },
+        {
+          "message": "'RNSStackHeaderSubviewState.o' has no symbols"
+        },
+        {
+          "message": "'RNSStackScreenState.o' has no symbols"
+        },
+        {
+          "message": "'UINavigationBar+RNSUtility.o' has no symbols"
+        },
+        {
+          "message": "'UIScrollView+RNScreens.o' has no symbols"
+        },
+        {
+          "message": "parameter 'maxResourceBytes' not found in the function declaration [-Wdocumentation]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/@shopify/react-native-skia/cpp/skia/include/gpu/ganesh/GrDirectContext.h:181"
+        },
+        {
+          "message": "parameter 'maxBytesToPurge' not found in the function declaration [-Wdocumentation]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/@shopify/react-native-skia/cpp/skia/include/gpu/ganesh/GrDirectContext.h:244"
+        },
+        {
+          "message": "'MetalLayerColorSpace.o' has no symbols"
+        },
+        {
+          "message": "'RNWebGPUAppleNativeBuffer.o' has no symbols"
+        },
+        {
+          "message": "'SkiaPlatformContext.o' has no symbols"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:103"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'navigationType' will be initialized after field 'canGoBack' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:105"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'isTopFrame' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:108"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:120"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'navigationType' will be initialized after field 'canGoBack' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:122"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'canGoForward' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:124"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:136"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'description' will be initialized after field 'canGoBack' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:139"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'canGoForward' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:141"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:153"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'canGoForward' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:156"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:168"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'navigationType' will be initialized after field 'canGoBack' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:170"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'canGoForward' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:172"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:184"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'canGoForward' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:187"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:199"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'canGoForward' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:202"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'selectedText' will be initialized after field 'key' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:212"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'key' will be initialized after field 'label' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:213"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'x' will be initialized after field 'y' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:231"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'contentOffset' will be initialized after field 'contentInset' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:233"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'top' will be initialized after field 'bottom' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:237"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'width' will be initialized after field 'height' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:241"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'width' will be initialized after field 'height' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:245"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'lockIdentifier' will be initialized after field 'title' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:257"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'statusCode' will be initialized after field 'description' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:259"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'description' will be initialized after field 'canGoBack' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:260"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'canGoForward' will be initialized after field 'loading' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:262"
+        },
+        {
+          "message": "ISO C++ requires field designators to be specified in declaration order; field 'right' will be initialized after field 'bottom' [-Wreorder-init-list]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:377"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:349"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:351"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:353"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:355"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:357"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:359"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:361"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:363"
+        },
+        {
+          "message": "implicit conversion loses integer precision: 'WKDataDetectorTypes' (aka 'unsigned long') to 'RNCWebViewDataDetectorTypesMask' (aka 'unsigned int') [-Wshorten-64-to-32]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:365"
+        },
+        {
+          "message": "null passed to a callee that requires a non-null argument [-Wnonnull]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:436"
+        },
+        {
+          "message": "null passed to a callee that requires a non-null argument [-Wnonnull]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/node_modules/react-native-webview/apple/RNCWebView.mm:451"
+        },
+        {
+          "message": "Run script build phase 'Bundle React Native code and images' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking \"Based on dependency analysis\" in the script phase. (in target 'Contrast' from project 'Contrast')"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/contrast-one-realapps-ci/templates/contrast-mobile/ios/Contrast/AppDelegate.swift:26"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "nextSteps": [
+    "Get built app path in simulator derived data: xcodebuildmcp simulator get-app-path --simulator-id 77CF5380-9F61-401E-A296-9375B66F968E --scheme Contrast --platform 'iOS Simulator' --derived-data-path /tmp/one-realapps-contrast-ci-derived"
+  ]
+}

@@ -1,0 +1,22 @@
+Running on iPhone 17 Pro 3 - iOS 27.0 - A6A58301-B796-4A45-B13D-C786F628AF5D
+ > Flow one-realapps-contrast-native-preview27-ready
+Assert that id: chat-composer-input is visible... COMPLETED
+
+
+ Info: The view hierarchy has been calculated. The current depth of the hierarchy
+ is 73. This might affect the execution time of your test. If
+ you are using React native, consider migrating to the new architecture where
+ view flattening is available. For more information on the migration process, please
+ visit: https://reactnative.dev/docs/new-architecture-intro
+Open contrast://home/settings... COMPLETED
+Run flow when "Open" is visible...
+Run flow when "Open" is visible... SKIPPED
+Scrolling DOWN until id: settings-native-preview-drawing is visible with speed 40, visibility percentage 100%, timeout 20000 ms, with centering disabled... COMPLETED
+Assert that "Native preview drawing, On" is visible... COMPLETED
+Take screenshot native-drawing-enabled... COMPLETED
+Open contrast://native-engine-poc... COMPLETED
+Run flow when "Open" is visible...
+Run flow when "Open" is visible... SKIPPED
+Assert that id: photos-webview-baseline is visible... COMPLETED
+Assert that id: photos-webview-baseline is visible... COMPLETED
+Take screenshot native-preview-host... COMPLETED

@@ -1,0 +1,70 @@
+{
+  "started": "2026-10-04T06:33:29.391Z",
+  "version": "2.0.0-0.canary.1791082782289",
+  "oneRevision": "90a6314de115d1bacd3ce4b5554d43b96be4b41b",
+  "apps": {
+    "one-basic": {
+      "source": "/tmp/one-realapps-starter-source-final/sources/one-basic",
+      "revision": "bd6044cc375df60981cefed0dd731f5b2958543f",
+      "inventory": {
+        "packages": {},
+        "apis": {
+          "One.iOS.WidgetUI": [
+            "app/widget-demo.native.tsx:5"
+          ],
+          "One.iOS.Widgets": [
+            "app/widget-demo.native.tsx:48",
+            "app/widget-demo.native.tsx:61"
+          ],
+          "One.iOS.LiveActivities": [
+            "app/widget-demo.native.tsx:88",
+            "app/widget-demo.native.tsx:102",
+            "app/widget-demo.native.tsx:115",
+            "app/widget-demo.native.tsx:125",
+            "app/widget-demo.native.tsx:144",
+            "app/widget-demo.native.tsx:162"
+          ]
+        }
+      },
+      "steps": {
+        "install": {
+          "status": "pass",
+          "log": "one-basic/install.log",
+          "seconds": 2.580299459
+        },
+        "navigation-versions": {
+          "status": "pass",
+          "log": "one-basic/navigation-versions.log",
+          "seconds": 0.029884417000000097
+        },
+        "web-browser-install": {
+          "status": "pass",
+          "log": "one-basic/web-browser-install.log",
+          "seconds": 0.3448332499999999
+        },
+        "web-build": {
+          "status": "pass",
+          "log": "one-basic/web-build.log",
+          "seconds": 14.415690125000001
+        },
+        "web-runtime": {
+          "status": "pass",
+          "log": "one-basic/web-server.log",
+          "seconds": 4.924067041
+        },
+        "web-routing-instrumentation": {
+          "status": "pass",
+          "log": "one-basic/web-routing-instrumentation.log",
+          "seconds": 0.10575849999999998
+        },
+        "web-routing-dependencies": {
+          "status": "pass",
+          "log": "one-basic/web-routing-dependencies.log",
+          "seconds": 0.500680083
+        }
+      },
+      "exercised": {},
+      "cwd": "/tmp/one-realapps-starter-source-final/apps/one-basic"
+    }
+  }
+}

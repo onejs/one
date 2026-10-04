@@ -1,0 +1,313 @@
+{
+  "one": "2.0.0-0.canary.1791082782289",
+  "sourceCommit": "a4c1ed5a561604bdb05fed10540f8576591274ef",
+  "expected": {
+    "one": "2.0.0-0.canary.1791082782289",
+    "@react-navigation/core": "8.0.0-alpha.40",
+    "@react-navigation/drawer": "8.0.0-alpha.57",
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
+    "@react-navigation/elements": "3.0.0-alpha.54",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
+    "@react-navigation/routers": "8.0.0-alpha.20",
+    "@vxrn/color-scheme": "2.0.0-0.canary.1791082782289",
+    "@vxrn/compiler": "2.0.0-0.canary.1791082782289",
+    "@vxrn/resolve": "2.0.0-0.canary.1791082782289",
+    "@vxrn/tslib-lite": "2.0.0-0.canary.1791082782289",
+    "@vxrn/use-isomorphic-layout-effect": "2.0.0-0.canary.1791082782289",
+    "@vxrn/utils": "2.0.0-0.canary.1791082782289",
+    "@vxrn/vite-plugin-metro": "2.0.0-0.canary.1791082782289",
+    "vxrn": "2.0.0-0.canary.1791082782289"
+  },
+  "graph": [
+    {
+      "name": "@react-navigation/bottom-tabs",
+      "version": "8.0.0-alpha.56",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/bottom-tabs/package.json",
+      "expected": "8.0.0-alpha.56"
+    },
+    {
+      "name": "@react-navigation/core",
+      "version": "8.0.0-alpha.40",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/core/package.json",
+      "expected": "8.0.0-alpha.40"
+    },
+    {
+      "name": "@react-navigation/drawer",
+      "version": "8.0.0-alpha.57",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/drawer/package.json",
+      "expected": "8.0.0-alpha.57"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.54",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.54"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.50",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.50"
+    },
+    {
+      "name": "@react-navigation/native-stack",
+      "version": "8.0.0-alpha.58",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native-stack/package.json",
+      "expected": "8.0.0-alpha.58"
+    },
+    {
+      "name": "@react-navigation/routers",
+      "version": "8.0.0-alpha.20",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/routers/package.json",
+      "expected": "8.0.0-alpha.20"
+    },
+    {
+      "name": "@vxrn/color-scheme",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/color-scheme/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/compiler",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/compiler/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/resolve",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/resolve/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/tslib-lite",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/tslib-lite/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/use-isomorphic-layout-effect",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/use-isomorphic-layout-effect/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/vite-plugin-metro",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/vite-plugin-metro/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "one",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/one/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "vxrn",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/vxrn/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@react-navigation/bottom-tabs",
+      "version": "8.0.0-alpha.56",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/bottom-tabs/package.json",
+      "expected": "8.0.0-alpha.56"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.54",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.54"
+    },
+    {
+      "name": "@react-navigation/native-stack",
+      "version": "8.0.0-alpha.58",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native-stack/package.json",
+      "expected": "8.0.0-alpha.58"
+    },
+    {
+      "name": "@react-navigation/routers",
+      "version": "8.0.0-alpha.20",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/routers/package.json",
+      "expected": "8.0.0-alpha.20"
+    },
+    {
+      "name": "@vxrn/color-scheme",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/color-scheme/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/compiler",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/compiler/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/resolve",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/resolve/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/tslib-lite",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/tslib-lite/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/use-isomorphic-layout-effect",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/use-isomorphic-layout-effect/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/utils",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/utils/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/vite-plugin-metro",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/vite-plugin-metro/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "vxrn",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/vxrn/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@react-navigation/core",
+      "version": "8.0.0-alpha.40",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/core/package.json",
+      "expected": "8.0.0-alpha.40"
+    },
+    {
+      "name": "@react-navigation/drawer",
+      "version": "8.0.0-alpha.57",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/drawer/package.json",
+      "expected": "8.0.0-alpha.57"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.50",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.50"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.54",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.54"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.50",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.50"
+    },
+    {
+      "name": "@react-navigation/routers",
+      "version": "8.0.0-alpha.20",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/routers/package.json",
+      "expected": "8.0.0-alpha.20"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.54",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.54"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.50",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.50"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.50",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.50"
+    },
+    {
+      "name": "@react-navigation/core",
+      "version": "8.0.0-alpha.40",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/core/package.json",
+      "expected": "8.0.0-alpha.40"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.54",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.54"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.50",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.50"
+    },
+    {
+      "name": "@vxrn/use-isomorphic-layout-effect",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/use-isomorphic-layout-effect/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/utils",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/utils/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/compiler",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/compiler/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/utils",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/utils/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/compiler",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/compiler/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/resolve",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/resolve/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/utils",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/utils/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/vite-plugin-metro",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/vite-plugin-metro/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    },
+    {
+      "name": "@vxrn/resolve",
+      "version": "2.0.0-0.canary.1791082782289",
+      "path": "/Users/n8/.worktrees/takeout-free-one-realapps/node_modules/@vxrn/resolve/package.json",
+      "expected": "2.0.0-0.canary.1791082782289"
+    }
+  ],
+  "failures": []
+}

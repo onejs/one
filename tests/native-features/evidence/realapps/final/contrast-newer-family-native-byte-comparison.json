@@ -1,0 +1,27 @@
+{
+  "ios": {
+    "files": 442,
+    "equal": true,
+    "changed": []
+  },
+  "android": {
+    "files": 85,
+    "equal": true,
+    "changed": []
+  },
+  "cpp": {
+    "files": 91,
+    "equal": true,
+    "changed": []
+  },
+  "nitrogen": {
+    "files": 841,
+    "equal": true,
+    "changed": []
+  },
+  "One.podspec": {
+    "files": 1,
+    "equal": true,
+    "changed": []
+  }
+}

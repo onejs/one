@@ -1,0 +1,8 @@
+{
+  "label": "RAN",
+  "platform": "android",
+  "device": "emulator-5582",
+  "appId": "com.natew.oneexample",
+  "mode": "home",
+  "text": "Hello world, from One"
+}

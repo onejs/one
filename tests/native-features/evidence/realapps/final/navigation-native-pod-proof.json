@@ -1,0 +1,109 @@
+{
+  "proven": true,
+  "podspecs": {
+    "ReactNavigation": {
+      "installed": {
+        "checksum": "3ed14f69e41e7559bd1e9426d68f765e3efa6d6d",
+        "source": {
+          "name": "ReactNavigation",
+          "version": "8.0.0-alpha.50",
+          "summary": "React Native integration for React Navigation",
+          "homepage": "https://reactnavigation.org",
+          "license": "MIT",
+          "authors": "Satyajit Sahoo <satyajit.happy@gmail.com> (https://github.com/satya164/), Michał Osadnik <micosa97@gmail.com> (https://github.com/osdnk/)",
+          "platforms": {
+            "ios": "15.1"
+          },
+          "source": {
+            "git": "https://github.com/react-navigation/react-navigation.git",
+            "tag": "8.0.0-alpha.50"
+          },
+          "source_files": "ios/**/*.{h,m,mm,swift,cpp}",
+          "private_header_files": "ios/**/*.h",
+          "compiler_flags": "-DRCT_NEW_ARCH_ENABLED=1",
+          "dependencies": {
+            "React-Core": [],
+            "React-RCTFabric": [],
+            "ReactCodegen": [],
+            "RCTRequired": [],
+            "RCTTypeSafety": [],
+            "React-bridging": [],
+            "ReactCommon/turbomodule/core": [],
+            "React-NativeModulesApple": [],
+            "Yoga": [],
+            "React-Fabric": [],
+            "React-graphics": [],
+            "React-utils": [],
+            "React-featureflags": [],
+            "React-debug": [],
+            "React-ImageManager": [],
+            "React-rendererdebug": [],
+            "React-jsi": [],
+            "React-renderercss": [],
+            "hermes-engine": [],
+            "ReactNativeDependencies": [],
+            "React-Core-prebuilt": []
+          },
+          "pod_target_xcconfig": {
+            "HEADER_SEARCH_PATHS": "\"$(PODS_ROOT)/Headers/Private/Yoga\"",
+            "CLANG_CXX_LANGUAGE_STANDARD": "c++20",
+            "OTHER_CPLUSPLUSFLAGS": "$(inherited) -DRCT_NEW_ARCH_ENABLED=1 ",
+            "OTHER_SWIFT_FLAGS": "$(inherited) -DRCT_NEW_ARCH_ENABLED"
+          }
+        },
+        "version": "8.0.0-alpha.50"
+      },
+      "previous": {
+        "checksum": "d10d932baafc9218fa0068047aac1886c7355ebe",
+        "source": {
+          "name": "ReactNavigation",
+          "version": "8.0.0-alpha.44",
+          "summary": "React Native integration for React Navigation",
+          "homepage": "https://reactnavigation.org",
+          "license": "MIT",
+          "authors": "Satyajit Sahoo <satyajit.happy@gmail.com> (https://github.com/satya164/), Michał Osadnik <micosa97@gmail.com> (https://github.com/osdnk/)",
+          "platforms": {
+            "ios": "15.1"
+          },
+          "source": {
+            "git": "https://github.com/react-navigation/react-navigation.git",
+            "tag": "8.0.0-alpha.44"
+          },
+          "source_files": "ios/**/*.{h,m,mm,swift,cpp}",
+          "private_header_files": "ios/**/*.h",
+          "compiler_flags": "-DRCT_NEW_ARCH_ENABLED=1",
+          "dependencies": {
+            "React-Core": [],
+            "React-RCTFabric": [],
+            "ReactCodegen": [],
+            "RCTRequired": [],
+            "RCTTypeSafety": [],
+            "React-bridging": [],
+            "ReactCommon/turbomodule/core": [],
+            "React-NativeModulesApple": [],
+            "Yoga": [],
+            "React-Fabric": [],
+            "React-graphics": [],
+            "React-utils": [],
+            "React-featureflags": [],
+            "React-debug": [],
+            "React-ImageManager": [],
+            "React-rendererdebug": [],
+            "React-jsi": [],
+            "React-renderercss": [],
+            "hermes-engine": [],
+            "ReactNativeDependencies": [],
+            "React-Core-prebuilt": []
+          },
+          "pod_target_xcconfig": {
+            "HEADER_SEARCH_PATHS": "\"$(PODS_ROOT)/Headers/Private/Yoga\"",
+            "CLANG_CXX_LANGUAGE_STANDARD": "c++20",
+            "OTHER_CPLUSPLUSFLAGS": "$(inherited) -DRCT_NEW_ARCH_ENABLED=1 ",
+            "OTHER_SWIFT_FLAGS": "$(inherited) -DRCT_NEW_ARCH_ENABLED"
+          }
+        },
+        "version": "8.0.0-alpha.44"
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "label": "RAN",
+  "one": "2.0.0-0.canary.1791082782289",
+  "sourceCommit": "a4c1ed5a561604bdb05fed10540f8576591274ef",
+  "assembly": "retained clean native runs across CI64, Air24 and Pro64; exact scopes in receipts",
+  "sources": {
+    "one-basic": "bd6044cc375df60981cefed0dd731f5b2958543f; tested b506/620 app tree matches scaffold",
+    "takeout-free": "5488179 (4046b0be patches)",
+    "contrast-mobile": "bab1213e63 plus native package entry; landing6268fc7068 preserves current main and 6b family"
+  },
+  "apps": {
+    "one-basic": {
+      "install": "pass",
+      "webBuild": "pass",
+      "webRuntime": "pass",
+      "iosBuild": "pass",
+      "iosRuntime": "pass",
+      "androidBuild": "pass",
+      "androidRuntime": "pass",
+      "nativeRouting": "pass",
+      "importedAPIcount": 3,
+      "apiReceiptMap": "api-coverage.json",
+      "apiCoverage": "pass"
+    },
+    "contrast-mobile": {
+      "install": "pass",
+      "webBuild": "pass",
+      "webRuntime": "pass",
+      "iosBuild": "pass",
+      "iosRuntime": "pass",
+      "androidBuild": "pass",
+      "androidRuntime": "pass",
+      "nativeRouting": "pass",
+      "importedAPIcount": 43,
+      "apiReceiptMap": "api-coverage.json",
+      "apiCoverage": "pass with explicit platform guard"
+    },
+    "takeout-free": {
+      "install": "pass",
+      "webBuild": "pass",
+      "webRuntime": "pass",
+      "iosBuild": "pass",
+      "iosRuntime": "pass",
+      "androidBuild": "pass",
+      "androidRuntime": "pass",
+      "nativeRouting": "pass",
+      "importedAPIcount": 0,
+      "apiReceiptMap": "api-coverage.json",
+      "apiCoverage": "no One native API imports"
+    }
+  },
+  "openGaps": [
+    "ArrangementView rendering on a compatible standard iOS27.1 pool runtime",
+    "Remote preview engine content belongs to rank1; native host mount only is claimed"
+  ],
+  "fullLogs": {
+    "basic": "/tmp/one-realapps-starter-source-final",
+    "takeout": "/tmp/one-realapps-takeout-a4-android-build-final.log; /tmp/one-realapps-takeout-a4-ios-frozen-patches-correct.json; /tmp/one-realapps-takeout-web-a4-final.log",
+    "contrast": "/tmp/one-realapps-contrast-pro-android-build.log; /tmp/one-realapps-contrast-a4-ci-ios-build-final.json; /tmp/one-realapps-contrast-a4-catalog-clean-web-build.log",
+    "contrastRouting": "/tmp/one-realapps-contrast-ios-routing-a4-final.log; /tmp/one-realapps-contrast-android-routing-a4-final.log"
+  },
+  "landed": {
+    "oneHarness": "746f607cb",
+    "contrastRepair": "6268fc7068963e0aeed136747d66872713242f9c",
+    "contrastMainMerge": "c98f5bd3cbdade82104e27815ffe587912ee1b58",
+    "contrastPublishedMain": "0d7e3544f3200e09e4dd73e0bf6038944913f5a1",
+    "takeoutMain": "5488179",
+    "basicStarter": "bd6044cc375df60981cefed0dd731f5b2958543f"
+  }
+}

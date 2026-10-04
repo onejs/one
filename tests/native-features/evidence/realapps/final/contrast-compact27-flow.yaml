@@ -1,0 +1,28 @@
+appId: com.sootbean.mobile
+---
+- openLink: contrast://home/proj_mumynxbm_0t7epm?tab=chat
+- runFlow:
+    when:
+      visible: Open
+    commands:
+      - tapOn: Open
+- extendedWaitUntil:
+    visible:
+      id: chat-composer-input
+    timeout: 60000
+- assertVisible:
+    id: develop-pager
+- assertVisible:
+    id: chat-composer-input
+- takeScreenshot: compact-build
+- openLink: contrast://home/proj_mumynxbm_0t7epm?tab=design
+- runFlow:
+    when:
+      visible: Open
+    commands:
+      - tapOn: Open
+- extendedWaitUntil:
+    visible:
+      id: design-pane-controls
+    timeout: 60000
+- takeScreenshot: compact-design

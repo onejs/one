@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/tmp/one-realapps-basic-a4-app.zip",
+    "bytes": 31336718,
+    "sha256": "31e43c3f5e16229cf51282e02f16622e06ba44afa867549fdc802b0d23720cc4"
+  },
+  {
+    "path": "/tmp/one-realapps-basic-a4-app-debug.apk",
+    "bytes": 114100803,
+    "sha256": "9268b47953fdea170d33f5b7f7217dc707c6a6bddb8f136f813342a5325157d6"
+  },
+  {
+    "path": "/tmp/one-realapps-takeout-a4-final.app.zip",
+    "bytes": 43211257,
+    "sha256": "7b5c16f7f396be7dfd38977d1b24859f278ee3ef3640fac873ff6399fffa8c8e"
+  },
+  {
+    "path": "/tmp/one-realapps-takeout-a4-app-debug.apk",
+    "bytes": 135563484,
+    "sha256": "1db7d7f0471752d61ea81c7a4ed47815ee6cf55652440966d496dbf6f669ebe1"
+  },
+  {
+    "path": "/tmp/one-realapps-contrast-a4-clean.app.zip",
+    "bytes": 48898792,
+    "sha256": "b065c17b1bf39442d1694f748517d3a26619f5bb2de14763040aaa444acf0672"
+  },
+  {
+    "path": "/tmp/one-realapps-contrast-a4-app-debug.apk",
+    "bytes": 452526296,
+    "sha256": "324d8a259a84f150c1662bcd346d0831e82c133e3c1136d29eb7295c116bb6fd"
+  }
+]

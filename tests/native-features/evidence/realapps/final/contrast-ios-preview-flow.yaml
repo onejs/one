@@ -1,0 +1,30 @@
+appId: com.sootbean.mobile
+---
+- assertVisible:
+    id: chat-composer-input
+- openLink: contrast://home/settings
+- runFlow:
+    when:
+      visible: Open
+    commands:
+      - tapOn: Open
+- scrollUntilVisible:
+    element:
+      id: settings-native-preview-drawing
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible: "Native preview drawing, On"
+- takeScreenshot: native-drawing-enabled
+- openLink: contrast://native-engine-poc
+- runFlow:
+    when:
+      visible: Open
+    commands:
+      - tapOn: Open
+- extendedWaitUntil:
+    visible:
+      id: photos-webview-baseline
+    timeout: 60000
+- assertVisible:
+    id: photos-webview-baseline
+- takeScreenshot: native-preview-host

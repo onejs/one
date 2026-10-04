@@ -1,0 +1,445 @@
+{
+  "one-basic": {
+    "One.iOS.WidgetUI": {
+      "ios": {
+        "receipt": "basic-ios-widget-calls.json",
+        "scope": "JSX serialized into native widget; runner must inspect extension rendering"
+      }
+    },
+    "One.iOS.Widgets": {
+      "ios": {
+        "receipt": "basic-ios-widget-calls.json",
+        "scope": "runner must inspect installed widget extension; write completion cannot prove widget pixels"
+      }
+    },
+    "One.iOS.LiveActivities": {
+      "ios": {
+        "receipt": "basic-ios-widget-calls.json",
+        "scope": "start/update/end exact results; runner needs lock-screen evidence for visible lifecycle"
+      }
+    }
+  },
+  "contrast-mobile": {
+    "useSafeAreaInsets": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "numeric native metrics read"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "numeric native metrics read"
+      }
+    },
+    "useSizeClass": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "native size-class metrics read"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "native size-class metrics read"
+      }
+    },
+    "One.Haptics": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": "native dispatch only; simulator cannot prove physical haptic output"
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": "native dispatch only; simulator cannot prove physical haptic output"
+      }
+    },
+    "One.openURL": {
+      "ios": {
+        "receipt": "contrast-ios-external.json",
+        "scope": "runner must prove browser destination and return"
+      },
+      "android": {
+        "receipt": "contrast-android-external.json",
+        "scope": "runner must prove browser destination and return"
+      }
+    },
+    "One.UI.SafeArea": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "native safe-area content mounted and laid out"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "native safe-area content mounted and laid out"
+      }
+    },
+    "One.iOS.Tabs": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": "native selection callback; runner returns to first"
+      }
+    },
+    "One.iOS.Tab": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": "selected tab shows corresponding native-hosted content"
+      }
+    },
+    "One.iOS.Toolbar": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.ToolbarItemGroup": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.Button": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.Image": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": "native symbol host laid out; screenshot retained"
+      }
+    },
+    "One.iOS.ArrangementView": {
+      "ios": {
+        "receipt": "contrast-ios-arrangement-availability.json",
+        "scope": "availability only; 27.1 rendering open"
+      }
+    },
+    "One.UI.Pager": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "native selection callbacks; runner selects page one and returns"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "native selection callbacks; runner selects page one and returns"
+      }
+    },
+    "One.UI.Portal": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "native reparented child received touch"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "native reparented child received touch"
+      }
+    },
+    "One.UI.PortalHost": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "named host contains touchable child"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "named host contains touchable child"
+      }
+    },
+    "One.UI.Mask": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "native mask toggled; captures retain half/full state"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "native mask toggled; captures retain half/full state"
+      }
+    },
+    "One.Speech": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": "availability and permissions only; use speech controls for session events"
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": "availability and permissions only; use speech controls for session events"
+      }
+    },
+    "One.Clipboard": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.ImagePicker": {
+      "ios": {
+        "receipt": "contrast-ios-external.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-external.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.openShare": {
+      "ios": {
+        "receipt": "contrast-ios-external.json",
+        "scope": "void result; runner must prove sheet presentation and cancellation"
+      },
+      "android": {
+        "receipt": "contrast-android-external.json",
+        "scope": "void result; runner must prove sheet presentation and cancellation"
+      }
+    },
+    "One.AppInfo": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.UI.Image": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.UI.ReservedRegions": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "native provider event received; empty regions allowed on flat device"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "native provider event received; empty regions allowed on flat device"
+      }
+    },
+    "One.iOS.Glass": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": "native glass mounted then removed; screenshots retained"
+      }
+    },
+    "One.UI.Blur": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "runner captures baseline and blurred pixels"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "runner captures baseline and blurred pixels"
+      }
+    },
+    "One.openSettings": {
+      "ios": {
+        "receipt": "contrast-ios-external.json",
+        "scope": "runner must prove settings destination and return"
+      },
+      "android": {
+        "receipt": "contrast-android-external.json",
+        "scope": "runner must prove settings destination and return"
+      }
+    },
+    "One.Browser": {
+      "ios": {
+        "receipt": "contrast-ios-external.json",
+        "scope": "runner must prove browser presented and canceled; Android opened is not cancellation"
+      },
+      "android": {
+        "receipt": "contrast-android-external.json",
+        "scope": "runner must prove browser presented and canceled; Android opened is not cancellation"
+      }
+    },
+    "One.LaunchScreen": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": "shell already mounted; launch retention requires cold-start proof"
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": "shell already mounted; launch retention requires cold-start proof"
+      }
+    },
+    "One.SecureStore": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.SignInWithAppleButton": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": "account-free simulator dialog asserted before Close; native provider error forwarded, credentials not tested"
+      }
+    },
+    "One.Storage": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.Updates": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": "installed update metadata; no reload or live update fetch in app shell"
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": "installed update metadata; no reload or live update fetch in app shell"
+      }
+    },
+    "One.UI.Fonts": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.UI.EdgeFade": {
+      "ios": {
+        "receipt": "contrast-ios-ui.json",
+        "scope": "native mask mounted; receipt retains baseline screenshot"
+      },
+      "android": {
+        "receipt": "contrast-android-ui.json",
+        "scope": "native mask mounted; receipt retains baseline screenshot"
+      }
+    },
+    "One.DocumentPicker": {
+      "ios": {
+        "receipt": "contrast-ios-external.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-external.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.Notifications": {
+      "ios": {
+        "receipt": "contrast-ios-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      },
+      "android": {
+        "receipt": "contrast-android-services.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.Alert": {
+      "ios": {
+        "receipt": "contrast-ios-menus.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.Android.AlertDialog": {
+      "android": {
+        "receipt": "contrast-android-menus.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.Menu": {
+      "ios": {
+        "receipt": "contrast-ios-menus.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.ContextMenu": {
+      "ios": {
+        "receipt": "contrast-ios-menus.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.Android.Menu": {
+      "android": {
+        "receipt": "contrast-android-menus.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.Android.ContextMenu": {
+      "android": {
+        "receipt": "contrast-android-menus.json",
+        "scope": {
+          "$undefined": true
+        }
+      }
+    },
+    "One.iOS.Text": {
+      "ios": {
+        "receipt": "contrast-ios-leaves.json",
+        "scope": "native text host mounted; runner captures rendered text"
+      }
+    }
+  },
+  "takeout-free": {}
+}

@@ -1,0 +1,727 @@
+[heavy] queued 0s for admission: 100.00% cpu projected 13.00/9.00 cores (load average 11.29), memory 89.00% free, 2 active, charged for 0.00
+[heavy] queued 38s for admission: 100.00% cpu projected 13.00/9.00 cores (load average 26.08), memory 89.00% free, 2 active, charged for 0.00
+[heavy] queued 77s for admission: 100.00% cpu projected 13.00/9.00 cores (load average 28.71), memory 90.00% free, 2 active, charged for 0.00
+[heavy] queued 114s for admission: 73.00% cpu projected 14.30/9.00 cores (load average 22.96), memory 89.00% free, 2 active, charged for 6.00
+[heavy] queued 152s for admission: 58.00% cpu projected 12.80/9.00 cores (load average 18.78), memory 89.00% free, 2 active, charged for 4.02
+[heavy] admitted at 36.00% cpu (projected 6.60/9.00 cores; load average 17.74), memory 89.00% free; reserved 3.00 cores at priority 0, 1 other active, queued 161s
+{
+  "schema": "xcodebuildmcp.output.build-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "request": {
+      "scheme": "TakeoutDev",
+      "workspacePath": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/TakeoutDev.xcworkspace",
+      "derivedDataPath": "/tmp/one-realapps-takeout-ci-derived",
+      "platform": "iOS Simulator",
+      "simulatorId": "77CF5380-9F61-401E-A296-9375B66F968E"
+    },
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 108700,
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/takeout-free-one-realapps-ci-3679576c3221/logs/build_sim_2026-10-04T05-44-34-407Z_pid81986_7109d0f1.log"
+    },
+    "diagnostics": {
+      "warnings": [
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTHTTPRequestHandler.h:16"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTHTTPRequestHandler.h:18"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTHTTPRequestHandler.h:24"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTMultipartDataTask.h:15"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTMultipartDataTask.h:26"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTMultipartDataTask.h:30"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTMultipartDataTask.h:31"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTMultipartDataTask.h:32"
+        },
+        {
+          "message": "conflicting nullability specifier on parameter types, 'nonnull' conflicts with existing specifier 'nullable'",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTReactTaggedView.h:29"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/React-Core-prebuilt/React.framework/Headers/RCTWebSocketModule.h:23"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture.",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/ObjcHelpers/UIView+RNIPaperHelpers.h:22"
+        },
+        {
+          "message": "cannot find protocol definition for 'RNIContentViewParentDelegate'",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/RNIBaseView/RNIBaseView.h:50"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'Angle' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'DGSwiftUtilities' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/Angle+InitializableFromDictionary.swift:11"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'AnimationConfig' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'DGSwiftUtilities' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/AnimationConfig+InitializableFromDictionary.swift:11"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'BasicViewKeyframe' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'DGSwiftUtilities' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/BasicViewKeyframe+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'CGPoint' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'CoreFoundation' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/CGPoint+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'CGRect' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'CoreFoundation' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/CGRect+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'CGSize' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'CoreFoundation' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/CGSize+InitializableFromDictionary.swift:11"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'CGVector' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'CoreFoundation' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/CGVector+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ComputableLayout' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/ComputableLayout+InitializableFromDictionary.swift:13"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ComputableLayoutPreset' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/ComputableLayoutPreset+InitializableFromDictionary.swift:13"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ComputableLayoutPreset' to imported protocol 'InitializableFromString'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromString/ComputableLayoutPreset+InitializableFromString.swift:13"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ComputableLayoutValue' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/ComputableLayoutValue+InitializableFromDictionary.swift:13"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ComputableLayoutValueEvaluableCondition' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/ComputableLayoutValueEvaluableCondition+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ComputableLayoutValueMode' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/ComputableLayoutValueMode+InitializableFromDictionary.swift:13"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'EvaluableCondition' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/EvaluableCondition+InitializableFromDictionary.swift:13"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'EvaluableConditionFrameRectValue' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/EvaluableConditionFrameRectValue+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'EvaluableConditionSizeValue' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'ComputableLayout' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/EvaluableConditionSizeValue+InitializableFromDictionary.swift:13"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'GenericViewKeyframe' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'DGSwiftUtilities' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/GenericViewKeyframe+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ImageConfigGradient' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'DGSwiftUtilities' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/ImageConfigGradient+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'NumericLogicalExpression' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'DGSwiftUtilities' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/NumericLogicalExpression+InitializableFromDictionary.swift:12"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+Helpers/RCTView+Helpers.swift:12"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+Helpers/RCTView+Helpers.swift:13"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+Helpers/RCTView+Helpers.swift:21"
+        },
+        {
+          "message": "'getValue(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/RNIDummyTestView/RNIDummyTestViewModuleRequestHandler.swift:94"
+        },
+        {
+          "message": "'getValue(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/RNIDummyTestView/RNIDummyTestViewModuleRequestHandler.swift:97"
+        },
+        {
+          "message": "no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Deprecated/RNIImage/RNIImageOptions.swift:36"
+        },
+        {
+          "message": "'RNIRemoteURLImageLoadingConfig' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Deprecated/RNIImage/RNIImageRemoteURLMaker.swift:348"
+        },
+        {
+          "message": "'RNIImageLoadingConfig' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Deprecated/RNIImage/RNIImageRequireMaker.swift:68"
+        },
+        {
+          "message": "no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Deprecated/RNIImage/RNIImageSystemMaker.swift:32"
+        },
+        {
+          "message": "no calls to throwing functions occur within 'try' expression [#UnnecessaryEffectMarker]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Deprecated/RNIImage/RNIImageSystemMaker.swift:38"
+        },
+        {
+          "message": "'getValue(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/RNIUtilitiesModule/RNIUtiltiesModule+RNIUtilitiesManagerEventsNotifiable.swift:23"
+        },
+        {
+          "message": "'getValue(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/RNIUtilitiesModule/RNIUtiltiesModule+RNIUtilitiesManagerEventsNotifiable.swift:28"
+        },
+        {
+          "message": "'getValue(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/RNIUtilitiesModule/RNIUtiltiesModule+RNIUtilitiesManagerEventsNotifiable.swift:33"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'Transform3D' to imported protocol 'InitializableFromDictionary'; this will not behave correctly if the owners of 'DGSwiftUtilities' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromDictionary/Transform3D+InitializableFromDictionary.swift:15"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'SymbolConfiguration' to imported protocol 'CreatableFromDictionary'; this will not behave correctly if the owners of 'UIKit' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extension+CreatableFromDictionary/UIImageSymbolConfiguration+CreatableFromDictionary.swift:11"
+        },
+        {
+          "message": "'getValue(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extension+CreatableFromDictionary/UIImageSymbolConfiguration+CreatableFromDictionary.swift:46"
+        },
+        {
+          "message": "'getValue(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extension+CreatableFromDictionary/UIImageSymbolConfiguration+CreatableFromDictionary.swift:51"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'Options' to imported protocol 'InitializableFromString'; this will not behave correctly if the owners of 'UIKit' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromString/UIMenu+InitializableFromString.swift:12"
+        },
+        {
+          "message": "extension declares a conformance of imported type 'ElementSize' to imported protocol 'InitializableFromString'; this will not behave correctly if the owners of 'UIKit' introduce this conformance in the future",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-utilities/ios/Sources/Extensions+InitializableFromString/UIMenu+InitializableFromString.swift:37"
+        },
+        {
+          "message": "'RNIBaseViewPaperEventHandler.o' has no symbols"
+        },
+        {
+          "message": "'RNIBaseViewPaperEventHolder.o' has no symbols"
+        },
+        {
+          "message": "'RNIBaseViewPaperPropHandler.o' has no symbols"
+        },
+        {
+          "message": "'RNIBaseViewPaperPropHolder.o' has no symbols"
+        },
+        {
+          "message": "'RNICxxUtils.o' has no symbols"
+        },
+        {
+          "message": "'UIView+RNIPaperHelpers.o' has no symbols"
+        },
+        {
+          "message": "'default' is deprecated: renamed to 'identity' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/ContextMenuAuxiliaryPreview/Sources/AuxiliaryPreviewConfig/AuxiliaryPreviewTransitionKeyframeConfig.swift:16"
+        },
+        {
+          "message": "'transform' is deprecated: renamed to 'transform3D' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/ContextMenuAuxiliaryPreview/Sources/ContextMenuManager/ContextMenuManager.swift:245"
+        },
+        {
+          "message": "'default' is deprecated: renamed to 'identity' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/ContextMenuAuxiliaryPreview/Sources/AuxiliaryPreviewConfig/AuxiliaryPreviewTransitionKeyframe.swift:33"
+        },
+        {
+          "message": "'transform' is deprecated: renamed to 'transform3D' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/ContextMenuAuxiliaryPreview/Sources/AuxiliaryPreviewConfig/AuxiliaryPreviewTransitionKeyframe.swift:97"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture.",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/react-native-ios-utilities/react-native-ios-utilities/UIView+RNIPaperHelpers.h:22"
+        },
+        {
+          "message": "cannot find protocol definition for 'RNIContentViewParentDelegate'",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/react-native-ios-utilities/react-native-ios-utilities/RNIBaseView.h:50"
+        },
+        {
+          "message": "'init(dict:)' is deprecated: Please use init(fromDict:) instead... [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/Extensions+Init/AuxiliaryPreviewTransitionAnimationConfig+Init.swift:25"
+        },
+        {
+          "message": "'init(dict:)' is deprecated: Please use init(fromDict:) instead... [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/Extensions+Init/AuxiliaryPreviewTransitionKeyframeConfig+Init.swift:25"
+        },
+        {
+          "message": "'init(string:)' is deprecated: Please use init(fromString:) instead... [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIContextMenuAuxiliaryPreviewConfig.swift:97"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenuButton/RNIContextMenuButtonContent.swift:427"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenuButton/RNIContextMenuButtonContent.swift:430"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenuView/RNIContextMenuViewContent.swift:739"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenuView/RNIContextMenuViewContent.swift:742"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuActionItem.swift:23"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuActionItem.swift:54"
+        },
+        {
+          "message": "'init(string:)' is deprecated: Please use init(fromString:) instead... [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuActionItem.swift:98"
+        },
+        {
+          "message": "'init(string:)' is deprecated: Please use init(fromString:) instead... [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuActionItem.swift:106"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuIcon.swift:28"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuIcon.swift:38"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuIcon.swift:71"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuIcon.swift:77"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuIcon.swift:83"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuItem.swift:24"
+        },
+        {
+          "message": "'RNIImageItem' is deprecated: Use `ImageConfig` instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuItem.swift:51"
+        },
+        {
+          "message": "'init(string:)' is deprecated: Please use init(fromString:) instead... [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuItem.swift:105"
+        },
+        {
+          "message": "'init(string:)' is deprecated: Please use init(fromString:) instead... [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuItem.swift:117"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:51"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:58"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:67"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValue' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:79"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValue' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:86"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:93"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValueAndCast' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:100"
+        },
+        {
+          "message": "'getValueFromDictionary(forKey:type:)' is deprecated: renamed to 'getValue' [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenu/RNIMenuPreviewConfig.swift:109"
+        },
+        {
+          "message": "cannot find protocol definition for 'RNIContentViewDelegate'",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/react-native-ios-context-menu.build/DerivedSources/react_native_ios_context_menu-Swift.h:401"
+        },
+        {
+          "message": "cannot find protocol definition for 'RNIContentViewDelegate'",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/react-native-ios-context-menu.build/DerivedSources/react_native_ios_context_menu-Swift.h:450"
+        },
+        {
+          "message": "cannot find protocol definition for 'RNIContentViewParentDelegate'",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenuButton/RNIContextMenuButton.mm:45"
+        },
+        {
+          "message": "cannot find protocol definition for 'RNIContentViewParentDelegate'",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-ios-context-menu/ios/RNIContextMenuView/RNIContextMenuView.mm:51"
+        },
+        {
+          "message": "passing '__sized_by_or_null' pointer as 'auto' initializer is not yet supported",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/ReactNativeDependencies/folly/Memory.h:523"
+        },
+        {
+          "message": "passing '__sized_by_or_null' pointer as 'auto' initializer is not yet supported",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/ReactNativeDependencies/folly/Memory.h:801"
+        },
+        {
+          "message": "'avoidDecodeImage' was deprecated in iOS 8.0: Use SDWebImageContextImageForceDecodePolicy instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-bottom-tabs/ios/TabViewProvider.swift:248"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/One/OneBackgroundTasksBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/One/OneBackgroundTasksBridge.h:12"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/One/OneAppIntentsBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/One/OneAppIntentsBridge.h:11"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/One/OneAppIntentsBridge.h:13"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/ExpoModulesCore/ExpoModulesCore.framework/Headers/EXFileSystemInterface.h:14"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/ExpoModulesCore/ExpoModulesCore.framework/Headers/EXFileSystemInterface.h:20"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified)",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/ExpoModulesCore/ExpoModulesCore.framework/Headers/EXFileSystemInterface.h:21"
+        },
+        {
+          "message": "cannot find protocol definition for 'EXImageLoaderInterface'",
+          "location": "/private/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/ExpoModulesCore/ExpoModulesCore.framework/Headers/EXImageLoader.h:14"
+        },
+        {
+          "message": "cannot find protocol definition for 'RCTBridgeModule'",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/XCFrameworkIntermediates/ExpoModulesCore/ExpoModulesCore.framework/Headers/EXModuleRegistryHolderReactModule.h:7"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAppIntents.swift:51"
+        },
+        {
+          "message": "'applicationIconBadgeNumber' was deprecated in iOS 17.0: Use -[UNUserNotificationCenter setBadgeCount:withCompletionHandler:] instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneNotifications.swift:76"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOnePhotoLibrary.swift:80"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOnePurchases.swift:149"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneScreenOrientation.swift:83"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneScreenOrientation.swift:91"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeKeyboard.swift:36"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeKeyboard.swift:46"
+        },
+        {
+          "message": "'naturalSize' was deprecated in iOS 16.0: Use load(.naturalSize) instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneImagePicker.swift:333"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneMapServices.swift:81"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneMapServices.swift:104"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAppleAuth.swift:40"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:109"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:112"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:120"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneAudio.swift:309"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneBrowser.swift:155"
+        },
+        {
+          "message": "'authorized' was deprecated in iOS 17.0: Check for full access or write only access [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneCalendar.swift:417"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneShare.swift:62"
+        },
+        {
+          "message": "'weak' ownership of capture 'self' differs from implicitly-captured strong reference in outer scope [#ImplicitStrongCapture]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/HybridOneShare.swift:79"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2172"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2173"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2174"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2175"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2176"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2177"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2178"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2179"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2180"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2181"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2182"
+        },
+        {
+          "message": "'animation' was deprecated in iOS 15.0: Use withAnimation or animation(_:value:) instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:2183"
+        },
+        {
+          "message": "'frame()' is deprecated: Please pass one or more parameters. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:4502"
+        },
+        {
+          "message": "'function' was deprecated in iOS 15.0: Function modifier is reserved for system applications [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:5084"
+        },
+        {
+          "message": "'function' was deprecated in iOS 15.0: Function modifier is reserved for system applications [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:5129"
+        },
+        {
+          "message": "'onChange(of:perform:)' was deprecated in iOS 17.0: Use `onChange` with a two or zero parameter action closure instead. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeStyle.swift:6359"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:475"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:486"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:499"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:510"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:528"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:534"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:538"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:541"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:549"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:553"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:560"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:571"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:588"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:605"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:617"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Generated/OneNativeSwiftUI.swift:624"
+        },
+        {
+          "message": "'appendInterpolation' is deprecated: Localized string interpolation produces an unlocalized, debug description for this type of value. Use a type supported by LocalizedStringKey.StringInterpolation or initialize a LocalizedStringResource instead with an interpolated value that conforms to CustomLocalizedStringResourceConvertible. [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneSwiftPackage.swift:93"
+        },
+        {
+          "message": "will never be executed",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/OneNativeGlassView.swift:85"
+        },
+        {
+          "message": "'is' test is always true",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-nitro-image/nitrogen/generated/ios/NitroImageAutolinking.swift:60"
+        },
+        {
+          "message": "string interpolation produces a debug description for an optional value; did you mean to make this explicit?",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-nitro-web-image/ios/Extensions/SDWebImageManager+loadImage.swift:19"
+        },
+        {
+          "message": "'avoidDecodeImage' was deprecated in iOS 8.0: Use SDWebImageContextImageForceDecodePolicy instead [#DeprecatedDeclaration]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/react-native-nitro-web-image/ios/Extensions/AsyncImageLoadOptions+toSDWebImageOptions.swift:49"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/OneHeadlessHost.h:6"
+        },
+        {
+          "message": "'RCTRootView' is deprecated: This API will be removed along with the legacy architecture. [-Wdeprecated-declarations]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Private/React-RCTAppDelegate/RCTUIConfiguratorProtocol.h:40"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/OneBackgroundTasksBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/OneBackgroundTasksBridge.h:12"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/OneAppIntentsBridge.h:6"
+        },
+        {
+          "message": "pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/OneAppIntentsBridge.h:11"
+        },
+        {
+          "message": "block pointer is missing a nullability type specifier (_Nonnull, _Nullable, or _Null_unspecified) [-Wnullability-completeness]",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/node_modules/one/ios/Nitro/OneAppIntentsBridge.h:13"
+        },
+        {
+          "message": "cannot find protocol definition for 'RCTHostDelegate'",
+          "location": "/Users/macbookpro/.worktrees/takeout-free-one-realapps-ci/ios/Pods/Headers/Public/Expo/Expo/ExpoReactNativeFactory.h:11"
+        },
+        {
+          "message": "reference to type 'CKShareMetadata' broken by a context change; 'CKShareMetadata' was expected to be in 'UIKit', but now a candidate is found only in 'CloudKit'",
+          "location": "/tmp/one-realapps-takeout-ci-derived/Build/Products/Debug-iphonesimulator/Expo/Expo.swiftmodule/arm64-apple-ios-simulator.swiftmodule:1"
+        },
+        {
+          "message": "Run script build phase '[CP-User] [Hermes] Replace Hermes for the right configuration, if needed' will be run during every build because it does not specify any outputs. To address this issue, either add output dependencies to the script phase, or configure it to run in every build by unchecking \"Based on dependency analysis\" in the script phase. (in target 'hermes-engine' from project 'Pods')"
+        }
+      ],
+      "errors": []
+    }
+  },
+  "nextSteps": [
+    "Get built app path in simulator derived data: xcodebuildmcp simulator get-app-path --simulator-id 77CF5380-9F61-401E-A296-9375B66F968E --scheme TakeoutDev --platform 'iOS Simulator' --derived-data-path /tmp/one-realapps-takeout-ci-derived"
+  ]
+}
+
