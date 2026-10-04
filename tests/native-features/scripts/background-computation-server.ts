@@ -61,34 +61,6 @@ for (const platform of ['ios', 'android'] as const) {
   bundles.set(platform, bundle.code)
   writeFileSync(`/tmp/one-background-${platform}.bundle`, bundle.code)
 }
-const vite = await createServer({
-  configFile: false,
-  root: fixtureRoot,
-  plugins: [
-    backgroundComputationPlugin('web'),
-    {
-      name: 'background-proof-web-entry',
-      load(id) {
-        if (id === resolve(fixtureRoot, 'web.tsx'))
-          return `import { createElement } from 'react'; import { createRoot } from 'react-dom/client'; import Proof from ${JSON.stringify(proof)}; createRoot(document.getElementById('root')).render(createElement(Proof));`
-      },
-    },
-  ],
-  server: {
-    middlewareMode: true,
-    fs: { allow: [resolve(root, '../..'), process.env.CONTRAST_SOURCE ?? root] },
-  },
-  resolve: {
-    alias: {
-      ...(contrast ? { '~': resolve(contrast, 'examples/app-home-designer') } : {}),
-      'react-native': 'react-native-web',
-      react: resolve(root, '../../node_modules/react'),
-      'one/background': resolve(root, '../../packages/one/dist/esm/background.mjs'),
-    },
-    dedupe: ['react', 'react-dom'],
-  },
-  optimizeDeps: { exclude: ['one/background'] },
-})
 const server = createHTTPServer((req, res) => {
   const url = new URL(req.url!, `http://localhost:${port}`)
   if (url.pathname === '/status') {
@@ -104,6 +76,35 @@ const server = createHTTPServer((req, res) => {
     res.statusCode = 404
     res.end('missing')
   })
+})
+const vite = await createServer({
+  configFile: false,
+  root: fixtureRoot,
+  plugins: [
+    backgroundComputationPlugin('web'),
+    {
+      name: 'background-proof-web-entry',
+      load(id) {
+        if (id === resolve(fixtureRoot, 'web.tsx'))
+          return `import { createElement } from 'react'; import { createRoot } from 'react-dom/client'; import Proof from ${JSON.stringify(proof)}; createRoot(document.getElementById('root')).render(createElement(Proof));`
+      },
+    },
+  ],
+  server: {
+    middlewareMode: true,
+    hmr: { server },
+    fs: { allow: [resolve(root, '../..'), process.env.CONTRAST_SOURCE ?? root] },
+  },
+  resolve: {
+    alias: {
+      ...(contrast ? { '~': resolve(contrast, 'examples/app-home-designer') } : {}),
+      'react-native': 'react-native-web',
+      react: resolve(root, '../../node_modules/react'),
+      'one/background': resolve(root, '../../packages/one/dist/esm/background.mjs'),
+    },
+    dedupe: ['react', 'react-dom'],
+  },
+  optimizeDeps: { exclude: ['one/background'] },
 })
 server.listen(port, '0.0.0.0', () =>
   console.log(`background proof ready: http://localhost:${port}`)
