@@ -1,0 +1,103 @@
+{
+  "One.iOS.Color": {
+    "api": "One.iOS.Color",
+    "status": "observed",
+    "value": {
+      "color": {
+        "semantic": [
+          "systemBlue"
+        ]
+      },
+      "layout": {
+        "x": 12,
+        "y": 44.33333206176758,
+        "width": 378,
+        "height": 40
+      }
+    },
+    "scope": "native semantic color resolved and laid out; screenshot retained"
+  },
+  "One.iOS.Image": {
+    "api": "One.iOS.Image",
+    "status": "observed",
+    "value": {
+      "systemName": "checkmark.circle.fill",
+      "layout": {
+        "x": 12,
+        "y": 128.6666717529297,
+        "width": 378,
+        "height": 19.66668701171875
+      }
+    },
+    "scope": "native symbol host laid out; screenshot retained"
+  },
+  "One.iOS.Text": {
+    "api": "One.iOS.Text",
+    "status": "observed",
+    "value": {
+      "x": 12,
+      "y": 12,
+      "width": 378,
+      "height": 20.333343505859375
+    },
+    "scope": "native text host mounted; runner captures rendered text"
+  },
+  "One.iOS.Button": {
+    "api": "One.iOS.Button",
+    "status": "passed",
+    "value": {
+      "pressed": true
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.iOS.Glass": {
+    "api": "One.iOS.Glass",
+    "status": "observed",
+    "value": {
+      "mounted": false
+    },
+    "scope": "native glass mounted then removed; screenshots retained"
+  },
+  "One.iOS.SignInWithAppleButton": {
+    "api": "One.iOS.SignInWithAppleButton",
+    "status": "observed",
+    "value": {
+      "type": "failed",
+      "message": "The operation couldn’t be completed. (com.apple.AuthenticationServices.AuthorizationError error 1000.)"
+    },
+    "scope": "account-free simulator dialog asserted before Close; native provider error forwarded, credentials not tested"
+  },
+  "One.iOS.Tab": {
+    "api": "One.iOS.Tab",
+    "status": "passed",
+    "value": {
+      "selection": "second"
+    },
+    "scope": "selected tab shows corresponding native-hosted content"
+  },
+  "One.iOS.Tabs": {
+    "api": "One.iOS.Tabs",
+    "status": "passed",
+    "value": {
+      "selection": "second"
+    },
+    "scope": "native selection callback; runner returns to first"
+  },
+  "One.iOS.ArrangementView": {
+    "api": "One.iOS.ArrangementView",
+    "status": "failed",
+    "value": {
+      "name": "Error",
+      "message": "Swift.ArrangementView requires iOS 27.1 or later",
+      "code": {
+        "$undefined": true
+      },
+      "actual": {
+        "$undefined": true
+      }
+    },
+    "scope": "render exception"
+  }
+}
