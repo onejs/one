@@ -42,17 +42,24 @@ RAN: iOS SDK 27.1 generic simulator build succeeded at native `3e4ba9152`.
 TESTED: Android root namespace contracts passed at namespace `87b1cf2b3`: all
 three native modules, 68 operations across the other 24 unavailable namespaces,
 independent pixel/transparency checks, seeded motion vectors, and a rejected
-wrong-rotation negative control. Screenshot inspected. Root iOS runtime pending.
-Local simulator launch stalled before the app started; this is no runtime proof.
-RAN: the remote iOS root fixture reached FileSystem and exposed APFS returning
-a decomposed filename where the fixture supplied a precomposed one. The fixture
-now supplies the same decomposed spelling on both platforms, retains exact name
-equality, and checks the listed URI roundtrip. Both runtime proofs are rerunning;
-the Swift and Kotlin implementations are unchanged.
+wrong-rotation negative control. Screenshot inspected.
+TESTED: refreshed Android root proof at `554606413` and iOS 27.0 runtime / 27.1 SDK root proof at
+`87d1ddd50` passed the shared exact filename and listed-URI roundtrip, native
+contracts, independently decoded image pixels, transparency, and wrong-rotation
+negative control. Android also passed 68 unavailable-service operations and
+seeded motion vectors. Both captures were inspected. Reports and source/bundle
+receipts live in `tests/native-features/evidence/uniform-native-modules`.
+The iOS simulator has no motion sensors; physical iOS readings remain unproven.
+The shared filename fixture supplies decomposed Unicode explicitly, preserving
+APFS behavior and exact equality on both platforms. The Android runner installs
+the candidate and verifies its APK hash before launch; the read-only snapshot
+previously carried a different APK. Native source remains `3e4ba9152`.
 No speed benchmarks were run.
 
 RAN: docs props/type drift and the unavailable SSR contract passed 125 tests after
-shared callback and task argument checks were extracted. The Android report retains all 68 unavailable operations; iOS runtime is pending.
+shared callback and task argument checks were extracted. The strict native
+coverage check passed with both retained reports; its inspected snapshot now
+lists root namespaces and Android unavailable behavior without adding gaps.
 Contrast caller migration: `fix/one-native-uniform`, initial `064d31d326`.
 RAN: rebuilt and installed 17 One-family packages into the isolated Contrast
 worktree with `bun release --into`; shell `tsc --noEmit` passed against those

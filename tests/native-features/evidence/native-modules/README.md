@@ -19,6 +19,11 @@ install it on the emulator owned by the run. Every Android command must select
 that serial; the One CLI also requires `ANDROID_SERIAL`.
 
 ```sh
+candidate_apk=android/app/build/outputs/apk/debug/app-debug.apk
+adb -s "$ANDROID_SERIAL" install -r --no-streaming "$candidate_apk"
+installed_apk=$(adb -s "$ANDROID_SERIAL" shell pm path dev.vxrn.nativefeatures.tests | sed 's/^package://')
+test "$(shasum -a 256 "$candidate_apk" | cut -d ' ' -f 1)" = \
+  "$(adb -s "$ANDROID_SERIAL" shell sha256sum "$installed_apk" | cut -d ' ' -f 1)"
 adb -s "$ANDROID_SERIAL" reverse tcp:8109 tcp:8109
 adb -s "$ANDROID_SERIAL" emu sensor set acceleration 0:0:9.80665
 adb -s "$ANDROID_SERIAL" emu sensor set gyroscope 0:0:0.25
