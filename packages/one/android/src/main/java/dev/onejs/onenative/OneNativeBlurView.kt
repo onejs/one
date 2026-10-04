@@ -1,6 +1,9 @@
 package dev.onejs.onenative
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.RectF
 import android.graphics.RenderEffect
 import android.graphics.Shader
 import android.os.Build
@@ -11,10 +14,11 @@ import android.widget.FrameLayout
  * Regular backdrop blur (UI.Blur, expo-blur compatible).
  *
  * An internal blur view fills the bounds behind the children: on API 31+ it
- * carries a [RenderEffect] backdrop Gaussian plus the tint scrim; below 31
- * (no RenderEffect) it degrades to the scrim alone. Children mount after it
- * and stay sharp. Intensity scales both the radius (up to [MAX_RADIUS_DP])
- * and the scrim alpha; intensity 0 is a full passthrough.
+ * draws the backdrop captured by [OneNativeBackdropCapture] under a
+ * [RenderEffect] Gaussian, then the tint scrim; below 31 (no RenderEffect) it
+ * degrades to the scrim alone. Children mount after it and stay sharp.
+ * Intensity scales both the radius (up to [MAX_RADIUS_DP]) and the scrim
+ * alpha; intensity 0 is a full passthrough.
  *
  * Tint scrims behavior-match expo-blur's Android overlay table (base gray ×
  * alpha factor × intensity); the backdrop Gaussian itself is ours — expo's
@@ -35,7 +39,26 @@ class OneNativeBlurView(context: Context) : FrameLayout(context) {
       updateBlurView()
     }
 
-  private val blurView = View(context).apply {
+  private var scrim = 0
+
+  @Suppress("NewApi")
+  private var backdrop: OneNativeBackdropCapture? = null
+
+  private val blurView = object : View(context) {
+    private val paint = Paint(Paint.FILTER_BITMAP_FLAG)
+    private val rect = RectF()
+
+    override fun onDraw(canvas: Canvas) {
+      // a software canvas is a backdrop capture: contribute nothing, or the
+      // blur would feed back into the next capture.
+      if (!canvas.isHardwareAccelerated) return
+      backdrop?.bitmap?.let {
+        rect.set(0f, 0f, width.toFloat(), height.toFloat())
+        canvas.drawBitmap(it, null, rect, paint)
+      }
+      canvas.drawColor(scrim)
+    }
+  }.apply {
     layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
   }
 
@@ -48,20 +71,47 @@ class OneNativeBlurView(context: Context) : FrameLayout(context) {
     updateBlurView()
   }
 
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
+    syncBackdrop()
+  }
+
+  override fun onDetachedFromWindow() {
+    backdrop?.stop()
+    backdrop = null
+    super.onDetachedFromWindow()
+  }
+
   private fun updateBlurView() {
     val clamped = intensity.toFloat().coerceIn(0f, 1f)
-    if (clamped <= 0f) {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) blurView.setRenderEffect(null)
-      blurView.setBackgroundColor(0x00000000)
-      return
-    }
+    scrim = if (clamped > 0f) scrimForTint(tint, clamped) else 0
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
       val radius = clamped * MAX_RADIUS_DP * density
       blurView.setRenderEffect(
-        RenderEffect.createBlurEffect(radius, radius, Shader.TileMode.CLAMP),
+        if (radius > 0f) RenderEffect.createBlurEffect(radius, radius, Shader.TileMode.CLAMP) else null,
       )
     }
-    blurView.setBackgroundColor(scrimForTint(tint, clamped))
+    syncBackdrop()
+    blurView.invalidate()
+  }
+
+  // captures run only while an attached API 31+ blur has a radius to apply.
+  private fun syncBackdrop() {
+    val active = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+      isAttachedToWindow && intensity > 0.0
+    if (!active) {
+      backdrop?.stop()
+      backdrop = null
+      return
+    }
+    if (backdrop == null) {
+      backdrop = OneNativeBackdropCapture(
+        this,
+        includeOwnerChildren = false,
+        drawOwnerChildren = {},
+        onChange = blurView::invalidate,
+      ).also { it.start() }
+    }
   }
 
   private companion object {

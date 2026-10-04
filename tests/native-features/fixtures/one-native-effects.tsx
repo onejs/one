@@ -30,7 +30,7 @@ function Stripes({ testID }: { testID: string }) {
 export default function OneNativeEffects() {
   const [band, setBand] = useState(true)
   return (
-    <View style={styles.screen}>
+    <ScrollView testID="one-native-effects-screen" contentContainerStyle={styles.screen}>
       <Text testID="one-native-effects-mounted">Effects proof mounted</Text>
 
       {/* Contrast BottomBlurBand shape: scrolling content under a pinned
@@ -114,12 +114,12 @@ export default function OneNativeEffects() {
       <One.UI.Mask testID="one-native-effects-negative-invalid-mask">
         <Text>invalid mask element</Text>
       </One.UI.Mask>
-    </View>
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 16, gap: 12 },
+  screen: { padding: 16, gap: 12 },
   fill: { flex: 1 },
   stage: { height: 320, backgroundColor: '#ffffff' },
   row: { height: 44, justifyContent: 'center', paddingHorizontal: 12 },

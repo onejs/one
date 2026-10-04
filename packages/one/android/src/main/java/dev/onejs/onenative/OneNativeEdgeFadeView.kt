@@ -1,19 +1,20 @@
 // vendored from react-native-edge-fade (MIT, Copyright (c) 2026 Giulio Amato),
 // trimmed to mask + blur for OneNativeEdgeFade (overlay lives in RN core).
-// see VENDORING.md.
+// blur mode blurs the backdrop captured by OneNativeBackdropCapture (from
+// @sbaiahmed1/react-native-blur's QmBlurView capture). see VENDORING.md.
 package dev.onejs.onenative
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.BlendMode
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.ColorMatrix
-import android.graphics.ColorMatrixColorFilter
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.Path
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
+import android.graphics.Rect
 import android.graphics.RectF
 import android.graphics.RenderEffect
 import android.graphics.RenderNode
@@ -35,14 +36,15 @@ import kotlin.math.roundToInt
  * selected by [mode]:
  *   - `"mask"` — dissolves the content to transparent along the edge (alpha
  *     gradient composited with DST_IN).
- *   - `"blur"` — progressively blurs the content toward the edge (API 31+;
- *     degrades to `"mask"` below that, on a software canvas, or at radius 0).
+ *   - `"blur"` — progressively blurs everything rendered under the edge
+ *     strips (the backdrop behind this view plus its own children), like the
+ *     iOS variable blur (API 31+; degrades to `"mask"` below that).
  *
  * The gradient shape of every edge follows a curve resolved by
  * [OneNativeEdgeFadeCurves]; mask shaders are cached in
  * [OneNativeEdgeFadeShaderSlot].
  *
- * Blur mode records the content once, then composites a stack of
+ * Blur mode records the captured backdrop once, then composites a stack of
  * increasing-radius Gaussians, each masked to its own slice of the fade
  * curve's presence envelope, so the perceived radius grows toward the outer
  * edge following the curve's own shape. An optional frost veil
@@ -91,31 +93,26 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
 
   // ── Blur mode state (API 31+) ─────────────────────────────────────────────
 
-  // Children recorded once per frame; every per-edge/level node references this
-  // recording so the blur only reprocesses each edge strip, not the whole view.
+  // What renders under the strips, captured on every pre-draw (API 31+ blur
+  // mode only; see syncBackdrop).
   @Suppress("NewApi")
-  private var blurNode: RenderNode? = null
+  private var backdrop: OneNativeBackdropCapture? = null
 
-  // Per-edge × per-level nodes: levelNodes[edge][k], edge order TOP/BOTTOM/LEFT/
-  // RIGHT. Each node is sized to just its edge strip; nodes for inactive edges
-  // stay null.
+  // Per-edge blur nodes, edge order TOP/BOTTOM/LEFT/RIGHT. Each node records
+  // its strip of the captured backdrop at capture resolution; nodes for
+  // inactive edges stay null.
   @Suppress("NewApi")
-  private var levelNodes: Array<Array<RenderNode?>> =
-    Array(EDGE_COUNT) { arrayOfNulls(LEVEL_FRACTIONS.size) }
+  private var edgeNodes: Array<RenderNode?> = arrayOfNulls(EDGE_COUNT)
 
-  // Last recorded absolute rect per node. A rect change (fade or view resized)
-  // means the RenderEffect must be reassigned, independently of a radius change.
-  private val lastLevelRect: Array<Array<RectF?>> =
-    Array(EDGE_COUNT) { arrayOfNulls(LEVEL_FRACTIONS.size) }
+  // Last radius (capture pixels) and node size per edge, so the native
+  // RenderEffect is only recreated when either changes.
+  private val edgeNodeRadius = FloatArray(EDGE_COUNT) { -1f }
+  private val edgeNodeSize = LongArray(EDGE_COUNT)
 
-  // Skip recreating the native RenderEffect when neither the radius nor the
-  // node's rect changed since the last frame.
-  private var lastBlurEffectRadius = -1f
-
-  // Per-edge/level gradient caches — rebuild a native LinearGradient only when
-  // its curve or size changes, not every frame.
-  private data class LevelGradKey(
-    val curve: String, val size: Float, val dim: Float, val level: Int, val param: Float = 0f,
+  // Per-edge gradient caches — rebuild a native LinearGradient only when its
+  // curve or size changes, not every frame.
+  private data class MaskGradKey(
+    val curve: String, val size: Float, val dim: Float, val param: Float,
   )
   private data class VeilGradKey(
     val curve: String, val size: Float, val dim: Float, val color: Int, val param: Float = 0f,
@@ -130,12 +127,7 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
     }
   }
 
-  // One cache slot per level per edge — each level owns an independent slice.
-  private fun levelCacheArray() = Array(LEVEL_FRACTIONS.size) { GradientCache<LevelGradKey>() }
-  private val levelTopCaches    = levelCacheArray()
-  private val levelBottomCaches = levelCacheArray()
-  private val levelLeftCaches   = levelCacheArray()
-  private val levelRightCaches  = levelCacheArray()
+  private val maskCaches = Array(EDGE_COUNT) { GradientCache<MaskGradKey>() }
 
   private val veilTopCache     = GradientCache<VeilGradKey>()
   private val veilBottomCache  = GradientCache<VeilGradKey>()
@@ -144,29 +136,10 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
 
   // ── Paints ────────────────────────────────────────────────────────────────
 
-  // Frost "vibrancy": a fixed saturation + brightness grade on the blurred
-  // pixels. Apple's frosted-glass material is a smooth heavy Gaussian that is
-  // slightly DESATURATED and near-neutral in brightness (a soft pastel), not a
-  // boosted/darkened wash — matching iOS, whose saturation compensation is
-  // likewise internal (see the sat-comp layers in
-  // OneNativeEdgeFadeComponentView.mm).
-  private val frostVibrancyFilter = ColorMatrixColorFilter(
-    ColorMatrix().apply {
-      setSaturation(FROST_SATURATION)
-      postConcat(
-        ColorMatrix(
-          floatArrayOf(
-            FROST_LIFT, 0f, 0f, 0f, 0f,
-            0f, FROST_LIFT, 0f, 0f, 0f,
-            0f, 0f, FROST_LIFT, 0f, 0f,
-            0f, 0f, 0f, 1f, 0f,
-          ),
-        ),
-      )
-    },
-  )
-
   private val overlayPaint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG)
+  private val backdropPaint = Paint(Paint.FILTER_BITMAP_FLAG)
+  private val backdropSrc = Rect()
+  private val backdropDst = RectF()
   private val maskPaint    = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG).apply {
     // BlendMode is the modern (API 29+) replacement for PorterDuffXfermode.
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -209,23 +182,48 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
   override fun onAttachedToWindow() {
     super.onAttachedToWindow()
     viewTreeObserver.addOnScrollChangedListener(scrollListener)
+    syncBackdrop()
   }
 
   override fun onDetachedFromWindow() {
     viewTreeObserver.takeIf { it.isAlive }?.removeOnScrollChangedListener(scrollListener)
+    backdrop?.stop()
+    backdrop = null
     topSlot.release()
     bottomSlot.release()
     leftSlot.release()
     rightSlot.release()
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-      blurNode?.discardDisplayList()
-      levelNodes.forEach { edge -> edge.forEach { it?.discardDisplayList() } }
+      edgeNodes.forEach { it?.discardDisplayList() }
     }
-    blurNode = null
-    levelNodes = Array(EDGE_COUNT) { arrayOfNulls(LEVEL_FRACTIONS.size) }
-    lastLevelRect.forEach { edge -> edge.fill(null) }
-    lastBlurEffectRadius = -1f
+    edgeNodes = arrayOfNulls(EDGE_COUNT)
+    edgeNodeRadius.fill(-1f)
+    edgeNodeSize.fill(0L)
     super.onDetachedFromWindow()
+  }
+
+  /**
+   * Starts or stops the backdrop capture to match the props; the manager calls
+   * this after every prop transaction. Only an attached, active API 31+ blur
+   * pays for captures.
+   */
+  fun syncBackdrop() {
+    val active = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+      isAttachedToWindow && mode == "blur" && blurRadius > 0f &&
+      (fadeTop > 0f || fadeBottom > 0f || fadeLeft > 0f || fadeRight > 0f)
+    if (!active) {
+      backdrop?.stop()
+      backdrop = null
+      return
+    }
+    if (backdrop == null) {
+      backdrop = OneNativeBackdropCapture(this, includeOwnerChildren = true, ::drawChildren, ::invalidate)
+        .also { it.start() }
+    }
+  }
+
+  private fun drawChildren(canvas: Canvas) {
+    super.dispatchDraw(canvas)
   }
 
   // ── Drawing ───────────────────────────────────────────────────────────────
@@ -307,20 +305,21 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
   }
 
   private fun drawMaskStrips(canvas: Canvas, w: Float, h: Float) {
+    val hw = canvas.isHardwareAccelerated
     if (fadeTop > 0f) {
-      maskPaint.shader = topSlot.acquire(curveTop, fadeTop, 0f, 0f, fadeTop, 0f, 0f)
+      maskPaint.shader = topSlot.acquire(curveTop, fadeTop, 0f, 0f, fadeTop, 0f, 0f, hw)
       canvas.drawRect(0f, 0f, w, fadeTop, maskPaint)
     }
     if (fadeBottom > 0f) {
-      maskPaint.shader = bottomSlot.acquire(curveBottom, fadeBottom, h, 0f, h - fadeBottom, 0f, h)
+      maskPaint.shader = bottomSlot.acquire(curveBottom, fadeBottom, h, 0f, h - fadeBottom, 0f, h, hw)
       canvas.drawRect(0f, h - fadeBottom, w, h, maskPaint)
     }
     if (fadeLeft > 0f) {
-      maskPaint.shader = leftSlot.acquire(curveLeft, fadeLeft, 0f, fadeLeft, 0f, 0f, 0f)
+      maskPaint.shader = leftSlot.acquire(curveLeft, fadeLeft, 0f, fadeLeft, 0f, 0f, 0f, hw)
       canvas.drawRect(0f, 0f, fadeLeft, h, maskPaint)
     }
     if (fadeRight > 0f) {
-      maskPaint.shader = rightSlot.acquire(curveRight, fadeRight, w, w - fadeRight, 0f, w, 0f)
+      maskPaint.shader = rightSlot.acquire(curveRight, fadeRight, w, w - fadeRight, 0f, w, 0f, hw)
       canvas.drawRect(w - fadeRight, 0f, w, h, maskPaint)
     }
   }
@@ -332,156 +331,125 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
     try {
       val w = width.toFloat(); val h = height.toFloat()
 
-      // createBlurEffect / drawRenderNode need API 31 and a hardware canvas.
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
-          !canvas.isHardwareAccelerated ||
-          blurRadius <= 0f) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) logBlurFallbackOnce()
+      // createBlurEffect / drawRenderNode need API 31.
+      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+        logBlurFallbackOnce()
         drawMask(canvas)
         return
       }
-      drawBlurLayered(canvas, w, h)
+      // A software canvas is a backdrop capture (this view's or another blur
+      // view's): contribute only the children, never the blur itself. At
+      // radius 0 the strips are neutral, so the children render as-is.
+      val capture = backdrop?.bitmap
+      if (!canvas.isHardwareAccelerated || blurRadius <= 0f || capture == null) {
+        super.dispatchDraw(canvas)
+        return
+      }
+      drawBlurLayered(canvas, w, h, capture)
     } finally {
       Trace.endSection()
     }
   }
 
+  // The library's progressive blur (react-native-blur ProgressiveBlurView):
+  // per edge, one Gaussian of the backdrop strip composited through a DST_IN
+  // mask that follows the edge's fade curve. The Gaussian is a platform
+  // RenderEffect run at capture resolution, so it only processes the strip's
+  // downsampled pixels.
   @RequiresApi(Build.VERSION_CODES.S)
-  private fun drawBlurLayered(canvas: Canvas, w: Float, h: Float) {
-    // Record children once into the content node; each per-edge/level node draws
-    // a reference to this recording but is sized to just its edge strip, so the
-    // blur RenderEffect only processes the strip's pixels, not the whole view.
-    val content = (blurNode ?: RenderNode("OneNativeEdgeFadeBlur").also { blurNode = it })
-    content.setPosition(0, 0, width, height)
-    val rc = content.beginRecording()
-    try {
-      // Opaque backdrop first. The Gaussian samples across the whole strip, so
-      // any transparency in the recording (gaps between children, a transparent
-      // list background) gets spread by the blur — the larger the radius, the
-      // wider it bleeds, making the frost turn semi-transparent and let content
-      // show through (worse at high blur). Drawing the view's real background
-      // into the recording fills those gaps; when the app sets an opaque
-      // backgroundColor the strip is fully opaque and occludes at any radius.
-      background?.draw(rc)
-      super.dispatchDraw(rc)
-    } finally {
-      content.endRecording()
-    }
-
-    // Sharp base underneath the frost — content stays visible under the fade,
-    // just blurred toward the edge (no dissolve), like iOS.
+  private fun drawBlurLayered(canvas: Canvas, w: Float, h: Float, capture: Bitmap) {
+    // Sharp children underneath the frost (the real backdrop is already drawn
+    // by the views behind) — content stays visible under the fade, just
+    // blurred toward the edge (no dissolve), like iOS.
     super.dispatchDraw(canvas)
 
     if (fadeTop > 0f) {
-      drawEdgeLevels(canvas, EDGE_TOP, content, curveTop, levelTopCaches, fadeTop, 0f,
+      drawEdgeBlur(canvas, EDGE_TOP, capture, curveTop, fadeTop, 0f,
         0f, 0f, w, fadeTop, 0f, fadeTop, 0f, 0f)
     }
     if (fadeBottom > 0f) {
-      drawEdgeLevels(canvas, EDGE_BOTTOM, content, curveBottom, levelBottomCaches, fadeBottom, h,
+      drawEdgeBlur(canvas, EDGE_BOTTOM, capture, curveBottom, fadeBottom, h,
         0f, h - fadeBottom, w, h, 0f, h - fadeBottom, 0f, h)
     }
     if (fadeLeft > 0f) {
-      drawEdgeLevels(canvas, EDGE_LEFT, content, curveLeft, levelLeftCaches, fadeLeft, 0f,
+      drawEdgeBlur(canvas, EDGE_LEFT, capture, curveLeft, fadeLeft, 0f,
         0f, 0f, fadeLeft, h, fadeLeft, 0f, 0f, 0f)
     }
     if (fadeRight > 0f) {
-      drawEdgeLevels(canvas, EDGE_RIGHT, content, curveRight, levelRightCaches, fadeRight, w,
+      drawEdgeBlur(canvas, EDGE_RIGHT, capture, curveRight, fadeRight, w,
         w - fadeRight, 0f, w, h, w - fadeRight, 0f, w, 0f)
     }
-    lastBlurEffectRadius = blurRadius
 
     // Optional frost material veil on top (opt-in via a non-transparent
     // overlayColor).
     if ((overlayColor ushr 24) != 0) drawFrostVeil(canvas, w, h, overlayColor)
   }
 
-  // Blur + composite one edge's level stack. For each level: record the content
-  // strip (downsampled per LEVEL_DOWNSCALE), blur it, and composite it over the
-  // band through the level's DST_IN gradient mask.
-  //
-  // Padding rationale: createBlurEffect clamps samples at the node's bounds. If
-  // the node rect were exactly the band, the gaussian at the band's inner edge
-  // would sample clamped pixels and leave a seam; expanding the rect by
-  // ceil(radius) gives it real neighboring content. The extra margin never
-  // shows — the mask's alpha is 0 at the inner edge.
+  // Blur + composite one edge. The node records the band, padded inward by the
+  // radius so the Gaussian at the band's inner edge samples real neighboring
+  // content instead of a clamped seam (the mask is 0 there, so the padding
+  // never shows), then the band is masked with DST_IN.
   //
   // `bandLeft..bandBottom` is the visible band rect; `(gx0,gy0)-(gx1,gy1)` is
   // the inner→outer line the mask gradient runs along.
   @RequiresApi(Build.VERSION_CODES.S)
-  private fun drawEdgeLevels(
-    canvas: Canvas, edge: Int, content: RenderNode, curve: String,
-    caches: Array<GradientCache<LevelGradKey>>,
+  private fun drawEdgeBlur(
+    canvas: Canvas, edge: Int, capture: Bitmap, curve: String,
     size: Float, dim: Float,
     bandLeft: Float, bandTop: Float, bandRight: Float, bandBottom: Float,
     gx0: Float, gy0: Float, gx1: Float, gy1: Float,
   ) {
     val vw = width.toFloat(); val vh = height.toFloat()
-    val edgeNodes = levelNodes[edge]
-    val edgeRects = lastLevelRect[edge]
+    val scale = capture.width / vw
+    val pad = ceil(blurRadius)
+    val nLeft   = (bandLeft   - pad).coerceAtLeast(0f)
+    val nTop    = (bandTop    - pad).coerceAtLeast(0f)
+    val nRight  = (bandRight  + pad).coerceAtMost(vw)
+    val nBottom = (bandBottom + pad).coerceAtMost(vh)
 
-    var lo = 0f
-    for (k in LEVEL_FRACTIONS.indices) {
-      val hi = LEVEL_FRACTIONS[k]
-      val ds = LEVEL_DOWNSCALE[k]
-      val radius = blurRadius * LEVEL_FRACTIONS[k]
-      val pad = ceil(radius)
-      val nLeft   = (bandLeft   - pad).coerceAtLeast(0f)
-      val nTop    = (bandTop    - pad).coerceAtLeast(0f)
-      val nRight  = (bandRight  + pad).coerceAtMost(vw)
-      val nBottom = (bandBottom + pad).coerceAtMost(vh)
-
-      val node = edgeNodes[k] ?: RenderNode("OneNativeEdgeFadeBlurLevel_${edge}_$k").also { edgeNodes[k] = it }
-      node.setPosition(0, 0,
-        ceil((nRight - nLeft) * ds).roundToInt(), ceil((nBottom - nTop) * ds).roundToInt())
-      val rc = node.beginRecording()
-      try {
-        rc.scale(ds, ds)
-        rc.translate(-nLeft, -nTop)
-        rc.drawRenderNode(content)
-      } finally {
-        node.endRecording()
-      }
-
-      val prevRect = edgeRects[k]
-      val rectChanged = prevRect == null ||
-        prevRect.left != nLeft || prevRect.top != nTop ||
-        prevRect.right != nRight || prevRect.bottom != nBottom
-      if (blurRadius != lastBlurEffectRadius || rectChanged) {
-        node.setRenderEffect(
-          if (radius > 0f) {
-            // MIRROR (not CLAMP): on the band's exposed sides the node is coerced
-            // to the view bounds with no padding, so CLAMP would repeat the edge
-            // pixel and leave a hard streaked orlo; MIRROR samples a reflection
-            // for a natural soft edge.
-            val blur = RenderEffect.createBlurEffect(radius * ds, radius * ds, Shader.TileMode.MIRROR)
-            RenderEffect.createColorFilterEffect(frostVibrancyFilter, blur)
-          } else {
-            null
-          },
-        )
-      }
-      edgeRects[k] = (prevRect ?: RectF()).apply { set(nLeft, nTop, nRight, nBottom) }
-
-      // Composite: offscreen layer over the band, node drawn back at 1:1, then a
-      // DST_IN gradient (view coords) multiplies its alpha. Each level masks to
-      // its own [lo,hi] slice of the fade curve's presence envelope (compressed
-      // into `fp` of the band), so the curve governs the whole progression.
-      val fp = frostProgression.coerceIn(0.05f, 1f)
-      val mask = caches[k].acquire(LevelGradKey(curve, size, dim, k, fp)) {
-        frostGradient(curve, gx0, gy0, gx1, gy1, lo, hi, fp, curveShaped = k == 0)
-      }
-      val sc = canvas.saveLayer(bandLeft, bandTop, bandRight, bandBottom, null)
-      canvas.translate(nLeft, nTop)
-      canvas.scale(1f / ds, 1f / ds)
-      canvas.drawRenderNode(node)
-      canvas.scale(ds, ds)
-      canvas.translate(-nLeft, -nTop)
-      maskPaint.shader = mask
-      canvas.drawRect(bandLeft, bandTop, bandRight, bandBottom, maskPaint)
-      canvas.restoreToCount(sc)
-
-      lo = hi
+    backdropSrc.set(
+      (nLeft * scale).toInt(), (nTop * scale).toInt(),
+      ceil(nRight * scale).toInt().coerceAtMost(capture.width),
+      ceil(nBottom * scale).toInt().coerceAtMost(capture.height),
+    )
+    if (backdropSrc.isEmpty) return
+    val node = edgeNodes[edge] ?: RenderNode("OneNativeEdgeFadeBlur_$edge").also { edgeNodes[edge] = it }
+    node.setPosition(0, 0, backdropSrc.width(), backdropSrc.height())
+    val rc = node.beginRecording()
+    try {
+      backdropDst.set(0f, 0f, backdropSrc.width().toFloat(), backdropSrc.height().toFloat())
+      rc.drawBitmap(capture, backdropSrc, backdropDst, backdropPaint)
+    } finally {
+      node.endRecording()
     }
+
+    val radius = blurRadius * scale
+    val nodeSize = (backdropSrc.width().toLong() shl 32) or backdropSrc.height().toLong()
+    if (edgeNodeRadius[edge] != radius || edgeNodeSize[edge] != nodeSize) {
+      // MIRROR (not CLAMP): on the band's exposed sides the node is coerced to
+      // the view bounds with no padding, so CLAMP would repeat the edge pixel
+      // and leave a hard streaked edge; MIRROR samples a reflection for a
+      // natural soft edge.
+      node.setRenderEffect(RenderEffect.createBlurEffect(radius, radius, Shader.TileMode.MIRROR))
+      edgeNodeRadius[edge] = radius
+      edgeNodeSize[edge] = nodeSize
+    }
+
+    val fp = frostProgression.coerceIn(0.05f, 1f)
+    val mask = maskCaches[edge].acquire(MaskGradKey(curve, size, dim, fp)) {
+      frostGradient(curve, gx0, gy0, gx1, gy1, fp)
+    }
+    // Composite: offscreen layer over the band, node drawn back at view scale,
+    // then the DST_IN gradient (view coords) multiplies its alpha.
+    val sc = canvas.saveLayer(bandLeft, bandTop, bandRight, bandBottom, null)
+    canvas.save()
+    canvas.translate(backdropSrc.left / scale, backdropSrc.top / scale)
+    canvas.scale(1f / scale, 1f / scale)
+    canvas.drawRenderNode(node)
+    canvas.restore()
+    maskPaint.shader = mask
+    canvas.drawRect(bandLeft, bandTop, bandRight, bandBottom, maskPaint)
+    canvas.restoreToCount(sc)
   }
 
   // ── Frost material veil (blur mode, opt-in via overlayColor) ──────────────
@@ -539,31 +507,22 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
     return LinearGradient(x0, y0, x1, y1, colors, stops, Shader.TileMode.CLAMP)
   }
 
-  // Curve-governed level mask. Along inner (t=0) → outer (t=1):
-  //   u = min(t / fp, 1)            — compress the envelope into the inner `fp`
-  //                                    fraction of the band
-  //   P = presenceAt(curve, u)      — the fade curve's presence at u
-  //   v = clamp((P − lo)/(hi − lo)) — this level's [lo,hi] slice of P
-  //   weight = v for level 0 (the visible sharp→frost transition, so editing the
-  //     Bézier reshapes it directly); v·v·(3−2v) for the heavier levels — a
-  //     zero-slope smoothstep anti-banding pass, since their fade-ins are
-  //     internal cross-fades between two blur radii and a raw (non-zero-slope)
-  //     entry draws a visible onset line ("band") on scrolling content.
+  // Curve-governed blur mask, the same ramp as the iOS variable blur mask.
+  // Along inner (t=0) → outer (t=1):
+  //   u = min(t / fp, 1)        — compress the envelope into the inner `fp`
+  //                                fraction of the band
+  //   alpha = presenceAt(curve, u)
   // RGB is irrelevant under DST_IN — only the alpha ramp is consumed.
   private fun frostGradient(
-    curve: String, x0: Float, y0: Float, x1: Float, y1: Float,
-    lo: Float, hi: Float, fp: Float, curveShaped: Boolean,
+    curve: String, x0: Float, y0: Float, x1: Float, y1: Float, fp: Float,
   ): LinearGradient {
     // 32 stops so the sampled curve shape is resolved smoothly.
     val n = 32
     val stops = FloatArray(n) { it / (n - 1f) }
-    val range = hi - lo
     val colors = IntArray(n) { i ->
       val u = (stops[i] / fp).coerceAtMost(1f)
-      val p = OneNativeEdgeFadeCurves.presenceAt(curve, u)
-      val v = ((p - lo) / range).coerceIn(0f, 1f)
-      val weight = if (curveShaped) v else v * v * (3f - 2f * v)
-      ColorUtils.setAlphaComponent(Color.BLACK, (weight * 255f).roundToInt())
+      val p = OneNativeEdgeFadeCurves.presenceAt(curve, u).coerceIn(0f, 1f)
+      ColorUtils.setAlphaComponent(Color.BLACK, (p * 255f).roundToInt())
     }
     return LinearGradient(x0, y0, x1, y1, colors, stops, Shader.TileMode.CLAMP)
   }
@@ -581,31 +540,12 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
   }
 
   private companion object {
-    // Edge indices into levelNodes / lastLevelRect.
+    // Edge indices into edgeNodes.
     private const val EDGE_TOP = 0
     private const val EDGE_BOTTOM = 1
     private const val EDGE_LEFT = 2
     private const val EDGE_RIGHT = 3
     private const val EDGE_COUNT = 4
-
-    // Per-level radius fractions AND presence-envelope slices: three
-    // createBlurEffect levels of increasing radius, each masked to its own
-    // [lo,hi] slice of the fade curve's presence envelope (see
-    // frostGradient), so the radius grows toward the edge following the
-    // curve's own shape rather than a fixed geometric ramp.
-    private val LEVEL_FRACTIONS = floatArrayOf(0.35f, 0.65f, 1f)
-
-    // Per-level strip render scale: the light first level stays full-res (its
-    // small radius can't hide upscale blur), the heavy levels run at half-res —
-    // ~4× fewer pixels on the expensive Gaussians, and their large radius hides
-    // the bilinear upscale.
-    private val LEVEL_DOWNSCALE = floatArrayOf(1f, 0.5f, 0.5f)
-
-    // Fixed frost grade (saturation + brightness on the blurred pixels),
-    // matching iOS saturation compensation. Not props: both platforms tune
-    // from the same constants.
-    private const val FROST_SATURATION = 0.9f
-    private const val FROST_LIFT = 1.03f
 
     // Frost-veil alpha cap (matches iOS kVeilMaxAlpha).
     private const val VEIL_MAX_ALPHA = 0.6f
