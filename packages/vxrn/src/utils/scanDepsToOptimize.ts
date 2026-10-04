@@ -86,6 +86,9 @@ export const EXCLUDE_LIST = [
   '@nandorojo/galeria',
   'react-native-pager-view',
   '@react-native/debugger-shell',
+  // expo's debugger is a standalone app, not an SSR runtime dependency.
+  '@expo/cli',
+  '@expo/log-box',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
   'validator',
@@ -154,7 +157,10 @@ export async function scanDepsToOptimize(
 
   // worklets without reanimated still needs the worklets transform, as the metro path assumes.
   const needsWorklets = (json: typeof pkgJson) =>
-    !!(json.dependencies?.['react-native-reanimated'] || json.dependencies?.['react-native-worklets'])
+    !!(
+      json.dependencies?.['react-native-reanimated'] ||
+      json.dependencies?.['react-native-worklets']
+    )
   let hasReanimated = needsWorklets(pkgJson)
 
   const prebundleDeps = (

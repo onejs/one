@@ -63,6 +63,8 @@ describe('scanDepsToOptimize codegenConfig', () => {
       dependencies: {
         'expo-crypto': '1.0.0',
         '@expo/example': '1.0.0',
+        '@expo/cli': '1.0.0',
+        '@expo/log-box': '1.0.0',
         'community-expo-module': '1.0.0',
         'plain-js-lib': '1.0.0',
       },
@@ -79,6 +81,14 @@ describe('scanDepsToOptimize codegenConfig', () => {
       version: '1.0.0',
       main: './index.js',
     })
+    for (const name of ['cli', 'log-box'])
+      writePkg(join(root, 'node_modules', '@expo', name), {
+        name: `@expo/${name}`,
+        version: '1.0.0',
+        main: './index.js',
+        dependencies: { '@expo/example': '1.0.0' },
+        peerDependencies: { react: '*', 'react-native': '*' },
+      })
     writePkg(join(root, 'node_modules', 'community-expo-module'), {
       name: 'community-expo-module',
       version: '1.0.0',
@@ -97,5 +107,7 @@ describe('scanDepsToOptimize codegenConfig', () => {
       expect.arrayContaining(['expo-crypto', '@expo/example', 'community-expo-module'])
     )
     expect(result.prebundleDeps).not.toContain('plain-js-lib')
+    expect(result.prebundleDeps).not.toContain('@expo/cli')
+    expect(result.prebundleDeps).not.toContain('@expo/log-box')
   })
 })

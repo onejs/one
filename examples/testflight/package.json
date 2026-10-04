@@ -51,7 +51,8 @@
     "@react-native-community/template": "^0.87.1",
     "@tamagui/vite-plugin": "2.6.2",
     "tsx": "^4.20.6",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "typescript": "5.9.3"
   },
   "resolutions": {
     "@react-navigation/native": "8.0.0-alpha.50",
