@@ -30,3 +30,10 @@ export * from './plugins/workletImportsPlugin'
 export * from './plugins/backgroundComputationPlugin'
 
 export * from './types'
+
+export {
+  transformBackgroundComputations,
+  loadBackgroundComputationModule,
+  createBackgroundWorkletModule,
+  assertBackgroundDependency,
+} from './backgroundComputation'

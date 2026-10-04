@@ -45,3 +45,21 @@ document-picker migration, and a GPU canvas integration.
 Nate approved this shared API and migration directly on 2026-10-03, referencing
 share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187. Assigned assembled
 review remains with m19584 before merging One v2-beta and Contrast main.
+
+
+Compiler integration follow-up
+
+The app API remains the approved `one/background` contract. `vxrn/background-computation`
+now exposes its browser-safe compiler core: `transformBackgroundComputations(source, id,
+{ platform, resolve, workerFactory?, nativeModule? })` returns transformed code, its map,
+and generated module descriptors. Vite and Contrast invoke this same function. Contrast
+bundles its virtual pure dependency graph into a Worker Blob on web and the same native
+worklet loader used by Vite. A separate Node compiler entry validates capture globals and
+Hermes loops before Worklets serialization, without importing Vite into Contrast's backend.
+
+RAN: Contrast's raw transform previously emitted an unusable definition (before commit
+99f6be087f). It now rejects a missing graph adapter at compile time. TESTED: six graph
+checks cover actual native calculation, helper edits, forbidden globals and runtime
+packages, missing optional dependencies, and web/native conditional exports. RAN: the
+full Contrast bundler suite passes 128 tests / 344 assertions; One compiler/plugin passes
+39 tests and vxrn typecheck. Real custom-preview Rally runtime proof is still being run.
