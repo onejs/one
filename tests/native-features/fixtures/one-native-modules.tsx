@@ -200,16 +200,22 @@ async function images() {
     )
     await transform('rotate180.png', source, { rotate: 180, format: 'png' }, 80, 120)
     await transform('rotate270.png', source, { rotate: 270, format: 'png' }, 120, 80)
-    const input = (await (await fetch(`${endpoint}/media`)).json()) as {
-      png: string
-      jpeg: string
-      bmp: string
-    }
+    const input = (await (await fetch(`${endpoint}/media`)).json()) as Record<
+      string,
+      string
+    >
     for (const [extension, base64] of Object.entries(input)) {
       const uri = source + '.' + extension
       await fs.writeFile(uri, base64, 'base64')
       output.push(uri)
-      await transform(`${extension}-decoded.png`, uri, { format: 'png' }, 120, 80)
+      const swapsAxes = extension.startsWith('exif') && Number(extension.slice(4)) >= 5
+      await transform(
+        `${extension}-decoded.png`,
+        uri,
+        { format: 'png' },
+        swapsAxes ? 80 : 120,
+        swapsAxes ? 120 : 80
+      )
       if (extension === 'png') {
         await transform(
           'png-crop.png',

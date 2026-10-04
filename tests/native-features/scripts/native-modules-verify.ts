@@ -67,6 +67,14 @@ await compare(
   0
 )
 await compare('jpeg-decoded.png', image().flatten({ background: 'white' }), 12)
+for (let orientation = 1; orientation <= 8; orientation++) {
+  const source = await image()
+    .flatten({ background: 'white' })
+    .jpeg({ quality: 100, chromaSubsampling: '4:4:4' })
+    .withMetadata({ orientation })
+    .toBuffer()
+  await compare(`exif${orientation}-decoded.png`, sharp(source).autoOrient(), 12)
+}
 await compare(
   'png-crop.png',
   image().extract({ left: 60, top: 0, width: 60, height: 40 }),
@@ -89,18 +97,23 @@ assert.equal(
   0,
   'clockwise rotation moves transparent strip to top'
 )
-// negative control: an unrotated image compared as the rotated output must fail.
+// negative control: a counterclockwise reference has the same dimensions but wrong pixels.
 let rejected = false
 try {
-  await compare('png-rotate90.png', image(), 0)
+  await compare('png-rotate90.png', image().rotate(270), 0)
 } catch {
   rejected = true
 }
-assert(rejected, 'unrotated negative control must fail')
+assert(rejected, 'counterclockwise negative control must fail')
 writeFileSync(
   resolve(directory, 'pixels.json'),
   JSON.stringify(
-    { passed: true, checks, transparency: true, unrotatedNegativeControlRejected: true },
+    {
+      passed: true,
+      checks,
+      transparency: true,
+      counterclockwiseNegativeControlRejected: true,
+    },
     null,
     2
   ) + '\n'

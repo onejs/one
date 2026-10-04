@@ -70,10 +70,20 @@ for (let y = 0; y < 80; y++)
       54 + ((79 - y) * 120 + x) * 3
     )
   }
-const media = {
+const media: Record<string, string> = {
   png: png.toString('base64'),
   jpeg: jpeg.toString('base64'),
   bmp: bmp.toString('base64'),
+}
+for (let orientation = 1; orientation <= 8; orientation++) {
+  media[`exif${orientation}`] = (
+    await input
+      .clone()
+      .flatten({ background: 'white' })
+      .jpeg({ quality: 100, chromaSubsampling: '4:4:4' })
+      .withMetadata({ orientation })
+      .toBuffer()
+  ).toString('base64')
 }
 Bun.serve({
   port,
