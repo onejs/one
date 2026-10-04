@@ -612,3 +612,27 @@ negative is bottom-tabs0.10.2's quoted `RCTConversions.h`. The framework
 contains `React.framework/Headers/RCTConversions.h`; ImageManager's header
 is exported under `react/renderer/imagemanager`. A narrow package patch uses
 those actual qualified paths. No routing algorithm or tab behavior was changed.
+
+RAN: final a4 Contrast web build passes from the product source after restoring
+all owned test injection. Headless Chromium passes `/`, `/auth/login`, and the
+signed-out `/native-engine-poc` redirect without page errors. Logs:
+`/tmp/one-realapps-contrast-web-a4-final.log`,
+`/tmp/one-realapps-contrast-web-a4-runtime.log`.
+RAN: the clean Android APK services receipt proves Storage/SecureStore UTF-8
+round trips and delete, Clipboard, Fonts, and notification schedule/cancel.
+Updates runtime is exactly `84`. The routing flow proves stack, tabs and drawer
+retain count 1 on back. Receipts:
+`/tmp/one-realapps-contrast-android-services-a4-final/api-results.json`,
+`/tmp/one-realapps-contrast-android-routing-a4-final.log`.
+RAN: the next Studio cold launch failed the strict 60-second home precondition;
+logcat records bundle load and module creation, and a later capture shows the
+correct onboarding. Studio sampled 4.28% idle. INFERRED: startup was delayed
+under host contention; a run on Pro with the same APK can falsify that attribution.
+Move Android UI checks to Pro's unused regular Pixel 8 API37 AVD in read-only
+mode; keep the timeout and home assertion unchanged.
+RAN: Takeout's RN87 compatibility patch excludes legacy Paper bridge helpers
+using the framework's `RCT_REMOVE_LEGACY_ARCH` boundary. Compilation advanced
+past that error and failed on an unqualified `RCTBridge.h` import. All three
+utility view managers now import `<React/RCTBridge.h>`; frozen Bun install
+applies the patch. Draft commits `33341a4` and its header follow-up stay on
+`tm/one-realapps` pending actual iOS and Android validation.
