@@ -148,9 +148,11 @@ course matches the full synchronous JSON and exact getCurrent identity. Removing
 the cache or revision guard fails the negative probe. Both browser owners retire
 Blob URLs after their first reply. RAN:131 bundler tests/356 assertions,
 bun check46.7s and complete factory15 routes/450 files/14,469,639 bytes pass.
-Receipts and repeat commands: contrast-preview/geometry-reuse/. The final cache
-follow-up is pushed and handed to p58675 for its main merge. One main untouched;
-that follow-up landing remains pending with its assigned owner.
+Receipts and repeat commands: contrast-preview/geometry-reuse/. RAN: main-sync
+p58675 landed the final cache fix as a7b1c5c3c66. Validated a0bbcb5b92 is an
+ancestor of that merge, which is an ancestor of fetched main7ef5bbf301; main's
+hook blob exactly matches the validated source. No source or landing item remains
+open. One main untouched; manager/coordinator owns subsequent CI.
 
 Proposed public shape (`one/background`):
 
