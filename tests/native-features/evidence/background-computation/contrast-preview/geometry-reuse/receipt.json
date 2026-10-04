@@ -30,6 +30,14 @@
   "firstCheckFailure": "stale local host-library output lacked FETCH_PROXY_NATIVE_USER_AGENT_HEADER; refreshed via the existing build. Main inventory drift corrected upstream53c70a3389/e6b3660fbe; no inventory/engine-source changes in this follow-up.",
   "nativePreviewInfrastructure": "optional CLI WebSocket proxy404 retained; no application error; named worklet worker produced the accepted course",
   "notClaimed": "new physical-device build, full playable game boot or heap collection",
-  "landingOwner": "main-sync p58675, assigned by m19584; final follow-up main landing pending",
-  "ownedResources": "browser/server closed by proof finally blocks; no simulator/emulator leased for this follow-up"
+  "landingOwner": "main-sync p58675, assigned by m19584; final main landing complete",
+  "ownedResources": "browser/server closed by proof finally blocks; no simulator/emulator leased for this follow-up",
+  "mainLandingVerification": {
+    "label": "RAN",
+    "merge": "a7b1c5c3c6663eee58ffc8751255310991d947a6",
+    "observedMain": "7ef5bbf3013b8377441ae31570b85b7960ff966b",
+    "hookBlob": "21e4836b43fb4c763b2e6bfd76305e778edb07a6",
+    "checks": "validated source is an ancestor of the merge; merge is an ancestor of observed main; main hook blob matches validated source exactly",
+    "newRuntimeOrCiClaim": false
+  }
 }

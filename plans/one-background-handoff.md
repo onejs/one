@@ -40,9 +40,12 @@ Original TESTED real iOS27, Android37 emulator and Chromium dev/prod Rally
 reactivation and six executions; no heap-collection claim. Compiler follow-up
 claims native preview, without a new phone rebuild or full playable game boot.
 
-OPEN: main-sync p58675 has the final follow-up SHA and owns synced merge/push to
-Contrast main. That cache fix landing is pending. Manager/coordinator owns
-subsequent CI. No other source issue remains. Guard defect t-mutdjr1u-v5o0.
+RAN: main-sync p58675 landed the cache fix with merge
+**a7b1c5c3c6663eee58ffc8751255310991d947a6**. Both ancestry checks pass:
+validated a0bbcb5b92 is in that merge, which is in fetched main7ef5bbf301.
+Main's hook blob exactly matches the validated source. No source or landing item
+remains open. Manager/coordinator owns subsequent CI; guard defect t-mutdjr1u-v5o0
+stays with its tool owner. tm finish already completed once.
 
 Evidence: tests/native-features/evidence/background-computation/, especially
 contrast-preview/geometry-reuse/. API doc:

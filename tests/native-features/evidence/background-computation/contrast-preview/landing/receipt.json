@@ -14,9 +14,10 @@
   "catalogDriftGate": "passed",
   "courseReferenceComparison": "seven fields equal for57 objects",
   "mainLandingOwner": "main-sync p58675, assigned by m19584",
-  "laneDisposition": "original migration landed; current cache follow-up a0bbcb5b92 pushed and sent to p58675 for main landing",
+  "laneDisposition": "RAN original migration and cache follow-up a0bbcb5b92 landed on main; final merge a7b1c5c3c66 verified by ancestry and exact hook blob",
   "guardDefect": "t-mutdjr1u-v5o0",
   "originalWorkerMainPush": "blocked before execution by One-scoped PreToolUse guard despite explicit Contrast target; no mutation; manager notified once",
   "mainPush": "RAN original migration df23ed5000 is an ancestor of fetched Contrast main; composed hook88970f9985",
-  "followupEvidence": "../geometry-reuse/receipt.json"
+  "followupEvidence": "../geometry-reuse/receipt.json",
+  "cacheFollowupMerge": "a7b1c5c3c6663eee58ffc8751255310991d947a6"
 }

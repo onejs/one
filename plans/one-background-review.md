@@ -76,6 +76,8 @@ computation-count assertions. RAN:131 tests/356 assertions, Home typecheck,
 bun check46.7s and complete factory15 routes/450 files/14,469,639 bytes pass.
 Evidence: contrast-preview/geometry-reuse/. No new API or executor path.
 
-The final fix/rally-background-cache-owner branch is pushed and assigned to
-p58675 for a synced main merge. That final landing is pending; original migration
-is landed. Global defect t-mutdjr1u-v5o0 records the tool attribution failure.
+RAN: main-sync p58675 merged fix/rally-background-cache-owner into Contrast main
+as a7b1c5c3c66. Validated a0bbcb5b92 is in that merge and fetched main7ef5bbf301
+contains it. Main's hook blob matches the validated source exactly. Original
+migration and final cache fix are landed. Global defect t-mutdjr1u-v5o0 records
+the tool attribution failure; manager/coordinator owns subsequent CI.
