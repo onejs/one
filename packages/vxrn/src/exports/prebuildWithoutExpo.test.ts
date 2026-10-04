@@ -2415,7 +2415,7 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
       '<meta-data android:name="dev.onejs.updates.url" android:value="https://updates.example.com" />'
     )
     expect(rendered.content).toContain(
-      '<meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="test-1" />'
+      '<meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="@string/one_updates_runtime_version" />'
     )
   })
 
