@@ -389,7 +389,12 @@ function readCommands(call: any, decls: Declarations): Command[] {
   for (const m of commandMembers) {
     const name = m.key?.name ?? m.key?.value
     if (!name) continue
-    const fn = m.typeAnnotation?.typeAnnotation ?? m.value ?? m.typeAnnotation
+    // `setPage(ref, index): void` carries its params on the member itself;
+    // `setPage: (ref, index) => void` and flow members carry a function type
+    const fn =
+      m.type === 'TSMethodSignature'
+        ? m
+        : (m.typeAnnotation?.typeAnnotation ?? m.value ?? m.typeAnnotation)
     const params = (fn?.params ?? fn?.parameters ?? []).slice(1)
     byName.set(
       name,
