@@ -1,0 +1,42 @@
+{
+  "One.iOS.Widgets": {
+    "api": "One.iOS.Widgets",
+    "status": "observed",
+    "value": {
+      "data": {
+        "title": "Native API probe",
+        "value": "42",
+        "subtitle": "real app snapshot"
+      },
+      "result": {
+        "$undefined": true
+      }
+    },
+    "scope": "runner must inspect installed widget extension; write completion cannot prove widget pixels"
+  },
+  "One.iOS.WidgetUI": {
+    "api": "One.iOS.WidgetUI",
+    "status": "observed",
+    "value": {
+      "step": 2,
+      "result": {
+        "$undefined": true
+      }
+    },
+    "scope": "JSX serialized into native widget; runner must inspect extension rendering"
+  },
+  "One.iOS.LiveActivities": {
+    "api": "One.iOS.LiveActivities",
+    "status": "observed",
+    "value": {
+      "id": "4F714182-1300-4F65-908B-9E96868C1352",
+      "update": {
+        "$undefined": true
+      },
+      "end": {
+        "$undefined": true
+      }
+    },
+    "scope": "start/update/end exact results; runner needs lock-screen evidence for visible lifecycle"
+  }
+}
