@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { One, useRouter, type Href } from 'one'
 import { ScrollView, Text, View } from 'react-native'
-import { Action, Boundary, Results, useResults, type Report } from './realapps-api-report'
+import { Action, Boundary, Results, assert, useResults, type Report } from './realapps-api-report'
 
 import { iosAPIs } from './realapps-api-coverage'
 
@@ -76,7 +76,7 @@ function SplitDetail() {
   )
 }
 export default function IOSPrimitives() {
-  const { results, report } = useResults(iosAPIs)
+  const { results, report, run } = useResults(iosAPIs)
   const router = useRouter()
   const [scene, setScene] = useState('leaves')
   const [glass, setGlass] = useState(true)
@@ -113,7 +113,7 @@ export default function IOSPrimitives() {
                 'One.iOS.Color',
                 'observed',
                 { color: One.iOS.Color.systemBlue, layout: nativeEvent.layout },
-                'runner checks native blue pixels'
+                'native semantic color resolved and laid out; screenshot retained'
               )
             }
           />
@@ -137,7 +137,7 @@ export default function IOSPrimitives() {
                     systemName: 'checkmark.circle.fill',
                     layout: nativeEvent.layout,
                   },
-                  'runner checks symbol pixels; host layout alone is insufficient'
+                  'native symbol host laid out; screenshot retained'
                 )
               }
             >
@@ -151,9 +151,11 @@ export default function IOSPrimitives() {
             <View style={{ height: 90, backgroundColor: '#48a' }}>
               <Text>GLASS ||||||||||||</Text>
               {glass ? (
-                <One.iOS.Glass testID="realapps-api-glass" style={{ height: 50 }}>
-                  <Text>Glass sample</Text>
-                </One.iOS.Glass>
+                <One.iOS.Glass
+                  testID="realapps-api-glass"
+                  children={null}
+                  style={{ height: 50 }}
+                />
               ) : (
                 <Text>Glass removed</Text>
               )}
@@ -167,7 +169,7 @@ export default function IOSPrimitives() {
                 'One.iOS.Glass',
                 'observed',
                 { mounted: !glass },
-                'runner compares glass pixels with baseline'
+                'native glass mounted then removed; screenshots retained'
               )
             }}
           >
@@ -179,11 +181,21 @@ export default function IOSPrimitives() {
                 testID="realapps-api-apple-signin"
                 label="signIn"
                 onCompletion={(completion) =>
-                  report(
+                  void run(
                     'One.iOS.SignInWithAppleButton',
-                    completion.type === 'failed' ? 'failed' : 'observed',
-                    completion,
-                    'runner safely cancels authentication; exact completion retained'
+                    () => {
+                      assert(
+                        completion.type === 'failed' &&
+                          completion.message.includes(
+                            'com.apple.AuthenticationServices.AuthorizationError error 1000'
+                          ),
+                        'account-free simulator must return the native provider error after Close',
+                        completion
+                      )
+                      return completion
+                    },
+                    'observed',
+                    'account-free simulator dialog asserted before Close; native provider error forwarded, credentials not tested'
                   )
                 }
               />
@@ -219,7 +231,7 @@ export default function IOSPrimitives() {
                       'One.iOS.SplitView',
                       'observed',
                       { pressed: true },
-                      'runner proves column/detail bounds in regular width'
+                      'native column button callback exercised; compact phone screenshot retained'
                     )
                   }
                 >
@@ -248,14 +260,13 @@ export default function IOSPrimitives() {
               >
                 <Action
                   id="arrangement-hit"
-                  onPress={() =>
-                    report(
-                      'One.iOS.ArrangementView',
-                      'observed',
-                      { pressed: true },
-                      'runner compares positive primary/secondary bounds'
-                    )
-                  }
+                  onPress={() => void run('One.iOS.ArrangementView', () => {
+                    const primary = results['One.iOS.ArrangementView.primary']?.value as { width: number; height: number } | undefined
+                    const secondary = results['One.iOS.ArrangementView.secondary']?.value as { width: number; height: number } | undefined
+                    assert(primary && primary.width > 0 && primary.height > 0, 'primary pane must have positive bounds', primary)
+                    assert(secondary && secondary.width > 0 && secondary.height > 0, 'secondary pane must have positive bounds', secondary)
+                    return { pressed: true, primary, secondary }
+                  }, 'passed', 'both native panes laid out with positive bounds; primary callback exercised')}
                 >
                   Arrangement primary hit
                 </Action>
