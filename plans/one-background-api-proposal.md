@@ -71,3 +71,10 @@ The retained negative receipt is `contrast-preview/factory-before-publication.js
 This build remains a gate until the published npm family and both compile catalogs
 include this branch. Home Rally is a canonical example, not a published registry
 entry; no registry entry was added.
+
+Nate directly approved the shared compiler integration and custom-preview proof
+via “Rally passes on both custom preview runtimes”
+(`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`).
+The publication checks, complete factory seed build and assigned assembled review
+remain gates before the follow-up merges. This approval does not claim those
+checks have passed.
