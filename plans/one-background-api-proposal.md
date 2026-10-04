@@ -1,4 +1,4 @@
-# Background computation API for approval
+# Background computation API and migration
 
 One branch `feat/background-computation`; Contrast branch `feat/one-background-computation`.
 
@@ -44,7 +44,8 @@ document-picker migration, and a GPU canvas integration.
 
 Nate approved this shared API and migration directly on 2026-10-03, referencing
 share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187. Assigned assembled
-review remains with m19584 before merging One v2-beta and Contrast main.
+review passed. One API and compiler are on v2-beta; Contrast main landing is
+pending with the coordinator after the scoped tool guard blocked this lane.
 
 
 Compiler integration follow-up
@@ -73,8 +74,10 @@ the pinned family. Home Rally is a canonical example; no registry entry was adde
 Nate directly approved the shared compiler integration and custom-preview proof
 via “Rally passes on both custom preview runtimes”
 (`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`).
-The publication and complete factory build checks passed. Final merge-candidate
-checks and assigned assembled adapter review remain before Contrast lands.
+The publication, complete factory build and final merge-candidate checks passed.
+Assigned adapter review and re-review passed. Contrast landing mergedf23ed5000
+is pushed with the One pin and goals row removed; coordinator m18386 owns the
+remaining main push after the tool guard rejected the Contrast target as One.
 
 RAN: compiler integration landed on v2-beta as `c2a262012`, with logical proof
 commit `6b5302bdc`. A fresh build passed14 targets and the compiler suite passed39
@@ -84,3 +87,13 @@ background exports, browser/native compiler helpers and ESM/CJS worklet utilitie
 are present; all manifests identify source6b5302bdc.
 Contrast's rebased release branch is `feat/one-background-computation-release`;
 its whole-family pin and both compile catalogs precede the main merge.
+
+TESTED: final reviewed Contrast8f3896a221 passes actual WebKit and Chromium
+Rally with57 objects/four checkpoints/four legs, exact seven-field comparison
+and Blob URL release after first reply. Native preview matches with heartbeat9.
+RAN:131 tests/356 assertions, bun check58.8s,97.0KB gzip budget and complete
+450-file factory graph pass. Review-fix negative controls and current receipts
+are under tests/native-features/evidence/background-computation/contrast-preview/.
+No candidate primitive from the ranked survey was implemented. Android OS
+background tasks remain a rank6 proposal. No full playable game boot, heap
+collection or fresh full phone build is claimed by this final follow-up.

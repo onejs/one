@@ -138,8 +138,9 @@ df23ed5000 includes the pin and removes its goals row; nine adapter tests,
 compile-catalog gate and seven-field current/reference comparison pass. It is
 pushed on merge/one-background-computation-land. Main push is blocked before
 execution by the One-scoped tool guard despite an explicit Contrast target;
-m19584 owns that unblock. Receipt is contrast-preview/landing/. One main is
-untouched.
+m19584 transferred landing to coordinator m18386 in a Contrast-context
+session and directed this lane to finish. Receipt is contrast-preview/landing/.
+One main is untouched. Main landing is pending with that owner, not claimed done.
 
 Proposed public shape (`one/background`):
 

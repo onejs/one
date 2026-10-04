@@ -13,5 +13,8 @@
   },
   "catalogDriftGate": "passed",
   "courseReferenceComparison": "seven fields equal for57 objects",
-  "mainPush": "blocked before execution by One-scoped PreToolUse guard despite explicit Contrast target; no mutation; manager notified once"
+  "mainPush": "blocked before execution by One-scoped PreToolUse guard despite explicit Contrast target; no mutation; manager notified once",
+  "mainLandingOwner": "coordinator m18386, assigned by m19584",
+  "laneDisposition": "finish docs/share/handoff with main push pending under coordinator ownership",
+  "guardDefect": "t-mutdjr1u-v5o0"
 }
