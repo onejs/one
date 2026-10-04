@@ -313,10 +313,44 @@ function step(
   return !failed
 }
 async function web(name: string, app: AppResult) {
-  if (!step(name, app, 'web-browser-install', [
-    'bun', join(dirname(require.resolve('playwright/package.json')), 'cli.js'),
-    'install', 'chromium',
-  ], repo)) return
+  if (name === 'one-basic' && values.phase !== 'web-runtime') {
+    if (
+      !step(
+        name,
+        app,
+        'web-routing-instrumentation',
+        ['bun', join(import.meta.dirname, 'realapps-inject.ts'), app.cwd!],
+        app.cwd!
+      )
+    )
+      return
+    if (!step(name, app, 'web-routing-dependencies', ['bun', 'install'], app.cwd!)) return
+    if (
+      !step(
+        name,
+        app,
+        'navigation-versions',
+        ['bun', join(import.meta.dirname, 'realapps-navigation.ts'), app.cwd!],
+        app.cwd!
+      )
+    )
+      return
+  }
+  if (
+    !step(
+      name,
+      app,
+      'web-browser-install',
+      [
+        'bun',
+        join(dirname(require.resolve('playwright/package.json')), 'cli.js'),
+        'install',
+        'chromium',
+      ],
+      repo
+    )
+  )
+    return
   if (
     values.phase !== 'web-runtime' &&
     !step(
@@ -383,6 +417,37 @@ async function web(name: string, app: AppResult) {
           path: join(runDir, name, `web-${route!.replaceAll('/', '_')}.png`),
         })
       }
+      if (name === 'one-basic') {
+        const routing = []
+        for (const navigator of ['stack', 'tabs', 'drawer']) {
+          const response = await page.goto(
+            `http://localhost:${values.port}/realapps-routing/${navigator}`,
+            { waitUntil: 'networkidle' }
+          )
+          if (!response?.ok()) throw new Error(`${navigator}: HTTP ${response?.status()}`)
+          await page
+            .getByText(`${navigator} count 0`, { exact: true })
+            .waitFor({ state: 'visible' })
+          await page.getByTestId('realapps-increment').click()
+          await page
+            .getByText(`${navigator} count 1`, { exact: true })
+            .waitFor({ state: 'visible' })
+          await page.getByTestId('realapps-next').click()
+          await page.getByTestId('realapps-other').waitFor({ state: 'visible' })
+          await page.getByTestId('realapps-back').click()
+          await page
+            .getByText(`${navigator} count 1`, { exact: true })
+            .waitFor({ state: 'visible' })
+          await page.screenshot({
+            path: join(runDir, name, `web-routing-${navigator}.png`),
+          })
+          routing.push({ navigator, initial: 0, incremented: 1, returned: 1 })
+        }
+        writeFileSync(
+          join(runDir, name, 'web-routing.json'),
+          JSON.stringify(routing, null, 2) + '\n'
+        )
+      }
       if (errors.length) throw new Error(errors.join('\n'))
       app.steps['web-runtime'] = {
         status: 'pass',
@@ -439,8 +504,17 @@ function writeReport() {
     )
   }
   const gaps = Object.entries(state.apps).flatMap(([name, app]) =>
-    Object.entries(app.renderingGaps ?? {}).map(([api, gap]) => `- ${name}: ${api}: ${gap}`))
-  if (gaps.length) lines.push('', 'Open rendering gaps; strict unavailable-platform checks do not prove rendering:', '', ...gaps)
+    Object.entries(app.renderingGaps ?? {}).map(
+      ([api, gap]) => `- ${name}: ${api}: ${gap}`
+    )
+  )
+  if (gaps.length)
+    lines.push(
+      '',
+      'Open rendering gaps; strict unavailable-platform checks do not prove rendering:',
+      '',
+      ...gaps
+    )
   lines.push('', '## sources and native APIs', '')
   for (const [name, app] of Object.entries(state.apps)) {
     lines.push(
@@ -532,9 +606,10 @@ for (const name of appNames) {
       source,
     ])
   }
-  const revision = name === 'one-basic'
-    ? readFileSync(join(source, '.realapps-source-revision'), 'utf8').trim()
-    : command(['git', 'rev-parse', 'HEAD'], source)
+  const revision =
+    name === 'one-basic'
+      ? readFileSync(join(source, '.realapps-source-revision'), 'utf8').trim()
+      : command(['git', 'rev-parse', 'HEAD'], source)
   const app = (state.apps[name] ??= {
     source,
     revision,
@@ -655,9 +730,12 @@ for (const name of appNames) {
     }
     let iosMinor: number | undefined
     if (platform === 'ios') {
-      const devices = JSON.parse(command(['xcrun', 'simctl', 'list', 'devices', '--json'])).devices
+      const devices = JSON.parse(
+        command(['xcrun', 'simctl', 'list', 'devices', '--json'])
+      ).devices
       const entry = Object.entries(devices).find(([, rows]: [string, any]) =>
-        rows.some((row: any) => row.udid === device)) as [string, any[]] | undefined
+        rows.some((row: any) => row.udid === device)
+      ) as [string, any[]] | undefined
       const minor = entry?.[0].match(/iOS-27-(\d+)$/)?.[1]
       const name = entry?.[1].find((row: any) => row.udid === device)?.name
       if (minor === undefined || !/^iPhone (16|17 Pro)( \d+)?$/.test(name ?? ''))
@@ -701,7 +779,8 @@ for (const name of appNames) {
       )
         continue
       const usesExpo = Boolean(
-        JSON.parse(readFileSync(join(app.cwd!, 'package.json'), 'utf8')).dependencies?.expo
+        JSON.parse(readFileSync(join(app.cwd!, 'package.json'), 'utf8')).dependencies
+          ?.expo
       )
       if (
         !step(
@@ -725,7 +804,8 @@ for (const name of appNames) {
       )
         continue
       if (
-        platform === 'ios' && usesExpo &&
+        platform === 'ios' &&
+        usesExpo &&
         !step(name, app, 'ios-pods', ['pod', 'install'], join(app.cwd!, 'ios'), true)
       )
         continue
@@ -847,11 +927,25 @@ for (const name of appNames) {
           const applicable = (api: string) =>
             !(platform === 'android' && api.startsWith('One.iOS.')) &&
             !(platform === 'ios' && api.startsWith('One.Android.'))
-          for (const mode of ['services', 'external', 'ui', 'menus', 'ios', 'ios-unavailable', 'widgets']) {
+          for (const mode of [
+            'services',
+            'external',
+            'ui',
+            'menus',
+            'ios',
+            'ios-unavailable',
+            'widgets',
+          ]) {
             const { modeAPIs } = await import('../fixtures/realapps-api-coverage')
             const covered = modeAPIs(mode, platform).filter(
-              (api) => imported.includes(api) && applicable(api) &&
-                !(mode === 'ios' && api === 'One.iOS.ArrangementView' && iosMinor === 0) &&
+              (api) =>
+                imported.includes(api) &&
+                applicable(api) &&
+                !(
+                  mode === 'ios' &&
+                  api === 'One.iOS.ArrangementView' &&
+                  iosMinor === 0
+                ) &&
                 !(mode === 'ios-unavailable' && iosMinor !== 0)
             )
             if (!covered.length) continue
@@ -885,11 +979,15 @@ for (const name of appNames) {
               readFileSync(join(evidence, 'api-results.json'), 'utf8')
             )
             if (mode === 'ios-unavailable') {
-              const availability = JSON.parse(readFileSync(join(evidence, 'api-availability.json'), 'utf8'))
-              if (availability.status !== 'unavailable') throw new Error('Expected strict platform availability receipt')
+              const availability = JSON.parse(
+                readFileSync(join(evidence, 'api-availability.json'), 'utf8')
+              )
+              if (availability.status !== 'unavailable')
+                throw new Error('Expected strict platform availability receipt')
               const api = availability.api
               app.renderingGaps ??= {}
-              app.renderingGaps[api] = `iOS ${availability.minimumIOS} rendering requires a compatible standard pool runtime`
+              app.renderingGaps[api] =
+                `iOS ${availability.minimumIOS} rendering requires a compatible standard pool runtime`
               const receipt = `${platform}: ${join(evidence, 'api-availability.json')} (availability only)`
               app.exercised[api] = [receipt]
               save()
