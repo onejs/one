@@ -42,9 +42,11 @@
         "altitudeAccuracy": -1,
         "course": -1,
         "speed": -1,
-        "timestamp": 1791147018714
+        "timestamp": 1791147537943
       },
-      "negative": "background watch rejected; geocoder remains unavailable"
+      "browserTimestamp": 1791147537943,
+      "epochMilliseconds": 1791147538177,
+      "negative": "browser timestamp preserved, background watch rejected; geocoder remains unavailable"
     },
     {
       "namespace": "KeepAwake",
@@ -54,11 +56,12 @@
       "namespace": "Motion",
       "seeded": true,
       "realEventConstructors": true,
-      "samples": 8,
+      "samples": 11,
       "negative": "removed subscription, unavailable magnetometer and invalid interval"
     },
     {
       "namespace": "ScreenOrientation",
+      "supportedRotationAdapterSeeded": true,
       "lockOutcome": "Error: ScreenOrientation.lock: screen did not reach the requested orientation",
       "negative": "unsupported rotation must reject and removed listener must stay silent"
     },
@@ -88,8 +91,8 @@
     {
       "namespace": "Audio",
       "recording": {
-        "uri": "blob:http://127.0.0.1:4387/6eef1594-15ab-4787-982d-c3960e365733",
-        "durationMs": 525.1000000238419,
+        "uri": "blob:http://127.0.0.1:4387/4c3435d0-c459-4043-a03d-8adf00333fdc",
+        "durationMs": 521.8999999761581,
         "size": 289
       },
       "mimeType": "audio/webm",

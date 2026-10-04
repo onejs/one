@@ -134,6 +134,9 @@ Playback and recording cannot run together. Recording duration excludes pauses,
 and a stopped recording returns its encoded byte length and a blob URL; the
 browser chooses the audio codec. Release returned URLs with
 `URL.revokeObjectURL` when finished. Media Session supplies metadata and remote
-commands when present. Operating-system audio interruptions have no equivalent
+commands when present. Metadata needs an existing player and decodable artwork.
+Remote play, pause, and seek update the player before notifying listeners;
+clearing metadata or stopping the player removes its controls. Removing a
+listener leaves controls active until the metadata is cleared. Operating-system audio interruptions have no equivalent
 browser event, so `watchInterruptions` retains its inert remover. Missing media
 capabilities and invalid operations reject rather than report success.

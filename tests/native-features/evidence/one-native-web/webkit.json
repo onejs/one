@@ -42,9 +42,11 @@
         "altitudeAccuracy": -1,
         "course": -1,
         "speed": -1,
-        "timestamp": 1791146961476000
+        "timestamp": 1791147538963000
       },
-      "negative": "background watch rejected; geocoder remains unavailable"
+      "browserTimestamp": 1791147538963000,
+      "epochMilliseconds": 1791147540355,
+      "negative": "browser timestamp preserved, background watch rejected; geocoder remains unavailable"
     },
     {
       "namespace": "KeepAwake",
@@ -54,11 +56,12 @@
       "namespace": "Motion",
       "seeded": true,
       "realEventConstructors": false,
-      "samples": 8,
+      "samples": 11,
       "negative": "removed subscription, unavailable magnetometer and invalid interval"
     },
     {
       "namespace": "ScreenOrientation",
+      "supportedRotationAdapterSeeded": true,
       "lockOutcome": "Error: ScreenOrientation.lock: orientation locking is unavailable",
       "negative": "unsupported rotation must reject and removed listener must stay silent"
     },
@@ -84,6 +87,16 @@
       "realConstructorPresent": true,
       "adapterSeeded": true,
       "negative": "missing constructor, replaced callback, abort silence and exactly one terminal event"
+    },
+    {
+      "namespace": "Audio",
+      "recording": {
+        "uri": "blob:http://127.0.0.1:4387/758c947f-62e7-4eb4-9c8a-e13a5bb57ecd",
+        "durationMs": 350,
+        "size": 3646
+      },
+      "mimeType": "audio/mp4",
+      "negative": "absent operation, concurrent recording, paused duration, negative seek and invalid metadata"
     },
     {
       "namespace": "Blur",
@@ -113,24 +126,18 @@
         ]
       ],
       "negative": "opaque/transparent sides plus invalid mask passthrough"
-    }
-  ],
-  "failures": [
-    {
-      "namespace": "Audio",
-      "error": "Error: Audio runtime condition did not complete",
-      "observation": {
-        "stage": "permission",
-        "context": "running",
-        "calls": []
-      }
     },
     {
-      "namespace": "runner",
-      "error": "AssertionError [ERR_ASSERTION]: WebKit no-filter compositor control did not preserve stripes"
+      "namespace": "Blur pixels",
+      "snapshotContrast": 178,
+      "compositorContrast": 0,
+      "controlContrast": 178,
+      "passed": true
     }
   ],
+  "failures": [],
   "limitations": [
-    "WebKit recording uses a generated Web Audio MediaStream because Playwright does not grant microphone permission on WebKit."
+    "WebKit recording uses a generated Web Audio MediaStream because Playwright does not grant microphone permission on WebKit.",
+    "WebKit page.screenshot() excludes the backdrop filter (contrast 178); retained headless compositor video frames prove the rendered blur."
   ]
 }

@@ -415,7 +415,8 @@ mkdirSync(destination, { recursive: true })
       await run('Location', async () => {
         const { Location } = window.services,
           { assert } = window.proof
-        const permission = await Location.requestWhenInUsePermission(),
+        const raw = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject)),
+          permission = await Location.requestWhenInUsePermission(),
           point = await Location.getCurrentPosition()
         assert(
           permission === 'whenInUse' && Location.getPermissionStatus() === 'whenInUse',
@@ -425,7 +426,7 @@ mkdirSync(destination, { recursive: true })
           point.latitude === 21.3069 &&
             point.longitude === -157.8583 &&
             point.accuracy === 5 &&
-            point.timestamp > 0,
+            point.timestamp === raw.timestamp,
           'position differs'
         )
         const watched = await new Promise((resolve, reject) => {
@@ -456,7 +457,9 @@ mkdirSync(destination, { recursive: true })
         )
         return {
           point,
-          negative: 'background watch rejected; geocoder remains unavailable',
+          browserTimestamp: raw.timestamp,
+          epochMilliseconds: Date.now(),
+          negative: 'browser timestamp preserved, background watch rejected; geocoder remains unavailable',
         }
       })
       await run('KeepAwake', async () => {
@@ -512,6 +515,8 @@ mkdirSync(destination, { recursive: true })
             }
           }
 
+        const gyro = []
+        const g = Motion.addListener('gyroscope', 0, value => gyro.push(value), () => {})
         const f = Motion.addListener(
             'accelerometer',
             0,
@@ -546,7 +551,7 @@ mkdirSync(destination, { recursive: true })
         sample(1050)
         sample(1100)
         assert(
-          fast.length === 3 && slow.length === 2 && fused.length === 3,
+          fast.length === 3 && slow.length === 2 && fused.length === 3 && gyro.length === 3 && gyro[0].value.x === Math.PI / 2 && gyro[0].value.z === Math.PI,
           'independent sampling intervals differ'
         )
         assert(
@@ -560,6 +565,7 @@ mkdirSync(destination, { recursive: true })
           Motion.getAvailability().accelerometer && Motion.getAvailability().deviceMotion,
           'observed sensor not available'
         )
+        g()
         f()
         f()
         s()
@@ -588,12 +594,30 @@ mkdirSync(destination, { recursive: true })
             ),
           'invalid interval accepted'
         )
+        const Native = window.DeviceMotionEvent
+        const originalRemove = window.removeEventListener
+        const removed = []
+        window.removeEventListener = function(type, ...args) {
+          removed.push(type)
+          return originalRemove.call(this, type, ...args)
+        }
+        window.DeviceMotionEvent = class extends Native {
+          static requestPermission() { return Promise.resolve('denied') }
+        }
+        try {
+          const code = await new Promise(resolve => Motion.addListener('accelerometer', 0, () => {
+            throw new Error('permission-denied sensor delivered')
+          }, resolve))
+          assert(code === 'E_MOTION_PERMISSION' && removed.includes('devicemotion') && removed.includes('deviceorientation'), 'permission rejection retained sensor listeners')
+        } finally {
+          window.removeEventListener = originalRemove
+        }
         window.DeviceMotionEvent = nativeMotion
         window.DeviceOrientationEvent = nativeOrientation
         return {
           seeded: true,
           realEventConstructors: !!nativeMotion,
-          samples: fast.length + slow.length + fused.length,
+          samples: fast.length + slow.length + fused.length + gyro.length,
           negative: 'removed subscription, unavailable magnetometer and invalid interval',
         }
       })
@@ -631,7 +655,21 @@ mkdirSync(destination, { recursive: true })
         )
         if (screen.orientation.unlock) await orientation.unlock()
         else await rejects(() => orientation.unlock(), 'missing unlock resolved')
+        const actual = screen.orientation
+        const simulated = Object.assign(new EventTarget(), {
+          type: 'landscape-primary',
+          async lock(value) { this.requested = value; this.type = value },
+          unlock() { this.type = 'landscape-primary' },
+        })
+        Object.defineProperty(screen, 'orientation', { configurable: true, value: simulated })
+        try {
+          for (const [value, browserValue] of [['portrait', 'portrait-primary'], ['portraitUpsideDown', 'portrait-secondary'], ['landscapeLeft', 'landscape-primary'], ['landscapeRight', 'landscape-secondary']]) {
+            assert(await orientation.lock(value) === value && simulated.requested === browserValue, 'supported orientation lock mapping differs')
+          }
+          assert(await orientation.unlock() === 'landscapeLeft', 'supported unlock mapping differs')
+        } finally { Object.defineProperty(screen, 'orientation', { configurable: true, value: actual }) }
         return {
+          supportedRotationAdapterSeeded: true,
           lockOutcome,
           negative:
             'unsupported rotation must reject and removed listener must stay silent',
@@ -941,6 +979,7 @@ mkdirSync(destination, { recursive: true })
         )
         await rejects(() => Audio.pause(), 'pause with no player resolved')
         await rejects(() => Audio.stopRecording(), 'stop with no recorder resolved')
+        await rejects(() => Audio.setNowPlayingInfo({ title: 'No player' }), 'metadata without a player resolved')
         window.proofStage = 'permission'
         assert(
           (await Audio.requestRecordingPermission()) === 'granted',
@@ -951,6 +990,9 @@ mkdirSync(destination, { recursive: true })
           (await Audio.getRecordingPermissionStatus()) === 'granted',
           'microphone permission differs'
         )
+        const speechPermission = await window.services.Speech.getPermissions(),
+          requestedSpeech = await window.services.Speech.requestPermissions()
+        assert(speechPermission.granted && requestedSpeech.granted && requestedSpeech.canAskAgain, 'speech microphone permission mapping differs')
         window.proofStage = 'startRecording'
         const recording = await Audio.startRecording()
         window.proofStage = 'chunks'
@@ -1054,17 +1096,6 @@ mkdirSync(destination, { recursive: true })
         await rejects(() => Audio.seek(-1), 'negative seek resolved')
         assert((await Audio.resume()).state === 'playing', 'playback resume differs')
         if (navigator.mediaSession) {
-          await Audio.setNowPlayingInfo({
-            title: 'Proof',
-            artist: 'One',
-            albumTitle: 'Browser',
-          })
-          assert(
-            navigator.mediaSession.metadata.title === 'Proof',
-            'now playing metadata differs'
-          )
-          await Audio.clearNowPlayingInfo()
-          assert(navigator.mediaSession.metadata === null, 'metadata was not cleared')
           const handlers = {},
             originalHandler = navigator.mediaSession.setActionHandler.bind(
               navigator.mediaSession
@@ -1075,16 +1106,29 @@ mkdirSync(destination, { recursive: true })
           }
           const events = []
           try {
+            await Audio.setNowPlayingInfo({ title: 'Proof', artist: 'One', albumTitle: 'Browser' })
+            assert(navigator.mediaSession.metadata.title === 'Proof', 'now playing metadata differs')
+            await rejects(() => Audio.setNowPlayingInfo({ title: 'Invalid artwork', artworkUri: 'data:image/png;base64,AAAA' }), 'undecodable artwork resolved')
             const remove = Audio.watchRemoteCommands((event) => events.push(event))
-            handlers.play({ action: 'play' })
-            handlers.pause({ action: 'pause' })
-            handlers.seekto({ action: 'seekto', seekTime: 1.25 })
+            await Audio.setNowPlayingInfo({ title: 'Controls' })
+            // handlers were installed by metadata; retain them through this update.
+            const controls = Object.keys(handlers).length ? handlers : (() => { throw new Error('media controls were not installed') })()
+            await controls.pause({ action: 'pause' })
+            assert((await Audio.getPlaybackStatus()).state === 'paused', 'remote pause did not pause playback')
+            await controls.seekto({ action: 'seekto', seekTime: 1.25 })
+            assert(window.proofSeek.seconds === 1.25 && window.proofSeek.settled, 'remote seek did not move playback')
+            await controls.play({ action: 'play' })
+            assert((await Audio.getPlaybackStatus()).state === 'playing', 'remote play did not resume playback')
             assert(
-              events.length === 3 && events[2].positionMs === 1250,
+              events.length === 3 && events[1].positionMs === 1250,
               'remote command mapping differs'
             )
             remove()
             remove()
+            await controls.pause({ action: 'pause' })
+            assert(events.length === 3, 'removed remote listener delivered')
+            await Audio.clearNowPlayingInfo()
+            assert(navigator.mediaSession.metadata === null, 'metadata was not cleared')
             assert(
               handlers.play === null &&
                 handlers.pause === null &&
@@ -1214,17 +1258,19 @@ mkdirSync(destination, { recursive: true })
           const capturePage = await context.newPage()
           await capturePage.goto(process.env.ONE_WEB_PROBE_URL || 'http://127.0.0.1:4387')
           await capturePage.waitForFunction(() => window.services)
-          await capturePage.evaluate(() => window.renderEffects())
+          await capturePage.evaluate((filter) => window.renderEffects(filter ? 100 : 0), filter)
           await capturePage.waitForFunction(() =>
             document
               .querySelector('[data-testid=mask]')
               ?.children[1]?.style.maskImage.includes('svg')
           )
-          if (!filter)
-            await capturePage.locator('[data-testid=blur]').evaluate((node) => {
-              node.children[0].style.backdropFilter = 'none'
-              node.children[0].style.webkitBackdropFilter = 'none'
-            })
+          await capturePage.evaluate(async () => {
+            const mask = document.querySelector('[data-testid=mask]').children[1].style.maskImage
+            const image = new Image()
+            image.src = mask.slice(5, -2)
+            await image.decode()
+          })
+          await capturePage.screenshot()
           await capturePage.evaluate(
             () =>
               new Promise((resolve) =>
@@ -1260,6 +1306,7 @@ mkdirSync(destination, { recursive: true })
             ),
           ]
           const contrast = Math.abs(at(60, 100)[0] - at(64, 100)[0])
+          assert(at(40, 200)[0] > at(40, 200)[2] && at(120, 200)[2] > at(120, 200)[0], 'WebKit compositor mask did not retain its opaque side')
           if (filter) {
             compositorContrast = contrast
           } else

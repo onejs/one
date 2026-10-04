@@ -3,8 +3,7 @@
 Base: One `origin/v2-beta`, `3febba064`. Candidate: `feat/one-native-web`.
 No native source or Nitro generated bridge changes. No npm dependencies added.
 
-TESTED: Chromium passes every namespace. WebKit Audio permission fixture is
-currently pending; other WebKit checks pass. Headless Chromium and WebKit exercise FileSystem, ImageManipulator,
+TESTED: Chromium and WebKit pass every namespace. Headless browsers exercise FileSystem, ImageManipulator,
 Device, Location, KeepAwake, Motion, ScreenOrientation, Print, Share, Contacts,
 Speech, Audio, Blur, and Mask. `chromium.json` and `webkit.json` record the
 assertions, browser versions, seeded adapters and unavailable methods.
@@ -17,8 +16,12 @@ orientations including mirrored ones, crop, resize, JPEG/PNG encoding,
 transparency, wrong-rotation control, and the real One.UI.Image load callback.
 Audio proof uses a deterministic WAV for duration and seek, a real MediaRecorder
 for encoded recording and playback decoding, pause-excluded recording duration,
-operation conflicts, metadata and remote action mapping. Seek checks the actual
+operation conflicts, metadata, decodable artwork, and remote action playback
+changes before callbacks. Seek checks the actual
 requested browser position, its seeked event, and reported native currentTime.
+
+Supported orientation locks are seeded because headless desktop cannot rotate
+the display. Real screen reads, changes and unsupported locks are also checked.
 
 The Motion input is seeded device events, with SI/gravity and angular conversion,
 independent intervals, removed subscriptions, unavailable magnetometer and invalid
@@ -42,9 +45,9 @@ page.screenshot() omits backdrop filtering. Its headless compositor video does
 render the filter. Retained blur/control videos and final decoded PNG frames
 check the same stripe contrast assertion. The snapshot discrepancy is recorded,
 not counted as a rendering failure or silently hidden. Mask screenshots assert
-exact foreground/background pixels and invalid-mask passthrough. Earlier retained
-captures and compositor frames were inspected; final captures will be inspected
-before review.
+exact foreground/background pixels and invalid-mask passthrough. All retained
+captures and compositor frames were inspected. The before/after WebP is quality
+90 without scaling; the before half displays errors from the baseline functions.
 
 Methods without a matching browser interface retain the existing unavailable
 contract: Print PDF completion, Motion magnetic field vectors, Location
@@ -59,6 +62,8 @@ bun tests/native-features/scripts/one-native-web-server.ts
 # another terminal; installed Chromium/WebKit and ffmpeg are required
 PLAYWRIGHT_MODULE=/Users/n8/contrast/node_modules/playwright \
   node tests/native-features/scripts/one-native-web-verify.cjs
+PLAYWRIGHT_MODULE=/Users/n8/contrast/node_modules/playwright \
+  node tests/native-features/scripts/one-native-web-before-after.cjs
 ```
 
 Omit PLAYWRIGHT_MODULE when this checkout's Playwright has installed browsers.
@@ -83,5 +88,10 @@ errors when importing One.UI.Image's native prop type. Runtime image validation
 and the package declaration build pass; that broader fixture check is not claimed
 passed. The cited historical strict native coverage command is absent from the
 uniform-services plan and this checkout; manager review must supply that command.
+
+The generated WebKit geolocation override returns a timestamp 1,000 times the
+Chromium epoch-millisecond value on this host. The adapter preserves the browser
+timestamp, independently checked against getCurrentPosition, instead of guessing
+a unit conversion. Real-device WebKit geolocation timestamps remain unproven.
 
 No speed or physical-device claims are made.

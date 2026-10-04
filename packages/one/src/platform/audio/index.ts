@@ -87,6 +87,7 @@ function requirePlayer(): HTMLAudioElement {
   return player
 }
 function clearPlayer(): void {
+  clearNowPlaying()
   if (player) {
     player.pause()
     player.removeAttribute('src')
@@ -152,19 +153,44 @@ function mediaSession(): MediaSession {
   if (!navigator.mediaSession) throw new Error('Audio: Media Session is unavailable')
   return navigator.mediaSession
 }
+function clearNowPlaying(): void {
+  if (typeof window === 'undefined' || !navigator.mediaSession) return
+  const session = navigator.mediaSession
+  if (remoteInstalled)
+    for (const action of ['play', 'pause', 'seekto'] as const)
+      session.setActionHandler(action, null)
+  remoteInstalled = false
+  session.metadata = null
+  session.playbackState = 'none'
+}
+function syncNowPlaying(): void {
+  if (!navigator.mediaSession?.metadata || !player) return
+  navigator.mediaSession.playbackState =
+    player.paused || player.ended ? 'paused' : 'playing'
+}
+async function remote(event: AudioRemoteCommandEvent): Promise<void> {
+  if (!player || !navigator.mediaSession?.metadata) return
+  const audio = player
+  try {
+    if (event.type === 'play') await Audio.resume()
+    else if (event.type === 'pause') await Audio.pause()
+    else await Audio.seek(event.positionMs!)
+  } catch {
+    // the browser callback has no error channel; failed work emits no success.
+    return
+  }
+  if (player !== audio) return
+  syncNowPlaying()
+  for (const listener of [...remoteListeners]) listener(event)
+}
 function installRemote(): void {
   if (remoteInstalled) return
   const session = mediaSession()
-  session.setActionHandler('play', () => {
-    for (const listener of [...remoteListeners]) listener({ type: 'play' })
-  })
-  session.setActionHandler('pause', () => {
-    for (const listener of [...remoteListeners]) listener({ type: 'pause' })
-  })
-  session.setActionHandler('seekto', (event) => {
-    for (const listener of [...remoteListeners])
-      listener({ type: 'seek', positionMs: (event.seekTime ?? 0) * 1000 })
-  })
+  session.setActionHandler('play', () => remote({ type: 'play' }))
+  session.setActionHandler('pause', () => remote({ type: 'pause' }))
+  session.setActionHandler('seekto', (event) =>
+    remote({ type: 'seek', positionMs: (event.seekTime ?? 0) * 1000 })
+  )
   remoteInstalled = true
 }
 export const Audio = Object.freeze({
@@ -180,6 +206,8 @@ export const Audio = Object.freeze({
     clearPlayer()
     const audio = new window.Audio(url.href)
     player = audio
+    for (const event of ['play', 'pause', 'ended'])
+      audio.addEventListener(event, syncNowPlaying)
     audio.addEventListener('error', () => {
       if (player === audio)
         playbackError = audio.error?.message ?? 'Audio.play: decoding failed'
@@ -373,16 +401,25 @@ export const Audio = Object.freeze({
     if (typeof window === 'undefined') return unavailable.setNowPlayingInfo(info)
     if (!info.title.trim())
       throw new Error('Audio.setNowPlayingInfo: title must not be empty')
+    const audio = requirePlayer()
+    if (info.artworkUri) {
+      const artwork = new window.Image()
+      artwork.src = info.artworkUri
+      await artwork.decode()
+      if (player !== audio) throw new Error('Audio.setNowPlayingInfo: playback was replaced')
+    }
     mediaSession().metadata = new MediaMetadata({
       title: info.title,
       artist: info.artist,
       album: info.albumTitle,
       artwork: info.artworkUri ? [{ src: info.artworkUri }] : [],
     })
+    installRemote()
+    syncNowPlaying()
   },
   clearNowPlayingInfo: async (): Promise<void> => {
     if (typeof window === 'undefined') return unavailable.clearNowPlayingInfo()
-    mediaSession().metadata = null
+    clearNowPlaying()
   },
   watchRemoteCommands: (
     onEvent: (event: AudioRemoteCommandEvent) => void
@@ -390,16 +427,10 @@ export const Audio = Object.freeze({
     validateCallback(onEvent, 'Audio.watchRemoteCommands: onEvent must be a function')
     if (typeof window === 'undefined' || !navigator.mediaSession)
       return unavailable.watchRemoteCommands(onEvent)
-    installRemote()
     remoteListeners.add(onEvent)
     return () => {
       remoteListeners.delete(onEvent)
-      if (!remoteListeners.size && remoteInstalled) {
-        const session = mediaSession()
-        for (const action of ['play', 'pause', 'seekto'] as const)
-          session.setActionHandler(action, null)
-        remoteInstalled = false
-      }
+
     }
   },
 })

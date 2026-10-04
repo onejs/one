@@ -144,18 +144,19 @@ export const Motion = Object.freeze({
       requestPermission?: () => Promise<string>
     }
     if (constructor.requestPermission) {
-      constructor
-        .requestPermission()
-        .then((permission) => {
-          if (permission !== 'granted' && listeners.delete(listener))
-            onError(
-              'E_MOTION_PERMISSION',
-              'Motion.addListener: motion permission is required'
-            )
-        })
-        .catch((error) => {
-          if (listeners.delete(listener)) onError('E_MOTION_PERMISSION', String(error))
-        })
+      const fail = (message: string) => {
+        if (!listeners.delete(listener)) return
+        if (!listeners.size) stopObserving()
+        onError('E_MOTION_PERMISSION', message)
+      }
+      try {
+        constructor.requestPermission().then((permission) => {
+          if (permission !== 'granted')
+            fail('Motion.addListener: motion permission is required')
+        }).catch((error) => fail(String(error)))
+      } catch (error) {
+        fail(String(error))
+      }
     }
     return () => {
       listeners.delete(listener)

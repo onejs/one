@@ -44,7 +44,7 @@ Object.assign(window, {
         />
       )
     ),
-  renderEffects: () =>
+  renderEffects: (intensity = 100) =>
     root.render(
       <div style={{ background: 'rgb(0,0,255)', width: 360, padding: 20 }}>
         <div
@@ -58,7 +58,7 @@ Object.assign(window, {
         >
           <Blur
             testID="blur"
-            intensity={100}
+            intensity={intensity}
             tint="light"
             style={{ width: 120, height: 120 }}
           >
