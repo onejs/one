@@ -19,6 +19,9 @@ From the One repository root, start the focused bundle server:
 bun tests/native-features/scripts/worklets-server.ts
 ```
 
+`--fixture <name>` serves another file from `fixtures/` (default
+`one-native-gestures`); both the native and web entries import it.
+
 Use port 8095 for the claimed iOS app's `RCT_jsLocation`. The iOS bundle ID is
 `dev.vxrn.native.tests`. On Android, package `dev.vxrn.nativefeatures.tests`,
 set `debug_http_host` in its default shared preferences to `localhost:8081`
@@ -58,6 +61,21 @@ runtime and geometry checks on 2026-10-03. The native debug builds included
 concurrent native service/navigation edits, so this is a runtime fixture proof,
 not a clean-install proof of the complete real-app matrix. The retained
 observations are in `evidence/worklets/runtime.json`.
+
+## Pager page offset on the UI thread
+
+`fixtures/one-native-pager-worklets.tsx` wraps `One.UI.Pager` with
+`Animated.createAnimatedComponent` and drives an indicator from a `useEvent`
+worklet on `onPageScroll`. Serve it with `--fixture one-native-pager-worklets`
+and run `scripts/pager-worklets-proof.ts` with the same arguments as above.
+On native it busy-waits the JS thread for 12 seconds, swipes, and requires a
+snapshot inside the block window (reported by the fixture on the device clock,
+corrected by the Android clock offset) where the indicator already sits on the
+new page. The control remounts the pager with a plain JS `onPageScroll` and
+requires the same block to leave the indicator behind while the pager moves.
+It also checks that the forwarded ref's `setPage(2)` still reaches the pager.
+Web has one thread, so it checks the handler and ref without a block.
+`scripts/worklets-device.ts` holds the device driver both proofs share.
 
 For a queued server, wait on its ready log receipt with
 `scripts/watch-worklets-ready.py <admission-pid> <log>` inside one detached
