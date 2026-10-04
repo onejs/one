@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -21,7 +20,6 @@ export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
 let hybrid: OneCalendar | undefined
 
 function native(): OneCalendar {
-  if (Platform.OS !== 'ios') throw new Error('Calendar requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneCalendar>('OneCalendar')
   return hybrid
 }

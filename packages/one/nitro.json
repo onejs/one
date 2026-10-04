@@ -101,13 +101,15 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneFileSystem" }
     },
     "OneAudio": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAudio" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneAudio" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneAudio" }
     },
     "OneShare": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneShare" }
     },
     "OnePhotoLibrary": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOnePhotoLibrary" }
     },
     "OneAppTracking": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppTracking" }
@@ -145,10 +147,12 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOnePurchases" }
     },
     "OneContacts": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneContacts" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneContacts" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneContacts" }
     },
     "OneCalendar": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneCalendar" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneCalendar" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneCalendar" }
     },
     "OneMapServices": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneMapServices" }
