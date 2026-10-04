@@ -36,9 +36,9 @@ export default function Widgets() {
   const activity = useRef<string | null>(null)
   const jsxActivity = useRef<string | null>(null)
   const { results, run } = useResults([
-    'One.iOS.Widgets',
+    'One.Widgets',
     'One.iOS.WidgetUI',
-    'One.iOS.LiveActivities',
+    'One.LiveActivities',
   ])
   return (
     <ScrollView contentContainerStyle={{ padding: 12, gap: 8 }}>
@@ -47,14 +47,14 @@ export default function Widgets() {
         id="widgets-write"
         onPress={() =>
           void run(
-            'One.iOS.Widgets',
+            'One.Widgets',
             async () => {
               const data = {
                 title: 'Native API probe',
                 value: '42',
                 subtitle: 'real app snapshot',
               }
-              const result = await One.iOS.Widgets.write(data)
+              const result = await One.Widgets.write(data)
               return { data, result }
             },
             'observed',
@@ -70,7 +70,7 @@ export default function Widgets() {
           void run(
             'One.iOS.WidgetUI',
             async () => {
-              const result = await One.iOS.Widgets.writeView(<WidgetView step={2} />)
+              const result = await One.Widgets.writeView(<WidgetView step={2} />)
               return { step: 2, result }
             },
             'observed',
@@ -84,13 +84,13 @@ export default function Widgets() {
         id="activity-start"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities',
+            'One.LiveActivities',
             async () => {
               assert(
                 activity.current === null,
                 'End existing fixture activity before starting'
               )
-              const id = await One.iOS.LiveActivities.start('Native API probe', {
+              const id = await One.LiveActivities.start('Native API probe', {
                 status: 'Preparing',
                 value: '1 of 3',
               })
@@ -112,12 +112,12 @@ export default function Widgets() {
         id="activity-update"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities.update',
+            'One.LiveActivities.update',
             async () => {
               assert(activity.current, 'Start fixture activity first')
               return {
                 id: activity.current,
-                result: await One.iOS.LiveActivities.update(activity.current, {
+                result: await One.LiveActivities.update(activity.current, {
                   status: 'On the way',
                   value: '2 of 3',
                 }),
@@ -134,11 +134,11 @@ export default function Widgets() {
         id="activity-end"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities.end',
+            'One.LiveActivities.end',
             async () => {
               assert(activity.current, 'Start fixture activity first')
               const id = activity.current
-              const result = await One.iOS.LiveActivities.end(id)
+              const result = await One.LiveActivities.end(id)
               activity.current = null
               return { id, result }
             },
@@ -153,13 +153,13 @@ export default function Widgets() {
         id="activity-jsx-start"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities.jsx',
+            'One.LiveActivities.jsx',
             async () => {
               assert(
                 jsxActivity.current === null,
                 'End existing JSX fixture activity before starting'
               )
-              const id = await One.iOS.LiveActivities.startView(
+              const id = await One.LiveActivities.startView(
                 'Native API probe JSX',
                 activityView(1)
               )
@@ -181,12 +181,12 @@ export default function Widgets() {
         id="activity-jsx-update"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities.jsx.update',
+            'One.LiveActivities.jsx.update',
             async () => {
               assert(jsxActivity.current, 'Start JSX fixture activity first')
               return {
                 id: jsxActivity.current,
-                result: await One.iOS.LiveActivities.updateView(
+                result: await One.LiveActivities.updateView(
                   jsxActivity.current,
                   activityView(2)
                 ),
@@ -203,11 +203,11 @@ export default function Widgets() {
         id="activity-jsx-end"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities.jsx.end',
+            'One.LiveActivities.jsx.end',
             async () => {
               assert(jsxActivity.current, 'Start JSX fixture activity first')
               const id = jsxActivity.current
-              const result = await One.iOS.LiveActivities.end(id)
+              const result = await One.LiveActivities.end(id)
               jsxActivity.current = null
               return { id, result }
             },
@@ -222,9 +222,9 @@ export default function Widgets() {
         id="activity-cycle"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities',
+            'One.LiveActivities',
             async () => {
-              const id = await One.iOS.LiveActivities.start('Native API probe', {
+              const id = await One.LiveActivities.start('Native API probe', {
                 status: 'Preparing',
                 value: '1 of 3',
               })
@@ -233,14 +233,14 @@ export default function Widgets() {
                 'LiveActivities.start returned empty id'
               )
               try {
-                const update = await One.iOS.LiveActivities.update(id, {
+                const update = await One.LiveActivities.update(id, {
                   status: 'On the way',
                   value: '2 of 3',
                 })
-                const end = await One.iOS.LiveActivities.end(id)
+                const end = await One.LiveActivities.end(id)
                 return { id, update, end }
               } catch (error) {
-                await One.iOS.LiveActivities.end(id)
+                await One.LiveActivities.end(id)
                 throw error
               }
             },
@@ -255,9 +255,9 @@ export default function Widgets() {
         id="activity-jsx-cycle"
         onPress={() =>
           void run(
-            'One.iOS.LiveActivities.jsx',
+            'One.LiveActivities.jsx',
             async () => {
-              const id = await One.iOS.LiveActivities.startView(
+              const id = await One.LiveActivities.startView(
                 'Native API probe JSX',
                 activityView(1)
               )
@@ -266,14 +266,11 @@ export default function Widgets() {
                 'LiveActivities.startView returned empty id'
               )
               try {
-                const update = await One.iOS.LiveActivities.updateView(
-                  id,
-                  activityView(2)
-                )
-                const end = await One.iOS.LiveActivities.end(id)
+                const update = await One.LiveActivities.updateView(id, activityView(2))
+                const end = await One.LiveActivities.end(id)
                 return { id, update, end }
               } catch (error) {
-                await One.iOS.LiveActivities.end(id)
+                await One.LiveActivities.end(id)
                 throw error
               }
             },

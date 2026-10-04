@@ -15,7 +15,7 @@ export default function OneNativeAppIntents() {
   }
   const checkInvalid = () => {
     try {
-      One.iOS.AppIntents.defineAction('', () => 'bad')
+      One.AppIntents.defineAction('', () => 'bad')
       setInvalid('accepted')
     } catch (error) {
       setInvalid(error instanceof TypeError ? 'TypeError' : String(error))
@@ -26,9 +26,15 @@ export default function OneNativeAppIntents() {
     <View style={styles.screen}>
       <Text>Receipt: {receipt}</Text>
       <Text>Invalid: {invalid}</Text>
-      <Pressable testID="one-native-app-intents-read" onPress={read}><Text>Read receipt</Text></Pressable>
-      <Pressable testID="one-native-app-intents-reset" onPress={reset}><Text>Reset receipt</Text></Pressable>
-      <Pressable testID="one-native-app-intents-invalid" onPress={checkInvalid}><Text>Check invalid</Text></Pressable>
+      <Pressable testID="one-native-app-intents-read" onPress={read}>
+        <Text>Read receipt</Text>
+      </Pressable>
+      <Pressable testID="one-native-app-intents-reset" onPress={reset}>
+        <Text>Reset receipt</Text>
+      </Pressable>
+      <Pressable testID="one-native-app-intents-invalid" onPress={checkInvalid}>
+        <Text>Check invalid</Text>
+      </Pressable>
     </View>
   )
 }

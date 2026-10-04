@@ -1,5 +1,5 @@
 import type { ScreenOrientationLock, ScreenOrientationValue } from '../specs/OneScreenOrientation.nitro';
-export type { ScreenOrientationLock, ScreenOrientationValue } from '../specs/OneScreenOrientation.nitro';
+export type { ScreenOrientationLock, ScreenOrientationValue, } from '../specs/OneScreenOrientation.nitro';
 declare function getOrientation(): Promise<ScreenOrientationValue>;
 declare function lock(orientation: ScreenOrientationLock): Promise<ScreenOrientationValue>;
 declare function unlock(): Promise<ScreenOrientationValue>;

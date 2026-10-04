@@ -10,6 +10,33 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.openSettings` | missing | missing | react native Linking underneath; no suite yet |
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
+| `One.Widgets` | missing | native-modules:unavailable | needs a widget extension target in the fixture app |
+| `One.LiveActivities` | missing | native-modules:unavailable | needs a widget extension target in the fixture app |
+| `One.LocalAuthentication` | local-authentication | native-modules:unavailable |  |
+| `One.ProtectedStore` | protected-store | native-modules:unavailable |  |
+| `One.KeepAwake` | keep-awake | native-modules:unavailable |  |
+| `One.Print` | print | native-modules:unavailable |  |
+| `One.StoreReview` | store-review | native-modules:unavailable |  |
+| `One.QuickActions` | quick-actions | native-modules:unavailable |  |
+| `One.Location` | location | native-modules:unavailable |  |
+| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | native-modules |  |
+| `One.Audio` | audio, audio-interruption, audio-remote, audio-background | native-modules:unavailable |  |
+| `One.Share` | share | native-modules:unavailable |  |
+| `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable |  |
+| `One.MapServices` | map-services | native-modules:unavailable |  |
+| `One.AppTracking` | app-tracking | native-modules:unavailable |  |
+| `One.AppIcon` | app-icon | native-modules:unavailable |  |
+| `One.ScreenOrientation` | screen-orientation | native-modules:unavailable |  |
+| `One.ScreenCapture` | screen-capture, view-snapshot | native-modules:unavailable |  |
+| `One.Purchases` | purchases | native-modules:unavailable |  |
+| `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | native-modules |  |
+| `One.Device` | device | native-modules:unavailable |  |
+| `One.Motion` | motion, native-modules | native-modules | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
+| `One.BackgroundTasks` | background-tasks | native-modules:unavailable | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device |
+| `One.AppIntents` | app-intents | native-modules:unavailable |  |
+| `One.DeviceAttestation` | device-attestation | native-modules:unavailable | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
+| `One.Contacts` | contacts | native-modules:unavailable |  |
+| `One.Calendar` | calendar | native-modules:unavailable |  |
 | `One.iOS.ArrangementView` | arrangement | n/a | closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved |
 | `One.iOS.Tabs` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Tab` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a |  |
@@ -99,35 +126,8 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.iOS.FileImporter` | apple-file | n/a |  |
 | `One.iOS.EditButton` | edit-button | n/a | Edit/Done label cycle proven; List edit state unobserved and row actions unavailable |
 | `One.iOS.EmptyView` | tab-slot | n/a |  |
-| `One.iOS.Widgets` | missing | n/a | needs a widget extension target in the fixture app |
-| `One.iOS.LiveActivities` | missing | n/a | needs a widget extension target in the fixture app |
 | `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
-| `One.iOS.LocalAuthentication` | local-authentication | n/a |  |
-| `One.iOS.ProtectedStore` | protected-store | n/a |  |
-| `One.iOS.KeepAwake` | keep-awake | n/a |  |
-| `One.iOS.Print` | print | n/a |  |
-| `One.iOS.StoreReview` | store-review | n/a |  |
-| `One.iOS.QuickActions` | quick-actions | n/a |  |
-| `One.iOS.Location` | location | n/a |  |
-| `One.iOS.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print | n/a |  |
-| `One.iOS.Audio` | audio, audio-interruption, audio-remote, audio-background | n/a |  |
 | `One.iOS.CameraView` | camera-preview | n/a |  |
-| `One.iOS.Share` | share | n/a |  |
-| `One.iOS.PhotoLibrary` | photo-library, photo-library-limited, live-photo | n/a |  |
-| `One.iOS.MapServices` | map-services | n/a |  |
-| `One.iOS.AppTracking` | app-tracking | n/a |  |
-| `One.iOS.AppIcon` | app-icon | n/a |  |
-| `One.iOS.ScreenOrientation` | screen-orientation | n/a |  |
-| `One.iOS.ScreenCapture` | screen-capture, view-snapshot | n/a |  |
-| `One.iOS.Purchases` | purchases | n/a |  |
-| `One.iOS.ImageManipulator` | photo-library, photo-library-limited, image-manipulator | n/a |  |
-| `One.iOS.Device` | device | n/a |  |
-| `One.iOS.Motion` | motion | n/a | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
-| `One.iOS.BackgroundTasks` | background-tasks | n/a | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device |
-| `One.iOS.AppIntents` | app-intents | n/a |  |
-| `One.iOS.DeviceAttestation` | device-attestation | n/a | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
-| `One.iOS.Contacts` | contacts | n/a |  |
-| `One.iOS.Calendar` | calendar | n/a |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a |  |

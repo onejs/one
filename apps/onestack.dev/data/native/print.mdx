@@ -3,13 +3,13 @@ title: Print
 description: Present the iOS system print sheet for a local PDF
 ---
 
-`One.iOS.Print` presents the iOS print sheet for a PDF already stored in the app's readable local files. It does not generate PDF content or download remote URLs. Use [FileSystem](/native/file-system) to write a PDF or [DocumentPicker](/native/document-picker) to copy one into the app first.
+`One.Print` presents the iOS print sheet for a PDF already stored in the app's readable local files. It does not generate PDF content or download remote URLs. Use [FileSystem](/native/file-system) to write a PDF or [DocumentPicker](/native/document-picker) to copy one into the app first.
 
 ```tsx
 import { One } from 'one'
 
-if (await One.iOS.Print.isAvailable()) {
-  const result = await One.iOS.Print.printPdf(fileUri, 'Invoice')
+if (await One.Print.isAvailable()) {
+  const result = await One.Print.printPdf(fileUri, 'Invoice')
   if (result.completed) {
     // the system print sheet completed its request
   }
@@ -20,4 +20,4 @@ if (await One.iOS.Print.isAvailable()) {
 
 Invalid JavaScript argument types and empty strings throw before reaching native code. Native failures use these codes: `E_PRINT_INPUT` for a direct native empty job name, `E_PRINT_URI` for a nonlocal URI, `E_PRINT_FILE` for a missing file or directory, `E_PRINT_PDF` for invalid or empty PDF content, `E_PRINT_BUSY` for a second request, `E_PRINT_UNAVAILABLE` when printing is unavailable, `E_PRINT_PRESENTATION` when the app has no active presenter or the sheet does not open, and `E_PRINT_FAILED` when the system reports a print error.
 
-This API requires an iOS native build. On web or Android, methods throw `Print requires an iOS native build` after validating arguments. The iOS 27 simulator can prove sheet presentation and cancellation, but an actual AirPrint job needs a printer and device proof.
+Printing is implemented on iOS. On Android and web, `isAvailable()` resolves `false`; `printPdf()` validates its arguments and rejects with `Print.printPdf needs an iOS or Android build`. The iOS 27 simulator can prove sheet presentation and cancellation, but an actual AirPrint job needs a printer and device proof.

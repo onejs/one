@@ -10,15 +10,16 @@ export type LazyRoutes = {
     api: Record<string, () => Promise<any>>;
     middlewares: Record<string, () => Promise<any>>;
 };
+type ServedBuildInfo = Omit<One.BuildInfo, 'routeMap'> & Partial<Pick<One.BuildInfo, 'routeMap'>>;
 type WorkerHandlerOptions = {
     oneOptions: One.PluginOptions;
-    buildInfo: One.BuildInfo;
+    buildInfo: ServedBuildInfo;
     lazyRoutes: LazyRoutes;
     disableModuleCache?: boolean;
 };
 export declare function createWorkerHandler(options: WorkerHandlerOptions): {
     handleRequest: (request: Request, env?: unknown, executionCtx?: unknown) => Promise<Response | null>;
-    updateRoutes: (newBuildInfo: One.BuildInfo, newLazyRoutes?: LazyRoutes) => void;
+    updateRoutes: (newBuildInfo: ServedBuildInfo, newLazyRoutes?: LazyRoutes) => void;
 };
 export {};
 //# sourceMappingURL=workerHandler.d.ts.map

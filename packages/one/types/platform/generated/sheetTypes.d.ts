@@ -14,6 +14,8 @@ export interface SheetProps extends ViewProps {
     isPresented: boolean;
     onIsPresentedChange: (value: boolean) => void;
     onDismiss?: () => void;
+    /** fires after the presented native content leaves its window following an accepted close. */
+    onDidDismiss?: () => void;
     revision?: number;
     presentationDetents?: readonly PresentationDetent[];
     fitToContents?: boolean;
@@ -32,6 +34,8 @@ export interface FullScreenCoverProps extends ViewProps {
     isPresented: boolean;
     onIsPresentedChange: (value: boolean) => void;
     onDismiss?: () => void;
+    /** fires after the presented native content leaves its window following an accepted close. */
+    onDidDismiss?: () => void;
     revision?: number;
     children: ReactNode;
 }
