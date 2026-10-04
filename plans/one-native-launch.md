@@ -107,3 +107,5 @@ Proposal:
 | s8223 / one-native-realapps | Sol high | rank 2 | manager reviews assembled |
 | s8225 / one-native-worklets | Sol high | rank 3; finished | reviewed |
 | s8227 / one-native-speed | Sol high | rank 4, parked; finished | none |
+| s8377 / one-native-android-modules | Sol xhigh | rank 6 | manager reviews assembled |
+| s8381 / one-native-background | Sol high | rank 5 | manager reviews assembled |
