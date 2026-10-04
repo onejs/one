@@ -1,6 +1,7 @@
 # One browser service adapters
 
-Status: stopped by owner. Worker: one-native-web. Base: origin/v2-beta.
+Status: existing unified APIs allowed, subject to simple implementation and review.
+Worker: one-native-web. Assembled review: s9760. Base: origin/v2-beta.
 
 Nate's scope, 2026-10-04: "We already have enough just making all the native APIs work!!!!!! Plus some unification. Why are you adding now random features?????" and "It's meant to be clean and simple."
 
@@ -21,7 +22,13 @@ Evidence: `tests/native-features/evidence/one-native-web/README.md`.
 
 2026-10-04, Nate: "I don’t want one native web. That’s literally something I said never should exist. What even is that"
 
-Stop this browser implementation lane. No landing or release is authorized.
-The existing pushed branch is retained for audit; it has not been merged into
-v2-beta or main. The worker and branch name referred to the manager-assigned
-browser adapters for existing One namespaces, not a separate package.
+The lane stopped while the owner clarified its scope. The worker and branch
+name referred to manager-assigned browser adapters for existing One namespaces.
+No changes were merged into v2-beta or main.
+
+2026-10-04, Nate: "Ok fine then. The unified APIs I guess are fine but only if they aren’t super complex. What is css effects?"
+
+Continue only the existing unified APIs with simple browser implementations.
+No separate browser product or effects system. Review the implementation cost,
+especially converting the existing React-element mask prop into a CSS image.
+Landing still waits for the assigned assembled review.
