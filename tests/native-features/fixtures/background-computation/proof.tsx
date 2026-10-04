@@ -10,6 +10,7 @@ export default function BackgroundProof() {
   useLayoutEffect(() => {
     const ready: number[] = []
     let disposed = false
+    let disposeErrors: (() => void) | undefined
     const owner = createLatestComputation(calculation, (state) => {
       if (state.phase === 'failed') setStatus(`failed:${state.error.message}`)
       if (state.phase !== 'ready') return
@@ -38,6 +39,7 @@ export default function BackgroundProof() {
             : `failed:${failure.error.message}`
         )
       })
+      disposeErrors = errors.dispose
       errors.update({ value: 9, fail: true })
     })
     owner.update({ value: 1, delayMs: 100 })
@@ -46,6 +48,7 @@ export default function BackgroundProof() {
     if (owner.getCurrent() !== null) setStatus('failed:stale current')
     return () => {
       if (!disposed) owner.dispose()
+      disposeErrors?.()
     }
   }, [])
   return (
