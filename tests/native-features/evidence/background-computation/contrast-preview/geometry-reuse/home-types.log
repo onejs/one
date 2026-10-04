@@ -1,0 +1,4 @@
+$ bash scripts/heavy.sh --cores "2" -- bun scripts/check/template-types.ts app-home-designer
+[heavy] queued 0s for admission: 96.00% cpu projected 19.28/16.20 cores (load average 32.35), memory 61.00% free, 8 active, charged for 10.48
+[heavy] queued 31s for admission: 84.00% cpu projected 17.12/16.20 cores (load average 26.09), memory 65.00% free, 5 active, charged for 3.48
+[heavy] admitted at 77.00% cpu (projected 15.86/16.20 cores; load average 22.34), memory 62.00% free; reserved 2.00 cores at priority 0, 7 other active, queued 60s

@@ -1,0 +1,35 @@
+{
+  "label": "TESTED",
+  "contrastSource": "a0bbcb5b92d339addb8cca2891082ab7fd3f3ee8",
+  "baseMain": "383bc8817105ed62b5cc5e97fb5a2f9379e697b8",
+  "branch": "fix/rally-background-cache-owner",
+  "migrationOnMain": "df23ed500042798a1cce20a3bf6bca43383644b3 is an ancestor of the fetched main",
+  "composedMainHook": "88970f9985 retains main a0e3cc7b949 geometry cache using One",
+  "fix": "preserve the module-scope definition; cache awaited outputs only when their revision remains current",
+  "nativePreviewAndBrowsers": "real useRallyCourse, generated One runtime, full JSON course equality at accepted stages and exact getCurrent identity",
+  "probeInstrumentation": "virtual definition wraps the real executor to count calls and hold one completed calculation until input replacement; no platform selection or app-source probe hooks",
+  "positive": "reuse=2 stale=1 edits=2 owners=2 calls=6 disposals=2",
+  "workerLifecycle": "both Chromium and WebKit owners reply before Blob URL revocation",
+  "negativeControls": {
+    "cache": "computation count 2 at stage 1",
+    "stale": "computation count 5 at stage 6"
+  },
+  "negativeScope": "cache/revision guards removed only in virtual probe source; owner-local first integration candidate, same cache algorithm",
+  "initial": "57 objects / 4 checkpoints / 4 legs; seven fields and admission identity match; native heartbeat8",
+  "factory": {
+    "routes": 15,
+    "files": 450,
+    "bytes": 14469639,
+    "graphComplete": true
+  },
+  "tests": {
+    "pass": 131,
+    "assertions": 356
+  },
+  "check": "passed46.7s; lint, types, affected-template check and layout reconciler",
+  "firstCheckFailure": "stale local host-library output lacked FETCH_PROXY_NATIVE_USER_AGENT_HEADER; refreshed via the existing build. Main inventory drift corrected upstream53c70a3389/e6b3660fbe; no inventory/engine-source changes in this follow-up.",
+  "nativePreviewInfrastructure": "optional CLI WebSocket proxy404 retained; no application error; named worklet worker produced the accepted course",
+  "notClaimed": "new physical-device build, full playable game boot or heap collection",
+  "landingOwner": "main-sync p58675, assigned by m19584; final follow-up main landing pending",
+  "ownedResources": "browser/server closed by proof finally blocks; no simulator/emulator leased for this follow-up"
+}

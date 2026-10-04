@@ -1,0 +1,33 @@
+{
+  "results": {
+    "web": {
+      "modules": 276,
+      "bytes": 1551903,
+      "buildMs": 1084,
+      "packages": [
+        "react",
+        "react-dom",
+        "react-native-web",
+        "one",
+        "scheduler",
+        "@babel/runtime",
+        "inline-style-prefixer",
+        "css-in-js-utils",
+        "hyphenate-style-name",
+        "styleq",
+        "postcss-value-parser",
+        "fbjs",
+        "nullthrows"
+      ],
+      "errors": [
+        "Rally geometry reuse: computation count 5 at stage 6"
+      ],
+      "workers": [
+        "blob:http://127.0.0.1:65476/6c6a35dd-76ac-465e-9c3f-2afb267c6713"
+      ],
+      "logs": [],
+      "requests": []
+    }
+  },
+  "error": "TimeoutError: waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByTestId('rally-background-status').filter({ hasText: 'passed reuse=2 stale=1 edits=2 owners=2 calls=6 disposals=2' }) to be visible\u001b[22m\n"
+}

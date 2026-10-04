@@ -13,8 +13,10 @@
   },
   "catalogDriftGate": "passed",
   "courseReferenceComparison": "seven fields equal for57 objects",
-  "mainPush": "blocked before execution by One-scoped PreToolUse guard despite explicit Contrast target; no mutation; manager notified once",
-  "mainLandingOwner": "coordinator m18386, assigned by m19584",
-  "laneDisposition": "finish docs/share/handoff with main push pending under coordinator ownership",
-  "guardDefect": "t-mutdjr1u-v5o0"
+  "mainLandingOwner": "main-sync p58675, assigned by m19584",
+  "laneDisposition": "original migration landed; current cache follow-up a0bbcb5b92 pushed and sent to p58675 for main landing",
+  "guardDefect": "t-mutdjr1u-v5o0",
+  "originalWorkerMainPush": "blocked before execution by One-scoped PreToolUse guard despite explicit Contrast target; no mutation; manager notified once",
+  "mainPush": "RAN original migration df23ed5000 is an ancestor of fetched Contrast main; composed hook88970f9985",
+  "followupEvidence": "../geometry-reuse/receipt.json"
 }
