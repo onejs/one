@@ -85,7 +85,7 @@ Shared compiler follow-up: One branch `feat/background-computation-preview` at
 `vxrn/background-computation` transform. RAN: current One/compiler probes pass 39 tests;
 Contrast passes 130 tests / 348 assertions. The emitted browser bundler is 96.6 KB gzip.
 RAN: real Rally passes through Contrast's generated Blob Worker and One's production
-Vite Worker. Native custom preview and full factory seed build remain pending. The branch
+Vite Worker. The real Rally hook also passes on the custom native preview with a named worklet Worker, exact seven-field comparison and heartbeat7. Evidence is retained under `tests/native-features/evidence/background-computation/contrast-preview/`. Full factory seed build remains pending. The branch
 canary is publishing via https://github.com/onejs/one/actions/runs/37169679013; the manager
 owns CI. Contrast main waits for verified npm contents, a matching family pin and both
 compile catalogs. Assembled follow-up review remains with m19584.

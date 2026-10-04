@@ -62,4 +62,4 @@ RAN: Contrast's raw transform previously emitted an unusable definition (before 
 checks cover actual native calculation, helper edits, forbidden globals and runtime
 packages, missing optional dependencies, and web/native conditional exports. RAN: the
 full Contrast bundler suite passes 128 tests / 344 assertions; One compiler/plugin passes
-39 tests and vxrn typecheck. Real custom-preview Rally runtime proof is still being run.
+39 tests and vxrn typecheck. RAN: the real Rally hook now passes through both custom preview runtimes: a Blob Worker on web and a named Worklet Worker on native preview. All seven fields match the synchronous course, with37 objects and3 checkpoints/legs. Native heartbeat advances to7. This proves the computation feature in a proof screen; full playable game boot is not claimed. The full Home Rally factory seed build remains a release gate.
