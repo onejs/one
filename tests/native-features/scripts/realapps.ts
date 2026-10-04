@@ -680,13 +680,15 @@ for (const name of appNames) {
         )
       )
         continue
+      const usesExpo = Boolean(
+        JSON.parse(readFileSync(join(app.cwd!, 'package.json'), 'utf8')).dependencies?.expo
+      )
       if (
         !step(
           name,
           app,
           `${platform}-prebuild`,
-          JSON.parse(readFileSync(join(app.cwd!, 'package.json'), 'utf8')).dependencies
-            ?.expo
+          usesExpo
             ? [
                 'bunx',
                 '--no-install',
@@ -700,6 +702,11 @@ for (const name of appNames) {
           app.cwd!,
           true
         )
+      )
+        continue
+      if (
+        platform === 'ios' && usesExpo &&
+        !step(name, app, 'ios-pods', ['pod', 'install'], join(app.cwd!, 'ios'), true)
       )
         continue
       const devLog = Bun.file(join(runDir, name, `${platform}-dev-server.log`))

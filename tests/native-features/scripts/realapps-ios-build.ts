@@ -4,10 +4,10 @@ import { readdirSync } from 'node:fs'
 import { basename, dirname, join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-const [rootArg, simulator, port, derivedArg] = process.argv.slice(2)
-if (!rootArg || !simulator || !port || !derivedArg)
+const [rootArg, simulator, port, derivedArg, mode] = process.argv.slice(2)
+if (!rootArg || !simulator || !port || !derivedArg || (mode && mode !== '--build-only'))
   throw new Error(
-    'Usage: realapps-ios-build.ts <app> <claimed simulator> <port> <derived data>'
+    'Usage: realapps-ios-build.ts <app> <simulator> <port> <derived data> [--build-only]'
   )
 const root = resolve(rootArg)
 const ios = join(root, 'ios')
@@ -49,6 +49,7 @@ mcp('build', [
   '--derived-data-path',
   derived,
 ])
+if (mode === '--build-only') process.exit(0)
 mcp('install', [
   '--simulator-id',
   simulator,
