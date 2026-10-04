@@ -2,7 +2,7 @@ import type { FileDirectories, FileEncoding, FileEntry, FileInfo } from '../spec
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo };
 export declare const FileSystem: Readonly<{
     getDirectories: () => FileDirectories;
-    getInfo: (_uri: string) => Promise<FileInfo>;
+    getInfo: (uri: string) => Promise<FileInfo>;
     readDirectory: (_uri: string) => Promise<FileEntry[]>;
     makeDirectory: (_uri: string, _intermediates?: boolean) => Promise<void>;
     writeFile: (_uri: string, _contents: string, _encoding?: FileEncoding) => Promise<void>;

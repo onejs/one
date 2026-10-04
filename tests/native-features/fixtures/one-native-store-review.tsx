@@ -8,7 +8,7 @@ export default function OneNativeStoreReview() {
 
   async function requestReview() {
     try {
-      await One.iOS.StoreReview.requestReview()
+      await One.StoreReview.requestReview()
       setRequests((count) => count + 1)
       setStatus('requested')
     } catch (error) {
@@ -20,10 +20,18 @@ export default function OneNativeStoreReview() {
     <View style={styles.screen}>
       <Text>{`Status: ${status}`}</Text>
       <Text>{`Requests: ${requests}`}</Text>
-      <Pressable testID="one-native-store-review-request" style={styles.chip} onPress={requestReview}>
+      <Pressable
+        testID="one-native-store-review-request"
+        style={styles.chip}
+        onPress={requestReview}
+      >
         <Text>Request review for proof</Text>
       </Pressable>
-      <Pressable testID="one-native-store-review-alive" style={styles.chip} onPress={() => setStatus('alive')}>
+      <Pressable
+        testID="one-native-store-review-alive"
+        style={styles.chip}
+        onPress={() => setStatus('alive')}
+      >
         <Text>Confirm app usable</Text>
       </Pressable>
     </View>
@@ -32,5 +40,10 @@ export default function OneNativeStoreReview() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 20, backgroundColor: '#fff' },
-  chip: { padding: 10, borderRadius: 8, backgroundColor: '#e5e7eb', alignSelf: 'flex-start' },
+  chip: {
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: '#e5e7eb',
+    alignSelf: 'flex-start',
+  },
 })

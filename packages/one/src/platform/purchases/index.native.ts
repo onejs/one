@@ -1,13 +1,23 @@
+import { validateCallback } from '../validateCallback'
 import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
-  OnePurchases, PurchaseProduct, PurchaseResult, PurchaseTransaction, PurchaseUpdate,
+  OnePurchases,
+  PurchaseProduct,
+  PurchaseResult,
+  PurchaseTransaction,
+  PurchaseUpdate,
 } from '../specs/OnePurchases.nitro'
 
 export type {
-  PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus,
-  PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus,
+  PurchaseProduct,
+  PurchaseProductType,
+  PurchaseResult,
+  PurchaseStatus,
+  PurchaseTransaction,
+  PurchaseUpdate,
+  PurchaseUpdateStatus,
 } from '../specs/OnePurchases.nitro'
 
 let hybrid: OnePurchases | undefined
@@ -39,7 +49,7 @@ function finishTransaction(transactionId: string): Promise<void> {
 }
 
 function addTransactionListener(onUpdate: (update: PurchaseUpdate) => void): () => void {
-  if (typeof onUpdate !== 'function') throw new TypeError('Purchases.addTransactionListener requires a function')
+  validateCallback(onUpdate, 'Purchases.addTransactionListener requires a function')
   return native().addTransactionListener(onUpdate)
 }
 

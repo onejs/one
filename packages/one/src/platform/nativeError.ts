@@ -11,3 +11,7 @@ export function rethrowNativeError(error: unknown): never {
   }
   throw error
 }
+
+export function missingNativeBuild(operation: string): Error {
+  return new Error(`${operation} needs an iOS or Android build`)
+}

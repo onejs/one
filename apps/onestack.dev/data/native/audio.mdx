@@ -3,7 +3,7 @@ title: Audio
 description: Play audio and record microphone files on iOS
 ---
 
-`One.iOS.Audio` plays a local `file://` URI or an `https://` audio URL through
+`One.Audio` plays a local `file://` URI or an `https://` audio URL through
 AVPlayer. It handles one playback or recording operation at a time. Starting
 playback replaces the previous player; stop a paused player before recording.
 An ended or failed player is cleared when recording starts. Calls reject with
@@ -12,14 +12,14 @@ a coded error when the requested operation cannot run.
 ```tsx
 import { One } from 'one'
 
-await One.iOS.Audio.play('https://example.com/episode.m4a')
-const status = await One.iOS.Audio.getPlaybackStatus()
+await One.Audio.play('https://example.com/episode.m4a')
+const status = await One.Audio.getPlaybackStatus()
 if (status.state === 'playing') {
-  await One.iOS.Audio.pause()
-  await One.iOS.Audio.seek(30_000)
-  await One.iOS.Audio.resume()
+  await One.Audio.pause()
+  await One.Audio.seek(30_000)
+  await One.Audio.resume()
 }
-await One.iOS.Audio.stop()
+await One.Audio.stop()
 ```
 
 `getPlaybackStatus()` returns `state`, `positionMs`, and a `durationMs` when the
@@ -48,14 +48,14 @@ playing without the mode in our control run, so confirm background behavior on a
 device before relying on it in production.
 
 ```tsx
-const permission = await One.iOS.Audio.requestRecordingPermission()
+const permission = await One.Audio.requestRecordingPermission()
 if (permission === 'granted') {
-  const started = await One.iOS.Audio.startRecording()
-  await One.iOS.Audio.pauseRecording()
-  await One.iOS.Audio.resumeRecording()
-  const recorded = await One.iOS.Audio.stopRecording()
+  const started = await One.Audio.startRecording()
+  await One.Audio.pauseRecording()
+  await One.Audio.resumeRecording()
+  const recorded = await One.Audio.stopRecording()
   console.log(started.uri, recorded.uri, recorded.durationMs, recorded.size)
-  await One.iOS.Audio.play(recorded.uri)
+  await One.Audio.play(recorded.uri)
 }
 ```
 
@@ -63,7 +63,7 @@ if (permission === 'granted') {
 without prompting. `getRecordingStatus()` reports `idle`, `recording`, or
 `paused`, its file URI, and elapsed time. An interrupted recorder reports
 `paused`; call `resumeRecording()` after the interruption ends. Keep a file you want to
-retain by moving it from cache with `One.iOS.FileSystem.move`.
+retain by moving it from cache with `One.FileSystem.move`.
 
 Use `watchInterruptions()` to react when another audio session interrupts playback
 or recording. The callback receives `type` (`began` or `ended`) and `shouldResume`.
@@ -76,9 +76,9 @@ without a matching `ended`. Use app foreground state when deciding whether to
 offer playback again in that case.
 
 ```tsx
-const stopWatching = One.iOS.Audio.watchInterruptions((event) => {
+const stopWatching = One.Audio.watchInterruptions((event) => {
   if (event.type === 'ended' && event.shouldResume) {
-    void One.iOS.Audio.resume()
+    void One.Audio.resume()
   }
 })
 // call stopWatching() when this screen unmounts
@@ -95,15 +95,15 @@ the player remains active. Enable the background audio mode described above if
 playback must continue while another app is in front.
 
 ```tsx
-await One.iOS.Audio.play(trackUri)
-await One.iOS.Audio.setNowPlayingInfo({
+await One.Audio.play(trackUri)
+await One.Audio.setNowPlayingInfo({
   title: 'Chapter One',
   artist: 'Example Author',
   artworkUri: coverFileUri,
 })
-const stopWatchingRemote = One.iOS.Audio.watchRemoteCommands((event) => {
+const stopWatchingRemote = One.Audio.watchRemoteCommands((event) => {
   // event.type is play, pause, or seek; seek includes positionMs.
-  void One.iOS.Audio.getPlaybackStatus().then((status) => {
+  void One.Audio.getPlaybackStatus().then((status) => {
     console.log(event.type, status.state, status.positionMs)
   })
 })
@@ -123,3 +123,5 @@ recording use the app's shared audio session. Playback switches its category
 to playback and can replace another feature's audio session configuration,
 including picture in picture. Stop this audio before starting speech recognition
 or another audio feature. Background recording is not configured by this API.
+
+Audio is implemented on iOS. Android and web report denied recording permission and idle status. Stop and metadata effects do nothing; listeners return a remover that does nothing. Starting playback or recording and requesting a recording file reject with `Audio.<verb> needs an iOS or Android build`.

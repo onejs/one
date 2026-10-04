@@ -7,7 +7,7 @@ function message(error: unknown): string {
 }
 
 async function runChecks(report: (name: string, value: string) => void) {
-  const keepAwake = One.iOS.KeepAwake
+  const keepAwake = One.KeepAwake
   const initial = await keepAwake.isEnabled()
   report('Initial', String(initial))
   try {
@@ -34,15 +34,23 @@ export default function OneNativeKeepAwake() {
   return (
     <View style={styles.screen}>
       <Text>{`Status: ${status}`}</Text>
-      {results.map(([name, value]) => <Text key={name}>{`${name}: ${value}`}</Text>)}
-      <Pressable testID="one-native-keep-awake-run" style={styles.chip} onPress={() => {
-        setResults([])
-        setStatus('running')
-        runChecks((name, value) => setResults((current) => [...current, [name, value]])).then(
-          () => setStatus('done'),
-          (error: unknown) => setStatus(`failed ${message(error)}`)
-        )
-      }}>
+      {results.map(([name, value]) => (
+        <Text key={name}>{`${name}: ${value}`}</Text>
+      ))}
+      <Pressable
+        testID="one-native-keep-awake-run"
+        style={styles.chip}
+        onPress={() => {
+          setResults([])
+          setStatus('running')
+          runChecks((name, value) =>
+            setResults((current) => [...current, [name, value]])
+          ).then(
+            () => setStatus('done'),
+            (error: unknown) => setStatus(`failed ${message(error)}`)
+          )
+        }}
+      >
         <Text>Run keep-awake checks</Text>
       </Pressable>
     </View>
@@ -51,5 +59,10 @@ export default function OneNativeKeepAwake() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 6, backgroundColor: '#fff' },
-  chip: { padding: 10, borderRadius: 8, backgroundColor: '#e5e7eb', alignSelf: 'flex-start' },
+  chip: {
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: '#e5e7eb',
+    alignSelf: 'flex-start',
+  },
 })

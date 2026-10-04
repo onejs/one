@@ -3,25 +3,25 @@ title: Device attestation
 description: Create App Attest keys and assertions, or a DeviceCheck token, on supported iOS devices.
 ---
 
-`One.iOS.DeviceAttestation` exposes Apple's App Attest and DeviceCheck client
+`One.DeviceAttestation` exposes Apple's App Attest and DeviceCheck client
 operations in an iOS native build. Availability depends on the device and app
 registration. Check it before starting either flow.
 
 ```tsx
 import { One } from 'one'
 
-const { appAttest, deviceCheck } = One.iOS.DeviceAttestation.getAvailability()
+const { appAttest, deviceCheck } = One.DeviceAttestation.getAvailability()
 
 if (appAttest) {
-  const keyId = await One.iOS.DeviceAttestation.generateKey()
+  const keyId = await One.DeviceAttestation.generateKey()
   // save keyId for this account and app installation
-  const attestationBase64 = await One.iOS.DeviceAttestation.attestKey(
+  const attestationBase64 = await One.DeviceAttestation.attestKey(
     keyId,
     clientDataHashBase64
   )
   // send keyId, challenge data, and attestationBase64 to your server
 
-  const assertionBase64 = await One.iOS.DeviceAttestation.generateAssertion(
+  const assertionBase64 = await One.DeviceAttestation.generateAssertion(
     keyId,
     nextClientDataHashBase64
   )
@@ -29,7 +29,7 @@ if (appAttest) {
 }
 
 if (deviceCheck) {
-  const tokenBase64 = await One.iOS.DeviceAttestation.generateDeviceToken()
+  const tokenBase64 = await One.DeviceAttestation.generateDeviceToken()
   // send tokenBase64 to your server to query or update the two device bits
 }
 ```
@@ -62,3 +62,5 @@ assertions, and DeviceCheck tokens need a registered physical-device proof.
 See Apple's [App Attest service](https://developer.apple.com/documentation/devicecheck/dcappattestservice),
 [server validation guide](https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server),
 and [DeviceCheck API](https://developer.apple.com/documentation/devicecheck/dcdevice).
+
+Attestation is implemented on iOS. On Android and web, `getAvailability()` reports both capabilities as `false`; key, token, attestation, and assertion calls reject with `DeviceAttestation.<verb> needs an iOS or Android build`.

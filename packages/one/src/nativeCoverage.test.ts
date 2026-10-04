@@ -16,8 +16,8 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   Database: 'Android suite missing',
-  'iOS.Widgets': 'needs a widget extension target in the fixture app',
-  'iOS.LiveActivities': 'needs a widget extension target in the fixture app',
+  Widgets: 'needs a widget extension target in the fixture app',
+  LiveActivities: 'needs a widget extension target in the fixture app',
   'iOS.WidgetUI': 'needs a widget extension target in the fixture app',
   'iOS.ZoomTransitionAlignmentRectDetector': 'no fixture or suite',
   'iOS.ZoomTransitionEnabler': 'on zoom-detail, which the zoom e2e reaches only by tap',
@@ -56,22 +56,38 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
-  'iOS.BackgroundTasks': 'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device',
-  'iOS.DeviceAttestation': 'iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device',
-  'iOS.Motion': 'iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run',
-  'iOS.Menu': 'primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound',
-  'iOS.ArrangementView': 'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
-  'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
-  'iOS.LinearGradient': 'sRGB hex colors and normalized points proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound',
-  'iOS.RadialGradient': 'opaque and alpha sRGB hex colors, empty/one/two/three colors, normalized center, and point radii proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound',
-  'iOS.AngularGradient': 'sRGB hex colors, normalized center, and full-circle angle on iOS 27; partial-arc initializer, explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven',
-  'iOS.EllipticalGradient': 'sRGB hex colors, normalized center, and both radius fractions on iOS 27; explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven',
-  'iOS.MeshGradient': '2×2 and 3×3 point/color grids, background, smoothing, and device/perceptual color spaces on iOS 27; Bezier-point and resolved-color initializers and other iOS versions unproven',
-  'iOS.List': 'Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven',
-  'iOS.Picker': 'palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven',
-  'iOS.ScrollView': 'vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven',
-  'iOS.Section': 'spacing, margins, and header prominence proven in insetGrouped List on iPhone; other section modifiers and Form behavior unproven',
-  'iOS.ViewSlot': 'background, mask, list row background, top/bottom and leading/trailing safe-area bars, bottom vertical inset, and leading/trailing horizontal insets in bounded hosts proven; scroll content and other named slots unproven',
+  BackgroundTasks:
+    'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device',
+  DeviceAttestation:
+    'iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device',
+  Motion:
+    'iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run',
+  'iOS.Menu':
+    'primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound',
+  'iOS.ArrangementView':
+    'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
+  'iOS.EditButton':
+    'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',
+  'iOS.LinearGradient':
+    'sRGB hex colors and normalized points proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound',
+  'iOS.RadialGradient':
+    'opaque and alpha sRGB hex colors, empty/one/two/three colors, normalized center, and point radii proven on iOS 27; arbitrary SwiftUI Color values and explicit stops unbound',
+  'iOS.AngularGradient':
+    'sRGB hex colors, normalized center, and full-circle angle on iOS 27; partial-arc initializer, explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven',
+  'iOS.EllipticalGradient':
+    'sRGB hex colors, normalized center, and both radius fractions on iOS 27; explicit stops, arbitrary SwiftUI Color values, and other iOS versions unproven',
+  'iOS.MeshGradient':
+    '2×2 and 3×3 point/color grids, background, smoothing, and device/perceptual color spaces on iOS 27; Bezier-point and resolved-color initializers and other iOS versions unproven',
+  'iOS.List':
+    'Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven',
+  'iOS.Picker':
+    'palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven',
+  'iOS.ScrollView':
+    'vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven',
+  'iOS.Section':
+    'spacing, margins, and header prominence proven in insetGrouped List on iPhone; other section modifiers and Form behavior unproven',
+  'iOS.ViewSlot':
+    'background, mask, list row background, top/bottom and leading/trailing safe-area bars, bottom vertical inset, and leading/trailing horizontal insets in bounded hosts proven; scroll content and other named slots unproven',
 }
 
 type Platform = 'ios' | 'android'
@@ -142,7 +158,9 @@ function exportsUsed(source: string) {
   for (const [, name] of source.matchAll(/One\.([A-Za-z]+)/g)) {
     if (name !== 'iOS' && name !== 'Android' && name !== 'UI') used.add(name)
   }
-  for (const [, imports] of source.matchAll(/import\s*\{([^}]+)\}\s*from\s*['"]one['"]/g)) {
+  for (const [, imports] of source.matchAll(
+    /import\s*\{([^}]+)\}\s*from\s*['"]one['"]/g
+  )) {
     for (const specifier of imports.split(',')) {
       const [imported, local] = specifier.trim().split(/\s+as\s+/)
       if (new RegExp(`\\b${local ?? imported}\\s*\\(`).test(source)) used.add(imported)
@@ -165,9 +183,15 @@ function publicExports() {
       names.push({ name: key, label: `One.${key}`, platforms: ['ios', 'android'] })
     }
   }
-  for (const name of new Set([...Object.keys(PlatformApi), ...Object.keys(SafeAreaApi)])) {
+  for (const name of new Set([
+    ...Object.keys(PlatformApi),
+    ...Object.keys(SafeAreaApi),
+  ])) {
     if (
-      (name.startsWith('use') || name === 'getSizeClass' || name === 'getHinge' || name === 'onHingeChange') &&
+      (name.startsWith('use') ||
+        name === 'getSizeClass' ||
+        name === 'getHinge' ||
+        name === 'onHingeChange') &&
       Object.hasOwn(PublicApi, name)
     ) {
       names.push({ name, label: name, platforms: ['ios', 'android'] })
@@ -192,6 +216,30 @@ test('every One namespace member is exercised by a native conformance suite', as
     }
   }
 
+  // standalone contracts retain the report and independently verified output.
+  for (const platform of ['android', 'ios'] as const) {
+    const directory = `evidence/uniform-native-modules/${platform}`
+    const runtime = JSON.parse(read(`${directory}/runtime.json`))
+    const pixels = JSON.parse(read(`${directory}/pixels.json`))
+    expect(runtime.passed, `${platform} native module contract`).toBe(true)
+    expect(pixels.passed, `${platform} independently decoded pixels`).toBe(true)
+    expect(pixels.counterclockwiseNegativeControlRejected).toBe(true)
+    const core = exportsUsed(read('fixtures/one-native-modules.tsx'))
+    if (platform === 'android') {
+      expect(runtime.unavailable.passed, 'Android no-native service contract').toBe(true)
+      expect(runtime.unavailable.checks.length).toBeGreaterThan(60)
+      for (const name of exportsUsed(read('fixtures/one-unavailable-services.ts'))) {
+        proof.android.set(name, [
+          ...(proof.android.get(name) ?? []),
+          'native-modules:unavailable',
+        ])
+      }
+    }
+    for (const name of core) {
+      proof[platform].set(name, [...(proof[platform].get(name) ?? []), 'native-modules'])
+    }
+  }
+
   const rows: string[] = []
   const uncovered: string[] = []
   for (const { name, label, platforms } of publicExports()) {
@@ -202,7 +250,9 @@ test('every One namespace member is exercised by a native conformance suite', as
     const ios = cell('ios')
     const android = cell('android')
     if (ios === 'missing' || android === 'missing') uncovered.push(name)
-    rows.push(`| \`${label}\` | ${ios} | ${android} | ${knownGaps[name] ?? partialGaps[name] ?? ''} |`)
+    rows.push(
+      `| \`${label}\` | ${ios} | ${android} | ${knownGaps[name] ?? partialGaps[name] ?? ''} |`
+    )
   }
 
   await expect(

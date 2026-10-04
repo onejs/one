@@ -3,14 +3,14 @@ title: Image Manipulator
 description: Crop, resize, rotate, and encode local images on iOS and Android
 ---
 
-`One.iOS.ImageManipulator.transform` reads a local `file://` image and writes a
+`One.ImageManipulator.transform` reads a local `file://` image and writes a
 new JPEG or PNG file in the app's cache. It never changes the source. The
 operation runs off the JavaScript thread and needs no photo permission.
 
 ```tsx
 import { One } from 'one'
 
-const edited = await One.iOS.ImageManipulator.transform(photoUri, {
+const edited = await One.ImageManipulator.transform(photoUri, {
   crop: { x: 20, y: 20, width: 400, height: 300 },
   resize: { width: 200 },
   rotate: 90,
@@ -30,9 +30,9 @@ dimensions use exactly the requested size. Rotation is clockwise and accepts
 transparency and takes no `quality` option. JPEG removes transparency. The result's `size` is the
 encoded file length in bytes.
 
-Use `One.iOS.FileSystem.delete(result.uri)` when the cached result is no longer
+Use `One.FileSystem.delete(result.uri)` when the cached result is no longer
 needed. To keep it, move it into the app's documents directory. To add it to
-Photos, pass its URI to `One.iOS.PhotoLibrary.saveImage` after requesting
+Photos, pass its URI to `One.PhotoLibrary.saveImage` after requesting
 add-only permission. Network URLs need to be downloaded to a local file first.
 
 The promise rejects with `error.code` `E_IMAGE_URI` for a non-file URI,
@@ -40,4 +40,4 @@ The promise rejects with `error.code` `E_IMAGE_URI` for a non-file URI,
 `E_IMAGE_INPUT` for invalid crop, resize, rotation, quality, or output size,
 `E_IMAGE_ENCODE` for an encoder failure, and `E_IMAGE_FAILED` for a file write
 failure. Output is limited to 25 megapixels and 10,000 pixels per side. This API
-requires an iOS or Android native build and throws on web.
+is implemented on iOS and Android. On web, `transform()` rejects with `ImageManipulator.transform needs an iOS or Android build`.

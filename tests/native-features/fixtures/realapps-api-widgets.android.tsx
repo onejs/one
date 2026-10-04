@@ -1,5 +1,5 @@
 import { Results } from './realapps-api-report'
-const apis = ['One.iOS.Widgets', 'One.iOS.WidgetUI', 'One.iOS.LiveActivities']
+const apis = ['One.Widgets', 'One.iOS.WidgetUI', 'One.LiveActivities']
 export default function WidgetsUnsupported() {
   return (
     <Results

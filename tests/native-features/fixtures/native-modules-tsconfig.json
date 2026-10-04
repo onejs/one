@@ -8,6 +8,7 @@
   "include": [
     "native-modules-entry.ts",
     "one-native-modules.tsx",
+    "one-unavailable-services.ts",
     "photo-library-proof-media.ts"
   ],
   "exclude": [
