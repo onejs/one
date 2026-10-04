@@ -75,6 +75,20 @@ TESTED: real Rally hook on iOS 27, Android 37, Chromium development and producti
 
 One source commit `f8e56cdc`; Contrast migration `fe0484e86f`. The One change is based on v2-beta `5808e174d`, including the explicit Android device selector fix. Main is untouched.
 
+RAN: One API and docs landed on v2-beta `4395848b3`; result-retention fix
+`75982e8ee` removes output references from React state while retaining exact current
+result identity. The browser retention probe proves replacement, disposal, reactivation,
+and six accepted executions; it makes no heap-collection or phone-memory claim.
+
+Shared compiler follow-up: One branch `feat/background-computation-preview` at
+`30bcc005b`; Contrast branch at `a4cc24d4cd`. Vite and Contrast use one portable
+`vxrn/background-computation` transform. RAN: current One/compiler probes pass 39 tests;
+Contrast passes 130 tests / 348 assertions. The emitted browser bundler is 96.6 KB gzip.
+RAN: real Rally passes through Contrast's generated Blob Worker and One's production
+Vite Worker. The real Rally hook also passes on the custom native preview with a named worklet Worker, exact seven-field comparison and heartbeat7. Evidence is retained under `tests/native-features/evidence/background-computation/contrast-preview/`. The complete canonical Home Rally factory seed build currently fails on the exact branch `contrast-native` source artifact returning404 from the public compile CDN; its negative receipt is retained beside the passing preview proofs. The branch
+canary dispatch https://github.com/onejs/one/actions/runs/37169679013 has not produced the required published content: detached waiter `w-715d` expired after45m. RAN: npm metadata has no release sourced from this branch, and the three checked canaries carry other source commits. The receipt is `contrast-preview/npm-publication-timeout.json`; no workflow failure cause is claimed. RAN: the failed Release log was fetched once; One declaration emit failed on the Vite worker.plugins signature. The existing v2-beta fix `a4c1ed5a5` corrects it. The ref-tip hypothesis was wrong. m19584 reviewed/approved compiler `30bcc005b` and assigned this lane the automatic v2-beta Release run. Compiler and evidence have been applied cleanly onto current v2-beta for landing. Contrast main waits for verified npm contents, a matching family pin and both
+compile catalogs. Nate directly approved the shared custom-preview item (`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`). Publication and factory-build checks remain pending. Assembled follow-up review remains with m19584.
+
 Proposed public shape (`one/background`):
 
 ```ts
