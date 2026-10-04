@@ -1,0 +1,32 @@
+{
+  "One.Android.Menu": {
+    "api": "One.Android.Menu",
+    "status": "passed",
+    "value": {
+      "id": "hit"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.Android.ContextMenu": {
+    "api": "One.Android.ContextMenu",
+    "status": "passed",
+    "value": {
+      "id": "hit"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.Android.AlertDialog": {
+    "api": "One.Android.AlertDialog",
+    "status": "passed",
+    "value": {
+      "id": "hit"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  }
+}

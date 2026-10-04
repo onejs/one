@@ -132,7 +132,10 @@ if (values.mode === 'home') {
   else flow += '- back\n'
   scrollTap('realapps-api-browser-cancel')
   flow += '- takeScreenshot: system-browser\n'
-  if (values.platform === 'ios') flow += '- tapOn: "Done"\n'
+  if (values.platform === 'ios') {
+    visible('Close')
+    flow += '- tapOn: "Close"\n'
+  }
   else flow += '- back\n'
   scrollTap('realapps-api-share-cancel')
   flow += '- takeScreenshot: system-share\n'
@@ -240,7 +243,7 @@ try {
     })
     if (await copied.exited) throw new Error('Could not transfer native UI flow')
     command = [
-      'tm', 'exec', values.machine, '--timeout', '15m', '--', 'sh', '-c',
+      'ssh', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=10', values.machine,
       `export PATH="$HOME/.local/share/mise/installs/maestro/cli-2.7.0/bin:$PATH"; maestro --device '${values.device.replace(/'/g, "'\\''")}' test --test-output-dir ${remoteOut} ${remoteOut}.yaml`,
     ]
   }
@@ -248,7 +251,9 @@ try {
     command,
     { stdout: 'inherit', stderr: 'inherit' }
   )
+  const deadline = setTimeout(() => child.kill(), 15 * 60 * 1000)
   const status = await child.exited
+  clearTimeout(deadline)
   if (values.machine) {
     const copied = Bun.spawn(['scp', '-r', `${values.machine}:${remoteOut}/.`, out], {
       stdout: 'inherit', stderr: 'inherit',

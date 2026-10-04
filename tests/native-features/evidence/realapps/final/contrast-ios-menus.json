@@ -1,0 +1,32 @@
+{
+  "One.iOS.Menu": {
+    "api": "One.iOS.Menu",
+    "status": "passed",
+    "value": {
+      "id": "hit"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.iOS.ContextMenu": {
+    "api": "One.iOS.ContextMenu",
+    "status": "passed",
+    "value": {
+      "id": "hit"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.iOS.Alert": {
+    "api": "One.iOS.Alert",
+    "status": "passed",
+    "value": {
+      "id": "hit"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  }
+}
