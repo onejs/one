@@ -145,7 +145,9 @@ async function images() {
     const result = await One.iOS.ImageManipulator.transform(uri, options)
     check(result.uri.startsWith('file://'), `${name} output URI`)
     output.push(result.uri)
-    const decoded = await size(result.uri)
+    const decoded = await size(result.uri).catch((error) => {
+      throw new Error(`${name} decoded dimensions: ${String(error)}`)
+    })
     check(
       result.width === width &&
         result.height === height &&
@@ -153,7 +155,9 @@ async function images() {
         decoded.height === height,
       `${name} dimensions`
     )
-    const data = await bytes(result.uri)
+    const data = await bytes(result.uri).catch((error) => {
+      throw new Error(`${name} encoded bytes: ${String(error)}`)
+    })
     check(
       data.length === result.size && (await fs.getInfo(result.uri)).size === result.size,
       `${name} encoded size`
@@ -161,6 +165,8 @@ async function images() {
     const response = await fetch(`${endpoint}/artifact/${Platform.OS}/${name}`, {
       method: 'POST',
       body: data,
+    }).catch((error) => {
+      throw new Error(`${name} upload: ${String(error)}`)
     })
     check(response.ok, 'artifact saved')
     results[name] = { width, height, size: result.size }
