@@ -265,12 +265,75 @@ headless component may offer worklet callbacks, and the app brings its own UI
 (page dots and the like). Reanimated stays an app choice: not required, not
 blessed into One's UI. Per-frame value hooks and shared-value props are off.
 
-## bundle speed (moved to lane one-native-bundle-speed, 2026-10-04)
+## bundle speed (2026-10-04)
 
-Profile: `/tmp/claude-501/prof/CPU.20261003.201642.89416.0.001.md` on air-32 (968s, box at 0% idle, so absolute times are inflated).
-- RAN: about 40% of JS CPU is Babel (`@babel/parser` 14.3%, traverse about 18%, generator 1.7%). Wrangler, miniflare and the Cloudflare Vite plugin load during config (wrangler `cli.js` 3.1%).
-- INFERRED cause: `~/contrast/templates/contrast-mobile/babel.config.cjs` is the `one metro-eject --eject` output (it delegates to `one/babel-preset`, kept for Metro OTA in 983e5c0001). `findUserBabelConfig` in `packages/compiler/src/transformBabel.ts` treats it as a user config, so the Rolldown native path reruns the whole Metro preset through Babel on every project file, on top of OXC/SWC.
-- Open: whether Contrast OTA (`scripts/ota-publish.mjs`) still needs Metro. If not, delete both ejected configs. Either way, One's own bundler should not run a config that only re-applies its own preset. `stripFlowTypes` also uses Babel. In `compiler/src/index.ts`, `babelOptions = { plugins: [] }` for worklets is a confusing no-op name.
+TESTED: Contrast mobile's ejected Babel file only delegates to One's preset.
+Removing it leaves `withOne` selecting the native Metro worker, and the actual
+native CLI produces iOS and Android production bundles that compile with the
+pinned Hermes compiler. Keep the ejected Metro config for explicit Metro users.
+One's default native CLI path used by OTA is Rolldown.
+
+RAN: isolated Babel-config comparisons on air-24, under `bun heavy --exclusive`.
+Fresh Node processes build the full dev-mode bundle twice, without minification
+or source maps. Setup is measured separately; OS page caches are retained.
+
+| platform | cold before | cold after | warm before | warm after |
+| --- | ---: | ---: | ---: | ---: |
+| iOS | 18.109s | 14.091s | 18.001s | 13.153s |
+| Android | 19.084s | 16.157s | 18.014s | 15.852s |
+
+RAN: Babel self samples fell from 55.32% to 47.96% on iOS and from 56.15% to
+49.46% on Android. Remaining Babel work includes dependency Flow stripping.
+The original 968s air-32 profile and saturated studio-64 timings are excluded
+from speed claims.
+
+TESTED: three counterbalanced live dev-engine startups per condition, with the
+same newly built package family. Cold includes engine creation and its first
+bundle with source maps; warm is the cached second `getBundle` request. All
+samples are retained, including the slow third pair with substantial variance.
+
+| platform | before samples (s) | after samples (s) | median before | median after |
+| --- | --- | --- | ---: | ---: |
+| iOS | 20.439, 21.738, 77.793 | 15.739, 16.067, 36.597 | 21.738s | 16.067s |
+| Android | 20.429, 28.659, 63.420 | 15.960, 18.051, 31.253 | 28.659s | 18.051s |
+
+RAN: cached bundle requests take 0.107-0.269ms. Each cold/warm pair has identical
+bundle hashes. These are host bundle times, not on-device launch times.
+INFERRED: the third pair's large variance limits the precision of the startup
+speedup; exclusivity gates admitted work but cannot exclude every host process.
+
+TESTED: One commit `1cacb7ee4` moves the Cloudflare plugin import behind its
+existing feature gate. Three fresh-process static/dynamic controls against the
+same built artifact give median plugin setup 622.488ms versus 213.492ms. Samples
+are 2505.024/622.488/620.769ms before and 220.145/213.492/212.575ms after.
+The static control loads five Wrangler modules with the feature disabled; the
+fix loads zero. Enabling the feature loads five and resolves its plugin array.
+The matched startup profiles have 23.11% Wrangler self samples before and zero
+after. The final Contrast iOS bundle profile also has zero Wrangler samples.
+
+RAN: 21 focused One tests pass (`cloudflareWranglerConfig`, `workerdDevPlugin`,
+`one-defines`, `getViteMetroPluginOptions`, `withOne`). `bun release --into
+~/contrast` built and installed 17 packages from the isolated One worktree.
+Native production CLI plus Hermes validation produced 4,588 iOS and 4,603
+Android source-map sources. No OTA was uploaded.
+
+RAN: the existing benchmark now runs under Node, uses the bundled Vite config
+loader and built native engine, and accepts one-platform dev measurements:
+
+```sh
+node scripts/native-worklets-benchmark.ts --modes one --dev --platform ios \
+  --samples 3 --root ~/contrast/templates/contrast-mobile --output /tmp/native-ios.json
+```
+
+Repeat with `--platform android`. Full-bundle benchmark receipts distinguish
+these rebuilds from the live engine's cached second request. Raw receipts and
+CPU profiles are under `/tmp/one-native-speed-*` on air-24; local collected
+profiles are `/tmp/one-native-speed-profiles/air24-*.cpuprofile` on studio-64.
+
+INFERRED next optimization: profile `stripFlowTypes` and Hermes class lowering
+on the remaining React Native dependency graph. Flow stripping and native
+codegen must preserve their ordering and output semantics; removing required
+transforms would invalidate these bundle gains.
 
 ## workers
 
