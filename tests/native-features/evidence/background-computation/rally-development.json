@@ -1,0 +1,10 @@
+{
+  "mode": "rally-development",
+  "status": "passed revision=1 checkpoints=3 legs=3 objects=37",
+  "workers": [
+    "http://localhost:8108/@fs/Users/n8/.worktrees/contrast-one-background-computation/examples/app-home-designer/features/rally/rallyTrack.ts.__one_background_worker_6275696c6452616c6c79436f75727365.js?worker_file&type=module"
+  ],
+  "errors": [],
+  "browser": "145.0.7632.6",
+  "observedAt": "2026-10-04T00:46:59.706Z"
+}

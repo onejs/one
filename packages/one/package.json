@@ -153,6 +153,15 @@
       "types": "./types/tamagui.d.ts",
       "import": "./dist/esm/tamagui.mjs",
       "require": "./dist/cjs/tamagui.cjs"
+    },
+    "./background": {
+      "react-native": {
+        "types": "./types/background.native.d.ts",
+        "default": "./dist/esm/background.native.js"
+      },
+      "types": "./types/background.d.ts",
+      "import": "./dist/esm/background.mjs",
+      "require": "./dist/cjs/background.cjs"
     }
   },
   "main": "dist/cjs",
