@@ -40,10 +40,7 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
-import {
-  createWorkerdDevPlugins,
-  shouldEnableWorkerdDev,
-} from './plugins/workerdDevPlugin'
+import { shouldEnableWorkerdDev } from './cloudflareWranglerConfig'
 import type { One } from './types'
 
 type MetroOptions = MetroPluginOptions
@@ -975,7 +972,9 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   })()
 
   const workerdDevPlugins = shouldEnableWorkerdDev(options.web?.deploy, root)
-    ? createWorkerdDevPlugins(options, root, routeIndex)
+    ? import('./plugins/workerdDevPlugin').then(({ createWorkerdDevPlugins }) =>
+        createWorkerdDevPlugins(options, root, routeIndex)
+      )
     : []
 
   return [
@@ -991,7 +990,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         }
       },
     },
-    ...workerdDevPlugins,
+    workerdDevPlugins,
     ...vxrnPlugins,
     ...devAndProdPlugins,
     ...inspectorPlugins,
