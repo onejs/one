@@ -636,3 +636,36 @@ past that error and failed on an unqualified `RCTBridge.h` import. All three
 utility view managers now import `<React/RCTBridge.h>`; frozen Bun install
 applies the patch. Draft commits `33341a4` and its header follow-up stay on
 `tm/one-realapps` pending actual iOS and Android validation.
+RAN: final Contrast clean iOS build passes in 700713 ms and installs on Air24's
+claimed iPhone17Pro27.0. Services and stack/tab/drawer state-on-back pass.
+`/tmp/one-realapps-contrast-a4-ci-ios-build-final.json`,
+`/tmp/one-realapps-contrast-ios-services-a4-final/api-results.json`,
+`/tmp/one-realapps-contrast-ios-routing-a4-final.log`.
+RAN: Basic clean Android ARM64 build passes in 3m12s with 325 tasks executed:
+CI64 `/tmp/one-realapps-basic-a4-android-build-java17.log`. APK copied for runtime.
+RAN: Takeout's new JSI binding callback compiles past the removed CxxBridge
+errors. Compiler next rejects two menu-subtitle calls guarded at iOS15 despite
+SDK availability iOS16. Correct both existing guards; do not raise the app's
+minimum deployment or add a rendering alternative.
+RAN: Basic clean Android original home and all three navigation state-on-back
+flows pass on Pro's regular Pixel8 API37 emulator with the unchanged assertions.
+Logs `/tmp/one-realapps-basic-pro-android-home-a4-final.log` and
+`/tmp/one-realapps-basic-pro-android-routing-a4-final.log`.
+RAN: Contrast Android UI, menus and external flows pass on the same clean APK
+on Pro after explicitly configuring the transferred APK's adb reverse mapping.
+Retained API JSONs live in `tests/native-features/evidence/realapps/final/`.
+RAN: Contrast iOS UI and menus pass. The external flow's original `Done` selector
+fails on iOS27 Safari. Maestro's actual accessibility tree identifies its dismiss
+button as text and resource-id `Close`; assert visibility before tapping it.
+The remote stream also failed during a daemon endpoint change, while SSH remained
+reachable. Global tool defect `t-mutdmm53-1lri0` records it. The native UI harness
+now uses one direct SSH path with its existing 15-minute command deadline; test
+assertions and device claims are unchanged.
+RAN: Takeout final a4 product web build and headless original Login render pass:
+`/tmp/one-realapps-takeout-web-a4-final.log`,
+`/tmp/one-realapps-takeout-web-a4-runtime.log`.
+RAN: Expo prebuild with `--no-install` does not create its Xcode workspace until
+pod install. The rerunnable matrix now runs explicit iOS pods for Expo apps,
+while Expo-free One prebuild owns its own installation. The iOS build helper's
+`--build-only` mode allows a compile host to read the generated scheme without
+installing or launching on an unclaimed device.

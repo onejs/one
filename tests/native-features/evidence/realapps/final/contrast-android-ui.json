@@ -1,0 +1,112 @@
+{
+  "One.UI.SafeArea": {
+    "api": "One.UI.SafeArea",
+    "status": "observed",
+    "value": {
+      "x": 12.190476417541504,
+      "y": 39.619049072265625,
+      "width": 387.4285583496094,
+      "height": 93.71429443359375
+    },
+    "scope": "native safe-area content mounted and laid out"
+  },
+  "useSafeAreaInsets": {
+    "api": "useSafeAreaInsets",
+    "status": "passed",
+    "value": {
+      "left": 0,
+      "bottom": 24,
+      "right": 0,
+      "top": 50.285714285714285
+    },
+    "scope": "numeric native metrics read"
+  },
+  "useSizeClass": {
+    "api": "useSizeClass",
+    "status": "passed",
+    "value": {
+      "horizontal": "compact",
+      "vertical": "regular"
+    },
+    "scope": "native size-class metrics read"
+  },
+  "One.UI.EdgeFade": {
+    "api": "One.UI.EdgeFade",
+    "status": "observed",
+    "value": {
+      "x": 0,
+      "y": 0,
+      "width": 387.4285583496094,
+      "height": 60.1904296875
+    },
+    "scope": "native mask mounted; receipt retains baseline screenshot"
+  },
+  "One.UI.Image": {
+    "api": "One.UI.Image",
+    "status": "passed",
+    "value": {
+      "source": {
+        "uri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=",
+        "width": 1,
+        "height": 1
+      }
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.UI.Pager": {
+    "api": "One.UI.Pager",
+    "status": "passed",
+    "value": {
+      "event": {
+        "position": 0,
+        "target": 646,
+        "timeStamp": 664409
+      },
+      "expected": 0
+    },
+    "scope": "native selection callbacks; runner selects page one and returns"
+  },
+  "One.UI.ReservedRegions": {
+    "api": "One.UI.ReservedRegions",
+    "status": "passed",
+    "value": {
+      "ready": true,
+      "regions": []
+    },
+    "scope": "native provider event received; empty regions allowed on flat device"
+  },
+  "One.UI.Blur": {
+    "api": "One.UI.Blur",
+    "status": "observed",
+    "value": {
+      "intensity": 0
+    },
+    "scope": "runner captures baseline and blurred pixels"
+  },
+  "One.UI.Mask": {
+    "api": "One.UI.Mask",
+    "status": "observed",
+    "value": {
+      "half": false
+    },
+    "scope": "native mask toggled; captures retain half/full state"
+  },
+  "One.UI.Portal": {
+    "api": "One.UI.Portal",
+    "status": "passed",
+    "value": {
+      "hits": 1
+    },
+    "scope": "native reparented child received touch"
+  },
+  "One.UI.PortalHost": {
+    "api": "One.UI.PortalHost",
+    "status": "passed",
+    "value": {
+      "hits": 1
+    },
+    "scope": "named host contains touchable child"
+  }
+}
