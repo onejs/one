@@ -42,7 +42,7 @@ function Geometry({ report }: { report: Report }) {
       'useSafeAreaInsets',
       validInsets ? 'passed' : 'failed',
       insets,
-      'numeric native metrics; runner compares safe-area bounds'
+      'numeric native metrics read'
     )
     report(
       'useSizeClass',
@@ -51,7 +51,7 @@ function Geometry({ report }: { report: Report }) {
         ? 'passed'
         : 'failed',
       size,
-      'runner rotates to prove adaptive updates'
+      'native size-class metrics read'
     )
   }, [
     insets.top,
@@ -70,7 +70,7 @@ function Geometry({ report }: { report: Report }) {
           'One.UI.SafeArea',
           'observed',
           nativeEvent.layout,
-          'runner compares content against insets'
+          'native safe-area content mounted and laid out'
         )
       }
       style={{ minHeight: 60 }}
@@ -179,7 +179,7 @@ export default function SharedUI() {
             'One.UI.Mask',
             'observed',
             { half: !mask },
-            'runner asserts half/full visible pixel bounds'
+            'native mask toggled; captures retain half/full state'
           )
         }}
       >
@@ -225,7 +225,7 @@ export default function SharedUI() {
                   ? 'passed'
                   : 'failed',
               { event: nativeEvent, expected },
-              'native selection callback; runner also swipes and returns'
+              'native selection callbacks; runner selects page one and returns'
             )
           }}
         >
