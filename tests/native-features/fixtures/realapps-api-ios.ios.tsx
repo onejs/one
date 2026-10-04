@@ -1,27 +1,9 @@
 import { useState } from 'react'
-import { One, useRouter } from 'one'
+import { One, useRouter, type Href } from 'one'
 import { ScrollView, Text, View } from 'react-native'
 import { Action, Boundary, Results, useResults, type Report } from './realapps-api-report'
 
-export const iosAPIs = [
-  'One.iOS.Color',
-  'One.iOS.MenuAction',
-  'One.iOS.SplitView',
-  'One.iOS.ToolbarHost',
-  'One.iOS.ToolbarItem',
-  'One.iOS.ZoomTransitionEnabler',
-  'One.iOS.ZoomTransitionSource',
-  'One.iOS.ArrangementView',
-  'One.iOS.Button',
-  'One.iOS.Glass',
-  'One.iOS.Image',
-  'One.iOS.Text',
-  'One.iOS.SignInWithAppleButton',
-  'One.iOS.Tab',
-  'One.iOS.Tabs',
-  'One.iOS.Toolbar',
-  'One.iOS.ToolbarItemGroup',
-] as const
+import { iosAPIs } from './realapps-api-coverage'
 
 function NativeTabs({ report }: { report: Report }) {
   const [selection, setSelection] = useState('first')
@@ -209,7 +191,7 @@ export default function IOSPrimitives() {
           </Boundary>
           <Boundary api="One.iOS.ZoomTransitionSource" report={report}>
             <One.iOS.ZoomTransitionSource identifier="realapps-api-zoom">
-              <Action id="zoom-open" onPress={() => router.push('/realapps-api-zoom')}>
+              <Action id="zoom-open" onPress={() => router.push('/realapps-api-zoom' as Href)}>
                 Open zoom destination
               </Action>
             </One.iOS.ZoomTransitionSource>
@@ -304,14 +286,15 @@ export default function IOSPrimitives() {
                 identifier="realapps-api-bar-hit"
                 title="Bar hit"
                 accessibilityLabel="realapps API bar hit"
-                onSelected={() =>
+                onSelected={() => {
+                  report('One.iOS.BarButtonItem', 'passed', { selected: 'bar' })
                   report(
                     'One.iOS.ToolbarHost',
                     'passed',
                     { selected: 'bar' },
                     'UIKit BarButtonItem invoked native host callback'
                   )
-                }
+                }}
               />
               <One.iOS.MenuAction
                 identifier="realapps-api-menu"
@@ -332,10 +315,7 @@ export default function IOSPrimitives() {
                 />
               </One.iOS.MenuAction>
             </One.iOS.ToolbarHost>
-            <Text>
-              UIKit bar items use BarButtonItem. The Testflight ToolbarItem import uses
-              incompatible UIKit props.
-            </Text>
+            <Text>UIKit toolbar actions retain their native callbacks.</Text>
           </View>
         </Boundary>
       ) : null}

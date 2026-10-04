@@ -358,7 +358,11 @@ async function web(name: string, app: AppResult) {
               ['/tabs/profile', 'Profile Tab'],
               ['/tabs/settings', 'Settings Tab'],
             ]
-          : [['/', null]]
+          : name === 'contrast-mobile'
+            ? [['/', 'Skip']]
+            : name === 'takeout-free'
+              ? [['/', 'Login to Takeout']]
+              : [['/', 'Feed']]
       for (const [route, text] of routes) {
         const response = await page.goto(`http://localhost:${values.port}${route}`, {
           waitUntil: 'networkidle',
@@ -394,6 +398,13 @@ async function web(name: string, app: AppResult) {
     save()
   }
 }
+const requiredPlatforms = (api: string) =>
+  api.startsWith('One.iOS.')
+    ? ['ios']
+    : api.startsWith('One.Android.')
+      ? ['android']
+      : ['ios', 'android']
+
 function writeReport() {
   const cell = (app: AppResult, key: string) =>
     app.steps[key]
@@ -410,11 +421,14 @@ function writeReport() {
     '| --- | --- | --- | --- | --- | --- | --- |',
   ]
   for (const [name, app] of Object.entries(state.apps)) {
-    const uncovered = Object.keys(app.inventory.apis).filter(
-      (api) => !app.exercised[api]?.length
+    const uncovered = Object.keys(app.inventory.apis).filter((api) =>
+      requiredPlatforms(api).some(
+        (platform) =>
+          !app.exercised[api]?.some((receipt) => receipt.startsWith(`${platform}: `))
+      )
     )
     lines.push(
-      `| ${name} | ${cell(app, 'install')} | ${cell(app, 'web-build')} | ${cell(app, 'web-runtime')} | ${cell(app, 'ios-runtime')} | ${cell(app, 'android-runtime')} | ${uncovered.length ? `NOT RUN (${uncovered.length} APIs)` : 'no native API imports'} |`
+      `| ${name} | ${cell(app, 'install')} | ${cell(app, 'web-build')} | ${cell(app, 'web-runtime')} | ${cell(app, 'ios-runtime')} | ${cell(app, 'android-runtime')} | ${uncovered.length ? `NOT RUN (${uncovered.length} APIs)` : Object.keys(app.inventory.apis).length ? 'PASS' : 'no native API imports'} |`
     )
   }
   lines.push('', '## sources and native APIs', '')
@@ -634,12 +648,34 @@ for (const name of appNames) {
         )
       )
         continue
+      if (!step(name, app, 'fixture-dependencies', ['bun', 'install'], app.cwd!)) continue
+      if (
+        !step(
+          name,
+          app,
+          'navigation-versions',
+          ['bun', join(import.meta.dirname, 'realapps-navigation.ts'), app.cwd!],
+          app.cwd!
+        )
+      )
+        continue
       if (
         !step(
           name,
           app,
           `${platform}-prebuild`,
-          ['bunx', '--no-install', 'one', 'prebuild', '--platform', platform],
+          JSON.parse(readFileSync(join(app.cwd!, 'package.json'), 'utf8')).dependencies
+            ?.expo
+            ? [
+                'bunx',
+                '--no-install',
+                'expo',
+                'prebuild',
+                '--platform',
+                platform,
+                '--no-install',
+              ]
+            : ['bunx', '--no-install', 'one', 'prebuild', '--platform', platform],
           app.cwd!,
           true
         )
@@ -666,18 +702,35 @@ for (const name of appNames) {
           )
         )
           continue
-        if (!step(name, app, `${platform}-bundle-ready`, [
-          'bun', join(import.meta.dirname, 'realapps-web-ready.ts'),
-          `http://localhost:${values.port}/index.bundle?platform=${platform}&dev=true`,
-          join(runDir, name, `${platform}-dev-server.log`),
-        ], app.cwd!)) continue
+        if (
+          !step(
+            name,
+            app,
+            `${platform}-bundle-ready`,
+            [
+              'bun',
+              join(import.meta.dirname, 'realapps-native-bundle.ts'),
+              `http://localhost:${values.port}/index.bundle?platform=${platform}&dev=true`,
+            ],
+            app.cwd!,
+            true
+          )
+        )
+          continue
         const ok =
           platform === 'ios'
             ? step(
                 name,
                 app,
                 'ios-build',
-                ['bunx', '--no-install', 'one', 'run:ios', '--udid', device],
+                [
+                  'bun',
+                  join(import.meta.dirname, 'realapps-ios-build.ts'),
+                  app.cwd!,
+                  device,
+                  values.port!,
+                  join(runDir, name, 'ios-derived'),
+                ],
                 app.cwd!,
                 true
               )
@@ -694,10 +747,10 @@ for (const name of appNames) {
           name === 'one-basic'
             ? 'Hello world, from One'
             : name === 'contrast-mobile'
-              ? 'Skip'
+              ? 'Build everywhere, together.'
               : name === 'testflight'
-                ? 'Native'
-                : 'Welcome'
+                ? 'Feed'
+                : 'Login to Takeout'
         const runtime = step(
           name,
           app,
@@ -718,7 +771,7 @@ for (const name of appNames) {
           ],
           app.cwd!
         )
-        if (runtime && name === 'one-basic')
+        if (runtime)
           step(
             name,
             app,
@@ -739,6 +792,51 @@ for (const name of appNames) {
             ],
             app.cwd!
           )
+        if (runtime) {
+          const imported = Object.keys(app.inventory.apis)
+          const applicable = (api: string) =>
+            !(platform === 'android' && api.startsWith('One.iOS.')) &&
+            !(platform === 'ios' && api.startsWith('One.Android.'))
+          for (const mode of ['services', 'external', 'ui', 'menus', 'ios', 'widgets']) {
+            const { modeAPIs } = await import('../fixtures/realapps-api-coverage')
+            const covered = modeAPIs(mode, platform).filter(
+              (api) => imported.includes(api) && applicable(api)
+            )
+            if (!covered.length) continue
+            const evidence = join(runDir, name, `${platform}-${mode}`)
+            const passed = step(
+              name,
+              app,
+              `${platform}-${mode}`,
+              [
+                'bun',
+                join(import.meta.dirname, 'realapps-native-ui.ts'),
+                '--platform',
+                platform,
+                '--device',
+                device,
+                '--package-root',
+                app.cwd!,
+                '--mode',
+                mode,
+                '--out',
+                evidence,
+              ],
+              app.cwd!
+            )
+            if (!passed) continue
+            const results = JSON.parse(
+              readFileSync(join(evidence, 'api-results.json'), 'utf8')
+            )
+            for (const api of covered) {
+              if (!['passed', 'observed'].includes(results[api]?.status)) continue
+              const receipt = `${platform}: ${join(evidence, 'api-results.json')}`
+              const existing = (app.exercised[api] ??= [])
+              if (!existing.includes(receipt)) existing.push(receipt)
+            }
+            save()
+          }
+        }
       } finally {
         dev.kill()
         await dev.exited
@@ -764,7 +862,12 @@ if (
   Object.values(state.apps).some(
     (app) =>
       Object.values(app.steps).some((step) => step.status === 'fail') ||
-      Object.keys(app.inventory.apis).some((api) => !app.exercised[api]?.length)
+      Object.keys(app.inventory.apis).some((api) =>
+        requiredPlatforms(api).some(
+          (platform) =>
+            !app.exercised[api]?.some((receipt) => receipt.startsWith(`${platform}: `))
+        )
+      )
   )
 )
   process.exitCode = 1
