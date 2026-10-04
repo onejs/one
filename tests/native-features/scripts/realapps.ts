@@ -710,7 +710,7 @@ for (const name of appNames) {
             [
               'bun',
               join(import.meta.dirname, 'realapps-native-bundle.ts'),
-              `http://localhost:${values.port}/index.bundle?platform=${platform}&dev=true`,
+              `http://localhost:${values.port}/index.bundle?platform=${platform}&dev=true${platform === 'ios' ? '&bytecode=hermes' : ''}`,
             ],
             app.cwd!,
             true
