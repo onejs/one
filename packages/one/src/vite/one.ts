@@ -11,6 +11,8 @@ import {
   getOptionsFilled,
   loadEnv,
   nearestPackageJson,
+  backgroundComputationPlugin,
+  workletImportsPlugin,
 } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
@@ -910,6 +912,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         : (nativeOptions?.bundlerOptions as any)
 
     globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => [
+      backgroundComputationPlugin('native'),
+      workletImportsPlugin({}),
       ...(nativeApp
         ? [
             {
@@ -975,6 +979,21 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     : []
 
   return [
+    backgroundComputationPlugin('web'),
+    {
+      name: 'one:background-worker-build',
+      config(config) {
+        const plugins = config.worker?.plugins
+        return {
+          worker: {
+            plugins: (chain) => [
+              ...(plugins?.(chain) ?? []),
+              backgroundComputationPlugin('web'),
+            ],
+          },
+        }
+      },
+    },
     ...workerdDevPlugins,
     ...vxrnPlugins,
     ...devAndProdPlugins,
