@@ -62,22 +62,19 @@ RAN: Contrast's raw transform previously emitted an unusable definition (before 
 checks cover actual native calculation, helper edits, forbidden globals and runtime
 packages, missing optional dependencies, web/native conditional exports, artifact pruning and dynamic requires. RAN: the
 full Contrast bundler suite passes 130 tests / 348 assertions; One compiler/plugin passes
-39 tests and vxrn typecheck. RAN: the real Rally hook now passes through both custom preview runtimes: a Blob Worker on web and a named Worklet Worker on native preview. All seven fields match the synchronous course, with37 objects and3 checkpoints/legs. Native heartbeat advances to7. This proves the computation feature in a proof screen; full playable game boot is not claimed. The full Home Rally factory seed build remains a release gate.
+39 tests and vxrn typecheck. RAN: the real Rally hook now passes through both custom preview runtimes: a Blob Worker on web and a named Worklet Worker on native preview. All seven fields match the synchronous course, with37 objects and3 checkpoints/legs. Native heartbeat advances to7. This proves the computation feature in a proof screen; full playable game boot is not claimed. The full Home Rally factory seed build has since passed against published packages.
 
-RAN: the complete canonical Home Rally factory seed reaches the public compile
-CDN through the actual factory reader and native build pipeline. It currently
-fails because the exact branch `contrast-native` source artifact returns404.
-The retained negative receipt is `contrast-preview/factory-before-publication.json`.
-This build remains a gate until the published npm family and both compile catalogs
-include this branch. Home Rally is a canonical example, not a published registry
-entry; no registry entry was added.
+RAN: the complete canonical Home Rally factory seed now passes through the actual
+factory reader and published native build pipeline: 15 routes, 427 files,
+14,391,496 bytes and a complete graph. The earlier exact contrast-native source
+artifact 404 is retained as a negative receipt. Both compile catalogs now serve
+the pinned family. Home Rally is a canonical example; no registry entry was added.
 
 Nate directly approved the shared compiler integration and custom-preview proof
 via “Rally passes on both custom preview runtimes”
 (`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`).
-The publication checks, complete factory seed build and assigned assembled review
-remain gates before the follow-up merges. This approval does not claim those
-checks have passed.
+The publication and complete factory build checks passed. Final merge-candidate
+checks and assigned assembled adapter review remain before Contrast lands.
 
 RAN: compiler integration landed on v2-beta as `c2a262012`, with logical proof
 commit `6b5302bdc`. A fresh build passed14 targets and the compiler suite passed39
