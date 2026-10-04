@@ -133,7 +133,14 @@ WebKit and Chromium match the real57-object course and observe Blob URL revocati
 after the first reply. Native preview matches it with heartbeat9. RAN:131 tests/
 356 assertions, bun check58.8s and97.0KB gzip budget pass; the complete factory
 graph retains15 routes/450 files/14,457,330 bytes. Evidence is under
-contrast-preview/review-fixes/. Assigned re-review precedes Contrast main landing.
+contrast-preview/review-fixes/. Assigned m19584 re-review passed8f3896a221. The synced landing merge
+df23ed5000 includes the pin and removes its goals row; nine adapter tests,
+compile-catalog gate and seven-field current/reference comparison pass. It is
+pushed on merge/one-background-computation-land. Main push is blocked before
+execution by the One-scoped tool guard despite an explicit Contrast target;
+m19584 transferred landing to coordinator m18386 in a Contrast-context
+session and directed this lane to finish. Receipt is contrast-preview/landing/.
+One main is untouched. Main landing is pending with that owner, not claimed done.
 
 Proposed public shape (`one/background`):
 
