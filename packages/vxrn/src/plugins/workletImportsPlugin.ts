@@ -40,7 +40,12 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
       const instance: Plugin = {
         name: 'vxrn:worklet-imports:bundle',
         async resolveId(source, importer, options) {
-          const names = selections.get(source)
+          const marker = '?one-background='
+          const selected = source.indexOf(marker)
+          const names =
+            selected < 0
+              ? selections.get(source)
+              : [decodeURIComponent(source.slice(selected + marker.length))]
           if (!names) return
           if (!names.length)
             throw new Error(`[worklet imports] no exports selected for ${source}`)
@@ -48,7 +53,11 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
             throw new Error(`[worklet imports] ${source} requires a static ESM import`)
           }
           rejectRuntimeDependency(source)
-          const resolved = await this.resolve(source, importer, { skipSelf: true })
+          const resolved = await this.resolve(
+            selected < 0 ? source : source.slice(0, selected),
+            importer,
+            { skipSelf: true }
+          )
           if (
             !resolved ||
             resolved.external ||
