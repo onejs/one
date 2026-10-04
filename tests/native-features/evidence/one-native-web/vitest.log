@@ -1,0 +1,11 @@
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:10:32). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/n8/.worktrees/one-one-native-web/packages/one
+
+
+ Test Files  5 passed (5)
+      Tests  150 passed (150)
+   Start at  10:55:22
+   Duration  1.77s (transform 2.68s, setup 118ms, import 3.23s, tests 167ms, environment 0ms)

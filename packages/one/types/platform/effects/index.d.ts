@@ -1,5 +1,3 @@
-import type { ReactElement } from 'react';
-import type { BlurProps, MaskProps } from './types';
 export { sampleCurve, serializeCurve } from './curves';
 export { EdgeFade } from './EdgeFade';
 export type * from './types';
@@ -11,8 +9,8 @@ export { Map } from '../ui/Map';
 export { PictureInPicture } from '../ui/PictureInPicture';
 export type { PictureInPictureProps } from '../ui/PictureInPicture.native';
 export type { CameraPosition, Coordinates, MapCircle, MapMarker, MapPolygon, MapPolyline, MapProps, } from '../ui/Map';
-export declare function Blur(_props: BlurProps): ReactElement;
-export declare function Mask(_props: MaskProps): ReactElement;
+export { Blur } from './Blur';
+export { Mask } from './Mask';
 export { Portal, PortalHost } from '../ui/Portal';
 export type { PortalProps, PortalHostProps } from '../ui/portalTypes';
 export { Pager } from '../ui/Pager';

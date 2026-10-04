@@ -25,7 +25,7 @@ ID until after the user unlocks the device. It can also change after all of a
 vendor's apps are removed, so do not use it as a permanent account ID. See
 [Apple's identifierForVendor reference](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
-`isSimulator` reports whether this binary runs in the iOS simulator. On Android and web, device strings are empty, `isSimulator` is `false`, and the vendor identifier is absent. For the installed app's version, build, and bundle
+`isSimulator` reports whether this binary runs in the iOS simulator. On Android, device strings are empty, `isSimulator` is `false`, and the vendor identifier is absent. On web, `systemName` is the browser-reported `navigator.platform`; model and system version remain empty, interface idiom is `unspecified`, and no vendor identifier or simulator identity is invented. For the installed app's version, build, and bundle
 ID, use [`One.AppInfo`](/native/app-info).
 
 `getLocalizationInfo()` reads the app's effective locale as a BCP 47 tag,
@@ -33,4 +33,4 @@ the device's preferred language tags, calendar identifier, time zone
 identifier, current UTC offset in seconds, and optional currency code. The
 offset is positive east of UTC and reflects daylight saving time at the
 moment of the call. These values are a snapshot. The API needs no permission
-On Android and web, localization strings and language lists are empty, the UTC offset is zero, and the currency code is absent.
+On Android and SSR, localization strings and language lists are empty, the UTC offset is zero, and the currency code is absent. On web, `Intl.DateTimeFormat` and `navigator.languages` supply locale, calendar, time zone, UTC offset, and preferred languages. Currency remains absent because a browser does not expose the user’s chosen currency.
