@@ -2193,9 +2193,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         )
       }
       stamps.push(
-        `      <meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="${escapeXml(app.updates.runtimeVersion)}" />`
+        '      <meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="@string/one_updates_runtime_version" />'
       )
       rendered = rendered.replace(anchor, `${stamps.join('\n')}\n${anchor}`)
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/res/values/strings.xml' &&
+      app.updates !== undefined
+    ) {
+      // aapt infers an inline numeric version as an integer. a string resource
+      // preserves the exact runtime identifier read by the native launcher.
+      const version = app.updates.runtimeVersion.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+      rendered = rendered.replace(
+        '</resources>',
+        `    <string name="one_updates_runtime_version" translatable="false">"${escapeXml(version)}"</string>\n</resources>`
+      )
     }
     if (
       platform === 'android' &&
