@@ -337,7 +337,7 @@ transforms would invalidate these bundle gains.
 
 ## runtime 84 OTA canary (2026-10-04)
 
-Contrast main pins One canary 1791084352120 against the runtime-84 binary. Newer canaries change native code (for example `ios/Nitro/HybridOneMotion.swift`), so they cannot ship by OTA to runtime 84. Branch `release/ota84-js-canary` (8c58c075b) is the baseline 6b5302bdc plus the ws/headless fixes 48b7e7d8d and 8c2eb5e22. RAN: all 1392 native files in the published baseline match 6b5302bdc byte for byte. Publishing it is a `release.yml` workflow_dispatch with release=canary on that branch, waiting for Nate. Until then Contrast carries the two fixes as a patch.
+Contrast main pins One canary 1791084352120 against the runtime-84 binary. Newer canaries change native code (for example `ios/Nitro/HybridOneMotion.swift`), so they cannot ship by OTA to runtime 84. Published: `one@2.0.0-0.canary.1791113593697`, from `ci-runtime84-ws-backport` d0b0afa8a (baseline 6b5302bdc plus the ws/headless fixes 48b7e7d8d and 8c2eb5e22). RAN on the npm tarball: same native file set as 1791084352120, all 1392 native files byte-identical. Canaries need no owner approval from any branch (`release.yml` dispatch, release=canary).
 
 Contrast `fix/one-native-uniform-final` (4390d6d113) needs the root namespaces, which only post-runtime-84 canaries have (RAN: shell tsc fails on 1791084352120). It lands with the next runtime bump.
 
