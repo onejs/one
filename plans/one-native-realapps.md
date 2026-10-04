@@ -433,7 +433,7 @@ they use the artifacts and overlays stated here and do not turn that matrix gree
 | --- | --- | --- |
 | one-basic | RAN published canary web, including `/tabs/profile`; local-source-overlay web, iOS 27 and Android routing keep counter 1 after back | clean same-artifact native rebuild and Widgets/LiveActivities calls |
 | takeout-free | RAN Expo 58 / RN 0.87 Android build and original `Login to Takeout`; earlier SDK 58 web build | iOS build/run, web after the helper/network update, rebuilt APK with Expo Network, same-artifact routing |
-| contrast-mobile | RAN original onboarding on iOS 27 and Android; web onboarding/login; iOS UI and menus smoke | granted-permission notification scheduling fails; remaining iOS/external APIs, Android APIs, authenticated native preview mount, fresh native builds |
+| contrast-mobile | RAN original onboarding on iOS 27 and Android; web onboarding/login; iOS UI and menus smoke; fresh iOS and Android service flows | remaining iOS/external APIs, Android UI/menus, authenticated native preview mount, final same-artifact native builds |
 | testflight (optional fixture app) | RAN clean web build with TypeScript 5.9.3 | native toolbar uses the existing BarButtonItem API; native validation pending |
 
 RAN: One repairs on `v2-beta` include `b2a371bde` (Expo CLI/logbox dependency
@@ -477,7 +477,8 @@ retains passed AppInfo, Storage, SecureStore, Clipboard and Fonts plus observed
 native Haptics dispatch, Speech availability/permission, Updates metadata and
 LaunchScreen.hide. Notifications fails with `E_NOTIFICATIONS_SCHEDULE` and
 `scheduling the notification failed` after the UI asserts permission granted.
-This failure remains open; permission is not a sufficient explanation.
+The original negative receipt remains retained. The fresh-native follow-up below
+passes scheduling and cancellation.
 
 RAN: `/tmp/one-realapps-contrast-ios-ui-centered.log` and its retained captures
 prove native Blur/Mask toggle dispatch, EdgeFade mount, Image load, Pager selection
@@ -497,3 +498,37 @@ initial CocoaPods run failed under the remote shell's US-ASCII locale. Explicit
 UTF-8 environment rerun installed 109 pods in 64 seconds. Builds continue through
 `bun heavy`; no CoreSimulator service restart was used. Final template main merges,
 release artifact validation and full green matrix are still pending.
+
+RAN: CI64 compiled Contrast's clean-install published `fcd4558352` iOS artifact
+in 491,376 ms. The installed app on Air24 reports version 1.0.1, build 3 and
+Updates runtime 84. The service flow requests notification authorization through
+the OS dialog and retains the scheduled identifier before canceling it; the
+pending list is empty afterward. Full receipts:
+`/tmp/one-realapps-contrast-ios-services-real-permission/api-results.json`.
+Android service smoke also completed:
+`/tmp/one-realapps-contrast-android-services-metadata-string/api-results.json`.
+The Android binary is diagnostic and reports Updates disabled; final configured
+metadata still requires the clean native rebuild.
+
+RAN: LLDB inspected the original notification NSError: `UNErrorDomain`, code
+2003, `Repository could not save notification. Source is not authorized.` and
+`UNAuthorizationStatus: Denied`, while One's permission query returned granted.
+INFERRED: persisted simulator authorization state was inconsistent. Both native
+binary and installation changed before the positive proof, so this does not
+isolate a framework cause. The same fresh binary also passes the former
+Maestro `all: allow` control. That counterexample rejects the hypothesis that
+Maestro's default permission setting alone caused the failure. No Notifications
+source workaround was added.
+
+RAN: Takeout Android stack, tabs and drawer keep count 1 after navigating away
+and back: `/tmp/one-realapps-takeout-android-routing-header.log`. The earlier
+fixed bottom fixture menu was occluded; placing the fixture menu above the app
+with safe-area spacing fixes its taps. Product navigation was unchanged.
+
+RAN: the Takeout iOS negative build failed at `@react-native-menu/menu@2.0.0`
+with `RCTBridge.h file not found` under RN 0.87's prebuilt React headers.
+The template now carries a Bun patch importing `<React/RCTBridge.h>`, matching
+the other React imports in the same source. The next compilation passed that
+file and failed at SVG 15.15.3's observer pointer signature. Published SVG
+15.15.5 handles RN versions above 84 with the new shared pointer signature;
+the template now pins that version. Incremental validation remains in progress.
