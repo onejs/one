@@ -1,0 +1,914 @@
+{
+  "scope": "actual generic hook mounted in Chromium with a synthetic 16 MiB output; explicit React state references, no phone, app memory or collection claim",
+  "sourceSha256": "27984200cedf7beb89db1d7889c94e39913a13f43c2521f1c81fb1cb7a24e995",
+  "ready": {
+    "refs": [
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      }
+    ],
+    "disposed": 0,
+    "executed": 1,
+    "created": 1,
+    "skipped": 0,
+    "resultNull": false,
+    "currentNull": false,
+    "currentBytes": 16777216,
+    "currentRevision": 1,
+    "currentIndex": 0,
+    "currentFactory": "first",
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "inactive": {
+    "refs": [
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      },
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      }
+    ],
+    "disposed": 1,
+    "executed": 1,
+    "created": 1,
+    "skipped": 0,
+    "resultNull": true,
+    "currentNull": true,
+    "currentBytes": 0,
+    "currentRevision": null,
+    "currentIndex": null,
+    "currentFactory": null,
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 1,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "afterFiveInactiveCommits": {
+    "refs": [
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      },
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      }
+    ],
+    "disposed": 1,
+    "executed": 1,
+    "created": 1,
+    "skipped": 0,
+    "resultNull": true,
+    "currentNull": true,
+    "currentBytes": 0,
+    "currentRevision": null,
+    "currentIndex": null,
+    "currentFactory": null,
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 1,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 2,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 3,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 4,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 5,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 6,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "reactivated": {
+    "refs": [
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      }
+    ],
+    "disposed": 1,
+    "executed": 2,
+    "created": 2,
+    "skipped": 0,
+    "resultNull": false,
+    "currentNull": false,
+    "currentBytes": 16777216,
+    "currentRevision": 1,
+    "currentIndex": 0,
+    "currentFactory": "first",
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 1,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 2,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 3,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 4,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 5,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 6,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "pending": {
+    "refs": [
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      }
+    ],
+    "disposed": 1,
+    "executed": 3,
+    "created": 2,
+    "skipped": 0,
+    "resultNull": true,
+    "currentNull": true,
+    "currentBytes": 0,
+    "currentRevision": null,
+    "currentIndex": null,
+    "currentFactory": null,
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 1,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 2,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 3,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 4,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 5,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 6,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "latest": {
+    "refs": [
+      {
+        "phase": "ready",
+        "revision": 3,
+        "bytes": 16777216
+      }
+    ],
+    "disposed": 1,
+    "executed": 4,
+    "created": 2,
+    "skipped": 1,
+    "resultNull": false,
+    "currentNull": false,
+    "currentBytes": 16777216,
+    "currentRevision": 3,
+    "currentIndex": 3,
+    "currentFactory": "first",
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 1,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 2,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 3,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 4,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 5,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 6,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 9,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 9,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 10,
+        "resultRevision": 3,
+        "currentRevision": 3,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "factoryChanged": {
+    "refs": [
+      {
+        "phase": "ready",
+        "revision": 1,
+        "bytes": 16777216
+      }
+    ],
+    "disposed": 2,
+    "executed": 5,
+    "created": 3,
+    "skipped": 1,
+    "resultNull": false,
+    "currentNull": false,
+    "currentBytes": 16777216,
+    "currentRevision": 1,
+    "currentIndex": 4,
+    "currentFactory": "second",
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 1,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 2,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 3,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 4,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 5,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 6,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 9,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 9,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 10,
+        "resultRevision": 3,
+        "currentRevision": 3,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 11,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 11,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 11,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "disposedPending": {
+    "refs": [],
+    "disposed": 3,
+    "executed": 6,
+    "created": 3,
+    "skipped": 2,
+    "resultNull": true,
+    "currentNull": true,
+    "currentBytes": 0,
+    "currentRevision": null,
+    "currentIndex": null,
+    "currentFactory": null,
+    "resultCurrentExact": true,
+    "readerStable": true,
+    "commits": [
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 0,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 1,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 2,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 3,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 4,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 5,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 6,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 7,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 8,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 9,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 9,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 10,
+        "resultRevision": 3,
+        "currentRevision": 3,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 11,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 11,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 11,
+        "resultRevision": 1,
+        "currentRevision": 1,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 12,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": true,
+        "tick": 12,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 13,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      },
+      {
+        "active": false,
+        "tick": 14,
+        "resultRevision": null,
+        "currentRevision": null,
+        "resultCurrentExact": true
+      }
+    ]
+  },
+  "ok": true
+}
