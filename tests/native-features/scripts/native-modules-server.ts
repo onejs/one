@@ -3,6 +3,11 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import sharp from 'sharp'
 import { buildNativeBundle } from '../../../packages/vxrn/src/utils/createNativeDevEngine'
+await import('../../../packages/compiler/dist/esm/index.mjs')
+const { configureVXRNCompilerPlugin } =
+  await import('../../../packages/compiler/dist/cjs/index.cjs')
+
+configureVXRNCompilerPlugin({ enableReanimated: true, enableNativeWorklets: true })
 
 const args = process.argv.slice(2)
 const arg = (name: string, fallback: string) =>
