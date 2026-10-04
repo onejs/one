@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": true,
+    "rootDir": "../../.."
+  },
+  "include": [
+    "native-modules-entry.ts",
+    "one-native-modules.tsx",
+    "photo-library-proof-media.ts"
+  ],
+  "exclude": [
+    "../node_modules"
+  ]
+}
