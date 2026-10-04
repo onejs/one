@@ -11,6 +11,19 @@ mkdirSync(target, { recursive: true })
 const require = createRequire(
   join(resolve(import.meta.dirname, '../../..'), 'package.json')
 )
+// the routing fixture adds an optional package the product may not use.
+// pin its package graph to the same set as the One artifact under test.
+const appRequire = createRequire(join(root, 'package.json'))
+const oneManifest = JSON.parse(
+  readFileSync(appRequire.resolve('one/package.json'), 'utf8')
+)
+const manifestPath = join(root, 'package.json')
+const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+manifest.devDependencies ??= {}
+if (!manifest.dependencies?.['@react-navigation/drawer'])
+  manifest.devDependencies['@react-navigation/drawer'] =
+    oneManifest.peerDependencies['@react-navigation/drawer']
+writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n')
 const { parse } = require('@babel/parser')
 const { default: generate } = require('@babel/generator')
 const t = require('@babel/types')
@@ -28,14 +41,19 @@ if (process.argv[3]) {
   const exported = configAst.program.body.find((node: any) =>
     t.isExportDefaultDeclaration(node)
   )
-  const argument = exported?.declaration?.arguments?.[0]
+  const declaration = exported?.declaration
+  const argument = t.isCallExpression(declaration)
+    ? declaration.arguments[0]
+    : t.isTSSatisfiesExpression(declaration)
+      ? declaration.expression
+      : declaration
   const config = t.isObjectExpression(argument)
     ? argument
     : t.isObjectExpression(argument?.body)
       ? argument.body
       : argument?.body?.body?.find((node: any) => t.isReturnStatement(node))?.argument
   if (!t.isObjectExpression(config))
-    throw new Error('Expected defineConfig object or a function returning an object')
+    throw new Error('Expected an inline Vite config object or function returning one')
   let server = config.properties.find((node: any) => node.key?.name === 'server')
   if (!server) {
     server = t.objectProperty(t.identifier('server'), t.objectExpression([]))
@@ -59,35 +77,87 @@ const ast = parse(readFileSync(original, 'utf8'), {
   plugins: ['typescript', 'jsx'],
 })
 const statement = ast.program.body.find(
-  (node: any) => node.type === 'ExportDefaultDeclaration'
+  (node: any) =>
+    t.isExportDefaultDeclaration(node) ||
+    (t.isExportNamedDeclaration(node) &&
+      t.isFunctionDeclaration(node.declaration) &&
+      /^[A-Z]/.test(node.declaration.id?.name ?? ''))
 )
-if (!statement) throw new Error('Root layout has no default export')
+if (!statement) throw new Error('Root layout has no exported component')
 const value = statement.declaration
-if (t.isFunctionDeclaration(value)) {
-  // function names and internal recursion remain intact.
-  value.id ??= t.identifier('RealAppsOriginalLayout')
-  statement.declaration = value.id
-  ast.program.body.splice(ast.program.body.indexOf(statement), 0, value)
-} else if (!t.isIdentifier(value)) {
-  const local = t.identifier('RealAppsOriginalLayout')
-  ast.program.body.splice(
-    ast.program.body.indexOf(statement),
-    0,
-    t.variableDeclaration('const', [t.variableDeclarator(local, value)])
-  )
-  statement.declaration = local
+const component = t.isIdentifier(value)
+  ? ast.program.body
+      .map((node: any) => node.declaration ?? node)
+      .find((node: any) => t.isFunctionDeclaration(node) && node.id?.name === value.name)
+  : value
+if (!t.isFunctionDeclaration(component) && !t.isArrowFunctionExpression(component))
+  throw new Error('Expected a function root layout')
+function registerFixtureScreens(node: any) {
+  if (!node || typeof node !== 'object') return
+  if (
+    t.isJSXElement(node) &&
+    t.isJSXIdentifier(node.openingElement.name, { name: 'Stack' })
+  ) {
+    node.openingElement.selfClosing = false
+    node.closingElement ??= t.jsxClosingElement(t.jsxIdentifier('Stack'))
+    for (const name of [
+      'realapps-api', 'realapps-api-zoom',
+      'realapps-routing/stack', 'realapps-routing/tabs', 'realapps-routing/drawer',
+    ]) {
+      node.children.push(t.jsxElement(
+        t.jsxOpeningElement(t.jsxMemberExpression(t.jsxIdentifier('Stack'), t.jsxIdentifier('Screen')), [
+          t.jsxAttribute(t.jsxIdentifier('name'), t.stringLiteral(name)),
+        ], true), null, [], true,
+      ))
+    }
+  }
+  for (const key of t.VISITOR_KEYS[node.type] ?? [])
+    for (const child of Array.isArray(node[key]) ? node[key] : [node[key]])
+      registerFixtureScreens(child)
 }
-const originalName = statement.declaration.name
-ast.program.body = ast.program.body.filter((node: any) => node !== statement)
-const wrapper = parse(
-  `import RealAppsMenu from '../realapps-fixtures/realapps-menu'
-export default function RealAppsInstrumentedLayout(props: any) {
-  return <RealAppsMenu><${originalName} {...props} /></RealAppsMenu>
-}`,
-  { sourceType: 'module', plugins: ['typescript', 'jsx'] }
+registerFixtureScreens(component)
+function wrapOutput(node: any): any {
+  if (
+    t.isJSXElement(node) &&
+    t.isJSXIdentifier(node.openingElement.name) &&
+    /^[a-z]/.test(node.openingElement.name.name)
+  ) {
+    if (node.openingElement.name.name === 'head') return node
+    node.children = node.children.map((child: any) =>
+      t.isJSXElement(child)
+        ? wrapOutput(child)
+        : t.isJSXExpressionContainer(child) && !t.isJSXEmptyExpression(child.expression)
+          ? t.jsxExpressionContainer(wrapOutput(child.expression))
+          : child
+    )
+    return node
+  }
+  return t.jsxElement(
+    t.jsxOpeningElement(t.jsxIdentifier('RealAppsMenu'), [], false),
+    t.jsxClosingElement(t.jsxIdentifier('RealAppsMenu')),
+    [t.jsxExpressionContainer(node)],
+    false
+  )
+}
+function wrapReturns(node: any) {
+  if (!node || typeof node !== 'object') return
+  if (t.isReturnStatement(node)) {
+    if (node.argument) node.argument = wrapOutput(node.argument)
+    return
+  }
+  for (const key of t.VISITOR_KEYS[node.type] ?? []) {
+    for (const child of Array.isArray(node[key]) ? node[key] : [node[key]]) {
+      if (child && !t.isFunction(child)) wrapReturns(child)
+    }
+  }
+}
+if (t.isBlockStatement(component.body)) wrapReturns(component.body)
+else component.body = wrapOutput(component.body)
+ast.program.body.unshift(
+  parse("import RealAppsMenu from '../realapps-fixtures/realapps-menu'", {
+    sourceType: 'module',
+  }).program.body[0]
 )
-ast.program.body.unshift(wrapper.program.body[0])
-ast.program.body.push(wrapper.program.body[1])
 writeFileSync(layout, generate(ast).code + '\n')
 for (const name of ['Counter.tsx', 'Other.tsx'])
   cpSync(join(fixtures, 'realapps-routing', name), join(target, name))
@@ -99,6 +169,7 @@ for (const name of [
   'realapps-menu.tsx',
   'realapps-api.native.tsx',
   'realapps-api-report.tsx',
+  'realapps-api-coverage.ts',
   'realapps-api-services.native.tsx',
   'realapps-api-ui.native.tsx',
   'realapps-api-menus.native.tsx',
