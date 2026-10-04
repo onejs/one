@@ -3,7 +3,7 @@ import { AppState, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeLocation() {
-  const [permission, setPermission] = useState(() => One.iOS.Location.getPermissionStatus())
+  const [permission, setPermission] = useState(() => One.Location.getPermissionStatus())
   const [position, setPosition] = useState('none')
   const [concurrent, setConcurrent] = useState('none')
   const [watch, setWatch] = useState('none')
@@ -13,10 +13,13 @@ export default function OneNativeLocation() {
   const stopWatch = useRef<(() => void) | null>(null)
   const stopBackgroundWatch = useRef<(() => void) | null>(null)
 
-  useEffect(() => () => {
-    stopWatch.current?.()
-    stopBackgroundWatch.current?.()
-  }, [])
+  useEffect(
+    () => () => {
+      stopWatch.current?.()
+      stopBackgroundWatch.current?.()
+    },
+    []
+  )
 
   return (
     <View style={styles.screen}>
@@ -24,13 +27,15 @@ export default function OneNativeLocation() {
       <Text testID="one-native-location-position">Position: {position}</Text>
       <Text testID="one-native-location-concurrent">Concurrent: {concurrent}</Text>
       <Text testID="one-native-location-watch-value">Watch: {watch}</Text>
-      <Text testID="one-native-location-background-value">Background watch: {backgroundWatch}</Text>
+      <Text testID="one-native-location-background-value">
+        Background watch: {backgroundWatch}
+      </Text>
       <Text testID="one-native-location-forward-value">Forward: {forward}</Text>
       <Text testID="one-native-location-reverse-value">Reverse: {reverse}</Text>
       <Pressable
         testID="one-native-location-refresh"
         style={styles.chip}
-        onPress={() => setPermission(One.iOS.Location.getPermissionStatus())}
+        onPress={() => setPermission(One.Location.getPermissionStatus())}
       >
         <Text>Refresh location permission</Text>
       </Pressable>
@@ -38,8 +43,8 @@ export default function OneNativeLocation() {
         testID="one-native-location-request"
         style={styles.chip}
         onPress={() => {
-          const first = One.iOS.Location.requestWhenInUsePermission()
-          const second = One.iOS.Location.requestWhenInUsePermission()
+          const first = One.Location.requestWhenInUsePermission()
+          const second = One.Location.requestWhenInUsePermission()
           Promise.all([first, second]).then(
             ([a, b]) => {
               setPermission(a)
@@ -55,7 +60,7 @@ export default function OneNativeLocation() {
         testID="one-native-location-current"
         style={styles.chip}
         onPress={() =>
-          One.iOS.Location.getCurrentPosition().then(
+          One.Location.getCurrentPosition().then(
             (next) =>
               setPosition(`${next.latitude.toFixed(4)},${next.longitude.toFixed(4)}`),
             (error) => setPosition(`error: ${error.code ?? 'unknown'}`)
@@ -70,8 +75,9 @@ export default function OneNativeLocation() {
         onPress={() => {
           stopWatch.current?.()
           setWatch('starting')
-          stopWatch.current = One.iOS.Location.watchPosition(
-            (next) => setWatch(`${next.latitude.toFixed(4)},${next.longitude.toFixed(4)}`),
+          stopWatch.current = One.Location.watchPosition(
+            (next) =>
+              setWatch(`${next.latitude.toFixed(4)},${next.longitude.toFixed(4)}`),
             (error) => setWatch(`error: ${error.code} ${error.message}`)
           )
         }}
@@ -95,18 +101,23 @@ export default function OneNativeLocation() {
         onPress={async () => {
           stopBackgroundWatch.current?.()
           setBackgroundWatch('starting')
-          const proofFile = One.iOS.FileSystem.getDirectories().documents +
+          const proofFile =
+            One.FileSystem.getDirectories().documents +
             'one-native-location-background-proof.txt'
-          await One.iOS.FileSystem.writeFile(proofFile, 'starting')
-          stopBackgroundWatch.current = One.iOS.Location.watchPosition(
+          await One.FileSystem.writeFile(proofFile, 'starting')
+          stopBackgroundWatch.current = One.Location.watchPosition(
             (next) => {
               const value = `${AppState.currentState}:${next.latitude.toFixed(4)},${next.longitude.toFixed(4)}`
               if (AppState.currentState === 'background') {
-                void One.iOS.FileSystem.writeFile(proofFile, value)
+                void One.FileSystem.writeFile(proofFile, value)
               }
               setBackgroundWatch((previous) =>
-                AppState.currentState === 'background' ? value :
-                  previous.startsWith('background:') ? previous : value)
+                AppState.currentState === 'background'
+                  ? value
+                  : previous.startsWith('background:')
+                    ? previous
+                    : value
+              )
             },
             (error) => setBackgroundWatch(`error: ${error.code}`),
             { background: true }
@@ -130,7 +141,7 @@ export default function OneNativeLocation() {
         testID="one-native-location-forward"
         style={styles.chip}
         onPress={() =>
-          One.iOS.Location.geocodeAddress('Cupertino, California').then(
+          One.Location.geocodeAddress('Cupertino, California').then(
             (places) =>
               setForward(
                 `${places.length}:${places[0]?.latitude.toFixed(2)},${places[0]?.longitude.toFixed(2)}`
@@ -145,7 +156,7 @@ export default function OneNativeLocation() {
         testID="one-native-location-reverse"
         style={styles.chip}
         onPress={() =>
-          One.iOS.Location.reverseGeocode(37.7749, -122.4194).then(
+          One.Location.reverseGeocode(37.7749, -122.4194).then(
             (places) => setReverse(places[0]?.city ?? `count: ${places.length}`),
             (error) => setReverse(`error: ${error.code ?? 'unknown'}`)
           )

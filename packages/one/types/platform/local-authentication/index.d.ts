@@ -1,7 +1,2 @@
-import type { LocalAuthenticationStatus } from '../specs/OneLocalAuthentication.nitro';
-export type { LocalAuthenticationStatus };
-export declare const LocalAuthentication: Readonly<{
-    canEvaluatePolicy: () => LocalAuthenticationStatus;
-    evaluatePolicy: (_reason: string) => Promise<boolean>;
-}>;
+export * from './unavailable';
 //# sourceMappingURL=index.d.ts.map

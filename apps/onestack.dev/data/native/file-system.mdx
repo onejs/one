@@ -1,16 +1,18 @@
 ---
 title: FileSystem
-description: Create and manage files in an iOS app's sandbox
+description: Create and manage files in iOS and Android app sandboxes
 ---
 
-`One.iOS.FileSystem` manages files in the iOS app sandbox. It accepts absolute
+`One.FileSystem` manages files in the iOS or Android app sandbox. It accepts absolute
 `file://` URIs. Use `getDirectories()` for the Documents, Caches, Application
-Support, and temporary directories. The returned directory URIs end in `/`.
+Support, and temporary directories. On Android these are the app's private
+files/Documents, cache, files, and cache/tmp directories. The returned
+directory URIs end in `/`.
 
 ```tsx
 import { One } from 'one'
 
-const fs = One.iOS.FileSystem
+const fs = One.FileSystem
 const drafts = new URL('drafts/', fs.getDirectories().documents).href
 const note = new URL('note.txt', drafts).href
 
@@ -34,8 +36,8 @@ directories by default. `copy` and `move` fail if the destination exists.
 The app's home, Documents, Library, Caches, Application Support, and temporary
 root directories cannot be moved or deleted.
 
-Operations run on a serial utility queue. Calls awaited in sequence observe the
+Operations run on a serial background queue. Calls awaited in sequence observe the
 previous operation's result. A failed operation rejects with `error.code`:
 `E_FILE_URI`, `E_FILE_ENCODING`, `E_FILE_NOT_FOUND`, `E_FILE_EXISTS`,
-`E_FILE_PERMISSION`, or `E_FILE_FAILED`. The API is iOS only.
+`E_FILE_PERMISSION`, or `E_FILE_FAILED`. File operations are implemented on iOS and Android. On web, directory paths are empty strings, file info reports `exists: false`, directory reads resolve `[]`, and mutations do nothing.
 Base64 input must use standard padded base64 without line breaks.

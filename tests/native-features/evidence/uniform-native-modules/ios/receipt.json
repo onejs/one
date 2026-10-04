@@ -1,0 +1,11 @@
+{
+  "nativeSourceCommit": "3e4ba9152bc8251067ef4daf6d61a32af800a3f2",
+  "fixtureSourceCommit": "87d1ddd50bc86c0dddb2df648307ef5ae6ad3d50",
+  "bundleSha256": "fb762c6699b987ab41b4780c51312101ebe513b38fb9ff94d90241192555de33",
+  "simulatorId": "D0A57941-A228-4C31-8496-487FC0863DEC",
+  "sdk": "iOS Simulator 27.1",
+  "runtimePassed": true,
+  "pixelsPassed": true,
+  "physicalSensorValuesProven": false,
+  "runtime": "iOS 27.0"
+}

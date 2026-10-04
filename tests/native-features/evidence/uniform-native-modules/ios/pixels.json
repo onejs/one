@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "checks": {
+    "png-decoded.png": {
+      "width": 120,
+      "height": 80,
+      "quadrantPixelDelta": 0,
+      "tolerance": 0
+    },
+    "bmp-decoded.png": {
+      "width": 120,
+      "height": 80,
+      "quadrantPixelDelta": 0,
+      "tolerance": 0
+    },
+    "jpeg-decoded.png": {
+      "width": 120,
+      "height": 80,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif1-decoded.png": {
+      "width": 120,
+      "height": 80,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif2-decoded.png": {
+      "width": 120,
+      "height": 80,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif3-decoded.png": {
+      "width": 120,
+      "height": 80,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif4-decoded.png": {
+      "width": 120,
+      "height": 80,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif5-decoded.png": {
+      "width": 80,
+      "height": 120,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif6-decoded.png": {
+      "width": 80,
+      "height": 120,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif7-decoded.png": {
+      "width": 80,
+      "height": 120,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "exif8-decoded.png": {
+      "width": 80,
+      "height": 120,
+      "quadrantPixelDelta": 1,
+      "tolerance": 12
+    },
+    "png-crop.png": {
+      "width": 60,
+      "height": 40,
+      "quadrantPixelDelta": 0,
+      "tolerance": 0
+    },
+    "png-rotate90.png": {
+      "width": 80,
+      "height": 120,
+      "quadrantPixelDelta": 0,
+      "tolerance": 0
+    },
+    "png-stretch.png": {
+      "width": 60,
+      "height": 60,
+      "quadrantPixelDelta": 0,
+      "tolerance": 2
+    }
+  },
+  "transparency": true,
+  "counterclockwiseNegativeControlRejected": true,
+  "motionVectorsChecked": false
+}

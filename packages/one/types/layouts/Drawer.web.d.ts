@@ -12,7 +12,15 @@ export declare const Drawer: import("react").ForwardRefExoticComponent<Omit<Omit
             type: string;
             stale: false;
         }>;
-        navigation: import("@react-navigation/core").NavigationHelpers<ParamListBase, {}>;
+        navigation: import("@react-navigation/core").NavigationHelpers<ParamListBase, Readonly<{
+            key: string;
+            index: number;
+            routeNames: string[];
+            history?: unknown[] | undefined;
+            routes: import("@react-navigation/routers").NavigationRoute<ParamListBase, string>[];
+            type: string;
+            stale: false;
+        }>, {}>;
         descriptors: Record<string, import("@react-navigation/core").Descriptor<{}, import("@react-navigation/core").NavigationProp<ParamListBase, string, Readonly<{
             key: string;
             index: number;

@@ -1,0 +1,173 @@
+{
+  "platform": "ios",
+  "fileSystem": {
+    "directories": {
+      "documents": "file:///Users/n8/Library/Developer/CoreSimulator/Devices/D0A57941-A228-4C31-8496-487FC0863DEC/data/Containers/Data/Application/4BFFD953-2354-4A82-9729-77219EF1F0E5/Documents/",
+      "cache": "file:///Users/n8/Library/Developer/CoreSimulator/Devices/D0A57941-A228-4C31-8496-487FC0863DEC/data/Containers/Data/Application/4BFFD953-2354-4A82-9729-77219EF1F0E5/Library/Caches/",
+      "applicationSupport": "file:///Users/n8/Library/Developer/CoreSimulator/Devices/D0A57941-A228-4C31-8496-487FC0863DEC/data/Containers/Data/Application/4BFFD953-2354-4A82-9729-77219EF1F0E5/Library/Application%20Support/",
+      "temporary": "file:///Users/n8/Library/Developer/CoreSimulator/Devices/D0A57941-A228-4C31-8496-487FC0863DEC/data/Containers/Data/Application/4BFFD953-2354-4A82-9729-77219EF1F0E5/tmp/"
+    },
+    "names": [
+      "bytes.dat",
+      "nested",
+      "note ü.txt"
+    ],
+    "errors": [
+      "E_FILE_EXISTS",
+      "E_FILE_EXISTS",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_NOT_FOUND",
+      "E_FILE_NOT_FOUND"
+    ]
+  },
+  "images": {
+    "results": {
+      "upright.png": {
+        "width": 80,
+        "height": 120,
+        "size": 1331
+      },
+      "crop-resize-rotate.jpg": {
+        "width": 15,
+        "height": 20,
+        "size": 937
+      },
+      "height-resize.png": {
+        "width": 40,
+        "height": 60,
+        "size": 656
+      },
+      "rotate180.png": {
+        "width": 80,
+        "height": 120,
+        "size": 1317
+      },
+      "rotate270.png": {
+        "width": 120,
+        "height": 80,
+        "size": 1345
+      },
+      "png-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 672
+      },
+      "png-crop.png": {
+        "width": 60,
+        "height": 40,
+        "size": 423
+      },
+      "png-rotate90.png": {
+        "width": 80,
+        "height": 120,
+        "size": 776
+      },
+      "png-stretch.png": {
+        "width": 60,
+        "height": 60,
+        "size": 542
+      },
+      "jpeg-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 674
+      },
+      "bmp-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 683
+      },
+      "exif1-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 674
+      },
+      "exif2-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 665
+      },
+      "exif3-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 665
+      },
+      "exif4-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 675
+      },
+      "exif5-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 754
+      },
+      "exif6-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 734
+      },
+      "exif7-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 741
+      },
+      "exif8-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 754
+      }
+    },
+    "errors": [
+      "E_IMAGE_URI",
+      "E_IMAGE_FILE",
+      "E_IMAGE_DECODE",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT"
+    ]
+  },
+  "motion": {
+    "availability": {
+      "accelerometer": false,
+      "gyroscope": false,
+      "magnetometer": false,
+      "deviceMotion": false
+    },
+    "validation": [
+      "-1",
+      "1001",
+      "NaN",
+      "Infinity"
+    ],
+    "streams": {
+      "accelerometer": "E_MOTION_UNAVAILABLE",
+      "gyroscope": "E_MOTION_UNAVAILABLE",
+      "magnetometer": "E_MOTION_UNAVAILABLE",
+      "deviceMotion": "E_MOTION_UNAVAILABLE"
+    }
+  },
+  "passed": true
+}

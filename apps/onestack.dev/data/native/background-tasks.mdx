@@ -3,7 +3,7 @@ title: Background tasks
 description: Schedule iOS app refresh and processing work through BGTaskScheduler.
 ---
 
-`One.iOS.BackgroundTasks` schedules short refresh jobs and longer processing jobs.
+`One.BackgroundTasks` schedules short refresh jobs and longer processing jobs.
 iOS decides when a submitted job runs. A submitted request is not a timer, and
 submitting the same identifier again replaces its pending request. Define every
 handler in the native `setupFile`, which loads when a background launch starts
@@ -32,13 +32,13 @@ one({
 // background-setup.ts
 import { One } from 'one'
 
-One.iOS.BackgroundTasks.defineTask('com.example.myapp.refresh', async ({ signal }) => {
+One.BackgroundTasks.defineTask('com.example.myapp.refresh', async ({ signal }) => {
   const response = await fetch('https://example.com/feed', { signal })
   // persist the data your app needs on its next launch
   await response.text()
 })
 
-One.iOS.BackgroundTasks.defineTask('com.example.myapp.maintenance', async ({ signal }) => {
+One.BackgroundTasks.defineTask('com.example.myapp.maintenance', async ({ signal }) => {
   // check signal during work so expiration stops it promptly
 })
 ```
@@ -46,7 +46,7 @@ One.iOS.BackgroundTasks.defineTask('com.example.myapp.maintenance', async ({ sig
 Submit work from foreground JavaScript after defining handlers:
 
 ```tsx
-const tasks = One.iOS.BackgroundTasks
+const tasks = One.BackgroundTasks
 await tasks.submit('com.example.myapp.refresh', {
   earliestBeginDateMs: Date.now() + 15 * 60_000,
 })
@@ -80,3 +80,5 @@ cancellation, input errors, and injected delivery to the setup handler with
 completion and expiration. Apple documents its debugger launch and expiration hooks as
 [device-only](https://developer.apple.com/documentation/backgroundtasks/starting-and-terminating-tasks-during-development).
 Actual OS cold launch, timing, and expiration still need a physical-device run.
+
+Background scheduling is implemented on iOS. Android and web validate registrations and requests, return an empty pending list, and leave registration, submission, and cancellation without system effects.
