@@ -14,5 +14,18 @@ the candidate was restored in a finally block before running fresh gates.
 
 The real Rally probe now additionally instruments Blob URL lifetime and asserts
 one worker, its first reply, URL release and absence of pre-reply revocation.
-Actual WebKit, Chromium/native preview, complete factory, full bundler suite,
-fast checks and browser bundle budget are running. No results are claimed yet.
+TESTED: actual WebKit and Chromium each execute the real Rally hook in a Blob
+Worker and match all seven fields for57 objects/four checkpoints/four legs.
+Each observes firstMessage=true, revoked=true, revokedBeforeMessage=false,
+without browser errors or failed HTTP requests. Native preview uses the named
+Worklet Worker, matches the same course and reaches heartbeat9. Its optional
+fixture CLI WebSocket404 remains identified, without application errors.
+
+RAN: 131 bundler tests/356 assertions and bun check pass (58.8s). Browser worker
+budget passes97.0KB gzip under100KB. Complete canonical Home Rally factory
+passes15 routes/450 files/14,457,330 bytes with graphComplete true and native
+identity/generated module assertions. All full gates ran through bun heavy on
+source8f3896a221. Screenshots were inspected. checks.json records exact outcomes;
+proof.json and webkit-proof.json retain worker and URL lifecycle observations.
+Scope remains the real calculation screen and complete factory bundle, without
+a claim of full playable game boot, full phone rebuild or full check:heavy.

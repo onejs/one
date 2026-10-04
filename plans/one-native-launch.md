@@ -128,9 +128,12 @@ assembled adapter review requested two changes before Contrast main: preserve
 ordinary resolver defaults and retain Blob URLs through Worker startup. Follow-up
 8f3896a221 scopes browser/import conditions to the computation boundary and
 releases URLs on first message/error/disposal, with constructor cleanup. RAN:
-nine tests pass; both restored before behaviors fail negative controls. Actual
-WebKit and repeat runtime/factory/fast gates are running before re-review.
-Evidence is under contrast-preview/review-fixes/.
+nine tests pass; both restored before behaviors fail negative controls. TESTED:
+WebKit and Chromium match the real57-object course and observe Blob URL revocation
+after the first reply. Native preview matches it with heartbeat9. RAN:131 tests/
+356 assertions, bun check58.8s and97.0KB gzip budget pass; the complete factory
+graph retains15 routes/450 files/14,457,330 bytes. Evidence is under
+contrast-preview/review-fixes/. Assigned re-review precedes Contrast main landing.
 
 Proposed public shape (`one/background`):
 

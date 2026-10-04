@@ -1,0 +1,35 @@
+{
+  "label": "RAN",
+  "contrastSource": "8f3896a221d7d05a64b0bcc5cee47533fa807206",
+  "tests": {
+    "exitCode": 0,
+    "passed": 131,
+    "assertions": 356
+  },
+  "bunCheck": {
+    "exitCode": 0,
+    "durationSeconds": 58.8
+  },
+  "workerBudget": {
+    "exitCode": 0,
+    "gzipKiB": 97.0,
+    "limitKiB": 100
+  },
+  "runtimes": {
+    "exitCode": 0,
+    "web": [
+      "chromium",
+      "webkit"
+    ],
+    "nativePreviewHeartbeat": 9,
+    "course": "passed revision=1 checkpoints=4 legs=4 objects=57",
+    "urlLifecycle": "firstMessage=true,revoked=true,revokedBeforeMessage=false"
+  },
+  "factory": {
+    "exitCode": 0,
+    "routes": 15,
+    "files": 450,
+    "bytes": 14457330,
+    "graphComplete": true
+  }
+}
