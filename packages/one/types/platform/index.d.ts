@@ -1,86 +1,217 @@
-import * as UI from './effects';
-import { Widgets, LiveActivities, WidgetUI } from './widgets/index';
-export * from './extras';
-export type { ToolbarHostProps, ToolbarItemProps } from './extras';
-export * from './unsupported';
-export { useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, ReservedRegions, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './adaptive/index';
-export type { UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, ReservedRegionsProviderProps, } from './adaptive/types';
-export type { ArrangementViewProps, ArrangementPaneProps, ArrangementViewStyle, SplitLayoutRatio, SplitLayoutSize, SplitFixedLayoutSize, OverlayArrangementEdge, } from './ArrangementView.native';
-export declare const Menu: (_props: import("./types").MenuProps) => never;
-export declare const ContextMenu: (_props: import("./types").ContextMenuProps) => never;
-export { Compose } from './compose';
-export { Notifications } from './notifications';
-export { Widgets, LiveActivities, WidgetUI };
-export { useNativeState, type NativeState } from './nativeState';
-export { TextInput } from './universal/TextInput/index';
-export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
-export type * from './composeTypes';
-export type * from './types';
-export { Haptics } from './haptics/index';
-export { LaunchScreen } from './launchScreen/index';
-export { LocalAuthentication } from './local-authentication/index';
-export type { LocalAuthenticationStatus } from './local-authentication/index';
-export { ProtectedStore } from './protected-store/index';
-export type { ProtectedStorePolicy } from './protected-store/index';
-export { Storage } from './storage/index';
-export { KeepAwake } from './keep-awake/index';
-export { Print } from './print/index';
-export { StoreReview } from './store-review/index';
-export { QuickActions } from './quick-actions/index';
-export type { QuickActionItem } from './quick-actions/index';
-export type { PrintResult } from './print/index';
-export { Location } from './location/index';
-export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError } from './location/index';
-export { FileSystem } from './file-system/index';
-export type { FileDirectories, FileEncoding, FileEntry, FileInfo } from './file-system/index';
-export { Audio } from './audio/index';
-export { CameraView } from './camera/index';
-export type { CameraCode, CameraCodeType, CameraFacing, CameraState, CameraViewProps, } from './camera/index';
-export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, } from './audio/index';
-export { Share } from './share/index';
-export { Open } from './open/index';
-export type { OpenShareContent } from './open/index';
-export type { ShareItem, ShareItemType, ShareResult } from './share/index';
-export { PhotoLibrary } from './photo-library/index';
-export { MapServices } from './map-services/index';
-export type { MapCoordinate, MapPlace, MapRoute, MapRouteStep, MapSuggestion, MapTransport } from './map-services/index';
-export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus, } from './photo-library/index';
-export { AppTracking } from './app-tracking/index';
-export { AppIcon } from './app-icon/index';
-export type { AppTrackingPermissionStatus } from './app-tracking/index';
-export { ScreenOrientation } from './screen-orientation/index';
-export type { ScreenOrientationLock, ScreenOrientationValue } from './screen-orientation/index';
-export { ScreenCapture } from './screen-capture/index';
-export type { ScreenCaptureResult, ScreenCaptureState } from './screen-capture/index';
-export { Purchases } from './purchases/index';
-export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from './purchases/index';
-export { ImageManipulator } from './image-manipulator/index';
-export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult } from './image-manipulator/index';
-export { Device } from './device/index';
-export type { DeviceInfo, LocalizationInfo } from './device/index';
-export { Motion } from './motion/index';
-export type { MotionAvailability, MotionReading, MotionSensor, MotionVector } from './motion/index';
-export { BackgroundTasks } from './background-tasks/index';
-export { AppIntents } from './app-intents/index';
-export type { AppIntentHandler } from './app-intents/index';
-export type { BackgroundTaskContext, BackgroundTaskHandler } from './background-tasks/index';
-export type { BackgroundTaskInvocation, BackgroundTaskKind, PendingBackgroundTask } from './background-tasks/index';
-export { DeviceAttestation } from './device-attestation/index';
-export type { DeviceAttestationAvailability } from './device-attestation/index';
-export { Contacts } from './contacts/index';
-export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus } from './contacts/index';
-export { Calendar } from './calendar/index';
-export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index';
-export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
-export type { LaunchScreenApi, LaunchScreenHideOptions } from './launchScreen/index';
-export { AppInfo } from './app-info/index';
-export type { AppInfoApi } from './app-info/index';
-export { ImagePicker } from './image-picker/index';
-export { DocumentPicker } from './document-picker/index';
-export { Database } from './database/index';
-export type { ImagePickerAsset, ImagePickerCanceledResult, ImagePickerMediaType, ImagePickerOptions, ImagePickerPermissionResponse, ImagePickerResult, ImagePickerSuccessResult, } from './image-picker/index';
-export type { DocumentPickerAsset, DocumentPickerCanceledResult, DocumentPickerOptions, DocumentPickerResult, DocumentPickerSuccessResult, } from './document-picker/index';
-export { UI };
-export type { PortalProps, PortalHostProps } from './ui/portalTypes';
-export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './ui/pagerTypes';
+import * as UI from './effects'
+import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
+export * from './extras'
+export type { ToolbarHostProps, ToolbarItemProps } from './extras'
+export * from './unsupported'
+export {
+  useSizeClass,
+  getSizeClass,
+  useHinge,
+  getHinge,
+  onHingeChange,
+  ReservedRegions,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
+} from './adaptive/index'
+export type {
+  UserInterfaceSizeClass,
+  SizeClass,
+  HingeStatus,
+  HingeState,
+  ReservedRegionKind,
+  ReservedRegion,
+  WindowSegment,
+  ReservedRegionOptions,
+  ReservedRegionsProviderProps,
+} from './adaptive/types'
+export type {
+  ArrangementViewProps,
+  ArrangementPaneProps,
+  ArrangementViewStyle,
+  SplitLayoutRatio,
+  SplitLayoutSize,
+  SplitFixedLayoutSize,
+  OverlayArrangementEdge,
+} from './ArrangementView.native'
+export declare const Menu: (_props: import('./types').MenuProps) => never
+export declare const ContextMenu: (_props: import('./types').ContextMenuProps) => never
+export { Compose } from './compose'
+export { Notifications } from './notifications'
+export { Widgets, LiveActivities, WidgetUI }
+export { useNativeState, type NativeState } from './nativeState'
+export { TextInput } from './universal/TextInput/index'
+export type {
+  TextInputProps,
+  TextInputRef,
+  TextInputSelection,
+} from './universal/TextInput/textInputTypes'
+export type * from './composeTypes'
+export type * from './types'
+export { Haptics } from './haptics/index'
+export { LaunchScreen } from './launchScreen/index'
+export { LocalAuthentication } from './local-authentication/index'
+export type { LocalAuthenticationStatus } from './local-authentication/index'
+export { ProtectedStore } from './protected-store/index'
+export type { ProtectedStorePolicy } from './protected-store/index'
+export { Storage } from './storage/index'
+export { KeepAwake } from './keep-awake/index'
+export { Print } from './print/index'
+export { StoreReview } from './store-review/index'
+export { QuickActions } from './quick-actions/index'
+export type { QuickActionItem } from './quick-actions/index'
+export type { PrintResult } from './print/index'
+export { Location } from './location/index'
+export type {
+  LocationPermissionStatus,
+  LocationPosition,
+  LocationPlace,
+  LocationWatchError,
+} from './location/index'
+export { FileSystem } from './file-system/index'
+export type {
+  FileDirectories,
+  FileEncoding,
+  FileEntry,
+  FileInfo,
+} from './file-system/index'
+export { Audio } from './audio/index'
+export { CameraView } from './camera/index'
+export type {
+  CameraCode,
+  CameraCodeType,
+  CameraFacing,
+  CameraState,
+  CameraViewProps,
+} from './camera/index'
+export type {
+  AudioPlaybackState,
+  AudioPlaybackStatus,
+  AudioRecordingPermission,
+  AudioRecordingResult,
+  AudioRecordingState,
+  AudioRecordingStatus,
+} from './audio/index'
+export { Share } from './share/index'
+export { Open } from './open/index'
+export type { OpenShareContent } from './open/index'
+export type { ShareItem, ShareItemType, ShareResult } from './share/index'
+export { PhotoLibrary } from './photo-library/index'
+export { MapServices } from './map-services/index'
+export type {
+  MapCoordinate,
+  MapPlace,
+  MapRoute,
+  MapRouteStep,
+  MapSuggestion,
+  MapTransport,
+} from './map-services/index'
+export type {
+  PhotoLibraryAsset,
+  PhotoLibraryAssetPage,
+  PhotoLibraryMediaType,
+  PhotoLibraryPermissionStatus,
+} from './photo-library/index'
+export { AppTracking } from './app-tracking/index'
+export { AppIcon } from './app-icon/index'
+export type { AppTrackingPermissionStatus } from './app-tracking/index'
+export { ScreenOrientation } from './screen-orientation/index'
+export type {
+  ScreenOrientationLock,
+  ScreenOrientationValue,
+} from './screen-orientation/index'
+export { ScreenCapture } from './screen-capture/index'
+export type { ScreenCaptureResult, ScreenCaptureState } from './screen-capture/index'
+export { Purchases } from './purchases/index'
+export type {
+  PurchaseProduct,
+  PurchaseProductType,
+  PurchaseResult,
+  PurchaseStatus,
+  PurchaseTransaction,
+  PurchaseUpdate,
+  PurchaseUpdateStatus,
+} from './purchases/index'
+export { ImageManipulator } from './image-manipulator/index'
+export type {
+  ImageCrop,
+  ImageFormat,
+  ImageResize,
+  ImageManipulatorOptions,
+  ImageTransformResult,
+} from './image-manipulator/index'
+export { Device } from './device/index'
+export type { DeviceInfo, LocalizationInfo } from './device/index'
+export { Motion } from './motion/index'
+export type {
+  MotionAvailability,
+  MotionReading,
+  MotionSensor,
+  MotionVector,
+} from './motion/index'
+export { BackgroundTasks } from './background-tasks/index'
+export { AppIntents } from './app-intents/index'
+export type { AppIntentHandler } from './app-intents/index'
+export type {
+  BackgroundTaskContext,
+  BackgroundTaskHandler,
+} from './background-tasks/index'
+export type {
+  BackgroundTaskInvocation,
+  BackgroundTaskKind,
+  PendingBackgroundTask,
+} from './background-tasks/index'
+export { DeviceAttestation } from './device-attestation/index'
+export type { DeviceAttestationAvailability } from './device-attestation/index'
+export { Contacts } from './contacts/index'
+export type {
+  ContactChanges,
+  ContactInfo,
+  ContactInput,
+  ContactPostalAddress,
+  ContactPostalAddressInput,
+  ContactsPermissionStatus,
+} from './contacts/index'
+export { Calendar } from './calendar/index'
+export type {
+  CalendarEvent,
+  CalendarEventChanges,
+  CalendarEventInput,
+  CalendarPermissionStatus,
+  ReminderInfo,
+  ReminderInput,
+} from './calendar/index'
+export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index'
+export type { LaunchScreenApi, LaunchScreenHideOptions } from './launchScreen/index'
+export { AppInfo } from './app-info/index'
+export type { AppInfoApi } from './app-info/index'
+export { ImagePicker } from './image-picker/index'
+export { DocumentPicker } from './document-picker/index'
+export { Database } from './database/index'
+export type {
+  ImagePickerAsset,
+  ImagePickerCanceledResult,
+  ImagePickerMediaType,
+  ImagePickerOptions,
+  ImagePickerPermissionResponse,
+  ImagePickerResult,
+  ImagePickerSuccessResult,
+} from './image-picker/index'
+export type {
+  DocumentPickerAsset,
+  DocumentPickerCanceledResult,
+  DocumentPickerOptions,
+  DocumentPickerResult,
+  DocumentPickerSuccessResult,
+} from './document-picker/index'
+export { UI }
+export type { PortalProps, PortalHostProps } from './ui/portalTypes'
+export type {
+  PagerProps,
+  PagerRef,
+  PagerScrollEvent,
+  PagerSelectedEvent,
+  PagerScrollStateEvent,
+} from './ui/pagerTypes'
 //# sourceMappingURL=index.d.ts.map

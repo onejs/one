@@ -3,7 +3,7 @@ title: Motion sensors
 description: Read accelerometer, gyroscope, magnetometer, and fused device-motion streams on iOS and Android.
 ---
 
-`One.iOS.Motion` reports which motion sensors the device can use and subscribes to
+`One.Motion` reports which motion sensors the device can use and subscribes to
 live readings. It requires an iOS or Android native build. Check availability before
 subscribing, because iPads and simulator devices can lack sensors. The iOS
 Simulator has no physical motion input.
@@ -11,9 +11,9 @@ Simulator has no physical motion input.
 ```tsx
 import { One } from 'one'
 
-const availability = One.iOS.Motion.getAvailability()
+const availability = One.Motion.getAvailability()
 if (availability.accelerometer) {
-  const remove = One.iOS.Motion.addListener(
+  const remove = One.Motion.addListener(
     'accelerometer', 100,
     (reading) => {
       // reading.value has x, y, z acceleration in units of g

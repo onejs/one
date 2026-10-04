@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeAppTracking() {
-  const [before] = useState(() => One.iOS.AppTracking.getPermissionStatus())
+  const [before] = useState(() => One.AppTracking.getPermissionStatus())
   const [after, setAfter] = useState('pending')
   const [result, setResult] = useState('none')
 
@@ -11,13 +11,15 @@ export default function OneNativeAppTracking() {
     setResult('requesting')
     try {
       const [first, second] = await Promise.all([
-        One.iOS.AppTracking.requestPermission(),
-        One.iOS.AppTracking.requestPermission(),
+        One.AppTracking.requestPermission(),
+        One.AppTracking.requestPermission(),
       ])
-      setAfter(One.iOS.AppTracking.getPermissionStatus())
+      setAfter(One.AppTracking.getPermissionStatus())
       setResult(`${first}:${second}`)
     } catch (error) {
-      setResult(`error: ${error instanceof Error && 'code' in error ? error.code : String(error)}`)
+      setResult(
+        `error: ${error instanceof Error && 'code' in error ? error.code : String(error)}`
+      )
     }
   }
 
@@ -26,7 +28,11 @@ export default function OneNativeAppTracking() {
       <Text>Before: {before}</Text>
       <Text>After: {after}</Text>
       <Text>Result: {result}</Text>
-      <Pressable testID="one-native-app-tracking-request" style={styles.button} onPress={request}>
+      <Pressable
+        testID="one-native-app-tracking-request"
+        style={styles.button}
+        onPress={request}
+      >
         <Text>Request tracking permission</Text>
       </Pressable>
     </View>

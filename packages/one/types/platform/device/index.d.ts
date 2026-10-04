@@ -1,7 +1,2 @@
-import type { DeviceInfo, LocalizationInfo } from '../specs/OneDevice.nitro';
-export type { DeviceInfo, LocalizationInfo };
-export declare const Device: Readonly<{
-    getInfo: () => Promise<DeviceInfo>;
-    getLocalizationInfo: () => Promise<LocalizationInfo>;
-}>;
+export * from './unavailable'
 //# sourceMappingURL=index.d.ts.map

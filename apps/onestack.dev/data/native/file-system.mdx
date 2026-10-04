@@ -3,7 +3,7 @@ title: FileSystem
 description: Create and manage files in iOS and Android app sandboxes
 ---
 
-`One.iOS.FileSystem` manages files in the iOS or Android app sandbox. It accepts absolute
+`One.FileSystem` manages files in the iOS or Android app sandbox. It accepts absolute
 `file://` URIs. Use `getDirectories()` for the Documents, Caches, Application
 Support, and temporary directories. On Android these are the app's private
 files/Documents, cache, files, and cache/tmp directories. The returned
@@ -12,7 +12,7 @@ directory URIs end in `/`.
 ```tsx
 import { One } from 'one'
 
-const fs = One.iOS.FileSystem
+const fs = One.FileSystem
 const drafts = new URL('drafts/', fs.getDirectories().documents).href
 const note = new URL('note.txt', drafts).href
 

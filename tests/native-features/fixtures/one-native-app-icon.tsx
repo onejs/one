@@ -4,7 +4,8 @@ import { One } from 'one'
 
 function code(error: unknown): string {
   return error !== null && typeof error === 'object' && 'code' in error
-    ? String(error.code) : String(error)
+    ? String(error.code)
+    : String(error)
 }
 
 export default function OneNativeAppIcon() {
@@ -13,7 +14,7 @@ export default function OneNativeAppIcon() {
   const [result, setResult] = useState('idle')
 
   useEffect(() => {
-    Promise.all([One.iOS.AppIcon.isSupported(), One.iOS.AppIcon.getCurrentName()])
+    Promise.all([One.AppIcon.isSupported(), One.AppIcon.getCurrentName()])
       .then(([supported, name]) => {
         setSupport(String(supported))
         setCurrent(name ?? 'primary')
@@ -24,8 +25,8 @@ export default function OneNativeAppIcon() {
   async function select(name?: string) {
     setResult(name ? 'changing' : 'restoring')
     try {
-      await One.iOS.AppIcon.setIcon(name)
-      const selected = await One.iOS.AppIcon.getCurrentName()
+      await One.AppIcon.setIcon(name)
+      const selected = await One.AppIcon.getCurrentName()
       setCurrent(selected ?? 'primary')
       setResult(selected === name ? 'changed' : 'mismatch')
     } catch (error) {
@@ -35,7 +36,7 @@ export default function OneNativeAppIcon() {
 
   async function invalid() {
     try {
-      await One.iOS.AppIcon.setIcon('MissingIcon')
+      await One.AppIcon.setIcon('MissingIcon')
       setResult('invalid-accepted')
     } catch (error) {
       setResult(`invalid:${code(error)}`)
@@ -48,16 +49,28 @@ export default function OneNativeAppIcon() {
       <Text>Supported: {support}</Text>
       <Text>Current icon: {current}</Text>
       <Text>Icon result: {result}</Text>
-      <Pressable testID="one-native-app-icon-alternate" accessibilityRole="button"
-        onPress={() => select('TestAlternate')} style={{ padding: 16, backgroundColor: '#f2d6c7' }}>
+      <Pressable
+        testID="one-native-app-icon-alternate"
+        accessibilityRole="button"
+        onPress={() => select('TestAlternate')}
+        style={{ padding: 16, backgroundColor: '#f2d6c7' }}
+      >
         <Text>Use alternate icon</Text>
       </Pressable>
-      <Pressable testID="one-native-app-icon-primary" accessibilityRole="button"
-        onPress={() => select()} style={{ padding: 16, backgroundColor: '#d9e5f7' }}>
+      <Pressable
+        testID="one-native-app-icon-primary"
+        accessibilityRole="button"
+        onPress={() => select()}
+        style={{ padding: 16, backgroundColor: '#d9e5f7' }}
+      >
         <Text>Restore primary icon</Text>
       </Pressable>
-      <Pressable testID="one-native-app-icon-invalid" accessibilityRole="button"
-        onPress={invalid} style={{ padding: 16, backgroundColor: '#eee' }}>
+      <Pressable
+        testID="one-native-app-icon-invalid"
+        accessibilityRole="button"
+        onPress={invalid}
+        style={{ padding: 16, backgroundColor: '#eee' }}
+      >
         <Text>Reject unknown icon</Text>
       </Pressable>
     </View>

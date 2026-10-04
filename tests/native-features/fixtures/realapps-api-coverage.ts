@@ -51,7 +51,7 @@ export function modeAPIs(mode: string, platform: string): string[] {
       platform === 'ios'
         ? ['One.iOS.Menu', 'One.iOS.ContextMenu', 'One.iOS.Alert']
         : ['One.Android.Menu', 'One.Android.ContextMenu', 'One.Android.AlertDialog'],
-    widgets: ['One.iOS.Widgets', 'One.iOS.WidgetUI', 'One.iOS.LiveActivities'],
+    widgets: ['One.Widgets', 'One.iOS.WidgetUI', 'One.LiveActivities'],
   }
   common.external = [
     'One.ImagePicker',
