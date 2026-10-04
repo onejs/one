@@ -2,7 +2,7 @@ import type { HybridObject } from 'react-native-nitro-modules'
 
 export type PrintResult = { completed: boolean }
 
-export interface OnePrint extends HybridObject<{ ios: 'swift' }> {
+export interface OnePrint extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   isAvailable(): Promise<boolean>
   printPdf(fileUri: string, jobName?: string): Promise<PrintResult>
 }

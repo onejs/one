@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { OneProtectedStore, ProtectedStorePolicy } from '../specs/OneProtectedStore.nitro'
@@ -8,7 +7,6 @@ export type { ProtectedStorePolicy }
 let hybrid: OneProtectedStore | undefined
 
 function native(): OneProtectedStore {
-  if (Platform.OS !== 'ios') throw new Error('ProtectedStore requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneProtectedStore>('OneProtectedStore')
   return hybrid
 }

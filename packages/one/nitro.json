@@ -1,166 +1,414 @@
 {
   "$schema": "https://nitro.margelo.com/nitro.schema.json",
-  "cxxNamespace": ["one"],
+  "cxxNamespace": [
+    "one"
+  ],
   "ios": {
     "iosModuleName": "One"
   },
   "android": {
-    "androidNamespace": ["one"],
+    "androidNamespace": [
+      "one"
+    ],
     "androidCxxLibName": "One"
   },
   "autolinking": {
     "OneHaptics": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneHaptics" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneHaptics" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneHaptics"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneHaptics"
+      }
     },
     "OneLaunchScreen": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneLaunchScreen" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneLaunchScreen" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneLaunchScreen"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneLaunchScreen"
+      }
     },
     "OneClipboard": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneClipboard" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneClipboard"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneClipboard"
+      }
     },
     "OneCrypto": {
-      "all": { "language": "c++", "implementationClassName": "HybridOneCrypto" }
+      "all": {
+        "language": "c++",
+        "implementationClassName": "HybridOneCrypto"
+      }
     },
     "OneNetwork": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneNetwork" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneNetwork" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneNetwork"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneNetwork"
+      }
     },
     "OneAppInfo": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppInfo" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneAppInfo" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneAppInfo"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneAppInfo"
+      }
     },
     "OneBrowser": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneBrowser" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneBrowser" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneBrowser"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneBrowser"
+      }
     },
     "OneImagePicker": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneImagePicker" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneImagePicker" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneImagePicker"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneImagePicker"
+      }
     },
     "OneDocumentPicker": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneDocumentPicker" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneDocumentPicker" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneDocumentPicker"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneDocumentPicker"
+      }
     },
     "OneFonts": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneFonts" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneFonts" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneFonts"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneFonts"
+      }
     },
     "OneNotifications": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneNotifications" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneNotifications" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneNotifications"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneNotifications"
+      }
     },
     "OneSecureStore": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneSecureStore" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneSecureStore" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneSecureStore"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneSecureStore"
+      }
     },
     "OneAdaptive": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAdaptive" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneAdaptive" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneAdaptive"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneAdaptive"
+      }
     },
     "OneSpeech": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneSpeech" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneSpeech" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneSpeech"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneSpeech"
+      }
     },
     "OneFetch": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneFetch" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneFetch" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneFetch"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneFetch"
+      }
     },
     "OneAppleAuth": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppleAuth" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneAppleAuth" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneAppleAuth"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneAppleAuth"
+      }
     },
     "OneLocalAuthentication": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneLocalAuthentication" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneLocalAuthentication"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneLocalAuthentication"
+      }
     },
     "OneProtectedStore": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneProtectedStore" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneProtectedStore"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneProtectedStore"
+      }
     },
     "OneStorage": {
-      "all": { "language": "c++", "implementationClassName": "HybridOneStorage" }
+      "all": {
+        "language": "c++",
+        "implementationClassName": "HybridOneStorage"
+      }
     },
     "OneKeepAwake": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneKeepAwake" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneKeepAwake"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneKeepAwake"
+      }
     },
     "OnePrint": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOnePrint" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOnePrint"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOnePrint"
+      }
     },
     "OneStoreReview": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneStoreReview" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneStoreReview"
+      }
     },
     "OneQuickActions": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneQuickActions" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneQuickActions"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneQuickActions"
+      }
     },
     "OneLocation": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneLocation"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneLocation"
+      }
     },
     "OneFileSystem": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneFileSystem" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneFileSystem" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneFileSystem"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneFileSystem"
+      }
     },
     "OneAudio": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAudio" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneAudio"
+      }
     },
     "OneShare": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneShare" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneShare"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneShare"
+      }
     },
     "OnePhotoLibrary": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOnePhotoLibrary"
+      }
     },
     "OneAppTracking": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppTracking" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneAppTracking"
+      }
     },
     "OneAppIcon": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppIcon" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneAppIcon"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneAppIcon"
+      }
     },
     "OneImageManipulator": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneImageManipulator" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneImageManipulator" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneImageManipulator"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneImageManipulator"
+      }
     },
     "OneDevice": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneDevice" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneDevice"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneDevice"
+      }
     },
     "OneMotion": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneMotion" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneMotion" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneMotion"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneMotion"
+      }
     },
     "OneBackgroundTasks": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneBackgroundTasks" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneBackgroundTasks"
+      }
     },
     "OneAppIntents": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppIntents" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneAppIntents"
+      }
     },
     "OneDeviceAttestation": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneDeviceAttestation" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneDeviceAttestation"
+      }
     },
     "OneScreenOrientation": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneScreenOrientation" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneScreenOrientation"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneScreenOrientation"
+      }
     },
     "OneScreenCapture": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneScreenCapture" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneScreenCapture"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneScreenCapture"
+      }
     },
     "OnePurchases": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOnePurchases" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOnePurchases"
+      }
     },
     "OneContacts": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneContacts" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneContacts"
+      }
     },
     "OneCalendar": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneCalendar" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneCalendar"
+      }
     },
     "OneMapServices": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneMapServices" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneMapServices"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneMapServices"
+      }
     },
     "OneUpdates": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneUpdates" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneUpdates" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneUpdates"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneUpdates"
+      }
     },
     "OneNativeModules": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneNativeModules" },
-      "android": { "language": "kotlin", "implementationClassName": "HybridOneNativeModules" }
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridOneNativeModules"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "HybridOneNativeModules"
+      }
     }
   },
-  "ignorePaths": ["**/node_modules", "dist", "types"]
+  "ignorePaths": [
+    "**/node_modules",
+    "dist",
+    "types"
+  ]
 }

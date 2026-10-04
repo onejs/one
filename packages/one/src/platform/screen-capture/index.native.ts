@@ -1,6 +1,5 @@
 import { validateViewTag } from './validate'
 import { validateCallback } from '../validateCallback'
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -17,7 +16,6 @@ export type {
 let hybrid: OneScreenCapture | undefined
 
 function native(): OneScreenCapture {
-  if (Platform.OS !== 'ios') throw new Error('ScreenCapture requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneScreenCapture>('OneScreenCapture')
   return hybrid
 }

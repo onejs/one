@@ -31,7 +31,7 @@ export interface LocationPlace {
   isoCountryCode?: string
 }
 
-export interface OneLocation extends HybridObject<{ ios: 'swift' }> {
+export interface OneLocation extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getPermissionStatus(): LocationPermissionStatus
   requestWhenInUsePermission(): Promise<LocationPermissionStatus>
   getCurrentPosition(): Promise<LocationPosition>

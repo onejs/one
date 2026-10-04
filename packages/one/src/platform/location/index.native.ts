@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -13,7 +12,6 @@ export type { LocationPermissionStatus, LocationPosition, LocationPlace }
 let hybrid: OneLocation | undefined
 
 function native(): OneLocation {
-  if (Platform.OS !== 'ios') throw new Error('Location requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneLocation>('OneLocation')
   return hybrid
 }
