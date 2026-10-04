@@ -1,5 +1,7 @@
 <!-- plan: status=active owner=m19584 reviewed=2026-10-03 -->
 
+Owner decisions: `plans/owner-decisions.md`. Read it before any brief or review.
+
 # One native: launch
 
 Nate's goal: "if you use it with a single package, you basically can build a
