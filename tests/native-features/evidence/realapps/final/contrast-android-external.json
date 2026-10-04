@@ -1,0 +1,73 @@
+{
+  "One.ImagePicker": {
+    "api": "One.ImagePicker",
+    "status": "passed",
+    "value": {
+      "canceled": true,
+      "assets": null
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.DocumentPicker": {
+    "api": "One.DocumentPicker",
+    "status": "passed",
+    "value": {
+      "canceled": true,
+      "assets": null
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.Browser": {
+    "api": "One.Browser",
+    "status": "observed",
+    "value": {
+      "type": "opened"
+    },
+    "scope": "runner must prove browser presented and canceled; Android opened is not cancellation"
+  },
+  "One.openShare": {
+    "api": "One.openShare",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "void result; runner must prove sheet presentation and cancellation"
+  },
+  "One.openURL": {
+    "api": "One.openURL",
+    "status": "observed",
+    "value": true,
+    "scope": "runner must prove browser destination and return"
+  },
+  "One.openURL.appStates": {
+    "api": "One.openURL.appStates",
+    "status": "observed",
+    "value": {
+      "states": [
+        "background",
+        "active"
+      ]
+    },
+    "scope": "runner must prove system destination and return"
+  },
+  "One.openSettings": {
+    "api": "One.openSettings",
+    "status": "observed",
+    "value": true,
+    "scope": "runner must prove settings destination and return"
+  },
+  "One.openSettings.appStates": {
+    "api": "One.openSettings.appStates",
+    "status": "observed",
+    "value": {
+      "states": [
+        "background"
+      ]
+    },
+    "scope": "runner must prove system destination and return"
+  }
+}

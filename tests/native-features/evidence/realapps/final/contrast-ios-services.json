@@ -1,0 +1,160 @@
+{
+  "One.Notifications": {
+    "api": "One.Notifications",
+    "status": "passed",
+    "value": {
+      "permission": {
+        "status": "granted",
+        "granted": true,
+        "canAskAgain": false,
+        "ios": {
+          "status": "authorized"
+        }
+      },
+      "id": "one-realapps-future-notification",
+      "before": [
+        {
+          "identifier": "one-realapps-future-notification",
+          "content": {
+            "title": "Real app probe",
+            "subtitle": "",
+            "body": "Scheduled then canceled",
+            "data": {},
+            "sound": false,
+            "badge": null
+          },
+          "trigger": {
+            "type": "timeInterval",
+            "seconds": 3600,
+            "repeats": false
+          }
+        }
+      ],
+      "after": []
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.AppInfo": {
+    "api": "One.AppInfo",
+    "status": "passed",
+    "value": {
+      "version": "1.0.1",
+      "build": "3",
+      "applicationId": "com.sootbean.mobile"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.Clipboard": {
+    "api": "One.Clipboard",
+    "status": "passed",
+    "value": {
+      "set": true,
+      "read": "native round trip ☃",
+      "has": true
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.SecureStore": {
+    "api": "One.SecureStore",
+    "status": "passed",
+    "value": {
+      "missing": null,
+      "read": "native round trip ☃",
+      "removed": null
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.Storage": {
+    "api": "One.Storage",
+    "status": "passed",
+    "value": {
+      "missing": null,
+      "read": "native round trip ☃",
+      "empty": "",
+      "keys": [
+        "one-realapps-api-probe"
+      ],
+      "removed": null
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.Haptics": {
+    "api": "One.Haptics",
+    "status": "observed",
+    "value": {
+      "selection": {
+        "$undefined": true
+      },
+      "impact": {
+        "$undefined": true
+      },
+      "notification": {
+        "$undefined": true
+      }
+    },
+    "scope": "native dispatch only; simulator cannot prove physical haptic output"
+  },
+  "One.Speech": {
+    "api": "One.Speech",
+    "status": "observed",
+    "value": {
+      "available": true,
+      "permission": {
+        "status": "granted",
+        "granted": true,
+        "canAskAgain": true,
+        "restricted": false
+      }
+    },
+    "scope": "availability and permissions only; use speech controls for session events"
+  },
+  "One.Updates": {
+    "api": "One.Updates",
+    "status": "observed",
+    "value": {
+      "isEnabled": false,
+      "runtimeVersion": "84",
+      "updateId": "embedded",
+      "isEmbeddedLaunch": true,
+      "createdAt": "1970-01-01T00:00:00.000Z",
+      "manifest": null,
+      "staged": null
+    },
+    "scope": "installed update metadata; no reload or live update fetch in app shell"
+  },
+  "One.UI.Fonts": {
+    "api": "One.UI.Fonts",
+    "status": "passed",
+    "value": {
+      "before": false,
+      "loaded": {
+        "$undefined": true
+      },
+      "after": true,
+      "fontName": "OneNativeTestFont-Regular"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.LaunchScreen": {
+    "api": "One.LaunchScreen",
+    "status": "observed",
+    "value": {
+      "hide": {
+        "$undefined": true
+      }
+    },
+    "scope": "shell already mounted; launch retention requires cold-start proof"
+  }
+}
