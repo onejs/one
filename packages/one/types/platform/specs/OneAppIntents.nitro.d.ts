@@ -9,6 +9,6 @@ export interface OneAppIntents extends HybridObject<{
 }> {
     addInvocationListener(identifier: string, listener: (invocation: AppIntentInvocation) => void): () => void;
     claimPending(identifier: string): AppIntentInvocation[];
-    complete(executionId: string, success: boolean, result: string): void;
+    complete(executionId: string, success: boolean, output: string): void;
 }
 //# sourceMappingURL=OneAppIntents.nitro.d.ts.map
