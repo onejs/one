@@ -128,6 +128,12 @@ if (runtime.platform === 'android') {
       Math.abs(Math.hypot(...(Object.values(reading.gravity) as number[])) - 1) < 0.02,
       'fused gravity uses g'
     )
+    assert(
+      Math.abs(reading.gravity.x) < 0.02 &&
+        Math.abs(reading.gravity.y) < 0.02 &&
+        reading.gravity.z < -0.98,
+      'fused gravity uses Core Motion signs'
+    )
   }
 }
 writeFileSync(
@@ -138,6 +144,7 @@ writeFileSync(
       checks,
       transparency: true,
       counterclockwiseNegativeControlRejected: true,
+      motionVectorsChecked: runtime.platform === 'android',
     },
     null,
     2
