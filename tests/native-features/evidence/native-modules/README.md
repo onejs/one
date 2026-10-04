@@ -10,7 +10,7 @@ From `tests/native-features`, start the server through the build gate:
 
 ```sh
 bun --cwd ~/contrast heavy --service -- bash -c \
-  'cd "$1" && bun scripts/native-modules-server.ts --platform android --port 8109 --artifacts evidence/native-modules' \
+  'cd "$1" && bun scripts/native-modules-server.ts --platform android --port 8109 --artifacts evidence/uniform-native-modules' \
   native-modules-server "$PWD"
 ```
 
@@ -34,7 +34,7 @@ by `localhost:<port>`. Release devices after the report and captures are saved.
 When `runtime.json` arrives, run:
 
 ```sh
-bun scripts/native-modules-verify.ts evidence/native-modules/android
+bun scripts/native-modules-verify.ts evidence/uniform-native-modules/android
 ```
 
 The checks include sorted and recursive filesystem operations, atomic overwrite,
@@ -45,6 +45,11 @@ dimensions, transparency, invalid inputs, and preservation of the source file.
 Motion checks cover native and JavaScript validation, availability, timestamps,
 complete fused readings, per-listener intervals, concurrent listeners, and
 idempotent removal while another listener continues.
+
+The root namespace reports live in `../uniform-native-modules/`. Android also
+checks 68 operations across the other 24 services, whose native implementation
+is currently unavailable there. The earlier Android report in this directory
+predates that namespace move; reproduce it with its recorded source revision.
 
 `engine/` contains the full vxrn suite reports with the compiler rebuilt at each
 revision. RAN: `3b3e99560^` and `69591350d` each passed 258 of 258 tests. The

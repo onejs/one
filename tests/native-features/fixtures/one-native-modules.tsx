@@ -40,7 +40,9 @@ async function fileSystem() {
   for (const uri of Object.values(directories))
     check(uri.startsWith('file://') && uri.endsWith('/'), `directory URI: ${uri}`)
   const directory = `${directories.cache}one-modules-${Date.now()}/`
-  const note = directory + encodeURIComponent('note ü.txt')
+  // apfs stores decomposed filenames; use that exact spelling on both platforms.
+  const noteName = 'note u\u0308.txt'
+  const note = directory + encodeURIComponent(noteName)
   const binary = directory + 'bytes.dat'
   const copied = directories.cache + 'copied/'
   const moved = directory + 'moved/'
@@ -69,7 +71,12 @@ async function fileSystem() {
     await fs.makeDirectory(nested)
     await fs.writeFile(nested + 'child.txt', 'nested')
     const names = (await fs.readDirectory(directory)).map((entry) => entry.name)
-    check(names.join(',') === 'bytes.dat,nested,note ü.txt', `sorted entries: ${names}`)
+    check(names.join(',') === `bytes.dat,nested,${noteName}`, `sorted entries: ${names}`)
+    const noteEntry = (await fs.readDirectory(directory)).find(
+      (entry) => entry.name === noteName
+    )
+    check(noteEntry !== undefined, 'exact decomposed filename')
+    check((await text(noteEntry.uri)) === 'new', 'listed filename URI roundtrip')
     const clone = `${directories.cache}copy-${Date.now()}/`
     await fs.copy(directory, clone)
     check((await text(clone + 'nested/child/child.txt')) === 'nested', 'recursive copy')
