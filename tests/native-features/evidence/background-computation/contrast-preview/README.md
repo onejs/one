@@ -25,3 +25,13 @@ pruning fix fails on missing pure-lib contents; restored source computes22.
 The emitted browser bundler weighs96.6KB gzip against its100KB budget. Contrast's
 actual typecheck completed successfully. These are correctness and artifact-size
 checks; no phone frame-time or heap-collection measurement is claimed.
+
+RAN: the complete canonical Home Rally seed was read through the factory source
+reader and sent through `buildNativeBundleFromFiles` against the public compile
+CDN. The before-publication result is retained in
+`factory-before-publication.json`: the branch's exact `contrast-native` source
+artifact returns404. This is a failing release-gate receipt, not a successful
+factory build. Home Rally is a canonical example; it is not currently a published
+community-project registry entry. The probe lives in Contrast
+`scripts/debug/one-background-factory-proof.ts`. It must pass after the exact npm
+family and both compile catalogs publish.
