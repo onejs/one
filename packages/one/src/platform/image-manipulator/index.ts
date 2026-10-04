@@ -1,3 +1,4 @@
+import { missingNativeBuild } from '../nativeError'
 import type {
   ImageTransformOptions,
   ImageTransformResult,
@@ -19,6 +20,6 @@ export const ImageManipulator = Object.freeze({
     _uri: string,
     _options: ImageManipulatorOptions = {}
   ): Promise<ImageTransformResult> => {
-    throw new Error('ImageManipulator requires an iOS or Android native build')
+    return Promise.reject(missingNativeBuild('ImageManipulator.transform'))
   },
 })

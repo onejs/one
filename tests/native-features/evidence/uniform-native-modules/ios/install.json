@@ -1,0 +1,23 @@
+{
+  "schema": "xcodebuildmcp.output.install-result",
+  "schemaVersion": "2",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED"
+    },
+    "artifacts": {
+      "simulatorId": "D0A57941-A228-4C31-8496-487FC0863DEC",
+      "appPath": "/tmp/one-native-modules-ios-derived/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app"
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": []
+    }
+  },
+  "nextSteps": [
+    "Open the Simulator app: xcodebuildmcp simulator open",
+    "Launch the app: xcodebuildmcp simulator launch-app --simulator-id D0A57941-A228-4C31-8496-487FC0863DEC --bundle-id dev.vxrn.native.tests"
+  ]
+}

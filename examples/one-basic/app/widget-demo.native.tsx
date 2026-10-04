@@ -37,7 +37,13 @@ export default function WidgetDemo() {
 
   return (
     <View
-      style={{ flex: 1, padding: 30, gap: 16, justifyContent: 'center', backgroundColor: '#101115' }}
+      style={{
+        flex: 1,
+        padding: 30,
+        gap: 16,
+        justifyContent: 'center',
+        backgroundColor: '#101115',
+      }}
     >
       <Text style={{ color: '#FFFFFF' }}>Widget and Live Activity proof</Text>
       <Text style={{ color: '#FFFFFF' }}>{message}</Text>
@@ -45,7 +51,7 @@ export default function WidgetDemo() {
         title="Write widget"
         onPress={() =>
           run(async () => {
-            await One.iOS.Widgets.write({
+            await One.Widgets.write({
               title: 'One Basic',
               value: '42',
               subtitle: 'Written by the app',
@@ -58,7 +64,7 @@ export default function WidgetDemo() {
         title="Write JSX widget"
         onPress={() =>
           run(async () => {
-            await One.iOS.Widgets.writeView(
+            await One.Widgets.writeView(
               <W.VStack style={{ padding: 12, spacing: 8 }}>
                 <W.HStack style={{ spacing: 8 }}>
                   <W.Image
@@ -85,7 +91,7 @@ export default function WidgetDemo() {
         title="Start activity"
         onPress={() =>
           run(async () => {
-            const id = await One.iOS.LiveActivities.start('One delivery', {
+            const id = await One.LiveActivities.start('One delivery', {
               status: 'Preparing',
               value: '1 of 3',
             })
@@ -99,7 +105,7 @@ export default function WidgetDemo() {
         disabled={!activityId}
         onPress={() =>
           run(async () => {
-            await One.iOS.LiveActivities.update(activityId!, {
+            await One.LiveActivities.update(activityId!, {
               status: 'On the way',
               value: '2 of 3',
             })
@@ -112,7 +118,7 @@ export default function WidgetDemo() {
         disabled={!activityId}
         onPress={() =>
           run(async () => {
-            await One.iOS.LiveActivities.end(activityId!)
+            await One.LiveActivities.end(activityId!)
             setActivityId(null)
             setMessage('Ended activity')
           })
@@ -122,7 +128,7 @@ export default function WidgetDemo() {
         title="Start JSX activity"
         onPress={() =>
           run(async () => {
-            const id = await One.iOS.LiveActivities.startView('One delivery', {
+            const id = await One.LiveActivities.startView('One delivery', {
               lockScreen: <DeliveryView value="Preparing 1 of 3" step={1} />,
               compactLeading: <W.Text>One</W.Text>,
               compactTrailing: <W.Text>1/3</W.Text>,
@@ -141,7 +147,7 @@ export default function WidgetDemo() {
         disabled={!jsxActivityId}
         onPress={() =>
           run(async () => {
-            await One.iOS.LiveActivities.updateView(jsxActivityId!, {
+            await One.LiveActivities.updateView(jsxActivityId!, {
               lockScreen: <DeliveryView value="On the way 2 of 3" step={2} />,
               compactLeading: <W.Text>One</W.Text>,
               compactTrailing: <W.Text>2/3</W.Text>,
@@ -159,7 +165,7 @@ export default function WidgetDemo() {
         disabled={!jsxActivityId}
         onPress={() =>
           run(async () => {
-            await One.iOS.LiveActivities.end(jsxActivityId!)
+            await One.LiveActivities.end(jsxActivityId!)
             setJsxActivityId(null)
             setMessage('Ended JSX activity')
           })

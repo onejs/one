@@ -168,14 +168,14 @@ function ControlledVideo() {
 ```
 
 The player follows the app's audio session. This view does not publish Now
-Playing metadata or remote transport callbacks. `One.iOS.Audio` manages a
+Playing metadata or remote transport callbacks. `One.Audio` manages a
 separate player and its own remote commands. Playback during backgrounding,
 cross-app audio arbitration, and picture in picture need device proof.
 
 ## LivePhotoView
 
 `One.iOS.LivePhotoView` displays and plays a Live Photo already in the Photos
-library. Request read access with `One.iOS.PhotoLibrary.requestReadPermission()`,
+library. Request read access with `One.PhotoLibrary.requestReadPermission()`,
 then pass the `identifier` of an asset whose `isLivePhoto` is `true`. Give the
 view an explicit size. It loads a nondegraded `PHLivePhoto` and shows its key
 photo at `ready`. It does not capture or assemble a still and video pair.

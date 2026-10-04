@@ -16,16 +16,16 @@ export default function OneNativeScreenCapture() {
   const removeScreenshotRef = useRef<() => void>(() => {})
 
   useEffect(() => {
-    const removeState = One.iOS.ScreenCapture.addStateListener((value) => {
+    const removeState = One.ScreenCapture.addStateListener((value) => {
       setState(value)
       setEvents((previous) => [...previous, value])
     })
-    const removeScreenshot = One.iOS.ScreenCapture.addScreenshotListener((timestampMs) => {
+    const removeScreenshot = One.ScreenCapture.addScreenshotListener((timestampMs) => {
       setScreenshotCount((previous) => previous + 1)
       setLastTimestamp(timestampMs)
     })
     removeScreenshotRef.current = removeScreenshot
-    One.iOS.ScreenCapture.getState().then(setState, (error: unknown) => {
+    One.ScreenCapture.getState().then(setState, (error: unknown) => {
       setState(error instanceof Error ? error.message : String(error))
     })
     return () => {
@@ -35,13 +35,13 @@ export default function OneNativeScreenCapture() {
   }, [])
 
   const refresh = async () => {
-    setState(await One.iOS.ScreenCapture.getState())
+    setState(await One.ScreenCapture.getState())
     setStatus('refreshed')
   }
 
   const captureWindow = async () => {
     try {
-      const result = await One.iOS.ScreenCapture.captureWindow()
+      const result = await One.ScreenCapture.captureWindow()
       if (!result.uri.startsWith('file://') || !result.uri.endsWith('.png'))
         throw new Error(`window capture returned a non-PNG file URI: ${result.uri}`)
       setCaptureUri(result.uri)
@@ -55,7 +55,7 @@ export default function OneNativeScreenCapture() {
 
   const deleteCapture = async () => {
     if (!captureUri) return
-    await One.iOS.FileSystem.delete(captureUri)
+    await One.FileSystem.delete(captureUri)
     setCaptureUri('')
     setCaptureStatus('deleted')
   }
@@ -78,10 +78,13 @@ export default function OneNativeScreenCapture() {
       <Pressable testID="one-native-screen-capture-delete" onPress={deleteCapture}>
         <Text>Delete captured file</Text>
       </Pressable>
-      <Pressable testID="one-native-screen-capture-unsubscribe" onPress={() => {
-        removeScreenshotRef.current()
-        setListening(false)
-      }}>
+      <Pressable
+        testID="one-native-screen-capture-unsubscribe"
+        onPress={() => {
+          removeScreenshotRef.current()
+          setListening(false)
+        }}
+      >
         <Text>Stop screenshot listener</Text>
       </Pressable>
       <Pressable testID="one-native-screen-capture-refresh" onPress={refresh}>
@@ -95,6 +98,20 @@ export default function OneNativeScreenCapture() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 8, backgroundColor: '#ffffff' },
-  red: { position: 'absolute', top: 550, left: 40, width: 80, height: 80, backgroundColor: '#ef2b1d' },
-  blue: { position: 'absolute', top: 550, left: 160, width: 80, height: 80, backgroundColor: '#1358e8' },
+  red: {
+    position: 'absolute',
+    top: 550,
+    left: 40,
+    width: 80,
+    height: 80,
+    backgroundColor: '#ef2b1d',
+  },
+  blue: {
+    position: 'absolute',
+    top: 550,
+    left: 160,
+    width: 80,
+    height: 80,
+    backgroundColor: '#1358e8',
+  },
 })

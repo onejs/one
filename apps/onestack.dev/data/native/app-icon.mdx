@@ -3,7 +3,7 @@ title: App Icon
 description: Let people choose a bundled alternate iOS Home Screen icon
 ---
 
-`One.iOS.AppIcon` reads and changes the icon iOS displays for your app. The
+`One.AppIcon` reads and changes the icon iOS displays for your app. The
 icon images must be bundled into the binary before calling `setIcon`.
 
 With One prebuild, configure a primary icon and named alternates in
@@ -34,12 +34,12 @@ JavaScript update cannot add icon images to an installed binary.
 ```ts
 import { One } from 'one'
 
-if (await One.iOS.AppIcon.isSupported()) {
-  const current = await One.iOS.AppIcon.getCurrentName()
+if (await One.AppIcon.isSupported()) {
+  const current = await One.AppIcon.getCurrentName()
   // undefined means the primary icon is showing.
-  if (current !== 'Orange') await One.iOS.AppIcon.setIcon('Orange')
+  if (current !== 'Orange') await One.AppIcon.setIcon('Orange')
   // Passing no name restores the primary icon.
-  await One.iOS.AppIcon.setIcon()
+  await One.AppIcon.setIcon()
 }
 ```
 
@@ -50,7 +50,7 @@ returns without another alert. An unknown name rejects with
 `E_APP_ICON_INPUT`; unavailable icon switching, an inactive app, concurrent
 changes, and system failures reject with `E_APP_ICON_UNAVAILABLE`,
 `E_APP_ICON_INACTIVE`, `E_APP_ICON_BUSY`, and `E_APP_ICON_CHANGE` respectively.
-On web and Android this API throws.
+Alternate icons are implemented on iOS. On Android and web, `isSupported()` resolves `false`, `getCurrentName()` resolves an empty string, and `setIcon()` does nothing.
 
 For an Expo prebuild, add the icon sets to the Xcode asset catalog and set
 Xcode's Alternate App Icon Sets build setting; the runtime API uses the same
