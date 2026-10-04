@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -14,7 +13,6 @@ export type { FileDirectories, FileEncoding, FileEntry, FileInfo }
 let hybrid: OneFileSystem | undefined
 
 function native(): OneFileSystem {
-  if (Platform.OS !== 'ios') throw new Error('FileSystem requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneFileSystem>('OneFileSystem')
   return hybrid
 }
