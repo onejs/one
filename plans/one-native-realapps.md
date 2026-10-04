@@ -1,5 +1,25 @@
 # One native real-app matrix
 
+Current final artifact is `2.0.0-0.canary.1791082782289`, sourced from
+`a4c1ed5a561604bdb05fed10540f8576591274ef`. RAN: packed One and vxrn
+manifests and changed native files were checked. The final clean native matrix
+is in progress. The beta.168.1 table below is the retained negative run.
+
+RAN: the fresh Basic clean install, exact navigation graph, web build and web
+runtime pass on this artifact, including `/tabs/profile`. Evidence is
+`/tmp/one-realapps-basic-current-matrix.json` and
+`/tmp/one-realapps-basic-current-clean.md`; native compilation runs on CI64.
+
+Open platform gap: Contrast imports ArrangementView for its regular-width
+layout. Its native API requires iOS 27.1. The allowed iPhone 16/17 Pro pool
+runs 27.0; the installed 27.1 runtime supports only iPhone Duo and rejects an
+iPhone 17 Pro with `Incompatible device`. Manager disposition: no pool
+exception. Prove Contrast's compact phone path on 27.0 and retain 27.1
+ArrangementView rendering as an open gap until a compatible pool runtime exists.
+The fixture's deliberate unsupported call is retained in
+`/tmp/one-realapps-contrast-ios-imported-primitives/api-results.json` and does
+not count as a rendering pass.
+
 RAN: One 2.0.0-beta.168.1; One checkout 8172a63f49aca02146080a89b673a894b81855bd; started 2026-10-03T22:15:29.104Z.
 
 Saved run: `/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-0ZOGpl`. Full output and machine-readable state: [matrix.json](/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-0ZOGpl/matrix.json).
@@ -532,3 +552,39 @@ the other React imports in the same source. The next compilation passed that
 file and failed at SVG 15.15.3's observer pointer signature. Published SVG
 15.15.5 handles RN versions above 84 with the new shared pointer signature;
 the template now pins that version. Incremental validation remains in progress.
+
+
+## latest clean artifact and fixture repairs
+
+RAN: fresh Basic on CI64 used exact `2.0.0-0.canary.1791082782289`:
+install 6.42s, navigation graph 0.10s, production web build 55.67s, browser
+runtime pass after installing the exact resolved Playwright browser. Runner
+`7065fe408` now installs that matching browser before every web runtime check.
+
+RAN: `bdaa7b83f` mounts the injected menu with the root Stack, preserving
+app readiness gates, and waits on that menu before native route taps. The
+cold-start Android negative capture had an empty shell. INFERRED from the root
+layout readiness returns and the earlier menu wrapping those returns: a tap
+could precede the app Stack. RAN: a fresh flow now enters the API route. One's
+product navigation was unchanged by this fixture repair.
+
+RAN: Android's native UI flow passes with exact page-one/page-zero and Portal
+hit-1 assertions in `/tmp/one-realapps-contrast-android-ui-visible-actions`.
+The diagnostic binary remains the earlier artifact/overlay described above.
+The failed preceding flow's screenshot and hierarchy show Pager's action fully
+visible at bounds [32,1660][1049,1764], while Maestro repeatedly attempted to
+center it and timed out. The helper now requires full visibility and asserts the
+id before tapping. Timeout and native callback assertions are unchanged.
+
+RAN: Takeout draft `96d77b9` adds the RN 0.87 native header/Fabric Swift
+compatibility patches and SVG 15.15.5, pins the same whole One artifact family,
+and passes frozen Bun install. iOS compile negatives remain retained in
+`/tmp/one-realapps-takeout-ci-ios-build-*.json`; final compile/run is pending.
+The Swift importer removes the trailing View from the added Objective-C
+property's name; the Swift call now uses its imported `reactFabricRootContent`.
+
+RAN: Apple sign-in on the account-free simulator opens the system account
+required dialog and forwards AuthorizationError 1000 after Close. This proves
+native invocation and error forwarding, not credential sign-in. Native Glass
+receives SwiftUI-compatible children; the fixture's former RN Text child was
+invalid and has been removed. These receipts carry precise observed scopes.
