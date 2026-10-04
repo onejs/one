@@ -7,18 +7,18 @@ export default function RealAppsMenu({ children }: PropsWithChildren) {
   if (Platform.OS === 'web') return children
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>{children}</View>
       <View
         style={{
           flexDirection: 'row',
           padding: 12,
-          paddingBottom: insets.bottom + 12,
+          paddingTop: insets.top + 12,
           gap: 12,
         }}
       >
         {['stack', 'tabs', 'drawer', 'api'].map((name) => (
           <Pressable
             key={name}
+            style={{ minHeight: 44, justifyContent: 'center' }}
             accessibilityRole="button"
             testID={`realapps-open-${name}`}
             onPress={() =>
@@ -31,6 +31,7 @@ export default function RealAppsMenu({ children }: PropsWithChildren) {
           </Pressable>
         ))}
       </View>
+      <View style={{ flex: 1 }}>{children}</View>
     </View>
   )
 }
