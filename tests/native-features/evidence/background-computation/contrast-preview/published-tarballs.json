@@ -1,0 +1,95 @@
+{
+  "label": "RAN",
+  "version": "2.0.0-0.canary.1791084352120",
+  "source": "6b5302bdca4a23e8f92ba069a3a257e7c351564a",
+  "command": "npm pack <package>@<exact-version> --ignore-scripts --json",
+  "packages": [
+    {
+      "package": "one",
+      "version": "2.0.0-0.canary.1791084352120",
+      "source": "6b5302bdca4a23e8f92ba069a3a257e7c351564a",
+      "tarballSha256": "5bd703847fe7835211a0caaff8fabfc8b9e3c1148b80c13c23fe4abe55b13437",
+      "exports": {
+        "./background": {
+          "react-native": {
+            "types": "./types/background.native.d.ts",
+            "default": "./dist/esm/background.native.js"
+          },
+          "types": "./types/background.d.ts",
+          "import": "./dist/esm/background.mjs",
+          "require": "./dist/cjs/background.cjs"
+        }
+      },
+      "files": [
+        {
+          "path": "dist/esm/background.mjs",
+          "bytes": 657,
+          "sha256": "d8f6dd2cf6741e761a0a96435a901c6a1ed309167de6746eec441fa2ebdc40a8"
+        },
+        {
+          "path": "dist/esm/background.native.js",
+          "bytes": 549,
+          "sha256": "94f8ca4690b2760601b0fd671ca5f839797e408cc742d830098968a1d81606c1"
+        },
+        {
+          "path": "dist/esm/background/useBackgroundComputation.mjs",
+          "bytes": 1509,
+          "sha256": "2aa505e850d25037c990403c8ed9a0bcd79ef04e1e267c0147649932561a6a1d"
+        }
+      ]
+    },
+    {
+      "package": "vxrn",
+      "version": "2.0.0-0.canary.1791084352120",
+      "source": "6b5302bdca4a23e8f92ba069a3a257e7c351564a",
+      "tarballSha256": "ed5755bdad1924887f7c4749fa25300c2ea87901d9fc0cf4c0c40ae2e511144b",
+      "exports": {
+        "./background-computation": {
+          "types": "./types/backgroundComputation.d.ts",
+          "default": "./dist/backgroundComputation.mjs"
+        },
+        "./background-computation-native": {
+          "types": "./types/backgroundComputationNative.d.ts",
+          "default": "./dist/backgroundComputationNative.mjs"
+        }
+      },
+      "files": [
+        {
+          "path": "dist/backgroundComputation.mjs",
+          "bytes": 7140,
+          "sha256": "501ed23ed729605ae87254aede3ece8cbb14765c8095361ea2dc02c7872b332c"
+        },
+        {
+          "path": "dist/backgroundComputationNative.mjs",
+          "bytes": 753,
+          "sha256": "519318838f571c598f1caddb9de97b023e3ba811f81b28a8cc7a77b6c0dfb267"
+        }
+      ]
+    },
+    {
+      "package": "@vxrn/compiler",
+      "version": "2.0.0-0.canary.1791084352120",
+      "source": "6b5302bdca4a23e8f92ba069a3a257e7c351564a",
+      "tarballSha256": "c64b102c1900593fb63d7ca189e82ad709aab4186d52bdcf3f3a1a36aa901d68",
+      "exports": {
+        "./worklet-utils": {
+          "types": "./types/workletUtils.d.ts",
+          "import": "./dist/esm/workletUtils.mjs",
+          "require": "./dist/cjs/workletUtils.cjs"
+        }
+      },
+      "files": [
+        {
+          "path": "dist/esm/workletUtils.mjs",
+          "bytes": 246,
+          "sha256": "3f17385f6d4b503afe5cf40c26d4e98861ddc77d73d5717ab4847fb85a271dbd"
+        },
+        {
+          "path": "dist/cjs/workletUtils.cjs",
+          "bytes": 1262,
+          "sha256": "3c002e3e23c18943c8e80e6b5624a0cfcf8f104da700ca2a1dd4403132861397"
+        }
+      ]
+    }
+  ]
+}
