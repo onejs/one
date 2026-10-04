@@ -287,6 +287,8 @@ function step(
     env: {
       ...globalThis.process.env,
       CI: '1',
+      LANG: 'en_US.UTF-8',
+      LC_ALL: 'en_US.UTF-8',
       RCT_METRO_PORT: values.port!,
       ANDROID_SERIAL: values.android,
     },
