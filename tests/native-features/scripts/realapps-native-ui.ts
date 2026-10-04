@@ -139,7 +139,10 @@ if (values.mode === 'home') {
   else flow += '- back\n'
   scrollTap('realapps-api-share-cancel')
   flow += '- takeScreenshot: system-share\n'
-  if (values.platform === 'ios') flow += '- tapOn:\n    id: Close\n'
+  if (values.platform === 'ios') {
+    visible('Copy')
+    flow += '- swipe:\n    start: 50%, 65%\n    end: 50%, 95%\n'
+  }
   else flow += '- back\n'
   scrollTap('realapps-api-open-url')
   flow += '- takeScreenshot: system-url\n'

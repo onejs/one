@@ -41,7 +41,7 @@ function NativeTabs({ report }: { report: Report }) {
         </View>
       </One.iOS.Tab>
       <One.iOS.Toolbar>
-        <One.iOS.ToolbarItem placement="bottomBar">
+        <One.iOS.ToolbarItem placement="topBarLeading">
           <One.iOS.Button
             testID="realapps-api-swift-toolbar-hit"
             label="Item hit"
@@ -52,7 +52,7 @@ function NativeTabs({ report }: { report: Report }) {
             }}
           />
         </One.iOS.ToolbarItem>
-        <One.iOS.ToolbarItemGroup placement="bottomBar">
+        <One.iOS.ToolbarItemGroup placement="topBarTrailing">
           <One.iOS.Button
             testID="realapps-api-swift-group-hit"
             label="Group hit"

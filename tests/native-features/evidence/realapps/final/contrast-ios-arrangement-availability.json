@@ -1,0 +1,22 @@
+{
+  "label": "RAN",
+  "api": "One.iOS.ArrangementView",
+  "status": "unavailable",
+  "minimumIOS": "27.1",
+  "actual": {
+    "api": "One.iOS.ArrangementView",
+    "status": "failed",
+    "value": {
+      "name": "Error",
+      "message": "Swift.ArrangementView requires iOS 27.1 or later",
+      "code": {
+        "$undefined": true
+      },
+      "actual": {
+        "$undefined": true
+      }
+    },
+    "scope": "render exception"
+  },
+  "scope": "native platform guard exercised; 27.1 rendering remains an open gap"
+}
