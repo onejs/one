@@ -133,14 +133,24 @@ WebKit and Chromium match the real57-object course and observe Blob URL revocati
 after the first reply. Native preview matches it with heartbeat9. RAN:131 tests/
 356 assertions, bun check58.8s and97.0KB gzip budget pass; the complete factory
 graph retains15 routes/450 files/14,457,330 bytes. Evidence is under
-contrast-preview/review-fixes/. Assigned m19584 re-review passed8f3896a221. The synced landing merge
-df23ed5000 includes the pin and removes its goals row; nine adapter tests,
-compile-catalog gate and seven-field current/reference comparison pass. It is
-pushed on merge/one-background-computation-land. Main push is blocked before
-execution by the One-scoped tool guard despite an explicit Contrast target;
-m19584 transferred landing to coordinator m18386 in a Contrast-context
-session and directed this lane to finish. Receipt is contrast-preview/landing/.
-One main is untouched. Main landing is pending with that owner, not claimed done.
+contrast-preview/review-fixes/. Assigned m19584 re-review passed8f3896a221. RAN: the migration and exact
+One pin are now ancestors of Contrast main (df23ed5000, composed hook88970f9985),
+with the goals row removed. The One-scoped tool guard prevented this session's
+main push; manager routed landing to Contrast-context main-sync p58675.
+
+Main also gained a0e3cc7b949, which reuses exact course geometry across cosmetic
+edits and accepted undo. TESTED: follow-up a0bbcb5b92 on
+fix/rally-background-cache-owner preserves main's module-scope One definition and
+adds the current-revision check after awaiting work. Actual Chromium, WebKit and
+native preview pass two reuses, two geometry edits, stale completion, disposal
+and reactivation: two owners, six executor calls, two disposals. Every accepted
+course matches the full synchronous JSON and exact getCurrent identity. Removing
+the cache or revision guard fails the negative probe. Both browser owners retire
+Blob URLs after their first reply. RAN:131 bundler tests/356 assertions,
+bun check46.7s and complete factory15 routes/450 files/14,469,639 bytes pass.
+Receipts and repeat commands: contrast-preview/geometry-reuse/. The final cache
+follow-up is pushed and handed to p58675 for its main merge. One main untouched;
+that follow-up landing remains pending with its assigned owner.
 
 Proposed public shape (`one/background`):
 
