@@ -1,0 +1,25 @@
+{
+  "label": "RAN",
+  "oneFamily": "2.0.0-0.canary.1791084352120",
+  "releaseSourceCommit": "6b5302bdca4a23e8f92ba069a3a257e7c351564a",
+  "contrastSource": "fd086fc8e4",
+  "compilePublishRun": "https://github.com/sootbean/soot/actions/runs/37174653372",
+  "catalogWait": {
+    "job": "w-2b69",
+    "exitCode": 0,
+    "elapsedSeconds": 927,
+    "checks": [
+      "platform-managed-compile-catalog.ts",
+      "compile-catalog-drift.ts"
+    ]
+  },
+  "sourceArtifacts": {
+    "current": "b4df061bc0399074ed42fb4cea3e49f39cf09c622beaa5e81d6ebcf634d53eab",
+    "configurations": [
+      "dev",
+      "prod"
+    ],
+    "descriptorHttpStatus": 200
+  },
+  "scope": "published packages and full canonical factory build; earlier 37-object fixture; later main merge candidate requires separate receipts"
+}
