@@ -1,6 +1,6 @@
 # One browser service adapters
 
-Owner: one-native-web. Assembled review: s9760. Base: origin/v2-beta.
+Status: stopped by owner. Worker: one-native-web. Base: origin/v2-beta.
 
 Nate's scope, 2026-10-04: "We already have enough just making all the native APIs work!!!!!! Plus some unification. Why are you adding now random features?????" and "It's meant to be clean and simple."
 
@@ -16,3 +16,12 @@ OPFS private addresses are not fetchable resource URLs; image transforms and
 recordings return browser blob URLs instead.
 
 Evidence: `tests/native-features/evidence/one-native-web/README.md`.
+
+## Owner correction
+
+2026-10-04, Nate: "I don’t want one native web. That’s literally something I said never should exist. What even is that"
+
+Stop this browser implementation lane. No landing or release is authorized.
+The existing pushed branch is retained for audit; it has not been merged into
+v2-beta or main. The worker and branch name referred to the manager-assigned
+browser adapters for existing One namespaces, not a separate package.
