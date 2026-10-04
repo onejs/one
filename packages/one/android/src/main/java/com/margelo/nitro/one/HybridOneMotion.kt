@@ -16,6 +16,7 @@ import kotlin.math.ceil
 class HybridOneMotion : HybridOneMotionSpec() {
     private val manager = requireNotNull(NitroModules.applicationContext)
         .getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    private val bootTimeMs = System.currentTimeMillis() - SystemClock.elapsedRealtimeNanos() / 1_000_000.0
     private data class Listener(val sensor: MotionSensor, val intervalMs: Double,
         val reading: (MotionReading) -> Unit, val error: (String, String) -> Unit,
         var lastNs: Long = 0)
@@ -140,8 +141,7 @@ class HybridOneMotion : HybridOneMotionSpec() {
                     Sensor.TYPE_LINEAR_ACCELERATION -> MotionSensor.DEVICEMOTION
                     else -> return
                 }
-                val timestamp = System.currentTimeMillis() +
-                    (event.timestamp - SystemClock.elapsedRealtimeNanos()) / 1_000_000.0
+                val timestamp = bootTimeMs + event.timestamp / 1_000_000.0
                 val fused = sensor == MotionSensor.DEVICEMOTION
                 if (fused && (!hasGravity || !hasRotation || !hasAttitude)) return
                 val reading = MotionReading(sensor, timestamp, value,

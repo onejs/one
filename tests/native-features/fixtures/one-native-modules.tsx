@@ -391,7 +391,7 @@ async function motion() {
               if (slow.length)
                 check(
                   reading.timestampMs - slow.at(-1)!.timestampMs >= 99.9,
-                  'per-listener interval'
+                  `${sensor} per-listener interval: ${reading.timestampMs - slow.at(-1)!.timestampMs}`
                 )
               slow.push(reading)
               if (slow.length === 2) {

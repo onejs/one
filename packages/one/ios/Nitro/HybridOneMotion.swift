@@ -11,6 +11,7 @@ final class HybridOneMotion: HybridOneMotionSpec {
   }
 
   private let manager = CMMotionManager()
+  private let bootTimeMs = (Date().timeIntervalSince1970 - ProcessInfo.processInfo.systemUptime) * 1000
   private let queue: OperationQueue = {
     let queue = OperationQueue()
     queue.name = "one.motion"
@@ -162,7 +163,7 @@ final class HybridOneMotion: HybridOneMotionSpec {
         return
       }
       guard let timestamp else { return }
-      let timestampMs = (Date().timeIntervalSince1970 - ProcessInfo.processInfo.systemUptime + timestamp) * 1000
+      let timestampMs = self.bootTimeMs + timestamp * 1000
       guard let sample = reading(timestampMs) else { return }
       let ids = self.listeners.compactMap { $0.value.sensor == sensor ? $0.key : nil }
       for id in ids {
