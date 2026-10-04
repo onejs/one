@@ -27,9 +27,10 @@ function Layout() {
 
 The namespace tells you where an API runs:
 
-- `One.X` is an API both platforms share: `One.Notifications`,
+- Root services such as `One.FileSystem` use a uniform contract: `One.Notifications`,
   `One.Clipboard`, `One.Network`, `One.Browser`, `One.Database`,
-  `One.ImagePicker`, `One.DocumentPicker`, `One.AppInfo`.
+  `One.ImagePicker`, `One.DocumentPicker`, `One.AppInfo`, `One.Motion`,
+  and `One.ImageManipulator`.
 - `One.iOS.X` is a platform framework in its own shape: SwiftUI views and
   UIKit-backed modules under the names and prop contracts Apple uses.
 - `One.Android.X` is a platform framework in its own shape: Jetpack Compose
@@ -44,6 +45,12 @@ branches behind platform checks. The UIKit toolbar host, menu
 actions, and zoom transition components (`One.iOS.ToolbarHost`,
 `One.iOS.MenuAction`, and the `ZoomTransition*` components) return `null`
 instead, so they are safe to keep in cross-platform trees.
+
+Uniform services have no aliases under `One.iOS`. A service awaiting a native
+implementation on a platform follows the no-native contract: effects do nothing,
+reads return empty or denied values, and calls requiring a result reject with
+`<Namespace>.<verb> needs an iOS or Android build`. Security operations fail
+closed. `One.iOS` keeps the generated iOS framework mappings where they exist.
 
 `One.platform` reads the current platform: `'web'`, `'ios'`, `'android'`,
 or `'rnx'`.

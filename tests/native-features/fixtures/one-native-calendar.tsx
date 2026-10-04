@@ -9,11 +9,11 @@ function code(error: unknown): string {
 }
 
 export default function OneNativeCalendar() {
-  const [permission, setPermission] = useState(One.iOS.Calendar.getPermissionStatus())
+  const [permission, setPermission] = useState(One.Calendar.getPermissionStatus())
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('pending')
   const [reminderPermission, setReminderPermission] = useState(
-    One.iOS.Calendar.getRemindersPermissionStatus()
+    One.Calendar.getRemindersPermissionStatus()
   )
   const [reminderStatus, setReminderStatus] = useState('idle')
   const [reminderResult, setReminderResult] = useState('pending')
@@ -23,11 +23,11 @@ export default function OneNativeCalendar() {
     try {
       let before = 'none'
       try {
-        await One.iOS.Calendar.list(Date.now(), Date.now() + 86_400_000)
+        await One.Calendar.list(Date.now(), Date.now() + 86_400_000)
       } catch (error) {
         before = code(error)
       }
-      const granted = await One.iOS.Calendar.requestPermission()
+      const granted = await One.Calendar.requestPermission()
       setPermission(granted)
       if (granted !== 'fullAccess') {
         setStatus('denied')
@@ -37,8 +37,8 @@ export default function OneNativeCalendar() {
       const startMs = Date.now() + 7 * 86_400_000
       const endMs = startMs + 3_600_000
       const title = `One calendar proof ${startMs}`
-      const identifier = await One.iOS.Calendar.create({ title, startMs, endMs })
-      const events = await One.iOS.Calendar.list(startMs - 1, endMs + 1)
+      const identifier = await One.Calendar.create({ title, startMs, endMs })
+      const events = await One.Calendar.list(startMs - 1, endMs + 1)
       const matched = events.some(
         (event) =>
           event.identifier === identifier &&
@@ -50,102 +50,121 @@ export default function OneNativeCalendar() {
       const changedStartMs = startMs + 7_200_000
       const changedEndMs = changedStartMs + 1_800_000
       const changedTitle = `${title} edited`
-      const changed = await One.iOS.Calendar.update(identifier, startMs, {
-        title: changedTitle, startMs: changedStartMs, endMs: changedEndMs,
+      const changed = await One.Calendar.update(identifier, startMs, {
+        title: changedTitle,
+        startMs: changedStartMs,
+        endMs: changedEndMs,
         location: 'One native room',
       })
-      const cleared = await One.iOS.Calendar.update(changed.identifier, changed.startMs, {
+      const cleared = await One.Calendar.update(changed.identifier, changed.startMs, {
         location: '',
       })
-      const afterEdit = await One.iOS.Calendar.list(startMs - 1, changedEndMs + 1)
-      const updated = changed.title === changedTitle &&
+      const afterEdit = await One.Calendar.list(startMs - 1, changedEndMs + 1)
+      const updated =
+        changed.title === changedTitle &&
         Math.abs(changed.startMs - changedStartMs) < 1000 &&
         Math.abs(changed.endMs - changedEndMs) < 1000 &&
         changed.location === 'One native room' &&
-        cleared.identifier === changed.identifier && cleared.title === changed.title &&
+        cleared.identifier === changed.identifier &&
+        cleared.title === changed.title &&
         Math.abs(cleared.startMs - changed.startMs) < 1000 &&
-        Math.abs(cleared.endMs - changed.endMs) < 1000 && cleared.location === '' &&
-        afterEdit.some((event) =>
-          event.identifier === cleared.identifier &&
-          event.title === changedTitle && event.location === '' &&
-          Math.abs(event.startMs - changedStartMs) < 1000
+        Math.abs(cleared.endMs - changed.endMs) < 1000 &&
+        cleared.location === '' &&
+        afterEdit.some(
+          (event) =>
+            event.identifier === cleared.identifier &&
+            event.title === changedTitle &&
+            event.location === '' &&
+            Math.abs(event.startMs - changedStartMs) < 1000
         ) &&
-        !afterEdit.some((event) => event.identifier === identifier &&
-          Math.abs(event.startMs - startMs) < 1000)
-      await One.iOS.Calendar.delete(cleared.identifier, cleared.startMs)
-      const removed = !(await One.iOS.Calendar.list(startMs - 1, changedEndMs + 1)).some(
-        (event) => event.identifier === cleared.identifier &&
+        !afterEdit.some(
+          (event) =>
+            event.identifier === identifier && Math.abs(event.startMs - startMs) < 1000
+        )
+      await One.Calendar.delete(cleared.identifier, cleared.startMs)
+      const removed = !(await One.Calendar.list(startMs - 1, changedEndMs + 1)).some(
+        (event) =>
+          event.identifier === cleared.identifier &&
           Math.abs(event.startMs - cleared.startMs) < 1000
       )
       let notFound = 'none'
       try {
-        await One.iOS.Calendar.update(cleared.identifier, cleared.startMs, { title: 'gone' })
+        await One.Calendar.update(cleared.identifier, cleared.startMs, { title: 'gone' })
       } catch (error) {
         notFound = code(error)
       }
       let invalidUpdate = 'none'
       try {
-        await One.iOS.Calendar.update(identifier, startMs, {})
+        await One.Calendar.update(identifier, startMs, {})
       } catch (error) {
         invalidUpdate = code(error)
       }
       let invalid = 'none'
       try {
-        await One.iOS.Calendar.list(endMs, startMs)
+        await One.Calendar.list(endMs, startMs)
       } catch (error) {
         invalid = code(error)
       }
       const dayMs = 86_400_000
       const recurrenceStartMs = Date.now() + 14 * dayMs
       const recurrenceTitle = `One recurrence proof ${recurrenceStartMs}`
-      await One.iOS.Calendar.create({
+      await One.Calendar.create({
         title: recurrenceTitle,
         startMs: recurrenceStartMs,
         endMs: recurrenceStartMs + 3_600_000,
         recurrence: { frequency: 'daily', interval: 2, occurrenceCount: 3 },
       })
-      const recurringEvents = (await One.iOS.Calendar.list(
-        recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100
-      )).filter((event) => event.title === recurrenceTitle)
-      const recurrenceListed = recurringEvents.length === 3 && recurringEvents.every((event, index) =>
-        Math.abs(event.startMs - (recurrenceStartMs + index * 2 * dayMs)) < 1000 &&
-        event.recurrence?.frequency === 'daily' && event.recurrence.interval === 2 &&
-        event.recurrence.occurrenceCount === 3
-      )
+      const recurringEvents = (
+        await One.Calendar.list(recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100)
+      ).filter((event) => event.title === recurrenceTitle)
+      const recurrenceListed =
+        recurringEvents.length === 3 &&
+        recurringEvents.every(
+          (event, index) =>
+            Math.abs(event.startMs - (recurrenceStartMs + index * 2 * dayMs)) < 1000 &&
+            event.recurrence?.frequency === 'daily' &&
+            event.recurrence.interval === 2 &&
+            event.recurrence.occurrenceCount === 3
+        )
       for (const event of [...recurringEvents].reverse()) {
-        await One.iOS.Calendar.delete(event.identifier, event.startMs)
+        await One.Calendar.delete(event.identifier, event.startMs)
       }
-      const recurrenceRemoved = !(await One.iOS.Calendar.list(
-        recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100
-      )).some((event) => event.title === recurrenceTitle)
+      const recurrenceRemoved = !(
+        await One.Calendar.list(recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100)
+      ).some((event) => event.title === recurrenceTitle)
       const dateStartMs = Date.now() + 21 * dayMs
       const dateEndMs = dateStartMs + 2 * dayMs + 30 * 60_000
       const dateTitle = `One date-bounded recurrence ${dateStartMs}`
-      await One.iOS.Calendar.create({
+      await One.Calendar.create({
         title: dateTitle,
         startMs: dateStartMs,
         endMs: dateStartMs + 3_600_000,
         recurrence: { frequency: 'daily', endDateMs: dateEndMs },
       })
-      const dateEvents = (await One.iOS.Calendar.list(
-        dateStartMs - 1, dateStartMs + 4 * dayMs, 100
-      )).filter((event) => event.title === dateTitle)
-      const dateBounded = dateEvents.length === 3 && dateEvents.every((event, index) =>
-        Math.abs(event.startMs - (dateStartMs + index * dayMs)) < 1000 &&
-        event.recurrence?.frequency === 'daily' && event.recurrence.interval === 1 &&
-        Math.abs((event.recurrence.endDateMs ?? 0) - dateEndMs) < 1000 &&
-        event.recurrence.occurrenceCount === undefined
-      )
+      const dateEvents = (
+        await One.Calendar.list(dateStartMs - 1, dateStartMs + 4 * dayMs, 100)
+      ).filter((event) => event.title === dateTitle)
+      const dateBounded =
+        dateEvents.length === 3 &&
+        dateEvents.every(
+          (event, index) =>
+            Math.abs(event.startMs - (dateStartMs + index * dayMs)) < 1000 &&
+            event.recurrence?.frequency === 'daily' &&
+            event.recurrence.interval === 1 &&
+            Math.abs((event.recurrence.endDateMs ?? 0) - dateEndMs) < 1000 &&
+            event.recurrence.occurrenceCount === undefined
+        )
       for (const event of [...dateEvents].reverse()) {
-        await One.iOS.Calendar.delete(event.identifier, event.startMs)
+        await One.Calendar.delete(event.identifier, event.startMs)
       }
-      const dateRemoved = !(await One.iOS.Calendar.list(
-        dateStartMs - 1, dateStartMs + 4 * dayMs, 100
-      )).some((event) => event.title === dateTitle)
+      const dateRemoved = !(
+        await One.Calendar.list(dateStartMs - 1, dateStartMs + 4 * dayMs, 100)
+      ).some((event) => event.title === dateTitle)
       let invalidRecurrence = 'none'
       try {
-        await One.iOS.Calendar.create({
-          title: 'Invalid recurrence', startMs: recurrenceStartMs,
+        await One.Calendar.create({
+          title: 'Invalid recurrence',
+          startMs: recurrenceStartMs,
           endMs: recurrenceStartMs + 3_600_000,
           recurrence: { frequency: 'daily', interval: 0, occurrenceCount: 3 },
         })
@@ -154,15 +173,18 @@ export default function OneNativeCalendar() {
       }
       let invalidRecurrenceEnd = 'none'
       try {
-        await One.iOS.Calendar.create({
-          title: 'Invalid recurrence end', startMs: dateStartMs,
+        await One.Calendar.create({
+          title: 'Invalid recurrence end',
+          startMs: dateStartMs,
           endMs: dateStartMs + 3_600_000,
           recurrence: { frequency: 'daily', endDateMs: dateStartMs - 1 },
         })
       } catch (error) {
         invalidRecurrenceEnd = code(error)
       }
-      setResult(`before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; dateBounded=${dateBounded}; dateRemoved=${dateRemoved}; invalidRecurrence=${invalidRecurrence}; invalidRecurrenceEnd=${invalidRecurrenceEnd}`)
+      setResult(
+        `before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; dateBounded=${dateBounded}; dateRemoved=${dateRemoved}; invalidRecurrence=${invalidRecurrence}; invalidRecurrenceEnd=${invalidRecurrenceEnd}`
+      )
       setStatus('done')
     } catch (error) {
       setStatus(`failed ${code(error)}`)
@@ -174,11 +196,11 @@ export default function OneNativeCalendar() {
     try {
       let before = 'none'
       try {
-        await One.iOS.Calendar.listReminders()
+        await One.Calendar.listReminders()
       } catch (error) {
         before = code(error)
       }
-      const granted = await One.iOS.Calendar.requestRemindersPermission()
+      const granted = await One.Calendar.requestRemindersPermission()
       setReminderPermission(granted)
       if (granted !== 'fullAccess') {
         setReminderStatus('denied')
@@ -187,61 +209,66 @@ export default function OneNativeCalendar() {
       }
       const dueMs = Date.now() + 7 * 86_400_000
       const title = `One reminder proof ${dueMs}`
-      const identifier = await One.iOS.Calendar.createReminder({ title, dueMs })
-      const listed = await One.iOS.Calendar.listReminders()
+      const identifier = await One.Calendar.createReminder({ title, dueMs })
+      const listed = await One.Calendar.listReminders()
       const matched = listed.some(
-        (item) => item.identifier === identifier && item.title === title &&
-          !item.completed && Math.abs((item.dueMs ?? 0) - dueMs) < 1_000
+        (item) =>
+          item.identifier === identifier &&
+          item.title === title &&
+          !item.completed &&
+          Math.abs((item.dueMs ?? 0) - dueMs) < 1_000
       )
-      await One.iOS.Calendar.setReminderCompleted(identifier, true)
-      const completedHidden = !(await One.iOS.Calendar.listReminders()).some(
+      await One.Calendar.setReminderCompleted(identifier, true)
+      const completedHidden = !(await One.Calendar.listReminders()).some(
         (item) => item.identifier === identifier
       )
-      const updated = (await One.iOS.Calendar.listReminders(100, true)).some(
+      const updated = (await One.Calendar.listReminders(100, true)).some(
         (item) => item.identifier === identifier && item.completed
       )
-      await One.iOS.Calendar.deleteReminder(identifier)
-      const removed = !(await One.iOS.Calendar.listReminders(100, true)).some(
+      await One.Calendar.deleteReminder(identifier)
+      const removed = !(await One.Calendar.listReminders(100, true)).some(
         (item) => item.identifier === identifier
       )
       let notFound = 'none'
       try {
-        await One.iOS.Calendar.setReminderCompleted(identifier, false)
+        await One.Calendar.setReminderCompleted(identifier, false)
       } catch (error) {
         notFound = code(error)
       }
       let invalid = 'none'
       try {
-        await One.iOS.Calendar.createReminder({ title: ' ' })
+        await One.Calendar.createReminder({ title: ' ' })
       } catch (error) {
         invalid = code(error)
       }
       let invalidLimit = 'none'
       try {
-        await One.iOS.Calendar.listReminders(0)
+        await One.Calendar.listReminders(0)
       } catch (error) {
         invalidLimit = code(error)
       }
       const recurringDueMs = Date.now() + 14 * 86_400_000
       const recurringTitle = `One recurring reminder ${recurringDueMs}`
-      const recurringIdentifier = await One.iOS.Calendar.createReminder({
+      const recurringIdentifier = await One.Calendar.createReminder({
         title: recurringTitle,
         dueMs: recurringDueMs,
         recurrence: { frequency: 'daily', interval: 2, occurrenceCount: 3 },
       })
-      const recurring = (await One.iOS.Calendar.listReminders(100)).find(
+      const recurring = (await One.Calendar.listReminders(100)).find(
         (item) => item.identifier === recurringIdentifier && item.title === recurringTitle
       )
-      const recurrenceListed = recurring?.recurrence?.frequency === 'daily' &&
-        recurring.recurrence.interval === 2 && recurring.recurrence.occurrenceCount === 3 &&
+      const recurrenceListed =
+        recurring?.recurrence?.frequency === 'daily' &&
+        recurring.recurrence.interval === 2 &&
+        recurring.recurrence.occurrenceCount === 3 &&
         Math.abs((recurring.dueMs ?? 0) - recurringDueMs) < 1000
-      await One.iOS.Calendar.deleteReminder(recurringIdentifier)
-      const recurrenceRemoved = !(await One.iOS.Calendar.listReminders(100, true)).some(
+      await One.Calendar.deleteReminder(recurringIdentifier)
+      const recurrenceRemoved = !(await One.Calendar.listReminders(100, true)).some(
         (item) => item.title === recurringTitle
       )
       let invalidRecurrence = 'none'
       try {
-        await One.iOS.Calendar.createReminder({
+        await One.Calendar.createReminder({
           title: 'Invalid recurring reminder',
           recurrence: { frequency: 'daily', occurrenceCount: 3 },
         })
@@ -268,7 +295,11 @@ export default function OneNativeCalendar() {
       <Text>{`Reminders permission: ${reminderPermission}`}</Text>
       <Text>{`Reminders status: ${reminderStatus}`}</Text>
       <Text>{`Reminders result: ${reminderResult}`}</Text>
-      <Pressable testID="one-native-reminders-run" style={styles.button} onPress={runReminders}>
+      <Pressable
+        testID="one-native-reminders-run"
+        style={styles.button}
+        onPress={runReminders}
+      >
         <Text>Run reminder checks</Text>
       </Pressable>
     </View>
@@ -277,5 +308,10 @@ export default function OneNativeCalendar() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 8 },
-  button: { padding: 12, backgroundColor: '#eee', borderRadius: 8, alignSelf: 'flex-start' },
+  button: {
+    padding: 12,
+    backgroundColor: '#eee',
+    borderRadius: 8,
+    alignSelf: 'flex-start',
+  },
 })

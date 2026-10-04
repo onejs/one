@@ -1,8 +1,9 @@
 import type { HybridObject } from 'react-native-nitro-modules';
 export interface OneCrypto extends HybridObject<{
-    ios: 'swift';
-    android: 'kotlin';
+    ios: 'c++';
+    android: 'c++';
 }> {
-    getRandomBytes(count: number): ArrayBuffer;
+    fillRandomBytes(buffer: ArrayBuffer, offset: number, length: number): void;
+    randomUUID(): string;
 }
 //# sourceMappingURL=OneCrypto.nitro.d.ts.map

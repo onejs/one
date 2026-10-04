@@ -1,0 +1,26 @@
+{
+  "schema": "xcodebuildmcp.output.launch-result",
+  "schemaVersion": "2",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED"
+    },
+    "artifacts": {
+      "simulatorId": "D0A57941-A228-4C31-8496-487FC0863DEC",
+      "bundleId": "dev.vxrn.native.tests",
+      "processId": 27886,
+      "runtimeLogPath": "/Users/n8/Library/Developer/XcodeBuildMCP/workspaces/one-android-modules-ios-d3edfe27ff9e/logs/dev.vxrn.native.tests_2026-10-04T05-01-50-462Z_helperpid27636_ownerpid26016_7e6df262.log",
+      "osLogPath": "/Users/n8/Library/Developer/XcodeBuildMCP/workspaces/one-android-modules-ios-d3edfe27ff9e/logs/dev.vxrn.native.tests_oslog_2026-10-04T05-01-58-572Z_helperpid29649_ownerpid26016_5901d95b.log"
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": []
+    }
+  },
+  "nextSteps": [
+    "Open Simulator app to see it: xcodebuildmcp simulator open",
+    "Stop app in simulator: xcodebuildmcp simulator stop --simulator-id D0A57941-A228-4C31-8496-487FC0863DEC --bundle-id dev.vxrn.native.tests"
+  ]
+}

@@ -3,18 +3,18 @@ title: Screen capture
 description: Observe iOS screen capture and save a PNG of the app window or a React Native view.
 ---
 
-`One.iOS.ScreenCapture` reports the active window scene's capture state and
+`One.ScreenCapture` reports the active window scene's capture state and
 notifies your app after a person takes a screenshot. It requires an iOS native
 build and no manifest permission.
 
 ```tsx
 import { One } from 'one'
 
-const state = await One.iOS.ScreenCapture.getState()
-const removeState = One.iOS.ScreenCapture.addStateListener((nextState) => {
+const state = await One.ScreenCapture.getState()
+const removeState = One.ScreenCapture.addStateListener((nextState) => {
   // hide sensitive content while nextState is 'active'
 })
-const removeScreenshot = One.iOS.ScreenCapture.addScreenshotListener((timestampMs) => {
+const removeScreenshot = One.ScreenCapture.addScreenshotListener((timestampMs) => {
   // record an audit event after the screenshot was taken
 })
 
@@ -30,11 +30,11 @@ window's native scale; `size` is the PNG file size in bytes. Remove the file
 when finished with it.
 
 ```tsx
-const image = await One.iOS.ScreenCapture.captureWindow()
+const image = await One.ScreenCapture.captureWindow()
 try {
   // use image.uri with a file upload, share sheet, or image view
 } finally {
-  await One.iOS.FileSystem.delete(image.uri)
+  await One.FileSystem.delete(image.uri)
 }
 ```
 
@@ -59,11 +59,11 @@ const target = useRef<ComponentRef<typeof View>>(null)
 // render <View ref={target} collapsable={false}>...</View> before capturing
 const tag = findNodeHandle(target.current)
 if (tag == null) throw new Error('target view is not mounted')
-const image = await One.iOS.ScreenCapture.captureView(tag)
+const image = await One.ScreenCapture.captureView(tag)
 try {
   // use image.uri with a file upload, share sheet, or image view
 } finally {
-  await One.iOS.FileSystem.delete(image.uri)
+  await One.FileSystem.delete(image.uri)
 }
 ```
 
@@ -93,3 +93,5 @@ prevent or redact that screenshot. For recording and mirroring, update
 your own content when the capture state changes. Verify screenshot and recording
 behavior on a physical device: simulator command-line capture reads the host
 framebuffer without exercising UIKit's in-app notifications or scene state.
+
+Screen capture is implemented on iOS. On Android and web, `getState()` resolves `unspecified`, listeners return a remover that does nothing, and capture calls reject with `ScreenCapture.<verb> needs an iOS or Android build`.

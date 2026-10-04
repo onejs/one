@@ -10,49 +10,65 @@ export default function OneNativeShare() {
   async function run() {
     setStatus('preparing')
     try {
-      const file = One.iOS.FileSystem.getDirectories().cache + 'one-native-share-proof.txt'
-      await One.iOS.FileSystem.writeFile(file, 'One native share proof', 'utf8')
+      const file = One.FileSystem.getDirectories().cache + 'one-native-share-proof.txt'
+      await One.FileSystem.writeFile(file, 'One native share proof', 'utf8')
       setStatus('sharing')
-      const pending = One.iOS.Share.share([
+      const pending = One.Share.share([
         { type: 'text', value: 'One native share proof' },
         { type: 'url', value: 'https://onestack.dev' },
       ])
       try {
-        await One.iOS.Share.share([{ type: 'text', value: 'Second share' }])
+        await One.Share.share([{ type: 'text', value: 'Second share' }])
       } catch (error) {
-        setBusy(error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown')
+        setBusy(
+          error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'unknown'
+        )
       }
       const shared = await pending
       if (!shared.completed || !shared.activityType) {
         throw new Error('Copy did not complete the share activity')
       }
       setStatus('file sharing')
-      const fileShared = await One.iOS.Share.share([{ type: 'file', value: file }])
+      const fileShared = await One.Share.share([{ type: 'file', value: file }])
       let empty = ''
       try {
-        await One.iOS.Share.share([])
+        await One.Share.share([])
       } catch (error) {
-        empty = error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown'
+        empty =
+          error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'unknown'
       }
       let missing = ''
       try {
-        await One.iOS.Share.share([
-          { type: 'file', value: One.iOS.FileSystem.getDirectories().cache + 'absent.txt' },
+        await One.Share.share([
+          { type: 'file', value: One.FileSystem.getDirectories().cache + 'absent.txt' },
         ])
       } catch (error) {
-        missing = error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown'
+        missing =
+          error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'unknown'
       }
       let badURL = ''
       try {
-        await One.iOS.Share.share([{ type: 'url', value: 'onestack.dev' }])
+        await One.Share.share([{ type: 'url', value: 'onestack.dev' }])
       } catch (error) {
-        badURL = error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown'
+        badURL =
+          error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'unknown'
       }
       let blankText = ''
       try {
-        await One.iOS.Share.share([{ type: 'text', value: '   ' }])
+        await One.Share.share([{ type: 'text', value: '   ' }])
       } catch (error) {
-        blankText = error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown'
+        blankText =
+          error && typeof error === 'object' && 'code' in error
+            ? String(error.code)
+            : 'unknown'
       }
       setResult(
         `text=${shared.completed}; activity=${shared.activityType}; file=${fileShared.completed}; ` +
@@ -60,8 +76,11 @@ export default function OneNativeShare() {
       )
       setStatus('passed')
     } catch (error) {
-      const code = error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
-      setStatus(`error: ${code} ${error instanceof Error ? error.message : String(error)}`)
+      const code =
+        error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
+      setStatus(
+        `error: ${code} ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 

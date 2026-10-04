@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { One } from '../src/one'
 
 // every PropsTable with a `source` in the native docs must list exactly the members
 // that type declares, with the declared types, so the reference cannot drift from source.
@@ -63,10 +64,13 @@ function members(body: string) {
 // members of a type alias or interface, merging the object literals and same-file
 // aliases it joins with & or |. members typed never only exclude a union branch.
 function resolve(text: string, name: string): Map<string, string> | undefined {
-  const match = text.match(new RegExp(`(?:type ${name}\\b[^=]*=|interface ${name}\\b[^{]*)`))
+  const match = text.match(
+    new RegExp(`(?:type ${name}\\b[^=]*=|interface ${name}\\b[^{]*)`)
+  )
   if (!match) return
   const start = match.index! + match[0].length
-  if (match[0].startsWith('interface')) return members(block(text, text.indexOf('{', start)))
+  if (match[0].startsWith('interface'))
+    return members(block(text, text.indexOf('{', start)))
   const result = new Map<string, string>()
   const merge = (from: Map<string, string>) => {
     for (const [key, type] of from) if (type !== 'never') result.set(key, type)
@@ -132,6 +136,31 @@ const tables = readdirSync(docs)
 describe('native docs reference', () => {
   it('finds sourced tables', () => {
     expect(tables.length).toBeGreaterThan(0)
+    // service references resolve against the public object, including namespace ownership.
+    for (const name of readdirSync(docs).filter((name) => name.endsWith('.mdx'))) {
+      const text = readFileSync(join(docs, name), 'utf8')
+      for (const [, namespace, member] of text.matchAll(
+        /\bOne\.([A-Za-z]+)(?:\.([A-Za-z]+))?/g
+      )) {
+        if (namespace === 'UI' || namespace === 'Android') continue
+        if (namespace === 'iOS') {
+          if (member && Object.hasOwn(One, member)) {
+            expect(Object.hasOwn(One.iOS, member), `${name}: One.iOS.${member}`).toBe(
+              true
+            )
+          }
+          continue
+        }
+        const service = Reflect.get(One, namespace)
+        expect(service, `${name}: One.${namespace}`).toBeDefined()
+        if (member) {
+          expect(
+            Reflect.get(service, member),
+            `${name}: One.${namespace}.${member}`
+          ).toBeDefined()
+        }
+      }
+    }
   })
   const bySource = Map.groupBy(tables, (table) => `${table.doc} ${table.source}`)
   for (const [key, group] of bySource) {

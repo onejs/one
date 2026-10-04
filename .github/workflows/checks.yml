@@ -36,6 +36,16 @@ jobs:
         with:
           install-playwright: 'false'
 
+      # install builds every package, so committed declarations must match what it emitted
+      - name: Committed types are current
+        run: |
+          stale=$(git status --porcelain --untracked-files=all -- 'packages/**/types/**')
+          if [ -n "$stale" ]; then
+            echo "$stale"
+            echo "::error::packages/*/types is stale: run bun run build in the changed packages and commit their types/"
+            exit 1
+          fi
+
       - name: Security Audit
         # image-size and extract-zip have no fixed releases; both are patched in patchedDependencies.
         # recheck GHSA-w3rx-r6r6-pgpr, GHSA-5p2g-fcmc-qvqq, and GHSA-jmr9-qjv8-65gv by 2026-09-18.

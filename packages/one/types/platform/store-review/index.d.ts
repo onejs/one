@@ -1,6 +1,2 @@
-declare function requestReview(): Promise<void>;
-export declare const StoreReview: Readonly<{
-    requestReview: typeof requestReview;
-}>;
-export {};
+export * from './unavailable';
 //# sourceMappingURL=index.d.ts.map

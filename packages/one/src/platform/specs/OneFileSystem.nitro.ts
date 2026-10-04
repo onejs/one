@@ -23,7 +23,7 @@ export interface FileEntry {
   isDirectory: boolean
 }
 
-export interface OneFileSystem extends HybridObject<{ ios: 'swift' }> {
+export interface OneFileSystem extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getDirectories(): FileDirectories
   getInfo(uri: string): Promise<FileInfo>
   readDirectory(uri: string): Promise<FileEntry[]>

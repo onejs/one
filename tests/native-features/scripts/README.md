@@ -84,7 +84,7 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `clipboard` covers `One.Clipboard`: set reports true, get reads the write back, has sees the string, and the pasteboard outlives a fixture recycle.
 
-`local-authentication` covers `One.iOS.LocalAuthentication` on an iPhone 17 Pro
+`local-authentication` covers `One.LocalAuthentication` on an iPhone 17 Pro
 with iOS 27. Grant the fixture Face ID permission once before the run with
 `applesimutils --byId <SIMULATOR_UUID> --bundle dev.vxrn.native.tests
 --setPermissions faceid=YES`; that command restarts SpringBoard, so launch the
@@ -95,7 +95,7 @@ captures the Face ID tile, sends a matching Face ID response, and requires
 `evaluatePolicy` to resolve true. `applesimutils` is
 also used by the suite to change enrollment and send the match.
 
-`location` covers `One.iOS.Location` on an iOS 27 simulator. It resets the app's
+`location` covers `One.Location` on an iOS 27 simulator. It resets the app's
 location permission, sets a fixed San Francisco coordinate, proves a position
 request without permission rejects, accepts the system's foreground permission
 prompt, and requires `getCurrentPosition()` to return the simulated coordinate.
@@ -104,7 +104,7 @@ alongside the watch, then moves again after unsubscribe and confirms only the
 one-shot result changes. Forward geocoding must return Cupertino coordinates;
 reverse geocoding must identify San Francisco. Geocoding needs Apple's service.
 
-`file-system` covers `One.iOS.FileSystem` on an iOS 27 simulator. The fixture
+`file-system` covers `One.FileSystem` on an iOS 27 simulator. The fixture
 creates an app-cache directory, checks UTF-8 byte size and replacement writes,
 writes base64 bytes, reads files via native `fetch(file://)`, checks metadata and
 directory entries, copies and moves a file, creates intermediate directories,
@@ -116,7 +116,7 @@ the full result.
 then selects a seeded text file from the Files app and checks its name, type,
 size, `fetch(file://)` byte count, cache URI, and exact copied bytes.
 
-`audio` covers `One.iOS.Audio` on an iOS 27 simulator. It resets microphone
+`audio` covers `One.Audio` on an iOS 27 simulator. It resets microphone
 permission, asserts the configured prompt, records and pauses/resumes an AAC
 file, checks its size through FileSystem, then plays, pauses, seeks, resumes,
 and stops that file. Invalid URI and idle-player calls must reject with their
@@ -139,7 +139,7 @@ diagnostic build, but Control Center had no media tile and Lock Screen showed no
 track. The cause is unconfirmed. Visible system controls, tile removal, and
 remote command callbacks need device proof.
 
-`share` covers `One.iOS.Share` on an iOS 27 simulator. It opens the system
+`share` covers `One.Share` on an iOS 27 simulator. It opens the system
 share sheet with text and a URL, then opens it again with a real cache file.
 A second request rejects while the first sheet is open. Copy completes the
 first sheet with an activity type; canceling the file sheet resolves false.

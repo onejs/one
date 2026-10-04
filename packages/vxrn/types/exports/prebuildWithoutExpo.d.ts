@@ -15,6 +15,11 @@ export declare function renderPrebuildFile(args: {
     nitroWebImage?: boolean;
 }): RenderedPrebuildFile;
 export declare const generateForPlatform: (root: string, platform: 'ios' | 'android', app: NativeAppManifest, outDir?: string) => Promise<void>;
+export declare function enableAppComposeIntegration(dest: string): void;
+export declare function generateKotlinSources({ root, dest }: {
+    root: string;
+    dest: string;
+}): Promise<void>;
 export interface NativeDependencyInventory {
     name: string;
     version: string;

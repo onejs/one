@@ -3,7 +3,7 @@ title: Purchases
 description: StoreKit 2 products, purchases, entitlements, and transaction updates on iOS
 ---
 
-`One.iOS.Purchases` uses StoreKit 2 in a One native iOS build. Configure product
+`One.Purchases` uses StoreKit 2 in a One native iOS build. Configure product
 IDs in App Store Connect for an app you distribute, or select a local StoreKit
 configuration in an Xcode test plan while developing. The API needs no Info.plist
 usage string. [Apple's StoreKit testing guide](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode)
@@ -16,7 +16,7 @@ finished.
 ```ts
 import { One } from 'one'
 
-const purchases = One.iOS.Purchases
+const purchases = One.Purchases
 const handling = new Set<string>()
 async function deliver(transaction: { id: string; productId: string; jws: string }) {
   if (handling.has(transaction.id)) return
@@ -76,5 +76,4 @@ inactive rejects with `E_PURCHASE_INACTIVE`. Product loading, purchase flow,
 unknown results, unverified transactions, finish of an ID not in StoreKit's
 unfinished list, and restore failures use `E_PURCHASE_PRODUCTS`,
 `E_PURCHASE_FAILED`, `E_PURCHASE_RESULT`, `E_PURCHASE_UNVERIFIED`,
-`E_PURCHASE_NOT_UNFINISHED`, and `E_PURCHASE_SYNC` respectively. Web and Android
-throw when this iOS API is called.
+`E_PURCHASE_NOT_UNFINISHED`, and `E_PURCHASE_SYNC` respectively. Purchases are implemented on iOS. On Android and web, `getProducts()` resolves `[]` and transaction listeners return a remover that does nothing. Purchase, entitlement, unfinished transaction, finish, and restore calls reject with `Purchases.<verb> needs an iOS or Android build`; these calls never report a verified purchase without native support.

@@ -1,0 +1,486 @@
+{
+  "platform": "android",
+  "fileSystem": {
+    "directories": {
+      "documents": "file:///data/user/0/dev.vxrn.nativefeatures.tests/files/Documents/",
+      "cache": "file:///data/user/0/dev.vxrn.nativefeatures.tests/cache/",
+      "applicationSupport": "file:///data/user/0/dev.vxrn.nativefeatures.tests/files/",
+      "temporary": "file:///data/user/0/dev.vxrn.nativefeatures.tests/cache/tmp/"
+    },
+    "names": [
+      "bytes.dat",
+      "nested",
+      "note ü.txt"
+    ],
+    "errors": [
+      "E_FILE_EXISTS",
+      "E_FILE_EXISTS",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_ENCODING",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_URI",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_PERMISSION",
+      "E_FILE_NOT_FOUND",
+      "E_FILE_NOT_FOUND"
+    ]
+  },
+  "images": {
+    "results": {
+      "upright.png": {
+        "width": 80,
+        "height": 120,
+        "size": 631
+      },
+      "crop-resize-rotate.jpg": {
+        "width": 15,
+        "height": 20,
+        "size": 833
+      },
+      "height-resize.png": {
+        "width": 40,
+        "height": 60,
+        "size": 384
+      },
+      "rotate180.png": {
+        "width": 80,
+        "height": 120,
+        "size": 629
+      },
+      "rotate270.png": {
+        "width": 120,
+        "height": 80,
+        "size": 670
+      },
+      "png-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 320
+      },
+      "png-crop.png": {
+        "width": 60,
+        "height": 40,
+        "size": 161
+      },
+      "png-rotate90.png": {
+        "width": 80,
+        "height": 120,
+        "size": 371
+      },
+      "png-stretch.png": {
+        "width": 60,
+        "height": 60,
+        "size": 205
+      },
+      "jpeg-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 312
+      },
+      "bmp-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 300
+      },
+      "exif1-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 312
+      },
+      "exif2-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 314
+      },
+      "exif3-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 316
+      },
+      "exif4-decoded.png": {
+        "width": 120,
+        "height": 80,
+        "size": 311
+      },
+      "exif5-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 268
+      },
+      "exif6-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 267
+      },
+      "exif7-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 268
+      },
+      "exif8-decoded.png": {
+        "width": 80,
+        "height": 120,
+        "size": 268
+      }
+    },
+    "errors": [
+      "E_IMAGE_URI",
+      "E_IMAGE_FILE",
+      "E_IMAGE_DECODE",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT",
+      "E_IMAGE_INPUT"
+    ]
+  },
+  "motion": {
+    "availability": {
+      "accelerometer": true,
+      "gyroscope": true,
+      "magnetometer": true,
+      "deviceMotion": true
+    },
+    "validation": [
+      "-1",
+      "1001",
+      "NaN",
+      "Infinity"
+    ],
+    "streams": {
+      "accelerometer": {
+        "samples": [
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791090366795.3179,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          },
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791090366895.3179,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          },
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791090367038.6519,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          },
+          {
+            "sensor": "accelerometer",
+            "timestampMs": 1791090367171.986,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": -0.9999991247705683
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      },
+      "gyroscope": {
+        "samples": [
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791090367186.9387,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          },
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791090367286.9387,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          },
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791090367390.4421,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          },
+          {
+            "sensor": "gyroscope",
+            "timestampMs": 1791090367490.4421,
+            "value": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      },
+      "magnetometer": {
+        "samples": [
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791090367503.7795,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          },
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791090367603.7795,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          },
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791090367708.0051,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          },
+          {
+            "sensor": "magnetometer",
+            "timestampMs": 1791090367808.0051,
+            "value": {
+              "x": 25,
+              "y": 0,
+              "z": -30
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      },
+      "deviceMotion": {
+        "samples": [
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791090367858.656,
+            "value": {
+              "x": -0.000004998088257606346,
+              "y": 0.0000037485854836754956,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0,
+              "y": 0,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.000004998088257606346,
+              "y": 0.0000037485854836754956,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0,
+              "y": 0,
+              "z": -1.5707962925663537
+            }
+          },
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791090367958.656,
+            "value": {
+              "x": -0.00004295230162696247,
+              "y": 0.000058943000826854774,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0.00004188014616671876,
+              "y": -0.00005418630313286916,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.00004295230162696247,
+              "y": 0.000058943000826854774,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0.000054186300512354936,
+              "y": 0.000041880148766911766,
+              "z": -1.5707558320450559
+            }
+          },
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791090368068.656,
+            "value": {
+              "x": -0.00005224056535037914,
+              "y": 0.00005037713555487492,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0.000032438342167298005,
+              "y": -0.00003181550331921493,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.00005224056535037914,
+              "y": 0.00005037713555487492,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0.00003181550386713954,
+              "y": 0.00003243834322152107,
+              "z": -1.5707640926382873
+            }
+          },
+          {
+            "sensor": "deviceMotion",
+            "timestampMs": 1791090368168.656,
+            "value": {
+              "x": -0.0001028811731223387,
+              "y": 0.00008126373148177108,
+              "z": 8.75229431670741e-7
+            },
+            "gravity": {
+              "x": 0.00008177793826972477,
+              "y": -0.00006812042744094864,
+              "z": -1
+            },
+            "userAcceleration": {
+              "x": -0.0001028811731223387,
+              "y": 0.00008126373148177108,
+              "z": 8.75229431670741e-7
+            },
+            "rotationRate": {
+              "x": 0,
+              "y": 0,
+              "z": 0.25
+            },
+            "attitude": {
+              "x": 0.00006812042440302204,
+              "y": 0.00008177793515343845,
+              "z": -1.5707052575060023
+            }
+          }
+        ],
+        "removedFastListenerSilent": true
+      }
+    }
+  },
+  "unavailable": {
+    "passed": true,
+    "checks": [
+      "LocalAuthentication.canEvaluatePolicy",
+      "KeepAwake.isEnabled",
+      "Print.isAvailable",
+      "QuickActions.getItems",
+      "QuickActions.getInitialAction",
+      "Location.getPermissionStatus",
+      "Location.requestWhenInUsePermission",
+      "Location.geocodeAddress",
+      "Location.reverseGeocode",
+      "Audio.getRecordingPermissionStatus",
+      "Audio.requestRecordingPermission",
+      "Audio.getPlaybackStatus",
+      "Audio.getRecordingStatus",
+      "PhotoLibrary.getAddPermissionStatus",
+      "PhotoLibrary.getReadPermissionStatus",
+      "PhotoLibrary.requestAddPermission",
+      "PhotoLibrary.requestReadPermission",
+      "PhotoLibrary.listAssets",
+      "PhotoLibrary.listAlbums",
+      "MapServices.search",
+      "MapServices.autocomplete",
+      "AppTracking.getPermissionStatus",
+      "AppTracking.requestPermission",
+      "AppIcon.isSupported",
+      "AppIcon.getCurrentName",
+      "ScreenOrientation.getOrientation",
+      "ScreenCapture.getState",
+      "Purchases.getProducts",
+      "Device.getInfo",
+      "Device.getLocalizationInfo",
+      "BackgroundTasks.getPending",
+      "DeviceAttestation.getAvailability",
+      "Contacts.getPermissionStatus",
+      "Contacts.requestPermission",
+      "Contacts.search",
+      "Calendar.getPermissionStatus",
+      "Calendar.requestPermission",
+      "Calendar.list",
+      "Calendar.getRemindersPermissionStatus",
+      "Calendar.requestRemindersPermission",
+      "Calendar.listReminders",
+      "LiveActivities.pushToken",
+      "ScreenOrientation.lock",
+      "ScreenOrientation.unlock",
+      "effects-completed",
+      "idempotent-removers",
+      "LocalAuthentication.evaluatePolicy",
+      "ProtectedStore.getItem",
+      "Print.printPdf",
+      "Location.getCurrentPosition",
+      "Audio.play",
+      "Audio.startRecording",
+      "Audio.stopRecording",
+      "Share.share",
+      "PhotoLibrary.getAsset",
+      "PhotoLibrary.saveImage",
+      "MapServices.resolveSuggestion",
+      "ScreenCapture.captureWindow",
+      "Purchases.purchase",
+      "Purchases.getCurrentEntitlements",
+      "DeviceAttestation.generateKey",
+      "DeviceAttestation.generateDeviceToken",
+      "Contacts.create",
+      "Calendar.create",
+      "LiveActivities.start",
+      "ScreenCapture.captureView:invalid",
+      "BackgroundTasks.submit:invalid",
+      "BackgroundTasks.cancel:invalid"
+    ]
+  },
+  "passed": true
+}

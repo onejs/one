@@ -1,0 +1,72 @@
+{
+  "schema": "xcodebuildmcp.output.simulator-list",
+  "schemaVersion": "2",
+  "didError": false,
+  "error": null,
+  "data": {
+    "simulators": [
+      {
+        "name": "iPhone 17 Pro",
+        "simulatorId": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+        "state": "Booted",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      },
+      {
+        "name": "iPhone 17 Pro 2",
+        "simulatorId": "D0A57941-A228-4C31-8496-487FC0863DEC",
+        "state": "Booted",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      },
+      {
+        "name": "iPhone 17 Pro 3",
+        "simulatorId": "2ACCE3A4-1A09-412D-9ED2-0185918C3A38",
+        "state": "Booted",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      },
+      {
+        "name": "iPhone 17 Pro 4",
+        "simulatorId": "C4E79199-7224-4006-8C0B-FC4EC5AACEAE",
+        "state": "Shutdown",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      },
+      {
+        "name": "iPhone 16",
+        "simulatorId": "20A4D15A-8E8F-4D08-A8CC-1EBE7417552D",
+        "state": "Booted",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      },
+      {
+        "name": "iPhone 16 2",
+        "simulatorId": "CCC7583A-E086-45FB-B05E-402D859298D5",
+        "state": "Shutdown",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      },
+      {
+        "name": "iPhone 16 3",
+        "simulatorId": "0E4E4CAC-AA95-4EF0-9938-807200B383D7",
+        "state": "Shutdown",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      },
+      {
+        "name": "iPhone 16 4",
+        "simulatorId": "B052F234-E2C2-43F3-9640-AC4F15F6F306",
+        "state": "Shutdown",
+        "isAvailable": true,
+        "runtime": "iOS 27.0"
+      }
+    ]
+  },
+  "nextSteps": [
+    "Boot a simulator: xcodebuildmcp simulator boot --simulator-id UUID_FROM_ABOVE",
+    "Open the simulator UI: xcodebuildmcp simulator open",
+    "Build for simulator: xcodebuildmcp simulator build --scheme YOUR_SCHEME --simulator-id UUID_FROM_ABOVE",
+    "Get app path: xcodebuildmcp simulator get-app-path --scheme YOUR_SCHEME --platform 'iOS Simulator' --simulator-id UUID_FROM_ABOVE"
+  ]
+}

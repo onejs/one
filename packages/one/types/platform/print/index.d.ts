@@ -1,9 +1,2 @@
-import type { PrintResult } from '../specs/OnePrint.nitro';
-export type { PrintResult };
-declare function isAvailable(): Promise<boolean>;
-declare function printPdf(fileUri: string, jobName?: string): Promise<PrintResult>;
-export declare const Print: Readonly<{
-    isAvailable: typeof isAvailable;
-    printPdf: typeof printPdf;
-}>;
+export * from './unavailable';
 //# sourceMappingURL=index.d.ts.map
