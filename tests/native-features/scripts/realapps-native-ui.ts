@@ -49,7 +49,8 @@ const tap = (id: string) => {
   flow += `- tapOn:\n    id: ${id}\n`
 }
 const scrollTap = (id: string) => {
-  flow += `- scrollUntilVisible:\n    element:\n      id: ${id}\n    direction: DOWN\n    centerElement: true\n`
+  flow += `- scrollUntilVisible:\n    element:\n      id: ${id}\n    direction: DOWN\n    visibilityPercentage: 100\n`
+  flow += `- assertVisible:\n    id: ${id}\n`
   tap(id)
 }
 const results: Record<string, any> = {}
