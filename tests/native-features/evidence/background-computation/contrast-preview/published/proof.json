@@ -1,0 +1,83 @@
+{
+  "web": {
+    "modules": 275,
+    "bytes": 1535507,
+    "buildMs": 18477,
+    "packages": [
+      "react",
+      "react-dom",
+      "react-native-web",
+      "one",
+      "scheduler",
+      "@babel/runtime",
+      "inline-style-prefixer",
+      "css-in-js-utils",
+      "hyphenate-style-name",
+      "styleq",
+      "postcss-value-parser",
+      "fbjs",
+      "nullthrows"
+    ],
+    "errors": [],
+    "workers": [
+      "blob:http://127.0.0.1:54546/8af0e005-2cd8-48e7-ac0f-7dc94a75051f"
+    ],
+    "logs": [],
+    "requests": [],
+    "status": "passed revision=1 checkpoints=3 legs=3 objects=37"
+  },
+  "ios": {
+    "modules": 642,
+    "bytes": 3849062,
+    "buildMs": 1237,
+    "packages": [
+      "react-native",
+      "@react-native/js-polyfills",
+      "one",
+      "invariant",
+      "@react-native/normalize-colors",
+      "react",
+      "@react-native/asset-utils",
+      "nullthrows",
+      "stacktrace-parser",
+      "whatwg-fetch",
+      "ansi-regex",
+      "pretty-format",
+      "promise",
+      "react-devtools-core",
+      "regenerator-runtime",
+      "base64-js",
+      "react-refresh",
+      "@react-native/virtualized-lists",
+      "memoize-one",
+      "anser",
+      "scheduler",
+      "react-native-worklets"
+    ],
+    "errors": [
+      "WebSocket connection to 'ws://127.0.0.1:54546/__websocket-proxy?url=ws%3A%2F%2F127.0.0.1%3A7668' failed: Error during WebSocket handshake: Unexpected response code: 404"
+    ],
+    "workers": [
+      "http://127.0.0.1:54546/assets/shell-worker-entry-CwMmswWC.js",
+      "http://127.0.0.1:54546/assets/compositor-worker-entry-ByAL_ZAZ.js",
+      "http://127.0.0.1:54546/engine-tenant/worker.prod.js",
+      "http://127.0.0.1:54546/assets/named-worklet-broker-DjRVAkGZ.js",
+      "http://127.0.0.1:54546/assets/image-pixel-worker-CpwyQ4ev.js",
+      "http://127.0.0.1:54546/engine-tenant/assets/named-worklet-worker-D28Fmpw2.js"
+    ],
+    "logs": [
+      "WebSocket connection to 'ws://127.0.0.1:54546/__websocket-proxy?url=ws%3A%2F%2F127.0.0.1%3A7668' failed: Error during WebSocket handshake: Unexpected response code: 404",
+      "[shell-worker] canvaskit loaded",
+      "[shell-worker] canvaskit loaded",
+      "[shell-worker] fonts loaded: 1 +bundled emoji",
+      "[shell-worker] fonts loaded: 1 +bundled emoji",
+      "[shell-worker] shell react mount ready",
+      "[shell-worker] shell react mount ready",
+      "[sootsim] setting up __d trap on globalThis",
+      "[sootsim] __d setter called, wrapping define function",
+      "[sootsim] Creating patchedDefine #1"
+    ],
+    "requests": [],
+    "tree": "[{\"nodeId\":44,\"type\":\"Text\",\"componentName\":\"rR\",\"componentStack\":[\"rR\",\"Y\",\"RallyBackgroundProof\",\"Y\",\"Qn\",\"Y\",\"o\",\"Ar\"],\"testID\":\"rally-background-status\",\"testId\":\"rally-background-status\",\"text\":\"passed revision=1 checkpoints=3 legs=3 objects=37\",\"layout\":{\"x\":20,\"y\":90,\"width\":362,\"height\":17},\"absolute\":{\"x\":20,\"y\":90,\"width\":362,\"height\":17},\"visibleFrame\":{\"x\":20,\"y\":90,\"width\":362,\"height\":17,\"area\":6154},\"handlers\":[],\"style\":{},\"authoredStyle\":{\"overflow\":\"hidden\"},\"computedStyle\":{\"overflow\":\"hidden\"},\"boxModel\":{\"margin\":{\"top\":0,\"right\":0,\"bottom\":0,\"left\":0},\"border\":{\"top\":0,\"right\":0,\"bottom\":0,\"left\":0},\"padding\":{\"top\":0,\"right\":0,\"bottom\":0,\"left\":0},\"content\":{\"width\":362,\"height\":17}},\"parentId\":48,\"nextSiblingId\":47,\"ancestors\":[],\"appName\":\"127.0.0.1:54546\",\"appearanceScheme\":\"light\",\"device\":{\"platform\":\"ios\",\"model\":\"iphone-17-pro\",\"name\":\"iPhone 17 Pro\",\"width\":402,\"height\":874,\"scale\":3,\"statusBarHeight\":62,\"cornerRadius\":61,\"dynamicIsland\":{\"width\":125,\"height\":36.666666666666664,\"top\":14},\"osVersion\":\"27.0\",\"iosVersion\":\"27.0\",\"androidApiLevel\":null},\"react\":{\"component\":\"rR\",\"owners\":[\"rR\",\"Y\",\"RallyBackgroundProof\",\"Y\",\"Qn\",\"Y\",\"o\",\"Ar\",\"te\",\"Y\"]},\"navigation\":{\"appId\":\"connect\",\"appName\":\"React Native\"}},{\"nodeId\":47,\"type\":\"Text\",\"componentName\":\"rR\",\"componentStack\":[\"rR\",\"Y\",\"RallyBackgroundProof\",\"Y\",\"Qn\",\"Y\",\"o\",\"Ar\"],\"testID\":\"rally-background-heartbeat\",\"testId\":\"rally-background-heartbeat\",\"text\":\"heartbeat=8\",\"layout\":{\"x\":20,\"y\":107,\"width\":362,\"height\":17},\"absolute\":{\"x\":20,\"y\":107,\"width\":362,\"height\":17},\"visibleFrame\":{\"x\":20,\"y\":107,\"width\":362,\"height\":17,\"area\":6154},\"handlers\":[],\"style\":{},\"authoredStyle\":{\"overflow\":\"hidden\"},\"computedStyle\":{\"overflow\":\"hidden\"},\"boxModel\":{\"margin\":{\"top\":0,\"right\":0,\"bottom\":0,\"left\":0},\"border\":{\"top\":0,\"right\":0,\"bottom\":0,\"left\":0},\"padding\":{\"top\":0,\"right\":0,\"bottom\":0,\"left\":0},\"content\":{\"width\":362,\"height\":17}},\"parentId\":48,\"prevSiblingId\":44,\"firstChildId\":45,\"ancestors\":[],\"appName\":\"127.0.0.1:54546\",\"appearanceScheme\":\"light\",\"device\":{\"platform\":\"ios\",\"model\":\"iphone-17-pro\",\"name\":\"iPhone 17 Pro\",\"width\":402,\"height\":874,\"scale\":3,\"statusBarHeight\":62,\"cornerRadius\":61,\"dynamicIsland\":{\"width\":125,\"height\":36.666666666666664,\"top\":14},\"osVersion\":\"27.0\",\"iosVersion\":\"27.0\",\"androidApiLevel\":null},\"react\":{\"component\":\"rR\",\"owners\":[\"rR\",\"Y\",\"RallyBackgroundProof\",\"Y\",\"Qn\",\"Y\",\"o\",\"Ar\",\"te\",\"Y\"]},\"navigation\":{\"appId\":\"connect\",\"appName\":\"React Native\"}}]"
+  }
+}

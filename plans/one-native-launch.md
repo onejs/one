@@ -80,14 +80,51 @@ RAN: One API and docs landed on v2-beta `4395848b3`; result-retention fix
 result identity. The browser retention probe proves replacement, disposal, reactivation,
 and six accepted executions; it makes no heap-collection or phone-memory claim.
 
-Shared compiler follow-up: One branch `feat/background-computation-preview` at
-`30bcc005b`; Contrast branch at `a4cc24d4cd`. Vite and Contrast use one portable
-`vxrn/background-computation` transform. RAN: current One/compiler probes pass 39 tests;
-Contrast passes 130 tests / 348 assertions. The emitted browser bundler is 96.6 KB gzip.
-RAN: real Rally passes through Contrast's generated Blob Worker and One's production
-Vite Worker. The real Rally hook also passes on the custom native preview with a named worklet Worker, exact seven-field comparison and heartbeat7. Evidence is retained under `tests/native-features/evidence/background-computation/contrast-preview/`. The complete canonical Home Rally factory seed build currently fails on the exact branch `contrast-native` source artifact returning404 from the public compile CDN; its negative receipt is retained beside the passing preview proofs. The branch
-canary dispatch https://github.com/onejs/one/actions/runs/37169679013 has not produced the required published content: detached waiter `w-715d` expired after45m. RAN: npm metadata has no release sourced from this branch, and the three checked canaries carry other source commits. The receipt is `contrast-preview/npm-publication-timeout.json`; no workflow failure cause is claimed. RAN: the failed Release log was fetched once; One declaration emit failed on the Vite worker.plugins signature. The existing v2-beta fix `a4c1ed5a5` corrects it. The ref-tip hypothesis was wrong. m19584 reviewed/approved compiler `30bcc005b` and assigned this lane the automatic v2-beta Release run. Compiler and evidence have been applied cleanly onto current v2-beta for landing. Contrast main waits for verified npm contents, a matching family pin and both
-compile catalogs. Nate directly approved the shared custom-preview item (`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`). Publication and factory-build checks remain pending. Assembled follow-up review remains with m19584.
+Shared compiler follow-up: Vite and Contrast use the same portable
+`vxrn/background-computation` transform. The native compiler entry validates
+capture globals and Hermes loops before Worklets serialization. m19584 approved
+source `30bcc005b`; compiler `c2a262012` and logical proof commit `6b5302bdc`
+landed on v2-beta. RAN: fresh One/dependency build passed 14 targets and the
+compiler/plugin suite passed 39 tests. Nate directly approved the shared preview
+item `share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`.
+
+RAN: automatic Release succeeded. Exact npm tarballs
+`2.0.0-0.canary.1791084352120` contain One background, both compiler SDK entries
+and ESM/CJS worklet utilities; all identify source `6b5302bdc`. Receipt:
+`contrast-preview/published-tarballs.json`. The earlier branch dispatch failed
+on One's Vite worker.plugins declaration signature; the existing beta fix
+`a4c1ed5a5` corrected it. Its log was fetched once. The earlier ref-tip hypothesis
+was wrong; the timeout and before-publication negatives remain retained.
+
+Contrast release branch `feat/one-background-computation-release` pins the whole
+family at `37d5b7ac11`, with native lock sync `470fda43fc` and check integration
+`bec04162b5`. TESTED: installed files match packed tarballs; the real Rally hook
+passes both custom preview runtimes with exact seven-field comparison, 37 objects
+and native heartbeat 8. These receipts are in `contrast-preview/published/`.
+RAN: 130 bundler tests / 348 assertions, bun check, seed/dependency checks and both
+template typechecks pass. Pod sync proves byte-identical iOS sources and an
+unchanged fingerprint; OTA runtime 84 is retained. The browser worker budget
+passes at 96.6 KB gzip. No full phone build or full playable game boot is claimed.
+
+RAN: both public compile catalogs serve the exact pinned family after watcher
+`w-2b69` completed. Publication run:
+https://github.com/sootbean/soot/actions/runs/37174653372.
+The current and legacy contrast-native source descriptors return 200 for both
+configurations. The complete canonical Home Rally factory seed now passes with
+15 routes, 427 files, 14,391,496 bundle bytes and a complete graph. It uses the
+actual factory source reader and published native build pipeline; Home Rally is
+a canonical example, not a newly published registry entry.
+
+TESTED: pushed Contrast candidate `b5f14fddd` merges current main `4def3f39bd`
+with the published feature, preserving the new pure assetCollision extraction.
+Both actual preview runtimes match all seven fields for 57 objects and four
+checkpoints/legs; native heartbeat reaches 11. The complete canonical factory
+build passes 15 routes, 450 files, 14,457,330 bytes and a complete graph. Receipts:
+`contrast-preview/final-main/`. The intermediate candidate passed bun check and
+130 bundler tests / 348 assertions; compiler/tests/package graph are unchanged,
+and the merged allowlist check passes. The proof derives expected metrics from
+the current starter model without weakening comparison or deadlines. Assigned
+assembled adapter review remains with m19584 before the Contrast main merge.
 
 Proposed public shape (`one/background`):
 
