@@ -1,6 +1,6 @@
 ---
 title: Image Manipulator
-description: Crop, resize, rotate, and encode local images on iOS
+description: Crop, resize, rotate, and encode local images on iOS and Android
 ---
 
 `One.iOS.ImageManipulator.transform` reads a local `file://` image and writes a
@@ -40,4 +40,4 @@ The promise rejects with `error.code` `E_IMAGE_URI` for a non-file URI,
 `E_IMAGE_INPUT` for invalid crop, resize, rotation, quality, or output size,
 `E_IMAGE_ENCODE` for an encoder failure, and `E_IMAGE_FAILED` for a file write
 failure. Output is limited to 25 megapixels and 10,000 pixels per side. This API
-is iOS only and throws on Android or web.
+requires an iOS or Android native build and throws on web.

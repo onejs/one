@@ -1,0 +1,28 @@
+{
+  "nativeSource": "3e4ba9152bc8251067ef4daf6d61a32af800a3f2",
+  "fixtureSource": "7e5e4db020e46a85205fd230fa17e91c211e7230",
+  "platform": "android",
+  "serial": "emulator-5592",
+  "release": "17",
+  "sdk": "37",
+  "bundleSha256": "a6aa9014afd8675523f2455872b2aac900cdb2e2a1c2c5f91369998d5748663c",
+  "injectedSensors": {
+    "acceleration": [
+      0,
+      0,
+      9.80665
+    ],
+    "gyroscope": [
+      0,
+      0,
+      0.25
+    ],
+    "magnetic-field": [
+      25,
+      0,
+      -30
+    ]
+  },
+  "nativeContractReport": "runtime.json",
+  "hostVerifier": "pixels.json"
+}
