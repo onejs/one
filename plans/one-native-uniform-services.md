@@ -39,11 +39,16 @@ assertions, and concurrent motion subscriptions passed. The fixed wall-clock
 anchor preserved the existing strict subscription interval assertion.
 
 RAN: iOS SDK 27.1 generic simulator build succeeded at native `3e4ba9152`.
-Root namespace runtime proofs on Android and an iOS 27 simulator are pending.
+TESTED: Android root namespace contracts passed at namespace `87b1cf2b3`: all
+three native modules, 68 operations across the other 24 unavailable namespaces,
+independent pixel/transparency checks, seeded motion vectors, and a rejected
+wrong-rotation negative control. Screenshot inspected. Root iOS runtime pending.
 Local simulator launch stalled before the app started; this is no runtime proof.
 No speed benchmarks were run.
 
 RAN: docs props/type drift and the unavailable SSR contract passed 125 tests after
-shared callback and task argument checks were extracted. Native runtime checks pending.
+shared callback and task argument checks were extracted. The Android report retains all 68 unavailable operations; iOS runtime is pending.
 Contrast caller migration: `fix/one-native-uniform`, initial `064d31d326`.
-Installed-package validation and assembled review are pending.
+RAN: rebuilt and installed 17 One-family packages into the isolated Contrast
+worktree with `bun release --into`; shell `tsc --noEmit` passed against those
+artifacts. Assembled review is pending.

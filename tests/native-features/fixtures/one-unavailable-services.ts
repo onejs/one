@@ -1,6 +1,6 @@
-import type { OneAPI } from '../../../packages/one/src/one'
+import type { One as OneAPI } from 'one'
 
-export async function proveUnavailableServices(One: OneAPI) {
+export async function proveUnavailableServices(One: typeof OneAPI) {
   const checks: string[] = []
   function equal(actual: unknown, expected: unknown, name: string) {
     if (JSON.stringify(actual) !== JSON.stringify(expected)) {

@@ -216,6 +216,25 @@ test('every One namespace member is exercised by a native conformance suite', as
     }
   }
 
+  // standalone contracts retain the report and independently verified output.
+  for (const platform of ['android', 'ios'] as const) {
+    const directory = `evidence/uniform-native-modules/${platform}`
+    const runtime = JSON.parse(read(`${directory}/runtime.json`))
+    const pixels = JSON.parse(read(`${directory}/pixels.json`))
+    expect(runtime.passed, `${platform} native module contract`).toBe(true)
+    expect(pixels.passed, `${platform} independently decoded pixels`).toBe(true)
+    expect(pixels.counterclockwiseNegativeControlRejected).toBe(true)
+    let source = read('fixtures/one-native-modules.tsx')
+    if (platform === 'android') {
+      expect(runtime.unavailable.passed, 'Android no-native service contract').toBe(true)
+      expect(runtime.unavailable.checks.length).toBeGreaterThan(60)
+      source += read('fixtures/one-unavailable-services.ts')
+    }
+    for (const name of exportsUsed(source)) {
+      proof[platform].set(name, [...(proof[platform].get(name) ?? []), 'native-modules'])
+    }
+  }
+
   const rows: string[] = []
   const uncovered: string[] = []
   for (const { name, label, platforms } of publicExports()) {

@@ -1,3 +1,4 @@
+import { validateListener } from './validate'
 import type {
   MotionAvailability,
   MotionReading,
@@ -11,16 +12,20 @@ export type {
   MotionVector,
 } from '../specs/OneMotion.nitro'
 
-const unsupported = (): never => {
-  throw new Error('Motion requires an iOS or Android native build')
-}
-
 export const Motion = Object.freeze({
-  getAvailability: (): MotionAvailability => unsupported(),
+  getAvailability: (): MotionAvailability => ({
+    accelerometer: false,
+    gyroscope: false,
+    magnetometer: false,
+    deviceMotion: false,
+  }),
   addListener: (
-    _sensor: MotionSensor,
-    _intervalMs: number,
-    _onReading: (reading: MotionReading) => void,
-    _onError: (code: string, message: string) => void
-  ): (() => void) => unsupported(),
+    sensor: MotionSensor,
+    intervalMs: number,
+    onReading: (reading: MotionReading) => void,
+    onError: (code: string, message: string) => void
+  ): (() => void) => {
+    validateListener(sensor, intervalMs, onReading, onError)
+    return () => {}
+  },
 })

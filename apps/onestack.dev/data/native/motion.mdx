@@ -66,3 +66,6 @@ need `NSMotionUsageDescription` and are not part of this API.
 The iOS 27 simulator proof checks the real Core Motion availability flags,
 unavailable-stream errors, and input validation. Live values and sensor
 frequency need a physical-device proof.
+
+On web, availability reports all sensors as `false`. Listener registration validates
+its arguments and returns a remover that does nothing.

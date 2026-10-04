@@ -1,0 +1,12 @@
+{
+  "nativeSourceCommit": "3e4ba9152bc8251067ef4daf6d61a32af800a3f2",
+  "namespaceSourceCommit": "87b1cf2b32e943d0c432686dedc5d2fa3812fc2d",
+  "bundleSha256": "d211bd559f6380d9045ebd9def8b6e2ae0cb937fa2f626c326fdd7f732759c3a",
+  "platform": "android",
+  "serial": "emulator-5592",
+  "sdk": 37,
+  "release": 17,
+  "unavailableOperations": 68,
+  "nativeContractsPassed": true,
+  "independentPixelsPassed": true
+}

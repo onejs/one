@@ -39,5 +39,5 @@ root directories cannot be moved or deleted.
 Operations run on a serial background queue. Calls awaited in sequence observe the
 previous operation's result. A failed operation rejects with `error.code`:
 `E_FILE_URI`, `E_FILE_ENCODING`, `E_FILE_NOT_FOUND`, `E_FILE_EXISTS`,
-`E_FILE_PERMISSION`, or `E_FILE_FAILED`. The API requires an iOS or Android native build and throws on web.
+`E_FILE_PERMISSION`, or `E_FILE_FAILED`. File operations are implemented on iOS and Android. On web, directory paths are empty strings, file info reports `exists: false`, directory reads resolve `[]`, and mutations do nothing.
 Base64 input must use standard padded base64 without line breaks.

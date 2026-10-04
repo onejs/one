@@ -26,7 +26,8 @@ adb -s "$ANDROID_SERIAL" emu sensor set magnetic-field 25:0:-30
 ```
 
 Set the debug application's `debug_http_host` preference to `localhost:8109`
-before launch. For iOS, claim an iOS 27 pool simulator with `sim-claim.sh`, use
+in `<applicationId>_preferences.xml` under the application shared preferences,
+then cold-launch the app. For iOS, claim an iOS 27 pool simulator with `sim-claim.sh`, use
 `--platform ios` and a dedicated port, and launch with `-RCT_jsLocation` followed
 by `localhost:<port>`. Release devices after the report and captures are saved.
 

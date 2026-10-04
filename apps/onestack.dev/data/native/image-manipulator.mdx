@@ -40,4 +40,4 @@ The promise rejects with `error.code` `E_IMAGE_URI` for a non-file URI,
 `E_IMAGE_INPUT` for invalid crop, resize, rotation, quality, or output size,
 `E_IMAGE_ENCODE` for an encoder failure, and `E_IMAGE_FAILED` for a file write
 failure. Output is limited to 25 megapixels and 10,000 pixels per side. This API
-requires an iOS or Android native build and throws on web.
+is implemented on iOS and Android. On web, `transform()` rejects with `ImageManipulator.transform needs an iOS or Android build`.
