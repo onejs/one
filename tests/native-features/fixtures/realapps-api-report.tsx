@@ -83,6 +83,7 @@ export function Results({ results }: { results: Record<string, Result> }) {
     value === undefined ? { $undefined: true } : value
   )
   useEffect(() => {
+    if (Object.values(results).every((result) => result.status === 'pending')) return
     // the runner owns this receipt collector independently of the app server.
     const host = Platform.OS === 'android' ? '10.0.2.2' : 'localhost'
     void fetch(`http://${host}:8149/receipt`, {
