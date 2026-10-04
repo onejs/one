@@ -40,7 +40,7 @@ const appId =
         /applicationId\s+["']([^"']+)/
       )?.[1]
 if (!appId) throw new Error('No generated application id')
-let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: false\n    permissions:\n      all: allow\n`
+let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: false\n    permissions: {}\n`
 const visible = (text: string) => {
   flow += `- assertVisible: ${JSON.stringify(text)}\n`
 }
@@ -129,10 +129,10 @@ if (values.mode === 'home') {
   else flow += '- back\n'
   scrollTap('realapps-api-open-url')
   flow += '- takeScreenshot: system-url\n'
-  flow += '- launchApp:\n    stopApp: false\n'
+  flow += '- launchApp:\n    stopApp: false\n    permissions: {}\n'
   scrollTap('realapps-api-open-settings')
   flow += '- takeScreenshot: system-settings\n'
-  flow += '- launchApp:\n    stopApp: false\n'
+  flow += '- launchApp:\n    stopApp: false\n    permissions: {}\n'
   visible('Injected route remains inside the original shell')
 } else if (values.mode === 'ui') {
   tap('realapps-open-api')
