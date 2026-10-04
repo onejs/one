@@ -59,22 +59,50 @@ export function Onboarding() {
 
 ### Page indicators
 
-`onPageScroll` sends `position + offset` as a continuous value. Use it as the
-only writer of scroll progress, for example in a Reanimated shared value, and
-derive indicators from it.
+`onPageScroll` sends `position + offset` as a continuous value. To drive
+animation from it on the UI thread, wrap the pager with Reanimated's
+`createAnimatedComponent` and pass a worklet handler from `useEvent`. The
+indicator then follows the swipe even while the JS thread is busy, and the
+ref keeps its methods.
 
 ```tsx
-const progress = useSharedValue(0)
+import { One } from 'one'
+import Animated, {
+  useAnimatedStyle,
+  useEvent,
+  useSharedValue,
+} from 'react-native-reanimated'
 
-<One.UI.Pager
-  style={{ height: 360 }}
-  onPageScroll={({ nativeEvent }) => {
-    progress.set(nativeEvent.position + nativeEvent.offset)
-  }}
->
-  {pages}
-</One.UI.Pager>
+const AnimatedPager = Animated.createAnimatedComponent(One.UI.Pager)
+
+export function Pages({ pages }: { pages: React.ReactNode[] }) {
+  const progress = useSharedValue(0)
+  const onPageScroll = useEvent<{ position: number; offset: number }>(
+    (event) => {
+      'worklet'
+      progress.value = event.position + event.offset
+    },
+    ['onPageScroll']
+  )
+  const dot = useAnimatedStyle(() => ({
+    transform: [{ translateX: progress.value * 16 }],
+  }))
+
+  return (
+    <>
+      <AnimatedPager style={{ height: 360 }} onPageScroll={onPageScroll}>
+        {pages}
+      </AnimatedPager>
+      <Animated.View
+        style={[{ width: 8, height: 8, borderRadius: 4, backgroundColor: 'black' }, dot]}
+      />
+    </>
+  )
+}
 ```
+
+A worklet handler receives the payload directly, without `nativeEvent`. A
+plain function passed as `onPageScroll` runs on the JS thread.
 
 ## API reference
 

@@ -9,6 +9,14 @@ const { buildNativeBundle } =
 
 const root = resolve(import.meta.dirname, '..')
 const port = Number(process.env.PORT || 8095)
+const fixtureArg = process.argv.indexOf('--fixture')
+const fixture = resolve(
+  root,
+  'fixtures',
+  `${fixtureArg < 0 ? 'one-native-gestures' : process.argv[fixtureArg + 1]}.tsx`
+)
+// both entries import the selected fixture through this specifier
+const fixtureSpecifier = 'worklets-fixture'
 configureVXRNCompilerPlugin({
   enableReanimated: true,
   enableNativeWorklets: true,
@@ -16,7 +24,7 @@ configureVXRNCompilerPlugin({
 const bundles = new Map<string, string>()
 const web = await build({
   stdin: {
-    contents: `import React from 'react'; import { createRoot } from 'react-dom/client'; import Fixture from './fixtures/one-native-gestures'; createRoot(document.getElementById('root')).render(React.createElement(Fixture));`,
+    contents: `import React from 'react'; import { createRoot } from 'react-dom/client'; import Fixture from '${fixtureSpecifier}'; createRoot(document.getElementById('root')).render(React.createElement(Fixture));`,
     resolveDir: root,
     loader: 'tsx',
   },
@@ -24,18 +32,25 @@ const web = await build({
     {
       name: 'one-fixture-worklets',
       setup(builder) {
-        builder.onLoad({ filter: /one-native-gestures\.tsx$/ }, async ({ path }) => ({
-          contents: (
-            await transformWorklets(path, await Bun.file(path).text(), false, {
-              projectRoot: root,
-            })
-          ).code,
-          loader: 'tsx',
+        builder.onResolve({ filter: new RegExp(`^${fixtureSpecifier}$`) }, () => ({
+          path: fixture,
         }))
+        builder.onLoad(
+          { filter: new RegExp(`${RegExp.escape(fixture)}$`) },
+          async ({ path }) => ({
+            contents: (
+              await transformWorklets(path, await Bun.file(path).text(), false, {
+                projectRoot: root,
+              })
+            ).code,
+            loader: 'tsx',
+          })
+        )
       },
     },
   ],
   bundle: true,
+  jsx: 'automatic',
   write: false,
   format: 'iife',
   platform: 'browser',
@@ -65,6 +80,12 @@ for (const platform of ['ios', 'android'] as const) {
     minify: false,
     entryFile: 'fixtures/worklets-entry.ts',
     serverUrl: `http://localhost:${port}`,
+    plugins: [
+      {
+        name: 'one-fixture-select',
+        resolveId: (id) => (id === fixtureSpecifier ? fixture : null),
+      },
+    ],
   })
   bundles.set(platform, bundle.code)
 }
@@ -94,4 +115,4 @@ Bun.serve({
     return new Response('not found', { status: 404 })
   },
 })
-console.info(`Worklets fixture ready at http://localhost:${port}`)
+console.info(`Worklets fixture ${fixture} ready at http://localhost:${port}`)
