@@ -986,10 +986,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         const plugins = config.worker?.plugins
         return {
           worker: {
-            plugins: (chain) => [
-              ...(plugins?.(chain) ?? []),
-              backgroundComputationPlugin('web'),
-            ],
+            plugins: () => [...(plugins?.() ?? []), backgroundComputationPlugin('web')],
           },
         }
       },
