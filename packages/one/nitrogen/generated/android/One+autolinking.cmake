@@ -85,10 +85,13 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFetchSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneFileSystemSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFontsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneImageManipulatorSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLaunchScreenSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneMotionSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp

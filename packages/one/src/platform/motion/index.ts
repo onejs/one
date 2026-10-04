@@ -1,9 +1,18 @@
-import type { MotionAvailability, MotionReading, MotionSensor } from '../specs/OneMotion.nitro'
+import type {
+  MotionAvailability,
+  MotionReading,
+  MotionSensor,
+} from '../specs/OneMotion.nitro'
 
-export type { MotionAvailability, MotionReading, MotionSensor, MotionVector } from '../specs/OneMotion.nitro'
+export type {
+  MotionAvailability,
+  MotionReading,
+  MotionSensor,
+  MotionVector,
+} from '../specs/OneMotion.nitro'
 
 const unsupported = (): never => {
-  throw new Error('Motion requires an iOS native build')
+  throw new Error('Motion requires an iOS or Android native build')
 }
 
 export const Motion = Object.freeze({

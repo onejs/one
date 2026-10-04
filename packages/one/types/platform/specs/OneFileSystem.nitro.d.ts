@@ -20,6 +20,7 @@ export interface FileEntry {
 }
 export interface OneFileSystem extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getDirectories(): FileDirectories;
     getInfo(uri: string): Promise<FileInfo>;
