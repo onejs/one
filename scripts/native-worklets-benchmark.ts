@@ -1,6 +1,7 @@
 import { spawnSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import { arch, cpus, hostname, platform } from 'node:os'
 import { dirname, resolve } from 'node:path'
 
@@ -13,6 +14,15 @@ const root = resolve(value('--root', '.'))
 const output = resolve(value('--output', '/tmp/one-worklets-benchmark.json'))
 const samples = Number(value('--samples', '3'))
 if (!Number.isInteger(samples) || samples < 1) throw new Error('samples must be positive')
+const nativePlatform = value('--platform', 'ios')
+if (nativePlatform !== 'ios' && nativePlatform !== 'android') {
+  throw new Error('platform must be ios or android')
+}
+const development = args.includes('--dev')
+const modes = value('--modes', 'one,babel').split(',')
+if (!modes.length || modes.some((mode) => mode !== 'one' && mode !== 'babel')) {
+  throw new Error('modes must contain one or babel')
+}
 const repo = resolve(import.meta.dirname, '..')
 const babelBaseline = resolve(value('--babel-baseline', repo))
 
@@ -20,20 +30,23 @@ if (args.includes('--child')) {
   const mode = args[args.indexOf('--mode') + 1]
   const outputFile = args[args.indexOf('--output') + 1]
   process.chdir(root)
-  process.env.NODE_ENV = 'production'
+  process.env.NODE_ENV = development ? 'development' : 'production'
   process.env.VXRN_NATIVE_WORKLETS = mode === 'one' ? '1' : '0'
+  const implementationRoot = mode === 'babel' ? babelBaseline : repo
   const startup = performance.now()
-  await import('../packages/compiler/dist/esm/index.mjs')
-  const compiler = await import('../packages/compiler/dist/cjs/index.cjs')
+  await import(resolve(implementationRoot, 'packages/compiler/dist/esm/index.mjs'))
+  const compiler = createRequire(import.meta.url)(
+    resolve(implementationRoot, 'packages/compiler/dist/cjs/index.cjs')
+  )
   process.env.IS_VXRN_CLI = 'true'
   const { loadConfigFromFile } = await import('vite')
   await loadConfigFromFile(
-    { mode: 'prod', command: 'build' },
+    { mode: development ? 'dev' : 'prod', command: development ? 'serve' : 'build' },
     undefined,
     root,
     undefined,
     undefined,
-    'native'
+    'bundle'
   )
   const oneOptions = globalThis.__oneOptions
   if (!oneOptions) throw new Error('One plugin did not load app options')
@@ -44,15 +57,16 @@ if (args.includes('--child')) {
     enableNativeWorklets: mode === 'one',
     enableCompiler: oneOptions.react?.compiler ?? false,
   })
-  const { buildNativeBundle } =
-    await import('../packages/vxrn/src/utils/createNativeDevEngine')
+  const { buildNativeBundle } = await import(
+    resolve(implementationRoot, 'packages/vxrn/dist/utils/createNativeDevEngine.mjs')
+  )
   if (mode === 'babel') {
     const probe = compiler.getBabelOptions({
       id: resolve(root, 'worklets-benchmark-probe.ts'),
       code: "export function probe() { 'worklet'; return 1 }",
       projectRoot: root,
-      development: false,
-      environment: 'ios',
+      development,
+      environment: nativePlatform,
       reactForRNVersion: '19',
     })
     if (
@@ -72,8 +86,8 @@ if (args.includes('--child')) {
     const start = performance.now()
     const bundle = await buildNativeBundle({
       root,
-      platform: 'ios',
-      dev: false,
+      platform: nativePlatform,
+      dev: development,
       minify: false,
       sourcemap: false,
       plugins: [
@@ -96,7 +110,11 @@ if (args.includes('--child')) {
   }
   writeFileSync(
     outputFile,
-    JSON.stringify({ mode, root, setupMs, results }, null, 2) + '\n'
+    JSON.stringify(
+      { mode, root, platform: nativePlatform, development, setupMs, results },
+      null,
+      2
+    ) + '\n'
   )
   process.exit(0)
 }
@@ -104,15 +122,13 @@ if (args.includes('--child')) {
 mkdirSync(dirname(output), { recursive: true })
 const results = []
 for (let sample = 0; sample < samples; sample++) {
-  for (const mode of sample % 2 ? ['babel', 'one'] : ['one', 'babel']) {
+  for (const mode of sample % 2 ? [...modes].reverse() : modes) {
     const receipt = `${output}.${sample}.${mode}.json`
     const log = `${output}.${sample}.${mode}.log`
     const result = spawnSync(
       process.execPath,
       [
-        mode === 'babel'
-          ? resolve(babelBaseline, 'scripts/native-worklets-benchmark.ts')
-          : import.meta.filename,
+        import.meta.filename,
         '--child',
         '--mode',
         mode,
@@ -120,6 +136,11 @@ for (let sample = 0; sample < samples; sample++) {
         root,
         '--output',
         receipt,
+        '--platform',
+        nativePlatform,
+        '--babel-baseline',
+        babelBaseline,
+        ...(development ? ['--dev'] : []),
       ],
       {
         cwd: repo,
@@ -158,8 +179,7 @@ writeFileSync(
         appCommit: git(root, 'rev-parse', 'HEAD'),
         babelBaselineCommit: git(babelBaseline, 'rev-parse', 'HEAD'),
       },
-      method:
-        'counterbalanced fresh processes, first and second full iOS production bundles in each process; minify and source maps off; setup measured separately; no OS page-cache purge',
+      method: `counterbalanced fresh processes, first and second full ${nativePlatform} ${development ? 'development' : 'production'} bundles in each process; minify and source maps off; setup measured separately; no OS page-cache purge`,
       results,
     },
     null,
