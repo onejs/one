@@ -11,7 +11,8 @@ async function codeOf(work: Promise<unknown>): Promise<string> {
     return 'resolved'
   } catch (error) {
     return error instanceof Error && 'code' in error && typeof error.code === 'string'
-      ? error.code : String(error)
+      ? error.code
+      : String(error)
   }
 }
 
@@ -21,21 +22,35 @@ export default function OneNativeBackgroundTasks() {
 
   const runSchedule = async () => {
     try {
-      const api = One.iOS.BackgroundTasks
+      const api = One.BackgroundTasks
       const earliest = Date.now() + 60_000
-      const refresh = await codeOf(api.submit(refreshId, { earliestBeginDateMs: earliest }))
-      const refreshPending = (await api.getPending()).some((task) => task.identifier === refreshId)
+      const refresh = await codeOf(
+        api.submit(refreshId, { earliestBeginDateMs: earliest })
+      )
+      const refreshPending = (await api.getPending()).some(
+        (task) => task.identifier === refreshId
+      )
       api.cancel(refreshId)
-      const refreshGone = !(await api.getPending()).some((task) => task.identifier === refreshId)
-      const processing = await codeOf(api.submit(processingId, {
-        requiresNetworkConnectivity: true,
-        requiresExternalPower: true,
-      }))
-      const processingPending = (await api.getPending()).some((task) => task.identifier === processingId)
+      const refreshGone = !(await api.getPending()).some(
+        (task) => task.identifier === refreshId
+      )
+      const processing = await codeOf(
+        api.submit(processingId, {
+          requiresNetworkConnectivity: true,
+          requiresExternalPower: true,
+        })
+      )
+      const processingPending = (await api.getPending()).some(
+        (task) => task.identifier === processingId
+      )
       api.cancel(processingId)
-      const processingGone = !(await api.getPending()).some((task) => task.identifier === processingId)
+      const processingGone = !(await api.getPending()).some(
+        (task) => task.identifier === processingId
+      )
       const invalid = await codeOf(api.submit('dev.vxrn.native.tests.unknown'))
-      setSchedule(`refresh=${refresh} pending=${refreshPending} cancelled=${refreshGone} processing=${processing} pending=${processingPending} cancelled=${processingGone} invalid=${invalid}`)
+      setSchedule(
+        `refresh=${refresh} pending=${refreshPending} cancelled=${refreshGone} processing=${processing} pending=${processingPending} cancelled=${processingGone} invalid=${invalid}`
+      )
     } catch (error) {
       setSchedule(`error=${String(error)}`)
     }
@@ -48,8 +63,10 @@ export default function OneNativeBackgroundTasks() {
       <Pressable testID="one-native-background-tasks-run" onPress={runSchedule}>
         <Text>Schedule and cancel</Text>
       </Pressable>
-      <Pressable testID="one-native-background-tasks-read" onPress={() =>
-        setCallback(globalThis.__oneBackgroundTaskProof ?? 'none')}>
+      <Pressable
+        testID="one-native-background-tasks-read"
+        onPress={() => setCallback(globalThis.__oneBackgroundTaskProof ?? 'none')}
+      >
         <Text>Read callback</Text>
       </Pressable>
     </View>
