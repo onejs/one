@@ -61,6 +61,7 @@ type AppResult = {
   inventory: Inventory
   steps: Record<string, Step>
   exercised: Record<string, string[]>
+  renderingGaps?: Record<string, string>
 }
 type State = {
   started: string
@@ -434,9 +435,12 @@ function writeReport() {
       )
     )
     lines.push(
-      `| ${name} | ${cell(app, 'install')} | ${cell(app, 'web-build')} | ${cell(app, 'web-runtime')} | ${cell(app, 'ios-runtime')} | ${cell(app, 'android-runtime')} | ${uncovered.length ? `NOT RUN (${uncovered.length} APIs)` : Object.keys(app.inventory.apis).length ? 'PASS' : 'no native API imports'} |`
+      `| ${name} | ${cell(app, 'install')} | ${cell(app, 'web-build')} | ${cell(app, 'web-runtime')} | ${cell(app, 'ios-runtime')} | ${cell(app, 'android-runtime')} | ${uncovered.length ? `NOT RUN (${uncovered.length} APIs)` : Object.keys(app.renderingGaps ?? {}).length ? `OPEN GAP (${Object.keys(app.renderingGaps!).length} rendering proofs)` : Object.keys(app.inventory.apis).length ? 'PASS' : 'no native API imports'} |`
     )
   }
+  const gaps = Object.entries(state.apps).flatMap(([name, app]) =>
+    Object.entries(app.renderingGaps ?? {}).map(([api, gap]) => `- ${name}: ${api}: ${gap}`))
+  if (gaps.length) lines.push('', 'Open rendering gaps; strict unavailable-platform checks do not prove rendering:', '', ...gaps)
   lines.push('', '## sources and native APIs', '')
   for (const [name, app] of Object.entries(state.apps)) {
     lines.push(
@@ -629,6 +633,17 @@ for (const name of appNames) {
       )
       continue
     }
+    let iosMinor: number | undefined
+    if (platform === 'ios') {
+      const devices = JSON.parse(command(['xcrun', 'simctl', 'list', 'devices', '--json'])).devices
+      const entry = Object.entries(devices).find(([, rows]: [string, any]) =>
+        rows.some((row: any) => row.udid === device)) as [string, any[]] | undefined
+      const minor = entry?.[0].match(/iOS-27-(\d+)$/)?.[1]
+      const name = entry?.[1].find((row: any) => row.udid === device)?.name
+      if (minor === undefined || !/^iPhone (16|17 Pro)( \d+)?$/.test(name ?? ''))
+        throw new Error('Expected a standard iPhone 16/17 Pro pool device on iOS 27')
+      iosMinor = Number(minor)
+    }
     if (platform === 'ios')
       command([
         'bash',
@@ -803,10 +818,12 @@ for (const name of appNames) {
           const applicable = (api: string) =>
             !(platform === 'android' && api.startsWith('One.iOS.')) &&
             !(platform === 'ios' && api.startsWith('One.Android.'))
-          for (const mode of ['services', 'external', 'ui', 'menus', 'ios', 'widgets']) {
+          for (const mode of ['services', 'external', 'ui', 'menus', 'ios', 'ios-unavailable', 'widgets']) {
             const { modeAPIs } = await import('../fixtures/realapps-api-coverage')
             const covered = modeAPIs(mode, platform).filter(
-              (api) => imported.includes(api) && applicable(api)
+              (api) => imported.includes(api) && applicable(api) &&
+                !(mode === 'ios' && api === 'One.iOS.ArrangementView' && iosMinor === 0) &&
+                !(mode === 'ios-unavailable' && iosMinor !== 0)
             )
             if (!covered.length) continue
             const evidence = join(runDir, name, `${platform}-${mode}`)
@@ -836,8 +853,20 @@ for (const name of appNames) {
             const results = JSON.parse(
               readFileSync(join(evidence, 'api-results.json'), 'utf8')
             )
+            if (mode === 'ios-unavailable') {
+              const availability = JSON.parse(readFileSync(join(evidence, 'api-availability.json'), 'utf8'))
+              if (availability.status !== 'unavailable') throw new Error('Expected strict platform availability receipt')
+              const api = availability.api
+              app.renderingGaps ??= {}
+              app.renderingGaps[api] = `iOS ${availability.minimumIOS} rendering requires a compatible standard pool runtime`
+              const receipt = `${platform}: ${join(evidence, 'api-availability.json')} (availability only)`
+              app.exercised[api] = [receipt]
+              save()
+              continue
+            }
             for (const api of covered) {
               if (!['passed', 'observed'].includes(results[api]?.status)) continue
+              delete app.renderingGaps?.[api]
               const receipt = `${platform}: ${join(evidence, 'api-results.json')}`
               const existing = (app.exercised[api] ??= [])
               if (!existing.includes(receipt)) existing.push(receipt)

@@ -588,3 +588,7 @@ required dialog and forwards AuthorizationError 1000 after Close. This proves
 native invocation and error forwarding, not credential sign-in. Native Glass
 receives SwiftUI-compatible children; the fixture's former RN Text child was
 invalid and has been removed. These receipts carry precise observed scopes.
+
+RAN: small diagnostic API receipts are retained in
+[the evidence directory](../tests/native-features/evidence/realapps/diagnostic/README.md),
+with their binary/artifact limits. They do not replace final clean validation.
