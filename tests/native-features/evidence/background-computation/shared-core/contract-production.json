@@ -1,0 +1,12 @@
+{
+  "mode": "contract-production",
+  "status": "latest=3 value=6 runtime=worker error=handled dispose=silent",
+  "workers": [
+    "http://localhost:8107/assets/calculate.__one_background_worker_63616c63756c617465-VWbkNLEv.js",
+    "http://localhost:8107/assets/calculate.__one_background_worker_63616c63756c617465-VWbkNLEv.js",
+    "http://localhost:8107/assets/calculate.__one_background_worker_63616c63756c617465-VWbkNLEv.js"
+  ],
+  "errors": [],
+  "browser": "145.0.7632.6",
+  "observedAt": "2026-10-04T01:32:42.793Z"
+}

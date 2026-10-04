@@ -1,0 +1,4 @@
+{
+  "ok": false,
+  "error": "contrast-bundler: source artifact contrast-native@0.1.0-source.0e6939f81951343a349305e1ebb3b1c01e488775bf3095d8a2bbe25bd25f8482 answered 404; that exact version has to be published"
+}
