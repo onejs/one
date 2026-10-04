@@ -169,6 +169,13 @@ Proposal:
    offset, Motion sensors and keyboard height as shared values, readable on
    the UI thread with no JS hop. This is new public API and waits for Nate.
 
+## namespaces (Nate, 2026-10-03)
+
+Unified APIs live at the root of `One` (`One.FileSystem`, `One.Motion`, ...),
+never under a platform. `One.iOS` and `One.Android` hold the generated,
+platform-specific API, which is fuller and exact to the platform, never an
+alias of a unified one. s8377 moves the misplaced uniform namespaces up.
+
 ## per-frame values: decision
 
 Revises step 5 of the proposal (RAN: read `ui/Pager.native.tsx`, the Pager
