@@ -1,3 +1,4 @@
+import { modeAPIs } from '../fixtures/realapps-api-coverage'
 import { createRequire } from 'node:module'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
@@ -8,6 +9,7 @@ const { values } = parseArgs({
   options: {
     platform: { type: 'string' },
     device: { type: 'string' },
+    machine: { type: 'string' },
     'package-root': { type: 'string' },
     text: { type: 'string' },
     mode: { type: 'string', default: 'home' },
@@ -38,7 +40,7 @@ const appId =
         /applicationId\s+["']([^"']+)/
       )?.[1]
 if (!appId) throw new Error('No generated application id')
-let flow = `appId: ${appId}\n---\n- launchApp:\n    permissions:\n      all: allow\n`
+let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: false\n    permissions:\n      all: allow\n`
 const visible = (text: string) => {
   flow += `- assertVisible: ${JSON.stringify(text)}\n`
 }
@@ -51,39 +53,7 @@ const scrollTap = (id: string) => {
 }
 const results: Record<string, any> = {}
 let receiptReady: (() => void) | undefined
-const requiredByMode: Record<string, string[]> = {
-  services: [
-    'One.AppInfo',
-    'One.Storage',
-    'One.SecureStore',
-    'One.Clipboard',
-    'One.Haptics',
-    'One.Speech',
-    'One.Updates',
-    'One.UI.Fonts',
-    'One.LaunchScreen',
-    'One.Notifications',
-  ],
-  ui: [
-    'One.UI.SafeArea',
-    'useSafeAreaInsets',
-    'useSizeClass',
-    'One.UI.ReservedRegions',
-    'One.UI.Blur',
-    'One.UI.Mask',
-    'One.UI.EdgeFade',
-    'One.UI.Pager',
-    'One.UI.Portal',
-    'One.UI.PortalHost',
-    'One.UI.Image',
-  ],
-  menus:
-    values.platform === 'ios'
-      ? ['One.iOS.Menu', 'One.iOS.ContextMenu', 'One.iOS.Alert']
-      : ['One.Android.Menu', 'One.Android.ContextMenu', 'One.Android.AlertDialog'],
-  widgets: ['One.iOS.Widgets', 'One.iOS.WidgetUI', 'One.iOS.LiveActivities'],
-}
-const required = requiredByMode[values.mode!] ?? []
+const required = modeAPIs(values.mode!, values.platform!)
 const collector = required.length
   ? Bun.serve({
       port: 8149,
@@ -93,7 +63,10 @@ const collector = required.length
         const body = await request.json()
         if (body.schema !== 1 || !body.results)
           return new Response('Invalid receipt', { status: 400 })
-        Object.assign(results, body.results)
+        for (const [api, result] of Object.entries(body.results) as [string, any][]) {
+          if (result.status === 'pending' || results[api]?.status === 'failed') continue
+          results[api] = result
+        }
         writeFileSync(
           join(out, 'api-results.json'),
           JSON.stringify(results, null, 2) + '\n'
@@ -128,10 +101,35 @@ if (values.mode === 'home') {
   }
 } else if (values.mode === 'services') {
   tap('realapps-open-api')
+  tap('realapps-api-section-services')
   tap('realapps-api-core')
   scrollTap('realapps-api-font')
   visible('Font loaded: true')
   scrollTap('realapps-api-launch-hide')
+} else if (values.mode === 'external') {
+  tap('realapps-open-api')
+  tap('realapps-api-section-services')
+  scrollTap('realapps-api-image-picker-cancel')
+  if (values.platform === 'ios') flow += '- tapOn: "Cancel"\n'
+  else flow += '- back\n'
+  scrollTap('realapps-api-document-picker-cancel')
+  if (values.platform === 'ios') flow += '- tapOn: "Cancel"\n'
+  else flow += '- back\n'
+  scrollTap('realapps-api-browser-cancel')
+  flow += '- takeScreenshot: system-browser\n'
+  if (values.platform === 'ios') flow += '- tapOn: "Done"\n'
+  else flow += '- back\n'
+  scrollTap('realapps-api-share-cancel')
+  flow += '- takeScreenshot: system-share\n'
+  if (values.platform === 'ios') flow += '- tapOn:\n    id: Close\n'
+  else flow += '- back\n'
+  scrollTap('realapps-api-open-url')
+  flow += '- takeScreenshot: system-url\n'
+  flow += '- launchApp:\n    stopApp: false\n'
+  scrollTap('realapps-api-open-settings')
+  flow += '- takeScreenshot: system-settings\n'
+  flow += '- launchApp:\n    stopApp: false\n'
+  visible('Injected route remains inside the original shell')
 } else if (values.mode === 'ui') {
   tap('realapps-open-api')
   tap('realapps-api-section-ui')
@@ -158,6 +156,34 @@ if (values.mode === 'home') {
   tap('realapps-api-alert-open')
   visible('Matrix alert')
   flow += '- tapOn: "Matrix confirm"\n'
+} else if (values.mode === 'ios') {
+  if (values.platform !== 'ios') throw new Error('iOS primitives require iOS')
+  tap('realapps-open-api')
+  tap('realapps-api-section-ios')
+  visible('Matrix SwiftUI text')
+  tap('realapps-api-native-button')
+  flow += '- takeScreenshot: swiftui-leaves\n'
+  scrollTap('realapps-api-glass-toggle')
+  scrollTap('realapps-api-apple-signin')
+  flow += '- takeScreenshot: apple-signin\n'
+  flow += '- tapOn: "Cancel"\n'
+  scrollTap('realapps-api-zoom-open')
+  tap('realapps-api-zoom-back')
+  tap('realapps-api-ios-tabs')
+  flow += '- tapOn: "Second"\n'
+  visible('Second native tab')
+  flow += '- tapOn: "First"\n'
+  visible('First native tab')
+  flow += '- tapOn: "Item hit"\n- tapOn: "Group hit"\n'
+  tap('realapps-api-ios-split')
+  tap('realapps-api-split-hit')
+  flow += '- takeScreenshot: split-view\n'
+  tap('realapps-api-ios-arrangement')
+  tap('realapps-api-arrangement-hit')
+  visible('Secondary pane')
+  flow += '- takeScreenshot: arrangement-view\n'
+  tap('realapps-api-ios-toolbar')
+  flow += '- tapOn: "realapps API bar hit"\n- tapOn: "Menu"\n- tapOn: "Menu hit"\n'
 } else if (values.mode === 'widgets') {
   if (values.platform !== 'ios') throw new Error('Widgets require iOS')
   tap('realapps-open-api')
@@ -170,11 +196,29 @@ flow += '- takeScreenshot: final\n'
 const path = join(out, `${values.mode}.yaml`)
 writeFileSync(path, flow)
 try {
-  const process = Bun.spawn(
-    ['maestro', '--device', values.device, 'test', '--test-output-dir', out, path],
+  let command = ['maestro', '--device', values.device, 'test', '--test-output-dir', out, path]
+  const remoteOut = `/tmp/one-realapps-${process.pid}-${values.mode}`
+  if (values.machine) {
+    const copied = Bun.spawn(['scp', path, `${values.machine}:${remoteOut}.yaml`], {
+      stdout: 'inherit', stderr: 'inherit',
+    })
+    if (await copied.exited) throw new Error('Could not transfer native UI flow')
+    command = [
+      'tm', 'exec', values.machine, '--timeout', '15m', '--', 'sh', '-c',
+      `export PATH="$HOME/.local/share/mise/installs/maestro/cli-2.7.0/bin:$PATH"; maestro --device '${values.device.replace(/'/g, "'\\''")}' test --test-output-dir ${remoteOut} ${remoteOut}.yaml`,
+    ]
+  }
+  const child = Bun.spawn(
+    command,
     { stdout: 'inherit', stderr: 'inherit' }
   )
-  const status = await process.exited
+  const status = await child.exited
+  if (values.machine) {
+    const copied = Bun.spawn(['scp', '-r', `${values.machine}:${remoteOut}/.`, out], {
+      stdout: 'inherit', stderr: 'inherit',
+    })
+    if (await copied.exited) throw new Error('Could not retain remote native UI proof')
+  }
   if (status) throw new Error(`Maestro exited ${status}; see ${out}`)
   if (collector) {
     await Promise.race([
