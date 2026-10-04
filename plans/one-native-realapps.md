@@ -412,3 +412,13 @@ bun tests/native-features/scripts/realapps.ts --version 2.0.0-beta.168.1 --ios-s
 Use --phase inventory for the dependency/API list, or --phase web/ios/android for one platform. --run-dir resumes the same clean install for diagnosis; omit it for a new install. API coverage requires named evidence for every imported API on every applicable platform. Build success and HTTP success alone do not satisfy runtime coverage.
 
 Android Pager return/draft and composer/IME proofs belong to p56058 (lane r54227); this runner does not duplicate those proofs.
+
+## continued validation, 2026-10-03
+
+RAN: routing repair `81558502b`, runner `548f0155f`, server initialization and Drawer dependency repair `be1f4db59`, Android selected-device repair `642966a92` landed on `v2-beta`. Starter navigation pins and gesture handler landed on `v2-beta-starter` (`3ff7a1fb9`, `bd6044cc3`).
+
+RAN: the Basic clean canary web runtime passed (`/tmp/one-realapps-canary-web-runtime.log`), including `/tabs/profile`. The iOS 27.0 simulator repeated stack, tabs and drawer with count 0, increment to 1, navigate away, and return to count 1 (`/tmp/one-realapps-ios-routing-static-proof.log`, screenshots and receipt in `/tmp/one-realapps-ios-routing-static-proof`). This native receipt uses local source overlays, so it does not yet satisfy the final clean-install row.
+
+RAN: Contrast web rebuilt 15 pages after the authorized preview platform boundary, iOS dock asset boundary and use of the existing EdgeFade mask API. Original onboarding and login render (`/tmp/one-realapps-contrast-web-runtime-edgefade.log`). The preview route redirects to onboarding without authentication; this does not prove an authenticated preview. Native builds and complete API coverage remain pending.
+
+RAN: an incorrect local package build omitted One's existing staticSpecs post-build rewrite, producing a Pager export rejection and missing native view configs. The published canary already contains static view configs. Rebuilding through `bun run --cwd packages/one build` rewrote 100 specs and 500 mirrors and restored the iOS navigation proof. No compiler source fix was retained for this local validation mistake.

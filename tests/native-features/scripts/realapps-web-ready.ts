@@ -21,10 +21,12 @@ await new Promise<void>((resolve, reject) => {
   }
   async function check() {
     const output = readFileSync(logfile, 'utf8')
+    if (/Port \d+ is already in use|(?:^|\n)Error:/.test(output))
+      return finish(new Error(output.trim()))
     if (!/(?:http:\/\/|listening|packager-status:running)/i.test(output)) return
     try {
       const response = await fetch(url, { signal: AbortSignal.timeout(5000) })
-      if (!response.ok()) return finish(new Error(`${url}: HTTP ${response.status}`))
+      if (!response.ok) return finish(new Error(`${url}: HTTP ${response.status}`))
       if (
         url.endsWith('/status') &&
         !(await response.text()).includes('packager-status:running')

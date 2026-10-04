@@ -36,7 +36,7 @@ const { values } = parseArgs({
 })
 if (values.help) {
   console.log(`bun tests/native-features/scripts/realapps.ts [--apps one-basic,takeout-free,contrast-mobile,testflight]
-  [--phase inventory|install|web|ios|android|all] [--version <exact beta>]
+  [--phase inventory|install|web|web-runtime|ios|android|all] [--version <exact beta>]
   [--run-dir <saved run>] [--ios-sim <claimed iOS 27 UDID>] [--android <emulator serial>]
   [--contrast <checkout>] [--port 8097] [--report <markdown>]
 
@@ -45,7 +45,7 @@ Native devices must already be booted; the runner claims/releases iOS through si
 API coverage is reported separately and unexercised imports fail the complete matrix.`)
   process.exit(0)
 }
-const phases = ['inventory', 'install', 'web', 'ios', 'android', 'all']
+const phases = ['inventory', 'install', 'web', 'web-runtime', 'ios', 'android', 'all']
 if (!phases.includes(values.phase!)) throw new Error(`Unknown phase ${values.phase}`)
 const runDir = values['run-dir']
   ? resolve(values['run-dir'])
@@ -311,6 +311,7 @@ function step(
 }
 async function web(name: string, app: AppResult) {
   if (
+    values.phase !== 'web-runtime' &&
     !step(
       name,
       app,
@@ -344,8 +345,11 @@ async function web(name: string, app: AppResult) {
         ],
         { stdout: 'pipe', stderr: 'pipe' }
       )
-      const readyOutput = await new Response(ready.stdout).text()
-      if (await ready.exited) throw new Error(readyOutput)
+      const [readyOutput, readyError] = await Promise.all([
+        new Response(ready.stdout).text(),
+        new Response(ready.stderr).text(),
+      ])
+      if (await ready.exited) throw new Error(readyOutput + readyError)
       const routes =
         name === 'one-basic'
           ? [
@@ -529,7 +533,9 @@ for (const name of appNames) {
       ).unref()
       const manifest = join(worktree, 'package.json')
       const json = JSON.parse(readFileSync(manifest, 'utf8'))
-      json.catalog.one = state.version
+      for (const name of Object.keys(json.catalog))
+        if (name === 'one' || name === 'vxrn' || name.startsWith('@vxrn/'))
+          json.catalog[name] = state.version
       writeFileSync(manifest, JSON.stringify(json, null, 2) + '\n')
       app.cwd = join(worktree, 'templates/contrast-mobile')
       app.revision = command(['git', 'rev-parse', 'HEAD'], worktree)
@@ -586,7 +592,7 @@ for (const name of appNames) {
     app.cwd!
   )
   if (values.phase === 'install') continue
-  if (values.phase === 'all' || values.phase === 'web') await web(name, app)
+  if (['all', 'web', 'web-runtime'].includes(values.phase!)) await web(name, app)
   for (const platform of ['ios', 'android']) {
     if (values.phase !== 'all' && values.phase !== platform) continue
     const device = platform === 'ios' ? values['ios-sim'] : values.android
@@ -613,6 +619,21 @@ for (const name of appNames) {
         values.port!,
       ])
     try {
+      if (
+        !step(
+          name,
+          app,
+          'native-instrumentation',
+          [
+            'bun',
+            join(import.meta.dirname, 'realapps-inject.ts'),
+            app.cwd!,
+            values.port!,
+          ],
+          app.cwd!
+        )
+      )
+        continue
       if (
         !step(
           name,
@@ -645,6 +666,11 @@ for (const name of appNames) {
           )
         )
           continue
+        if (!step(name, app, `${platform}-bundle-ready`, [
+          'bun', join(import.meta.dirname, 'realapps-web-ready.ts'),
+          `http://localhost:${values.port}/index.bundle?platform=${platform}&dev=true`,
+          join(runDir, name, `${platform}-dev-server.log`),
+        ], app.cwd!)) continue
         const ok =
           platform === 'ios'
             ? step(
@@ -664,62 +690,55 @@ for (const name of appNames) {
                 true
               )
         if (!ok) continue
-        // runtime checks deliberately observe the original app, without substituting its layout.
-        if (platform === 'ios') {
+        const text =
+          name === 'one-basic'
+            ? 'Hello world, from One'
+            : name === 'contrast-mobile'
+              ? 'Skip'
+              : name === 'testflight'
+                ? 'Native'
+                : 'Welcome'
+        const runtime = step(
+          name,
+          app,
+          `${platform}-runtime`,
+          [
+            'bun',
+            join(import.meta.dirname, 'realapps-native-ui.ts'),
+            '--platform',
+            platform,
+            '--device',
+            device,
+            '--package-root',
+            app.cwd!,
+            '--text',
+            text,
+            '--out',
+            join(runDir, name, `${platform}-home`),
+          ],
+          app.cwd!
+        )
+        if (runtime && name === 'one-basic')
           step(
             name,
             app,
-            'ios-runtime',
-            [
-              'xcodebuildmcp',
-              'ui-automation',
-              'wait-for-ui',
-              '--simulator-id',
-              device,
-              '--predicate',
-              'textContains',
-              '--text',
-              name === 'one-basic'
-                ? 'Hello world, from One'
-                : name === 'contrast-mobile'
-                  ? 'Continue'
-                  : 'Welcome',
-              '--timeout-ms',
-              '60000',
-            ],
-            app.cwd!
-          )
-          step(
-            name,
-            app,
-            'ios-screenshot',
-            ['xcodebuildmcp', 'ui-automation', 'screenshot', '--simulator-id', device],
-            app.cwd!
-          )
-        } else {
-          step(
-            name,
-            app,
-            'android-runtime',
+            `${platform}-routing`,
             [
               'bun',
-              join(import.meta.dirname, 'realapps-android-ui.ts'),
+              join(import.meta.dirname, 'realapps-native-ui.ts'),
+              '--platform',
+              platform,
               '--device',
               device,
               '--package-root',
               app.cwd!,
-              '--text',
-              name === 'one-basic'
-                ? 'Hello world, from One'
-                : name === 'contrast-mobile'
-                  ? 'Continue'
-                  : 'Welcome',
+              '--mode',
+              'routing',
               '--out',
-              join(runDir, name),
+              join(runDir, name, `${platform}-routing`),
             ],
             app.cwd!
           )
-        }
       } finally {
         dev.kill()
         await dev.exited
