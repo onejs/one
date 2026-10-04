@@ -70,8 +70,7 @@ internal class OneNativeEdgeFadeShaderSlot {
   // via the `useLUT` uniform. The shader is created once and only uniforms are
   // reuploaded on key changes.
   //
-  // Returns null only if the curve cannot be handled by AGSL (parse failure or
-  // RuntimeShader creation error). Callers then fall back to LinearGradient.
+  // returns null only if the curve cannot be parsed for AGSL.
 
   @RequiresApi(Build.VERSION_CODES.TIRAMISU)
   private fun applyAgslUniforms(
@@ -83,9 +82,7 @@ internal class OneNativeEdgeFadeShaderSlot {
     val lut: FloatArray? = if (presetParams == null) OneNativeEdgeFadeCurves.parseCustomLUT(curve) else null
     if (presetParams == null && lut == null) return null
 
-    val rts = existing ?: runCatching { RuntimeShader(AGSL_SRC) }
-      .onFailure { logAgslFallbackOnce("RuntimeShader compile failed", it) }
-      .getOrNull() ?: return null
+    val rts = existing ?: RuntimeShader(AGSL_SRC)
 
     return runCatching {
       rts.setFloatUniform("start",          x0, y0)
@@ -150,10 +147,13 @@ internal class OneNativeEdgeFadeShaderSlot {
 
       float lutSample(float t) {
         float pos = clamp(t, 0.0, 1.0) * 31.0;
-        int lo = int(pos);
-        lo = clamp(lo, 0, 30);
-        float frac = pos - float(lo);
-        return mix(alphaLUT[lo], alphaLUT[lo + 1], frac);
+        // AGSL requires constant array indexes; this fixed loop is unrolled.
+        for (int i = 0; i < 31; i++) {
+          if (pos <= float(i + 1)) {
+            return mix(alphaLUT[i], alphaLUT[i + 1], pos - float(i));
+          }
+        }
+        return alphaLUT[31];
       }
 
       half4 main(float2 fragCoord) {
