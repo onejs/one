@@ -2,11 +2,15 @@ import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { createLatestComputation } from './createLatestComputation'
 import type { BackgroundComputation, BackgroundState } from './backgroundContract'
 
+type BackgroundStatus =
+  | Exclude<BackgroundState<never>, { phase: 'ready' }>
+  | { phase: 'ready'; revision: number }
+
 export function useBackgroundComputation<Input, Output>(
   definition: BackgroundComputation<Input, Output>,
   input: Input | null
 ) {
-  const [state, setState] = useState<BackgroundState<Output>>({
+  const [state, setState] = useState<BackgroundStatus>({
     phase: 'idle',
     revision: 0,
   })
@@ -21,7 +25,13 @@ export function useBackgroundComputation<Input, Output>(
 
   useLayoutEffect(() => {
     if (!active) return
-    const computation = createLatestComputation(definition, setState)
+    const computation = createLatestComputation(definition, (changed) => {
+      setState(
+        changed.phase === 'ready'
+          ? { phase: 'ready', revision: changed.result.revision }
+          : changed
+      )
+    })
     owner.current = computation
     return () => {
       owner.current = null
@@ -41,9 +51,10 @@ export function useBackgroundComputation<Input, Output>(
     submitted.current?.input === input &&
     submitted.current.factory === definition
   if (matches && state.phase === 'failed') throw state.error
+  const current = owner.current?.getCurrent()
   const result =
-    matches && state.phase === 'ready' && state.result === owner.current?.getCurrent()
-      ? state.result
+    matches && state.phase === 'ready' && current && state.revision === current.revision
+      ? current
       : null
   return { result, getCurrent }
 }
