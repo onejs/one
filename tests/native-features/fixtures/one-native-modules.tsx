@@ -38,12 +38,12 @@ async function fileSystem() {
   const directories = fs.getDirectories()
   for (const uri of Object.values(directories))
     check(uri.startsWith('file://') && uri.endsWith('/'), `directory URI: ${uri}`)
-  const directory = new URL(`one-modules-${Date.now()}/`, directories.cache).href
-  const note = new URL('note ü.txt', directory).href
-  const binary = new URL('bytes.dat', directory).href
-  const copied = new URL('copied/', directories.cache).href
-  const moved = new URL('moved/', directory).href
-  const nested = new URL('nested/child/', directory).href
+  const directory = `${directories.cache}one-modules-${Date.now()}/`
+  const note = directory + encodeURIComponent('note ü.txt')
+  const binary = directory + 'bytes.dat'
+  const copied = directories.cache + 'copied/'
+  const moved = directory + 'moved/'
+  const nested = directory + 'nested/child/'
   const errors: string[] = []
   await fs.makeDirectory(directory)
   try {
@@ -66,15 +66,12 @@ async function fileSystem() {
     check(Array.from(await bytes(binary)).join(',') === '0,1,2,255', 'binary bytes')
     await fs.makeDirectory(nested)
     await fs.makeDirectory(nested)
-    await fs.writeFile(new URL('child.txt', nested).href, 'nested')
+    await fs.writeFile(nested + 'child.txt', 'nested')
     const names = (await fs.readDirectory(directory)).map((entry) => entry.name)
     check(names.join(',') === 'bytes.dat,nested,note ü.txt', `sorted entries: ${names}`)
-    const clone = new URL(`copy-${Date.now()}/`, directories.cache).href
+    const clone = `${directories.cache}copy-${Date.now()}/`
     await fs.copy(directory, clone)
-    check(
-      (await text(new URL('nested/child/child.txt', clone).href)) === 'nested',
-      'recursive copy'
-    )
+    check((await text(clone + 'nested/child/child.txt')) === 'nested', 'recursive copy')
     await fs.move(clone, moved)
     check(
       !(await fs.getInfo(clone)).exists && (await fs.getInfo(moved)).isDirectory,
@@ -105,23 +102,17 @@ async function fileSystem() {
       errors.push(await rejects(() => fs.move(uri, copied), 'E_FILE_PERMISSION'))
     }
     await fs.delete(moved)
-    check(
-      !(await fs.getInfo(new URL('nested/child/', moved).href)).exists,
-      'recursive delete'
-    )
+    check(!(await fs.getInfo(moved + 'nested/child/')).exists, 'recursive delete')
     errors.push(
       await rejects(
-        () => fs.makeDirectory(new URL('absent/child/', directory).href, false),
+        () => fs.makeDirectory(directory + 'absent/child/', false),
         'E_FILE_NOT_FOUND'
       )
     )
     errors.push(
-      await rejects(
-        () => fs.copy(new URL('missing.txt', directory).href, copied),
-        'E_FILE_NOT_FOUND'
-      )
+      await rejects(() => fs.copy(directory + 'missing.txt', copied), 'E_FILE_NOT_FOUND')
     )
-    info = await fs.getInfo(new URL('missing.txt', directory).href)
+    info = await fs.getInfo(directory + 'missing.txt')
     check(
       !info.exists && info.size === undefined && info.modifiedAt === undefined,
       'missing info'
@@ -136,10 +127,7 @@ async function fileSystem() {
 
 async function images() {
   const fs = One.iOS.FileSystem
-  const source = new URL(
-    `one-modules-image-${Date.now()}.heic`,
-    fs.getDirectories().cache
-  ).href
+  const source = `${fs.getDirectories().cache}one-modules-image-${Date.now()}.heic`
   const invalid = source + '.txt'
   await fs.writeFile(source, photoBase64, 'base64')
   await fs.writeFile(invalid, 'not an image')
