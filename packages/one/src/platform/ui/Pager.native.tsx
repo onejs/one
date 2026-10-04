@@ -19,9 +19,6 @@ export const Pager = forwardRef<PagerRef, PagerProps>(function Pager(
   useImperativeHandle(
     ref,
     () => ({
-      // Reanimated's createAnimatedComponent resolves the host view through this,
-      // so worklet event handlers and animated props attach to the native pager
-      getAnimatableRef: () => nativeRef.current,
       setPage(index) {
         validatePage(index)
         if (nativeRef.current) Commands.setPage(nativeRef.current, index)
