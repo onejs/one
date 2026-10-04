@@ -35,3 +35,7 @@ factory build. Home Rally is a canonical example; it is not currently a publishe
 community-project registry entry. The probe lives in Contrast
 `scripts/debug/one-background-factory-proof.ts`. It must pass after the exact npm
 family and both compile catalogs publish.
+
+RAN: `published-tarballs.json` records exact npm tarball hashes and checked file
+hashes for canary2.0.0-0.canary.1791084352120, source6b5302bdc. The automatic
+v2-beta Release succeeded; the compiler helper is now a published artifact.

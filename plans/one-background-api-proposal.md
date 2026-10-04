@@ -78,3 +78,12 @@ via “Rally passes on both custom preview runtimes”
 The publication checks, complete factory seed build and assigned assembled review
 remain gates before the follow-up merges. This approval does not claim those
 checks have passed.
+
+RAN: compiler integration landed on v2-beta as `c2a262012`, with logical proof
+commit `6b5302bdc`. A fresh build passed14 targets and the compiler suite passed39
+tests. The automatic Release succeeded. Canary
+`2.0.0-0.canary.1791084352120` was verified by packing One, vxrn and compiler:
+background exports, browser/native compiler helpers and ESM/CJS worklet utilities
+are present; all manifests identify source6b5302bdc.
+Contrast's rebased release branch is `feat/one-background-computation-release`;
+its whole-family pin and both compile catalogs precede the main merge.
