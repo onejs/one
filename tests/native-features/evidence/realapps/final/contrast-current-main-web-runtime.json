@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "source": "realapps-final-main",
+  "one": "2.0.0-0.canary.1791084352120",
+  "receipts": [
+    {
+      "route": "/",
+      "status": 200,
+      "body": "Build everywhere, together.\nContrast lets you build apps that work on iOS, Android, and web. Invite friends and family to build together.\nA CREW IN YOUR POCKET\nBuild with a team of agents.\nDesign, code, and testing happen together while you steer the work.\nONE PROJECT, EVERYWHERE\nPreview every surfa"
+    },
+    {
+      "route": "/auth/login",
+      "status": 200,
+      "body": "Build apps that stand out.\nContinue with GitHub\nGo\nContinue with passkey\nBy continuing, you agree to our Terms, Privacy & EULA"
+    },
+    {
+      "route": "/native-engine-poc",
+      "status": 200,
+      "body": "Build everywhere, together.\nContrast lets you build apps that work on iOS, Android, and web. Invite friends and family to build together.\nA CREW IN YOUR POCKET\nBuild with a team of agents.\nDesign, code, and testing happen together while you steer the work.\nONE PROJECT, EVERYWHERE\nPreview every surfa"
+    }
+  ],
+  "pageErrors": []
+}

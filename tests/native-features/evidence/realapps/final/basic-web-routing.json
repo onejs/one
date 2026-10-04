@@ -1,0 +1,20 @@
+[
+  {
+    "navigator": "stack",
+    "initial": 0,
+    "incremented": 1,
+    "returned": 1
+  },
+  {
+    "navigator": "tabs",
+    "initial": 0,
+    "incremented": 1,
+    "returned": 1
+  },
+  {
+    "navigator": "drawer",
+    "initial": 0,
+    "incremented": 1,
+    "returned": 1
+  }
+]

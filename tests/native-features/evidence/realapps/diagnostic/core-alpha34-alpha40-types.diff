@@ -1,0 +1,31 @@
+--- /tmp/one-realapps-core-alpha34/package/src/types.tsx	1985-10-25 22:15:00
++++ node_modules/@react-navigation/core/src/types.tsx	2026-10-03 08:30:00
+@@ -81,7 +81,7 @@
+   layout?:
+     | ((props: {
+         state: State;
+-        navigation: NavigationHelpers<ParamList>;
++        navigation: NavigationHelpers<ParamList, State>;
+         descriptors: Record<
+           string,
+           Descriptor<
+@@ -259,7 +259,7 @@
+   emit<EventName extends KeyOf<EventMap>>(
+     options: {
+       type: EventName;
+-      target?: string;
++      target?: string | undefined;
+     } & (EventMap[EventName]['canPreventDefault'] extends true
+       ? { canPreventDefault: true }
+       : {}) &
+@@ -470,8 +470,9 @@
+ 
+ export type NavigationHelpers<
+   ParamList extends ParamListBase,
++  State extends NavigationState = NavigationState<ParamList>,
+   EventMap extends EventMapBase = {},
+-> = NavigationHelpersCommon<ParamList> &
++> = NavigationHelpersCommon<ParamList, State> &
+   EventEmitter<EventMap> &
+   NavigationHelpersRoute<ParamList, keyof ParamList> &
+   PrivateValueStore<[ParamList, unknown, unknown, unknown]>;

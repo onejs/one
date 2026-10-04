@@ -1,0 +1,10 @@
+Running on sootsim_pixel_8_android_17_api_37_r06_b
+ > Flow one-realapps-contrast-android-entry-fixed
+Launch app "com.sootbean.mobile"... COMPLETED
+Assert that "Build everywhere, together." is visible... COMPLETED
+Open contrast://native-engine-poc... COMPLETED
+Run flow when "Open" is visible...
+Run flow when "Open" is visible... SKIPPED
+Assert that id: photos-webview-baseline is visible... COMPLETED
+Assert that id: photos-webview-baseline is visible... COMPLETED
+Take screenshot android-native-preview-host... COMPLETED

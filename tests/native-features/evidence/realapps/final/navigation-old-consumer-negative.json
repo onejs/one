@@ -1,0 +1,10 @@
+{
+  "label": "RAN",
+  "one": "2.0.0-0.canary.1791082782289",
+  "sourceCommit": "a4c1ed5a561604bdb05fed10540f8576591274ef",
+  "core": "8.0.0-alpha.40",
+  "change": "Only the WebStackNavigator consumer restored to NavigationContent from pre-81558502b source shape",
+  "status": 1,
+  "expectedFailure": "Element type is invalid / undefined NavigationContent",
+  "publishedSourceSha256": "6ac7764e19cdd64cde7984b640a7044bc3c996b9a17b90da165194f8591cd110"
+}

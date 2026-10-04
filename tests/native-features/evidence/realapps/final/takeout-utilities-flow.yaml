@@ -1,0 +1,15 @@
+appId: dev.tamagui.takeout.dev
+---
+- launchApp:
+    stopApp: true
+    permissions: {}
+- extendedWaitUntil:
+    visible: Login to Takeout
+    timeout: 60000
+- tapOn:
+    id: realapps-open-api
+- extendedWaitUntil:
+    visible: RNIUtilities JSI round trip passed
+    timeout: 60000
+- assertVisible: RNIUtilities JSI round trip passed
+- takeScreenshot: utilities-runtime

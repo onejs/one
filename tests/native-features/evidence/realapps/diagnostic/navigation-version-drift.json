@@ -1,0 +1,103 @@
+{
+  "one": "2.0.0-beta.168.1",
+  "expected": {
+    "@react-navigation/core": "8.0.0-alpha.34",
+    "@react-navigation/drawer": "8.0.0-alpha.51",
+    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.50",
+    "@react-navigation/elements": "3.0.0-alpha.48",
+    "@react-navigation/native-stack": "8.0.0-alpha.52",
+    "@react-navigation/routers": "8.0.0-alpha.17"
+  },
+  "graph": [
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.44",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.44"
+    },
+    {
+      "name": "@react-navigation/bottom-tabs",
+      "version": "8.0.0-alpha.50",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/bottom-tabs/package.json",
+      "expected": "8.0.0-alpha.50"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.48",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.48"
+    },
+    {
+      "name": "@react-navigation/native-stack",
+      "version": "8.0.0-alpha.52",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/native-stack/package.json",
+      "expected": "8.0.0-alpha.52"
+    },
+    {
+      "name": "@react-navigation/routers",
+      "version": "8.0.0-alpha.17",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/routers/package.json",
+      "expected": "8.0.0-alpha.17"
+    },
+    {
+      "name": "@react-navigation/core",
+      "version": "8.0.0-alpha.40",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/core/package.json",
+      "expected": "8.0.0-alpha.34"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.44",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.44"
+    },
+    {
+      "name": "@react-navigation/core",
+      "version": "8.0.0-alpha.40",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/core/package.json",
+      "expected": "8.0.0-alpha.34"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.48",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.48"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.44",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.44"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.44",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.44"
+    },
+    {
+      "name": "@react-navigation/elements",
+      "version": "3.0.0-alpha.48",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/elements/package.json",
+      "expected": "3.0.0-alpha.48"
+    },
+    {
+      "name": "@react-navigation/native",
+      "version": "8.0.0-alpha.44",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/native/package.json",
+      "expected": "8.0.0-alpha.44"
+    },
+    {
+      "name": "@react-navigation/routers",
+      "version": "8.0.0-alpha.20",
+      "path": "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/one-realapps-nhukd4kr/one-basic/node_modules/@react-navigation/core/node_modules/@react-navigation/routers/package.json",
+      "expected": "8.0.0-alpha.17"
+    }
+  ],
+  "failures": [
+    "one resolves @react-navigation/core@8.0.0-alpha.40; One was tested with 8.0.0-alpha.34",
+    "@react-navigation/native resolves @react-navigation/core@8.0.0-alpha.40; One was tested with 8.0.0-alpha.34",
+    "@react-navigation/core resolves @react-navigation/routers@8.0.0-alpha.20; One was tested with 8.0.0-alpha.17"
+  ]
+}

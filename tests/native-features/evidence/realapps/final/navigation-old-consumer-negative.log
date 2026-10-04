@@ -1,0 +1,50 @@
+[heavy] queued 0s for admission: 100.00% cpu projected 25.50/16.20 cores (load average 57.12), memory 52.00% free, 9 active, charged for 13.87
+[heavy] queued 31s for admission: 100.00% cpu projected 25.50/16.20 cores (load average 66.07), memory 58.00% free, 9 active, charged for 10.05
+[heavy] queued 61s for admission: 100.00% cpu projected 25.50/16.20 cores (load average 71.10), memory 55.00% free, 8 active, charged for 7.30
+[heavy] queued 92s for admission: 87.00% cpu projected 18.66/16.20 cores (load average 78.65), memory 57.00% free, 7 active, charged for 8.57
+[heavy] admitted at 73.00% cpu (projected 16.14/16.20 cores; load average 99.65), memory 57.00% free; reserved 3.00 cores at priority 0, 7 other active, queued 112s
+
+ 🔨 build client + server
+
+
+ ⏱️ vite bundle: 0.27s
+
+
+ 🔨 build static routes (workers: 8)
+
+
+ [build] page /realapps-routing/drawer/other.tsx (with 1 routes)
+
+  ↦ route /realapps-routing/drawer/other
+
+ [build] page /realapps-routing/stack/other.tsx (with 1 routes)
+
+  ↦ route /realapps-routing/stack/other
+⚠️ No ONE_SERVER_URL environment set, set it in your .env to your target deploy URL
+[33m[INVALID_OPTION] [0mManual code splitting options (minSize) specified without groups. These options have no effect without groups - you should either add groups to use manual code splitting or remove these options.
+
+Error: Minified React error #130; visit https://react.dev/errors/130?args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at renderElement (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:7014:10)
+    at retryNode (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:7130:12)
+    at renderNodeDestructive (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:7028:235)
+    at renderNode (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:7321:12)
+    at finishFunctionComponent (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:6718:91)
+    at renderElement (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:6768:4)
+    at retryNode (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:7130:12)
+    at renderNodeDestructive (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:7028:235)
+    at finishFunctionComponent (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:6718:232)
+    at renderElement (file:///private/tmp/one-realapps-starter-source-final/apps/one-basic/dist/server/assets/server-render-C3iG5X1m.js:6970:6)
+
+ ERROR  Minified React error #130; visit https://react.dev/errors/130?args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+
+    at Worker.<anonymous> (node_modules/one/dist/esm/cli/workerPool.mjs:51:23)
+    at Worker.emit (node:events:507:28)
+    at Worker.emit (node:domain:489:12)
+    at MessagePort.<anonymous> (node:internal/worker:268:53)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:827:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28) 
+
+
+
+ ERROR  Minified React error #130; visit https://react.dev/errors/130?args[]=undefined&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+

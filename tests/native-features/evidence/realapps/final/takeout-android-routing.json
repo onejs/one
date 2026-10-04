@@ -1,0 +1,11 @@
+{
+  "label": "RAN",
+  "platform": "android",
+  "device": "emulator-5582",
+  "appId": "dev.tamagui.takeout.dev",
+  "mode": "routing",
+  "text": "Login to Takeout",
+  "stack": 1,
+  "tabs": 1,
+  "drawer": 1
+}

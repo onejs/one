@@ -1,0 +1,16 @@
+{
+  "label": "RAN",
+  "source": "Takeout4046b0b, installed frozen a4 family",
+  "platform": "ios27.0",
+  "device": "A6A58301-B796-4A45-B13D-C786F628AF5D",
+  "result": "RNIUtilities JSI round trip passed",
+  "assertions": [
+    "original Login to Takeout present before entering existing probe route",
+    "native setModuleSharedValue writes a4-runtime",
+    "native getModuleSharedValue returns exact a4-runtime",
+    "overwriteModuleSharedValues clears probe namespace"
+  ],
+  "flow": "takeout-utilities-flow.yaml",
+  "probe": "takeout-utilities-probe.ios.tsx",
+  "nativeBuild": "TakeoutDev fresh SDK58/RN0.87.1 compile, frozen patches rebuilt108700ms"
+}

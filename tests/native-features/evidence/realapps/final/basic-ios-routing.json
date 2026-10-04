@@ -1,0 +1,11 @@
+{
+  "label": "RAN",
+  "platform": "ios",
+  "device": "17E25DEE-3930-427F-8BD5-6EA840ED3E7C",
+  "appId": "com.natew.oneexample",
+  "mode": "routing",
+  "text": "Hello world, from One",
+  "stack": 1,
+  "tabs": 1,
+  "drawer": 1
+}
