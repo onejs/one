@@ -1,0 +1,143 @@
+{
+  "engine": "webkit",
+  "version": "26.5",
+  "checks": [
+    {
+      "namespace": "FileSystem",
+      "negative": "byte reads, invalid encoding, missing parent, overlapping paths and protected root"
+    },
+    {
+      "namespace": "ImageManipulator",
+      "exifOrientations": 8,
+      "oneImage": true,
+      "negative": "independent wrong-rotation pixels, invalid crop, rotation, format quality, size and decoder"
+    },
+    {
+      "namespace": "Device",
+      "info": {
+        "model": "",
+        "systemName": "MacIntel",
+        "systemVersion": "",
+        "interfaceIdiom": "unspecified",
+        "isSimulator": false
+      },
+      "locale": {
+        "localeIdentifier": "en-US",
+        "preferredLanguages": [
+          "en-US"
+        ],
+        "calendarIdentifier": "gregory",
+        "timeZoneIdentifier": "Pacific/Honolulu",
+        "timeZoneOffsetSeconds": -36000
+      },
+      "negative": "known non-UTC zone and no invented hardware id"
+    },
+    {
+      "namespace": "Location",
+      "point": {
+        "latitude": 21.3069,
+        "longitude": -157.8583,
+        "accuracy": 5,
+        "altitude": 0,
+        "altitudeAccuracy": -1,
+        "course": -1,
+        "speed": -1,
+        "timestamp": 1791147538963000
+      },
+      "browserTimestamp": 1791147538963000,
+      "epochMilliseconds": 1791147540355,
+      "negative": "browser timestamp preserved, background watch rejected; geocoder remains unavailable"
+    },
+    {
+      "namespace": "KeepAwake",
+      "negative": "released sentinel reports false and invalid input rejects"
+    },
+    {
+      "namespace": "Motion",
+      "seeded": true,
+      "realEventConstructors": false,
+      "samples": 11,
+      "negative": "removed subscription, unavailable magnetometer and invalid interval"
+    },
+    {
+      "namespace": "ScreenOrientation",
+      "supportedRotationAdapterSeeded": true,
+      "lockOutcome": "Error: ScreenOrientation.lock: orientation locking is unavailable",
+      "negative": "unsupported rotation must reject and removed listener must stay silent"
+    },
+    {
+      "namespace": "Print",
+      "unavailable": true,
+      "negative": "PDF result contract has no browser equivalent"
+    },
+    {
+      "namespace": "Share",
+      "browserHasShare": true,
+      "adapterSeeded": true,
+      "negative": "absent capability, empty items and cancellation"
+    },
+    {
+      "namespace": "Contacts",
+      "realPickerUnavailable": true,
+      "adapterSeeded": true,
+      "negative": "absent picker and unavailable mutations reject"
+    },
+    {
+      "namespace": "Speech",
+      "realConstructorPresent": true,
+      "adapterSeeded": true,
+      "negative": "missing constructor, replaced callback, abort silence and exactly one terminal event"
+    },
+    {
+      "namespace": "Audio",
+      "recording": {
+        "uri": "blob:http://127.0.0.1:4387/758c947f-62e7-4eb4-9c8a-e13a5bb57ecd",
+        "durationMs": 350,
+        "size": 3646
+      },
+      "mimeType": "audio/mp4",
+      "negative": "absent operation, concurrent recording, paused duration, negative seek and invalid metadata"
+    },
+    {
+      "namespace": "Blur",
+      "negative": "zero-filter pixel comparison below",
+      "filter": "blur(20px)"
+    },
+    {
+      "namespace": "Mask",
+      "pixels": [
+        [
+          255,
+          0,
+          0,
+          255
+        ],
+        [
+          0,
+          0,
+          255,
+          255
+        ],
+        [
+          255,
+          0,
+          0,
+          255
+        ]
+      ],
+      "negative": "opaque/transparent sides plus invalid mask passthrough"
+    },
+    {
+      "namespace": "Blur pixels",
+      "snapshotContrast": 178,
+      "compositorContrast": 0,
+      "controlContrast": 178,
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "WebKit recording uses a generated Web Audio MediaStream because Playwright does not grant microphone permission on WebKit.",
+    "WebKit page.screenshot() excludes the backdrop filter (contrast 178); retained headless compositor video frames prove the rendered blur."
+  ]
+}

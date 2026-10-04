@@ -1,0 +1,45 @@
+$ bash scripts/heavy.sh --cores "2" --admission-timeout-seconds "60" -- bun run --cwd "/Users/n8/.worktrees/one-one-native-web/packages/one" build
+[heavy] admitted at 61.00% cpu (projected 12.98/16.20 cores; load average 32.10), memory 67.00% free; reserved 2.00 cores at priority 0, 1 other active, queued 0s
+$ tamagui-build && bun codegen/staticSpecs.ts
+dist/esm/vite/plugins/fileSystemRouterPlugin.js (218:12) [EVAL] Use of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+     ╭─[ dist/esm/vite/plugins/fileSystemRouterPlugin.js:218:13 ]
+     │
+ 218 │             eval(`process.env.TAMAGUI_IS_SERVER = '1'`);
+     │             ──┬─
+     │               ╰─── Use of direct `eval` here.
+     │
+     │ Help: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+─────╯
+
+dist/esm/vite/plugins/fileSystemRouterPlugin.native.js (279:10) [EVAL] Use of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+     ╭─[ dist/esm/vite/plugins/fileSystemRouterPlugin.native.js:279:11 ]
+     │
+ 279 │           eval(`process.env.TAMAGUI_IS_SERVER = '1'`);
+     │           ──┬─
+     │             ╰─── Use of direct `eval` here.
+     │
+     │ Help: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+─────╯
+
+dist/cjs/vite/plugins/fileSystemRouterPlugin.js (250:12) [EVAL] Use of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+     ╭─[ dist/cjs/vite/plugins/fileSystemRouterPlugin.js:250:13 ]
+     │
+ 250 │             eval(`process.env.TAMAGUI_IS_SERVER = '1'`);
+     │             ──┬─
+     │               ╰─── Use of direct `eval` here.
+     │
+     │ Help: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+─────╯
+
+dist/cjs/vite/plugins/fileSystemRouterPlugin.native.js (312:10) [EVAL] Use of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+     ╭─[ dist/cjs/vite/plugins/fileSystemRouterPlugin.native.js:312:11 ]
+     │
+ 312 │           eval(`process.env.TAMAGUI_IS_SERVER = '1'`);
+     │           ──┬─
+     │             ╰─── Use of direct `eval` here.
+     │
+     │ Help: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+─────╯
+
+built one in 1982 ms
+staticSpecs: 100 specs, 500 dist mirrors rewritten

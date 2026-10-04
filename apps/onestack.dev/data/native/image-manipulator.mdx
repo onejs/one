@@ -40,4 +40,4 @@ The promise rejects with `error.code` `E_IMAGE_URI` for a non-file URI,
 `E_IMAGE_INPUT` for invalid crop, resize, rotation, quality, or output size,
 `E_IMAGE_ENCODE` for an encoder failure, and `E_IMAGE_FAILED` for a file write
 failure. Output is limited to 25 megapixels and 10,000 pixels per side. This API
-is implemented on iOS and Android. On web, `transform()` rejects with `ImageManipulator.transform needs an iOS or Android build`.
+is implemented on iOS and Android. On web, `transform()` uses canvas and accepts browser image URLs, including data and blob URLs and remote images that permit cross-origin canvas access. The browser decoder applies EXIF orientation, including mirrored orientations. The same crop, resize, clockwise rotation, output limits, format, and quality rules apply. Rendering runs on the browser thread. The result is a blob URL accepted by `One.UI.Image`, HTML images, and `fetch`; release it with `URL.revokeObjectURL(result.uri)` when no longer needed. SSR rejects with `ImageManipulator.transform needs an iOS or Android build`. Browser decoding and canvas failures reject with browser errors.
