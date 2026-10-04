@@ -422,3 +422,78 @@ RAN: the Basic clean canary web runtime passed (`/tmp/one-realapps-canary-web-ru
 RAN: Contrast web rebuilt 15 pages after the authorized preview platform boundary, iOS dock asset boundary and use of the existing EdgeFade mask API. Original onboarding and login render (`/tmp/one-realapps-contrast-web-runtime-edgefade.log`). The preview route redirects to onboarding without authentication; this does not prove an authenticated preview. Native builds and complete API coverage remain pending.
 
 RAN: an incorrect local package build omitted One's existing staticSpecs post-build rewrite, producing a Pager export rejection and missing native view configs. The published canary already contains static view configs. Rebuilding through `bun run --cwd packages/one build` rewrote 100 specs and 500 mirrors and restored the iOS navigation proof. No compiler source fix was retained for this local validation mistake.
+
+## continued device validation, 2026-10-04 UTC
+
+The initial matrix above records the beta.168.1 negative run. Final clean-install
+validation remains incomplete. The following passes are diagnostic evidence;
+they use the artifacts and overlays stated here and do not turn that matrix green.
+
+| app | current evidence | remaining final proof |
+| --- | --- | --- |
+| one-basic | RAN published canary web, including `/tabs/profile`; local-source-overlay web, iOS 27 and Android routing keep counter 1 after back | clean same-artifact native rebuild and Widgets/LiveActivities calls |
+| takeout-free | RAN Expo 58 / RN 0.87 Android build and original `Login to Takeout`; earlier SDK 58 web build | iOS build/run, web after the helper/network update, rebuilt APK with Expo Network, same-artifact routing |
+| contrast-mobile | RAN original onboarding on iOS 27 and Android; web onboarding/login; iOS UI and menus smoke | granted-permission notification scheduling fails; remaining iOS/external APIs, Android APIs, authenticated native preview mount, fresh native builds |
+| testflight (optional fixture app) | RAN clean web build with TypeScript 5.9.3 | native toolbar uses the existing BarButtonItem API; native validation pending |
+
+RAN: One repairs on `v2-beta` include `b2a371bde` (Expo CLI/logbox dependency
+scanning), `48a455106` (Android EdgeFade constant-bound AGSL loop), `0ff4ea4e9`
+(Expo Android host uses the app's DEBUG flag and index entry), `126de7e4c`
+(Updates runtime version is a manifest string resource), `57f81cc31` and
+`f503b90f9` (real-app API fixtures), `d6b24439e` (iOS Hermes request readiness),
+and `85406ce56` (unobscured controls before taps and precise receipt scopes).
+One main is untouched.
+
+RAN: Expo host negative control used the generated Expo 58 host with the library's
+DEBUG flag. Android looked for an asset bundle. The repaired host reached native
+JavaScript, and the incremental Android build took 14 seconds. The next Hermes
+failure was `new Intl.PluralRules` from the old `@o/helpers` barrel and then its
+nested copy in `@o/better-auth-utils`. The already-published Orez native graph fix
+was verified in tarball `0.16.19-canary.1791057120646`, source
+`c8627257deb64eaa4ac3a1616ef471c8448a904b`. Updating the whole installed `@o`
+family removed those two constructor failures. No Orez source change was retained.
+
+RAN: the next native failure was an untransformed `import("expo-network")` in
+`@better-auth/expo`. Its declared Expo Network peer was missing. Adding the SDK 58
+matching package produced a 14,464,722 byte bundle and the original Android login
+screen. The template dependency repair is saved as draft `45f0dca` on Takeout
+Free's `tm/one-realapps`. The installed Android binary predates Network autolinking,
+so this is not the final complete native build. Logs:
+`/tmp/one-realapps-takeout-android-cold-pid-logcat.log`,
+`/tmp/one-realapps-takeout-native-network-bundle.log`,
+`/tmp/one-realapps-takeout-android-network-home.log`.
+
+RAN: Contrast's claimed Air24 iOS 27 simulator is
+`17E25DEE-3930-427F-8BD5-6EA840ED3E7C`. Original onboarding passed with
+`Build everywhere, together.`. The current JS artifact is published One
+`2.0.0-0.canary.1791075465610` from `fcd4558352f11bfa4d834ba89964d8251d4bf66f`;
+the binary was built with an earlier local source overlay. Actual iOS Hermes
+bytecode readiness returned 33,930,787 bytes and magic `c61fbc03c103191f`.
+A plain-JavaScript warm request had left the iOS app waiting for its bytecode.
+The runner now warms the exact iOS bytecode request.
+
+RAN: `/tmp/one-realapps-contrast-ios-services-bytecode-stable/api-results.json`
+retains passed AppInfo, Storage, SecureStore, Clipboard and Fonts plus observed
+native Haptics dispatch, Speech availability/permission, Updates metadata and
+LaunchScreen.hide. Notifications fails with `E_NOTIFICATIONS_SCHEDULE` and
+`scheduling the notification failed` after the UI asserts permission granted.
+This failure remains open; permission is not a sufficient explanation.
+
+RAN: `/tmp/one-realapps-contrast-ios-ui-centered.log` and its retained captures
+prove native Blur/Mask toggle dispatch, EdgeFade mount, Image load, Pager selection
+and return callbacks, Portal touch through the named PortalHost, safe-area/size-class
+metrics and ReservedRegions provider events. They do not prove adaptive rotation,
+pixel parity, physical haptics, microphone transcription or live OTA fetching.
+The first Pager-return failure capture placed the control under the fixed fixture
+menu. Centering the control before tapping preserved the Page zero assertion and
+made it pass. `/tmp/one-realapps-contrast-ios-menus-stable.log` proves native Menu,
+ContextMenu and Alert selection callbacks. Android Pager return/draft and composer
+IME deep proofs remain owned by p56058/r54227 and are not duplicated here.
+
+RAN: next native compilation moved to CI64 after removing completed, writer-free
+Android intermediates and old iOS intermediates on Studio, preserving APKs, app
+bundles, source and captures. Studio free space rose from 78 to 89 GiB. CI64's
+initial CocoaPods run failed under the remote shell's US-ASCII locale. Explicit
+UTF-8 environment rerun installed 109 pods in 64 seconds. Builds continue through
+`bun heavy`; no CoreSimulator service restart was used. Final template main merges,
+release artifact validation and full green matrix are still pending.
