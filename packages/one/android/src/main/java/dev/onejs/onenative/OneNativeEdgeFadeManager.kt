@@ -31,6 +31,7 @@ class OneNativeEdgeFadeManager :
     // batch, so coalescing here keeps per-setter code free of bookkeeping.
     override fun onAfterUpdateTransaction(view: OneNativeEdgeFadeView) {
         super.onAfterUpdateTransaction(view)
+        view.syncBackdrop()
         view.invalidate()
     }
 

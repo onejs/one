@@ -30,6 +30,11 @@ internal class OneNativeEdgeFadeShaderSlot {
   private var key: GradientKey? = null
   private var shader: Shader? = null
 
+  // software canvases (backdrop captures) cannot draw a RuntimeShader, so
+  // they take the LinearGradient from its own cache.
+  private var softwareKey: GradientKey? = null
+  private var softwareShader: Shader? = null
+
   // API 33+ AGSL instance — created once, then only uniforms are reuploaded.
   @Suppress("NewApi")
   private var rts: RuntimeShader? = null
@@ -41,8 +46,14 @@ internal class OneNativeEdgeFadeShaderSlot {
     size: Float,
     dim: Float,
     x0: Float, y0: Float, x1: Float, y1: Float,
+    hardware: Boolean,
   ): Shader {
     val k = GradientKey(curve, size, dim)
+    if (!hardware) {
+      if (softwareKey == k && softwareShader != null) return softwareShader!!
+      softwareKey = k
+      return buildFallback(x0, y0, x1, y1, curve).also { softwareShader = it }
+    }
     if (key == k && shader != null) return shader!!
     key = k
 
@@ -61,6 +72,8 @@ internal class OneNativeEdgeFadeShaderSlot {
   fun release() {
     key = null
     shader = null
+    softwareKey = null
+    softwareShader = null
     rts = null
   }
 
