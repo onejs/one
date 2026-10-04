@@ -1,0 +1,102 @@
+{
+  "package": "one",
+  "version": "2.0.0-0.canary.1791148136111",
+  "sourceBranch": "v2-beta",
+  "releaseSourceCommit": "3d5841af00b869bd93a3edf69671962acc53a3d9",
+  "releaseWorkflow": "https://github.com/onejs/one/actions/runs/37234826422",
+  "checksWorkflow": "https://github.com/onejs/one/actions/runs/37234826481",
+  "releaseCreatedAt": "2026-10-04T21:07:46Z",
+  "releaseCompletedAt": "2026-10-04T21:15:06Z",
+  "artifactFiles": [
+    {
+      "path": "dist/esm/platform/file-system/index.mjs",
+      "artifactSha256": "726a29cb6a30c41e978a7d34db9637cb3896789e1ca68b8906361b3110ff476c",
+      "localSha256": "726a29cb6a30c41e978a7d34db9637cb3896789e1ca68b8906361b3110ff476c",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/image-manipulator/index.mjs",
+      "artifactSha256": "c93c6d2a955bdf651f33d0b14f760926ee37fac667ba1fc20c4b278365461a34",
+      "localSha256": "c93c6d2a955bdf651f33d0b14f760926ee37fac667ba1fc20c4b278365461a34",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/motion/index.mjs",
+      "artifactSha256": "d554f2b0a8afd01d2ef054533c802052d6df66b0c4e5f623ec1a33b7603f9c88",
+      "localSha256": "d554f2b0a8afd01d2ef054533c802052d6df66b0c4e5f623ec1a33b7603f9c88",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/audio/index.mjs",
+      "artifactSha256": "f0eb7ec2a9fb692c472ddc61a7c75a4b56422efd54329f34e7e9142c3ac198bd",
+      "localSha256": "f0eb7ec2a9fb692c472ddc61a7c75a4b56422efd54329f34e7e9142c3ac198bd",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/speech/index.mjs",
+      "artifactSha256": "8c145e0a1769558265af0a82f7811c07f7f5ff6ee88aee58c192c1990fc37ac8",
+      "localSha256": "8c145e0a1769558265af0a82f7811c07f7f5ff6ee88aee58c192c1990fc37ac8",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/device/index.mjs",
+      "artifactSha256": "0247afc2c90d83645b44d230eebd1f733e4b44107ae09ca9f6622bba182c34bd",
+      "localSha256": "0247afc2c90d83645b44d230eebd1f733e4b44107ae09ca9f6622bba182c34bd",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/keep-awake/index.mjs",
+      "artifactSha256": "6c5c4710ca0a8b02bb43e34300f3523c991d7c2bbc0290b2546d3ecde993188b",
+      "localSha256": "6c5c4710ca0a8b02bb43e34300f3523c991d7c2bbc0290b2546d3ecde993188b",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/screen-orientation/index.mjs",
+      "artifactSha256": "99b0e0b67ac37077d0b9df1f42a7d13bc0a4f5e3cc5c76362f697b72eb3d8cfb",
+      "localSha256": "99b0e0b67ac37077d0b9df1f42a7d13bc0a4f5e3cc5c76362f697b72eb3d8cfb",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/share/index.mjs",
+      "artifactSha256": "fa9eacd22b03ae6a4b2bbd4bfe1667fdf8045e91490fe6deec0a687251fa4294",
+      "localSha256": "fa9eacd22b03ae6a4b2bbd4bfe1667fdf8045e91490fe6deec0a687251fa4294",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/contacts/index.mjs",
+      "artifactSha256": "593db3d3e5af77834ed42d2e22e476fba24bc34d8d4c9e2f9f8f761dd70418d4",
+      "localSha256": "593db3d3e5af77834ed42d2e22e476fba24bc34d8d4c9e2f9f8f761dd70418d4",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/location/index.mjs",
+      "artifactSha256": "4cd9ed868b558d99cef8757ebb3f160b25e471ae601d4f7c345ba9a87e245f24",
+      "localSha256": "4cd9ed868b558d99cef8757ebb3f160b25e471ae601d4f7c345ba9a87e245f24",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/print/index.mjs",
+      "artifactSha256": "5a99f5d50ff4a73570636423abdce87bc445e8f6ea0b6f01be0a3656fc66718f",
+      "localSha256": "5a99f5d50ff4a73570636423abdce87bc445e8f6ea0b6f01be0a3656fc66718f",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/effects/index.mjs",
+      "artifactSha256": "c83018c2f83a07e5f70bc3250c8d6ef90ba62b7236350eb4b973dc4edc6c435c",
+      "localSha256": "c83018c2f83a07e5f70bc3250c8d6ef90ba62b7236350eb4b973dc4edc6c435c",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/effects/Blur.mjs",
+      "artifactSha256": "ee7841ad61e5b0c51f0ac971973dd72acc44b6fa91d8962aefa7e1a42ccc6753",
+      "localSha256": "ee7841ad61e5b0c51f0ac971973dd72acc44b6fa91d8962aefa7e1a42ccc6753",
+      "matches": true
+    },
+    {
+      "path": "dist/esm/platform/effects/Mask.mjs",
+      "artifactSha256": "4430c93a117ad2de0b2e36401eff2b6942bff88c4971ac6784fe5c27ef4f393d",
+      "localSha256": "4430c93a117ad2de0b2e36401eff2b6942bff88c4971ac6784fe5c27ef4f393d",
+      "matches": true
+    }
+  ]
+}

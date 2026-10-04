@@ -97,3 +97,27 @@ timestamp, independently checked against getCurrentPosition, instead of guessing
 a unit conversion. Real-device WebKit geolocation timestamps remain unproven.
 
 No speed or physical-device claims are made.
+
+RAN: Release and Checks and Tests passed for landed source
+`3d5841af00b869bd93a3edf69671962acc53a3d9`. The automatic v2-beta canary
+`2.0.0-0.canary.1791148136111` records that exact `releaseSourceCommit`.
+TESTED: 15 published service/effect ESM files match the local One build byte
+for byte. SHA-256 values and workflow links are in `content-receipt.json`.
+The Release workflow ran from 21:07:46Z to 21:15:06Z, 7m20s.
+
+Repeat the exact artifact content check without installing it:
+
+```sh
+npm pack one@2.0.0-0.canary.1791148136111 --ignore-scripts
+tar -xzf one-2.0.0-0.canary.1791148136111.tgz
+python3 - <<'PYTHON'
+import hashlib, json, pathlib
+receipt = json.loads(pathlib.Path('tests/native-features/evidence/one-native-web/content-receipt.json').read_text())
+manifest = json.loads(pathlib.Path('package/package.json').read_text())
+assert manifest['releaseSourceCommit'] == receipt['releaseSourceCommit']
+assert manifest['version'] == receipt['version']
+for item in receipt['artifactFiles']:
+    data = pathlib.Path('package', item['path']).read_bytes()
+    assert hashlib.sha256(data).hexdigest() == item['artifactSha256'], item['path']
+PYTHON
+```

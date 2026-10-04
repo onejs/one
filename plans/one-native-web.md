@@ -39,3 +39,13 @@ The owner subsequently approved landing, as quoted below.
 Land the existing unified APIs and these Blur/Mask adapters on v2-beta. Broader
 One.UI coverage is outside this work. Keep main untouched and keep the current
 public API. The owner approval supersedes the unavailable manager review gate.
+
+## state at the 2026-10-04 stop
+
+- Landed `3d5841af00b869bd93a3edf69671962acc53a3d9` on `v2-beta`: existing unified browser APIs and the approved Blur/Mask adapters. Main and native source are untouched.
+- Preserved the final evidence and this stop record on `fix/one-unified-browser-apis`, in the clean worktree `~/.worktrees/one-one-native-web`. Earlier save points remain on `feat/one-native-web`.
+- TESTED: Chromium/WebKit probes with negative controls; 150 SSR/docs/effects tests, strict adapter TypeScript and One build passed. Release and Checks and Tests passed. Exact npm canary `2.0.0-0.canary.1791148136111` records the landed SHA; 15 platform/effect files match the local build byte for byte. Receipt: `tests/native-features/evidence/one-native-web/content-receipt.json`.
+- Exact next step: none for this approved scope. Further One work waits for Nate's direction. No broader One.UI coverage was added.
+- Open validation limits: physical sensors, live speech results, real share targets/contact picking and supported phone orientation locks remain unproven. Seeded browser boundaries and methods without equivalents are documented in the evidence README.
+- Nate's last direct instruction: "Ok fine. These are fine to land then. Just I didn’t want coverage of One.UI but these are ok"
+- Dev server stopped; browser contexts closed; CI watcher finished. No simulator or emulator was used.
