@@ -84,3 +84,14 @@ OS background tasks were outside the corrected computation scope. Existing iOS
 OS-task behavior was read, not runtime-tested. Android OS scheduling is a rank 6
 proposal. Metro and captured component/native state are explicitly excluded by
 the computation API doc. Next primitives are proposals only in rank 5 of the plan.
+
+TESTED retention correction: the real One hook was mounted in Chromium with a
+controlled executor producing one synthetic 16 MiB result. Before the fix, both
+React fibers retained the same output through five inactive commits despite null
+public result/current and disposal. The corrected hook keeps only phase/revision
+in React state; both output-bearing state references are absent while exact
+owner/result identity remains. The negative release assertion failed before the
+fix. The strengthened probe also passed latest revision, definition replacement,
+pending disposal/reactivation and stable-reader checks (six executions, three
+owners/disposals). This proves references, not heap collection or phone memory.
+Receipts are in `retention/`; rerun `bun tests/native-features/scripts/background-computation-retention-proof.mjs released`.
