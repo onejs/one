@@ -115,13 +115,16 @@ configurations. The complete canonical Home Rally factory seed now passes with
 actual factory source reader and published native build pipeline; Home Rally is
 a canonical example, not a newly published registry entry.
 
-The pushed Contrast merge candidate `b4b74932fd` combines current main
-`4763d9fde0` with the feature. Main's newer furniture means the proof derives its
-expected metrics from the current starter model while preserving the exact
-seven-field comparison and deadlines. Candidate bun check, bundler suite,
-custom-preview proof and complete factory build are running behind the shared
-heavy-work gate. Assembled adapter review remains assigned to m19584 before the
-Contrast main merge. Later incoming main changes must also be preserved.
+TESTED: pushed Contrast candidate `b5f14fddd` merges current main `4def3f39bd`
+with the published feature, preserving the new pure assetCollision extraction.
+Both actual preview runtimes match all seven fields for 57 objects and four
+checkpoints/legs; native heartbeat reaches 11. The complete canonical factory
+build passes 15 routes, 450 files, 14,457,330 bytes and a complete graph. Receipts:
+`contrast-preview/final-main/`. The intermediate candidate passed bun check and
+130 bundler tests / 348 assertions; compiler/tests/package graph are unchanged,
+and the merged allowlist check passes. The proof derives expected metrics from
+the current starter model without weakening comparison or deadlines. Assigned
+assembled adapter review remains with m19584 before the Contrast main merge.
 
 Proposed public shape (`one/background`):
 
