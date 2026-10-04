@@ -33,6 +33,13 @@ export default function Services() {
   const opened = useRef<string | null>(null)
   const appStates = useRef<string[]>([])
   const [fontLoaded, setFontLoaded] = useState(false)
+  const [coreComplete, setCoreComplete] = useState(false)
+  const [notificationPermission, setNotificationPermission] = useState('loading')
+  useEffect(() => {
+    One.Notifications.getPermissions().then((permission) =>
+      setNotificationPermission(permission.status)
+    )
+  }, [])
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
       if (opened.current) {
@@ -55,6 +62,7 @@ export default function Services() {
   async function core() {
     await run('One.Notifications', async () => {
       const permission = await One.Notifications.getPermissions()
+      assert(permission.granted, 'Schedule probe requires notification permission', permission)
       assert(
         ['granted', 'denied', 'undetermined'].includes(permission.status),
         'Notification permission status invalid',
@@ -201,6 +209,7 @@ export default function Services() {
       'observed',
       'installed update metadata; no reload or live update fetch in app shell'
     )
+    setCoreComplete(true)
   }
 
   return (
@@ -209,9 +218,18 @@ export default function Services() {
       testID="realapps-api-services"
     >
       <Results results={results} />
+      <Text>{`Notification permission: ${notificationPermission}`}</Text>
+      <Action id="notification-permission" onPress={() => {
+        One.Notifications.requestPermissions().then((permission) =>
+          setNotificationPermission(permission.status)
+        )
+      }}>
+        Request notification permission
+      </Action>
       <Action id="core" onPress={() => void core()}>
         Run isolated service checks
       </Action>
+      <Text>{coreComplete ? 'Core checks complete' : 'Core checks pending'}</Text>
       <Action
         id="font"
         onPress={() =>
