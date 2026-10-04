@@ -102,7 +102,11 @@ if (values.mode === 'home') {
 } else if (values.mode === 'services') {
   tap('realapps-open-api')
   tap('realapps-api-section-services')
+  visible('Notification permission: (undetermined|granted|denied)')
+  flow += '- runFlow:\n    when:\n      visible: "Notification permission: undetermined"\n    commands:\n      - tapOn:\n          id: realapps-api-notification-permission\n      - tapOn: "Allow"\n'
+  visible('Notification permission: granted')
   tap('realapps-api-core')
+  visible('Core checks complete')
   scrollTap('realapps-api-font')
   visible('Font loaded: true')
   scrollTap('realapps-api-launch-hide')
@@ -133,6 +137,7 @@ if (values.mode === 'home') {
 } else if (values.mode === 'ui') {
   tap('realapps-open-api')
   tap('realapps-api-section-ui')
+  flow += '- assertVisible:\n    id: realapps-api-ui\n'
   flow += '- takeScreenshot: native-blur-and-mask\n'
   scrollTap('realapps-api-blur-toggle')
   scrollTap('realapps-api-mask-toggle')

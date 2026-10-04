@@ -8,9 +8,7 @@ const fixtures = resolve(import.meta.dirname, '../fixtures')
 const app = join(root, 'app')
 const target = join(root, 'realapps-fixtures')
 mkdirSync(target, { recursive: true })
-const require = createRequire(
-  join(resolve(import.meta.dirname, '../../..'), 'package.json')
-)
+const require = createRequire(join(root, 'package.json'))
 // the routing fixture adds an optional package the product may not use.
 // pin its package graph to the same set as the One artifact under test.
 const appRequire = createRequire(join(root, 'package.json'))
