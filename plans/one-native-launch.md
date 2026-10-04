@@ -1,4 +1,4 @@
-<!-- plan: status=active owner=m19584 reviewed=2026-10-03 -->
+<!-- plan: status=active owner=s9760 reviewed=2026-10-04 -->
 
 # One native: launch
 
@@ -211,6 +211,35 @@ execution and process cold launch before claiming parity. A web OS scheduler
 contract needs its own product decision; a running page's computation worker
 cannot provide OS background-launch guarantees.
 
+## every native API on all three platforms (2026-10-04)
+
+Nate (2026-10-04): "We already have enough just making all the native APIs
+work!!!!!! Plus some unification." Existing signatures only; no API changes.
+
+RAN: read every root namespace entry under `packages/one/src/platform`. Of the
+27 root services, Android has Kotlin for FileSystem, ImageManipulator and
+Motion; the other 24 share `unavailable.ts` on Android and web. Web also lacks
+Motion, ImageManipulator (rejects), FileSystem (resolves without writing, a bad
+state), Speech.start, Blur and Mask (throw), Database (throws).
+
+| lane | platform | namespaces | owner |
+| --- | --- | --- | --- |
+| android-system | Android, platform SDK and AndroidX only | Device, KeepAwake, ScreenOrientation, ScreenCapture, Share, Print, QuickActions, AppIcon, Location, MapServices, LocalAuthentication, ProtectedStore | r58412 / one-native-android-system |
+| android-media | Android, platform SDK and AndroidX only | Audio, PhotoLibrary, Contacts, Calendar | r58416 / one-native-android-media |
+| web | browser standards | Motion, ImageManipulator, FileSystem (OPFS), Speech, Blur, Mask, Device, KeepAwake, ScreenOrientation, Share, Print, Location, Audio, Contacts where the browser has a picker | r58421 / one-native-web |
+| native blur | iOS, Android | EdgeFade blur, One.UI.Blur on react-native-blur's code | a22608 |
+
+Stay honestly unavailable, no work now: AppIntents, LiveActivities, Widgets and
+AppTracking (iOS concepts), BackgroundTasks (rank 6 proposal), and Purchases,
+StoreReview and DeviceAttestation (each needs a Google Play library), Database
+on web. A method with no platform equivalent keeps the existing unavailable
+contract for that method only.
+
+Each lane works in `~/.worktrees/one-<lane>` off `v2-beta`, proves every method
+it implements at runtime (Android 37 emulator or Chromium and WebKit), updates
+the doc page and `platform-support.mdx`, keeps the drift and SSR suites green,
+and lands on `v2-beta` after the manager's assembled review.
+
 ## worklets and Reanimated
 
 How One treats them today (RAN `grep` over `packages/`, read the files named):
@@ -343,6 +372,9 @@ Contrast main is on runtime 85 (f41dd86ee3) with One 1791109310273; the root `On
 
 | session | runner | item | review |
 | --- | --- | --- | --- |
-| s8223 / one-native-realapps | Sol high | rank 2, finished (aaed02fbf); reviewed by m19584 2026-10-04 | done |
+| r58412 / one-native-android-system | Sol high, pro-64 | android-system lane | manager reviews assembled diff |
+| r58416 / one-native-android-media | Sol high, pro-64 | android-media lane | manager reviews assembled diff |
+| r58421 / one-native-web | Sol high, pro-64 | web lane | manager reviews assembled diff |
+| a22608 / one-native-blur | Claude, air-24 | native blur on react-native-blur's code | manager reviews assembled diff |
 | one-native-bundle-speed (coordinator) | Sol high, pro-64 | bundle speed | manager reviews assembled One diff |
-| finished | s8223 rank 2, s8153 rank 1, s8225 rank 3, s8227 rank 4 (parked), s8377 rank 6, s8381 rank 5, s8395 stopped (Reanimated scope dropped) | | |
+| finished | s8223 rank 2 (reviewed), s8153 rank 1, s8225 rank 3, s8227 rank 4 (parked), s8377 rank 6, s8381 rank 5, s8395 stopped (Reanimated scope dropped) | | |
