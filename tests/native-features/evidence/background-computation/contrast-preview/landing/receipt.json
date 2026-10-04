@@ -1,0 +1,17 @@
+{
+  "label": "RAN",
+  "reviewedContrastSource": "8f3896a221d7d05a64b0bcc5cee47533fa807206",
+  "merge": "df23ed500042798a1cce20a3bf6bca43383644b3",
+  "baseMain": "0f815cbee7e15bd4f6bcc30aa03c158cfc6e57ec",
+  "branch": "merge/one-background-computation-land",
+  "review": "m19584 re-review passed",
+  "pin": "2.0.0-0.canary.1791084352120",
+  "goalsRowRemoved": true,
+  "adapterTests": {
+    "pass": 9,
+    "assertions": 21
+  },
+  "catalogDriftGate": "passed",
+  "courseReferenceComparison": "seven fields equal for57 objects",
+  "mainPush": "blocked before execution by One-scoped PreToolUse guard despite explicit Contrast target; no mutation; manager notified once"
+}
