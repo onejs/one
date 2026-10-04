@@ -99,6 +99,26 @@ Proposal:
    offset, Motion sensors and keyboard height as shared values, readable on
    the UI thread with no JS hop. This is new public API and waits for Nate.
 
+## per-frame values: decision
+
+Revises step 5 of the proposal (RAN: read `ui/Pager.native.tsx`, the Pager
+spec, `syncStore.ts`, and s8225's `plans/one-native-worklets-proposal.md` on
+`feat/native-blessed-packages`):
+
+- Reanimated already ships UI-thread keyboard height (`useAnimatedKeyboard`)
+  and sensors (`useAnimatedSensor`). One adds no `useKeyboardHeightValue` or
+  `useMotionValue`; those would be a second way to do the same thing.
+- One adds no SharedValue type of its own for animation. Reanimated's shared
+  value is the one an app animates with, so One's producers feed it.
+- The real gap is One's own components that emit per-frame events. Pager
+  sends `onPageScroll` as a Fabric direct event, but its ref is an imperative
+  handle, so `Animated.createAnimatedComponent` and Reanimated's worklet event
+  handlers can't find the view (GUESSED; first step proves it either way).
+  The work: Pager (and any other One view with continuous events) works with
+  Reanimated worklet event handlers on the UI thread, with no JS hop, proven
+  on iOS, Android and web. Any new prop (such as accepting a shared value
+  directly) is shared with Nate before landing.
+
 ## workers
 
 | session | runner | item | review |
