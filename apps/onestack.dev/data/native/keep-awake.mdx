@@ -17,4 +17,4 @@ await One.KeepAwake.setEnabled(false)
 
 The flag does not prevent a person from locking the device, keep the app running in the background, override all iOS power policy, or change screen brightness. iOS Simulator proves the native flag changes, while physical-device auto-lock behavior remains a device proof. The value returns to the system default when the app process ends.
 
-KeepAwake is implemented on iOS. Android and web validate arguments, `setEnabled()` does nothing, and `isEnabled()` resolves `false`.
+KeepAwake is implemented on iOS. Android and SSR validate arguments, `setEnabled()` does nothing, and `isEnabled()` resolves `false`. Web uses the Screen Wake Lock API. `setEnabled(true)` waits for the actual screen lock; absent support, permission refusal, or a hidden document rejects. `setEnabled(false)` releases it. `isEnabled()` reads the current sentinel, so browser release makes it false. A lock is not reacquired automatically when the page becomes visible.

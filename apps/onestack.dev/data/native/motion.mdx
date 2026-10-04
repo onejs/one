@@ -67,5 +67,18 @@ The iOS 27 simulator proof checks the real Core Motion availability flags,
 unavailable-stream errors, and input validation. Live values and sensor
 frequency need a physical-device proof.
 
-On web, availability reports all sensors as `false`. Listener registration validates
-its arguments and returns a remover that does nothing.
+On web, `DeviceMotionEvent` supplies acceleration and rotation rate, and
+`DeviceOrientationEvent` supplies roll, pitch, and yaw. Acceleration is converted
+to Core Motion's sign and gravity units; angular values use radians. Each
+subscription retains its own requested interval and remover. Device-motion
+fields are omitted when the browser does not provide them. Magnetometer readings
+are unavailable because these events do not expose magnetic field vectors.
+
+Browser availability starts false and becomes true only after observing finite
+readings. Calling `getAvailability()` starts observation without requesting
+permission. To request access on browsers with a motion permission prompt, call
+`addListener` from a user gesture; a refusal reaches `onError` as
+`E_MOTION_PERMISSION`. Event constructors alone do not prove hardware exists.
+Desktop browsers can expose constructors while delivering no readings. Browsers
+control the sampling rate and can suspend events in hidden pages. SSR reports
+all sensors false and retains inert listeners.

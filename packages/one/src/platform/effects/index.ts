@@ -1,6 +1,3 @@
-import type { ReactElement } from 'react'
-import type { BlurProps, MaskProps } from './types'
-
 // web entry. EdgeFade draws with css here; the Fabric specs stay in
 // index.native.ts so no web bundle resolves them. signatures stay identical
 // to the native entry because the published declarations are built from this
@@ -25,13 +22,8 @@ export type {
   MapProps,
 } from '../ui/Map'
 
-export function Blur(_props: BlurProps): ReactElement {
-  throw new Error('Blur requires a native build')
-}
-
-export function Mask(_props: MaskProps): ReactElement {
-  throw new Error('Mask requires a native build')
-}
+export { Blur } from './Blur'
+export { Mask } from './Mask'
 
 export { Portal, PortalHost } from '../ui/Portal'
 export type { PortalProps, PortalHostProps } from '../ui/portalTypes'

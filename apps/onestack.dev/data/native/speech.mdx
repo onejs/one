@@ -1,0 +1,25 @@
+---
+title: Speech
+description: Stream dictation through the platform speech recognizer
+---
+
+`One.Speech` provides `isAvailable()`, `getPermissions()`,
+`requestPermissions()`, and `start(options, onEvent)`. Pass an optional BCP-47
+`lang`; it defaults to the device language. The returned session has `stop()`
+and `abort()` methods.
+
+A session emits `start`, full `transcript` updates, then exactly one `end` or
+`error`. `stop()` finishes listening and retains the final transcript.
+`abort()` ends silently. Starting another session replaces the previous one;
+its callback and session handle no longer affect the new recognizer.
+
+On web, SpeechRecognition or webkitSpeechRecognition supplies dictation where
+present. `isAvailable()` reflects constructor availability; the browser's
+recognition service can still reject a session, including network failures.
+Permission methods check or request microphone access. A denied recognition
+service also marks permission denied. Browsers may prompt again when recognition
+starts and may require a user gesture. Recognition errors preserve the existing
+Speech error codes. Without a recognizer, permission reads report denied and
+`start` throws `Speech.start needs an iOS or Android build`. SSR has the same
+unavailable contract. Browser service availability and actual transcription
+still depend on the browser, network, language, and device.
