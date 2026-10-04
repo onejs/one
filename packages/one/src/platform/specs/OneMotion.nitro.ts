@@ -25,7 +25,7 @@ export interface MotionReading {
   attitude?: MotionVector
 }
 
-export interface OneMotion extends HybridObject<{ ios: 'swift' }> {
+export interface OneMotion extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getAvailability(): MotionAvailability
   addListener(
     sensor: MotionSensor,

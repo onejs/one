@@ -39,8 +39,8 @@ final class HybridOneMotion: HybridOneMotionSpec {
   ) throws -> () -> Void {
     let id = UUID()
     DispatchQueue.main.async {
-      guard intervalMs.isFinite, intervalMs >= 16, intervalMs <= 1000 else {
-        onError("E_MOTION_INPUT", "Motion.addListener: intervalMs must be between 16 and 1000")
+      guard intervalMs.isFinite, intervalMs >= 0, intervalMs <= 1000 else {
+        onError("E_MOTION_INPUT", "Motion.addListener: intervalMs must be between 0 and 1000")
         return
       }
       guard self.isAvailable(sensor) else {
@@ -88,6 +88,7 @@ final class HybridOneMotion: HybridOneMotionSpec {
       }
       return
     }
+    // core motion clamps a zero request to the sensor's hardware minimum.
     let interval = fastest / 1000
     switch sensor {
     case .accelerometer:
@@ -166,8 +167,9 @@ final class HybridOneMotion: HybridOneMotionSpec {
       let ids = self.listeners.compactMap { $0.value.sensor == sensor ? $0.key : nil }
       for id in ids {
         guard var listener = self.listeners[id] else { continue }
-        if let last = listener.lastTimestamp, timestampMs - last < listener.intervalMs - 1 { continue }
-        listener.lastTimestamp = timestampMs
+        let sensorTimeMs = timestamp * 1000
+        if let last = listener.lastTimestamp, sensorTimeMs - last < listener.intervalMs { continue }
+        listener.lastTimestamp = sensorTimeMs
         self.listeners[id] = listener
         listener.onReading(sample)
       }

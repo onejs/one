@@ -97,7 +97,8 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocation" }
     },
     "OneFileSystem": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneFileSystem" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneFileSystem" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneFileSystem" }
     },
     "OneAudio": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAudio" }
@@ -115,13 +116,15 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppIcon" }
     },
     "OneImageManipulator": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneImageManipulator" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneImageManipulator" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneImageManipulator" }
     },
     "OneDevice": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneDevice" }
     },
     "OneMotion": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneMotion" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneMotion" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneMotion" }
     },
     "OneBackgroundTasks": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneBackgroundTasks" }
