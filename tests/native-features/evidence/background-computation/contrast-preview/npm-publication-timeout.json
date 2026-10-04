@@ -1,0 +1,36 @@
+{
+  "label": "RAN",
+  "observedAt": "2026-10-04T03:19:36.003Z",
+  "package": "vxrn",
+  "tag": "2.0.0-0.canary.1791083423235",
+  "requestedWorkflow": "https://github.com/onejs/one/actions/runs/37169679013",
+  "sourcePrefixesChecked": [
+    "30bcc005b",
+    "a994a12e2",
+    "24d08ccd1",
+    "96cf9107f",
+    "74beba463",
+    "dff25a8f6"
+  ],
+  "matchingVersions": [],
+  "recent": [
+    {
+      "version": "2.0.0-0.canary.1791083423235",
+      "publishedAt": "2026-10-04T03:13:32.570Z",
+      "source": "600912e9df40e7e5ecbeceac38a142069873c5f9"
+    },
+    {
+      "version": "2.0.0-0.canary.1791082782289",
+      "publishedAt": "2026-10-04T03:03:02.571Z",
+      "source": "a4c1ed5a561604bdb05fed10540f8576591274ef"
+    },
+    {
+      "version": "2.0.0-0.canary.1791075465610",
+      "publishedAt": "2026-10-04T00:59:32.117Z",
+      "source": "fcd4558352f11bfa4d834ba89964d8251d4bf66f"
+    }
+  ],
+  "waitJob": "w-715d",
+  "waitExit": 124,
+  "meaning": "No matching branch source in the npm metadata returned; waiter did not observe required tarball content. Workflow failure cause is not claimed."
+}

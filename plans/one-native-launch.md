@@ -86,8 +86,7 @@ Shared compiler follow-up: One branch `feat/background-computation-preview` at
 Contrast passes 130 tests / 348 assertions. The emitted browser bundler is 96.6 KB gzip.
 RAN: real Rally passes through Contrast's generated Blob Worker and One's production
 Vite Worker. The real Rally hook also passes on the custom native preview with a named worklet Worker, exact seven-field comparison and heartbeat7. Evidence is retained under `tests/native-features/evidence/background-computation/contrast-preview/`. The complete canonical Home Rally factory seed build currently fails on the exact branch `contrast-native` source artifact returning404 from the public compile CDN; its negative receipt is retained beside the passing preview proofs. The branch
-canary is publishing via https://github.com/onejs/one/actions/runs/37169679013; the manager
-owns CI. Contrast main waits for verified npm contents, a matching family pin and both
+canary dispatch https://github.com/onejs/one/actions/runs/37169679013 has not produced the required published content: detached waiter `w-715d` expired after45m. RAN: npm metadata has no release sourced from this branch, and the three checked canaries carry other source commits. The receipt is `contrast-preview/npm-publication-timeout.json`; no workflow failure cause is claimed. The manager owns CI and is being asked to unblock this release. Contrast main waits for verified npm contents, a matching family pin and both
 compile catalogs. Nate directly approved the shared custom-preview item (`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`). Publication and factory-build checks remain pending. Assembled follow-up review remains with m19584.
 
 Proposed public shape (`one/background`):
