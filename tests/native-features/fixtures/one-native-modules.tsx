@@ -37,7 +37,7 @@ async function fileSystem() {
   const fs = One.iOS.FileSystem
   const directories = fs.getDirectories()
   for (const uri of Object.values(directories))
-    check(uri.startsWith('file:') && uri.endsWith('/'), 'directory URI')
+    check(uri.startsWith('file://') && uri.endsWith('/'), `directory URI: ${uri}`)
   const directory = new URL(`one-modules-${Date.now()}/`, directories.cache).href
   const note = new URL('note ü.txt', directory).href
   const binary = new URL('bytes.dat', directory).href
@@ -155,6 +155,7 @@ async function images() {
     height: number
   ) {
     const result = await One.iOS.ImageManipulator.transform(uri, options)
+    check(result.uri.startsWith('file://'), `${name} output URI`)
     output.push(result.uri)
     const decoded = await size(result.uri)
     check(

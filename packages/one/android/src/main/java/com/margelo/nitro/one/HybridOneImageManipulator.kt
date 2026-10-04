@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.net.Uri
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
 import java.io.File
@@ -100,7 +101,7 @@ class HybridOneImageManipulator : HybridOneImageManipulatorSpec() {
                         (quality * 100).roundToInt(), stream)) throw problem("ENCODE", "encoding failed")
                 }
             } catch (error: Exception) { output.delete(); throw error }
-            return ImageTransformResult(output.toURI().toString(), image.width.toDouble(), image.height.toDouble(), output.length().toDouble())
+            return ImageTransformResult(Uri.fromFile(output).toString(), image.width.toDouble(), image.height.toDouble(), output.length().toDouble())
         } finally { image.recycle() }
     }
 

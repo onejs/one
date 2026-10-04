@@ -105,6 +105,31 @@ try {
   rejected = true
 }
 assert(rejected, 'counterclockwise negative control must fail')
+if (runtime.platform === 'android') {
+  const expected: Record<string, number[]> = {
+    accelerometer: [0, 0, -1],
+    gyroscope: [0, 0, 0.25],
+    magnetometer: [25, 0, -30],
+  }
+  for (const [sensor, vector] of Object.entries(expected)) {
+    assert.equal(runtime.motion.availability[sensor], true, sensor)
+    for (const reading of runtime.motion.streams[sensor].samples) {
+      for (const [index, axis] of ['x', 'y', 'z'].entries()) {
+        assert(
+          Math.abs(reading.value[axis] - vector[index]) < 0.001,
+          `${sensor}.${axis}: expected ${vector[index]}, got ${reading.value[axis]}`
+        )
+      }
+    }
+  }
+  assert.equal(runtime.motion.availability.deviceMotion, true)
+  for (const reading of runtime.motion.streams.deviceMotion.samples) {
+    assert(
+      Math.abs(Math.hypot(...(Object.values(reading.gravity) as number[])) - 1) < 0.02,
+      'fused gravity uses g'
+    )
+  }
+}
 writeFileSync(
   resolve(directory, 'pixels.json'),
   JSON.stringify(

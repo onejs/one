@@ -1,5 +1,6 @@
 package com.margelo.nitro.one
 
+import android.net.Uri
 import android.system.ErrnoException
 import android.system.Os
 import android.system.OsConstants
@@ -28,13 +29,13 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
             if (error.errno != OsConstants.ENOENT && error.errno != OsConstants.ENOTDIR) throw error
             null
         }
-        FileInfo(file.toURI().toString(), stat != null,
+        FileInfo(Uri.fromFile(file).toString(), stat != null,
             stat != null && OsConstants.S_ISDIR(stat.st_mode),
             stat?.st_size?.toDouble(), if (stat != null) file.lastModified().toDouble() else null)
     }
 
     override fun readDirectory(uri: String): Promise<Array<FileEntry>> = query("readDirectory") {
-        children(file(uri)).map { FileEntry(it.name, it.toURI().toString(), it.isDirectory) }
+        children(file(uri)).map { FileEntry(it.name, Uri.fromFile(it).toString(), it.isDirectory) }
             .sortedBy { it.name }.toTypedArray()
     }
 
@@ -149,7 +150,7 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
         return target
     }
 
-    private fun directoryURI(file: File) = file.toURI().toString().trimEnd('/') + "/"
+    private fun directoryURI(file: File) = Uri.fromFile(file).toString().trimEnd('/') + "/"
 
     private fun <T> query(verb: String, work: () -> T): Promise<T> {
         val promise = Promise<T>()
