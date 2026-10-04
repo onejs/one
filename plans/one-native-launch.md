@@ -124,7 +124,13 @@ build passes 15 routes, 450 files, 14,457,330 bytes and a complete graph. Receip
 130 bundler tests / 348 assertions; compiler/tests/package graph are unchanged,
 and the merged allowlist check passes. The proof derives expected metrics from
 the current starter model without weakening comparison or deadlines. Assigned
-assembled adapter review remains with m19584 before the Contrast main merge.
+assembled adapter review requested two changes before Contrast main: preserve
+ordinary resolver defaults and retain Blob URLs through Worker startup. Follow-up
+8f3896a221 scopes browser/import conditions to the computation boundary and
+releases URLs on first message/error/disposal, with constructor cleanup. RAN:
+nine tests pass; both restored before behaviors fail negative controls. Actual
+WebKit and repeat runtime/factory/fast gates are running before re-review.
+Evidence is under contrast-preview/review-fixes/.
 
 Proposed public shape (`one/background`):
 
