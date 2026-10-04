@@ -116,6 +116,8 @@ export const Pager = forwardRef<PagerRef, PagerProps>(function Pager(
     if (!animated) settle()
   }
   useImperativeHandle(ref, () => ({
+    // Reanimated's createAnimatedComponent animates this element instead of the handle
+    getAnimatableRef: () => container.current,
     setPage: (index) => goTo(index, true),
     setPageWithoutAnimation: (index) => goTo(index, false),
     setScrollEnabled: setEnabled,
