@@ -62,6 +62,76 @@ proof exists three times.
   Compose surface is proved in r53511's lane; this lane only adds One API
   behavior tests that are platform-neutral.
 
+## rank 5: unified background computation
+
+Manager correction: Contrast needed CPU computation, not OS background scheduling.
+`contrast-native/src/background` already owned latest-revision semantics, but Rally
+still selected executors with `.native.ts` and a hand-written worker entry.
+
+Implementation branches: One `feat/background-computation` off `v2-beta`, Contrast
+`feat/one-background-computation` off `main`. Nate approved the API and migration via share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187 on 2026-10-03. Assembled review: m19584.
+
+TESTED: real Rally hook on iOS 27, Android 37, Chromium development and production. Contract probes proved worker/worklet runtime identity, latest revision 3, current errors, disposal and hook freshness. SSR creates no worker. Retained outcomes, screenshots, exact scope and repeat commands: `tests/native-features/evidence/background-computation/README.md`.
+
+One source commit `f8e56cdc`; Contrast migration `fe0484e86f`. The One change is based on v2-beta `5808e174d`, including the explicit Android device selector fix. Main is untouched.
+
+Proposed public shape (`one/background`):
+
+```ts
+import { defineBackgroundComputation, useBackgroundComputation } from 'one/background'
+import { calculate } from './calculate'
+export const computation = defineBackgroundComputation(calculate)
+// in a component, with memoized input:
+const { result, getCurrent } = useBackgroundComputation(computation, input)
+```
+
+RAN: surveyed all Contrast template app source, `templates/contrast-mobile`, One
+`examples/` and `packages/create-vxrn/src/templates.ts` for `Platform.OS`, platform
+filename variants, and Expo/React Native package imports. The included Basic
+starter is `examples/one-basic`; Takeout Free is an external repo and its local
+checkout is absent, so its app source is not claimed surveyed. RAN: the Basic
+starter branch `origin/v2-beta-starter` (`bd6044cc3`) has no diff from this source
+under `examples/one-basic`, so the included starter survey covers the scaffold. Evidence describes
+Contrast source at `3eb55ee237` and One at `69591350d`, before this branch's edits.
+Generated icon files and intentional Apple-only chrome were excluded from ranking.
+
+The next candidates are proposals or migrations only. None is implemented here.
+INFERRED priority uses observed duplication, reuse across apps and implementation
+cost, rather than a package-import count alone.
+
+| priority | next unified job | source evidence and current limit | cost and next proof |
+| --- | --- | --- | --- |
+| 1 | persistent key/value cache provider | `contrast-mobile/data/zeroKvStore.ts` chooses IndexedDB; `.native.ts` imports Zero's op-sqlite provider. `One.Database` currently throws on web. App restart and cache recovery also split in `data/zeroRecovery*`. | Medium: define persistence, transaction and reset semantics independent of Zero; prove cold reopen and atomic reset on all three platforms. Keep Zero's own protocol in its adapter. |
+| 2 | speech transcription | `contrast-mobile/interface/chat/useComposerSpeech.ts` only provides conformance behavior and an unavailable message; `.native.ts` uses `systemSpeechEngine.native.ts` over `One.Speech`. One's web `Speech.start` throws. | High: browser support and permission policy differ; proposal needs a deliberate unavailable contract and event/session ownership, then real microphone proof. |
+| 3 | app restart | `contrast-mobile/features/ota/appRestart.ts` reloads the page; `.native.ts` chooses One.Updates versus DevSettings. Called by cache/diagnostic/OTA workflows. | Small to medium: one explicit restart operation covering development and staged OTA, with unsaved work semantics. Prove a boot marker changes exactly once without duplicate listeners. |
+| 4 | material blur | `contrast-mobile/interface/effects/BlurView/BlurView.tsx` duplicates intensity/tint CSS mapping; `.native.ts` wraps `One.UI.Blur`. Flights carries the same split. `interface/effects/GradientBlurView.tsx` also branches for Android. | Medium: establish web material rendering and shared prop meanings; compare all three backdrops, then migrate wrappers. Subjective visuals require Nate. |
+| 5 | alpha mask and fade | `templates/app/interface/effects/MaskedFade/MaskedFade.tsx` uses CSS maskImage; `.native.ts` constructs One.UI.Mask with a gradient view. App-empty and flights repeat it. | Medium: shared alpha-mask source and clipping/size contract, with a background-visible negative control. Keep app composition out of One. |
+| 6 | document selection, migration to existing One API | `contrast-mobile/helpers/media/documentPicker.ts` warns and returns null; `.native.ts` uses One.DocumentPicker. One's web implementation already opens a file input and returns blob URLs. | Small: existing API migration, no new primitive needed. Prove cancel and byte reads, and own blob URL lifetime. |
+| 7 | GPU canvas and pointer input | `templates/game/features/scene/SceneCanvas.tsx` uses R3F Canvas; `.native.ts` owns RN WebGPU layout, a canvas shim and PanResponder-to-pointer bridge. Same rendering job, large app-owned adapter. | High: consider a blessed integration before adding public API; prove picking, capture, resize and disposal under real GPU load. |
+
+One Basic's only `Platform.OS` branch is the document shell in `app/_layout.tsx`;
+its native tabs and widget demo deliberately expose native UI. Testflight's
+`HomeLayout.native.tsx` and split/toolbar routes deliberately demonstrate Apple
+chrome. These are not evidence that computation, storage or other shared jobs
+need separate app implementations. Platform-specific auth callback URLs,
+telemetry metadata and Apple sign-in visibility likewise describe real platform
+policy and are not ranked as a primitive gap.
+
+## rank 6: OS background task proposal
+
+RAN: `One.iOS.BackgroundTasks` declares an iOS-only Nitro spec and Swift
+registration in `nitro.json`; its native wrapper throws on Android. Web methods
+also throw `BackgroundTasks requires an iOS native build`. There is no Android
+WorkManager implementation to force-run. Keep the existing iOS scope honest.
+
+Android support is a new capability proposal: task identifiers/kinds in prebuild,
+WorkManager dependency and manifest registration, headless host startup, native
+listener delivery and completion/expiration ownership, constraints and pending
+queries, plus a common public namespace. Prove actual `adb shell cmd jobscheduler`
+execution and process cold launch before claiming parity. A web OS scheduler
+contract needs its own product decision; a running page's computation worker
+cannot provide OS background-launch guarantees.
+
 ## worklets and Reanimated
 
 How One treats them today (RAN `grep` over `packages/`, read the files named):

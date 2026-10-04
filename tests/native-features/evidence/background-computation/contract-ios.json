@@ -1,0 +1,35 @@
+{
+  "schema": "xcodebuildmcp.output.capture-result",
+  "schemaVersion": "2",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED"
+    },
+    "artifacts": {
+      "simulatorId": "C75DA2BC-721A-491D-A8C4-65943DA33F67"
+    },
+    "capture": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1262zu2",
+      "seq": 3,
+      "count": 12,
+      "targets": [],
+      "scroll": [],
+      "text": [
+        "e9|text|text|latest=3 value=6 runtime=worklet error=handled dispose=silent||background-status",
+        "e10|text|text|latest=3 value=6 runtime=worklet error=handled dispose=silent||",
+        "e11|text|text|hook=14 current=true||background-hook",
+        "e12|text|text|hook=14 current=true||"
+      ],
+      "udid": "C75DA2BC-721A-491D-A8C4-65943DA33F67"
+    }
+  },
+  "nextSteps": [
+    "Refresh after layout changes: xcodebuildmcp simulator snapshot-ui --simulator-id C75DA2BC-721A-491D-A8C4-65943DA33F67",
+    "Wait for UI to settle: xcodebuildmcp ui-automation wait-for-ui --simulator-id C75DA2BC-721A-491D-A8C4-65943DA33F67 --predicate settled",
+    "Take screenshot for verification: xcodebuildmcp simulator screenshot --simulator-id C75DA2BC-721A-491D-A8C4-65943DA33F67"
+  ]
+}
