@@ -312,6 +312,10 @@ function step(
   return !failed
 }
 async function web(name: string, app: AppResult) {
+  if (!step(name, app, 'web-browser-install', [
+    'bun', join(dirname(require.resolve('playwright/package.json')), 'cli.js'),
+    'install', 'chromium',
+  ], repo)) return
   if (
     values.phase !== 'web-runtime' &&
     !step(
@@ -821,6 +825,8 @@ for (const name of appNames) {
                 app.cwd!,
                 '--mode',
                 mode,
+                '--apis',
+                covered.join(','),
                 '--out',
                 evidence,
               ],
