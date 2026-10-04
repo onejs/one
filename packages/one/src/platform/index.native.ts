@@ -49,16 +49,16 @@ import * as Controls from './generated/Controls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
 import { Compose } from './compose'
 import * as UI from './effects'
-import { Widgets, LiveActivities, WidgetUI } from './widgets/index.native'
+import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
 
 export * from './extras'
 export { Storage } from './storage/index.native'
-export { KeepAwake } from './keep-awake/index.native'
-export { Print } from './print/index.native'
-export { StoreReview } from './store-review/index.native'
-export { QuickActions } from './quick-actions/index.native'
-export type { QuickActionItem } from './quick-actions/index.native'
-export type { PrintResult } from './print/index.native'
+export { KeepAwake } from './keep-awake/index'
+export { Print } from './print/index'
+export { StoreReview } from './store-review/index'
+export { QuickActions } from './quick-actions/index'
+export type { QuickActionItem } from './quick-actions/index'
+export type { PrintResult } from './print/index'
 // the package root keeps the navigation toolbar's props under the plain name; the SwiftUI
 // toolbar item's props are the generated ToolbarItemProps, reachable through Swift.ToolbarItem.
 export type { ToolbarHostProps, ToolbarItemProps } from './extras'
@@ -167,17 +167,17 @@ export type * from './types'
 export type * from './composeTypes'
 export { Haptics } from './haptics/index.native'
 export { LaunchScreen } from './launchScreen/index.native'
-export { LocalAuthentication } from './local-authentication/index.native'
-export type { LocalAuthenticationStatus } from './local-authentication/index.native'
-export { ProtectedStore } from './protected-store/index.native'
-export type { ProtectedStorePolicy } from './protected-store/index.native'
-export { Location } from './location/index.native'
+export { LocalAuthentication } from './local-authentication/index'
+export type { LocalAuthenticationStatus } from './local-authentication/index'
+export { ProtectedStore } from './protected-store/index'
+export type { ProtectedStorePolicy } from './protected-store/index'
+export { Location } from './location/index'
 export type {
   LocationPermissionStatus,
   LocationPosition,
   LocationPlace,
   LocationWatchError,
-} from './location/index.native'
+} from './location/index'
 export { FileSystem } from './file-system/index.native'
 export type {
   FileDirectories,
@@ -185,7 +185,7 @@ export type {
   FileEntry,
   FileInfo,
 } from './file-system/index.native'
-export { Audio } from './audio/index.native'
+export { Audio } from './audio/index'
 export { CameraView } from './camera/index.native'
 export type {
   CameraCode,
@@ -201,13 +201,13 @@ export type {
   AudioRecordingResult,
   AudioRecordingState,
   AudioRecordingStatus,
-} from './audio/index.native'
-export { Share } from './share/index.native'
+} from './audio/index'
+export { Share } from './share/index'
 export { Open } from './open/index.native'
 export type { OpenShareContent } from './open/index.native'
-export type { ShareItem, ShareItemType, ShareResult } from './share/index.native'
-export { PhotoLibrary } from './photo-library/index.native'
-export { MapServices } from './map-services/index.native'
+export type { ShareItem, ShareItemType, ShareResult } from './share/index'
+export { PhotoLibrary } from './photo-library/index'
+export { MapServices } from './map-services/index'
 export type {
   MapCoordinate,
   MapPlace,
@@ -215,27 +215,27 @@ export type {
   MapRouteStep,
   MapSuggestion,
   MapTransport,
-} from './map-services/index.native'
+} from './map-services/index'
 export type {
   PhotoLibraryAsset,
   PhotoLibraryAssetPage,
   PhotoLibraryMediaType,
   PhotoLibraryPermissionStatus,
-} from './photo-library/index.native'
-export { AppTracking } from './app-tracking/index.native'
-export { AppIcon } from './app-icon/index.native'
-export type { AppTrackingPermissionStatus } from './app-tracking/index.native'
-export { ScreenOrientation } from './screen-orientation/index.native'
+} from './photo-library/index'
+export { AppTracking } from './app-tracking/index'
+export { AppIcon } from './app-icon/index'
+export type { AppTrackingPermissionStatus } from './app-tracking/index'
+export { ScreenOrientation } from './screen-orientation/index'
 export type {
   ScreenOrientationLock,
   ScreenOrientationValue,
-} from './screen-orientation/index.native'
-export { ScreenCapture } from './screen-capture/index.native'
+} from './screen-orientation/index'
+export { ScreenCapture } from './screen-capture/index'
 export type {
   ScreenCaptureResult,
   ScreenCaptureState,
-} from './screen-capture/index.native'
-export { Purchases } from './purchases/index.native'
+} from './screen-capture/index'
+export { Purchases } from './purchases/index'
 export type {
   PurchaseProduct,
   PurchaseProductType,
@@ -244,7 +244,7 @@ export type {
   PurchaseTransaction,
   PurchaseUpdate,
   PurchaseUpdateStatus,
-} from './purchases/index.native'
+} from './purchases/index'
 export { ImageManipulator } from './image-manipulator/index.native'
 export type {
   ImageCrop,
@@ -253,8 +253,8 @@ export type {
   ImageManipulatorOptions,
   ImageTransformResult,
 } from './image-manipulator/index.native'
-export { Device } from './device/index.native'
-export type { DeviceInfo, LocalizationInfo } from './device/index.native'
+export { Device } from './device/index'
+export type { DeviceInfo, LocalizationInfo } from './device/index'
 export { Motion } from './motion/index.native'
 export type {
   MotionAvailability,
@@ -262,21 +262,21 @@ export type {
   MotionSensor,
   MotionVector,
 } from './motion/index.native'
-export { BackgroundTasks } from './background-tasks/index.native'
-export { AppIntents } from './app-intents/index.native'
-export type { AppIntentHandler } from './app-intents/index.native'
+export { BackgroundTasks } from './background-tasks/index'
+export { AppIntents } from './app-intents/index'
+export type { AppIntentHandler } from './app-intents/index'
 export type {
   BackgroundTaskContext,
   BackgroundTaskHandler,
-} from './background-tasks/index.native'
+} from './background-tasks/index'
 export type {
   BackgroundTaskInvocation,
   BackgroundTaskKind,
   PendingBackgroundTask,
-} from './background-tasks/index.native'
-export { DeviceAttestation } from './device-attestation/index.native'
-export type { DeviceAttestationAvailability } from './device-attestation/index.native'
-export { Contacts } from './contacts/index.native'
+} from './background-tasks/index'
+export { DeviceAttestation } from './device-attestation/index'
+export type { DeviceAttestationAvailability } from './device-attestation/index'
+export { Contacts } from './contacts/index'
 export type {
   ContactChanges,
   ContactInfo,
@@ -284,8 +284,8 @@ export type {
   ContactPostalAddress,
   ContactPostalAddressInput,
   ContactsPermissionStatus,
-} from './contacts/index.native'
-export { Calendar } from './calendar/index.native'
+} from './contacts/index'
+export { Calendar } from './calendar/index'
 export type {
   CalendarEvent,
   CalendarEventChanges,
@@ -293,7 +293,7 @@ export type {
   CalendarPermissionStatus,
   ReminderInfo,
   ReminderInput,
-} from './calendar/index.native'
+} from './calendar/index'
 export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export type {
   LaunchScreenApi,

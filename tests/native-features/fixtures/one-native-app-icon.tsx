@@ -13,7 +13,7 @@ export default function OneNativeAppIcon() {
   const [result, setResult] = useState('idle')
 
   useEffect(() => {
-    Promise.all([One.iOS.AppIcon.isSupported(), One.iOS.AppIcon.getCurrentName()])
+    Promise.all([One.AppIcon.isSupported(), One.AppIcon.getCurrentName()])
       .then(([supported, name]) => {
         setSupport(String(supported))
         setCurrent(name ?? 'primary')
@@ -24,8 +24,8 @@ export default function OneNativeAppIcon() {
   async function select(name?: string) {
     setResult(name ? 'changing' : 'restoring')
     try {
-      await One.iOS.AppIcon.setIcon(name)
-      const selected = await One.iOS.AppIcon.getCurrentName()
+      await One.AppIcon.setIcon(name)
+      const selected = await One.AppIcon.getCurrentName()
       setCurrent(selected ?? 'primary')
       setResult(selected === name ? 'changed' : 'mismatch')
     } catch (error) {
@@ -35,7 +35,7 @@ export default function OneNativeAppIcon() {
 
   async function invalid() {
     try {
-      await One.iOS.AppIcon.setIcon('MissingIcon')
+      await One.AppIcon.setIcon('MissingIcon')
       setResult('invalid-accepted')
     } catch (error) {
       setResult(`invalid:${code(error)}`)

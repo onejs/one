@@ -3,7 +3,7 @@ title: Contacts
 description: Request access, find contacts, and create, edit, or delete them on iOS
 ---
 
-`One.iOS.Contacts` uses the iOS Contacts store. Set a purpose string before
+`One.Contacts` uses the iOS Contacts store. Set a purpose string before
 prebuild so the system can show the permission prompt:
 
 ```ts
@@ -16,9 +16,9 @@ Both paths set `NSContactsUsageDescription`.
 ```tsx
 import { One } from 'one'
 
-const permission = await One.iOS.Contacts.requestPermission()
+const permission = await One.Contacts.requestPermission()
 if (permission === 'authorized' || permission === 'limited') {
-  const matches = await One.iOS.Contacts.search('Ada', 20)
+  const matches = await One.Contacts.search('Ada', 20)
   console.log(matches.map(({ givenName, familyName }) => `${givenName} ${familyName}`))
 }
 ```

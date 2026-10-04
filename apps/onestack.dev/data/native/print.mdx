@@ -3,13 +3,13 @@ title: Print
 description: Present the iOS system print sheet for a local PDF
 ---
 
-`One.iOS.Print` presents the iOS print sheet for a PDF already stored in the app's readable local files. It does not generate PDF content or download remote URLs. Use [FileSystem](/native/file-system) to write a PDF or [DocumentPicker](/native/document-picker) to copy one into the app first.
+`One.Print` presents the iOS print sheet for a PDF already stored in the app's readable local files. It does not generate PDF content or download remote URLs. Use [FileSystem](/native/file-system) to write a PDF or [DocumentPicker](/native/document-picker) to copy one into the app first.
 
 ```tsx
 import { One } from 'one'
 
-if (await One.iOS.Print.isAvailable()) {
-  const result = await One.iOS.Print.printPdf(fileUri, 'Invoice')
+if (await One.Print.isAvailable()) {
+  const result = await One.Print.printPdf(fileUri, 'Invoice')
   if (result.completed) {
     // the system print sheet completed its request
   }

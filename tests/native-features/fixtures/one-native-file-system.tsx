@@ -10,7 +10,7 @@ export default function OneNativeFileSystem() {
     setStatus('running')
     let stage = 'directories'
     try {
-      const fs = One.iOS.FileSystem
+      const fs = One.FileSystem
       const directories = fs.getDirectories()
       stage = 'path'
       const dir = new URL(`one-native-file-system-${Date.now()}/`, directories.cache).href

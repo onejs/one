@@ -3,7 +3,7 @@ title: App Intents and Shortcuts
 description: Expose fixed iOS actions to Shortcuts and handle them in native JavaScript.
 ---
 
-`One.iOS.AppIntents` exposes actions declared at build time to Apple's Shortcuts app. Each action accepts an optional string and returns a string. Add the action metadata to `native.app.ios.appIntents.actions`, then define its JavaScript handler in a native `setupFile` so a cold Shortcuts launch can start the existing React host and reach it.
+`One.AppIntents` exposes actions declared at build time to Apple's Shortcuts app. Each action accepts an optional string and returns a string. Add the action metadata to `native.app.ios.appIntents.actions`, then define its JavaScript handler in a native `setupFile` so a cold Shortcuts launch can start the existing React host and reach it.
 
 ```tsx
 // vite.config.ts
@@ -32,7 +32,7 @@ one({
 // app-intents-setup.ts
 import { One } from 'one'
 
-One.iOS.AppIntents.defineAction('com.example.myapp.echo', async (text) => {
+One.AppIntents.defineAction('com.example.myapp.echo', async (text) => {
   return text ?? ''
 })
 ```

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
-type MotionSensor = Parameters<typeof One.iOS.Motion.addListener>[0]
+type MotionSensor = Parameters<typeof One.Motion.addListener>[0]
 const sensors: MotionSensor[] = ['accelerometer', 'gyroscope', 'magnetometer', 'deviceMotion']
 
 export default function OneNativeMotion() {
@@ -18,13 +18,13 @@ export default function OneNativeMotion() {
   }, [])
 
   const read = () => {
-    const value = One.iOS.Motion.getAvailability()
+    const value = One.Motion.getAvailability()
     setAvailability(`A=${value.accelerometer} G=${value.gyroscope} M=${value.magnetometer} D=${value.deviceMotion}`)
   }
 
   const start = () => {
     removers.current.forEach((remove) => remove())
-    removers.current = sensors.map((sensor) => One.iOS.Motion.addListener(
+    removers.current = sensors.map((sensor) => One.Motion.addListener(
       sensor, 100,
       (reading) => setReadings((current) => [...current, `${reading.sensor}:${reading.timestampMs > 1_000_000_000_000}`]),
       (code) => setErrors((current) => [...current, `${sensor}:${code}`])
@@ -33,7 +33,7 @@ export default function OneNativeMotion() {
 
   const checkInvalid = () => {
     try {
-      One.iOS.Motion.addListener('accelerometer', -1, () => {}, () => {})
+      One.Motion.addListener('accelerometer', -1, () => {}, () => {})
       setInvalid('accepted')
     } catch (error) {
       setInvalid(error instanceof RangeError ? 'RangeError' : String(error))

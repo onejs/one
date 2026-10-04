@@ -16,8 +16,8 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   Database: 'Android suite missing',
-  'iOS.Widgets': 'needs a widget extension target in the fixture app',
-  'iOS.LiveActivities': 'needs a widget extension target in the fixture app',
+  'Widgets': 'needs a widget extension target in the fixture app',
+  'LiveActivities': 'needs a widget extension target in the fixture app',
   'iOS.WidgetUI': 'needs a widget extension target in the fixture app',
   'iOS.ZoomTransitionAlignmentRectDetector': 'no fixture or suite',
   'iOS.ZoomTransitionEnabler': 'on zoom-detail, which the zoom e2e reaches only by tap',
@@ -56,9 +56,9 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
-  'iOS.BackgroundTasks': 'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device',
-  'iOS.DeviceAttestation': 'iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device',
-  'iOS.Motion': 'iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run',
+  'BackgroundTasks': 'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device',
+  'DeviceAttestation': 'iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device',
+  'Motion': 'iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run',
   'iOS.Menu': 'primaryAction short tap, long-press menu, item callback, disabled behavior, plain Menu tap, and Picker selection with native checkmarks in Menu and ContextMenu proven on iOS 27; context previews unbound',
   'iOS.ArrangementView': 'closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved',
   'iOS.EditButton': 'Edit/Done label cycle proven; List edit state unobserved and row actions unavailable',

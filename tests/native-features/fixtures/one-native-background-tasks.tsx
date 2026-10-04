@@ -21,7 +21,7 @@ export default function OneNativeBackgroundTasks() {
 
   const runSchedule = async () => {
     try {
-      const api = One.iOS.BackgroundTasks
+      const api = One.BackgroundTasks
       const earliest = Date.now() + 60_000
       const refresh = await codeOf(api.submit(refreshId, { earliestBeginDateMs: earliest }))
       const refreshPending = (await api.getPending()).some((task) => task.identifier === refreshId)

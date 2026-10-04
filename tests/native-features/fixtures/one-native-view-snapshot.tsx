@@ -23,7 +23,7 @@ export default function OneNativeViewSnapshot() {
     try {
       const tag = findNodeHandle(targetRef.current)
       if (tag == null) throw new Error('target has no native handle')
-      const image = await One.iOS.ScreenCapture.captureView(tag)
+      const image = await One.ScreenCapture.captureView(tag)
       setViewTag(tag)
       setUri(image.uri)
       setDimensions(`${image.width}x${image.height}`)
@@ -37,15 +37,15 @@ export default function OneNativeViewSnapshot() {
   const checkInvalid = async () => {
     let zero = 'accepted'
     let fraction = 'accepted'
-    try { await One.iOS.ScreenCapture.captureView(0) } catch (error) { zero = errorCode(error) }
-    try { await One.iOS.ScreenCapture.captureView(1.5) } catch (error) { fraction = errorCode(error) }
+    try { await One.ScreenCapture.captureView(0) } catch (error) { zero = errorCode(error) }
+    try { await One.ScreenCapture.captureView(1.5) } catch (error) { fraction = errorCode(error) }
     setInvalid(`${zero}|${fraction}`)
   }
 
   const checkStale = async () => {
     if (viewTag === null) return
     try {
-      await One.iOS.ScreenCapture.captureView(viewTag)
+      await One.ScreenCapture.captureView(viewTag)
       setStale('accepted')
     } catch (error) {
       setStale(errorCode(error))
@@ -54,7 +54,7 @@ export default function OneNativeViewSnapshot() {
 
   const deleteFile = async () => {
     if (!uri) return
-    await One.iOS.FileSystem.delete(uri)
+    await One.FileSystem.delete(uri)
     setUri('')
     setStatus('deleted')
   }

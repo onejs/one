@@ -219,20 +219,20 @@ const [showLookAround, setShowLookAround] = useState(false)
 // Set showLookAround to true from a button to present the viewer.
 ```
 
-`One.iOS.MapServices` uses MapKit's local search and route service. It needs a
+`One.MapServices` uses MapKit's local search and route service. It needs a
 network connection, but no location permission when you provide coordinates.
 The map view's marker and polyline props accept coordinates from these results.
 
 ```ts
 const center = { latitude: 37.7955, longitude: -122.3937 }
-const places = await One.iOS.MapServices.search('Ferry Building', center, 3000)
-const suggestions = await One.iOS.MapServices.autocomplete('Ferry Bu', center, 3000)
+const places = await One.MapServices.search('Ferry Building', center, 3000)
+const suggestions = await One.MapServices.autocomplete('Ferry Bu', center, 3000)
 const selected = suggestions[0]
 if (selected) {
-  const place = await One.iOS.MapServices.resolveSuggestion(selected.id)
+  const place = await One.MapServices.resolveSuggestion(selected.id)
   // place has the selected suggestion's name, address, and coordinates.
 }
-const route = await One.iOS.MapServices.directions(
+const route = await One.MapServices.directions(
   center,
   { latitude: 37.7786, longitude: -122.3893 },
   'walking'

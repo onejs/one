@@ -3,7 +3,7 @@ title: Purchases
 description: StoreKit 2 products, purchases, entitlements, and transaction updates on iOS
 ---
 
-`One.iOS.Purchases` uses StoreKit 2 in a One native iOS build. Configure product
+`One.Purchases` uses StoreKit 2 in a One native iOS build. Configure product
 IDs in App Store Connect for an app you distribute, or select a local StoreKit
 configuration in an Xcode test plan while developing. The API needs no Info.plist
 usage string. [Apple's StoreKit testing guide](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode)
@@ -16,7 +16,7 @@ finished.
 ```ts
 import { One } from 'one'
 
-const purchases = One.iOS.Purchases
+const purchases = One.Purchases
 const handling = new Set<string>()
 async function deliver(transaction: { id: string; productId: string; jws: string }) {
   if (handling.has(transaction.id)) return

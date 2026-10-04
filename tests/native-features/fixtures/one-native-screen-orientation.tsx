@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import { One } from 'one'
 
-type ScreenOrientationValue = Awaited<ReturnType<typeof One.iOS.ScreenOrientation.getOrientation>>
+type ScreenOrientationValue = Awaited<ReturnType<typeof One.ScreenOrientation.getOrientation>>
 
 export default function OneNativeScreenOrientation() {
   const { width, height } = useWindowDimensions()
@@ -10,13 +10,13 @@ export default function OneNativeScreenOrientation() {
   const [events, setEvents] = useState<ScreenOrientationValue[]>([])
   const [status, setStatus] = useState('idle')
 
-  useEffect(() => One.iOS.ScreenOrientation.addChangeListener((value) => {
+  useEffect(() => One.ScreenOrientation.addChangeListener((value) => {
     setEvents((previous) => [...previous, value])
   }), [])
 
   const read = async () => {
     try {
-      setOrientation(await One.iOS.ScreenOrientation.getOrientation())
+      setOrientation(await One.ScreenOrientation.getOrientation())
       setStatus('read')
     } catch (error) {
       setStatus(error instanceof Error ? error.message : String(error))
@@ -26,7 +26,7 @@ export default function OneNativeScreenOrientation() {
   const lock = async (value: 'landscapeLeft' | 'portrait') => {
     try {
       setStatus(`locking-${value}`)
-      setOrientation(await One.iOS.ScreenOrientation.lock(value))
+      setOrientation(await One.ScreenOrientation.lock(value))
       setStatus(`locked-${value}`)
     } catch (error) {
       setStatus(error instanceof Error ? error.message : String(error))
@@ -35,7 +35,7 @@ export default function OneNativeScreenOrientation() {
 
   const unlock = async () => {
     try {
-      setOrientation(await One.iOS.ScreenOrientation.unlock())
+      setOrientation(await One.ScreenOrientation.unlock())
       setStatus('unlocked')
     } catch (error) {
       setStatus(error instanceof Error ? error.message : String(error))

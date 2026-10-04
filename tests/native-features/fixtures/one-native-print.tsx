@@ -31,8 +31,8 @@ export default function OneNativePrint() {
   async function run() {
     setResults([])
     setStatus('running')
-    const fs = One.iOS.FileSystem
-    const print = One.iOS.Print
+    const fs = One.FileSystem
+    const print = One.Print
     const cache = fs.getDirectories().cache
     const pdfUri = new URL('one-native-print-proof.pdf', cache).href
     const badUri = new URL('one-native-print-bad.pdf', cache).href

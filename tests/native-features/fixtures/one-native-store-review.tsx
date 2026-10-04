@@ -8,7 +8,7 @@ export default function OneNativeStoreReview() {
 
   async function requestReview() {
     try {
-      await One.iOS.StoreReview.requestReview()
+      await One.StoreReview.requestReview()
       setRequests((count) => count + 1)
       setStatus('requested')
     } catch (error) {

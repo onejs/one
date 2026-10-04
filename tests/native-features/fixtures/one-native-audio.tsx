@@ -30,7 +30,7 @@ export default function OneNativeAudio() {
   }, [])
 
   async function writeBackgroundClip() {
-    const fs = One.iOS.FileSystem
+    const fs = One.FileSystem
     const uri = new URL('one-native-background-audio.wav', fs.getDirectories().cache).href
     // a 60 second, 8 khz mono pcm wav: 44 header bytes and zero samples.
     const wav = 'UklGRiSmDgBXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCmDgAA' +
@@ -45,7 +45,7 @@ export default function OneNativeAudio() {
     backgroundSubscription.current = null
     setBackground('preparing')
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       const uri = await writeBackgroundClip()
       await audio.play(uri)
       let playback = await audio.getPlaybackStatus()
@@ -100,7 +100,7 @@ export default function OneNativeAudio() {
     setInterruption('preparing')
     setInterruptionPlayback('none')
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       interruptionSubscription.current = audio.watchInterruptions((event) => {
         interruptionEvents.current.push(`${event.type}:${event.shouldResume}`)
         setInterruption(interruptionEvents.current.join(','))
@@ -121,7 +121,7 @@ export default function OneNativeAudio() {
 
   async function checkInterruptionPlayback() {
     try {
-      const playback = await One.iOS.Audio.getPlaybackStatus()
+      const playback = await One.Audio.getPlaybackStatus()
       setInterruptionPlayback(playback.state)
     } catch (error) {
       setInterruptionPlayback(`error: ${error instanceof Error ? error.message : String(error)}`)
@@ -136,7 +136,7 @@ export default function OneNativeAudio() {
     setRemoteErrors('none')
     remotePlaybackChecks.current = 0
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       await audio.stop()
       let stateError = ''
       try {
@@ -180,7 +180,7 @@ export default function OneNativeAudio() {
 
   async function checkRemotePlayback() {
     try {
-      const playback = await One.iOS.Audio.getPlaybackStatus()
+      const playback = await One.Audio.getPlaybackStatus()
       remotePlaybackChecks.current += 1
       setRemotePlayback(`${playback.state}:${remotePlaybackChecks.current}`)
     } catch (error) {
@@ -190,7 +190,7 @@ export default function OneNativeAudio() {
 
   async function clearRemotePlayback() {
     try {
-      await One.iOS.Audio.clearNowPlayingInfo()
+      await One.Audio.clearNowPlayingInfo()
       setRemote('cleared')
     } catch (error) {
       setRemote(`error: ${error instanceof Error ? error.message : String(error)}`)
@@ -199,7 +199,7 @@ export default function OneNativeAudio() {
 
   async function checkBackgroundPlayback() {
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       const result = backgroundResult.current
       try {
         if (!result || result.state !== 'playing' || result.elapsed < 30_000 ||
@@ -219,8 +219,8 @@ export default function OneNativeAudio() {
     setStatus('running')
     let stage = 'permission'
     try {
-      const audio = One.iOS.Audio
-      const fs = One.iOS.FileSystem
+      const audio = One.Audio
+      const fs = One.FileSystem
       const permission = await audio.requestRecordingPermission()
       if (permission !== 'granted') throw new Error(`microphone permission was ${permission}`)
 

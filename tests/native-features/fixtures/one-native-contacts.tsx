@@ -6,7 +6,7 @@ const code = (error: unknown) =>
   error && typeof error === 'object' && 'code' in error ? String(error.code) : String(error)
 
 export default function OneNativeContacts() {
-  const [permission, setPermission] = useState(One.iOS.Contacts.getPermissionStatus())
+  const [permission, setPermission] = useState(One.Contacts.getPermissionStatus())
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('none')
   const [addressResult, setAddressResult] = useState('none')
@@ -18,30 +18,30 @@ export default function OneNativeContacts() {
     let identifier = ''
     let stage = 'permission'
     try {
-      const before = await One.iOS.Contacts.search('OneProof', 10).then(
+      const before = await One.Contacts.search('OneProof', 10).then(
         () => 'unexpected',
         code
       )
-      const granted = await One.iOS.Contacts.requestPermission()
+      const granted = await One.Contacts.requestPermission()
       setPermission(granted)
       if (granted !== 'authorized' && granted !== 'limited') {
         throw new Error(`Permission: ${granted}`)
       }
       for (const name of ['OneProof', 'OneEdited']) {
-        for (const contact of await One.iOS.Contacts.search(name, 100)) {
+        for (const contact of await One.Contacts.search(name, 100)) {
           if (contact.familyName === 'NativeContacts27') {
-            await One.iOS.Contacts.delete(contact.identifier)
+            await One.Contacts.delete(contact.identifier)
           }
         }
       }
-      const blankCreate = await One.iOS.Contacts.create({
+      const blankCreate = await One.Contacts.create({
         givenName: 'Invalid',
         familyName: '',
         phoneNumbers: [' '],
         emailAddresses: [],
       }).then(() => 'unexpected', code)
       stage = 'create'
-      identifier = await One.iOS.Contacts.create({
+      identifier = await One.Contacts.create({
         givenName: 'OneProof',
         familyName: 'NativeContacts27',
         phoneNumbers: ['+1 415 555 0109'],
@@ -49,7 +49,7 @@ export default function OneNativeContacts() {
         postalAddresses: [{ label: 'Proof office', street: '1 Market Street', city: 'San Francisco', state: 'CA', postalCode: '94105', country: 'United States', isoCountryCode: 'US' }],
       })
       stage = 'search'
-      const matches = await One.iOS.Contacts.search('OneProof', 20)
+      const matches = await One.Contacts.search('OneProof', 20)
       const found = matches.find((contact) => contact.identifier === identifier)
       const matched = Boolean(
         identifier &&
@@ -64,13 +64,13 @@ export default function OneNativeContacts() {
         found.postalAddresses[0].city === 'San Francisco' &&
         found.postalAddresses[0].isoCountryCode === 'US'
       stage = 'edit'
-      const changed = await One.iOS.Contacts.update(identifier, {
+      const changed = await One.Contacts.update(identifier, {
         givenName: 'OneEdited',
         phoneNumbers: ['+1 415 555 0110'],
         emailAddresses: ['one-edited@example.test'],
         postalAddresses: [{ label: 'Proof office', street: '2 Market Street', city: 'San Francisco', state: 'CA', postalCode: '94105', country: 'United States', isoCountryCode: 'US' }],
       })
-      const afterEdit = await One.iOS.Contacts.search('OneEdited', 20)
+      const afterEdit = await One.Contacts.search('OneEdited', 20)
       const addressEdited = changed.postalAddresses.length === 1 &&
         changed.postalAddresses[0].label === 'Proof office' &&
         changed.postalAddresses[0].street === '2 Market Street' &&
@@ -84,11 +84,11 @@ export default function OneNativeContacts() {
         afterEdit.some((contact) => contact.identifier === identifier &&
           contact.givenName === 'OneEdited' &&
           contact.phoneNumbers.includes('+1 415 555 0110')) &&
-        !(await One.iOS.Contacts.search('OneProof', 20)).some(
+        !(await One.Contacts.search('OneProof', 20)).some(
           (contact) => contact.identifier === identifier
         )
-      const cleared = await One.iOS.Contacts.update(identifier, { emailAddresses: [] })
-      const afterPartial = await One.iOS.Contacts.search('OneEdited', 20)
+      const cleared = await One.Contacts.update(identifier, { emailAddresses: [] })
+      const afterPartial = await One.Contacts.search('OneEdited', 20)
       const addressPreserved = cleared.postalAddresses[0]?.street === '2 Market Street' &&
         cleared.postalAddresses[0]?.label === 'Proof office' &&
         afterPartial.some((contact) => contact.identifier === identifier &&
@@ -104,46 +104,46 @@ export default function OneNativeContacts() {
         )
       stage = 'picker selection'
       setPickerStage('selecting')
-      const picked = await One.iOS.Contacts.pickContact()
+      const picked = await One.Contacts.pickContact()
       const selected = picked?.identifier === identifier &&
         picked.givenName === 'OneEdited' &&
         picked.phoneNumbers.includes('+1 415 555 0110') &&
         picked.postalAddresses[0]?.street === '2 Market Street'
       stage = 'picker swipe dismissal'
       setPickerStage('swiping')
-      const swiped = await One.iOS.Contacts.pickContact() === undefined
+      const swiped = await One.Contacts.pickContact() === undefined
       stage = 'picker after swipe'
       setPickerStage('afterSwipe')
-      const afterSwipe = await One.iOS.Contacts.pickContact() === undefined
+      const afterSwipe = await One.Contacts.pickContact() === undefined
       setPickerStage('done')
-      const invalid = await One.iOS.Contacts.search('OneProof', 0).then(
+      const invalid = await One.Contacts.search('OneProof', 0).then(
         () => 'unexpected',
         code
       )
-      const invalidUpdate = await One.iOS.Contacts.update(identifier, {}).then(
+      const invalidUpdate = await One.Contacts.update(identifier, {}).then(
         () => 'unexpected',
         code
       )
-      const invalidAddress = await One.iOS.Contacts.update(identifier, {
+      const invalidAddress = await One.Contacts.update(identifier, {
         postalAddresses: [{}],
       }).then(() => 'unexpected', code)
-      const clearAddressResult = await One.iOS.Contacts.update(identifier, {
+      const clearAddressResult = await One.Contacts.update(identifier, {
         postalAddresses: [],
       })
       const addressCleared = clearAddressResult.postalAddresses.length === 0 &&
-        (await One.iOS.Contacts.search('OneEdited', 20)).some(
+        (await One.Contacts.search('OneEdited', 20)).some(
           (contact) => contact.identifier === identifier && contact.postalAddresses.length === 0
         )
       stage = 'delete'
-      await One.iOS.Contacts.delete(identifier)
+      await One.Contacts.delete(identifier)
       stage = 'verify delete'
-      const after = await One.iOS.Contacts.search('OneEdited', 20)
+      const after = await One.Contacts.search('OneEdited', 20)
       const removed = !after.some((contact) => contact.identifier === identifier)
-      const missingDelete = await One.iOS.Contacts.delete(identifier).then(
+      const missingDelete = await One.Contacts.delete(identifier).then(
         () => 'unexpected',
         code
       )
-      const notFound = await One.iOS.Contacts.update(identifier, { givenName: 'Gone' }).then(
+      const notFound = await One.Contacts.update(identifier, { givenName: 'Gone' }).then(
         () => 'unexpected',
         code
       )
@@ -161,7 +161,7 @@ export default function OneNativeContacts() {
       setResult(`${stage}: ${code(error)}`)
       setStatus('failed')
     } finally {
-      if (identifier) await One.iOS.Contacts.delete(identifier).catch(() => undefined)
+      if (identifier) await One.Contacts.delete(identifier).catch(() => undefined)
     }
   }
 

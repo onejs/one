@@ -18,19 +18,19 @@ export default function OneNativeDeviceAttestation() {
   const [attempts, setAttempts] = useState('pending')
 
   const read = () => {
-    const value = One.iOS.DeviceAttestation.getAvailability()
+    const value = One.DeviceAttestation.getAvailability()
     setAvailability(`AppAttest=${value.appAttest} DeviceCheck=${value.deviceCheck}`)
   }
 
   const validate = async () => {
-    const api = One.iOS.DeviceAttestation
+    const api = One.DeviceAttestation
     const invalidKey = await codeOf(api.attestKey(' ', 'AAAA'))
     const invalidHash = await codeOf(api.generateAssertion('key', 'AAAA'))
     setInvalid(`key=${invalidKey} hash=${invalidHash}`)
   }
 
   const probe = async () => {
-    const api = One.iOS.DeviceAttestation
+    const api = One.DeviceAttestation
     const hash = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
     const key = await codeOf(api.generateKey())
     const attest = await codeOf(api.attestKey('key', hash))

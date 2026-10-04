@@ -31,14 +31,14 @@ export default function OneNativeLivePhoto() {
     setActiveId('')
     setStatus('requesting')
     try {
-      const permission = await One.iOS.PhotoLibrary.requestReadPermission()
+      const permission = await One.PhotoLibrary.requestReadPermission()
       if (permission !== 'authorized' && permission !== 'limited')
         throw new Error(`permission: ${permission}`)
       let live = ''
       let plain = ''
-      const first = await One.iOS.PhotoLibrary.listAssets(0, 100)
+      const first = await One.PhotoLibrary.listAssets(0, 100)
       for (let offset = 0; offset < first.totalCount && (!live || !plain); offset += 100) {
-        const page = offset === 0 ? first : await One.iOS.PhotoLibrary.listAssets(offset, 100)
+        const page = offset === 0 ? first : await One.PhotoLibrary.listAssets(offset, 100)
         for (const item of page.assets) {
           if (item.isLivePhoto && item.width === 320 && item.height === 240)
             live = item.identifier
@@ -47,8 +47,8 @@ export default function OneNativeLivePhoto() {
         }
       }
       if (!live || !plain) throw new Error(`assets missing: live=${live} plain=${plain}`)
-      const liveAsset = await One.iOS.PhotoLibrary.getAsset(live)
-      const plainAsset = await One.iOS.PhotoLibrary.getAsset(plain)
+      const liveAsset = await One.PhotoLibrary.getAsset(live)
+      const plainAsset = await One.PhotoLibrary.getAsset(plain)
       setAssetId(live)
       setPlainId(plain)
       setMetadata(`live=${liveAsset.isLivePhoto}; plain=${plainAsset.isLivePhoto}; id=${liveAsset.identifier === live}`)

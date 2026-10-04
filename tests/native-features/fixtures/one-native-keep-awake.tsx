@@ -7,7 +7,7 @@ function message(error: unknown): string {
 }
 
 async function runChecks(report: (name: string, value: string) => void) {
-  const keepAwake = One.iOS.KeepAwake
+  const keepAwake = One.KeepAwake
   const initial = await keepAwake.isEnabled()
   report('Initial', String(initial))
   try {

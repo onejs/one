@@ -19,25 +19,25 @@ export default function OneNativePurchases() {
   const [sync, setSync] = useState('idle')
 
   useEffect(() => {
-    const remove = One.iOS.Purchases.addTransactionListener((update) => {
+    const remove = One.Purchases.addTransactionListener((update) => {
       if (update.status === 'verified' && update.transaction?.productId === productId) {
         setUpdates((count) => count + 1)
       }
     })
-    One.iOS.Purchases.getProducts([productId])
+    One.Purchases.getProducts([productId])
       .then((products) => {
         const product = products[0]
         setCatalog(product?.id === productId && product.type === 'nonConsumable' &&
           product.displayPrice.length > 0 ? 'ready' : 'missing')
       })
       .catch((error) => setCatalog(`error:${code(error)}`))
-    One.iOS.Purchases.getCurrentEntitlements()
+    One.Purchases.getCurrentEntitlements()
       .then((transactions) => setBefore(transactions.some((item) => item.productId === productId) ? 'entitled' : 'empty'))
       .catch((error) => setBefore(`error:${code(error)}`))
     Promise.all([
-      One.iOS.Purchases.getProducts([]).then(() => 'accepted', code),
-      One.iOS.Purchases.purchase('').then(() => 'accepted', code),
-      One.iOS.Purchases.finishTransaction('invalid').then(() => 'accepted', code),
+      One.Purchases.getProducts([]).then(() => 'accepted', code),
+      One.Purchases.purchase('').then(() => 'accepted', code),
+      One.Purchases.finishTransaction('invalid').then(() => 'accepted', code),
     ]).then((errors) => setInvalid(errors.join(',')))
     return remove
   }, [])
@@ -46,21 +46,21 @@ export default function OneNativePurchases() {
     setPurchase('presenting')
     setProof('running')
     try {
-      const result = await One.iOS.Purchases.purchase(productId)
+      const result = await One.Purchases.purchase(productId)
       setPurchase(result.status)
       if (result.status !== 'purchased' || !result.transaction) {
         setProof(result.status)
         return
       }
       const transaction = result.transaction
-      const before = await One.iOS.Purchases.getUnfinishedTransactions()
-      const current = await One.iOS.Purchases.getCurrentEntitlements()
+      const before = await One.Purchases.getUnfinishedTransactions()
+      const current = await One.Purchases.getCurrentEntitlements()
       const unfinished = before.some((item) => item.id === transaction.id)
       const entitled = current.some((item) => item.id === transaction.id)
       const signed = transaction.jws.split('.').length === 3
-      await One.iOS.Purchases.finishTransaction(transaction.id)
-      const after = await One.iOS.Purchases.getUnfinishedTransactions()
-      const restored = await One.iOS.Purchases.getCurrentEntitlements()
+      await One.Purchases.finishTransaction(transaction.id)
+      const after = await One.Purchases.getUnfinishedTransactions()
+      const restored = await One.Purchases.getCurrentEntitlements()
       const finished = !after.some((item) => item.id === transaction.id)
       const remainsEntitled = restored.some((item) => item.id === transaction.id)
       setProof(`unfinished=${unfinished}; entitled=${entitled}; signed=${signed}; finished=${finished}; retained=${remainsEntitled}`)
@@ -73,8 +73,8 @@ export default function OneNativePurchases() {
   async function restore() {
     setSync('running')
     try {
-      await One.iOS.Purchases.sync()
-      const current = await One.iOS.Purchases.getCurrentEntitlements()
+      await One.Purchases.sync()
+      const current = await One.Purchases.getCurrentEntitlements()
       setSync(current.some((item) => item.productId === productId) ? 'entitled' : 'empty')
     } catch (error) {
       setSync(`error:${code(error)}`)

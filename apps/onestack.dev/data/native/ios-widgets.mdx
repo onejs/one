@@ -11,7 +11,7 @@ every call throws. Outside iOS they throw as well.
 
 ## Widgets
 
-`One.iOS.Widgets` writes the widget's content.
+`One.Widgets` writes the widget's content.
 
 | Function | Signature |
 |----------|-----------|
@@ -23,7 +23,7 @@ every call throws. Outside iOS they throw as well.
 
 ## LiveActivities
 
-`One.iOS.LiveActivities` manages Live Activities. State is `{ status:
+`One.LiveActivities` manages Live Activities. State is `{ status:
 string; value: string }`; push token events are `{ id: string; token:
 string }`.
 
@@ -90,14 +90,14 @@ each Live Activity region:
 ```tsx
 import { One } from 'one'
 
-await One.iOS.Widgets.writeView(
+await One.Widgets.writeView(
   <One.iOS.WidgetUI.VStack>
     <One.iOS.WidgetUI.Text>Next train</One.iOS.WidgetUI.Text>
     <One.iOS.WidgetUI.Text>4 min</One.iOS.WidgetUI.Text>
   </One.iOS.WidgetUI.VStack>
 )
 
-const id = await One.iOS.LiveActivities.start('Trip', { status: 'Boarding', value: 'Gate 12' })
-await One.iOS.LiveActivities.update(id, { status: 'Departed', value: 'On time' })
-await One.iOS.LiveActivities.end(id)
+const id = await One.LiveActivities.start('Trip', { status: 'Boarding', value: 'Gate 12' })
+await One.LiveActivities.update(id, { status: 'Departed', value: 'On time' })
+await One.LiveActivities.end(id)
 ```

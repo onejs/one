@@ -3,24 +3,24 @@ title: Home Screen Quick Actions
 description: Register dynamic Home Screen actions and receive their launch identifiers
 ---
 
-`One.iOS.QuickActions` registers dynamic actions in the iOS Home Screen menu shown when someone touches and holds your app icon. Each action has a unique `id`, a title, and an optional subtitle.
+`One.QuickActions` registers dynamic actions in the iOS Home Screen menu shown when someone touches and holds your app icon. Each action has a unique `id`, a title, and an optional subtitle.
 
 ```tsx
 import { One } from 'one'
 
-await One.iOS.QuickActions.setItems([
+await One.QuickActions.setItems([
   { id: 'open-inbox', title: 'Inbox', subtitle: 'View recent messages' },
 ])
 
 // mount this near the app root so it remains active while the app is running
-const remove = One.iOS.QuickActions.addListener((id) => {
+const remove = One.QuickActions.addListener((id) => {
   if (id === 'open-inbox') openInbox()
 })
 
 // a shortcut that started a new app process arrives before JavaScript runs
-const initial = One.iOS.QuickActions.getInitialAction()
+const initial = One.QuickActions.getInitialAction()
 if (initial === 'open-inbox') openInbox()
-One.iOS.QuickActions.clearInitialAction()
+One.QuickActions.clearInitialAction()
 
 // call remove() when the owner unmounts
 ```

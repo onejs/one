@@ -3,7 +3,7 @@ title: Photo Library
 description: Save, edit, browse, and export photos and videos from iOS Photos
 ---
 
-`One.iOS.PhotoLibrary` saves an existing `file://` image or video to Photos,
+`One.PhotoLibrary` saves an existing `file://` image or video to Photos,
 edits still images, and reads photo and video asset metadata. Saving can use
 add-only permission; browsing needs read/write permission. Configure the permission messages in
 `native.app` before prebuild:
@@ -25,9 +25,9 @@ your app uses, or both when it saves and browses assets.
 ```tsx
 import { One } from 'one'
 
-const permission = await One.iOS.PhotoLibrary.requestAddPermission()
+const permission = await One.PhotoLibrary.requestAddPermission()
 if (permission === 'authorized') {
-  const assetId = await One.iOS.PhotoLibrary.saveImage(imageFileUri)
+  const assetId = await One.PhotoLibrary.saveImage(imageFileUri)
   console.log('Saved Photos asset', assetId)
 }
 ```
@@ -35,7 +35,7 @@ if (permission === 'authorized') {
 `getAddPermissionStatus()` reads the current status without a prompt.
 `saveVideo(fileUri)` saves a video the same way. Both save methods resolve with
 the new Photos asset identifier after Photos commits the change. They accept
-local files produced by `One.iOS.FileSystem`, `One.ImagePicker`, or
+local files produced by `One.FileSystem`, `One.ImagePicker`, or
 `One.DocumentPicker`; they do not download network URLs.
 An app with read/write access can also save without requesting add-only access.
 
@@ -51,10 +51,10 @@ sorted by creation date, newest first. A page contains at most 100 assets;
 passed to `getAsset()` to retrieve its current metadata:
 
 ```tsx
-const permission = await One.iOS.PhotoLibrary.requestReadPermission()
+const permission = await One.PhotoLibrary.requestReadPermission()
 if (permission === 'authorized' || permission === 'limited') {
-  const { assets, totalCount } = await One.iOS.PhotoLibrary.listAssets(0, 50)
-  const first = assets[0] && await One.iOS.PhotoLibrary.getAsset(assets[0].identifier)
+  const { assets, totalCount } = await One.PhotoLibrary.listAssets(0, 50)
+  const first = assets[0] && await One.PhotoLibrary.getAsset(assets[0].identifier)
   console.log(totalCount, first?.mediaType, first?.width, first?.height)
 }
 ```
@@ -67,9 +67,9 @@ newly selected asset identifiers; it can return an empty array. Read the library
 again to see the current visible set:
 
 ```tsx
-if (One.iOS.PhotoLibrary.getReadPermissionStatus() === 'limited') {
-  const newlySelectedIds = await One.iOS.PhotoLibrary.presentLimitedLibraryPicker()
-  const page = await One.iOS.PhotoLibrary.listAssets(0, 50)
+if (One.PhotoLibrary.getReadPermissionStatus() === 'limited') {
+  const newlySelectedIds = await One.PhotoLibrary.presentLimitedLibraryPicker()
+  const page = await One.PhotoLibrary.listAssets(0, 50)
   console.log(newlySelectedIds, page.totalCount)
 }
 ```
@@ -102,10 +102,10 @@ read the updated favorite state or confirm that a deleted identifier now returns
 `E_PHOTO_LIBRARY_NOT_FOUND`:
 
 ```tsx
-await One.iOS.PhotoLibrary.setFavorite(asset.identifier, true)
-const updated = await One.iOS.PhotoLibrary.getAsset(asset.identifier)
+await One.PhotoLibrary.setFavorite(asset.identifier, true)
+const updated = await One.PhotoLibrary.getAsset(asset.identifier)
 console.log(updated.isFavorite)
-await One.iOS.PhotoLibrary.deleteAsset(asset.identifier)
+await One.PhotoLibrary.deleteAsset(asset.identifier)
 ```
 
 The write methods use the same manifest, permission, input, and missing-asset
@@ -120,17 +120,17 @@ identifier and original image, so `revertAssetContent(identifier)` restores the
 original. Photos may ask the user to confirm either change. Live Photos, videos,
 and assets that disallow content edits reject with `E_PHOTO_LIBRARY_UNSUPPORTED`.
 The JPEG must contain upright pixels rather than relying on orientation metadata.
-Use `One.iOS.ImageManipulator.transform()` to prepare one:
+Use `One.ImageManipulator.transform()` to prepare one:
 
 ```tsx
-const edited = await One.iOS.ImageManipulator.transform(sourceUri, {
+const edited = await One.ImageManipulator.transform(sourceUri, {
   format: 'jpeg', resize: { width: 600 },
 })
-await One.iOS.PhotoLibrary.replaceImageContent(asset.identifier, edited.uri)
-const current = await One.iOS.PhotoLibrary.getAsset(asset.identifier)
+await One.PhotoLibrary.replaceImageContent(asset.identifier, edited.uri)
+const current = await One.PhotoLibrary.getAsset(asset.identifier)
 console.log(current.width, current.height)
-await One.iOS.PhotoLibrary.revertAssetContent(asset.identifier)
-await One.iOS.FileSystem.delete(edited.uri)
+await One.PhotoLibrary.revertAssetContent(asset.identifier)
+await One.FileSystem.delete(edited.uri)
 ```
 
 Both methods use the same manifest, permission, identifier, and missing-asset
@@ -161,12 +161,12 @@ assets. The two list methods accept the same `offset` and `limit` bounds as
 `listAssets()`. They do not include smart albums or folders.
 
 ```tsx
-const albumId = await One.iOS.PhotoLibrary.createAlbum('Trip photos')
-await One.iOS.PhotoLibrary.addAssetToAlbum(albumId, assetId)
-const page = await One.iOS.PhotoLibrary.listAlbumAssets(albumId, 0, 50)
-await One.iOS.PhotoLibrary.renameAlbum(albumId, 'Summer trip')
-await One.iOS.PhotoLibrary.removeAssetFromAlbum(albumId, assetId)
-await One.iOS.PhotoLibrary.deleteAlbum(albumId)
+const albumId = await One.PhotoLibrary.createAlbum('Trip photos')
+await One.PhotoLibrary.addAssetToAlbum(albumId, assetId)
+const page = await One.PhotoLibrary.listAlbumAssets(albumId, 0, 50)
+await One.PhotoLibrary.renameAlbum(albumId, 'Summer trip')
+await One.PhotoLibrary.removeAssetFromAlbum(albumId, assetId)
+await One.PhotoLibrary.deleteAlbum(albumId)
 ```
 
 Album titles are trimmed and must contain 1 to 255 characters. Adding or
@@ -187,12 +187,12 @@ use cellular data. The returned file is yours to read, share, move, or delete.
 Delete temporary exports when you are finished:
 
 ```tsx
-const uri = await One.iOS.PhotoLibrary.exportOriginalAsset(asset.identifier)
+const uri = await One.PhotoLibrary.exportOriginalAsset(asset.identifier)
 try {
-  const info = await One.iOS.FileSystem.getInfo(uri)
+  const info = await One.FileSystem.getInfo(uri)
   console.log(info.size)
 } finally {
-  await One.iOS.FileSystem.delete(uri)
+  await One.FileSystem.delete(uri)
 }
 ```
 

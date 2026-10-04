@@ -3,14 +3,14 @@ title: Keep Awake
 description: Keep an iOS app's display from dimming automatically while it is active
 ---
 
-`One.iOS.KeepAwake` controls the iOS app's idle timer. Set it when a screen needs to remain visible, then clear it when that work ends.
+`One.KeepAwake` controls the iOS app's idle timer. Set it when a screen needs to remain visible, then clear it when that work ends.
 
 ```tsx
 import { One } from 'one'
 
-await One.iOS.KeepAwake.setEnabled(true)
-const enabled = await One.iOS.KeepAwake.isEnabled() // true
-await One.iOS.KeepAwake.setEnabled(false)
+await One.KeepAwake.setEnabled(true)
+const enabled = await One.KeepAwake.isEnabled() // true
+await One.KeepAwake.setEnabled(false)
 ```
 
 `setEnabled` and `isEnabled` use the same app-wide `UIApplication.isIdleTimerDisabled` flag. The setting affects every route in the current app process; there are no per-screen claims or reference counts. The caller that enables it must disable it when finished. Both methods run on the iOS main thread, and `isEnabled` reads the current native value. `setEnabled` accepts only a boolean and does not coerce other values.

@@ -10,20 +10,20 @@ export default function OneNativeMapServices() {
     try {
       const ferry = { latitude: 37.7955, longitude: -122.3937 }
       const ballpark = { latitude: 37.7786, longitude: -122.3893 }
-      const results = await One.iOS.MapServices.search('Ferry Building', ferry, 3000)
+      const results = await One.MapServices.search('Ferry Building', ferry, 3000)
       const match = results.find((item) =>
         item.name.toLowerCase().includes('ferry') &&
         Math.abs(item.coordinate.latitude - ferry.latitude) < 0.02 &&
         Math.abs(item.coordinate.longitude - ferry.longitude) < 0.02)
       if (!match) throw new Error('Ferry Building search result missing')
-      const canceledRequest = One.iOS.MapServices.autocomplete('Ferry', ferry, 3000)
+      const canceledRequest = One.MapServices.autocomplete('Ferry', ferry, 3000)
         .then(() => 'resolved', (error: unknown) =>
           error !== null && typeof error === 'object' && 'code' in error ? String(error.code) : String(error))
-      const suggestions = await One.iOS.MapServices.autocomplete('Ferry Bu', ferry, 3000)
+      const suggestions = await One.MapServices.autocomplete('Ferry Bu', ferry, 3000)
       const canceled = await canceledRequest === 'E_MAP_CANCELED'
       const suggestion = suggestions.find((item) => item.title.toLowerCase().includes('ferry'))
       if (!suggestion) throw new Error('Ferry Building autocomplete suggestion missing')
-      const resolved = await One.iOS.MapServices.resolveSuggestion(suggestion.id)
+      const resolved = await One.MapServices.resolveSuggestion(suggestion.id)
       if (!resolved.name.toLowerCase().includes('ferry') ||
         Math.abs(resolved.coordinate.latitude - ferry.latitude) >= 0.02 ||
         Math.abs(resolved.coordinate.longitude - ferry.longitude) >= 0.02) {
@@ -31,23 +31,23 @@ export default function OneNativeMapServices() {
       }
       let invalidSuggestion = false
       try {
-        await One.iOS.MapServices.resolveSuggestion('unknown-suggestion')
+        await One.MapServices.resolveSuggestion('unknown-suggestion')
       } catch (error) {
         invalidSuggestion = error !== null && typeof error === 'object' &&
           'code' in error && error.code === 'E_MAP_INPUT'
       }
       if (!canceled || !invalidSuggestion) throw new Error('autocomplete cancellation or input guard failed')
       setStatus('routing')
-      const route = await One.iOS.MapServices.directions(ferry, ballpark, 'walking')
+      const route = await One.MapServices.directions(ferry, ballpark, 'walking')
       if (route.distanceMeters <= 1000 || route.expectedTravelTimeSeconds <= 0 ||
         route.polyline.length < 2 || route.steps.length < 2) {
         throw new Error('walking route incomplete')
       }
-      const empty = await One.iOS.MapServices.search('one-native-conformance-zzzz-999-unfindable', ferry)
+      const empty = await One.MapServices.search('one-native-conformance-zzzz-999-unfindable', ferry)
       if (empty.length !== 0) throw new Error('unfindable search returned a place')
       let invalid = false
       try {
-        await One.iOS.MapServices.search('', ferry)
+        await One.MapServices.search('', ferry)
       } catch (error) {
         invalid = error !== null && typeof error === 'object' &&
           'code' in error && error.code === 'E_MAP_INPUT'

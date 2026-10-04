@@ -15,7 +15,7 @@ export default function OneNativeAppIntents() {
   }
   const checkInvalid = () => {
     try {
-      One.iOS.AppIntents.defineAction('', () => 'bad')
+      One.AppIntents.defineAction('', () => 'bad')
       setInvalid('accepted')
     } catch (error) {
       setInvalid(error instanceof TypeError ? 'TypeError' : String(error))

@@ -60,7 +60,7 @@ export interface NativeAppManifest {
     addOnly?: string
     readWrite?: string
   }
-  // ios Contacts permission prompt for One.iOS.Contacts.
+  // ios Contacts permission prompt for One.Contacts.
   contacts?: {
     usage: string
   }
@@ -74,7 +74,7 @@ export interface NativeAppManifest {
     whenInUse: string
     background?: boolean
   }
-  // microphone prompt and background playback for One.iOS.Audio.
+  // microphone prompt and background playback for One.Audio.
   audio?: {
     microphone?: string
     background?: boolean
@@ -122,10 +122,10 @@ export interface NativeAppManifest {
       light: string
       dark?: string
     }
-    // extra home screen icons selectable through One.iOS.AppIcon. keys are
+    // extra home screen icons selectable through One.AppIcon. keys are
     // the icon names passed to setIcon; each source is a square 1024px image.
     alternateIcons?: Record<string, { source: string; backgroundColor: string }>
-    // system prompt text for Face ID through One.iOS.LocalAuthentication.
+    // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
     fileSharing?: boolean
@@ -149,13 +149,13 @@ export interface NativeAppManifest {
       description: string
       pushNotifications?: boolean
     }
-    // launch handlers for One.iOS.BackgroundTasks. define the matching JS
+    // launch handlers for One.BackgroundTasks. define the matching JS
     // handlers in the native setupFile so a background-only launch can run.
     backgroundTasks?: {
       refresh?: string[]
       processing?: string[]
     }
-    // statically compiled App Intents for One.iOS.AppIntents. handlers live
+    // statically compiled App Intents for One.AppIntents. handlers live
     // in the native setupFile so Shortcuts can start the app in the background.
     appIntents?: {
       actions: Array<{

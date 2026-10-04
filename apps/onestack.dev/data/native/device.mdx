@@ -3,17 +3,17 @@ title: Device
 description: Read the current iOS device and operating system
 ---
 
-`One.iOS.Device.getInfo()` returns a snapshot of the current iOS device. It
+`One.Device.getInfo()` returns a snapshot of the current iOS device. It
 reads `UIDevice` on the main thread and does not request a permission.
 
 ```tsx
 import { One } from 'one'
 
-const info = await One.iOS.Device.getInfo()
+const info = await One.Device.getInfo()
 console.log(info.model, info.systemName, info.systemVersion)
 console.log(info.interfaceIdiom, info.isSimulator, info.vendorIdentifier)
 
-const locale = await One.iOS.Device.getLocalizationInfo()
+const locale = await One.Device.getLocalizationInfo()
 console.log(locale.localeIdentifier, locale.preferredLanguages)
 console.log(locale.calendarIdentifier, locale.timeZoneIdentifier)
 ```

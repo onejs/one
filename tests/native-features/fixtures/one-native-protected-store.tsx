@@ -10,7 +10,7 @@ export default function OneNativeProtectedStore() {
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState('none')
   const userKey = `${key}-presence`
-  const store = One.iOS.ProtectedStore
+  const store = One.ProtectedStore
 
   const fail = (step: string, error: unknown) => {
     setResult(`${step}: ${code(error)}`)

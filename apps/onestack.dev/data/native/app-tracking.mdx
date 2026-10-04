@@ -3,16 +3,16 @@ title: App Tracking Permission
 description: Request and inspect iOS App Tracking Transparency permission
 ---
 
-`One.iOS.AppTracking` exposes the system's App Tracking Transparency status and
+`One.AppTracking` exposes the system's App Tracking Transparency status and
 one-time permission request. Use it when your app needs permission for tracking
 across other companies' apps or websites.
 
 ```tsx
 import { One } from 'one'
 
-const before = One.iOS.AppTracking.getPermissionStatus()
+const before = One.AppTracking.getPermissionStatus()
 if (before === 'notDetermined') {
-  const after = await One.iOS.AppTracking.requestPermission()
+  const after = await One.AppTracking.requestPermission()
   if (after === 'authorized') {
     // start the tracking-dependent feature
   }

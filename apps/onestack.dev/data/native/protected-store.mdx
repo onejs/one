@@ -3,7 +3,7 @@ title: Protected Store
 description: Keep iOS Keychain items behind Face ID, Touch ID, or the device passcode
 ---
 
-`One.iOS.ProtectedStore` keeps a separate Keychain namespace for secrets that
+`One.ProtectedStore` keeps a separate Keychain namespace for secrets that
 require device authentication. Unlike [`One.SecureStore`](/native/secure-store),
 every item has an access control policy. All calls are asynchronous so a system
 authentication prompt does not block the JavaScript thread.
@@ -11,14 +11,14 @@ authentication prompt does not block the JavaScript thread.
 ```tsx
 import { One } from 'one'
 
-await One.iOS.ProtectedStore.createItem('recovery-key', secret, 'biometryCurrentSet')
-const value = await One.iOS.ProtectedStore.getItem(
+await One.ProtectedStore.createItem('recovery-key', secret, 'biometryCurrentSet')
+const value = await One.ProtectedStore.getItem(
   'recovery-key',
   'Unlock your recovery key',
   'biometryCurrentSet'
 )
-await One.iOS.ProtectedStore.updateItem('recovery-key', nextSecret, 'Update your recovery key', 'biometryCurrentSet')
-await One.iOS.ProtectedStore.deleteItem('recovery-key', 'Remove your recovery key', 'biometryCurrentSet')
+await One.ProtectedStore.updateItem('recovery-key', nextSecret, 'Update your recovery key', 'biometryCurrentSet')
+await One.ProtectedStore.deleteItem('recovery-key', 'Remove your recovery key', 'biometryCurrentSet')
 ```
 
 Set `native.app.ios.faceIdUsageDescription` before prebuilding, including for

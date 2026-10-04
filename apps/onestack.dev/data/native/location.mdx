@@ -3,7 +3,7 @@ title: Location
 description: Request location permission and read foreground or background position updates on iOS
 ---
 
-`One.iOS.Location` uses Core Location for foreground permission, one-shot and
+`One.Location` uses Core Location for foreground permission, one-shot and
 continuous position updates, and address geocoding. Add the prompt text to the
 native app manifest:
 
@@ -25,12 +25,12 @@ Call the permission request while the app is active, usually after a tap:
 ```tsx
 import { One } from 'one'
 
-const permission = await One.iOS.Location.requestWhenInUsePermission()
+const permission = await One.Location.requestWhenInUsePermission()
 if (permission === 'whenInUse' || permission === 'always') {
-  const position = await One.iOS.Location.getCurrentPosition()
+  const position = await One.Location.getCurrentPosition()
   console.log(position.latitude, position.longitude)
 
-  const stop = One.iOS.Location.watchPosition(
+  const stop = One.Location.watchPosition(
     (next) => console.log(next.latitude, next.longitude),
     (error) => console.error(error.code, error.message)
   )
@@ -72,7 +72,7 @@ Background watches keep location hardware active even while stationary, so stop
 them promptly when tracking ends to limit battery use.
 
 ```tsx
-const stopBackgroundWatch = One.iOS.Location.watchPosition(
+const stopBackgroundWatch = One.Location.watchPosition(
   (position) => console.log(position.latitude, position.longitude),
   (error) => console.error(error.code, error.message),
   { background: true }

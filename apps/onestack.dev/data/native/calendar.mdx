@@ -3,7 +3,7 @@ title: Calendar
 description: Read and write iOS calendar events and reminders
 ---
 
-`One.iOS.Calendar` reads and writes events through EventKit. Give the app a
+`One.Calendar` reads and writes events through EventKit. Give the app a
 purpose string before prebuild:
 
 ```ts
@@ -21,24 +21,24 @@ one an app uses. Prebuild sets `NSCalendarsFullAccessUsageDescription` and
 ```tsx
 import { One } from 'one'
 
-const status = await One.iOS.Calendar.requestPermission()
+const status = await One.Calendar.requestPermission()
 if (status === 'fullAccess') {
   const startMs = Date.now() + 86_400_000
-  const identifier = await One.iOS.Calendar.create({
+  const identifier = await One.Calendar.create({
     title: 'Team review',
     startMs,
     endMs: startMs + 3_600_000,
   })
-  const events = await One.iOS.Calendar.list(startMs - 1, startMs + 3_600_001)
+  const events = await One.Calendar.list(startMs - 1, startMs + 3_600_001)
   const event = events.find((item) => item.identifier === identifier)
   if (event) {
-    const updated = await One.iOS.Calendar.update(event.identifier, event.startMs, {
+    const updated = await One.Calendar.update(event.identifier, event.startMs, {
       title: 'Team review moved',
       startMs: event.startMs + 3_600_000,
       endMs: event.endMs + 3_600_000,
       location: 'Room 4',
     })
-    await One.iOS.Calendar.delete(updated.identifier, updated.startMs)
+    await One.Calendar.delete(updated.identifier, updated.startMs)
   }
 }
 ```
@@ -66,7 +66,7 @@ clear it. Ask the person before creating, editing, or deleting an event.
 To create a repeating event, pass a `recurrence` rule to `create`:
 
 ```tsx
-await One.iOS.Calendar.create({
+await One.Calendar.create({
   title: 'Review notes',
   startMs,
   endMs: startMs + 3_600_000,
@@ -91,15 +91,15 @@ describes these rules.
 the resulting status, including denial. It requires `calendar.remindersUsage`.
 
 ```tsx
-if (await One.iOS.Calendar.requestRemindersPermission() === 'fullAccess') {
-  const identifier = await One.iOS.Calendar.createReminder({
+if (await One.Calendar.requestRemindersPermission() === 'fullAccess') {
+  const identifier = await One.Calendar.createReminder({
     title: 'Send the report',
     dueMs: Date.now() + 86_400_000,
   })
-  const reminders = await One.iOS.Calendar.listReminders()
-  await One.iOS.Calendar.setReminderCompleted(identifier, true)
-  const history = await One.iOS.Calendar.listReminders(100, true)
-  await One.iOS.Calendar.deleteReminder(identifier)
+  const reminders = await One.Calendar.listReminders()
+  await One.Calendar.setReminderCompleted(identifier, true)
+  const history = await One.Calendar.listReminders(100, true)
+  await One.Calendar.deleteReminder(identifier)
 }
 ```
 
