@@ -21,6 +21,8 @@ export function buildNativeRunCommand(args: {
   // whenever more than one simulator exists.
   if (args.simulator) argv.push('--simulator', args.simulator)
   if (args.udid) argv.push('--udid', args.udid)
+  if (args.platform === 'android' && process.env.ANDROID_SERIAL)
+    argv.push('--device', process.env.ANDROID_SERIAL)
   return {
     command: args.platform === 'ios' ? 'run-ios' : 'run-android',
     argv,
