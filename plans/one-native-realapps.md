@@ -592,3 +592,23 @@ invalid and has been removed. These receipts carry precise observed scopes.
 RAN: small diagnostic API receipts are retained in
 [the evidence directory](../tests/native-features/evidence/realapps/diagnostic/README.md),
 with their binary/artifact limits. They do not replace final clean validation.
+
+
+RAN: Basic's exact-a4 clean iOS build passed on CI64, no compiler errors.
+The app bundle is `/tmp/one-realapps-basic-a4-app.zip`; it was installed on the
+claimed Air24 standard iPhone17Pro27.0. Original UI, routing and Widgets calls
+are the next checks, so build/install does not yet count as a runtime pass.
+
+RAN: Contrast's new Pro64 worktree at branch `fix/realapps-native-pro`, source
+`b94d9d49fe`, installed the exact-a4 family and passed the navigation graph.
+Android prebuild generated Updates runtime84 as a string resource. The clean
+native `assembleDebug` passed in13m40s,786 tasks executed, with no source
+or installed-package overlays. Log `/tmp/one-realapps-contrast-pro-android-build.log`
+on Pro64; APK transferred to Studio for the selected emulator. Native runtime
+checks remain pending. Studio hosts only a forwarded port4400 for this server.
+
+RAN: Takeout's Fabric Swift patch compiles past its earlier errors. The next
+negative is bottom-tabs0.10.2's quoted `RCTConversions.h`. The framework
+contains `React.framework/Headers/RCTConversions.h`; ImageManager's header
+is exported under `react/renderer/imagemanager`. A narrow package patch uses
+those actual qualified paths. No routing algorithm or tab behavior was changed.

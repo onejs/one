@@ -22,9 +22,10 @@ if (
   !['ios', 'android'].includes(values.platform!) ||
   !values.device ||
   !values['package-root'] ||
+  !values.text ||
   !values.out
 )
-  throw new Error('Expected --platform ios|android --device --package-root --out')
+  throw new Error('Expected --platform ios|android --device --package-root --text <original home marker> --out')
 const root = resolve(values['package-root']),
   out = resolve(values.out)
 mkdirSync(out, { recursive: true })
@@ -89,6 +90,9 @@ const collector = required.length
 const received = new Promise<void>((resolve) => {
   receiptReady = resolve
 })
+if (values.platform === 'android')
+  flow += '- runFlow:\n    when:\n      visible: "Allow .* to find, connect to, and determine the relative position of nearby devices.*"\n    commands:\n      - tapOn:\n          id: com.android.permissioncontroller:id/permission_allow_button\n'
+flow += `- extendedWaitUntil:\n    visible: ${JSON.stringify(values.text)}\n    timeout: 60000\n`
 if (values.mode !== 'home')
   flow += '- extendedWaitUntil:\n    visible:\n      id: realapps-open-api\n    timeout: 60000\n'
 if (values.mode === 'home') {
