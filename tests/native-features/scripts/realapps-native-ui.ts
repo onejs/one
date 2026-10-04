@@ -168,6 +168,13 @@ if (values.mode === 'home') {
   tap('realapps-api-alert-open')
   visible('Matrix alert')
   flow += '- tapOn: "Matrix confirm"\n'
+} else if (values.mode === 'ios-unavailable') {
+  if (values.platform !== 'ios') throw new Error('iOS availability requires iOS')
+  tap('realapps-open-api')
+  tap('realapps-api-section-ios')
+  tap('realapps-api-ios-arrangement')
+  visible('.*Swift.ArrangementView requires iOS 27.1 or later.*')
+  flow += '- takeScreenshot: arrangement-requires-ios27-1\n'
 } else if (values.mode === 'ios') {
   if (values.platform !== 'ios') throw new Error('iOS primitives require iOS')
   tap('realapps-open-api')
@@ -261,7 +268,17 @@ try {
       ),
     ])
     const failed = required.filter((api) => results[api].status === 'failed')
-    if (failed.length)
+    if (values.mode === 'ios-unavailable') {
+      const result = results['One.iOS.ArrangementView']
+      if (result?.status !== 'failed' ||
+          result.value?.message !== 'Swift.ArrangementView requires iOS 27.1 or later')
+        throw new Error('Expected exact ArrangementView platform guard')
+      writeFileSync(join(out, 'api-availability.json'), JSON.stringify({
+        label: 'RAN', api: 'One.iOS.ArrangementView',
+        status: 'unavailable', minimumIOS: '27.1', actual: result,
+        scope: 'native platform guard exercised; 27.1 rendering remains an open gap',
+      }, null, 2) + '\n')
+    } else if (failed.length)
       throw new Error(`API assertions failed: ${failed.join(', ')}; see api-results.json`)
   }
 } finally {

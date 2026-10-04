@@ -62,6 +62,7 @@ export function modeAPIs(mode: string, platform: string): string[] {
     'One.openSettings',
   ]
   common.ios = platform === 'ios' ? [...iosAPIs] : []
+  common['ios-unavailable'] = platform === 'ios' ? ['One.iOS.ArrangementView'] : []
   if (platform !== 'ios') common.widgets = []
   return common[mode] ?? []
 }
