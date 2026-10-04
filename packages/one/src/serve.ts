@@ -2,6 +2,7 @@ import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import type { VXRNOptions } from 'vxrn'
 import { setServerGlobals } from './server/setServerGlobals'
+import { setServerWebSocket } from './server/setServerWebSocket'
 import { setupBuildInfo } from './server/setupBuildOptions'
 import { ensureExists } from './utils/ensureExists'
 import { resolveServeOutDir } from './utils/buildOutputPointer'
@@ -195,6 +196,7 @@ async function startWorker(args: Parameters<typeof serve>[0]) {
   const { oneOptions } = buildInfo
 
   setServerGlobals()
+  setServerWebSocket()
   setupBuildInfo(buildInfo)
   ensureExists(oneOptions)
 
