@@ -1,9 +1,63 @@
 import { useState } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Platform, Pressable, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeMapServices() {
   const [status, setStatus] = useState('idle')
+
+  // android runs search on the platform geocoder; autocomplete,
+  // resolveSuggestion, and directions keep their unavailable contract.
+  async function runAndroid() {
+    setStatus('searching')
+    try {
+      const ferry = { latitude: 37.7955, longitude: -122.3937 }
+      const results = await One.MapServices.search('Ferry Building', ferry, 3000)
+      const match = results.find(
+        (item) =>
+          item.name.toLowerCase().includes('ferry') &&
+          Math.abs(item.coordinate.latitude - ferry.latitude) < 0.02 &&
+          Math.abs(item.coordinate.longitude - ferry.longitude) < 0.02
+      )
+      if (!match) throw new Error('Ferry Building search result missing')
+      const empty = await One.MapServices.search(
+        'one-native-conformance-zzzz-999-unfindable',
+        ferry
+      )
+      if (empty.length !== 0) throw new Error('unfindable search returned a place')
+      let invalid = false
+      try {
+        await One.MapServices.search('', ferry)
+      } catch (error) {
+        invalid =
+          error !== null &&
+          typeof error === 'object' &&
+          'code' in error &&
+          error.code === 'E_MAP_INPUT'
+      }
+      if (!invalid) throw new Error('invalid search was accepted')
+      const suggestions = await One.MapServices.autocomplete('Ferry Bu', ferry, 3000)
+      if (suggestions.length !== 0) throw new Error('autocomplete left the unavailable contract')
+      const failures: string[] = []
+      for (const operation of [
+        () => One.MapServices.resolveSuggestion('any-id'),
+        () =>
+          One.MapServices.directions(ferry, { latitude: 37.7786, longitude: -122.3893 }),
+      ]) {
+        try {
+          await operation()
+          failures.push('accepted')
+        } catch (error) {
+          failures.push(error instanceof Error ? error.message : String(error))
+        }
+      }
+      if (!failures.every((message) => message.includes('needs an iOS or Android build'))) {
+        throw new Error(`unexpected unavailable rejections: ${failures.join(' | ')}`)
+      }
+      setStatus(`android-passed: ${match.name}; empty=true; input=E_MAP_INPUT; split=true`)
+    } catch (error) {
+      setStatus(`error: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
 
   async function run() {
     setStatus('searching')
@@ -94,7 +148,7 @@ export default function OneNativeMapServices() {
       <Pressable
         accessibilityRole="button"
         testID="one-native-map-services-run"
-        onPress={run}
+        onPress={Platform.OS === 'android' ? runAndroid : run}
         style={{ marginTop: 24, padding: 16, backgroundColor: '#DDEEFF' }}
       >
         <Text>Search and route</Text>
