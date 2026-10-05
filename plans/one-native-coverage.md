@@ -27,6 +27,32 @@ selection or unsupported styles. General content measurement and arbitrary
 modifier chains remain separate work. Fixed-detent sheets do not require a
 content-sized layout engine.
 
+## Expo UI component parity (2026-10-05)
+
+Nate, 2026-10-05: "lets ensure one-native is moving along i imagine theres a lot still to cover for general parity with expo-ui and the msot popular expo packages plus full compose/swiftui coverage, not to mention then the peach conformance for all that".
+
+**RAN** (export diff of `@expo/ui@58.0.0-canary-20260909-ea7a89a` against `One.iOS` and `One.Compose` at v2-beta e5cd3d60a): each Expo UI component and its One counterpart. Peach visual grades for `Swift.*` live in Contrast's `plans/peach/conformance/swiftui-surface-inventory.md`; this table only records whether a counterpart exists.
+
+iOS (`@expo/ui/swift-ui`):
+
+| Expo UI | One | status |
+| --- | --- | --- |
+| Host, HStack, VStack, ZStack, LazyHStack, LazyVStack, Grid, Group, Form, Section, LabeledContent, List, ScrollView, Spacer, Divider, DisclosureGroup, ControlGroup, GlassEffectContainer, Overlay, Link, Menu, ContextMenu, SwipeActions, Popover, Alert, ConfirmationDialog, Button, Text, Label, Image, Picker, DatePicker, ColorPicker, Toggle, Slider, Stepper, TextField, SecureField, ProgressView, Gauge, ShareLink, ContentUnavailableView, shapes | same name under `Swift.*` | counterpart |
+| BottomSheet | `Swift.Sheet` | counterpart |
+| TabView | `Swift.Tabs`, `Swift.Pager` | counterpart |
+| RNHostView | `Swift.Slot` | counterpart |
+| Background, Mask | `Swift.ViewSlot name="background"` / `"mask"` | counterpart |
+| Namespace | implicit per host (`matchedGeometryEffect`, `glassEffectID` take ids) | counterpart |
+| SyncToggle | `Swift.Toggle isOn={useNativeState(...)}` (e5cd3d60a) | counterpart; no worklet `onIsOnChangeSync` |
+| useNativeState | `useNativeState` | counterpart |
+| Chart | none | gap: new public API, Apple-shaped `Chart` plus mark children; Peach has no Chart renderer for Expo either |
+| withAnimation | `animation` modifier only | gap: imperative transaction API |
+| AccessoryWidgetBackground | none in `Swift.*` | gap: widget-only, belongs with `WidgetUI` |
+
+Modifiers: every Expo modifier has an SDK-named One counterpart through `swiftStyle` or `ViewSlot` except `resizable` (Image; One's remote image is always resizable, symbols are not), `strokeBorder` (shapes take `fill` only), and the widget-only `widgetURL`, `widgetAccentedRenderingMode`, `activityBackgroundTint`.
+
+Android (`@expo/ui/jetpack-compose`): One.Compose has 50 nodes. No counterpart yet for AnimatedVisibility, BasicAlertDialog, Carousel, DatePicker and its dialogs, DockedSearchBar and SearchBar, DropdownMenu and ExposedDropdownMenuBox, HorizontalFloatingToolbar, HorizontalPager (One.UI.Pager is the uniform pager), Image, LazyColumn, LazyRow, ModalBottomSheet, NavigationBar, PullToRefreshBox, Shape, Snackbar, SyncSwitch and Tooltip. Android follows the iOS gaps.
+
 ## Coverage target
 
 The comparison inventory read `one` 1.26.0 in this checkout and official
