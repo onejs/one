@@ -2918,7 +2918,9 @@ export function enableAppComposeIntegration(dest: string) {
 // the native source contract loads only for an app that has kotlin or swift
 // sources to generate glue for.
 export async function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
-  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts'])
+  // evidence holds preserved proof sources, never app sources; sweeping it
+  // breaks :app:compileDebugKotlin when two preserved copies declare one class.
+  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts', 'evidence'])
   const sources: string[] = []
   const collect = (dir: string) => {
     // nested javascript packages own their native sources, including fixtures.

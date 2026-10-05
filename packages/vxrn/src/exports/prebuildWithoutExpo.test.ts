@@ -1968,6 +1968,22 @@ describe('app kotlin source discovery', () => {
     expect(ids).toHaveLength(1)
     expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(source)
   }, 180000)
+
+  it('skips evidence directories holding preserved proof sources', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-evidence-'))
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-evidence-dest-'))
+    const live = 'package app.counter\nclass Counter\n'
+    writeFileSync(join(root, 'Counter.kt'), live)
+    mkdirSync(join(root, 'proofs', 'evidence'), { recursive: true })
+    const duplicate = 'class Preserved\n'
+    writeFileSync(join(root, 'proofs', 'evidence', 'source-before-build.kt'), duplicate)
+    writeFileSync(join(root, 'proofs', 'evidence', 'fault-source.kt'), duplicate)
+    await generateKotlinSources({ root, dest })
+    const generated = join(dest, 'app', 'src', 'main', 'java', 'one', 'source')
+    const ids = readdirSync(generated)
+    expect(ids).toHaveLength(1)
+    expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(live)
+  })
 })
 
 describe('swift cxx interop', () => {
