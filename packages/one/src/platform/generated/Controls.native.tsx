@@ -188,7 +188,8 @@ export function Toggle({
   style,
   ...props
 }: Types.ToggleProps) {
-  if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')
+  if (typeof isOn !== 'boolean' && !isSyncState(isOn))
+    throw new Error('Toggle isOn must be a boolean or NativeState handle')
   if (typeof systemImage !== 'string')
     throw new Error('Toggle systemImage must be a string')
   assertSwiftUIValue(
@@ -196,11 +197,16 @@ export function Toggle({
     toggleStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  const syncHandle = syncHandleOf<boolean>(isOn)
+  const syncedIsOn = useSyncValue<boolean>(isOn)
   const controlled = useControlled<{
     value: boolean
     eventCount: number
     revision: number
-  }>((event) => onIsOnChange(event.value), revision)
+  }>((event) => {
+    syncHandle?.set(event.value)
+    onIsOnChange(event.value)
+  }, revision)
   return (
     <NativeToggle
       {...props}
@@ -209,9 +215,10 @@ export function Toggle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-      value={isOn}
+      value={syncedIsOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       label={label}
       disabled={disabled}
       systemImage={systemImage}

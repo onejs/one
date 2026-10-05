@@ -3,7 +3,7 @@ import { commonFields, type Control } from './controlTypes'
 export const formControls: Control[] = [
   {
     name: 'Toggle',
-    value: { type: 'boolean', prop: 'isOn', event: 'onIsOnChange', initial: false },
+    value: { type: 'boolean', prop: 'isOn', event: 'onIsOnChange', initial: false, sync: true },
     fields: {
       ...commonFields,
       systemImage: { type: 'string', default: '' },
@@ -45,7 +45,7 @@ export const formControls: Control[] = [
         }
       }
       .oneNativeToggleStyle(model.toggleStyle)`,
-    validate: `  if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')
+    validate: `  if (typeof isOn !== 'boolean' && !isSyncState(isOn)) throw new Error('Toggle isOn must be a boolean or NativeState handle')
   if (typeof systemImage !== 'string') throw new Error('Toggle systemImage must be a string')`,
   },
   {
