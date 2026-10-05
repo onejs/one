@@ -5,11 +5,12 @@ declare function generateKey(): Promise<string>;
 declare function attestKey(keyId: string, clientDataHashBase64: string): Promise<string>;
 declare function generateAssertion(keyId: string, clientDataHashBase64: string): Promise<string>;
 declare function generateDeviceToken(): Promise<string>;
-export declare const DeviceAttestation: Readonly<{
+declare const nativeDeviceAttestation: Readonly<{
     getAvailability: typeof getAvailability;
     generateKey: typeof generateKey;
     attestKey: typeof attestKey;
     generateAssertion: typeof generateAssertion;
     generateDeviceToken: typeof generateDeviceToken;
 }>;
+export declare const DeviceAttestation: typeof nativeDeviceAttestation;
 //# sourceMappingURL=index.native.d.ts.map

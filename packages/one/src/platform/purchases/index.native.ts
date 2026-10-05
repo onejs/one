@@ -9,6 +9,7 @@ import type {
   PurchaseTransaction,
   PurchaseUpdate,
 } from '../specs/OnePurchases.nitro'
+import { Purchases as unavailablePurchases } from './unavailable'
 
 export type {
   PurchaseProduct,
@@ -57,7 +58,7 @@ function sync(): Promise<void> {
   return native().sync().catch(rethrowNativeError)
 }
 
-export const Purchases = Object.freeze({
+const nativePurchases = Object.freeze({
   getProducts,
   purchase,
   getCurrentEntitlements,
@@ -66,3 +67,7 @@ export const Purchases = Object.freeze({
   addTransactionListener,
   sync,
 })
+
+// StoreKit is iOS only, so Android keeps the unavailable contract
+export const Purchases: typeof nativePurchases =
+  Platform.OS === 'android' ? unavailablePurchases : nativePurchases

@@ -12,10 +12,11 @@ declare function submit(identifier: string, options?: {
 }): Promise<void>;
 declare function getPending(): Promise<PendingBackgroundTask[]>;
 declare function cancel(identifier: string): void;
-export declare const BackgroundTasks: Readonly<{
+declare const nativeBackgroundTasks: Readonly<{
     defineTask: typeof defineTask;
     submit: typeof submit;
     getPending: typeof getPending;
     cancel: typeof cancel;
 }>;
+export declare const BackgroundTasks: typeof nativeBackgroundTasks;
 //# sourceMappingURL=index.native.d.ts.map

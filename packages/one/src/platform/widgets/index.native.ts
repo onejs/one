@@ -1,6 +1,7 @@
-import { NativeEventEmitter, NativeModules } from 'react-native'
+import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
 import type { ReactNode } from 'react'
 import { encodeActivityView, encodeWidgetView, type ActivityView } from './view'
+import { Widgets as unavailableWidgets, LiveActivities as unavailableLiveActivities } from './unavailable'
 
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
 
@@ -28,7 +29,7 @@ function bridge(): WidgetsBridge {
   return native
 }
 
-export const Widgets = Object.freeze({
+const nativeWidgets = Object.freeze({
   write(data: WidgetData): Promise<void> {
     return bridge().writeWidget(data.title, data.value, data.subtitle)
   },
@@ -37,7 +38,7 @@ export const Widgets = Object.freeze({
   },
 })
 
-export const LiveActivities = Object.freeze({
+const nativeLiveActivities = Object.freeze({
   start(title: string, state: LiveActivityState, push = false): Promise<string> {
     return bridge().start(title, state.status, state.value, push)
   },
@@ -64,3 +65,9 @@ export const LiveActivities = Object.freeze({
     return () => subscription.remove()
   },
 })
+
+// WidgetKit and ActivityKit are iOS only, so Android keeps the unavailable contract
+export const Widgets: typeof nativeWidgets =
+  Platform.OS === 'android' ? unavailableWidgets : nativeWidgets
+export const LiveActivities: typeof nativeLiveActivities =
+  Platform.OS === 'android' ? unavailableLiveActivities : nativeLiveActivities
