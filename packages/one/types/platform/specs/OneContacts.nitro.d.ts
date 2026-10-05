@@ -46,6 +46,7 @@ export interface ContactChanges {
 }
 export interface OneContacts extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getPermissionStatus(): ContactsPermissionStatus;
     requestPermission(): Promise<ContactsPermissionStatus>;

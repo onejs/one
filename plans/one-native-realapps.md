@@ -392,6 +392,31 @@ claimed emulator), never inferred from TS registration. Drift gate:
 checked in. Receipts land under
 `tests/native-features/evidence/one-native-android-media/`.
 
+### implementation findings (all device-proven, Android 37 emulator)
+
+Calendar: the provider ignores EXDATE/RDATE in every tested form and
+suppresses sibling expansion for linked ORIGINAL_ID exceptions, so
+single-occurrence update/delete splits the series into runs around the
+instance (RRULE rewrite only) with the edit carried in a detached
+event. Middle-occurrence delete/update keeps both siblings listed
+(`siblingsKeptAfterUpdate/Delete`, `middleRemoved`).
+
+PhotoLibrary: saves must use `VOLUME_EXTERNAL`, the same volume the
+listings query, or saved identifiers never match their own listing.
+A partial grant reports granted at every layer (check, results,
+appops; full grants triple-grant `USER_SELECTED` too), so status
+echoes the OS and partial visibility is proven behaviorally
+(strict before/after delta, never the status label). Re-requesting
+permissions cannot reshow the manager (framework: "no requestable
+permission", instant empty resolve), and Settings radios offer no
+selection grid, so `presentLimitedLibraryPicker` chains: snapshot,
+app-settings for user revoke, auto re-request on return whose dialog
+reopens the manager with the remembered selection, then diff. Cancel
+backs out unchanged and resolves `[]`. iOS keeps its native sheet;
+same delta contract. iOS conformance exact-matches need `; strict=`
+appended (tap1 `strict=false`, tap2 `strict=true`) after this lane
+lands the approval-mandated strict field.
+
 ### bounded file list
 
 Plan + fixture now; implementation: `packages/one/nitro.json` (4
