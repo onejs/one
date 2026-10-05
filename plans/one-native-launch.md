@@ -533,3 +533,15 @@ full system runtime, final print/share APK and lower-SDK capture silence/remover
 obligations remain held. Historical partial receipts are preserved; retained
 emulator and Metro exited before the validator suite, with cause unproven.
 No device campaign, new matrix or held blur adoption follows from CI completion.
+
+Operations placement disposition at 12:10 UTC retains explicit installed-final
+system and Audio runtime holds. No authenticated healthy original-contract
+ordinary device/window is established; empty admission queues do not prove
+health. Preserve final APKs, approved Map source, failed device data and all
+receipts. No alternate AVD/physical device, reboot/wipe, HAL/GPU/shared-service
+action, new build or duplicate source owner is authorized. Placement can reopen
+with concrete identity, availability and claim, original APK/driver/contract
+receipts, and a separately authorized run. The completed platform diagnosis
+stays completed. Calendar supported-path disposition remains with p60786.
+Completed first-layer validator p61184 is asked to finish non-device closeout;
+manager retains pending runtime custody without retaining authors for placement.
