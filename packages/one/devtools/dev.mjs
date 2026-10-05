@@ -167,10 +167,12 @@ loaderHot.on('one:loader-data-update', async (data) => {
   }
 })
 
-// SSR CSS cleanup - remove SSR CSS on first HMR update so individual styles win
+// disable stale ssr css without removing the link react hydrates.
 const ssrCssHot = createHotContext('/__clear_ssr_css')
 ssrCssHot.on('vite:beforeUpdate', () => {
-  document.querySelectorAll('[data-ssr-css]').forEach((node) => node.remove())
+  document.querySelectorAll('[data-ssr-css]').forEach((node) => {
+    node.disabled = true
+  })
 })
 
 // react refresh
