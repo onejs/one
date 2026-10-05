@@ -587,3 +587,29 @@ series-split cases) are preserved under
 `tests/native-features/evidence/one-native-android-media/`, but no
 post-land Android emulator pass is recorded on the landed tree. Still
 needed is a rerun of the media proof driver against the landed tree.
+
+## Test APK repair: skip evidence dirs in kotlin source sweep (2026-10-05)
+
+Landed on `v2-beta` as `62e0f7a4d`. Root cause: `generateKotlinSources`
+in `packages/vxrn/src/exports/prebuildWithoutExpo.ts` swept every `.kt`
+file under the app root except a fixed skip set, including the two
+preserved ProtectedStore proof copies
+(`protected-store-runtime/evidence/source-before-build.kt` and
+`fault-source.kt`), which declare the same classes. The generated app
+tree then failed `:app:compileDebugKotlin` with redeclarations,
+identically on unmodified `v2-beta`. The fix adds `evidence` to the
+skip set; evidence holds preserved proof sources, never app sources.
+The sweep now collects only the real app sources (`Audio.kt` plus its
+glue, `ControlReceiver.kt`). The protected-store harness keeps building
+its own copies through its own tooling; no evidence file changed.
+
+Validation (RAN): new `app kotlin source discovery` test fails before
+(3 sources swept) and passes after (1 swept); full
+`prebuildWithoutExpo` suite 57 passed; one CLI prebuild suite 11
+passed; `one prebuild --platform android` plus unmodified
+`:app:assembleDebug` green on studio-64 with `CCACHE_MAXSIZE=5G`,
+`app-debug.apk` produced. This build ran on the tree containing both
+landed Android lanes, so it doubles as the media `:app` probe check.
+
+Device runtime proof still open: unchanged from the two landing entries
+above, no post-land emulator pass recorded yet.
