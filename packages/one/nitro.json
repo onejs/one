@@ -76,7 +76,8 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneLocalAuthentication" }
     },
     "OneProtectedStore": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneProtectedStore" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneProtectedStore" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneProtectedStore" }
     },
     "OneStorage": {
       "all": { "language": "c++", "implementationClassName": "HybridOneStorage" }

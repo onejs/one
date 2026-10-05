@@ -44,6 +44,7 @@
 #include "JFunc_void_std__string_NativeNotification.hpp"
 #include "JFunc_void_NativeNotificationResponse.hpp"
 #include "JFunc_void_NativePushToken.hpp"
+#include "JHybridOneProtectedStoreSpec.hpp"
 #include "JHybridOneSecureStoreSpec.hpp"
 #include "JHybridOneSpeechSpec.hpp"
 #include "JFunc_void_SpeechEvent.hpp"
@@ -181,6 +182,14 @@ struct JHybridOneAppleAuthSpecImpl: public jni::JavaClass<JHybridOneAppleAuthSpe
     return javaPart->getJHybridOneAppleAuthSpec();
   }
 };
+struct JHybridOneProtectedStoreSpecImpl: public jni::JavaClass<JHybridOneProtectedStoreSpecImpl, JHybridOneProtectedStoreSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneProtectedStore;";
+  static std::shared_ptr<JHybridOneProtectedStoreSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneProtectedStoreSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneProtectedStoreSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneProtectedStoreSpec();
+  }
+};
 struct JHybridOneFileSystemSpecImpl: public jni::JavaClass<JHybridOneFileSystemSpecImpl, JHybridOneFileSystemSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneFileSystem;";
   static std::shared_ptr<JHybridOneFileSystemSpec> create() {
@@ -256,6 +265,7 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_std__string_NativeNotification_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativeNotificationResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneProtectedStoreSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneSecureStoreSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneSpeechSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_SpeechEvent_cxx::registerNatives();
@@ -360,6 +370,12 @@ void registerAllNatives() {
     "OneAppleAuth",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneAppleAuthSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneProtectedStore",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneProtectedStoreSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
