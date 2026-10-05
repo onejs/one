@@ -1,10 +1,11 @@
 # One Android media repair design
 
-Status: partial Photo/Audio source implementation under p60786 bounded clearance
-relayed by p61056 on 2026-10-05. Calendar design remains held. Existing compile
-and native runtime acceptance gates remain open; this is not full acceptance.
+Status: non-device source unit closed by manager p61056 on 2026-10-05.
+Partial Photo/Audio implementation is pushed under p60786 bounded clearance;
+Calendar implementation and existing native acceptance remain blocked.
 
-Owner: r59617, manager-authorized successor on tm/beta-media-repair. Inherited
+Custody: manager p61056 accepts pushed Photo/Audio and Calendar designs.
+Source producer: r59617, manager-authorized successor on tm/beta-media-repair. Inherited
 clean pushed proposal 429fd9218, based on candidate 25e516090 (implementation
 4f5eb7538 plus receipts). p61056 owns serialized beta integration, CI and canary.
 p61184 is the existing public first layer; p60786 is the sole substantive unit.
@@ -38,6 +39,22 @@ same-unit disposition. DURATION is necessary, not sufficient. Local update/
 cancel, selected later edit/delete, duration and atomic metadata remain open.
 Photo/Audio c8 keeps the existing p61184 coverage; no extra partial review or
 final native approval was granted.
+
+Final disposition relayed by p61056 on 2026-10-05 for 8af: "source direction
+ACCEPTED, implementation still HELD at named local linked-exception
+preservation and exact timed/all-day duration boundaries." Frozen same-unit
+artifact named in that mail: `one-media-corrections/calendar-8af-verdict.md`.
+The reviewer reports reading pinned AOSP refresh/clone/duration source;
+full-recurrence/EXDATE/no-yield batch is supported investigation only.
+C1 independent selected ID remains closed in design. No storage, synthetic
+sync identity, narrower contract, precision waiver or new campaign is admitted.
+Photo/Audio c8 remains independent under existing p61184 coverage.
+
+Manager-directed closeout: preserve pushed source/evidence and an outside-tree
+handoff under 4KB, remove the clean managed worktree normally, finish once.
+No additional source/runtime campaign or CI/placement wait. Operations holds
+new build/device actions. Source continuation reopens only for a concrete
+supported path under the original gates and the same review unit.
 
 First layer:
 `/Users/n8/.team-machine/handoffs/one-beta-recovery/media-first-layer-verdict.md`.
@@ -363,7 +380,9 @@ negative outcomes and Audio source-control paths:
 `tests/native-features/evidence/one-native-android-media/repair-static.md`.
 No retry, weakened assertion, new device campaign or matrix.
 
-Blocker owner: p60786, routed by manager p61056. Calendar metadata/selected
-identity/provider-shape disposition remains pending. Photo/Audio source changes
-are partially cleared; album access and replacement are unchanged. Delivery
-task remains open for Calendar and existing native compile/runtime acceptance.
+Delivery/blocker owner: manager p61056, with p60786 as the existing substantive
+unit. Calendar implementation remains blocked on local linked-exception
+preservation and exact timed/all-day duration. Selected identity is closed in
+design. Photo/Audio partial source delivery is pushed; album access and
+replacement are unchanged. The completed non-device source unit is handed
+off; the owning delivery task stays blocked for Calendar and native acceptance.
