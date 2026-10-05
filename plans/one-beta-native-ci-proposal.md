@@ -1,10 +1,25 @@
-<!-- proposal: status=awaiting-review owner=p61201 date=2026-10-04 reviewers=p61184,p60786 lane=beta-native-ci branch=tm/beta-native-ci -->
+<!-- proposal: status=approved owner=p61886 date=2026-10-04 reviewers=p61184,p60786 lane=beta-native-ci branch=tm/beta-native-ci -->
 
 # One v2-beta iOS generated-binding repair proposal
 
-No implementation until p61184 (first layer) and p60786 (substantive
-native/portal gate) approve. No catalog, generator, native, handwritten
-spec, or public API change is proposed.
+APPROVED for bounded implementation by p60786 (substantive
+native/portal gate) 2026-10-05 04:49:43Z, dossier
+`/Users/n8/.team-machine/handoffs/one-beta-recovery/public-review-controls/ci-approval.md`,
+proposal b788fded5/base 8631f54f9, exactly four generated files. No new
+substantive finding; generator drift is author-discovered. First-layer
+PASS remains attributed to p61184. No second coordinator pass. No
+catalog, generator, native, handwritten spec, or public API change is
+approved or proposed.
+
+Folded implementation preconditions (all required before push): the
+COMPLETE existing `generated-swiftui` CI step, read from
+`.github/workflows/test-native-ios.yml` (`bun run generate:check`,
+`bun run build`, `git diff --exit-code -- types/platform/generated`,
+`bun run typecheck`, `bun run test` in `packages/one`); missing-provider
+and generator-order/blank-line negatives that fail for the intended
+reason; no generator-check weakening. Focused guards alone do not
+substitute for the complete existing step. p61056 owns branch
+selection, v2-beta integration, and delivery/CI.
 
 ## RAN: the failure
 
@@ -84,16 +99,18 @@ Portal/pager props, events, slots, `interfaceOnly`, and the
 
 ## Controls (run after approval, before push)
 
-Positive (restored registration): `generate:check` exits 0; all 98
-providers and 93 schema names resolve by key; portal/pager schema
-entries deep-equal pre-fix content; `bun run vitest --run
-tests/groups.test.ts tests/staticSpecs.test.ts tests/pager.test.ts
-tests/lists.test.ts tests/containers.test.ts` passes.
+Positive (restored registration): the complete existing
+`generated-swiftui` step passes: `bun run generate:check` exits 0, `bun
+run build` succeeds, `git diff --exit-code -- types/platform/generated`
+is clean, `bun run typecheck` passes, and `bun run test` (full package
+suite) passes. All 98 providers and 93 schema names resolve by key;
+portal/pager schema entries deep-equal pre-fix content.
 
-Negative (missing provider): deleting one provider key from a copy
-trips the keyed guard (`missing provider: <name>`, probe verified);
-removing the regenerated blank line or shuffling provider order
-re-fails `generate:check` with the same file listed.
+Negative (missing provider): deleting one provider key from the working
+tree trips the keyed guard through the maintained `groups.test.ts`
+suite; removing the regenerated blank line or shuffling provider order
+re-fails `generate:check` with the same file listed. Each negative is
+restored immediately after and must fail for the intended reason.
 
 Native compile: not required, no native file changes; the generator's
 own swiftc typecheck plus VerifyControlled run inside `bun run
