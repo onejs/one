@@ -66,7 +66,8 @@ function warmup(_browserPackage?: string): Promise<boolean> {
   return Promise.resolve(false)
 }
 
-function mayLaunchUrl(_url: string, _browserPackage?: string): Promise<boolean> {
+function mayLaunchUrl(url: string, _browserPackage?: string): Promise<boolean> {
+  assertBrowserUrl(url, 'Browser.mayLaunchUrl')
   return Promise.resolve(false)
 }
 
