@@ -53,6 +53,14 @@ describe('sync schema contract', () => {
     expect(component('SecureField').props).toMatchObject({
       syncStateId: { type: 'Int32' },
     })
+    expect(component('Toggle').controlled).toMatchObject({
+      value: 'value',
+      event: 'onNativeToggleValueChange',
+      sync: true,
+    })
+    expect(component('Toggle').props).toMatchObject({
+      syncStateId: { type: 'Int32' },
+    })
     expect(component('Slider').props).not.toHaveProperty('syncStateId')
     expect(component('SecureField').controlled).toMatchObject({
       value: 'value',
@@ -158,6 +166,24 @@ describe('generated sync text bindings', () => {
     })
     expect(handle.get()).toBe('new-secret')
     expect(onTextChange).toHaveBeenCalledWith('new-secret')
+  })
+
+  it('wires Toggle to a boolean handle', () => {
+    const handle = store.createSyncState(false)
+    const onIsOnChange = vi.fn()
+    let root: ReturnType<typeof create>
+    act(() => {
+      root = create(<Controls.Toggle label="Notify" isOn={handle} onIsOnChange={onIsOnChange} />)
+    })
+    const stub = stubOf(root!, 'OneNativeToggle')
+    expect(stub.props.value).toBe(false)
+    expect(stub.props.syncStateId).toBe(store.getSyncStateId(handle))
+    act(() => {
+      stub.props.onNativeToggleValueChange({ nativeEvent: { value: true, eventCount: 1, revision: 0 } })
+    })
+    expect(handle.get()).toBe(true)
+    expect(onIsOnChange).toHaveBeenCalledWith(true)
+    expect(stubOf(root!, 'OneNativeToggle').props.value).toBe(true)
   })
 
   it('rejects values that are neither strings nor handles', () => {
