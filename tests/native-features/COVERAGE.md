@@ -12,25 +12,25 @@ A cell names the conformance suites whose fixture uses the export.
 | `One.Database` | database | missing | Android suite missing |
 | `One.Widgets` | missing | native-modules:unavailable | needs a widget extension target in the fixture app |
 | `One.LiveActivities` | missing | native-modules:unavailable | needs a widget extension target in the fixture app |
-| `One.LocalAuthentication` | local-authentication | native-modules:unavailable |  |
+| `One.LocalAuthentication` | local-authentication | local-authentication, native-modules:unavailable |  |
 | `One.ProtectedStore` | protected-store | native-modules:unavailable |  |
-| `One.KeepAwake` | keep-awake | native-modules:unavailable |  |
-| `One.Print` | print | native-modules:unavailable |  |
+| `One.KeepAwake` | keep-awake | keep-awake, native-modules:unavailable |  |
+| `One.Print` | print | print, native-modules:unavailable |  |
 | `One.StoreReview` | store-review | native-modules:unavailable |  |
-| `One.QuickActions` | quick-actions | native-modules:unavailable |  |
-| `One.Location` | location | native-modules:unavailable |  |
-| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | native-modules |  |
+| `One.QuickActions` | quick-actions | quick-actions, native-modules:unavailable |  |
+| `One.Location` | location | location, native-modules:unavailable |  |
+| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, print, location, screen-capture, native-modules |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-background | native-modules:unavailable |  |
-| `One.Share` | share | native-modules:unavailable |  |
+| `One.Share` | share | share, native-modules:unavailable |  |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable |  |
-| `One.MapServices` | map-services | native-modules:unavailable |  |
+| `One.MapServices` | map-services | map-services, native-modules:unavailable |  |
 | `One.AppTracking` | app-tracking | native-modules:unavailable |  |
-| `One.AppIcon` | app-icon | native-modules:unavailable |  |
-| `One.ScreenOrientation` | screen-orientation | native-modules:unavailable |  |
-| `One.ScreenCapture` | screen-capture, view-snapshot | native-modules:unavailable |  |
+| `One.AppIcon` | app-icon | app-icon, native-modules:unavailable |  |
+| `One.ScreenOrientation` | screen-orientation | screen-orientation, native-modules:unavailable |  |
+| `One.ScreenCapture` | screen-capture, view-snapshot | screen-capture, native-modules:unavailable |  |
 | `One.Purchases` | purchases | native-modules:unavailable |  |
 | `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | native-modules |  |
-| `One.Device` | device | native-modules:unavailable |  |
+| `One.Device` | device | device, native-modules:unavailable |  |
 | `One.Motion` | motion, native-modules | native-modules | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device |
 | `One.AppIntents` | app-intents | native-modules:unavailable |  |
