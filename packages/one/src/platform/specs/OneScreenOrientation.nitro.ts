@@ -14,7 +14,7 @@ export type ScreenOrientationLock =
   | 'landscapeRight'
   | 'landscape'
 
-export interface OneScreenOrientation extends HybridObject<{ ios: 'swift' }> {
+export interface OneScreenOrientation extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getOrientation(): Promise<ScreenOrientationValue>
   lock(orientation: ScreenOrientationLock): Promise<ScreenOrientationValue>
   unlock(): Promise<ScreenOrientationValue>
