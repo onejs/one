@@ -21,6 +21,13 @@ stop/dispose with existing E_AUDIO_STATE; below-24 pause/resume must explicitly
 reject using existing codes and an API-24 message. Calendar remains held.
 This supersedes the proposed album relaxation and comments-only floor correction.
 
+Frozen same-unit db315 disposition, relayed by p61056 and read from
+`/Users/n8/.team-machine/handoffs/one-beta-recovery/public-review-controls/media-db315-disposition.md`:
+selected detached events retain independent provider identifiers; untouched
+siblings retain original identity. Calendar's opaque storage/consumer boundary
+remains held. The corrections below replace the rejected origin projection
+and custom-field storage choice. Calendar native source is unchanged.
+
 First layer:
 `/Users/n8/.team-machine/handoffs/one-beta-recovery/media-first-layer-verdict.md`.
 Read AGENTS and launch/realapps plans. docs/owner-decisions.md is absent in this
@@ -68,24 +75,30 @@ Proposed design, HELD pending p60786 clearance; no Calendar native edits:
    and original recurrence for surviving runs, including singleton runs.
    Internal split decisions use the physical rule and exception state.
 
-2. Store origin ID and exact original RRULE in app-owned provider metadata
-   on every surviving run. The selected detached row records origin and
-   exception state too. Resolve exact parsed origin plus start time; match
-   only the owned package, version and URI scheme. New splits inherit the
-   ultimate origin. A lookup must work even after the original physical row
-   is deleted. Never overwrite another app's existing custom metadata.
-   CUSTOM_APP_PACKAGE/CUSTOM_APP_URI are app-writable, but identify a custom
-   app experience, so this storage choice specifically needs review clearance.
-   Do not use sync-adapter-only SYNC_DATA columns or an external non-atomic map.
+2. Durable sibling mapping is the unresolved storage prerequisite. It must
+   retain each surviving run's original identifier and exact original RRULE
+   in the same calendar transaction, including after the original physical
+   row is removed. The selected standalone row is outside that sibling map.
+   CUSTOM_APP_PACKAGE/CUSTOM_APP_URI are not adopted as opaque storage: their
+   documented consumer passes them to a custom event activity. No same-app,
+   versioned-URI or empty-field check proves that stamping them changes no
+   custom experience. Do not overwrite existing values, synthesize a custom
+   handler, or claim ownership from permission to edit an event. No supported
+   inert ordinary-app storage boundary has been established from the assigned
+   source. Sync-adapter columns, sync-adapter-only ExtendedProperties and an
+   external non-atomic map do not satisfy the current contract/scope.
 
-3. Preserve selected-occurrence behavior: update returns the independently
-   re-read selected event, with its current start time, and later update/delete
-   must target it alone. Proposed projection uses the same public origin ID
-   for it and its siblings. The exception marker prevents splitting an edited
-   standalone row again. No linked ORIGINAL_ID exception is reintroduced,
-   since candidate receipts report that it suppressed sibling expansion.
-   Original-ID projection for the selected row is explicitly for p60786's
-   contract disposition, not an assertion about EventKit's detached ID.
+3. Preserve selected-occurrence behavior: update returns the selected detached
+   row's independently re-read provider identifier and current start time,
+   just as current insertDetached uses its insert result URI. Later edits or
+   deletion resolve that pair directly to the selected row. Do not project
+   its identifier or recurrence to the sibling origin. Its physical RRULE is
+   absent, so later edits treat it as standalone; no synthetic exception
+   marker or sibling membership is needed. Moving it onto a sibling's exact
+   start then leaves two different identifiers. No linked ORIGINAL_ID
+   exception is reintroduced, since candidate receipts report suppressed
+   sibling expansion. This follows the existing return-value contract, not
+   a new public identifier definition.
 
 4. Assemble one ContentProviderOperation batch containing the original row
    update or delete, all sibling run inserts and the selected detached insert.
@@ -97,6 +110,16 @@ Proposed design, HELD pending p60786 clearance; no Calendar native edits:
    SQLiteContentProvider wraps no-yield operations in one transaction and
    marks success only after all apply. Installed-provider rollback is not
    runtime-proven here.
+
+   Preserve non-owned custom experience fields and unrelated event columns.
+   Original-row updates change only the split timing/rule; newly inserted
+   siblings must carry the original transferable event metadata instead of
+   silently dropping it through readSeries' current narrow projection. Current
+   SeriesRow/insertDetached read or copy only selected event fields; that is
+   not a proof of preserving description, organizer, custom experience,
+   reminders or attendees on arbitrary provider events. The approved storage
+   and copy boundary must specify those columns/related rows and their actual
+   consumers. Do not infer whole-event preservation from unchanged title/time.
 
 5. Remove local expandStarts. Read actual Instances starts for the physical
    series, with the provider-computed LAST_DATE bounding finite expansion.
@@ -122,6 +145,30 @@ all current daily interval-2/count-3, middle-update/delete and endDateMs legs.
 Strengthen that same middle leg to address the later sibling by original ID,
 check sibling ID/recurrence retention, and edit/delete the returned selected
 occurrence without changing siblings. No new recurrence matrix or device run.
+
+RAN: repeated the existing review's bounded logical collision control. When a
+selected edit is moved to the retained sibling's exact start, projecting both
+to origin 100 produces two target matches; leaving selected provider ID 102
+independent produces one selected match and one sibling-origin match. Receipt:
+`tests/native-features/evidence/one-native-android-media/calendar-design-identity.json`.
+This is logical identity evidence, not provider or One implementation execution.
+Current insertDetached:765-768 already returns the new provider ID. The change
+needed here is to the proposal, not that selected-ID source behavior.
+
+RAN: read the exact documented custom-event consumer boundary:
+[ACTION_HANDLE_CUSTOM_EVENT](https://developer.android.com/reference/android/provider/CalendarContract#ACTION_HANDLE_CUSTOM_EVENT)
+starts the app named in CUSTOM_APP_PACKAGE and sends its CUSTOM_APP_URI as an
+intent extra, together with the provider event URI and occurrence start. An
+opaque origin stamp would therefore be consumer-visible. A One-source scan
+found no custom-event handler, but that does not prove host/vendor consumers
+ignore these fields or that a non-owned experience is preserved.
+[EventsColumns](https://developer.android.com/reference/android/provider/CalendarContract.EventsColumns#CUSTOM_APP_URI)
+defines those fields for that custom experience, not arbitrary storage.
+[CalendarProvider2](https://android.googlesource.com/platform/packages/providers/CalendarProvider/+/refs/heads/main/src/com/android/providers/calendar/CalendarProvider2.java)
+rejects ordinary-app writes to ExtendedProperties in its transaction guard.
+No sync-adapter authority is added. The exact no-behavior-change metadata
+boundary is still unproved, so origin storage remains blocked rather than
+silently replaced with another event field or a weaker durability contract.
 
 ## Photo: explicit selection permission and strict iOS fixture
 

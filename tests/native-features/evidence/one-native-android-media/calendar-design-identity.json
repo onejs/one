@@ -1,0 +1,28 @@
+{
+  "kind": "bounded logical identity control, no provider execution",
+  "rows": [
+    {
+      "kind": "sibling",
+      "providerId": "101",
+      "originId": "100",
+      "startMs": 1700000000000
+    },
+    {
+      "kind": "selected",
+      "providerId": "102",
+      "originId": "100",
+      "startMs": 1700000000000
+    }
+  ],
+  "oldOriginProjectionMatches": [
+    "101",
+    "102"
+  ],
+  "correctedSelectedProviderIdMatches": [
+    "102"
+  ],
+  "correctedSiblingOriginIdMatches": [
+    "101"
+  ],
+  "metadataStorage": "not implemented or accepted"
+}
