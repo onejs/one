@@ -457,23 +457,37 @@ preserved; sync hygiene grants no native adoption or public-main approval.
 
 ### current native acceptance (2026-10-05 UTC)
 
-ProtectedStore author r59519 finished candidate `d34b897e1273b7977493b2c55dd1fddf8bf98c9c`,
+ProtectedStore author r59519 finished candidate `d21c095c2080217dd422a49136f4825ef6f21efa`,
 production `94d765a567e56b6c813e6d3dc977603792fe6c07`. Author-reported proof
 covers 92 receipt checks over 64 actual One/Nitro native results, with separate
 production and fault APK identities and three verifier negative controls.
-Manager READ the committed evidence README and handoff; assigned assembled
-coverage is with p61184, followed by p60786. Delivery is not accepted yet.
+The first layer found that the proof bypassed an unavailable public Android
+entry. The corrected candidate removes that entry and adds a package-public
+create/get/delete/missing-get proof. Manager RAN equal production and installed
+APK hashes and READ the committed proof. Native security controls remain
+unchanged. The sole assembled final gate is with p60786; delivery is pending.
 Owned emulator, claim and servers are cleaned up. The clean pushed Pro64 tree
 is retained under manager custody because a shared Watchman directory handle
 holds it; no shared service kill or forced removal is authorized.
 
 Media candidate `25e516090e7445d03a5771422503bcb165e67c70` remains unlanded.
 Completed first-layer p61184 assessment found Calendar detached-ID and split
-atomicity issues, Photo limited-permission and album-access issues, and Audio
-busy, seek and API-floor issues. Contacts source was sound; reported Contacts,
+atomicity issues, Photo limited-permission issues, and Audio seek settlement
+issues. Sol's source-grounded proposal `db31539b3` corrects the first-layer
+claims about active-play replacement and limited album access: current Swift
+replaces the player and requires full authorization for albums. Manager READ
+both methods; do not change those contracts on the earlier premises. The
+recording-floor claim is also disputed by the proposal's exact Kotlin reads.
+Contacts source was sound; reported Contacts,
 Calendar and Photo receipts do not establish full media acceptance. Preserve
-the existing full findings before assigning bounded repairs. Audio remains
-runtime-unverified, with one eventual assigned assembled substantive gate.
+the full findings and these corrections. Owner r59617, private Sol high,
+awaits p60786's bounded correction disposition before native edits, including
+Calendar identity and transactional metadata design. The predecessor Muse
+worker was stopped after broad protected-reviewer transcript reads outside its
+public-only scope. Its proposal is pushed and preserved; the successor received
+only source and assigned One evidence. Exact content exposure is not established
+by the trimmed record. Audio remains runtime-unverified, with one eventual
+assigned assembled substantive gate.
 
 RAN: the unchanged Audio proof driver and preserved APK failed on a second host,
 Pro64, using an existing standard Pixel8 API37 AVD in read-only mode. Boot
@@ -486,8 +500,11 @@ the manager handoff directory. Existing platform owner s10097 and operations
 p60562 own the supported repair path. No further reboot, wipe, renderer change,
 audio HAL mutation or shared-service action is authorized by this observation.
 
-CI repair proposal `f5c36f17e` uses the existing compiler-path mechanism and
-preserves requested Hermes bytecode. Public first-layer disposition is complete;
-p60786's assigned preimplementation disposition is pending. The rejected
+CI repair candidate `ac19e4daa` implements approved proposal `f5c36f17e` using
+the existing compiler-path mechanism and preserving requested Hermes bytecode.
+Public first-layer implementation disposition is PASS; p60786's sole final
+gate is pending. Author-reported actual Debug bytecode/render proof is preserved
+outside its clean pushed tree, retained because shared Watchman holds it.
+The rejected
 JavaScript fallback proposal is superseded. Manager owns beta integration,
 required CI and exact canary content proof after the bounded repair.
