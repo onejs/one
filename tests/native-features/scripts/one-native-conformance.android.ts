@@ -1096,10 +1096,17 @@ async function run(config: Config) {
     await waitFor(config, 'system-share-chooser', (nodes) =>
       textIncludes(nodes, 'Copy')
     )
-    tapByText(config, 'system-share-copy', 'Copy')
+    // android 37 labels the chooser copy action "Copy to clipboard".
+    tapByText(config, 'system-share-copy', 'Copy to clipboard')
+    // the completed text share advances the fixture to the file chooser,
+    // which covers the app: uiautomator sees the chooser, not the status
+    // text behind it, so assert the chooser itself. the passed check below
+    // pins the copy completion through the result triple.
     await expect(
       'system-share-file-sharing',
-      (nodes) => joined(nodes).includes('Status: file sharing'),
+      (nodes) =>
+        joined(nodes).includes('Sharing 1 file') &&
+        joined(nodes).includes('one-native-share-proof.txt'),
       'one-native-share-run',
       undefined,
       30_000
