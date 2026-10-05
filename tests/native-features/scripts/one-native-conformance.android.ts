@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'portal' | 'pager' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'portal' | 'pager' | 'updates' | 'system'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|portal|pager|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|portal|pager|updates|system --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'portal' && value !== 'pager' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -901,6 +901,654 @@ async function run(config: Config) {
     return result.snapshot
   }
 
+  // Ten Android system services through their existing fixtures: device
+  // snapshot, keep-awake round trip, orientation locks, share chooser
+  // completion, print sheet cancel, quick-action cold/warm delivery,
+  // alternate icon switch, location permission/position/watch/geocode,
+  // map-services search split, and biometric status. Each leg asserts
+  // positives plus the platform negatives through real Kotlin.
+  const system = async () => {
+    const sysText = (nodes: Node[], id: string, expected: string) =>
+      matching(nodes, { id }).some((node) =>
+        nodeValues(node).some((value) => value.includes(expected))
+      )
+    const joined = (nodes: Node[]) => nodes.flatMap(nodeValues).join('\n')
+    const pressHome = () =>
+      adbText(config, ['shell', 'input', 'keyevent', '3'])
+    const foregroundApp = () =>
+      adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
+    const focusedWindow = () =>
+      adbText(config, ['shell', 'dumpsys', 'window', 'windows']).slice(0, 4000)
+
+    // Fresh permissions and prefs; the debug host stamp survives.
+    clearAppData(config)
+    await expect(
+      'system-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen'
+    )
+
+    // Device: full snapshot from Build/Locale, emulator flagged.
+    await tapNavigation(config, 'nav-one-native-device')
+    await expect(
+      'system-device-mounted',
+      (nodes) => sysText(nodes, 'one-native-device-read', 'Read device'),
+      'one-native-device-read'
+    )
+    tapFresh(config, 'system-device-read', {
+      id: 'one-native-device-read',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-device-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          /Model: \S+/.test(text) &&
+          text.includes('System: Android') &&
+          text.includes('Idiom: phone') &&
+          text.includes('Simulator: true') &&
+          /Vendor: [0-9a-fA-F]+/.test(text) &&
+          !text.includes('pending') &&
+          text.includes('Error: none')
+        )
+      },
+      'one-native-device-read'
+    )
+
+    // KeepAwake: enable/disable round trip, validation, restore, and a
+    // home/foreground cycle proving the resume path holds.
+    await tapNavigation(config, 'nav-one-native-keep-awake')
+    tapFresh(config, 'system-keep-awake-run', {
+      id: 'one-native-keep-awake-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-keep-awake-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Initial: false') &&
+          text.includes('Enabled: true') &&
+          text.includes('Disabled: false') &&
+          text.includes('Invalid: KeepAwake.setEnabled: enabled must be a boolean') &&
+          text.includes('Restored: false')
+        )
+      },
+      'one-native-keep-awake-run'
+    )
+    pressHome()
+    await Bun.sleep(1000)
+    foregroundApp()
+    await expect(
+      'system-keep-awake-foregrounded',
+      (nodes) => sysText(nodes, 'one-native-keep-awake-run', 'Run keep-awake checks'),
+      'one-native-keep-awake-run'
+    )
+    tapFresh(config, 'system-keep-awake-rerun', {
+      id: 'one-native-keep-awake-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-keep-awake-report-after-resume',
+      (nodes) => joined(nodes).includes('Status: done'),
+      'one-native-keep-awake-run'
+    )
+
+    // Orientation: read, both locks with flipped dimensions, listener
+    // events, unlock. The landscapeLeft lock pins the left/right mapping.
+    await tapNavigation(config, 'nav-one-native-screen-orientation')
+    tapFresh(config, 'system-orientation-read', {
+      id: 'one-native-orientation-read',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-portrait',
+      (nodes) =>
+        joined(nodes).includes('Orientation: portrait') &&
+        joined(nodes).includes('Status: read'),
+      'one-native-orientation-read'
+    )
+    tapFresh(config, 'system-orientation-landscape', {
+      id: 'one-native-orientation-landscape',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-landscape-left',
+      (nodes) => {
+        const text = joined(nodes)
+        const dimensions = /Dimensions: (\d+)x(\d+)/.exec(text)
+        return (
+          text.includes('Status: locked-landscapeLeft') &&
+          text.includes('Orientation: landscapeLeft') &&
+          text.includes('landscapeLeft') &&
+          dimensions !== null &&
+          Number(dimensions[1]) > Number(dimensions[2])
+        )
+      },
+      'one-native-orientation-landscape',
+      undefined,
+      30_000
+    )
+    tapFresh(config, 'system-orientation-portrait-lock', {
+      id: 'one-native-orientation-portrait',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-portrait-locked',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: locked-portrait') &&
+          text.includes('Orientation: portrait')
+        )
+      },
+      'one-native-orientation-portrait',
+      undefined,
+      30_000
+    )
+    tapFresh(config, 'system-orientation-unlock', {
+      id: 'one-native-orientation-unlock',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-unlocked',
+      (nodes) =>
+        joined(nodes).includes('Status: unlocked') &&
+        joined(nodes).includes('Orientation: portrait'),
+      'one-native-orientation-unlock',
+      undefined,
+      30_000
+    )
+
+    // Share: text/url completion through the chooser Copy target, file
+    // dismissal, busy guard, and all four input codes.
+    await tapNavigation(config, 'nav-one-native-share')
+    tapFresh(config, 'system-share-run', {
+      id: 'one-native-share-run',
+      role: 'button',
+      clickable: true,
+    })
+    await waitFor(config, 'system-share-chooser', (nodes) =>
+      textIncludes(nodes, 'Copy')
+    )
+    tapByText(config, 'system-share-copy', 'Copy')
+    await expect(
+      'system-share-file-sharing',
+      (nodes) => joined(nodes).includes('Status: file sharing'),
+      'one-native-share-run',
+      undefined,
+      30_000
+    )
+    pressBack(config)
+    await expect(
+      'system-share-passed',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: passed') &&
+          text.includes('Busy: E_SHARE_BUSY') &&
+          /text=true; activity=\S+; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS/.test(
+            text
+          )
+        )
+      },
+      'one-native-share-run',
+      undefined,
+      30_000
+    )
+
+    // Print: cancel the system sheet, then busy and input codes; a second
+    // leg with the print service disabled proves honest unavailability.
+    adbText(config, [
+      'shell',
+      'settings',
+      'put',
+      'secure',
+      'enabled_print_services',
+      'com.android.bips/.BuiltInPrintService',
+    ])
+    await tapNavigation(config, 'nav-one-native-print')
+    tapFresh(config, 'system-print-run', {
+      id: 'one-native-print-run',
+      role: 'button',
+      clickable: true,
+    })
+    await waitFor(
+      config,
+      'system-print-sheet',
+      (nodes) => joined(nodes).includes('Status: presenting'),
+      'one-native-print-run',
+      30_000
+    )
+    for (let attempt = 0; attempt < 40; attempt++) {
+      if (focusedWindow().includes('printspooler')) break
+      await Bun.sleep(250)
+    }
+    if (!focusedWindow().includes('printspooler'))
+      throw new Error('system print sheet never took focus')
+    pressBack(config)
+    await expect(
+      'system-print-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          /PdfBytes: \d+/.test(text) &&
+          text.includes('Busy: E_PRINT_BUSY') &&
+          text.includes('Completed: false') &&
+          text.includes('RemoteURI: E_PRINT_URI') &&
+          text.includes('Missing: E_PRINT_FILE') &&
+          text.includes('BadPDF: E_PRINT_PDF') &&
+          text.includes('InvalidType: Print.printPdf: fileUri must be a non-empty string') &&
+          text.includes(
+            'InvalidName: Print.printPdf: jobName must be a non-empty string when provided'
+          )
+        )
+      },
+      'one-native-print-run',
+      undefined,
+      90_000
+    )
+    adbText(config, ['shell', 'settings', 'delete', 'secure', 'enabled_print_services'])
+    relaunchApp(config)
+    await expect(
+      'system-print-relaunch-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-print')
+    tapFresh(config, 'system-print-unavailable-run', {
+      id: 'one-native-print-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-print-unavailable',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Available: false') &&
+          text.includes('Status: failed system printing is unavailable')
+        )
+      },
+      'one-native-print-run'
+    )
+    adbText(config, [
+      'shell',
+      'settings',
+      'put',
+      'secure',
+      'enabled_print_services',
+      'com.android.bips/.BuiltInPrintService',
+    ])
+
+    // QuickActions: set/get round trip, validation, warm tap exactly once,
+    // cold start into the initial slot, clear.
+    await tapNavigation(config, 'nav-one-native-quick-actions')
+    tapFresh(config, 'system-quick-actions-set', {
+      id: 'one-native-quick-actions-set',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-registered',
+      (nodes) =>
+        joined(nodes).includes(
+          'Registered: 1:dev.vxrn.native.tests.quick-open:Open Quick Actions:One proof action'
+        ),
+      'one-native-quick-actions-set'
+    )
+    tapFresh(config, 'system-quick-actions-invalid', {
+      id: 'one-native-quick-actions-invalid',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-invalid',
+      (nodes) =>
+        joined(nodes).includes('Invalid: rejected,rejected,rejected,rejected,rejected'),
+      'one-native-quick-actions-invalid'
+    )
+    const quickAction = 'dev.vxrn.native.tests.quick-open'
+    const fireQuickAction = () =>
+      adbText(config, [
+        'shell',
+        'am',
+        'start',
+        '-n',
+        launcherComponent(config),
+        '-a',
+        'dev.onejs.one.QUICK_ACTION',
+        '--es',
+        'dev.onejs.one.QUICK_ACTION_ID',
+        quickAction,
+      ])
+    fireQuickAction()
+    await expect(
+      'system-quick-actions-warm',
+      (nodes) => joined(nodes).includes(`Warm: 1:${quickAction}`),
+      'one-native-quick-actions-set'
+    )
+    adbText(config, ['shell', 'am', 'force-stop', config.packageId])
+    fireQuickAction()
+    await expect(
+      'system-quick-actions-cold-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      undefined,
+      90_000
+    )
+    await tapNavigation(config, 'nav-one-native-quick-actions')
+    await expect(
+      'system-quick-actions-initial',
+      (nodes) => joined(nodes).includes(`Initial: ${quickAction}`),
+      'one-native-quick-actions-clear-initial'
+    )
+    tapFresh(config, 'system-quick-actions-clear-initial', {
+      id: 'one-native-quick-actions-clear-initial',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-initial-cleared',
+      (nodes) => joined(nodes).includes('Initial: null'),
+      'one-native-quick-actions-clear-initial'
+    )
+    tapFresh(config, 'system-quick-actions-clear', {
+      id: 'one-native-quick-actions-clear',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-cleared',
+      (nodes) => joined(nodes).includes('Registered: cleared:0'),
+      'one-native-quick-actions-clear'
+    )
+
+    // AppIcon: alias discovery, switch to TestAlternate and back, unknown
+    // name rejection.
+    await tapNavigation(config, 'nav-one-native-app-icon')
+    await expect(
+      'system-app-icon-mounted',
+      (nodes) =>
+        joined(nodes).includes('Supported: true') &&
+        joined(nodes).includes('Current icon: primary'),
+      'one-native-app-icon-alternate'
+    )
+    tapFresh(config, 'system-app-icon-alternate', {
+      id: 'one-native-app-icon-alternate',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-changed',
+      (nodes) =>
+        joined(nodes).includes('Icon result: changed') &&
+        joined(nodes).includes('Current icon: TestAlternate'),
+      'one-native-app-icon-primary'
+    )
+    tapFresh(config, 'system-app-icon-primary', {
+      id: 'one-native-app-icon-primary',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-restored',
+      (nodes) =>
+        joined(nodes).includes('Icon result: changed') &&
+        joined(nodes).includes('Current icon: primary'),
+      'one-native-app-icon-invalid'
+    )
+    tapFresh(config, 'system-app-icon-invalid', {
+      id: 'one-native-app-icon-invalid',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-invalid',
+      (nodes) => joined(nodes).includes('invalid:E_APP_ICON_INPUT'),
+      'one-native-app-icon-invalid'
+    )
+
+    // Location: prompt, concurrent request, current fix, watch moves,
+    // geocoding, background watch with its notification, revoke negative.
+    await tapNavigation(config, 'nav-one-native-location')
+    await expect(
+      'system-location-undetermined',
+      (nodes) => joined(nodes).includes('Permission: notDetermined'),
+      'one-native-location-request'
+    )
+    adbText(config, ['emu', 'geo', 'fix', '-122.4194', '37.7749'])
+    tapFresh(config, 'system-location-request', {
+      id: 'one-native-location-request',
+      role: 'button',
+      clickable: true,
+    })
+    await waitFor(config, 'system-location-prompt', (nodes) =>
+      textIncludes(nodes, 'While using the app')
+    )
+    tapByText(config, 'system-location-allow', 'While using the app')
+    await expect(
+      'system-location-granted',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Permission: whenInUse') &&
+          text.includes('Concurrent: whenInUse,whenInUse')
+        )
+      },
+      'one-native-location-current'
+    )
+    tapFresh(config, 'system-location-current', {
+      id: 'one-native-location-current',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-position',
+      (nodes) => joined(nodes).includes('Position: 37.7749,-122.4194'),
+      'one-native-location-watch'
+    )
+    tapFresh(config, 'system-location-watch', {
+      id: 'one-native-location-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-watch-first',
+      (nodes) => joined(nodes).includes('Watch: 37.7749,-122.4194'),
+      'one-native-location-stop-watch'
+    )
+    adbText(config, ['emu', 'geo', 'fix', '-122.4094', '37.7849'])
+    await expect(
+      'system-location-watch-moved',
+      (nodes) => joined(nodes).includes('Watch: 37.7849,-122.4094'),
+      'one-native-location-stop-watch'
+    )
+    tapFresh(config, 'system-location-stop-watch', {
+      id: 'one-native-location-stop-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-watch-stopped',
+      (nodes) => joined(nodes).includes('Watch: stopped'),
+      'one-native-location-forward'
+    )
+    tapFresh(config, 'system-location-forward', {
+      id: 'one-native-location-forward',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-forward',
+      (nodes) => /Forward: [1-9]\d*:37\.3\d,-122\.0\d/.test(joined(nodes)),
+      'one-native-location-reverse',
+      undefined,
+      45_000
+    )
+    tapFresh(config, 'system-location-reverse', {
+      id: 'one-native-location-reverse',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-reverse',
+      (nodes) => joined(nodes).includes('Reverse: San Francisco'),
+      'one-native-location-background-watch',
+      undefined,
+      45_000
+    )
+    tapFresh(config, 'system-location-background-watch', {
+      id: 'one-native-location-background-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-background-started',
+      (nodes) => joined(nodes).includes('Background watch: active:'),
+      'one-native-location-stop-background-watch'
+    )
+    pressHome()
+    await Bun.sleep(2000)
+    const shade = adbText(config, ['shell', 'dumpsys', 'notification'])
+    if (!shade.includes('Location updates active'))
+      throw new Error('background watch posted no foreground-service notification')
+    console.log('PASS system-location-foreground-notification')
+    adbText(config, ['emu', 'geo', 'fix', '-122.3994', '37.7949'])
+    await Bun.sleep(3000)
+    foregroundApp()
+    await expect(
+      'system-location-background-delivered',
+      (nodes) => joined(nodes).includes('Background watch: background:'),
+      'one-native-location-stop-background-watch',
+      undefined,
+      30_000
+    )
+    tapFresh(config, 'system-location-stop-background-watch', {
+      id: 'one-native-location-stop-background-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-background-stopped',
+      (nodes) => joined(nodes).includes('Background watch: stopped'),
+      'one-native-location-watch'
+    )
+    tapFresh(config, 'system-location-revoke-watch', {
+      id: 'one-native-location-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-revoke-watch-live',
+      (nodes) => /Watch: 37\.79\d\d,-122\.3\d\d\d/.test(joined(nodes)),
+      'one-native-location-stop-watch'
+    )
+    adbText(config, [
+      'shell',
+      'pm',
+      'revoke',
+      config.packageId,
+      'android.permission.ACCESS_FINE_LOCATION',
+    ])
+    adbText(config, [
+      'shell',
+      'pm',
+      'revoke',
+      config.packageId,
+      'android.permission.ACCESS_COARSE_LOCATION',
+    ])
+    pressHome()
+    await Bun.sleep(1000)
+    foregroundApp()
+    await expect(
+      'system-location-revoked',
+      (nodes) => joined(nodes).includes('Watch: error: E_LOCATION_PERMISSION'),
+      'one-native-location-refresh',
+      undefined,
+      30_000
+    )
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.ACCESS_FINE_LOCATION',
+    ])
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.ACCESS_COARSE_LOCATION',
+    ])
+
+    // MapServices: geocoder search positive, empty, and input guard, with
+    // the unavailable split held for the other three methods.
+    await tapNavigation(config, 'nav-one-native-map-services')
+    tapFresh(config, 'system-map-services-run', {
+      id: 'one-native-map-services-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-map-services-report',
+      (nodes) =>
+        /Map services: android-passed: .+; empty=true; input=E_MAP_INPUT; split=true/.test(
+          joined(nodes)
+        ),
+      'one-native-map-services-run',
+      undefined,
+      90_000
+    )
+
+    // LocalAuthentication: status triple on an unenrolled emulator and the
+    // matching evaluate rejection through the real prompt path.
+    await tapNavigation(config, 'nav-one-native-local-authentication')
+    const authStatus = await expect(
+      'system-local-auth-status',
+      (nodes) =>
+        /Status: (true|false):(none|touchID|faceID):(\S+)/.test(joined(nodes)),
+      'one-native-local-auth-evaluate'
+    )
+    const authTriple = /Status: (true|false):(none|touchID|faceID):(\S+)/.exec(
+      joined(authStatus.nodes)
+    )
+    if (!authTriple) throw new Error('biometric status triple missing')
+    console.log(`PASS system-local-auth-triple ${authTriple[0]}`)
+    tapFresh(config, 'system-local-auth-evaluate', {
+      id: 'one-native-local-auth-evaluate',
+      role: 'button',
+      clickable: true,
+    })
+    if (authTriple[1] === 'false' && authTriple[3] === '11') {
+      await expect(
+        'system-local-auth-not-enrolled',
+        (nodes) => joined(nodes).includes('Result: error: E_LOCAL_AUTH_NOT_ENROLLED'),
+        'one-native-local-auth-refresh'
+      )
+    } else if (authTriple[1] === 'false' && authTriple[3] === '12') {
+      await expect(
+        'system-local-auth-no-hardware',
+        (nodes) => joined(nodes).includes('Result: error: E_LOCAL_AUTH_FAILED'),
+        'one-native-local-auth-refresh'
+      )
+    } else {
+      throw new Error(`unexpected biometric status for proof branching: ${authTriple[0]}`)
+    }
+  }
+
   // One.UI.Portal: hosted content keeps its React context and state, lays
   // out against the host (8dp in from its corner at any host size), returns
   // to its own position when the host unmounts and follows a renamed host.
@@ -1037,8 +1685,8 @@ async function run(config: Config) {
         textIncludes(nodes, 'One Native Test Suite'),
       'home-screen'
     )
-    if (config.suite === 'portal' || config.suite === 'pager') {
-      await (config.suite === 'portal' ? portal() : pager())
+    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system') {
+      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : system())
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }
