@@ -13,7 +13,7 @@ import com.facebook.proguard.annotations.DoNotStrip
 
 
 /**
- * Represents the JavaScript callback `(message: string) => void`.
+ * Represents the JavaScript callback `(value: string) => void`.
  * This can be either implemented in C++ (in which case it might be a callback coming from JS),
  * or in Kotlin/Java (in which case it is a native callback).
  */
@@ -27,11 +27,11 @@ fun interface Func_void_std__string: (String) -> Unit {
    */
   @DoNotStrip
   @Keep
-  override fun invoke(message: String): Unit
+  override fun invoke(value: String): Unit
 }
 
 /**
- * Represents the JavaScript callback `(message: string) => void`.
+ * Represents the JavaScript callback `(value: string) => void`.
  * This is implemented in C++, via a `std::function<...>`.
  * The callback might be coming from JS.
  */
@@ -55,14 +55,14 @@ class Func_void_std__string_cxx: Func_void_std__string {
 
   @DoNotStrip
   @Keep
-  override fun invoke(message: String): Unit
-    = invoke_cxx(message)
+  override fun invoke(value: String): Unit
+    = invoke_cxx(value)
 
-  private external fun invoke_cxx(message: String): Unit
+  private external fun invoke_cxx(value: String): Unit
 }
 
 /**
- * Represents the JavaScript callback `(message: string) => void`.
+ * Represents the JavaScript callback `(value: string) => void`.
  * This is implemented in Java/Kotlin, via a `(String) -> Unit`.
  * The callback is always coming from native.
  */
@@ -72,7 +72,7 @@ class Func_void_std__string_cxx: Func_void_std__string {
 class Func_void_std__string_java(private val function: (String) -> Unit): Func_void_std__string {
   @DoNotStrip
   @Keep
-  override fun invoke(message: String): Unit {
-    return this.function(message)
+  override fun invoke(value: String): Unit {
+    return this.function(value)
   }
 }

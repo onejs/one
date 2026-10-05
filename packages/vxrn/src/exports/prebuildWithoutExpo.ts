@@ -2188,6 +2188,93 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         throw new Error('[vxrn] failed to stamp the push service into app manifest')
       }
     }
+    // after the notification receiver and push service stamps, which own
+    // the activity and receiver anchors; this block only needs </application>.
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      (app.audio !== undefined ||
+        app.photoLibrary !== undefined ||
+        app.contacts !== undefined ||
+        app.calendar?.usage !== undefined)
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp media permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      const stamps: string[] = []
+      if (
+        app.audio?.microphone !== undefined &&
+        !rendered.includes('android.permission.RECORD_AUDIO')
+      ) {
+        stamps.push('    <uses-permission android:name="android.permission.RECORD_AUDIO" />')
+      }
+      if (app.photoLibrary?.readWrite !== undefined) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />',
+          '    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />',
+          '    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />'
+        )
+      }
+      if (app.photoLibrary?.addOnly !== undefined) {
+        // no install-time permission past 28; the meta-data below is the
+        // declaration the Kotlin add check reads.
+        stamps.push(
+          '    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />'
+        )
+      }
+      if (app.contacts !== undefined) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.READ_CONTACTS" />',
+          '    <uses-permission android:name="android.permission.WRITE_CONTACTS" />'
+        )
+      }
+      if (app.calendar?.usage !== undefined) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.READ_CALENDAR" />',
+          '    <uses-permission android:name="android.permission.WRITE_CALENDAR" />'
+        )
+      }
+      if (app.audio?.background === true) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />',
+          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />'
+        )
+      }
+      if (stamps.length) {
+        rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
+      }
+      // config markers the Kotlin manifest checks read: add-only has no
+      // permission past 28, and background playback gates the service.
+      const appStamps: string[] = []
+      if (app.photoLibrary?.addOnly !== undefined) {
+        appStamps.push(
+          '      <meta-data android:name="one.photoLibrary.addOnly" android:value="true" />'
+        )
+      }
+      if (app.audio?.background === true) {
+        appStamps.push(
+          '      <meta-data android:name="one.audio.background" android:value="true" />',
+          '      <service android:name="com.margelo.nitro.one.OneAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />'
+        )
+      }
+      if (appStamps.length) {
+        // before the application close, so this composes with the
+        // notification receiver stamp that owns the activity anchor.
+        const appAnchor = '    </application>'
+        if (!rendered.includes(appAnchor)) {
+          throw new Error(
+            '[vxrn] cannot stamp media components: expected </application> in app/src/main/AndroidManifest.xml'
+          )
+        }
+        rendered = rendered.replace(
+          appAnchor,
+          `${appStamps.join('\n')}\n${appAnchor}`
+        )
+      }
+    }
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/java/com/helloworld/MainApplication.kt' &&

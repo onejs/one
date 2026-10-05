@@ -45,7 +45,7 @@ export interface AudioRemoteCommandEvent {
   positionMs?: number
 }
 
-export interface OneAudio extends HybridObject<{ ios: 'swift' }> {
+export interface OneAudio extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getRecordingPermissionStatus(): Promise<AudioRecordingPermission>
   requestRecordingPermission(): Promise<AudioRecordingPermission>
   play(uri: string): Promise<AudioPlaybackStatus>
