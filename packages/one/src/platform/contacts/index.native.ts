@@ -32,7 +32,11 @@ function requestPermission(): Promise<ContactsPermissionStatus> {
 }
 
 function pickContact(): Promise<ContactInfo | undefined> {
-  return native().pickContact().catch(rethrowNativeError)
+  // Kotlin null arrives as null; the contract resolves undefined on cancel.
+  return native()
+    .pickContact()
+    .then((contact) => contact ?? undefined)
+    .catch(rethrowNativeError)
 }
 
 function search(name: string, limit = 100): Promise<ContactInfo[]> {
