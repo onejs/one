@@ -515,7 +515,12 @@ export default function OneNativePhotoLibrary() {
       }
       const granted = await One.PhotoLibrary.requestReadPermission()
       setReadPermission(One.PhotoLibrary.getReadPermissionStatus())
-      if (granted !== 'limited') throw new Error(`limited permission: ${granted}`)
+      // android reports a partial grant as granted at every layer, so
+      // the grant reads authorized either way; partial visibility is
+      // proven by the delta below, never by the status label.
+      if (granted !== 'authorized' && granted !== 'limited') {
+        throw new Error(`limited permission: ${granted}`)
+      }
       const page = await One.PhotoLibrary.listAssets(0, 100)
       setLimitedResult(
         `before=${before}; permission=${granted}; visible=${page.totalCount}`
@@ -531,7 +536,12 @@ export default function OneNativePhotoLibrary() {
   async function pickLimited() {
     setStatus('limited-picking')
     try {
-      const before = await One.PhotoLibrary.listAssets(0, 100)
+      // post-revoke relaunch lands denied with nothing visible yet,
+      // which is the honest before for the completing call.
+      const before = await One.PhotoLibrary.listAssets(0, 100).catch((error) => {
+        if (errorCode(error) !== 'E_PHOTO_LIBRARY_PERMISSION') throw error
+        return { totalCount: 0, assets: [] }
+      })
       const added = await One.PhotoLibrary.presentLimitedLibraryPicker()
       const after = await One.PhotoLibrary.listAssets(0, 100)
       const readable = (
@@ -781,7 +791,9 @@ export default function OneNativePhotoLibrary() {
           <Text>Request limited Photos access</Text>
         </Pressable>
       )}
-      {readPermission === 'limited' && (
+      {((limitedResult !== 'none' &&
+        (readPermission === 'limited' || readPermission === 'authorized')) ||
+        readPermission === 'denied') && (
         <Pressable
           testID="one-native-photo-library-limited-pick"
           style={styles.chip}

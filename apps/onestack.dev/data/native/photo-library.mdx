@@ -63,9 +63,13 @@ permission exposes only the user's selected assets. When the status is `limited`
 call `presentLimitedLibraryPicker()` from an active screen to let the user add
 more assets. The promise resolves after the system picker closes with only the
 newly selected asset identifiers; it can return an empty array. On Android 14
-and later the same holds: the return is the newly granted additions since
-the picker opened, never the whole visible set. Read the library
-again to see the current visible set:
+and later the return is likewise the newly granted additions since the picker
+opened, never the whole visible set, with two platform differences: a partial
+grant reports `authorized` at every OS layer, so the status echoes the OS and
+partial visibility shows only in the listed set; and the call opens app
+Settings for the user to revoke, then re-requests on return, so revoking
+restarts the app and the next call completes the reshow against the remembered
+selection. Read the library again to see the current visible set:
 
 ```tsx
 if (One.PhotoLibrary.getReadPermissionStatus() === 'limited') {
@@ -77,11 +81,14 @@ if (One.PhotoLibrary.getReadPermissionStatus() === 'limited') {
 
 The system picker's X button closes it with an empty array and keeps the
 previously selected assets readable. You can open the picker again afterward.
+On Android, backing out of Settings unchanged also resolves an empty array.
 
-The picker rejects with `E_PHOTO_LIBRARY_PERMISSION` unless the app has limited
-read access, `E_PHOTO_LIBRARY_MANIFEST` without the read/write usage message,
-`E_PHOTO_LIBRARY_UNAVAILABLE` when no active view controller can present it, or
-`E_PHOTO_LIBRARY_BUSY` when another limited picker is open.
+The picker rejects with `E_PHOTO_LIBRARY_PERMISSION` unless the app has read
+access, `E_PHOTO_LIBRARY_MANIFEST` without the read/write usage message,
+`E_PHOTO_LIBRARY_UNAVAILABLE` when no active view controller can present it
+(or no Settings page can open the reshow on Android), or
+`E_PHOTO_LIBRARY_BUSY` when another limited picker or permission request is
+in flight.
 
 Each asset has an
 `identifier`, `mediaType`, pixel `width` and `height`, `durationMs`, optional

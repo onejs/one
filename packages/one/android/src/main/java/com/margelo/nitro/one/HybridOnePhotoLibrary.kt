@@ -37,6 +37,7 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
     private var pendingPermissionKind: String = "read"
     private var pendingPicker: Promise<Array<String>>? = null
     private var pendingPickerBefore: Set<String> = emptySet()
+    private var pendingPickerRerequest: Boolean = false
     private var pendingConsent: Promise<Unit>? = null
     private var pendingConsentVerb: String = ""
     private var pendingConsentCheck: (() -> Boolean)? = null
@@ -116,7 +117,7 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
             return promise
         }
         synchronized(lock) {
-            if (pendingPermission != null) {
+            if (pendingPermission != null || pendingPicker != null) {
                 promise.reject(
                     OneNativeError(E_BUSY, "PhotoLibrary.requestAddPermission: another request is already in flight")
                 )
@@ -158,7 +159,7 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
             return promise
         }
         synchronized(lock) {
-            if (pendingPermission != null) {
+            if (pendingPermission != null || pendingPicker != null) {
                 promise.reject(
                     OneNativeError(E_BUSY, "PhotoLibrary.requestReadPermission: another request is already in flight")
                 )
@@ -177,9 +178,16 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
         permissions: Array<String>,
         grantResults: IntArray
     ): Boolean {
-        if (requestCode != REQUEST_PERMISSION && requestCode != REQUEST_LIMITED) return false
-        if (requestCode == REQUEST_LIMITED) {
-            handleLimitedResult()
+        if (requestCode != REQUEST_PERMISSION) return false
+        val chained = synchronized(lock) {
+            val chained = pendingPickerRerequest
+            pendingPickerRerequest = false
+            chained
+        }
+        if (chained) {
+            // the reshow's chained request: the dialog answered, so the
+            // grant is whatever the user chose and the delta is final.
+            settlePickerDiff()
             return true
         }
         val pending = synchronized(lock) {
@@ -197,6 +205,53 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
         return true
     }
 
+    private fun reshowPrefs(): android.content.SharedPreferences {
+        return context.getSharedPreferences("one-native-photo-reshow", android.content.Context.MODE_PRIVATE)
+    }
+
+    private fun writeReshowMarker(before: Set<String>) {
+        reshowPrefs().edit()
+            .putStringSet("before", before)
+            .putLong("at", System.currentTimeMillis())
+            .apply()
+    }
+
+    private fun readReshowMarker(): Set<String>? {
+        val prefs = reshowPrefs()
+        val at = prefs.getLong("at", 0L)
+        // a marker older than the visit itself is abandonment, not a
+        // reshow: the before-set has rotted past honesty.
+        if (at <= 0L || System.currentTimeMillis() - at > 10 * 60 * 1000L) {
+            if (at > 0L) clearReshowMarker()
+            return null
+        }
+        return prefs.getStringSet("before", null)?.toSet()
+    }
+
+    private fun clearReshowMarker() {
+        reshowPrefs().edit().clear().apply()
+    }
+
+    private fun settlePickerDiff() {
+        clearReshowMarker()
+        worker.execute {
+            val pending = synchronized(lock) {
+                val pending = pendingPicker
+                pendingPicker = null
+                pending
+            } ?: return@execute
+            try {
+                val after = visibleIds()
+                val before = synchronized(lock) { pendingPickerBefore }
+                pending.resolve((after - before).sorted().toTypedArray())
+            } catch (e: Exception) {
+                pending.reject(
+                    OneNativeError(E_FAILED, "PhotoLibrary.presentLimitedLibraryPicker: ${e.message ?: "could not read the selection"}")
+                )
+            }
+        }
+    }
+
     override fun presentLimitedLibraryPicker(): Promise<Array<String>> {
         val promise = Promise<Array<String>>()
         if (Build.VERSION.SDK_INT < 34) {
@@ -210,56 +265,78 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
                 )
                 return@execute
             }
-            if (readStatus() != PhotoLibraryPermissionStatus.LIMITED) {
-                promise.reject(
-                    OneNativeError(E_PERMISSION, "PhotoLibrary.presentLimitedLibraryPicker: limited Photos access is required")
-                )
-                return@execute
-            }
             synchronized(lock) {
-                if (pendingPicker != null) {
+                if (pendingPicker != null || pendingPermission != null) {
                     promise.reject(
                         OneNativeError(E_BUSY, "PhotoLibrary.presentLimitedLibraryPicker: a picker is already open")
                     )
                     return@execute
                 }
+            }
+            // revoking the grant in settings kills the process, so a
+            // completed revoke never returns here: the armed marker
+            // below reruns the second half on the next call instead.
+            val armed = readReshowMarker()
+            if (armed != null) {
+                clearReshowMarker()
+                synchronized(lock) {
+                    pendingPicker = promise
+                    pendingPickerBefore = armed
+                }
+                val activity = NitroModules.applicationContext?.currentActivity
+                val aware = activity as? PermissionAwareActivity
+                if (activity == null || aware == null) {
+                    settlePicker(null, OneNativeError(E_UNAVAILABLE, "PhotoLibrary.presentLimitedLibraryPicker: no active view controller"))
+                    return@execute
+                }
+                markAsked("read")
+                synchronized(lock) { pendingPickerRerequest = true }
+                aware.requestPermissions(readPermissions(), REQUEST_PERMISSION, this)
+                return@execute
+            }
+            // any read grant opens the reshow: under full access the
+            // selection already covers everything, so the delta comes
+            // back empty unless the user adds assets.
+            if (!canRead()) {
+                promise.reject(
+                    OneNativeError(E_PERMISSION, "PhotoLibrary.presentLimitedLibraryPicker: Photos read permission is required")
+                )
+                return@execute
+            }
+            synchronized(lock) {
                 pendingPicker = promise
                 pendingPickerBefore = visibleIds()
             }
             val activity = NitroModules.applicationContext?.currentActivity
-            val aware = activity as? PermissionAwareActivity
-            if (activity == null || aware == null) {
+            if (activity == null) {
                 settlePicker(null, OneNativeError(E_UNAVAILABLE, "PhotoLibrary.presentLimitedLibraryPicker: no active view controller"))
                 return@execute
             }
+            // re-requesting the permissions cannot reshow the manager
+            // on its own: the os reports the grant as fully held,
+            // filters every permission out of the request ("no
+            // requestable permission"), and answers instantly with no
+            // ui. the user first revokes the grant in app settings,
+            // then the return chains into a fresh request whose dialog
+            // reopens the manager with the remembered selection.
             markAsked("read")
-            aware.requestPermissions(
-                readPermissions() + Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED,
-                REQUEST_LIMITED,
-                this
-            )
-        }
-        return promise
-    }
-
-    private fun handleLimitedResult() {
-        worker.execute {
-            val pending = synchronized(lock) {
-                val pending = pendingPicker
-                pendingPicker = null
-                pending
-            } ?: return@execute
+            writeReshowMarker(pendingPickerBefore)
             try {
-                val after = visibleIds()
-                val before = synchronized(lock) { pendingPickerBefore }
-                val added = (after - before).sorted().toTypedArray()
-                pending.resolve(added)
-            } catch (e: Exception) {
-                pending.reject(
-                    OneNativeError(E_FAILED, "PhotoLibrary.presentLimitedLibraryPicker: ${e.message ?: "could not read the selection"}")
+                @Suppress("DEPRECATION")
+                activity.startActivityForResult(
+                    Intent(
+                        android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                        Uri.fromParts("package", context.packageName, null)
+                    ),
+                    REQUEST_RESHOW
                 )
+            } catch (e: Exception) {
+                clearReshowMarker()
+                settlePicker(null, OneNativeError(E_UNAVAILABLE, "PhotoLibrary.presentLimitedLibraryPicker: no settings to reshow from"))
+                return@execute
             }
         }
+        return promise
     }
 
     private fun settlePicker(result: Array<String>?, error: Throwable?) {
@@ -272,6 +349,28 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
     }
 
     override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_RESHOW) {
+            // settings answers cancelled even when the user changed the
+            // grant, so the return itself is the signal. the call gates
+            // on a readable grant, so an unreadable return means the
+            // user revoked during the visit and chains into a fresh
+            // request whose dialog reopens the manager with the
+            // remembered selection; any readable return (unchanged,
+            // radio-flipped, or upgraded) diffs right away.
+            if (canRead()) {
+                settlePickerDiff()
+                return
+            }
+            val aware = activity as? PermissionAwareActivity
+            if (aware == null) {
+                settlePicker(null, OneNativeError(E_UNAVAILABLE, "PhotoLibrary.presentLimitedLibraryPicker: no active view controller"))
+                return
+            }
+            synchronized(lock) { pendingPickerRerequest = true }
+            markAsked("read")
+            aware.requestPermissions(readPermissions(), REQUEST_PERMISSION, this)
+            return
+        }
         if (requestCode != REQUEST_CONSENT) return
         val pending = synchronized(lock) {
             val pending = pendingConsent
@@ -702,8 +801,11 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
                 val resolver = context.contentResolver
                 val name = "one-${UUID.randomUUID()}${if (source.extension.isNotEmpty()) ".${source.extension}" else ""}"
                 val collection = if (Build.VERSION.SDK_INT >= 29) {
-                    if (isVideo) MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
-                    else MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY)
+                    // identifiers are uri strings, so saves must use
+                    // the same volume as mediaCollections or the saved
+                    // asset never matches its own listing.
+                    if (isVideo) MediaStore.Video.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+                    else MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
                 } else {
                     if (isVideo) MediaStore.Video.Media.EXTERNAL_CONTENT_URI
                     else MediaStore.Images.Media.EXTERNAL_CONTENT_URI
@@ -813,13 +915,15 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
                 PackageManager.PERMISSION_GRANTED
             val video = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_VIDEO) ==
                 PackageManager.PERMISSION_GRANTED
-            if (images && video) return PhotoLibraryPermissionStatus.AUTHORIZED
-            if (Build.VERSION.SDK_INT >= 34 &&
+            val userSelected = Build.VERSION.SDK_INT >= 34 &&
                 ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) ==
                     PackageManager.PERMISSION_GRANTED
-            ) {
-                return PhotoLibraryPermissionStatus.LIMITED
-            }
+            // a partial grant reports the concrete permissions as
+            // granted at every layer (check, results, appops), so a
+            // triple-granted state echoes the os as authorized; the
+            // picker return stays a strict before/after delta either way.
+            if (images && video) return PhotoLibraryPermissionStatus.AUTHORIZED
+            if (userSelected) return PhotoLibraryPermissionStatus.LIMITED
             if (images || video) return PhotoLibraryPermissionStatus.LIMITED
         } else {
             if (
@@ -1224,7 +1328,7 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
         private const val E_UNAVAILABLE = "E_PHOTO_LIBRARY_UNAVAILABLE"
         private const val E_FAILED = "E_PHOTO_LIBRARY_FAILED"
         private const val REQUEST_PERMISSION = 0x2E01
-        private const val REQUEST_LIMITED = 0x2E02
+        private const val REQUEST_RESHOW = 0x2E02
         private const val REQUEST_CONSENT = 0x2E03
     }
 }

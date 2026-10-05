@@ -231,7 +231,17 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                 val location = changes.location ?: occurrence.location
                 val eventId = id.toLong()
                 if (occurrence.isRecurring && !occurrence.isException) {
-                    insertException(eventId, occurrence, title, startMs, endMs, allDay, location, "update", canceled = false)
+                    // this provider ignores EXDATE/RDATE and suppresses
+                    // sibling expansion for linked ORIGINAL_ID exceptions,
+                    // so a single-occurrence edit splits the series around
+                    // the instance and carries the new values in a detached
+                    // event. the returned event carries the detached row's
+                    // identifier.
+                    splitOutInstance(eventId, occurrence, "update")
+                    promise.resolve(
+                        insertDetached(occurrence, title, startMs, endMs, allDay, location, "update")
+                    )
+                    return@execute
                 } else {
                     val values = ContentValues().apply {
                         put(CalendarContract.Events.TITLE, title)
@@ -254,12 +264,9 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                         throw OneNativeError(E_NOT_FOUND, "Calendar.update: event occurrence was not found")
                     }
                 }
-                // re-query the updated occurrence: the key stays (identifier,
-                // originalStartMs) for exceptions, and moves with the event
-                // for direct edits.
-                val keyStart = if (occurrence.isRecurring && !occurrence.isException) occurrence.startMs else startMs
+                // re-query the updated event at its new start.
                 promise.resolve(
-                    findOccurrence(id, keyStart)?.event
+                    findOccurrence(id, startMs)?.event
                         ?: throw OneNativeError(E_SAVE, "Calendar.update: saved event has no identifier")
                 )
             } catch (e: OneNativeError) {
@@ -294,10 +301,12 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                     ?: throw OneNativeError(E_NOT_FOUND, "Calendar.delete: event occurrence was not found")
                 val eventId = id.toLong()
                 if (occurrence.isRecurring && !occurrence.isException) {
-                    insertException(
-                        eventId, occurrence, occurrence.title, occurrence.startMs, occurrence.endMs,
-                        occurrence.allDay, occurrence.location, "delete", canceled = true
-                    )
+                    splitOutInstance(eventId, occurrence, "delete")
+                    // the split must remove exactly this occurrence:
+                    // siblings stay listed.
+                    if (findOccurrence(id, startMs) != null) {
+                        throw OneNativeError(E_DELETE, "Calendar.delete: could not delete the event")
+                    }
                 } else {
                     val deleted = context.contentResolver.delete(
                         ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventId),
@@ -351,12 +360,29 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
         val timezone: String?
     )
 
+    private fun instancesUri(beginMs: Long, endMs: Long): Uri {
+        // CONTENT_URI already ends in instances/when; withAppendedId
+        // appends the raw range segments (withAppendedPath would encode
+        // the slash).
+        var uri = CalendarContract.Instances.CONTENT_URI
+        uri = ContentUris.withAppendedId(uri, beginMs)
+        uri = ContentUris.withAppendedId(uri, endMs)
+        return uri
+    }
+
+    private data class InstanceRow(
+        val eventId: Long,
+        val begin: Double,
+        val end: Double,
+        val title: String,
+        val rrule: String?
+    )
+
     private fun queryInstances(beginMs: Long, endMs: Long, limit: Int): List<CalendarEvent> {
-        val uri = Uri.withAppendedPath(
-            CalendarContract.Instances.CONTENT_URI,
-            "$beginMs/$endMs"
-        )
-        val out = mutableListOf<CalendarEvent>()
+        // the instances view carries no location, all-day or timezone
+        // columns; those join from the Events row per event id.
+        val uri = instancesUri(beginMs, endMs)
+        val rows = mutableListOf<InstanceRow>()
         context.contentResolver.query(
             uri,
             arrayOf(
@@ -364,27 +390,74 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                 CalendarContract.Instances.BEGIN,
                 CalendarContract.Instances.END,
                 CalendarContract.Instances.TITLE,
-                CalendarContract.Instances.ALL_DAY,
-                CalendarContract.Instances.EVENT_LOCATION,
-                CalendarContract.Instances.RRULE,
-                CalendarContract.Instances.RDATE
+                CalendarContract.Instances.RRULE
             ),
             null,
             null,
             "${CalendarContract.Instances.BEGIN} ASC"
         )?.use { cursor ->
-            while (cursor.moveToNext() && out.size < limit) {
-                val rrule = cursor.getString(6)
-                out.add(
-                    CalendarEvent(
-                        cursor.getLong(0).toString(),
-                        cursor.getString(3) ?: "",
+            while (cursor.moveToNext() && rows.size < limit) {
+                rows.add(
+                    InstanceRow(
+                        cursor.getLong(0),
                         cursor.getLong(1).toDouble(),
                         cursor.getLong(2).toDouble(),
-                        cursor.getInt(4) == 1,
-                        cursor.getString(5) ?: "",
-                        rrule?.let { parseRecurrence(it) }
+                        cursor.getString(3) ?: "",
+                        cursor.getString(4)
                     )
+                )
+            }
+        }
+        if (rows.isEmpty()) return emptyList()
+        val events = eventRows(rows.map { it.eventId }.toSet())
+        return rows.map { row ->
+            val detail = events[row.eventId]
+            CalendarEvent(
+                row.eventId.toString(),
+                row.title,
+                row.begin,
+                row.end,
+                detail?.allDay == true,
+                detail?.location ?: "",
+                row.rrule?.let { parseRecurrence(it) }
+            )
+        }
+    }
+
+    private data class EventDetail(
+        val allDay: Boolean,
+        val location: String,
+        val timezone: String?,
+        val rrule: String?,
+        val isException: Boolean
+    )
+
+    private fun eventRows(eventIds: Set<Long>): Map<Long, EventDetail> {
+        if (eventIds.isEmpty()) return emptyMap()
+        val out = mutableMapOf<Long, EventDetail>()
+        val ids = eventIds.toList()
+        val selection = ids.joinToString(" OR ") { "${CalendarContract.Events._ID}=?" }
+        context.contentResolver.query(
+            CalendarContract.Events.CONTENT_URI,
+            arrayOf(
+                CalendarContract.Events._ID,
+                CalendarContract.Events.ALL_DAY,
+                CalendarContract.Events.EVENT_LOCATION,
+                CalendarContract.Events.EVENT_TIMEZONE,
+                CalendarContract.Events.RRULE,
+                CalendarContract.Events.ORIGINAL_ID
+            ),
+            selection,
+            ids.map { it.toString() }.toTypedArray(),
+            null
+        )?.use { cursor ->
+            while (cursor.moveToNext()) {
+                out[cursor.getLong(0)] = EventDetail(
+                    cursor.getInt(1) == 1,
+                    cursor.getString(2) ?: "",
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    !cursor.isNull(5)
                 )
             }
         }
@@ -395,7 +468,7 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
         val eventId = identifier.toLongOrNull() ?: return null
         val begin = (startMs - 1_000).toLong()
         val end = (startMs + 1_000).toLong()
-        val uri = Uri.withAppendedPath(CalendarContract.Instances.CONTENT_URI, "$begin/$end")
+        val uri = instancesUri(begin, end)
         context.contentResolver.query(
             uri,
             arrayOf(
@@ -403,12 +476,8 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                 CalendarContract.Instances.BEGIN,
                 CalendarContract.Instances.END,
                 CalendarContract.Instances.TITLE,
-                CalendarContract.Instances.ALL_DAY,
-                CalendarContract.Instances.EVENT_LOCATION,
                 CalendarContract.Instances.RRULE,
-                CalendarContract.Instances.CALENDAR_ID,
-                CalendarContract.Instances.EVENT_TIMEZONE,
-                CalendarContract.Instances.ORIGINAL_ID
+                CalendarContract.Instances.CALENDAR_ID
             ),
             "${CalendarContract.Instances.EVENT_ID}=?",
             arrayOf(eventId.toString()),
@@ -419,9 +488,12 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                 if (kotlin.math.abs(rowBegin - startMs) >= 1_000) continue
                 val rowEnd = cursor.getLong(2).toDouble()
                 val title = cursor.getString(3) ?: ""
-                val allDay = cursor.getInt(4) == 1
-                val location = cursor.getString(5) ?: ""
-                val rrule = cursor.getString(6)
+                val rrule = cursor.getString(4)
+                // the instances view carries no location, all-day or
+                // timezone columns; those join from the Events row.
+                val detail = eventRows(setOf(eventId))[eventId]
+                val allDay = detail?.allDay == true
+                val location = detail?.location ?: ""
                 val event = CalendarEvent(
                     eventId.toString(),
                     title,
@@ -433,27 +505,250 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                 )
                 return Occurrence(
                     event, rowBegin, rowEnd, title, allDay, location,
-                    isRecurring = rrule != null || !cursor.isNull(9),
-                    isException = !cursor.isNull(9),
-                    calendarId = cursor.getLong(7),
-                    timezone = cursor.getString(8)
+                    isRecurring = rrule != null || detail?.isException == true,
+                    isException = detail?.isException == true,
+                    calendarId = cursor.getLong(5),
+                    timezone = detail?.timezone
                 )
             }
         }
         return null
     }
 
-    private fun insertException(
-        eventId: Long,
+    private data class SeriesRow(
+        val calendarId: Long,
+        val title: String,
+        val dtstart: Long,
+        val dtend: Long,
+        val allDay: Boolean,
+        val timezone: String,
+        val location: String,
+        val rrule: String
+    )
+
+    private fun readSeries(eventId: Long): SeriesRow? {
+        return context.contentResolver.query(
+            ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventId),
+            arrayOf(
+                CalendarContract.Events.CALENDAR_ID,
+                CalendarContract.Events.TITLE,
+                CalendarContract.Events.DTSTART,
+                CalendarContract.Events.DTEND,
+                CalendarContract.Events.ALL_DAY,
+                CalendarContract.Events.EVENT_TIMEZONE,
+                CalendarContract.Events.EVENT_LOCATION,
+                CalendarContract.Events.RRULE
+            ),
+            null,
+            null,
+            null
+        )?.use { cursor ->
+            if (cursor.moveToFirst() && !cursor.isNull(7)) {
+                SeriesRow(
+                    cursor.getLong(0),
+                    cursor.getString(1) ?: "",
+                    cursor.getLong(2),
+                    cursor.getLong(3),
+                    cursor.getInt(4) == 1,
+                    cursor.getString(5) ?: TimeZone.getDefault().id,
+                    cursor.getString(6) ?: "",
+                    cursor.getString(7) ?: ""
+                )
+            } else {
+                null
+            }
+        }
+    }
+
+    private fun expandStarts(
+        row: SeriesRow,
+        frequency: CalendarRecurrenceFrequency,
+        interval: Long,
+        count: Long?,
+        untilMs: Long?,
+        pastMs: Long
+    ): List<Long> {
+        // local expansion mirroring RRULE semantics for the rules this
+        // module writes (FREQ + INTERVAL + COUNT/UNTIL): monthly and
+        // yearly candidates that land on a missing day are skipped, and
+        // COUNT counts kept instances only. COUNT/UNTIL series expand
+        // fully; endless series expand through one instance past the
+        // target so both surrounding runs are known.
+        val zone = try {
+            TimeZone.getTimeZone(row.timezone)
+        } catch (e: Exception) {
+            TimeZone.getTimeZone("UTC")
+        }
+        val base = java.util.Calendar.getInstance(zone, Locale.US).apply {
+            timeInMillis = row.dtstart
+        }
+        val baseDay = base.get(java.util.Calendar.DAY_OF_MONTH)
+        val baseMonth = base.get(java.util.Calendar.MONTH)
+        val field = when (frequency) {
+            CalendarRecurrenceFrequency.DAILY -> java.util.Calendar.DAY_OF_MONTH
+            CalendarRecurrenceFrequency.WEEKLY -> java.util.Calendar.WEEK_OF_YEAR
+            CalendarRecurrenceFrequency.MONTHLY -> java.util.Calendar.MONTH
+            CalendarRecurrenceFrequency.YEARLY -> java.util.Calendar.YEAR
+        }
+        val endless = count == null && untilMs == null
+        val out = mutableListOf<Long>()
+        var kept = 0L
+        var step = 0L
+        while (true) {
+            if (out.size >= MAX_EXPANSION) {
+                throw OneNativeError(E_SAVE, "Calendar series is too large to edit one occurrence")
+            }
+            if (count != null && kept >= count) break
+            val jump = step * interval
+            if (jump > Int.MAX_VALUE) {
+                throw OneNativeError(E_SAVE, "Calendar series is too large to edit one occurrence")
+            }
+            val candidate = (base.clone() as java.util.Calendar).apply {
+                add(field, jump.toInt())
+            }
+            val valid = when (frequency) {
+                CalendarRecurrenceFrequency.MONTHLY ->
+                    candidate.get(java.util.Calendar.DAY_OF_MONTH) == baseDay
+                CalendarRecurrenceFrequency.YEARLY ->
+                    candidate.get(java.util.Calendar.MONTH) == baseMonth &&
+                        candidate.get(java.util.Calendar.DAY_OF_MONTH) == baseDay
+                else -> true
+            }
+            step += 1
+            if (!valid) continue
+            val ms = candidate.timeInMillis
+            if (untilMs != null && ms > untilMs) break
+            out.add(ms)
+            kept += 1
+            if (endless && ms > pastMs) break
+        }
+        return out
+    }
+
+    private fun splitOutInstance(eventId: Long, occurrence: Occurrence, verb: String) {
+        val row = readSeries(eventId)
+            ?: throw OneNativeError(E_NOT_FOUND, "Calendar.$verb: event occurrence was not found")
+        val rule = parseRecurrence(row.rrule)
+            ?: throw OneNativeError(E_INPUT, "Calendar.$verb: recurrence is not supported")
+        val interval = rule.interval ?: 1.0
+        if (!interval.isFinite() || interval < 1 || interval != kotlin.math.floor(interval)) {
+            throw OneNativeError(E_INPUT, "Calendar.$verb: recurrence is not supported")
+        }
+        val starts = expandStarts(
+            row,
+            rule.frequency,
+            interval.toLong(),
+            rule.occurrenceCount?.toLong(),
+            rule.endDateMs?.toLong(),
+            occurrence.startMs.toLong()
+        )
+        val at = starts.indexOfFirst { kotlin.math.abs(it - occurrence.startMs) < 1_000 }
+        if (at < 0) {
+            throw OneNativeError(E_NOT_FOUND, "Calendar.$verb: event occurrence was not found")
+        }
+        val keepIdx = starts.indices.filter { it != at }
+        if (keepIdx.isEmpty()) {
+            val deleted = context.contentResolver.delete(
+                ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventId),
+                null,
+                null
+            )
+            if (deleted <= 0) {
+                throw OneNativeError(E_NOT_FOUND, "Calendar.$verb: event occurrence was not found")
+            }
+            return
+        }
+        // maximal consecutive runs in expansion order; each run becomes
+        // one series row so every survivor keeps expanding.
+        val runs = mutableListOf<MutableList<Long>>()
+        var prev = -2
+        for (index in keepIdx) {
+            val run = runs.lastOrNull()
+            if (run == null || index != prev + 1) {
+                runs.add(mutableListOf(starts[index]))
+            } else {
+                run.add(starts[index])
+            }
+            prev = index
+        }
+        val duration = row.dtend - row.dtstart
+        val infiniteTail = rule.occurrenceCount == null && rule.endDateMs == null
+        val step = interval.toLong()
+        runs.forEachIndexed { index, run ->
+            val first = run.first()
+            val rrule = if (infiniteTail && index == runs.size - 1) {
+                ruleText(rule.frequency, step, null)
+            } else {
+                ruleText(rule.frequency, step, run.size.toLong())
+            }
+            val values = ContentValues().apply {
+                put(CalendarContract.Events.DTSTART, first)
+                put(CalendarContract.Events.DTEND, first + duration)
+                if (rrule == null) {
+                    putNull(CalendarContract.Events.RRULE)
+                } else {
+                    put(CalendarContract.Events.RRULE, rrule)
+                }
+            }
+            if (index == 0) {
+                val updated = context.contentResolver.update(
+                    ContentUris.withAppendedId(CalendarContract.Events.CONTENT_URI, eventId),
+                    values,
+                    null,
+                    null
+                )
+                if (updated <= 0) {
+                    throw OneNativeError(E_NOT_FOUND, "Calendar.$verb: event occurrence was not found")
+                }
+            } else {
+                val insert = ContentValues().apply {
+                    put(CalendarContract.Events.CALENDAR_ID, row.calendarId)
+                    put(CalendarContract.Events.TITLE, row.title)
+                    put(CalendarContract.Events.ALL_DAY, if (row.allDay) 1 else 0)
+                    put(CalendarContract.Events.EVENT_TIMEZONE, row.timezone)
+                    put(CalendarContract.Events.EVENT_LOCATION, row.location)
+                    put(CalendarContract.Events.DTSTART, first)
+                    put(CalendarContract.Events.DTEND, first + duration)
+                    if (rrule == null) {
+                        putNull(CalendarContract.Events.RRULE)
+                    } else {
+                        put(CalendarContract.Events.RRULE, rrule)
+                    }
+                }
+                context.contentResolver.insert(CalendarContract.Events.CONTENT_URI, insert)
+                    ?: throw OneNativeError(E_SAVE, "Calendar.$verb: could not save the event")
+            }
+        }
+    }
+
+    private fun ruleText(
+        frequency: CalendarRecurrenceFrequency,
+        interval: Long,
+        count: Long?
+    ): String? {
+        // runs re-emit as COUNT rules (an UNTIL bound converts exactly:
+        // the run holds every instance the new rule expands).
+        if (count != null && count <= 1) return null
+        val freq = when (frequency) {
+            CalendarRecurrenceFrequency.DAILY -> "DAILY"
+            CalendarRecurrenceFrequency.WEEKLY -> "WEEKLY"
+            CalendarRecurrenceFrequency.MONTHLY -> "MONTHLY"
+            CalendarRecurrenceFrequency.YEARLY -> "YEARLY"
+        }
+        val rule = StringBuilder("FREQ=$freq;INTERVAL=$interval")
+        count?.let { rule.append(";COUNT=$it") }
+        return rule.toString()
+    }
+
+    private fun insertDetached(
         occurrence: Occurrence,
         title: String,
         startMs: Double,
         endMs: Double,
         allDay: Boolean,
         location: String,
-        verb: String,
-        canceled: Boolean
-    ) {
+        verb: String
+    ): CalendarEvent {
         val values = ContentValues().apply {
             put(CalendarContract.Events.CALENDAR_ID, occurrence.calendarId)
             put(CalendarContract.Events.TITLE, title)
@@ -466,13 +761,12 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
                 else occurrence.timezone ?: TimeZone.getDefault().id
             )
             put(CalendarContract.Events.EVENT_LOCATION, location)
-            put(CalendarContract.Events.ORIGINAL_ID, eventId)
-            put(CalendarContract.Events.ORIGINAL_INSTANCE_TIME, occurrence.startMs.toLong())
-            put(CalendarContract.Events.ORIGINAL_ALL_DAY, if (occurrence.allDay) 1 else 0)
-            if (canceled) put(CalendarContract.Events.STATUS, CalendarContract.Events.STATUS_CANCELED)
         }
-        context.contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
+        val uri = context.contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
             ?: throw OneNativeError(E_SAVE, "Calendar.$verb: could not save the event")
+        val newId = ContentUris.parseId(uri).toString()
+        return findOccurrence(newId, startMs)?.event
+            ?: throw OneNativeError(E_SAVE, "Calendar.$verb: saved event has no identifier")
     }
 
     private fun defaultWritableCalendar(): Long? {
@@ -609,6 +903,7 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
     }
 
     companion object {
+        private const val MAX_EXPANSION = 100_000
         private const val MAX_MS = 8_640_000_000_000_000.0
         private const val E_MANIFEST = "E_CALENDAR_MANIFEST"
         private const val E_PERMISSION = "E_CALENDAR_PERMISSION"
