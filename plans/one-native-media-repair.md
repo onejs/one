@@ -28,6 +28,17 @@ siblings retain original identity. Calendar's opaque storage/consumer boundary
 remains held. The corrections below replace the rejected origin projection
 and custom-field storage choice. Calendar native source is unchanged.
 
+Disposition relayed by p61056 on 2026-10-05 for f9b/06234: "C1 CLOSED IN
+DESIGN independent selected provider ID"; normal exception investigation
+accepted, implementation still held. Frozen One-only reviewer artifact named
+in that mail: `one-media-corrections/f9b-calendar-verdict.md`, SHA-256
+`91bd97dc644889eb7552017dc721ada3167e6b80d5bea1471a314215cbf5840f`.
+The artifact was not read remotely; this records the explicit supplied
+same-unit disposition. DURATION is necessary, not sufficient. Local update/
+cancel, selected later edit/delete, duration and atomic metadata remain open.
+Photo/Audio c8 keeps the existing p61184 coverage; no extra partial review or
+final native approval was granted.
+
 First layer:
 `/Users/n8/.team-machine/handoffs/one-beta-recovery/media-first-layer-verdict.md`.
 Read AGENTS and launch/realapps plans. docs/owner-decisions.md is absent in this
@@ -181,6 +192,36 @@ selected later edit/delete, recurrence/all-day duration, atomicity and metadata
 preservation. Runtime/rollback controls remain the existing held acceptance,
 with no new device/build/probe/matrix authorization. Full source anchors and
 falsifiable limits: `tests/native-features/evidence/one-native-android-media/calendar-normal-exception-source.md`.
+
+Source refinement for that same held disposition: EXDATE cancellation may
+preserve the original row/rule without linked cancellation or alias metadata.
+AOSP handleUpdateEvents passes only changed values to updateInstancesLocked.
+That helper returns when DTSTART is absent and detects recurrence from the
+supplied RRULE/RDATE, not the loaded original row. Therefore an EXDATE-only
+update is not a covering control for refreshed expansion. Candidate direction:
+co-write unchanged DTSTART and exact original RRULE/RDATE with merged EXDATE;
+RecurrenceProcessor explicitly removes those excluded starts. Existing raw
+EXDATE/EXRULE/RDATE values and every unrelated column must be preserved.
+
+Concrete source-only update ordering for review: normal exception-URI insert
+clones selected metadata; an Events update selected by the result-ID back
+reference clears original linkage and writes the selected DTSTART/DTEND; the
+original row's final full recurrence-shape update excludes the original slot.
+One no-yield, exception-disabled batch, expected update counts of one, owns
+all three operations. Selected ordinary later edits/delete then cannot remove
+the original EXDATE. Remove of an untouched sibling uses only the original
+recurrence-shape/exclusion update. No series split, custom storage, synthetic
+sync identity, external map or manual ExtendedProperties writes.
+
+This is not implementation clearance or a complete arbitrary-event proof.
+The source's unsynced parent expansion also drops Instances belonging to
+pre-existing linked exceptions; their preservation remains unresolved. Do not
+convert other events to standalone rows or add a public supported subset.
+Timed clone DURATION and final exact DTEND differ in precision; all-day
+normalization requires UTC midnight/day duration. Existing provider rows must
+not acquire rounded timing as a side effect. Those boundaries and installed
+EXDATE behavior must be disposed under the original acceptance, without a
+new recurrence matrix, campaign, weaker fixture or documentation waiver.
 
 Existing bounded controls, only after supported acceptance is admitted: retain
 all current daily interval-2/count-3, middle-update/delete and endDateMs legs.
