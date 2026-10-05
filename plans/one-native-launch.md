@@ -457,18 +457,19 @@ preserved; sync hygiene grants no native adoption or public-main approval.
 
 ### current native acceptance (2026-10-05 UTC)
 
-ProtectedStore author r59519 finished candidate `d21c095c2080217dd422a49136f4825ef6f21efa`,
-production `94d765a567e56b6c813e6d3dc977603792fe6c07`. Author-reported proof
-covers 92 receipt checks over 64 actual One/Nitro native results, with separate
-production and fault APK identities and three verifier negative controls.
-The first layer found that the proof bypassed an unavailable public Android
-entry. The corrected candidate removes that entry and adds a package-public
-create/get/delete/missing-get proof. Manager RAN equal production and installed
-APK hashes and READ the committed proof. Native security controls remain
-unchanged. The sole assembled final gate is with p60786; delivery is pending.
+ProtectedStore final candidate `d21c095c2080217dd422a49136f4825ef6f21efa`
+received p60786's sole final approval. Production and public-entry controls
+cover the API37 software envelope, with no hardware or lower-API claim.
+The corrected package-public create/get/delete/missing-get proof preserves the
+original security controls. Manager RAN source identity, receipt custody and
+APK hash equality, then integrated through beta `fe4b61b1a`.
+Required Checks and Tests, Release and all iOS native jobs passed for that SHA.
+Exact One/vxrn canary `2.0.0-0.canary.1791196322465` has matching source manifests
+and packaged native/generated/declaration bytes. The removed Android unavailable
+entry and declaration are absent, and ESM/CJS route to OneProtectedStore.
 Owned emulator, claim and servers are cleaned up. The clean pushed Pro64 tree
-is retained under manager custody because a shared Watchman directory handle
-holds it; no shared service kill or forced removal is authorized.
+is retained under manager custody because shared Watchman holds it; no shared
+service kill or forced removal is authorized.
 
 Media candidate `25e516090e7445d03a5771422503bcb165e67c70` remains unlanded.
 Completed first-layer p61184 assessment found Calendar detached-ID and split
@@ -477,12 +478,20 @@ issues. Sol's source-grounded proposal `db31539b3` corrects the first-layer
 claims about active-play replacement and limited album access: current Swift
 replaces the player and requires full authorization for albums. Manager READ
 both methods; do not change those contracts on the earlier premises. The
-recording-floor claim is also disputed by the proposal's exact Kotlin reads.
+recording floor silently resolved below API24; the assigned reviewer approved
+honest rejection with existing codes while preserving valid API24+ behavior.
 Contacts source was sound; reported Contacts,
 Calendar and Photo receipts do not establish full media acceptance. Preserve
 the full findings and these corrections. Owner r59617, private Sol high,
-awaits p60786's bounded correction disposition before native edits, including
-Calendar identity and transactional metadata design. The predecessor Muse
+implemented approved Photo/Audio source corrections in `c8bf89a75`. Public
+first-layer source/static disposition is PARTIAL PASS, with independent fixture
+negative controls. Seek/floor native behavior remains uncompiled and inferred.
+Calendar source is unchanged and held. Selected independent provider identity
+is accepted in design; normal exception investigation `8af11c0e3` proposes a
+transactional clone/detach/original-recurrence EXDATE batch. Preservation of
+non-owned unsynced exceptions, exact durations, cancellation and later selected
+edits/deletes remains unproven. No custom-field storage, synthetic sync ID,
+authority change or subset waiver is authorized. The predecessor Muse
 worker was stopped after broad protected-reviewer transcript reads outside its
 public-only scope. Its proposal is pushed and preserved; the successor received
 only source and assigned One evidence. Exact content exposure is not established
@@ -500,11 +509,27 @@ the manager handoff directory. Existing platform owner s10097 and operations
 p60562 own the supported repair path. No further reboot, wipe, renderer change,
 audio HAL mutation or shared-service action is authorized by this observation.
 
-CI repair candidate `ac19e4daa` implements approved proposal `f5c36f17e` using
-the existing compiler-path mechanism and preserving requested Hermes bytecode.
-Public first-layer implementation disposition is PASS; p60786's sole final
-gate is pending. Author-reported actual Debug bytecode/render proof is preserved
-outside its clean pushed tree, retained because shared Watchman holds it.
-The rejected
-JavaScript fallback proposal is superseded. Manager owns beta integration,
-required CI and exact canary content proof after the bounded repair.
+CI repair candidate `ac19e4daa` received p60786's sole final approval and
+landed as `337f25aba`, then combined with ProtectedStore at beta `fe4b61b1a`.
+The existing compiler-path mechanism preserves requested Hermes bytecode;
+production restores and the harness remain unchanged. RAN combined local
+generation check, One typecheck and 125 focused tests. Required Checks
+`37297114724`, Release `37297114635` and iOS Native Tests `37297115216` succeeded.
+The iOS run passed generated SwiftUI/Fabric checks, both app containers and all
+four dev/prod Metro/rolldown runtime jobs, including the formerly failing
+required dev/rolldown path. No timeout, retry, skip or assertion was loosened.
+Manager RAN exact packaged vxrn resolver controls: real HBC magic/shared promise,
+invalid code, missing/nonexecutable override rejection and blank override using
+original pod resolution. Content receipt and controls are in
+`Library/Caches/one-beta-recovery/ci-canary-fe4/`; final workflow snapshot is in
+`handoffs/one-beta-recovery/native-ci-fe4-final.json` outside the worktree.
+The clean pushed author tree remains retained by shared Watchman.
+
+System candidate `df6b4ebdd` remains unlanded under manager custody. Its
+MapServices exception correction is approved within the same source gate;
+RAN actual hybrid JVM controls fail before and pass four cases after correction.
+That control does not prove installed providers or Android scheduling. Original
+full system runtime, final print/share APK and lower-SDK capture silence/remover
+obligations remain held. Historical partial receipts are preserved; retained
+emulator and Metro exited before the validator suite, with cause unproven.
+No device campaign, new matrix or held blur adoption follows from CI completion.
