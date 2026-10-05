@@ -13,6 +13,7 @@ private final class ImageModel: ObservableObject {
   @Published var variableValue: Double = 0
   @Published var hasVariableValue: Bool = false
   @Published var colorRole: String = ""
+  @Published var resizable: Bool = false
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -41,7 +42,7 @@ private final class ImageModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ systemName: String, uri: String, renderingMode: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool, colorRole: String) {
+  public func configure(_ systemName: String, uri: String, renderingMode: String, symbolRenderingMode: String, symbolVariant: String, imageScale: String, variableValue: Double, hasVariableValue: Bool, colorRole: String, resizable: Bool) {
     if model.systemName != systemName { model.systemName = systemName }
     if model.uri != uri { model.uri = uri }
     if model.renderingMode != renderingMode { model.renderingMode = renderingMode }
@@ -51,6 +52,7 @@ private final class ImageModel: ObservableObject {
     if model.variableValue != variableValue { model.variableValue = variableValue }
     if model.hasVariableValue != hasVariableValue { model.hasVariableValue = hasVariableValue }
     if model.colorRole != colorRole { model.colorRole = colorRole }
+    if model.resizable != resizable { model.resizable = resizable }
   }
 
 
@@ -96,7 +98,13 @@ private struct ImageContent: View {
         if !model.uri.isEmpty {
           OneNativeRemoteImage(uri: model.uri, template: model.renderingMode == "template")
         } else if model.hasVariableValue {
-          Image(systemName: model.systemName, variableValue: model.variableValue)
+          if model.resizable {
+            Image(systemName: model.systemName, variableValue: model.variableValue).resizable()
+          } else {
+            Image(systemName: model.systemName, variableValue: model.variableValue)
+          }
+        } else if model.resizable {
+          Image(systemName: model.systemName).resizable()
         } else {
           Image(systemName: model.systemName)
         }

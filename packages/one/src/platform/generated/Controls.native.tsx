@@ -501,6 +501,7 @@ export function Image({
   imageScale = '',
   variableValue = undefined,
   colorRole = '',
+  resizable = false,
   swiftStyle,
   style,
   ...props
@@ -521,6 +522,10 @@ export function Image({
     throw new Error('Image variableValue must be between 0 and 1')
   if (colorRole && !iconColorRoles.includes(colorRole))
     throw new Error('Image colorRole must be a One.UI icon color role')
+  if (resizable && uri)
+    throw new Error(
+      'Image resizable applies to an SF Symbol; a uri image is always resizable'
+    )
   if (symbolRenderingMode)
     assertSwiftUIValue(
       'SymbolRenderingMode',
@@ -559,6 +564,7 @@ export function Image({
       variableValue={variableValue ?? 0}
       hasVariableValue={variableValue !== undefined}
       colorRole={colorRole}
+      resizable={resizable}
     />
   )
 }
