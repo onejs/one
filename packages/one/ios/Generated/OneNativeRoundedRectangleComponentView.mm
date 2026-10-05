@@ -35,7 +35,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:next.fill ? RCTUIColorFromSharedColor(next.fill) : nil
-    cornerRadius:next.cornerRadius];
+    strokeBorder:next.strokeBorder ? RCTUIColorFromSharedColor(next.strokeBorder) : nil lineWidth:next.lineWidth cornerRadius:next.cornerRadius];
 
   [super updateProps:props oldProps:oldProps];
 }

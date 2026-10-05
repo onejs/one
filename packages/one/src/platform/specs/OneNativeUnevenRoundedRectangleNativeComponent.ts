@@ -42,6 +42,8 @@ type OneNativeStyleNative = Readonly<{
 }>
 interface NativeProps extends ViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth: Double
   topLeadingRadius: Double
   bottomLeadingRadius: Double
   bottomTrailingRadius: Double

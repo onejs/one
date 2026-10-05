@@ -5,6 +5,8 @@ import UIKit
 
 private final class UnevenRoundedRectangleModel: ObservableObject {
   @Published var fill: UIColor? = nil
+  @Published var strokeBorder: UIColor? = nil
+  @Published var lineWidth: Double = 1
   @Published var topLeadingRadius: Double = 0
   @Published var bottomLeadingRadius: Double = 0
   @Published var bottomTrailingRadius: Double = 0
@@ -36,8 +38,10 @@ private final class UnevenRoundedRectangleModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ fill: UIColor?, topLeadingRadius: Double, bottomLeadingRadius: Double, bottomTrailingRadius: Double, topTrailingRadius: Double) {
+  public func configure(_ fill: UIColor?, strokeBorder: UIColor?, lineWidth: Double, topLeadingRadius: Double, bottomLeadingRadius: Double, bottomTrailingRadius: Double, topTrailingRadius: Double) {
     if model.fill != fill { model.fill = fill }
+    if model.strokeBorder != strokeBorder { model.strokeBorder = strokeBorder }
+    if model.lineWidth != lineWidth { model.lineWidth = lineWidth }
     if model.topLeadingRadius != topLeadingRadius { model.topLeadingRadius = topLeadingRadius }
     if model.bottomLeadingRadius != bottomLeadingRadius { model.bottomLeadingRadius = bottomLeadingRadius }
     if model.bottomTrailingRadius != bottomTrailingRadius { model.bottomTrailingRadius = bottomTrailingRadius }
@@ -84,7 +88,13 @@ private struct UnevenRoundedRectangleContent: View {
   @ObservedObject var model: UnevenRoundedRectangleModel
   var body: some View {
     Group {
-        if let fill = model.fill {
+        if let stroke = model.strokeBorder {
+          if let fill = model.fill {
+            UnevenRoundedRectangle(topLeadingRadius: model.topLeadingRadius, bottomLeadingRadius: model.bottomLeadingRadius, bottomTrailingRadius: model.bottomTrailingRadius, topTrailingRadius: model.topTrailingRadius).fill(Color(uiColor: fill)).strokeBorder(Color(uiColor: stroke), lineWidth: model.lineWidth)
+          } else {
+            UnevenRoundedRectangle(topLeadingRadius: model.topLeadingRadius, bottomLeadingRadius: model.bottomLeadingRadius, bottomTrailingRadius: model.bottomTrailingRadius, topTrailingRadius: model.topTrailingRadius).strokeBorder(Color(uiColor: stroke), lineWidth: model.lineWidth)
+          }
+        } else if let fill = model.fill {
           UnevenRoundedRectangle(topLeadingRadius: model.topLeadingRadius, bottomLeadingRadius: model.bottomLeadingRadius, bottomTrailingRadius: model.bottomTrailingRadius, topTrailingRadius: model.topTrailingRadius).fill(Color(uiColor: fill))
         } else {
           UnevenRoundedRectangle(topLeadingRadius: model.topLeadingRadius, bottomLeadingRadius: model.bottomLeadingRadius, bottomTrailingRadius: model.bottomTrailingRadius, topTrailingRadius: model.topTrailingRadius)
