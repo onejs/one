@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -16,7 +15,6 @@ export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, C
 let hybrid: OneContacts | undefined
 
 function native(): OneContacts {
-  if (Platform.OS !== 'ios') throw new Error('Contacts requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneContacts>('OneContacts')
   return hybrid
 }

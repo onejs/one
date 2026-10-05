@@ -22,8 +22,13 @@
 #include "JHybridOneAppIconSpec.hpp"
 #include "JHybridOneAppInfoSpec.hpp"
 #include "JHybridOneAppleAuthSpec.hpp"
+#include "JHybridOneAudioSpec.hpp"
+#include "JFunc_void_AudioInterruptionEvent.hpp"
+#include "JFunc_void_AudioRemoteCommandEvent.hpp"
 #include "JHybridOneBrowserSpec.hpp"
+#include "JHybridOneCalendarSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
+#include "JHybridOneContactsSpec.hpp"
 #include "JHybridOneDeviceSpec.hpp"
 #include "JHybridOneDocumentPickerSpec.hpp"
 #include "JHybridOneFetchSpec.hpp"
@@ -51,7 +56,9 @@
 #include "JFunc_void_std__string_NativeNotification.hpp"
 #include "JFunc_void_NativeNotificationResponse.hpp"
 #include "JFunc_void_NativePushToken.hpp"
+#include "JHybridOnePhotoLibrarySpec.hpp"
 #include "JHybridOnePrintSpec.hpp"
+#include "JHybridOneProtectedStoreSpec.hpp"
 #include "JHybridOneQuickActionsSpec.hpp"
 #include "JHybridOneScreenCaptureSpec.hpp"
 #include "JFunc_void_ScreenCaptureState.hpp"
@@ -204,6 +211,14 @@ struct JHybridOneLocalAuthenticationSpecImpl: public jni::JavaClass<JHybridOneLo
     return javaPart->getJHybridOneLocalAuthenticationSpec();
   }
 };
+struct JHybridOneProtectedStoreSpecImpl: public jni::JavaClass<JHybridOneProtectedStoreSpecImpl, JHybridOneProtectedStoreSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneProtectedStore;";
+  static std::shared_ptr<JHybridOneProtectedStoreSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneProtectedStoreSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneProtectedStoreSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneProtectedStoreSpec();
+  }
+};
 struct JHybridOneKeepAwakeSpecImpl: public jni::JavaClass<JHybridOneKeepAwakeSpecImpl, JHybridOneKeepAwakeSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneKeepAwake;";
   static std::shared_ptr<JHybridOneKeepAwakeSpec> create() {
@@ -244,12 +259,28 @@ struct JHybridOneFileSystemSpecImpl: public jni::JavaClass<JHybridOneFileSystemS
     return javaPart->getJHybridOneFileSystemSpec();
   }
 };
+struct JHybridOneAudioSpecImpl: public jni::JavaClass<JHybridOneAudioSpecImpl, JHybridOneAudioSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneAudio;";
+  static std::shared_ptr<JHybridOneAudioSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneAudioSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneAudioSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneAudioSpec();
+  }
+};
 struct JHybridOneShareSpecImpl: public jni::JavaClass<JHybridOneShareSpecImpl, JHybridOneShareSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneShare;";
   static std::shared_ptr<JHybridOneShareSpec> create() {
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneShareSpecImpl::javaobject()>();
     jni::local_ref<JHybridOneShareSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOneShareSpec();
+  }
+};
+struct JHybridOnePhotoLibrarySpecImpl: public jni::JavaClass<JHybridOnePhotoLibrarySpecImpl, JHybridOnePhotoLibrarySpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOnePhotoLibrary;";
+  static std::shared_ptr<JHybridOnePhotoLibrarySpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOnePhotoLibrarySpecImpl::javaobject()>();
+    jni::local_ref<JHybridOnePhotoLibrarySpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOnePhotoLibrarySpec();
   }
 };
 struct JHybridOneAppIconSpecImpl: public jni::JavaClass<JHybridOneAppIconSpecImpl, JHybridOneAppIconSpec::JavaPart> {
@@ -300,6 +331,22 @@ struct JHybridOneScreenCaptureSpecImpl: public jni::JavaClass<JHybridOneScreenCa
     return javaPart->getJHybridOneScreenCaptureSpec();
   }
 };
+struct JHybridOneContactsSpecImpl: public jni::JavaClass<JHybridOneContactsSpecImpl, JHybridOneContactsSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneContacts;";
+  static std::shared_ptr<JHybridOneContactsSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneContactsSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneContactsSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneContactsSpec();
+  }
+};
+struct JHybridOneCalendarSpecImpl: public jni::JavaClass<JHybridOneCalendarSpecImpl, JHybridOneCalendarSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneCalendar;";
+  static std::shared_ptr<JHybridOneCalendarSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneCalendarSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneCalendarSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneCalendarSpec();
+  }
+};
 struct JHybridOneMapServicesSpecImpl: public jni::JavaClass<JHybridOneMapServicesSpecImpl, JHybridOneMapServicesSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneMapServices;";
   static std::shared_ptr<JHybridOneMapServicesSpec> create() {
@@ -337,8 +384,13 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneAppIconSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneAppInfoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneAppleAuthSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneAudioSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_AudioInterruptionEvent_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_AudioRemoteCommandEvent_cxx::registerNatives();
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneCalendarSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneContactsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneDeviceSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneDocumentPickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneFetchSpec::CxxPart::registerNatives();
@@ -366,7 +418,9 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_std__string_NativeNotification_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativeNotificationResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
+  margelo::nitro::one::JHybridOnePhotoLibrarySpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOnePrintSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneProtectedStoreSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneQuickActionsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneScreenCaptureSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_ScreenCaptureState_cxx::registerNatives();
@@ -487,6 +541,12 @@ void registerAllNatives() {
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneProtectedStore",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneProtectedStoreSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneStorage",
     []() -> std::shared_ptr<HybridObject> {
       static_assert(std::is_default_constructible_v<HybridOneStorage>,
@@ -526,9 +586,21 @@ void registerAllNatives() {
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAudio",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneAudioSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneShare",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneShareSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OnePhotoLibrary",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOnePhotoLibrarySpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -565,6 +637,18 @@ void registerAllNatives() {
     "OneScreenCapture",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneScreenCaptureSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneContacts",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneContactsSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneCalendar",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneCalendarSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

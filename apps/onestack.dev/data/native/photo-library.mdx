@@ -42,7 +42,7 @@ An app with read/write access can also save without requesting add-only access.
 The methods reject with `error.code` `E_PHOTO_LIBRARY_MANIFEST` when the usage
 message is missing, `E_PHOTO_LIBRARY_PERMISSION` when add permission is not
 granted, `E_PHOTO_LIBRARY_URI` for a non-file URI, `E_PHOTO_LIBRARY_FILE` for a
-missing file, or `E_PHOTO_LIBRARY_SAVE` if Photos rejects the asset. Photos are implemented on iOS. Android and web return denied permissions and empty asset or album pages. Calls that create or export an asset or album reject with `PhotoLibrary.<verb> needs an iOS or Android build`; deletion and album membership changes do nothing.
+missing file, or `E_PHOTO_LIBRARY_SAVE` if Photos rejects the asset. Photos are implemented on iOS and Android. On Android, browsing, albums, favorites, deletion, export, and saving run over MediaStore with `native.app.photoLibrary`; album edits and content replace/revert stay unavailable, and the limited picker returns newly granted identifiers only. Web returns denied permissions and empty asset or album pages. Calls that create or export an asset or album reject with `PhotoLibrary.<verb> needs an iOS or Android build` where unimplemented; deletion and album membership changes do nothing there.
 
 To browse metadata, request read access and fetch bounded pages. The list is
 sorted by creation date, newest first. A page contains at most 100 assets;
@@ -62,7 +62,9 @@ if (permission === 'authorized' || permission === 'limited') {
 permission exposes only the user's selected assets. When the status is `limited`,
 call `presentLimitedLibraryPicker()` from an active screen to let the user add
 more assets. The promise resolves after the system picker closes with only the
-newly selected asset identifiers; it can return an empty array. Read the library
+newly selected asset identifiers; it can return an empty array. On Android 14
+and later the same holds: the return is the newly granted additions since
+the picker opened, never the whole visible set. Read the library
 again to see the current visible set:
 
 ```tsx

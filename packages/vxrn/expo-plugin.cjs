@@ -205,6 +205,85 @@ module.exports = function withVxrn(config, options = {}) {
           },
         ],
       ]
+  // mirrors one prebuild's Android media stamps: the same permissions,
+  // meta-data markers and audio service from the same option fields.
+  const mediaPlugins =
+    audio === undefined &&
+    photoLibrary === undefined &&
+    contacts === undefined &&
+    calendar === undefined
+      ? []
+      : [
+          [
+            withAndroidManifest,
+            (nextConfig) => {
+              const manifest = nextConfig.modResults.manifest
+              manifest['uses-permission'] ??= []
+              const ensurePermission = (name, maxSdkVersion) => {
+                if (
+                  manifest['uses-permission'].some((p) => p.$['android:name'] === name)
+                )
+                  return
+                manifest['uses-permission'].push({
+                  $: {
+                    'android:name': name,
+                    ...(maxSdkVersion === undefined
+                      ? {}
+                      : { 'android:maxSdkVersion': String(maxSdkVersion) }),
+                  },
+                })
+              }
+              if (audio?.microphone !== undefined)
+                ensurePermission('android.permission.RECORD_AUDIO')
+              if (photoLibrary?.readWrite !== undefined) {
+                ensurePermission('android.permission.READ_MEDIA_IMAGES')
+                ensurePermission('android.permission.READ_MEDIA_VIDEO')
+                ensurePermission('android.permission.READ_EXTERNAL_STORAGE', 32)
+              }
+              if (photoLibrary?.addOnly !== undefined)
+                ensurePermission('android.permission.WRITE_EXTERNAL_STORAGE', 28)
+              if (contacts !== undefined) {
+                ensurePermission('android.permission.READ_CONTACTS')
+                ensurePermission('android.permission.WRITE_CONTACTS')
+              }
+              if (calendar?.usage !== undefined) {
+                ensurePermission('android.permission.READ_CALENDAR')
+                ensurePermission('android.permission.WRITE_CALENDAR')
+              }
+              if (audio?.background === true) {
+                ensurePermission('android.permission.FOREGROUND_SERVICE')
+                ensurePermission('android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK')
+              }
+              const application =
+                AndroidConfig.Manifest.getMainApplicationOrThrow(nextConfig.modResults)
+              const ensureMetaData = (name) => {
+                application['meta-data'] = (application['meta-data'] ?? []).filter(
+                  (entry) => entry.$['android:name'] !== name
+                )
+                application['meta-data'].push({
+                  $: { 'android:name': name, 'android:value': 'true' },
+                })
+              }
+              if (photoLibrary?.addOnly !== undefined)
+                ensureMetaData('one.photoLibrary.addOnly')
+              if (audio?.background === true) {
+                ensureMetaData('one.audio.background')
+                const serviceName = 'com.margelo.nitro.one.OneAudioService'
+                application['service'] = (application['service'] ?? []).filter(
+                  (entry) => entry.$['android:name'] !== serviceName
+                )
+                application['service'].push({
+                  $: {
+                    'android:name': serviceName,
+                    'android:exported': 'false',
+                    'android:foregroundServiceType': 'mediaPlayback',
+                  },
+                })
+              }
+              return nextConfig
+            },
+          ],
+        ]
   const host = nativeProjectPatches.ONE_NOTIFICATIONS
   const notificationPlugins = !notifications
     ? []
@@ -363,6 +442,7 @@ module.exports = function withVxrn(config, options = {}) {
     ...photoLibraryPlugins,
     ...contactsPlugins,
     ...calendarPlugins,
+    ...mediaPlugins,
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,
