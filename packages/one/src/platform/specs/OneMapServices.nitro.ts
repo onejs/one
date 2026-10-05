@@ -31,7 +31,7 @@ export interface MapRoute {
 
 export type MapTransport = 'driving' | 'walking'
 
-export interface OneMapServices extends HybridObject<{ ios: 'swift' }> {
+export interface OneMapServices extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   search(query: string, center: MapCoordinate, radiusMeters: number): Promise<MapPlace[]>
   autocomplete(query: string, center: MapCoordinate, radiusMeters: number): Promise<MapSuggestion[]>
   resolveSuggestion(id: string): Promise<MapPlace>

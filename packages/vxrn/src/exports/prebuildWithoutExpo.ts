@@ -2109,6 +2109,28 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.location !== undefined
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp location permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      const stamps = [
+        '    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />',
+        '    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />',
+      ]
+      if (app.location.background) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />'
+        )
+      }
+      rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       app.notifications !== undefined
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'

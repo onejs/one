@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { MapCoordinate, MapPlace, MapRoute, MapSuggestion, MapTransport, OneMapServices } from '../specs/OneMapServices.nitro'
@@ -8,7 +7,6 @@ export type { MapCoordinate, MapPlace, MapRoute, MapRouteStep, MapSuggestion, Ma
 let hybrid: OneMapServices | undefined
 
 function native(): OneMapServices {
-  if (Platform.OS !== 'ios') throw new Error('MapServices requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneMapServices>('OneMapServices')
   return hybrid
 }
