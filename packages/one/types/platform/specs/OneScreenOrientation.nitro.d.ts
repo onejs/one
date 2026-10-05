@@ -3,6 +3,7 @@ export type ScreenOrientationValue = 'unknown' | 'portrait' | 'portraitUpsideDow
 export type ScreenOrientationLock = 'portrait' | 'portraitUpsideDown' | 'landscapeLeft' | 'landscapeRight' | 'landscape';
 export interface OneScreenOrientation extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getOrientation(): Promise<ScreenOrientationValue>;
     lock(orientation: ScreenOrientationLock): Promise<ScreenOrientationValue>;
