@@ -173,26 +173,19 @@ function assertNoRedBox(nodes: XmlNode[]) {
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 // permission dialog policies: tap the full-grant option, the limited
-// option, or deny.
+// option, or deny. system buttons use a curly apostrophe in Dont allow.
 type DialogPolicy = 'allow' | 'limited' | 'deny'
 
-function handlePermissionDialog(nodes: XmlNode[], policy: DialogPolicy): boolean {
-  const allowFull = ['Allow all', 'While using the app', 'Allow']
-  const allowLimited = ['Select photos and videos', 'Allow limited access', 'Select more']
-  const deny = ["Don't allow", 'Deny']
-  if (policy === 'deny') {
-    for (const label of deny) {
-      const node = findByText(nodes, label)
-      if (node?.clickable && node.bounds) {
-        tapNode(node)
-        return true
-      }
-    }
-    return false
-  }
-  const labels = policy === 'limited' ? [...allowLimited, ...deny] : [...allowFull, ...deny.slice(0, 0)]
+function norm(text: string): string {
+  return text.replace(/[’‘]/g, "'")
+}
+
+function tapButton(nodes: XmlNode[], labels: string[]): boolean {
   for (const label of labels) {
-    const node = findByText(nodes, label)
+    const node = nodes.find(
+      (entry) =>
+        norm(entry.text) === label || norm(entry.contentDesc) === label
+    )
     if (node?.clickable && node.bounds) {
       tapNode(node)
       return true
@@ -201,17 +194,42 @@ function handlePermissionDialog(nodes: XmlNode[], policy: DialogPolicy): boolean
   return false
 }
 
+const DENY_LABELS = ["Don't allow", 'Deny']
+
+function handlePermissionDialog(
+  nodes: XmlNode[],
+  policy: DialogPolicy,
+  serviceKeywords: string[] = []
+): boolean {
+  // unrelated launch-time prompts (nearby devices and the like) are
+  // denied; only the awaited service dialog follows the policy.
+  const title = nodes.find((node) => /^Allow .* to /.test(node.text))?.text.toLowerCase() ?? ''
+  const isServiceDialog =
+    serviceKeywords.length === 0 || serviceKeywords.some((word) => title.includes(word))
+  if (!isServiceDialog) return tapButton(nodes, DENY_LABELS)
+  if (policy === 'deny') return tapButton(nodes, DENY_LABELS)
+  if (policy === 'limited') {
+    return tapButton(nodes, ['Select photos and videos', 'Allow limited access', 'Select more'])
+  }
+  return tapButton(nodes, ['Allow all', 'While using the app', 'Allow'])
+}
+
 function dialogVisible(nodes: XmlNode[]): boolean {
   return nodes.some((node) =>
     /^(Allow all|Allow limited access|Allow|While using the app|Select photos and videos|Select more|Don't allow|Deny)$/.test(
-      node.text
+      norm(node.text)
     )
   )
 }
 
 async function waitFor(
   match: (nodes: XmlNode[]) => boolean,
-  options: { timeoutMs: number; dialogPolicy?: DialogPolicy; onDump?: (nodes: XmlNode[]) => Promise<void> | void }
+  options: {
+    timeoutMs: number
+    dialogPolicy?: DialogPolicy
+    serviceKeywords?: string[]
+    onDump?: (nodes: XmlNode[]) => Promise<void> | void
+  }
 ): Promise<XmlNode[]> {
   const deadline = Date.now() + options.timeoutMs
   let last: XmlNode[] = []
@@ -222,14 +240,18 @@ async function waitFor(
     if (match(nodes)) return nodes
     if (options.onDump) await options.onDump(nodes)
     if (options.dialogPolicy && dialogVisible(nodes)) {
-      handlePermissionDialog(nodes, options.dialogPolicy)
+      handlePermissionDialog(nodes, options.dialogPolicy, options.serviceKeywords)
     }
     await sleep(1000)
   }
   throw new Error(`timed out waiting for condition. last screen:\n${screenText(last).slice(0, 3000)}`)
 }
 
-function launch(route: string) {
+function launch(route: string, revoke: string[] = []) {
+  adb(['shell', 'pm', 'clear', PACKAGE])
+  for (const perm of revoke) {
+    adbQuiet(['shell', 'pm', 'revoke', PACKAGE, `android.permission.${perm}`])
+  }
   adb(['shell', 'am', 'force-stop', PACKAGE])
   adb(['shell', 'am', 'start', '-a', 'android.intent.action.VIEW', '-d', `nativefeatures://app/${route}`])
 }
@@ -237,7 +259,8 @@ function launch(route: string) {
 async function tapTestIdOrText(testId: string, text: string, timeoutMs = 30_000) {
   const nodes = await waitFor(
     (current) => findByTestId(current, testId) !== undefined || findByText(current, text) !== undefined,
-    { timeoutMs }
+    // pre-run waits only ever meet unrelated launch-time prompts: deny them.
+    { timeoutMs, dialogPolicy: 'deny' }
   )
   const target = findByTestId(nodes, testId) ?? findByText(nodes, text)
   if (!target?.bounds) throw new Error(`no tappable target for ${testId}`)
@@ -283,13 +306,14 @@ async function installAndSeed() {
 }
 
 function seedLocalCalendar() {
-  // a fresh emulator has no writable calendar; insert a local one as the
-  // app identity so the calendar proof has a creation target.
+  // a fresh emulator has no writable calendar; insert a local one via the
+  // shell identity (appops-granted, sync-adapter URI) so the calendar
+  // proof has a creation target.
+  adbQuiet(['shell', 'cmd', 'appops', 'set', '--uid', '2000', 'READ_CALENDAR', 'allow'])
+  adbQuiet(['shell', 'cmd', 'appops', 'set', '--uid', '2000', 'WRITE_CALENDAR', 'allow'])
   const existing = adbQuiet([
     'shell',
-    'run-as',
-    PACKAGE,
-    '/system/bin/content',
+    'content',
     'query',
     '--uri',
     'content://com.android.calendar/calendars',
@@ -302,12 +326,10 @@ function seedLocalCalendar() {
   }
   const out = adb([
     'shell',
-    'run-as',
-    PACKAGE,
-    '/system/bin/content',
+    'content',
     'insert',
     '--uri',
-    'content://com.android.calendar/calendars',
+    'content://com.android.calendar/calendars?caller_is_syncadapter=true&account_name=oneproof&account_type=LOCAL',
     '--bind',
     'name:s:OneProof',
     '--bind',
@@ -354,22 +376,37 @@ function seedPhotos() {
   console.log('photo seed: pushed 3 pngs to Pictures')
 }
 
+function resetContacts() {
+  // stale proof contacts would confuse the picker tap: wipe the book.
+  adbQuiet(['shell', 'cmd', 'appops', 'set', '--uid', '2000', 'READ_CONTACTS', 'allow'])
+  adbQuiet(['shell', 'cmd', 'appops', 'set', '--uid', '2000', 'WRITE_CONTACTS', 'allow'])
+  adbQuiet(['shell', 'content', 'delete', '--uri', 'content://com.android.contacts/contacts'])
+}
+
 async function suiteContacts() {
   console.log('--- contacts ---')
-  launch('one-native-contacts')
+  resetContacts()
+  launch('one-native-contacts', ['READ_CONTACTS', 'WRITE_CONTACTS'])
   await tapTestIdOrText('one-native-contacts-run', 'Run Contacts proof')
+  // the system picker covers the app, so drive it by its own markers.
+  // dumps are slower than the picker's close/reopen gap, so the first
+  // sighting double-taps the proof contact (the selection) and every
+  // later sighting cancels with back (the two cancels).
+  let pickerTapped = false
   const nodes = await waitFor(
     (current) => findContaining(current, 'Status: passed') !== undefined || findContaining(current, 'Status: failed') !== undefined,
     {
       timeoutMs: 180_000,
       dialogPolicy: 'allow',
+      serviceKeywords: ['contact'],
       onDump: async (current) => {
-        const stage = resultLine(current, 'Picker stage: ')
-        if (stage.includes('selecting')) {
-          // tap the proof contact the fixture just created.
+        if (findContaining(current, 'Choose a contact') === undefined) return
+        if (!pickerTapped) {
+          pickerTapped = true
           const contact = findContaining(current, 'OneEdited')
+          // one tap only: a second lands on the next picker opening.
           if (contact?.bounds) tapNode(contact)
-        } else if (stage.includes('swiping') || stage.includes('afterSwipe')) {
+        } else {
           adbQuiet(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
           await sleep(1500)
         }
@@ -392,11 +429,11 @@ async function suiteContacts() {
 
 async function suiteCalendar() {
   console.log('--- calendar ---')
-  launch('one-native-calendar')
+  launch('one-native-calendar', ['READ_CALENDAR', 'WRITE_CALENDAR'])
   await tapTestIdOrText('one-native-calendar-run', 'Run Calendar proof')
   const nodes = await waitFor(
     (current) => findContaining(current, 'Status: done') !== undefined || findContaining(current, 'Status: failed') !== undefined,
-    { timeoutMs: 180_000, dialogPolicy: 'allow' }
+    { timeoutMs: 180_000, dialogPolicy: 'allow', serviceKeywords: ['calendar'] }
   )
   dump('calendar-final.xml')
   const status = resultLine(nodes, 'Status: ')
@@ -421,11 +458,11 @@ async function suiteCalendar() {
 
 async function suitePhoto() {
   console.log('--- photo ---')
-  launch('one-native-photo-library')
+  launch('one-native-photo-library', ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_EXTERNAL_STORAGE'])
   await tapTestIdOrText('one-native-photo-library-run', 'Save image and video to Photos')
   let nodes = await waitFor(
     (current) => findContaining(current, 'Status: passed') !== undefined || findContaining(current, 'Status: error') !== undefined,
-    { timeoutMs: 120_000, dialogPolicy: 'allow' }
+    { timeoutMs: 120_000, dialogPolicy: 'allow', serviceKeywords: ['photo', 'image', 'video', 'file', 'music'] }
   )
   check('photo save', resultLine(nodes, 'Status: '), 'Status: passed')
   check('photo save result', resultLine(nodes, 'Result: '), 'uri=E_PHOTO_LIBRARY_URI')
@@ -433,7 +470,7 @@ async function suitePhoto() {
   await tapTestIdOrText('one-native-photo-library-read', 'Read saved Photos assets')
   nodes = await waitFor(
     (current) => findContaining(current, 'Status: read-passed') !== undefined || findContaining(current, 'Status: read-error') !== undefined,
-    { timeoutMs: 120_000, dialogPolicy: 'allow' }
+    { timeoutMs: 120_000, dialogPolicy: 'allow', serviceKeywords: ['photo', 'image', 'video', 'file', 'music'] }
   )
   check('photo read', resultLine(nodes, 'Status: '), 'Status: read-passed')
   const readResult = resultLine(nodes, 'Read result: ')
@@ -451,7 +488,7 @@ async function suitePhoto() {
   await tapTestIdOrText('one-native-photo-library-manage', 'Favorite and delete Photos assets')
   nodes = await waitFor(
     (current) => findContaining(current, 'Status: manage-passed') !== undefined || findContaining(current, 'Status: manage-error') !== undefined,
-    { timeoutMs: 120_000, dialogPolicy: 'allow' }
+    { timeoutMs: 120_000, dialogPolicy: 'allow', serviceKeywords: ['photo', 'image', 'video', 'file', 'music'] }
   )
   check('photo manage', resultLine(nodes, 'Status: '), 'Status: manage-passed')
   const manageResult = resultLine(nodes, 'Manage result: ')
@@ -467,11 +504,11 @@ async function suitePhoto() {
     adbQuiet(['shell', 'pm', 'revoke', PACKAGE, `android.permission.${perm}`])
   }
   adb(['shell', 'pm', 'clear', PACKAGE])
-  launch('one-native-photo-library')
+  launch('one-native-photo-library', ['READ_MEDIA_IMAGES', 'READ_MEDIA_VIDEO', 'READ_EXTERNAL_STORAGE'])
   await tapTestIdOrText('one-native-photo-library-run', 'Save image and video to Photos')
   await waitFor(
     (current) => findContaining(current, 'Status: passed') !== undefined,
-    { timeoutMs: 120_000, dialogPolicy: 'allow' }
+    { timeoutMs: 120_000, dialogPolicy: 'allow', serviceKeywords: ['photo', 'image', 'video', 'file', 'music'] }
   )
   await tapTestIdOrText('one-native-photo-library-limited-request', 'Request limited Photos access')
   await waitFor(
@@ -535,7 +572,7 @@ async function suiteAudio() {
   await tapTestIdOrText('one-native-audio-run', 'Record and play')
   let nodes = await waitFor(
     (current) => findContaining(current, 'Status: passed') !== undefined || findContaining(current, 'Status: error') !== undefined,
-    { timeoutMs: 180_000, dialogPolicy: 'allow' }
+    { timeoutMs: 180_000, dialogPolicy: 'allow', serviceKeywords: ['microphone', 'record', 'audio'] }
   )
   check('audio run', resultLine(nodes, 'Status: '), 'Status: passed')
   check('audio errors', resultLine(nodes, 'Result: '), 'errors=E_AUDIO_URI,E_AUDIO_STATE,E_AUDIO_STATE')
