@@ -218,6 +218,7 @@ module.exports = function withVxrn(config, options = {}) {
               if (photoLibrary?.readWrite !== undefined) {
                 ensurePermission('android.permission.READ_MEDIA_IMAGES')
                 ensurePermission('android.permission.READ_MEDIA_VIDEO')
+                ensurePermission('android.permission.READ_MEDIA_VISUAL_USER_SELECTED')
                 ensurePermission('android.permission.READ_EXTERNAL_STORAGE', 32)
               }
               if (photoLibrary?.addOnly !== undefined)

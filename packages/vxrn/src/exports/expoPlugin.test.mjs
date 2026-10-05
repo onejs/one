@@ -148,6 +148,36 @@ describe('vxrn/expo-plugin', () => {
     expect(result.modResults.PHPhotoLibraryPreventAutomaticLimitedAccessAlert).toBe(true)
   })
 
+  it('requests selected-photo access only for Photos read permission', async () => {
+    const projectRoot = expoProject()
+    for (const photoLibrary of [
+      { readWrite: 'Browse photos.' },
+      { addOnly: 'Save a photo.' },
+    ]) {
+      const config = withVxrn(
+        { name: 'TestApp', slug: 'test-app', _internal: { projectRoot } },
+        { photoLibrary }
+      )
+      const run = (modResults) => config.mods.android.manifest({
+        ...config,
+        modRequest: { projectRoot, platform: 'android', modName: 'manifest', projectName: 'TestApp', introspect: false },
+        modResults,
+      })
+      const once = (await run({ manifest: {
+        $: {},
+        application: [{ $: { 'android:name': '.MainApplication' }, activity: [] }],
+      } })).modResults
+      const twice = (await run(once)).modResults
+      const permissions = twice.manifest['uses-permission'].map((entry) => entry.$['android:name'])
+      expect(permissions.filter((name) => name === 'android.permission.READ_MEDIA_VISUAL_USER_SELECTED'))
+        .toHaveLength(photoLibrary.readWrite ? 1 : 0)
+      expect(permissions.filter((name) => name === 'android.permission.READ_MEDIA_IMAGES'))
+        .toHaveLength(photoLibrary.readWrite ? 1 : 0)
+      expect(permissions.filter((name) => name === 'android.permission.READ_MEDIA_VIDEO'))
+        .toHaveLength(photoLibrary.readWrite ? 1 : 0)
+    }
+  })
+
   it('stamps the same notification entries as one prebuild', async () => {
     const projectRoot = expoProject()
     const config = withVxrn(

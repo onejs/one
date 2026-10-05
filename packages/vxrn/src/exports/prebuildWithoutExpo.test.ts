@@ -509,6 +509,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
       'android.permission.RECORD_AUDIO',
       'android.permission.READ_MEDIA_IMAGES',
       'android.permission.READ_MEDIA_VIDEO',
+      'android.permission.READ_MEDIA_VISUAL_USER_SELECTED',
       'android.permission.READ_CONTACTS',
       'android.permission.WRITE_CONTACTS',
       'android.permission.READ_CALENDAR',
@@ -548,6 +549,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     })
     for (const permission of [
       'android.permission.READ_MEDIA_IMAGES',
+      'android.permission.READ_MEDIA_VISUAL_USER_SELECTED',
       'android.permission.READ_CONTACTS',
       'android.permission.READ_CALENDAR',
       'android.permission.FOREGROUND_SERVICE',

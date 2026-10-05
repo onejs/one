@@ -2193,6 +2193,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         stamps.push(
           '    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />',
           '    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />',
+          '    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />',
           '    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />'
         )
       }

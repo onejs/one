@@ -515,10 +515,12 @@ export default function OneNativePhotoLibrary() {
       }
       const granted = await One.PhotoLibrary.requestReadPermission()
       setReadPermission(One.PhotoLibrary.getReadPermissionStatus())
-      // android reports a partial grant as granted at every layer, so
-      // the grant reads authorized either way; partial visibility is
-      // proven by the delta below, never by the status label.
-      if (granted !== 'authorized' && granted !== 'limited') {
+      // keep the ios limited-only gate; android's existing status
+      // relaxation remains until opted-in partial access is device-proven.
+      if (
+        granted !== 'limited' &&
+        !(Platform.OS === 'android' && granted === 'authorized')
+      ) {
         throw new Error(`limited permission: ${granted}`)
       }
       const page = await One.PhotoLibrary.listAssets(0, 100)

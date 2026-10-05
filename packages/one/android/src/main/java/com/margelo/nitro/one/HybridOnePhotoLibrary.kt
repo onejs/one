@@ -903,7 +903,13 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
     }
 
     private fun readPermissions(): Array<String> =
-        if (Build.VERSION.SDK_INT >= 33) {
+        if (Build.VERSION.SDK_INT >= 34) {
+            arrayOf(
+                Manifest.permission.READ_MEDIA_IMAGES,
+                Manifest.permission.READ_MEDIA_VIDEO,
+                Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED
+            )
+        } else if (Build.VERSION.SDK_INT >= 33) {
             arrayOf(Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.READ_MEDIA_VIDEO)
         } else {
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -918,10 +924,9 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
             val userSelected = Build.VERSION.SDK_INT >= 34 &&
                 ContextCompat.checkSelfPermission(context, Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED) ==
                     PackageManager.PERMISSION_GRANTED
-            // a partial grant reports the concrete permissions as
-            // granted at every layer (check, results, appops), so a
-            // triple-granted state echoes the os as authorized; the
-            // picker return stays a strict before/after delta either way.
+            // requesting user-selected access on api 34 avoids the
+            // compatibility grant echo. full media grants take precedence
+            // because full access can include the user-selected grant too.
             if (images && video) return PhotoLibraryPermissionStatus.AUTHORIZED
             if (userSelected) return PhotoLibraryPermissionStatus.LIMITED
             if (images || video) return PhotoLibraryPermissionStatus.LIMITED

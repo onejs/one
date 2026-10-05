@@ -65,6 +65,12 @@ without prompting. `getRecordingStatus()` reports `idle`, `recording`, or
 `paused`; call `resumeRecording()` after the interruption ends. Keep a file you want to
 retain by moving it from cache with `One.FileSystem.move`.
 
+On Android, recording pause and resume require API 24 or later. With an active
+recorder on API 23, `pauseRecording()` rejects with `E_AUDIO_STATE` and
+`resumeRecording()` rejects with `E_AUDIO_FAILED`, with a message naming the
+API 24 requirement. Without a recorder, both keep the `E_AUDIO_STATE` error.
+An API 23 recorder continues recording during audio focus loss.
+
 Use `watchInterruptions()` to react when another audio session interrupts playback
 or recording. The callback receives `type` (`began` or `ended`) and `shouldResume`.
 On `began`, One pauses its current player or recorder. Resume

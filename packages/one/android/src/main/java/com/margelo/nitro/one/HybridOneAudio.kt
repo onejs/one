@@ -30,7 +30,7 @@ import java.util.UUID
 
 // audio playback and recording over MediaPlayer, MediaRecorder,
 // AudioManager and MediaSession. everything runs on the main thread
-// like the Swift hybrid; focus loss pauses playback and recording and
+// like the Swift hybrid; focus loss pauses playback and (api 24+) recording and
 // emits began, focus gain emits ended. background playback starts the
 // prebuild-stamped foreground service only under
 // native.app.audio.background; recording never starts a service.
@@ -45,7 +45,13 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     private var playbackPaused = false
     private var playbackEnded = false
     private var playbackError: String? = null
-    private var seekGeneration = 0
+    private class PendingSeek(
+        val player: MediaPlayer,
+        val positionMs: Int,
+        var promise: Promise<AudioPlaybackStatus>?
+    )
+    private var activeSeek: PendingSeek? = null
+    private var queuedSeek: PendingSeek? = null
 
     private var recorder: MediaRecorder? = null
     private var recordFile: File? = null
@@ -196,18 +202,22 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 playbackEnded = false
                 playbackError = null
                 fresh.setOnPreparedListener { mp ->
+                    if (player !== mp) return@setOnPreparedListener
                     playerPrepared = true
                     mp.start()
                     startServiceIfBackground()
                     syncNowPlaying()
                 }
-                fresh.setOnCompletionListener {
+                fresh.setOnCompletionListener { mp ->
+                    if (player !== mp) return@setOnCompletionListener
                     playbackEnded = true
                     stopService()
                     syncNowPlaying()
                 }
-                fresh.setOnErrorListener { _, what, extra ->
+                fresh.setOnErrorListener { mp, what, extra ->
+                    if (player !== mp) return@setOnErrorListener true
                     playbackError = "playback failed ($what/$extra)"
+                    cancelSeeks()
                     stopService()
                     syncNowPlaying()
                     true
@@ -259,7 +269,9 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             }
             try {
                 if (playbackEnded) {
-                    current.seekTo(0)
+                    if (!enqueueSeek(current, 0, null)) {
+                        throw IllegalStateException("seek failed")
+                    }
                     playbackEnded = false
                 }
                 playbackPaused = false
@@ -286,23 +298,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 promise.reject(OneNativeError(E_STATE, "Audio.seek: the audio operation is not ready"))
                 return@post
             }
-            val generation = ++seekGeneration
-            try {
-                current.setOnSeekCompleteListener { mp ->
-                    if (generation != seekGeneration || player !== mp) {
-                        if (generation == seekGeneration) {
-                            promise.reject(OneNativeError(E_STATE, "Audio.seek: the audio operation is not ready"))
-                        }
-                        return@setOnSeekCompleteListener
-                    }
-                    playbackEnded = false
-                    syncNowPlaying()
-                    promise.resolve(playbackStatus())
-                }
-                current.seekTo(positionMs.toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt())
-            } catch (e: Exception) {
-                promise.reject(OneNativeError(E_STATE, "Audio.seek: the audio operation is not ready"))
-            }
+            enqueueSeek(current, positionMs.toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt(), promise)
         }
         return promise
     }
@@ -315,6 +311,83 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             promise.resolve(Unit)
         }
         return promise
+    }
+
+    private fun rejectSeek(seek: PendingSeek?) {
+        val promise = seek?.promise
+        seek?.promise = null
+        promise?.reject(OneNativeError(E_STATE, "Audio.seek: the audio operation is not ready"))
+    }
+
+    private fun clearSeekListener(current: MediaPlayer) {
+        try {
+            current.setOnSeekCompleteListener(null)
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun cancelSeeks() {
+        val active = activeSeek
+        val queued = queuedSeek
+        activeSeek = null
+        queuedSeek = null
+        active?.let { clearSeekListener(it.player) }
+        rejectSeek(active)
+        rejectSeek(queued)
+    }
+
+    private fun enqueueSeek(
+        current: MediaPlayer,
+        positionMs: Int,
+        promise: Promise<AudioPlaybackStatus>?
+    ): Boolean {
+        // one physical seek owns the listener until its callback retires.
+        // superseded public promises settle now, before queuing the latest target.
+        rejectSeek(activeSeek)
+        rejectSeek(queuedSeek)
+        val seek = PendingSeek(current, positionMs, promise)
+        if (activeSeek != null) {
+            queuedSeek = seek
+            return true
+        }
+        return startSeek(seek)
+    }
+
+    private fun startSeek(seek: PendingSeek): Boolean {
+        activeSeek = seek
+        try {
+            seek.player.setOnSeekCompleteListener { mp ->
+                if (activeSeek !== seek) return@setOnSeekCompleteListener
+                if (player !== mp || playbackError != null) {
+                    cancelSeeks()
+                    return@setOnSeekCompleteListener
+                }
+                activeSeek = null
+                clearSeekListener(mp)
+                val next = queuedSeek
+                queuedSeek = null
+                if (next != null) {
+                    startSeek(next)
+                    return@setOnSeekCompleteListener
+                }
+                val promise = seek.promise
+                seek.promise = null
+                val status = try {
+                    playbackEnded = false
+                    syncNowPlaying()
+                    if (promise != null) playbackStatus() else null
+                } catch (e: Exception) {
+                    promise?.reject(OneNativeError(E_STATE, "Audio.seek: the audio operation is not ready"))
+                    return@setOnSeekCompleteListener
+                }
+                if (status != null) promise?.resolve(status)
+            }
+            seek.player.seekTo(seek.positionMs)
+            return true
+        } catch (e: Exception) {
+            cancelSeeks()
+            return false
+        }
     }
 
     override fun startRecording(): Promise<AudioRecordingStatus> {
@@ -395,8 +468,12 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 promise.reject(OneNativeError(E_STATE, "Audio.pauseRecording: the audio operation is not ready"))
                 return@post
             }
+            if (Build.VERSION.SDK_INT < 24) {
+                promise.reject(OneNativeError(E_STATE, "Audio.pauseRecording: recording pause requires Android API 24 or later"))
+                return@post
+            }
             try {
-                if (Build.VERSION.SDK_INT >= 24 && !recordPaused) {
+                if (!recordPaused) {
                     current.pause()
                     recordPauseBegin = SystemClock.elapsedRealtime()
                     recordPaused = true
@@ -417,14 +494,16 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 promise.reject(OneNativeError(E_STATE, "Audio.resumeRecording: the audio operation is not ready"))
                 return@post
             }
+            if (Build.VERSION.SDK_INT < 24) {
+                promise.reject(OneNativeError(E_FAILED, "Audio.resumeRecording: recording resume requires Android API 24 or later"))
+                return@post
+            }
             try {
-                if (Build.VERSION.SDK_INT >= 24 && recordPaused) {
+                if (recordPaused) {
                     current.resume()
                     recordPausedTotal += SystemClock.elapsedRealtime() - recordPauseBegin
                     recordPauseBegin = 0
                     recordPaused = false
-                    promise.resolve(recordingStatus())
-                } else if (Build.VERSION.SDK_INT < 24) {
                     promise.resolve(recordingStatus())
                 } else {
                     promise.reject(
@@ -620,7 +699,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 AudioRemoteCommandType.PLAY -> {
                     try {
                         if (playbackEnded) {
-                            current.seekTo(0)
+                            if (!enqueueSeek(current, 0, null)) return@post
                             playbackEnded = false
                         }
                         playbackPaused = false
@@ -640,11 +719,8 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                 }
                 AudioRemoteCommandType.SEEK -> {
                     if (positionMs == null || !positionMs.isFinite() || positionMs < 0) return@post
-                    try {
-                        current.seekTo(positionMs.toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt())
-                    } catch (e: Exception) {
+                    if (!enqueueSeek(current, positionMs.toLong().coerceAtMost(Int.MAX_VALUE.toLong()).toInt(), null))
                         return@post
-                    }
                     playbackEnded = false
                 }
             }
@@ -777,12 +853,8 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     }
 
     private fun clearPlayer() {
+        cancelSeeks()
         clearNowPlaying()
-        seekGeneration++
-        try {
-            player?.setOnSeekCompleteListener(null)
-        } catch (e: Exception) {
-        }
         try {
             player?.stop()
         } catch (e: Exception) {
