@@ -4,6 +4,7 @@ export type PrintResult = {
 };
 export interface OnePrint extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     isAvailable(): Promise<boolean>;
     printPdf(fileUri: string, jobName?: string): Promise<PrintResult>;
