@@ -54,12 +54,14 @@ class HybridOneShare : HybridOneShareSpec(), ActivityEventListener, LifecycleEve
 
     override fun onHostResume() {
         active = true
-        // the chooser is gone when the host resumes, so a promise still
-        // pending here lost its result; settle it as dismissed.
+        // the chooser is gone when the host resumes, but its result and
+        // chosen-component broadcast can still be in flight; settling
+        // immediately would beat them and misreport a completed share as
+        // dismissed, so use the same grace window as the result path.
         synchronized(lock) {
             if (pending != null && !settlePosted) {
                 settlePosted = true
-                mainHandler.post { settle() }
+                mainHandler.postDelayed({ settle() }, 800)
             }
         }
     }
