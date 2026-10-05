@@ -67,13 +67,17 @@ For bundled, remote, and cross-platform images, use
 
 `Circle`, `Capsule`, `Rectangle`, `Ellipse`, `RoundedRectangle`,
 `UnevenRoundedRectangle`, and `ConcentricRectangle` fill a SwiftUI shape with
-`fill`, a color value. A shape fills the box React Native gives it.
+`fill`, a color value. Every shape except `ConcentricRectangle` also takes
+`strokeBorder`, a color drawn inside its edge over the fill, `lineWidth` points
+wide. A shape fills the box React Native gives it.
 
 <PropsTable
   title="RoundedRectangle"
   source="generated/controlTypes.ts#RoundedRectangleProps"
   data={[
     { name: 'fill', type: 'ColorValue', description: 'The fill color. Every shape takes it.' },
+    { name: 'strokeBorder', type: 'ColorValue', description: 'A border color drawn inside the edge.' },
+    { name: 'lineWidth', type: 'number', default: '1', description: 'The border width in points.' },
     { name: 'cornerRadius', type: 'number', default: '0', description: 'The corner radius in points.' },
   ]}
 />
@@ -83,6 +87,8 @@ For bundled, remote, and cross-platform images, use
   source="generated/controlTypes.ts#UnevenRoundedRectangleProps"
   data={[
     { name: 'fill', type: 'ColorValue', description: 'The fill color.' },
+    { name: 'strokeBorder', type: 'ColorValue', description: 'A border color drawn inside the edge.' },
+    { name: 'lineWidth', type: 'number', default: '1', description: 'The border width in points.' },
     { name: 'topLeadingRadius', type: 'number', default: '0', description: 'The top leading corner.' },
     { name: 'bottomLeadingRadius', type: 'number', default: '0', description: 'The bottom leading corner.' },
     { name: 'bottomTrailingRadius', type: 'number', default: '0', description: 'The bottom trailing corner.' },
@@ -98,6 +104,7 @@ import { One } from 'one'
 
 <One.iOS.Circle fill="red" />
 <One.iOS.RoundedRectangle fill="blue" cornerRadius={12} />
+<One.iOS.Capsule fill="white" strokeBorder="gray" lineWidth={2} />
 <One.iOS.UnevenRoundedRectangle fill="green" topLeadingRadius={16} bottomTrailingRadius={16} />
 <One.iOS.ConcentricRectangle fill="orange" style={{ width: 120, height: 80 }} />
 ```

@@ -5,6 +5,8 @@ import UIKit
 
 private final class RoundedRectangleModel: ObservableObject {
   @Published var fill: UIColor? = nil
+  @Published var strokeBorder: UIColor? = nil
+  @Published var lineWidth: Double = 1
   @Published var cornerRadius: Double = 0
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
@@ -33,8 +35,10 @@ private final class RoundedRectangleModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ fill: UIColor?, cornerRadius: Double) {
+  public func configure(_ fill: UIColor?, strokeBorder: UIColor?, lineWidth: Double, cornerRadius: Double) {
     if model.fill != fill { model.fill = fill }
+    if model.strokeBorder != strokeBorder { model.strokeBorder = strokeBorder }
+    if model.lineWidth != lineWidth { model.lineWidth = lineWidth }
     if model.cornerRadius != cornerRadius { model.cornerRadius = cornerRadius }
   }
 
@@ -78,7 +82,13 @@ private struct RoundedRectangleContent: View {
   @ObservedObject var model: RoundedRectangleModel
   var body: some View {
     Group {
-        if let fill = model.fill {
+        if let stroke = model.strokeBorder {
+          if let fill = model.fill {
+            RoundedRectangle(cornerRadius: model.cornerRadius).fill(Color(uiColor: fill)).strokeBorder(Color(uiColor: stroke), lineWidth: model.lineWidth)
+          } else {
+            RoundedRectangle(cornerRadius: model.cornerRadius).strokeBorder(Color(uiColor: stroke), lineWidth: model.lineWidth)
+          }
+        } else if let fill = model.fill {
           RoundedRectangle(cornerRadius: model.cornerRadius).fill(Color(uiColor: fill))
         } else {
           RoundedRectangle(cornerRadius: model.cornerRadius)
