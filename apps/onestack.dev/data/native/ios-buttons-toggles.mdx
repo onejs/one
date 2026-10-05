@@ -105,7 +105,7 @@ prominent Button grew from 28 to 50.33 points when changed from `mini` to
   title="Props"
   source="generated/controlTypes.ts#ToggleProps"
   data={[
-    { name: 'isOn', required: true, type: 'boolean', description: 'Whether the switch is on.' },
+    { name: 'isOn', required: true, type: 'boolean | NativeState<boolean>', description: 'Whether the switch is on, or a useNativeState handle.' },
     { name: 'onIsOnChange', required: true, type: '(value: boolean) => void', description: 'A native flip, with the new value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isOn to reset it from outside.' },
     { name: 'label', type: 'string', description: 'The text before the switch.' },
