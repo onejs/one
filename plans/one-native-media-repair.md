@@ -94,11 +94,12 @@ Proposed design, HELD pending p60786 clearance; no Calendar native edits:
    deletion resolve that pair directly to the selected row. Do not project
    its identifier or recurrence to the sibling origin. Its physical RRULE is
    absent, so later edits treat it as standalone; no synthetic exception
-   marker or sibling membership is needed. Moving it onto a sibling's exact
-   start then leaves two different identifiers. No linked ORIGINAL_ID
-   exception is reintroduced, since candidate receipts report suppressed
-   sibling expansion. This follows the existing return-value contract, not
-   a new public identifier definition.
+   marker or sibling membership is needed for that split design. Moving it
+   onto a sibling's exact start then leaves two different identifiers. Earlier
+   dead-end receipts do not establish that all supported exception APIs fail.
+   The normal exception URI investigation below is source-only and does not
+   clear linked-exception native writes. This follows the existing return-value
+   contract, not a new public identifier definition.
 
 4. Assemble one ContentProviderOperation batch containing the original row
    update or delete, all sibling run inserts and the selected detached insert.
@@ -139,6 +140,47 @@ Proposed design, HELD pending p60786 clearance; no Calendar native edits:
 
 Rows already split by the candidate have no trustworthy origin stamp. Do not
 invent a migration from title/time matching or claim old IDs can be recovered.
+
+### Supported normal exception path, source-only investigation
+
+The held split proposal above is not ready for implementation: its durable
+sibling storage boundary remains unresolved. Per p61056's 2026-10-05 source-only
+instruction, examine the supported provider exception API before declaring
+ordinary-app preservation impossible. No alternative implementation is adopted.
+
+RAN: Android publicly exposes Events.CONTENT_EXCEPTION_URI from API 14, with
+an appended original event ID for insertion. AOSP routes it through
+handleInsertException without requiring sync-adapter authority. It clones the
+original event and related tables inside a transaction, derives ORIGINAL_ID,
+ORIGINAL_SYNC_ID and ORIGINAL_ALL_DAY, and returns a new selected provider ID.
+The single-instance mode keeps the original series row/rule. This could avoid
+sibling alias storage and local recurrence rewriting. It is not equivalent to
+hand-inserting an ORIGINAL_ID row.
+
+RAN: that method requires ORIGINAL_INSTANCE_TIME and DURATION; DTEND is absent
+from its allowed changes. It converts DURATION into selected DTEND. Candidate
+create always supplies DTEND, including RRULE events, and never DURATION.
+The ordinary Events insert validation accepts that pair; expansion can derive
+duration from DTEND, while handleInsertException cannot. INFERRED: recurrence
+creation duration would need normalization to the documented shape before
+this route could work. This is not proof of the installed provider failure.
+
+RAN: AOSP also exposes a concrete unsynced-event obstruction. Incremental
+exception expansion deletes base/exception Instances, then passes the new
+exception ID to getRelevantRecurrenceEntries. With no recurrence sync ID,
+that query selects only that ID. Full expansion matches exceptions through
+ORIGINAL_SYNC_ID, not ORIGINAL_ID. INFERRED: using the public URI alone does
+not establish sibling preservation for unsynced/local events in this source.
+Do not synthesize _SYNC_ID, claim sync-adapter authority, clear provider caches,
+change calendars, or infer a source workaround is supported without evidence.
+
+Deletion of a returned linked exception must preserve cancellation of its
+original slot; deleting its row alone can restore that slot. The reviewer must
+dispose the exact normal-client update/cancel shape, including unsynced series,
+selected later edit/delete, recurrence/all-day duration, atomicity and metadata
+preservation. Runtime/rollback controls remain the existing held acceptance,
+with no new device/build/probe/matrix authorization. Full source anchors and
+falsifiable limits: `tests/native-features/evidence/one-native-android-media/calendar-normal-exception-source.md`.
 
 Existing bounded controls, only after supported acceptance is admitted: retain
 all current daily interval-2/count-3, middle-update/delete and endDateMs legs.
