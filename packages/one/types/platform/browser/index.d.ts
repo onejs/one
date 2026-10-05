@@ -5,7 +5,7 @@ declare function dismiss(): Promise<BrowserResult>;
 declare function openAuthSession(url: string, redirectUrl?: string | null, options?: BrowserAuthSessionOptions): Promise<BrowserAuthSessionResult>;
 declare function dismissAuthSession(): void;
 declare function warmup(_browserPackage?: string): Promise<boolean>;
-declare function mayLaunchUrl(_url: string, _browserPackage?: string): Promise<boolean>;
+declare function mayLaunchUrl(url: string, _browserPackage?: string): Promise<boolean>;
 export declare const Browser: Readonly<{
     open: typeof open;
     dismiss: typeof dismiss;
