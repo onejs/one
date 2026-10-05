@@ -1,9 +1,9 @@
 ---
 title: Keep Awake
-description: Keep an iOS app's display from dimming automatically while it is active
+description: Keep an app's display from dimming automatically while it is active
 ---
 
-`One.KeepAwake` controls the iOS app's idle timer. Set it when a screen needs to remain visible, then clear it when that work ends.
+`One.KeepAwake` controls the iOS app's idle timer and the Android window's keep-screen-on flag. Set it when a screen needs to remain visible, then clear it when that work ends.
 
 ```tsx
 import { One } from 'one'
@@ -17,4 +17,4 @@ await One.KeepAwake.setEnabled(false)
 
 The flag does not prevent a person from locking the device, keep the app running in the background, override all iOS power policy, or change screen brightness. iOS Simulator proves the native flag changes, while physical-device auto-lock behavior remains a device proof. The value returns to the system default when the app process ends.
 
-KeepAwake is implemented on iOS. Android and SSR validate arguments, `setEnabled()` does nothing, and `isEnabled()` resolves `false`. Web uses the Screen Wake Lock API. `setEnabled(true)` waits for the actual screen lock; absent support, permission refusal, or a hidden document rejects. `setEnabled(false)` releases it. `isEnabled()` reads the current sentinel, so browser release makes it false. A lock is not reacquired automatically when the page becomes visible.
+KeepAwake is implemented on iOS and Android. On Android the desired state is held in memory, applied to the foreground window, and re-applied when the activity resumes, so recreation never drops it. SSR validates arguments, `setEnabled()` does nothing, and `isEnabled()` resolves `false`. Web uses the Screen Wake Lock API. `setEnabled(true)` waits for the actual screen lock; absent support, permission refusal, or a hidden document rejects. `setEnabled(false)` releases it. `isEnabled()` reads the current sentinel, so browser release makes it false. A lock is not reacquired automatically when the page becomes visible.
