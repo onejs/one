@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="dev.onejs.protectedstoreprobe.nopermission">
+  <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="37" />
+  <application android:debuggable="true" android:allowBackup="false" android:label="ProtectedStore SDK probe" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+    <activity android:name="dev.onejs.protectedstoreprobe.ProbeActivity" android:exported="true" android:launchMode="singleTop">
+      <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+    </activity>
+  </application>
+</manifest>

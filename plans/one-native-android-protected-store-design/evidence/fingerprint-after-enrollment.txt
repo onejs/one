@@ -1,0 +1,48 @@
+Dumping for sensorId: 0, provider: FingerprintProvider
+Fps state: 0
+{"service":"FingerprintProvider\/default","prints":[{"id":0,"count":2,"accept":0,"reject":0,"acquire":0,"lockout":0,"permanentLockout":0,"acceptCrypto":3,"rejectCrypto":0,"acquireCrypto":3}]}
+HAL deaths since last reboot: 0
+---AuthSessionCoordinator logs begin---
+#0     resetLockoutFor(userId=0 ,biometricStrength=15, requestId=-1)
+#1     resetLockoutFor(userId=0 ,biometricStrength=15, requestId=-1)
+#2     authStartedFor(userId=0, sensorId=0, requestId=2)
+#3     internal : onAuthSessionStarted(0)
+#4     authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=2, wasSuccessful=true)
+#5     internal : onAuthSessionEnded(0)
+#6     authStartedFor(userId=0, sensorId=0, requestId=3)
+#7     internal : onAuthSessionStarted(0)
+#8     authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=3, wasSuccessful=false)
+#9     internal : onAuthSessionEnded(0)
+#10    authStartedFor(userId=0, sensorId=0, requestId=4)
+#11    internal : onAuthSessionStarted(0)
+#12    authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=4, wasSuccessful=false)
+#13    internal : onAuthSessionEnded(0)
+#14    authStartedFor(userId=0, sensorId=0, requestId=5)
+#15    internal : onAuthSessionStarted(0)
+#16    authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=5, wasSuccessful=false)
+#17    internal : onAuthSessionEnded(0)
+#18    authStartedFor(userId=0, sensorId=0, requestId=6)
+#19    internal : onAuthSessionStarted(0)
+#20    authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=6, wasSuccessful=true)
+#21    internal : onAuthSessionEnded(0)
+#22    authStartedFor(userId=0, sensorId=0, requestId=7)
+#23    internal : onAuthSessionStarted(0)
+#24    authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=7, wasSuccessful=true)
+#25    internal : onAuthSessionEnded(0)
+#26    authStartedFor(userId=0, sensorId=0, requestId=8)
+#27    internal : onAuthSessionStarted(0)
+#28    authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=8, wasSuccessful=false)
+#29    internal : onAuthSessionEnded(0)
+#30    resetLockoutFor(userId=0 ,biometricStrength=15, requestId=-1)
+#31    authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=9, wasSuccessful=true)
+#32    authEndedFor(userId=0 ,biometricStrength=15, sensorId=0, requestId=10, wasSuccessful=true)
+#33    resetLockoutFor(userId=0 ,biometricStrength=15, requestId=-1)
+
+Permanent Lockouts
+UserId=0, {(BIOMETRIC_STRONG, permanentLockout=false, timedLockout=false), (BIOMETRIC_WEAK, permanentLockout=false, timedLockout=false), (BIOMETRIC_CONVENIENCE, permanentLockout=false, timedLockout=false)}
+
+---AuthSessionCoordinator logs end  ---
+Dump of BiometricScheduler BiometricScheduler
+Type: 3
+Current operation: null
+Pending operations: 0

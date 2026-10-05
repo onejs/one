@@ -1,0 +1,11 @@
+{"action":"capabilities","result":"observed","detail":"{\"secure\":false,\"strong\":11,\"presence\":11}","epochMs":1791181450833}
+{"action":"create:unsecured","result":"error","detail":"java.security.InvalidAlgorithmParameterException: java.lang.IllegalStateException: Secure lock screen must be enabled to create keys requiring user authentication","epochMs":1791181450844}
+{"action":"capabilities","result":"observed","detail":"{\"secure\":true,\"strong\":11,\"presence\":0}","epochMs":1791181465656}
+{"action":"aes-negative:presence","result":"error","detail":"javax.crypto.IllegalBlockSizeException","epochMs":1791181465695}
+{"action":"create:presence","result":"created-without-prompt","detail":"hash=47mf8PbZ3mktnanHVh3OD8eYqeKgaEJ75jZwSyvjhxg=;ns=54464000","epochMs":1791181465769}
+{"action":"state:presence","result":"observed","detail":"{\"recordHash\":\"47mf8PbZ3mktnanHVh3OD8eYqeKgaEJ75jZwSyvjhxg=\",\"aliasPresent\":true,\"authRequired\":true,\"timeout\":0,\"authType\":3,\"invalidatedByEnrollment\":false,\"unlockedRequired\":true,\"securityLevel\":0,\"privateExportable\":false,\"publicHash\":\"7TKBHDMhnNOthe1\\\/iY3mTOUAfNNbWTwjM8JwT7fAKM0=\"}","epochMs":1791181465772}
+{"action":"unauth:presence","result":"error","detail":"javax.crypto.IllegalBlockSizeException","epochMs":1791181465777}
+{"action":"get:presence","result":"prompt-start","detail":"generation=7;recordHash=47mf8PbZ3mktnanHVh3OD8eYqeKgaEJ75jZwSyvjhxg=;crypto=true","epochMs":1791181465781}
+{"action":"get:presence","result":"authenticated","detail":"type=1;valueDigest=T49rBorbnDpC\/6OmUv3o+GNIC0Io63fZURYcbC9K7E8=;recordHash=47mf8PbZ3mktnanHVh3OD8eYqeKgaEJ75jZwSyvjhxg=","epochMs":1791181497098}
+{"action":"reuse-same-operation:presence","result":"blocked","detail":"javax.crypto.IllegalBlockSizeException","epochMs":1791181497104}
+{"action":"reuse-new-operation:presence","result":"blocked","detail":"javax.crypto.IllegalBlockSizeException","epochMs":1791181497107}

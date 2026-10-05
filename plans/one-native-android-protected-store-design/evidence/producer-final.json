@@ -1,0 +1,56 @@
+{
+  "machine": "pro-64",
+  "owner": "r59432",
+  "serial": "emulator-5562",
+  "consolePid": 53509,
+  "frameworkFingerprint": "google/sdk_gphone64_arm64/emu64a:17/CE2A.260420.019/15611780:user/release-keys",
+  "sdk": 37,
+  "artifacts": [
+    {
+      "package": "dev.onejs.protectedstoreprobe",
+      "installedPath": "/data/app/~~MVpHvDBEcC14SObD-rovBg==/dev.onejs.protectedstoreprobe-2RUlFlxU_Z9KDOGdiaCGfA==/base.apk",
+      "sha256": "62e7482bf2106514391f6f0a571b071429d22b840258a39a9e3695bf7525bd5f",
+      "matchesBuiltApk": true
+    },
+    {
+      "package": "dev.onejs.protectedstoreprobe.nopermission",
+      "installedPath": "/data/app/~~NxA7Vm8dBlRKhEtULG2f0w==/dev.onejs.protectedstoreprobe.nopermission-xFtvi14qTYsgSM6j-NkgeQ==/base.apk",
+      "sha256": "cc0580537725c83ad6db8ec63baab3207b02ea5f2ea96e114063d7443374df6d",
+      "matchesBuiltApk": true
+    },
+    {
+      "path": "plans/one-native-android-protected-store-design/probe/ProbeActivity.java",
+      "sha256": "bc9fc5370529e4b9d04f0a35c85860188e4baca312b9f591f9d9eb51f90c6106"
+    },
+    {
+      "path": "plans/one-native-android-protected-store-design/probe/AndroidManifest.xml",
+      "sha256": "5f3426c2bfb8ed98114f071e6f03602cbf7a48e5df25c9b4d2ab94bd03cf1144"
+    },
+    {
+      "path": "plans/one-native-android-protected-store-design/probe/AndroidManifest-no-permission.xml",
+      "sha256": "7bfe5e7242e08f487278a7bef2e32e9dd84e93661925b9f79b2fd853749a1104"
+    },
+    {
+      "path": "/Users/n8/Library/Android/sdk/platforms/android-37.0/android.jar",
+      "sha256": "bf1b4387cc7ca94fc6ef684f040d9d16fbf16248e181819f020736ea2053f177"
+    },
+    {
+      "path": "/Users/n8/Library/Android/sdk/system-images/android-37.0/google_apis_playstore/arm64-v8a/package.xml",
+      "sha256": "7e7275946eeafd71c7f11c4a9d33268fc95ba921f26dd113abe260fdbe7d0df5"
+    }
+  ],
+  "producerBoundaries": [
+    {
+      "source": "ProbeActivity-v1.java",
+      "firstEventEpochMs": 1791181450833
+    },
+    {
+      "source": "ProbeActivity-v2.java",
+      "firstEventEpochMs": 1791181635831
+    },
+    {
+      "source": "../probe/ProbeActivity.java",
+      "firstEventEpochMs": 1791181798575
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+qemu-syst 53509   n8    8r      REG               1,16          0          1537523140 /Users/n8/.android/avd/sootsim_pixel_8_android_17_api_37_r06_b.avd/multiinstance.lock
+qemu-syst 53509   n8   26u      REG               1,16    7405568          1690141681 /private/tmp/android-n8/emulator-8UCZsy.qcow2
+qemu-syst 53509   n8   27r      REG               1,16   18874368          1537523187 /Users/n8/.android/avd/sootsim_pixel_8_android_17_api_37_r06_b.avd/encryptionkey.img
+qemu-syst 53509   n8   28u      REG               1,16 2701918208          1690141682 /private/tmp/android-n8/emulator-hUErSd.qcow2
+qemu-syst 53509   n8   29r      REG               1,16 3999662080          1537523416 /Users/n8/.android/avd/sootsim_pixel_8_android_17_api_37_r06_b.avd/userdata-qemu.img.qcow2
+qemu-syst 53509   n8   30r      REG               1,16   10158080          1537523186 /Users/n8/.android/avd/sootsim_pixel_8_android_17_api_37_r06_b.avd/userdata-qemu.img
+qemu-syst 53509   n8   31u      REG               1,16     327749          1690141683 /private/tmp/android-n8/emulator-uEVZwI.qcow2
+qemu-syst 53509   n8   32r      REG               1,16     196616          1537523415 /Users/n8/.android/avd/sootsim_pixel_8_android_17_api_37_r06_b.avd/cache.img.qcow2
+qemu-syst 53509   n8   33r      REG               1,16   69206016          1537523188 /Users/n8/.android/avd/sootsim_pixel_8_android_17_api_37_r06_b.avd/cache.img

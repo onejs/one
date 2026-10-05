@@ -1,0 +1,99 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        e7cd7d9 dev.onejs.protectedstoreprobe/.ProbeActivity filter fc2359e
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Domain verification status:
+
+Key Set Manager:
+  [dev.onejs.protectedstoreprobe]
+      Signing KeySets: 105
+
+Packages:
+  Package [dev.onejs.protectedstoreprobe] (1a3718c):
+    appId=10233
+    pccId=-1
+    pkg=Package{5d8b9bb dev.onejs.protectedstoreprobe}
+    codePath=/data/app/~~MVpHvDBEcC14SObD-rovBg==/dev.onejs.protectedstoreprobe-2RUlFlxU_Z9KDOGdiaCGfA==
+    resourcePath=/data/app/~~MVpHvDBEcC14SObD-rovBg==/dev.onejs.protectedstoreprobe-2RUlFlxU_Z9KDOGdiaCGfA==
+    legacyNativeLibraryDir=/data/app/~~MVpHvDBEcC14SObD-rovBg==/dev.onejs.protectedstoreprobe-2RUlFlxU_Z9KDOGdiaCGfA==/lib
+    extractNativeLibs=true
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=0 minSdk=30 targetSdk=37
+    minExtensionVersions=[]
+    versionName=null
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=4
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    pageSizeCompat=0
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-10-04 20:29:58
+    lastUpdateTime=2026-10-04 20:29:58
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    loadingProgress=100%
+    loadingCompletedTime=2026-10-04 20:24:10
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{7803ed8 version:4, signatures:[825dcf8b], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    requested permissions:
+      android.permission.USE_BIOMETRIC
+    install permissions:
+      android.permission.USE_BIOMETRIC: granted=true
+    User 0: ceDataInode=549560 deDataInode=393806 pccCeDataInode=0 pccDeDataInode=0 installed=true hidden=false suspended=false appLockEnabled=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/dev.onejs.protectedstoreprobe
+      firstInstallTime=2026-10-04 20:24:08
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/EmulationPixel8/EmulationPixel8Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      legacy overlay paths:
+        /product/overlay/EmulationPixel8/EmulationPixel8Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      runtime permissions:
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    com.google.android.as.oss:
+      dev.onejs.protectedstoreprobe
+    com.google.android.as:
+      dev.onejs.protectedstoreprobe
+    com.google.android.settings.intelligence:
+      dev.onejs.protectedstoreprobe
+    com.google.android.glasses.companion:
+      dev.onejs.protectedstoreprobe
+    com.google.android.apps.accessibility.voiceaccess:
+      dev.onejs.protectedstoreprobe
+  queryable via interaction:
+    User 0:
+      [com.android.keychain,com.android.inputdevices,com.android.location.fused,com.android.providers.settings,com.android.emulator.multidisplay,android,com.android.server.telecom,com.android.localtransport,com.android.DeviceAsWebcam,com.android.dynsystem,com.android.settings]:
+        dev.onejs.protectedstoreprobe
+      com.google.android.inputmethod.latin:
+        dev.onejs.protectedstoreprobe
+  queryable via uses-library:
+
+Dexopt state:
+  [dev.onejs.protectedstoreprobe]
+    path: /data/app/~~MVpHvDBEcC14SObD-rovBg==/dev.onejs.protectedstoreprobe-2RUlFlxU_Z9KDOGdiaCGfA==/base.apk
+      arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+        [location is error]

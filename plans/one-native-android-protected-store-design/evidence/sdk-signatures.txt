@@ -1,0 +1,95 @@
+Compiled from "KeyGenParameterSpec.java"
+public final class android.security.keystore.KeyGenParameterSpec$Builder {
+  public android.security.keystore.KeyGenParameterSpec$Builder(java.lang.String, int);
+  public android.security.keystore.KeyGenParameterSpec build();
+  public android.security.keystore.KeyGenParameterSpec$Builder setAlgorithmParameterSpec(java.security.spec.AlgorithmParameterSpec);
+  public android.security.keystore.KeyGenParameterSpec$Builder setAttestKeyAlias(java.lang.String);
+  public android.security.keystore.KeyGenParameterSpec$Builder setAttestationChallenge(byte[]);
+  public android.security.keystore.KeyGenParameterSpec$Builder setBlockModes(java.lang.String...);
+  public android.security.keystore.KeyGenParameterSpec$Builder setCertificateNotAfter(java.util.Date);
+  public android.security.keystore.KeyGenParameterSpec$Builder setCertificateNotBefore(java.util.Date);
+  public android.security.keystore.KeyGenParameterSpec$Builder setCertificateSerialNumber(java.math.BigInteger);
+  public android.security.keystore.KeyGenParameterSpec$Builder setCertificateSubject(javax.security.auth.x500.X500Principal);
+  public android.security.keystore.KeyGenParameterSpec$Builder setDevicePropertiesAttestationIncluded(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setDigests(java.lang.String...);
+  public android.security.keystore.KeyGenParameterSpec$Builder setEncryptionPaddings(java.lang.String...);
+  public android.security.keystore.KeyGenParameterSpec$Builder setInvalidatedByBiometricEnrollment(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setIsStrongBoxBacked(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setKeySize(int);
+  public android.security.keystore.KeyGenParameterSpec$Builder setKeyValidityEnd(java.util.Date);
+  public android.security.keystore.KeyGenParameterSpec$Builder setKeyValidityForConsumptionEnd(java.util.Date);
+  public android.security.keystore.KeyGenParameterSpec$Builder setKeyValidityForOriginationEnd(java.util.Date);
+  public android.security.keystore.KeyGenParameterSpec$Builder setKeyValidityStart(java.util.Date);
+  public android.security.keystore.KeyGenParameterSpec$Builder setMaxUsageCount(int);
+  public android.security.keystore.KeyGenParameterSpec$Builder setMgf1Digests(java.lang.String...);
+  public android.security.keystore.KeyGenParameterSpec$Builder setRandomizedEncryptionRequired(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setSignaturePaddings(java.lang.String...);
+  public android.security.keystore.KeyGenParameterSpec$Builder setUnlockedDeviceRequired(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setUserAuthenticationParameters(int, int);
+  public android.security.keystore.KeyGenParameterSpec$Builder setUserAuthenticationRequired(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setUserAuthenticationValidWhileOnBody(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setUserAuthenticationValidityDurationSeconds(int);
+  public android.security.keystore.KeyGenParameterSpec$Builder setUserConfirmationRequired(boolean);
+  public android.security.keystore.KeyGenParameterSpec$Builder setUserPresenceRequired(boolean);
+}
+Compiled from "BiometricPrompt.java"
+public final class android.hardware.biometrics.BiometricPrompt$CryptoObject {
+  public android.hardware.biometrics.BiometricPrompt$CryptoObject(android.security.identity.IdentityCredential);
+  public android.hardware.biometrics.BiometricPrompt$CryptoObject(android.security.identity.PresentationSession);
+  public android.hardware.biometrics.BiometricPrompt$CryptoObject(java.security.Signature);
+  public android.hardware.biometrics.BiometricPrompt$CryptoObject(javax.crypto.Cipher);
+  public android.hardware.biometrics.BiometricPrompt$CryptoObject(javax.crypto.KeyAgreement);
+  public android.hardware.biometrics.BiometricPrompt$CryptoObject(javax.crypto.Mac);
+  public android.hardware.biometrics.BiometricPrompt$CryptoObject(long);
+  public javax.crypto.Cipher getCipher();
+  public android.security.identity.IdentityCredential getIdentityCredential();
+  public javax.crypto.KeyAgreement getKeyAgreement();
+  public javax.crypto.Mac getMac();
+  public long getOperationHandle();
+  public android.security.identity.PresentationSession getPresentationSession();
+  public java.security.Signature getSignature();
+}
+Compiled from "BiometricPrompt.java"
+public class android.hardware.biometrics.BiometricPrompt$Builder {
+  public android.hardware.biometrics.BiometricPrompt$Builder(android.content.Context);
+  public android.hardware.biometrics.BiometricPrompt$Builder addFallbackOption(java.lang.CharSequence, int, java.util.concurrent.Executor, android.content.DialogInterface$OnClickListener);
+  public android.hardware.biometrics.BiometricPrompt build();
+  public android.hardware.biometrics.BiometricPrompt$Builder setAllowedAuthenticators(int);
+  public android.hardware.biometrics.BiometricPrompt$Builder setConfirmationRequired(boolean);
+  public android.hardware.biometrics.BiometricPrompt$Builder setContentView(android.hardware.biometrics.PromptContentView);
+  public android.hardware.biometrics.BiometricPrompt$Builder setDescription(java.lang.CharSequence);
+  public android.hardware.biometrics.BiometricPrompt$Builder setDeviceCredentialAllowed(boolean);
+  public android.hardware.biometrics.BiometricPrompt$Builder setLogoBitmap(android.graphics.Bitmap);
+  public android.hardware.biometrics.BiometricPrompt$Builder setLogoDescription(java.lang.String);
+  public android.hardware.biometrics.BiometricPrompt$Builder setLogoRes(int);
+  public android.hardware.biometrics.BiometricPrompt$Builder setNegativeButton(java.lang.CharSequence, java.util.concurrent.Executor, android.content.DialogInterface$OnClickListener);
+  public android.hardware.biometrics.BiometricPrompt$Builder setSubtitle(java.lang.CharSequence);
+  public android.hardware.biometrics.BiometricPrompt$Builder setTitle(java.lang.CharSequence);
+}
+Compiled from "KeyInfo.java"
+public class android.security.keystore.KeyInfo implements java.security.spec.KeySpec {
+  android.security.keystore.KeyInfo();
+  public java.lang.String[] getBlockModes();
+  public java.lang.String[] getDigests();
+  public java.lang.String[] getEncryptionPaddings();
+  public int getKeySize();
+  public java.util.Date getKeyValidityForConsumptionEnd();
+  public java.util.Date getKeyValidityForOriginationEnd();
+  public java.util.Date getKeyValidityStart();
+  public java.lang.String getKeystoreAlias();
+  public int getOrigin();
+  public int getPurposes();
+  public int getRemainingUsageCount();
+  public int getSecurityLevel();
+  public java.lang.String[] getSignaturePaddings();
+  public int getUserAuthenticationType();
+  public int getUserAuthenticationValidityDurationSeconds();
+  public boolean isInsideSecureHardware();
+  public boolean isInvalidatedByBiometricEnrollment();
+  public boolean isTrustedUserPresenceRequired();
+  public boolean isUnlockedDeviceRequired();
+  public boolean isUserAuthenticationRequired();
+  public boolean isUserAuthenticationRequirementEnforcedBySecureHardware();
+  public boolean isUserAuthenticationValidWhileOnBody();
+  public boolean isUserConfirmationRequired();
+}

@@ -1,0 +1,8 @@
+warning: [options] bootstrap class path not set in conjunction with -source 8
+1 warning
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 30 days
+	for: CN=SDKProbe
+bc9fc5370529e4b9d04f0a35c85860188e4baca312b9f591f9d9eb51f90c6106  /Users/n8/.worktrees/one-protected-store-design/plans/one-native-android-protected-store-design/probe/ProbeActivity.java
+7bfe5e7242e08f487278a7bef2e32e9dd84e93661925b9f79b2fd853749a1104  plans/one-native-android-protected-store-design/probe/AndroidManifest-no-permission.xml
+bf1b4387cc7ca94fc6ef684f040d9d16fbf16248e181819f020736ea2053f177  /Users/n8/Library/Android/sdk/platforms/android-37.0/android.jar
+cc0580537725c83ad6db8ec63baab3207b02ea5f2ea96e114063d7443374df6d  /tmp/one-protected-store-r59432-nopermission/probe.apk

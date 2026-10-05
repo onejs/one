@@ -1,0 +1,46 @@
+{
+  "contractCommit": "1fb90038c9005b28229947627672bfa42ba0f443",
+  "worktreeBase": "cb95b1e2ec7bd77c0b32f177df05ecda618aaef9",
+  "sources": [
+    {
+      "path": "packages/one/src/platform/specs/OneProtectedStore.nitro.ts",
+      "sha256": "2f31a7b25a7a5509ed00736c33bce022152ea4477935579f20a9f8fa6831c8ce"
+    },
+    {
+      "path": "packages/one/ios/Nitro/HybridOneProtectedStore.swift",
+      "sha256": "2c61f9793d6e7fe280e6fb83bcddbd2966c8b26e76e1290c9b48b79be3ad9a94"
+    },
+    {
+      "path": "apps/onestack.dev/data/native/protected-store.mdx",
+      "sha256": "cde837eb648a31b6d7980de136a093f815b0c3af6621e227d4da78b72afa074e"
+    },
+    {
+      "path": "packages/one/src/platform/protected-store/index.native.ts",
+      "sha256": "7a9eeaccefd44d19a248ead5152f32fc0dc92c7a4741757a7e7166b8290432e7"
+    },
+    {
+      "path": "packages/one/src/platform/protected-store/index.android.ts",
+      "sha256": "00dac53852e2a500855c9373b0bcea123a53a880c3faed01ce34cbe9c4008f84"
+    },
+    {
+      "path": "packages/one/src/platform/protected-store/unavailable.ts",
+      "sha256": "6880a7a7e9796804f6269720a00d3a0b7b5b8af0fb926bdee6ca65fc8db1c17e"
+    },
+    {
+      "path": "plans/one-native-android-protected-store-design/probe/ProbeActivity.java",
+      "sha256": "601561df1c2f471a44dea049d9d7ac44086a0b7aadf3badffe203113de609a5e"
+    },
+    {
+      "path": "plans/one-native-android-protected-store-design/probe/AndroidManifest.xml",
+      "sha256": "5f3426c2bfb8ed98114f071e6f03602cbf7a48e5df25c9b4d2ab94bd03cf1144"
+    },
+    {
+      "path": "/Users/n8/Library/Android/sdk/platforms/android-37.0/android.jar",
+      "sha256": "bf1b4387cc7ca94fc6ef684f040d9d16fbf16248e181819f020736ea2053f177"
+    },
+    {
+      "path": "/tmp/one-protected-store-r59432-build/probe.apk",
+      "sha256": "fd329de39bbd8244edb27094befc6e95cbec68253ab72d12f8f198b7d48b394e"
+    }
+  ]
+}

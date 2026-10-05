@@ -1,0 +1,6 @@
+warning: [options] bootstrap class path not set in conjunction with -source 8
+1 warning
+bc9fc5370529e4b9d04f0a35c85860188e4baca312b9f591f9d9eb51f90c6106  /Users/n8/.worktrees/one-protected-store-design/plans/one-native-android-protected-store-design/probe/ProbeActivity.java
+5f3426c2bfb8ed98114f071e6f03602cbf7a48e5df25c9b4d2ab94bd03cf1144  /Users/n8/.worktrees/one-protected-store-design/plans/one-native-android-protected-store-design/probe/AndroidManifest.xml
+bf1b4387cc7ca94fc6ef684f040d9d16fbf16248e181819f020736ea2053f177  /Users/n8/Library/Android/sdk/platforms/android-37.0/android.jar
+62e7482bf2106514391f6f0a571b071429d22b840258a39a9e3695bf7525bd5f  /tmp/one-protected-store-r59432-build/probe.apk

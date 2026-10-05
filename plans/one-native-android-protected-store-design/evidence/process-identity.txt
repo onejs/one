@@ -1,0 +1,3 @@
+  PID  PPID ARGS
+53508     1 tm window run heavy --timeout 5s -- /Users/n8/Library/Android/sdk/emulator/emulator -avd sootsim_pixel_8_android_17_api_37_r06_b -port 5562 -read-only -no-snapshot-load -no-snapshot-save -no-window -no-audio -gpu swiftshader
+53509 53508 /Users/n8/Library/Android/sdk/emulator/qemu/darwin-aarch64/qemu-system-aarch64-headless -avd sootsim_pixel_8_android_17_api_37_r06_b -port 5562 -read-only -no-snapshot-load -no-snapshot-save -no-window -no-audio -gpu swiftshader

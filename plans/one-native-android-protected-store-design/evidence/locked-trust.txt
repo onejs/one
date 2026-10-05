@@ -1,0 +1,13 @@
+Trust manager state:
+ User "Owner" (id=0, flags=0x4c13) (current): trustState=UNTRUSTED, trustManaged=0, deviceLocked=1, isActiveUnlockRunning=0, strongAuthRequired=0x0
+   Enabled agents:
+    com.google.android.gms/.auth.trustagent.GoogleTrustAgent
+     bound=1, connected=1, managingTrust=0, trusted=0
+    com.google.android.gms/.personalsafety.service.LockingTrustAgentService
+     bound=1, connected=1, managingTrust=0, trusted=0
+   Events:
+    #0  10-04 20:24:25.634 AgentConnected: agent=GoogleTrustAgent
+    #1  10-04 20:24:25.626 AgentConnected: agent=LockingTrustAgentService
+
+target service=10221/com.google.android.gms/.chimera.PersistentInternalBoundBrokerService@-2147483648
+connected=true
