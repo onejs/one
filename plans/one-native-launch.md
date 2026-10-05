@@ -400,3 +400,13 @@ RAN: system proposal `669de43ea8ae0b233038bd8376f68adc77a471e8` is pushed to `tm
 RAN: the ordinary blur delivery task `t-muulkz5o-1un30` is closed for package provenance. Packed `one@2.0.0-0.canary.1791165360617` has `releaseSourceCommit=95252a29d799f439c029a7d29541f1db0b6efa6a`; the two native ordinary blur files and browser source/declaration byte-match that source. Receipt: `/Users/n8/Library/Caches/one-beta-recovery/canary-content.json`. Existing browser runtime and delivery proof is already complete in `t-muuj8ga1-g0c0`; no repeat historical runtime wave is assigned. Required iOS CI repair and Android native runtime proof stay open under `t-muuqrnrk-svg0`.
 
 Retained clean and pushed worktrees `~/.worktrees/one-beta-android-system` and `~/.worktrees/one-beta-android-media` are owned by delivery manager p61056 during proposal review and implementation continuation. Their proposal authors have finished. `~/.worktrees/one-beta-native-ci` remains owned by its active author p61201. These are live recovery workspaces, not abandoned cleanup candidates.
+
+### staffing clarification (2026-10-04)
+
+Nate: "No you don’t need 5 additional that wasn’t meant for every single lane".
+
+Nate: "Just add as you need but one native could use maybe a few more over time".
+
+The mandatory five-worker expansion is canceled in `t-muuu1o2d-1ugx0`. No additional model worker was launched for it. Existing Android system and media authors and the public validator continue. Add help only for a concrete remaining bottleneck, with disjoint source ownership and the current review gates. One focused Sol high worker on Pro64 will take the held ProtectedStore design research so the system author can stay on its ten approved services; native implementation remains held until its supported design is approved. ScreenCapture corrected design remains with the system author.
+
+Nate reporting direction relayed by operations: "Please tell managers I do expect some updates via tm share. One per hour is reasonable". Share verified results and remaining acceptance directly from this manager while actively working; do not create hourly polling or wake loops.
