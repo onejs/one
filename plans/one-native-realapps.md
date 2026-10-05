@@ -104,3 +104,194 @@ bun tests/native-features/scripts/realapps-navigation-negative.ts \
 ```
 
 This optional negative control changes one file only in the private installed app, detaches Bun cache hardlinks first, requires the precise old-consumer failure, and restores the published bytes. Rebuild with `--phase web` afterward to repeat the positive.
+
+## android media services proposal: Audio, PhotoLibrary, Contacts, Calendar
+
+Status: PROPOSED 2026-10-04, branch `tm/beta-android-media`. No native
+implementation until assigned disposition (first-layer p61184, then
+substantive p60786, routed by manager p61056). Existing signatures only;
+no new public API, no new look, no v2-beta merge by the worker.
+
+Scope is the four services only, platform SDK and AndroidX only, reusing
+the existing `native.app` config fields. Preserved holds: progressive and
+Android backdrop blur constraints, unrelated parked work, existing web
+delivery (`3d5841af0`), and the browser/C++ generated-binding CI failure
+owned by p61056.
+
+### source grounding (all read)
+
+Specs (exact method counts): `OneAudio.nitro.ts:48` (16 methods),
+`OnePhotoLibrary.nitro.ts:38` (24), `OneContacts.nitro.ts:59` (7),
+`OneCalendar.nitro.ts:59` (12: 6 events + 6 reminders). All four declare
+`HybridObject<{ ios: 'swift' }>` today.
+
+Bridges: each `index.native.ts` throws outside iOS (`audio:33`,
+`photo-library:14`, `contacts:19`, `calendar:24`); each `index.android.ts`
+re-exports `./unavailable`; each `index.ts` is the landed web build with
+`typeof window` SSR guards falling back to `unavailable`.
+
+Swift semantics to mirror: `HybridOneAudio.swift` (564 lines: AVPlayer /
+AVAudioRecorder, one operation at a time, `E_AUDIO_*` codes at :528-543,
+file:// or https:// only, AAC `.m4a` under cache, interruption and remote
+command listeners); `HybridOneContacts.swift` (425: CNContactStore,
+`E_CONTACTS_*`, name+limit validation, label-preserving update);
+`HybridOneCalendar.swift` (515: EventKit, `E_CALENDAR_*`, 366-day range,
+limit 1..500, occurrence keyed by identifier + startMs, RRULE from
+frequency/interval/one end); `HybridOnePhotoLibrary.swift` (767:
+PhotoKit, `E_PHOTO_LIBRARY_*`, add vs read split, bounded pages newest
+first, album readonly rejection).
+
+Kotlin pattern: `HybridOneImagePicker.kt` (pending slot under lock,
+`isCameraDeclared` manifest check at :346, `E_FAILED` via `OneNativeError`,
+FileProvider cache copies, cancel-resolve vs failure-reject split,
+teardown rejects). No `HybridOneAudio/PhotoLibrary/Contacts/Calendar.kt`
+exists today.
+
+Prebuild: `nativeAppManifest.ts:52-88` already defines `imagePicker`,
+`photoLibrary`, `contacts`, `calendar`, `audio`, `speech`; Android
+stamping in `prebuildWithoutExpo.ts:2087-2113` covers only CAMERA and
+speech RECORD_AUDIO; iOS usage strings at :2418-2451; `expo-plugin.cjs`
+mirrors validation (:24-26, :52-100). No new config fields are proposed.
+
+Docs: availability paragraphs in `audio.mdx:127`, `calendar.mdx:130`,
+`contacts.mdx:62`, `photo-library.mdx:45`; `platform-support.mdx:30`
+marks Photo Library Android "unsupported (throws)". SDK floor:
+`packages/one/android/build.gradle:47,53,54` (compile 35, min 23,
+target 35); no media3/exoplayer dependency.
+
+Codegen: `nitro.json` holds iOS-only entries for all four; Android
+bindings are checked in under `packages/one/nitrogen/generated/android`
+and regenerate with `bun run nitrogen` in `packages/one`.
+
+Runtime harness: iOS conformance already proves Contacts/Calendar flows
+(`one-native-conformance.ts:3752-3876`); Android uiautomator harness is
+`one-native-conformance.android.ts`; proof screens exist for all four
+(`fixtures/one-native-{audio,calendar,contacts,photo-library}.tsx`).
+
+### WIP assessment (r58416, `6cef650ba`)
+
+RAN: the WIP is registration-only (nitro.json android entries, spec
+`android: 'kotlin'`, bridge re-exports, guard removal). Its bridge shapes
+are correct against platform reality: full re-export for Audio and
+Contacts; Calendar keeps the 6 reminder methods unavailable; PhotoLibrary
+keeps 8 methods unavailable (create/rename/add/remove/delete album,
+replace image/video, revert). Missing: all Kotlin, nitrogen regen,
+Android manifest stamps, docs, and every runtime proof. Do not
+cherry-pick; re-derive the same shapes after approval so review covers
+the full diff.
+
+### per-service plan
+
+Audio, all 16 available. Kotlin: MediaPlayer (play/pause/resume/seek/
+stop/status), MediaRecorder (start/pause/resume/stop/status),
+AudioManager focus listener feeding interruption began/ended +
+shouldResume, MediaSession for now-playing metadata and play/pause/seek
+commands. RECORD_AUDIO stamped from existing `audio.microphone`; without
+it every recording call rejects `E_AUDIO_MANIFEST`. Keep the Swift
+contracts: one operation at a time (`E_AUDIO_BUSY`), file:// or https://
+only (`E_AUDIO_URI`), missing file (`E_AUDIO_FILE`), finite nonnegative
+seek (`E_AUDIO_POSITION`), nonempty title (`E_AUDIO_METADATA`), existing
+image artwork (`E_AUDIO_ARTWORK`), AAC `.m4a` under cache with empty-file
+rejection, ended restarts from zero on resume.
+
+PhotoLibrary, 16 available / 8 unavailable. Available via MediaStore:
+add/read permission split, list/get assets, list/get albums from buckets,
+listAlbumAssets, setFavorite (`IS_FAVORITE`), deleteAsset (handle the
+confirm intent path), export original/current image/current video via
+content-resolver copies to cache, saveImage/saveVideo via MediaStore
+insert. Unavailable, keeping the exact `unavailable.ts` contract per
+method: createAlbum (rejects), renameAlbum, addAssetToAlbum,
+removeAssetFromAlbum, deleteAlbum, replaceImageContent,
+replaceVideoContent, revertAssetContent (all no-op resolves).
+Permissions: API 33+ `READ_MEDIA_IMAGES` + `READ_MEDIA_VIDEO` from
+existing `photoLibrary.readWrite`; below 33 `READ_EXTERNAL_STORAGE`
+(maxSdkVersion 32). Reads without grant reject `E_PHOTO_LIBRARY_PERMISSION`;
+saves without `photoLibrary.addOnly` reject `E_PHOTO_LIBRARY_MANIFEST`.
+`presentLimitedLibraryPicker`: propose re-request of the read grant on
+API 34+ (system reshow selection) resolving the visible identifiers, and
+resolve `[]` below 34; REVIEWER DECISION requested.
+
+Contacts, all 7 available. Kotlin over ContactsContract: READ_CONTACTS +
+WRITE_CONTACTS stamped from existing `contacts.usage`; without it every
+gated call rejects `E_CONTACTS_MANIFEST`, without grant
+`E_CONTACTS_PERMISSION`. pickContact via `ACTION_PICK` on
+`Contacts.CONTENT_URI`, resolving `undefined` on cancel and rejecting
+`E_CONTACTS_PICKER` when busy or with no activity; search matches names
+with whole-number limit 1..100; create requires a given or family name
+and rejects blank phones/emails and invalid addresses
+(`E_CONTACTS_INPUT`); update replaces supplied arrays whole, keeps
+existing labels for unchanged values, defaults new labels, empty array
+clears; remove rejects unknown identifiers (`E_CONTACTS_NOT_FOUND`).
+Android has no limited tier: never return `limited`; map granted/denied
+directly and `notDetermined` before first ask.
+
+Calendar, 6 events available / 6 reminders unavailable. Events via
+CalendarContract: READ_CALENDAR + WRITE_CALENDAR from existing
+`calendar.usage`; list over Instances, increasing range up to 366 days,
+whole-number limit 1..500, sorted by start; create into the default
+writable calendar with RRULE built from frequency + whole-number
+interval + one valid end; update/remove address the occurrence keyed by
+(identifier, originalStartMs), single-occurrence edits as exceptions.
+Reminders keep the exact `unavailable.ts` contract: denied permission
+getters, empty list, create rejects, completion/deletion no-ops. No
+Android reminders provider exists, so this stays honestly unavailable.
+
+Shared bridge edits: `nitro.json` gains the 4 android entries (kept in
+this branch for manager-serialized integration; never touch peer
+entries); 4 specs gain `android: 'kotlin'`; nitrogen regen; 4 new
+`HybridOne*.kt` files; `index.native.ts` guards widen to iOS+Android;
+`index.android.ts` adopts the WIP-verified split shapes. Prebuild stamps
+the 4 permission sets and mirrors them in `expo-plugin.cjs`, with cases
+in `prebuildWithoutExpo.test.ts`. Docs update the 4 availability
+paragraphs and the `platform-support.mdx` Photo Library row; no web
+table changes.
+
+### runtime proof (after approval)
+
+Device: Android 37 emulator claimed through the manager (no duplicate
+builders; `bun heavy`/shared builder wraps builds). Reuse the 4 proof
+screens; seeds are the candidate fixture
+`tests/native-features/fixtures/one-native-android-media-seeds.json`
+(deterministic contact, event + recurrence, WAV clip, photo/video blobs).
+
+Baseline first: capture current Android receipts (denied permissions,
+empty pages, `missingNativeBuild` rejects) before Kotlin lands, so the
+repair is measured, not asserted.
+
+Positive: every available method exercised once against seeds, with
+independent reads (query back the created contact/event/asset; decode
+the recording; byte-compare exports).
+
+Negative controls, each must fail before / pass after in the stated
+direction: adb revoke mid-suite then denial and re-grant; permission
+request cancellation; missing `native.app` config build proving
+`E_*_MANIFEST`; invalid inputs proving `E_*_INPUT` (empty title, bad
+range, limit 0/501, blank phone); picker cancel resolving `undefined`;
+rotation with a pending picker proving teardown-reject without hang;
+pre-fix Kotlin-absent run proving the harness actually loads the native
+module; unavailable methods asserting byte-equal behavior with
+`unavailable.ts`; SSR run proving the web/SSR contracts unchanged.
+
+Compile evidence is a real Kotlin build (proof-app assemble on the
+claimed emulator), never inferred from TS registration. Drift gate:
+`bun run generate:check` in `packages/one` plus nitrogen outputs
+checked in. Receipts land under
+`tests/native-features/evidence/one-native-android-media/`.
+
+### bounded file list
+
+Plan + fixture now; after approval: `packages/one/nitro.json` (4
+entries), 4 specs, 4 `HybridOne*.kt`, 4 `index.native.ts`, 4
+`index.android.ts`, `packages/utils/src/nativeAppManifest.ts`
+(comments), `prebuildWithoutExpo.ts` + test, `expo-plugin.cjs`, 4 doc
+pages, `platform-support.mdx`, evidence dir. No other services, no
+Contrast/Tamagui reads, no Air32.
+
+### review asks
+
+1. Confirm `presentLimitedLibraryPicker` mapping (re-request on 34+,
+   `[]` below) vs full unavailable. 2. Confirm add-only saves need no
+   install-time permission on API 29+ while still requiring
+   `photoLibrary.addOnly` config. 3. Confirm `setFavorite` version gate
+   wording for below-support APIs. 4. Confirm MediaSession notification
+   channel expectations for now-playing on Android.
