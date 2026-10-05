@@ -1,0 +1,1 @@
+{"event": "result", "id": "cipher-negative", "outcome": "resolved", "value": "value-updated", "elapsedMs": 3217}

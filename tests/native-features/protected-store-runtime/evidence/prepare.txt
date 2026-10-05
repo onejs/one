@@ -1,0 +1,9 @@
+{"event": "result", "id": "missing-get", "outcome": "resolved", "value": null, "elapsedMs": 29}
+{"event": "result", "id": "missing-update", "outcome": "rejected", "code": "E_PROTECTED_STORE_NOT_FOUND", "message": "Error: ProtectedStore.updateItem: key is missing", "elapsedMs": 10}
+{"event": "result", "id": "missing-delete", "outcome": "resolved", "elapsedMs": 2}
+{"event": "result", "id": "input-reason", "outcome": "rejected", "code": "E_PROTECTED_STORE_INPUT", "message": "Error: ProtectedStore.getItem: key and authentication reason are required", "elapsedMs": 7}
+{"event": "result", "id": "create-presence", "outcome": "resolved", "elapsedMs": 287}
+{"event": "result", "id": "create-biometry", "outcome": "resolved", "elapsedMs": 1513}
+{"event": "result", "id": "duplicate", "outcome": "rejected", "code": "E_PROTECTED_STORE_EXISTS", "message": "Error: ProtectedStore.createItem: key already exists", "elapsedMs": 9}
+{"event": "result", "id": "mismatch-get", "outcome": "rejected", "code": "E_PROTECTED_STORE_POLICY", "message": "Error: ProtectedStore.getItem: policy does not match the immutable key", "elapsedMs": 133}
+{"event": "result", "id": "mismatch-delete", "outcome": "rejected", "code": "E_PROTECTED_STORE_POLICY", "message": "Error: ProtectedStore.deleteItem: policy does not match the immutable key", "elapsedMs": 11}

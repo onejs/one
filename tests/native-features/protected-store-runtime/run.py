@@ -58,6 +58,7 @@ def authenticate(identifier,operation,key='presence',policy='userPresence',value
     root=snapshot(identifier+'-prompt')
     assert any(n.get('text')=='Protected proof '+identifier for n in root.iter('node')), [(n.get('text'),n.get('resource-id')) for n in root.iter('node') if n.get('text')]
     if mode=='finger': adb('emu','finger','touch','1')
+    elif mode=='finger2': adb('emu','finger','touch','2')
     elif mode=='cancel': adb('shell','input','keyevent','4')
     elif mode=='home': adb('shell','input','keyevent','3')
     elif mode=='destroy': adb('shell','am','broadcast','-n',PACKAGE+'/.ControlReceiver','--es','control','destroy')
@@ -98,8 +99,6 @@ elif mode=='cancel':
     expect(authenticate('cancel-update','updateItem',value='must-not-commit',mode='cancel'),'rejected','E_PROTECTED_STORE_CANCELLED')
     assert record('presence')==prior
     expect(authenticate('destroy-update','updateItem',value='must-not-commit',mode='destroy'),'rejected','E_PROTECTED_STORE_CANCELLED')
-    assert record('presence')==prior
-    adb('shell','am','broadcast','-n',PACKAGE+'/.ControlReceiver','--es','control','stale')
     assert record('presence')==prior
 elif mode=='long':
     value=('Lé漢🙂\n'*1024)

@@ -1,0 +1,1 @@
+{"event": "result", "id": "pin-read", "outcome": "resolved", "value": "value-updated", "elapsedMs": 5382}

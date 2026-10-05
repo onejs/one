@@ -1,0 +1,16 @@
+Dumping for sensorId: 0, provider: FingerprintProvider
+Fps state: 0
+{"service":"FingerprintProvider\/default","prints":[{"id":0,"count":1,"accept":0,"reject":0,"acquire":0,"lockout":0,"permanentLockout":0,"acceptCrypto":0,"rejectCrypto":0,"acquireCrypto":0}]}
+HAL deaths since last reboot: 0
+---AuthSessionCoordinator logs begin---
+#0     resetLockoutFor(userId=0 ,biometricStrength=15, requestId=-1)
+
+Permanent Lockouts
+UserId=0, {(BIOMETRIC_STRONG, permanentLockout=false, timedLockout=false), (BIOMETRIC_WEAK, permanentLockout=false, timedLockout=false), (BIOMETRIC_CONVENIENCE, permanentLockout=false, timedLockout=false)}
+
+---AuthSessionCoordinator logs end  ---
+Dump of BiometricScheduler BiometricScheduler
+Type: 3
+Current operation: null
+Pending operations: 0
+

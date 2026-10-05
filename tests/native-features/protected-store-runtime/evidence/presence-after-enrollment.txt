@@ -1,0 +1,1 @@
+{"event": "result", "id": "presence-after-enrollment", "outcome": "resolved", "value": "value-updated", "elapsedMs": 3204}

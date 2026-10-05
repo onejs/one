@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "94d765a567e56b6c813e6d3dc977603792fe6c07",
+  "apkSHA256": "921cbd5f5396f8da4201ec381136c635f97b3413154abb2feb622b2fd1d4bcec",
+  "files": {
+    "packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneProtectedStore.kt": "4360b087511701f850747ff7f62ccbe519079bce6127341f2928d886eff97a92",
+    "packages/one/nitrogen/generated/android/OneOnLoad.cpp": "c4a935a1b9f42f4381a781f24369ad5f15a4ca5b893dcd2455d36c45e5052880",
+    "packages/one/src/platform/protected-store/index.native.ts": "0d54585b6de028e3122ea49d0a561fe3e69be6118b409e3ec8017fefd0b4a5fb",
+    "packages/one/src/platform/specs/OneProtectedStore.nitro.ts": "afd27f9595b56d5623722b104180aa8c66ee864004f1c2b831c3a3b60eee3927"
+  },
+  "api": 37,
+  "frameworkFingerprint": "google/sdk_gphone64_arm64/emu64a:17/CE2A.260420.019/15611780:user/release-keys"
+}

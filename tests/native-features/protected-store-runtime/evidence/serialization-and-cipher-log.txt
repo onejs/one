@@ -1,0 +1,35 @@
+--------- beginning of main
+10-04 22:33:11.382  6573  6573 I ProtectedControl: destroyed
+10-04 22:33:11.438  6573  6573 E ProtectedControl: control failed
+10-04 22:33:11.438  6573  6573 E ProtectedControl: java.util.NoSuchElementException: Array is empty.
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at kotlin.collections.ArraysKt___ArraysKt.first(_Arrays.kt:1040)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at dev.vxrn.nativefeatures.tests.ControlReceiver.onReceive(ControlReceiver.kt:44)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.app.ActivityThread.handleReceiver(ActivityThread.java:5386)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.app.ActivityThread.-$$Nest$mhandleReceiver(ActivityThread.java:0)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2786)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.os.Handler.dispatchMessageImpl(Handler.java:142)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.os.Looper.loopOnce(Looper.java:296)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.os.Looper.loop(Looper.java:397)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at android.app.ActivityThread.main(ActivityThread.java:9523)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at java.lang.reflect.Method.invoke(Native Method)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+10-04 22:33:11.438  6573  6573 E ProtectedControl: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)
+10-04 22:40:16.004  6573  6573 I ProtectedControl: {"alias":"One.ProtectedStore.f28026a9604baf4915df1b226d589a8573f9ffc59b011e8b2f1699892a808a27","required":true,"timeout":0,"types":2,"invalidatedByEnrollment":true,"unlocked":true,"securityLevel":0,"publicKey":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1jYtYw3gXL6Ijw5csq4\/QSae8EPQ9dlSwU9\/gCktYKSXnLqS\/G\/RrZYuEcH7FT2L9HxLiJ7ZXbQQw4ZJqUDa7TNl5RORwTb4uNFL8RX29S9laISiphArutEdFaTuSFrd8nsS\/y+zpPFgY6Pfe+8T3bUK4aqS3O120geNk3\/9\/KKy8JY\/o5L7gNi7AGPj8XwIMFbpoSUhRhuTwjh4LBIDYTzo1ukGPaEauwxLSNlzr7gSL+rSD\/\/OlgrIFESCaBgu\/DCHEVUquhCoe\/cHUmMEBGlTDi1+7SnV3oeY+1dMS3XPKkPhenh6s38aE9i83wjNIqNunQuEGN8vnOfVPK8KiwIDAQAB"}
+10-04 22:46:38.565  7945  7945 I ProtectedControl: {"alias":"One.ProtectedStore.dff0669b4df441c26626db0001cd5bee7fc888cecab2a00d03144e90915d6272","required":true,"timeout":0,"types":3,"invalidatedByEnrollment":false,"unlocked":true,"securityLevel":0,"publicKey":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAszjYy9ylSYdi3C7lmJvbs+m8+6ADCYkRMcSwRP5Dnwb5qTUeuHgGQFvqgZefzE6vUjgVGlw2aTIr+T0A97\/MPK7GBqiTKe6ROjuj12RKi9y79zsJWLImbTTqIDCw1fvHMiwRvckswi6ICfOR7UGsl12abNkJzYMTZiuLsoVHKkJT6YeV\/O+Lr85eYSuqbJU5Ub+fpOufQLuCaxrvQEYtPnsAzlgCGR9CzYBJAMxgdaEc7Tp0yk\/nv5+wKmUjciJkN52qR91HkLNvoZJcgzn8jQQ55pSLXsOVwTNiifn\/a\/O+WaH9aQJxhrW2G4l5EqSN3LXiOFCETppXqpbbY\/0MIQIDAQAB"}
+10-04 22:46:38.586  7945  7945 I ProtectedControl: {"alias":"One.ProtectedStore.f28026a9604baf4915df1b226d589a8573f9ffc59b011e8b2f1699892a808a27","required":true,"timeout":0,"types":2,"invalidatedByEnrollment":true,"unlocked":true,"securityLevel":0,"publicKey":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA+ArYn8JJqRXdSw4JHYmk+97AHH1IJJcLCSwSC5xaSVY6LlXUM0DvOAoTNuAhQBXhfmAnhewkRy0svsPvomHe5fmBWD9rjMuHmzo8fbbTzXm91xTsw7Oh4OOLuYYydBsdlWY4dWwCxZp1AO\/NPAB5K2rBrNUx3sNAft0ur3rNI5EG1oYR8px5Ai2ej06rqMsHeX4Axs7fg3QYqvn07oDcRk4eO2hMF72IQCT28TxZhgXyLR4YFs1DcjdsRUlHTWoVxvpVhNfg53UJuaWTmPAAhSBe6P5vmjVS+hCrzdJGFBib1GTVJc65h59CtA2LY4+PR1mRlq9PJX\/jwNDbi1btawIDAQAB"}
+10-04 22:46:40.552  7945  8141 I ProtectedControl: same-cipher=true; operation=getItem
+10-04 22:46:40.555  7945  8141 I ProtectedControl: consumed-cipher-rejected=IllegalBlockSizeException
+10-04 22:46:40.559  7945  8141 I ProtectedControl: fresh-cipher-rejected=IllegalBlockSizeException
+10-04 22:47:21.451  7945  8141 I ProtectedControl: same-cipher=true; operation=updateItem
+10-04 22:47:21.453  7945  8141 I ProtectedControl: consumed-cipher-rejected=IllegalBlockSizeException
+10-04 22:47:21.455  7945  8141 I ProtectedControl: fresh-cipher-rejected=IllegalBlockSizeException
+10-04 22:47:24.714  7945  7945 I ProtectedControl: retired-before-success
+10-04 22:47:24.852  7945  7945 I ProtectedControl: stale-success-delivered
+10-04 22:47:28.136  7945  8141 I ProtectedControl: same-cipher=true; operation=getItem
+10-04 22:47:28.139  7945  8141 I ProtectedControl: consumed-cipher-rejected=IllegalBlockSizeException
+10-04 22:47:28.140  7945  8141 I ProtectedControl: fresh-cipher-rejected=IllegalBlockSizeException
+10-04 22:48:05.380  7945  7945 I ProtectedControl: {"active":true,"operation":"getItem","key":"presence","terminal":false,"cipher":"javax.crypto.Cipher","queued":1}
+10-04 22:48:06.384  7945  8141 I ProtectedControl: same-cipher=true; operation=getItem
+10-04 22:48:06.386  7945  8141 I ProtectedControl: consumed-cipher-rejected=IllegalBlockSizeException
+10-04 22:48:06.388  7945  8141 I ProtectedControl: fresh-cipher-rejected=IllegalBlockSizeException
