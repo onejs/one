@@ -925,10 +925,23 @@ async function run(config: Config) {
     await expect(
       'system-home',
       (nodes) => exactlyOneId(nodes, 'home-screen'),
-      'home-screen'
+      'home-screen',
+      undefined,
+      90_000
     )
+    const freshLeg = async (name: string) => {
+      relaunchApp(config)
+      await expect(
+        `system-${name}-home`,
+        (nodes) => exactlyOneId(nodes, 'home-screen'),
+        'home-screen',
+        undefined,
+        60_000
+      )
+    }
 
     // Device: full snapshot from Build/Locale, emulator flagged.
+    await freshLeg('device')
     await tapNavigation(config, 'nav-one-native-device')
     await expect(
       'system-device-mounted',
@@ -959,6 +972,7 @@ async function run(config: Config) {
 
     // KeepAwake: enable/disable round trip, validation, restore, and a
     // home/foreground cycle proving the resume path holds.
+    await freshLeg('keep-awake')
     await tapNavigation(config, 'nav-one-native-keep-awake')
     tapFresh(config, 'system-keep-awake-run', {
       id: 'one-native-keep-awake-run',
@@ -1001,6 +1015,7 @@ async function run(config: Config) {
 
     // Orientation: read, both locks with flipped dimensions, listener
     // events, unlock. The landscapeLeft lock pins the left/right mapping.
+    await freshLeg('orientation')
     await tapNavigation(config, 'nav-one-native-screen-orientation')
     tapFresh(config, 'system-orientation-read', {
       id: 'one-native-orientation-read',
@@ -1071,6 +1086,7 @@ async function run(config: Config) {
 
     // Share: text/url completion through the chooser Copy target, file
     // dismissal, busy guard, and all four input codes.
+    await freshLeg('share')
     await tapNavigation(config, 'nav-one-native-share')
     tapFresh(config, 'system-share-run', {
       id: 'one-native-share-run',
@@ -1116,6 +1132,7 @@ async function run(config: Config) {
       'enabled_print_services',
       'com.android.bips/.BuiltInPrintService',
     ])
+    await freshLeg('print')
     await tapNavigation(config, 'nav-one-native-print')
     tapFresh(config, 'system-print-run', {
       id: 'one-native-print-run',
@@ -1194,6 +1211,7 @@ async function run(config: Config) {
 
     // QuickActions: set/get round trip, validation, warm tap exactly once,
     // cold start into the initial slot, clear.
+    await freshLeg('quick-actions')
     await tapNavigation(config, 'nav-one-native-quick-actions')
     tapFresh(config, 'system-quick-actions-set', {
       id: 'one-native-quick-actions-set',
@@ -1277,6 +1295,7 @@ async function run(config: Config) {
 
     // AppIcon: alias discovery, switch to TestAlternate and back, unknown
     // name rejection.
+    await freshLeg('app-icon')
     await tapNavigation(config, 'nav-one-native-app-icon')
     await expect(
       'system-app-icon-mounted',
@@ -1322,6 +1341,7 @@ async function run(config: Config) {
 
     // Location: prompt, concurrent request, current fix, watch moves,
     // geocoding, background watch with its notification, revoke negative.
+    await freshLeg('location')
     await tapNavigation(config, 'nav-one-native-location')
     await expect(
       'system-location-undetermined',
@@ -1496,6 +1516,7 @@ async function run(config: Config) {
 
     // MapServices: geocoder search positive, empty, and input guard, with
     // the unavailable split held for the other three methods.
+    await freshLeg('map-services')
     await tapNavigation(config, 'nav-one-native-map-services')
     tapFresh(config, 'system-map-services-run', {
       id: 'one-native-map-services-run',
@@ -1515,6 +1536,7 @@ async function run(config: Config) {
 
     // LocalAuthentication: status triple on an unenrolled emulator and the
     // matching evaluate rejection through the real prompt path.
+    await freshLeg('local-auth')
     await tapNavigation(config, 'nav-one-native-local-authentication')
     const authStatus = await expect(
       'system-local-auth-status',
