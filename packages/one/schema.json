@@ -1588,6 +1588,9 @@
         },
         "colorRole": {
           "type": "string"
+        },
+        "resizable": {
+          "type": "boolean"
         }
       },
       "events": {

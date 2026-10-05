@@ -49,7 +49,7 @@ iOS (`@expo/ui/swift-ui`):
 | withAnimation | `animation` modifier only | gap: imperative transaction API |
 | AccessoryWidgetBackground | none in `Swift.*` | gap: widget-only, belongs with `WidgetUI` |
 
-Modifiers: every Expo modifier has an SDK-named One counterpart through `swiftStyle` or `ViewSlot` except `resizable` (Image; One's remote image is always resizable, symbols are not) and the widget-only `widgetURL`, `widgetAccentedRenderingMode`, `activityBackgroundTint`.
+Modifiers: every Expo modifier has an SDK-named One counterpart through `swiftStyle` or `ViewSlot` except the widget-only `widgetURL`, `widgetAccentedRenderingMode`, `activityBackgroundTint`.
 
 Android (`@expo/ui/jetpack-compose`): One.Compose has 50 nodes. No counterpart yet for AnimatedVisibility, BasicAlertDialog, Carousel, DatePicker and its dialogs, DockedSearchBar and SearchBar, DropdownMenu and ExposedDropdownMenuBox, HorizontalFloatingToolbar, HorizontalPager (One.UI.Pager is the uniform pager), Image, LazyColumn, LazyRow, ModalBottomSheet, NavigationBar, PullToRefreshBox, Shape, Snackbar, SyncSwitch and Tooltip. Android follows the iOS gaps.
 

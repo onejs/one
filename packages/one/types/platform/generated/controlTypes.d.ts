@@ -2566,6 +2566,7 @@ export interface ImageProps extends OneNativeViewProps {
     imageScale?: Styles.ImageScale | '';
     variableValue?: number;
     colorRole?: IconColorRole | '';
+    resizable?: boolean;
 }
 export interface ShareLinkProps extends OneNativeViewProps {
     label?: string;
