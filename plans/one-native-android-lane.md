@@ -419,9 +419,10 @@ unavailable; biometry mapped only when a single kind is provable else
    non-finite or out-of-range center, radius outside 100-50000 reject
    `E_MAP_INPUT`); center+radius become a Geocoder bbox
    (dLat = r/111320, dLng = r/(111320*cos(lat)), clamped +-90,
-   wrapped +-180, maxResults 10). `Geocoder.isPresent()` false or an
-   IO failure resolves `[]` (mirrors the iOS no-result contract);
-   empty results resolve `[]`.
+   wrapped +-180, maxResults 10). `Geocoder.isPresent()` false and genuine
+   empty/null results resolve `[]`. Search exceptions reject `E_MAP_SEARCH`
+   on the main handler. The earlier IO-empty premise was incorrect: Swift
+   rejects search failures except its explicit placemark-not-found case.
 9. Biometry: exactly one of fingerprint/face hardware features present
    plus `canAuthenticate(BIOMETRIC_STRONG) == SUCCESS` reports
    `touchID`/`faceID`; zero or ambiguous (both) kinds report `none`.

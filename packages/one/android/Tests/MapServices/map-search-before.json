@@ -1,0 +1,8 @@
+{
+  "source_sha256": "d57919f959a3f1984c0e533da8ec314d19f5e69b0972107326dbb7326af688f4",
+  "ref": "9d598ab9d",
+  "exit": 1,
+  "stdout": "PASS empty exact-one-settlement\nPASS null exact-one-settlement\n",
+  "stderr": "Exception in thread \"main\" java.lang.IllegalStateException: io must reject E_MAP_SEARCH; value=0 error=null\n\tat MainKt.main(Main.kt:14)\n\tat MainKt.main(Main.kt)\n",
+  "limit": "actual hybrid code with deterministic JVM Android/Nitro boundary doubles; no APK/device/provider runtime acceptance"
+}
