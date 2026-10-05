@@ -50,7 +50,7 @@ returns without another alert. An unknown name rejects with
 `E_APP_ICON_INPUT`; unavailable icon switching, an inactive app, concurrent
 changes, and system failures reject with `E_APP_ICON_UNAVAILABLE`,
 `E_APP_ICON_INACTIVE`, `E_APP_ICON_BUSY`, and `E_APP_ICON_CHANGE` respectively.
-Alternate icons are implemented on iOS. On Android and web, `isSupported()` resolves `false`, `getCurrentName()` resolves an empty string, and `setIcon()` does nothing.
+Alternate icons are implemented on iOS and Android. On Android the icon set is the app manifest's manually supplied `activity-alias` entries: the icon name is the alias component's simple name, `isSupported()` is true only when at least one alias exists, and `getCurrentName()` returns `undefined` for the primary icon. Without aliases `isSupported()` resolves `false`, `getCurrentName()` resolves an empty string, and `setIcon()` does nothing on Android and web.
 
 For an Expo prebuild, add the icon sets to the Xcode asset catalog and set
 Xcode's Alternate App Icon Sets build setting; the runtime API uses the same

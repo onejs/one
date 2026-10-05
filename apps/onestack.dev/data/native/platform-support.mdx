@@ -34,6 +34,16 @@ description: What every native API does on iOS, Android, and web
 | Map | One.UI.Map (MapKit) | One.UI.Map (Google Maps, key required) | renders nothing |
 | Picture in Picture | AVPictureInPictureController (sample buffer source) | activity pip mode | renders inline |
 | WebGPU | react-native-webgpu (Dawn) | react-native-webgpu (Dawn) | navigator.gpu |
+| Device | UIDevice + Locale snapshot | Build + Locale snapshot; ANDROID_ID vendor ID | browser platform + Intl; no hardware identity |
+| KeepAwake | idle timer flag | window keep-screen-on flag, re-applied on resume | Screen Wake Lock where present |
+| ScreenOrientation | scene geometry locks + listeners | display rotation locks + listeners; runtime overrides manifest | screen.orientation; unsupported locks reject |
+| Share | activity sheet + completion | system chooser; completed when a target is chosen | navigator.share where present |
+| Print | AirPrint sheet + completion | PrintManager + PDF raster at job resolution | unavailable (see Print) |
+| QuickActions | shortcut items + cold/warm delivery | dynamic shortcuts + cold/warm delivery | unavailable |
+| AppIcon | alternate icon sets | manifest activity-alias entries | unavailable |
+| Location | CoreLocation + geocoder | LocationManager + Geocoder; background via foreground service | geolocation; no geocoder |
+| MapServices | MapKit search, autocomplete, directions | Geocoder search only; rest unavailable | unavailable |
+| LocalAuthentication | LAContext biometrics | BiometricManager + BiometricPrompt | unavailable |
 
 `One.iOS.ToolbarHost`, `One.iOS.MenuAction`, and the `ZoomTransition*`
 components return `null` on other platforms, so they are safe to keep in
