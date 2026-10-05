@@ -431,11 +431,26 @@ bounded diagnosis and prereview proposal, then assigned repair; p61184 and
 p60786 remain the review gates. Manager owns subsequent beta landing and CI.
 No timeout increase, retry, skip or weaker assertion is authorized.
 
-ScreenCapture corrected design `ce0bb43c4` and ProtectedStore supported-SDK
-proposal `ac832933e` passed their first-layer reviews with corrections and are
-routed to the existing substantive held-design gate. Neither is native
-implementation approval. ProtectedStore probes cover an API37 software emulator;
-hardware and One integration remain unproven. Pro128 disk admission recovered
-from below its 35 GiB floor to 88 GiB; the Android author must read its original
-build receipt before resubmission. Source producers and runtime devices remain
-unique; unrelated holds and parked speed work stay preserved.
+ScreenCapture corrected design `ce0bb43c4` received bounded implementation
+approval from p60786 at 07:41 UTC, with receipt timestamps, initial/event mapping,
+sub-gate silence, owned callback lifetime and the existing sub-26 render error.
+No new unsupported-error API is authorized. System author p61888 owns this
+service with its ten previously approved services.
+
+ProtectedStore supported-SDK design `ac832933e` received bounded implementation
+approval from p60786 at 07:55 UTC. Orphan-alias authenticated deletion and locked
+existing-item behavior are required corrections. Source owner r59519, Sol high
+on Pro64 with a verified fixed personal subscription, owns only this service;
+research author r59432 finished with its artifacts preserved and resources
+cleaned. SDK probes cover an API37 software emulator; hardware and One
+integration remain unproven. Both services retain their focused native/runtime
+controls and one assigned assembled review, with no repeated review or expanded
+matrix. Manager owns beta integration and CI.
+
+Pro128 disk admission recovered above its 35 GiB floor. The system author
+reported a rebuilt APK and removed the observed timeout increase and restart
+retry; its bundle-transfer mount failure remains under diagnosis. Air24's 14
+retained blur paths belong to stopped predecessor a22608. Operations owns source
+custody under `t-muuymnwo-qik0`; they remain untouched while sync owner r59503
+handles safe fast-forward metadata. Blur holds and parked speed work remain
+preserved; sync hygiene grants no native adoption or public-main approval.
