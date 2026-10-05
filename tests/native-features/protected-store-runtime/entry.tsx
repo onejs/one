@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { AppRegistry, Text, View } from 'react-native'
-import { ProtectedStore } from '../../../packages/one/src/platform/protected-store/index.native'
+import { One } from 'one'
+
+const { ProtectedStore } = One
 
 type Command = { id: string; operation: 'createItem' | 'getItem' | 'updateItem' | 'deleteItem'; key: string; value?: string; reason?: string; policy: 'userPresence' | 'biometryCurrentSet' }
 function Probe() {
