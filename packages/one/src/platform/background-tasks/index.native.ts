@@ -7,6 +7,7 @@ import type {
   OneBackgroundTasks,
   PendingBackgroundTask,
 } from '../specs/OneBackgroundTasks.nitro'
+import { BackgroundTasks as unavailableBackgroundTasks } from './unavailable'
 
 export type {
   BackgroundTaskInvocation,
@@ -107,4 +108,8 @@ function cancel(identifier: string): void {
   native().cancel(identifier)
 }
 
-export const BackgroundTasks = Object.freeze({ defineTask, submit, getPending, cancel })
+const nativeBackgroundTasks = Object.freeze({ defineTask, submit, getPending, cancel })
+
+// BGTaskScheduler is iOS only, so Android keeps the unavailable contract
+export const BackgroundTasks: typeof nativeBackgroundTasks =
+  Platform.OS === 'android' ? unavailableBackgroundTasks : nativeBackgroundTasks

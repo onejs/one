@@ -15,7 +15,7 @@ declare function listReminders(limit?: number, includeCompleted?: boolean): Prom
 declare function createReminder(input: ReminderInput): Promise<string>;
 declare function setReminderCompleted(identifier: string, completed: boolean): Promise<void>;
 declare function deleteReminder(identifier: string): Promise<void>;
-export declare const Calendar: Readonly<{
+declare const nativeCalendar: Readonly<{
     getPermissionStatus: typeof getPermissionStatus;
     requestPermission: typeof requestPermission;
     list: typeof list;
@@ -29,4 +29,5 @@ export declare const Calendar: Readonly<{
     setReminderCompleted: typeof setReminderCompleted;
     deleteReminder: typeof deleteReminder;
 }>;
+export declare const Calendar: typeof nativeCalendar;
 //# sourceMappingURL=index.native.d.ts.map

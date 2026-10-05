@@ -7,7 +7,7 @@ declare function getUnfinishedTransactions(): Promise<PurchaseTransaction[]>;
 declare function finishTransaction(transactionId: string): Promise<void>;
 declare function addTransactionListener(onUpdate: (update: PurchaseUpdate) => void): () => void;
 declare function sync(): Promise<void>;
-export declare const Purchases: Readonly<{
+declare const nativePurchases: Readonly<{
     getProducts: typeof getProducts;
     purchase: typeof purchase;
     getCurrentEntitlements: typeof getCurrentEntitlements;
@@ -16,4 +16,5 @@ export declare const Purchases: Readonly<{
     addTransactionListener: typeof addTransactionListener;
     sync: typeof sync;
 }>;
+export declare const Purchases: typeof nativePurchases;
 //# sourceMappingURL=index.native.d.ts.map

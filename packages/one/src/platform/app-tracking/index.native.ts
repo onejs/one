@@ -2,6 +2,7 @@ import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { AppTrackingPermissionStatus, OneAppTracking } from '../specs/OneAppTracking.nitro'
+import { AppTracking as unavailableAppTracking } from './unavailable'
 
 export type { AppTrackingPermissionStatus } from '../specs/OneAppTracking.nitro'
 
@@ -25,4 +26,8 @@ function requestPermission(): Promise<AppTrackingPermissionStatus> {
   return native().requestPermission().catch(rethrowNativeError)
 }
 
-export const AppTracking = Object.freeze({ getPermissionStatus, requestPermission })
+const nativeAppTracking = Object.freeze({ getPermissionStatus, requestPermission })
+
+// App Tracking Transparency is iOS only, so Android keeps the unavailable contract
+export const AppTracking: typeof nativeAppTracking =
+  Platform.OS === 'android' ? unavailableAppTracking : nativeAppTracking

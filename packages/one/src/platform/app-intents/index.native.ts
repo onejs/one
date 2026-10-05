@@ -3,6 +3,7 @@ import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { AppIntentInvocation, OneAppIntents } from '../specs/OneAppIntents.nitro'
 import { assertActionHandler } from './validate'
+import { AppIntents as unavailableAppIntents } from './unavailable'
 
 export type AppIntentHandler = (text: string | null) => string | Promise<string>
 
@@ -55,4 +56,8 @@ function defineAction(identifier: string, handler: AppIntentHandler): () => void
   }
 }
 
-export const AppIntents = Object.freeze({ defineAction })
+const nativeAppIntents = Object.freeze({ defineAction })
+
+// AppIntents is iOS only, so Android keeps the unavailable contract
+export const AppIntents: typeof nativeAppIntents =
+  Platform.OS === 'android' ? unavailableAppIntents : nativeAppIntents
