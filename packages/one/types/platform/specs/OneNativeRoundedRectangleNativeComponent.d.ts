@@ -34,6 +34,8 @@ type OneNativeStyleNative = Readonly<{
 }>;
 interface NativeProps extends ViewProps {
     fill?: ColorValue;
+    strokeBorder?: ColorValue;
+    lineWidth: Double;
     cornerRadius: Double;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
