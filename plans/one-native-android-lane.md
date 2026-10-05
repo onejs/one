@@ -552,3 +552,38 @@ Device runtime proof still open: no post-land Android emulator pass is
 recorded on the landed tree. Still needed are the focused Android 37
 emulator suites for the 11 landed services (positive, negative, and
 lifetime controls per the runtime proof plan above).
+
+## Beta recovery landing: Android media services (2026-10-05)
+
+Landed on `v2-beta` as `41663235f` (tip; branch range from prior tip
+`461f0c9f1`, rebased over the landed system services). Contents: Android
+Kotlin implementations for Audio (with foreground service), PhotoLibrary
+(MediaStore; collections and content edits keep the unavailable
+contract), Contacts, and Calendar (events; reminders keep the
+unavailable contract); spec widening to `android: 'kotlin'`;
+`index.android.ts` deletions for Audio and Contacts with split contracts
+for Calendar and PhotoLibrary reusing identical native/unavailable
+references; iOS-guard removals; the `pickContact` null-to-undefined
+contract fix; nitrogen union regen at rebase (autolinking +
+`Func_void_std__string` param rename) with unrelated nitrogen whitespace
+drift reverted; proof driver and runtime receipts.
+
+Validation (RAN): public API gate passed, no new `One.*` export and no
+public signature change; `bun run generate:check`, `bun run typecheck`,
+and the full `packages/one` vitest suite (1529 passed, 56 skipped) green
+on the landed tree; `:one:assembleDebug` green with `one-debug.aar`,
+branch Kotlin classes, and per-ABI `libOne.so` verified (media Kotlin
+content byte-identical to the validated pre-rebase tree; the rebase
+added only the landed system services, Toggle, and the nitrogen union).
+The `:app:assembleDebug` failure is the pre-existing duplicate
+ProtectedStore evidence fixture, identical from v2-beta inputs, so it is
+not a regression of either branch; the unmodified-tree failure was
+reproduced exactly on this branch, and the scoped probe rerun is the
+check for the fixture fix below.
+
+Device runtime proof still open: branch-time emulator receipts
+(contacts, calendar, photo, including limited-library and
+series-split cases) are preserved under
+`tests/native-features/evidence/one-native-android-media/`, but no
+post-land Android emulator pass is recorded on the landed tree. Still
+needed is a rerun of the media proof driver against the landed tree.
