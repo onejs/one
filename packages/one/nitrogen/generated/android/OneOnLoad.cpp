@@ -53,6 +53,9 @@
 #include "JFunc_void_NativePushToken.hpp"
 #include "JHybridOnePrintSpec.hpp"
 #include "JHybridOneQuickActionsSpec.hpp"
+#include "JHybridOneScreenCaptureSpec.hpp"
+#include "JFunc_void_ScreenCaptureState.hpp"
+#include "JFunc_void_double.hpp"
 #include "JHybridOneScreenOrientationSpec.hpp"
 #include "JFunc_void_ScreenOrientationValue.hpp"
 #include "JHybridOneSecureStoreSpec.hpp"
@@ -289,6 +292,14 @@ struct JHybridOneScreenOrientationSpecImpl: public jni::JavaClass<JHybridOneScre
     return javaPart->getJHybridOneScreenOrientationSpec();
   }
 };
+struct JHybridOneScreenCaptureSpecImpl: public jni::JavaClass<JHybridOneScreenCaptureSpecImpl, JHybridOneScreenCaptureSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneScreenCapture;";
+  static std::shared_ptr<JHybridOneScreenCaptureSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneScreenCaptureSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneScreenCaptureSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneScreenCaptureSpec();
+  }
+};
 struct JHybridOneMapServicesSpecImpl: public jni::JavaClass<JHybridOneMapServicesSpecImpl, JHybridOneMapServicesSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneMapServices;";
   static std::shared_ptr<JHybridOneMapServicesSpec> create() {
@@ -357,6 +368,9 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
   margelo::nitro::one::JHybridOnePrintSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneQuickActionsSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneScreenCaptureSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_ScreenCaptureState_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_double_cxx::registerNatives();
   margelo::nitro::one::JHybridOneScreenOrientationSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_ScreenOrientationValue_cxx::registerNatives();
   margelo::nitro::one::JHybridOneSecureStoreSpec::CxxPart::registerNatives();
@@ -545,6 +559,12 @@ void registerAllNatives() {
     "OneScreenOrientation",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneScreenOrientationSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneScreenCapture",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneScreenCaptureSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

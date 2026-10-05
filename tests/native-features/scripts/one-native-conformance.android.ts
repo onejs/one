@@ -1569,6 +1569,92 @@ async function run(config: Config) {
     } else {
       throw new Error(`unexpected biometric status for proof branching: ${authTriple[0]}`)
     }
+
+    // ScreenCapture: the window-manager recording state reads inactive on
+    // a quiet device with no events delivered at registration, window
+    // capture writes a real PNG file with dimensions and bytes, delete
+    // removes it, the screenshot listener stays silent without a real
+    // screenshot, the remover is idempotent, and state still serves after
+    // a background/foreground cycle re-registers the activity callback.
+    await freshLeg('screen-capture')
+    await tapNavigation(config, 'nav-one-native-screen-capture')
+    await expect(
+      'system-screen-capture-initial',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Capture state: inactive') &&
+          text.includes('State events: none') &&
+          text.includes('Screenshot count: 0')
+        )
+      },
+      'one-native-screen-capture-window'
+    )
+    tapFresh(config, 'system-screen-capture-window', {
+      id: 'one-native-screen-capture-window',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-captured',
+      (nodes) => {
+        const text = joined(nodes)
+        const dimensions = /Window dimensions: (\d+)x(\d+)/.exec(text)
+        const bytes = /Window bytes: (\d+)/.exec(text)
+        return (
+          text.includes('Window capture: captured') &&
+          !text.includes('Window file: none') &&
+          dimensions !== null &&
+          Number(dimensions[1]) > 0 &&
+          Number(dimensions[2]) > 0 &&
+          bytes !== null &&
+          Number(bytes[1]) > 0
+        )
+      },
+      'one-native-screen-capture-delete'
+    )
+    tapFresh(config, 'system-screen-capture-delete', {
+      id: 'one-native-screen-capture-delete',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-deleted',
+      (nodes) => joined(nodes).includes('Window capture: deleted'),
+      'one-native-screen-capture-unsubscribe'
+    )
+    tapFresh(config, 'system-screen-capture-unsubscribe', {
+      id: 'one-native-screen-capture-unsubscribe',
+      role: 'button',
+      clickable: true,
+    })
+    tapFresh(config, 'system-screen-capture-unsubscribe-again', {
+      id: 'one-native-screen-capture-unsubscribe',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-unsubscribed',
+      (nodes) =>
+        joined(nodes).includes('Listening: false') &&
+        joined(nodes).includes('Screenshot count: 0'),
+      'one-native-screen-capture-refresh'
+    )
+    pressHome()
+    await Bun.sleep(1000)
+    foregroundApp()
+    tapFresh(config, 'system-screen-capture-rerefresh', {
+      id: 'one-native-screen-capture-refresh',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-after-resume',
+      (nodes) =>
+        joined(nodes).includes('Capture state: inactive') &&
+        joined(nodes).includes('Status: refreshed'),
+      'one-native-screen-capture-refresh'
+    )
   }
 
   // One.UI.Portal: hosted content keeps its React context and state, lays

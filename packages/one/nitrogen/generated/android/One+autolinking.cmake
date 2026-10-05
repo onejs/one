@@ -103,6 +103,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOnePrintSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneQuickActionsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneScreenCaptureSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneScreenOrientationSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneShareSpec.cpp
