@@ -490,14 +490,50 @@ function tapFresh(
 }
 
 function tapByText(config: Config, name: string, text: string) {
+  tapMatching(config, name, `text "${text}"`, (node) => node.text === text)
+}
+
+function tapByTextOrDescription(config: Config, name: string, texts: string[]) {
   const current = snapshot(config)
-  const labeled = current.nodes.filter((node) => node.text === text)
+  const textHits = current.nodes.filter((node) => texts.includes(node.text))
+  const descHits = current.nodes.filter(
+    (node) => !texts.includes(node.text) && texts.includes(node.contentDescription)
+  )
+  // the chooser shows its copy action as a text row, an icon, or both at
+  // once; both representations trigger the same action, so the row wins
+  // when both are present. anything else is genuine ambiguity and fails.
+  const target =
+    textHits.length === 1 ? textHits[0] : descHits.length === 1 && textHits.length === 0 ? descHits[0] : undefined
+  if (!target)
+    throw new Error(
+      `${name} resolved ${textHits.length} text and ${descHits.length} description nodes for [${texts.join(', ')}]; exactly one action is required.`
+    )
+  tapNode(config, name, current.nodes, target)
+}
+
+function tapNode(config: Config, name: string, nodes: Node[], node: Node) {
+  const target = clickableTarget(nodes, node)
+  if (!target) throw new Error(`${name} found its target with no clickable ancestor.`)
+  const bounds = validBounds(node, name)
+  const x = Math.round((bounds.left + bounds.right) / 2)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+}
+
+function tapMatching(
+  config: Config,
+  name: string,
+  what: string,
+  predicate: (node: Node) => boolean
+) {
+  const current = snapshot(config)
+  const labeled = current.nodes.filter(predicate)
   if (labeled.length !== 1)
     throw new Error(
-      `${name} resolved ${labeled.length} nodes with text "${text}"; exactly one is required.`
+      `${name} resolved ${labeled.length} nodes with ${what}; exactly one is required.`
     )
   const target = clickableTarget(current.nodes, labeled[0])
-  if (!target) throw new Error(`${name} found text "${text}" with no clickable ancestor.`)
+  if (!target) throw new Error(`${name} found ${what} with no clickable ancestor.`)
   const bounds = validBounds(labeled[0], name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
@@ -1096,8 +1132,9 @@ async function run(config: Config) {
     await waitFor(config, 'system-share-chooser', (nodes) =>
       textIncludes(nodes, 'Copy')
     )
-    // android 37 labels the chooser copy action "Copy to clipboard".
-    tapByText(config, 'system-share-copy', 'Copy to clipboard')
+    // android 37 shows the chooser copy action either as a "Copy to
+    // clipboard" text row or as an icon with the "Copy text" description.
+    tapByTextOrDescription(config, 'system-share-copy', ['Copy to clipboard', 'Copy text'])
     // the completed text share advances the fixture to the file chooser,
     // which covers the app: uiautomator sees the chooser, not the status
     // text behind it, so assert the chooser itself. the passed check below
