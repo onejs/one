@@ -378,3 +378,17 @@ Contrast main is on runtime 85 (f41dd86ee3) with One 1791109310273; the root `On
 | a22608 / one-native-blur | Claude, air-24 | native blur on react-native-blur's code | manager reviews assembled diff |
 | one-native-bundle-speed (coordinator) | Sol high, pro-64 | bundle speed | manager reviews assembled One diff |
 | finished | s8223 rank 2 (reviewed), s8153 rank 1, s8225 rank 3, s8227 rank 4 (parked), s8377 rank 6, s8381 rank 5, s8395 stopped (Reanimated scope dropped) | | |
+
+## beta recovery (2026-10-04)
+
+Nate (2026-10-04): "ok btw last thing can you resume the one-native lanes on one with like a single sol medium manaigng a bunch of muse max? if we didnt do that alrady. same for tamagui was there anything left? getting that green i guess? any other last things to kick off (detched) before we finish"
+
+Nate (2026-10-04): "for tamagui its for v3 beta ofc and one for v2 beta ofc"
+
+Delivery manager: p61056 / spring-one-recovery, Sol medium. Target v2-beta. Tamagui has independent manager p61058. No main or stable publication, new look, public API, or unrelated parked work. Operations p60562 owns retained predecessor resources; substantive protected proposal and final gates remain p60786.
+
+RAN: origin/v2-beta is 95252a29d799f439c029a7d29541f1db0b6efa6a. Approved browser b185d7f12 and ordinary iOS blur b87d5facc are delivered there. Checks and Tests 37253320339 and Release 37253320349 succeeded. iOS Native Tests 37253320666 failed at generated SwiftUI bindings, listing portal specs, schema.json and package.json. Runtime native acceptance remains distinct from CI.
+
+RAN: prior Android system e43a2b4dd and media 6cef650ba are registration-only WIP branches with no Kotlin or runtime proof. Resume their existing service scope as two grouped branches. Web services already landed as 3d5841af0 with prior browser and tarball receipts; preserve disputed old branch notes and do not adopt its remaining commits blindly. Android halo/allocation and private variable blur remain held pending measured supported repair. Contrast native87 stays with its existing owner.
+
+First-layer public review and runtime validation: one assigned Muse Max Spark Contributor validator, fixed subscription account cam. Android workers prepare source-grounded implementation proposals for review before native changes. The validator supplies public first-layer findings; p60786 retains substantive gates. Manager serializes integration and owns required One CI, artifact identity, and canary content verification. Authors push bounded branches and clean their owned resources before finishing, without waiting on CI.
