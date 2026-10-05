@@ -59,7 +59,7 @@ thread.
 Missing usage text rejects with `E_CONTACTS_MANIFEST`; missing access with
 `E_CONTACTS_PERMISSION`; invalid input with `E_CONTACTS_INPUT`. Editing an
 unknown identifier on update or delete rejects with `E_CONTACTS_NOT_FOUND`. Store failures use
-`E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. Contacts are implemented on iOS. Android, web, and SSR return denied address-book permission and empty searches. Picker and save calls that return a contact reject with `Contacts.<verb> needs an iOS or Android build`; deletion does nothing. Contact notes require an Apple-granted
+`E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. Contacts are implemented on iOS and Android. On Android, the address book runs over ContactsContract with `native.app.contacts.usage`; there is no limited tier. Web and SSR return denied address-book permission and empty searches. Picker and save calls that return a contact reject with `Contacts.<verb> needs an iOS or Android build` where unimplemented; deletion does nothing there. Contact notes require an Apple-granted
 entitlement and are not exposed.
 
 See [Apple's Contacts access guide](https://developer.apple.com/documentation/contacts/accessing-the-contact-store)
