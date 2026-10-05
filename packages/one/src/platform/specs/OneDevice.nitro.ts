@@ -18,7 +18,7 @@ export interface LocalizationInfo {
   currencyCode?: string
 }
 
-export interface OneDevice extends HybridObject<{ ios: 'swift' }> {
+export interface OneDevice extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getInfo(): Promise<DeviceInfo>
   getLocalizationInfo(): Promise<LocalizationInfo>
 }
