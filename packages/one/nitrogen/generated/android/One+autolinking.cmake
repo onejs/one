@@ -79,10 +79,12 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp
   # Android-specific Nitrogen C++ sources
   ../nitrogen/generated/android/c++/JHybridOneAdaptiveSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneAppIconSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneDeviceSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFetchSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFileSystemSpec.cpp
@@ -90,13 +92,20 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneImageManipulatorSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneKeepAwakeSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLaunchScreenSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneLocalAuthenticationSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneLocationSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneMapServicesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneMotionSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
-  ../nitrogen/generated/android/c++/JHybridOneProtectedStoreSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOnePrintSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneQuickActionsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneScreenOrientationSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneShareSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp
 )
