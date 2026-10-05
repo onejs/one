@@ -1,0 +1,43 @@
+ 🩹 react-native-web
+ 🩹 react-native-webview
+ 🩹 react-native-css-interop
+ 🩹 react-native
+ 🩹 react-native-gesture-handler
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/build.gradle" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/build.gradle"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/debug.keystore" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/debug.keystore"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/proguard-rules.pro" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/proguard-rules.pro"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/AndroidManifest.xml" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/AndroidManifest.xml"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/java/com/helloworld/MainActivity.kt" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/java/dev/vxrn/nativefeatures/tests/MainActivity.kt"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/java/com/helloworld/MainApplication.kt" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/java/dev/vxrn/nativefeatures/tests/MainApplication.kt"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/drawable/rn_edit_text_material.xml" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/drawable/rn_edit_text_material.xml"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/values/strings.xml" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/values/strings.xml"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/app/src/main/res/values/styles.xml" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/app/src/main/res/values/styles.xml"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/build.gradle" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/build.gradle"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/gradle.properties" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/gradle.properties"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/gradle/wrapper/gradle-wrapper.jar" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/gradle/wrapper/gradle-wrapper.jar"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/gradle/wrapper/gradle-wrapper.properties" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/gradle/wrapper/gradle-wrapper.properties"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/gradlew" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/gradlew"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/gradlew.bat" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/gradlew.bat"
+copying "/Users/n8/.worktrees/one-protected-store-implementation/node_modules/@react-native-community/template/template/android/settings.gradle" to "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/settings.gradle"
+[vxrn] native dependencies discovered through community autolinking: @callstack/liquid-glass, @op-engineering/op-sqlite, @react-navigation/native, one, react-native-gesture-handler, react-native-nitro-image, react-native-nitro-modules, react-native-nitro-web-image, react-native-pager-view, react-native-reanimated, react-native-screens, react-native-webgpu, react-native-worklets
+🔨 Ensuring react-native-screens android fix
+✅ Added onCreate with react-native-screens fix to MainActivity.kt
+
+Android:
+
+  `cd android` and run `./gradlew generateCodegenArtifactsFromSchema`, then `./gradlew assembleRelease` or `./gradlew assembleDebug` to build the Android project.
+
+  Afterwards, you can find the built APK at `android/app/build/outputs/apk/release/app-release.apk` or
+  `android/app/build/outputs/apk/debug/app-debug.apk`.
+
+

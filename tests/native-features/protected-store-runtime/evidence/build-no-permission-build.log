@@ -1,0 +1,536 @@
+> Task :gradle-plugin:settings-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:shared:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:shared:compileJava NO-SOURCE
+> Task :gradle-plugin:shared:processResources NO-SOURCE
+> Task :gradle-plugin:shared:classes UP-TO-DATE
+> Task :gradle-plugin:shared:jar UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:settings-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:settings-plugin:jar UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle-plugin:react-native-gradle-plugin:compileKotlin UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:compileJava NO-SOURCE
+> Task :gradle-plugin:react-native-gradle-plugin:pluginDescriptors UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:processResources UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:classes UP-TO-DATE
+> Task :gradle-plugin:react-native-gradle-plugin:jar UP-TO-DATE
+
+> Configure project :app
+WARNING: The option setting 'android.builtInKotlin=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: The option setting 'android.newDsl=false' is deprecated.
+The current default is 'true'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+WARNING: API 'applicationVariants' is obsolete and has been replaced with 'AndroidComponentsExtension'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+The legacy variant API is disabled by default in AGP 9.0, but can be re-enabled by adding 
+    android.newDsl=false
+to this project's gradle.properties file.
+For more information, see http://developer.android.com/build/r/new-dsl.
+
+To determine what is calling applicationVariants, use -Pandroid.debug.obsoleteApi=true on the command line to display more information.
+WARNING: API 'testVariants' is obsolete and has been replaced with 'AndroidComponentsExtension'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+The legacy variant API is disabled by default in AGP 9.0, but can be re-enabled by adding 
+    android.newDsl=false
+to this project's gradle.properties file.
+For more information, see http://developer.android.com/build/r/new-dsl.
+
+To determine what is calling testVariants, use -Pandroid.debug.obsoleteApi=true on the command line to display more information.
+WARNING: API 'unitTestVariants' is obsolete and has been replaced with 'AndroidComponentsExtension'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+The legacy variant API is disabled by default in AGP 9.0, but can be re-enabled by adding 
+    android.newDsl=false
+to this project's gradle.properties file.
+For more information, see http://developer.android.com/build/r/new-dsl.
+
+To determine what is calling unitTestVariants, use -Pandroid.debug.obsoleteApi=true on the command line to display more information.
+
+> Configure project :one
+WARNING: API 'libraryVariants' is obsolete and has been replaced with 'AndroidComponentsExtension'.
+It will be removed in version 10.0 of the Android Gradle plugin.
+The legacy variant API is disabled by default in AGP 9.0, but can be re-enabled by adding 
+    android.newDsl=false
+to this project's gradle.properties file.
+For more information, see http://developer.android.com/build/r/new-dsl.
+
+To determine what is calling libraryVariants, use -Pandroid.debug.obsoleteApi=true on the command line to display more information.
+[NitroModules] 🔥 One is boosted by nitro!
+
+> Configure project :react-native-nitro-image
+[NitroModules] 🔥 NitroImage is boosted by nitro!
+
+> Configure project :react-native-nitro-modules
+[NitroModules] 🔥 Your app is boosted by nitro modules!
+
+> Configure project :react-native-nitro-web-image
+[NitroModules] 🔥 NitroWebImage is boosted by nitro!
+
+> Task :app:generateAutolinkingNewArchitectureFiles UP-TO-DATE
+> Task :app:generateAutolinkingPackageList UP-TO-DATE
+> Task :app:generateCodegenSchemaFromJavaScript SKIPPED
+> Task :app:generateCodegenArtifactsFromSchema SKIPPED
+> Task :app:generateReactNativeEntryPoint UP-TO-DATE
+> Task :one:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :one:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :one:preBuild UP-TO-DATE
+> Task :op-engineering_op-sqlite:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :op-engineering_op-sqlite:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :op-engineering_op-sqlite:prepareHeaders UP-TO-DATE
+> Task :op-engineering_op-sqlite:preBuild UP-TO-DATE
+> Task :react-native-gesture-handler:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-gesture-handler:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-gesture-handler:preBuild UP-TO-DATE
+> Task :react-native-nitro-image:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-nitro-image:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-nitro-image:prepareHeaders UP-TO-DATE
+> Task :react-native-nitro-image:preBuild UP-TO-DATE
+> Task :react-native-nitro-modules:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-nitro-modules:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-nitro-modules:prepareHeaders UP-TO-DATE
+> Task :react-native-nitro-modules:preBuild UP-TO-DATE
+> Task :react-native-nitro-web-image:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-nitro-web-image:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-nitro-web-image:preBuild UP-TO-DATE
+> Task :react-native-pager-view:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-pager-view:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-pager-view:preBuild UP-TO-DATE
+> Task :react-native-reanimated:assertMinimalReactNativeVersionTask
+> Task :react-native-reanimated:assertWorkletsVersionTask
+> Task :react-native-reanimated:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-reanimated:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-reanimated:prepareReanimatedHeadersForPrefabs UP-TO-DATE
+> Task :react-native-reanimated:preBuild
+> Task :react-native-screens:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-screens:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-screens:preBuild UP-TO-DATE
+> Task :react-native-webgpu:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-webgpu:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-webgpu:preBuild UP-TO-DATE
+> Task :react-native-worklets:assertMinimalReactNativeVersionTask
+> Task :react-native-worklets:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-native-worklets:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-native-worklets:prepareWorkletsHeadersForPrefabs UP-TO-DATE
+> Task :react-native-worklets:preBuild
+> Task :react-navigation_native:copyMaterialFonts UP-TO-DATE
+> Task :react-navigation_native:generateCodegenSchemaFromJavaScript UP-TO-DATE
+> Task :react-navigation_native:generateCodegenArtifactsFromSchema UP-TO-DATE
+> Task :react-navigation_native:preBuild UP-TO-DATE
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :one:preDebugBuild UP-TO-DATE
+> Task :one:processDebugNavigationResources UP-TO-DATE
+> Task :op-engineering_op-sqlite:preDebugBuild UP-TO-DATE
+> Task :op-engineering_op-sqlite:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-gesture-handler:preDebugBuild UP-TO-DATE
+> Task :react-native-gesture-handler:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-nitro-image:preDebugBuild UP-TO-DATE
+> Task :react-native-nitro-image:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-nitro-modules:preDebugBuild UP-TO-DATE
+> Task :react-native-nitro-modules:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-nitro-web-image:preDebugBuild UP-TO-DATE
+> Task :react-native-nitro-web-image:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-pager-view:preDebugBuild UP-TO-DATE
+> Task :react-native-pager-view:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-reanimated:preDebugBuild
+> Task :react-native-reanimated:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-screens:preDebugBuild UP-TO-DATE
+> Task :react-native-screens:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-webgpu:preDebugBuild UP-TO-DATE
+> Task :react-native-webgpu:processDebugNavigationResources UP-TO-DATE
+> Task :react-native-worklets:preDebugBuild
+> Task :react-native-worklets:processDebugNavigationResources UP-TO-DATE
+> Task :react-navigation_native:preDebugBuild UP-TO-DATE
+> Task :react-navigation_native:processDebugNavigationResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:generateDebugRFile UP-TO-DATE
+> Task :one:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :one:generateDebugBuildConfig UP-TO-DATE
+> Task :one:generateDebugResources UP-TO-DATE
+> Task :one:packageDebugResources UP-TO-DATE
+> Task :one:parseDebugLocalResources UP-TO-DATE
+> Task :one:generateDebugRFile UP-TO-DATE
+> Task :react-native-nitro-modules:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-nitro-modules:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-nitro-modules:generateDebugResources UP-TO-DATE
+> Task :react-native-nitro-modules:packageDebugResources UP-TO-DATE
+> Task :react-native-nitro-modules:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-nitro-modules:generateDebugRFile UP-TO-DATE
+> Task :react-native-nitro-modules:compileDebugKotlin UP-TO-DATE
+> Task :react-native-nitro-modules:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-nitro-modules:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-nitro-modules:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-worklets:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-worklets:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-worklets:generateDebugResources UP-TO-DATE
+> Task :react-native-worklets:packageDebugResources UP-TO-DATE
+> Task :react-native-worklets:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-worklets:generateDebugRFile UP-TO-DATE
+> Task :react-native-worklets:compileDebugKotlin UP-TO-DATE
+> Task :react-native-worklets:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-worklets:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-worklets:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :one:javaPreCompileDebug UP-TO-DATE
+> Task :op-engineering_op-sqlite:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :op-engineering_op-sqlite:generateDebugBuildConfig UP-TO-DATE
+> Task :op-engineering_op-sqlite:generateDebugResources UP-TO-DATE
+> Task :op-engineering_op-sqlite:packageDebugResources UP-TO-DATE
+> Task :op-engineering_op-sqlite:parseDebugLocalResources UP-TO-DATE
+> Task :op-engineering_op-sqlite:generateDebugRFile UP-TO-DATE
+> Task :op-engineering_op-sqlite:compileDebugKotlin UP-TO-DATE
+> Task :op-engineering_op-sqlite:javaPreCompileDebug UP-TO-DATE
+> Task :op-engineering_op-sqlite:compileDebugJavaWithJavac UP-TO-DATE
+> Task :op-engineering_op-sqlite:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-gesture-handler:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-gesture-handler:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-gesture-handler:generateDebugResources UP-TO-DATE
+> Task :react-native-gesture-handler:packageDebugResources UP-TO-DATE
+> Task :react-native-gesture-handler:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-gesture-handler:generateDebugRFile UP-TO-DATE
+> Task :react-native-reanimated:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-reanimated:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-reanimated:generateDebugResources UP-TO-DATE
+> Task :react-native-reanimated:packageDebugResources UP-TO-DATE
+> Task :react-native-reanimated:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-reanimated:generateDebugRFile UP-TO-DATE
+> Task :react-native-reanimated:compileDebugKotlin UP-TO-DATE
+> Task :react-native-reanimated:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-reanimated:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-reanimated:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-gesture-handler:compileDebugKotlin UP-TO-DATE
+> Task :react-native-gesture-handler:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-gesture-handler:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-gesture-handler:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-nitro-image:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-nitro-image:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-nitro-image:generateDebugResources UP-TO-DATE
+> Task :react-native-nitro-image:packageDebugResources UP-TO-DATE
+> Task :react-native-nitro-image:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-nitro-image:generateDebugRFile UP-TO-DATE
+> Task :react-native-nitro-image:compileDebugKotlin UP-TO-DATE
+> Task :react-native-nitro-image:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-nitro-image:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-nitro-image:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-nitro-web-image:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-nitro-web-image:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-nitro-web-image:generateDebugResources UP-TO-DATE
+> Task :react-native-nitro-web-image:packageDebugResources UP-TO-DATE
+> Task :react-native-nitro-web-image:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-nitro-web-image:generateDebugRFile UP-TO-DATE
+> Task :react-native-nitro-web-image:compileDebugKotlin UP-TO-DATE
+> Task :react-native-nitro-web-image:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-nitro-web-image:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-nitro-web-image:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-pager-view:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-pager-view:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-pager-view:generateDebugResources UP-TO-DATE
+> Task :react-native-pager-view:packageDebugResources UP-TO-DATE
+> Task :react-native-pager-view:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-pager-view:generateDebugRFile UP-TO-DATE
+> Task :react-native-pager-view:compileDebugKotlin UP-TO-DATE
+> Task :react-native-pager-view:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-pager-view:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-pager-view:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-screens:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-native-screens:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-screens:generateDebugResources UP-TO-DATE
+> Task :react-native-screens:packageDebugResources UP-TO-DATE
+> Task :react-native-screens:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-screens:generateDebugRFile UP-TO-DATE
+> Task :react-native-screens:compileDebugKotlin UP-TO-DATE
+> Task :react-native-screens:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-screens:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-screens:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-native-webgpu:generateDebugBuildConfig UP-TO-DATE
+> Task :react-native-webgpu:generateDebugResources UP-TO-DATE
+> Task :react-native-webgpu:packageDebugResources UP-TO-DATE
+> Task :react-native-webgpu:parseDebugLocalResources UP-TO-DATE
+> Task :react-native-webgpu:generateDebugRFile UP-TO-DATE
+> Task :react-native-webgpu:javaPreCompileDebug UP-TO-DATE
+> Task :react-native-webgpu:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-native-webgpu:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :react-navigation_native:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :react-navigation_native:generateDebugBuildConfig UP-TO-DATE
+> Task :react-navigation_native:generateDebugResources UP-TO-DATE
+> Task :react-navigation_native:packageDebugResources UP-TO-DATE
+> Task :react-navigation_native:parseDebugLocalResources UP-TO-DATE
+> Task :react-navigation_native:generateDebugRFile UP-TO-DATE
+> Task :react-navigation_native:compileDebugKotlin UP-TO-DATE
+> Task :react-navigation_native:javaPreCompileDebug UP-TO-DATE
+> Task :react-navigation_native:compileDebugJavaWithJavac UP-TO-DATE
+> Task :react-navigation_native:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :one:generateDebugAssets UP-TO-DATE
+> Task :one:mergeDebugAssets UP-TO-DATE
+> Task :op-engineering_op-sqlite:generateDebugAssets UP-TO-DATE
+> Task :op-engineering_op-sqlite:mergeDebugAssets UP-TO-DATE
+> Task :react-native-gesture-handler:generateDebugAssets UP-TO-DATE
+> Task :react-native-gesture-handler:mergeDebugAssets UP-TO-DATE
+> Task :react-native-nitro-image:generateDebugAssets UP-TO-DATE
+> Task :react-native-nitro-image:mergeDebugAssets UP-TO-DATE
+> Task :react-native-nitro-modules:generateDebugAssets UP-TO-DATE
+> Task :react-native-nitro-modules:mergeDebugAssets UP-TO-DATE
+> Task :react-native-nitro-web-image:generateDebugAssets UP-TO-DATE
+> Task :react-native-nitro-web-image:mergeDebugAssets UP-TO-DATE
+> Task :react-native-pager-view:generateDebugAssets UP-TO-DATE
+> Task :react-native-pager-view:mergeDebugAssets UP-TO-DATE
+> Task :react-native-reanimated:generateDebugAssets UP-TO-DATE
+> Task :react-native-reanimated:mergeDebugAssets UP-TO-DATE
+> Task :react-native-screens:generateDebugAssets UP-TO-DATE
+> Task :react-native-screens:mergeDebugAssets UP-TO-DATE
+> Task :react-native-webgpu:generateDebugAssets UP-TO-DATE
+> Task :react-native-webgpu:mergeDebugAssets UP-TO-DATE
+> Task :react-native-worklets:generateDebugAssets UP-TO-DATE
+> Task :react-native-worklets:mergeDebugAssets UP-TO-DATE
+> Task :react-navigation_native:generateDebugAssets UP-TO-DATE
+> Task :react-navigation_native:mergeDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:generateDebugGlobalSynthetics UP-TO-DATE
+> Task :op-engineering_op-sqlite:processDebugJavaRes UP-TO-DATE
+> Task :react-native-gesture-handler:processDebugJavaRes UP-TO-DATE
+> Task :react-native-nitro-image:processDebugJavaRes UP-TO-DATE
+> Task :react-native-nitro-modules:processDebugJavaRes UP-TO-DATE
+> Task :react-native-nitro-web-image:processDebugJavaRes UP-TO-DATE
+> Task :react-native-pager-view:processDebugJavaRes UP-TO-DATE
+> Task :react-native-reanimated:processDebugJavaRes UP-TO-DATE
+> Task :react-native-screens:processDebugJavaRes UP-TO-DATE
+> Task :react-native-webgpu:processDebugJavaRes NO-SOURCE
+> Task :react-native-worklets:processDebugJavaRes UP-TO-DATE
+> Task :react-navigation_native:processDebugJavaRes UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :op-engineering_op-sqlite:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-nitro-web-image:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-nitro-image:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-nitro-modules:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-navigation_native:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-gesture-handler:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-reanimated:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-screens:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-worklets:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-pager-view:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :react-native-webgpu:bundleLibRuntimeToDirDebug UP-TO-DATE
+> Task :one:writeDebugAarMetadata UP-TO-DATE
+> Task :op-engineering_op-sqlite:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-gesture-handler:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-nitro-image:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-nitro-modules:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-nitro-web-image:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-pager-view:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-reanimated:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-screens:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-webgpu:writeDebugAarMetadata UP-TO-DATE
+> Task :react-native-worklets:writeDebugAarMetadata UP-TO-DATE
+> Task :react-navigation_native:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :one:extractDeepLinksDebug UP-TO-DATE
+> Task :one:processDebugManifest UP-TO-DATE
+> Task :op-engineering_op-sqlite:extractDeepLinksDebug UP-TO-DATE
+> Task :op-engineering_op-sqlite:processDebugManifest UP-TO-DATE
+> Task :react-native-gesture-handler:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-gesture-handler:processDebugManifest UP-TO-DATE
+> Task :react-native-nitro-image:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-nitro-image:processDebugManifest UP-TO-DATE
+> Task :react-native-nitro-modules:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-nitro-modules:processDebugManifest UP-TO-DATE
+> Task :react-native-nitro-web-image:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-nitro-web-image:processDebugManifest UP-TO-DATE
+> Task :react-native-pager-view:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-pager-view:processDebugManifest UP-TO-DATE
+> Task :react-native-reanimated:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-reanimated:processDebugManifest UP-TO-DATE
+> Task :react-native-screens:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-screens:processDebugManifest UP-TO-DATE
+> Task :react-native-webgpu:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-webgpu:processDebugManifest UP-TO-DATE
+> Task :react-native-worklets:extractDeepLinksDebug UP-TO-DATE
+> Task :react-native-worklets:processDebugManifest UP-TO-DATE
+> Task :react-navigation_native:extractDeepLinksDebug UP-TO-DATE
+> Task :react-navigation_native:processDebugManifest UP-TO-DATE
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :one:mapDebugSourceSetPaths UP-TO-DATE
+> Task :one:compileDebugLibraryResources UP-TO-DATE
+> Task :op-engineering_op-sqlite:mapDebugSourceSetPaths UP-TO-DATE
+> Task :op-engineering_op-sqlite:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-gesture-handler:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-gesture-handler:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-nitro-image:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-nitro-image:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-nitro-modules:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-nitro-modules:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-nitro-web-image:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-nitro-web-image:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-pager-view:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-pager-view:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-reanimated:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-reanimated:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-screens:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-screens:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-webgpu:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-webgpu:compileDebugLibraryResources UP-TO-DATE
+> Task :react-native-worklets:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-native-worklets:compileDebugLibraryResources UP-TO-DATE
+> Task :react-navigation_native:mapDebugSourceSetPaths UP-TO-DATE
+> Task :react-navigation_native:compileDebugLibraryResources UP-TO-DATE
+> Task :op-engineering_op-sqlite:configureCMakeDebug[arm64-v8a]
+> Task :op-engineering_op-sqlite:generateJsonModelDebug
+> Task :op-engineering_op-sqlite:prefabDebugConfigurePackage UP-TO-DATE
+> Task :react-native-nitro-modules:configureCMakeDebug[arm64-v8a]
+> Task :react-native-nitro-modules:buildCMakeDebug[arm64-v8a]
+> Task :react-native-nitro-modules:externalNativeBuildDebug
+> Task :react-native-nitro-modules:generateJsonModelDebug
+> Task :react-native-nitro-modules:prefabDebugConfigurePackage
+> Task :react-native-nitro-image:configureCMakeDebug[arm64-v8a]
+> Task :react-native-nitro-modules:prefabDebugPackage UP-TO-DATE
+> Task :react-native-nitro-image:buildCMakeDebug[arm64-v8a]
+> Task :react-native-nitro-modules:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-nitro-modules:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-nitro-modules:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-nitro-image:externalNativeBuildDebug
+> Task :react-native-nitro-image:generateJsonModelDebug
+> Task :react-native-nitro-image:prefabDebugConfigurePackage
+> Task :react-native-worklets:configureCMakeDebug[arm64-v8a]
+> Task :react-native-worklets:buildCMakeDebug[arm64-v8a][worklets]
+> Task :react-native-worklets:externalNativeBuildDebug
+> Task :react-native-worklets:generateJsonModelDebug
+> Task :react-native-worklets:prefabDebugConfigurePackage
+> Task :react-native-reanimated:configureCMakeDebug[arm64-v8a]
+> Task :react-native-reanimated:generateJsonModelDebug
+> Task :react-native-reanimated:prefabDebugConfigurePackage UP-TO-DATE
+> Task :app:configureCMakeDebug[arm64-v8a]
+> Task :op-engineering_op-sqlite:buildCMakeDebug[arm64-v8a]
+> Task :op-engineering_op-sqlite:externalNativeBuildDebug
+> Task :op-engineering_op-sqlite:prefabDebugPackage UP-TO-DATE
+> Task :react-native-nitro-image:prefabDebugPackage UP-TO-DATE
+> Task :react-native-worklets:prefabDebugPackage UP-TO-DATE
+> Task :react-native-reanimated:buildCMakeDebug[arm64-v8a][reanimated]
+> Task :react-native-worklets:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-worklets:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-worklets:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-reanimated:externalNativeBuildDebug
+> Task :react-native-reanimated:prefabDebugPackage UP-TO-DATE
+> Task :app:buildCMakeDebug[arm64-v8a]
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :one:configureCMakeDebug[arm64-v8a]
+> Task :one:buildCMakeDebug[arm64-v8a]
+> Task :one:mergeDebugJniLibFolders UP-TO-DATE
+> Task :one:mergeDebugNativeLibs UP-TO-DATE
+> Task :one:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :op-engineering_op-sqlite:mergeDebugJniLibFolders UP-TO-DATE
+> Task :op-engineering_op-sqlite:mergeDebugNativeLibs UP-TO-DATE
+> Task :op-engineering_op-sqlite:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-gesture-handler:configureCMakeDebug[arm64-v8a]
+
+> Task :one:compileDebugKotlin
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/com/margelo/nitro/one/HybridOneProtectedStore.kt:110:46 'static field ACTION_CLOSE_SYSTEM_DIALOGS: String' is deprecated. Deprecated in Java.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/com/margelo/nitro/one/HybridOneProtectedStore.kt:117:30 'static field ACTION_CLOSE_SYSTEM_DIALOGS: String' is deprecated. Deprecated in Java.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/one/OneKotlinHostView.kt:148:42 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/one/OneKotlinHostView.kt:174:42 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt:1515:83 'val headlineColor: Color' is deprecated. Renamed to contentColor.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt:1516:93 'val leadingIconColor: Color' is deprecated. Renamed to leadingContentColor.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt:1517:95 'val trailingIconColor: Color' is deprecated. Renamed to trailingContentColor.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt:1518:95 'val supportingTextColor: Color' is deprecated. Renamed to supportingContentColor.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt:1519:91 'val overlineColor: Color' is deprecated. Renamed to overlineContentColor.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt:2566:71 'fun SemanticsPropertyReceiver.invisibleToUser(): Unit' is deprecated. Use `hideFromAccessibility()` instead.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeMenuTriggerManager.kt:62:25 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePagerManager.kt:91:25 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePagerManager.kt:174:32 The corresponding parameter in the supertype 'ViewGroupManager' is named 'parent'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePagerManager.kt:175:29 The corresponding parameter in the supertype 'ViewGroupManager' is named 'parent'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePagerManager.kt:176:26 The corresponding parameter in the supertype 'ViewGroupManager' is named 'parent'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePagerManager.kt:177:31 The corresponding parameter in the supertype 'ViewGroupManager' is named 'parent'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePagerManager.kt:182:33 The corresponding parameter in the supertype 'ViewGroupManager' is named 'parent'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:65:43 The corresponding parameter in the supertype 'ReactViewGroup' is named 'left'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:65:51 The corresponding parameter in the supertype 'ReactViewGroup' is named 'top'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:65:59 The corresponding parameter in the supertype 'ReactViewGroup' is named 'right'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:65:67 The corresponding parameter in the supertype 'ReactViewGroup' is named 'bottom'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:123:43 The corresponding parameter in the supertype 'ReactViewGroup' is named 'left'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:123:51 The corresponding parameter in the supertype 'ReactViewGroup' is named 'top'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:123:59 The corresponding parameter in the supertype 'ReactViewGroup' is named 'right'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativePortal.kt:123:67 The corresponding parameter in the supertype 'ReactViewGroup' is named 'bottom'. This may cause problems when calling this function with named arguments.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeReservedRegionsProviderManager.kt:38:27 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+w: file:///Users/n8/.worktrees/one-protected-store-implementation/node_modules/one/android/src/main/java/dev/onejs/onenative/OneNativeSafeAreaProviderManager.kt:33:33 'fun getEventDispatcherForReactTag(context: ReactContext, reactTag: Int): EventDispatcher?' is deprecated. reactTag is no longer needed.
+
+> Task :react-native-gesture-handler:buildCMakeDebug[arm64-v8a]
+> Task :one:compileDebugJavaWithJavac UP-TO-DATE
+> Task :one:processDebugJavaRes UP-TO-DATE
+> Task :app:processDebugManifestForPackage
+> Task :one:bundleLibRuntimeToDirDebug
+> Task :one:bundleLibCompileToJarDebug
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
+> Task :react-native-gesture-handler:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-gesture-handler:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-gesture-handler:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-nitro-image:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-nitro-image:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-nitro-image:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-nitro-web-image:configureCMakeDebug[arm64-v8a]
+> Task :react-native-nitro-web-image:buildCMakeDebug[arm64-v8a]
+> Task :react-native-nitro-web-image:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-nitro-web-image:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-nitro-web-image:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-pager-view:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-pager-view:mergeDebugNativeLibs NO-SOURCE
+> Task :react-native-pager-view:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-reanimated:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-reanimated:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-reanimated:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-screens:configureCMakeDebug[arm64-v8a]
+> Task :react-native-screens:buildCMakeDebug[arm64-v8a]
+> Task :react-native-screens:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-screens:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-screens:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-native-webgpu:configureCMakeDebug[arm64-v8a]
+> Task :react-native-webgpu:buildCMakeDebug[arm64-v8a]
+> Task :react-native-webgpu:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-native-webgpu:mergeDebugNativeLibs UP-TO-DATE
+> Task :react-native-webgpu:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :react-navigation_native:mergeDebugJniLibFolders UP-TO-DATE
+> Task :react-navigation_native:mergeDebugNativeLibs NO-SOURCE
+> Task :react-navigation_native:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:mergeLibDexDebug
+> Task :app:processDebugResources
+> Task :app:dexBuilderDebug UP-TO-DATE
+> Task :app:mergeProjectDexDebug UP-TO-DATE
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebug
+
+[Incubating] Problems report is available at: file:///Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 5s
+370 actionable tasks: 42 executed, 328 up-to-date

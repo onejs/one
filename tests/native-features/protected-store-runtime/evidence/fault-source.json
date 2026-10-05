@@ -1,0 +1,12 @@
+{
+  "productionSHA256": "4360b087511701f850747ff7f62ccbe519079bce6127341f2928d886eff97a92",
+  "faultVariantSHA256": "320a913ffdffe797a8d4f580f21d9a3d95d14c01cbc4c20d7408715ad8814dbe",
+  "output": "/Users/n8/.worktrees/one-protected-store-implementation/tests/native-features/android/protected-store-faults/com/margelo/nitro/one/HybridOneProtectedStore.kt",
+  "apkSHA256": "9d73d76dcda1e17f5b06590e274a31773714938097d8ef843a7ecaa08f55c586",
+  "variantScope": [
+    "death after native key generation",
+    "failure before atomic commit",
+    "real SDK success after owner retirement",
+    "same returned cipher and consumption/new-operation negative controls"
+  ]
+}

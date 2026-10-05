@@ -1,0 +1,5 @@
+{
+  "processAbsentAfterKeygen": true,
+  "pidofExitCode": 1,
+  "commandOutcome": "expected HTTP504 after injected process termination"
+}

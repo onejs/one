@@ -1,0 +1,2 @@
+{"event": "result", "id": "cancel-update", "outcome": "rejected", "code": "E_PROTECTED_STORE_CANCELLED", "message": "Error: ProtectedStore.updateItem: Authentication canceled", "elapsedMs": 2807}
+{"event": "result", "id": "destroy-update", "outcome": "rejected", "code": "E_PROTECTED_STORE_CANCELLED", "message": "Error: ProtectedStore.updateItem: activity was destroyed", "elapsedMs": 2290}

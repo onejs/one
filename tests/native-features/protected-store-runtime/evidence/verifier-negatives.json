@@ -1,0 +1,18 @@
+[
+  {
+    "control": "remove unauthenticated fresh-cipher rejection",
+    "exitCode": 1
+  },
+  {
+    "control": "weaken immutable timeout to 60",
+    "exitCode": 1
+  },
+  {
+    "control": "duplicate retirement result",
+    "exitCode": 1
+  },
+  {
+    "control": "restore exact retained receipts",
+    "exitCode": 0
+  }
+]

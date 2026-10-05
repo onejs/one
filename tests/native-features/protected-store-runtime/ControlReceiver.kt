@@ -34,8 +34,6 @@ class ControlReceiver : BroadcastReceiver() {
                     val activity = field(request, "activity") as android.app.Activity
                     savedRequest = request
                     savedEngine = engine
-                    val cipher = field(request, "cipher") as? javax.crypto.Cipher
-                    savedCipher = cipher
                     cls.getDeclaredMethod("onActivityDestroyed", android.app.Activity::class.java).invoke(engine, activity)
                     Log.i("ProtectedControl", "destroyed")
                 }
@@ -62,7 +60,6 @@ class ControlReceiver : BroadcastReceiver() {
     companion object {
         private var savedRequest: Any? = null
         private var savedEngine: Any? = null
-        private var savedCipher: javax.crypto.Cipher? = null
         private var savedResult: BiometricPrompt.AuthenticationResult? = null
         @JvmStatic fun capture(engine: Any, request: Any, result: BiometricPrompt.AuthenticationResult) {
             savedEngine = engine

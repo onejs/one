@@ -1,0 +1,2 @@
+{"event": "result", "id": "create-long", "outcome": "resolved", "elapsedMs": 62}
+{"event": "result", "id": "get-long", "outcome": "resolved", "elapsedMs": 3206, "valueSHA256": "d82cb2af70f34a9a1103481499e93c7ee227a952e6fd573dba7f735b85743fac"}
