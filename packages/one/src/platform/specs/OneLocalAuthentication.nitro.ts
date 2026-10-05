@@ -10,7 +10,7 @@ export interface LocalAuthenticationStatus {
 
 // the biometric policy of LocalAuthentication. a successful evaluation
 // resolves true; a user cancellation resolves false; other failures reject.
-export interface OneLocalAuthentication extends HybridObject<{ ios: 'swift' }> {
+export interface OneLocalAuthentication extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   canEvaluatePolicy(): LocalAuthenticationStatus
   evaluatePolicy(reason: string): Promise<boolean>
 }

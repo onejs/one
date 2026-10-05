@@ -124,6 +124,26 @@ module.exports = function withVxrn(config, options = {}) {
             return nextConfig
           },
         ],
+        [
+          withAndroidManifest,
+          (nextConfig) => {
+            const manifest = nextConfig.modResults.manifest
+            manifest['uses-permission'] ??= []
+            const names = [
+              'android.permission.ACCESS_COARSE_LOCATION',
+              'android.permission.ACCESS_FINE_LOCATION',
+            ]
+            if (location.background === true) {
+              names.push('android.permission.ACCESS_BACKGROUND_LOCATION')
+            }
+            for (const name of names) {
+              if (!manifest['uses-permission'].some((p) => p.$['android:name'] === name)) {
+                manifest['uses-permission'].push({ $: { 'android:name': name } })
+              }
+            }
+            return nextConfig
+          },
+        ],
       ]
   const audioPlugins = !audio
     ? []

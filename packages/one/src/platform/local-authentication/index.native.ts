@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -11,9 +10,6 @@ export type { LocalAuthenticationStatus }
 let hybrid: OneLocalAuthentication | undefined
 
 function native(): OneLocalAuthentication {
-  if (Platform.OS !== 'ios') {
-    throw new Error('LocalAuthentication requires an iOS native build')
-  }
   hybrid ??= NitroModules.createHybridObject<OneLocalAuthentication>('OneLocalAuthentication')
   return hybrid
 }
