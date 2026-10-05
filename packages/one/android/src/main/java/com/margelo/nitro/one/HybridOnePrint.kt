@@ -112,13 +112,16 @@ class HybridOnePrint : HybridOnePrintSpec(), LifecycleEventListener {
                 promise.reject(error("E_PRINT_PDF", "file is not a nonempty PDF"))
                 return@post
             }
-            if (currentActivity() == null) {
+            // PrintManager.print requires an activity service; the app
+            // context service throws "Can print only from an activity".
+            val activity = currentActivity()
+            if (activity == null) {
                 promise.reject(error("E_PRINT_PRESENTATION", "no foreground activity"))
                 return@post
             }
             pending = promise
             try {
-                val manager = context.getSystemService(Context.PRINT_SERVICE) as PrintManager
+                val manager = activity.getSystemService(PrintManager::class.java)
                 val name = jobName ?: file.nameWithoutExtension.ifEmpty { file.name }
                 val job = manager.print(name, PdfAdapter(context, file, pages), null)
                 if (job == null) {
