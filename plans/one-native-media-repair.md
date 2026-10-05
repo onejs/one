@@ -1,205 +1,230 @@
-# One Android media repair design (contract preserving)
+# One Android media repair design
 
-Status: proposal for p60786 preimplementation disposition. No native edits yet.
-Owner: r59607 on tm/beta-media-repair from candidate 25e516090.
-Scope: public One Android media only. No Contrast source, no Tamagui core,
-no new public API, no new error codes, no device run until admitted.
+Status: ready for p60786 bounded preimplementation disposition. Native mutation
+remains held. This is implementation delivery after clearance, not acceptance
+or an advisory closeout.
 
-Base: origin/tm/beta-android-media 25e516090 (impl 4f5eb7538 plus receipts).
-First layer: /Users/n8/.team-machine/handoffs/one-beta-recovery/media-first-layer-verdict.md
-(validator p61184). This design repairs every finding except S-AUDIO-1,
-which the source evidence contradicts (see audio section for the blocking choice).
+Owner: r59617, manager-authorized successor on tm/beta-media-repair. Inherited
+clean pushed proposal 429fd9218, based on candidate 25e516090 (implementation
+4f5eb7538 plus receipts). p61056 owns serialized beta integration, CI and canary.
+p61184 is the existing public first layer; p60786 is the sole substantive unit.
 
-## Ground truths read from source
+Scope: public One media source and explicitly assigned evidence. Existing
+signatures, codes and appearance. No private source, peer transcripts, extra
+review chain, native build or device campaign. Audio platform cause stays blocked.
 
-Calendar contract: OneCalendar.update(identifier, originalStartMs, changes)
-returns the edited occurrence. Docs say update returns the identifier and
-start time to use for later edits, and that occurrences of a recurring event
-share an identifier (apps/onestack.dev/data/native/calendar.mdx).
-Swift resolves (identifier, startMs) through EventKit and saves with span
-thisEvent, which keeps series identity and links a detached exception
-(packages/one/ios/Nitro/HybridOneCalendar.swift eventOccurrence and update).
+First layer:
+`/Users/n8/.team-machine/handoffs/one-beta-recovery/media-first-layer-verdict.md`.
+Read AGENTS and launch/realapps plans. docs/owner-decisions.md is absent in this
+branch and the primary checkout. No new owner product direction was supplied.
 
-Android today splits a recurring series around one occurrence
-(HybridOneCalendar.kt splitOutInstance): first run rewrites the original row
-in place, later runs insert as new rows, the edit goes in a detached row.
-After a split, (originalId, laterStartMs) misses (NOT_FOUND) and the series
-RRULE shape changes to shortened COUNT values. The fixture only exercises
-the first run kept id, so later run addressing is untested.
+## Source-grounded correction disposition
 
-Audio contract: docs say starting playback replaces the previous player
-(apps/onestack.dev/data/native/audio.mdx). Swift play guards only the
-recorder, then clears unconditionally (HybridOneAudio.swift play). Web play
-guards only recording, then clears (packages/one/src/platform/audio/index.ts).
-Android play matches both (HybridOneAudio.kt play). All three replace.
+RAN: independently read candidate and current HybridOneAudio.swift:94-105.
+`play` guards only the recorder, then calls clearPlayer unconditionally.
+The ended/failed cleanup followed by player-and-recorder busy checking belongs
+to startRecording:189-198. audio.mdx:7-8 explicitly specifies replacement;
+web audio/index.ts:199-222 replaces too. An active-player guard in either
+read Swift play body would refute this finding. S-AUDIO-1's claimed Swift
+premise is false. Proposed disposition: preserve replacement and recorder-busy
+parity; p60786 must dispose the finding before any play behavior mutation.
 
-Photo contract: Swift presentLimitedLibraryPicker requires limited status.
-Android proceeds on any read grant, which is coherent with the current echo
-where partial grants report authorized at every layer. MediaStore queries
-scope to visible rows automatically.
+RAN: read HybridOnePhotoLibrary.swift:659-668. requireAlbumAccess checks
+`.authorized`, not `.limited`; listAlbums and readableAlbum use that helper.
+The first-layer statement that Swift returns limited-library albums conflicts
+with the existing source. The assignment requests Android visible-subset
+album reads; p60786 must dispose that discrepancy. No iOS source change is
+proposed. The iOS fixture's limited-status assertion still needs restoration.
 
-## Calendar: stable ids, atomic batch, provider expansion
+RAN: read HybridOneCalendar.swift:125-187, 420-429 and 448-458. Swift resolves
+(identifier, startMs), saves `.thisEvent`, and returns info(event) with the
+identifier supplied by EventKit after save. Source alone does not prove that
+an edited detached EventKit occurrence retains the original identifier.
+calendar.mdx requires sibling occurrence addressing by the original identifier
+and the returned selected occurrence's identifier/start for later edits.
+Android must preserve those contracts, without documenting new ID semantics.
 
-Goal: after a single occurrence edit, the original identifier still addresses
-every surviving sibling, siblings stay complete, the write is atomic, and the
-provider owns recurrence expansion. No changed public id semantics.
+## Calendar: original identity, selected occurrence, atomic writes
 
-Mechanism: split origin tracking in the provider row itself.
+Current source failure: splitOutInstance rewrites the original row for the
+first surviving run, inserts later runs with new row IDs, then update calls
+insertDetached separately. findOccurrence filters only EVENT_ID equal to the
+public identifier. update/remove then write identifier.toLong(). A later
+sibling cannot be addressed by its original identifier after a split.
 
-1. When splitOutInstance creates runs, stamp every run row (the rewritten
-   original plus each new insert) with CUSTOM_APP_PACKAGE set to the app
-   package and CUSTOM_APP_URI set to `originalId|originalRrule`, where
-   originalId is the series identifier before the first split and originalRrule
-   is the exact RRULE string before the first split. New splits of already
-   split runs inherit the same ultimate origin, read from the row being split.
-   The detached exception row carries no stamp. Series never split carry none.
+Proposed design, subject to p60786 clearance:
 
-2. findOccurrence(identifier, startMs) keeps its direct query first. On a miss,
-   it queries Events rows whose CUSTOM_APP_PACKAGE matches and whose
-   CUSTOM_APP_URI starts with `identifier|`, then queries Instances for each
-   such row id at startMs. A hit returns the occurrence with the event
-   identifier remapped to the requested original identifier and the recurrence
-   remapped to the parsed original RRULE from the stamp. Errors stay
-   E_CALENDAR_NOT_FOUND, E_CALENDAR_INPUT, E_CALENDAR_SAVE, E_CALENDAR_DELETE.
+1. Keep public origin identity separate from internal provider row identity.
+   Occurrence retains the actual event row ID. update/remove write that ID
+   after lookup, never the parsed public alias. List projects original IDs
+   and original recurrence for surviving runs, including singleton runs.
+   Internal split decisions use the physical rule and exception state.
 
-3. list and queryInstances join the two CUSTOM_APP columns in eventRows. Rows
-   with a stamp return the original identifier and the parsed original
-   recurrence instead of the run row id and shortened rule. Unstamped rows
-   return as today. Sort order and paging stay unchanged.
+2. Store origin ID and exact original RRULE in app-owned provider metadata
+   on every surviving run. The selected detached row records origin and
+   exception state too. Resolve exact parsed origin plus start time; match
+   only the owned package, version and URI scheme. New splits inherit the
+   ultimate origin. A lookup must work even after the original physical row
+   is deleted. Never overwrite another app's existing custom metadata.
+   CUSTOM_APP_PACKAGE/CUSTOM_APP_URI are app-writable, but identify a custom
+   app experience, so this storage choice specifically needs review clearance.
+   Do not use sync-adapter-only SYNC_DATA columns or an external non-atomic map.
 
-4. The split write becomes one batch: the original row update plus every run
-   insert plus the detached insert (update path) go in a single
-   ContentProviderOperation list applied with applyBatch against the calendar
-   authority. Batch failure rejects with the existing E_CALENDAR_SAVE or
-   E_CALENDAR_DELETE and writes nothing, so no partial series survives.
-   The single row delete when no siblings remain stays a single call.
+3. Preserve selected-occurrence behavior: update returns the independently
+   re-read selected event, with its current start time, and later update/delete
+   must target it alone. Proposed projection uses the same public origin ID
+   for it and its siblings. The exception marker prevents splitting an edited
+   standalone row again. No linked ORIGINAL_ID exception is reintroduced,
+   since candidate receipts report that it suppressed sibling expansion.
+   Original-ID projection for the selected row is explicitly for p60786's
+   contract disposition, not an assertion about EventKit's detached ID.
 
-5. Run computation uses provider expansion instead of local calendar math.
-   splitOutInstance queries the Instances table for the series row id over the
-   range that covers every instance (COUNT and UNTIL bounds from the parsed
-   rule, or from DTSTART through one instance past the target for endless
-   series with an interval scaled window). The returned begins in order are
-   the run source. The target index is located within one second tolerance as
-   today. Keep runs are maximal consecutive index sequences excluding the
-   target. The existing MAX_EXPANSION guard stays. Local expandStarts is
-   removed once the provider query lands, so monthly day skip, yearly leap,
-   UNTIL bound, and DST behavior come from the provider.
+4. Assemble one ContentProviderOperation batch containing the original row
+   update or delete, all sibling run inserts and the selected detached insert.
+   Include the no-siblings update case: its current delete-then-insert path
+   must also be atomic. Require expected count 1 for original update/delete,
+   disallow yields and exception-allowed operations, and settle using the
+   existing verb's E_CALENDAR_SAVE or E_CALENDAR_DELETE. Use batch result URIs
+   internally, then re-read through public resolution. AOSP CalendarProvider's
+   SQLiteContentProvider wraps no-yield operations in one transaction and
+   marks success only after all apply. Installed-provider rollback is not
+   runtime-proven here.
 
-Narrow controls, existing shapes only: keep the daily interval 2 count 3
-listed proof, the daily count 3 sibling retention after update and after
-delete, and the daily endDateMs bounded proof exactly as they run today.
-Add one assertion to the same daily count 3 leg: after the middle update,
-(originalId, laterStartMs) resolves the later sibling through the public
-update path. No monthly 31st, yearly, UNTIL split, or DST matrix is added now.
-Those shapes stay unproven and held until device acceptance is admitted.
+5. Remove local expandStarts. Read actual Instances starts for the physical
+   series, with the provider-computed LAST_DATE bounding finite expansion.
+   Validate COUNT completeness rather than deriving its last date with local
+   recurrence arithmetic. For an endless series read through the target and
+   an actual following provider instance, leaving the trailing run unbounded.
+   Windows bound queries only; they never invent occurrence starts. Keep
+   MAX_EXPANSION and reject before writing if finite completeness or a needed
+   successor cannot be established within the bounds.
 
-Legacy limit: rows split before this repair carry no stamp. They keep their
-current re identified behavior until the user deletes them. New splits carry
-stamps from the first repair onward.
+6. Provider starts alone do not prove that restarting a run preserves its
+   recurrence phase. Validate the raw rule against the existing supported
+   FREQ/INTERVAL/COUNT/UNTIL grammar before re-emission; never silently drop
+   BYDAY/BYMONTH/RDATE/EXDATE on external events. Keep the exact original rule
+   for public projection. Monthly/yearly/DST and UNTIL split equivalence remain
+   unproven; do not expand acceptance or document a new supported subset.
 
-## Photo: user selected request and status, visible subset albums, fixture gate
+Rows already split by the candidate have no trustworthy origin stamp. Do not
+invent a migration from title/time matching or claim old IDs can be recovered.
 
-1. readPermissions on API 34 and later requests READ_MEDIA_IMAGES,
-   READ_MEDIA_VIDEO, and READ_MEDIA_VISUAL_USER_SELECTED together. API 33
-   keeps IMAGES and VIDEO. Below 33 keeps READ_EXTERNAL_STORAGE. Manifest
-   stamping in prebuildWithoutExpo and the expo plugin adds
-   READ_MEDIA_VISUAL_USER_SELECTED whenever photoLibrary.readWrite is set,
-   with the prebuild test extended to assert the stamp. No new permission
-   helper and no new status value.
+Existing bounded controls, only after supported acceptance is admitted: retain
+all current daily interval-2/count-3, middle-update/delete and endDateMs legs.
+Strengthen that same middle leg to address the later sibling by original ID,
+check sibling ID/recurrence retention, and edit/delete the returned selected
+occurrence without changing siblings. No new recurrence matrix or device run.
 
-2. readStatus keeps its order: full IMAGES plus VIDEO reads authorized, else
-   USER_SELECTED alone reads limited, else single medium reads limited. With
-   the request in place, a partial grant resolves to limited and a full grant
-   resolves to authorized. Code comments name this mapping. Docs drop the echo
-   paragraph and state that partial grants report limited and expose only the
-   selected set. presentLimitedLibraryPicker keeps its proceed on any read
-   grant gating, which stays a superset of the Swift limited requirement and
-   avoids rejecting partial users.
+## Photo: explicit selection permission and visible subset
 
-3. listAlbums, getAlbum, and listAlbumAssets move from requireFullAccess to
-   requireRead, so partial grants read the visible subset exactly like
-   listAssets and getAsset already do. Album queries need no other change
-   because MediaStore scopes them to visible rows. createAlbum keeps its
-   existing reject and the other collection edit no ops stay untouched.
+On API 34+ readPermissions requests IMAGES, VIDEO and VISUAL_USER_SELECTED
+together; API 33 keeps IMAGES/VIDEO, older releases READ_EXTERNAL_STORAGE.
+Both prebuild paths stamp USER_SELECTED under photoLibrary.readWrite; extend
+the existing permission-stamp test. No new helper, config or permission status.
 
-4. The photo fixture restores the iOS limited only assertion. The relaxed
-   accept of authorized or limited after the read request applies only when
-   Platform.OS is android. iOS requires limited. No other fixture leg changes.
+Keep full-images-and-video precedence over USER_SELECTED in readStatus, with
+partial and single-medium access mapped to limited. The official Android
+request avoids compatibility mode. INFERRED: this should correct the retained
+partial-grant echo, but the current receipt cannot establish repaired status.
+Comments/docs must describe the intended opt-in contract without claiming
+new runtime proof. Keep existing picker delta/cancel meaning and its current
+read-access gate pending supported acceptance of the repaired permission flow.
+Do not redesign the settings/re-request lifecycle in this correction.
 
-## Audio: keep replace, settle seeks, name floors honestly
+Subject to p60786's disposition of the Swift album discrepancy, change only
+listAlbums, getAlbum and listAlbumAssets to requireRead. Album names/assets/
+totals must all derive from currently visible MediaStore rows. createAlbum and
+unavailable collection edits keep their exact current behavior. No iOS album
+implementation mutation or claim of Swift permission parity.
 
-S-AUDIO-1 blocking choice: the verdict states Swift play clears only an
-ended or failed player then guards busy. The source shows the opposite. Swift
-play guards only the recorder and clears unconditionally
-(HybridOneAudio.swift play). Web play does the same
-(packages/one/src/platform/audio/index.ts play). Docs state that starting
-playback replaces the previous player. Android matches all three today.
-Changing Android play to reject E_AUDIO_BUSY on an active player would break
-documented replace semantics and cross platform parity, and matching parity
-would then require changing Swift, web, and docs as a public behavior change
-outside this bounded Android repair. Proposed disposition: keep replace on
-all three platforms, dispose S-AUDIO-1 as invalid for play, and leave
-startRecording busy handling untouched because Android already mirrors Swift
-there (clear ended or failed, then guard busy). Manager decision required
-before any play edit.
+Restore the strict iOS fixture: requestLimited accepts only limited on iOS.
+The existing authorized-or-limited relaxation stays Android-only until the
+repaired Android status is independently proved. No weaker iOS assertion.
 
-S-AUDIO-2 repair: track the pending seek promise with its generation. A new
-seek rejects the previous pending seek with the existing E_AUDIO_STATE
-message used everywhere for seek not ready. The completion listener settles
-only its own generation on the same player instance, else it rejects with
-E_AUDIO_STATE. clearPlayer and stop reject any pending seek with E_AUDIO_STATE
-instead of orphaning it. No new code and no listener leak.
+## Audio: exact busy/error contracts and seek ownership
 
-S-AUDIO-3 repair: keep the below API 24 pause and resume behavior as no op
-resolve with the actual recording status, which already reports recording
-rather than a false paused state. Name the floor honestly with explicit api
-24 comments in pauseRecording, resumeRecording, and the focus loss recorder
-pause branch. Docs gain one sentence that pause and resume need API 24 and
-that earlier releases keep recording with status recording. The existing
-E_AUDIO_FAILED for resume when not paused on API 24 and later stays because
-it mirrors Swift resume when record returns false. No behavior change and no
-new code.
+Preserve source-grounded recorder-busy and startRecording busy behavior, subject
+to S-AUDIO-1 disposition above. Do not introduce active-player E_AUDIO_BUSY
+against the existing replacement contract.
 
-Audio device proof stays blocked. The Pro64 unchanged audio run failed before
-any audio criterion passed, reproducing the host failure signature without
-proving a media cause. No boot, build, wipe, HAL, renderer, or new runtime
-campaign is proposed here.
+S-AUDIO-2: retain explicit pending seek ownership and settle superseded public
+promises immediately with existing E_AUDIO_STATE and
+`Audio.seek: the audio operation is not ready`. MediaPlayer has one listener;
+its completion callback contains no request ID. A new generation closure alone
+cannot distinguish an older physical completion routed to a replacement listener.
+Serialize physical seeks: at most one active target and one latest queued target.
+Reject the superseded promise, let its active callback retire, then launch the
+latest queued physical seek. Clear ownership before settlement. Matching player
+identity and owned operation must prevent old callbacks settling a successor.
+stop/clearPlayer/teardown/playback failure reject all unsettled promises and
+release listener ownership; catch paths retire ownership too. No new error code.
 
-## Contacts
+RAN: Kotlin seek:277-307 replaces the listener, then the stale-generation branch
+can return without settlement. clearPlayer:779-804 increments generation and
+removes the listener without retaining a seek promise to reject. An explicit
+pending-promise settlement in those paths would refute the finding. No executed
+Audio failure/control or device success is claimed.
 
-No change. The first layer passes Contacts pending final: batched atomic CRUD,
-picker null on cancel, never limited status, whole search limit, label
-defaults, and the existing code ladder all read sound.
+S-AUDIO-3: RAN Kotlin pauseRecording/resumeRecording:386-437 already resolve
+actual recordingStatus below API 24. They do not reject with the floor errors
+claimed by first layer. Missing recorder remains E_AUDIO_STATE; actual operation
+failure keeps existing messages/codes. Add floor comments/docs only: API 23
+continues recording; pause/resume requires API 24. Do not claim identical
+pre-24 interruption pausing. No error renaming or fabricated paused status.
 
-## Bounded file list
+Audio runtime remains blocked on the existing two-host platform failure. No
+boot/build/wipe/reset/HAL/GPU/shared-service/foreign-QEMU campaign is authorized.
 
-- packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneCalendar.kt
-- packages/one/android/src/main/java/com/margelo/nitro/one/HybridOnePhotoLibrary.kt
-- packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneAudio.kt
-- packages/one/src/platform/specs unchanged (android kotlin already annotated)
-- packages/vxrn/src/exports/prebuildWithoutExpo.ts and expo-plugin.cjs
-  (USER_SELECTED stamp only)
-- packages/vxrn/src/exports/prebuildWithoutExpo.test.ts (stamp assertion only)
-- tests/native-features/fixtures/one-native-photo-library.tsx (gate only)
-- tests/native-features/fixtures/one-native-calendar.tsx (one stable id
-  assertion on the existing daily leg, added with the implementation)
-- apps/onestack.dev/data/native/calendar.mdx, photo-library.mdx, audio.mdx
-  (correction paragraphs only, no new API text)
-- this plan file
+## Retained failure and control evidence
 
-No nitrogen regen (specs untouched), no bridge file moves, no generated
-binding edits, no Contrast reads.
+RAN: parsed the candidate's checked-in XML with Python ElementTree.
+calendar-final.xml reports siblingsKeptAfterUpdate=true,
+siblingsKeptAfterDelete=true and middleRemoved=true. Its fixture deletes the
+original first sibling, then re-lists to find the later remnant. It never edits
+that later sibling by original ID. These controls prove neither repaired aliasing
+nor rollback. Current split uses separate resolver writes; the no-siblings
+update deletes before selected insertion. A covering transaction would refute
+that source atomicity finding.
 
-## Validation
+RAN: photo-limited-ready.xml reports permission=authorized and visible=2;
+photo-limited-final.xml reports added=1 and strict=true. They are retained
+candidate self-assertions, not new device runs. They do not prove USER_SELECTED
+opt-in status or partial album access. requestLimited:518-523 currently accepts
+authorized on iOS too, so an iOS authorized result cannot fail its current gate.
 
-Static now, without device: prebuildWithoutExpo test file passes,
-packages/one typecheck passes, generate check shows only the inherited
-portal drift already recorded for this branch family, and the Kotlin files
-compile only if a later authorized build admits one. No timeout increase,
-retry, skip, or weaker assertion.
+Public platform grounding:
+[Selected Photos Access](https://developer.android.com/about/versions/14/changes/partial-photo-video-access)
+specifies the three-permission request and compatibility-mode distinction.
+[Events columns](https://developer.android.com/reference/android/provider/CalendarContract.Events)
+permits app writes to CUSTOM_APP fields and exposes LAST_DATE.
+[AOSP transaction implementation](https://android.googlesource.com/platform/packages/providers/CalendarProvider/+/refs/heads/main/src/com/android/providers/calendar/SQLiteContentProvider.java)
+commits all operations only after success, with optional yield points. These
+sources support the proposal; they do not establish installed-provider behavior.
 
-Device later, when a supported acceptance is admitted: rerun the existing
-calendar daily legs plus the one new stable id assertion, the existing photo
-limited and album legs under a partial grant, and the existing audio fixture
-only after the platform cause is owned. No new matrix and no invented stress
-campaign.
+## Bounded files, cost and validation
+
+- HybridOneCalendar.kt, HybridOnePhotoLibrary.kt and HybridOneAudio.kt only.
+- packages/vxrn/src/exports/prebuildWithoutExpo.ts, its test and expo-plugin.cjs
+  for USER_SELECTED stamping only.
+- Existing calendar and photo fixture legs described above.
+- Existing calendar/photo/audio doc correction paragraphs and this plan.
+
+Specs, bridges, generated bindings, Contacts and unavailable contracts stay
+untouched. Origin mapping reuses eventRows and keeps paging before projection.
+Origin lookup must query a package-scoped candidate set, avoiding a whole-store
+scan per occurrence. Split memory stays capped; seek ownership is constant-size
+on the current main thread. Photo reuses its worker/MediaStore queries. No
+performance measurement is claimed.
+
+Planned after native clearance: existing prebuild test, One typecheck and
+codegen check. Kotlin compile requires separately admitted existing acceptance.
+The inherited proposal's static pass claims were not runs by this owner and
+are removed. No retry, weakened assertion, new probe campaign or matrix.
+
+Actual validation for this proposal: source method reads, retained XML parse,
+and git diff --check. No implementation test or Kotlin/runtime acceptance.
+
+Blocker owner: p60786, routed by manager p61056. Required disposition covers
+Calendar metadata/selected identity, Photo's contradictory Swift album premise,
+and Audio's contradictory play-busy premise. Native source mutations wait for
+explicit bounded clearance; delivery task remains open.
