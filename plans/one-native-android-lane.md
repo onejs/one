@@ -521,3 +521,34 @@ library + APK build; runtime proof is a focused Android 37 emulator
 suite driving the existing fixtures with baseline (unavailable
 contract observed pre-change is already recorded in the proposal),
 positive, negative, and lifetime controls per service.
+
+## Beta recovery landing: Android system services (2026-10-05)
+
+Landed on `v2-beta` as `196da0e3e` (tip; branch range from prior tip
+`7c678c79b`). Contents: Android Kotlin implementations for Device,
+KeepAwake, ScreenOrientation, Share, Print, QuickActions, AppIcon,
+Location (with prebuild permission stamping), MapServices (Geocoder
+search split, other methods keep unavailable contract),
+LocalAuthentication (biometric), and ScreenCapture; spec widening to
+`android: 'kotlin'`; `index.android.ts` deletions (MapServices keeps its
+split); iOS-guard removals with validation and error strings unchanged;
+Android conformance suites; doc pages and `platform-support.mdx` rows;
+plus validation-found regenerations (stale ScreenCapture types,
+COVERAGE.md snapshot, Toggle types/docs left stale by `e5cd3d60a`).
+
+Validation (RAN): public API gate passed, no new `One.*` export and no
+public signature change; `bun run generate:check`, `bun run typecheck`,
+and the full `packages/one` vitest suite (1528 passed, 56 skipped) green
+on the landed tree; `:one:assembleDebug` green with `one-debug.aar`,
+branch Kotlin classes, and per-ABI `libOne.so` verified (Kotlin content
+byte-identical to the validated pre-rebase tree; the rebase added only
+the Toggle commit, a plans-only commit, and generated Toggle types/docs).
+The `:app:assembleDebug` failure is the pre-existing duplicate
+ProtectedStore evidence fixture, identical from v2-beta inputs, so it is
+not a regression of either branch; a scoped probe APK built green with
+one duplicate copy removed from the ignored generated tree.
+
+Device runtime proof still open: no post-land Android emulator pass is
+recorded on the landed tree. Still needed are the focused Android 37
+emulator suites for the 11 landed services (positive, negative, and
+lifetime controls per the runtime proof plan above).
