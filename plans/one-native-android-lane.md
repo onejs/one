@@ -51,3 +51,285 @@ Owner: android-lane (r46336). Active on `v2-beta`. Android is lower priority tha
 - The exact Android source and public JS boundary agree; senders and receivers are updated together.
 - A real Android emulator shows the new behavior and a negative control that would fail without the change.
 - The narrowest type/build check passes. Sync with `origin/v2-beta`, commit narrowly, and push `HEAD:v2-beta` without publishing a package.
+
+## Beta recovery proposal: Android system services (2026-10-04)
+
+Status: proposal only. No native change lands before the assigned proposal
+disposition (first-layer p61184, then substantive p60786, integration by
+manager p61056). Scope is exactly the 12 existing services below; no Air32,
+no main/stable, no new public API, no unrelated service work.
+
+Scope: Device, KeepAwake, ScreenOrientation, ScreenCapture, Share, Print,
+QuickActions, AppIcon, Location, MapServices, LocalAuthentication,
+ProtectedStore. Lane branch `tm/beta-android-system`, base `origin/v2-beta`;
+`nitro.json` registration stays in this branch for manager-serialized
+integration. Task `t-muu8ms26-161y0`.
+
+### Ground truth read (RAN)
+
+- All 12 specs under `packages/one/src/platform/specs/One*.nitro.ts`
+  (iOS-only `HybridObject<{ ios: 'swift' }>`), all 12 `index.native.ts`
+  wrappers (iOS guard + `NitroModules.createHybridObject`), all 12
+  `unavailable.ts` contracts, and all 12 `index.android.ts` stubs (each is
+  one line: `export * from './unavailable'`).
+- All 12 Swift implementations under `packages/one/ios/Nitro/HybridOne*.swift`
+  (1695 lines total), including error codes, plus `OneQuickActionsLaunch.mm`.
+- Landed Kotlin patterns: `HybridOneBrowser.kt` (activity via
+  `NitroModules.applicationContext?.currentActivity`, `ActivityEventListener`,
+  `LifecycleEventListener`, `startActivityForResult`), `HybridOneSecureStore.kt`
+  (AndroidKeyStore AES-256-GCM + SharedPreferences, `Promise.async`,
+  `OneNativeError(code, message)`), `HybridOneNotifications.kt`
+  (`PermissionListener`, main-thread handler). `OneNativeError` prints as
+  exactly `<code>: <message>`; JS `rethrowNativeError` restores `code`.
+- `packages/one/nitro.json` (12 services iOS-only), library
+  `AndroidManifest.xml` (only `ACCESS_NETWORK_STATE`, sensor, Custom Tabs
+  queries, FileProvider), `build.gradle` (minSdk 23, compile/target 35,
+  no biometric/maps/push deps unconditionally), `nativeError.ts`.
+- Conventions `plans/one-native-api-conventions.md` section 6: the library
+  manifest declares no permission except Android normal (install-time);
+  dangerous permissions are stamped into the app manifest from `native.app`.
+  Prebuild stamping precedent: `prebuildWithoutExpo.ts` stamps CAMERA,
+  RECORD_AUDIO, and notification permissions/receivers from `native.app` keys.
+  `native.app.location.whenInUse` exists but stamps iOS only today.
+- `platform-support.mdx`, the 12 doc pages under `apps/onestack.dev/data/native/`
+  (each states Android unavailability today), drift suite
+  `packages/one/tests/nativeDocs.test.ts`, SSR suite
+  `packages/one/tests/unavailableServices.test.ts` +
+  `fixtures/one-unavailable-services.ts` (62+ checks against the web/SSR
+  entry, untouched by Android work), and the adb conformance runner
+  `tests/native-features/scripts/one-native-conformance.android.ts`.
+- SDK stubs in `~/Library/Android/sdk/platforms`: ShortcutManager,
+  PrintManager, Geocoder, LocationManager, BiometricManager, and PixelCopy
+  exist in android-31 through android-37.0. `DETECT_SCREEN_CAPTURE`,
+  `DETECT_SCREEN_RECORDING`, and `Activity.registerScreenCaptureCallback`
+  are absent in android-31 and present in android-36+, so ScreenCapture
+  state detection needs a runtime API gate above minSdk 23.
+- Fixtures already exist for all 12 services under
+  `tests/native-features/fixtures/one-native-*.tsx`; no new fixture file is
+  proposed, only Android legs driving them.
+
+### WIP e43a2b4dd assessment (r58412, registration only)
+
+Reusable direction, not landable as is:
+
+- Reusable: per-service `nitro.json` android entries
+  (`HybridOne<Name>`, kotlin) for exactly the 12 in-scope services;
+  spec widening to `{ ios: 'swift'; android: 'kotlin' }`; guard removal in
+  `index.native.ts`; `androidx.biometric:biometric:1.1.0` dependency.
+- Missing: all 12 Kotlin implementations, nitrogen regeneration
+  (`packages/one/nitrogen/generated` untouched), Location prebuild stamping
+  (dangerous permissions cannot ride the library manifest), QuickActions
+  launch-intent capture, AppIcon alias mechanism, fixture legs, docs and
+  `platform-support.mdx` updates, and every runtime proof.
+- Wrong: `nitro.json` is fully reformatted (382 changed lines for 12
+  entries); the implementation redoes it as 12 minimal hunks to avoid
+  clobbering the peer media lane's entries at manager integration. And
+  guard removal alone changes nothing on Android: Metro resolves
+  `index.android.ts` (unavailable) ahead of `index.native.ts`, so each
+  service's `index.android.ts` must be deleted (the landed Browser pattern:
+  no `index.android.ts`, `index.native.ts` serves both platforms). No test
+  references `index.android.ts`, so deletion breaks no suite.
+- Unverified: whether `DETECT_SCREEN_CAPTURE` / `DETECT_SCREEN_RECORDING`
+  are normal (library manifest allowed) or require prebuild stamping; verify
+  via `PackageManager.getPermissionInfo().protectionLevel` on the build host
+  before choosing. The exact introduction API level (32-36) is also pinned
+  there; below it `getState` returns `unspecified` with silent listeners.
+
+### Shared implementation plan
+
+Per service, in this order: spec widening, `bun run nitrogen` in
+`packages/one`, minimal `nitro.json` android hunk, one
+`HybridOne<Name>.kt` under `packages/one/android/src/main/java/com/margelo/nitro/one/`,
+delete `index.android.ts`, remove the iOS guard in `index.native.ts`
+(keeping every validation call and error string byte-identical), fixture
+leg, doc page + `platform-support.mdx` row, drift suite green, SSR suite
+green. Compile evidence is a real Gradle/Kotlin build of the library plus
+the APK assembly the conformance leg installs, never the TS registration.
+
+Error-code rule: mirror the Swift `E_<NAMESPACE>_<REASON>` codes below so
+callers branch on `code` identically on both platforms. User refusal always
+resolves (conventions table), never rejects.
+
+Prebuild additions (all behind existing `native.app` shapes where one
+exists): stamp `ACCESS_COARSE_LOCATION` + `ACCESS_FINE_LOCATION` from
+`app.location`, and `ACCESS_BACKGROUND_LOCATION` when
+`app.location.background` is set. No other new permission is proposed;
+biometric and screen-detect permissions ride the library manifest only if
+verified normal, else they join the same stamping with reviewer approval.
+
+### Per-service plan
+
+Device (`getInfo`, `getLocalizationInfo`). Swift: UIDevice/Locale/TimeZone,
+`isSimulator` via targetEnvironment, `vendorIdentifier` vendor-scoped.
+Android: `Build.MODEL`, `Build.VERSION.RELEASE`, `Locale.getDefault`,
+`TimeZone.getDefault`, `isSimulator` from `Build.FINGERPRINT` emulator
+markers, vendor identifier from `Settings.Secure.ANDROID_ID` (documented as
+app-signing-key scoped, not a hardware id). Baseline: empty strings/zero
+offset today. Negative: emulator reports `isSimulator true` while a
+userdebug guid check stays absent; `ANDROID_ID` differs per signing key, no
+hardware id is claimed.
+
+KeepAwake (`isEnabled`, `setEnabled`). Swift: `isIdleTimerDisabled`.
+Android: `FLAG_KEEP_SCREEN_ON` on the foreground activity window, main
+thread, same TS boolean assertion. Baseline: always `false`, set resolves
+without effect. Negative: flag cleared on activity recreation is re-applied
+from held state and `isEnabled` still reports true; backgrounded app rejects
+or reports honestly, never claims the flag while no activity exists.
+
+ScreenOrientation (`getOrientation`, `lock`, `unlock`, `addChangeListener`).
+Swift: scene geometry + `requestGeometryUpdate`, errors
+`E_SCREEN_ORIENTATION_{SCENE,UNSUPPORTED,TIMEOUT}`, 10s timeout, change
+listeners on real rotation only. Android: `activity.requestedOrientation`
+mapping portrait/portraitUpsideDown/landscapeLeft/landscapeRight/landscape,
+current value from `Display.rotation` + configuration, listener via
+`OrientationEventListener` filtered to the five values. No manifest change.
+Baseline: always `unknown`, locks resolve `unknown`. Negatives: lock to an
+orientation the manifest forbids rejects `E_SCREEN_ORIENTATION_UNSUPPORTED`;
+listener remover stops delivery; rotation without lock still notifies.
+
+ScreenCapture (`getState`, `captureWindow`, `captureView`,
+`addStateListener`, `addScreenshotListener`). Swift: trait capture state,
+window/view PNG render to caches with uri/width/height/size, errors
+`E_SCREEN_CAPTURE_{SCENE,INPUT,VIEW,RENDER,ENCODE,FILE}`, screenshot
+notification with timestamp. Android: state via
+`registerScreenCaptureCallback` gated above its introduction level (else
+`unspecified`); capture via PixelCopy (API 26+, else honest rejection)
+writing PNG under the app cache through the existing FileProvider paths;
+screenshot signal via MediaStore content observer; `captureView` resolves
+the react tag to a mounted view (no existing resolver in the tree; unknown
+or unmounted tag rejects `E_SCREEN_CAPTURE_VIEW`). Baselines: `unspecified`
+state, captures reject `needs an iOS or Android build`. Negatives: unknown
+view tag, zero-area view, below-gate API level.
+
+Share (`share`). Swift: non-empty items, text/url/file validation, busy and
+presentation guards, `{ completed, activityType }`, errors
+`E_SHARE_{ITEMS,URL,FILE,BUSY,PRESENTATION,FAILED}`. Android:
+`ACTION_SEND`/`ACTION_SEND_MULTIPLE` chooser with FileProvider URIs for
+files, a chooser IntentSender recording the chosen component as
+`activityType`; `completed` is true only when a target was chosen, false on
+dismiss (cancellation resolves, never rejects). Baseline: rejects
+`needs an iOS or Android build`. Negatives: empty items, blank text,
+non-absolute URL, missing file, second share while one is open.
+
+Print (`isAvailable`, `printPdf`). Swift: `isPrintingAvailable`, local
+file:// PDF with pages, busy/presentation guards, errors
+`E_PRINT_{BUSY,INPUT,UNAVAILABLE,URI,FILE,PDF,PRESENTATION,FAILED}`.
+Android: `PrintManager` + a `PrintDocumentAdapter` rasterizing the PDF via
+platform `PdfRenderer`; `isAvailable` false when no print service handles
+the job. Baseline: `isAvailable false`, print rejects. Negatives: missing
+file, non-PDF bytes, empty jobName, print while another job is pending.
+
+QuickActions (`setItems`, `getItems`, `getInitialAction`,
+`clearInitialAction`, `addListener`). Swift: shortcut items with unique
+non-empty id/title, coordinator fed by `OneQuickActionsLaunch.mm` swizzle,
+`E_QUICK_ACTIONS_INPUT`. Android: dynamic `ShortcutManager` shortcuts whose
+intents relaunch the activity with the action id; Kotlin
+`ActivityEventListener.onNewIntent` + launch-intent harvest feed an
+in-hybrid coordinator mirroring the Swift one (cold start sets the initial
+action, warm start notifies listeners). No manifest change. Baselines:
+`getItems []`, `getInitialAction null`, set resolves without effect.
+Negatives: duplicate/blank ids rejected in TS identically on both
+platforms; cold start via `adb shell cmd shortcut` reports the id once,
+then `clearInitialAction` nulls it; warm tap notifies listeners, not the
+initial slot.
+
+AppIcon (`isSupported`, `getCurrentName`, `setIcon`). Swift:
+`supportsAlternateIcons`, Info.plist lookup, active/busy guards, errors
+`E_APP_ICON_{INPUT,UNAVAILABLE,INACTIVE,BUSY,CHANGE}`. Android:
+`PackageManager.setComponentEnabledSetting` over manifest `activity-alias`
+entries; `isSupported` true only when at least one alias exists;
+`getCurrentName` from the enabled alias; unknown name rejects
+`E_APP_ICON_INPUT`, no aliases rejects `E_APP_ICON_UNAVAILABLE`. The alias
+set lives in the app manifest. Open decision for reviewers: stamp aliases
+from a new `native.app.android.alternateIcons` mirroring
+`ios.alternateIcons`, or document manual manifest aliases with
+`isSupported false` otherwise. No stamping is implemented before that call.
+Baselines: `isSupported false`, `setIcon` resolves without effect.
+Negative: unknown name rejects; concurrent set rejects busy.
+
+Location (`getPermissionStatus`, `requestWhenInUsePermission`,
+`getCurrentPosition`, `watchPosition`, `geocodeAddress`, `reverseGeocode`).
+Swift: CoreLocation statuses, manifest usage guard
+(`E_LOCATION_MANIFEST`), active-app guard, 30s recent-position rule,
+`E_LOCATION_{PERMISSION,BACKGROUND,UNAVAILABLE,GEOCODE}`, empty geocode on
+no result, `-1`/`0` unavailable fields. Android: platform
+`LocationManager` only (no Play Fused provider, per lane constraint) with
+`PermissionListener` runtime prompt mirroring the Notifications pattern;
+status maps granted/denied/notDetermined onto the five spec values
+(`always` only with background grant); geocoding via platform `Geocoder`
+with `isPresent` gate; background watch requires `app.location.background`
+else `E_LOCATION_MANIFEST`. Baselines: status `denied`, position rejects,
+geocodes return `[]`, watch remover is inert. Negatives: denied permission,
+revoked mid-watch (listeners get `E_LOCATION_PERMISSION`), invalid
+coordinate, blank address, background watch without the manifest flag.
+
+MapServices (`search`, `autocomplete`, `resolveSuggestion`, `directions`).
+Swift: MapKit search/completer/directions, `E_MAP_{INPUT,SEARCH,
+AUTOCOMPLETE,CANCELED,TIMEOUT,DIRECTIONS}`, radius 100-50000m, superseded
+autocomplete rejects its predecessor. Android has no platform autocomplete
+or directions service (Play SDK is out of lane scope). Proposed honest
+split: `search` via platform `Geocoder.getFromLocationName` bounded by the
+same radius validation; `autocomplete`, `resolveSuggestion`, and
+`directions` keep the existing per-method unavailable contract (empty
+results where the contract returns `[]`, rejection with
+`needs an iOS or Android build` where it rejects), implemented in Kotlin so
+the failure is explicit, never fake. Open decision for reviewers: accept
+this per-method split, or hold all of MapServices unavailable on Android.
+Baselines: `search`/`autocomplete` `[]`, resolve/directions reject.
+Negatives: blank query, out-of-range radius, unknown suggestion id,
+coordinates beyond +-90/180.
+
+LocalAuthentication (`canEvaluatePolicy`, `evaluatePolicy`). Swift:
+biometrics-only policy, `E_LOCAL_AUTH_{REASON,MANIFEST,LOCKOUT,
+NOT_ENROLLED,PASSCODE_NOT_SET,FAILED}`, cancellation resolves false.
+Android: `androidx.biometric` prompt; `canEvaluatePolicy` from
+`BiometricManager.canAuthenticate`; reason required; cancellation resolves
+false. `LocalBiometryType` is iOS-flavored; proposed mapping from system
+features (fingerprint to `touchID`, face to `faceID`, none enrolled to
+`none`) is documented on the doc page. Open decision for reviewers if they
+prefer `none` whenever the kind cannot be proven. Baseline: unavailable
+with `biometryType none`, evaluate rejects. Negatives: blank reason,
+no enrolled biometrics, user cancel resolves false, lockout rejects.
+
+ProtectedStore (`createItem`, `getItem`, `updateItem`, `deleteItem`). Swift:
+keychain access control fixed at create, policy label check
+(`E_PROTECTED_STORE_POLICY`), duplicate/missing/cancelled/auth/input/
+manifest failures, `getItem` null when missing. Android: per-key
+AndroidKeyStore AES-GCM keys with `setUserAuthenticationRequired(true)`
+(`userPresence` allows device credential, `biometryCurrentSet` is
+biometric-only with invalidation on new enrollment), ciphertext + policy
+label in private preferences following the `HybridOneSecureStore.kt`
+structure, every read/change gated by a BiometricPrompt carrying `reason`.
+`getItem` returns null when the key is missing; policy mismatch rejects;
+cancellation rejects `E_PROTECTED_STORE_CANCELLED`. Baseline: every method
+rejects. Negatives: duplicate create, missing-key update, wrong-policy
+read, blank key/reason, cancel mid-prompt, enrollment change invalidating a
+`biometryCurrentSet` key.
+
+### Runtime proof plan
+
+Proof host is a claimed Android 37 emulator via the shared builder
+(`bun heavy`, existing AVD claim, no duplicate builders), coordinated with
+the manager against the media lane. Each service leg extends the existing
+conformance runner with a focused suite driving its existing fixture:
+baseline run first (unavailable contract observed), then the repaired run.
+Every leg keeps a negative control that fails if the Kotlin is stubbed
+(denied/revoked permission, cancelled prompt, unknown id/tag, duplicate
+create, missing file, busy re-entry, activity recreation). Compile evidence
+is the real `./gradlew` library + APK build log; TS registration alone
+proves nothing. Drift (`nativeDocs.test.ts`) and SSR
+(`unavailableServices.test.ts`) suites stay green; doc pages and
+`platform-support.mdx` are updated in the same change.
+
+### Open decisions (need reviewer call before implementation)
+
+1. AppIcon Android alias source: new `native.app.android.alternateIcons`
+   stamping vs documented manual manifest aliases.
+2. MapServices Android split: Geocoder-backed `search` with per-method
+   unavailable autocomplete/resolve/directions vs holding the whole service.
+3. LocalAuthentication `biometryType` mapping: feature-derived kind vs
+   `none` unless provable.
+4. ScreenCapture detect-permission placement: library manifest if verified
+   normal, else prebuild stamping (new `native.app` key).
+5. Share `completed` semantics: true-on-target-chosen (proposed) vs always
+   false on Android.
