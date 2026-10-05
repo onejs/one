@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 import {
   editedVideoBase64,
@@ -46,6 +46,7 @@ export default function OneNativePhotoLibrary() {
   const [videoEditResult, setVideoEditResult] = useState('none')
   const [limitedResult, setLimitedResult] = useState('none')
   const [albumResult, setAlbumResult] = useState('none')
+  const [unavailableResult, setUnavailableResult] = useState('none')
   const [savedIds, setSavedIds] = useState<string[]>([])
 
   async function run() {
@@ -547,7 +548,8 @@ export default function OneNativePhotoLibrary() {
         `added=${added.length}; expanded=${after.totalCount > before.totalCount}; ` +
           `unchanged=${after.totalCount === before.totalCount}; readable=${readable}; preserved=${preserved}; ` +
           `distinct=${new Set(added).size === added.length}; ` +
-          `saved=${added.length > 0 && added.every((identifier) => savedIds.includes(identifier))}`
+          `saved=${added.length > 0 && added.every((identifier) => savedIds.includes(identifier))}; ` +
+          `strict=${added.length > 0 && added.length < after.totalCount}`
       )
       setStatus('limited-passed')
     } catch (error) {
@@ -639,6 +641,56 @@ export default function OneNativePhotoLibrary() {
     } catch (error) {
       setStatus(
         `album-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`
+      )
+    }
+  }
+
+  // Android-only: the 8 collection/edit methods without a MediaStore
+  // equivalent keep the exact unavailable contract.
+  async function unavailable() {
+    setStatus('unavailable-checking')
+    try {
+      const [imageId, videoId] = savedIds
+      if (!imageId || !videoId) throw new Error('save the proof assets first')
+      let createAlbum = ''
+      try {
+        await One.PhotoLibrary.createAlbum('Nope')
+      } catch (error) {
+        createAlbum = error instanceof Error ? error.message : String(error)
+      }
+      await One.PhotoLibrary.renameAlbum('bucket:1', 'Nope')
+      await One.PhotoLibrary.addAssetToAlbum('bucket:1', imageId)
+      await One.PhotoLibrary.removeAssetFromAlbum('bucket:1', imageId)
+      await One.PhotoLibrary.deleteAlbum('bucket:1')
+      await One.PhotoLibrary.replaceImageContent(imageId, imageId)
+      await One.PhotoLibrary.replaceVideoContent(videoId, videoId)
+      await One.PhotoLibrary.revertAssetContent(imageId)
+      let currentVideo = ''
+      try {
+        await One.PhotoLibrary.exportCurrentImage(videoId)
+      } catch (error) {
+        currentVideo = errorCode(error)
+      }
+      let currentImage = ''
+      try {
+        await One.PhotoLibrary.exportCurrentVideo(imageId)
+      } catch (error) {
+        currentImage = errorCode(error)
+      }
+      setUnavailableResult(
+        `createAlbum=${createAlbum.includes('needs an iOS or Android build')}; ` +
+          `noop=true; currentVideo=${currentVideo}; currentImage=${currentImage}`
+      )
+      setStatus(
+        createAlbum.includes('needs an iOS or Android build') &&
+          currentVideo === 'E_PHOTO_LIBRARY_UNSUPPORTED' &&
+          currentImage === 'E_PHOTO_LIBRARY_UNSUPPORTED'
+          ? 'unavailable-passed'
+          : 'unavailable-failed'
+      )
+    } catch (error) {
+      setStatus(
+        `unavailable-error: ${errorCode(error)} ${error instanceof Error ? error.message : String(error)}`
       )
     }
   }
@@ -736,6 +788,20 @@ export default function OneNativePhotoLibrary() {
           onPress={pickLimited}
         >
           <Text>Choose more Photos assets</Text>
+        </Pressable>
+      )}
+      {Platform.OS === 'android' && (
+        <Text testID="one-native-photo-library-unavailable-result">
+          Unavailable result: {unavailableResult}
+        </Text>
+      )}
+      {Platform.OS === 'android' && (
+        <Pressable
+          testID="one-native-photo-library-unavailable"
+          style={styles.chip}
+          onPress={unavailable}
+        >
+          <Text>Check unavailable Photos methods</Text>
         </Pressable>
       )}
     </View>
