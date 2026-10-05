@@ -44,6 +44,7 @@ description: What every native API does on iOS, Android, and web
 | Location | CoreLocation + geocoder | LocationManager + Geocoder; background via foreground service | geolocation; no geocoder |
 | MapServices | MapKit search, autocomplete, directions | Geocoder search only; rest unavailable | unavailable |
 | LocalAuthentication | LAContext biometrics | BiometricManager + BiometricPrompt | unavailable |
+| ScreenCapture | scene capture state + screenshot notifications | activity screenshot callback (34+) + window-manager recording state (35+); PixelCopy PNG capture (26+) | unavailable |
 
 `One.iOS.ToolbarHost`, `One.iOS.MenuAction`, and the `ZoomTransition*`
 components return `null` on other platforms, so they are safe to keep in
