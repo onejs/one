@@ -1,4 +1,5 @@
 #import "OneNativeBlurComponentView.h"
+#import "One-Swift.h"
 
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <react/renderer/components/OneNativeSpec/Props.h>
@@ -12,9 +13,7 @@ using namespace facebook::react;
 // UIVisualEffectView has no intensity API). Children mount as siblings
 // above the effect view and stay sharp.
 @implementation OneNativeBlurComponentView {
-  UIVisualEffectView *_blurView;
-  UIViewPropertyAnimator *_animator;
-  UIBlurEffect *_effect;
+  OneNativeBlurEffectView *_blurView;
   NSString *_tint;
   CGFloat _intensity;
 }
@@ -63,7 +62,7 @@ static UIBlurEffectStyle blurStyleForTint(NSString *tint) {
     _props = defaultProps;
     _intensity = 0.5;
     self.clipsToBounds = YES;
-    _blurView = [[UIVisualEffectView alloc] initWithEffect:nil];
+    _blurView = [[OneNativeBlurEffectView alloc] init];
     _blurView.userInteractionEnabled = NO;
     _blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _blurView.frame = self.bounds;
@@ -72,70 +71,21 @@ static UIBlurEffectStyle blurStyleForTint(NSString *tint) {
   return self;
 }
 
-- (void)dealloc {
-  [self _neutralizeAnimator];
-}
-
-// A UIViewPropertyAnimator deallocated while active/paused raises. The legal
-// teardown is stopAnimation:NO then finishAnimationAtPosition:; an
-// `.inactive` animator needs neither call.
-- (void)_neutralizeAnimator {
-  if (_animator != nil) {
-    if (_animator.state == UIViewAnimatingStateActive) {
-      [_animator stopAnimation:NO];
-    }
-    if (_animator.state == UIViewAnimatingStateStopped) {
-      [_animator finishAnimationAtPosition:UIViewAnimatingPositionCurrent];
-    }
-    _animator = nil;
-  }
-}
-
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &p  = *std::static_pointer_cast<OneNativeBlurProps const>(props);
-  const auto &op = *std::static_pointer_cast<OneNativeBlurProps const>(_props);
-
   NSString *tint = [NSString stringWithUTF8String:p.tint.c_str()];
   const CGFloat intensity = MIN(MAX((CGFloat)p.intensity, 0.0), 1.0);
-  const BOOL tintChanged = ![tint isEqualToString:_tint] || _effect == nil;
+  const BOOL tintChanged = ![tint isEqualToString:_tint];
   const BOOL intensityChanged = intensity != _intensity;
 
   _tint = tint;
   _intensity = intensity;
 
-  if (tintChanged) {
-    _effect = [UIBlurEffect effectWithStyle:blurStyleForTint(tint)];
-    [self _neutralizeAnimator];
-    [self _runAnimator];
-  } else if (intensityChanged) {
-    if (_animator && _animator.state != UIViewAnimatingStateInactive) {
-      _animator.fractionComplete = (CGFloat)_intensity;
-    } else if (_intensity > 0) {
-      [self _runAnimator];
-    }
+  if (tintChanged || intensityChanged) {
+    [_blurView updateBlurWithStyle:blurStyleForTint(tint) intensity:intensity];
   }
 
   [super updateProps:props oldProps:oldProps];
-}
-
-// (Re)build the paused animator driving effectView.effect, scrubbed to the
-// current intensity. Intensity 0 leaves the effect nil (sharp passthrough).
-- (void)_runAnimator {
-  if (_intensity <= 0 || _effect == nil) {
-    _blurView.effect = nil;
-    return;
-  }
-  __weak UIVisualEffectView *weakView = _blurView;
-  UIBlurEffect *effect = _effect;
-  _animator = [[UIViewPropertyAnimator alloc] initWithDuration:1
-                                                         curve:UIViewAnimationCurveLinear
-                                                    animations:^{
-    weakView.effect = effect;
-  }];
-  _animator.pausesOnCompletion = YES;
-  [_animator startAnimation];
-  [_animator pauseAnimation];
-  _animator.fractionComplete = (CGFloat)_intensity;
 }
 
 - (void)didAddSubview:(UIView *)subview {
