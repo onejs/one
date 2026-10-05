@@ -47,10 +47,12 @@ class HybridOneMapServices : HybridOneMapServicesSpec() {
             try {
                 val found = searchGeocoder(context, query, center, radiusMeters)
                 mainHandler.post { promise.resolve(found.map { place(it) }.toTypedArray()) }
-            } catch (_: Exception) {
-                // an io failure resolves empty, mirroring the ios no-result
-                // contract rather than inventing failures.
-                mainHandler.post { promise.resolve(emptyArray()) }
+            } catch (error: Exception) {
+                mainHandler.post {
+                    promise.reject(
+                        OneNativeError("E_MAP_SEARCH", "MapServices.search: ${error.message ?: error.javaClass.simpleName}")
+                    )
+                }
             }
         }
         return promise

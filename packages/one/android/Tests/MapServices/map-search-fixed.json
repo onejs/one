@@ -1,0 +1,8 @@
+{
+  "source_sha256": "9d018980dfbf0984a77625543b2e953116402d472ddf45ba7b8bc16c5e01d092",
+  "ref": null,
+  "exit": 0,
+  "stdout": "PASS empty exact-one-settlement\nPASS null exact-one-settlement\nPASS io exact-one-settlement\nPASS invalid exact-one-settlement\n",
+  "stderr": "",
+  "limit": "actual hybrid code with deterministic JVM Android/Nitro boundary doubles; no APK/device/provider runtime acceptance"
+}
