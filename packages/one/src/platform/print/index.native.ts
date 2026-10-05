@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { OnePrint, PrintResult } from '../specs/OnePrint.nitro'
@@ -9,7 +8,6 @@ export type { PrintResult }
 let hybrid: OnePrint | undefined
 
 function native(): OnePrint {
-  if (Platform.OS !== 'ios') throw new Error('Print requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OnePrint>('OnePrint')
   return hybrid
 }
