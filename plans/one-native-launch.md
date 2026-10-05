@@ -543,5 +543,22 @@ action, new build or duplicate source owner is authorized. Placement can reopen
 with concrete identity, availability and claim, original APK/driver/contract
 receipts, and a separately authorized run. The completed platform diagnosis
 stays completed. Calendar supported-path disposition remains with p60786.
-Completed first-layer validator p61184 is asked to finish non-device closeout;
-manager retains pending runtime custody without retaining authors for placement.
+Completed first-layer validator p61184 finished its non-device unit; manager
+READ the 1687-byte handoff and recorded its eight verdicts and runtime limits.
+No owned worktree/server/claim remains and its watcher exited80.
+Manager retains pending runtime custody without retaining authors for placement.
+
+Media source author r59617 finished admitted non-device work at pushed branch
+`tm/beta-media-repair` head `656538d4e`. Manager RAN remote clean-tree status and
+matching source HEAD, fetched the branch, and preserved the outside-tree final
+handoff locally. Photo/Audio `c8bf89a75` remains partial source/static delivery;
+Calendar native source and fixture remain unchanged. Same-unit p60786 accepted
+`8af11c0e3` as a supported investigation direction, retaining implementation
+holds on local linked exceptions and exact timed/all-day durations. No further
+source/build/device campaign or CI wait belongs to the completed author.
+Normal managed-tree removal was held by a reported process despite scoped
+open-file checks returning no rows; this does not disprove a transient holder.
+The clean published Pro64 tree remains manager-owned, with no forced removal.
+Task `t-muv92lju-ed70` records tool attribution and the hidden task-ref sync
+limitation. Manager READ the final handoff and pulled task data containing the
+closeout commit; source publication and clean custody are established separately.
