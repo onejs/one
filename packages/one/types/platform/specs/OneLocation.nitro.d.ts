@@ -24,6 +24,7 @@ export interface LocationPlace {
 }
 export interface OneLocation extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getPermissionStatus(): LocationPermissionStatus;
     requestWhenInUsePermission(): Promise<LocationPermissionStatus>;

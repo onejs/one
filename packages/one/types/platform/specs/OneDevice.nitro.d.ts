@@ -17,6 +17,7 @@ export interface LocalizationInfo {
 }
 export interface OneDevice extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getInfo(): Promise<DeviceInfo>;
     getLocalizationInfo(): Promise<LocalizationInfo>;
