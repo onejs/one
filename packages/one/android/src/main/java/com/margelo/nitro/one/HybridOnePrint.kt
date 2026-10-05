@@ -3,9 +3,9 @@ package com.margelo.nitro.one
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.pdf.PdfDocument
 import android.graphics.pdf.PdfRenderer
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.CancellationSignal
 import android.os.Handler
@@ -147,18 +147,13 @@ class HybridOnePrint : HybridOnePrintSpec(), LifecycleEventListener {
         OneNativeError(code, "Print.printPdf: $message")
 
     private fun printServiceEnabled(context: Context): Boolean {
+        // PrintManager exposes no enabled-services list, so read the
+        // system setting that names them; empty or absent means none.
         return try {
-            if (Build.VERSION.SDK_INT >= 24) {
-                val manager = context.getSystemService(Context.PRINT_SERVICE) as PrintManager
-                manager.getPrintServices(PrintManager.ENABLED_SERVICES_ONLY).isNotEmpty()
-            } else {
-                // api 23 has no getPrintServices; read the enabled-services
-                // setting directly.
-                val enabled = android.provider.Settings.Secure.getString(
-                    context.contentResolver, "enabled_print_services"
-                )
-                !enabled.isNullOrEmpty()
-            }
+            val enabled = android.provider.Settings.Secure.getString(
+                context.contentResolver, "enabled_print_services"
+            )
+            !enabled.isNullOrEmpty()
         } catch (_: Exception) {
             false
         }
@@ -175,8 +170,7 @@ class HybridOnePrint : HybridOnePrintSpec(), LifecycleEventListener {
             job.isFailed -> {
                 pending = null
                 pendingJob = null
-                val detail = job.info?.status ?: "print failed"
-                promise.reject(error("E_PRINT_FAILED", detail))
+                promise.reject(error("E_PRINT_FAILED", "print failed (state ${job.info?.state})"))
             }
             job.isCancelled -> {
                 pending = null
@@ -286,7 +280,7 @@ class HybridOnePrint : HybridOnePrintSpec(), LifecycleEventListener {
                             try {
                                 val bitmap = raster(page, attrs)
                                 try {
-                                    val info = PrintedPdfDocument.PageInfo.Builder(
+                                    val info = PdfDocument.PageInfo.Builder(
                                         pageWidth, pageHeight, index
                                     ).create()
                                     val documentPage = document.startPage(info)
