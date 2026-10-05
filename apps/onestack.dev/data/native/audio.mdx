@@ -124,7 +124,7 @@ to playback and can replace another feature's audio session configuration,
 including picture in picture. Stop this audio before starting speech recognition
 or another audio feature. Background recording is not configured by this API.
 
-Audio is implemented on iOS. Android and SSR report denied recording permission and idle status. Stop and metadata effects do nothing; listeners return a remover that does nothing. Starting playback or recording and requesting a recording file reject with `Audio.<verb> needs an iOS or Android build`.
+Audio is implemented on iOS and Android. On Android, playback runs over MediaPlayer, recording over MediaRecorder as AAC `.m4a` under cache, interruptions from audio focus, and now-playing metadata with play/pause/seek commands over MediaSession. Recording needs `native.app.audio.microphone`; background playback needs `native.app.audio.background`, which stamps a media-playback foreground service. SSR reports denied recording permission and idle status. Stop and metadata effects do nothing; listeners return a remover that does nothing. Starting playback or recording and requesting a recording file reject with `Audio.<verb> needs an iOS or Android build` where unimplemented.
 
 On web, HTMLAudioElement provides playback, pause, resume, millisecond seek,
 status, and stop. URI inputs use browser HTTP, HTTPS, data, or blob URLs.

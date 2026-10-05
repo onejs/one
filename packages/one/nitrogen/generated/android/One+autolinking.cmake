@@ -81,8 +81,11 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneAdaptiveSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneAudioSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneCalendarSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneContactsSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFetchSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneFileSystemSpec.cpp
@@ -95,6 +98,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOnePhotoLibrarySpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp

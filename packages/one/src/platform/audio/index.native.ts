@@ -1,5 +1,4 @@
 import { validateCallback } from '../validateCallback'
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -30,7 +29,6 @@ export type {
 let hybrid: OneAudio | undefined
 
 function native(): OneAudio {
-  if (Platform.OS !== 'ios') throw new Error('Audio requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneAudio>('OneAudio')
   return hybrid
 }

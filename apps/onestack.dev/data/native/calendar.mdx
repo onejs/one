@@ -127,7 +127,7 @@ Missing purpose text rejects with `E_CALENDAR_MANIFEST`; missing full access
 with `E_CALENDAR_PERMISSION`; invalid input with `E_CALENDAR_INPUT`.
 An absent writable calendar gives `E_CALENDAR_UNAVAILABLE`. Store failures
 use `E_CALENDAR_SAVE` or `E_CALENDAR_DELETE`; editing or deleting an unknown
-occurrence gives `E_CALENDAR_NOT_FOUND`. Calendar is implemented on iOS. Android and web return denied calendar and reminder permissions and empty lists. Calls that create or update an event or reminder reject with `Calendar.<verb> needs an iOS or Android build`; deletion does nothing.
+occurrence gives `E_CALENDAR_NOT_FOUND`. Calendar events are implemented on iOS and Android. On Android, events run over CalendarContract with `native.app.calendar.usage`; single-occurrence edits become exceptions that keep sibling occurrences. Reminders stay unavailable on Android and web: denied reminder permissions and empty lists. Calls that create or update a reminder reject with `Calendar.<verb> needs an iOS or Android build`; reminder completion and deletion do nothing.
 
 See [Apple's EventKit access guide](https://developer.apple.com/documentation/eventkit/accessing-the-event-store)
 for the full and write-only permission modes.

@@ -35,7 +35,7 @@ export interface PhotoLibraryAlbumPage {
   totalCount: number
 }
 
-export interface OnePhotoLibrary extends HybridObject<{ ios: 'swift' }> {
+export interface OnePhotoLibrary extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getAddPermissionStatus(): PhotoLibraryPermissionStatus
   requestAddPermission(): Promise<PhotoLibraryPermissionStatus>
   getReadPermissionStatus(): PhotoLibraryPermissionStatus

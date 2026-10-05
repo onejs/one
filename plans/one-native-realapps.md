@@ -231,11 +231,13 @@ reject (`pause`/`resume`/`seek`) or no-op (`stop`) per Swift state
 handling; pause/resume/stopRecording with no recorder reject
 `E_AUDIO_STATE`.
 
-Focus-to-interruption table (correction 5): `AUDIOFOCUS_LOSS` emits
-began with `shouldResume: false` and pauses; `LOSS_TRANSIENT` and
-`LOSS_TRANSIENT_CAN_DUCK` emit began with `shouldResume: true` and
-pause; `AUDIOFOCUS_GAIN` after a loss emits ended with the matching
-`shouldResume`. No other focus change emits.
+Focus-to-interruption table (correction 5, from
+`HybridOneAudio.swift:336-353`): any focus loss emits began with
+`shouldResume: false` and pauses both player and recorder;
+`AUDIOFOCUS_GAIN` after a transient loss emits ended with
+`shouldResume: true`, after a permanent loss ended with `false`.
+`LOSS_TRANSIENT_CAN_DUCK` pauses like Swift's began (no ducking
+mode exists in the contract). No other focus change emits.
 
 Background playback only under the existing
 `native.app.audio.background` (correction 5, approval): prebuild stamps
@@ -261,8 +263,10 @@ unsupported collection/shared/cloud mappings stay unavailable
 Permissions: API 33+ `READ_MEDIA_IMAGES` + `READ_MEDIA_VIDEO` from
 existing `photoLibrary.readWrite`; below 33 `READ_EXTERNAL_STORAGE`
 with maxSdkVersion 32. Reads without grant reject
-`E_PHOTO_LIBRARY_PERMISSION`; saves without `photoLibrary.addOnly`
-reject `E_PHOTO_LIBRARY_MANIFEST`. Add-only config stays required even
+`E_PHOTO_LIBRARY_PERMISSION`; saves reject `E_PHOTO_LIBRARY_MANIFEST`
+only when neither `photoLibrary.addOnly` nor `photoLibrary.readWrite`
+is configured, and `E_PHOTO_LIBRARY_PERMISSION` without add or read
+grant, mirroring Swift `save`. Add-only config stays required even
 though API 29+ needs no storage prompt for inserts; below 29 the write
 permission is explicit and version-bounded (approval, ask 2 accepted).
 

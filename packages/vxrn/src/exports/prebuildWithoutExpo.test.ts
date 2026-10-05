@@ -490,6 +490,85 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(androidManifest.content).not.toContain('android.permission.RECORD_AUDIO')
   })
 
+  it('stamps Android media permissions and markers from native.app', () => {
+    const media = {
+      ...app,
+      audio: { microphone: 'Record audio', background: true },
+      photoLibrary: { addOnly: 'Save photos', readWrite: 'Read photos' },
+      contacts: { usage: 'Find people' },
+      calendar: { usage: 'Show events' },
+    } satisfies PrebuildAppConfig
+    const manifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: media,
+    })
+    for (const permission of [
+      'android.permission.RECORD_AUDIO',
+      'android.permission.READ_MEDIA_IMAGES',
+      'android.permission.READ_MEDIA_VIDEO',
+      'android.permission.READ_CONTACTS',
+      'android.permission.WRITE_CONTACTS',
+      'android.permission.READ_CALENDAR',
+      'android.permission.WRITE_CALENDAR',
+      'android.permission.FOREGROUND_SERVICE',
+      'android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK',
+    ]) {
+      expect(manifest.content).toContain(permission)
+    }
+    expect(manifest.content).toContain(
+      '<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />'
+    )
+    expect(manifest.content).toContain(
+      '<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />'
+    )
+    expect(manifest.content).toContain('one.photoLibrary.addOnly')
+    expect(manifest.content).toContain('one.audio.background')
+    expect(manifest.content).toContain('com.margelo.nitro.one.OneAudioService')
+    expect(manifest.content).toContain('android:foregroundServiceType="mediaPlayback"')
+    // speech stamps RECORD_AUDIO first; the media block must not duplicate it.
+    expect(
+      manifest.content.split('android.permission.RECORD_AUDIO').length - 1
+    ).toBe(1)
+
+    const bare = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: {
+        ...app,
+        audio: undefined,
+        photoLibrary: undefined,
+        contacts: undefined,
+        calendar: undefined,
+      },
+    })
+    for (const permission of [
+      'android.permission.READ_MEDIA_IMAGES',
+      'android.permission.READ_CONTACTS',
+      'android.permission.READ_CALENDAR',
+      'android.permission.FOREGROUND_SERVICE',
+    ]) {
+      expect(bare.content).not.toContain(permission)
+    }
+    expect(bare.content).not.toContain('one.photoLibrary.addOnly')
+    expect(bare.content).not.toContain('one.audio.background')
+    expect(bare.content).not.toContain('OneAudioService')
+
+    // reminders-only calendar needs no Android event permissions.
+    const remindersOnly = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: { ...app, calendar: { remindersUsage: 'Manage tasks' } },
+    })
+    expect(remindersOnly.content).not.toContain('android.permission.READ_CALENDAR')
+  })
+
   it('stamps the maps key and flag only when googleMapsApiKey is set', () => {
     const maps = {
       ...app,

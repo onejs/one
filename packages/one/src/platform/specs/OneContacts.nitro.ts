@@ -56,7 +56,7 @@ export interface ContactChanges {
   postalAddresses?: ContactPostalAddressInput[]
 }
 
-export interface OneContacts extends HybridObject<{ ios: 'swift' }> {
+export interface OneContacts extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getPermissionStatus(): ContactsPermissionStatus
   requestPermission(): Promise<ContactsPermissionStatus>
   pickContact(): Promise<ContactInfo | undefined>

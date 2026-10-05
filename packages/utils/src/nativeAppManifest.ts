@@ -55,16 +55,22 @@ export interface NativeAppManifest {
     // One.ImagePicker.launchCamera.
     camera?: string
   }
-  // photos permissions for saving and browsing through one.ios.photolibrary.
+  // photos permissions for saving and browsing. ios prompts come from
+  // these strings; android stamps the media read permissions from
+  // readWrite and the add-only marker plus bounded write permission
+  // from addOnly.
   photoLibrary?: {
     addOnly?: string
     readWrite?: string
   }
-  // ios Contacts permission prompt for One.Contacts.
+  // Contacts permission prompt for One.Contacts. android stamps the
+  // contacts read and write permissions from usage.
   contacts?: {
     usage: string
   }
-  // full EventKit access for calendar events and reminders.
+  // full EventKit access for calendar events and reminders. android
+  // stamps the calendar read and write permissions from usage;
+  // reminders stay unavailable there.
   calendar?: {
     usage?: string
     remindersUsage?: string
@@ -74,7 +80,9 @@ export interface NativeAppManifest {
     whenInUse: string
     background?: boolean
   }
-  // microphone prompt and background playback for One.Audio.
+  // microphone prompt and background playback for One.Audio. android
+  // stamps RECORD_AUDIO from microphone and the media-playback
+  // foreground service plus its marker from background.
   audio?: {
     microphone?: string
     background?: boolean
