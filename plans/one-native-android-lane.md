@@ -440,13 +440,17 @@ unavailable; biometry mapped only when a single kind is provable else
     job PrintAttributes resolution (default 300dpi):
     bitmap = mediaSize points * dpi/72. `isAvailable` is false when no
     print service handles the job.
-13. ScreenCapture held; corrected design below, kept preconditions:
-    sub-26 rejection code, screenshot filter, API pin.
+13. ScreenCapture IMPLEMENTED under p60786 bounded approval frozen
+    2026-10-05T07:41Z (verdict public-review-controls/
+    screen-correction-approval.md): unix receipt timestamp,
+    VISIBLE/NOT_VISIBLE initial+callback mapping, sub-35/sub-34
+    silent gates, idempotent removers, existing E_SCREEN_CAPTURE_RENDER
+    for sub-26, real activity vs process-UID recording lifetimes.
 
 Error-code rule stands: mirror the Swift `E_*` codes so callers
 branch identically; user refusal resolves, never rejects.
 
-### Corrected ScreenCapture design (held, for review routing)
+### Corrected ScreenCapture design (APPROVED p60786, implemented e37b9a243)
 
 F1 P2: `Activity.registerScreenCaptureCallback` reports screenshot
 notifications only (API 34, `onScreenCaptured()` carries no value),
@@ -463,8 +467,8 @@ resolver and same-window/unknown-tag checks. Registration follows
 owned activity lifetime (unregister/re-register on pause/resume).
 Proof controls (when gated): independent screenshot vs recording
 start/stop, initial-state and remover checks; ADB screenshots are not
-a positive test for the API 34 callback. No native code is written
-before p61184/p60786 disposition on `t-muusi2pr-1hgr0`.
+a positive test for the API 34 callback. Disposition APPROVED on
+`t-muusi2pr-1hgr0`; native code written after approval only.
 
 First-layer disposition (p61184): PASS WITH 4 CORRECTIONS + 1
 PRECONDITION, folded here; still held for the p60786 gate.
