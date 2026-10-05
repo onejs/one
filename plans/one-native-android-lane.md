@@ -466,6 +466,24 @@ start/stop, initial-state and remover checks; ADB screenshots are not
 a positive test for the API 34 callback. No native code is written
 before p61184/p60786 disposition on `t-muusi2pr-1hgr0`.
 
+First-layer disposition (p61184): PASS WITH 4 CORRECTIONS + 1
+PRECONDITION, folded here; still held for the p60786 gate.
+(A) `onScreenCaptured()` carries no value, so the screenshot
+`timestampMs` is stamped at receipt (`System.currentTimeMillis`),
+mirroring the Swift receipt stamp. (B) Recording-state mapping:
+`SCREEN_RECORDING_STATE_VISIBLE` to `active`, `NOT_VISIBLE` to
+`inactive`, below API 35 to `unspecified` (pairs with the Swift
+unspecified passthrough). (C) Below-gate silence is explicit:
+state listeners below 35 and screenshot listeners below 34 never
+fire and their removers are inert; prove on a sub-gate AVD by
+runtime, not by reading. (D) Sub-26 capture rejection is named
+`E_SCREEN_CAPTURE_UNSUPPORTED`: no existing code covers an absent
+platform API, and callers need a distinct branch signal (iOS never
+emits it); p60786 confirms the new code vs reuse call. (E)
+Implementation precondition: cite each callback's scope
+(activity-scoped screenshot callback vs WindowManager-instance
+recording callback) to justify pause/resume re-registration.
+
 ### ProtectedStore research (held, for review routing)
 
 First-layer issue 10 stands: `createItem(key,value,policy)` carries
