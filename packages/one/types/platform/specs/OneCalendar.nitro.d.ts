@@ -44,6 +44,7 @@ export interface ReminderInfo {
 }
 export interface OneCalendar extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getPermissionStatus(): CalendarPermissionStatus;
     requestPermission(): Promise<CalendarPermissionStatus>;

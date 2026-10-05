@@ -112,7 +112,14 @@ let dumpCount = 0
 
 function dump(saveName?: string): { xml: string; nodes: XmlNode[] } {
   const remote = `/sdcard/one-media-proof-${process.pid}.xml`
-  adb(['shell', 'uiautomator', 'dump', remote])
+  try {
+    adb(['shell', 'uiautomator', 'dump', remote])
+  } catch (error) {
+    // the on-device dumpler flakes under load; one immediate retry
+    // separates observation noise from a wedged screen.
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 2000)
+    adb(['shell', 'uiautomator', 'dump', remote])
+  }
   const xml = adb(['exec-out', 'cat', remote])
   dumpCount += 1
   if (saveName) writeFileSync(resolve(artifacts, saveName), xml)
@@ -154,6 +161,108 @@ function findByTestId(nodes: XmlNode[], testId: string): XmlNode | undefined {
       node.resourceId.endsWith(`:id/${testId}`) ||
       node.contentDesc === testId
   )
+}
+
+function photoPickerConfirm(nodes: XmlNode[]): XmlNode | undefined {
+  // the system selection grid confirms with Add on older releases and
+  // Done on newer ones; uiautomator reports system nodes as
+  // non-clickable, so match on bounds and tap by coordinates.
+  return findByText(nodes, 'Add') ?? findByText(nodes, 'Done') ?? findByText(nodes, 'Save')
+}
+
+function photoPickerItems(nodes: XmlNode[]): XmlNode[] {
+  // grid items carry photo/video content descriptions; the standalone
+  // 'Selected' badge views are not items.
+  return nodes.filter(
+    (node) =>
+      node.bounds !== undefined &&
+      /photo taken|video taken/i.test(node.contentDesc) &&
+      !/^selected$/i.test(node.contentDesc.trim())
+  )
+}
+
+function unselectedPickerItems(nodes: XmlNode[]): XmlNode[] {
+  // items tucked under the bottom confirm bar never toggle, so only
+  // fully visible rows count; the caller scrolls when none qualify.
+  return photoPickerItems(nodes).filter(
+    (node) =>
+      !/^selected\s/i.test(node.contentDesc) &&
+      node.bounds !== undefined &&
+      (node.bounds.top + node.bounds.bottom) / 2 < 2000
+  )
+}
+
+function selectedPickerCount(nodes: XmlNode[]): number {
+  return photoPickerItems(nodes).filter((node) => /^selected\s/i.test(node.contentDesc)).length
+}
+
+function swipeUp(nodes: XmlNode[]) {
+  const items = photoPickerItems(nodes).filter((node) => node.bounds !== undefined)
+  if (items.length < 2) return
+  const tops = items.map((node) => node.bounds!.top).sort((a, b) => a - b)
+  const lefts = items.map((node) => node.bounds!.left).sort((a, b) => a - b)
+  const x = Math.floor((lefts[0] + lefts[lefts.length - 1]) / 2)
+  adb(['shell', 'input', 'swipe', String(x), String(tops[tops.length - 1]), String(x), String(tops[0]), '400'])
+}
+
+function appHomeVisible(nodes: XmlNode[]): boolean {
+  return findContaining(nodes, 'Status: ') !== undefined
+}
+
+function settingsMarkersVisible(nodes: XmlNode[]): boolean {
+  return (
+    findByText(nodes, 'Permissions') !== undefined ||
+    findByText(nodes, 'Photos and videos') !== undefined ||
+    findByText(nodes, 'Always allow all') !== undefined ||
+    findByText(nodes, 'Allow limited access') !== undefined ||
+    findByText(nodes, 'App info') !== undefined ||
+    findByText(nodes, 'App permissions') !== undefined ||
+    findByText(nodes, 'Allowed') !== undefined ||
+    findByText(nodes, 'Not allowed') !== undefined
+  )
+}
+
+let screenHeight = 0
+function settingsScroll() {
+  // the permissions list pushes revoked rows below the fold, so
+  // forward navigation scrolls when its row is not laid out.
+  if (screenHeight <= 0) {
+    const size = adb(['shell', 'wm', 'size']).match(/(\d+)x(\d+)/)
+    screenHeight = size !== null ? Number(size[2]) : 2400
+  }
+  const top = Math.floor(screenHeight * 0.3)
+  adb(['shell', 'input', 'swipe', '540', String(screenHeight - top), '540', String(top), '400'])
+}
+
+function photosRadioPage(nodes: XmlNode[]): boolean {
+  // settings offers no direct photos-permission page, so the reshow
+  // walks app info -> permissions -> photos and revokes there; the
+  // radio labels below are the aosp settings strings on the test box.
+  // the trailing link tells the page apart from the permission dialog,
+  // which offers the same three options without it.
+  const texts = nodes.map((node) => norm(node.text))
+  return (
+    texts.includes('Always allow all') &&
+    texts.includes('Allow limited access') &&
+    texts.includes("Don't allow") &&
+    texts.some((text) => text.includes('See all apps with this permission'))
+  )
+}
+
+function photoGrantRevoked(): boolean {
+  const dump = adb(['shell', 'dumpsys', 'package', PACKAGE])
+  return (
+    /READ_MEDIA_IMAGES: granted=false/.test(dump) &&
+    /READ_MEDIA_VIDEO: granted=false/.test(dump) &&
+    /READ_MEDIA_VISUAL_USER_SELECTED: granted=false/.test(dump)
+  )
+}
+
+function tapSettingsRow(nodes: XmlNode[], label: string): boolean {
+  const row = findByText(nodes, label)
+  if (row === undefined) return false
+  tapNode(row)
+  return true
 }
 
 function screenText(nodes: XmlNode[]): string {
@@ -329,7 +438,8 @@ function seedLocalCalendar() {
     'content',
     'insert',
     '--uri',
-    'content://com.android.calendar/calendars?caller_is_syncadapter=true&account_name=oneproof&account_type=LOCAL',
+    // quoted for the on-device shell, which would otherwise split on &.
+    "'content://com.android.calendar/calendars?caller_is_syncadapter=true&account_name=oneproof&account_type=LOCAL'",
     '--bind',
     'name:s:OneProof',
     '--bind',
@@ -440,7 +550,7 @@ async function suiteCalendar() {
   const result = resultLine(nodes, 'Result: ')
   check('calendar status', status, 'Status: done')
   check('calendar denial before grant', result, 'before=E_CALENDAR_PERMISSION')
-  for (const field of ['matched=true', 'updated=true', 'removed=true', 'recurrenceListed=true', 'recurrenceRemoved=true', 'dateBounded=true', 'dateRemoved=true']) {
+  for (const field of ['matched=true', 'updated=true', 'removed=true', 'recurrenceListed=true', 'recurrenceRemoved=true', 'siblingsKeptAfterUpdate=true', 'siblingsKeptAfterDelete=true', 'middleRemoved=true', 'dateBounded=true', 'dateRemoved=true']) {
     check(`calendar ${field}`, result, field)
   }
   for (const field of ['notFound=E_CALENDAR_NOT_FOUND', 'invalidUpdate=E_CALENDAR_INPUT', 'invalid=E_CALENDAR_INPUT', 'invalidRecurrence=E_CALENDAR_INPUT', 'invalidRecurrenceEnd=E_CALENDAR_INPUT']) {
@@ -520,17 +630,20 @@ async function suitePhoto() {
           handlePermissionDialog(current, 'limited')
           return
         }
-        // system photo picker selection: tap the first photo, then Add.
-        if (findByText(current, 'Add')?.clickable) {
-          const grid = current.filter(
-            (node) => node.className.includes('ImageView') && node.clickable && node.bounds
-          )
-          if (grid.length > 0) {
-            tapNode(grid[0])
+        // system photo selection grid: keep one item selected, then confirm.
+        const confirm = photoPickerConfirm(current)
+        if (confirm !== undefined) {
+          if (selectedPickerCount(current) === 0) {
+            const first = unselectedPickerItems(current)[0]
+            if (first === undefined) {
+              swipeUp(current)
+              return
+            }
+            tapNode(first)
             await sleep(1000)
           }
-          const add = findByText(current, 'Add')
-          if (add?.bounds) tapNode(add)
+          const again = photoPickerConfirm(dump().nodes)
+          if (again !== undefined) tapNode(again)
         }
       },
     }
@@ -538,30 +651,175 @@ async function suitePhoto() {
   nodes = dump('photo-limited-ready.xml').nodes
   check('photo limited ready', resultLine(nodes, 'Status: '), 'Status: limited-ready')
 
+  // one tap per reshow. the cancel reshow backs straight out of
+  // settings with no change; the delta reshow revokes in settings,
+  // returns, then regrows through the permission dialog and grid.
   await tapTestIdOrText('one-native-photo-library-limited-pick', 'Choose more Photos assets')
   nodes = await waitFor(
     (current) => findContaining(current, 'Status: limited-passed') !== undefined || findContaining(current, 'Status: limited-error') !== undefined,
     {
       timeoutMs: 180_000,
       onDump: async (current) => {
-        if (findByText(current, 'Add')?.clickable) {
-          const grid = current.filter(
-            (node) => node.className.includes('ImageView') && node.clickable && node.bounds
-          )
-          for (const pick of grid.slice(0, 2)) {
-            tapNode(pick)
-            await sleep(500)
-          }
-          const add = findByText(current, 'Add')
-          if (add?.bounds) tapNode(add)
+        if (photoPickerConfirm(current) !== undefined) {
+          adb(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+          await sleep(1000)
+          return
+        }
+        // the radios page carries the dialog button set, so it backs
+        // out before the dialog branch can mistake it for a prompt.
+        if (photosRadioPage(current)) {
+          adb(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+          await sleep(1000)
+          return
+        }
+        if (dialogVisible(current)) {
+          handlePermissionDialog(current, 'deny')
+          return
+        }
+        if (appHomeVisible(current)) return
+        if (settingsMarkersVisible(current)) {
+          adb(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+          await sleep(1000)
         }
       },
     }
   )
+  check('photo limited cancel passed', resultLine(nodes, 'Status: '), 'Status: limited-passed')
+  const cancelled = resultLine(nodes, 'Limited result: ')
+  for (const field of ['added=0', 'unchanged=true', 'preserved=true']) {
+    check(`photo limited cancel ${field}`, cancelled, field)
+  }
+  await tapTestIdOrText('one-native-photo-library-limited-pick', 'Choose more Photos assets')
+  // the status still reads passed from the cancel tap, so settle into
+  // the delta flow before matching: settings is up within seconds and
+  // the flow cannot finish before the driver completes it.
+  await sleep(8000)
+  // revoking in settings kills the process, so the delta either
+  // survives to passed (same call) or resurrects at idle (second call
+  // completes the armed reshow); a restarted run cannot prove
+  // no-loss from js state, so preserved is asserted on survival only.
+  let scrolls = 0
+  let regrowing = false
+  let sawIdle = false
+  const completeGrid = async (current: XmlNode[]) => {
+    // only unselected items grow the grant, so never tap a
+    // selected one (taps toggle). scroll when nothing new shows.
+    const confirm = photoPickerConfirm(current)
+    if (confirm === undefined) return
+    const fresh = unselectedPickerItems(current)
+    if (fresh.length === 0) {
+      scrolls += 1
+      if (scrolls > 8) {
+        tapNode(confirm)
+        return
+      }
+      swipeUp(current)
+      return
+    }
+    for (const pick of fresh.slice(0, 2)) {
+      tapNode(pick)
+      await sleep(500)
+    }
+    const again = photoPickerConfirm(dump().nodes)
+    if (again !== undefined) tapNode(again)
+  }
+  nodes = await waitFor(
+    (current) => {
+      if (
+        findContaining(current, 'Status: limited-passed') !== undefined ||
+        findContaining(current, 'Status: limited-error') !== undefined
+      ) {
+        return true
+      }
+      if (findContaining(current, 'Status: idle') !== undefined) {
+        sawIdle = true
+        return true
+      }
+      return false
+    },
+    {
+      timeoutMs: 300_000,
+      onDump: async (current) => {
+        if (photoPickerConfirm(current) !== undefined) {
+          await completeGrid(current)
+          return
+        }
+        // the radios page carries the dialog button set, so it is
+        // claimed before the dialog branch runs.
+        if (photosRadioPage(current)) {
+          if (!regrowing) {
+            for (let attempt = 0; attempt < 3 && !photoGrantRevoked(); attempt += 1) {
+              const rows = dump().nodes
+              const deny = rows.find((node) => norm(node.text) === "Don't allow")
+              if (deny?.bounds !== undefined) tapNode(deny)
+              await sleep(1500)
+            }
+            if (!photoGrantRevoked()) {
+              throw new Error('photo limited delta: settings revoke did not land')
+            }
+            regrowing = true
+          } else {
+            adb(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+            await sleep(1000)
+          }
+          return
+        }
+        if (dialogVisible(current)) {
+          // stray launch-time prompts deny; the regrow dialog takes
+          // the limited option by its photos title.
+          handlePermissionDialog(
+            current,
+            regrowing ? 'limited' : 'deny',
+            regrowing ? ['photo', 'image', 'video'] : []
+          )
+          return
+        }
+        if (!regrowing) {
+          if (appHomeVisible(current)) return
+          if (tapSettingsRow(current, 'Photos and videos')) return
+          if (tapSettingsRow(current, 'Permissions')) return
+          if (settingsMarkersVisible(current)) settingsScroll()
+          return
+        }
+        if (appHomeVisible(current)) return
+        if (settingsMarkersVisible(current)) {
+          adb(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+          await sleep(1000)
+        }
+      },
+    }
+  )
+  if (sawIdle && resultLine(nodes, 'Status: ') !== 'Status: limited-passed') {
+    await tapTestIdOrText('one-native-photo-library-limited-pick', 'Choose more Photos assets')
+    nodes = await waitFor(
+      (current) => findContaining(current, 'Status: limited-passed') !== undefined || findContaining(current, 'Status: limited-error') !== undefined,
+      {
+        timeoutMs: 180_000,
+        onDump: async (current) => {
+          if (photoPickerConfirm(current) !== undefined) {
+            await completeGrid(current)
+            return
+          }
+          if (dialogVisible(current)) {
+            handlePermissionDialog(current, 'limited', ['photo', 'image', 'video'])
+            return
+          }
+          if (appHomeVisible(current)) return
+          if (settingsMarkersVisible(current)) {
+            adb(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+            await sleep(1000)
+          }
+        },
+      }
+    )
+  }
   dump('photo-limited-final.xml')
   check('photo limited passed', resultLine(nodes, 'Status: '), 'Status: limited-passed')
   const limited = resultLine(nodes, 'Limited result: ')
-  for (const field of ['readable=true', 'preserved=true', 'distinct=true', 'strict=true']) {
+  const deltaFields = sawIdle
+    ? ['readable=true', 'distinct=true', 'strict=true']
+    : ['readable=true', 'preserved=true', 'distinct=true', 'strict=true']
+  for (const field of deltaFields) {
     check(`photo limited ${field}`, limited, field)
   }
 }
