@@ -95,6 +95,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneProtectedStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp

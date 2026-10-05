@@ -8,7 +8,9 @@ export type { ProtectedStorePolicy }
 let hybrid: OneProtectedStore | undefined
 
 function native(): OneProtectedStore {
-  if (Platform.OS !== 'ios') throw new Error('ProtectedStore requires an iOS native build')
+  if (Platform.OS !== 'ios' && (Platform.OS !== 'android' || Number(Platform.Version) < 30)) {
+    throw new Error('ProtectedStore requires an iOS or Android native build')
+  }
   hybrid ??= NitroModules.createHybridObject<OneProtectedStore>('OneProtectedStore')
   return hybrid
 }
