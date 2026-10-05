@@ -31,12 +31,24 @@
     "updateTitle": "Seed review moved"
   },
   "audio": {
-    "wav": { "seconds": 60, "sampleRateHz": 8000, "channels": 1, "bytes": 960044 },
+    "playbackInput": {
+      "kind": "wav",
+      "seconds": 60,
+      "sampleRateHz": 8000,
+      "channels": 1,
+      "bytes": 960044,
+      "note": "Playback input fixture only, written to cache as file:// before play."
+    },
+    "recordOutput": {
+      "kind": "aac-m4a",
+      "note": "Record output: Kotlin writes AAC .m4a under cache; empty files reject."
+    },
     "seekMs": 30000,
     "nowPlaying": { "title": "Seed episode", "artist": "One seeds" }
   },
   "photoLibrary": {
-    "assetsModule": "../fixtures/photo-library-proof-media.ts",
+    "assetsModule": "tests/native-features/fixtures/photo-library-proof-media.ts",
+    "moduleResolutionBase": "repo root",
     "listLimit": 50,
     "saveKinds": ["image", "video"]
   },
