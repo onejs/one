@@ -2,6 +2,7 @@ import type { HybridObject } from 'react-native-nitro-modules';
 export type ProtectedStorePolicy = 'userPresence' | 'biometryCurrentSet';
 export interface OneProtectedStore extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     createItem(key: string, value: string, policy: ProtectedStorePolicy): Promise<void>;
     getItem(key: string, reason: string, policy: ProtectedStorePolicy): Promise<string | undefined>;

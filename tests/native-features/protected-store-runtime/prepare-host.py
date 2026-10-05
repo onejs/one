@@ -5,8 +5,6 @@ root = Path(__file__).resolve().parents[3]
 host = root / 'tests/native-features/android'
 manifest = host / 'app/src/main/AndroidManifest.xml'
 text = manifest.read_text()
-if 'android.permission.USE_BIOMETRIC' not in text:
-    text = text.replace('<application', '<uses-permission android:name="android.permission.USE_BIOMETRIC" />\n    <application', 1)
 if '.ControlReceiver' not in text:
     text = text.replace('</application>', '<receiver android:name=".ControlReceiver" android:exported="true" />\n    </application>')
 manifest.write_text(text)

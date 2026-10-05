@@ -37,3 +37,24 @@ invalidated envelope. Values add a 256-byte wrapped key, 12-byte IV and 16-byte
 GCM tag plus metadata. The process owner serializes requests on one worker;
 there is no cached authentication or data key. Emulator timings include prompt
 automation and provide no hardware performance comparison.
+
+## public entry acceptance correction, 2026-10-05 UTC
+
+The assigned first layer found that Android selected the unavailable file while
+the proof imported index.native directly. Manager p61056 assigned: “delete
+Android unavailable entry per full-availability Browser pattern and prove
+existing package-public entry create/get/delete round-trip.” Remove the stale
+entry, retain Kotlin ownership of the API30 floor and existing per-call missing
+build message, and declare the normal USE_BIOMETRIC permission in One's library
+manifest. Document its merger behavior and explicit removal error. Preserve the
+existing 92/64 native controls. Validation is limited to the public entry round
+trip, the changed JavaScript output and manifest merge; no additional security
+matrix or native source change. Manager owns CI; p60786 is the sole final gate.
+
+TESTED: The package-public failure was reproduced before removing the stale
+entry. The corrected public create/get/delete/missing-get round-trip passed,
+and the app inherited the granted biometric permission from the library
+manifest. One JavaScript build, TypeScript and changed manifest host build pass.
+The production Kotlin and libOne.so hashes match the original producer.
+[Correction receipts](../tests/native-features/protected-store-runtime/public-entry-evidence/README.md)
+retain the before/after outcomes and separate them from the 92/64 native proof.
