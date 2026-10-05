@@ -36,6 +36,7 @@ interface NativeProps extends ViewProps {
     value: boolean;
     acknowledgedEvent: Int32;
     revision: Int32;
+    syncStateId: Int32;
     label: string;
     disabled: boolean;
     systemImage: string;
