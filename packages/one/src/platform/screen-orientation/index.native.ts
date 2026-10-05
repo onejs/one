@@ -1,5 +1,4 @@
 import { validateCallback } from '../validateCallback'
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -16,8 +15,6 @@ export type {
 let hybrid: OneScreenOrientation | undefined
 
 function native(): OneScreenOrientation {
-  if (Platform.OS !== 'ios')
-    throw new Error('ScreenOrientation requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneScreenOrientation>('OneScreenOrientation')
   return hybrid
 }
