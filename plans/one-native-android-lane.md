@@ -333,3 +333,168 @@ proves nothing. Drift (`nativeDocs.test.ts`) and SSR
    normal, else prebuild stamping (new `native.app` key).
 5. Share `completed` semantics: true-on-target-chosen (proposed) vs always
    false on Android.
+
+## Beta recovery implementation disposition (2026-10-05)
+
+Reviewer p60786 approved TEN services for bounded implementation at
+proposal `669de43ea` with all 13 first-layer corrections folded first;
+no native/runtime approval yet. Exact One-only dossier
+`/Users/n8/.team-machine/handoffs/one-beta-recovery/public-review-controls/system-approval.md`,
+full first-layer
+`/Users/n8/.team-machine/handoffs/one-beta-recovery/first-layer-verdicts.txt`.
+Task `t-muu8ms26-161y0` (in progress, author p61888).
+
+Approved ten: Device, KeepAwake, ScreenOrientation, Share, Print,
+QuickActions, AppIcon, Location, MapServices, LocalAuthentication.
+HELD with no native writes: ScreenCapture (corrected design below,
+`t-muusi2pr-1hgr0`) and ProtectedStore (research below,
+`t-muusi2v1-1hh50`). Their `index.android.ts`, specs, and nitro
+registrations stay untouched. Reviewer decisions: AppIcon manual
+manifest aliases with `isSupported false` otherwise (no new
+`native.app` surface); MapServices Geocoder search + per-method
+unavailable; biometry mapped only when a single kind is provable else
+`none`; Share `completed` true-on-target-chosen with a docs note.
+
+### The 13 corrections as implementation preconditions
+
+1. MapServices keeps `index.android.ts` as a per-method split: `search`
+   re-exported from `./index.native` (guard removed), `autocomplete`,
+   `resolveSuggestion`, `directions` from `./unavailable`. The Kotlin
+   class implements the full generated spec; the three unsupported
+   methods reject as unreachable-behind-TS-routing and are never called
+   on Android. No Kotlin unavailable stubs.
+2. QuickActions harvests on three legs: cold-start launch intent (read
+   once at hybrid init), `onNewIntent` for warm taps, and
+   `onHostResume` re-read of the current intent (Notifications:122-124
+   precedent) for standard-launchMode warm taps. Cold sets the initial
+   slot; warm notifies listeners only.
+3. `captureView` resolver pin (held-service precondition, kept): reuse
+   the UIManagerHelper tag precedent, reject unknown/unmounted tags
+   with `E_SCREEN_CAPTURE_VIEW`.
+4. Location: five statuses map as notDetermined (never asked),
+   whenInUse (foreground grant, no background grant), always (background
+   grant held), denied (denied or services off); restricted is
+   unreachable on Android (no platform API distinguishes it) and never
+   returned. Absent bearing/speed map to `-1` when `hasBearing`/
+   `hasSpeed` are false (Android reports 0.0, iOS -1); absent altitude
+   maps 0.0; absent vertical accuracy maps -1. `getCurrentPosition`
+   resolves the last-known fix when fresh (<30s, accuracy >= 0, same
+   rule as Swift) else requests one fix; fix timeout rejects
+   `E_LOCATION_UNAVAILABLE`. Background watch requires
+   `app.location.background` (else `E_LOCATION_MANIFEST`, mirroring the
+   Swift background-modes guard) and the background grant; it runs
+   under a location-type foreground service with a persistent
+   notification while a background listener is registered, stopped
+   when the last one is removed. Stamped from existing config:
+   `ACCESS_COARSE_LOCATION` + `ACCESS_FINE_LOCATION` from
+   `app.location`, `ACCESS_BACKGROUND_LOCATION` when
+   `app.location.background` is set. Library manifest gains the normal
+   `FOREGROUND_SERVICE` + `FOREGROUND_SERVICE_LOCATION` only.
+5. Device `interfaceIdiom`: `tv` when UiModeManager reports
+   television, `pad` when smallest width >= 600dp, else `phone`.
+   carPlay/mac/vision are unreachable on Android.
+6. KeepAwake holds desired state in memory: `isEnabled` resolves it on
+   the main thread with no activity required (mirrors the Swift global
+   read); `setEnabled` records it, applies `FLAG_KEEP_SCREEN_ON` to
+   the current activity window when one exists, and re-applies on
+   resume/recreation. No rejection path; the negative control is
+   recreation re-application verified via window flags.
+7. Orientation: current value from `Display.rotation` plus natural
+   orientation; locks map portrait/`SCREEN_ORIENTATION_PORTRAIT`,
+   portraitUpsideDown/`REVERSE_PORTRAIT`,
+   landscapeLeft/`REVERSE_LANDSCAPE`,
+   landscapeRight/`LANDSCAPE`, landscape/`SENSOR_LANDSCAPE`. The exact
+   left/right pairing is verified on the emulator proof and recorded
+   here. Manifest screenOrientation is read via PackageManager and
+   defines unlock restoration (`UNSPECIFIED` returns to manifest
+   behavior); runtime locks override the manifest on Android, so a
+   manifest conflict never fakes `E_SCREEN_ORIENTATION_UNSUPPORTED`.
+   That code fires only on a non-rotatable display (television type).
+   A 10s verify window mirrors the Swift timeout
+   (`E_SCREEN_ORIENTATION_TIMEOUT`); backgrounded calls reject
+   `E_SCREEN_ORIENTATION_SCENE`. Listeners run on real rotation only
+   via OrientationEventListener filtered to the five values; remover
+   stops delivery.
+8. MapServices.search validates exactly like Swift (blank query,
+   non-finite or out-of-range center, radius outside 100-50000 reject
+   `E_MAP_INPUT`); center+radius become a Geocoder bbox
+   (dLat = r/111320, dLng = r/(111320*cos(lat)), clamped +-90,
+   wrapped +-180, maxResults 10). `Geocoder.isPresent()` false or an
+   IO failure resolves `[]` (mirrors the iOS no-result contract);
+   empty results resolve `[]`.
+9. Biometry: exactly one of fingerprint/face hardware features present
+   plus `canAuthenticate(BIOMETRIC_STRONG) == SUCCESS` reports
+   `touchID`/`faceID`; zero or ambiguous (both) kinds report `none`.
+   `canEvaluatePolicy` maps BiometricManager result codes onto
+   `errorCode` when unavailable (no hardware, unavailable,
+   none-enrolled, lockout). `evaluatePolicy` requires a non-blank
+   reason (`E_LOCAL_AUTH_REASON`); user/system cancel and negative
+   button resolve false; lockout/no-biometrics/no-credential map to
+   `E_LOCAL_AUTH_{LOCKOUT,NOT_ENROLLED,PASSCODE_NOT_SET}`;
+   everything else rejects `E_LOCAL_AUTH_FAILED`. No manifest code
+   exists on Android (USE_BIOMETRIC is normal, library manifest).
+10. ProtectedStore held; research below, no weakening.
+11. QuickActions items beyond `maxShortcutCountPerActivity` reject
+    `E_QUICK_ACTIONS_INPUT`; never silently trim.
+12. Print rasterizes each PDF page via platform PdfRenderer at the
+    job PrintAttributes resolution (default 300dpi):
+    bitmap = mediaSize points * dpi/72. `isAvailable` is false when no
+    print service handles the job.
+13. ScreenCapture held; corrected design below, kept preconditions:
+    sub-26 rejection code, screenshot filter, API pin.
+
+Error-code rule stands: mirror the Swift `E_*` codes so callers
+branch identically; user refusal resolves, never rejects.
+
+### Corrected ScreenCapture design (held, for review routing)
+
+F1 P2: `Activity.registerScreenCaptureCallback` reports screenshot
+notifications only (API 34, `onScreenCaptured()` carries no value),
+never ongoing recording state. Recording state comes only from the
+API 35 `WindowManager.addScreenRecordingCallback` (initial int state
+plus subsequent states, needs `DETECT_SCREEN_RECORDING`). Both
+detect permissions are normal install-time, so both ride the library
+manifest. Corrected mapping: `getState`/`addStateListener` read the
+WindowManager API 35 state plus its listener/remover, `unspecified`
+below API 35; screenshot notification uses the API 34 Activity
+callback; capture stays PixelCopy (API 26+, honest rejection below)
+through the existing FileProvider paths with the UIManagerHelper
+resolver and same-window/unknown-tag checks. Registration follows
+owned activity lifetime (unregister/re-register on pause/resume).
+Proof controls (when gated): independent screenshot vs recording
+start/stop, initial-state and remover checks; ADB screenshots are not
+a positive test for the API 34 callback. No native code is written
+before p61184/p60786 disposition on `t-muusi2pr-1hgr0`.
+
+### ProtectedStore research (held, for review routing)
+
+First-layer issue 10 stands: `createItem(key,value,policy)` carries
+no reason and must not prompt (Swift `SecItemAdd` does not prompt);
+`get`/`update`/`delete` carry reason with per-use authentication;
+policy is immutable; biometric-set change invalidates
+`biometryCurrentSet` keys. Research target on `t-muusi2v1-1hh50`: a
+concrete supported key/operation/lifetime design preserving those
+calls — per-key AndroidKeyStore AES-GCM with
+`setUserAuthenticationRequired(true)`, `userPresence` allowing device
+credential, `biometryCurrentSet` biometric-only with invalidation on
+new enrollment — with no cached authentication window, no plaintext
+persistence, no silent rekey or data loss, and no weaker policy. Any
+genuine product/security tradeoff stays gated. No native code is
+written before disposition.
+
+### Implementation order and proof
+
+Order: Device, KeepAwake, ScreenOrientation, Share, Print,
+QuickActions, AppIcon, Location (with prebuild stamping),
+MapServices, LocalAuthentication (with biometric dependency). Each:
+spec widening, `bun run nitrogen` in `packages/one`, minimal
+`nitro.json` android hunk, one Kotlin file, `index.android.ts`
+deletion (MapServices keeps its split), guard removal in
+`index.native.ts` with validation and error strings byte-identical,
+doc page + `platform-support.mdx` row, drift suite green, SSR suite
+green. Shared `nitro.json` hunks stay minimal in this branch for
+manager-serialized integration. Compile evidence is a real Gradle
+library + APK build; runtime proof is a focused Android 37 emulator
+suite driving the existing fixtures with baseline (unavailable
+contract observed pre-change is already recorded in the proposal),
+positive, negative, and lifetime controls per service.
