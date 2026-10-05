@@ -61,6 +61,43 @@ acceptance or correct sharp foreground behavior.
 
 ## remaining acceptance
 
+RAN, 2026-10-04: fresh Android API 37 probe compiled the current
+`OneNativeBlurView.kt` alongside the exact QmBlurView 1.3.0 artifact. One
+left the backdrop stripes sharp; the upstream view softened them. Fresh iOS
+27 fixture at intensity 25 changed light to dark and back twice. Each round
+left an opaque gray panel although the state still reported intensity 25.
+Receipts: `android-current-vs-upstream.png`, `ios-current-25-light.png`,
+`ios-current-25-light-cycle.png` in the evidence directory below.
+
+The bounded public repair ports ordinary `BlurEffectView.swift` intensity
+and lifecycle handling, omits its test-runner on/off branch, and wires only
+the existing ordinary Blur component. Android capture remains under
+evaluation against foreground order, software-canvas effects and allocations;
+it is not accepted merely because it blurs this simple scene.
+
+TESTED: ordinary iOS blur repair compiles on the unchanged platform floor and
+runs on the claimed standard iPhone17Pro/iOS27. At intensity25, light/dark/light
+returns to the initial sampled backdrop within 0.0071/255 MAE, versus
+44.18/255 before the repair. Zero intensity restores sharp stripes (ROI
+standard deviation127.49); full intensity uses the full material (0.98).
+Native3x captures prove sharp foreground, rounded child clipping, scrolling
+backdrop,75% scale, landscape/portrait and detach/remount. A verified Settings
+foreground cycle resumes the same app PID9005 and state, with0.0/255 backdrop
+MAE. A breakpoint on animator rebuilding records0 hits during actual backdrop
+scrolling. Stabilization remains bounded to three ticks per mount/update.
+
+TESTED: exact Qm1.3.0 captures an above-blur sibling into the backdrop. Outside
+the sharp red square, red-minus-green averages60.74/255; hiding that sibling
+reduces it to0.0. Zero radius restores sharp stripes. A shared-heavy exclusive
+window measured300 moving frames on the standard Android17/API37 emulator:
+capture plus blur mean0.866ms, p95 2.253ms; capture alone mean0.045ms. PSS
+changed38,256->38,300KiB, native heap11,740->11,672KiB over five seconds.
+These are emulator results, not physical-device acceptance. Stable memory does
+not remove the per-frame work allocations found in the exact source.
+Android capture adoption is held because this upstream route fails the
+required foreground order and allocation constraints. No dependency patch,
+custom traversal or alternate rendering path is introduced.
+
 - Reproduce the actual failure with current native source and a named exact
   upstream reference on the same native device and OS.
 - Prove moving backdrop, sharp foreground, clipping and child order, zero

@@ -50,6 +50,7 @@ declare module 'one' {
         | `/one-native-audio`
         | `/one-native-autogen`
         | `/one-native-background-tasks`
+        | `/one-native-blur-proof`
         | `/one-native-browser`
         | `/one-native-building-blocks`
         | `/one-native-calendar`
