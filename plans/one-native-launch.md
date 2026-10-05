@@ -454,3 +454,40 @@ retained blur paths belong to stopped predecessor a22608. Operations owns source
 custody under `t-muuymnwo-qik0`; they remain untouched while sync owner r59503
 handles safe fast-forward metadata. Blur holds and parked speed work remain
 preserved; sync hygiene grants no native adoption or public-main approval.
+
+### current native acceptance (2026-10-05 UTC)
+
+ProtectedStore author r59519 finished candidate `d34b897e1273b7977493b2c55dd1fddf8bf98c9c`,
+production `94d765a567e56b6c813e6d3dc977603792fe6c07`. Author-reported proof
+covers 92 receipt checks over 64 actual One/Nitro native results, with separate
+production and fault APK identities and three verifier negative controls.
+Manager READ the committed evidence README and handoff; assigned assembled
+coverage is with p61184, followed by p60786. Delivery is not accepted yet.
+Owned emulator, claim and servers are cleaned up. The clean pushed Pro64 tree
+is retained under manager custody because a shared Watchman directory handle
+holds it; no shared service kill or forced removal is authorized.
+
+Media candidate `25e516090e7445d03a5771422503bcb165e67c70` remains unlanded.
+Completed first-layer p61184 assessment found Calendar detached-ID and split
+atomicity issues, Photo limited-permission and album-access issues, and Audio
+busy, seek and API-floor issues. Contacts source was sound; reported Contacts,
+Calendar and Photo receipts do not establish full media acceptance. Preserve
+the existing full findings before assigning bounded repairs. Audio remains
+runtime-unverified, with one eventual assigned assembled substantive gate.
+
+RAN: the unchanged Audio proof driver and preserved APK failed on a second host,
+Pro64, using an existing standard Pixel8 API37 AVD in read-only mode. Boot
+completed, but the Audio leg lost the device before any acceptance criterion
+passed. The emulator then reported bad color buffers and a 15-second hang across
+all QEMU threads. This reproduces the failure signature across hosts; the
+underlying guest-media versus renderer cause remains unproven. Receipts are
+outside the worktree in `media-implemented-evidence/audio-pro64-failure` under
+the manager handoff directory. Existing platform owner s10097 and operations
+p60562 own the supported repair path. No further reboot, wipe, renderer change,
+audio HAL mutation or shared-service action is authorized by this observation.
+
+CI repair proposal `f5c36f17e` uses the existing compiler-path mechanism and
+preserves requested Hermes bytecode. Public first-layer disposition is complete;
+p60786's assigned preimplementation disposition is pending. The rejected
+JavaScript fallback proposal is superseded. Manager owns beta integration,
+required CI and exact canary content proof after the bounded repair.
