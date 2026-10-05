@@ -1,4 +1,4 @@
-<!-- plan: status=active owner=s9760 reviewed=2026-10-04 -->
+<!-- plan: status=active owner=p61056 reviewed=2026-10-04 -->
 
 # One native: launch
 
@@ -392,3 +392,11 @@ RAN: origin/v2-beta is 95252a29d799f439c029a7d29541f1db0b6efa6a. Approved browse
 RAN: prior Android system e43a2b4dd and media 6cef650ba are registration-only WIP branches with no Kotlin or runtime proof. Resume their existing service scope as two grouped branches. Web services already landed as 3d5841af0 with prior browser and tarball receipts; preserve disputed old branch notes and do not adopt its remaining commits blindly. Android halo/allocation and private variable blur remain held pending measured supported repair. Contrast native87 stays with its existing owner.
 
 First-layer public review and runtime validation: one assigned Muse Max Spark Contributor validator, fixed subscription account cam. Android workers prepare source-grounded implementation proposals for review before native changes. The validator supplies public first-layer findings; p60786 retains substantive gates. Manager serializes integration and owns required One CI, artifact identity, and canary content verification. Authors push bounded branches and clean their owned resources before finishing, without waiting on CI.
+
+### recovery checkpoints
+
+RAN: system proposal `669de43ea8ae0b233038bd8376f68adc77a471e8` is pushed to `tm/beta-android-system`, updating `plans/one-native-android-lane.md`. Media proposal `0ab0c5e08fd236abc6c593e88fccc82672857022` is pushed to `tm/beta-android-media`, updating `plans/one-native-realapps.md` and a public seed fixture. Both are based on `8631f54f9`; neither implements native services. Public validator p61184 has both exact checkpoints. Protected substantive review remains p60786 after first-layer disposition. CI ownership repair proposal is being prepared by p61201 on `tm/beta-native-ci`.
+
+RAN: the ordinary blur delivery task `t-muulkz5o-1un30` is closed for package provenance. Packed `one@2.0.0-0.canary.1791165360617` has `releaseSourceCommit=95252a29d799f439c029a7d29541f1db0b6efa6a`; the two native ordinary blur files and browser source/declaration byte-match that source. Receipt: `/Users/n8/Library/Caches/one-beta-recovery/canary-content.json`. Existing browser runtime and delivery proof is already complete in `t-muuj8ga1-g0c0`; no repeat historical runtime wave is assigned. Required iOS CI repair and Android native runtime proof stay open under `t-muuqrnrk-svg0`.
+
+Retained clean and pushed worktrees `~/.worktrees/one-beta-android-system` and `~/.worktrees/one-beta-android-media` are owned by delivery manager p61056 during proposal review and implementation continuation. Their proposal authors have finished. `~/.worktrees/one-beta-native-ci` remains owned by its active author p61201. These are live recovery workspaces, not abandoned cleanup candidates.
