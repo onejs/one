@@ -1,0 +1,7 @@
+{
+  "sourceSHA256": "4360b087511701f850747ff7f62ccbe519079bce6127341f2928d886eff97a92",
+  "branch": "tm/protected-store-implementation",
+  "floor": 30,
+  "runtime": 37,
+  "hardwareClaim": false
+}

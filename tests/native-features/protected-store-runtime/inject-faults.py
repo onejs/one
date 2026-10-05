@@ -5,7 +5,7 @@ import json
 root = Path(__file__).resolve().parents[3]
 source = root / 'packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneProtectedStore.kt'
 host = root / 'tests/native-features/android'
-output = host / 'protected-store-faults/com/margelo/nitro/one/HybridOneProtectedStore.kt'
+output = host / 'protected-store-faults/com/margelo/nitro/one/ProtectedStoreFaultProof.kt'
 output.parent.mkdir(parents=True, exist_ok=True)
 original = source.read_text()
 faults = original.replace('        val pair = generator.generateKeyPair()', '''        val pair = generator.generateKeyPair()
@@ -41,3 +41,17 @@ faults = faults.replace('                        worker.execute { authenticated(
 assert faults != original
 output.write_text(faults)
 print(json.dumps({'productionSHA256': hashlib.sha256(original.encode()).hexdigest(), 'faultVariantSHA256': hashlib.sha256(faults.encode()).hexdigest(), 'output': str(output)}, indent=2))
+
+init = host / 'protected-store-faults.gradle'
+init.write_text("""gradle.projectsEvaluated {
+    if (gradle.rootProject.name == 'NativeFeatureTests') {
+        def one = gradle.rootProject.project(':one')
+        def task = one.tasks.getByName('compileDebugKotlin')
+        def original = (task.sources.files + task.javaSources.files).findAll { it.name != 'HybridOneProtectedStore.kt' }
+        def injected = new File('%s')
+        task.setSource([one.files(original, injected)] as Object[])
+        assert !task.sources.files.any { it.name == 'HybridOneProtectedStore.kt' }
+        assert task.sources.files.contains(injected)
+    }
+}
+""" % str(output))

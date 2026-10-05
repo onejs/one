@@ -1,0 +1,5 @@
+{
+  "apkSHA256": "5d0faf469d2d838d2d6d2e005d8935601a35b4a9b68857f780744a8b3b58919f",
+  "codeVariant": "production",
+  "purpose": "USE_BIOMETRIC omitted; all calls manifest-reject before item mutation"
+}

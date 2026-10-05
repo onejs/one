@@ -1,0 +1,4 @@
+{"event": "result", "id": "get-presence", "outcome": "resolved", "value": "value-presence", "elapsedMs": 3617}
+{"event": "result", "id": "get-biometry", "outcome": "resolved", "value": "value-biometry", "elapsedMs": 3339}
+{"event": "result", "id": "update-presence", "outcome": "resolved", "elapsedMs": 3321}
+{"event": "result", "id": "read-updated", "outcome": "resolved", "value": "value-updated", "elapsedMs": 3271}

@@ -16,3 +16,24 @@ The implementation brief says: “Implement only ProtectedStore native parity”
 ## proof obligations
 
 Actual One/Nitro host: both policies, creation without prompt, fresh reads/updates/deletes, long UTF-8, missing and duplicate semantics, immutable-policy tamper, ciphertext tamper, enrollment invalidation and explicit reuse. Bounded injected controls cover pre-record keygen death, cancel/destroy/stale callbacks, same-cipher identity, failure before atomic commit and generation ownership. SDK API37 software evidence remains distinct from actual One integration and hardware claims.
+
+## candidate disposition, 2026-10-05 UTC
+
+TESTED: Production source commit 94d765a567e56b6c813e6d3dc977603792fe6c07
+compiled in the actual One/Nitro arm64 host. The committed runtime evidence
+passes 92 checks over 64 native results, including the required bounded
+negative controls. The host, fault variant and permission-omitted APK have
+separate identities. See
+[proof and limits](../tests/native-features/protected-store-runtime/evidence/README.md).
+Package and harness TypeScript checks passed. Production source has no test
+receiver or fault switches. First-layer p61184 and assembled p60786 gates remain
+assigned; manager p61056 owns beta integration and delivery CI. No main or stable
+release authorization is implied.
+
+Cost: Each item adds one 2048-bit RSA alias and one encrypted envelope. Each
+write generates a fresh AES256 key; existing reads/updates perform one
+private unwrap under a fresh prompt. Deletion prompts without decrypting an
+invalidated envelope. Values add a 256-byte wrapped key, 12-byte IV and 16-byte
+GCM tag plus metadata. The process owner serializes requests on one worker;
+there is no cached authentication or data key. Emulator timings include prompt
+automation and provide no hardware performance comparison.
