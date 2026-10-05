@@ -399,7 +399,7 @@ RAN: system proposal `669de43ea8ae0b233038bd8376f68adc77a471e8` is pushed to `tm
 
 RAN: the ordinary blur delivery task `t-muulkz5o-1un30` is closed for package provenance. Packed `one@2.0.0-0.canary.1791165360617` has `releaseSourceCommit=95252a29d799f439c029a7d29541f1db0b6efa6a`; the two native ordinary blur files and browser source/declaration byte-match that source. Receipt: `/Users/n8/Library/Caches/one-beta-recovery/canary-content.json`. Existing browser runtime and delivery proof is already complete in `t-muuj8ga1-g0c0`; no repeat historical runtime wave is assigned. Required iOS CI repair and Android native runtime proof stay open under `t-muuqrnrk-svg0`.
 
-Retained clean and pushed worktrees `~/.worktrees/one-beta-android-system` and `~/.worktrees/one-beta-android-media` are owned by delivery manager p61056 during proposal review and implementation continuation. Their proposal authors have finished. `~/.worktrees/one-beta-native-ci` remains owned by its active author p61201. These are live recovery workspaces, not abandoned cleanup candidates.
+Android continuation authors p61888 and p61890 own `~/.worktrees/one-beta-android-system` and `~/.worktrees/one-beta-android-media`. The generated-binding author finished; its clean pushed `tm/beta-native-ci` source is preserved and the manager removed its worktree through Team Machine, which archived ignored outputs. ProtectedStore design author r59432 finished with its Pro64 emulator, processes and worktree cleaned; proposal and probe receipts remain on `tm/protected-store-design`.
 
 ### staffing clarification (2026-10-04)
 
@@ -410,3 +410,32 @@ Nate: "Just add as you need but one native could use maybe a few more over time"
 The mandatory five-worker expansion is canceled in `t-muuu1o2d-1ugx0`. No additional model worker was launched for it. Existing Android system and media authors and the public validator continue. Add help only for a concrete remaining bottleneck, with disjoint source ownership and the current review gates. One focused Sol high worker on Pro64 will take the held ProtectedStore design research so the system author can stay on its ten approved services; native implementation remains held until its supported design is approved. ScreenCapture corrected design remains with the system author.
 
 Nate reporting direction relayed by operations: "Please tell managers I do expect some updates via tm share. One per hour is reasonable". Share verified results and remaining acceptance directly from this manager while actively working; do not create hourly polling or wake loops.
+
+### delivery and required CI (2026-10-05 UTC)
+
+RAN: approved generated-only candidate `787f5681b` landed on v2-beta as
+`1fb90038c9005b28229947627672bfa42ba0f443`. Public first-layer p61184 and final
+reviewer p60786 verified unchanged contracts and the complete local CI step,
+including three intended negative controls. Checks `37269583772` and Release
+`37269583725` passed. Exact npm canary `2.0.0-0.canary.1791179486691` identifies
+that source; schema and both portal specs byte-match, and codegen configuration
+is value-equal. Manager receipt: `Library/Caches/one-beta-recovery/ci-canary-1fb/content-proof.json`.
+
+RAN: iOS workflow `37269583982` passed generated SwiftUI and consumer Fabric
+compilation, both app builds, and dev/metro, prod/metro and prod/rolldown runtime
+jobs. Required dev/rolldown failed HMR, protected-route and import-meta tests
+before cancellation at the existing job limit. This is an open runtime CI
+repair, not full CI acceptance. Task `t-muuxz7ec-17ju0`, author r59505 on Pro64,
+verified Muse Spark Contributor Max with fixed cam subscription. It owns a
+bounded diagnosis and prereview proposal, then assigned repair; p61184 and
+p60786 remain the review gates. Manager owns subsequent beta landing and CI.
+No timeout increase, retry, skip or weaker assertion is authorized.
+
+ScreenCapture corrected design `ce0bb43c4` and ProtectedStore supported-SDK
+proposal `ac832933e` passed their first-layer reviews with corrections and are
+routed to the existing substantive held-design gate. Neither is native
+implementation approval. ProtectedStore probes cover an API37 software emulator;
+hardware and One integration remain unproven. Pro128 disk admission recovered
+from below its 35 GiB floor to 88 GiB; the Android author must read its original
+build receipt before resubmission. Source producers and runtime devices remain
+unique; unrelated holds and parked speed work stay preserved.
