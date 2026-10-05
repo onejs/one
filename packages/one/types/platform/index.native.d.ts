@@ -37,12 +37,12 @@ export declare const Swift: {
     Image({ systemName, uri, renderingMode, symbolRenderingMode, symbolVariant, imageScale, variableValue, colorRole, swiftStyle, style, ...props }: import("./types").ImageProps): import("react/jsx-runtime").JSX.Element;
     ShareLink({ label, disabled, systemImage, item, itemType, subject, message, swiftStyle, style, ...props }: import("./types").ShareLinkProps): import("react/jsx-runtime").JSX.Element;
     ContentUnavailableView({ onAction, title, systemImage, description, actions, swiftStyle, style, ...props }: import("./types").ContentUnavailableViewProps): import("react/jsx-runtime").JSX.Element;
-    Circle({ fill, swiftStyle, style, ...props }: import("./types").CircleProps): import("react/jsx-runtime").JSX.Element;
-    Capsule({ fill, swiftStyle, style, ...props }: import("./types").CapsuleProps): import("react/jsx-runtime").JSX.Element;
-    Rectangle({ fill, swiftStyle, style, ...props }: import("./types").RectangleProps): import("react/jsx-runtime").JSX.Element;
-    RoundedRectangle({ fill, cornerRadius, swiftStyle, style, ...props }: import("./types").RoundedRectangleProps): import("react/jsx-runtime").JSX.Element;
-    Ellipse({ fill, swiftStyle, style, ...props }: import("./types").EllipseProps): import("react/jsx-runtime").JSX.Element;
-    UnevenRoundedRectangle({ fill, topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius, swiftStyle, style, ...props }: import("./types").UnevenRoundedRectangleProps): import("react/jsx-runtime").JSX.Element;
+    Circle({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types").CircleProps): import("react/jsx-runtime").JSX.Element;
+    Capsule({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types").CapsuleProps): import("react/jsx-runtime").JSX.Element;
+    Rectangle({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types").RectangleProps): import("react/jsx-runtime").JSX.Element;
+    RoundedRectangle({ fill, strokeBorder, lineWidth, cornerRadius, swiftStyle, style, ...props }: import("./types").RoundedRectangleProps): import("react/jsx-runtime").JSX.Element;
+    Ellipse({ fill, strokeBorder, lineWidth, swiftStyle, style, ...props }: import("./types").EllipseProps): import("react/jsx-runtime").JSX.Element;
+    UnevenRoundedRectangle({ fill, strokeBorder, lineWidth, topLeadingRadius, bottomLeadingRadius, bottomTrailingRadius, topTrailingRadius, swiftStyle, style, ...props }: import("./types").UnevenRoundedRectangleProps): import("react/jsx-runtime").JSX.Element;
     ConcentricRectangle({ fill, swiftStyle, style, ...props }: import("./types").ConcentricRectangleProps): import("react/jsx-runtime").JSX.Element;
     LinearGradient({ colors, startPoint, endPoint, swiftStyle, style, ...props }: import("./types").LinearGradientProps): import("react/jsx-runtime").JSX.Element;
     RadialGradient({ colors, center, startRadius, endRadius, swiftStyle, style, ...props }: import("./types").RadialGradientProps): import("react/jsx-runtime").JSX.Element;
