@@ -641,11 +641,7 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
                 if (verb == "exportCurrentVideo" && asset.mediaType != PhotoLibraryMediaType.VIDEO) {
                     throw OneNativeError(E_UNSUPPORTED, "PhotoLibrary.$verb: a video asset is required")
                 }
-                val extension = when (asset.mediaType) {
-                    PhotoLibraryMediaType.VIDEO -> "mp4"
-                    PhotoLibraryMediaType.AUDIO -> "m4a"
-                    else -> "jpg"
-                }
+                val extension = exportExtension(uri, asset.mediaType)
                 val directory = File(context.cacheDir, "one-native-photo").apply { mkdirs() }
                 val file = File(directory, "one-photo-${UUID.randomUUID()}.$extension")
                 context.contentResolver.openInputStream(uri)?.use { input ->
@@ -728,6 +724,7 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
                     resolver.openOutputStream(inserted)?.use { output ->
                         source.inputStream().use { input -> input.copyTo(output) }
                     } ?: throw OneNativeError(E_SAVE, "PhotoLibrary.$verb: Photos did not create an asset")
+                    backfillMetadata(inserted, source, isVideo)
                     if (Build.VERSION.SDK_INT >= 29) {
                         val done = ContentValues().apply {
                             put(MediaStore.MediaColumns.IS_PENDING, 0)
@@ -1049,6 +1046,79 @@ class HybridOnePhotoLibrary : HybridOnePhotoLibrarySpec(), ActivityEventListener
             }
         }
         return null
+    }
+
+    private fun exportExtension(uri: Uri, type: PhotoLibraryMediaType): String {
+        // keep the stored extension so byte comparisons see the same file
+        // kind; fall back to the mime type, then the media default.
+        val fromRow = try {
+            context.contentResolver.query(
+                uri,
+                arrayOf(MediaStore.MediaColumns.DISPLAY_NAME, MediaStore.MediaColumns.MIME_TYPE),
+                null,
+                null,
+                null
+            )?.use { cursor ->
+                if (cursor.moveToFirst()) Pair(cursor.getString(0), cursor.getString(1))
+                else null
+            }
+        } catch (e: Exception) {
+            null
+        }
+        fromRow?.first?.substringAfterLast('.', "")?.lowercase()?.ifEmpty { null }?.let {
+            if (it.length in 2..5 && it.all { char -> char.isLetterOrDigit() }) return it
+        }
+        when (fromRow?.second?.lowercase()) {
+            "image/heic" -> return "heic"
+            "image/heif" -> return "heif"
+            "image/jpeg" -> return "jpg"
+            "image/png" -> return "png"
+            "image/webp" -> return "webp"
+            "image/gif" -> return "gif"
+            "video/mp4", "video/quicktime" -> return "mp4"
+            "audio/mp4", "audio/x-m4a" -> return "m4a"
+        }
+        return when (type) {
+            PhotoLibraryMediaType.VIDEO -> "mp4"
+            PhotoLibraryMediaType.AUDIO -> "m4a"
+            else -> "jpg"
+        }
+    }
+
+    private fun backfillMetadata(inserted: Uri, source: File, isVideo: Boolean) {
+        // MediaStore extracts dimensions asynchronously; backfill from the
+        // source file so immediate reads see real metadata.
+        try {
+            val values = ContentValues()
+            if (isVideo) {
+                val retriever = android.media.MediaMetadataRetriever()
+                try {
+                    retriever.setDataSource(source.absolutePath)
+                    retriever.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)
+                        ?.toIntOrNull()?.let { values.put(MediaStore.MediaColumns.WIDTH, it) }
+                    retriever.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)
+                        ?.toIntOrNull()?.let { values.put(MediaStore.MediaColumns.HEIGHT, it) }
+                    retriever.extractMetadata(android.media.MediaMetadataRetriever.METADATA_KEY_DURATION)
+                        ?.toLongOrNull()?.let { values.put(MediaStore.MediaColumns.DURATION, it) }
+                } finally {
+                    try {
+                        retriever.release()
+                    } catch (ignored: Exception) {
+                    }
+                }
+            } else {
+                val options = android.graphics.BitmapFactory.Options().apply { inJustDecodeBounds = true }
+                android.graphics.BitmapFactory.decodeFile(source.absolutePath, options)
+                if (options.outWidth > 0 && options.outHeight > 0) {
+                    values.put(MediaStore.MediaColumns.WIDTH, options.outWidth)
+                    values.put(MediaStore.MediaColumns.HEIGHT, options.outHeight)
+                }
+            }
+            if (values.size() > 0) {
+                context.contentResolver.update(inserted, values, null, null)
+            }
+        } catch (e: Exception) {
+        }
     }
 
     private fun applyFavorite(uri: Uri, favorite: Boolean, verb: String) {

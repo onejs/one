@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 const code = (error: unknown) =>
   error && typeof error === 'object' && 'code' in error
     ? String(error.code)
     : String(error)
+
+// Android's postal rows carry no ISO country code slot, so the round-trip
+// reads back empty there while iOS preserves it.
+const expectedIsoCountryCode = Platform.OS === 'android' ? '' : 'US'
 
 export default function OneNativeContacts() {
   const [permission, setPermission] = useState(One.Contacts.getPermissionStatus())
@@ -75,7 +79,7 @@ export default function OneNativeContacts() {
         found.postalAddresses[0].label === 'Proof office' &&
         found.postalAddresses[0].street === '1 Market Street' &&
         found.postalAddresses[0].city === 'San Francisco' &&
-        found.postalAddresses[0].isoCountryCode === 'US'
+        found.postalAddresses[0].isoCountryCode === expectedIsoCountryCode
       stage = 'edit'
       const changed = await One.Contacts.update(identifier, {
         givenName: 'OneEdited',
