@@ -39,3 +39,21 @@ The owner subsequently approved landing, as quoted below.
 Land the existing unified APIs and these Blur/Mask adapters on v2-beta. Broader
 One.UI coverage is outside this work. Keep main untouched and keep the current
 public API. The owner approval supersedes the unavailable manager review gate.
+
+## Browser URL validation follow-up
+
+2026-10-04: m20266 approved a bounded parity repair after reviewing both entries
+and fresh runtime evidence. The approved browser implementation is already on
+v2-beta at `3d5841af0`; the saved unified branch adds only completion receipts.
+The native API v2 branch is already an ancestor, so no branch adoption is needed.
+
+RAN: web `Browser.mayLaunchUrl` accepted empty and non-string URLs while native
+rejected them synchronously before creating its Nitro object. The web entry now
+reuses the same validator. Valid hints still resolve `false`, with no popup.
+TESTED: original web cases fail the new regression assertions; native cases pass.
+All 172 focused browser, SSR, docs and effects tests pass after repair. Chromium
+and WebKit verify synchronous rejection, no popup from launch hints or unavailable
+auth sessions, and real popup opening with a cleared opener. Native behavior,
+exports, signatures and dependencies are unchanged. There is no per-frame work;
+the added check is one type/length validation per hint. Physical native runtime
+and downstream package adoption are outside this web-only repair.

@@ -53,6 +53,13 @@ describe('browser web', () => {
     Browser.dismissAuthSession()
   })
 
+  it('returns false for a valid launch hint without opening a popup', async () => {
+    const open = vi.fn()
+    vi.stubGlobal('window', { open })
+    await expect(Browser.mayLaunchUrl('https://example.com')).resolves.toBe(false)
+    expect(open).not.toHaveBeenCalled()
+  })
+
   it('throws synchronously for invalid arguments', () => {
     expect(() => Browser.open('')).toThrow('Browser.open: url must be a non-empty string')
     expect(() => Browser.open('https://example.com', 'nope' as never)).toThrow(
@@ -89,6 +96,31 @@ describe('browser web', () => {
     expect(Object.isFrozen(Browser)).toBe(true)
   })
 })
+
+describe.each(['web', 'native'] as const)(
+  'browser %s launch hint validation',
+  (entry) => {
+    it.each(['', 123, null, undefined, {}, []].map((url) => ({ url })))(
+      'rejects invalid url $url synchronously without platform work',
+      async ({ url }) => {
+        const open = vi.fn()
+        vi.stubGlobal('window', { open })
+        const mayLaunchUrl = vi.fn()
+        const browser =
+          entry === 'web' ? Browser : (await loadNativeEntry({ mayLaunchUrl })).Browser
+        const { NitroModules } = await import('react-native-nitro-modules')
+        vi.mocked(NitroModules.createHybridObject).mockClear()
+
+        expect(() => browser.mayLaunchUrl(url as never)).toThrow(
+          'Browser.mayLaunchUrl: url must be a non-empty string'
+        )
+        expect(open).not.toHaveBeenCalled()
+        expect(NitroModules.createHybridObject).not.toHaveBeenCalled()
+        expect(mayLaunchUrl).not.toHaveBeenCalled()
+      }
+    )
+  }
+)
 
 describe('browser native entry', () => {
   it('delegates every call', async () => {
