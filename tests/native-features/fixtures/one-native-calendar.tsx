@@ -132,6 +132,61 @@ export default function OneNativeCalendar() {
       const recurrenceRemoved = !(
         await One.Calendar.list(recurrenceStartMs - 1, recurrenceStartMs + 5 * dayMs, 100)
       ).some((event) => event.title === recurrenceTitle)
+      const middleStartMs = Date.now() + 28 * dayMs
+      const middleTitle = `One sibling proof ${middleStartMs}`
+      await One.Calendar.create({
+        title: middleTitle,
+        startMs: middleStartMs,
+        endMs: middleStartMs + 3_600_000,
+        recurrence: { frequency: 'daily', occurrenceCount: 3 },
+      })
+      const middleEvents = (
+        await One.Calendar.list(middleStartMs - 1, middleStartMs + 3 * dayMs, 100)
+      ).filter((event) => event.title === middleTitle)
+      const editedTitle = `${middleTitle} edited`
+      const edited = await One.Calendar.update(
+        middleEvents[1].identifier,
+        middleEvents[1].startMs,
+        { title: editedTitle }
+      )
+      const afterUpdate = (
+        await One.Calendar.list(middleStartMs - 1, middleStartMs + 3 * dayMs, 100)
+      ).filter((event) => event.title === middleTitle || event.title === editedTitle)
+      const siblingsKeptAfterUpdate =
+        middleEvents.length === 3 &&
+        edited.title === editedTitle &&
+        Math.abs(edited.startMs - (middleStartMs + dayMs)) < 1000 &&
+        afterUpdate.filter((event) => event.title === middleTitle).length === 2 &&
+        afterUpdate.some(
+          (event) =>
+            event.title === middleTitle && Math.abs(event.startMs - middleStartMs) < 1000
+        ) &&
+        afterUpdate.some(
+          (event) =>
+            event.title === middleTitle &&
+            Math.abs(event.startMs - (middleStartMs + 2 * dayMs)) < 1000
+        ) &&
+        afterUpdate.filter((event) => event.title === editedTitle).length === 1
+      await One.Calendar.delete(middleEvents[0].identifier, middleStartMs)
+      const afterDelete = (
+        await One.Calendar.list(middleStartMs - 1, middleStartMs + 3 * dayMs, 100)
+      ).filter((event) => event.title === middleTitle || event.title === editedTitle)
+      const siblingsKeptAfterDelete =
+        afterDelete.filter((event) => event.title === middleTitle).length === 1 &&
+        afterDelete.some(
+          (event) =>
+            event.title === middleTitle &&
+            Math.abs(event.startMs - (middleStartMs + 2 * dayMs)) < 1000
+        ) &&
+        afterDelete.filter((event) => event.title === editedTitle).length === 1
+      const remnant = afterDelete.find((event) => event.title === middleTitle)
+      if (remnant) {
+        await One.Calendar.delete(remnant.identifier, remnant.startMs)
+      }
+      await One.Calendar.delete(edited.identifier, edited.startMs)
+      const middleRemoved = !(
+        await One.Calendar.list(middleStartMs - 1, middleStartMs + 3 * dayMs, 100)
+      ).some((event) => event.title === middleTitle || event.title === editedTitle)
       const dateStartMs = Date.now() + 21 * dayMs
       const dateEndMs = dateStartMs + 2 * dayMs + 30 * 60_000
       const dateTitle = `One date-bounded recurrence ${dateStartMs}`
@@ -183,7 +238,7 @@ export default function OneNativeCalendar() {
         invalidRecurrenceEnd = code(error)
       }
       setResult(
-        `before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; dateBounded=${dateBounded}; dateRemoved=${dateRemoved}; invalidRecurrence=${invalidRecurrence}; invalidRecurrenceEnd=${invalidRecurrenceEnd}`
+        `before=${before}; matched=${matched}; updated=${updated}; removed=${removed}; notFound=${notFound}; invalidUpdate=${invalidUpdate}; invalid=${invalid}; recurrenceListed=${recurrenceListed}; recurrenceRemoved=${recurrenceRemoved}; siblingsKeptAfterUpdate=${siblingsKeptAfterUpdate}; siblingsKeptAfterDelete=${siblingsKeptAfterDelete}; middleRemoved=${middleRemoved}; dateBounded=${dateBounded}; dateRemoved=${dateRemoved}; invalidRecurrence=${invalidRecurrence}; invalidRecurrenceEnd=${invalidRecurrenceEnd}`
       )
       setStatus('done')
     } catch (error) {
