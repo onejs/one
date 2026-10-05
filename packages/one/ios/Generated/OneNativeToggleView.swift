@@ -15,10 +15,28 @@ private final class ToggleModel: ObservableObject {
   var onSDKEvent: ((String, String) -> Void)?
   func emitSDKEvent(_ name: String, _ value: String) { if active { onSDKEvent?(name, value) } }
 
+  var syncStateId: Int = 0
+  private var syncToken: Int = 0
+  func bindSyncState(_ id: Int) {
+    if id == syncStateId { return }
+    if syncStateId != 0 { OneNativeSyncRegistry.unobserve(Int32(syncStateId), token: syncToken) }
+    syncStateId = id
+    syncToken = 0
+    if id == 0 { return }
+    if let current = OneNativeSyncRegistry.get(Int32(id)) as? Bool { controlled.adopt(current) }
+    syncToken = OneNativeSyncRegistry.observe(Int32(id)) { [weak self] value in
+      guard let self, let next = value as? Bool else { return }
+      self.controlled.adopt(next)
+    }
+  }
+  deinit {
+    if syncStateId != 0 { OneNativeSyncRegistry.unobserve(Int32(syncStateId), token: syncToken) }
+  }
   var onChange: ((Bool, Int, Int) -> Void)?
   func change(_ value: Bool) {
     guard active, !disabled, controlled.value != value else { return }
     controlled.change(value)
+    if syncStateId != 0 { OneNativeSyncRegistry.set(Int32(syncStateId), value: value as NSObject) }
     onChange?(value, controlled.eventCount, controlled.revision)
   }
 }
@@ -44,8 +62,9 @@ private final class ToggleModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, label: String, disabled: Bool, systemImage: String, toggleStyle: String) {
+  public func configure(_ value: Bool, acknowledgedEvent: Int, revision: Int, syncStateId: Int, label: String, disabled: Bool, systemImage: String, toggleStyle: String) {
     if let next = model.controlled.applying(value, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }
+    model.bindSyncState(syncStateId)
     if model.label != label { model.label = label }
     if model.disabled != disabled { model.disabled = disabled }
     if model.systemImage != systemImage { model.systemImage = systemImage }

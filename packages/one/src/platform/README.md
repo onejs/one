@@ -494,7 +494,7 @@ that range, and `minimumDate` must not be after `maximumDate`.
 `ColorPicker` `selection` is `#RRGGBB` or `#RRGGBBAA`. `supportsOpacity` defaults
 to true.
 
-`Toggle` `isOn` is a boolean. `toggleStyle` is `automatic`, `button`, or `switch`.
+`Toggle` `isOn` is a boolean or a `useNativeState` handle. `toggleStyle` is `automatic`, `button`, or `switch`.
 `systemImage` is an optional SF Symbol shown beside the label through SwiftUI's
 `Toggle(_:systemImage:isOn:)`; an omitted image keeps the text-only toggle.
 
@@ -1830,19 +1830,22 @@ function NameForm() {
   const notify = useNativeState(false)
   return (
     <>
-      <One.iOS.TextField label="Name" text={name.value} onTextChange={name.set} />
+      <One.iOS.TextField label="Name" text={name} onTextChange={() => {}} />
       <One.iOS.Text text={`Hello, ${name.value}`} />
-      <One.iOS.Toggle label="Notify" isOn={notify.value} onIsOnChange={notify.set} />
-      <One.iOS.Toggle label="Notify copy" isOn={notify.value} onIsOnChange={notify.set} />
+      <One.iOS.Toggle label="Notify" isOn={notify} onIsOnChange={() => {}} />
+      <One.iOS.Toggle label="Notify copy" isOn={notify} onIsOnChange={() => {}} />
     </>
   )
 }
 ```
 
-Writes travel through the React render cycle: there is no worklets runtime here,
-so synchronous UI-thread updates are out of scope. The handle also does not pass
-as a prop itself yet (`text={name}`); spread the pair until the generated
-adapters learn the object shape.
+`TextField`, `SecureField`, `TextEditor` and `Toggle` take the handle itself as
+their value prop (`text={name}`, `isOn={notify}`), which is Expo's `SyncToggle`
+and synced `TextField`. The native view binds the handle by id, so a change in one
+bound view reaches the others natively before the change callback runs. Other
+controls take the scalar pair (`value={state.value}` with `state.set`). There is
+no worklets runtime here, so a synchronous UI-thread callback such as Expo's
+`onIsOnChangeSync` is out of scope.
 
 The shared RN slot has three policies. SwiftUI allocates tab bounds and reports
 them to Fabric for Yoga. Passive menu triggers retain Yoga's coordinates and

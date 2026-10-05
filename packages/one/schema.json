@@ -1186,6 +1186,9 @@
         "revision": {
           "type": "Int32"
         },
+        "syncStateId": {
+          "type": "Int32"
+        },
         "label": {
           "type": "string"
         },
@@ -1223,7 +1226,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeToggleValueChange"
+        "event": "onNativeToggleValueChange",
+        "sync": true
       },
       "actions": [],
       "layout": {

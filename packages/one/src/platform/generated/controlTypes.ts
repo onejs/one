@@ -3569,7 +3569,7 @@ export interface ColorPickerProps extends OneNativeViewProps {
   supportsOpacity?: boolean
 }
 export interface ToggleProps extends OneNativeViewProps {
-  isOn: boolean
+  isOn: boolean | NativeState<boolean>
   onIsOnChange: (value: boolean) => void
   revision?: number
   label?: string
