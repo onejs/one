@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { OneQuickActions, QuickActionItem } from '../specs/OneQuickActions.nitro'
@@ -9,7 +8,6 @@ export type { QuickActionItem }
 let hybrid: OneQuickActions | undefined
 
 function native(): OneQuickActions {
-  if (Platform.OS !== 'ios') throw new Error('QuickActions requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneQuickActions>('OneQuickActions')
   return hybrid
 }

@@ -6,7 +6,7 @@ export interface QuickActionItem {
   readonly subtitle?: string
 }
 
-export interface OneQuickActions extends HybridObject<{ ios: 'swift' }> {
+export interface OneQuickActions extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   setItems(items: QuickActionItem[]): Promise<void>
   getItems(): Promise<QuickActionItem[]>
   getInitialAction(): string | undefined
