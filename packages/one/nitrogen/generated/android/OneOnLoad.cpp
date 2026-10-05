@@ -19,10 +19,12 @@
 #include "JFunc_void.hpp"
 #include "JFunc_void_SizeClass.hpp"
 #include "JFunc_void_std__optional_HingeState_.hpp"
+#include "JHybridOneAppIconSpec.hpp"
 #include "JHybridOneAppInfoSpec.hpp"
 #include "JHybridOneAppleAuthSpec.hpp"
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
+#include "JHybridOneDeviceSpec.hpp"
 #include "JHybridOneDocumentPickerSpec.hpp"
 #include "JHybridOneFetchSpec.hpp"
 #include "JFunc_void_FetchNativeResponse.hpp"
@@ -33,10 +35,15 @@
 #include "JHybridOneHapticsSpec.hpp"
 #include "JHybridOneImageManipulatorSpec.hpp"
 #include "JHybridOneImagePickerSpec.hpp"
+#include "JHybridOneKeepAwakeSpec.hpp"
 #include "JHybridOneLaunchScreenSpec.hpp"
+#include "JHybridOneLocalAuthenticationSpec.hpp"
+#include "JHybridOneLocationSpec.hpp"
+#include "JFunc_void_LocationPosition.hpp"
+#include "JFunc_void_std__string_std__string.hpp"
+#include "JHybridOneMapServicesSpec.hpp"
 #include "JHybridOneMotionSpec.hpp"
 #include "JFunc_void_MotionReading.hpp"
-#include "JFunc_void_std__string_std__string.hpp"
 #include "JHybridOneNativeModulesSpec.hpp"
 #include "JHybridOneNetworkSpec.hpp"
 #include "JFunc_void_NetworkState.hpp"
@@ -44,8 +51,12 @@
 #include "JFunc_void_std__string_NativeNotification.hpp"
 #include "JFunc_void_NativeNotificationResponse.hpp"
 #include "JFunc_void_NativePushToken.hpp"
-#include "JHybridOneProtectedStoreSpec.hpp"
+#include "JHybridOnePrintSpec.hpp"
+#include "JHybridOneQuickActionsSpec.hpp"
+#include "JHybridOneScreenOrientationSpec.hpp"
+#include "JFunc_void_ScreenOrientationValue.hpp"
 #include "JHybridOneSecureStoreSpec.hpp"
+#include "JHybridOneShareSpec.hpp"
 #include "JHybridOneSpeechSpec.hpp"
 #include "JFunc_void_SpeechEvent.hpp"
 #include "JHybridOneUpdatesSpec.hpp"
@@ -182,12 +193,44 @@ struct JHybridOneAppleAuthSpecImpl: public jni::JavaClass<JHybridOneAppleAuthSpe
     return javaPart->getJHybridOneAppleAuthSpec();
   }
 };
-struct JHybridOneProtectedStoreSpecImpl: public jni::JavaClass<JHybridOneProtectedStoreSpecImpl, JHybridOneProtectedStoreSpec::JavaPart> {
-  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneProtectedStore;";
-  static std::shared_ptr<JHybridOneProtectedStoreSpec> create() {
-    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneProtectedStoreSpecImpl::javaobject()>();
-    jni::local_ref<JHybridOneProtectedStoreSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
-    return javaPart->getJHybridOneProtectedStoreSpec();
+struct JHybridOneLocalAuthenticationSpecImpl: public jni::JavaClass<JHybridOneLocalAuthenticationSpecImpl, JHybridOneLocalAuthenticationSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneLocalAuthentication;";
+  static std::shared_ptr<JHybridOneLocalAuthenticationSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneLocalAuthenticationSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneLocalAuthenticationSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneLocalAuthenticationSpec();
+  }
+};
+struct JHybridOneKeepAwakeSpecImpl: public jni::JavaClass<JHybridOneKeepAwakeSpecImpl, JHybridOneKeepAwakeSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneKeepAwake;";
+  static std::shared_ptr<JHybridOneKeepAwakeSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneKeepAwakeSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneKeepAwakeSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneKeepAwakeSpec();
+  }
+};
+struct JHybridOnePrintSpecImpl: public jni::JavaClass<JHybridOnePrintSpecImpl, JHybridOnePrintSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOnePrint;";
+  static std::shared_ptr<JHybridOnePrintSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOnePrintSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOnePrintSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOnePrintSpec();
+  }
+};
+struct JHybridOneQuickActionsSpecImpl: public jni::JavaClass<JHybridOneQuickActionsSpecImpl, JHybridOneQuickActionsSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneQuickActions;";
+  static std::shared_ptr<JHybridOneQuickActionsSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneQuickActionsSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneQuickActionsSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneQuickActionsSpec();
+  }
+};
+struct JHybridOneLocationSpecImpl: public jni::JavaClass<JHybridOneLocationSpecImpl, JHybridOneLocationSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneLocation;";
+  static std::shared_ptr<JHybridOneLocationSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneLocationSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneLocationSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneLocationSpec();
   }
 };
 struct JHybridOneFileSystemSpecImpl: public jni::JavaClass<JHybridOneFileSystemSpecImpl, JHybridOneFileSystemSpec::JavaPart> {
@@ -198,6 +241,22 @@ struct JHybridOneFileSystemSpecImpl: public jni::JavaClass<JHybridOneFileSystemS
     return javaPart->getJHybridOneFileSystemSpec();
   }
 };
+struct JHybridOneShareSpecImpl: public jni::JavaClass<JHybridOneShareSpecImpl, JHybridOneShareSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneShare;";
+  static std::shared_ptr<JHybridOneShareSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneShareSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneShareSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneShareSpec();
+  }
+};
+struct JHybridOneAppIconSpecImpl: public jni::JavaClass<JHybridOneAppIconSpecImpl, JHybridOneAppIconSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneAppIcon;";
+  static std::shared_ptr<JHybridOneAppIconSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneAppIconSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneAppIconSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneAppIconSpec();
+  }
+};
 struct JHybridOneImageManipulatorSpecImpl: public jni::JavaClass<JHybridOneImageManipulatorSpecImpl, JHybridOneImageManipulatorSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneImageManipulator;";
   static std::shared_ptr<JHybridOneImageManipulatorSpec> create() {
@@ -206,12 +265,36 @@ struct JHybridOneImageManipulatorSpecImpl: public jni::JavaClass<JHybridOneImage
     return javaPart->getJHybridOneImageManipulatorSpec();
   }
 };
+struct JHybridOneDeviceSpecImpl: public jni::JavaClass<JHybridOneDeviceSpecImpl, JHybridOneDeviceSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneDevice;";
+  static std::shared_ptr<JHybridOneDeviceSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneDeviceSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneDeviceSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneDeviceSpec();
+  }
+};
 struct JHybridOneMotionSpecImpl: public jni::JavaClass<JHybridOneMotionSpecImpl, JHybridOneMotionSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneMotion;";
   static std::shared_ptr<JHybridOneMotionSpec> create() {
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneMotionSpecImpl::javaobject()>();
     jni::local_ref<JHybridOneMotionSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOneMotionSpec();
+  }
+};
+struct JHybridOneScreenOrientationSpecImpl: public jni::JavaClass<JHybridOneScreenOrientationSpecImpl, JHybridOneScreenOrientationSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneScreenOrientation;";
+  static std::shared_ptr<JHybridOneScreenOrientationSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneScreenOrientationSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneScreenOrientationSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneScreenOrientationSpec();
+  }
+};
+struct JHybridOneMapServicesSpecImpl: public jni::JavaClass<JHybridOneMapServicesSpecImpl, JHybridOneMapServicesSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneMapServices;";
+  static std::shared_ptr<JHybridOneMapServicesSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneMapServicesSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneMapServicesSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneMapServicesSpec();
   }
 };
 struct JHybridOneUpdatesSpecImpl: public jni::JavaClass<JHybridOneUpdatesSpecImpl, JHybridOneUpdatesSpec::JavaPart> {
@@ -240,10 +323,12 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_SizeClass_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_std__optional_HingeState__cxx::registerNatives();
+  margelo::nitro::one::JHybridOneAppIconSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneAppInfoSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneAppleAuthSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneDeviceSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneDocumentPickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneFetchSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_FetchNativeResponse_cxx::registerNatives();
@@ -254,10 +339,15 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImageManipulatorSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneKeepAwakeSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneLaunchScreenSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneLocalAuthenticationSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneLocationSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_LocationPosition_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_std__string_std__string_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneMapServicesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneMotionSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_MotionReading_cxx::registerNatives();
-  margelo::nitro::one::JFunc_void_std__string_std__string_cxx::registerNatives();
   margelo::nitro::one::JHybridOneNativeModulesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneNetworkSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_NetworkState_cxx::registerNatives();
@@ -265,8 +355,12 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_std__string_NativeNotification_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativeNotificationResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
-  margelo::nitro::one::JHybridOneProtectedStoreSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOnePrintSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneQuickActionsSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneScreenOrientationSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_ScreenOrientationValue_cxx::registerNatives();
   margelo::nitro::one::JHybridOneSecureStoreSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneShareSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneSpeechSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_SpeechEvent_cxx::registerNatives();
   margelo::nitro::one::JHybridOneUpdatesSpec::CxxPart::registerNatives();
@@ -373,9 +467,9 @@ void registerAllNatives() {
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneProtectedStore",
+    "OneLocalAuthentication",
     []() -> std::shared_ptr<HybridObject> {
-      return JHybridOneProtectedStoreSpecImpl::create();
+      return JHybridOneLocalAuthenticationSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -388,9 +482,45 @@ void registerAllNatives() {
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneKeepAwake",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneKeepAwakeSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OnePrint",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOnePrintSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneQuickActions",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneQuickActionsSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneLocation",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneLocationSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneFileSystem",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneFileSystemSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneShare",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneShareSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneAppIcon",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneAppIconSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -400,9 +530,27 @@ void registerAllNatives() {
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDevice",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneDeviceSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneMotion",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneMotionSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneScreenOrientation",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneScreenOrientationSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneMapServices",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneMapServicesSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
