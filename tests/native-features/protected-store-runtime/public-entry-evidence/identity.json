@@ -1,0 +1,41 @@
+{
+  "parentCandidate": "d34b897e1273b7977493b2c55dd1fddf8bf98c9c",
+  "productionKotlinSHA256": "4360b087511701f850747ff7f62ccbe519079bce6127341f2928d886eff97a92",
+  "unchangedProductionNativeLibraries": {
+    "lib/arm64-v8a/libOne.so": "90ee44d5765829919877d8ee0161156c084c48b3bde11d697782241c4799cc6d"
+  },
+  "apkSHA256": "6e7f544dbc2649e2938753ef25b787151db7d1a79837dcee2b46143114ed3523",
+  "installedAPKMatches": true,
+  "publicImport": "import { One } from 'one'",
+  "packageNativeExport": "./dist/esm/index.native.js",
+  "appDoesNotDeclareBiometricPermission": true,
+  "libraryPermissionMergedAndGranted": true,
+  "files": {
+    "packages/one/src/platform/protected-store/index.native.ts": "d17d2f36e8e63866a5ccf9c81dc770fad0a1cf41a90acb73e36c98ab23e7ba6c",
+    "packages/one/android/src/main/AndroidManifest.xml": "86459f9dd3e6e9cd6d89bd7ffcad53f6710bdcff076eed6855a62544262935d8",
+    "packages/one/types/platform/specs/OneProtectedStore.nitro.d.ts": "ea520388494a973e28eeaf2d1ec4ac9ca00ccb3ae0532808f4cb8700cffe14e8",
+    "tests/native-features/protected-store-runtime/entry.tsx": "1052cf9a7c9389d231b7313b35d39af82de9c55eaaa8263857884a687a95f035",
+    "packages/one/package.json": "6b3fe2ea212907ee700a3504d28a9653f27aa7a7d82a73cf29211b64e81f7257"
+  },
+  "baselineBundleSHA256": "ccb203bdc2d0a526c66c948cc0d48d96d6d79a01a4acba6d77491077816090a0",
+  "fixedBundleSHA256": "029619db5b705a18a94459255af9016535097c347c014406541441bfe325b7df",
+  "nativeBuild": {
+    "exitCode": 0,
+    "completion": "BUILD SUCCESSFUL in 35s; 370 actionable tasks: 39 executed, 331 up-to-date"
+  },
+  "packageBuild": {
+    "exitCode": 0
+  },
+  "typecheck": {
+    "exitCode": 0
+  },
+  "limits": [
+    "one API37 software emulator",
+    "no new security matrix or API30 device proof",
+    "API30 floor remains owned by unchanged Kotlin validate()",
+    "original 92/64 evidence preserved"
+  ],
+  "harnessTypecheck": {
+    "exitCode": 0
+  }
+}

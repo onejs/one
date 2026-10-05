@@ -23,8 +23,10 @@ await One.ProtectedStore.deleteItem('recovery-key', 'Remove your recovery key', 
 ```
 
 Set `native.app.ios.faceIdUsageDescription` before prebuilding, including for
-apps that also support Touch ID. Android apps must declare
-`android.permission.USE_BIOMETRIC` in their manifest. The system displays the supplied reason when
+apps that also support Touch ID. One’s Android library manifest declares the normal install-time permission
+`android.permission.USE_BIOMETRIC`; Android’s manifest merger adds it to the app.
+If the app explicitly removes that permission, calls reject
+`E_PROTECTED_STORE_MANIFEST`. The system displays the supplied reason when
 it asks the user to authenticate.
 
 `userPresence` accepts biometrics or the device passcode. `biometryCurrentSet`

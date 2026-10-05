@@ -1,6 +1,7 @@
 import base64
 import hashlib
 import json
+import os
 import re
 import shlex
 import subprocess
@@ -12,7 +13,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-EVIDENCE = Path('/Users/n8/.team-machine/handoffs/protected-store-runtime-evidence')
+EVIDENCE = Path(os.environ.get('PROTECTED_STORE_EVIDENCE', '/Users/n8/.team-machine/handoffs/protected-store-runtime-evidence'))
 SERIAL = 'emulator-5562'
 PACKAGE = 'dev.vxrn.nativefeatures.tests'
 ADB = '/Users/n8/Library/Android/sdk/platform-tools/adb'
@@ -78,41 +79,47 @@ def record(key):
     name=hashlib.sha256(key.encode()).hexdigest()
     return adb('shell','run-as',PACKAGE,'cat','no_backup/One.ProtectedStore/'+name+'.json').encode()
 
-mode=sys.argv[1]
-if mode=='prepare':
-    expect(command('missing-get','getItem','missing'),value=None)
-    expect(command('missing-update','updateItem','missing',value='none'),'rejected','E_PROTECTED_STORE_NOT_FOUND')
-    expect(command('missing-delete','deleteItem','missing'))
-    expect(command('input-reason','getItem','missing',reason=' '),'rejected','E_PROTECTED_STORE_INPUT')
-    expect(command('create-presence','createItem',value='value-presence'))
-    expect(command('create-biometry','createItem','biometry','biometryCurrentSet','value-biometry'))
-    expect(command('duplicate','createItem',value='replacement'),'rejected','E_PROTECTED_STORE_EXISTS')
-    expect(command('mismatch-get','getItem','biometry','userPresence'),'rejected','E_PROTECTED_STORE_POLICY')
-    expect(command('mismatch-delete','deleteItem','biometry','userPresence'),'rejected','E_PROTECTED_STORE_POLICY')
-elif mode=='positive':
-    expect(authenticate('get-presence','getItem'),value='value-presence')
-    expect(authenticate('get-biometry','getItem','biometry','biometryCurrentSet'),value='value-biometry')
-    expect(authenticate('update-presence','updateItem',value='value-updated'))
-    expect(authenticate('read-updated','getItem'),value='value-updated')
-elif mode=='cancel':
-    prior=record('presence')
-    expect(authenticate('cancel-update','updateItem',value='must-not-commit',mode='cancel'),'rejected','E_PROTECTED_STORE_CANCELLED')
-    assert record('presence')==prior
-    expect(authenticate('destroy-update','updateItem',value='must-not-commit',mode='destroy'),'rejected','E_PROTECTED_STORE_CANCELLED')
-    assert record('presence')==prior
-elif mode=='long':
-    value=('Lé漢🙂\n'*1024)
-    expect(command('create-long','createItem','long',value=value))
-    result=authenticate('get-long','getItem','long')
-    assert result['value']==value,result
-    result['valueSHA256']=hashlib.sha256(result.pop('value').encode()).hexdigest()
-    print(json.dumps(result))
-elif mode=='one':
-    identifier,operation,key,policy,auth=sys.argv[2:7]
-    value=sys.argv[7] if len(sys.argv)>7 else None
-    result=command(identifier,operation,key,policy,value) if auth=='none' else authenticate(identifier,operation,key,policy,value,auth)
-    print(json.dumps(result,ensure_ascii=False))
-elif mode=='snapshot':
-    root=snapshot(sys.argv[2])
-    print([(n.get('text'),n.get('resource-id'),n.get('bounds')) for n in root.iter('node') if n.get('text')])
-else: raise ValueError(mode)
+if __name__ == '__main__':
+    mode=sys.argv[1]
+    if mode=='prepare':
+        expect(command('missing-get','getItem','missing'),value=None)
+        expect(command('missing-update','updateItem','missing',value='none'),'rejected','E_PROTECTED_STORE_NOT_FOUND')
+        expect(command('missing-delete','deleteItem','missing'))
+        expect(command('input-reason','getItem','missing',reason=' '),'rejected','E_PROTECTED_STORE_INPUT')
+        expect(command('create-presence','createItem',value='value-presence'))
+        expect(command('create-biometry','createItem','biometry','biometryCurrentSet','value-biometry'))
+        expect(command('duplicate','createItem',value='replacement'),'rejected','E_PROTECTED_STORE_EXISTS')
+        expect(command('mismatch-get','getItem','biometry','userPresence'),'rejected','E_PROTECTED_STORE_POLICY')
+        expect(command('mismatch-delete','deleteItem','biometry','userPresence'),'rejected','E_PROTECTED_STORE_POLICY')
+    elif mode=='public':
+        expect(command('public-entry-create','createItem','public-entry-roundtrip',value='public entry value'))
+        expect(authenticate('public-entry-get','getItem','public-entry-roundtrip',mode='finger2'),value='public entry value')
+        expect(authenticate('public-entry-delete','deleteItem','public-entry-roundtrip',mode='finger2'))
+        expect(command('public-entry-missing','getItem','public-entry-roundtrip'),value=None)
+    elif mode=='positive':
+        expect(authenticate('get-presence','getItem'),value='value-presence')
+        expect(authenticate('get-biometry','getItem','biometry','biometryCurrentSet'),value='value-biometry')
+        expect(authenticate('update-presence','updateItem',value='value-updated'))
+        expect(authenticate('read-updated','getItem'),value='value-updated')
+    elif mode=='cancel':
+        prior=record('presence')
+        expect(authenticate('cancel-update','updateItem',value='must-not-commit',mode='cancel'),'rejected','E_PROTECTED_STORE_CANCELLED')
+        assert record('presence')==prior
+        expect(authenticate('destroy-update','updateItem',value='must-not-commit',mode='destroy'),'rejected','E_PROTECTED_STORE_CANCELLED')
+        assert record('presence')==prior
+    elif mode=='long':
+        value=('Lé漢🙂\n'*1024)
+        expect(command('create-long','createItem','long',value=value))
+        result=authenticate('get-long','getItem','long')
+        assert result['value']==value,result
+        result['valueSHA256']=hashlib.sha256(result.pop('value').encode()).hexdigest()
+        print(json.dumps(result))
+    elif mode=='one':
+        identifier,operation,key,policy,auth=sys.argv[2:7]
+        value=sys.argv[7] if len(sys.argv)>7 else None
+        result=command(identifier,operation,key,policy,value) if auth=='none' else authenticate(identifier,operation,key,policy,value,auth)
+        print(json.dumps(result,ensure_ascii=False))
+    elif mode=='snapshot':
+        root=snapshot(sys.argv[2])
+        print([(n.get('text'),n.get('resource-id'),n.get('bounds')) for n in root.iter('node') if n.get('text')])
+    else: raise ValueError(mode)
