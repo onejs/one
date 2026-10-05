@@ -149,7 +149,8 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneScreenOrientation" }
     },
     "OneScreenCapture": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneScreenCapture" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneScreenCapture" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneScreenCapture" }
     },
     "OnePurchases": {
       "ios": { "language": "swift", "implementationClassName": "HybridOnePurchases" }

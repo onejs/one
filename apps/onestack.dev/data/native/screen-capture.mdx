@@ -1,11 +1,13 @@
 ---
 title: Screen capture
-description: Observe iOS screen capture and save a PNG of the app window or a React Native view.
+description: Observe screen capture and save a PNG of the app window or a React Native view.
 ---
 
-`One.ScreenCapture` reports the active window scene's capture state and
-notifies your app after a person takes a screenshot. It requires an iOS native
-build and no manifest permission.
+`One.ScreenCapture` reports the capture state and notifies your app after a
+person takes a screenshot. It requires an iOS or Android native build. On
+Android the screenshot callback needs API 34+, the recording state needs API
+35+, and capture needs API 26+; both detect permissions are install-time and
+ride the library manifest.
 
 ```tsx
 import { One } from 'one'
@@ -25,7 +27,8 @@ removeScreenshot()
 
 To save the current app window as a PNG, call `captureWindow()` while the app
 is foregrounded. The returned `uri` is a local `file://` URL under
-`Library/Caches/OneScreenCapture`. `width` and `height` are pixels at the
+`Library/Caches/OneScreenCapture` on iOS and the app cache's
+`OneScreenCapture` folder on Android. `width` and `height` are pixels at the
 window's native scale; `size` is the PNG file size in bytes. Remove the file
 when finished with it.
 
@@ -68,30 +71,42 @@ try {
 ```
 
 Capture the tag while the view is mounted. `captureView()` renders that view's
-UIKit subtree at call time. It does not include sibling views or system UI.
+subtree at call time. It does not include sibling views or system UI. On
+Android the tag must resolve to a view attached to the current activity's
+window; PixelCopy then copies that view's bounds.
 
-`getState()` resolves to `active` when UIKit reports that the scene is being
-recorded or mirrored, `inactive` when it is not, and `unspecified` when UIKit
-has not determined a state. `addStateListener()` reports changes after
-registration; call `getState()` to read the current state. The screenshot
-listener receives a Unix timestamp in milliseconds after the screenshot.
+`getState()` resolves to `active` when the scene is being recorded or
+mirrored, `inactive` when it is not, and `unspecified` when the platform has
+not determined a state. On iOS the state comes from UIKit's scene capture
+state; on Android API 35+ it comes from the window manager's recording
+visibility for this app, and below API 35 it is always `unspecified`.
+`addStateListener()` reports changes after registration; call `getState()` to
+read the current state. The screenshot listener receives a Unix timestamp in
+milliseconds stamped when the notification arrives. On Android the screenshot
+notification comes from the API 34 activity callback and is activity-scoped:
+ADB and instrumentation captures do not trigger it, and below API 34 the
+listener stays silent.
 
 `getState()` rejects with `E_SCREEN_CAPTURE_SCENE` if there is no active window
 scene. `captureWindow()` uses that scene and rejects with
 `E_SCREEN_CAPTURE_SCENE` when there is no app window,
-`E_SCREEN_CAPTURE_RENDER` if UIKit cannot draw it,
+`E_SCREEN_CAPTURE_RENDER` if the platform cannot draw it,
 `E_SCREEN_CAPTURE_ENCODE` if PNG encoding fails, or
 `E_SCREEN_CAPTURE_FILE` if the file cannot be saved.
 `captureView()` uses the same scene and PNG errors; it rejects with
 `E_SCREEN_CAPTURE_VIEW` if the tag no longer resolves to a mounted view in the
 active app window. Its JS wrapper throws `TypeError` for a non-integer,
 non-positive, or out-of-range tag. A direct Nitro call instead rejects with
-`E_SCREEN_CAPTURE_INPUT` for those values.
+`E_SCREEN_CAPTURE_INPUT` for those values. On Android below API 26 both
+capture calls reject with `E_SCREEN_CAPTURE_RENDER` and an explicit
+unsupported-platform message.
 
 Screenshot notification arrives after the image is captured, so it cannot
 prevent or redact that screenshot. For recording and mirroring, update
 your own content when the capture state changes. Verify screenshot and recording
 behavior on a physical device: simulator command-line capture reads the host
-framebuffer without exercising UIKit's in-app notifications or scene state.
+framebuffer without exercising in-app notifications or scene state.
 
-Screen capture is implemented on iOS. On Android and web, `getState()` resolves `unspecified`, listeners return a remover that does nothing, and capture calls reject with `ScreenCapture.<verb> needs an iOS or Android build`.
+Screen capture is implemented on iOS and Android. On web, `getState()`
+resolves `unspecified`, listeners return a remover that does nothing, and
+capture calls reject with `ScreenCapture.<verb> needs an iOS or Android build`.

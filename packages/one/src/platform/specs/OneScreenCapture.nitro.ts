@@ -9,7 +9,7 @@ export interface ScreenCaptureResult {
   size: number
 }
 
-export interface OneScreenCapture extends HybridObject<{ ios: 'swift' }> {
+export interface OneScreenCapture extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getState(): Promise<ScreenCaptureState>
   captureWindow(): Promise<ScreenCaptureResult>
   captureView(viewTag: number): Promise<ScreenCaptureResult>
