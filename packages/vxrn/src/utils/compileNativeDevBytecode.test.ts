@@ -111,25 +111,31 @@ it('treats empty HERMESC_PATH as unset', async () => {
   }
 })
 
-it.each(['missing binary', 'non-executable file'])(
-  'loudly rejects a nonempty invalid HERMESC_PATH (%s)',
-  async (kind) => {
-    const root = await mkdtemp(join(tmpdir(), 'vxrn-dev-bytecode-invalid-'))
+it('loudly rejects a HERMESC_PATH that points nowhere', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'vxrn-dev-bytecode-invalid-'))
+  process.env.HERMESC_PATH = join(root, 'no-such-hermesc')
+  try {
+    expect(() => nativeDevBytecodeCompiler(root)).toThrow(
+      /HERMESC_PATH is set but points nowhere/
+    )
+  } finally {
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
+// windows has no executable bit, so this case is posix-only.
+it.runIf(process.platform !== 'win32')(
+  'loudly rejects a non-executable HERMESC_PATH',
+  async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-dev-bytecode-noexec-'))
+    const plain = join(root, 'not-executable')
+    await writeFile(plain, 'x')
+    await chmod(plain, 0o644)
+    process.env.HERMESC_PATH = plain
     try {
-      if (kind === 'missing binary') {
-        process.env.HERMESC_PATH = join(root, 'no-such-hermesc')
-        expect(() => nativeDevBytecodeCompiler(root)).toThrow(
-          /HERMESC_PATH is set but points nowhere/
-        )
-      } else {
-        const plain = join(root, 'not-executable')
-        await writeFile(plain, 'x')
-        await chmod(plain, 0o644)
-        process.env.HERMESC_PATH = plain
-        expect(() => nativeDevBytecodeCompiler(root)).toThrow(
-          /HERMESC_PATH is not executable/
-        )
-      }
+      expect(() => nativeDevBytecodeCompiler(root)).toThrow(
+        /HERMESC_PATH is not executable/
+      )
     } finally {
       await rm(root, { recursive: true, force: true })
     }
