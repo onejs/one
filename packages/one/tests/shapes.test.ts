@@ -76,6 +76,22 @@ describe('shapes', () => {
     expect(render(Controls.ConcentricRectangle, { fill: 'blue' }).props.fill).toBe('blue')
   })
 
+  it('takes an inset border on every insettable shape, not ConcentricRectangle', () => {
+    for (const name of shapeNames.filter((name) => name !== 'ConcentricRectangle'))
+      expect(component(name).props, name).toMatchObject({
+        strokeBorder: { type: 'ColorValue' },
+        lineWidth: { type: 'Double' },
+      })
+    expect(component('ConcentricRectangle').props).not.toHaveProperty('strokeBorder')
+    expect(
+      render(Controls.Capsule, { fill: 'white', strokeBorder: 'gray', lineWidth: 2 }).props
+    ).toMatchObject({ fill: 'white', strokeBorder: 'gray', lineWidth: 2 })
+    expect(render(Controls.Circle, {}).props).toMatchObject({ lineWidth: 1 })
+    expect(() => render(Controls.Circle, { lineWidth: -1 })).toThrow(
+      'Circle lineWidth must be a non-negative number'
+    )
+  })
+
   it('requires iOS 26 for ConcentricRectangle', async () => {
     const { Platform } = await import('react-native')
     const originalVersion = Platform.Version

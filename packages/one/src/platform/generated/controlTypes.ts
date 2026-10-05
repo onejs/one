@@ -3659,22 +3659,34 @@ export interface ContentUnavailableViewProps extends OneNativeViewProps {
 }
 export interface CircleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface CapsuleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface RectangleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface RoundedRectangleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
   cornerRadius?: number
 }
 export interface EllipseProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface UnevenRoundedRectangleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
   topLeadingRadius?: number
   bottomLeadingRadius?: number
   bottomTrailingRadius?: number

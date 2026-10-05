@@ -5,6 +5,8 @@ import UIKit
 
 private final class CapsuleModel: ObservableObject {
   @Published var fill: UIColor? = nil
+  @Published var strokeBorder: UIColor? = nil
+  @Published var lineWidth: Double = 1
   @Published var accessibility = OneNativeAccessibility()
   @Published var swiftStyle = OneNativeStyle()
   var active = false
@@ -32,8 +34,10 @@ private final class CapsuleModel: ObservableObject {
       if previousRows != nextRows { compositionParent?.refreshRow(for: self) }
     }
   }
-  public func configure(_ fill: UIColor?) {
+  public func configure(_ fill: UIColor?, strokeBorder: UIColor?, lineWidth: Double) {
     if model.fill != fill { model.fill = fill }
+    if model.strokeBorder != strokeBorder { model.strokeBorder = strokeBorder }
+    if model.lineWidth != lineWidth { model.lineWidth = lineWidth }
   }
 
 
@@ -76,7 +80,13 @@ private struct CapsuleContent: View {
   @ObservedObject var model: CapsuleModel
   var body: some View {
     Group {
-        if let fill = model.fill {
+        if let stroke = model.strokeBorder {
+          if let fill = model.fill {
+            Capsule().fill(Color(uiColor: fill)).strokeBorder(Color(uiColor: stroke), lineWidth: model.lineWidth)
+          } else {
+            Capsule().strokeBorder(Color(uiColor: stroke), lineWidth: model.lineWidth)
+          }
+        } else if let fill = model.fill {
           Capsule().fill(Color(uiColor: fill))
         } else {
           Capsule()

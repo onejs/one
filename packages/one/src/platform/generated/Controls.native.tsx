@@ -649,10 +649,15 @@ export function ContentUnavailableView({
 import NativeCircle from '../specs/OneNativeCircleNativeComponent'
 export function Circle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.CircleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Circle lineWidth must be a non-negative number')
+
   return (
     <NativeCircle
       {...props}
@@ -662,16 +667,23 @@ export function Circle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeCapsule from '../specs/OneNativeCapsuleNativeComponent'
 export function Capsule({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.CapsuleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Capsule lineWidth must be a non-negative number')
+
   return (
     <NativeCapsule
       {...props}
@@ -681,16 +693,23 @@ export function Capsule({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeRectangle from '../specs/OneNativeRectangleNativeComponent'
 export function Rectangle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.RectangleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Rectangle lineWidth must be a non-negative number')
+
   return (
     <NativeRectangle
       {...props}
@@ -700,12 +719,16 @@ export function Rectangle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeRoundedRectangle from '../specs/OneNativeRoundedRectangleNativeComponent'
 export function RoundedRectangle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   cornerRadius = 0,
   swiftStyle,
   style,
@@ -713,6 +736,8 @@ export function RoundedRectangle({
 }: Types.RoundedRectangleProps) {
   if (!Number.isFinite(cornerRadius) || cornerRadius < 0)
     throw new Error('RoundedRectangle cornerRadius must be a non-negative number')
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('RoundedRectangle lineWidth must be a non-negative number')
 
   return (
     <NativeRoundedRectangle
@@ -723,6 +748,8 @@ export function RoundedRectangle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
       cornerRadius={cornerRadius}
     />
   )
@@ -730,10 +757,15 @@ export function RoundedRectangle({
 import NativeEllipse from '../specs/OneNativeEllipseNativeComponent'
 export function Ellipse({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.EllipseProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Ellipse lineWidth must be a non-negative number')
+
   return (
     <NativeEllipse
       {...props}
@@ -743,12 +775,16 @@ export function Ellipse({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeUnevenRoundedRectangle from '../specs/OneNativeUnevenRoundedRectangleNativeComponent'
 export function UnevenRoundedRectangle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   topLeadingRadius = 0,
   bottomLeadingRadius = 0,
   bottomTrailingRadius = 0,
@@ -765,6 +801,8 @@ export function UnevenRoundedRectangle({
   ])
     if (!Number.isFinite(radius) || radius < 0)
       throw new Error('UnevenRoundedRectangle radii must be non-negative numbers')
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('UnevenRoundedRectangle lineWidth must be a non-negative number')
 
   return (
     <NativeUnevenRoundedRectangle
@@ -775,6 +813,8 @@ export function UnevenRoundedRectangle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
       topLeadingRadius={topLeadingRadius}
       bottomLeadingRadius={bottomLeadingRadius}
       bottomTrailingRadius={bottomTrailingRadius}
