@@ -51,7 +51,7 @@ iOS (`@expo/ui/swift-ui`):
 
 Modifiers: every Expo modifier has an SDK-named One counterpart through `swiftStyle` or `ViewSlot` except the widget-only `widgetURL`, `widgetAccentedRenderingMode`, `activityBackgroundTint`.
 
-Android (`@expo/ui/jetpack-compose`): One.Compose has 50 nodes. No counterpart yet for AnimatedVisibility, BasicAlertDialog, Carousel, DatePicker and its dialogs, DockedSearchBar and SearchBar, DropdownMenu and ExposedDropdownMenuBox, HorizontalFloatingToolbar, HorizontalPager (One.UI.Pager is the uniform pager), Image, LazyColumn, LazyRow, ModalBottomSheet, NavigationBar, PullToRefreshBox, Shape, Snackbar, SyncSwitch and Tooltip. Android follows the iOS gaps.
+Android (`@expo/ui/jetpack-compose`): One.Compose has 50 nodes. DatePicker, TimePicker and their dialogs landed in b1326e261 with emulator proof. No counterpart yet for AnimatedVisibility, BasicAlertDialog, Carousel, DateRangePicker and its dialog, DockedSearchBar and SearchBar, DropdownMenu and ExposedDropdownMenuBox, HorizontalFloatingToolbar, HorizontalPager (One.UI.Pager is the uniform pager), Image, LazyColumn, LazyRow, ModalBottomSheet, NavigationBar, PullToRefreshBox, Shape, Snackbar, SyncSwitch and Tooltip. Android follows the iOS gaps.
 
 ## Coverage target
 
