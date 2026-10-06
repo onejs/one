@@ -84,8 +84,10 @@ private struct TabGroup: Identifiable {
 }
 
 // an action tab is a button wearing a tab's chrome. UIKit asks before it selects a tab, so the
-// press fires there and the selected page never changes; every other delegate call reaches
-// SwiftUI's own delegate unchanged.
+// press fires there and the selected page never changes. UIKit also asks when the selected tab
+// is tapped again, which SwiftUI's selection binding never reports, so that tap is a press of
+// the page and goes on to SwiftUI's own delegate. every other delegate call reaches SwiftUI's
+// delegate unchanged.
 private final class ActionTabDelegate: NSObject, UITabBarControllerDelegate {
   weak var original: UITabBarControllerDelegate?
   weak var model: TabsModel?
@@ -100,9 +102,12 @@ private final class ActionTabDelegate: NSObject, UITabBarControllerDelegate {
 
   @available(iOS 18.0, *)
   func tabBarController(_ controller: UITabBarController, shouldSelectTab tab: UITab) -> Bool {
-    if let model, model.active, let page = model.actionPage(tab, in: controller) {
-      model.press(page.id)
-      return false
+    if let model, model.active, let page = model.topLevelPage(tab, in: controller) {
+      if page.kind == "action" {
+        model.press(page.id)
+        return false
+      }
+      if controller.selectedTab === tab { model.press(page.id) }
     }
     return original?.tabBarController?(controller, shouldSelectTab: tab) ?? true
   }
@@ -116,6 +121,9 @@ private final class ActionTabDelegate: NSObject, UITabBarControllerDelegate {
       if tabs.indices.contains(index), tabs[index].kind == "action" {
         model.press(tabs[index].id)
         return false
+      }
+      if tabs.indices.contains(index), controller.selectedViewController === viewController {
+        model.press(tabs[index].id)
       }
     }
     return original?.tabBarController?(controller, shouldSelect: viewController) ?? true
@@ -200,11 +208,11 @@ private final class TabsModel: ObservableObject {
 
   // SwiftUI names its UITabs itself, so a tab is found by its place in the tab bar's top level.
   @available(iOS 18.0, *)
-  func actionPage(_ tab: UITab, in controller: UITabBarController) -> OneNativeTabItem? {
+  func topLevelPage(_ tab: UITab, in controller: UITabBarController) -> OneNativeTabItem? {
     guard let index = controller.tabs.firstIndex(where: { $0 === tab }) else { return nil }
     let groups = groups
     guard groups.indices.contains(index), groups[index].section == nil else { return nil }
-    return groups[index].tabs.first { $0.kind == "action" }
+    return groups[index].tabs.first
   }
 
   func emitSDKEvent(_ name: String, _ value: String) {

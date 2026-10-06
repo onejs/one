@@ -126,6 +126,7 @@ export function Tabs({
   children,
   selection,
   onSelectionChange,
+  onReselect,
   revision = 0,
   tabViewStyle = 'automatic',
   tabBarVisibility = 'automatic',
@@ -312,7 +313,12 @@ export function Tabs({
       onNativeTabsSelectionChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
-      onNativeTabsAction={({ nativeEvent }) => actions.get(nativeEvent.tabId)?.()}
+      // an action tab's press runs its action; the selected page's press is a reselect.
+      onNativeTabsAction={({ nativeEvent }) => {
+        const action = actions.get(nativeEvent.tabId)
+        if (action) action()
+        else onReselect?.(nativeEvent.tabId)
+      }}
       onNativeTabsCustomizationChange={({ nativeEvent }) =>
         onCustomizationChange?.(nativeEvent.customization)
       }
