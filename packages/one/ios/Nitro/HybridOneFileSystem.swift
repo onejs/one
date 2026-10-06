@@ -62,7 +62,12 @@ final class HybridOneFileSystem: HybridOneFileSystemSpec {
       switch encoding {
       case .utf8: data = Data(contents.utf8)
       case .base64:
-        guard let decoded = Data(base64Encoded: contents) else { throw Problem.invalidBase64 }
+        guard contents.utf8.count % 4 == 0,
+          contents.range(
+            of: #"\A[A-Za-z0-9+/]*={0,2}\z"#,
+            options: .regularExpression) != nil,
+          let decoded = Data(base64Encoded: contents)
+        else { throw Problem.invalidBase64 }
         data = decoded
       }
       try data.write(to: Self.fileURL(uri), options: .atomic)

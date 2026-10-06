@@ -976,6 +976,31 @@ async function run(config: Config) {
       )
     }
 
+    // filesystem: valid binary writes and rejected writes preserve both destinations.
+    await freshLeg('file-system')
+    await tapNavigation(config, 'nav-one-native-file-system')
+    await expect(
+      'system-file-system-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-file-system-run'
+    )
+    tapFresh(config, 'system-file-system-run', {
+      id: 'one-native-file-system-run',
+      clickable: true,
+    })
+    await expect(
+      'system-file-system-lifecycle',
+      (nodes) =>
+        textIncludes(nodes, 'Status: passed') &&
+        textIncludes(
+          nodes,
+          'Result: text=Hello One; bytes=0,1,2,3; entries=binary.dat,moved.txt,note.txt; ' +
+          'moved=true; recursive=true; missing=false; ' +
+          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION'
+        ),
+      'one-native-file-system-run'
+    )
+
     // Device: full snapshot from Build/Locale, emulator flagged.
     await freshLeg('device')
     await tapNavigation(config, 'nav-one-native-device')
