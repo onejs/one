@@ -138,10 +138,10 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | missing | n/a | no fixture or suite |
 | `One.iOS.ZoomTransitionEnabler` | missing | n/a | on zoom-detail, which the zoom e2e reaches only by tap |
 | `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
-| `One.Android.Column` | n/a | android, android-inputs, android-progress, android-segmented, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
+| `One.Android.Column` | n/a | android, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers |  |
 | `One.Android.Spacer` | n/a | android-flow-row |  |
-| `One.Android.FlowRow` | n/a | android-flow-row |  |
+| `One.Android.FlowRow` | n/a | android-pickers, android-flow-row |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-flow-row |  |
 | `One.Android.Badge` | n/a | android-badges |  |
 | `One.Android.BadgedBox` | n/a | android-badges |  |
@@ -156,9 +156,9 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.Android.AssistChip` | n/a | android-chips |  |
 | `One.Android.InputChip` | n/a | android-chips |  |
 | `One.Android.SuggestionChip` | n/a | android-chips |  |
-| `One.Android.Text` | n/a | android, android-inputs, android-progress, android-segmented, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
+| `One.Android.Text` | n/a | android, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-icon-buttons, android-filter-chip, android-chips |  |
-| `One.Android.Button` | n/a | android, android-inputs, android-progress, android-segmented, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip |  |
+| `One.Android.Button` | n/a | android, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip |  |
 | `One.Android.IconButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons |  |
@@ -188,6 +188,10 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.Android.CircularWavyProgressIndicator` | n/a | android-progress |  |
 | `One.Android.LoadingIndicator` | n/a | android-loading |  |
 | `One.Android.ContainedLoadingIndicator` | n/a | android-loading |  |
+| `One.Android.DatePicker` | n/a | android-pickers |  |
+| `One.Android.TimePicker` | n/a | android-pickers |  |
+| `One.Android.DatePickerDialog` | n/a | android-pickers |  |
+| `One.Android.TimePickerDialog` | n/a | android-pickers |  |
 | `One.Android.Color` | n/a | missing | no fixture or suite |
 | `One.Android.Menu` | n/a | missing | no fixture or suite |
 | `One.Android.ContextMenu` | n/a | missing | no fixture or suite |
