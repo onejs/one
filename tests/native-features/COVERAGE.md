@@ -195,7 +195,7 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.UI.serializeCurve` | missing | missing | effects helper; no suite asserts it |
 | `One.UI.EdgeFade` | missing | missing | effects fixture has a capture proof script, not a suite |
 | `One.UI.Icon` | missing | missing | no fixture or suite |
-| `One.UI.Image` | missing | missing | fixture exists, no suite opens it |
+| `One.UI.Image` | ui-image | missing | Android suite missing |
 | `One.UI.Map` | ui-map | ui-map |  |
 | `One.UI.PictureInPicture` | missing | missing | fixture exists; simulators report no PiP, needs a device run |
 | `One.UI.Blur` | missing | missing | effects fixture has a capture proof script, not a suite |
@@ -205,7 +205,7 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.UI.Pager` | pager | nav-one-ui-pager |  |
 | `One.UI.Fonts` | fonts | fonts |  |
 | `One.UI.SafeArea` | safe-area | safe-area |  |
-| `One.UI.TextInput` | missing | missing | no fixture or suite |
+| `One.UI.TextInput` | ui-text-input | missing | Android suite missing |
 | `One.UI.ReservedRegions` | missing | missing | fixture exists, no suite opens it |
 | `One.Notifications` | notifications | notifications |  |
 | `One.Clipboard` | paste-button, clipboard | missing | iOS suite only |
@@ -229,7 +229,7 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `useReservedRegionsReady` | missing | missing | no fixture or suite |
 | `useWindowSegments` | missing | missing | fixture exists, no suite opens it |
 | `useSpanning` | missing | missing | fixture exists, no suite opens it |
-| `useNativeState` | state | missing | iOS suite only |
+| `useNativeState` | state, ui-text-input | missing | iOS suite only |
 | `useFonts` | fonts | fonts |  |
 | `useNetworkState` | missing | missing | no fixture or suite |
 | `useSafeAreaInsets` | safe-area | safe-area |  |
