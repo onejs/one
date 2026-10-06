@@ -1,0 +1,4 @@
+{
+  "name": "onestack-dev",
+  "routes": [{ "pattern": "v2.onestack.dev", "custom_domain": true }]
+}
