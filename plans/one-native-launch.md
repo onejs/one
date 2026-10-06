@@ -13,7 +13,8 @@ cross-model review, assembled per item, never per slice. Visible changes
 reach Nate as before/afters; new public One APIs wait for his OK. One main
 needs Nate's direct word; `v2-beta` takes fixes and betas freely.
 
-Detail lives in the existing plans; this file holds the order:
+The go/no-go list is `one-native-launch-checklist.md`. Detail lives in the
+existing plans; this file holds the order:
 `one-native-coverage.md`, `one-native-ios-coverage.md`,
 `one-native-android-lane.md`, `one-native-speed.md`,
 `one-native-api-conventions.md`, `one-ui-portal-pager.md`, and Contrast's
