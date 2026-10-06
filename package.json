@@ -79,6 +79,8 @@
   },
   "resolutions": {
     "browserslist": "4.28.8",
+    "compression": "1.8.2",
+    "source-map-js": "1.2.2",
     "@isaacs/brace-expansion": "5.0.1",
     "@xmldom/xmldom": "0.9.12",
     "fast-xml-parser": "5.9.0",
