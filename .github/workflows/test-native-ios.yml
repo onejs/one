@@ -39,6 +39,7 @@ on:
       - 'packages/one/cpp/**'
       - 'packages/one/nitrogen/**'
       - 'packages/one/codegen/**'
+      - 'packages/one/schema.json'
       - 'packages/one/src/platform/**'
       - 'packages/one/One.podspec'
       - 'packages/one/package.json'
