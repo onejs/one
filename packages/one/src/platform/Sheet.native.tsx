@@ -1,12 +1,20 @@
-import { useState } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { Platform } from 'react-native'
 import { useControlled } from './controlled'
 import NativeSheet from './specs/OneNativeSheetNativeComponent'
 import NativeContent from './specs/OneNativeSheetContentNativeComponent'
 import { assertSwiftUIValue } from './generated/swiftui'
-import type { FullScreenCoverProps, PresentationDetent, SheetProps } from './generated/sheetTypes'
+import type {
+  FullScreenCoverProps,
+  PresentationDetent,
+  SheetProps,
+} from './generated/sheetTypes'
 
 const DEFAULT_DETENTS = ['large'] as const
+// internal adapter appearance; Swift.Sheet keeps its existing public contract.
+export const SheetAppearanceContext = createContext<'light' | 'dark' | undefined>(
+  undefined
+)
 type NativeDetent = { type: string; value: number }
 
 function nativeDetent(detent: PresentationDetent): NativeDetent {
@@ -67,6 +75,7 @@ export function Sheet({
   style,
   ...props
 }: SheetProps) {
+  const colorScheme = useContext(SheetAppearanceContext)
   if (typeof isPresented !== 'boolean')
     throw new Error('Swift.Sheet isPresented must be a boolean')
   const presentationId = usePresentationId(isPresented)
@@ -161,6 +170,7 @@ export function Sheet({
       presentationContentInteraction={presentationContentInteraction}
       presentationSizing={presentationSizing}
       presentation="sheet"
+      colorScheme={colorScheme ?? ''}
       onNativeSheetIsPresentedChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -172,7 +182,8 @@ export function Sheet({
           !isPresented &&
           nativeEvent.revision === revision &&
           nativeEvent.presentationId === presentationId
-        ) onDidDismiss?.()
+        )
+          onDidDismiss?.()
       }}
       onNativeSheetDetentChange={({ nativeEvent }) =>
         controlledDetent.onNativeChange(nativeEvent)
@@ -231,6 +242,7 @@ export function FullScreenCover({
       interactiveDismissDisabled={false}
       presentationDragIndicator="automatic"
       presentation="fullScreenCover"
+      colorScheme=""
       onNativeSheetIsPresentedChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
@@ -242,7 +254,8 @@ export function FullScreenCover({
           !isPresented &&
           nativeEvent.revision === revision &&
           nativeEvent.presentationId === presentationId
-        ) onDidDismiss?.()
+        )
+          onDidDismiss?.()
       }}
     >
       <NativeContent
