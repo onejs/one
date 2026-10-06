@@ -161,6 +161,7 @@
     "@hono/node-server": "^1.19.14",
     "@manypkg/cli": "^0.25.1",
     "@react-native-swc/worklets-plugin": "0.1.5",
+    "@tamagui/web": "2.6.2",
     "@take-out/cli": "0.4.17",
     "@types/react": "^19.2.2",
     "axios": "1.20.0",
