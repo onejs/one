@@ -41,7 +41,11 @@ on:
       - 'packages/one/codegen/**'
       - 'packages/one/src/platform/**'
       - 'packages/one/One.podspec'
+      - 'packages/one/package.json'
+      - 'packages/one/nitro.json'
+      - 'packages/one/react-native.config.cjs'
       - 'tests/native-features/**'
+      - 'examples/one-basic/**'
       - 'tests/rn-test-container/app.json'
       - 'tests/rn-test-container/e2e/**'
       - 'tests/rn-test-container/ios/**'
@@ -75,6 +79,9 @@ jobs:
           git diff --exit-code -- types/platform/generated
           bun run typecheck
           bun run test
+      - name: Generate the Basic starter iOS project
+        working-directory: examples/one-basic
+        run: bun run prebuild:native --platform ios --no-install
       - name: Generate the One Native consumer project
         working-directory: tests/native-features
         env:
