@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "floor": 200,
+  "samples": {
+    "native-open": {
+      "reading": 686,
+      "oldReading": 1,
+      "region": {
+        "x": 133.33333333333334,
+        "y": 553.6666666666666,
+        "width": 30,
+        "height": 30,
+        "viewportWidth": 393
+      }
+    },
+    "native-closed": {
+      "reading": 0,
+      "oldReading": 0,
+      "region": {
+        "x": 133.33333333333334,
+        "y": 553.6666666666666,
+        "width": 30,
+        "height": 30,
+        "viewportWidth": 393
+      }
+    },
+    "native-changed": {
+      "changed": 822,
+      "total": 8100,
+      "ratio": 0.10148148148148148
+    },
+    "one-open": {
+      "reading": 686,
+      "oldReading": 1,
+      "region": {
+        "x": 133.33333333333334,
+        "y": 554.6666666666666,
+        "width": 30,
+        "height": 30,
+        "viewportWidth": 393
+      }
+    },
+    "one-closed": {
+      "reading": 0,
+      "oldReading": 0,
+      "region": {
+        "x": 133.33333333333334,
+        "y": 554.6666666666666,
+        "width": 30,
+        "height": 30,
+        "viewportWidth": 393
+      }
+    },
+    "one-changed": {
+      "changed": 1092,
+      "total": 8100,
+      "ratio": 0.1348148148148148
+    },
+    "crossSubstitution": {
+      "total": 4,
+      "matchingCaptures": [
+        "native-open",
+        "one-open"
+      ]
+    }
+  }
+}

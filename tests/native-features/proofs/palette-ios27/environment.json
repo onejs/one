@@ -1,0 +1,15 @@
+{
+  "simulatorId": "20A4D15A-8E8F-4D08-A8CC-1EBE7417552D",
+  "device": "iPhone 16",
+  "runtime": "iOS 27.0",
+  "xcode": [
+    "Xcode 27.1",
+    "Build version 27A9269"
+  ],
+  "nativeSourceSHA256": "4637236f8b22ddbff8eb6ec73e39a669b7c137cacaf795aba57c51b0f080457c",
+  "builtNativeBinarySHA256": "edd6a304672350ff0e75e39a508ca13672dc1a40cfd434257488360b23322d25",
+  "installedNativeBinarySHA256": "edd6a304672350ff0e75e39a508ca13672dc1a40cfd434257488360b23322d25",
+  "oneCaptureCommit": "f2369452b4f70a97a44c0fcab88234c6190a7133",
+  "nativeScreenshotSHA256": "1bac3e4a7665de0a484477146fc8167cb6506cb2c5e9042955d2349f46a833ae",
+  "oneScreenshotSHA256": "9ac43ecb6f580353c425d6a47db2830c358ce2ac429ed1f8e8c67ed9037fa601"
+}
