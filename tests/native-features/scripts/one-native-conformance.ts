@@ -1001,6 +1001,32 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
   }
   const point = (x: number, y: number) => touch(x, y)
+  // pool simulators boot headless with the software keyboard (Device Hub's
+  // alwaysSimulateHardwareKeyboard is off), so hardware key events never reach a field.
+  // type the way a person does: tap each key of the on-screen keyboard by its label.
+  const key = (nodes: Node[], match: (node: Node) => boolean) =>
+    nodes.find((node) => node.type === 'Button' && match(node))
+  const keyboardUp = (nodes: Node[]) => Boolean(key(nodes, (node) => node.AXUniqueId === 'Return'))
+  const pressKey = (match: (node: Node) => boolean, name: string) => {
+    const frame = key(snapshot(config.simulatorId), match)?.frame
+    if (!frame) throw new Error(`software keyboard has no ${name} key`)
+    point(frame.x + frame.width / 2, frame.y + frame.height / 2)
+  }
+  const softType = async (name: string, text: string) => {
+    if (!/^[a-zA-Z]+$/.test(text)) throw new Error(`softType takes letters, got ${text}`)
+    await wait(`${name}: software keyboard is up`, keyboardUp)
+    for (const letter of text) {
+      const nodes = snapshot(config.simulatorId)
+      if (!key(nodes, (node) => node.AXLabel === letter)) {
+        pressKey((node) => node.AXUniqueId === 'shift', 'shift')
+        await wait(`${name}: ${letter} key is ready`, (n) =>
+          Boolean(key(n, (node) => node.AXLabel === letter))
+        )
+      }
+      pressKey((node) => node.AXLabel === letter, letter)
+    }
+  }
+
   // a field does not become first responder the moment the tap returns, the snapshot carries
   // no focus flag, and the attached hardware keyboard leaves no software keyboard to wait on.
   // firing the whole string blind drops the leading characters, and iOS then autocorrects what
@@ -6865,22 +6891,6 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const field = (nodes: Node[], testID: string) =>
       nodes.find((node) => node.AXUniqueId === testID && node.type === 'TextField')
     const fieldValue = (nodes: Node[], testID: string) => field(nodes, testID)?.AXValue
-    // pool simulators boot headless with the software keyboard (Device Hub's
-    // alwaysSimulateHardwareKeyboard is off), so hardware key events never reach a field.
-    // type the way a person does: tap each key of the on-screen keyboard by its label.
-    const key = (nodes: Node[], match: (node: Node) => boolean) =>
-      nodes.find((node) => node.type === 'Button' && match(node))
-    const keyboardUp = (nodes: Node[]) => Boolean(key(nodes, (node) => node.AXUniqueId === 'Return'))
-    const pressKey = (match: (node: Node) => boolean, name: string) => {
-      const frame = key(snapshot(config.simulatorId), match)?.frame
-      if (!frame) throw new Error(`software keyboard has no ${name} key`)
-      point(frame.x + frame.width / 2, frame.y + frame.height / 2)
-    }
-    const softType = async (name: string, text: string) => {
-      if (!/^[a-z]+$/.test(text)) throw new Error(`softType takes lowercase letters, got ${text}`)
-      await wait(`${name}: software keyboard is up`, keyboardUp)
-      for (const letter of text) pressKey((node) => node.AXLabel === letter, letter)
-    }
     const submit = async () => {
       await wait('software keyboard is up for return', keyboardUp)
       pressKey((node) => node.AXUniqueId === 'Return', 'return')
@@ -10749,12 +10759,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
   tap({ id: 'one-native-increment-first' })
   tap({ id: 'one-native-input-first' })
-  await typeInto(
-    'first tab input',
-    'retained',
-    (n) => id(n, 'one-native-input-first')?.AXValue
-  )
+  await softType('first tab input', 'Retained')
   await wait('counter and input retain local state', firstState)
+  pressKey((node) => node.AXUniqueId === 'Return', 'return')
+  await wait('keyboard dismisses before tab switching', (n) => !keyboardUp(n))
   tap({ id: 'one-native-select-external' })
   await wait('external selection reaches second tab', (n) => has(n, 'Second tab'))
   tap({ id: 'one-native-select-external' })
