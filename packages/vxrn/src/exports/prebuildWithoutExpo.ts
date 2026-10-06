@@ -2933,6 +2933,10 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
     }
   }
   collect(root)
+  // the generator owns this directory: rebuild it so a moved or deleted source
+  // cannot leave a stale copy that redeclares a live class.
+  const output = path.join(dest, 'app/src/main/java/one/source')
+  FSExtra.removeSync(output)
   if (sources.length === 0) return
   const { kotlinSourceId, renderKotlinSourceGlue, writeNativeSourceDeclaration } = await import(
     '../utils/nativeSourceContract'
@@ -2940,7 +2944,7 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   let hasViews = false
   for (const source of sources) {
     const id = kotlinSourceId(root, source)
-    const target = path.join(dest, 'app/src/main/java/one/source', id)
+    const target = path.join(output, id)
     FSExtra.mkdirSync(target, { recursive: true })
     FSExtra.copyFileSync(source, path.join(target, path.basename(source)))
     const contract = writeNativeSourceDeclaration(source)

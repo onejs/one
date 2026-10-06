@@ -6,6 +6,7 @@ import {
   existsSync,
   readFileSync,
   realpathSync,
+  rmSync,
   statSync,
   writeFileSync,
 } from 'node:fs'
@@ -1983,6 +1984,26 @@ describe('app kotlin source discovery', () => {
     const ids = readdirSync(generated)
     expect(ids).toHaveLength(1)
     expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(live)
+  })
+
+  it('drops sources an earlier prebuild generated that are gone now', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-stale-'))
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-stale-dest-'))
+    const live = 'package app.counter\nclass Counter\n'
+    writeFileSync(join(root, 'Counter.kt'), live)
+    mkdirSync(join(root, 'proofs'), { recursive: true })
+    writeFileSync(join(root, 'proofs', 'Removed.kt'), 'class Removed\n')
+    await generateKotlinSources({ root, dest })
+    const generated = join(dest, 'app', 'src', 'main', 'java', 'one', 'source')
+    expect(readdirSync(generated)).toHaveLength(2)
+    rmSync(join(root, 'proofs'), { recursive: true })
+    await generateKotlinSources({ root, dest })
+    const ids = readdirSync(generated)
+    expect(ids).toHaveLength(1)
+    expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(live)
+    rmSync(join(root, 'Counter.kt'))
+    await generateKotlinSources({ root, dest })
+    expect(existsSync(generated)).toBe(false)
   })
 })
 
