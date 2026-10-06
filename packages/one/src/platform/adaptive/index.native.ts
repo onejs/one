@@ -49,6 +49,9 @@ const hingeListeners = new Set<() => void>()
 let sizeClassRemove: (() => void) | undefined
 let hingeRemove: (() => void) | undefined
 let hingeGeneration = 0
+// set when the last hinge observer leaves: native stops watching and the
+// cached value can go stale, so the next first render reads the seed again.
+let hingeSeedStale = false
 
 function sizesEqual(a: SizeClass, b: SizeClass): boolean {
   return a.horizontal === b.horizontal && a.vertical === b.vertical
@@ -114,9 +117,17 @@ function subscribeHinge(onStoreChange: () => void): () => void {
       hingeGeneration++
       hingeRemove?.()
       hingeRemove = undefined
-      setHinge(null)
+      hingeSeedStale = true
     }
   }
+}
+
+function hingeSnapshot(): HingeState | null {
+  if (hingeSeedStale) {
+    hingeSeedStale = false
+    currentHinge = native().getInitialHinge() ?? null
+  }
+  return currentHinge
 }
 
 /**
@@ -136,12 +147,12 @@ export function getSizeClass(): Promise<SizeClass> {
 
 /**
  * Returns the current hardware hinge state (angle in radians and status).
- * null before the first interaction update, after observation stops, or when
- * the current view hierarchy has no hinge. Use size class and reserved
- * regions to choose layout.
+ * The first render already reads the window's hinge once the system has
+ * reported one. null on a device or view hierarchy without a hinge. Use
+ * size class and reserved regions to choose layout.
  */
 export function useHinge(): HingeState | null {
-  return useSyncExternalStore(subscribeHinge, () => currentHinge, () => null)
+  return useSyncExternalStore(subscribeHinge, hingeSnapshot, () => null)
 }
 
 export async function getHinge(): Promise<HingeState | null> {

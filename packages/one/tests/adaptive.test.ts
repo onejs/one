@@ -100,4 +100,33 @@ describe('live hinge subscription', () => {
     act(() => { root.unmount() })
     expect(hybrid.addHingeListener).toHaveBeenCalledTimes(2)
   })
+
+  it('renders the native hinge on the first frame, including after the last observer left', async () => {
+    const closed: HingeState = { status: 'closed', angle: 0 }
+    const open: HingeState = { status: 'fullyOpen', angle: Math.PI }
+    const hybrid = {
+      ...mockHybrid(),
+      getInitialHinge: vi.fn().mockReturnValueOnce(closed).mockReturnValueOnce(open),
+      getHinge: vi.fn(() => new Promise<undefined>(() => {})),
+    }
+    getMock.mockReturnValue(hybrid)
+    const { useHinge } = await loadNative()
+    const values: (HingeState | null)[] = []
+    function Reader() {
+      values.push(useHinge())
+      return null
+    }
+    let root!: ReturnType<typeof create>
+    await act(async () => { root = create(createElement(Reader)) })
+    expect(values[0]).toEqual(closed)
+    act(() => { root.unmount() })
+    // the device unfolded while nothing observed it; the remount's first
+    // render reads the native seed again instead of the stale cache or null.
+    const before = values.length
+    await act(async () => { root = create(createElement(Reader)) })
+    expect(values[before]).toEqual(open)
+    expect(values.slice(before).every((value) => value === open)).toBe(true)
+    act(() => { root.unmount() })
+    expect(hybrid.getInitialHinge).toHaveBeenCalledTimes(2)
+  })
 })
