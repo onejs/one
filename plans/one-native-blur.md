@@ -13,6 +13,12 @@ existing component and prop surface. "blur should just be behind the composer";
 foreground chrome stays above it by layer order. This direction already lives
 in `packages/one/src/platform/VENDORING.md`.
 
+Nate, 2026-10-05, on the Duo race's top blur: "how come that doesn't look like
+a real IOS progressive blur" and "Shouldn't that be progressive blur? I had
+given a whole library that does it properly with the real iOS API that we were
+supposed to base the One off of." The App Store risk of its private
+`variableBlur` backend went to him the same day as a decision.
+
 ## preserved work
 
 RAN: the complete preserved range is `95fabbee964..4383742b3f`, one archival
