@@ -25,8 +25,8 @@ export type { MenuActionProps } from './menu/index'
 export { SplitView } from './split-view'
 export type { SplitViewProps, SplitViewColumnProps } from './split-view'
 
-// small uniform device apis matching their expo module shapes, so migration
-// is a mechanical import swap. surfaced top-level on One, never under One.UI.
+// uniform device services surfaced top-level on One. each service documents
+// its own methods and supported behavior for migration from expo modules.
 export { Clipboard } from './clipboard'
 export { Browser } from './browser'
 export type {

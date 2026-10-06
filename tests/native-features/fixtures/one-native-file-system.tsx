@@ -77,6 +77,43 @@ export default function OneNativeFileSystem() {
         if (error && typeof error === 'object' && 'code' in error)
           encodingError = String(error.code)
       }
+      stage = 'malformed base64 preserves files'
+      const rejected = new URL('rejected.dat', dir).href
+      for (const malformed of [
+        '====',
+        'AA=A',
+        'AAAA=',
+        'A===',
+        'AAA',
+        'AA==AAAA',
+        'AA\n==',
+        'AA==\n',
+        '!?',
+        '__8=',
+      ]) {
+        for (const target of [binary, rejected]) {
+          let code = ''
+          try {
+            await fs.writeFile(target, malformed, 'base64')
+          } catch (error) {
+            if (error && typeof error === 'object' && 'code' in error)
+              code = String(error.code)
+          }
+          if (code !== 'E_FILE_ENCODING') {
+            throw new Error(
+              `malformed base64 did not reject: ${JSON.stringify(malformed)}`
+            )
+          }
+        }
+        const preserved = Array.from(
+          new Uint8Array(await (await fetch(binary)).arrayBuffer())
+        ).join(',')
+        if (preserved !== '0,1,2,3' || (await fs.getInfo(rejected)).exists) {
+          throw new Error(
+            'malformed base64 changed an existing file or created a new one'
+          )
+        }
+      }
       let rootError = ''
       try {
         await fs.delete(directories.cache)
