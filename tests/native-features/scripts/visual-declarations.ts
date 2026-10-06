@@ -496,21 +496,22 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     measureSubject: (crop) => {
       const card = countMatchingPixels(
         crop,
-        (r, g, b) => r >= 247 && r <= 251 && g >= 247 && g <= 251 && b >= 247 && b <= 251
+        // iOS 27 SwiftUI palette over the fixture's white panel; exclude plain white.
+        (r, g, b) => r >= 252 && r <= 254 && g >= 252 && g <= 254 && b >= 252 && b <= 254
       )
       const text = countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60)
       return Math.floor(Math.min(text, card / 10))
     },
     minSubjectFloor: 200,
     calibration: {
-      positiveMeasured: 252,
+      positiveMeasured: 686,
       negativeMeasured: 0,
       threshold: 200,
-      changedPixelsMeasured: 5_484,
+      changedPixelsMeasured: 1_092,
       crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      corpusSize: 4,
       nullStateReads:
-        'palette Bold icon score 252 (card: 2,525, icon: 625), bar is 200, closed trigger reads 0; 2/70 cross matches (both open context menu palettes)',
+        'iOS 27 SwiftUI reference and One Bold icon score 686 over a white panel (native card gray 254); floor 200, both closed menus read 0. Two open palettes match in the four-capture corpus in proofs/palette-ios27; plain white is excluded.',
     },
   },
 
