@@ -25,6 +25,11 @@ Tab navigation and swipe paging under `One.iOS`, drawn by SwiftUI.
 `One.iOS.Tabs` is a SwiftUI tab view. Only `Tab`, `TabSection`,
 `TabViewSlot`, and `TabViewBottomAccessory` may be its direct children.
 
+Each tab's navigation container is transparent on iOS 18 and later, so the
+system bar can show the content behind it. Your page owns its background.
+
+{/* direction (2026-10-06): "we need to fix the see-through bar ... no one wants to have a bar that you can't see through." */}
+
 ```tsx
 import { One } from 'one'
 
