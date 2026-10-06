@@ -13,4 +13,17 @@ export declare function androidKeyboardType(value: KeyboardTypeOptions): Android
 export type AndroidImeAction = 'default' | 'none' | 'go' | 'search' | 'send' | 'previous' | 'next' | 'done';
 export declare function androidImeAction(value: ReturnKeyTypeOptions): AndroidImeAction;
 export declare function applyMaxLength(text: string, maxLength?: number): string;
+export declare function useTextInputFocus({ autoFocus, editable, onFocus, onBlur, }: {
+    autoFocus: boolean | undefined;
+    editable: boolean;
+    onFocus: (() => void) | undefined;
+    onBlur: (() => void) | undefined;
+}): {
+    focused: boolean;
+    focusRevision: number;
+    focus: () => void;
+    blur: () => void;
+    isFocused: () => boolean;
+    handleFocusChange: (next: boolean) => void;
+};
 //# sourceMappingURL=textInputShared.d.ts.map

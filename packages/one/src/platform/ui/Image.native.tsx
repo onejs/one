@@ -50,5 +50,14 @@ export function Image({ source, onLoadStart, onLoad, onError, onLoadEnd, ...prop
     }
   }, [uri])
 
-  return <NativeNitroImage image={loaded?.uri === uri ? loaded.image : undefined} {...props} />
+  // a mounted nitro view cannot have its image cleared: fabric sends the unset prop as
+  // null, which nitro's converter rejects. each source gets its own native view, which
+  // starts empty and is only ever given its own image.
+  return (
+    <NativeNitroImage
+      key={String(uri)}
+      image={loaded?.uri === uri ? loaded.image : undefined}
+      {...props}
+    />
+  )
 }
