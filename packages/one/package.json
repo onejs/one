@@ -280,7 +280,7 @@
     "react-native-screens": ">=4.25.0",
     "react-native-web": "^0.21.2",
     "react-native-worklets": ">=0.12.2",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4"
   },
   "peerDependenciesMeta": {
@@ -339,7 +339,7 @@
     "react-native-worklets": "~0.12.2",
     "react-test-renderer": "^19.2.0",
     "rolldown": "^1.2.8",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
     "yoga-layout": "^3.2.1"
