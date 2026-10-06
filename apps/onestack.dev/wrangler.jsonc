@@ -1,4 +1,7 @@
 {
   "name": "onestack-dev",
-  "routes": [{ "pattern": "v2.onestack.dev", "custom_domain": true }]
+  "routes": [
+    { "pattern": "v2.onestack.dev", "custom_domain": true },
+    { "pattern": "onestack.dev/*", "zone_name": "onestack.dev" }
+  ]
 }
