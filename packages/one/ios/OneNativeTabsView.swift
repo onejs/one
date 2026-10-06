@@ -361,6 +361,10 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
   // back in front of whatever SwiftUI installed.
   func interceptActionTabs(_ tabBarController: UITabBarController) {
     self.tabBarController = tabBarController
+    // swiftui's tab controller and page host each paint a system background outside
+    // the navigation container. keep those containers clear so the page owns the paint.
+    tabBarController.view.backgroundColor = .clear
+    tabBarController.selectedViewController?.viewIfLoaded?.backgroundColor = .clear
     guard tabBarController.delegate !== actionDelegate else { return }
     actionDelegate.original = tabBarController.delegate
     actionDelegate.model = model
@@ -472,6 +476,7 @@ private struct TabsContent: View {
       NavigationStack {
         slot(page)
           .background(ActionTabHook(host: host))
+          .containerBackground(.clear, for: .navigation)
           .oneNativeStyle(page.style, emit: page.emit)
           .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
           .toolbar {
