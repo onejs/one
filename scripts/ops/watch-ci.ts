@@ -97,8 +97,11 @@ while (true) {
         run.event === 'pull_request') &&
       (workflows.length === 0 || workflows.includes(run.name))
   )
-  // duplicate push runs can cancel an older attempt for the same workflow and sha.
-  const latest = [...new Map(direct.sort((a, b) => a.databaseId - b.databaseId)
+  // duplicate push runs can be allocated ids out of order. a cancelled duplicate
+  // has no verdict while another run for this exact workflow and sha still does.
+  const candidates = direct.filter((run) => run.conclusion !== 'cancelled' ||
+    !direct.some((other) => other.name === run.name && other.conclusion !== 'cancelled'))
+  const latest = [...new Map(candidates.sort((a, b) => a.databaseId - b.databaseId)
     .map((run) => [run.name, run])).values()]
   const failed = latest.filter((run) => run.conclusion && bad.has(run.conclusion))
   const pending = latest.filter((run) => run.status !== 'completed')
