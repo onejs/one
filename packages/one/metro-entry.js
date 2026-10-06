@@ -1,4 +1,9 @@
-// Note: Setup file import (if configured) is injected at the top by babel-plugin-one-router-metro
+// initialize globals before configured setup, whose side-effect import is eager
+// even when metro defers the named createApp import.
+import 'react-native/Libraries/Core/InitializeCore'
+import './dist/esm/polyfills-mobile.native.js'
+
+// configured setup is injected after these imports by one-router-metro.
 import { createApp } from 'one'
 import { ctx } from './metro-entry-ctx.js'
 

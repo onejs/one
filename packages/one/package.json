@@ -4,6 +4,7 @@
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
+    "metro-entry.js",
     "setup.mjs",
     "setup.js",
     "**/polyfills-mobile.*",
