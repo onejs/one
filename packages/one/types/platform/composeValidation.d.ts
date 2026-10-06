@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeContainedLoadingIndicatorProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps, ComposeSegmentedButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeContainedLoadingIndicatorProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps, ComposeSegmentedButtonProps, ComposeDatePickerProps, ComposeTimePickerProps } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -51,4 +51,14 @@ export declare function validateAlertDialogProps(props: ComposeAlertDialogProps)
 export declare function validateDialogProps(props: ComposeDialogProps): void;
 export declare function validateProgressIndicatorProps(props: ComposeProgressIndicatorProps): void;
 export declare function validateLoadingIndicatorProps(props: ComposeLoadingIndicatorProps | ComposeContainedLoadingIndicatorProps): void;
+export declare function composeUtcDay(date: Date): number;
+export declare function validateDatePickerProps(props: Omit<ComposeDatePickerProps, 'onSelectionChange'>, owner?: string): void;
+export declare function validateTimePickerProps(props: Omit<ComposeTimePickerProps, 'onSelectionChange'>, owner?: string): void;
+export declare function validatePickerDialogProps(props: {
+    visible: unknown;
+    onConfirm: unknown;
+    onDismiss: unknown;
+    confirmLabel?: unknown;
+    dismissLabel?: unknown;
+}, owner: string): void;
 //# sourceMappingURL=composeValidation.d.ts.map

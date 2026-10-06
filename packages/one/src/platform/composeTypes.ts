@@ -526,3 +526,100 @@ export interface ComposeLoadingIndicatorProps extends ComposeLeafProps {
 export interface ComposeContainedLoadingIndicatorProps extends ComposeLoadingIndicatorProps {
   containerColor?: ColorValue
 }
+
+export const composeDatePickerColorKeys = [
+  'containerColor',
+  'titleContentColor',
+  'headlineContentColor',
+  'weekdayContentColor',
+  'subheadContentColor',
+  'navigationContentColor',
+  'yearContentColor',
+  'disabledYearContentColor',
+  'currentYearContentColor',
+  'selectedYearContentColor',
+  'disabledSelectedYearContentColor',
+  'selectedYearContainerColor',
+  'disabledSelectedYearContainerColor',
+  'dayContentColor',
+  'disabledDayContentColor',
+  'selectedDayContentColor',
+  'disabledSelectedDayContentColor',
+  'selectedDayContainerColor',
+  'disabledSelectedDayContainerColor',
+  'todayContentColor',
+  'todayDateBorderColor',
+  'dayInSelectionRangeContentColor',
+  'dayInSelectionRangeContainerColor',
+  'dividerColor',
+] as const
+
+export const composeTimePickerColorKeys = [
+  'containerColor',
+  'clockDialColor',
+  'clockDialSelectedContentColor',
+  'clockDialUnselectedContentColor',
+  'selectorColor',
+  'periodSelectorBorderColor',
+  'periodSelectorSelectedContainerColor',
+  'periodSelectorUnselectedContainerColor',
+  'periodSelectorSelectedContentColor',
+  'periodSelectorUnselectedContentColor',
+  'timeSelectorSelectedContainerColor',
+  'timeSelectorUnselectedContainerColor',
+  'timeSelectorSelectedContentColor',
+  'timeSelectorUnselectedContentColor',
+] as const
+
+export type ComposeDatePickerColors = Readonly<
+  Partial<Record<(typeof composeDatePickerColorKeys)[number], ColorValue>>
+>
+export type ComposeTimePickerColors = Readonly<
+  Partial<Record<(typeof composeTimePickerColorKeys)[number], ColorValue>>
+>
+
+// the selected calendar day of `selection` in the device time zone; the time of
+// day carries through every change unchanged
+export interface ComposeDatePickerProps extends ComposeLeafProps {
+  selection: Date
+  onSelectionChange: (value: Date) => void
+  revision?: number
+  minimumDate?: Date
+  maximumDate?: Date
+  variant?: 'picker' | 'input'
+  showModeToggle?: boolean
+  color?: ColorValue
+  colors?: ComposeDatePickerColors
+}
+
+// the hour and minute of `selection` in the device time zone; the calendar day
+// carries through every change and seconds reset to zero
+export interface ComposeTimePickerProps extends ComposeLeafProps {
+  selection: Date
+  onSelectionChange: (value: Date) => void
+  revision?: number
+  is24Hour?: boolean
+  variant?: 'picker' | 'input'
+  color?: ColorValue
+  colors?: ComposeTimePickerColors
+}
+
+type ComposePickerDialogProps = {
+  visible: boolean
+  onConfirm: (value: Date) => void
+  onDismiss: () => void
+  confirmLabel?: string
+  dismissLabel?: string
+}
+
+export type ComposeDatePickerDialogProps = Omit<
+  ComposeDatePickerProps,
+  'onSelectionChange' | 'revision'
+> &
+  ComposePickerDialogProps
+
+export type ComposeTimePickerDialogProps = Omit<
+  ComposeTimePickerProps,
+  'onSelectionChange' | 'revision'
+> &
+  ComposePickerDialogProps

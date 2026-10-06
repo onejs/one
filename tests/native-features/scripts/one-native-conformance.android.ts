@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'portal' | 'pager' | 'updates' | 'system'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'updates' | 'system'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|portal|pager|updates|system --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|updates|system --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -4035,6 +4035,80 @@ async function runCompose(config: Config) {
       idText(nodes, 'one-native-android-segmented-status', 'Single: Second · Checked: yes · Policy: accept · Requests: 2 · Disabled: 0')
     )
   }
+  const pickers = async () => {
+    const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-pickers-status', text)
+    const dayNodes = (nodes: Node[], day: number) =>
+      nodes.filter((node) => new RegExp(`\\bOctober ${day}, 2026$`).test(node.text) && node.checkable)
+    const day = (nodes: Node[], value: number) => dayNodes(nodes, value).length === 1 ? dayNodes(nodes, value)[0] : undefined
+    // compose semantics nodes carry no resource id, so these taps resolve one node by its text
+    const tapText = (name: string, find: (nodes: Node[]) => Node[]) => {
+      const found = find(snapshot(config).nodes)
+      if (found.length !== 1) throw new Error(`${name} resolved ${found.length} nodes; exactly one is required.`)
+      const bounds = validBounds(found[0], name)
+      adbText(config, ['shell', 'input', 'tap', String(Math.round((bounds.left + bounds.right) / 2)), String(Math.round((bounds.top + bounds.bottom) / 2))])
+    }
+    await tapNavigation(config, 'nav-one-native-android-pickers')
+    await check('compose-pickers-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-pickers-date') &&
+      day(nodes, 5)?.checked === true &&
+      day(nodes, 2)?.enabled === false &&
+      day(nodes, 31)?.enabled === false &&
+      day(nodes, 15)?.enabled === true &&
+      status('Date: 2026-10-05 14:37 · Time: 14:37 · Policy: reject · Requests: 0 · Dialog: none')(nodes)
+    )
+    tapText('day 15 rejected', (nodes) => dayNodes(nodes, 15))
+    await check('compose-pickers-date-rejected', (nodes) =>
+      status('Date: 2026-10-05 14:37 · Time: 14:37 · Policy: reject · Requests: 1')(nodes) &&
+      day(nodes, 5)?.checked === true &&
+      day(nodes, 15)?.checked === false
+    )
+    tapText('disabled day 2', (nodes) => dayNodes(nodes, 2))
+    tapFresh(config, 'accept picker requests', { id: 'one-native-android-pickers-policy' })
+    await check('compose-pickers-policy', status('Policy: accept · Requests: 1'))
+    tapText('day 15 accepted', (nodes) => dayNodes(nodes, 15))
+    await check('compose-pickers-date-accepted', (nodes) =>
+      status('Date: 2026-10-15 14:37 · Time: 14:37 · Policy: accept · Requests: 2 · Dialog: none')(nodes) &&
+      day(nodes, 15)?.checked === true &&
+      day(nodes, 5)?.checked === false
+    )
+    tapFresh(config, 'show inline time picker', { id: 'one-native-android-pickers-swap' })
+    await check('compose-pickers-time-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-pickers-time') &&
+      nodes.some((node) => node.contentDescription === '14 hours' && node.text === '14')
+    )
+    const hour = (value: number) => (nodes: Node[]) => nodes.filter((node) => node.contentDescription === `${value} hours` && !node.text)
+    tapText('dial hour 9', hour(9))
+    await check('compose-pickers-time-accepted', (nodes) =>
+      status('Date: 2026-10-15 14:37 · Time: 09:37 · Policy: accept · Requests: 3 · Dialog: none')(nodes) &&
+      nodes.some((node) => node.contentDescription === '9 hours' && /^0?9$/.test(node.text))
+    )
+    const button = (label: string) => (nodes: Node[]) => nodes.filter((node) => node.text === label)
+    tapFresh(config, 'open date dialog', { id: 'one-native-android-pickers-open-date' })
+    await check('compose-pickers-date-dialog-open', (nodes) =>
+      button('Use date')(nodes).length === 1 && day(nodes, 15)?.checked === true
+    )
+    tapText('dialog day 20', (nodes) => dayNodes(nodes, 20))
+    await check('compose-pickers-date-dialog-changed', (nodes) => day(nodes, 20)?.checked === true)
+    tapText('confirm date dialog', button('Use date'))
+    await check('compose-pickers-date-dialog-confirmed', status('Date: 2026-10-15 14:37 · Time: 09:37 · Policy: accept · Requests: 3 · Dialog: date 2026-10-20 14:37'))
+    tapFresh(config, 'reopen date dialog', { id: 'one-native-android-pickers-open-date' })
+    await check('compose-pickers-date-dialog-reopened', (nodes) =>
+      button('Use date')(nodes).length === 1 && day(nodes, 15)?.checked === true && day(nodes, 20)?.checked === false
+    )
+    tapText('cancel date dialog', button('Cancel'))
+    await check('compose-pickers-date-dialog-dismissed', (nodes) =>
+      status('Dialog: dismissed')(nodes) && button('Use date')(nodes).length === 0
+    )
+    tapFresh(config, 'show inline date picker', { id: 'one-native-android-pickers-swap' })
+    await check('compose-pickers-date-remounted', (nodes) => day(nodes, 15)?.checked === true)
+    tapFresh(config, 'open time dialog', { id: 'one-native-android-pickers-open-time' })
+    await check('compose-pickers-time-dialog-open', (nodes) =>
+      button('Use time')(nodes).length === 1 && nodes.some((node) => node.contentDescription === '9 hours' && /^0?9$/.test(node.text))
+    )
+    tapText('dialog hour 18', hour(18))
+    tapText('confirm time dialog', button('Use time'))
+    await check('compose-pickers-time-dialog-confirmed', status('Date: 2026-10-15 14:37 · Time: 09:37 · Policy: accept · Requests: 3 · Dialog: time 2026-10-05 18:37'))
+  }
   const surface = async () => {
     await tapNavigation(config, 'nav-one-native-android-surface')
     await check('compose-surface-mounted', (nodes) =>
@@ -4279,6 +4353,11 @@ async function runCompose(config: Config) {
   if (config.suite === 'compose-progress') {
     await progress()
     console.log('ALL ONE NATIVE ANDROID PROGRESS CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-pickers') {
+    await pickers()
+    console.log('ALL ONE NATIVE ANDROID PICKER CHECKS PASSED')
     return
   }
   if (config.suite === 'compose-segmented') {
@@ -4669,7 +4748,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers'
       ? runCompose(config)
       : run(config))
 } catch (error) {
