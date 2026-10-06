@@ -131,6 +131,8 @@ const suites = [
   'ui-map',
   'portal',
   'pager',
+  'ui-text-input',
+  'ui-image',
   'gpu',
   'updates',
 ] as const
@@ -777,6 +779,8 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'ui-map': uiMapLoaded,
   portal: (nodes: Node[]) => Boolean(id(nodes, 'portal-toggle-host')),
   pager: (nodes: Node[]) => Boolean(id(nodes, 'one-ui-pager-root')),
+  'ui-text-input': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-text-input-field')),
+  'ui-image': (nodes: Node[]) => Boolean(id(nodes, 'one-native-image-switch')),
   gpu: gpuLoaded,
   updates: updatesLoaded,
 }
@@ -886,6 +890,8 @@ const suiteHome: Record<Suite, string> = {
   'ui-map': 'nav-one-native-ui-map',
   portal: 'nav-one-native-portal',
   pager: 'nav-one-ui-pager',
+  'ui-text-input': 'nav-one-ui-text-input',
+  'ui-image': 'nav-one-native-image',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
   updates: 'nav-one-native-updates',
@@ -6813,6 +6819,168 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       badge(n, 'context:1') && size(n, 'portal-other', 220, 90) && cornered(n, 'portal-other') &&
       !within(frame(n, 'portal-badge'), frame(n, 'portal-host')))
     screenshot('portal-switched.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'ui-image') {
+    const status = (nodes: Node[], text: string) => labels(nodes).includes(text)
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-image')
+    await wait('a bundled asset reports its pixel size', (n) => status(n, 'Asset: loaded 48x32'))
+    await wait('the asset view lays out at its style size', (n) => {
+      const frame = n.find((node) => node.AXLabel === 'One UI Image asset')?.frame
+      return frame?.width === 120 && frame.height === 80
+    })
+    await wait('a remote image reports its pixel size once', (n) =>
+      status(n, 'Remote: loaded 120x80') && status(n, 'Remote loads: 1')
+    )
+    await wait('an unreachable host raises onError', (n) => status(n, 'Broken: error'))
+    screenshot('ui-image-loaded.png')
+    tap({ id: 'one-native-image-switch' })
+    await wait('a source change loads the new image', (n) =>
+      status(n, 'Remote: loaded 60x40') && status(n, 'Remote loads: 2')
+    )
+    tap({ id: 'one-native-image-switch' })
+    await wait('switching back loads the first image again', (n) =>
+      status(n, 'Remote: loaded 120x80') && status(n, 'Remote loads: 3')
+    )
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`image recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-native-image')
+      await wait(`image recycle ${cycle}: every source reports again`, (n) =>
+        status(n, 'Asset: loaded 48x32') &&
+        status(n, 'Remote: loaded 120x80') &&
+        status(n, 'Remote loads: 1') &&
+        status(n, 'Broken: error')
+      )
+    }
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'ui-text-input') {
+    const status = (nodes: Node[], text: string) => labels(nodes).includes(text)
+    // the host Group carries the same testID as the native field inside it; read the field.
+    const field = (nodes: Node[], testID: string) =>
+      nodes.find((node) => node.AXUniqueId === testID && node.type === 'TextField')
+    const fieldValue = (nodes: Node[], testID: string) => field(nodes, testID)?.AXValue
+    // pool simulators boot headless with the software keyboard (Device Hub's
+    // alwaysSimulateHardwareKeyboard is off), so hardware key events never reach a field.
+    // type the way a person does: tap each key of the on-screen keyboard by its label.
+    const key = (nodes: Node[], match: (node: Node) => boolean) =>
+      nodes.find((node) => node.type === 'Button' && match(node))
+    const keyboardUp = (nodes: Node[]) => Boolean(key(nodes, (node) => node.AXUniqueId === 'Return'))
+    const pressKey = (match: (node: Node) => boolean, name: string) => {
+      const frame = key(snapshot(config.simulatorId), match)?.frame
+      if (!frame) throw new Error(`software keyboard has no ${name} key`)
+      point(frame.x + frame.width / 2, frame.y + frame.height / 2)
+    }
+    const softType = async (name: string, text: string) => {
+      if (!/^[a-z]+$/.test(text)) throw new Error(`softType takes lowercase letters, got ${text}`)
+      await wait(`${name}: software keyboard is up`, keyboardUp)
+      for (const letter of text) pressKey((node) => node.AXLabel === letter, letter)
+    }
+    const submit = async () => {
+      await wait('software keyboard is up for return', keyboardUp)
+      pressKey((node) => node.AXUniqueId === 'Return', 'return')
+    }
+    const tapField = (testID: string) => {
+      const frame = field(snapshot(config.simulatorId), testID)?.frame
+      if (!frame) throw new Error(`${testID} has no frame`)
+      // the right edge puts the caret after any existing text.
+      point(frame.x + frame.width - 8, frame.y + frame.height / 2)
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-ui-text-input')
+    await wait('defaultValue reaches the native field before any event', (n) =>
+      fieldValue(n, 'one-ui-text-input-field') === 'hello' &&
+      status(n, 'Changed: none') &&
+      status(n, 'Focus: 0 Blur: 0') &&
+      status(n, 'Submits: 0') &&
+      status(n, 'Shared: empty') &&
+      status(n, 'Secret length: 0')
+    )
+    await wait('editable={false} disables the native field', (n) => {
+      const readonly = field(n, 'one-ui-text-input-readonly')
+      return readonly?.AXValue === 'locked' && readonly.enabled === false
+    })
+    // a disabled field must not take first responder from a tap: no keyboard may come up.
+    // the focus step below then proves the keyboard does appear for an enabled field.
+    tapField('one-ui-text-input-readonly')
+
+    tap({ id: 'one-ui-text-input-check' })
+    await wait('isFocused is false before focus and the disabled tap raised no keyboard', (n) =>
+      status(n, 'IsFocused: false') && !keyboardUp(n)
+    )
+    tap({ id: 'one-ui-text-input-focus' })
+    await wait('ref.focus() raises exactly one onFocus', (n) =>
+      status(n, 'Focus: 1 Blur: 0') &&
+      status(n, 'Changed: none') &&
+      fieldValue(n, 'one-ui-text-input-readonly') === 'locked'
+    )
+    tap({ id: 'one-ui-text-input-check' })
+    await wait('isFocused is true after focus', (n) => status(n, 'IsFocused: true'))
+
+    await softType('TextInput', 'world')
+    await wait('maxLength clamps native text and onChangeText', (n) =>
+      fieldValue(n, 'one-ui-text-input-field') === 'hellowor' &&
+      status(n, 'Changed: hellowor')
+    )
+    screenshot('text-input-clamped.png')
+
+    tap({ id: 'one-ui-text-input-blur' })
+    await wait('ref.blur() raises exactly one onBlur', (n) => status(n, 'Focus: 1 Blur: 1'))
+    tap({ id: 'one-ui-text-input-check' })
+    await wait('isFocused is false after blur', (n) => status(n, 'IsFocused: false'))
+
+    tap({ id: 'one-ui-text-input-focus' })
+    await wait('focus again', (n) => status(n, 'Focus: 2 Blur: 1'))
+    await submit()
+    await wait('return raises exactly one onSubmitEditing with the text', (n) =>
+      status(n, 'Submits: 1 hellowor')
+    )
+
+    tap({ id: 'one-ui-text-input-clear' })
+    await wait('ref.clear() empties the native field', (n) =>
+      fieldValue(n, 'one-ui-text-input-field') === 'Type here'
+    )
+
+    tap({ id: 'one-ui-text-input-external' })
+    await wait('a NativeState set reaches the controlled field', (n) =>
+      fieldValue(n, 'one-ui-text-input-controlled') === 'external' &&
+      status(n, 'Shared: external')
+    )
+    tapField('one-ui-text-input-controlled')
+    await softType('controlled TextInput', 'x')
+    await wait('typing updates the NativeState value', (n) =>
+      fieldValue(n, 'one-ui-text-input-controlled') === 'externalx' &&
+      status(n, 'Shared: externalx')
+    )
+
+    tapField('one-ui-text-input-secure')
+    await softType('secure TextInput', 'pass')
+    await wait('secureTextEntry masks every character', (n) => {
+      const secure = field(n, 'one-ui-text-input-secure')
+      return secure?.subrole === 'AXSecureTextField' &&
+        secure.AXValue === '•'.repeat(4) &&
+        status(n, 'Secret length: 4') &&
+        !JSON.stringify(n).includes('pass')
+    })
+    screenshot('text-input-final.png')
+
+    for (const cycle of [1, 2]) {
+      tap({ label: 'index' })
+      await wait(`text-input recycle ${cycle}: home mounted`, () => true, true)
+      await tapNav('nav-one-ui-text-input')
+      await wait(`text-input recycle ${cycle}: fresh state`, (n) =>
+        fieldValue(n, 'one-ui-text-input-field') === 'hello' &&
+        status(n, 'Focus: 0 Blur: 0') &&
+        status(n, 'Shared: empty')
+      )
+    }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

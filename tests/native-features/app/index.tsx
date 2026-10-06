@@ -550,6 +550,11 @@ const testScreens = [
     testID: 'nav-one-native-image',
   },
   {
+    href: '/one-ui-text-input',
+    label: 'One UI TextInput',
+    testID: 'nav-one-ui-text-input',
+  },
+  {
     href: '/one-native-clipboard',
     label: 'One Native Clipboard',
     testID: 'nav-one-native-clipboard',
