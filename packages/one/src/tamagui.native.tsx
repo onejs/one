@@ -1,5 +1,5 @@
 import { setupNativeSheet, type NativeSheetRendererProps } from '@tamagui/sheet'
-import { getConfig, useThemeName } from '@tamagui/core'
+import { useThemeWithState } from '@tamagui/web/internal-runtime'
 import { Fragment, useMemo } from 'react'
 import { Platform, View } from 'react-native'
 import { Sheet, SheetAppearanceContext } from './platform/Sheet.native'
@@ -21,13 +21,11 @@ function TamaguiNativeSheetRenderer({
   portalProps,
   zIndex,
 }: NativeSheetRendererProps) {
-  const themeName = useThemeName()
-  const authoredScheme = Reflect.get(
-    getConfig().themes[themeName],
-    Symbol.for('tamagui.theme.scheme')
-  )
+  const [, themeState] = useThemeWithState({ needsUpdate: () => true })
   const colorScheme =
-    authoredScheme === 'light' || authoredScheme === 'dark' ? authoredScheme : undefined
+    themeState?.scheme === 'light' || themeState?.scheme === 'dark'
+      ? themeState.scheme
+      : undefined
   const fitToContents = snapPoints.length === 1 && snapPoints[0].type === 'fit'
   const detents = useMemo(() => {
     if (fitToContents) return undefined
