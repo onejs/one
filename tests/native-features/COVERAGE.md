@@ -21,7 +21,7 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.StoreReview` | store-review | native-modules:unavailable |  |
 | `One.QuickActions` | quick-actions | quick-actions, native-modules:unavailable |  |
 | `One.Location` | location | location, native-modules:unavailable |  |
-| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, print, location, screen-capture, native-modules |  |
+| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | file-system, share, print, location, screen-capture, native-modules |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-background | native-modules:unavailable |  |
 | `One.Share` | share | share, native-modules:unavailable |  |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable |  |
