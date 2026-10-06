@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import type {
   KeyboardTypeOptions,
   ReturnKeyTypeOptions,
@@ -231,4 +232,57 @@ export function androidImeAction(value: ReturnKeyTypeOptions): AndroidImeAction 
 export function applyMaxLength(text: string, maxLength?: number): string {
   if (maxLength == null || maxLength <= 0) return text
   return text.length > maxLength ? text.slice(0, maxLength) : text
+}
+
+// focus state for the native fields. the controlled protocol never echoes a
+// requested value back as an event, so a focus or blur this side asks for
+// (ref.focus(), ref.blur(), autoFocus) reports its own transition here, and
+// native events report only the changes the user makes. each transition
+// reaches onFocus or onBlur exactly once.
+export function useTextInputFocus({
+  autoFocus,
+  editable,
+  onFocus,
+  onBlur,
+}: {
+  autoFocus: boolean | undefined
+  editable: boolean
+  onFocus: (() => void) | undefined
+  onBlur: (() => void) | undefined
+}) {
+  const [focused, setFocused] = useState(autoFocus ?? false)
+  const [focusRevision, setFocusRevision] = useState(0)
+  const isFocusedRef = useRef(false)
+  const latest = useRef({ editable, onFocus, onBlur })
+  latest.current = { editable, onFocus, onBlur }
+
+  const report = (next: boolean) => {
+    if (isFocusedRef.current === next) return
+    isFocusedRef.current = next
+    if (next) latest.current.onFocus?.()
+    else latest.current.onBlur?.()
+  }
+  const request = (next: boolean) => {
+    // a disabled field cannot take focus, so asking for it changes nothing.
+    if (next && !latest.current.editable) return
+    setFocused(next)
+    setFocusRevision((revision) => revision + 1)
+    report(next)
+  }
+
+  useEffect(() => {
+    if (autoFocus && latest.current.editable) report(true)
+  }, [])
+
+  return {
+    focused,
+    focusRevision,
+    focus: () => request(true),
+    blur: () => request(false),
+    isFocused: () => isFocusedRef.current,
+    handleFocusChange: (next: boolean) => {
+      setFocused(next)
+      report(next)
+    },
+  }
 }
