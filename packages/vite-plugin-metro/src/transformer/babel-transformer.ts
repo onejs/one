@@ -159,20 +159,20 @@ const transform: BabelTransformer['transform'] = ({
   // `plugins` is used for `functionMapBabelPlugin` from `metro-source-map`.
   plugins,
 }: BabelTransformerArgs): ReturnType<BabelTransformer['transform']> => {
-  if (filename.endsWith('.swift')) {
+  if (/\.(swift|kt)$/.test(filename)) {
     const requireFromProject = createRequire(
       path.resolve(options.projectRoot, 'package.json')
     )
     const oneTransforms = requireFromProject(
       'one/native-transforms'
     ) as typeof import('one/native-transforms') & {
-      renderSwiftPackageModule: (
+      renderNativeSourceModule: (
         id: string,
         platform: string,
         root: string
       ) => { code: string; watchFiles: string[] }
     }
-    originalSrc = oneTransforms.renderSwiftPackageModule(
+    originalSrc = oneTransforms.renderNativeSourceModule(
       path.isAbsolute(filename) ? filename : path.resolve(options.projectRoot, filename),
       options.platform ?? '',
       options.projectRoot

@@ -19,7 +19,7 @@ type MetroInputConfig = NonNullable<Parameters<typeof loadConfigT>[1]>
 const WATCHMAN_PROBE_TIMEOUT_MS = 2000
 const expoEnvAdditionalExts = ['env', 'local', 'development']
 // keep js before mjs so platform-aware .native.js wins for one dist.
-const metroSourceExts = ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs', 'swift']
+const metroSourceExts = ['js', 'jsx', 'json', 'ts', 'tsx', 'mjs', 'cjs', 'swift', 'kt']
 const watchmanResponsivePromises = new Map<string, Promise<boolean>>()
 let didWarnAboutWatchmanFallback = false
 const rootIndexBundleRequestPattern = /^(https?:\/\/[^/]+)?\/index\.bundle(?=$|[?#])/
