@@ -10,8 +10,22 @@ const metroRequire = createRequire(nodeRequire.resolve('metro/package.json'))
 const inlineRequiresPlugin = metroRequire('metro-transform-plugins').inlineRequiresPlugin
 const polyfillFile = new URL('../../dist/esm/polyfills-mobile.native.js', import.meta.url)
 
+function nativeCoreJsImports() {
+  const code = readFileSync(polyfillFile, 'utf8')
+  const parsed = parseSync(polyfillFile.pathname, code, { lang: 'js' })
+  if (parsed.errors.length) throw new Error(parsed.errors[0].message)
+  return parsed.program.body
+    .filter((statement) => statement.type === 'ImportDeclaration')
+    .map((statement) => statement.source.value)
+    .filter((specifier) => specifier.startsWith('core-js/'))
+}
+
 function evaluateCoreJs(imports: string[]) {
   const context = vm.createContext({})
+  vm.runInContext(
+    'for (const name of ["toSorted", "toReversed", "toSpliced", "with"]) delete Array.prototype[name]',
+    context
+  )
   const cache = new Map<string, { exports: any }>()
 
   function load(specifier: string, from: string): any {
@@ -40,19 +54,36 @@ function evaluateCoreJs(imports: string[]) {
   }
 
   for (const specifier of imports) load(specifier, polyfillFile.pathname)
-  return () =>
-    vm.runInContext('Function.prototype.toString.call(function metroProbe() {})', context)
+  return (expression = 'Function.prototype.toString.call(function metroProbe() {})') =>
+    vm.runInContext(expression, context)
 }
 
-it('keeps native core-js polyfills safe under Metro inline requires', () => {
-  const code = readFileSync(polyfillFile, 'utf8')
-  const parsed = parseSync(polyfillFile.pathname, code, { lang: 'js' })
-  if (parsed.errors.length) throw new Error(parsed.errors[0].message)
+it('installs change-array-by-copy methods before native consumers under Metro inline requires', () => {
+  const evaluate = evaluateCoreJs(nativeCoreJsImports())
 
-  const imports = parsed.program.body
-    .filter((statement) => statement.type === 'ImportDeclaration')
-    .map((statement) => statement.source.value)
-    .filter((specifier) => specifier.startsWith('core-js/'))
+  expect(evaluate('JSON.stringify([2, 1].toSorted())')).toBe('[1,2]')
+  expect(evaluate('JSON.stringify([1, 2].toReversed())')).toBe('[2,1]')
+  expect(evaluate('JSON.stringify([1, 2, 3].toSpliced(1, 1, 4))')).toBe('[1,4,3]')
+  expect(evaluate('JSON.stringify([1, 2].with(-1, 3))')).toBe('[1,3]')
+  expect(
+    evaluate('JSON.stringify(Array.prototype.toSorted.call({0: 2, 1: 1, length: 2}))')
+  ).toBe('[1,2]')
+  expect(evaluate('JSON.stringify([3, 2, 1].toSorted((a, b) => a - b))')).toBe('[1,2,3]')
+  expect(evaluate('JSON.stringify([, 2].toSorted())')).toBe('[2,null]')
+  expect(evaluate('0 in [, 2].toReversed() && 1 in [, 2].toReversed()')).toBe(true)
+  expect(
+    evaluate(
+      '(() => { const a = [2, 1]; a.toSorted(); a.toReversed(); a.toSpliced(0, 1); a.with(0, 3); return JSON.stringify(a) })()'
+    )
+  ).toBe('[2,1]')
+  expect(() => evaluate('[1, 2].with(2, 3)')).toThrow()
+  expect(
+    evaluate('Object.getOwnPropertyDescriptor(Array.prototype, "toSorted").enumerable')
+  ).toBe(false)
+})
+
+it('keeps native core-js polyfills safe under Metro inline requires', () => {
+  const imports = nativeCoreJsImports()
 
   // the control must still fail, or this probe no longer models Metro's bug.
   expect(() =>

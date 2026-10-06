@@ -10,6 +10,10 @@
     "web-streams-polyfill/polyfill/es5",
     "@azure/core-asynciterator-polyfill",
     "core-js/internals/inspect-source",
+    "core-js/actual/array/to-sorted",
+    "core-js/actual/array/to-reversed",
+    "core-js/actual/array/to-spliced",
+    "core-js/actual/array/with",
     "core-js/actual/url",
     "core-js/actual/url-search-params"
   ],

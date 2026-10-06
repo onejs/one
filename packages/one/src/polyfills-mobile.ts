@@ -4,6 +4,13 @@
 // evaluate inspect-source before another polyfill can load make-built-in.
 import 'core-js/internals/inspect-source'
 
+// hermes releases bundled with react native do not provide every ES2023
+// change-array-by-copy method. install them before native app modules load.
+import 'core-js/actual/array/to-sorted'
+import 'core-js/actual/array/to-reversed'
+import 'core-js/actual/array/to-spliced'
+import 'core-js/actual/array/with'
+
 // --------------- global -------------------
 // for react-navigation/native NavigationContainer
 
