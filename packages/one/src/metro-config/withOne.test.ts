@@ -98,6 +98,7 @@ describe('withOne', () => {
     expect(exts).toContain('mjs')
     expect(exts).toContain('js')
     expect(exts).toContain('swift')
+    expect(exts).toContain('kt')
     // .js must appear before .mjs so platform-aware lookup finds
     // `.native.js` before `.mjs` for one's dist
     expect(exts.indexOf('js')).toBeLessThan(exts.indexOf('mjs'))
