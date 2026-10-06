@@ -1,7 +1,8 @@
 import { setupNativeSheet, type NativeSheetRendererProps } from '@tamagui/sheet'
+import { useThemeWithState } from '@tamagui/web/internal-runtime'
 import { Fragment, useMemo } from 'react'
 import { Platform, View } from 'react-native'
-import { Sheet } from './platform/Sheet.native'
+import { Sheet, SheetAppearanceContext } from './platform/Sheet.native'
 import type { PresentationDetent } from './platform/generated/sheetTypes'
 
 function TamaguiNativeSheetRenderer({
@@ -20,6 +21,11 @@ function TamaguiNativeSheetRenderer({
   portalProps,
   zIndex,
 }: NativeSheetRendererProps) {
+  const [, themeState] = useThemeWithState({ needsUpdate: () => true })
+  const colorScheme =
+    themeState?.scheme === 'light' || themeState?.scheme === 'dark'
+      ? themeState.scheme
+      : undefined
   const fitToContents = snapPoints.length === 1 && snapPoints[0].type === 'fit'
   const detents = useMemo(() => {
     if (fitToContents) return undefined
@@ -55,38 +61,40 @@ function TamaguiNativeSheetRenderer({
   )
   return (
     <View ref={ref} style={{ position: 'absolute', width: 0, height: 0, zIndex }}>
-      <Sheet
-        isPresented={open}
-        onIsPresentedChange={onOpenChange}
-        onDidDismiss={onDismiss}
-        fitToContents={fitToContents}
-        presentationDetents={presentationDetents}
-        selectedDetent={disableDrag ? undefined : selectedDetent}
-        onSelectedDetentChange={
-          detents && !disableDrag
-            ? (detent) => {
-                const index = detents.findIndex(
-                  (point) =>
-                    typeof point === 'object' &&
-                    typeof detent === 'object' &&
-                    (('fraction' in point &&
-                      'fraction' in detent &&
-                      point.fraction === detent.fraction) ||
-                      ('height' in point &&
-                        'height' in detent &&
-                        point.height === detent.height))
-                )
-                if (index < 0)
-                  throw new Error('One native Sheet selected an unauthored snap point')
-                onPositionChange(index)
-              }
-            : undefined
-        }
-        interactiveDismissDisabled={disableDrag}
-        presentationBackgroundInteraction={modal ? 'disabled' : 'enabled'}
-      >
-        <ContentContainer>{children}</ContentContainer>
-      </Sheet>
+      <SheetAppearanceContext.Provider value={colorScheme}>
+        <Sheet
+          isPresented={open}
+          onIsPresentedChange={onOpenChange}
+          onDidDismiss={onDismiss}
+          fitToContents={fitToContents}
+          presentationDetents={presentationDetents}
+          selectedDetent={disableDrag ? undefined : selectedDetent}
+          onSelectedDetentChange={
+            detents && !disableDrag
+              ? (detent) => {
+                  const index = detents.findIndex(
+                    (point) =>
+                      typeof point === 'object' &&
+                      typeof detent === 'object' &&
+                      (('fraction' in point &&
+                        'fraction' in detent &&
+                        point.fraction === detent.fraction) ||
+                        ('height' in point &&
+                          'height' in detent &&
+                          point.height === detent.height))
+                  )
+                  if (index < 0)
+                    throw new Error('One native Sheet selected an unauthored snap point')
+                  onPositionChange(index)
+                }
+              : undefined
+          }
+          interactiveDismissDisabled={disableDrag}
+          presentationBackgroundInteraction={modal ? 'disabled' : 'enabled'}
+        >
+          <ContentContainer>{children}</ContentContainer>
+        </Sheet>
+      </SheetAppearanceContext.Provider>
     </View>
   )
 }

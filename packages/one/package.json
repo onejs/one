@@ -281,7 +281,8 @@
     "react-native-web": "^0.21.2",
     "react-native-worklets": ">=0.12.2",
     "sharp": "^0.35.5",
-    "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4"
+    "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4",
+    "@tamagui/web": ">=3.0.0-beta.1537.1 <4"
   },
   "peerDependenciesMeta": {
     "@react-native/babel-preset": {
@@ -309,6 +310,9 @@
       "optional": true
     },
     "@tamagui/sheet": {
+      "optional": true
+    },
+    "@tamagui/web": {
       "optional": true
     }
   },
@@ -342,7 +346,8 @@
     "sharp": "^0.35.5",
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
-    "yoga-layout": "^3.2.1"
+    "yoga-layout": "^3.2.1",
+    "@tamagui/web": "3.0.0-beta.1537.1"
   },
   "publishConfig": {
     "access": "public"

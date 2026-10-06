@@ -63,6 +63,7 @@ extension View {
         upThrough: model.presentationBackgroundInteractionDetent)
       .oneNativePresentationContentInteraction(model.presentationContentInteraction)
       .oneNativePresentationSizing(model.presentationSizing)
+      .preferredColorScheme(model.colorScheme.isEmpty ? nil : OneNativeGenerated.colorScheme(model.colorScheme))
   }
 
   @ViewBuilder func oneNativePresentationBackground(_ value: UIColor?) -> some View {

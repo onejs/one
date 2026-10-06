@@ -84,6 +84,8 @@ export const sheetComponents = [
       // 'sheet' or 'fullScreenCover'; Swift.Sheet and Swift.FullScreenCover are one
       // component because only the presenting modifier differs.
       presentation: 'string',
+      // internal adapter appearance, without extending Swift.Sheet's public props.
+      colorScheme: 'string',
     },
     events: {
       onNativeSheetIsPresentedChange: {
@@ -271,6 +273,7 @@ extension View {
         upThrough: model.presentationBackgroundInteractionDetent)
       .oneNativePresentationContentInteraction(model.presentationContentInteraction)
       .oneNativePresentationSizing(model.presentationSizing)
+      .preferredColorScheme(model.colorScheme.isEmpty ? nil : OneNativeGenerated.colorScheme(model.colorScheme))
   }
 
   @ViewBuilder func oneNativePresentationBackground(_ value: UIColor?) -> some View {
