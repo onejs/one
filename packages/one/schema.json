@@ -3202,6 +3202,9 @@
         },
         "presentation": {
           "type": "string"
+        },
+        "colorScheme": {
+          "type": "string"
         }
       },
       "events": {
