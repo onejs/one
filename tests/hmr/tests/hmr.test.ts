@@ -158,8 +158,8 @@ test.skip('layout HMR', { retry: 3 }, async () => {
   )
 })
 
-// CSS HMR test - verifies that SSR CSS is removed after HMR so individual styles win
-test('CSS HMR - SSR CSS removed after update', { retry: 3 }, async () => {
+// CSS HMR retains the hydrated SSR link and disables it so updated styles win
+test('CSS HMR - SSR CSS disabled after update', async () => {
   const page = await context.newPage()
   await page.goto(serverUrl + '/')
   await page.waitForLoadState('networkidle')
@@ -171,23 +171,38 @@ test('CSS HMR - SSR CSS removed after update', { retry: 3 }, async () => {
   // wait for CSS elements
   await page.waitForSelector('[data-testid="css-test-a"]')
 
-  // verify SSR CSS is present initially
-  const ssrBefore = await page.evaluate(() => !!document.querySelector('[data-ssr-css]'))
-  expect(ssrBefore).toBe(true)
+  // retain the original node to detect hydration replacement
+  const ssrLink = await page
+    .locator('link[data-ssr-css][rel="stylesheet"]')
+    .elementHandle()
+  expect(ssrLink).not.toBeNull()
+  expect(await ssrLink!.evaluate((link: HTMLLinkElement) => link.disabled)).toBe(false)
+  expect(
+    await page
+      .getByTestId('css-test-b')
+      .evaluate((element) => getComputedStyle(element).backgroundColor)
+  ).toBe('rgb(0, 255, 0)')
 
-  // edit CSS file to trigger HMR
   editCSSFileB()
 
-  // wait for SSR CSS to be removed (this is the fix!)
   await page.waitForFunction(
-    () => !document.querySelector('[data-ssr-css]'),
+    () => {
+      const link = document.querySelector<HTMLLinkElement>(
+        'link[data-ssr-css][rel="stylesheet"]'
+      )
+      const element = document.querySelector('[data-testid="css-test-b"]')
+      return (
+        link?.disabled &&
+        element &&
+        getComputedStyle(element).backgroundColor === 'rgb(255, 165, 0)'
+      )
+    },
     {},
     { timeout: 10000 }
   )
-
-  // verify SSR CSS is gone
-  const ssrAfter = await page.evaluate(() => !!document.querySelector('[data-ssr-css]'))
-  expect(ssrAfter).toBe(false)
+  expect(
+    await ssrLink!.evaluate((link: HTMLLinkElement) => link.isConnected && link.disabled)
+  ).toBe(true)
 
   // verify no page reload
   expect(await textInput.inputValue()).toBe('page did not reload')
