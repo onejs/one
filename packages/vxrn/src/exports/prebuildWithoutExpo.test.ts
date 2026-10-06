@@ -530,7 +530,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(manifest.content).toContain('android:foregroundServiceType="mediaPlayback"')
     // speech stamps RECORD_AUDIO first; the media block must not duplicate it.
     expect(
-      manifest.content.split('android.permission.RECORD_AUDIO').length - 1
+      (manifest.content ?? '').split('android.permission.RECORD_AUDIO').length - 1
     ).toBe(1)
 
     const bare = renderPrebuildFile({
