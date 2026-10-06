@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function Spacer(props: ComposeSpacerProps): import("react/jsx-runtime").JSX.Element;
@@ -63,6 +63,10 @@ declare function LinearWavyProgressIndicator(props: ProgressVariantProps): impor
 declare function CircularWavyProgressIndicator(props: ProgressVariantProps): import("react/jsx-runtime").JSX.Element;
 declare function LoadingIndicator({ progress, color, ...props }: ComposeLoadingIndicatorProps): import("react/jsx-runtime").JSX.Element;
 declare function ContainedLoadingIndicator({ progress, color, containerColor, ...props }: ComposeContainedLoadingIndicatorProps): import("react/jsx-runtime").JSX.Element;
+declare function DatePicker({ selection, onSelectionChange, revision, minimumDate, maximumDate, variant, showModeToggle, color, colors, ...props }: ComposeDatePickerProps): import("react/jsx-runtime").JSX.Element;
+declare function TimePicker({ selection, onSelectionChange, revision, is24Hour, variant, color, colors, ...props }: ComposeTimePickerProps): import("react/jsx-runtime").JSX.Element;
+declare function DatePickerDialog({ visible, selection, onConfirm, onDismiss, confirmLabel, dismissLabel, minimumDate, maximumDate, variant, showModeToggle, color, colors, ...props }: ComposeDatePickerDialogProps): import("react/jsx-runtime").JSX.Element;
+declare function TimePickerDialog({ visible, selection, onConfirm, onDismiss, confirmLabel, dismissLabel, is24Hour, variant, color, colors, ...props }: ComposeTimePickerDialogProps): import("react/jsx-runtime").JSX.Element;
 export declare const Compose: {
     Column: typeof Column;
     Row: typeof Row;
@@ -168,6 +172,10 @@ export declare const Compose: {
     CircularWavyProgressIndicator: typeof CircularWavyProgressIndicator;
     LoadingIndicator: typeof LoadingIndicator;
     ContainedLoadingIndicator: typeof ContainedLoadingIndicator;
+    DatePicker: typeof DatePicker;
+    TimePicker: typeof TimePicker;
+    DatePickerDialog: typeof DatePickerDialog;
+    TimePickerDialog: typeof TimePickerDialog;
 };
 export {};
 //# sourceMappingURL=compose.android.d.ts.map

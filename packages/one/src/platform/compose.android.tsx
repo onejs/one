@@ -1,5 +1,5 @@
 import { Children, createContext, useContext, useState, type ReactNode } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, type ColorValue } from 'react-native'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { iconColorRoles } from './ui/iconRoles'
 import { useControlled } from './controlled'
@@ -19,6 +19,9 @@ import type {
   ComposeColumnProps,
   ComposeContainedLoadingIndicatorProps,
   ComposeContentAlignment,
+  ComposeDatePickerColors,
+  ComposeDatePickerDialogProps,
+  ComposeDatePickerProps,
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
@@ -54,13 +57,21 @@ import type {
   ComposeTextFieldProps,
   ComposeTextFieldVariant,
   ComposeTextProps,
+  ComposeTimePickerColors,
+  ComposeTimePickerDialogProps,
+  ComposeTimePickerProps,
   ComposeToggleButtonProps,
   ComposeVerticalAlignment,
   ComposeVerticalArrangement,
 } from './composeTypes'
 import {
   assertComposeStyle,
+  assertFunction,
   composeIconGlyph,
+  composeUtcDay,
+  validateDatePickerProps,
+  validatePickerDialogProps,
+  validateTimePickerProps,
   validateAlertDialogProps,
   validateBadgeProps,
   validateBoxProps,
@@ -136,6 +147,10 @@ type ComposeNodeType =
   | 'alertdialog'
   | 'dialog'
   | 'progressindicator'
+  | 'datepicker'
+  | 'timepicker'
+  | 'datepickerdialog'
+  | 'timepickerdialog'
 
 type ComposeNativeNodeProps = ComposeNodeProps & {
   nodeType: ComposeNodeType
@@ -154,7 +169,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   maxLines?: number
   label?: string
   disabled?: boolean
-  variant?: ComposeButtonVariant | ComposeTextFieldVariant | 'small' | 'medium' | 'large' | 'extended'
+  variant?: ComposeButtonVariant | ComposeTextFieldVariant | 'small' | 'medium' | 'large' | 'extended' | 'picker' | 'input'
   tone?: ComposeButtonTone
   icon?: string
   iconFilled?: boolean
@@ -219,6 +234,14 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   dismissLabel?: string
   progress?: number
   progressVariant?: ComposeProgressVariant
+  pickerOptions?: Readonly<{
+    showModeToggle?: boolean
+    is24Hour?: boolean
+    minimumDay?: number
+    maximumDay?: number
+    color?: ColorValue
+    colors?: ComposeDatePickerColors | ComposeTimePickerColors
+  }>
   progressOptions?: Pick<ComposeProgressIndicatorProps, 'color' | 'trackColor' | 'strokeCap' | 'gapSize' | 'strokeWidth' | 'drawStopIndicator' | 'stopSize' | 'amplitude' | 'wavelength' | 'waveSpeed'>
   onNativeComposeNodeButtonPress?: (event: unknown) => void
   onNativeComposeNodeBooleanValueChange?: (event: {
@@ -234,7 +257,9 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   onNativeComposeNodeNumberValueChange?: (event: {
     nativeEvent: { value: number; eventCount: number; revision: number }
   }) => void
-  onNativeComposeNodeDialogConfirm?: (event: unknown) => void
+  onNativeComposeNodeDialogConfirm?: (event: {
+    nativeEvent: { value: number; eventCount: number }
+  }) => void
   onNativeComposeNodeDialogDismiss?: (event: unknown) => void
 }
 
@@ -252,6 +277,10 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'slider',
   'alertdialog',
   'progressindicator',
+  'datepicker',
+  'timepicker',
+  'datepickerdialog',
+  'timepickerdialog',
   'loadingindicator',
   'containedloadingindicator',
   'horizontaldivider',
@@ -1145,6 +1174,165 @@ function ContainedLoadingIndicator({ progress, color, containerColor, ...props }
   return <ComposeNode {...props} nodeType="containedloadingindicator" progress={progress === undefined ? undefined : progress ?? 0} loadingColors={{ color, containerColor }} />
 }
 
+// native reports the selected day as utc midnight millis; keep the local time of day
+function withUtcDay(selection: Date, utcDay: number) {
+  const day = new Date(utcDay)
+  const next = new Date(selection)
+  next.setFullYear(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate())
+  return next
+}
+
+// native reports minutes since local midnight; keep the local calendar day
+function withMinuteOfDay(selection: Date, minutes: number) {
+  const next = new Date(selection)
+  next.setHours(Math.floor(minutes / 60), minutes % 60, 0, 0)
+  return next
+}
+
+const minuteOfDay = (date: Date) => date.getHours() * 60 + date.getMinutes()
+
+function datePickerOptions({
+  minimumDate,
+  maximumDate,
+  showModeToggle = true,
+  color,
+  colors,
+}: Pick<ComposeDatePickerProps, 'minimumDate' | 'maximumDate' | 'showModeToggle' | 'color' | 'colors'>) {
+  return {
+    showModeToggle,
+    minimumDay: minimumDate && composeUtcDay(minimumDate),
+    maximumDay: maximumDate && composeUtcDay(maximumDate),
+    color,
+    colors,
+  }
+}
+
+function DatePicker({
+  selection,
+  onSelectionChange,
+  revision = 0,
+  minimumDate,
+  maximumDate,
+  variant = 'picker',
+  showModeToggle,
+  color,
+  colors,
+  ...props
+}: ComposeDatePickerProps) {
+  validateDatePickerProps({ selection, revision, minimumDate, maximumDate, variant, showModeToggle, color, colors })
+  assertFunction(onSelectionChange, 'DatePicker onSelectionChange')
+  const controlled = useControlled<{ value: number; eventCount: number; revision: number }>(
+    (event) => onSelectionChange(withUtcDay(selection, event.value)),
+    revision
+  )
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="datepicker"
+      numberValue={composeUtcDay(selection)}
+      variant={variant}
+      pickerOptions={datePickerOptions({ minimumDate, maximumDate, showModeToggle, color, colors })}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeComposeNodeNumberValueChange={(event) => controlled.onNativeChange(event.nativeEvent)}
+    />
+  )
+}
+
+function TimePicker({
+  selection,
+  onSelectionChange,
+  revision = 0,
+  is24Hour,
+  variant = 'picker',
+  color,
+  colors,
+  ...props
+}: ComposeTimePickerProps) {
+  validateTimePickerProps({ selection, revision, is24Hour, variant, color, colors })
+  assertFunction(onSelectionChange, 'TimePicker onSelectionChange')
+  const controlled = useControlled<{ value: number; eventCount: number; revision: number }>(
+    (event) => onSelectionChange(withMinuteOfDay(selection, event.value)),
+    revision
+  )
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="timepicker"
+      numberValue={minuteOfDay(selection)}
+      variant={variant}
+      pickerOptions={{ is24Hour, color, colors }}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeComposeNodeNumberValueChange={(event) => controlled.onNativeChange(event.nativeEvent)}
+    />
+  )
+}
+
+function DatePickerDialog({
+  visible,
+  selection,
+  onConfirm,
+  onDismiss,
+  confirmLabel,
+  dismissLabel,
+  minimumDate,
+  maximumDate,
+  variant = 'picker',
+  showModeToggle,
+  color,
+  colors,
+  ...props
+}: ComposeDatePickerDialogProps) {
+  validatePickerDialogProps({ visible, onConfirm, onDismiss, confirmLabel, dismissLabel }, 'DatePickerDialog')
+  validateDatePickerProps({ selection, minimumDate, maximumDate, variant, showModeToggle, color, colors }, 'DatePickerDialog')
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="datepickerdialog"
+      visible={visible}
+      numberValue={composeUtcDay(selection)}
+      variant={variant}
+      confirmLabel={confirmLabel}
+      dismissLabel={dismissLabel}
+      pickerOptions={datePickerOptions({ minimumDate, maximumDate, showModeToggle, color, colors })}
+      onNativeComposeNodeDialogConfirm={(event) => onConfirm(withUtcDay(selection, event.nativeEvent.value))}
+      onNativeComposeNodeDialogDismiss={() => onDismiss()}
+    />
+  )
+}
+
+function TimePickerDialog({
+  visible,
+  selection,
+  onConfirm,
+  onDismiss,
+  confirmLabel,
+  dismissLabel,
+  is24Hour,
+  variant = 'picker',
+  color,
+  colors,
+  ...props
+}: ComposeTimePickerDialogProps) {
+  validatePickerDialogProps({ visible, onConfirm, onDismiss, confirmLabel, dismissLabel }, 'TimePickerDialog')
+  validateTimePickerProps({ selection, is24Hour, variant, color, colors }, 'TimePickerDialog')
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="timepickerdialog"
+      visible={visible}
+      numberValue={minuteOfDay(selection)}
+      variant={variant}
+      confirmLabel={confirmLabel}
+      dismissLabel={dismissLabel}
+      pickerOptions={{ is24Hour, color, colors }}
+      onNativeComposeNodeDialogConfirm={(event) => onConfirm(withMinuteOfDay(selection, event.nativeEvent.value))}
+      onNativeComposeNodeDialogDismiss={() => onDismiss()}
+    />
+  )
+}
+
 export const Compose = {
   Column,
   Row,
@@ -1196,4 +1384,8 @@ export const Compose = {
   CircularWavyProgressIndicator,
   LoadingIndicator,
   ContainedLoadingIndicator,
+  DatePicker,
+  TimePicker,
+  DatePickerDialog,
+  TimePickerDialog,
 }

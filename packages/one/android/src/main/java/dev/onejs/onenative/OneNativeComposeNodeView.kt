@@ -170,7 +170,7 @@ import com.facebook.react.views.view.ReactViewGroup
 import dev.onejs.one.R as OneR
 import kotlin.math.roundToInt
 
-private fun readComposeColor(map: ReadableMap, name: String, context: Context): Int? {
+internal fun readComposeColor(map: ReadableMap, name: String, context: Context): Int? {
     if (!map.hasKey(name) || map.isNull(name)) return null
     return when (map.getType(name)) {
         ReadableType.Number -> ColorPropConverter.getColor(map.getDouble(name), context)
@@ -645,6 +645,7 @@ internal data class OneNativeComposeNodeProps(
     val progress: Double = -1.0,
     val progressVariant: String? = null,
     val progressOptions: OneNativeProgressOptions = OneNativeProgressOptions(),
+    val pickerOptions: OneNativePickerOptions = OneNativePickerOptions(),
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -715,6 +716,9 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private var compositionActive = false
     private var pressEventCount = 0
     private var dialogEventCount = 0
+    // counts presentations so a reopened picker dialog starts from its props
+    internal var dialogPresentation = 0
+        private set
     private var submitEventCount = 0
     private var logicalParent: OneNativeComposeNodeView? = null
     private var intrinsicHeight = false
@@ -807,6 +811,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun commitPendingProps() {
         val next = pendingProps
+        if (next.visible && !committedProps.visible) dialogPresentation += 1
         committedProps = next
         controlledBoolean.applyProps(
             suppliedValue = next.value,
@@ -1131,6 +1136,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(progressOptions = OneNativeProgressOptions.fromMap(value, context))
     }
 
+    internal fun stagePickerOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(pickerOptions = OneNativePickerOptions.fromMap(value, context))
+    }
+
     internal fun stageComposeStyle(value: ReadableMap?) {
         pendingProps = pendingProps.copy(composeStyle = OneNativeComposeStyle.fromMap(value, context))
     }
@@ -1219,7 +1228,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         )
     }
 
-    internal fun handleDialogConfirm() {
+    internal fun handleDialogConfirm(value: Double = 0.0) {
         if (!compositionActive) return
         dialogEventCount += 1
         UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
@@ -1227,6 +1236,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
                 surfaceId = UIManagerHelper.getSurfaceId(this),
                 viewTag = id,
                 eventCount = dialogEventCount,
+                value = value,
             )
         )
     }
@@ -1336,6 +1346,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         controlledNumber.reset(0.0)
         pressEventCount = 0
         dialogEventCount = 0
+        dialogPresentation = 0
         submitEventCount = 0
         semanticsVersion = 0
     }
@@ -1356,7 +1367,7 @@ private fun RenderComposeNode(
     val style = props.composeStyle
     // dialogs draw in their own window, outside the host or parent placement
     val kind = node.renderedNodeKind
-    val placement = if (kind == "alertdialog" || kind == "dialog") Modifier else outerModifier
+    val placement = if (kind in composeDialogKinds) Modifier else outerModifier
     val modifier = placement.applyComposeStyle(style).applyReactSemantics(node, props)
     val foregroundColor = style.foregroundColor?.let(::Color) ?: resolveColorRole(props.colorRole)
 
@@ -1602,6 +1613,10 @@ private fun RenderComposeNodeBody(
                 }
             }
         "progressindicator" -> RenderComposeProgressIndicator(props, modifier)
+        "datepicker" -> RenderComposeDatePicker(node, props, modifier)
+        "timepicker" -> RenderComposeTimePicker(node, props, modifier)
+        "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
+        "timepickerdialog" -> RenderComposeTimePickerDialog(node, props, modifier)
         else ->
             Box(modifier = modifier) {
                 RenderComposeChildren(node)
@@ -2548,8 +2563,7 @@ private fun Modifier.applyReactSemantics(
                 else -> null
             }
     val isDialog =
-        node.renderedNodeKind == "alertdialog" ||
-            node.renderedNodeKind == "dialog" ||
+        node.renderedNodeKind in composeDialogKinds ||
             normalizedRole == "dialog" ||
             normalizedRole == "alert"
     val isProgressBar =
@@ -2579,6 +2593,8 @@ private fun Modifier.applyReactSemantics(
         if (needsComposeTag) testTagsAsResourceId = true
     }
 }
+
+private val composeDialogKinds = setOf("alertdialog", "dialog", "datepickerdialog", "timepickerdialog")
 
 private fun composeRole(value: String?): Role? =
     when (value) {
