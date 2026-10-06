@@ -33,6 +33,9 @@ export type {
   ReservedRegion,
   WindowSegment,
   ReservedRegionOptions,
+  TextInputProps,
+  TextInputRef,
+  TextInputSelection,
 } from './platform'
 export type { OneRouter } from './interfaces/router'
 
