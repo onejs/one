@@ -60,6 +60,7 @@ export interface TabSectionProps extends TabContentProps {
 export interface TabsProps extends ViewProps {
     selection: string;
     onSelectionChange: (id: string) => void;
+    onReselect?: (id: string) => void;
     revision?: number;
     tabViewStyle?: TabViewStyle;
     tabBarVisibility?: Visibility;

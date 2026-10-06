@@ -78,6 +78,10 @@ export interface TabSectionProps extends TabContentProps {
 export interface TabsProps extends ViewProps {
   selection: string
   onSelectionChange: (id: string) => void
+  // a tap on the selected tab, which changes no selection. UIKit asks the tab bar
+  // controller's delegate before every selection, the selected tab included; tabs inside a
+  // TabSection do not report it.
+  onReselect?: (id: string) => void
   revision?: number
   tabViewStyle?: TabViewStyle
   // toolbarVisibility(_:for: .tabBar) on every page.
