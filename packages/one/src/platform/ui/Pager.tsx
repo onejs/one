@@ -9,8 +9,8 @@ import {
   useState,
   type CSSProperties,
 } from 'react'
-import { StyleSheet } from 'react-native'
 import { validatePage, validatePager, type PagerProps, type PagerRef } from './pagerTypes'
+import { domStyle } from '../web/DomView'
 
 function event<T>(nativeEvent: T): { nativeEvent: T } {
   return { nativeEvent }
@@ -135,9 +135,8 @@ export const Pager = forwardRef<PagerRef, PagerProps>(function Pager(
       node.removeEventListener('scrollend', settle)
     }
   }, [count, orientation, layoutDirection, pageMargin])
-  const flattened = StyleSheet.flatten(style) as CSSProperties
   const css: CSSProperties = {
-    ...flattened,
+    ...domStyle(style),
     display: 'flex',
     position: 'relative',
     flexDirection: vertical ? 'column' : 'row',
