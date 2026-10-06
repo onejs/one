@@ -11,7 +11,7 @@ description: Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, 
 Tab navigation and swipe paging under `One.iOS`, drawn by SwiftUI.
 
 - `Tabs` is controlled: a `selection`, an `onSelectionChange` callback, and a
-  `revision` for external resets.
+  `revision` for external resets. `onReselect` reports a tap on the selected tab.
 - `Tab` is a page, or an action tab that runs `onPress` and never becomes the
   selection.
 - `TabSection` groups tabs in the iPad sidebar; `TabViewSlot` and
@@ -42,6 +42,7 @@ import { One } from 'one'
   data={[
     { name: 'selection', required: true, type: 'string', description: 'The id of the selected page tab.' },
     { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A native tab change, with the new id.' },
+    { name: 'onReselect', type: '(id: string) => void', description: 'A tap on the selected tab outside a TabSection, with its id.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     {
       name: 'tabViewStyle',

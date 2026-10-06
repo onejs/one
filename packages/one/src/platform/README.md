@@ -307,6 +307,7 @@ are rejected before submitting native props.
 | SwiftUI | One |
 | --- | --- |
 | `TabView(selection:)` | `selection`, `onSelectionChange` |
+| `UITabBarControllerDelegate` asked to select the selected tab | `onReselect` |
 | `tabViewStyle` | `tabViewStyle`: `automatic`, `tabBarOnly`, `sidebarAdaptable`, `page` |
 | `Tab(_:systemImage:/image:value:role:)` | `One.iOS.Tab` `title`, `systemImage` or `image`, `role` |
 | `badge` | `badge` (string or number) |
