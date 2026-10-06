@@ -466,6 +466,70 @@ colors are `containerColor`, `labelColor`, and `iconContentColor`.
   ]}
 />
 
+## DatePicker, TimePicker
+
+`One.Android.DatePicker` is the Material 3 calendar and `One.Android.TimePicker`
+is the clock dial. Both are controlled by a `Date`. DatePicker changes the
+calendar day in the device time zone and keeps the time of day. TimePicker
+changes the hour and minute, keeps the day, and sets seconds to zero.
+
+```tsx
+const [when, setWhen] = useState(() => new Date())
+
+<One.Android.DatePicker
+  selection={when}
+  onSelectionChange={setWhen}
+  minimumDate={new Date(2026, 0, 1)}
+/>
+<One.Android.TimePicker selection={when} onSelectionChange={setWhen} is24Hour />
+```
+
+<PropsTable
+  title="DatePicker"
+  source="composeTypes.ts#ComposeDatePickerProps"
+  data={[
+    { name: 'selection', required: true, type: 'Date', description: 'The selected day.' },
+    { name: 'onSelectionChange', required: true, type: '(value: Date) => void', description: 'A tapped or typed day, with the time of day kept.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
+    { name: 'minimumDate', type: 'Date', description: 'The earliest selectable day. Earlier days and years are disabled.' },
+    { name: 'maximumDate', type: 'Date', description: 'The latest selectable day.' },
+    { name: 'variant', type: "'picker' | 'input'", default: "'picker'", description: 'The calendar grid or a text field.' },
+    { name: 'showModeToggle', type: 'boolean', default: 'true', description: 'Shows the button that switches variant.' },
+    { name: 'color', type: 'ColorValue', description: 'Tints the title, headline, selected day, and today border.' },
+    { name: 'colors', type: 'ComposeDatePickerColors', description: 'Per-element colors; these win over color.' },
+  ]}
+/>
+
+<PropsTable
+  title="TimePicker"
+  source="composeTypes.ts#ComposeTimePickerProps"
+  data={[
+    { name: 'selection', required: true, type: 'Date', description: 'The selected time of day.' },
+    { name: 'onSelectionChange', required: true, type: '(value: Date) => void', description: 'A new hour or minute, with the day kept.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
+    { name: 'is24Hour', type: 'boolean', description: 'A 24 hour clock. Defaults to the device setting.' },
+    { name: 'variant', type: "'picker' | 'input'", default: "'picker'", description: 'The clock dial or hour and minute fields.' },
+    { name: 'color', type: 'ColorValue', description: 'Tints the selector, selected field, and dial.' },
+    { name: 'colors', type: 'ComposeTimePickerColors', description: 'Per-element colors; these win over color.' },
+  ]}
+/>
+
+`DatePickerDialog` and `TimePickerDialog` take the same props without
+`onSelectionChange` and `revision`. Each opening starts from `selection`; the
+confirm button reports the chosen value.
+
+<PropsTable
+  title="DatePickerDialog, TimePickerDialog"
+  source="composeTypes.ts#ComposeDatePickerDialogProps"
+  data={[
+    { name: 'visible', required: true, type: 'boolean', description: 'Whether the dialog shows.' },
+    { name: 'onConfirm', required: true, type: '(value: Date) => void', description: 'The confirm button, with the chosen value.' },
+    { name: 'onDismiss', required: true, type: '() => void', description: 'Dismissed by the button, a tap outside, or back.' },
+    { name: 'confirmLabel', type: 'string', description: 'The confirm button title. Defaults to the system OK.' },
+    { name: 'dismissLabel', type: 'string', description: 'The dismiss button title. Defaults to the system Cancel.' },
+  ]}
+/>
+
 ## AlertDialog, Dialog
 
 `One.Android.AlertDialog` shows a confirmation while `visible` is true.

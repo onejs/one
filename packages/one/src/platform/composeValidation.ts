@@ -30,7 +30,10 @@ import type {
   ComposeTextProps,
   ComposeToggleButtonProps,
   ComposeSegmentedButtonProps,
+  ComposeDatePickerProps,
+  ComposeTimePickerProps,
 } from './composeTypes'
+import { composeDatePickerColorKeys, composeTimePickerColorKeys } from './composeTypes'
 import { composeIconCodepoints, type ComposeIconName } from './generated/composeIcons'
 import { isSyncState } from './syncStore'
 
@@ -756,4 +759,71 @@ export function validateLoadingIndicatorProps(props: ComposeLoadingIndicatorProp
   if (props.color !== undefined) assertComposeColorValue(props.color, 'LoadingIndicator color')
   if ('containerColor' in props && props.containerColor !== undefined)
     assertComposeColorValue(props.containerColor, 'ContainedLoadingIndicator containerColor')
+}
+
+const datePickerColorKeys = new Set<string>(composeDatePickerColorKeys)
+const timePickerColorKeys = new Set<string>(composeTimePickerColorKeys)
+const pickerVariants = ['picker', 'input'] as const
+
+function assertDate(value: unknown, name: string) {
+  if (!(value instanceof Date) || !Number.isFinite(value.getTime()))
+    throw new Error(`Compose ${name} must be a valid Date`)
+}
+
+// material date pickers select whole days as utc midnight millis
+export function composeUtcDay(date: Date): number {
+  return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+}
+
+function validatePickerShared(
+  props: Pick<ComposeDatePickerProps, 'selection' | 'variant' | 'color'>,
+  owner: string
+) {
+  assertDate(props.selection, `${owner} selection`)
+  if (props.variant !== undefined) assertOneOf(props.variant, `${owner} variant`, pickerVariants)
+  if (props.color !== undefined) assertComposeColorValue(props.color, `${owner} color`)
+}
+
+export function validateDatePickerProps(
+  props: Omit<ComposeDatePickerProps, 'onSelectionChange'>,
+  owner = 'DatePicker'
+) {
+  validatePickerShared(props, owner)
+  assertOptionalBoolean(props.showModeToggle, `${owner} showModeToggle`)
+  if (props.minimumDate !== undefined) assertDate(props.minimumDate, `${owner} minimumDate`)
+  if (props.maximumDate !== undefined) assertDate(props.maximumDate, `${owner} maximumDate`)
+  const day = composeUtcDay(props.selection)
+  const minimum = props.minimumDate && composeUtcDay(props.minimumDate)
+  const maximum = props.maximumDate && composeUtcDay(props.maximumDate)
+  if (minimum !== undefined && maximum !== undefined && minimum > maximum)
+    throw new Error(`Compose ${owner} minimumDate must not be after maximumDate`)
+  if ((minimum !== undefined && day < minimum) || (maximum !== undefined && day > maximum))
+    throw new Error(`Compose ${owner} selection must be between minimumDate and maximumDate`)
+  if (props.colors !== undefined) assertComposeColors(props.colors, datePickerColorKeys, owner)
+}
+
+export function validateTimePickerProps(
+  props: Omit<ComposeTimePickerProps, 'onSelectionChange'>,
+  owner = 'TimePicker'
+) {
+  validatePickerShared(props, owner)
+  assertOptionalBoolean(props.is24Hour, `${owner} is24Hour`)
+  if (props.colors !== undefined) assertComposeColors(props.colors, timePickerColorKeys, owner)
+}
+
+export function validatePickerDialogProps(
+  props: {
+    visible: unknown
+    onConfirm: unknown
+    onDismiss: unknown
+    confirmLabel?: unknown
+    dismissLabel?: unknown
+  },
+  owner: string
+) {
+  assertBoolean(props.visible, `${owner} visible`)
+  assertFunction(props.onConfirm, `${owner} onConfirm`)
+  assertFunction(props.onDismiss, `${owner} onDismiss`)
+  assertOptionalString(props.confirmLabel, `${owner} confirmLabel`)
+  assertOptionalString(props.dismissLabel, `${owner} dismissLabel`)
 }

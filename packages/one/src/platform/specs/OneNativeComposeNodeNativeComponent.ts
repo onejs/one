@@ -194,6 +194,52 @@ interface NativeProps extends ViewProps {
       inactiveTickColor?: ColorValue
     }>
   }>
+  pickerOptions?: Readonly<{
+    showModeToggle?: WithDefault<boolean, true>
+    is24Hour?: boolean
+    minimumDay?: Double
+    maximumDay?: Double
+    color?: ColorValue
+    colors?: Readonly<{
+      containerColor?: ColorValue
+      titleContentColor?: ColorValue
+      headlineContentColor?: ColorValue
+      weekdayContentColor?: ColorValue
+      subheadContentColor?: ColorValue
+      navigationContentColor?: ColorValue
+      yearContentColor?: ColorValue
+      disabledYearContentColor?: ColorValue
+      currentYearContentColor?: ColorValue
+      selectedYearContentColor?: ColorValue
+      disabledSelectedYearContentColor?: ColorValue
+      selectedYearContainerColor?: ColorValue
+      disabledSelectedYearContainerColor?: ColorValue
+      dayContentColor?: ColorValue
+      disabledDayContentColor?: ColorValue
+      selectedDayContentColor?: ColorValue
+      disabledSelectedDayContentColor?: ColorValue
+      selectedDayContainerColor?: ColorValue
+      disabledSelectedDayContainerColor?: ColorValue
+      todayContentColor?: ColorValue
+      todayDateBorderColor?: ColorValue
+      dayInSelectionRangeContentColor?: ColorValue
+      dayInSelectionRangeContainerColor?: ColorValue
+      dividerColor?: ColorValue
+      clockDialColor?: ColorValue
+      clockDialSelectedContentColor?: ColorValue
+      clockDialUnselectedContentColor?: ColorValue
+      selectorColor?: ColorValue
+      periodSelectorBorderColor?: ColorValue
+      periodSelectorSelectedContainerColor?: ColorValue
+      periodSelectorUnselectedContainerColor?: ColorValue
+      periodSelectorSelectedContentColor?: ColorValue
+      periodSelectorUnselectedContentColor?: ColorValue
+      timeSelectorSelectedContainerColor?: ColorValue
+      timeSelectorUnselectedContainerColor?: ColorValue
+      timeSelectorSelectedContentColor?: ColorValue
+      timeSelectorUnselectedContentColor?: ColorValue
+    }>
+  }>
   step?: WithDefault<Double, 0>
   visible?: boolean
   title?: string
@@ -233,7 +279,9 @@ interface NativeProps extends ViewProps {
   onNativeComposeNodeNumberValueChange?: DirectEventHandler<
     Readonly<{ value: Double; eventCount: Int32; revision: Int32 }>
   >
-  onNativeComposeNodeDialogConfirm?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
+  onNativeComposeNodeDialogConfirm?: DirectEventHandler<
+    Readonly<{ eventCount: Int32; value: Double }>
+  >
   onNativeComposeNodeDialogDismiss?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
 }
 

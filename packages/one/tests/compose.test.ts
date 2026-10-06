@@ -168,6 +168,10 @@ describe('compose surface', () => {
       'Dialog',
       'ProgressIndicator',
       'Spacer',
+      'DatePicker',
+      'TimePicker',
+      'DatePickerDialog',
+      'TimePickerDialog',
     ])
       expect(
         () => (Unsupported as Record<string, (props: object) => unknown>)[name]({}),
@@ -418,6 +422,72 @@ describe('compose progress validation', () => {
     )
     expect(() => validateProgressIndicatorProps({ progress: 1.2 })).toThrow(
       'Compose ProgressIndicator progress must be a number from 0 to 1'
+    )
+  })
+})
+
+// the renderer keeps a mounted tree so a native event can drive the controlled callback
+const mount = (component: (props: any) => any, props: object) => {
+  let renderer: TestRenderer.ReactTestRenderer | undefined
+  act(() => {
+    renderer = TestRenderer.create(createElement(component as never, props as never))
+  })
+  return () => renderer!.root.findByType('div' as never).props
+}
+
+describe('compose pickers', () => {
+  const selection = new Date(2026, 9, 5, 14, 37, 12)
+
+  it('sends the local calendar day as utc midnight and keeps the time of day on change', () => {
+    const onSelectionChange = vi.fn()
+    const native = mount(Compose.DatePicker, { selection, onSelectionChange })
+    expect(native()).toMatchObject({ nodeType: 'datepicker', numberValue: Date.UTC(2026, 9, 5), variant: 'picker' })
+    act(() => native().onNativeComposeNodeNumberValueChange({ nativeEvent: { value: Date.UTC(2027, 1, 28), eventCount: 1, revision: 0 } }))
+    expect(onSelectionChange).toHaveBeenCalledTimes(1)
+    expect(onSelectionChange.mock.calls[0][0]).toEqual(new Date(2027, 1, 28, 14, 37, 12))
+  })
+
+  it('sends minutes since local midnight and keeps the calendar day on change', () => {
+    const onSelectionChange = vi.fn()
+    const native = mount(Compose.TimePicker, { selection, onSelectionChange, is24Hour: true })
+    expect(native()).toMatchObject({ nodeType: 'timepicker', numberValue: 14 * 60 + 37, pickerOptions: { is24Hour: true } })
+    act(() => native().onNativeComposeNodeNumberValueChange({ nativeEvent: { value: 9 * 60 + 5, eventCount: 1, revision: 0 } }))
+    expect(onSelectionChange.mock.calls[0][0]).toEqual(new Date(2026, 9, 5, 9, 5, 0, 0))
+  })
+
+  it('confirms a dialog with the native value converted to a Date', () => {
+    const onConfirm = vi.fn()
+    const native = mount(Compose.DatePickerDialog, { visible: true, selection, onConfirm, onDismiss: () => {} })
+    act(() => native().onNativeComposeNodeDialogConfirm({ nativeEvent: { value: Date.UTC(2026, 11, 24), eventCount: 1 } }))
+    expect(onConfirm.mock.calls[0][0]).toEqual(new Date(2026, 11, 24, 14, 37, 12))
+  })
+
+  it('passes day bounds and rejects a selection outside them', () => {
+    const minimumDate = new Date(2026, 9, 1, 23, 0)
+    const maximumDate = new Date(2026, 9, 31)
+    expect(render(Compose.DatePicker, { selection, onSelectionChange: () => {}, minimumDate, maximumDate })).toMatchObject({
+      props: { pickerOptions: { minimumDay: Date.UTC(2026, 9, 1), maximumDay: Date.UTC(2026, 9, 31), showModeToggle: true } },
+    })
+    expect(() => render(Compose.DatePicker, { selection, onSelectionChange: () => {}, minimumDate: new Date(2026, 9, 6) })).toThrow(
+      'Compose DatePicker selection must be between minimumDate and maximumDate'
+    )
+    expect(() => render(Compose.DatePicker, { selection, onSelectionChange: () => {}, minimumDate: maximumDate, maximumDate: minimumDate })).toThrow(
+      'Compose DatePicker minimumDate must not be after maximumDate'
+    )
+  })
+
+  it('rejects invalid dates, variants and colors', () => {
+    expect(() => render(Compose.DatePicker, { selection: new Date(NaN), onSelectionChange: () => {} })).toThrow(
+      'Compose DatePicker selection must be a valid Date'
+    )
+    expect(() => render(Compose.TimePicker, { selection, onSelectionChange: () => {}, variant: 'wheel' })).toThrow(
+      'Compose TimePicker variant must be one of picker, input'
+    )
+    expect(() => render(Compose.TimePicker, { selection, onSelectionChange: () => {}, colors: { dayContentColor: 'red' } })).toThrow(
+      'Compose TimePicker colors does not support dayContentColor'
+    )
+    expect(() => render(Compose.TimePickerDialog, { visible: true, selection, onDismiss: () => {} })).toThrow(
+      'Compose TimePickerDialog onConfirm must be a function'
     )
   })
 })

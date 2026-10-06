@@ -500,6 +500,11 @@ const testScreens = [
     testID: 'nav-one-native-android-segmented',
   },
   {
+    href: '/one-native-android-pickers',
+    label: 'One Native Android Pickers',
+    testID: 'nav-one-native-android-pickers',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',
