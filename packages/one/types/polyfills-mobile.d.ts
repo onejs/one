@@ -1,4 +1,8 @@
 import 'core-js/internals/inspect-source';
+import 'core-js/actual/array/to-sorted';
+import 'core-js/actual/array/to-reversed';
+import 'core-js/actual/array/to-spliced';
+import 'core-js/actual/array/with';
 import 'web-streams-polyfill/polyfill/es5';
 import '@azure/core-asynciterator-polyfill';
 import 'core-js/actual/url';
