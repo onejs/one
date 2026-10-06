@@ -9,4 +9,12 @@
  */
 
 export { transformTreeShakeClient } from './vite/plugins/clientTreeShakePlugin'
-export { renderSwiftPackageModule } from './vite/plugins/swiftPackageModule'
+import { renderKotlinSourceModule } from './vite/plugins/kotlinSourceModule'
+import { renderSwiftPackageModule } from './vite/plugins/swiftPackageModule'
+
+// a .swift or .kt import becomes the js module that calls its prebuilt native glue.
+export function renderNativeSourceModule(id: string, platform: string, root: string) {
+  return id.endsWith('.kt')
+    ? renderKotlinSourceModule(id, platform, root)
+    : renderSwiftPackageModule(id, platform, root)
+}
