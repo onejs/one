@@ -84,6 +84,11 @@ requires generating and rebuilding the native project.
 
 ## A project with Expo
 
+One's native startup installs the ES2023 array methods `toSorted`, `toReversed`,
+`toSpliced`, and `with` before app modules load. This includes Hermes releases
+whose built-in array methods are incomplete. Apps use the standard methods
+directly; dependency code and app startup need no separate polyfill setup.
+
 Apps that install `expo` use Expo prebuild. Add One's adapter to the app's
 Expo configuration while retaining the app's other plugins:
 
