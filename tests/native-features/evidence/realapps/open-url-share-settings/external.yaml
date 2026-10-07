@@ -1,0 +1,109 @@
+appId: com.natew.oneexample
+---
+- launchApp:
+    stopApp: true
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Hello world, from One"
+    timeout: 60000
+- extendedWaitUntil:
+    visible:
+      id: realapps-open-api
+    timeout: 60000
+- tapOn:
+    id: realapps-open-api
+- tapOn:
+    id: realapps-api-section-services
+- scrollUntilVisible:
+    element:
+      id: realapps-api-image-picker-cancel
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-image-picker-cancel
+- tapOn:
+    id: realapps-api-image-picker-cancel
+- tapOn: "Cancel"
+- extendedWaitUntil:
+    visible: "Open library for runner cancel"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      id: realapps-api-document-picker-cancel
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-document-picker-cancel
+- tapOn:
+    id: realapps-api-document-picker-cancel
+- extendedWaitUntil:
+    visible: "Recents"
+    timeout: 15000
+- tapOn: "Cancel"
+- scrollUntilVisible:
+    element:
+      id: realapps-api-browser-cancel
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-browser-cancel
+- tapOn:
+    id: realapps-api-browser-cancel
+- takeScreenshot: system-browser
+- assertVisible: "Close"
+- tapOn: "Close"
+- scrollUntilVisible:
+    element:
+      id: realapps-api-share-cancel
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-share-cancel
+- tapOn:
+    id: realapps-api-share-cancel
+- takeScreenshot: system-share
+- assertVisible: "Copy"
+- tapOn: "Copy"
+- extendedWaitUntil:
+    visible: "Open share for runner cancel"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      id: realapps-api-open-url
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-open-url
+- tapOn:
+    id: realapps-api-open-url
+- extendedWaitUntil:
+    visible: ".*onestack.*"
+    timeout: 20000
+- takeScreenshot: system-url
+- launchApp:
+    stopApp: false
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Open URL for runner return"
+    timeout: 20000
+- scrollUntilVisible:
+    element:
+      id: realapps-api-open-settings
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-open-settings
+- tapOn:
+    id: realapps-api-open-settings
+- extendedWaitUntil:
+    visible: ".*Settings.*"
+    timeout: 20000
+- takeScreenshot: system-settings
+- launchApp:
+    stopApp: false
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Open settings for runner return"
+    timeout: 20000
+- assertVisible: "Injected route remains inside the original shell"
+- takeScreenshot: final

@@ -1,0 +1,8 @@
+{
+  "label": "RAN",
+  "platform": "ios",
+  "device": "0FC55879-D544-420F-8BBD-521C9268E14A",
+  "appId": "com.natew.oneexample",
+  "mode": "external",
+  "text": "Hello world, from One"
+}
