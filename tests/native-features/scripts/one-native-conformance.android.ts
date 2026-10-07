@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'updates' | 'system'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'updates' | 'system' | 'system-app-icon'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|updates|system --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|updates|system|system-app-icon --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -200,9 +200,12 @@ function adbBytes(config: Config, args: string[]) {
     return execFileSync('adb', ['-s', config.deviceId, ...args], {
       stdio: ['ignore', 'pipe', 'pipe'],
       timeout: 30_000,
+      // native-density png captures can exceed execFileSync's default 1 mib.
+      maxBuffer: 16 * 1024 * 1024,
     })
   } catch (error) {
-    throw commandError('adb', ['-s', config.deviceId, ...args], error)
+    const detail = error instanceof Error ? error.message : String(error)
+    throw new Error(`adb ${['-s', config.deviceId, ...args].join(' ')} failed: ${detail}`)
   }
 }
 
@@ -403,10 +406,10 @@ function validBounds(node: Node, description: string) {
 
 function visibleIn(bounds: Bounds, viewport: Bounds) {
   return (
-    bounds.right > viewport.left &&
-    bounds.left < viewport.right &&
-    bounds.bottom > viewport.top &&
-    bounds.top < viewport.bottom
+    bounds.left > viewport.left &&
+    bounds.right < viewport.right &&
+    bounds.top > viewport.top &&
+    bounds.bottom < viewport.bottom
   )
 }
 
@@ -666,6 +669,12 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
         id: navId,
         role: 'button',
         clickable: true,
+      }, (node) => {
+        const bounds = validBounds(node, 'Android proof navigation row')
+        const viewport = applicationBounds(current.nodes)
+        if (!visibleIn(bounds, viewport)) throw new Error('Android navigation row is clipped at the viewport edge.')
+        writeFileSync(path.join(config.artifactDir, `navigation-${navId}.json`),
+          JSON.stringify({ node: shortNode(node), viewport }, null, 2))
       })
       return
     }
@@ -922,6 +931,92 @@ async function run(config: Config) {
     return result.snapshot
   }
 
+  const joined = (nodes: Node[]) => nodes.flatMap(nodeValues).join('\n')
+  const freshLeg = async (name: string) => {
+    relaunchApp(config)
+    await expect(
+      `system-${name}-home`,
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      undefined,
+      60_000
+    )
+  }
+
+  const appIcon = async () => {
+    // AppIcon: alias discovery, switch to TestAlternate and back, unknown
+    // name rejection.
+    await freshLeg('app-icon')
+    await tapNavigation(config, 'nav-one-native-app-icon')
+    await expect(
+      'system-app-icon-mounted',
+      (nodes) =>
+        joined(nodes).includes('Supported: true') &&
+        joined(nodes).includes('Current icon: primary'),
+      'one-native-app-icon-alternate'
+    )
+    let hostPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    const hostIsPreserved = () =>
+      adbText(config, ['shell', 'pidof', config.packageId]).trim() === hostPid &&
+      adbText(config, ['shell', 'dumpsys', 'window']).split('\n').some((line) =>
+        line.includes('mCurrentFocus=Window{') && line.includes(` ${config.packageId}/`)
+      )
+    writeFileSync(path.join(config.artifactDir, 'app-icon-before.json'), JSON.stringify({
+      hostPid,
+      packageState: adbText(config, ['shell', 'dumpsys', 'package', config.packageId]),
+      activityState: adbText(config, ['shell', 'dumpsys', 'activity', 'activities']),
+    }, null, 2))
+    tapFresh(config, 'system-app-icon-alternate', {
+      id: 'one-native-app-icon-alternate',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-changed',
+      (nodes) =>
+        joined(nodes).includes('Icon result: changed') &&
+        joined(nodes).includes('Current icon: TestAlternate') &&
+        hostIsPreserved() && launcherComponent(config).endsWith('.TestAlternate'),
+      'one-native-app-icon-primary',
+      () => ({ hostPid, launcher: launcherComponent(config) })
+    )
+    await freshLeg('app-icon-relaunch')
+    await tapNavigation(config, 'nav-one-native-app-icon')
+    await expect(
+      'system-app-icon-persisted',
+      (nodes) => joined(nodes).includes('Supported: true') &&
+        joined(nodes).includes('Current icon: TestAlternate'),
+      'one-native-app-icon-primary'
+    )
+    hostPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    tapFresh(config, 'system-app-icon-primary', {
+      id: 'one-native-app-icon-primary',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-restored',
+      (nodes) =>
+        joined(nodes).includes('Icon result: changed') &&
+        joined(nodes).includes('Current icon: primary') &&
+        hostIsPreserved() && launcherComponent(config).endsWith('.Primary'),
+      'one-native-app-icon-invalid',
+      () => ({ hostPid, launcher: launcherComponent(config) })
+    )
+    tapFresh(config, 'system-app-icon-invalid', {
+      id: 'one-native-app-icon-invalid',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-invalid',
+      (nodes) => joined(nodes).includes('invalid:E_APP_ICON_INPUT') &&
+        joined(nodes).includes('Current icon: primary') && hostIsPreserved() &&
+        launcherComponent(config).endsWith('.Primary'),
+      'one-native-app-icon-invalid'
+    )
+  }
+
   // Ten Android system services through their existing fixtures: device
   // snapshot, keep-awake round trip, orientation locks, share chooser
   // completion, print sheet cancel, quick-action cold/warm delivery,
@@ -933,7 +1028,6 @@ async function run(config: Config) {
       matching(nodes, { id }).some((node) =>
         nodeValues(node).some((value) => value.includes(expected))
       )
-    const joined = (nodes: Node[]) => nodes.flatMap(nodeValues).join('\n')
     const pressHome = () =>
       adbText(config, ['shell', 'input', 'keyevent', '3'])
     const foregroundApp = () =>
@@ -948,16 +1042,6 @@ async function run(config: Config) {
       undefined,
       90_000
     )
-    const freshLeg = async (name: string) => {
-      relaunchApp(config)
-      await expect(
-        `system-${name}-home`,
-        (nodes) => exactlyOneId(nodes, 'home-screen'),
-        'home-screen',
-        undefined,
-        60_000
-      )
-    }
 
     // filesystem: valid binary writes and rejected writes preserve both destinations.
     await freshLeg('file-system')
@@ -1353,51 +1437,7 @@ async function run(config: Config) {
       'one-native-quick-actions-clear'
     )
 
-    // AppIcon: alias discovery, switch to TestAlternate and back, unknown
-    // name rejection.
-    await freshLeg('app-icon')
-    await tapNavigation(config, 'nav-one-native-app-icon')
-    await expect(
-      'system-app-icon-mounted',
-      (nodes) =>
-        joined(nodes).includes('Supported: true') &&
-        joined(nodes).includes('Current icon: primary'),
-      'one-native-app-icon-alternate'
-    )
-    tapFresh(config, 'system-app-icon-alternate', {
-      id: 'one-native-app-icon-alternate',
-      role: 'button',
-      clickable: true,
-    })
-    await expect(
-      'system-app-icon-changed',
-      (nodes) =>
-        joined(nodes).includes('Icon result: changed') &&
-        joined(nodes).includes('Current icon: TestAlternate'),
-      'one-native-app-icon-primary'
-    )
-    tapFresh(config, 'system-app-icon-primary', {
-      id: 'one-native-app-icon-primary',
-      role: 'button',
-      clickable: true,
-    })
-    await expect(
-      'system-app-icon-restored',
-      (nodes) =>
-        joined(nodes).includes('Icon result: changed') &&
-        joined(nodes).includes('Current icon: primary'),
-      'one-native-app-icon-invalid'
-    )
-    tapFresh(config, 'system-app-icon-invalid', {
-      id: 'one-native-app-icon-invalid',
-      role: 'button',
-      clickable: true,
-    })
-    await expect(
-      'system-app-icon-invalid',
-      (nodes) => joined(nodes).includes('invalid:E_APP_ICON_INPUT'),
-      'one-native-app-icon-invalid'
-    )
+    await appIcon()
 
     // Location: prompt, concurrent request, current fix, watch moves,
     // geocoding, background watch with its notification, revoke negative.
@@ -1853,8 +1893,8 @@ async function run(config: Config) {
         textIncludes(nodes, 'One Native Test Suite'),
       'home-screen'
     )
-    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system') {
-      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : system())
+    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon') {
+      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : system())
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }
