@@ -493,24 +493,6 @@ function tapByText(config: Config, name: string, text: string) {
   tapMatching(config, name, `text "${text}"`, (node) => node.text === text)
 }
 
-function tapByTextOrDescription(config: Config, name: string, texts: string[]) {
-  const current = snapshot(config)
-  const textHits = current.nodes.filter((node) => texts.includes(node.text))
-  const descHits = current.nodes.filter(
-    (node) => !texts.includes(node.text) && texts.includes(node.contentDescription)
-  )
-  // the chooser shows its copy action as a text row, an icon, or both at
-  // once; both representations trigger the same action, so the row wins
-  // when both are present. anything else is genuine ambiguity and fails.
-  const target =
-    textHits.length === 1 ? textHits[0] : descHits.length === 1 && textHits.length === 0 ? descHits[0] : undefined
-  if (!target)
-    throw new Error(
-      `${name} resolved ${textHits.length} text and ${descHits.length} description nodes for [${texts.join(', ')}]; exactly one action is required.`
-    )
-  tapNode(config, name, current.nodes, target)
-}
-
 function tapNode(config: Config, name: string, nodes: Node[], node: Node) {
   const target = clickableTarget(nodes, node)
   if (!target) throw new Error(`${name} found its target with no clickable ancestor.`)
@@ -956,8 +938,6 @@ async function run(config: Config) {
       adbText(config, ['shell', 'input', 'keyevent', '3'])
     const foregroundApp = () =>
       adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
-    const focusedWindow = () =>
-      adbText(config, ['shell', 'dumpsys', 'window', 'windows']).slice(0, 4000)
 
     // Fresh permissions and prefs; the debug host stamp survives.
     clearAppData(config)
@@ -1158,11 +1138,12 @@ async function run(config: Config) {
       clickable: true,
     })
     await waitFor(config, 'system-share-chooser', (nodes) =>
-      textIncludes(nodes, 'Copy')
+      nodes.filter((node) => node.contentDescription === 'Copy text').length === 1
     )
-    // android 37 shows the chooser copy action either as a "Copy to
-    // clipboard" text row or as an icon with the "Copy text" description.
-    tapByTextOrDescription(config, 'system-share-copy', ['Copy to clipboard', 'Copy text'])
+    // select the system copy action; app targets may also be labelled copy.
+    tapMatching(config, 'system-share-copy', 'system Copy text action',
+      (node) => node.contentDescription === 'Copy text'
+    )
     // the completed text share advances the fixture to the file chooser,
     // which covers the app: uiautomator sees the chooser, not the status
     // text behind it, so assert the chooser itself. the passed check below
@@ -1184,9 +1165,7 @@ async function run(config: Config) {
         return (
           text.includes('Status: passed') &&
           text.includes('Busy: E_SHARE_BUSY') &&
-          /text=true; activity=\S+; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS/.test(
-            text
-          )
+          text.includes('text=true; activity=none; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS; clipboard=true')
         )
       },
       'one-native-share-run',
@@ -1211,19 +1190,28 @@ async function run(config: Config) {
       role: 'button',
       clickable: true,
     })
-    await waitFor(
-      config,
+    // the system sheet owns the visible tree while the fixture is behind it.
+    // require the rendered pdf page and actual window focus before cancelling.
+    await expect(
       'system-print-sheet',
-      (nodes) => joined(nodes).includes('Status: presenting'),
-      'one-native-print-run',
+      (nodes) => {
+        const pages = matching(nodes, {
+          id: 'com.android.printspooler:id/preview_page',
+          checked: true,
+        })
+        return (
+          pages.length === 1 &&
+          pages[0].contentDescription === 'Page 1 of 1' &&
+          exactlyOneId(nodes, 'com.android.printspooler:id/cancel_button') &&
+          /mCurrentFocus=Window\{[^\n]*com\.android\.printspooler\//.test(
+            adbText(config, ['shell', 'dumpsys', 'window'])
+          )
+        )
+      },
+      'com.android.printspooler:id/preview_page',
+      undefined,
       30_000
     )
-    for (let attempt = 0; attempt < 40; attempt++) {
-      if (focusedWindow().includes('printspooler')) break
-      await Bun.sleep(250)
-    }
-    if (!focusedWindow().includes('printspooler'))
-      throw new Error('system print sheet never took focus')
     pressBack(config)
     await expect(
       'system-print-report',
