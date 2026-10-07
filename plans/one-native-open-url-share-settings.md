@@ -1,9 +1,58 @@
 # One.openURL / openShare / openSettings: iOS runtime receipt
 
-Status: handoff and return observed on iOS 27.0 simulator 2026-10-07.
-Share Copy and dismissal were exercised; share cancellation and the
-app-specific Settings page remain unproved. Coverage-table reconciliation
-belongs to the parent; the launch-checklist box stays unticked here.
+Status: workspace runtime acceptance completed on iPhone 17 Pro/iOS 27.0,
+2026-10-07. Source and runner change: `912709720`. Coverage reconciliation:
+`p67085 / one-native-ready`. Production acceptance remains separate.
+
+## Current acceptance
+
+RAN worker receipts under
+`tests/native-features/evidence/realapps/share-cancel-controls/`:
+
+- Share Copy presents UIActivityViewController with the probe text and
+  records `sharedAction` / `com.apple.UIKit.activity.CopyToPasteboard`.
+- Share cancellation taps outside the sheet, records `dismissedAction`
+  with null activity type, waits for Copy to disappear and asserts return
+  to the app. Both One calls settle void.
+- URL opens Safari with onestack.dev in its address bar and resolves true.
+  Settings opens the Settings root and settles void. Both return to the
+  app with `inactive,background,active`. An app-specific settings page is unproved.
+- Resolve-only URL and Settings control fixtures fail their destination
+  assertions with exit 1. Restoring the fixture and running all three
+  selected APIs passes with exit 0.
+- The first Copy accessibility tap records dismissal instead of sharing,
+  and the runner rejects it. The corrected screen coordinate passes the
+  activity assertion. The runner rejects every failed action it records.
+
+These are worker runtime receipts read by the parent. The parent ran the
+fixture typecheck and runner build and checked the retained result shapes;
+it did not repeat the native run.
+
+`restored-positive/identity.json` binds source base `643bb9504`, working diff,
+fixture and runner hashes, runtime source and dist hashes, bundle SHA256
+`894d4c268fd8094275fd71ffa055f28f0193ff78e4920ff0bb53cfb619a95c6c`,
+and installed native executable SHA256
+`318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e`.
+Device is `A9BF26C8-2214-4DC6-AA9E-877B19A49FE9`, iPhone 17 Pro,
+iOS 27.0 build `24A434`, app `com.natew.oneexample`.
+
+The vehicle is One Basic with injected real-app fixtures and workspace One.
+The native shell was reused from the first worker, with its installed hash
+verified; its original build source is not newly authenticated to this HEAD.
+This proves the selected workspace JS service paths on that shell. It does
+not prove a current npm tarball, production binary, Android or another device.
+
+The matrix records `realapps:external` only for these three iOS APIs.
+Android suites remain missing. The launch checklist closes this bounded
+iOS unit while current real-app production acceptance remains open.
+DocumentPicker is outside the selected APIs; its original full-flow presenter
+failure remains open. The new subset does not hide or close it.
+Copy and outside-tap coordinates were run on this device only.
+
+## Earlier receipt
+
+The first unit below proved Copy and handoff; cancellation and actual failure
+controls were added by the current acceptance above.
 
 ## What was proven
 
@@ -62,7 +111,7 @@ belongs to the parent; the launch-checklist box stays unticked here.
   `E_DOCUMENT_PICKER_FAILED: found no view controller to present from`
   (strict presenter guard vs automation speed). Pre-existing sibling-lane
   flake, untouched by this unit; the required `--apis` run still passes.
-- No Android work, no coverage-table edits, no new public API.
+- No Android work or new public API. Coverage reconciliation is recorded above.
 
 ## Incidental findings for owners
 

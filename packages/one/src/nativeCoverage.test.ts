@@ -34,10 +34,10 @@ const knownGaps: Record<string, string> = {
   'UI.Mask': 'effects fixture has a capture proof script, not a suite',
   'UI.TextInput': 'Android suite missing',
   'UI.ReservedRegions': 'fixture exists, no suite opens it',
-  openURL: 'react native Linking underneath; proven in the Contrast app, no suite yet',
+  openURL: 'Android suite missing; iOS workspace Safari destination and app return proven',
   LaunchScreen: 'Android suite missing',
-  openShare: 'react native Share underneath; proven in the Contrast app, no suite yet',
-  openSettings: 'react native Linking underneath; no suite yet',
+  openShare: 'Android suite missing; iOS workspace Copy and cancellation proven',
+  openSettings: 'Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven',
   Network: 'iOS suite only',
   DocumentPicker: 'Android fixture exists, no suite opens it',
   useNetworkState: 'no fixture or suite',
@@ -239,6 +239,34 @@ test('every One namespace member has a conformance fixture reference or a docume
     for (const name of core) {
       proof[platform].set(name, [...(proof[platform].get(name) ?? []), 'native-modules'])
     }
+  }
+
+  // this external suite selects three APIs, not every service in its fixture.
+  const external = 'evidence/realapps/share-cancel-controls'
+  const receipt = JSON.parse(read(`${external}/restored-positive/receipt.json`))
+  const results = JSON.parse(read(`${external}/restored-positive/api-results.json`))
+  const run = JSON.parse(read(`${external}/restored-positive/run-result.json`))
+  expect(receipt.platform).toBe('ios')
+  expect(receipt.mode).toBe('external')
+  expect(receipt.apis).toEqual(['One.openShare', 'One.openURL', 'One.openSettings'])
+  expect(run.exitCode).toBe(0)
+  const services = exportsUsed(read('fixtures/realapps-api-services.native.tsx'))
+  for (const api of receipt.apis) {
+    const name = api.replace(/^One\./, '')
+    expect(services.has(name), `${api} external fixture`).toBe(true)
+    expect(results[api].status, `${api} external result`).toBe('observed')
+    proof.ios.set(name, [...(proof.ios.get(name) ?? []), 'realapps:external'])
+  }
+  const copy = JSON.parse(read(`${external}/copy/api-results.json`))
+  expect(copy['One.openShare.nativeActivity'].value.action).toBe('sharedAction')
+  expect(results['One.openShare.nativeActivity'].value.action).toBe('dismissedAction')
+  for (const api of ['One.openURL', 'One.openSettings']) {
+    const states = results[`${api}.appStates`].value.states
+    expect(states.indexOf('background')).toBeGreaterThanOrEqual(0)
+    expect(states.slice(states.indexOf('background') + 1)).toContain('active')
+  }
+  for (const control of ['negative-url', 'negative-settings']) {
+    expect(JSON.parse(read(`${external}/${control}/run-result.json`)).exitCode).toBe(1)
   }
 
   const rows: string[] = []
