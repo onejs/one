@@ -1,0 +1,16 @@
+PASS compose-home
+PASS compose-pickers-mounted
+PASS compose-pickers-date-rejected
+PASS compose-pickers-policy
+PASS compose-pickers-date-accepted
+PASS compose-pickers-time-mounted
+PASS compose-pickers-time-accepted
+PASS compose-pickers-date-dialog-open
+PASS compose-pickers-date-dialog-changed
+PASS compose-pickers-date-dialog-confirmed
+PASS compose-pickers-date-dialog-reopened
+PASS compose-pickers-date-dialog-dismissed
+PASS compose-pickers-date-remounted
+PASS compose-pickers-time-dialog-open
+PASS compose-pickers-time-dialog-confirmed
+ALL ONE NATIVE ANDROID PICKER CHECKS PASSED
