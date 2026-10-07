@@ -1,0 +1,81 @@
+{
+  "One.ImagePicker": {
+    "api": "One.ImagePicker",
+    "status": "passed",
+    "value": {
+      "canceled": true,
+      "assets": null
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.DocumentPicker": {
+    "api": "One.DocumentPicker",
+    "status": "failed",
+    "error": {
+      "name": "Error",
+      "message": "DocumentPicker.getDocument: found no view controller to present from",
+      "code": "E_DOCUMENT_PICKER_FAILED",
+      "actual": {
+        "$undefined": true
+      }
+    }
+  },
+  "One.Browser": {
+    "api": "One.Browser",
+    "status": "observed",
+    "value": {
+      "type": "cancel"
+    },
+    "scope": "runner must prove browser presented and canceled; Android opened is not cancellation"
+  },
+  "One.openShare": {
+    "api": "One.openShare",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "void result; runner must prove sheet presentation and dismissal"
+  },
+  "One.openURL": {
+    "api": "One.openURL",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "runner must prove browser destination and return"
+  },
+  "One.openURL.appStates": {
+    "api": "One.openURL.appStates",
+    "status": "observed",
+    "value": {
+      "states": [
+        "inactive",
+        "background",
+        "active"
+      ]
+    },
+    "scope": "runner must prove system destination and return"
+  },
+  "One.openSettings": {
+    "api": "One.openSettings",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "runner must prove settings destination and return"
+  },
+  "One.openSettings.appStates": {
+    "api": "One.openSettings.appStates",
+    "status": "observed",
+    "value": {
+      "states": [
+        "inactive",
+        "background",
+        "active"
+      ]
+    },
+    "scope": "runner must prove system destination and return"
+  }
+}
