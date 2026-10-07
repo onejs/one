@@ -5,5 +5,6 @@ export interface OneCrypto extends HybridObject<{
 }> {
     fillRandomBytes(buffer: ArrayBuffer, offset: number, length: number): void;
     randomUUID(): string;
+    digest(algorithm: string, buffer: ArrayBuffer, offset: number, length: number): Promise<ArrayBuffer>;
 }
 //# sourceMappingURL=OneCrypto.nitro.d.ts.map
