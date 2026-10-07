@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Pressable, Text, View } from 'react-native'
 import { One } from 'one'
+import { appIconStartupSupport } from './app-icon-startup'
 
 function code(error: unknown): string {
   return error !== null && typeof error === 'object' && 'code' in error
@@ -9,13 +10,19 @@ function code(error: unknown): string {
 }
 
 export default function OneNativeAppIcon() {
+  const [startupSupport, setStartupSupport] = useState('pending')
   const [support, setSupport] = useState('pending')
   const [current, setCurrent] = useState('pending')
   const [result, setResult] = useState('idle')
 
   useEffect(() => {
-    Promise.all([One.AppIcon.isSupported(), One.AppIcon.getCurrentName()])
-      .then(([supported, name]) => {
+    Promise.all([
+      appIconStartupSupport,
+      One.AppIcon.isSupported(),
+      One.AppIcon.getCurrentName(),
+    ])
+      .then(([startup, supported, name]) => {
+        setStartupSupport(startup)
         setSupport(String(supported))
         setCurrent(name ?? 'primary')
       })
@@ -46,6 +53,7 @@ export default function OneNativeAppIcon() {
   return (
     <View style={{ flex: 1, padding: 24, backgroundColor: 'white', gap: 12 }}>
       <Text style={{ fontSize: 22 }}>Alternate app icon</Text>
+      <Text>Startup support: {startupSupport}</Text>
       <Text>Supported: {support}</Text>
       <Text>Current icon: {current}</Text>
       <Text>Icon result: {result}</Text>

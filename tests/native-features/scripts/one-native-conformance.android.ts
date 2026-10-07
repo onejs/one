@@ -965,6 +965,7 @@ async function run(config: Config) {
     await expect(
       'system-app-icon-mounted',
       (nodes) =>
+        joined(nodes).includes('Startup support: true') &&
         joined(nodes).includes('Supported: true') &&
         joined(nodes).includes('Current icon: primary'),
       'one-native-app-icon-alternate'

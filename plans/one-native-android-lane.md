@@ -1,19 +1,23 @@
 # One native Android lane
 
-Owner: one-native-android (p66065). Branch `tm/one-native-android-location-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+Owner: android (m22158), manager and One native Android hands-on owner. Branch `tm/android-app-icon-cold` from `v2-beta`; validated fixes land on `v2-beta`. This lane owns Android Native Build and Checks for its pushes; Contrast shared delivery stays with p67014. REVIEW: none.
 
-Current status: stopped at Nate's request, relayed by the coordinator
-on 2026-10-07: "we can also slow down just a bit so i can re-plan the day
-lanes can start to wind down" and "please tell agents to stop urgent".
-RAN: the final existing system sweep `w-1311` passes all 79 checks at
-`f29ae4b7a`, including the 27 focused Location checks previously validated
-and landed as `acc949ff8`. Compose/picker, AppIcon and repaired Share units
-are validated. Captures are preserved and shared; the two owned worktrees
-are removed, with no owned emulator, Metro server, child or active watcher
-remaining. Media reruns, remaining focused Compose suites and paired Expo
-UI fidelity, host lifecycle, IME ownership, predictive back and insets remain
-open. They wait for Nate's new lane plan. Delivery CI stays with one-ci.
-The concise close-out is [one-native-android-handoff.md](one-native-android-handoff.md).
+Current restart, 2026-10-07: the brief from p67073 resumes this lane on Nate's
+word: "android like peach SIM support yes and one native yes definitely".
+First acceptance is AppIcon support during native JavaScript setup, before
+router mount, compared with the mounted screen. The existing AppIcon runtime
+suite retains alias switching, process/focus preservation, persistence,
+restoration and invalid-input assertions. The startup probe is prepared;
+there is no new runtime verdict or native repair yet. The Pixel 8/API37 r06
+oracle on pro-64 is in use by p67119's Kotlin capture. That owner has one
+release request; its process and emulator remain untouched. Peach and proof
+history cleanup are being restarted by p67073. Rebase onto the rewritten
+`v2-beta` after cleanup; keep all new proof captures and logs out of git.
+
+The preceding wind-down passed 79 system checks on `f29ae4b7a`; both owned
+worktrees and all owned processes were removed. Media reruns, remaining
+focused Compose suites, paired Expo UI fidelity, host lifecycle, IME,
+predictive back and insets remain open in this restart.
 
 ## Android restart, 2026-10-07
 
