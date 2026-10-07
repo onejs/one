@@ -4,15 +4,26 @@ Owner: android (m22158), manager and One native Android hands-on owner. Branch `
 
 Current restart, 2026-10-07: the brief from p67073 resumes this lane on Nate's
 word: "android like peach SIM support yes and one native yes definitely".
-First acceptance is AppIcon support during native JavaScript setup, before
-router mount, compared with the mounted screen. The existing AppIcon runtime
-suite retains alias switching, process/focus preservation, persistence,
-restoration and invalid-input assertions. The startup probe is prepared;
-there is no new runtime verdict or native repair yet. The Pixel 8/API37 r06
-oracle on pro-64 is in use by p67119's Kotlin capture. That owner has one
-release request; its process and emulator remain untouched. Peach and proof
-history cleanup are being restarted by p67073. Rebase onto the rewritten
-`v2-beta` after cleanup; keep all new proof captures and logs out of git.
+RAN: cold-start AppIcon acceptance passes on `6e3040d3f` with all eight
+focused checks. Native JavaScript setup requests support before router
+mount; the screen reports `Startup support: true` and `Supported: true`.
+Alternate switching preserves process and focus; cold relaunch persists
+the alternate, primary restoration and invalid-input rejection pass.
+Native sources are unchanged, matching APK SHA256
+`652f08da010fc553c4ed1a48874e54aa3af4d6f6e03a8581dfcbc92be0017a5d`.
+No native AppIcon repair is justified by this run. The original 167 focused
+fixture, barrel, Compose and native documentation tests also pass.
+
+Raw runtime captures, hierarchy/status records, logs and cleanup live on
+pro-64 and air-32 under Contrast `scripts/tmp/android-m22158/runtime-app-icon/`.
+Cleanup uninstalls the owned fixture and stops the owned emulator and
+Metro8107; saved final device and listener reads are empty. Metro8097 belongs
+to the OpenURL lane and stays untouched. Peer preparation and runtime shells
+`r65607` and `r65637` have exited. The next unit runs the existing media
+proof driver against the same native APK. Peach owner s16717 works its
+width candidate; One proof-history cleanup m22171 is pending. Rebase onto
+the rewritten `v2-beta` after cleanup; all new proof captures and logs stay
+out of git.
 
 The preceding wind-down passed 79 system checks on `f29ae4b7a`; both owned
 worktrees and all owned processes were removed. Media reruns, remaining
