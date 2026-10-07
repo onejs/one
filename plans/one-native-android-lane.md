@@ -1,6 +1,11 @@
 # One native Android lane
 
-Owner: one-native-android (p66065). Branch `tm/one-native-android-share-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+Owner: one-native-android (p66065). Branch `tm/one-native-android-location-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+
+Current status: focused Location acceptance passes all 27 checks and lands
+as `acc949ff8`; full system sweep is next using the unchanged verified APK.
+Compose/picker, AppIcon and repaired Share units are already validated.
+Full system/media and paired Expo UI acceptance remain open.
 
 ## Android restart, 2026-10-07
 
