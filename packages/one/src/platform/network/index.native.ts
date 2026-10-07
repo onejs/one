@@ -38,12 +38,14 @@ function useNetworkState(): NetworkState {
   })
   useEffect(() => {
     let active = true
+    let sawEvent = false
     getState()
       .then((next) => {
-        if (active) setState(next)
+        if (active && !sawEvent) setState(next)
       })
       .catch(() => {})
     const subscription = addStateListener((next) => {
+      sawEvent = true
       if (active) setState(next)
     })
     return () => {

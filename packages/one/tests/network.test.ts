@@ -1,5 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createElement } from 'react'
+import { act, create } from 'react-test-renderer'
 import { Network } from '../src/platform/network/index'
+import type { NetworkState } from '../src/platform/network/types'
+
+Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
 
 vi.mock('react-native-nitro-modules', () => ({
   NitroModules: { createHybridObject: vi.fn() },
@@ -100,6 +105,43 @@ describe('network web', () => {
 })
 
 describe('network native entry', () => {
+  it('keeps a live hook event ahead of a delayed initial read and removes its listener', async () => {
+    let resolveRead: ((state: NetworkState) => void) | undefined
+    const read = new Promise<NetworkState>((resolve) => { resolveRead = resolve })
+    let listener: ((state: NetworkState) => void) | undefined
+    const remove = vi.fn(() => { listener = undefined })
+    const hybrid = {
+      getState: vi.fn(() => read),
+      addStateListener: vi.fn((next: (state: NetworkState) => void) => {
+        listener = next
+        return remove
+      }),
+    }
+    const { useNetworkState } = await loadNativeEntry(hybrid)
+    const seen: NetworkState[] = []
+    function Reader() {
+      seen.push(useNetworkState())
+      return null
+    }
+    let root: ReturnType<typeof create> | undefined
+    try {
+      await act(async () => { root = create(createElement(Reader)) })
+      const offline: NetworkState = {
+        type: 'none', isConnected: false, isInternetReachable: false,
+      }
+      await act(async () => { listener?.(offline) })
+      expect(seen.at(-1)).toEqual(offline)
+      resolveRead?.({ type: 'wifi', isConnected: true, isInternetReachable: true })
+      await act(async () => { await read })
+      expect(seen.at(-1)).toEqual(offline)
+    } finally {
+      act(() => { root?.unmount() })
+    }
+    expect(hybrid.getState).toHaveBeenCalledTimes(1)
+    expect(remove).toHaveBeenCalledTimes(1)
+    expect(listener).toBeUndefined()
+  })
+
   it('delegates the one-shot read', async () => {
     const hybrid = {
       getState: vi.fn(async () => ({

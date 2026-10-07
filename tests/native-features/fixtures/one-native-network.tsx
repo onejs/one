@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { One } from 'one'
+import { One, useNetworkState } from 'one'
 
 // exercises the network state api against the live radio: a one-shot read
 // plus a change listener whose first event proves the native monitor is
 // publishing. results travel as labels because RN Text testIDs vanish from
 // the accessibility snapshot while Pressable IDs survive.
 export default function OneNativeNetwork() {
+  const live = useNetworkState()
   const [state, setState] = useState('none')
   const [events, setEvents] = useState(0)
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function OneNativeNetwork() {
   return (
     <View style={styles.screen}>
       <Text>{`State: ${state}`}</Text>
+      <Text>{`Hook: ${live.type} ${live.isConnected} ${live.isInternetReachable}`}</Text>
       <Text>{`Events: ${events}`}</Text>
       <Pressable
         testID="one-native-network-refresh"

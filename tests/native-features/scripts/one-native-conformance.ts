@@ -8343,8 +8343,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'network') {
-    const stateOf = (nodes: Node[]) => {
-      const label = labels(nodes).find((text) => text.startsWith('State: '))
+    const stateOf = (nodes: Node[], prefix = 'State: ') => {
+      const label = labels(nodes).find((text) => text.startsWith(prefix))
       if (!label) return null
       const [, type, connected, reachable] = label.split(' ')
       return { type, connected, reachable }
@@ -8371,6 +8371,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     })
     await wait('the listener fires at least once', (n) => eventsOf(n) >= 1)
+    await wait('the hook publishes the same live state as the native read', (n) => {
+      const state = stateOf(n)
+      const hook = stateOf(n, 'Hook: ')
+      return Boolean(state && hook && state.type === hook.type &&
+        hook.connected === 'true' && hook.reachable === 'true')
+    })
     tap({ id: 'one-native-network-refresh' })
     await wait('a refresh re-reads live state', (n) => {
       const state = stateOf(n)
@@ -8384,8 +8390,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await tapNav('nav-one-native-network')
       await wait(`network recycle ${cycle}: state publishes again`, (n) => {
         const state = stateOf(n)
+        const hook = stateOf(n, 'Hook: ')
         return (
-          Boolean(state && state.type !== 'none' && state.connected === 'true') &&
+          Boolean(state && hook && state.type !== 'none' &&
+            state.type === hook.type && state.connected === 'true' &&
+            hook.connected === 'true' && hook.reachable === 'true') &&
           eventsOf(n) >= 1
         )
       })
