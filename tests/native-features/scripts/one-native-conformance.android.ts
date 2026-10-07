@@ -33,7 +33,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'updates' | 'system' | 'system-app-icon'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'updates' | 'system' | 'system-app-icon' | 'system-share'
   apkPath: string
 }
 
@@ -55,7 +55,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|updates|system|system-app-icon --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|updates|system|system-app-icon|system-share --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -84,7 +84,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1017,6 +1017,53 @@ async function run(config: Config) {
     )
   }
 
+  const share = async () => {
+    // Share: text/url completion through the chooser Copy target, file
+    // dismissal, busy guard, and all four input codes.
+    await freshLeg('share')
+    await tapNavigation(config, 'nav-one-native-share')
+    tapFresh(config, 'system-share-run', {
+      id: 'one-native-share-run',
+      role: 'button',
+      clickable: true,
+    })
+    await waitFor(config, 'system-share-chooser', (nodes) =>
+      nodes.filter((node) => node.contentDescription === 'Copy text').length === 1
+    )
+    // select the system copy action; app targets may also be labelled copy.
+    tapMatching(config, 'system-share-copy', 'system Copy text action',
+      (node) => node.contentDescription === 'Copy text'
+    )
+    // the completed text share advances the fixture to the file chooser,
+    // which covers the app: uiautomator sees the chooser, not the status
+    // text behind it, so assert the chooser itself. the passed check below
+    // pins the copy completion through the result triple.
+    await expect(
+      'system-share-file-sharing',
+      (nodes) =>
+        joined(nodes).includes('Sharing 1 file') &&
+        joined(nodes).includes('one-native-share-proof.txt'),
+      'one-native-share-run',
+      undefined,
+      30_000
+    )
+    pressBack(config)
+    await expect(
+      'system-share-passed',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: passed') &&
+          text.includes('Busy: E_SHARE_BUSY') &&
+          text.includes('text=true; activity=none; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS; clipboard=true')
+        )
+      },
+      'one-native-share-run',
+      undefined,
+      30_000
+    )
+  }
+
   // Ten Android system services through their existing fixtures: device
   // snapshot, keep-awake round trip, orientation locks, share chooser
   // completion, print sheet cancel, quick-action cold/warm delivery,
@@ -1212,50 +1259,7 @@ async function run(config: Config) {
       30_000
     )
 
-    // Share: text/url completion through the chooser Copy target, file
-    // dismissal, busy guard, and all four input codes.
-    await freshLeg('share')
-    await tapNavigation(config, 'nav-one-native-share')
-    tapFresh(config, 'system-share-run', {
-      id: 'one-native-share-run',
-      role: 'button',
-      clickable: true,
-    })
-    await waitFor(config, 'system-share-chooser', (nodes) =>
-      nodes.filter((node) => node.contentDescription === 'Copy text').length === 1
-    )
-    // select the system copy action; app targets may also be labelled copy.
-    tapMatching(config, 'system-share-copy', 'system Copy text action',
-      (node) => node.contentDescription === 'Copy text'
-    )
-    // the completed text share advances the fixture to the file chooser,
-    // which covers the app: uiautomator sees the chooser, not the status
-    // text behind it, so assert the chooser itself. the passed check below
-    // pins the copy completion through the result triple.
-    await expect(
-      'system-share-file-sharing',
-      (nodes) =>
-        joined(nodes).includes('Sharing 1 file') &&
-        joined(nodes).includes('one-native-share-proof.txt'),
-      'one-native-share-run',
-      undefined,
-      30_000
-    )
-    pressBack(config)
-    await expect(
-      'system-share-passed',
-      (nodes) => {
-        const text = joined(nodes)
-        return (
-          text.includes('Status: passed') &&
-          text.includes('Busy: E_SHARE_BUSY') &&
-          text.includes('text=true; activity=none; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS; clipboard=true')
-        )
-      },
-      'one-native-share-run',
-      undefined,
-      30_000
-    )
+    await share()
 
     // Print: cancel the system sheet, then busy and input codes; a second
     // leg with the print service disabled proves honest unavailability.
@@ -1893,8 +1897,8 @@ async function run(config: Config) {
         textIncludes(nodes, 'One Native Test Suite'),
       'home-screen'
     )
-    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon') {
-      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : system())
+    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share') {
+      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : system())
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }

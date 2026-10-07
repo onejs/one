@@ -848,3 +848,23 @@ landed Android lanes, so it doubles as the media `:app` probe check.
 
 Device runtime proof still open: unchanged from the two landing entries
 above, no post-land emulator pass recorded yet.
+
+## Share callback investigation, 2026-10-07
+
+RAN: beast `w-66c8` builds current beta `04b27155d` and passes all 158
+Compose/documentation checks. Delivered AppIcon, runner, manifest writer and
+incoming Crypto source hashes match; `bun release --into ~/contrast
+--skip-build` installs 17 entries with unchanged downstream manifest/lock
+bytes and matching native and JS outputs. Mac `w-6cc8` compiles the arm64
+app in 6m42s (40 executed tasks, 330 up to date). The API37 sweep passes
+18 checkpoints through filesystem, Device, KeepAwake and orientation,
+then fails Share. Its final XML reports `Copy did not complete the share
+activity: {"completed":false}`. Android's log records system Copy and
+chooser result -1. The emulator and Metro cleanup executes.
+
+INFERRED: `onHostResume` can set `settlePosted` before `onActivityResult`,
+whose early return then discards the result. A focused runtime probe will
+record the actual callback order and settlement state before choosing a
+repair. The `system-share` entry reuses the full sweep's unchanged Share
+assertions, including exact clipboard content, busy, file cancellation and
+input errors. Full system acceptance remains open.
