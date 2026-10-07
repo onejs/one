@@ -55,3 +55,24 @@ path before the fixture's second listener attaches. Parent owns a registration
 and callback trace on the same binary to distinguish that ordering from
 another listener defect. No timeout, retry or assertion change is authorized
 to obtain a pass.
+
+## Listener precondition repair, 2026-10-07
+
+RAN parent registration/callback trace on the same reused native shell: the
+original hook-first fixture passes initial agreement, then fails recycle 1
+with State and Hook `ethernet/true/true` and Events 0. Its hook callbacks fire;
+the later event-counting subscriber receives none. The local deduplicated
+trace is `/Users/n8/Library/Logs/one-network-hook-proof/parent-trace/`.
+The callback timestamps describe JS delivery, not native emission time.
+
+INFERRED from that trace and `HybridOneNetwork.swift`: the existing monitor
+starts with the first subscriber and does not replay its first path to later
+subscribers. Adding the hook before the fixture's effect changed the original
+first-listener precondition. A trace showing the event-counting subscriber
+registered first and still missing its event would challenge this diagnosis.
+
+The fixture now registers its event-counting effect before calling the hook.
+The hook still runs unconditionally on every render. Every runner assertion
+and its timeout stays unchanged; the native subscription behavior stays
+unchanged. RAN the package's Vitest network script: 10 pass. Focused fixture
+types pass. Live canonical acceptance and omission control remain pending.

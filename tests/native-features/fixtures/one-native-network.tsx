@@ -7,7 +7,6 @@ import { One, useNetworkState } from 'one'
 // publishing. results travel as labels because RN Text testIDs vanish from
 // the accessibility snapshot while Pressable IDs survive.
 export default function OneNativeNetwork() {
-  const live = useNetworkState()
   const [state, setState] = useState('none')
   const [events, setEvents] = useState(0)
   useEffect(() => {
@@ -20,6 +19,8 @@ export default function OneNativeNetwork() {
     })
     return () => subscription.remove()
   }, [])
+  // register the event-counting listener first: it starts the shared monitor.
+  const live = useNetworkState()
   return (
     <View style={styles.screen}>
       <Text>{`State: ${state}`}</Text>
