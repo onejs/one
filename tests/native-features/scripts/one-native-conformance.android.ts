@@ -493,24 +493,6 @@ function tapByText(config: Config, name: string, text: string) {
   tapMatching(config, name, `text "${text}"`, (node) => node.text === text)
 }
 
-function tapByTextOrDescription(config: Config, name: string, texts: string[]) {
-  const current = snapshot(config)
-  const textHits = current.nodes.filter((node) => texts.includes(node.text))
-  const descHits = current.nodes.filter(
-    (node) => !texts.includes(node.text) && texts.includes(node.contentDescription)
-  )
-  // the chooser shows its copy action as a text row, an icon, or both at
-  // once; both representations trigger the same action, so the row wins
-  // when both are present. anything else is genuine ambiguity and fails.
-  const target =
-    textHits.length === 1 ? textHits[0] : descHits.length === 1 && textHits.length === 0 ? descHits[0] : undefined
-  if (!target)
-    throw new Error(
-      `${name} resolved ${textHits.length} text and ${descHits.length} description nodes for [${texts.join(', ')}]; exactly one action is required.`
-    )
-  tapNode(config, name, current.nodes, target)
-}
-
 function tapNode(config: Config, name: string, nodes: Node[], node: Node) {
   const target = clickableTarget(nodes, node)
   if (!target) throw new Error(`${name} found its target with no clickable ancestor.`)
@@ -1156,11 +1138,12 @@ async function run(config: Config) {
       clickable: true,
     })
     await waitFor(config, 'system-share-chooser', (nodes) =>
-      textIncludes(nodes, 'Copy')
+      nodes.filter((node) => node.contentDescription === 'Copy text').length === 1
     )
-    // android 37 shows the chooser copy action either as a "Copy to
-    // clipboard" text row or as an icon with the "Copy text" description.
-    tapByTextOrDescription(config, 'system-share-copy', ['Copy to clipboard', 'Copy text'])
+    // select the system copy action; app targets may also be labelled copy.
+    tapMatching(config, 'system-share-copy', 'system Copy text action',
+      (node) => node.contentDescription === 'Copy text'
+    )
     // the completed text share advances the fixture to the file chooser,
     // which covers the app: uiautomator sees the chooser, not the status
     // text behind it, so assert the chooser itself. the passed check below
