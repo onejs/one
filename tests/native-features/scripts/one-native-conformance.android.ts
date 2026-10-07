@@ -956,8 +956,6 @@ async function run(config: Config) {
       adbText(config, ['shell', 'input', 'keyevent', '3'])
     const foregroundApp = () =>
       adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
-    const focusedWindow = () =>
-      adbText(config, ['shell', 'dumpsys', 'window', 'windows']).slice(0, 4000)
 
     // Fresh permissions and prefs; the debug host stamp survives.
     clearAppData(config)
@@ -1211,19 +1209,28 @@ async function run(config: Config) {
       role: 'button',
       clickable: true,
     })
-    await waitFor(
-      config,
+    // the system sheet owns the visible tree while the fixture is behind it.
+    // require the rendered pdf page and actual window focus before cancelling.
+    await expect(
       'system-print-sheet',
-      (nodes) => joined(nodes).includes('Status: presenting'),
-      'one-native-print-run',
+      (nodes) => {
+        const pages = matching(nodes, {
+          id: 'com.android.printspooler:id/preview_page',
+          checked: true,
+        })
+        return (
+          pages.length === 1 &&
+          pages[0].contentDescription === 'Page 1 of 1' &&
+          exactlyOneId(nodes, 'com.android.printspooler:id/cancel_button') &&
+          /mCurrentFocus=Window\{[^\n]*com\.android\.printspooler\//.test(
+            adbText(config, ['shell', 'dumpsys', 'window', 'windows'])
+          )
+        )
+      },
+      'com.android.printspooler:id/preview_page',
+      undefined,
       30_000
     )
-    for (let attempt = 0; attempt < 40; attempt++) {
-      if (focusedWindow().includes('printspooler')) break
-      await Bun.sleep(250)
-    }
-    if (!focusedWindow().includes('printspooler'))
-      throw new Error('system print sheet never took focus')
     pressBack(config)
     await expect(
       'system-print-report',

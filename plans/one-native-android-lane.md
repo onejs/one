@@ -1,6 +1,6 @@
 # One native Android lane
 
-Owner: one-native-android (p66065). Branch `tm/one-native-android-compose-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+Owner: one-native-android (p66065). Branch `tm/one-native-android-system-proof` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
 
 ## Android restart, 2026-10-07
 
@@ -39,6 +39,35 @@ the first picker/Compose APK lacks that fixture alias. Paired Expo pixel
 fidelity, host lifecycle, IME ownership, predictive back and insets remain
 explicit open objectives. CI verdict and unrelated Checks repair belong
 to one-ci (s15186).
+
+## Current system API acceptance, 2026-10-07
+
+RAN: `w-8937` rebuilt the app on pro-64 at `4d7be9f17`, with the existing
+`TestAlternate` fixture alias. The arm64 APK builds in 12m22s, 370 Gradle
+tasks; APK SHA256 is `fc7e029c01282c976d4f882f52b5d4e8ebbd7202f266507f2c37e4c3da304784`.
+The Pixel 8/API37 run passes 21 checkpoints through filesystem, Device,
+KeepAwake before/after resume, portrait/landscape orientation locks and
+unlock, and Share completion/cancellation plus error controls. Their
+native-density quality-90 captures were inspected and shared with Nate.
+Full evidence is preserved in primary `runtime-system-pro64` and
+`apk-system` under `tests/native-features/evidence/android-restart-p66065/`.
+
+The run stops at the Print checkpoint. RAN: saved XML and window dump show
+the focused PrintSpooler with the rendered one-page PDF. The runner was
+waiting for fixture status and mount markers behind that system window.
+The candidate now requires the rendered selected page, Cancel button and
+actual PrintSpooler focus before cancellation. Existing deadline and
+cancel/busy/input/unavailable assertions remain. Focused runner TypeScript
+and bundle checks pass; repaired runtime acceptance is pending. The API
+sweep remains open. Emulator and local Metro stop on failure.
+
+Resource expiry `w-6507` executed neither build nor probe. The API work moved
+to owned pro-64 `~/.worktrees/one-native-android-api`, branch
+`tm/one-native-android-api-p66065`; its remote execution adopts the tree for
+the duration of each proof. The previous owned pro-64 tree is absent.
+one-ci reports Checks green on `4d7be9f17`; incoming production sources are
+unchanged, with the CI fixes confined to test hydration and transformer
+warmup.
 
 ## Baseline and boundary
 
