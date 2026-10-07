@@ -1,0 +1,47 @@
+{
+  "label": "RAN",
+  "result": "canonical native suite rejected; return defect to parent",
+  "ios": {
+    "exitCode": 1,
+    "failedAssertion": "the listener fires at least once",
+    "state": "ethernet true true",
+    "hook": "ethernet true true",
+    "events": 0,
+    "nativeRemounts": "not reached",
+    "omittedHookControl": "not run because canonical assertion failed",
+    "fixtureRestoredByteIdentical": true
+  },
+  "peach": {
+    "label": "RAN",
+    "sim": "a1",
+    "scope": "Peach simulated OneNetwork state, not NWPathMonitor",
+    "receipts": [
+      {
+        "mount": 0,
+        "state": "unknown true true",
+        "hook": "unknown true true",
+        "events": 1
+      },
+      {
+        "mount": 1,
+        "state": "unknown true true",
+        "hook": "unknown true true",
+        "events": 1
+      },
+      {
+        "mount": 2,
+        "state": "unknown true true",
+        "hook": "unknown true true",
+        "events": 1
+      }
+    ]
+  },
+  "cleanup": {
+    "scratchAppRemoved": true,
+    "parentWorktree": "retained, parent p67085 owns",
+    "parentNodeModulesLink": "preserved",
+    "logs": "/Users/n8/Library/Logs/one-network-hook-proof"
+  },
+  "ciDeliveryOwner": "p67014",
+  "review": "none"
+}

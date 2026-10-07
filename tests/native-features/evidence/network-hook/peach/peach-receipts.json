@@ -1,0 +1,25 @@
+{
+  "label": "RAN",
+  "sim": "a1",
+  "scope": "Peach simulated OneNetwork state, not NWPathMonitor",
+  "receipts": [
+    {
+      "mount": 0,
+      "state": "unknown true true",
+      "hook": "unknown true true",
+      "events": 1
+    },
+    {
+      "mount": 1,
+      "state": "unknown true true",
+      "hook": "unknown true true",
+      "events": 1
+    },
+    {
+      "mount": 2,
+      "state": "unknown true true",
+      "hook": "unknown true true",
+      "events": 1
+    }
+  ]
+}

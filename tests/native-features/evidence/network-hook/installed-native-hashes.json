@@ -1,0 +1,8 @@
+{
+  "path": "/Users/n8/Library/Developer/CoreSimulator/Devices/A9BF26C8-2214-4DC6-AA9E-877B19A49FE9/data/Containers/Bundle/Application/50A8CDA8-31BA-4728-97D5-C0FD91178650/p67471-OneBasic.app",
+  "sha256": {
+    "OneBasic": "318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e",
+    "OneBasic.debug.dylib": "6c08e22f289b72cbc26b631e842d8fc03caaa64ce7d9f07e7e83fe409b91ea31",
+    "Info.plist": "2c76b6bca158ff12f81140a343ed072fc19ee4b11ef7bb80e6a02fc484e53133"
+  }
+}
