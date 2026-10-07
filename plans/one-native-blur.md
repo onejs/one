@@ -1,11 +1,11 @@
-<!-- plan: status=active owner=r58954 reviewed=2026-10-04 -->
+<!-- plan: status=active owner=p67085 reviewed=2026-10-07 -->
 
 # Native blur acceptance
 
 One's native blur repair is part of Contrast's spring cleaning campaign.
 The governing downstream plan is `plans/contrast/mobile-app/one-native-next.md`.
-The source branch is `tm/mechanical-native`; fixes land on `v2-beta` after
-runtime proof and the assigned assembled review. One main remains held.
+The preserved source branch is `tm/mechanical-native`. Its ordinary iOS repair
+already landed on `v2-beta` as `95252a29d`. One main remains held.
 
 Nate, 2026-10-04: use `@sbaiahmed1/react-native-blur` directly for
 "PLATFORM native" effects and "a real iOS progressive blur". Keep the
@@ -18,6 +18,19 @@ a real IOS progressive blur" and "Shouldn't that be progressive blur? I had
 given a whole library that does it properly with the real iOS API that we were
 supposed to base the One off of." The App Store risk of its private
 `variableBlur` backend went to him the same day as a decision.
+
+## ordinary repair delivered
+
+RAN 2026-10-07: `95252a29d` is an ancestor of current v2-beta, and all seven
+paths in `b87d5facc` match the delivered commit. The retained
+`beta-integration-receipt.json` binds the reviewed checkpoint and integrated
+head. Contrast's current pinned npm canary `2.0.0-0.canary.1791317509948`
+declares `releaseSourceCommit=29e1af412c85a50cbcfabd2dd7cd363b9a38c80c`.
+Its ordinary blur helper and Fabric receiver byte-match the landed repair.
+The package was downloaded and inspected directly; version-string equality
+was not used as the proof. No public native blur repair remains to merge from
+`tm/mechanical-native`. Android capture and exact progressive blur retain the
+requirements and limits below. Current delivery owner: `p67014 / ci-delivery-opus`.
 
 ## preserved work
 
@@ -115,7 +128,7 @@ custom traversal or alternate rendering path is introduced.
 - Inspect final artifacts for public/private symbol suitability, then exercise
   supported fixes downstream in an isolated Contrast worktree with
   `bun release --into <worktree>`.
-- Obtain one assembled review from `m20266` before landing public fixes.
+- Keep the ordinary repair's completed assigned review with its retained receipts.
   The held progressive requirement does not block independently proven fixes.
 
 The durable task is `t-muuixw8k-24b60`. Detailed source, receipts, hashes and
