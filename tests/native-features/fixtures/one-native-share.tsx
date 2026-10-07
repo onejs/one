@@ -28,7 +28,7 @@ export default function OneNativeShare() {
       }
       const shared = await pending
       if (!shared.completed || !shared.activityType) {
-        throw new Error('Copy did not complete the share activity')
+        throw new Error(`Copy did not complete the share activity: ${JSON.stringify(shared)}`)
       }
       setStatus('file sharing')
       const fileShared = await One.Share.share([{ type: 'file', value: file }])

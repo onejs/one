@@ -69,6 +69,17 @@ one-ci reports Checks green on `4d7be9f17`; incoming production sources are
 unchanged, with the CI fixes confined to test hydration and transformer
 warmup.
 
+RAN: the Print candidate rerun `w-fb8e` passes the first 18 checkpoints,
+then stops at Share before reaching Print. Android logs record the built-in
+Copy action and chooser `RESULT_OK`; the fixture rejects either incomplete
+results or missing activity names without distinguishing them. Android's
+API35+ `ChooserResult` documents a null selected component for Copy. The
+public `ShareResult.activityType` is optional. The next probe preserves the
+existing assertion and includes the actual result in its failure message,
+so callback loss and fixture contract mismatch can be distinguished. This
+run provides no Print verdict. Raw evidence is retained separately from the
+earlier successful Share capture.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.
