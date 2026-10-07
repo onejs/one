@@ -923,3 +923,17 @@ dump redaction. Emulator/Metro and the owned fixture are removed after
 the sweep. Raw checkpoints/logs remain in primary
 `runtime-system-share-beta-pro64` evidence. Full system/media acceptance
 and paired Expo parity remain open.
+
+RAN: focused `w-f44b` recovers the completed probe. The service dump has
+`isForeground=true foregroundId=4301 types=0x00000008` and its ongoing
+`one-location` foreground notification. Notification Manager has the
+fixture's importance=NONE and no active fixture record. This confirms
+the ungranted visibility precondition; native startup is correct. The
+candidate now requires background delivery to a fresh proof file while
+notification permission remains denied, then repeats with an explicitly
+verified notification grant and requires the visible drawer title plus
+the matching foreground record. Both legs require exact moved coordinates
+and service/notification removal on stop. Existing clocks are replaced
+with those conditions; original positive notification and permission
+revocation assertions remain. Native source/APK are unchanged. Repaired
+focused runtime acceptance is pending.

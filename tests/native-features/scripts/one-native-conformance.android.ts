@@ -1165,49 +1165,100 @@ async function run(config: Config) {
       undefined,
       45_000
     )
-    tapFresh(config, 'system-location-background-watch', {
-      id: 'one-native-location-background-watch',
-      role: 'button',
-      clickable: true,
-    })
-    await expect(
-      'system-location-background-started',
-      (nodes) => joined(nodes).includes('Background watch: active:'),
-      'one-native-location-stop-background-watch'
-    )
-    pressHome()
-    await Bun.sleep(2000)
-    const shade = adbText(config, ['shell', 'dumpsys', 'notification'])
-    writeFileSync(path.join(config.artifactDir, 'location-notifications-redacted.txt'), shade)
-    writeFileSync(path.join(config.artifactDir, 'location-notifications-full.txt'),
-      adbText(config, ['shell', 'dumpsys', 'notification', '--noredact']))
-    writeFileSync(path.join(config.artifactDir, 'location-services.txt'),
-      adbText(config, ['shell', 'dumpsys', 'activity', 'services', config.packageId]))
-    writeFileSync(path.join(config.artifactDir, 'location-permissions.txt'),
-      adbText(config, ['shell', 'dumpsys', 'package', config.packageId]))
-    if (!shade.includes('Location updates active'))
-      throw new Error('background watch posted no foreground-service notification')
-    console.log('PASS system-location-foreground-notification')
-    adbText(config, ['emu', 'geo', 'fix', '-122.3994', '37.7949'])
-    await Bun.sleep(3000)
-    foregroundApp()
-    await expect(
-      'system-location-background-delivered',
-      (nodes) => joined(nodes).includes('Background watch: background:'),
-      'one-native-location-stop-background-watch',
-      undefined,
-      30_000
-    )
-    tapFresh(config, 'system-location-stop-background-watch', {
-      id: 'one-native-location-stop-background-watch',
-      role: 'button',
-      clickable: true,
-    })
-    await expect(
-      'system-location-background-stopped',
-      (nodes) => joined(nodes).includes('Background watch: stopped'),
-      'one-native-location-watch'
-    )
+    const serviceDump = () =>
+      adbText(config, ['shell', 'dumpsys', 'activity', 'services', config.packageId])
+    const locationService = () => serviceDump().split(/(?=  \* ServiceRecord\{)/).find(
+      (record) => record.includes(`${config.packageId}/dev.onejs.onenative.OneLocationService`)
+    ) ?? ''
+    const serviceIsForeground = () => {
+      const record = locationService()
+      return record.includes('isForeground=true foregroundId=4301 types=0x00000008') &&
+        record.includes('channel=one-location')
+    }
+    const notificationDump = () => adbText(config, ['shell', 'dumpsys', 'notification', '--noredact'])
+    const locationNotification = () => notificationDump().split(/(?=    NotificationRecord\()/).find(
+      (record) => record.startsWith('    NotificationRecord(') &&
+        record.split('\n')[0].includes(`pkg=${config.packageId} `) &&
+        record.split('\n')[0].includes(' id=4301 ')
+    ) ?? ''
+    const notificationPermission = (granted: boolean) =>
+      adbText(config, ['shell', 'dumpsys', 'package', config.packageId]).includes(
+        `android.permission.POST_NOTIFICATIONS: granted=${granted},`
+      )
+    const backgroundFile = () => adbText(config, ['shell', 'run-as', config.packageId,
+      'cat', 'files/Documents/one-native-location-background-proof.txt']).trim()
+    const retainLocationState = (phase: string) => {
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-services.txt`), serviceDump())
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-notifications.txt`), notificationDump())
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-permissions.txt`),
+        adbText(config, ['shell', 'dumpsys', 'package', config.packageId]))
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-background.txt`), backgroundFile())
+    }
+    const backgroundLeg = async (phase: 'denied' | 'granted', longitude: string, latitude: string) => {
+      tapFresh(config, `system-location-background-${phase}-watch`, {
+        id: 'one-native-location-background-watch',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        `system-location-background-${phase}-started`,
+        (nodes) => joined(nodes).includes('Background watch: active:') && backgroundFile() === 'starting',
+        'one-native-location-stop-background-watch'
+      )
+      pressHome()
+      await expect(
+        `system-location-background-${phase}-service`,
+        () => serviceIsForeground() && notificationPermission(phase === 'granted') &&
+          (phase === 'denied' ? locationNotification() === '' :
+            locationNotification().includes('Location updates active') &&
+            locationNotification().includes('FOREGROUND_SERVICE')),
+        undefined,
+        () => ({ service: locationService(), notification: locationNotification() })
+      )
+      retainLocationState(phase)
+      if (phase === 'granted') {
+        adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+        await expect(
+          'system-location-foreground-notification',
+          (nodes) => joined(nodes).includes('Location updates active') && serviceIsForeground()
+        )
+        adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
+      }
+      adbText(config, ['emu', 'geo', 'fix', longitude, latitude])
+      const position = `background:${latitude},${longitude}`
+      await waitFor(config, `system-location-background-${phase}-file`,
+        () => backgroundFile() === position)
+      retainLocationState(`${phase}-delivered`)
+      foregroundApp()
+      await expect(
+        `system-location-background-${phase}-delivered`,
+        (nodes) => joined(nodes).includes(`Background watch: ${position}`),
+        'one-native-location-stop-background-watch',
+        () => ({ persistedBackgroundPosition: backgroundFile() }),
+        30_000
+      )
+      tapFresh(config, `system-location-stop-background-${phase}-watch`, {
+        id: 'one-native-location-stop-background-watch',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        `system-location-background-${phase}-stopped`,
+        (nodes) => joined(nodes).includes('Background watch: stopped') && locationService() === '' &&
+          locationNotification() === '',
+        'one-native-location-watch'
+      )
+      retainLocationState(`${phase}-stopped`)
+    }
+    // denial hides the drawer notice but must preserve background delivery.
+    if (!notificationPermission(false))
+      throw new Error('fresh location proof unexpectedly has notification permission')
+    await backgroundLeg('denied', '-122.4044', '37.7899')
+    // visibility requires its own notification grant, independent of location.
+    adbText(config, ['shell', 'pm', 'grant', config.packageId, 'android.permission.POST_NOTIFICATIONS'])
+    if (!notificationPermission(true))
+      throw new Error('location notification visibility precondition was not granted')
+    await backgroundLeg('granted', '-122.3994', '37.7949')
     tapFresh(config, 'system-location-revoke-watch', {
       id: 'one-native-location-watch',
       role: 'button',
