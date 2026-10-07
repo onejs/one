@@ -1,0 +1,11 @@
+--- source-fixture
++++ resolve-only-fixture
+@@ -471,7 +471,7 @@
+             async () => {
+               // native Linking resolves true on an accepted handoff; the
+               // destination and return are proven by the runner.
+-              const result: unknown = await One.openURL('https://onestack.dev')
++              const result: unknown = await Promise.resolve(true)
+               assert(result === true, 'openURL must resolve true', result)
+               return result
+             },

@@ -1,0 +1,37 @@
+appId: com.natew.oneexample
+---
+- launchApp:
+    stopApp: true
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Hello world, from One"
+    timeout: 60000
+- extendedWaitUntil:
+    visible:
+      id: realapps-open-api
+    timeout: 60000
+- tapOn:
+    id: realapps-open-api
+- tapOn:
+    id: realapps-api-section-services
+- scrollUntilVisible:
+    element:
+      id: realapps-api-open-settings
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-open-settings
+- tapOn:
+    id: realapps-api-open-settings
+- extendedWaitUntil:
+    visible: "^Settings$"
+    timeout: 20000
+- takeScreenshot: system-settings
+- launchApp:
+    stopApp: false
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Open settings for runner return"
+    timeout: 20000
+- assertVisible: "Injected route remains inside the original shell"
+- takeScreenshot: final

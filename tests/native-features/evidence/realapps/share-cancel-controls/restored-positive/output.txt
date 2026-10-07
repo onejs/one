@@ -1,0 +1,33 @@
+Running on iPhone 17 Pro - iOS 27.0 - A9BF26C8-2214-4DC6-AA9E-877B19A49FE9
+ > Flow external
+Launch app "com.natew.oneexample"... COMPLETED
+Assert that "Hello world, from One" is visible... COMPLETED
+Assert that id: realapps-open-api is visible... COMPLETED
+Tap on id: realapps-open-api... COMPLETED
+Tap on id: realapps-api-section-services... COMPLETED
+Scrolling DOWN until id: realapps-api-share-cancel is visible with speed 40, visibility percentage 100%, timeout 20000 ms, with centering disabled... COMPLETED
+Assert that id: realapps-api-share-cancel is visible... COMPLETED
+Tap on id: realapps-api-share-cancel... COMPLETED
+Assert that "Copy" is visible... COMPLETED
+Assert that "one realapps API probe" is visible... COMPLETED
+Take screenshot system-share... COMPLETED
+Tap on point (50%,15%)... COMPLETED
+Assert that "Copy" is not visible... COMPLETED
+Assert that "Open share for runner cancel" is visible... COMPLETED
+Scrolling DOWN until id: realapps-api-open-url is visible with speed 40, visibility percentage 100%, timeout 20000 ms, with centering disabled... COMPLETED
+Assert that id: realapps-api-open-url is visible... COMPLETED
+Tap on id: realapps-api-open-url... COMPLETED
+Assert that ".*onestack.*" is visible... COMPLETED
+Take screenshot system-url... COMPLETED
+Launch app "com.natew.oneexample" without stopping app... COMPLETED
+Assert that "Open URL for runner return" is visible... COMPLETED
+Scrolling DOWN until id: realapps-api-open-settings is visible with speed 40, visibility percentage 100%, timeout 20000 ms, with centering disabled... COMPLETED
+Assert that id: realapps-api-open-settings is visible... COMPLETED
+Tap on id: realapps-api-open-settings... COMPLETED
+Assert that "^Settings$" is visible... COMPLETED
+Take screenshot system-settings... COMPLETED
+Launch app "com.natew.oneexample" without stopping app... COMPLETED
+Assert that "Open settings for runner return" is visible... COMPLETED
+Assert that "Injected route remains inside the original shell" is visible... COMPLETED
+Take screenshot final... COMPLETED
+RAN com.natew.oneexample ios external assertions passed

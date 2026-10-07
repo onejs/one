@@ -1,0 +1,40 @@
+{
+  "label": "RAN",
+  "date": "2026-10-07",
+  "sourceBase": "643bb9504f42b74ac910c40157f3e9f2dc31fc48",
+  "runtimeSourceLastChange": "0c5548b8df6627bd0e91183347aea1da2a450e0b",
+  "scope": "iOS workspace external One services acceptance; no npm artifact or Android proof",
+  "positive": {
+    "copy": "sharedAction / com.apple.UIKit.activity.CopyToPasteboard; void; Copy disappears before app-return assertion",
+    "cancel": "dismissedAction / activityType null; void; outside tap; Copy disappears before app-return assertion",
+    "url": "true; Safari onestack.dev address bar; inactive,background,active",
+    "settings": "void; Settings root; inactive,background,active"
+  },
+  "negative": {
+    "url": "fixture resolves true without One.openURL; rejected Safari destination assertion, exit 1",
+    "settings": "fixture resolves void without One.openSettings; rejected exact Settings heading assertion, exit 1"
+  },
+  "restoration": "injected fixture byte-identical to source after controls; selected-three restored-positive run exit 0",
+  "checks": [
+    "bun run tsc --project tests/native-features/fixtures/realapps-api-tsconfig.json --noEmit: exit 0, no incremental option in config",
+    "bun build tests/native-features/scripts/realapps-native-ui.ts --target bun --outdir /tmp/p67471-runner: exit 0",
+    "git diff --check: exit 0"
+  ],
+  "limitations": [
+    "Settings app-specific page unproven; RN Linking.openSettings behavior unchanged",
+    "Safari destination address bar proven, page body still loading",
+    "DocumentPicker not selected; original full external flow presenter failure remains unproved/failing outside this bounded subset",
+    "First Copy AX tap caused dismissedAction and incidental DocumentPicker failure; runner rejected it. No failed action swept aside.",
+    "Measured Copy and outside-tap coordinates validated on this iPhone17 Pro/iOS27.0 only",
+    "Native shell reused; executable hash verified in installed container. Original native build source is not newly authenticated to this git HEAD."
+  ],
+  "copyBounds": {
+    "label": "INFERRED",
+    "observation": "Copy AX [19,261][101,396] versus native 1206x2622 screenshot Copy near bottom; AX tap rejected; measured 17%,89% native sharedAction passed",
+    "cause": "sheet-local AX bounds omit screen offset"
+  },
+  "localEvidence": "/Users/n8/Library/Logs/one-native-share-cancel-p67471",
+  "ciOwner": "p67014",
+  "downstreamAndCoverageOwner": "p67085",
+  "nativeRebuild": "none"
+}

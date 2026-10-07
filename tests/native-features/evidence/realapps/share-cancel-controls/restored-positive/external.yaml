@@ -1,0 +1,76 @@
+appId: com.natew.oneexample
+---
+- launchApp:
+    stopApp: true
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Hello world, from One"
+    timeout: 60000
+- extendedWaitUntil:
+    visible:
+      id: realapps-open-api
+    timeout: 60000
+- tapOn:
+    id: realapps-open-api
+- tapOn:
+    id: realapps-api-section-services
+- scrollUntilVisible:
+    element:
+      id: realapps-api-share-cancel
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-share-cancel
+- tapOn:
+    id: realapps-api-share-cancel
+- assertVisible: "Copy"
+- assertVisible: "one realapps API probe"
+- takeScreenshot: system-share
+- tapOn:
+    point: "50%,15%"
+- extendedWaitUntil:
+    notVisible: "Copy"
+    timeout: 15000
+- extendedWaitUntil:
+    visible: "Open share for runner cancel"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      id: realapps-api-open-url
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-open-url
+- tapOn:
+    id: realapps-api-open-url
+- extendedWaitUntil:
+    visible: ".*onestack.*"
+    timeout: 20000
+- takeScreenshot: system-url
+- launchApp:
+    stopApp: false
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Open URL for runner return"
+    timeout: 20000
+- scrollUntilVisible:
+    element:
+      id: realapps-api-open-settings
+    direction: DOWN
+    visibilityPercentage: 100
+- assertVisible:
+    id: realapps-api-open-settings
+- tapOn:
+    id: realapps-api-open-settings
+- extendedWaitUntil:
+    visible: "^Settings$"
+    timeout: 20000
+- takeScreenshot: system-settings
+- launchApp:
+    stopApp: false
+    permissions: {}
+- extendedWaitUntil:
+    visible: "Open settings for runner return"
+    timeout: 20000
+- assertVisible: "Injected route remains inside the original shell"
+- takeScreenshot: final

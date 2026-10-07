@@ -1,0 +1,59 @@
+{
+  "One.openShare": {
+    "api": "One.openShare",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "void result; runner must prove sheet presentation and dismissal"
+  },
+  "One.openShare.nativeActivity": {
+    "api": "One.openShare.nativeActivity",
+    "status": "observed",
+    "value": {
+      "action": "dismissedAction",
+      "activityType": null
+    },
+    "scope": {
+      "$undefined": true
+    }
+  },
+  "One.openURL": {
+    "api": "One.openURL",
+    "status": "observed",
+    "value": true,
+    "scope": "runner must prove browser destination and return"
+  },
+  "One.openURL.appStates": {
+    "api": "One.openURL.appStates",
+    "status": "observed",
+    "value": {
+      "states": [
+        "inactive",
+        "background",
+        "active"
+      ]
+    },
+    "scope": "runner must prove system destination and return"
+  },
+  "One.openSettings": {
+    "api": "One.openSettings",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "runner must prove settings destination and return"
+  },
+  "One.openSettings.appStates": {
+    "api": "One.openSettings.appStates",
+    "status": "observed",
+    "value": {
+      "states": [
+        "inactive",
+        "background",
+        "active"
+      ]
+    },
+    "scope": "runner must prove system destination and return"
+  }
+}

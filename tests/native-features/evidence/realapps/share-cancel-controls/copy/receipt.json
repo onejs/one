@@ -1,0 +1,12 @@
+{
+  "label": "RAN",
+  "platform": "ios",
+  "device": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "appId": "com.natew.oneexample",
+  "mode": "external",
+  "apis": [
+    "One.openShare"
+  ],
+  "shareAction": "copy",
+  "text": "Hello world, from One"
+}

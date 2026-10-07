@@ -1,0 +1,24 @@
+{
+  "sourceCommit": "643bb9504f42b74ac910c40157f3e9f2dc31fc48",
+  "workingDiffSHA256": "3c3a43ae5f4a82043d4e428485ca3ebd3f1ac19cf0939c9226ee0cb983a3a298",
+  "device": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "deviceName": "iPhone 17 Pro",
+  "runtime": "iOS 27.0",
+  "appId": "com.natew.oneexample",
+  "nativeExecutableSHA256": "318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e",
+  "nativeBuildOrigin": "pro-64: simulator 0FC55879-D544-420F-8BBD-521C9268E14A installed OneBasic.app, reused without rebuild",
+  "runtimeSource": "packages/one/src/platform/open/index.native.ts",
+  "runtimeSourceSHA256": "19b69125f9cec99e5e694b7cdee78429c3d356bcf042039920a286f5edc885e5",
+  "runtimeOwningFile": "packages/one/dist/esm/platform/open/index.native.js",
+  "runtimeOwningFileSHA256": "8168a732b4b581590a09aeb73abfb39a198a114250b6cb1228a3c97e1568b5cc",
+  "bundleSHA256": "111bda256a14b1b9d4093aea8193dc2b977ee5ee086b8f27303c3a7039306431",
+  "bundleBytes": 8686967,
+  "bundleURL": "http://localhost:8097/index.bundle?platform=ios&dev=true",
+  "fixtureSHA256": "3c24a9a3ff4316bf8e24c69c23460e0f4024647d0625d96210b0d4b0c4de6275",
+  "runnerSHA256": "2440f42debd44b94a130c625cc63dc902a0cbfd96bba05a46bfa8a50e805073a",
+  "apis": [
+    "One.openShare"
+  ],
+  "shareAction": "copy",
+  "stub": null
+}

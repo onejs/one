@@ -1,0 +1,8 @@
+{
+  "One.openURL": {
+    "api": "One.openURL",
+    "status": "observed",
+    "value": true,
+    "scope": "runner must prove browser destination and return"
+  }
+}
