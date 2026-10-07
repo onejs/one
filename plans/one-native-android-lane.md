@@ -178,6 +178,12 @@ configuration option is added. RAN: the generated manifest and forwarder
 source are byte-idempotent across two runs. The stronger runtime assertions
 are unchanged; rebuilt Android runtime acceptance is pending.
 
+RAN: `w-702d` stops before runtime at Kotlin compilation: the alias helper's
+parameter is Android Context, which has no currentActivity property. The
+revised host lookup uses the existing Nitro React context, matching the
+class's currentActivity helper. No emulator or Metro was started. The failed
+compiler log is preserved; a cached native target rebuild is pending.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

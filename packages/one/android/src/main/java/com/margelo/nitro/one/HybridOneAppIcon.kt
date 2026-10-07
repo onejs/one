@@ -165,7 +165,7 @@ class HybridOneAppIcon : HybridOneAppIconSpec(), LifecycleEventListener {
                     .setPackage(context.packageName),
                 PackageManager.GET_DISABLED_COMPONENTS
             ).map { it.activityInfo.name }.toSet()
-            val hostClass = context.currentActivity?.javaClass?.name
+            val hostClass = NitroModules.applicationContext?.currentActivity?.javaClass?.name
             info?.activities?.filter {
                 it.targetActivity != null && it.targetActivity != hostClass && it.name in launchers
             } ?: emptyList()
