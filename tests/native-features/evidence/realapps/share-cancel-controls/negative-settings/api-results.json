@@ -1,0 +1,10 @@
+{
+  "One.openSettings": {
+    "api": "One.openSettings",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "runner must prove settings destination and return"
+  }
+}

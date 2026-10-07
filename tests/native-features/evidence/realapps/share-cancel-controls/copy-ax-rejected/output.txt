@@ -1,0 +1,19 @@
+335 |         label: 'RAN', api: 'One.iOS.ArrangementView',
+336 |         status: 'unavailable', minimumIOS: '27.1', actual: result,
+337 |         scope: 'native platform guard exercised; 27.1 rendering remains an open gap',
+338 |       }, null, 2) + '\n')
+339 |     } else if (failed.length)
+340 |       throw new Error(`API assertions failed: ${failed.join(', ')}; see api-results.json`)
+                      ^
+error: API assertions failed: One.DocumentPicker; see api-results.json
+      at /Users/n8/.worktrees/one-share-cancel/tests/native-features/scripts/realapps-native-ui.ts:340:17
+
+Bun v1.4.2 (macOS arm64)
+. COMPLETED
+Assert that "Copy" is visible... COMPLETED
+Take screenshot system-share... COMPLETED
+Tap on "Copy"... COMPLETED
+Assert that "Copy" is not visible... COMPLETED
+Assert that "Open share for runner cancel" is visible... COMPLETED
+Assert that "Injected route remains inside the original shell" is visible... COMPLETED
+Take screenshot final... COMPLETED

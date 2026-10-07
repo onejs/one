@@ -1,0 +1,11 @@
+--- source-fixture
++++ resolve-only-fixture
+@@ -490,7 +490,7 @@
+           void run(
+             'One.openSettings',
+             async () => {
+-              const result = await One.openSettings()
++              const result = await Promise.resolve()
+               assert(result === undefined, 'openSettings must resolve void', result)
+               return result
+             },

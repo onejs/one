@@ -1,0 +1,33 @@
+{
+  "One.openShare": {
+    "api": "One.openShare",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "void result; runner must prove sheet presentation and dismissal"
+  },
+  "One.DocumentPicker": {
+    "api": "One.DocumentPicker",
+    "status": "failed",
+    "error": {
+      "name": "Error",
+      "message": "DocumentPicker.getDocument: found no view controller to present from",
+      "code": "E_DOCUMENT_PICKER_FAILED",
+      "actual": {
+        "$undefined": true
+      }
+    }
+  },
+  "One.openShare.nativeActivity": {
+    "api": "One.openShare.nativeActivity",
+    "status": "observed",
+    "value": {
+      "action": "dismissedAction",
+      "activityType": null
+    },
+    "scope": {
+      "$undefined": true
+    }
+  }
+}

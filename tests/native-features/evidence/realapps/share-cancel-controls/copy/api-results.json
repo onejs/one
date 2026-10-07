@@ -1,0 +1,21 @@
+{
+  "One.openShare": {
+    "api": "One.openShare",
+    "status": "observed",
+    "value": {
+      "$undefined": true
+    },
+    "scope": "void result; runner must prove sheet presentation and dismissal"
+  },
+  "One.openShare.nativeActivity": {
+    "api": "One.openShare.nativeActivity",
+    "status": "observed",
+    "value": {
+      "action": "sharedAction",
+      "activityType": "com.apple.UIKit.activity.CopyToPasteboard"
+    },
+    "scope": {
+      "$undefined": true
+    }
+  }
+}

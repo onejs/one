@@ -1,0 +1,20 @@
+[
+  "bun",
+  "/Users/n8/.worktrees/one-share-cancel/tests/native-features/scripts/realapps-native-ui.ts",
+  "--platform",
+  "ios",
+  "--device",
+  "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "--package-root",
+  "/Users/n8/.worktrees/one-share-cancel/examples/one-basic",
+  "--text",
+  "Hello world, from One",
+  "--mode",
+  "external",
+  "--apis",
+  "One.openSettings",
+  "--share-action",
+  "copy",
+  "--out",
+  "/tmp/p67471-evidence/negative-settings"
+]
