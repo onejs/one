@@ -23,7 +23,7 @@ TESTED: the first unit restores fresh-install Android debug-host startup and pas
 
 RAN: 31 Compose contract tests and 127 native documentation tests pass. Beast `w-2748` builds the 14-package One dependency graph from `cf508a1eb` in 3m46.889s. Android prebuild and arm64 `:app:assembleDebug` pass; `w-8e93` executes 370 Gradle tasks in 10m31s. `bun release --into ~/contrast --skip-build` installs 17 local package entries using those restored outputs. Native APK SHA256: `21547ef2b7da9f235d20569c05a70e9226a1574153bb9705ba26a791e275574c`. Runtime runner SHA256: `4b7f38dcf6d2390c1cc3db8de3d5380d91bd356e07b8b6ccfefe3b1ff7d528cb`. Picker fixture SHA256: `1fee3cf6edf6d4bcff696766c2a76f9cfd0c78b5209302f24f35fdc42502b8d4`. The intervening beta widget change is confined to iOS configuration and its own fixture; Android implementation and picker source are unchanged.
 
-Evidence: [committed proof](../tests/native-features/proofs/android-debug-network/README.md). Full build logs, APK, failed startup and all 15 PNG/XML checkpoints remain in primary `tests/native-features/evidence/android-restart-p66065/`. Resource admission expiry and a prohibited SSH forward produced no behavior verdict; the successful proof serves Metro on the emulator's own Mac. Quality-90 WebP captures retain native 1080x2400 pixels and were inspected and shared with Nate. RAN: pro-64 adb lists no devices after cleanup, the owned emulator PID is absent and Metro8097 has no listener. Peach was notified that the AVD is released.
+Evidence: committed proof. Full build logs, APK, failed startup and all 15 PNG/XML checkpoints remain in primary `tests/native-features/evidence/android-restart-p66065/`. Resource admission expiry and a prohibited SSH forward produced no behavior verdict; the successful proof serves Metro on the emulator's own Mac. Quality-90 WebP captures retain native 1080x2400 pixels and were inspected and shared with Nate. RAN: pro-64 adb lists no devices after cleanup, the owned emulator PID is absent and Metro8097 has no listener. Peach was notified that the AVD is released.
 
 Peach integration request: keep source-pinned RN/Expo UI fixtures, native host sizing/lifecycle, IME receiving-window ownership, predictive back and inset semantics explicit. Runnable One entry: `cd tests/native-features && bun run dev --port 8097`, then `adb -s <serial> reverse tcp:8081 tcp:8097` and `bun scripts/one-native-conformance.android.ts --device-id <serial> --package-id dev.vxrn.nativefeatures.tests --metro-port 8097 --suite compose-pickers --artifact-dir <output>`. Build with `bun run prebuild:native --platform android` and `cd android && ./gradlew :app:assembleDebug -PreactNativeArchitectures=arm64-v8a`; install that APK before the runtime command. Oracle: existing `sootsim_pixel_8_android_17_api_37_r06`. This acceptance covers One's picker contract; paired Expo pixel fidelity and the remaining Android API proofs are open.
 
@@ -36,7 +36,7 @@ covering controlled Checkbox rejection, RadioButton selection, cards,
 divider geometry, FilterChip rejection/acceptance/disabled controls,
 AssistChip/InputChip/SuggestionChip events, disabled chips, Badge geometry
 and Home navigation between screens. The historical chip tap failure did
-not recur in this run. [Proof and source identity](../tests/native-features/proofs/android-compose/README.md)
+not recur in this run. Proof and source identity
 preserve the exact passing setup, output and captures. The setup requires a
 complete successful Android bundle response before app startup; runner
 timeouts and behavior assertions are unchanged. All full-resolution
@@ -106,7 +106,7 @@ Full repaired system acceptance, including Print, is pending.
 RAN: `w-7c07` passes exact clipboard content, system Copy completion without
 an activity name, file cancellation and all Share error controls. The saved
 Print checkpoints also pass the focused, rendered PDF precondition and
-cancellation/busy/URI/file/PDF/argument controls. [Proof and source receipt](../tests/native-features/proofs/android-share-print/README.md)
+cancellation/busy/URI/file/PDF/argument controls. Proof and source receipt
 retain XML, status records and native-density quality-90 WebPs inspected
 and shared with Nate. These fixture and runner repairs are validated;
 native implementations and APK bytes remain unchanged. The outer wait lost
@@ -235,7 +235,7 @@ RAN: `w-c4c2` passes all eight focused AppIcon checkpoints on Pixel8/API37.
 Switching preserves PID3695 and app focus, cold relaunch preserves support
 and TestAlternate, restoring Primary preserves the new PID4635 and focus,
 and invalid input preserves Primary while rejecting E_APP_ICON_INPUT.
-[Committed proof](../tests/native-features/proofs/android-app-icon/README.md)
+Committed proof
 retains exact source identities, launcher/process receipts, XML and
 native-density quality-90 WebPs inspected at original resolution. The APK
 SHA256 is `39ff9039bb53542fa89c168cee4ac5cc4fce3929f864b5b9aa0dec14a61952bb`.
@@ -904,7 +904,7 @@ Android target compiles in 18s (39 executed tasks, 331 up to date).
 APK SHA256: `652f08da010fc553c4ed1a48874e54aa3af4d6f6e03a8581dfcbc92be0017a5d`.
 The local 17-entry release into Contrast installs identical native source;
 unchanged JS sources reuse the verified current-beta build outputs.
-[Committed proof](../tests/native-features/proofs/android-share-callback/README.md)
+Committed proof
 includes the failing callback order, source identities, passing XML/status
 records and quality-90 native-density captures inspected and shared with
 Nate. Native source is restored after the diagnostic probe; the final
@@ -981,7 +981,7 @@ RAN: `w-3f59` passes all 27 focused Location checks at `d9f60f49a` on
 the source-pinned Pixel 8/API37 r06 fixture. The exact denied and granted
 background coordinates, foreground-service identity, visible drawer title,
 stop cleanup, permission-revocation kill record, changed PID and all three
-denied API paths pass. [Preserved proof](../tests/native-features/proofs/android-location/README.md)
+denied API paths pass. Preserved proof
 contains source/APK identities, every hierarchy/status receipt, service and
 notification dumps, run command and quality-90 native-pixel captures.
 The encoded captures and detail crops were inspected and shared with Nate.
@@ -1003,7 +1003,7 @@ checkpoints on source `f29ae4b7a` and the verified source-matched APK.
 Filesystem, Device, KeepAwake, orientation, Share, Print, QuickActions,
 AppIcon, Location, MapServices, the unenrolled LocalAuthentication path and
 ScreenCapture window capture/delete/unsubscribe/resume checks pass.
-[Final system proof](../tests/native-features/proofs/android-system-final/README.md)
+Final system proof
 preserves the pinned run command, source/APK hashes, all 79 hierarchy/status
 records and inspected quality-90 native-pixel captures. Window capture
 reports a real 1080x2400 PNG with 123543 bytes. This run does not prove
