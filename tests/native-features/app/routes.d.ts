@@ -149,7 +149,9 @@ declare module 'one' {
         | `/one-native-view-snapshot`
         | `/one-native-view-that-fits`
         | `/one-native-web-photos`
+        | `/one-native-widgets`
         | `/one-ui-pager`
+        | `/one-ui-text-input`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`

@@ -649,6 +649,11 @@ const testScreens = [
     label: 'One Native App Intents',
     testID: 'nav-one-native-app-intents',
   },
+  {
+    href: '/one-native-widgets',
+    label: 'One Native Widgets',
+    testID: 'nav-one-native-widgets',
+  },
 ] as const
 
 export default function HomeScreen() {

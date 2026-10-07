@@ -212,6 +212,12 @@ export default defineConfig({
           },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
+            widgets: {
+              appGroup: 'group.dev.vxrn.native.tests',
+              kind: 'NativeFeatureTestsWidget',
+              displayName: 'Native Feature Tests',
+              description: 'Widget content written by the native feature fixtures.',
+            },
             backgroundTasks: {
               refresh: ['dev.vxrn.native.tests.refresh'],
               processing: ['dev.vxrn.native.tests.processing'],
