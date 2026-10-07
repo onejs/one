@@ -133,6 +133,7 @@ const suites = [
   'pager',
   'ui-text-input',
   'ui-image',
+  'ui-icon',
   'gpu',
   'updates',
 ] as const
@@ -780,6 +781,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   portal: (nodes: Node[]) => Boolean(id(nodes, 'portal-toggle-host')),
   pager: (nodes: Node[]) => Boolean(id(nodes, 'one-ui-pager-root')),
   'ui-text-input': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-text-input-field')),
+  'ui-icon': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-icon-invalid')),
   'ui-image': (nodes: Node[]) => Boolean(id(nodes, 'one-native-image-switch')),
   gpu: gpuLoaded,
   updates: updatesLoaded,
@@ -892,6 +894,7 @@ const suiteHome: Record<Suite, string> = {
   pager: 'nav-one-ui-pager',
   'ui-text-input': 'nav-one-ui-text-input',
   'ui-image': 'nav-one-native-image',
+  'ui-icon': 'nav-one-ui-icon',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
   updates: 'nav-one-native-updates',
@@ -6845,6 +6848,104 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       badge(n, 'context:1') && size(n, 'portal-other', 220, 90) && cornered(n, 'portal-other') &&
       !within(frame(n, 'portal-badge'), frame(n, 'portal-host')))
     screenshot('portal-switched.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'ui-icon') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-ui-icon')
+    const sizes = {
+      'Icon default': [24, 24],
+      'Icon font': [36, 36],
+      'Icon frame': [48, 32],
+      'Icon style': [44, 28],
+    }
+    await wait('icon dimensions survive native measurement', (nodes) =>
+      Object.entries(sizes).every(([label, [width, height]]) => {
+        const node = nodes.find((node) => node.AXLabel === label)
+        return node?.frame?.width === width && node.frame.height === height
+      })
+    )
+    await wait(
+      'unlabeled icon is decorative',
+      (nodes) =>
+        !nodes.some(
+          (node) => node.AXUniqueId === 'icon-decoration'
+        )
+    )
+    const nodes = await wait('color subjects retain their frame', (nodes) =>
+      ['Icon danger', 'Reference danger', 'Icon explicit'].every((label) =>
+        nodes.some(
+          (node) =>
+            node.AXLabel === label &&
+            node.frame?.width === 40 &&
+            node.frame.height === 40
+        )
+      )
+    )
+    const capture = screenshot('ui-icon.png', nodes)
+    const png = readPng(capture)
+    const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame?.width
+    if (!viewportWidth) throw new Error('Icon capture has no viewport width')
+    const crop = (label: string) => {
+      const frame = nodes.find(
+        (node) => node.AXLabel === label
+      )?.frame
+      if (!frame) throw new Error(`Icon ${label} has no frame`)
+      return extractCrop(png, { ...frame, viewportWidth })
+    }
+    // an empty glyph with intact accessibility must fail independently of layout.
+    const dark = (r: number, g: number, b: number) => r < 100 && g < 100 && b < 100
+    const red = (r: number, g: number, b: number) => r > 180 && g < 100 && b < 120
+    const green = (r: number, g: number, b: number) =>
+      Math.abs(r - 18) <= 3 && Math.abs(g - 184) <= 3 && Math.abs(b - 90) <= 3
+    const ratio = (label: string, match: typeof dark) => {
+      const image = crop(label)
+      return countMatchingPixels(image, match) / (image.width * image.height)
+    }
+    const decoration = id(nodes, 'icon-decoration-frame')?.frame
+    if (!decoration || decoration.width !== 24 || decoration.height !== 24)
+      throw new Error('Decorative icon has no mounted 24x24 frame')
+    const decorationCrop = extractCrop(png, { ...decoration, viewportWidth })
+    const pixels = {
+      decoration: countMatchingPixels(decorationCrop, dark) / (decorationCrop.width * decorationCrop.height),
+      default: ratio('Icon default', dark),
+      danger: ratio('Icon danger', red),
+      reference: ratio('Reference danger', red),
+      explicit: ratio('Icon explicit', green),
+    }
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'icon-pixels.json'),
+      JSON.stringify(pixels, null, 2)
+    )
+    for (const [name, accepted] of [
+      ['SF Symbol has visible ink', pixels.default > 0.1],
+      ['decorative SF Symbol remains visible', pixels.decoration > 0.1],
+      [
+        'semantic danger matches native reference',
+        pixels.danger > 0.1 &&
+          pixels.reference > 0.1 &&
+          Math.abs(pixels.danger - pixels.reference) < 0.03,
+      ],
+      ['explicit color reaches the SF Symbol', pixels.explicit > 0.1],
+    ] as const) {
+      if (!accepted) throw new Error(`${name} failed: ${JSON.stringify(pixels)}`)
+      checks.push({ name, durationMs: 0 })
+      console.log(`PASS ${name}`)
+    }
+    tap({ id: 'one-ui-icon-invalid' })
+    await wait('invalid platform element rejects with the public contract', (nodes) =>
+      labels(nodes).includes(
+        'Rejected: One.UI.Icon icons.ios must be a One.iOS.Image element'
+      )
+    )
+    screenshot('ui-icon-rejection.png')
+    await wait('labeled icons retain image accessibility', (nodes) =>
+      [...Object.keys(sizes), 'Icon danger', 'Reference danger', 'Icon explicit'].every((label) =>
+        nodes.some((node) => node.AXLabel === label && node.type === 'Image')
+      )
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
