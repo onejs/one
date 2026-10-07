@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-print-report",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 34,
+  "capturedAt": "2026-10-07T11:41:17.870Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-copy-content-pro64/system/23-system-print-report.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-copy-content-pro64/system/23-system-print-report.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-copy-content-pro64/system/23-system-print-report.status.json"
+  }
+}
