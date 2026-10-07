@@ -1235,7 +1235,7 @@ async function run(config: Config) {
           'system-location-foreground-notification',
           (nodes) => joined(nodes).includes('Location updates active') && serviceIsForeground()
         )
-        adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
+        pressBack(config)
       }
       adbText(config, ['emu', 'geo', 'fix', longitude, latitude])
       const position = `background:${latitude},${longitude}`
