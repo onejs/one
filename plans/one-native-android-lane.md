@@ -2,15 +2,18 @@
 
 Owner: one-native-android (p66065). Branch `tm/one-native-android-location-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
 
-Current status: winding down at Nate's request, relayed by the coordinator
+Current status: stopped at Nate's request, relayed by the coordinator
 on 2026-10-07: "we can also slow down just a bit so i can re-plan the day
 lanes can start to wind down" and "please tell agents to stop urgent".
-Focused Location acceptance passes all 27 checks and lands as `acc949ff8`;
-the already-running full system sweep `w-1311` is the final step. No new
-capability or runtime run starts. Compose/picker, AppIcon and repaired Share
-units are already validated. Full system/media and paired Expo UI remain
-open until their own recorded verdicts; remaining work waits for Nate's
-new lane plan.
+RAN: the final existing system sweep `w-1311` passes all 79 checks at
+`f29ae4b7a`, including the 27 focused Location checks previously validated
+and landed as `acc949ff8`. Compose/picker, AppIcon and repaired Share units
+are validated. Captures are preserved and shared; the two owned worktrees
+are removed, with no owned emulator, Metro server, child or active watcher
+remaining. Media reruns, remaining focused Compose suites and paired Expo
+UI fidelity, host lifecycle, IME ownership, predictive back and insets remain
+open. They wait for Nate's new lane plan. Delivery CI stays with one-ci.
+The concise close-out is [one-native-android-handoff.md](one-native-android-handoff.md).
 
 ## Android restart, 2026-10-07
 
@@ -992,3 +995,30 @@ the emulator and Metro stop; a separate peer read shows no attached device
 or listener on 8097. The source-matched APK can serve the next full system
 sweep. Full system/media acceptance and paired Expo UI fidelity remain
 open. Delivery CI remains owned by live one-ci (s15186).
+
+## Final system verdict and wind-down, 2026-10-07
+
+RAN: the already-running `w-1311` completes cleanly with all 79 system
+checkpoints on source `f29ae4b7a` and the verified source-matched APK.
+Filesystem, Device, KeepAwake, orientation, Share, Print, QuickActions,
+AppIcon, Location, MapServices, the unenrolled LocalAuthentication path and
+ScreenCapture window capture/delete/unsubscribe/resume checks pass.
+[Final system proof](../tests/native-features/proofs/android-system-final/README.md)
+preserves the pinned run command, source/APK hashes, all 79 hierarchy/status
+records and inspected quality-90 native-pixel captures. Window capture
+reports a real 1080x2400 PNG with 123543 bytes. This run does not prove
+enrolled biometric success or actual recording/screenshot-event delivery.
+
+RAN: the owned fixture is uninstalled and emulator/Metro cleanup runs.
+A separate peer read finds no attached device or listener on 8097; owned
+emulator PID 48333 is absent. All detached waits have finished and no live
+children remain. Generated peer declarations match the pushed auxiliary
+build-output savepoint, are copied into primary evidence, and only those
+owned outputs are restored before removal. `tm worktree remove` removes
+both local and pro-64 trees; their paths are absent and worktree lists
+confirm removal. Raw APK/build/runtime receipts remain outside the trees
+under primary `tests/native-features/evidence/android-restart-p66065/`.
+No native/API work, build or new capability run starts after wind-down.
+Delivery workflows and exact canary artifact verification remain assigned
+to live one-ci (s15186). The remaining media and paired UI scope is parked
+for Nate's revised lane plan, rather than marked complete.
