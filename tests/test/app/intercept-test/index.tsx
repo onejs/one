@@ -1,4 +1,5 @@
 import { Link } from 'one'
+import { useEffect } from 'react'
 import { YStack, Text } from 'tamagui'
 
 /**
@@ -6,6 +7,12 @@ import { YStack, Text } from 'tamagui'
  * Clicking an item should trigger the intercepting route (modal).
  */
 export default function InterceptTestIndex() {
+  // asChild links render inert divs until hydration attaches handlers, so
+  // tests wait on this flag before clicking instead of racing hydration
+  useEffect(() => {
+    ;(window as any).__interceptTestHydrated = true
+  }, [])
+
   return (
     <YStack p="$4" gap="$3" testID="intercept-test-index">
       <Text fontSize="$5" fontWeight="bold">
