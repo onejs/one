@@ -235,6 +235,6 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `useSpanning` | missing | missing | fixture exists, no suite opens it |
 | `useNativeState` | state, ui-text-input | missing | iOS suite only |
 | `useFonts` | fonts | fonts |  |
-| `useNetworkState` | missing | missing | no fixture or suite |
+| `useNetworkState` | network | missing | Android suite missing; iOS workspace live state, refresh and two remounts proven |
 | `useSafeAreaInsets` | safe-area | safe-area |  |
 | `useSafeAreaFrame` | safe-area | safe-area |  |
