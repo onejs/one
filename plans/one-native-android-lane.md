@@ -120,6 +120,25 @@ host. The focused `--suite system-app-icon` reuses the same assertions as
 the full system sweep and records component state to test that cause.
 Native repair is pending; no AppIcon success is claimed.
 
+RAN: `w-a0e2` reproduces AppIcon failure from a fresh fixture install.
+The component receipt lists `MainActivity` disabled and `TestAlternate`
+enabled after the call; focus leaves the app. Its complete failure PNG is
+1,317,000 bytes, validating the larger capture bound. The first focused
+attempt `w-d0ba` reached no assertion because Android37 rejects shell
+component-state mutation. The accepted setup uses only fresh installation
+of the owned synthetic fixture, then removes it after preserving evidence.
+
+The AppIcon candidate uses one default-enabled primary launcher alias and
+disabled alternates, preserving the real host activity. It caches the APK's
+immutable alias defaults once per hybrid object, reads current overrides
+for selection, enables the next alias before disabling the previous one,
+and restores the primary alias for an unnamed selection. The Android
+manifest fixture and manual setup documentation are updated together;
+the public JS API is unchanged. Stronger runtime checks require the same
+process and app focus during each swap, persistence after a relaunch and
+an unchanged primary selection after invalid input. Native build and
+repaired emulator acceptance are pending.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

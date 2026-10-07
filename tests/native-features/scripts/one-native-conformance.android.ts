@@ -949,8 +949,14 @@ async function run(config: Config) {
         joined(nodes).includes('Current icon: primary'),
       'one-native-app-icon-alternate'
     )
+    let hostPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    const hostIsPreserved = () =>
+      adbText(config, ['shell', 'pidof', config.packageId]).trim() === hostPid &&
+      adbText(config, ['shell', 'dumpsys', 'window']).split('\n').some((line) =>
+        line.includes('mCurrentFocus=Window{') && line.includes(` ${config.packageId}/`)
+      )
     writeFileSync(path.join(config.artifactDir, 'app-icon-before.json'), JSON.stringify({
-      hostPid: adbText(config, ['shell', 'pidof', config.packageId]).trim(),
+      hostPid,
       packageState: adbText(config, ['shell', 'dumpsys', 'package', config.packageId]),
     }, null, 2))
     tapFresh(config, 'system-app-icon-alternate', {
@@ -962,9 +968,20 @@ async function run(config: Config) {
       'system-app-icon-changed',
       (nodes) =>
         joined(nodes).includes('Icon result: changed') &&
+        joined(nodes).includes('Current icon: TestAlternate') &&
+        hostIsPreserved() && launcherComponent(config).endsWith('.TestAlternate'),
+      'one-native-app-icon-primary',
+      () => ({ hostPid, launcher: launcherComponent(config) })
+    )
+    await freshLeg('app-icon-relaunch')
+    await tapNavigation(config, 'nav-one-native-app-icon')
+    await expect(
+      'system-app-icon-persisted',
+      (nodes) => joined(nodes).includes('Supported: true') &&
         joined(nodes).includes('Current icon: TestAlternate'),
       'one-native-app-icon-primary'
     )
+    hostPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
     tapFresh(config, 'system-app-icon-primary', {
       id: 'one-native-app-icon-primary',
       role: 'button',
@@ -974,8 +991,10 @@ async function run(config: Config) {
       'system-app-icon-restored',
       (nodes) =>
         joined(nodes).includes('Icon result: changed') &&
-        joined(nodes).includes('Current icon: primary'),
-      'one-native-app-icon-invalid'
+        joined(nodes).includes('Current icon: primary') &&
+        hostIsPreserved() && launcherComponent(config).endsWith('.Primary'),
+      'one-native-app-icon-invalid',
+      () => ({ hostPid, launcher: launcherComponent(config) })
     )
     tapFresh(config, 'system-app-icon-invalid', {
       id: 'one-native-app-icon-invalid',
@@ -984,7 +1003,9 @@ async function run(config: Config) {
     })
     await expect(
       'system-app-icon-invalid',
-      (nodes) => joined(nodes).includes('invalid:E_APP_ICON_INPUT'),
+      (nodes) => joined(nodes).includes('invalid:E_APP_ICON_INPUT') &&
+        joined(nodes).includes('Current icon: primary') && hostIsPreserved() &&
+        launcherComponent(config).endsWith('.Primary'),
       'one-native-app-icon-invalid'
     )
   }

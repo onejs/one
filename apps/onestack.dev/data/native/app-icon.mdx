@@ -1,9 +1,9 @@
 ---
 title: App Icon
-description: Let people choose a bundled alternate iOS Home Screen icon
+description: Let people choose a bundled alternate app icon
 ---
 
-`One.AppIcon` reads and changes the icon iOS displays for your app. The
+`One.AppIcon` reads and changes the launcher icon for your app. The
 icon images must be bundled into the binary before calling `setIcon`.
 
 With One prebuild, configure a primary icon and named alternates in
@@ -50,7 +50,46 @@ returns without another alert. An unknown name rejects with
 `E_APP_ICON_INPUT`; unavailable icon switching, an inactive app, concurrent
 changes, and system failures reject with `E_APP_ICON_UNAVAILABLE`,
 `E_APP_ICON_INACTIVE`, `E_APP_ICON_BUSY`, and `E_APP_ICON_CHANGE` respectively.
-Alternate icons are implemented on iOS and Android. On Android the icon set is the app manifest's manually supplied `activity-alias` entries: the icon name is the alias component's simple name, `isSupported()` is true only when at least one alias exists, and `getCurrentName()` returns `undefined` for the primary icon. Without aliases `isSupported()` resolves `false`, `getCurrentName()` resolves an empty string, and `setIcon()` does nothing on Android and web.
+Alternate icons are implemented on iOS and Android. On Android, declare
+launcher `activity-alias` entries in your app manifest. Keep the real host
+activity enabled and move its MAIN/LAUNCHER intent filter to the primary
+alias. Exactly one launcher alias defaults to `android:enabled="true"`;
+each alternate defaults to `false`. For example, after the host activity:
+
+```xml
+<activity-alias
+  android:name=".Primary"
+  android:targetActivity=".MainActivity"
+  android:enabled="true"
+  android:exported="true"
+  android:icon="@mipmap/ic_launcher">
+  <intent-filter>
+    <action android:name="android.intent.action.MAIN" />
+    <category android:name="android.intent.category.LAUNCHER" />
+  </intent-filter>
+</activity-alias>
+<activity-alias
+  android:name=".Blue"
+  android:targetActivity=".MainActivity"
+  android:enabled="false"
+  android:exported="true"
+  android:icon="@mipmap/ic_launcher_blue">
+  <intent-filter>
+    <action android:name="android.intent.action.MAIN" />
+    <category android:name="android.intent.category.LAUNCHER" />
+  </intent-filter>
+</activity-alias>
+```
+
+Pass the alternate alias's simple name, such as `Blue`, to `setIcon`.
+Passing no name restores the manifest's primary alias. One switches only
+launcher aliases, preserving the running host activity. `isSupported()`
+requires the primary alias and at least one alternate; `getCurrentName()`
+returns `undefined` for the primary icon. Without this alias configuration,
+Android reports unsupported and restoring the primary icon rejects with
+`E_APP_ICON_UNAVAILABLE`. Rebuild after changing the manifest or resources.
+On web, support is false, the current name is empty, and changing it does
+nothing.
 
 For an Expo prebuild, add the icon sets to the Xcode asset catalog and set
 Xcode's Alternate App Icon Sets build setting; the runtime API uses the same
