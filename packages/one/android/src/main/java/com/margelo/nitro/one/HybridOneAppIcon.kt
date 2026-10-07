@@ -12,7 +12,7 @@ import com.facebook.react.bridge.LifecycleEventListener
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
 
-// launcher aliases keep the real host activity enabled. exactly one alias
+// launcher aliases forward to the permanent host. exactly one alias
 // defaults enabled in the manifest (primary); alternates default disabled.
 // public alternate names are the aliases' simple component names.
 class HybridOneAppIcon : HybridOneAppIconSpec(), LifecycleEventListener {
@@ -165,7 +165,10 @@ class HybridOneAppIcon : HybridOneAppIconSpec(), LifecycleEventListener {
                     .setPackage(context.packageName),
                 PackageManager.GET_DISABLED_COMPONENTS
             ).map { it.activityInfo.name }.toSet()
-            info?.activities?.filter { it.targetActivity != null && it.name in launchers } ?: emptyList()
+            val hostClass = context.currentActivity?.javaClass?.name
+            info?.activities?.filter {
+                it.targetActivity != null && it.targetActivity != hostClass && it.name in launchers
+            } ?: emptyList()
         } catch (_: Exception) {
             emptyList()
         }

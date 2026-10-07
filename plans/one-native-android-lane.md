@@ -160,6 +160,24 @@ watcher now accepts an exact script and suite; a controlled receipt probe
 accepts the AppIcon success marker and rejects it for the system suite.
 One detached process-exit wait will recover the saved runtime verdict.
 
+RAN: `w-164f` recovers the AppIcon failure and the final cleanup receipt.
+MainActivity remains enabled, but the Android event log finishes the running
+`.Primary` activity with reason `disabled-package` when the alias switches.
+The first candidate therefore does not preserve the running window. The
+owned emulator and Metro are stopped and the peer tree is clean. This
+corrects the earlier inference that preserving the target alone suffices.
+[Android's activity cleanup](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/services/core/java/com/android/server/wm/RootWindowContainer.java)
+matches the running component, including its alias.
+
+The revised fixture and documentation route launcher aliases through a
+small app-owned Activity into the permanent MainActivity. It finishes
+before React Native mounts, carries the launch intent into the host, and
+uses the existing host for warm launches. One's discovery excludes aliases
+that directly target its running host. No public JS signature or prebuild
+configuration option is added. RAN: the generated manifest and forwarder
+source are byte-idempotent across two runs. The stronger runtime assertions
+are unchanged; rebuilt Android runtime acceptance is pending.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

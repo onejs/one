@@ -53,13 +53,40 @@ changes, and system failures reject with `E_APP_ICON_UNAVAILABLE`,
 Alternate icons are implemented on iOS and Android. On Android, declare
 launcher `activity-alias` entries in your app manifest. Keep the real host
 activity enabled and move its MAIN/LAUNCHER intent filter to the primary
-alias. Exactly one launcher alias defaults to `android:enabled="true"`;
-each alternate defaults to `false`. For example, after the host activity:
+alias. Each alias targets a small launcher activity that forwards into the
+permanent host and finishes before React Native renders. Android finishes
+running activities launched through an alias when that alias is disabled,
+so aliases must not target the React Native host directly.
+
+Add this activity in your app's Kotlin package:
+
+```kotlin
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+
+class AppIconLauncherActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        startActivity(Intent(intent).setClass(this, MainActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+        finish()
+    }
+}
+```
+
+Exactly one launcher alias defaults to `android:enabled="true"`; each
+alternate defaults to `false`. Declare the launcher activity before its
+aliases, after the host activity:
 
 ```xml
+<activity
+  android:name=".AppIconLauncherActivity"
+  android:exported="false"
+  android:theme="@android:style/Theme.NoDisplay" />
 <activity-alias
   android:name=".Primary"
-  android:targetActivity=".MainActivity"
+  android:targetActivity=".AppIconLauncherActivity"
   android:enabled="true"
   android:exported="true"
   android:icon="@mipmap/ic_launcher">
@@ -70,7 +97,7 @@ each alternate defaults to `false`. For example, after the host activity:
 </activity-alias>
 <activity-alias
   android:name=".Blue"
-  android:targetActivity=".MainActivity"
+  android:targetActivity=".AppIconLauncherActivity"
   android:enabled="false"
   android:exported="true"
   android:icon="@mipmap/ic_launcher_blue">
