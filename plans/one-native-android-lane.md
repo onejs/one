@@ -19,11 +19,29 @@ pro-64 and air-32 under Contrast `scripts/tmp/android-m22158/runtime-app-icon/`.
 Cleanup uninstalls the owned fixture and stops the owned emulator and
 Metro8107; saved final device and listener reads are empty. Metro8097 belongs
 to the OpenURL lane and stays untouched. Peer preparation and runtime shells
-`r65607` and `r65637` have exited. The next unit runs the existing media
-proof driver against the same native APK. Peach owner s16717 works its
-width candidate; One proof-history cleanup m22171 is pending. Rebase onto
-the rewritten `v2-beta` after cleanup; all new proof captures and logs stay
-out of git.
+`r65607` and `r65637` have exited. RAN: the media rerun passes 7 Contacts, 18 Calendar and 27 Photo checks.
+The runner now restores the chosen Metro host and Android 17 dev-network
+permission before every cleared launch. Contacts cancellation targets a new
+native picker activity instance after selection. All original API assertions
+and deadlines remain. Native Audio then crashes during record/play with
+`ForegroundServiceDidNotStartInTimeException`; the saved log identifies
+`OneAudioService` and its STOP action. INFERRED: stopping before pending
+foreground promotion causes the crash. The candidate promotes first, even
+when STOP arrives before the initial start callback. Native compile and Audio
+runtime acceptance are pending. AppIcon plus eight remaining focused Compose
+suites are running on pro-64 using the unchanged APK; their migrated debug-host
+caller still needs its verdict.
+
+Evidence remains outside One git in Contrast
+`scripts/tmp/android-m22158/runtime-media-picker-fixed/`. Cleanup removed
+Metro8107, the owned emulator and fixture. The three earlier media runs retain
+the original boot failure, picker failure and passing Contacts diagnostic.
+Peach owner s16717 works its width candidate. One proof-history rewrite is
+prepared but its force-push requires Nate; p67073 owns that final step. Rebase
+onto rewritten `v2-beta` after its tip moves from `4d946b837`. No captures or
+logs are committed. Android service promotion requirements are documented in
+[Android foreground service lifecycle](https://developer.android.com/develop/background-work/services/fgs/stop-fgs)
+and [ActiveServices](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/services/core/java/com/android/server/am/ActiveServices.java).
 
 The preceding wind-down passed 79 system checks on `f29ae4b7a`; both owned
 worktrees and all owned processes were removed. Media reruns, remaining
