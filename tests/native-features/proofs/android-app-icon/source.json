@@ -1,0 +1,19 @@
+{
+  "runtimeSourceCommit": "2cd7e73182981f38161c5c2cdbf473ccdcc30756",
+  "apkSourceCommit": "4e9a7c1eaaef3ab1dd570274c8727556f2b2a294",
+  "apkSHA256": "39ff9039bb53542fa89c168cee4ac5cc4fce3929f864b5b9aa0dec14a61952bb",
+  "job": "w-c4c2",
+  "device": "Pixel 8 Android17/API37 r06, 1080x2400 density420",
+  "suite": "system-app-icon",
+  "passedChecks": 8,
+  "sourceSHA256": {
+    "packages/one/android/src/main/java/com/margelo/nitro/one/HybridOneAppIcon.kt": "7bc598ce052118387cdd0203785b54852ecd48cc8606561256878700c8906faa",
+    "tests/native-features/scripts/one-native-conformance.android.ts": "542845c3a08ce9364412f3cf5fb1315a2587058e00de841c353bd79e330814b1",
+    "tests/native-features/scripts/prepare-android-app-icon-alias.ts": "2f5e4c93120c9ab2f3facfa0c971cf2f3107da3c98aa075ab51ebb252f2eb8db",
+    "tests/native-features/fixtures/one-native-app-icon.tsx": "8a03c323847bb447be8366bd11f54fe9d34a81a01d9ef83651fa7340fecfce5a"
+  },
+  "tapHostPid": "3695",
+  "restoredHostPidAfterRelaunch": "4635",
+  "cleanup": "synthetic fixture uninstalled after receipts; owned emulator and Metro stopped; adb empty and peer worktree clean",
+  "rawEvidence": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-app-icon-visible-row-pro64"
+}

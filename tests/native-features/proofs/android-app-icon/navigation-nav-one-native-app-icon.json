@@ -1,0 +1,24 @@
+{
+  "node": {
+    "text": "",
+    "contentDescription": "One Native App Icon, →",
+    "resourceId": "nav-one-native-app-icon",
+    "className": "android.view.ViewGroup",
+    "clickable": true,
+    "enabled": true,
+    "checkable": false,
+    "checked": false,
+    "bounds": {
+      "left": 53,
+      "top": 653,
+      "right": 1028,
+      "bottom": 804
+    }
+  },
+  "viewport": {
+    "left": 0,
+    "top": 0,
+    "right": 1080,
+    "bottom": 2400
+  }
+}

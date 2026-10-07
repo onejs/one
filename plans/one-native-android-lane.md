@@ -218,6 +218,21 @@ strengthens the existing navigation precondition; runtime deadlines and
 AppIcon assertions remain unchanged. The compiled APK can be reused because
 only the runner and this status changed.
 
+RAN: `w-c4c2` passes all eight focused AppIcon checkpoints on Pixel8/API37.
+Switching preserves PID3695 and app focus, cold relaunch preserves support
+and TestAlternate, restoring Primary preserves the new PID4635 and focus,
+and invalid input preserves Primary while rejecting E_APP_ICON_INPUT.
+[Committed proof](../tests/native-features/proofs/android-app-icon/README.md)
+retains exact source identities, launcher/process receipts, XML and
+native-density quality-90 WebPs inspected at original resolution. The APK
+SHA256 is `39ff9039bb53542fa89c168cee4ac5cc4fce3929f864b5b9aa0dec14a61952bb`.
+The synthetic fixture is uninstalled after evidence, the owned emulator and
+Metro are stopped, adb has no devices and the peer tree is clean. This
+unit is validated for beta landing; broad Android API acceptance and Expo
+pixel fidelity remain open. Next: resume the existing full system suite on
+the updated beta tree. Delivery CI and canary content verification remain
+with one-ci (s15186).
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

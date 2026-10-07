@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-app-icon-home",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "capturedAt": "2026-10-07T13:22:03.003Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-app-icon-visible-row-pro64/system/02-system-app-icon-home.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-app-icon-visible-row-pro64/system/02-system-app-icon-home.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-app-icon-visible-row-pro64/system/02-system-app-icon-home.status.json"
+  }
+}
