@@ -67,10 +67,17 @@ function enforceWorkspaceVisibility(
 }
 
 function getReactNativeDefaultConfig(projectRoot: string): MetroInputConfig {
-  return enforceWorkspaceVisibility(
+  const config = enforceWorkspaceVisibility(
     getDefaultConfig(projectRoot) as MetroInputConfig,
     projectRoot
   )
+  return {
+    ...config,
+    resolver: {
+      ...config.resolver,
+      assetExts: [...new Set([...(config.resolver?.assetExts ?? []), 'glb'])],
+    },
+  }
 }
 
 function getPlatformFromBundleUrl(url: string): 'ios' | 'android' {
