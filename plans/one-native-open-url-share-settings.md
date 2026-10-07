@@ -1,8 +1,9 @@
 # One.openURL / openShare / openSettings: iOS runtime receipt
 
-Status: runtime-proven on iOS 27.0 simulator 2026-10-07. Coverage-table
-reconciliation belongs to the parent; the launch-checklist box stays unticked
-here.
+Status: handoff and return observed on iOS 27.0 simulator 2026-10-07.
+Share Copy and dismissal were exercised; share cancellation and the
+app-specific Settings page remain unproved. Coverage-table reconciliation
+belongs to the parent; the launch-checklist box stays unticked here.
 
 ## What was proven
 
@@ -32,8 +33,14 @@ here.
 - Evidence: `tests/native-features/evidence/realapps/open-url-share-settings/`
   (api-results.json, receipt.json, external.yaml, five screenshots).
 - Focused checks: fixture typecheck (`tsc -p fixtures/realapps-api-tsconfig`)
-  clean; runner bundles (`bun build --target bun`) clean; Maestro external
-  flow exits 0 with `RAN ... assertions passed`.
+  was reported clean by the worker. RAN parent rerun on `ec569a328` fails
+  TS2367 because `openURL` is declared `Promise<void>` while the native
+  assertion expects true. Reading the native value as `unknown` repairs
+  the probe typing; the same typecheck exits 0. Returning the value from
+  the probe preserves it for the next receipt instead of recording void.
+  The assertion itself is unchanged. RAN parent runner build exits 0;
+  the original worker Maestro flow records exit 0. No second native run
+  is claimed for the typing and receipt correction.
 
 ## Changes (this unit only)
 

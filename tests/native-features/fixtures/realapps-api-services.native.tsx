@@ -441,6 +441,7 @@ export default function Services() {
               // presentation and the return.
               const result = await One.openShare({ message: 'one realapps API probe' })
               assert(result === undefined, 'openShare must resolve void', result)
+              return result
             },
             'observed',
             'void result; runner must prove sheet presentation and dismissal'
@@ -459,8 +460,9 @@ export default function Services() {
             async () => {
               // native Linking resolves true on an accepted handoff; the
               // destination and return are proven by the runner.
-              const result = await One.openURL('https://onestack.dev')
+              const result: unknown = await One.openURL('https://onestack.dev')
               assert(result === true, 'openURL must resolve true', result)
+              return result
             },
             'observed',
             'runner must prove browser destination and return'
@@ -479,6 +481,7 @@ export default function Services() {
             async () => {
               const result = await One.openSettings()
               assert(result === undefined, 'openSettings must resolve void', result)
+              return result
             },
             'observed',
             'runner must prove settings destination and return'
