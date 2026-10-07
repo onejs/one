@@ -228,7 +228,9 @@ native-density quality-90 WebPs inspected at original resolution. The APK
 SHA256 is `39ff9039bb53542fa89c168cee4ac5cc4fce3929f864b5b9aa0dec14a61952bb`.
 The synthetic fixture is uninstalled after evidence, the owned emulator and
 Metro are stopped, adb has no devices and the peer tree is clean. This
-unit is validated for beta landing; broad Android API acceptance and Expo
+unit landed on `v2-beta` as `28097e9d396ac83dc168ba3172d05ccaedad7aed`,
+preserving incoming Crypto work. Four inspected captures were shared with
+Nate. Broad Android API acceptance and Expo
 pixel fidelity remain open. Next: resume the existing full system suite on
 the updated beta tree. Delivery CI and canary content verification remain
 with one-ci (s15186).
