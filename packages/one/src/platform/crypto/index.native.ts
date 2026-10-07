@@ -1,3 +1,4 @@
+import { installDigestPolyfill } from './digest'
 import { NitroModules } from 'react-native-nitro-modules'
 import type { OneCrypto } from '../specs/OneCrypto.nitro'
 import { installCryptoPolyfill, type RandomSource } from './random'
@@ -20,7 +21,7 @@ const nativeSource: RandomSource = {
   randomUUID: () => native().randomUUID(),
 }
 
-// installs globalThis.crypto.getRandomValues + randomUUID when the runtime
+// installs globalThis.crypto secure random and digest when the runtime
 // lacks them. no-ops when the binary has no OneCrypto: installing a throwing
 // source would only replace a clear missing-crypto error with a confusing
 // one at the call site.
@@ -29,4 +30,7 @@ export function installCrypto(): void {
     return
   }
   installCryptoPolyfill(nativeSource)
+  installDigestPolyfill((algorithm, buffer, offset, length) =>
+    native().digest(algorithm, buffer, offset, length)
+  )
 }
