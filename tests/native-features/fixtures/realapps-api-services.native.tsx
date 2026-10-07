@@ -436,9 +436,14 @@ export default function Services() {
         onPress={() =>
           void run(
             'One.openShare',
-            () => One.openShare({ message: 'one realapps API probe' }),
+            async () => {
+              // settles only after the sheet dismisses; runner proves the
+              // presentation and the return.
+              const result = await One.openShare({ message: 'one realapps API probe' })
+              assert(result === undefined, 'openShare must resolve void', result)
+            },
             'observed',
-            'void result; runner must prove sheet presentation and cancellation'
+            'void result; runner must prove sheet presentation and dismissal'
           )
         }
       >
@@ -451,7 +456,12 @@ export default function Services() {
           opened.current = 'One.openURL'
           void run(
             'One.openURL',
-            () => One.openURL('https://onestack.dev'),
+            async () => {
+              // native Linking resolves true on an accepted handoff; the
+              // destination and return are proven by the runner.
+              const result = await One.openURL('https://onestack.dev')
+              assert(result === true, 'openURL must resolve true', result)
+            },
             'observed',
             'runner must prove browser destination and return'
           )
@@ -466,7 +476,10 @@ export default function Services() {
           opened.current = 'One.openSettings'
           void run(
             'One.openSettings',
-            () => One.openSettings(),
+            async () => {
+              const result = await One.openSettings()
+              assert(result === undefined, 'openSettings must resolve void', result)
+            },
             'observed',
             'runner must prove settings destination and return'
           )

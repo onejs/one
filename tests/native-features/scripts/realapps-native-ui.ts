@@ -125,10 +125,19 @@ if (values.mode === 'home') {
   tap('realapps-open-api')
   tap('realapps-api-section-services')
   scrollTap('realapps-api-image-picker-cancel')
-  if (values.platform === 'ios') flow += '- tapOn: "Cancel"\n'
+  if (values.platform === 'ios') {
+    flow += '- tapOn: "Cancel"\n'
+    // let the sheet finish dismissing; presenting the next sheet
+    // mid-dismiss finds no view controller.
+    flow += '- extendedWaitUntil:\n    visible: "Open library for runner cancel"\n    timeout: 15000\n'
+  }
   else flow += '- back\n'
   scrollTap('realapps-api-document-picker-cancel')
-  if (values.platform === 'ios') flow += '- tapOn: "Cancel"\n'
+  if (values.platform === 'ios') {
+    // wait for the picker chrome to settle; tapping Cancel mid-animation misses it.
+    flow += '- extendedWaitUntil:\n    visible: "Recents"\n    timeout: 15000\n'
+    flow += '- tapOn: "Cancel"\n'
+  }
   else flow += '- back\n'
   scrollTap('realapps-api-browser-cancel')
   flow += '- takeScreenshot: system-browser\n'
@@ -141,15 +150,37 @@ if (values.mode === 'home') {
   flow += '- takeScreenshot: system-share\n'
   if (values.platform === 'ios') {
     visible('Copy')
-    flow += '- swipe:\n    start: 50%, 65%\n    end: 50%, 95%\n'
+    // tapping Copy completes the activity and dismisses the sheet; the
+    // swipe-down dismiss proved geometry-fragile on the iOS 27 half sheet.
+    flow += '- tapOn: "Copy"\n'
+    // dismissal returns to the app: the sheet covered it, so this fails
+    // when the tap did not dismiss it.
+    flow += '- extendedWaitUntil:\n    visible: "Open share for runner cancel"\n    timeout: 15000\n'
   }
   else flow += '- back\n'
   scrollTap('realapps-api-open-url')
+  if (values.platform === 'ios') {
+    // safari destination: no in-app text contains onestack, so this fails
+    // when Linking never left the app.
+    flow += '- extendedWaitUntil:\n    visible: ".*onestack.*"\n    timeout: 20000\n'
+  }
   flow += '- takeScreenshot: system-url\n'
   flow += '- launchApp:\n    stopApp: false\n    permissions: {}\n'
+  if (values.platform === 'ios') {
+    // return: fails when the app did not foreground again.
+    flow += '- extendedWaitUntil:\n    visible: "Open URL for runner return"\n    timeout: 20000\n'
+  }
   scrollTap('realapps-api-open-settings')
+  if (values.platform === 'ios') {
+    // settings destination: capital-S Settings matches the system app, not
+    // the in-app lowercase-settings button.
+    flow += '- extendedWaitUntil:\n    visible: ".*Settings.*"\n    timeout: 20000\n'
+  }
   flow += '- takeScreenshot: system-settings\n'
   flow += '- launchApp:\n    stopApp: false\n    permissions: {}\n'
+  if (values.platform === 'ios') {
+    flow += '- extendedWaitUntil:\n    visible: "Open settings for runner return"\n    timeout: 20000\n'
+  }
   visible('Injected route remains inside the original shell')
 } else if (values.mode === 'ui') {
   tap('realapps-open-api')
@@ -292,6 +323,18 @@ try {
       }, null, 2) + '\n')
     } else if (failed.length)
       throw new Error(`API assertions failed: ${failed.join(', ')}; see api-results.json`)
+    if (values.mode === 'external' && values.platform === 'ios') {
+      // failure controls: a stubbed openURL/openSettings that resolves
+      // without leaving the app keeps appStates at active and fails here.
+      for (const api of ['One.openURL', 'One.openSettings']) {
+        const states = (results[`${api}.appStates`] as any)?.value?.states
+        if (!Array.isArray(states) || !states.includes('background') || !states.includes('active'))
+          throw new Error(`${api} did not leave and return to the app; states: ${JSON.stringify(states)}`)
+      }
+      // the share promise only settles after the sheet dismisses.
+      if (results['One.openShare']?.status !== 'observed')
+        throw new Error('One.openShare did not settle after sheet dismissal')
+    }
   }
 } finally {
   collector?.stop(true)
