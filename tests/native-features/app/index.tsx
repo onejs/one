@@ -545,6 +545,11 @@ const testScreens = [
     testID: 'nav-one-native-apple-file',
   },
   {
+    href: '/one-native-adaptive',
+    label: 'One Native Adaptive',
+    testID: 'nav-one-native-adaptive',
+  },
+  {
     href: '/one-ui-icon',
     label: 'One UI Icon',
     testID: 'nav-one-ui-icon',
