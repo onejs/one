@@ -200,6 +200,12 @@ before-switch activity state alongside the process and component receipt.
 RAN: the revised manifest and Kotlin writer remain byte-idempotent. Native
 rebuild and the unchanged focused runtime assertions remain pending.
 
+RAN: `w-eb5a` stops before runtime because the SDK marks an app task's
+snapshot nullable. The guard now filters unavailable snapshots before
+matching the current task. A missing current snapshot remains unavailable,
+so no component state changes occur. No emulator or Metro was started;
+the failed compiler log is preserved and the native rebuild is pending.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

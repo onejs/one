@@ -163,7 +163,7 @@ class HybridOneAppIcon : HybridOneAppIconSpec(), LifecycleEventListener {
     private fun hostTaskIsPermanent(context: Context, known: List<ActivityInfo>): Boolean {
         val activity = NitroModules.applicationContext?.currentActivity ?: return false
         val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val task = manager.appTasks.map { it.taskInfo }.firstOrNull {
+        val task = manager.appTasks.mapNotNull { it.taskInfo }.firstOrNull {
             it.id == activity.taskId
         } ?: return false
         val root = task.baseIntent.component?.className ?: return false
