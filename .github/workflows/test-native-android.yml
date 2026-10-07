@@ -51,13 +51,25 @@ jobs:
       - uses: android-actions/setup-android@v4
         with:
           packages: 'platform-tools platforms;android-37.0 build-tools;37.0.0 ndk;27.1.12297006 cmake;3.22.1'
+      # caches gradle dependencies and the wrapper; pushes write it, pull requests read it.
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
       - uses: ./.github/actions/install
         with:
           install-playwright: 'false'
           workspace-focus: one
-      - name: Verify fixture prebuild and native contracts
+      # checks.yml runs the whole One suite; this job runs only the android
+      # contracts, so an unrelated web test cannot red the android build.
+      - name: Verify fixture prebuild and native Android contracts
         working-directory: packages/one
-        run: bun run test
+        run: >-
+          bun run vitest --run
+          src/nativeFixturePrebuild.test.ts src/nativeCoverage.test.ts
+          src/cli/prebuild.test.ts src/cli/runAndroid.test.ts
+          src/native/appManifest.test.ts src/platform/AndroidMenu.test.tsx
+          src/platform/nativeBarrel.test.ts tests/compose.test.ts
+          tests/syncCompose.test.tsx tests/nativeDocs.test.ts
       - name: Generate the Basic starter Android project
         working-directory: examples/one-basic
         run: bun run prebuild:native --platform android --no-install
