@@ -937,3 +937,13 @@ and service/notification removal on stop. Existing clocks are replaced
 with those conditions; original positive notification and permission
 revocation assertions remain. Native source/APK are unchanged. Repaired
 focused runtime acceptance is pending.
+
+RAN: `w-01b6` passes denied-permission background delivery with exact
+coordinates and service cleanup. The granted notification record has
+`Location updates active` and foreground flags. The drawer assertion
+times out while the saved hierarchy remains Home after the shell expand
+command. The candidate uses a top-edge swipe from the current viewport's
+left quarter and asserts System UI opens before checking the title.
+The gesture and window state are retained. The shared notification probe
+uses this one opening path; notification deadlines and title assertions
+remain unchanged. Repaired runtime, including revocation, remains pending.

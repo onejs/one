@@ -558,6 +558,15 @@ function adbType(config: Config, text: string) {
   adbText(config, ['shell', 'input', 'text', text])
 }
 
+function expandNotificationShade(config: Config) {
+  const bounds = applicationBounds(snapshot(config).nodes)
+  const x = Math.round(bounds.left + (bounds.right - bounds.left) / 4)
+  const endY = Math.round(bounds.bottom * 0.65)
+  writeFileSync(path.join(config.artifactDir, 'notification-shade-gesture.json'),
+    JSON.stringify({ bounds, from: [x, 1], to: [x, endY], durationMs: 400 }, null, 2))
+  adbText(config, ['shell', 'input', 'swipe', String(x), '1', String(x), String(endY), '400'])
+}
+
 function pressBack(config: Config) {
   adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
@@ -1217,7 +1226,11 @@ async function run(config: Config) {
       )
       retainLocationState(phase)
       if (phase === 'granted') {
-        adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+        expandNotificationShade(config)
+        writeFileSync(path.join(config.artifactDir, 'location-granted-shade-window.txt'),
+          adbText(config, ['shell', 'dumpsys', 'window']))
+        await expect('system-location-notification-shade-opened',
+          (nodes) => nodes.some((node) => node.attrs.package === 'com.android.systemui'))
         await expect(
           'system-location-foreground-notification',
           (nodes) => joined(nodes).includes('Location updates active') && serviceIsForeground()
@@ -3604,7 +3617,7 @@ async function run(config: Config) {
     )
     const tapShade = (name: string, text: string) => {
       adbText(config, ['shell', 'input', 'keyevent', '3'])
-      adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+      expandNotificationShade(config)
       const current = snapshot(config)
       const target = current.nodes.find(
         (node) => node.text === text || node.contentDescription === text
@@ -3664,7 +3677,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a suppressed notification reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -3688,7 +3701,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a nulled handler reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -3788,7 +3801,7 @@ async function run(config: Config) {
     adbText(config, ['shell', 'input', 'keyevent', '3'])
     adbText(config, ['shell', 'am', 'kill', config.packageId])
     await new Promise((resolve) => setTimeout(resolve, 17_000))
-    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    expandNotificationShade(config)
     {
       const current = snapshot(config)
       const target = current.nodes.find(
