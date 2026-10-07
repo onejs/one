@@ -1223,7 +1223,7 @@ async function run(config: Config) {
           pages[0].contentDescription === 'Page 1 of 1' &&
           exactlyOneId(nodes, 'com.android.printspooler:id/cancel_button') &&
           /mCurrentFocus=Window\{[^\n]*com\.android\.printspooler\//.test(
-            adbText(config, ['shell', 'dumpsys', 'window', 'windows'])
+            adbText(config, ['shell', 'dumpsys', 'window'])
           )
         )
       },
