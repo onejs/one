@@ -2,10 +2,15 @@
 
 Owner: one-native-android (p66065). Branch `tm/one-native-android-location-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
 
-Current status: focused Location acceptance passes all 27 checks and lands
-as `acc949ff8`; full system sweep is next using the unchanged verified APK.
-Compose/picker, AppIcon and repaired Share units are already validated.
-Full system/media and paired Expo UI acceptance remain open.
+Current status: winding down at Nate's request, relayed by the coordinator
+on 2026-10-07: "we can also slow down just a bit so i can re-plan the day
+lanes can start to wind down" and "please tell agents to stop urgent".
+Focused Location acceptance passes all 27 checks and lands as `acc949ff8`;
+the already-running full system sweep `w-1311` is the final step. No new
+capability or runtime run starts. Compose/picker, AppIcon and repaired Share
+units are already validated. Full system/media and paired Expo UI remain
+open until their own recorded verdicts; remaining work waits for Nate's
+new lane plan.
 
 ## Android restart, 2026-10-07
 
