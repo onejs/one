@@ -1,0 +1,21 @@
+{
+  "runtimeSource": "ade32d16b0f6b2b5525faa66c32a091dd5660f4d",
+  "implementationSource": "cf508a1eb82db1fc944007461c8ffa16ba0834ee",
+  "landedRunner": "9c7efefaa4834d767083da959ad16a4d104f40a9",
+  "apkSHA256": "21547ef2b7da9f235d20569c05a70e9226a1574153bb9705ba26a791e275574c",
+  "job": "w-50db",
+  "device": "Pixel 8 Android17/API37 r06, 1080x2400 density420",
+  "checks": 22,
+  "sourceSHA256": {
+    "packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt": "09df18fe80035eeb21b421b83d1468ab5df42ac186381656f06eeb3ac13fbfa3",
+    "tests/native-features/scripts/one-native-conformance.android.ts": "4b7f38dcf6d2390c1cc3db8de3d5380d91bd356e07b8b6ccfefe3b1ff7d528cb",
+    "tests/native-features/app/one-native-android-selection.tsx": "6a2195fc3abf8c43d9a6d4086e7b8003c72d00aec97c3e22e43b2c4509a81a22",
+    "tests/native-features/app/one-native-android-cards.tsx": "e7d204c14b69ffd869afd7b5d30673cc9a0a92bea02f80a6236e7f5628174764",
+    "tests/native-features/app/one-native-android-dividers.tsx": "229ca3e4f4586fcea3879b1c68683e3967bcdf3174563d588acadf3592cd4a51",
+    "tests/native-features/app/one-native-android-filter-chip.tsx": "5ed22607b1b42dd98194ef92c76efd17e40358adcb07a437e48bef151fd955ae",
+    "tests/native-features/app/one-native-android-chips.tsx": "8d3ec179e10fc95babfafff1cdb82ba813a23c1db0778e24f238a79e304b1df1",
+    "tests/native-features/app/one-native-android-badges.tsx": "45b72c9eeddff1db0f731ee91e2493aae2e897b1e3d136ae1eef36ce3727d262"
+  },
+  "preparation": "complete HTTP 200 Android bundle before app startup; unchanged runner deadlines/assertions",
+  "scriptSHA256": "f188ad2e2c31027001ecd8ee5978e952b2739b565224123a47dbdbba5a0acbf4"
+}
