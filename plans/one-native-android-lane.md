@@ -1,6 +1,6 @@
 # One native Android lane
 
-Owner: one-native-android (p66065). Branch `tm/one-native-android-system-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+Owner: one-native-android (p66065). Branch `tm/one-native-android-app-icon-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
 
 ## Android restart, 2026-10-07
 
@@ -107,6 +107,131 @@ peer's Python kqueue lacks context-manager methods. The corrected watcher
 closes the queue explicitly. A controlled `/bin/cat` child on pro-64
 delivers `NOTE_EXIT` and exits cleanly with that resource handling. The
 native runtime was untouched; its exact process wait is being re-armed.
+
+RAN: `w-b473` recovers the completed run's verdict: 35 checkpoints pass,
+including Print unavailability and Quick Actions registration, warm/cold
+delivery and clearing. AppIcon switching fails; the final Android hierarchy
+and window focus show the launcher instead of the fixture. The owned
+emulator and Metro are stopped, their PIDs are absent, and the peer worktree
+is clean. Full source and raw evidence are retained in primary
+`runtime-system-copy-content-complete`. INFERRED: disabling the aliases'
+target activity in `HybridOneAppIcon.setIcon` removes the app's foreground
+host. The focused `--suite system-app-icon` reuses the same assertions as
+the full system sweep and records component state to test that cause.
+Native repair is pending; no AppIcon success is claimed.
+
+RAN: `w-a0e2` reproduces AppIcon failure from a fresh fixture install.
+The component receipt lists `MainActivity` disabled and `TestAlternate`
+enabled after the call; focus leaves the app. Its complete failure PNG is
+1,317,000 bytes, validating the larger capture bound. The first focused
+attempt `w-d0ba` reached no assertion because Android37 rejects shell
+component-state mutation. The accepted setup uses only fresh installation
+of the owned synthetic fixture, then removes it after preserving evidence.
+
+The AppIcon candidate uses one default-enabled primary launcher alias and
+disabled alternates, preserving the real host activity. It caches the APK's
+immutable alias defaults once per hybrid object, reads current overrides
+for selection, enables the next alias before disabling the previous one,
+and restores the primary alias for an unnamed selection. The Android
+manifest fixture and manual setup documentation are updated together;
+the public JS API is unchanged. Stronger runtime checks require the same
+process and app focus during each swap, persistence after a relaunch and
+an unchanged primary selection after invalid input. Native build and
+repaired emulator acceptance are pending.
+
+RAN: beast `w-01ae` builds the package family from
+`cd5fcdcd85a5cd7cdd88c8a48d4111cc2d2e711d` and passes all 158 tests
+(31 Compose contracts, 127 native documentation checks). The delivered
+source receipt matches the local Kotlin implementation, runner and manifest
+writer hashes. `bun release --into ~/contrast --skip-build` installs the
+17 package entries from those exact outputs. Contrast's installed AppIcon
+Kotlin SHA256 is `ee47f8d6d7e127412cbe2d63a6523a9377fc8823333bdea2e6f8c9ccbc7141ef`;
+its package manifest and lockfile hashes remain unchanged. The owned pro-64
+proof script rebuilds the changed Android target, requires the manifest
+writer to be byte-idempotent, and runs the focused AppIcon suite on a fresh
+synthetic fixture. Native compilation and runtime acceptance are pending.
+
+RAN: `w-d57d` compiles the changed arm64 Android app in 6m32s,
+47 Gradle tasks executed and 323 up to date. The focused runtime mounts the
+app and opens AppIcon, then the outer peer transcript reports its cloud
+writer stopped. Its owned script remains running as PID93161 on pro-64.
+Runtime acceptance and cleanup are unconfirmed. The existing process-exit
+watcher now accepts an exact script and suite; a controlled receipt probe
+accepts the AppIcon success marker and rejects it for the system suite.
+One detached process-exit wait will recover the saved runtime verdict.
+
+RAN: `w-164f` recovers the AppIcon failure and the final cleanup receipt.
+MainActivity remains enabled, but the Android event log finishes the running
+`.Primary` activity with reason `disabled-package` when the alias switches.
+The first candidate therefore does not preserve the running window. The
+owned emulator and Metro are stopped and the peer tree is clean. This
+corrects the earlier inference that preserving the target alone suffices.
+[Android's activity cleanup](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/services/core/java/com/android/server/wm/RootWindowContainer.java)
+matches the running component, including its alias.
+
+The revised fixture and documentation route launcher aliases through a
+small app-owned Activity into the permanent MainActivity. It finishes
+before React Native mounts, carries the launch intent into the host, and
+uses the existing host for warm launches. One's discovery excludes aliases
+that directly target its running host. No public JS signature or prebuild
+configuration option is added. RAN: the generated manifest and forwarder
+source are byte-idempotent across two runs. The stronger runtime assertions
+are unchanged; rebuilt Android runtime acceptance is pending.
+
+RAN: `w-702d` stops before runtime at Kotlin compilation: the alias helper's
+parameter is Android Context, which has no currentActivity property. The
+revised host lookup uses the existing Nitro React context, matching the
+class's currentActivity helper. No emulator or Metro was started. The failed
+compiler log is preserved; a cached native target rebuild is pending.
+
+RAN: `w-9f3f` compiles in 19 seconds, but its switch still loses the
+screen. The launcher Activity finishes and MainActivity renders; the saved
+transition shows that the task's base intent remains `.Primary`. Android
+then removes that task with reason `disabled-package` despite its permanent
+top activity. [RecentTasks cleanup](https://android.googlesource.com/platform/frameworks/base/+/master/services/core/java/com/android/server/wm/RecentTasks.java)
+compares the task's base intent to disabled component names.
+
+The revised launcher has an empty task affinity, is excluded from recents,
+and starts the host with NEW_TASK. One checks the current app task before
+advertising support or switching; an alias-rooted task rejects before any
+component state changes. This adds one task snapshot per support query or
+user-initiated swap, with no render-path work. The runner now retains its
+before-switch activity state alongside the process and component receipt.
+RAN: the revised manifest and Kotlin writer remain byte-idempotent. Native
+rebuild and the unchanged focused runtime assertions remain pending.
+
+RAN: `w-eb5a` stops before runtime because the SDK marks an app task's
+snapshot nullable. The guard now filters unavailable snapshots before
+matching the current task. A missing current snapshot remains unavailable,
+so no component state changes occur. No emulator or Metro was started;
+the failed compiler log is preserved and the native rebuild is pending.
+
+RAN: `w-3304` compiles in 17 seconds and opens Home, but never mounts
+AppIcon. Its hierarchy stays on the Home list, so this run has no AppIcon
+support or switching verdict. The activity receipt shows MainActivity as
+the root of its own task. The saved input log records `input tap 541 2400`,
+outside the 1080x2400 device. The navigation helper accepted an intersecting
+row clipped at the bottom edge, then rounded its tiny visible midpoint
+outside the viewport. It now requires bounds strictly inside the viewport,
+rechecks the fresh row before tapping, and records those bounds. This
+strengthens the existing navigation precondition; runtime deadlines and
+AppIcon assertions remain unchanged. The compiled APK can be reused because
+only the runner and this status changed.
+
+RAN: `w-c4c2` passes all eight focused AppIcon checkpoints on Pixel8/API37.
+Switching preserves PID3695 and app focus, cold relaunch preserves support
+and TestAlternate, restoring Primary preserves the new PID4635 and focus,
+and invalid input preserves Primary while rejecting E_APP_ICON_INPUT.
+[Committed proof](../tests/native-features/proofs/android-app-icon/README.md)
+retains exact source identities, launcher/process receipts, XML and
+native-density quality-90 WebPs inspected at original resolution. The APK
+SHA256 is `39ff9039bb53542fa89c168cee4ac5cc4fce3929f864b5b9aa0dec14a61952bb`.
+The synthetic fixture is uninstalled after evidence, the owned emulator and
+Metro are stopped, adb has no devices and the peer tree is clean. This
+unit is validated for beta landing; broad Android API acceptance and Expo
+pixel fidelity remain open. Next: resume the existing full system suite on
+the updated beta tree. Delivery CI and canary content verification remain
+with one-ci (s15186).
 
 ## Baseline and boundary
 

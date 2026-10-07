@@ -1,0 +1,226 @@
+Activity Resolver Table:
+  Schemes:
+      nativefeatures:
+        a6f78a9 dev.vxrn.nativefeatures.tests/.MainActivity filter 3f00e2e
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "nativefeatures"
+
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        71c3dcf dev.vxrn.nativefeatures.tests/.TestAlternate filter ef5935c
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+        69df665 dev.vxrn.nativefeatures.tests/.Primary filter 972df3a
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        7c93e1 dev.vxrn.nativefeatures.tests/androidx.profileinstaller.ProfileInstallReceiver filter 8ef1f4
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        7c93e1 dev.vxrn.nativefeatures.tests/androidx.profileinstaller.ProfileInstallReceiver filter b1fb506
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      androidx.profileinstaller.action.SKIP_FILE:
+        7c93e1 dev.vxrn.nativefeatures.tests/androidx.profileinstaller.ProfileInstallReceiver filter e4c17c7
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        7c93e1 dev.vxrn.nativefeatures.tests/androidx.profileinstaller.ProfileInstallReceiver filter 14d8d1d
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+      android.intent.action.BOOT_COMPLETED:
+        6c8e7eb dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneNativeNotificationsReceiver filter 4f68948
+          Action: "android.intent.action.BOOT_COMPLETED"
+
+Domain verification status:
+
+Permissions:
+  Permission [dev.vxrn.nativefeatures.tests.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (d771a7d):
+    sourcePackage=dev.vxrn.nativefeatures.tests
+    uid=10232 gids=[] type=0 prot=signature
+    perm=PermissionInfo{6d29c39 dev.vxrn.nativefeatures.tests.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    flags=0x0
+
+Registered ContentProviders:
+  dev.vxrn.nativefeatures.tests/androidx.startup.InitializationProvider:
+    Provider{5c127e dev.vxrn.nativefeatures.tests/androidx.startup.InitializationProvider}
+  dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneNativeFileProvider:
+    Provider{4a73df dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneNativeFileProvider}
+
+ContentProvider Authorities:
+  [dev.vxrn.nativefeatures.tests.androidx-startup]:
+    Provider{5c127e dev.vxrn.nativefeatures.tests/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{f768d72 dev.vxrn.nativefeatures.tests}
+  [dev.vxrn.nativefeatures.tests.one-native.fileprovider]:
+    Provider{4a73df dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneNativeFileProvider}
+      applicationInfo=ApplicationInfo{cbf25c3 dev.vxrn.nativefeatures.tests}
+
+Key Set Manager:
+  [dev.vxrn.nativefeatures.tests]
+      Signing KeySets: 68
+
+Packages:
+  Package [dev.vxrn.nativefeatures.tests] (c7da39e):
+    appId=10232
+    pccId=-1
+    pkg=Package{ca2d88a dev.vxrn.nativefeatures.tests}
+    codePath=/data/app/~~NLMc4bqRBsXIRlRE-mryiw==/dev.vxrn.nativefeatures.tests-lco6PdXMHVzUvQ6sx4_gEw==
+    resourcePath=/data/app/~~NLMc4bqRBsXIRlRE-mryiw==/dev.vxrn.nativefeatures.tests-lco6PdXMHVzUvQ6sx4_gEw==
+    legacyNativeLibraryDir=/data/app/~~NLMc4bqRBsXIRlRE-mryiw==/dev.vxrn.nativefeatures.tests-lco6PdXMHVzUvQ6sx4_gEw==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=4242 minSdk=26 targetSdk=36
+    minExtensionVersions=[]
+    versionName=9.9.9
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    pageSizeCompat=0
+    queriesIntents=[Intent { act=android.speech.RecognitionService }, Intent { act=android.support.customtabs.action.CustomTabsService }]
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      androidx.window.extensions
+      androidx.window.sidecar
+    usesLibraryFiles:
+      /system_ext/framework/androidx.window.extensions.jar
+      /system_ext/framework/androidx.window.sidecar.jar
+    timeStamp=2026-10-07 03:21:49
+    lastUpdateTime=2026-10-07 03:21:49
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{40c6efb version:2, signatures:[51ed3f60], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    declared permissions:
+      dev.vxrn.nativefeatures.tests.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature
+    requested permissions:
+      android.permission.READ_CALENDAR
+      android.permission.POST_NOTIFICATIONS
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.ACCESS_LOCAL_NETWORK
+      android.permission.SYSTEM_ALERT_WINDOW
+      android.permission.DETECT_SCREEN_CAPTURE
+      android.permission.FOREGROUND_SERVICE
+      android.permission.READ_MEDIA_VISUAL_USER_SELECTED
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.HIGH_SAMPLING_RATE_SENSORS
+      android.permission.FOREGROUND_SERVICE_LOCATION
+      android.permission.INTERNET
+      android.permission.ACCESS_COARSE_LOCATION
+      android.permission.READ_MEDIA_IMAGES
+      android.permission.WRITE_CONTACTS
+      dev.vxrn.nativefeatures.tests.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.CAMERA
+      android.permission.WRITE_CALENDAR
+      android.permission.READ_MEDIA_VIDEO
+      android.permission.USE_FINGERPRINT
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
+      android.permission.DETECT_SCREEN_RECORDING
+      android.permission.USE_BIOMETRIC
+      android.permission.RECORD_AUDIO
+      android.permission.READ_CONTACTS
+      android.permission.ACCESS_BACKGROUND_LOCATION
+    install permissions:
+      android.permission.DETECT_SCREEN_CAPTURE: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.HIGH_SAMPLING_RATE_SENSORS: granted=true
+      android.permission.FOREGROUND_SERVICE_LOCATION: granted=true
+      android.permission.INTERNET: granted=true
+      dev.vxrn.nativefeatures.tests.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.USE_FINGERPRINT: granted=true
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK: granted=true
+      android.permission.DETECT_SCREEN_RECORDING: granted=true
+      android.permission.USE_BIOMETRIC: granted=true
+    User 0: ceDataInode=575154 deDataInode=393789 pccCeDataInode=0 pccDeDataInode=0 installed=true hidden=false suspended=false appLockEnabled=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/dev.vxrn.nativefeatures.tests
+      firstInstallTime=2026-10-07 03:21:49
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/EmulationPixel8/EmulationPixel8Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      legacy overlay paths:
+        /product/overlay/EmulationPixel8/EmulationPixel8Overlay.apk
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      gids=[3003]
+      runtime permissions:
+        android.permission.READ_CALENDAR: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.POST_NOTIFICATIONS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_FINE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_LOCAL_NETWORK: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_VISUAL_USER_SELECTED: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_IMAGES: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.WRITE_CONTACTS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.CAMERA: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.WRITE_CALENDAR: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_VIDEO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_CONTACTS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_BACKGROUND_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+      disabledComponents:
+        dev.vxrn.nativefeatures.tests.TestAlternate
+      enabledComponents:
+        dev.vxrn.nativefeatures.tests.Primary
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    com.google.android.as.oss:
+      dev.vxrn.nativefeatures.tests
+    com.google.android.as:
+      dev.vxrn.nativefeatures.tests
+    com.google.android.apps.messaging:
+      dev.vxrn.nativefeatures.tests
+    com.google.android.settings.intelligence:
+      dev.vxrn.nativefeatures.tests
+    com.google.android.glasses.companion:
+      dev.vxrn.nativefeatures.tests
+    com.google.android.apps.accessibility.voiceaccess:
+      dev.vxrn.nativefeatures.tests
+    dev.vxrn.nativefeatures.tests:
+      com.google.android.as
+      com.google.android.googlequicksearchbox
+      com.android.chrome
+  queryable via interaction:
+    User 0:
+      [com.android.settings,com.android.localtransport,com.android.emulator.multidisplay,com.android.location.fused,com.android.server.telecom,com.android.dynsystem,android,com.android.DeviceAsWebcam,com.android.inputdevices,com.android.providers.settings,com.android.keychain]:
+        dev.vxrn.nativefeatures.tests
+      com.google.android.inputmethod.latin:
+        dev.vxrn.nativefeatures.tests
+      com.google.android.gms:
+        dev.vxrn.nativefeatures.tests
+      com.google.android.providers.media.module:
+        dev.vxrn.nativefeatures.tests
+      com.google.android.permissioncontroller:
+        dev.vxrn.nativefeatures.tests
+      dev.vxrn.nativefeatures.tests:
+        com.google.android.webview
+  queryable via uses-library:
+
+Dexopt state:
+  [dev.vxrn.nativefeatures.tests]
+    path: /data/app/~~NLMc4bqRBsXIRlRE-mryiw==/dev.vxrn.nativefeatures.tests-lco6PdXMHVzUvQ6sx4_gEw==/base.apk
+      arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+        [location is error]

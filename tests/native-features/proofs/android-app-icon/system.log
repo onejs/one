@@ -1,0 +1,9 @@
+PASS app-mounted
+PASS system-app-icon-home
+PASS system-app-icon-mounted
+PASS system-app-icon-changed
+PASS system-app-icon-relaunch-home
+PASS system-app-icon-persisted
+PASS system-app-icon-restored
+PASS system-app-icon-invalid
+PASS one-native-android system-app-icon 8 checks

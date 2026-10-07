@@ -28,9 +28,11 @@ resolution and shared with Nate.
 
 The outer `w-7c07` wait lost the peer transcript connection after Share;
 the remote execution `r64549` continued. Saved artifacts confirm Print's
-passing checks. The remaining system sweep has no final verdict yet. The
-macOS process-exit watcher below waits once on that exact owned execution
-through kqueue, then reads its persisted result. It does not poll. Run on
+passing checks. The recovered run passes 35 checkpoints, including Print unavailability
+and Quick Actions registration, warm/cold delivery and clearing, then fails
+AppIcon switching. Cleanup stops the owned emulator and Metro; the peer
+worktree is clean. The macOS process-exit watcher waits once on that owned
+execution through kqueue, then reads its persisted result. It does not poll. Run on
 the emulator's Mac with the owned script PID and evidence root:
 
 ```sh
