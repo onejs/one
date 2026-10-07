@@ -58,8 +58,11 @@ display regular in both axes. On Android they come from the activity window's
 window-metrics changes.
 
 `useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
-`fullyOpen`, or `unknown`) and `angle` in radians, and `onHingeChange`
-subscribes outside React. The `get*` variants read the current value once.
+`fullyOpen`, or `unknown`) and `angle` in radians. `getSizeClass()` returns
+`Promise<SizeClass>` and `getHinge()` returns `Promise<HingeState | null>`;
+both read the current value once. `onHingeChange(callback)` subscribes outside
+React, passes the current `HingeState | null` to each change callback, and
+returns an unsubscribe function. Call it when the subscription's owner unmounts.
 The first render already has the current hinge, so a hinge-keyed layout does
 not render its no-hinge branch first. On iOS the state comes from `UIHinge`. On Android the status comes from the
 Jetpack `FoldingFeature` (`FLAT` is fullyOpen, `HALF_OPENED` is partiallyOpen)
@@ -67,6 +70,26 @@ and the angle from the hinge sensor; a hinge sensor with no folding feature in
 the current window reads closed only on an official 0° sensor reading and
 unknown otherwise, preserving the sensor angle; a device with no hinge reads
 null.
+
+On web, both size-class readers return `regular` for each axis. Both hinge
+readers return `null`, and `onHingeChange` returns an unsubscribe function
+without emitting events.
+
+<PropsTable
+  source="adaptive/types.ts#SizeClass"
+  data={[
+    { name: 'horizontal', type: 'UserInterfaceSizeClass', description: 'Horizontal window size class: compact, regular, or unspecified.' },
+    { name: 'vertical', type: 'UserInterfaceSizeClass', description: 'Vertical window size class: compact, regular, or unspecified.' },
+  ]}
+/>
+
+<PropsTable
+  source="adaptive/types.ts#HingeState"
+  data={[
+    { name: 'status', type: 'HingeStatus', description: 'Hinge posture: unknown, closed, partiallyOpen, or fullyOpen.' },
+    { name: 'angle', type: 'number', description: 'Hinge angle in radians.' },
+  ]}
+/>
 
 Safe area insets say how far to pull content in from each edge; they cannot
 describe a fold across the middle of the screen or a camera on the inner
