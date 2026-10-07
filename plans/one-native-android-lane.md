@@ -80,6 +80,16 @@ so callback loss and fixture contract mismatch can be distinguished. This
 run provides no Print verdict. Raw evidence is retained separately from the
 earlier successful Share capture.
 
+RAN: focused system Copy probe `w-99e1` returns `{"completed":true}`.
+Native completion is correct; the fixture's required activity name was
+wrong for this action. The candidate now selects only the system `Copy text`
+action, requires completed=true and an absent activity type, seeds the
+clipboard with a different value, then verifies the exact shared text and
+URL before continuing to file cancellation and error controls. The iOS
+activity assertion is preserved. [Android's documented Copy result](https://developer.android.com/reference/android/service/chooser/ChooserResult#getSelectedComponent())
+has no selected component. Native source and the APK remain unchanged.
+Full repaired system acceptance, including Print, is pending.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

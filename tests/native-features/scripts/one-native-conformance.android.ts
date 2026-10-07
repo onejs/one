@@ -1165,9 +1165,7 @@ async function run(config: Config) {
         return (
           text.includes('Status: passed') &&
           text.includes('Busy: E_SHARE_BUSY') &&
-          /text=true; activity=\S+; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS/.test(
-            text
-          )
+          text.includes('text=true; activity=none; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS; clipboard=true')
         )
       },
       'one-native-share-run',

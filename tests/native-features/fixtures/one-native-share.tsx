@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 export default function OneNativeShare() {
@@ -12,6 +12,9 @@ export default function OneNativeShare() {
     try {
       const file = One.FileSystem.getDirectories().cache + 'one-native-share-proof.txt'
       await One.FileSystem.writeFile(file, 'One native share proof', 'utf8')
+      if (Platform.OS === 'android') {
+        await One.Clipboard.setString('Before One native share proof')
+      }
       setStatus('sharing')
       const pending = One.Share.share([
         { type: 'text', value: 'One native share proof' },
@@ -27,8 +30,16 @@ export default function OneNativeShare() {
         )
       }
       const shared = await pending
-      if (!shared.completed || !shared.activityType) {
+      if (!shared.completed || (Platform.OS !== 'android' && !shared.activityType)) {
         throw new Error(`Copy did not complete the share activity: ${JSON.stringify(shared)}`)
+      }
+      let clipboard = false
+      if (Platform.OS === 'android') {
+        if (shared.activityType !== undefined) {
+          throw new Error(`System Copy unexpectedly selected an activity: ${JSON.stringify(shared)}`)
+        }
+        clipboard = (await One.Clipboard.getString()) === 'One native share proof\nhttps://onestack.dev'
+        if (!clipboard) throw new Error('System Copy did not copy the exact shared text and URL')
       }
       setStatus('file sharing')
       const fileShared = await One.Share.share([{ type: 'file', value: file }])
@@ -71,8 +82,9 @@ export default function OneNativeShare() {
             : 'unknown'
       }
       setResult(
-        `text=${shared.completed}; activity=${shared.activityType}; file=${fileShared.completed}; ` +
-          `empty=${empty}; missing=${missing}; url=${badURL}; blank=${blankText}`
+        `text=${shared.completed}; activity=${shared.activityType ?? 'none'}; file=${fileShared.completed}; ` +
+          `empty=${empty}; missing=${missing}; url=${badURL}; blank=${blankText}` +
+          (Platform.OS === 'android' ? `; clipboard=${clipboard}` : '')
       )
       setStatus('passed')
     } catch (error) {
