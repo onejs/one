@@ -79,3 +79,6 @@ fail-snapshot.json
 !proofs/menu-picker/*.png
 !proofs/menu-picker/*.webp
 !proofs/menu-picker/outcome.json
+
+# android share callback acceptance at native pixel density.
+!proofs/android-share-callback/*.webp

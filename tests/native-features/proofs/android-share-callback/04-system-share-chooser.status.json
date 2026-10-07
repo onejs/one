@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-share-chooser",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 53,
+  "capturedAt": "2026-10-07T14:45:53.003Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-share-fixed-pro64/system/04-system-share-chooser.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-share-fixed-pro64/system/04-system-share-chooser.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-share-fixed-pro64/system/04-system-share-chooser.status.json"
+  }
+}

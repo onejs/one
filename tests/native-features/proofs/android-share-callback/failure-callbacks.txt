@@ -1,0 +1,9 @@
+--------- beginning of main
+10-07 04:35:13.757  3720  3781 I OneShareProbe: 90325 share pending=false scheduled=false resultOk=false chosen=null active=false
+10-07 04:35:13.757  3720  3781 I OneShareProbe: 90325 share pending=true scheduled=false resultOk=false chosen=null active=false
+10-07 04:35:13.760  3720  3720 I OneShareProbe: 90328 resume pending=true scheduled=false resultOk=false chosen=null active=false
+10-07 04:35:13.765  3720  3720 I OneShareProbe: 90333 launch pending=true scheduled=true resultOk=false chosen=null active=true
+10-07 04:35:13.787  3720  3720 I OneShareProbe: 90355 pause pending=true scheduled=true resultOk=false chosen=null active=true
+10-07 04:35:14.562  3720  3720 I OneShareProbe: 91129 settle pending=true scheduled=true resultOk=false chosen=null active=false
+10-07 04:35:18.205  3720  3720 I OneShareProbe: 94773 result code=-1 data=null pending=false scheduled=false resultOk=false chosen=null active=false
+10-07 04:35:18.208  3720  3720 I OneShareProbe: 94776 resume pending=false scheduled=false resultOk=false chosen=null active=false

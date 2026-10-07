@@ -1,0 +1,7 @@
+{
+  "source": "c4ba7378e858cd02d78d01cc8ade4cff7db8b705",
+  "nativeSourceSha256": "c07b62d20380ff31ee9275207ea75d04007e22b28ddeaec7c2164d83565526a9",
+  "installedNativeSha256": "c07b62d20380ff31ee9275207ea75d04007e22b28ddeaec7c2164d83565526a9",
+  "entries": 17,
+  "buildOutputs": "04b27155d JS sources unchanged; only Kotlin and test driver changed"
+}
