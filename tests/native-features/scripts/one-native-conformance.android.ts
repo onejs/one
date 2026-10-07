@@ -200,9 +200,12 @@ function adbBytes(config: Config, args: string[]) {
     return execFileSync('adb', ['-s', config.deviceId, ...args], {
       stdio: ['ignore', 'pipe', 'pipe'],
       timeout: 30_000,
+      // native-density png captures can exceed execFileSync's default 1 mib.
+      maxBuffer: 16 * 1024 * 1024,
     })
   } catch (error) {
-    throw commandError('adb', ['-s', config.deviceId, ...args], error)
+    const detail = error instanceof Error ? error.message : String(error)
+    throw new Error(`adb ${['-s', config.deviceId, ...args].join(' ')} failed: ${detail}`)
   }
 }
 
