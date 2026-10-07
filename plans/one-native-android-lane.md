@@ -1,6 +1,6 @@
 # One native Android lane
 
-Owner: one-native-android (p66065). Branch `tm/one-native-android-system-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+Owner: one-native-android (p66065). Branch `tm/one-native-android-app-icon` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
 
 ## Android restart, 2026-10-07
 
@@ -107,6 +107,18 @@ peer's Python kqueue lacks context-manager methods. The corrected watcher
 closes the queue explicitly. A controlled `/bin/cat` child on pro-64
 delivers `NOTE_EXIT` and exits cleanly with that resource handling. The
 native runtime was untouched; its exact process wait is being re-armed.
+
+RAN: `w-b473` recovers the completed run's verdict: 35 checkpoints pass,
+including Print unavailability and Quick Actions registration, warm/cold
+delivery and clearing. AppIcon switching fails; the final Android hierarchy
+and window focus show the launcher instead of the fixture. The owned
+emulator and Metro are stopped, their PIDs are absent, and the peer worktree
+is clean. Full source and raw evidence are retained in primary
+`runtime-system-copy-content-complete`. INFERRED: disabling the aliases'
+target activity in `HybridOneAppIcon.setIcon` removes the app's foreground
+host. The focused `--suite system-app-icon` reuses the same assertions as
+the full system sweep and records component state to test that cause.
+Native repair is pending; no AppIcon success is claimed.
 
 ## Baseline and boundary
 

@@ -38,7 +38,7 @@ if process.returncode == 0:
         queue.close()
 
 log = (root / "system.log").read_text()
-print(log)
+print("\n".join(line for line in log.splitlines() if line.startswith(("PASS ", "FAIL "))))
 if not (root / "worktree-status.txt").exists():
     sys.exit("runtime exited without its final receipt")
 print("source:", (root / "source.txt").read_text().strip())

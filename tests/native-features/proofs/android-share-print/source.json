@@ -5,7 +5,7 @@
   "job": "w-7c07",
   "remoteSession": "r64549",
   "device": "Pixel 8 Android17/API37 r06, 1080x2400 density420",
-  "fullSuiteVerdict": "pending after transcript connection loss; saved Share and Print checkpoints passed",
+  "fullSuiteVerdict": "failed at system-app-icon-changed after 35 passing checkpoints; peer receipt recovered by w-b473",
   "sourceSHA256": {
     "tests/native-features/scripts/one-native-conformance.android.ts": "94b2c51ad4651686b5b6e286c3b52f18b7aed88048207f2b3943b640a4cd70d3",
     "tests/native-features/fixtures/one-native-share.tsx": "8815ab06137deb241c75d76a5314029a6d0857b032f1940e513ff5faa7163c3b",
