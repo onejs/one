@@ -1,7 +1,22 @@
 import { useRef } from 'react'
 import { One } from 'one'
 import { ScrollView, Text } from 'react-native'
-import { Action, Results, assert, useResults } from './realapps-api-report'
+import { Action, Results, assert, exactError, useResults } from './realapps-api-report'
+
+async function rejectsActivityMissing(call: () => Promise<unknown>) {
+  try {
+    await call()
+  } catch (error) {
+    const detail = exactError(error)
+    assert(
+      detail.code === 'activity_missing',
+      'expected the activity_missing rejection',
+      detail
+    )
+    return detail
+  }
+  assert(false, 'expected the activity_missing rejection')
+}
 
 const W = One.iOS.WidgetUI
 function WidgetView({ step }: { step: number }) {
@@ -280,6 +295,84 @@ export default function Widgets() {
         }
       >
         Run JSX activity lifecycle
+      </Action>
+      <Action
+        id="activity-falsify"
+        onPress={() =>
+          void run(
+            'One.LiveActivities.falsifiers',
+            async () => {
+              const id = await One.LiveActivities.start('Native API probe', {
+                status: 'Preparing',
+                value: '1 of 3',
+              })
+              assert(
+                typeof id === 'string' && id.length > 0,
+                'LiveActivities.start returned empty id'
+              )
+              await One.LiveActivities.update(id, {
+                status: 'On the way',
+                value: '2 of 3',
+              })
+              const token = await One.LiveActivities.pushToken(id)
+              assert(
+                token === null,
+                'pushToken without the push opt-in must resolve null',
+                token
+              )
+              await One.LiveActivities.end(id)
+              const endedUpdate = await rejectsActivityMissing(() =>
+                One.LiveActivities.update(id, { status: 'Late', value: '3 of 3' })
+              )
+              const endedEnd = await rejectsActivityMissing(() =>
+                One.LiveActivities.end(id)
+              )
+              const bogus = 'one-no-such-activity'
+              const missingUpdate = await rejectsActivityMissing(() =>
+                One.LiveActivities.update(bogus, { status: 'Late', value: '3 of 3' })
+              )
+              const missingUpdateView = await rejectsActivityMissing(() =>
+                One.LiveActivities.updateView(bogus, activityView(3))
+              )
+              const missingEnd = await rejectsActivityMissing(() =>
+                One.LiveActivities.end(bogus)
+              )
+              const missingPushToken = await rejectsActivityMissing(() =>
+                One.LiveActivities.pushToken(bogus)
+              )
+              const jsxId = await One.LiveActivities.startView(
+                'Native API probe JSX',
+                activityView(1)
+              )
+              assert(
+                typeof jsxId === 'string' && jsxId.length > 0 && jsxId !== id,
+                'LiveActivities.startView returned a distinct id',
+                jsxId
+              )
+              await One.LiveActivities.updateView(jsxId, activityView(2))
+              await One.LiveActivities.end(jsxId)
+              const endedUpdateView = await rejectsActivityMissing(() =>
+                One.LiveActivities.updateView(jsxId, activityView(3))
+              )
+              return {
+                id,
+                pushToken: token,
+                endedUpdate,
+                endedEnd,
+                missingUpdate,
+                missingUpdateView,
+                missingEnd,
+                missingPushToken,
+                jsxId,
+                endedUpdateView,
+              }
+            },
+            'observed',
+            'stable start/update/end ids, null push token without push, and activity_missing for missing and ended ids'
+          )
+        }
+      >
+        Run activity falsifiers
       </Action>
       <Text>
         Missing native widget configuration is reported as the exact API error. It never
