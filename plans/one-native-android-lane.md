@@ -868,3 +868,16 @@ record the actual callback order and settlement state before choosing a
 repair. The `system-share` entry reuses the full sweep's unchanged Share
 assertions, including exact clipboard content, busy, file cancellation and
 input errors. Full system acceptance remains open.
+
+RAN: diagnostic APK `w-a311` survives outer cancellation and its completed
+verdict is recovered by `w-4815`. The exact callback trace shows resume
+at uptime 90328 scheduling settlement before chooser launch at 90333.
+Settlement at 91129 runs while paused and resolves false; Copy's result
+-1 arrives at 94773 with no pending promise. This proves premature
+completion before user selection, rather than a missing Copy result.
+The native candidate leaves resume responsible only for foreground state;
+only the chooser result schedules completion. Its existing result-path
+grace interval, chosen-component capture and public contract remain.
+The probe's pristine source is restored, and no emulator or Metro listener
+remains. The focused acceptance now also captures idle mount and the
+actual Copy chooser before selection. Native repair acceptance is pending.

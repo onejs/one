@@ -1022,12 +1022,17 @@ async function run(config: Config) {
     // dismissal, busy guard, and all four input codes.
     await freshLeg('share')
     await tapNavigation(config, 'nav-one-native-share')
+    await expect(
+      'system-share-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle') && textIncludes(nodes, 'Busy: none'),
+      'one-native-share-run'
+    )
     tapFresh(config, 'system-share-run', {
       id: 'one-native-share-run',
       role: 'button',
       clickable: true,
     })
-    await waitFor(config, 'system-share-chooser', (nodes) =>
+    await expect('system-share-chooser', (nodes) =>
       nodes.filter((node) => node.contentDescription === 'Copy text').length === 1
     )
     // select the system copy action; app targets may also be labelled copy.
