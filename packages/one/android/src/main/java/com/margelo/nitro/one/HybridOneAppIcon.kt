@@ -1,6 +1,7 @@
 package com.margelo.nitro.one
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -47,7 +48,8 @@ class HybridOneAppIcon : HybridOneAppIconSpec(), LifecycleEventListener {
         mainHandler.post {
             val context = NitroModules.applicationContext
             val known = if (context != null) aliases(context) else emptyList()
-            promise.resolve(known.size > 1 && known.singleOrNull { it.enabled } != null)
+            promise.resolve(context != null && known.size > 1 &&
+                known.singleOrNull { it.enabled } != null && hostTaskIsPermanent(context, known))
         }
         return promise
     }
@@ -89,6 +91,12 @@ class HybridOneAppIcon : HybridOneAppIconSpec(), LifecycleEventListener {
             if (currentActivity() == null) {
                 promise.reject(
                     OneNativeError("E_APP_ICON_INACTIVE", "AppIcon.setIcon: app must be active")
+                )
+                return@post
+            }
+            if (!hostTaskIsPermanent(context, known)) {
+                promise.reject(
+                    OneNativeError("E_APP_ICON_UNAVAILABLE", "AppIcon.setIcon: launcher aliases must forward into a permanent host task")
                 )
                 return@post
             }
@@ -149,6 +157,17 @@ class HybridOneAppIcon : HybridOneAppIconSpec(), LifecycleEventListener {
             PackageManager.COMPONENT_ENABLED_STATE_DEFAULT -> alias.enabled
             else -> false
         }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun hostTaskIsPermanent(context: Context, known: List<ActivityInfo>): Boolean {
+        val activity = NitroModules.applicationContext?.currentActivity ?: return false
+        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val task = manager.appTasks.map { it.taskInfo }.firstOrNull {
+            it.id == activity.taskId
+        } ?: return false
+        val root = task.baseIntent.component?.className ?: return false
+        return known.none { it.name == root }
     }
 
     // cache immutable apk defaults; package info reflects runtime overrides.

@@ -69,7 +69,8 @@ class AppIconLauncherActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startActivity(Intent(intent).setClass(this, MainActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                Intent.FLAG_ACTIVITY_SINGLE_TOP))
         finish()
     }
 }
@@ -83,6 +84,8 @@ aliases, after the host activity:
 <activity
   android:name=".AppIconLauncherActivity"
   android:exported="false"
+  android:taskAffinity=""
+  android:excludeFromRecents="true"
   android:theme="@android:style/Theme.NoDisplay" />
 <activity-alias
   android:name=".Primary"
@@ -109,6 +112,9 @@ aliases, after the host activity:
 ```
 
 Pass the alternate alias's simple name, such as `Blue`, to `setIcon`.
+The launcher's empty task affinity and `FLAG_ACTIVITY_NEW_TASK` keep the
+host task rooted at MainActivity. Android removes tasks whose base intent
+targets a disabled alias, even after the launcher activity has finished.
 Passing no name restores the manifest's primary alias. One switches only
 launcher aliases, preserving the running host activity. `isSupported()`
 requires the primary alias and at least one alternate; `getCurrentName()`

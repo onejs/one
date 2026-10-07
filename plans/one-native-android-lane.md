@@ -184,6 +184,22 @@ revised host lookup uses the existing Nitro React context, matching the
 class's currentActivity helper. No emulator or Metro was started. The failed
 compiler log is preserved; a cached native target rebuild is pending.
 
+RAN: `w-9f3f` compiles in 19 seconds, but its switch still loses the
+screen. The launcher Activity finishes and MainActivity renders; the saved
+transition shows that the task's base intent remains `.Primary`. Android
+then removes that task with reason `disabled-package` despite its permanent
+top activity. [RecentTasks cleanup](https://android.googlesource.com/platform/frameworks/base/+/master/services/core/java/com/android/server/wm/RecentTasks.java)
+compares the task's base intent to disabled component names.
+
+The revised launcher has an empty task affinity, is excluded from recents,
+and starts the host with NEW_TASK. One checks the current app task before
+advertising support or switching; an alias-rooted task rejects before any
+component state changes. This adds one task snapshot per support query or
+user-initiated swap, with no render-path work. The runner now retains its
+before-switch activity state alongside the process and component receipt.
+RAN: the revised manifest and Kotlin writer remain byte-idempotent. Native
+rebuild and the unchanged focused runtime assertions remain pending.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

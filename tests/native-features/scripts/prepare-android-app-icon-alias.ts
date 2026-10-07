@@ -58,8 +58,12 @@ if (previousPrimary) rendered = rendered.replace(previousPrimary, primary.trim()
 const forwarder = `      <activity
         android:name=".AppIconLauncherActivity"
         android:exported="false"
+        android:taskAffinity=""
+        android:excludeFromRecents="true"
         android:theme="@android:style/Theme.NoDisplay" />
 `
+const previousForwarder = rendered.match(/<activity\b[^>]*android:name="\.AppIconLauncherActivity"[^>]*\/>/)?.[0]
+if (previousForwarder) rendered = rendered.replace(previousForwarder, forwarder.trim())
 const host = (launcher ? main.replace(launcher, '') : main) +
   (rendered.includes('android:name=".AppIconLauncherActivity"') ? '' : `\n${forwarder}`)
 const aliases = (hasPrimary ? '' : `\n${primary}`) +
@@ -84,7 +88,8 @@ class AppIconLauncherActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startActivity(Intent(intent).setClass(this, MainActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                Intent.FLAG_ACTIVITY_SINGLE_TOP))
         finish()
     }
 }

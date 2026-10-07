@@ -958,6 +958,7 @@ async function run(config: Config) {
     writeFileSync(path.join(config.artifactDir, 'app-icon-before.json'), JSON.stringify({
       hostPid,
       packageState: adbText(config, ['shell', 'dumpsys', 'package', config.packageId]),
+      activityState: adbText(config, ['shell', 'dumpsys', 'activity', 'activities']),
     }, null, 2))
     tapFresh(config, 'system-app-icon-alternate', {
       id: 'one-native-app-icon-alternate',
