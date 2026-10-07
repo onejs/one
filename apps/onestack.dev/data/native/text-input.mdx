@@ -57,6 +57,11 @@ display regular in both axes. On Android they come from the activity window's
 480dp is compact, otherwise regular. They update on configuration and
 window-metrics changes.
 
+The native hook seeds its first render from a synchronous window reading.
+After its last subscriber unmounts, the next mount reads that seed again.
+A delayed initial read cannot replace a newer native event or update a later
+subscription.
+
 `useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
 `fullyOpen`, or `unknown`) and `angle` in radians. `getSizeClass()` returns
 `Promise<SizeClass>` and `getHinge()` returns `Promise<HingeState | null>`;
@@ -101,8 +106,9 @@ content. Each region has an `id`, a `frame` in the provider's points (margins
 included), the `margins` kept around it for interactive content, and
 `isActive`. `useReservedRegions()` returns active regions unless you pass
 `{ includeInactive: true }`, and `{ kind: 'division' }` narrows to one kind.
-`useReservedRegionsReady()` turns true once the provider has taken its first reading, which
-lands before the first frame.
+`useReservedRegionsReady()` turns true after the provider's first native
+reading, including an empty reading. Until then, `useWindowSegments()` returns
+an empty array.
 
 `useWindowSegments()` returns the unobstructed parts of the provider when
 an active full-span division separates it. `useSpanning()` reports whether
