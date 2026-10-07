@@ -316,6 +316,8 @@ export type OneNativeViewProps = Pick<
       ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
       : '')
   const schema = []
+  // decorative controls delegate accessibility to SwiftUI; an accessible UIKit host
+  // hides the content's image traits.
   for (const control of controls) {
     const { name, fields, value, actions = [] } = control
     const nativeName = 'OneNative' + name
@@ -587,7 +589,7 @@ ${
     sdkFocused?.onChange(event.value)
   }, focusRevision)\n`
         : ''
-    }  return <Native${name} {...props} ${styleProp}${control.decorativeWhenUnlabeled ? ' accessible={Boolean(props.accessibilityLabel)} accessibilityElementsHidden={!props.accessibilityLabel} accessibilityRole="image"' : ''}
+    }  return <Native${name} {...props} ${styleProp}${control.decorativeWhenUnlabeled ? ' accessible={false} accessibilityElementsHidden={!props.accessibilityLabel} accessibilityRole="image"' : ''}
     swiftStyle={swiftStyleNative(${control.focus ? 'nativeSwiftStyle' : 'swiftStyle'})}
 ${hasSDKEvents ? '    onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}\n' : ''}
 ${value ? `    value={${value.sync ? syncNativeValue(value, `synced${upper(value.prop)}`) : (value.nativeValue ?? value.prop)}} acknowledgedEvent={controlled.acknowledgedEvent} revision={revision}\n` : ''}${value?.sync ? `    syncStateId={syncHandle ? getSyncStateId(syncHandle) ?? 0 : 0}\n` : ''}${

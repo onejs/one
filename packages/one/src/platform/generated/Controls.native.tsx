@@ -548,7 +548,7 @@ export function Image({
     <NativeImage
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -877,7 +877,7 @@ export function LinearGradient({
     <NativeLinearGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -919,7 +919,7 @@ export function RadialGradient({
     <NativeRadialGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -962,7 +962,7 @@ export function EllipticalGradient({
     <NativeEllipticalGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -1004,7 +1004,7 @@ export function AngularGradient({
     <NativeAngularGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -1079,7 +1079,7 @@ export function MeshGradient({
     <NativeMeshGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
