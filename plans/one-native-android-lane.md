@@ -1,6 +1,20 @@
 # One native Android lane
 
-Owner: android-lane (r46336). Active on `v2-beta`. Android is lower priority than the iOS lanes when shared builders are busy.
+Owner: one-native-android (p66065). Branch `tm/one-native-android-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: p66065. REVIEW: none.
+
+## Android restart, 2026-10-07
+
+Nate, quoted by the coordinator: "android like peach SIM support yes and one native yes definitely". Scope resumes One native Android UI parity, followed by Android native API proof. Peach simulation remains with peach-android (m21620), notified at this lane's start. This restart supersedes historical stop and review holds; public API choices remain owner decisions.
+
+TESTED: the first unit restores fresh-install Android debug-host startup and passes all 15 existing Compose picker checkpoints on the standard Pixel 8/API37 r06. Rejected and accepted dates, disabled dates, time selection, confirm/cancel, reopen and remount pass. Initial failure `w-38b2` retains the local-network prompt and missing Home marker. READ: RN 0.87.1 defers Metro connection until `ACCESS_LOCAL_NETWORK` resolves. The runner granted it only after data clear. The repair moves that grant into shared debug-host setup, gated at API37; module-under-test permissions remain untouched. Repaired run `w-d72b` uses a cleared synthetic fixture, the unchanged APK, and source-matched local Metro on pro-64.
+
+RAN: 31 Compose contract tests and 127 native documentation tests pass. Beast `w-2748` builds the 14-package One dependency graph from `cf508a1eb` in 3m46.889s. Android prebuild and arm64 `:app:assembleDebug` pass; `w-8e93` executes 370 Gradle tasks in 10m31s. `bun release --into ~/contrast --skip-build` installs 17 local package entries using those restored outputs. Native APK SHA256: `21547ef2b7da9f235d20569c05a70e9226a1574153bb9705ba26a791e275574c`. Runtime runner SHA256: `4b7f38dcf6d2390c1cc3db8de3d5380d91bd356e07b8b6ccfefe3b1ff7d528cb`. Picker fixture SHA256: `1fee3cf6edf6d4bcff696766c2a76f9cfd0c78b5209302f24f35fdc42502b8d4`. The intervening beta widget change is confined to iOS configuration and its own fixture; Android implementation and picker source are unchanged.
+
+Evidence: [committed proof](../tests/native-features/proofs/android-debug-network/README.md). Full build logs, APK, failed startup and all 15 PNG/XML checkpoints remain in primary `tests/native-features/evidence/android-restart-p66065/`. Resource admission expiry and a prohibited SSH forward produced no behavior verdict; the successful proof serves Metro on the emulator's own Mac. Quality-90 WebP captures retain native 1080x2400 pixels and were inspected and shared with Nate. RAN: pro-64 adb lists no devices after cleanup, the owned emulator PID is absent and Metro8097 has no listener. Peach was notified that the AVD is released.
+
+Peach integration request: keep source-pinned RN/Expo UI fixtures, native host sizing/lifecycle, IME receiving-window ownership, predictive back and inset semantics explicit. Runnable One entry: `cd tests/native-features && bun run dev --port 8097`, then `adb -s <serial> reverse tcp:8081 tcp:8097` and `bun scripts/one-native-conformance.android.ts --device-id <serial> --package-id dev.vxrn.nativefeatures.tests --metro-port 8097 --suite compose-pickers --artifact-dir <output>`. Build with `bun run prebuild:native --platform android` and `cd android && ./gradlew :app:assembleDebug -PreactNativeArchitectures=arm64-v8a`; install that APK before the runtime command. Oracle: existing `sootsim_pixel_8_android_17_api_37_r06`. This acceptance covers One's picker contract; paired Expo pixel fidelity and the remaining Android API proofs are open.
+
+Status: first unit runtime acceptance passes. Broad UI parity and native API acceptance remain open. Next unit: the existing full Compose acceptance, followed by post-land system/media API proof. Delivery CI owner: p66065.
 
 ## Baseline and boundary
 

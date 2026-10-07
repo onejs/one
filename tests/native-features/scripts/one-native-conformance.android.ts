@@ -843,18 +843,8 @@ function launcherComponent(config: Config) {
 }
 
 // wipe app data so permissions start undetermined like a fresh install.
-// pm clear also revokes ACCESS_LOCAL_NETWORK, which android 17 requires for
-// the debug host connection; its prompt belongs to dev tooling, never the
-// module under test, so grant it back before relaunching.
 function clearAppData(config: Config) {
   adbText(config, ['shell', 'pm', 'clear', config.packageId])
-  adbText(config, [
-    'shell',
-    'pm',
-    'grant',
-    config.packageId,
-    'android.permission.ACCESS_LOCAL_NETWORK',
-  ])
   relaunchApp(config)
   stampDebugHost(config)
   relaunchApp(config)
@@ -865,6 +855,19 @@ function clearAppData(config: Config) {
 // matter. call after a launch that guarantees the data dir exists; pm clear
 // wipes the stamp, so call again after every clear.
 function stampDebugHost(config: Config) {
+  // android 17 gates metro behind local-network permission, including on
+  // fresh installs and after pm clear. grant only this dev-tooling permission;
+  // the module-under-test permissions remain untouched.
+  const sdk = Number(adbText(config, ['shell', 'getprop', 'ro.build.version.sdk']).trim())
+  if (sdk >= 37) {
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.ACCESS_LOCAL_NETWORK',
+    ])
+  }
   // adb shell joins argv with spaces and re-parses on device, so the -c
   // script travels inside its own double quotes; the xml attribute quotes
   // are backslash-escaped for the device shell.
