@@ -1,0 +1,18 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-revoked-process",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 84,
+  "detail": {
+    "revokedPid": "3748",
+    "permissionsDenied": true
+  },
+  "capturedAt": "2026-10-07T16:43:32.078Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/22-system-location-revoked-process.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/22-system-location-revoked-process.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/22-system-location-revoked-process.status.json"
+  }
+}

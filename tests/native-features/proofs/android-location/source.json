@@ -1,0 +1,15 @@
+{
+  "source": "d9f60f49a57e951a3a35c25b900018d3253d803f",
+  "branch": "tm/one-native-android-location-probe",
+  "verdict": "27 checks passed",
+  "job": "w-3f59",
+  "apkSource": "c4ba7378e858cd02d78d01cc8ade4cff7db8b705",
+  "apkSha256": "652f08da010fc553c4ed1a48874e54aa3af4d6f6e03a8581dfcbc92be0017a5d",
+  "device": "sootsim_pixel_8_android_17_api_37_r06",
+  "resolution": [
+    1080,
+    2400
+  ],
+  "densityDpi": 420,
+  "nativeChanged": false
+}

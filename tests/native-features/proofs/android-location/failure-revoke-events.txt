@@ -1,0 +1,7 @@
+10-07 06:32:15.651   632   661 I am_proc_start: [0,3216,10232,dev.vxrn.nativefeatures.tests,next-top-activity,{dev.vxrn.nativefeatures.tests/dev.vxrn.nativefeatures.tests.Primary}]
+10-07 06:32:17.200   632   993 I am_kill : [0,3216,dev.vxrn.nativefeatures.tests,0,stop dev.vxrn.nativefeatures.tests due to from pid 3389,250272]
+10-07 06:32:17.385   632   661 I am_proc_start: [0,3405,10232,dev.vxrn.nativefeatures.tests,next-top-activity,{dev.vxrn.nativefeatures.tests/dev.vxrn.nativefeatures.tests.Primary}]
+10-07 06:32:25.599   632  1703 I am_kill : [0,3405,dev.vxrn.nativefeatures.tests,0,stop dev.vxrn.nativefeatures.tests due to from pid 3755,561288]
+10-07 06:32:25.671   632   661 I am_proc_start: [0,3768,10232,dev.vxrn.nativefeatures.tests,next-top-activity,{dev.vxrn.nativefeatures.tests/dev.vxrn.nativefeatures.tests.Primary}]
+10-07 06:35:49.939   632   690 I am_kill : [0,3768,dev.vxrn.nativefeatures.tests,0,permissions revoked,573044]
+10-07 06:35:51.061   632   661 I am_proc_start: [0,5951,10232,dev.vxrn.nativefeatures.tests,next-top-activity,{dev.vxrn.nativefeatures.tests/dev.vxrn.nativefeatures.tests.Primary}]

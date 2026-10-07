@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "app-mounted",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "capturedAt": "2026-10-07T16:39:50.928Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/01-app-mounted.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/01-app-mounted.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/01-app-mounted.status.json"
+  }
+}

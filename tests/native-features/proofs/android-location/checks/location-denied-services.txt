@@ -1,0 +1,36 @@
+ACTIVITY MANAGER SERVICES (dumpsys activity services)
+  User 0 active services:
+  * ServiceRecord{2f4b4a7 u0 dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneLocationService c:dev.vxrn.nativefeatures.tests}
+    intent={cmp=dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneLocationService}
+    packageName=dev.vxrn.nativefeatures.tests
+    processName=dev.vxrn.nativefeatures.tests
+    targetSdkVersion=36
+    baseDir=/data/app/~~3KzBlR12xYxf2fSCIauELQ==/dev.vxrn.nativefeatures.tests-jBEsEdyRr_ghNQ14SInGUA==/base.apk
+    dataDir=/data/user/0/dev.vxrn.nativefeatures.tests
+    app=ProcessRecord{ca0fbc8 3748:dev.vxrn.nativefeatures.tests/u0a232}
+    useNewWiuLogic_forCapabilities()=true
+    useNewWiuLogic_forStart()=true
+    useNewBfslLogic()=true
+    mAllowWiu_noBinding=PROC_STATE_TOP
+    mAllowWiu_inBindService=DENIED
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=PROC_STATE_TOP
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=true
+    recentCallingPackage=dev.vxrn.nativefeatures.tests
+    recentCallingUid=10232
+    mAllowStart_noBinding=PROC_STATE_TOP
+    mAllowStart_inBindService=DENIED
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=PROC_STATE_TOP
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=1
+    infoAllowStartForeground=[callingPackage: dev.vxrn.nativefeatures.tests; callingUid: 10232; uidState: TOP ; uidBFSL: [BFSL]; BFGS denied: false; intent: Intent { xflg=0x4 cmp=dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneLocationService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:36; callerTargetSdkVersion:36; startForegroundCount:0; bindFromPackage:null; isBindService:false]
+    isForeground=true foregroundId=4301 types=0x00000008 foregroundNoti=Notification(channel=one-location shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE)
+    createTime=-4s803ms startingBgTimeout=--
+    lastActivity=-4s802ms restartTime=-4s802ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=true callStart=true lastStartId=1
+ startCommandResult=2

@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-position",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 46,
+  "capturedAt": "2026-10-07T16:42:23.173Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/05-system-location-position.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/05-system-location-position.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/05-system-location-position.status.json"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-background-granted-delivered",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 46,
+  "detail": {
+    "persistedBackgroundPosition": "background:37.7949,-122.3994"
+  },
+  "capturedAt": "2026-10-07T16:43:20.403Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/19-system-location-background-granted-delivered.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/19-system-location-background-granted-delivered.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/19-system-location-background-granted-delivered.status.json"
+  }
+}

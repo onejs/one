@@ -1,0 +1,68 @@
+[
+  {
+    "file": "notification.webp",
+    "size": [
+      1080,
+      2400
+    ],
+    "bytes": 76704,
+    "sha256": "c715901fa738c6751e1c2fa864e7c0969c5f48e9eb3d9da82973e3525e9be861"
+  },
+  {
+    "file": "background-denied.webp",
+    "size": [
+      1080,
+      2400
+    ],
+    "bytes": 72748,
+    "sha256": "5fc701b2711818888eeb343dc89dc6608ced1f20f4afa073c610e7b63d85b85e"
+  },
+  {
+    "file": "background-granted.webp",
+    "size": [
+      1080,
+      2400
+    ],
+    "bytes": 72790,
+    "sha256": "6381018ef93c528ac9ee41a48270a1bcbc50111917ce51606ed2e31f9bf853b0"
+  },
+  {
+    "file": "revoked.webp",
+    "size": [
+      1080,
+      2400
+    ],
+    "bytes": 79120,
+    "sha256": "df50d2e9a4f95ba22b16ab3b818d5b07baf8a997970eccc21a613ed17e620b8e"
+  },
+  {
+    "file": "notification-detail.webp",
+    "crop": [
+      0,
+      1100,
+      1080,
+      1330
+    ],
+    "size": [
+      1080,
+      230
+    ],
+    "bytes": 14644,
+    "sha256": "9b515758d3dbd3411f3658cc0626e98f363c67240a2e699a80aebe31e3f81929"
+  },
+  {
+    "file": "revoked-detail.webp",
+    "crop": [
+      0,
+      280,
+      1080,
+      930
+    ],
+    "size": [
+      1080,
+      650
+    ],
+    "bytes": 38968,
+    "sha256": "b36be02edd0780c13fe7593a741a4dcd38bce333e83b36c4062468e8d918f1d2"
+  }
+]

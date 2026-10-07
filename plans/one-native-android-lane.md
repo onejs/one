@@ -901,3 +901,84 @@ in the peer tree. Focused Share acceptance passes; full system/media
 acceptance and paired Expo UI fidelity remain open. Next: the full system
 sweep against this validated native APK and the landed runner. Delivery
 CI remains assigned to live one-ci (s15186).
+
+## Current location sweep, 2026-10-07
+
+RAN: `w-7d42` passes 52 captured checkpoints on beta `0818352e8`,
+including repaired Share, Print, Quick Actions, AppIcon and foreground
+Location prompt/current/watch/geocode controls. It stops after background
+watch activation because the runner's notification dump lacks the title.
+The saved package state has POST_NOTIFICATIONS granted=false; Android's
+log records an allowed location foreground-service start. These receipts
+do not yet prove its continuing foreground state or notification content.
+
+The focused `system-location` entry reuses the sweep's unchanged Location
+assertions and saves service, permission and both redacted/full notification
+dumps before the failing check. Native source and validated APK are
+unchanged. [Android documents](https://developer.android.com/develop/ui/views/notifications/notification-permission)
+that denied notification permission hides foreground-service notices from
+the drawer while preserving Task Manager notices. A focused runtime probe
+will distinguish this permission precondition from service failure and
+dump redaction. Emulator/Metro and the owned fixture are removed after
+the sweep. Raw checkpoints/logs remain in primary
+`runtime-system-share-beta-pro64` evidence. Full system/media acceptance
+and paired Expo parity remain open.
+
+RAN: focused `w-f44b` recovers the completed probe. The service dump has
+`isForeground=true foregroundId=4301 types=0x00000008` and its ongoing
+`one-location` foreground notification. Notification Manager has the
+fixture's importance=NONE and no active fixture record. This confirms
+the ungranted visibility precondition; native startup is correct. The
+candidate now requires background delivery to a fresh proof file while
+notification permission remains denied, then repeats with an explicitly
+verified notification grant and requires the visible drawer title plus
+the matching foreground record. Both legs require exact moved coordinates
+and service/notification removal on stop. Existing clocks are replaced
+with those conditions; original positive notification and permission
+revocation assertions remain. Native source/APK are unchanged. Repaired
+focused runtime acceptance is pending.
+
+RAN: `w-01b6` passes denied-permission background delivery with exact
+coordinates and service cleanup. The granted notification record has
+`Location updates active` and foreground flags. The drawer assertion
+times out while the saved hierarchy remains Home after the shell expand
+command. The candidate uses a top-edge swipe from the current viewport's
+left quarter and asserts System UI opens before checking the title.
+The gesture and window state are retained. The shared notification probe
+uses this one opening path; notification deadlines and title assertions
+remain unchanged. Repaired runtime, including revocation, remains pending.
+
+RAN: `w-9c48` opens System UI and captures the actual Location foreground
+notification. Both notification-denied and notification-granted legs deliver
+their exact moved coordinates while backgrounded and remove the service and
+notification on stop. The final permission-revocation check fails after
+Android logs `am_kill` for PID 3768 with `permissions revoked`, then starts
+PID 5951. The failure XML is the new process's Home screen. An old watch
+callback cannot be observed after that process death.
+
+The next candidate requires the exact permission-revocation kill record,
+both grants removed and a new PID on Home before reopening the fixture.
+It then requires denied status and permission errors for a new foreground
+watch, current position and background watch, with no Location service or
+notification left behind. The one-second sleep is removed; existing
+assertion deadlines remain. Native source and the verified APK are
+unchanged. Focused acceptance of this process transition remains pending.
+
+RAN: `w-3f59` passes all 27 focused Location checks at `d9f60f49a` on
+the source-pinned Pixel 8/API37 r06 fixture. The exact denied and granted
+background coordinates, foreground-service identity, visible drawer title,
+stop cleanup, permission-revocation kill record, changed PID and all three
+denied API paths pass. [Preserved proof](../tests/native-features/proofs/android-location/README.md)
+contains source/APK identities, every hierarchy/status receipt, service and
+notification dumps, run command and quality-90 native-pixel captures.
+The encoded captures and detail crops were inspected and shared with Nate.
+
+RAN: `bun release --into ~/contrast --skip-build` installs 17 entries;
+unchanged package sources reuse the verified beast current-beta outputs.
+Installed Location Kotlin bytes match the worktree. Downstream manifest
+and lock bytes match their immediate pre-release snapshot. No native
+Location change is required. After proof, the owned fixture is uninstalled,
+the emulator and Metro stop; a separate peer read shows no attached device
+or listener on 8097. The source-matched APK can serve the next full system
+sweep. Full system/media acceptance and paired Expo UI fidelity remain
+open. Delivery CI remains owned by live one-ci (s15186).

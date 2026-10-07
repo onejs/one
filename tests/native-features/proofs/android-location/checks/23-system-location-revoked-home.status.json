@@ -1,0 +1,18 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-revoked-home",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "detail": {
+    "revokedPid": "3748",
+    "currentPid": "6029"
+  },
+  "capturedAt": "2026-10-07T16:43:38.290Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/23-system-location-revoked-home.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/23-system-location-revoked-home.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-location-restart-pro64/system/23-system-location-revoked-home.status.json"
+  }
+}

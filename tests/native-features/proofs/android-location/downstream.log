@@ -1,0 +1,40 @@
+$ bun ./scripts/release.ts --into "/Users/n8/contrast" --skip-build
+Current: 1.27.1
+
+Installing 17 local packages:
+  @vxrn/mdx
+  @vxrn/resolve
+  @vxrn/query-string
+  @vxrn/use-isomorphic-layout-effect
+  @vxrn/utils
+  @vxrn/vite-flow
+  one
+  @vxrn/vite-plugin-metro
+  @vxrn/url-parse
+  @vxrn/tslib-lite
+  @vxrn/vite-native-client
+  create-vxrn
+  @vxrn/compiler
+  @vxrn/color-scheme
+  @vxrn/vendor
+  @vxrn/debug
+  vxrn
+  ✓ @vxrn/mdx
+  ✓ @vxrn/resolve
+  ✓ @vxrn/query-string
+  ✓ @vxrn/use-isomorphic-layout-effect
+  ✓ @vxrn/utils
+  ✓ @vxrn/vite-flow
+  ✓ one
+  ✓ @vxrn/vite-plugin-metro
+  ✓ @vxrn/url-parse
+  ✓ @vxrn/tslib-lite
+  ✓ @vxrn/vite-native-client
+  ✓ create-vxrn
+  ✓ @vxrn/compiler
+  ✓ @vxrn/color-scheme
+  ✓ @vxrn/vendor
+  ✓ @vxrn/debug
+  ✓ vxrn
+
+✅ Released 17 packages into /Users/n8/contrast
