@@ -94,8 +94,13 @@ const shareIcons = {
 
 - The role reaches SwiftUI or Compose unchanged and resolves from the active
   color scheme, so a light or dark mode change recolors mounted icons.
-- On iOS the icon is sized from `swiftStyle.fontSize`, or `width` and `height`
-  when set, and 24 otherwise. On Android it is sized from `size`, 24 by default.
+- On iOS the default frame is 24 by 24 points. `swiftStyle.fontSize` sets both
+  dimensions unless `swiftStyle.width` or `swiftStyle.height` supplies that
+  dimension. Numeric `style.width` and `style.height` override the corresponding
+  frame dimensions. The same frame reaches React Native and SwiftUI.
+- A labeled iOS icon exposes its label with the native image accessibility
+  role. An unlabeled icon remains visible and is hidden from accessibility.
+- On Android the icon is sized from `size`, 24 by default.
 - One does not map roles on web. Style the web element yourself.
 
 | | iOS | Android | Web |

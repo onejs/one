@@ -1,4 +1,4 @@
-<!-- plan: status=active owner=r60572 reviewed=2026-10-05 -->
+<!-- plan: status=active owner=p67085 reviewed=2026-10-07 -->
 
 # One native: launch checklist
 
@@ -45,7 +45,17 @@ suite. Remaining iOS holes, in launch order:
   Settings controls fail. Workspace source and reused native shell only.
   Identity and limits: `one-native-open-url-share-settings.md`. Current
   canary production acceptance and Android suites remain open.
-- [ ] `One.UI.Icon`: fixture and suite (SF Symbol element, semantic role color).
+- [x] `One.UI.Icon`: `ui-icon`, source `b7000c33b`, iPhone 17 Pro/iOS 27.0.
+  Default/font/SwiftUI/style frames, labeled image accessibility, painted
+  unlabeled decoration, SF Symbol ink, danger versus a raw native reference,
+  explicit green and invalid-element rejection pass. Missing-glyph, wrong-role,
+  wrong-color, original-sizing and original-accessible-host controls reject.
+  Source-bound workspace JS and reused native shell only; original native build
+  source is not newly authenticated to this commit. No current canary production
+  or Android acceptance. The shared adapter also changes five gradients whose
+  runtime suites were not rerun. Receipts and captures:
+  `/Users/n8/Library/Logs/one-icon-ios-proof/`; installed executable SHA256
+  `318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e`.
 - [ ] `One.UI.Blur`, `Mask`, `EdgeFade`, `sampleCurve`, `serializeCurve`: turn
   the effects capture script into a suite with a pixel assertion.
 - [ ] adaptive: `ReservedRegions`, `useReservedRegions(Ready)`, `useSizeClass`,
