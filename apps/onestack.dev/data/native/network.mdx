@@ -25,4 +25,32 @@ function NetworkStatus() {
 
 `type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
 
+`getState()` returns `Promise<NetworkState>`. `useNetworkState()` returns the
+same shape as React state and removes its listener on unmount. On native,
+the hook starts with `unknown` and both flags false, then updates from the
+initial read and native events. `addStateListener(callback)` returns a
+subscription whose `remove()` stops that callback.
+
+<PropsTable
+  source="network/types.ts#NetworkState"
+  data={[
+    { name: 'type', type: 'NetworkStateType', description: 'Connection transport, or none for a disconnected path.' },
+    { name: 'isConnected', type: 'boolean', description: 'Whether the system reports an internet-capable connection.' },
+    { name: 'isInternetReachable', type: 'boolean', description: 'The platform connectivity signal described below.' },
+  ]}
+/>
+
+On iOS, both flags are true when `NWPathMonitor` reports a satisfied path.
+On Android, `isConnected` reads `NET_CAPABILITY_INTERNET` and
+`isInternetReachable` reads `NET_CAPABILITY_VALIDATED`. On web, both flags
+follow `navigator.onLine`. These values describe system connectivity;
+One does not send an HTTP request to determine them.
+
+<PropsTable
+  source="network/types.ts#NetworkStateSubscription"
+  data={[
+    { name: 'remove', type: '() => void', description: 'Unsubscribe this connection-state callback.' },
+  ]}
+/>
+
 The library manifest declares `ACCESS_NETWORK_STATE` (a normal install-time permission, merged into the app automatically).
