@@ -134,6 +134,7 @@ const suites = [
   'ui-text-input',
   'ui-image',
   'ui-icon',
+  'adaptive-flat',
   'gpu',
   'updates',
 ] as const
@@ -781,6 +782,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   portal: (nodes: Node[]) => Boolean(id(nodes, 'portal-toggle-host')),
   pager: (nodes: Node[]) => Boolean(id(nodes, 'one-ui-pager-root')),
   'ui-text-input': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-text-input-field')),
+  'adaptive-flat': (nodes: Node[]) => Boolean(id(nodes, 'adaptive-fixture')),
   'ui-icon': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-icon-invalid')),
   'ui-image': (nodes: Node[]) => Boolean(id(nodes, 'one-native-image-switch')),
   gpu: gpuLoaded,
@@ -894,6 +896,7 @@ const suiteHome: Record<Suite, string> = {
   pager: 'nav-one-ui-pager',
   'ui-text-input': 'nav-one-ui-text-input',
   'ui-image': 'nav-one-native-image',
+  'adaptive-flat': 'nav-one-native-adaptive',
   'ui-icon': 'nav-one-ui-icon',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
@@ -6848,6 +6851,128 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       badge(n, 'context:1') && size(n, 'portal-other', 220, 90) && cornered(n, 'portal-other') &&
       !within(frame(n, 'portal-badge'), frame(n, 'portal-host')))
     screenshot('portal-switched.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'adaptive-flat') {
+    type Reading = {
+      ready: boolean
+      initialReady: boolean
+      layout: { width: number; height: number }
+      size: { horizontal: string; vertical: string }
+      hinge: unknown
+      regions: unknown[]
+      allRegions: unknown[]
+      segments: { x: number; y: number; width: number; height: number }[]
+      spanning: boolean
+      reading: {
+        size: { horizontal: string; vertical: string }
+        hinge: unknown
+        reads: number
+      } | null
+      listener: { events: number; value?: unknown }
+      error: string
+    }
+    const reading = (nodes: Node[]): Reading | null => {
+      const label = id(nodes, 'adaptive-reading')?.AXLabel
+      return label ? JSON.parse(label) : null
+    }
+    const lifecycle = (nodes: Node[]) => {
+      const label = id(nodes, 'adaptive-lifecycle')?.AXLabel
+      return label
+        ? (JSON.parse(label) as {
+            subscriptions: number
+            effectPasses: number
+            removals: number
+            nonNullEvents: number
+          })
+        : null
+    }
+    const flat = (nodes: Node[], width: number, height: number, reads: number) => {
+      const value = reading(nodes)
+      if (!value || value.error || !value.reading || value.reading.reads !== reads)
+        return false
+      const segment = value.segments[0]
+      return (
+        value.ready &&
+        value.initialReady === false &&
+        value.layout.width === width &&
+        value.layout.height === height &&
+        value.regions.length === 0 &&
+        value.allRegions.length === 0 &&
+        value.hinge === null &&
+        value.listener.events > 0 &&
+        value.listener.value === null &&
+        value.reading.hinge === null &&
+        value.spanning === false &&
+        value.size.horizontal === 'compact' &&
+        value.size.vertical === 'regular' &&
+        value.reading.size.horizontal === value.size.horizontal &&
+        value.reading.size.vertical === value.size.vertical &&
+        value.segments.length === 1 &&
+        segment.x === 0 &&
+        segment.y === 0 &&
+        segment.width === value.layout.width &&
+        segment.height === value.layout.height &&
+        lifecycle(nodes)?.nonNullEvents === 0
+      )
+    }
+    // one's root enables strict mode: development replays setup/cleanup/setup.
+    // count every subscription and removal, including that replay.
+    const mounted = (nodes: Node[], mounts: number, removals: number) => {
+      const value = lifecycle(nodes)
+      return Boolean(
+        value &&
+        (value.effectPasses === 1 || value.effectPasses === 2) &&
+        value.subscriptions === mounts * value.effectPasses &&
+        value.removals === removals + mounts * (value.effectPasses - 1)
+      )
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-adaptive')
+    await wait(
+      'native ready event supplies flat bounds and getter hook agreement',
+      (nodes) => flat(nodes, 280, 300, 1) && mounted(nodes, 1, 0)
+    )
+    screenshot('adaptive-flat-mounted.png')
+    tap({ id: 'adaptive-refresh' })
+    await wait('refreshed getters agree with mounted hooks', (nodes) =>
+      flat(nodes, 280, 300, 2)
+    )
+    tap({ id: 'adaptive-resize' })
+    await wait('native provider resize replaces segment bounds', (nodes) =>
+      flat(nodes, 220, 220, 2)
+    )
+    screenshot('adaptive-flat-resized.png')
+    tap({ id: 'adaptive-toggle' })
+    await wait(
+      'unmount removes provider and calls hinge listener cleanup',
+      (nodes) =>
+        !id(nodes, 'adaptive-reading') &&
+        !id(nodes, 'adaptive-refresh') &&
+        mounted(nodes, 1, 1)
+    )
+    tap({ id: 'adaptive-toggle' })
+    await wait(
+      'remounted provider receives a fresh native ready event',
+      (nodes) => flat(nodes, 220, 220, 1) && mounted(nodes, 2, 1)
+    )
+    tap({ id: 'adaptive-resize' })
+    await wait('restored provider bounds match its single segment', (nodes) =>
+      flat(nodes, 280, 300, 1)
+    )
+    tap({ id: 'adaptive-toggle' })
+    await wait(
+      'second unmount balances explicit listener cleanup',
+      (nodes) => !id(nodes, 'adaptive-reading') && mounted(nodes, 2, 2)
+    )
+    tap({ id: 'adaptive-toggle' })
+    const nodes = await wait(
+      'second remount restores flat hooks and native readiness',
+      (nodes) => flat(nodes, 280, 300, 1) && mounted(nodes, 3, 2)
+    )
+    screenshot('adaptive-flat-restored.png', nodes)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
