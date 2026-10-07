@@ -901,3 +901,25 @@ in the peer tree. Focused Share acceptance passes; full system/media
 acceptance and paired Expo UI fidelity remain open. Next: the full system
 sweep against this validated native APK and the landed runner. Delivery
 CI remains assigned to live one-ci (s15186).
+
+## Current location sweep, 2026-10-07
+
+RAN: `w-7d42` passes 52 captured checkpoints on beta `0818352e8`,
+including repaired Share, Print, Quick Actions, AppIcon and foreground
+Location prompt/current/watch/geocode controls. It stops after background
+watch activation because the runner's notification dump lacks the title.
+The saved package state has POST_NOTIFICATIONS granted=false; Android's
+log records an allowed location foreground-service start. These receipts
+do not yet prove its continuing foreground state or notification content.
+
+The focused `system-location` entry reuses the sweep's unchanged Location
+assertions and saves service, permission and both redacted/full notification
+dumps before the failing check. Native source and validated APK are
+unchanged. [Android documents](https://developer.android.com/develop/ui/views/notifications/notification-permission)
+that denied notification permission hides foreground-service notices from
+the drawer while preserving Task Manager notices. A focused runtime probe
+will distinguish this permission precondition from service failure and
+dump redaction. Emulator/Metro and the owned fixture are removed after
+the sweep. Raw checkpoints/logs remain in primary
+`runtime-system-share-beta-pro64` evidence. Full system/media acceptance
+and paired Expo parity remain open.
