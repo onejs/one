@@ -55,12 +55,17 @@ and empty final device/listener reads remain in Contrast
 quality-90 controls capture was inspected and shared.
 
 The Audio candidate build uses the existing `SKIP_TYPES=1` JavaScript graph
-mode before native prebuild and Gradle on a cold builder. The ordinary
-JavaScript graph declaration emit failed with TS2307 for
-`@tamagui/web/internal-runtime`; that baseline remains open. The first Kotlin
-candidate compiled; the newly guarded playback read still needs compilation. A separate source-pinned native Expo
-library APK and instrumentation APK build prepares the picker pixel oracle;
-paired fidelity remains open.
+mode before native prebuild and Gradle on a cold builder. RAN: the guarded
+candidate's local dispatch failed before native compilation with TS2307 for
+`@tamagui/web/internal-runtime`. Turbo's strict task environment omitted
+`SKIP_TYPES`; its build task now declares that input so the flag reaches the
+builder and JavaScript-only output has a distinct cache key. The ordinary
+declaration baseline remains open. The first Kotlin candidate compiled; the
+newly guarded playback read still needs compilation. RAN: the source-pinned
+Expo library APK and instrumentation APK build passes, 1696 Gradle tasks in
+16m24s. Their hashes, fixture and lock match source `5cd581266e` on pro-64;
+the unchanged four picker tests are capturing its native oracle. Paired
+fidelity remains open.
 
 Evidence remains outside One git in Contrast
 `scripts/tmp/android-m22158/runtime-media-picker-fixed/`. Cleanup removed
