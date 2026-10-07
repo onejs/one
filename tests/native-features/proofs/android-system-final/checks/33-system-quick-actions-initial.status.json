@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-quick-actions-initial",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 35,
+  "capturedAt": "2026-10-07T17:14:44.145Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/33-system-quick-actions-initial.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/33-system-quick-actions-initial.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/33-system-quick-actions-initial.status.json"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-keep-awake-foregrounded",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 30,
+  "capturedAt": "2026-10-07T16:56:51.441Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/11-system-keep-awake-foregrounded.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/11-system-keep-awake-foregrounded.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/11-system-keep-awake-foregrounded.status.json"
+  }
+}

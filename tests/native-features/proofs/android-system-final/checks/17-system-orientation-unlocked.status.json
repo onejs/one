@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-orientation-unlocked",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 33,
+  "capturedAt": "2026-10-07T16:58:32.378Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/17-system-orientation-unlocked.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/17-system-orientation-unlocked.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/17-system-orientation-unlocked.status.json"
+  }
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "file": "map-services.webp",
+    "dimensions": [
+      1080,
+      2400
+    ],
+    "bytes": 35284,
+    "crop": null,
+    "sha256": "46eb2ac23f02e1b8682339ffcef5bd0a914aa43c75abb4399d8ea81273572fe0"
+  },
+  {
+    "file": "map-services-detail.webp",
+    "dimensions": [
+      1080,
+      1020
+    ],
+    "bytes": 25574,
+    "crop": [
+      0,
+      280,
+      1080,
+      1300
+    ],
+    "sha256": "b5b6dfe315af2b9e79bb8330289bb157ce25e9c850fe13effe11f461abb9e01e"
+  },
+  {
+    "file": "local-auth.webp",
+    "dimensions": [
+      1080,
+      2400
+    ],
+    "bytes": 28486,
+    "crop": null,
+    "sha256": "677f1e23c49a310a3db727f3f6a65f84cb1bc3866424a57180127bb0346ab079"
+  },
+  {
+    "file": "local-auth-detail.webp",
+    "dimensions": [
+      1080,
+      1020
+    ],
+    "bytes": 17846,
+    "crop": [
+      0,
+      280,
+      1080,
+      1300
+    ],
+    "sha256": "ca355434c155dbf217a4d0a9a8ad27cfbfd10fa9d20b3d57ed7065eb185dcc15"
+  },
+  {
+    "file": "screen-capture.webp",
+    "dimensions": [
+      1080,
+      2400
+    ],
+    "bytes": 67516,
+    "crop": null,
+    "sha256": "1de435f94755574caed222ae79f4b070fb14aaadc8bab2feac5f48e9346d0af5"
+  },
+  {
+    "file": "screen-capture-detail.webp",
+    "dimensions": [
+      1080,
+      1020
+    ],
+    "bytes": 57928,
+    "crop": [
+      0,
+      280,
+      1080,
+      1300
+    ],
+    "sha256": "075a383c3b56fc9f59b455b68fc1ef543b125d476e1751fb45e7e87b348bc50f"
+  }
+]

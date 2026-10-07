@@ -1,0 +1,17 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-background-denied-delivered",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 46,
+  "detail": {
+    "persistedBackgroundPosition": "background:37.7899,-122.4044"
+  },
+  "capturedAt": "2026-10-07T17:21:10.917Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/54-system-location-background-denied-delivered.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/54-system-location-background-denied-delivered.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/54-system-location-background-denied-delivered.status.json"
+  }
+}

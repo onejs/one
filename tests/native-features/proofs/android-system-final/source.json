@@ -1,0 +1,9 @@
+{
+  "source": "f29ae4b7ae27c5afe5dd326f2658f3fd52a1fd78",
+  "job": "w-1311",
+  "verdict": "79 system checks pass",
+  "device": "sootsim_pixel_8_android_17_api_37_r06",
+  "apkSource": "c4ba7378e858cd02d78d01cc8ade4cff7db8b705",
+  "apkSha256": "652f08da010fc553c4ed1a48874e54aa3af4d6f6e03a8581dfcbc92be0017a5d",
+  "nativeChanged": false
+}

@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-watch-first",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 46,
+  "capturedAt": "2026-10-07T17:20:40.132Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/47-system-location-watch-first.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/47-system-location-watch-first.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/47-system-location-watch-first.status.json"
+  }
+}

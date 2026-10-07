@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-undetermined",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 46,
+  "capturedAt": "2026-10-07T17:20:18.551Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/44-system-location-undetermined.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/44-system-location-undetermined.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/44-system-location-undetermined.status.json"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "suite": "one-native-android",
+  "name": "system-location-background-denied-service",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 84,
+  "detail": {
+    "service": "  * ServiceRecord{7cc479b u0 dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneLocationService c:dev.vxrn.nativefeatures.tests}\n    intent={cmp=dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneLocationService}\n    packageName=dev.vxrn.nativefeatures.tests\n    processName=dev.vxrn.nativefeatures.tests\n    targetSdkVersion=36\n    baseDir=/data/app/~~2IcmX-ykA5OVr8cp4ZN3pg==/dev.vxrn.nativefeatures.tests-tT8H05c6GffXz0IQ7SMCaQ==/base.apk\n    dataDir=/data/user/0/dev.vxrn.nativefeatures.tests\n    app=ProcessRecord{ba76e11 15755:dev.vxrn.nativefeatures.tests/u0a232}\n    useNewWiuLogic_forCapabilities()=true\n    useNewWiuLogic_forStart()=true\n    useNewBfslLogic()=true\n    mAllowWiu_noBinding=PROC_STATE_TOP\n    mAllowWiu_inBindService=DENIED\n    mAllowWiu_byBindings=DENIED\n    getFgsAllowWiu_legacy=PROC_STATE_TOP\n    getFgsAllowWiu_new=PROC_STATE_TOP\n    getFgsAllowWiu_forStart=PROC_STATE_TOP\n    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP\n    allowUiJobScheduling=true\n    recentCallingPackage=dev.vxrn.nativefeatures.tests\n    recentCallingUid=10232\n    mAllowStart_noBinding=PROC_STATE_TOP\n    mAllowStart_inBindService=DENIED\n    mAllowStart_byBindings=DENIED\n    getFgsAllowStart_legacy=PROC_STATE_TOP\n    getFgsAllowStart_new=PROC_STATE_TOP\n    getFgsAllowStart=PROC_STATE_TOP\n    startForegroundCount=1\n    infoAllowStartForeground=[callingPackage: dev.vxrn.nativefeatures.tests; callingUid: 10232; uidState: TOP ; uidBFSL: [BFSL]; BFGS denied: false; intent: Intent { xflg=0x4 cmp=dev.vxrn.nativefeatures.tests/dev.onejs.onenative.OneLocationService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; allowWiu:12; targetSdkVersion:36; callerTargetSdkVersion:36; startForegroundCount:0; bindFromPackage:null; isBindService:false]\n    isForeground=true foregroundId=4301 types=0x00000008 foregroundNoti=Notification(channel=one-location shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE)\n    createTime=-4s627ms startingBgTimeout=--\n    lastActivity=-4s626ms restartTime=-4s626ms createdFromFg=true\n    startRequested=true delayedStop=false stopIfKilled=true callStart=true lastStartId=1\n startCommandResult=2\n",
+    "notification": ""
+  },
+  "capturedAt": "2026-10-07T17:21:06.241Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/53-system-location-background-denied-service.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/53-system-location-background-denied-service.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/53-system-location-background-denied-service.status.json"
+  }
+}

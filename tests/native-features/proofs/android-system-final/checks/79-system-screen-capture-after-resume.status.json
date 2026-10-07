@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-screen-capture-after-resume",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 42,
+  "capturedAt": "2026-10-07T17:29:17.446Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/79-system-screen-capture-after-resume.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/79-system-screen-capture-after-resume.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/79-system-screen-capture-after-resume.status.json"
+  }
+}

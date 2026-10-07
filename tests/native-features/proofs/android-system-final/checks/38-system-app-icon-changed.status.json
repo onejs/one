@@ -1,0 +1,18 @@
+{
+  "suite": "one-native-android",
+  "name": "system-app-icon-changed",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 32,
+  "detail": {
+    "hostPid": "13998",
+    "launcher": "dev.vxrn.nativefeatures.tests/.TestAlternate"
+  },
+  "capturedAt": "2026-10-07T17:16:21.097Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/38-system-app-icon-changed.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/38-system-app-icon-changed.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/38-system-app-icon-changed.status.json"
+  }
+}

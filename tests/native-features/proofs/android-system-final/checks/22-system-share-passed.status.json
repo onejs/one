@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-share-passed",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 26,
+  "capturedAt": "2026-10-07T16:59:45.738Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/22-system-share-passed.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/22-system-share-passed.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/22-system-share-passed.status.json"
+  }
+}

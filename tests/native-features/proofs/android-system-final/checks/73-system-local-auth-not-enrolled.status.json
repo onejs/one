@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-local-auth-not-enrolled",
+  "result": "passed",
+  "deviceId": "emulator-5582",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 27,
+  "capturedAt": "2026-10-07T17:27:12.276Z",
+  "artifacts": {
+    "png": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/73-system-local-auth-not-enrolled.png",
+    "xml": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/73-system-local-auth-not-enrolled.xml",
+    "status": "/Users/n8/one/tests/native-features/evidence/android-restart-p66065/runtime-system-location-beta-pro64/system/73-system-local-auth-not-enrolled.status.json"
+  }
+}
