@@ -27,8 +27,25 @@ and deadlines remain. Native Audio then crashes during record/play with
 `ForegroundServiceDidNotStartInTimeException`; the saved log identifies
 `OneAudioService` and its STOP action. INFERRED: stopping before pending
 foreground promotion causes the crash. The candidate promotes first, even
-when STOP arrives before the initial start callback. Native compile and Audio
-runtime acceptance are pending. RAN: all eight remaining focused Compose
+when STOP arrives before the initial start callback. RAN: the
+candidate compiles, 370 Gradle tasks in 17m25s. APK SHA256 is
+`880abd45dee2b732d3aa50744f650d32a468d24ba940d884773f6ead569ab655`;
+its Kotlin source matches the candidate and the build cleanup receipt reports
+released resources. The first repaired runtime returns
+`Status: error at play: playback did not advance: failed 1718`. Native logs
+record `getDuration` during Preparing, then error `-38`. INFERRED: the loading
+status read corrupts the MediaPlayer state. The next candidate returns loading
+or failed status without querying that player, and now-playing metadata reuses
+the same guarded status owner. Its compile and unchanged Audio acceptance are
+pending. Evidence stays in Contrast
+`scripts/tmp/android-m22158/runtime-audio-promotion/`. RAN: final device and
+Metro8107 reads are empty and the emulator lease was released.
+
+RAN: local `bun release --into` installs all 17 package-family entries into
+isolated Contrast `~/.worktrees/contrast-android-one-audio-downstream`. It reuses
+JavaScript outputs built from `aaff03e29`, whose package JavaScript matches this
+native-only candidate. The downstream service source matches byte for byte.
+This is package content verification; Audio behavior acceptance remains open. RAN: all eight remaining focused Compose
 suites pass on pro-64 using the unchanged APK, 45 checkpoints plus AppIcon's
 eight checks. Badges, list slots, flow wrapping, icon/FAB/toggle interactions,
 loading, Surface rejection and acceptance, progress and segmented controls
@@ -40,8 +57,8 @@ quality-90 controls capture was inspected and shared.
 The Audio candidate build uses the existing `SKIP_TYPES=1` JavaScript graph
 mode before native prebuild and Gradle on a cold builder. The ordinary
 JavaScript graph declaration emit failed with TS2307 for
-`@tamagui/web/internal-runtime`; that baseline remains open. The Kotlin
-candidate has no compile verdict yet. A separate source-pinned native Expo
+`@tamagui/web/internal-runtime`; that baseline remains open. The first Kotlin
+candidate compiled; the newly guarded playback read still needs compilation. A separate source-pinned native Expo
 library APK and instrumentation APK build prepares the picker pixel oracle;
 paired fidelity remains open.
 
@@ -51,7 +68,9 @@ Metro8107, the owned emulator and fixture. The three earlier media runs retain
 the original boot failure, picker failure and passing Contacts diagnostic.
 Peach owner s16717 works its width candidate. One proof-history rewrite is
 prepared but its force-push requires Nate; p67073 owns that final step. Rebase
-onto rewritten `v2-beta` after its tip moves from `4d946b837`. No captures or
+onto rewritten `v2-beta` after the cleanup owner confirms its rewritten
+ancestry. The fetched `ec569a328` is a normal successor of `4d946b837`, so that
+tip movement does not establish the history rewrite. No captures or
 logs are committed. Android service promotion requirements are documented in
 [Android foreground service lifecycle](https://developer.android.com/develop/background-work/services/fgs/stop-fgs)
 and [ActiveServices](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/services/core/java/com/android/server/am/ActiveServices.java).
