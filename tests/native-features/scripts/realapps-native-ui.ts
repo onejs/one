@@ -327,7 +327,7 @@ try {
       // failure controls: a stubbed openURL/openSettings that resolves
       // without leaving the app keeps appStates at active and fails here.
       for (const api of ['One.openURL', 'One.openSettings']) {
-        const states = (results[`${api}.appStates`] as any)?.value?.states
+        const states = results[`${api}.appStates`]?.value?.states
         if (!Array.isArray(states) || !states.includes('background') || !states.includes('active'))
           throw new Error(`${api} did not leave and return to the app; states: ${JSON.stringify(states)}`)
       }

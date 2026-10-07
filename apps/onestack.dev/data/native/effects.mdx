@@ -111,6 +111,48 @@ the outer edge and require at least two values between 0 and 1.
 The native iOS blur mode blends three masked material layers. It does not
 expose Apple's private variable-radius filter.
 
+## Curve helpers
+
+`One.UI.sampleCurve(curve)` returns inner-to-outer alpha values. Presets and
+cubic beziers produce 32 samples, rounded to four decimal places. A stop list
+retains its length and clamps each value to 0–1.
+
+`One.UI.serializeCurve(curve)` returns the preset name for a preset, or the
+sampled alpha values joined with commas for a bezier or stop list. `EdgeFade`
+serializes its own curve; use these helpers when inspecting a curve or passing
+it to another effect.
+
+```tsx
+import { One } from 'one'
+
+const alphas = One.UI.sampleCurve('linear')
+// 32 samples, beginning at 1 and ending at 0
+
+const encoded = One.UI.serializeCurve({ type: 'stops', values: [1, 0.4, 0] })
+// "1,0.4,0"
+```
+
+<PropsTable
+  title="CubicBezierCurve"
+  source="effects/types.ts#CubicBezierCurve"
+  data={[
+    { name: 'type', required: true, type: '"cubicBezier"', description: 'Select the cubic bezier curve.' },
+    { name: 'x1', required: true, type: 'number', description: 'First control point x coordinate.' },
+    { name: 'y1', required: true, type: 'number', description: 'First control point y coordinate.' },
+    { name: 'x2', required: true, type: 'number', description: 'Second control point x coordinate.' },
+    { name: 'y2', required: true, type: 'number', description: 'Second control point y coordinate.' },
+  ]}
+/>
+
+<PropsTable
+  title="StopsCurve"
+  source="effects/types.ts#StopsCurve"
+  data={[
+    { name: 'type', required: true, type: '"stops"', description: 'Select an alpha-stop list.' },
+    { name: 'values', required: true, type: '[number, number, ...number[]]', description: 'At least two alpha values, ordered from the inner edge to the outer edge.' },
+  ]}
+/>
+
 ## Mask props
 
 `Mask` also accepts React Native `ViewProps`. Size both the container and the
