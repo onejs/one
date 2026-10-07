@@ -29,7 +29,8 @@ const alias = `      <activity-alias
       </activity-alias>
 `
 
-let rendered = readFileSync(manifestPath, 'utf8')
+const original = readFileSync(manifestPath, 'utf8')
+let rendered = original
 const previousAlternate = rendered.match(/<activity-alias\b[^>]*android:name="\.TestAlternate"[\s\S]*?<\/activity-alias>/)?.[0]
 if (previousAlternate) rendered = rendered.replace(previousAlternate, alias.trim())
 const main = rendered.match(/<activity\b[^>]*android:name="\.MainActivity"[\s\S]*?<\/activity>/)?.[0]
@@ -56,5 +57,5 @@ const host = launcher ? main.replace(launcher, '') : main
 const aliases = (hasPrimary ? '' : `\n${primary}`) +
   (rendered.includes('android:name=".TestAlternate"') ? '' : alias)
 const updated = rendered.replace(main, host + aliases)
-if (updated !== rendered) writeFileSync(manifestPath, updated)
+if (updated !== original) writeFileSync(manifestPath, updated)
 console.log('app-icon launcher aliases prepared')
