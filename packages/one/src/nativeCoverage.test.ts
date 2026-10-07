@@ -38,7 +38,6 @@ const knownGaps: Record<string, string> = {
   LaunchScreen: 'Android suite missing',
   openShare: 'react native Share underneath; proven in the Contrast app, no suite yet',
   openSettings: 'react native Linking underneath; no suite yet',
-  Clipboard: 'iOS suite only',
   Network: 'iOS suite only',
   DocumentPicker: 'Android fixture exists, no suite opens it',
   useNetworkState: 'no fixture or suite',
@@ -56,6 +55,8 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  Clipboard:
+    'Android setString and getString proven only through the share suite Copy check; no Android clipboard suite',
   BackgroundTasks:
     'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device',
   DeviceAttestation:
