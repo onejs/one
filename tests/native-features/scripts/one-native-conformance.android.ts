@@ -406,10 +406,10 @@ function validBounds(node: Node, description: string) {
 
 function visibleIn(bounds: Bounds, viewport: Bounds) {
   return (
-    bounds.right > viewport.left &&
-    bounds.left < viewport.right &&
-    bounds.bottom > viewport.top &&
-    bounds.top < viewport.bottom
+    bounds.left > viewport.left &&
+    bounds.right < viewport.right &&
+    bounds.top > viewport.top &&
+    bounds.bottom < viewport.bottom
   )
 }
 
@@ -669,6 +669,12 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
         id: navId,
         role: 'button',
         clickable: true,
+      }, (node) => {
+        const bounds = validBounds(node, 'Android proof navigation row')
+        const viewport = applicationBounds(current.nodes)
+        if (!visibleIn(bounds, viewport)) throw new Error('Android navigation row is clipped at the viewport edge.')
+        writeFileSync(path.join(config.artifactDir, `navigation-${navId}.json`),
+          JSON.stringify({ node: shortNode(node), viewport }, null, 2))
       })
       return
     }

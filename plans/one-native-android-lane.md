@@ -206,6 +206,18 @@ matching the current task. A missing current snapshot remains unavailable,
 so no component state changes occur. No emulator or Metro was started;
 the failed compiler log is preserved and the native rebuild is pending.
 
+RAN: `w-3304` compiles in 17 seconds and opens Home, but never mounts
+AppIcon. Its hierarchy stays on the Home list, so this run has no AppIcon
+support or switching verdict. The activity receipt shows MainActivity as
+the root of its own task. The saved input log records `input tap 541 2400`,
+outside the 1080x2400 device. The navigation helper accepted an intersecting
+row clipped at the bottom edge, then rounded its tiny visible midpoint
+outside the viewport. It now requires bounds strictly inside the viewport,
+rechecks the fresh row before tapping, and records those bounds. This
+strengthens the existing navigation precondition; runtime deadlines and
+AppIcon assertions remain unchanged. The compiled APK can be reused because
+only the runner and this status changed.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.
