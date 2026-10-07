@@ -1282,6 +1282,9 @@ async function run(config: Config) {
       (nodes) => /Watch: 37\.79\d\d,-122\.3\d\d\d/.test(joined(nodes)),
       'one-native-location-stop-watch'
     )
+    const revokedPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    if (!/^\d+$/.test(revokedPid))
+      throw new Error('location revocation requires one live fixture process')
     adbText(config, [
       'shell',
       'pm',
@@ -1296,16 +1299,55 @@ async function run(config: Config) {
       config.packageId,
       'android.permission.ACCESS_COARSE_LOCATION',
     ])
-    pressHome()
-    await Bun.sleep(1000)
+    const foregroundPermissionsDenied = () => {
+      const permissions = adbText(config, ['shell', 'dumpsys', 'package', config.packageId])
+      return ['ACCESS_FINE_LOCATION', 'ACCESS_COARSE_LOCATION'].every((permission) =>
+        permissions.includes(`android.permission.${permission}: granted=false,`))
+    }
+    await expect('system-location-revoked-process', () => {
+      const events = adbText(config, ['logcat', '-d', '-b', 'events'])
+      return foregroundPermissionsDenied() && locationService() === '' &&
+        events.split('\n').some((line) => line.includes(`,${revokedPid},${config.packageId},`) &&
+          line.includes('am_kill') && line.includes('permissions revoked'))
+    }, undefined, () => ({ revokedPid, permissionsDenied: foregroundPermissionsDenied() }))
+    writeFileSync(path.join(config.artifactDir, 'location-revoked-events.txt'),
+      adbText(config, ['logcat', '-d', '-b', 'events']))
     foregroundApp()
+    await expect('system-location-revoked-home', (nodes) => {
+      const currentPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+      return exactlyOneId(nodes, 'home-screen') && /^\d+$/.test(currentPid) &&
+        currentPid !== revokedPid && foregroundPermissionsDenied()
+    }, 'home-screen', () => ({ revokedPid,
+      currentPid: adbText(config, ['shell', 'pidof', config.packageId]).trim() }), 30_000)
+    await tapNavigation(config, 'nav-one-native-location')
     await expect(
       'system-location-revoked',
-      (nodes) => joined(nodes).includes('Watch: error: E_LOCATION_PERMISSION'),
-      'one-native-location-refresh',
+      (nodes) => joined(nodes).includes('Permission: denied') &&
+        joined(nodes).includes('Watch: none'),
+      'one-native-location-watch',
       undefined,
       30_000
     )
+    tapFresh(config, 'system-location-revoked-watch', {
+      id: 'one-native-location-watch', role: 'button', clickable: true,
+    })
+    await expect('system-location-revoked-watch-rejected',
+      (nodes) => joined(nodes).includes('Watch: error: E_LOCATION_PERMISSION') &&
+        foregroundPermissionsDenied(), 'one-native-location-current')
+    tapFresh(config, 'system-location-revoked-current', {
+      id: 'one-native-location-current', role: 'button', clickable: true,
+    })
+    await expect('system-location-revoked-current-rejected',
+      (nodes) => joined(nodes).includes('Position: error: E_LOCATION_PERMISSION'),
+      'one-native-location-background-watch')
+    tapFresh(config, 'system-location-revoked-background', {
+      id: 'one-native-location-background-watch', role: 'button', clickable: true,
+    })
+    await expect('system-location-revoked-background-rejected',
+      (nodes) => joined(nodes).includes('Background watch: error: E_LOCATION_PERMISSION') &&
+        locationService() === '' && locationNotification() === '',
+      'one-native-location-refresh')
+    retainLocationState('revoked')
     adbText(config, [
       'shell',
       'pm',

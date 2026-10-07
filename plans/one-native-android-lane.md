@@ -947,3 +947,19 @@ left quarter and asserts System UI opens before checking the title.
 The gesture and window state are retained. The shared notification probe
 uses this one opening path; notification deadlines and title assertions
 remain unchanged. Repaired runtime, including revocation, remains pending.
+
+RAN: `w-9c48` opens System UI and captures the actual Location foreground
+notification. Both notification-denied and notification-granted legs deliver
+their exact moved coordinates while backgrounded and remove the service and
+notification on stop. The final permission-revocation check fails after
+Android logs `am_kill` for PID 3768 with `permissions revoked`, then starts
+PID 5951. The failure XML is the new process's Home screen. An old watch
+callback cannot be observed after that process death.
+
+The next candidate requires the exact permission-revocation kill record,
+both grants removed and a new PID on Home before reopening the fixture.
+It then requires denied status and permission errors for a new foreground
+watch, current position and background watch, with no Location service or
+notification left behind. The one-second sleep is removed; existing
+assertion deadlines remain. Native source and the verified APK are
+unchanged. Focused acceptance of this process transition remains pending.
