@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { AppState, ScrollView, Text, View } from 'react-native'
+import { AppState, ScrollView, Share, Text, View } from 'react-native'
 import { One } from 'one'
 import { Action, Results, assert, useResults } from './realapps-api-report'
 
@@ -439,9 +439,20 @@ export default function Services() {
             async () => {
               // settles only after the sheet dismisses; runner proves the
               // presentation and the return.
-              const result = await One.openShare({ message: 'one realapps API probe' })
-              assert(result === undefined, 'openShare must resolve void', result)
-              return result
+              const nativeShare = Share.share
+              // observe the native completion without changing One's void contract.
+              Share.share = async (...args) => {
+                const activity = await nativeShare(...args)
+                report('One.openShare.nativeActivity', 'observed', activity)
+                return activity
+              }
+              try {
+                const result = await One.openShare({ message: 'one realapps API probe' })
+                assert(result === undefined, 'openShare must resolve void', result)
+                return result
+              } finally {
+                Share.share = nativeShare
+              }
             },
             'observed',
             'void result; runner must prove sheet presentation and dismissal'
