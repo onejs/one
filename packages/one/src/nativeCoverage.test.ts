@@ -40,7 +40,7 @@ const knownGaps: Record<string, string> = {
   openSettings: 'Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven',
   Network: 'iOS suite only',
   DocumentPicker: 'Android fixture exists, no suite opens it',
-  useNetworkState: 'no fixture or suite',
+  useNetworkState: 'Android suite missing; iOS workspace live state, refresh and two remounts proven',
   useNativeState: 'iOS suite only',
   useSizeClass: 'fixture exists, no suite opens it',
   getSizeClass: 'no fixture or suite',

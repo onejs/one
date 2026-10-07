@@ -28,8 +28,11 @@ function NetworkStatus() {
 `getState()` returns `Promise<NetworkState>`. `useNetworkState()` returns the
 same shape as React state and removes its listener on unmount. On native,
 the hook starts with `unknown` and both flags false, then updates from the
-initial read and native events. `addStateListener(callback)` returns a
-subscription whose `remove()` stops that callback.
+initial read and native events. Once an event arrives, a pending initial
+read cannot overwrite it. `addStateListener(callback)` returns a subscription
+whose `remove()` stops that callback. Native listeners share a monitor started
+by its first subscriber; later subscribers receive subsequent changes. Use
+`getState()` when you need an initial connection reading.
 
 <PropsTable
   source="network/types.ts#NetworkState"

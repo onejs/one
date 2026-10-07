@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { One } from 'one'
+import { One, useNetworkState } from 'one'
 
 // exercises the network state api against the live radio: a one-shot read
 // plus a change listener whose first event proves the native monitor is
@@ -19,9 +19,12 @@ export default function OneNativeNetwork() {
     })
     return () => subscription.remove()
   }, [])
+  // register the event-counting listener first: it starts the shared monitor.
+  const live = useNetworkState()
   return (
     <View style={styles.screen}>
       <Text>{`State: ${state}`}</Text>
+      <Text>{`Hook: ${live.type} ${live.isConnected} ${live.isInternetReachable}`}</Text>
       <Text>{`Events: ${events}`}</Text>
       <Pressable
         testID="one-native-network-refresh"
