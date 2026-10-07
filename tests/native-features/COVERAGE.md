@@ -98,7 +98,7 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |
-| `One.iOS.Image` | leaves, groups | n/a |  |
+| `One.iOS.Image` | leaves, groups, ui-icon | n/a |  |
 | `One.iOS.ShareLink` | share-empty | n/a |  |
 | `One.iOS.ContentUnavailableView` | share-empty | n/a |  |
 | `One.iOS.Circle` | leaves, view-slot | n/a |  |
@@ -198,7 +198,7 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.UI.sampleCurve` | missing | missing | effects helper; no suite asserts it |
 | `One.UI.serializeCurve` | missing | missing | effects helper; no suite asserts it |
 | `One.UI.EdgeFade` | missing | missing | effects fixture has a capture proof script, not a suite |
-| `One.UI.Icon` | missing | missing | no fixture or suite |
+| `One.UI.Icon` | ui-icon | missing | Android suite missing; iOS workspace sizing, image accessibility, SF Symbol ink and role/explicit colors proven |
 | `One.UI.Image` | ui-image | missing | Android suite missing |
 | `One.UI.Map` | ui-map | ui-map |  |
 | `One.UI.PictureInPicture` | missing | missing | fixture exists; simulators report no PiP, needs a device run |

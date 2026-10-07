@@ -26,7 +26,8 @@ const knownGaps: Record<string, string> = {
   'Android.ContextMenu': 'no fixture or suite',
   'UI.sampleCurve': 'effects helper; no suite asserts it',
   'UI.serializeCurve': 'effects helper; no suite asserts it',
-  'UI.Icon': 'no fixture or suite',
+  'UI.Icon':
+    'Android suite missing; iOS workspace sizing, image accessibility, SF Symbol ink and role/explicit colors proven',
   'UI.Image': 'Android suite missing',
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
   'UI.EdgeFade': 'effects fixture has a capture proof script, not a suite',
@@ -34,13 +35,16 @@ const knownGaps: Record<string, string> = {
   'UI.Mask': 'effects fixture has a capture proof script, not a suite',
   'UI.TextInput': 'Android suite missing',
   'UI.ReservedRegions': 'fixture exists, no suite opens it',
-  openURL: 'Android suite missing; iOS workspace Safari destination and app return proven',
+  openURL:
+    'Android suite missing; iOS workspace Safari destination and app return proven',
   LaunchScreen: 'Android suite missing',
   openShare: 'Android suite missing; iOS workspace Copy and cancellation proven',
-  openSettings: 'Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven',
+  openSettings:
+    'Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven',
   Network: 'iOS suite only',
   DocumentPicker: 'Android fixture exists, no suite opens it',
-  useNetworkState: 'Android suite missing; iOS workspace live state, refresh and two remounts proven',
+  useNetworkState:
+    'Android suite missing; iOS workspace live state, refresh and two remounts proven',
   useNativeState: 'iOS suite only',
   useSizeClass: 'fixture exists, no suite opens it',
   getSizeClass: 'no fixture or suite',

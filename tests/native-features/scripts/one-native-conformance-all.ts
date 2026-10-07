@@ -35,6 +35,7 @@ const iphoneSuites = [
   'map',
   'apple-file',
   'ui-map',
+  'ui-icon',
   'gpu',
 ] as const
 
@@ -51,7 +52,8 @@ const device = value('--device', 'iphone')
 const jsLocation = value('--js-location')
 if (device !== 'iphone' && device !== 'ipad' && device !== 'duo')
   throw new Error('--device must be iphone, ipad, or duo')
-const suites = device === 'ipad' ? ['tab-sidebar'] : device === 'duo' ? ['arrangement'] : iphoneSuites
+const suites =
+  device === 'ipad' ? ['tab-sidebar'] : device === 'duo' ? ['arrangement'] : iphoneSuites
 if (!simulatorId || !bundleId) {
   console.log(
     'Usage: bun one-native-conformance-all.ts --simulator-id <UUID> --bundle-id <ID> [--device iphone|ipad|duo] [--js-location HOST:PORT] [--artifact-dir <PATH>] [--timeout <MS>]'
