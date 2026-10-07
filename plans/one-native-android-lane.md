@@ -1,6 +1,6 @@
 # One native Android lane
 
-Owner: one-native-android (p66065). Branch `tm/one-native-android-app-icon-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+Owner: one-native-android (p66065). Branch `tm/one-native-android-share-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
 
 ## Android restart, 2026-10-07
 
@@ -848,3 +848,56 @@ landed Android lanes, so it doubles as the media `:app` probe check.
 
 Device runtime proof still open: unchanged from the two landing entries
 above, no post-land emulator pass recorded yet.
+
+## Share callback investigation, 2026-10-07
+
+RAN: beast `w-66c8` builds current beta `04b27155d` and passes all 158
+Compose/documentation checks. Delivered AppIcon, runner, manifest writer and
+incoming Crypto source hashes match; `bun release --into ~/contrast
+--skip-build` installs 17 entries with unchanged downstream manifest/lock
+bytes and matching native and JS outputs. Mac `w-6cc8` compiles the arm64
+app in 6m42s (40 executed tasks, 330 up to date). The API37 sweep passes
+18 checkpoints through filesystem, Device, KeepAwake and orientation,
+then fails Share. Its final XML reports `Copy did not complete the share
+activity: {"completed":false}`. Android's log records system Copy and
+chooser result -1. The emulator and Metro cleanup executes.
+
+INFERRED: `onHostResume` can set `settlePosted` before `onActivityResult`,
+whose early return then discards the result. A focused runtime probe will
+record the actual callback order and settlement state before choosing a
+repair. The `system-share` entry reuses the full sweep's unchanged Share
+assertions, including exact clipboard content, busy, file cancellation and
+input errors. Full system acceptance remains open.
+
+RAN: diagnostic APK `w-a311` survives outer cancellation and its completed
+verdict is recovered by `w-4815`. The exact callback trace shows resume
+at uptime 90328 scheduling settlement before chooser launch at 90333.
+Settlement at 91129 runs while paused and resolves false; Copy's result
+-1 arrives at 94773 with no pending promise. This proves premature
+completion before user selection, rather than a missing Copy result.
+The native candidate leaves resume responsible only for foreground state;
+only the chooser result schedules completion. Its existing result-path
+grace interval, chosen-component capture and public contract remain.
+The probe's pristine source is restored, and no emulator or Metro listener
+remains. The focused acceptance now also captures idle mount and the
+actual Copy chooser before selection. Native repair acceptance is pending.
+
+RAN: `w-c17d` recovers the completed repaired execution after the outer
+`w-92e3` lost session projection during a fleet promotion. All six focused
+Share checkpoints pass at `c4ba7378e`: idle mount, actual Copy chooser,
+exact clipboard text/URL, completed=true with no activity name, file
+cancellation, busy rejection and all four input guards. The changed
+Android target compiles in 18s (39 executed tasks, 331 up to date).
+APK SHA256: `652f08da010fc553c4ed1a48874e54aa3af4d6f6e03a8581dfcbc92be0017a5d`.
+The local 17-entry release into Contrast installs identical native source;
+unchanged JS sources reuse the verified current-beta build outputs.
+[Committed proof](../tests/native-features/proofs/android-share-callback/README.md)
+includes the failing callback order, source identities, passing XML/status
+records and quality-90 native-density captures inspected and shared with
+Nate. Native source is restored after the diagnostic probe; the final
+implementation has no probe logs. The owned fixture is removed, emulator
+and Metro stop, and only preserved generated Crypto declarations remain
+in the peer tree. Focused Share acceptance passes; full system/media
+acceptance and paired Expo UI fidelity remain open. Next: the full system
+sweep against this validated native APK and the landed runner. Delivery
+CI remains assigned to live one-ci (s15186).
