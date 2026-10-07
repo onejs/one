@@ -1,0 +1,23 @@
+PASS compose-home
+PASS compose-selection-mounted
+PASS compose-checkbox-rejected
+PASS compose-radio-selected
+PASS compose-home
+PASS compose-card-variants
+PASS compose-home
+PASS compose-divider-orientations
+PASS compose-home
+PASS compose-filter-chip-slots
+PASS compose-filter-chip-rejected
+PASS compose-filter-chip-policy
+PASS compose-filter-chip-selected
+PASS compose-filter-chip-disabled
+PASS compose-home
+PASS compose-chip-variants-mounted
+PASS compose-assist-chip-click
+PASS compose-input-chip-selected
+PASS compose-suggestion-chip-click
+PASS compose-suggestion-chip-disabled
+PASS compose-home
+PASS compose-badge-variants
+ALL ONE NATIVE ANDROID COMPOSE CHECKS PASSED

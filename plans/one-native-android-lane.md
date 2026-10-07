@@ -14,7 +14,31 @@ Evidence: [committed proof](../tests/native-features/proofs/android-debug-networ
 
 Peach integration request: keep source-pinned RN/Expo UI fixtures, native host sizing/lifecycle, IME receiving-window ownership, predictive back and inset semantics explicit. Runnable One entry: `cd tests/native-features && bun run dev --port 8097`, then `adb -s <serial> reverse tcp:8081 tcp:8097` and `bun scripts/one-native-conformance.android.ts --device-id <serial> --package-id dev.vxrn.nativefeatures.tests --metro-port 8097 --suite compose-pickers --artifact-dir <output>`. Build with `bun run prebuild:native --platform android` and `cd android && ./gradlew :app:assembleDebug -PreactNativeArchitectures=arm64-v8a`; install that APK before the runtime command. Oracle: existing `sootsim_pixel_8_android_17_api_37_r06`. This acceptance covers One's picker contract; paired Expo pixel fidelity and the remaining Android API proofs are open.
 
-Status: first unit runtime acceptance passes. Release run [37595722610](https://github.com/onejs/one/actions/runs/37595722610) passed for landed `9c7efefaa4834d767083da959ad16a4d104f40a9`. RAN: exact canary `2.0.0-0.canary.1791362684339` was packed; its manifest carries that `releaseSourceCommit`, and its Kotlin Compose source matches the worktree byte for byte. Receipt: primary `tests/native-features/evidence/android-restart-p66065/canary/content-receipt.json`. Checks run [37595722289](https://github.com/onejs/one/actions/runs/37595722289) failed while opening item 3 in the web intercept-modal test. The preceding beta failed a different Swift-transform timeout. The coordinator assigned the unrelated Checks repair and CI verdict to one-ci (s15186). Delivery remains open. Android Native Build run 37595722312 passed; iOS native was pending at the last snapshot. Broad UI parity and native API acceptance remain open. Next unit: full Compose acceptance on pro-128, preserving Peach's active pro-64 AVD, followed by post-land system/media API proof. RAN: `w-95df` stopped before Home while the cold Metro bundle reached its loader after about 26 seconds. The blank screen and logs remain in primary `runtime-compose-pro128` evidence. `w-50db` requires a successful complete Android bundle response before on-device checks; the 15-second Home assertion and all behavior assertions remain unchanged.
+Status: first unit runtime acceptance passes. Release run [37595722610](https://github.com/onejs/one/actions/runs/37595722610) passed for landed `9c7efefaa4834d767083da959ad16a4d104f40a9`. RAN: exact canary `2.0.0-0.canary.1791362684339` was packed; its manifest carries that `releaseSourceCommit`, and its Kotlin Compose source matches the worktree byte for byte. Receipt: primary `tests/native-features/evidence/android-restart-p66065/canary/content-receipt.json`. Checks run [37595722289](https://github.com/onejs/one/actions/runs/37595722289) failed while opening item 3 in the web intercept-modal test. The preceding beta failed a different Swift-transform timeout. The coordinator assigned the unrelated Checks repair and CI verdict to one-ci (s15186). Delivery remains open. Android Native Build run 37595722312 passed; iOS native was pending at the last snapshot. Broad UI parity and native API acceptance remain open. Full Compose acceptance now passes on pro-128. Next: post-land system/media API proof, preserving Peach's active pro-64 AVD. RAN: `w-95df` stopped before Home while the cold Metro bundle reached its loader after about 26 seconds. The blank screen and logs remain in primary `runtime-compose-pro128` evidence. `w-50db` passed after requiring a successful complete Android bundle response before on-device checks; the 15-second Home assertion and all behavior assertions remain unchanged.
+
+## Current Compose acceptance, 2026-10-07
+
+RAN: `w-50db` passes all 22 existing full Compose checkpoints on pro-128,
+covering controlled Checkbox rejection, RadioButton selection, cards,
+divider geometry, FilterChip rejection/acceptance/disabled controls,
+AssistChip/InputChip/SuggestionChip events, disabled chips, Badge geometry
+and Home navigation between screens. The historical chip tap failure did
+not recur in this run. [Proof and source identity](../tests/native-features/proofs/android-compose/README.md)
+preserve the exact passing setup, output and captures. The setup requires a
+complete successful Android bundle response before app startup; runner
+timeouts and behavior assertions are unchanged. All full-resolution
+PNG/XML checkpoints remain in primary `runtime-compose-warm-pro128`
+evidence. Native 1080x2400 quality-90 captures and a detail crop were
+inspected and shared with Nate. RAN: adb lists no devices and Metro8097
+has no listener after cleanup.
+
+Next: existing system API acceptance, then media API acceptance and the
+remaining focused Compose suites. The API suite needs the existing
+`prepare-android-app-icon-alias.ts` stamp before the app APK build;
+the first picker/Compose APK lacks that fixture alias. Paired Expo pixel
+fidelity, host lifecycle, IME ownership, predictive back and insets remain
+explicit open objectives. CI verdict and unrelated Checks repair belong
+to one-ci (s15186).
 
 ## Baseline and boundary
 
