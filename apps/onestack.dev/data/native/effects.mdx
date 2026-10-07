@@ -48,3 +48,78 @@ transparent pixels reveal the background; the mask fills the content bounds.
 DOM or size changes update the image. External resources inside SVG images and
 continuous CSS animations are subject to browser image rendering restrictions.
 Invalid mask elements retain the warning and unmasked rendering contract.
+
+## Blur props
+
+`Blur` also accepts React Native `ViewProps`, including children and accessibility props.
+
+<PropsTable
+  source="effects/types.ts#BlurProps"
+  data={[
+    { name: 'intensity', type: 'number', default: '50', description: 'Blur strength from 0 to 100. Values outside that range are clamped.' },
+    { name: 'tint', type: 'BlurTint', default: '"default"', description: 'Native material name. Web approximates its tint with a frost veil.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Container layout and styling. Give the effect explicit bounds.' },
+  ]}
+/>
+
+`BlurTint` accepts `light`, `dark`, `default`, `extraLight`, `regular`,
+`prominent`, and the five system materials: `systemUltraThinMaterial`,
+`systemThinMaterial`, `systemMaterial`, `systemThickMaterial`, and
+`systemChromeMaterial`. Each system material also accepts a `Light` or `Dark`
+suffix. On iOS the material uses UIKit's backdrop effect; children remain sharp.
+
+## EdgeFade props
+
+`EdgeFade` also accepts React Native `ViewProps`. No edge is enabled by default.
+Enable an edge with `true` to use `size`, a number to set its depth, or an
+`EdgeConfig` object to set its depth and curve separately.
+
+<PropsTable
+  source="effects/types.ts#EdgeFadeProps"
+  data={[
+    { name: 'top', type: 'boolean | number | EdgeConfig', description: 'Fade at the top edge.' },
+    { name: 'bottom', type: 'boolean | number | EdgeConfig', description: 'Fade at the bottom edge.' },
+    { name: 'left', type: 'boolean | number | EdgeConfig', description: 'Fade at the left edge.' },
+    { name: 'right', type: 'boolean | number | EdgeConfig', description: 'Fade at the right edge.' },
+    { name: 'start', type: 'boolean | number | EdgeConfig', description: 'Leading edge for the current layout direction. Overrides its physical edge.' },
+    { name: 'end', type: 'boolean | number | EdgeConfig', description: 'Trailing edge for the current layout direction. Overrides its physical edge.' },
+    { name: 'size', type: 'number', default: '80', description: 'Default enabled-edge depth in dp.' },
+    { name: 'curve', type: 'EdgeFadeCurve', default: '"smooth"', description: 'Default alpha or blur-envelope curve.' },
+    { name: 'mode', type: 'EdgeFadeMode', description: 'mask fades alpha; overlay paints color; blur softens edge content. Defaults to overlay when any edge has a color, otherwise mask.' },
+    { name: 'color', type: 'ColorValue', description: 'Overlay color, or an optional frost veil in blur mode. Ignored in mask mode.' },
+    { name: 'blurRadius', type: 'number', default: '28', description: 'Maximum blur radius in dp for blur mode. Clamped to zero or greater.' },
+    { name: 'frostProgression', type: 'number', default: '1', description: 'Fraction of the edge band over which blur reaches full strength. Clamped from 0.05 to 1.' },
+    { name: 'radius', type: 'number', description: 'Corner radius shared by the fade and clipping. Use this instead of style.borderRadius.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Container layout and styling; borderRadius is ignored with a development warning.' },
+  ]}
+/>
+
+<PropsTable
+  title="EdgeConfig"
+  source="effects/types.ts#EdgeConfig"
+  data={[
+    { name: 'size', type: 'number', description: 'Override the component fade depth for this edge.' },
+    { name: 'curve', type: 'EdgeFadeCurve', description: 'Override the component curve for this edge.' },
+    { name: 'color', type: 'ColorValue', description: 'Override the overlay color for this edge. Ignored in blur and mask modes.' },
+  ]}
+/>
+
+An `EdgeFadeCurve` is a preset name, a cubic bezier
+`{ type: 'cubicBezier', x1, y1, x2, y2 }`, or an alpha-stop list
+`{ type: 'stops', values: [1, 0.4, 0] }`. Stops run from the inner edge to
+the outer edge and require at least two values between 0 and 1.
+The native iOS blur mode blends three masked material layers. It does not
+expose Apple's private variable-radius filter.
+
+## Mask props
+
+`Mask` also accepts React Native `ViewProps`. Size both the container and the
+mask element so the mask covers the content bounds.
+
+<PropsTable
+  source="effects/types.ts#MaskProps"
+  data={[
+    { name: 'maskElement', type: 'ReactNode', description: 'The offscreen mask element. Opaque pixels show children; transparent pixels hide them.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Container layout and styling.' },
+  ]}
+/>
