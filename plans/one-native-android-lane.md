@@ -139,6 +139,18 @@ process and app focus during each swap, persistence after a relaunch and
 an unchanged primary selection after invalid input. Native build and
 repaired emulator acceptance are pending.
 
+RAN: beast `w-01ae` builds the package family from
+`cd5fcdcd85a5cd7cdd88c8a48d4111cc2d2e711d` and passes all 158 tests
+(31 Compose contracts, 127 native documentation checks). The delivered
+source receipt matches the local Kotlin implementation, runner and manifest
+writer hashes. `bun release --into ~/contrast --skip-build` installs the
+17 package entries from those exact outputs. Contrast's installed AppIcon
+Kotlin SHA256 is `ee47f8d6d7e127412cbe2d63a6523a9377fc8823333bdea2e6f8c9ccbc7141ef`;
+its package manifest and lockfile hashes remain unchanged. The owned pro-64
+proof script rebuilds the changed Android target, requires the manifest
+writer to be byte-idempotent, and runs the focused AppIcon suite on a fresh
+synthetic fixture. Native compilation and runtime acceptance are pending.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.
