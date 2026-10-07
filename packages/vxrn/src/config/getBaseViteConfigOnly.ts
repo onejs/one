@@ -64,6 +64,7 @@ export async function getBaseViteConfig(
 
   return {
     mode,
+    assetsInclude: ['**/*.glb'],
 
     // we load the config ourselves
     // if you disable this is disables auto-reloading config changes

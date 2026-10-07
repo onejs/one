@@ -58,6 +58,8 @@ export function getNativeAssetContentType(type: string): string {
       return 'image/bmp'
     case 'gif':
       return 'image/gif'
+    case 'glb':
+      return 'model/gltf-binary'
     case 'jpeg':
     case 'jpg':
       return 'image/jpeg'
