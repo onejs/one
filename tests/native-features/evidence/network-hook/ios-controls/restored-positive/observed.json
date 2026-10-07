@@ -1,0 +1,9 @@
+{
+  "labels": [
+    "Events: 2",
+    "Hook: ethernet true true",
+    "State: ethernet true true"
+  ],
+  "snapshot": "/Users/n8/Library/Logs/one-network-hook-proof/parent-controls/restored-positive/network-state.ax.json",
+  "snapshotSHA256": "cd6ee18732172b195559e498ba68181d9862e7687dc5ab9cce88818b829f68a4"
+}

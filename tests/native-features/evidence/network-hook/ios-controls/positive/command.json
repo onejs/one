@@ -1,0 +1,12 @@
+[
+  "bun",
+  "/Users/n8/.worktrees/one-native-network-proof/tests/native-features/scripts/one-native-conformance.ts",
+  "--simulator-id",
+  "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "--bundle-id",
+  "com.natew.oneexample",
+  "--suite",
+  "network",
+  "--artifact-dir",
+  "/Users/n8/Library/Logs/one-network-hook-proof/parent-controls/positive"
+]

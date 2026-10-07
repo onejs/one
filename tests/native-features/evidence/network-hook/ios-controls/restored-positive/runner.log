@@ -1,0 +1,21 @@
+PASS simulator automation session ready
+PASS home screen mounted
+PASS no warning overlay intercepts interaction
+PASS home lists nav-one-native-network
+PASS nav-one-native-network settles
+PASS the one-shot read publishes live state
+PASS the listener fires at least once
+PASS the hook publishes the same live state as the native read
+PASS a refresh re-reads live state
+Detected file type from extension: PNG
+Note: No display specified. Defaulting to display: 0C12AE9D-0F81-4380-86B6-238FA797AB5D (screenID: 1, name: LCD)
+Wrote screenshot to: /Users/n8/Library/Logs/one-network-hook-proof/parent-controls/restored-positive/network-state.png
+PASS network recycle 1: home mounted
+PASS home lists nav-one-native-network
+PASS nav-one-native-network settles
+PASS network recycle 1: state publishes again
+PASS network recycle 2: home mounted
+PASS home lists nav-one-native-network
+PASS nav-one-native-network settles
+PASS network recycle 2: state publishes again
+ALL ONE NATIVE CONFORMANCE CHECKS PASSED

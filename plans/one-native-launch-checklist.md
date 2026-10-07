@@ -51,7 +51,14 @@ suite. Remaining iOS holes, in launch order:
 - [ ] adaptive: `ReservedRegions`, `useReservedRegions(Ready)`, `useSizeClass`,
   `getSizeClass`, `useHinge`, `getHinge`, `onHingeChange`,
   `useWindowSegments`, `useSpanning`: one suite over the existing fixture.
-- [ ] `useNetworkState`: add to the network suite.
+- [x] `useNetworkState`: network suite on iPhone 17 Pro/iOS 27.0,
+  source `7d8666b1d`. State/hook agreement, listener event, refresh and two
+  remounts pass twice. Omitting the hook fails its agreement assertion after
+  listener delivery passes. Source-bound workspace JS and reused native shell
+  only; original native build source is not newly authenticated to this HEAD.
+  Receipt: `tests/native-features/evidence/network-hook/ios-controls/`.
+  Delayed initial-read overwrite is reproduced and repaired in the existing
+  React hook test. Android and current canary production proof remain open.
 - [ ] `One.iOS.ZoomTransitionEnabler`, `ZoomTransitionAlignmentRectDetector`:
   extend the zoom e2e.
 - [ ] `One.Widgets`, `LiveActivities`, `One.iOS.WidgetUI`: need a widget

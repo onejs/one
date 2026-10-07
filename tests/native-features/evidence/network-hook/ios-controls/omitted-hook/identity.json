@@ -1,0 +1,26 @@
+{
+  "sourceCommit": "7d8666b1d63bcd79670236321b3cebab4c450e17",
+  "device": "A9BF26C8-2214-4DC6-AA9E-877B19A49FE9",
+  "deviceName": "iPhone 17 Pro",
+  "runtime": "iOS 27.0",
+  "runtimeBuild": "24A434",
+  "appId": "com.natew.oneexample",
+  "nativeBuildOrigin": "Authenticated reused p67471 OneBasic.app from pro-64; original native build source not newly authenticated to current HEAD; no rebuild",
+  "executableSHA256": "318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e",
+  "debugDylibSHA256": "6c08e22f289b72cbc26b631e842d8fc03caaa64ce7d9f07e7e83fe409b91ea31",
+  "sourceSHA256": "82339251acaf8d800fcefc9fd97fbbb89d889921c004389c2d2d81e96ffb2396",
+  "boundTranspiledSHA256": "00caa4304c54cdefe3889bf800c149ec03d08d5b32fd875ca856cf7f3f4994c3",
+  "fixtureSHA256": "d3304c121bf11e30dcd31f0ec83a573eeb782276caaef8b9c3765e5690fa71cf",
+  "canonicalFixtureSHA256": "a253f945a24741d1e56f96e6ef66a513b334d1b5a8a073a85c20af43e2820c07",
+  "runnerSHA256": "5c6d2d470eacd79313d0fb907b0dac78a3f05a2efca209fb1732d09deac5324b",
+  "bundleSHA256": "1bb2d5a47f42701fcf696d53a6d826e262959ba8dd152e70e9bf8755ef617350",
+  "bundleBytes": 6546733,
+  "hermesBundleSHA256": "e01eeb2ac372856e2a21eaf1a1b38ab7c70b8f7c4c1d5669f85bba40210e42c7",
+  "hermesBundleBytes": 7506865,
+  "sourceBinding": {
+    "id": "/Users/n8/one/packages/one/dist/esm/platform/network/index.native.js",
+    "source": "/Users/n8/.worktrees/one-native-network-proof/packages/one/src/platform/network/index.native.ts",
+    "sha256": "82339251acaf8d800fcefc9fd97fbbb89d889921c004389c2d2d81e96ffb2396"
+  },
+  "control": "Hook deliberately replaced with unknown/false/false; original first-listener precondition preserved; host connectivity unchanged"
+}

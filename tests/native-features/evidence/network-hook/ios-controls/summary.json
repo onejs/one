@@ -1,0 +1,51 @@
+{
+  "label": "RAN",
+  "sourceCommit": "7d8666b1d63bcd79670236321b3cebab4c450e17",
+  "scope": "iOS 27 reused native shell plus source-bound worktree JS; original native build source not newly authenticated to HEAD; no published package or production acceptance",
+  "runs": {
+    "positive": {
+      "label": "RAN",
+      "exitCode": 0,
+      "expected": "acceptance",
+      "observedLabels": [
+        "Events: 2",
+        "Hook: ethernet true true",
+        "State: ethernet true true"
+      ]
+    },
+    "omitted-hook": {
+      "label": "RAN",
+      "exitCode": 1,
+      "expected": "rejection at hook agreement",
+      "observedLabels": [
+        "Events: 2",
+        "Hook: unknown false false",
+        "State: ethernet true true"
+      ]
+    },
+    "restored-positive": {
+      "label": "RAN",
+      "exitCode": 0,
+      "expected": "acceptance",
+      "observedLabels": [
+        "Events: 2",
+        "Hook: ethernet true true",
+        "State: ethernet true true"
+      ]
+    }
+  },
+  "limits": [
+    "Host route remained ethernet, connected and reachable. No live radio transition forced.",
+    "Controlled React test separately reproduces and fixes delayed initial-read overwrite.",
+    "Android suite remains open with Android owner.",
+    "Peach previous receipt uses simulated unknown/true/true only."
+  ],
+  "cleanup": {
+    "dev8097Stopped": true,
+    "nativeAppStopped": true,
+    "simulatorShutdown": true,
+    "claimReleased": true,
+    "serviceRestoration": "Pending next boot; existing defect t-muynwdyz-ci30"
+  },
+  "ciDeliveryOwner": "p67014"
+}

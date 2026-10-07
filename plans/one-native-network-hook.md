@@ -23,14 +23,14 @@ not live radio changes or a published-package installation.
 
 The existing native network fixture now renders `useNetworkState`, and its
 suite compares that state with the native one-shot read on mount and after
-two route remounts. Runtime acceptance of those new assertions is pending.
+two route remounts. Runtime acceptance is recorded below.
 Run app logic through the simulator first; a native iOS oracle is required
 for the actual `NWPathMonitor` reading. Reuse an authenticated native shell
 when possible and bind the changed One JS, fixture, runner and bundle hashes.
 Do not change host connectivity to create a test event.
 
-After the live run and a stale-hook omission control, reconcile the iOS
-coverage cell and launch checklist, then land the validated repair on v2-beta.
+The live run and stale-hook omission control now pass their intended verdicts.
+The iOS coverage cell and launch checklist are reconciled for v2-beta landing.
 Android coverage remains with its owner. No One main or stable release.
 
 Further optimization: reuse the network fixture and shell instead of adding
@@ -75,4 +75,28 @@ The fixture now registers its event-counting effect before calling the hook.
 The hook still runs unconditionally on every render. Every runner assertion
 and its timeout stays unchanged; the native subscription behavior stays
 unchanged. RAN the package's Vitest network script: 10 pass. Focused fixture
-types pass. Live canonical acceptance and omission control remain pending.
+types pass. The canonical acceptance and omission control follow below.
+
+## Native acceptance, 2026-10-07
+
+RAN parent uninstrumented canonical fixture, omitted-hook control, then restored
+canonical fixture on the same standard iPhone 17 Pro/iOS 27.0 build 24A434:
+exit 0, exit 1, exit 0. Both canonical runs pass listener delivery, hook/state
+agreement, refresh and two route remounts. The omission control retains the
+first-listener precondition and reaches Events 2 with native State
+`ethernet/true/true`, then rejects Hook `unknown/false/false` at the agreement
+assertion. No assertion, timeout, retry or host connectivity was changed.
+
+Receipt: `tests/native-features/evidence/network-hook/ios-controls/`. Each run
+records source commit `7d8666b1d`, fixture, runner, source-bound emitted JS,
+JS/Hermes bundle and native executable/debug dylib hashes. The unchanged
+native executable is `318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e`.
+Its original native build source is not newly authenticated to this HEAD.
+This proves workspace hook behavior against that reused native shell; it does
+not prove the current npm package, production app, Android, or a live radio
+transition. The controlled React test covers the delayed initial-read race.
+
+Parent stopped the owned dev server and native app, shut down the simulator
+and released its claim. Background service restoration remains pending next
+boot under the existing `t-muynwdyz-ci30` defect. Full bundles/captures remain
+outside git in `/Users/n8/Library/Logs/one-network-hook-proof/`.

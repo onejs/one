@@ -40,7 +40,7 @@ const knownGaps: Record<string, string> = {
   openSettings: 'Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven',
   Network: 'iOS suite only',
   DocumentPicker: 'Android fixture exists, no suite opens it',
-  useNetworkState: 'no fixture or suite',
+  useNetworkState: 'Android suite missing; iOS workspace live state, refresh and two remounts proven',
   useNativeState: 'iOS suite only',
   useSizeClass: 'fixture exists, no suite opens it',
   getSizeClass: 'no fixture or suite',
@@ -268,6 +268,24 @@ test('every One namespace member has a conformance fixture reference or a docume
   for (const control of ['negative-url', 'negative-settings']) {
     expect(JSON.parse(read(`${external}/${control}/run-result.json`)).exitCode).toBe(1)
   }
+
+  // keep the native hook receipt and its rejected omission control together.
+  const network = 'evidence/network-hook/ios-controls'
+  for (const name of ['positive', 'restored-positive']) {
+    expect(JSON.parse(read(`${network}/${name}/run-result.json`)).exitCode).toBe(0)
+    const identity = JSON.parse(read(`${network}/${name}/identity.json`))
+    expect(identity.fixtureSHA256).toBe(identity.canonicalFixtureSHA256)
+    expect(identity.sourceBinding.sha256).toBe(identity.sourceSHA256)
+    expect(JSON.parse(read(`${network}/${name}/observed.json`)).labels).toEqual([
+      'Events: 2', 'Hook: ethernet true true', 'State: ethernet true true',
+    ])
+  }
+  expect(JSON.parse(read(`${network}/omitted-hook/run-result.json`)).exitCode).toBe(1)
+  const omitted = JSON.parse(read(`${network}/omitted-hook/identity.json`))
+  expect(omitted.fixtureSHA256).not.toBe(omitted.canonicalFixtureSHA256)
+  expect(JSON.parse(read(`${network}/omitted-hook/observed.json`)).labels).toEqual([
+    'Events: 2', 'Hook: unknown false false', 'State: ethernet true true',
+  ])
 
   const rows: string[] = []
   const uncovered: string[] = []

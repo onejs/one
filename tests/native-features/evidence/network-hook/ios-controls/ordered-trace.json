@@ -1,0 +1,69 @@
+{
+  "labels": [
+    "Events: 2",
+    "Hook: ethernet true true",
+    "State: ethernet true true"
+  ],
+  "callbacks": [
+    {
+      "id": 1,
+      "phase": "register",
+      "at": 5096662.06725
+    },
+    {
+      "id": 1,
+      "phase": "registered",
+      "at": 5096662.508541
+    },
+    {
+      "id": 2,
+      "phase": "register",
+      "at": 5096662.818958
+    },
+    {
+      "id": 2,
+      "phase": "registered",
+      "at": 5096662.868083
+    },
+    {
+      "id": 3,
+      "phase": "register",
+      "at": 5096665.674166
+    },
+    {
+      "id": 3,
+      "phase": "registered",
+      "at": 5096665.986791
+    },
+    {
+      "id": 4,
+      "phase": "register",
+      "at": 5096666.29775
+    },
+    {
+      "id": 4,
+      "phase": "registered",
+      "at": 5096666.350291
+    },
+    {
+      "id": 1,
+      "phase": "event",
+      "state": {
+        "type": "ethernet",
+        "isConnected": true,
+        "isInternetReachable": true
+      },
+      "at": 5096666.683
+    },
+    {
+      "id": 3,
+      "phase": "event",
+      "state": {
+        "type": "ethernet",
+        "isConnected": true,
+        "isInternetReachable": true
+      },
+      "at": 5096666.797208
+    }
+  ]
+}

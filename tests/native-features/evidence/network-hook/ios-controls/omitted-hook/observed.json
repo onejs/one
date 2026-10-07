@@ -1,0 +1,9 @@
+{
+  "labels": [
+    "Events: 2",
+    "Hook: unknown false false",
+    "State: ethernet true true"
+  ],
+  "snapshot": "/Users/n8/Library/Logs/one-network-hook-proof/parent-controls/omitted-hook/fail-the-hook-publishes-the-same-live-state-as-the-native-read.ax.json",
+  "snapshotSHA256": "b3de2169bcda0f8eb766c0dbaab4a4d496789a225a5080588012192cbe3986c4"
+}

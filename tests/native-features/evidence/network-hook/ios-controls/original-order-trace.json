@@ -1,0 +1,244 @@
+[
+  {
+    "snapshot": "network-state.ax.json",
+    "snapshotSHA256": "ef7d09f40d2bf1ec876e458c8a6ce96e8a4b34fd904df4a541f82e9446fb2dce",
+    "labels": [
+      "Events: 2",
+      "Hook: ethernet true true",
+      "State: ethernet true true"
+    ],
+    "callbacks": [
+      {
+        "id": 1,
+        "phase": "register",
+        "at": 4787900.622416
+      },
+      {
+        "id": 1,
+        "phase": "registered",
+        "at": 4787901.052083
+      },
+      {
+        "id": 2,
+        "phase": "register",
+        "at": 4787901.246833
+      },
+      {
+        "id": 2,
+        "phase": "registered",
+        "at": 4787901.268916
+      },
+      {
+        "id": 3,
+        "phase": "register",
+        "at": 4787902.325583
+      },
+      {
+        "id": 3,
+        "phase": "registered",
+        "at": 4787902.441916
+      },
+      {
+        "id": 4,
+        "phase": "register",
+        "at": 4787902.558125
+      },
+      {
+        "id": 4,
+        "phase": "registered",
+        "at": 4787902.575791
+      },
+      {
+        "id": 4,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787977.957333
+      },
+      {
+        "id": 3,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787978.101833
+      },
+      {
+        "id": 4,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787978.13125
+      },
+      {
+        "id": 3,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787978.16375
+      }
+    ]
+  },
+  {
+    "snapshot": "fail-network-recycle-1-state-publishes-again.ax.json",
+    "snapshotSHA256": "c3391dc49b07131fd98e265223aacb2549e547b9f67c1b31c2322249fe54cbe3",
+    "labels": [
+      "Events: 0",
+      "Hook: ethernet true true",
+      "State: ethernet true true"
+    ],
+    "callbacks": [
+      {
+        "id": 1,
+        "phase": "register",
+        "at": 4787900.622416
+      },
+      {
+        "id": 1,
+        "phase": "registered",
+        "at": 4787901.052083
+      },
+      {
+        "id": 2,
+        "phase": "register",
+        "at": 4787901.246833
+      },
+      {
+        "id": 2,
+        "phase": "registered",
+        "at": 4787901.268916
+      },
+      {
+        "id": 3,
+        "phase": "register",
+        "at": 4787902.325583
+      },
+      {
+        "id": 3,
+        "phase": "registered",
+        "at": 4787902.441916
+      },
+      {
+        "id": 4,
+        "phase": "register",
+        "at": 4787902.558125
+      },
+      {
+        "id": 4,
+        "phase": "registered",
+        "at": 4787902.575791
+      },
+      {
+        "id": 4,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787977.957333
+      },
+      {
+        "id": 3,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787978.101833
+      },
+      {
+        "id": 4,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787978.13125
+      },
+      {
+        "id": 3,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4787978.16375
+      },
+      {
+        "id": 5,
+        "phase": "register",
+        "at": 4814401.030583
+      },
+      {
+        "id": 5,
+        "phase": "registered",
+        "at": 4814401.186666
+      },
+      {
+        "id": 6,
+        "phase": "register",
+        "at": 4814401.307375
+      },
+      {
+        "id": 6,
+        "phase": "registered",
+        "at": 4814401.331083
+      },
+      {
+        "id": 7,
+        "phase": "register",
+        "at": 4814402.193416
+      },
+      {
+        "id": 7,
+        "phase": "registered",
+        "at": 4814402.305625
+      },
+      {
+        "id": 8,
+        "phase": "register",
+        "at": 4814402.419666
+      },
+      {
+        "id": 8,
+        "phase": "registered",
+        "at": 4814402.4435
+      },
+      {
+        "id": 5,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4814406.979583
+      },
+      {
+        "id": 7,
+        "phase": "event",
+        "state": {
+          "type": "ethernet",
+          "isConnected": true,
+          "isInternetReachable": true
+        },
+        "at": 4814407.065125
+      }
+    ]
+  }
+]
