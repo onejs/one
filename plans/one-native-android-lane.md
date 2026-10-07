@@ -1,6 +1,22 @@
 # One native Android lane
 
-Owner: android-lane (r46336). Active on `v2-beta`. Android is lower priority than the iOS lanes when shared builders are busy.
+Owner: one-native-android (p66065). Branch `tm/one-native-android` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: p66065. REVIEW: none.
+
+## Android restart, 2026-10-07
+
+Nate, quoted by the coordinator: "android like peach SIM support yes and one native yes definitely". Scope resumes One native Android UI parity, followed by Android native API proof. Peach simulation remains with peach-android (m21620), notified at this lane's start.
+
+RAN: current `origin/v2-beta` is `cf508a1eb`. Existing Compose suites cover controlled controls, layout, dialogs and pickers. The system and media landing records below still lack post-land emulator acceptance. First unit runs the current Compose fixture on the standard Pixel 8/API37 and repairs any reproduced integration failure. This restart supersedes historical stop and review holds; public API choices remain owner decisions.
+
+Status: current-source Android proof APK built; Pixel 8/API37 picker acceptance is queued. No current-source emulator acceptance is claimed yet.
+
+RAN: `w-8e93` completed `:app:assembleDebug` for arm64-v8a in 10m31s, with 370 Gradle tasks executed. APK SHA256: `21547ef2b7da9f235d20569c05a70e9226a1574153bb9705ba26a791e275574c`. Source and fixture hash receipts, APK and build log are retained in primary `tests/native-features/evidence/android-restart-p66065/apk/`. Metro serves this worktree on 8097; runtime uses the standard Pixel 8/API37 r06 AVD on emulator port 5582, with device tcp:8081 reversed to host 8097. The proof script owns emulator teardown; the dev server remains owned by p66065 until runtime diagnosis finishes.
+
+RAN: the actual Compose contract suite (`tests/compose.test.ts`) passes all 31 cases. Android prebuild completes on the current tree. `bun release --into ~/contrast --skip-build` installs 17 local package entries using the beast build outputs restored into this worktree. Downstream install alone does not establish Android runtime behavior. Native APK build is queued through the local heavy resource window.
+
+RAN: beast job `w-2748` built the 14-package One dependency graph from source `cf508a1eb` in 3m46.889s and passed all 127 native documentation tests. Input archive SHA256: `0c586cc7ae52a520a0f72878c9c34b19cad450da7b514904c0a74e22b0ccbf7e`. Build delivery and cleanup receipt: `tests/native-features/evidence/android-restart-p66065/build/` in the primary checkout. Compose behavior tests were not run by that invocation because the requested test filename did not exist; the actual file is `packages/one/tests/compose.test.ts`.
+
+Peach integration request: keep source-pinned RN/Expo UI fixtures, native host sizing/lifecycle, IME receiving-window ownership, predictive back and inset semantics explicit. Runnable One entry: `tests/native-features` with `bun run dev`, followed by `bun scripts/one-native-conformance.android.ts --device-id <serial> --package-id dev.vxrn.nativefeatures.tests --metro-port <port> --suite compose`. Picker checkpoint: `--suite compose-pickers`. Oracle: existing `sootsim_pixel_8_android_17_api_37_r06`, Pixel 8/API37. The APK hash, generated native host and current fixture source hashes will accompany runtime proof; build success alone grants no parity acceptance.
 
 ## Baseline and boundary
 
