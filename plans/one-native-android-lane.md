@@ -102,6 +102,12 @@ remaining system sweep and its cleanup receipt are pending. A single
 kqueue process-exit watcher reads that execution's saved verdict without
 polling. The API and paired Expo objectives remain open.
 
+RAN: process-exit wait `w-69dc` failed before registration because this
+peer's Python kqueue lacks context-manager methods. The corrected watcher
+closes the queue explicitly. A controlled `/bin/cat` child on pro-64
+delivers `NOTE_EXIT` and exits cleanly with that resource handling. The
+native runtime was untouched; its exact process wait is being re-armed.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.

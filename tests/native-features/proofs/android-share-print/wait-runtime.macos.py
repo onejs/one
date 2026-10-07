@@ -14,7 +14,8 @@ process = subprocess.run(
 if process.returncode == 0:
     if expected not in process.stdout:
         sys.exit("refusing to wait on a process outside this proof")
-    with select.kqueue() as queue:
+    queue = select.kqueue()
+    try:
         event = select.kevent(
             pid,
             filter=select.KQ_FILTER_PROC,
@@ -33,6 +34,8 @@ if process.returncode == 0:
             current = subprocess.run(["ps", "-p", str(pid)], capture_output=True)
             if current.returncode == 0:
                 sys.exit("owned runtime did not exit within 45 minutes")
+    finally:
+        queue.close()
 
 log = (root / "system.log").read_text()
 print(log)
