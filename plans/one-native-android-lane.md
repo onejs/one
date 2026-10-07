@@ -28,9 +28,22 @@ and deadlines remain. Native Audio then crashes during record/play with
 `OneAudioService` and its STOP action. INFERRED: stopping before pending
 foreground promotion causes the crash. The candidate promotes first, even
 when STOP arrives before the initial start callback. Native compile and Audio
-runtime acceptance are pending. AppIcon plus eight remaining focused Compose
-suites are running on pro-64 using the unchanged APK; their migrated debug-host
-caller still needs its verdict.
+runtime acceptance are pending. RAN: all eight remaining focused Compose
+suites pass on pro-64 using the unchanged APK, 45 checkpoints plus AppIcon's
+eight checks. Badges, list slots, flow wrapping, icon/FAB/toggle interactions,
+loading, Surface rejection and acceptance, progress and segmented controls
+pass. This also validates the migrated debug-host caller. Full native captures
+and empty final device/listener reads remain in Contrast
+`scripts/tmp/android-m22158/runtime-conformance-host-fixed/`; a native-density
+quality-90 controls capture was inspected and shared.
+
+The Audio candidate build uses the existing `SKIP_TYPES=1` JavaScript graph
+mode before native prebuild and Gradle on a cold builder. The ordinary
+JavaScript graph declaration emit failed with TS2307 for
+`@tamagui/web/internal-runtime`; that baseline remains open. The Kotlin
+candidate has no compile verdict yet. A separate source-pinned native Expo
+library APK and instrumentation APK build prepares the picker pixel oracle;
+paired fidelity remains open.
 
 Evidence remains outside One git in Contrast
 `scripts/tmp/android-m22158/runtime-media-picker-fixed/`. Cleanup removed
@@ -44,8 +57,7 @@ logs are committed. Android service promotion requirements are documented in
 and [ActiveServices](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/services/core/java/com/android/server/am/ActiveServices.java).
 
 The preceding wind-down passed 79 system checks on `f29ae4b7a`; both owned
-worktrees and all owned processes were removed. Media reruns, remaining
-focused Compose suites, paired Expo UI fidelity, host lifecycle, IME,
+worktrees and all owned processes were removed. Audio runtime, paired Expo UI fidelity, host lifecycle, IME,
 predictive back and insets remain open in this restart.
 
 ## Android restart, 2026-10-07
