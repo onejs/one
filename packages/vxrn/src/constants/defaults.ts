@@ -11,6 +11,8 @@ export const DEFAULT_ASSET_EXTS = [
   'webp',
   // dotLottie animation archives
   'lottie',
+  // binary gltf models
+  'glb',
   // Video formats
   'm4v',
   'mov',
