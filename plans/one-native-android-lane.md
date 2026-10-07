@@ -151,6 +151,15 @@ proof script rebuilds the changed Android target, requires the manifest
 writer to be byte-idempotent, and runs the focused AppIcon suite on a fresh
 synthetic fixture. Native compilation and runtime acceptance are pending.
 
+RAN: `w-d57d` compiles the changed arm64 Android app in 6m32s,
+47 Gradle tasks executed and 323 up to date. The focused runtime mounts the
+app and opens AppIcon, then the outer peer transcript reports its cloud
+writer stopped. Its owned script remains running as PID93161 on pro-64.
+Runtime acceptance and cleanup are unconfirmed. The existing process-exit
+watcher now accepts an exact script and suite; a controlled receipt probe
+accepts the AppIcon success marker and rejects it for the system suite.
+One detached process-exit wait will recover the saved runtime verdict.
+
 ## Baseline and boundary
 
 - **RAN:** `packages/one/src/platform/compose.android.tsx` and `packages/one/android/src/main/java/dev/onejs/onenative/OneNativeComposeNodeView.kt` expose Column, Row, Box, Text, Icon, Button, Switch, TextField, Slider, AlertDialog, Dialog, and ProgressIndicator. The existing `one-native-conformance.android.ts` drives the initial controls on an emulator.
