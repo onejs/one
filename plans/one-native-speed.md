@@ -64,7 +64,7 @@ completed One's C++ and Kotlin compile tasks; packaging was stopped before an
 APK completed. The iOS 27 Release simulator build returned failure. Runtime
 contracts and all seven-run comparisons remain unrun; no new speed numbers
 were collected. Build diagnostics and source hashes are saved under
-`tests/native-features/proofs/native-speed/parked-*` on the save branch.
+`native-speed/parked-*` proofs on the save branch.
 
 RAN: discovery found a connected physical iPhone Air on iOS 27, reachable from
 pro-128 and air-32. Its development signing profile was unavailable: Xcode

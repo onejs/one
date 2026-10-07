@@ -14,11 +14,6 @@ outcome.json
 # the oracle driver writes this beside its table when a wait times out, for debugging a run
 fail-snapshot.json
 
-# Reviewed iOS 27 SwiftUI LinearGradient runtime evidence.
-!proofs/linear-gradient/*.png
-!proofs/linear-gradient/*.webp
-!proofs/linear-gradient/outcome.json
-
 # the tab bar oracle's captures are evidence, not run output: every number in
 # oracle/tab-bar-geometry.json was measured off them, so they are committed beside it.
 !oracle/captures/*.png
@@ -27,58 +22,5 @@ fail-snapshot.json
 # background and one painted darker. they are fixtures, so they are committed.
 !oracle/controls/*.png
 
-# reviewed iOS 27 List search/refresh evidence is kept with the suite.
-!proofs/list-search-refresh/*.png
-!proofs/list-search-refresh/*.webp
-!proofs/list-search-refresh/outcome.json
-!proofs/scroll-search-refresh/*.png
-!proofs/scroll-search-refresh/*.webp
-!proofs/scroll-search-refresh/outcome.json
-!proofs/picker-palette/*.png
-!proofs/picker-palette/*.webp
-!proofs/picker-palette/outcome.json
-!proofs/horizontal-inset/*.png
-!proofs/horizontal-inset/*.webp
-!proofs/horizontal-inset/outcome.json
-!proofs/horizontal-bar/*.png
-!proofs/horizontal-bar/*.webp
-!proofs/horizontal-bar/outcome.json
-!proofs/radial-gradient/*.png
-!proofs/radial-gradient/*.webp
-!proofs/radial-gradient/outcome.json
-!proofs/control-size/*.png
-!proofs/control-size/*.webp
-!proofs/control-size/outcome.json
-
-# Reviewed iOS 27 SwiftUI AngularGradient runtime evidence.
-!proofs/angular-gradient/*.png
-!proofs/angular-gradient/*.webp
-!proofs/angular-gradient/outcome.json
-
-# Reviewed iOS 27 SwiftUI EllipticalGradient runtime evidence.
-!proofs/elliptical-gradient/*.png
-!proofs/elliptical-gradient/*.webp
-!proofs/elliptical-gradient/outcome.json
-
-# Reviewed iOS 27 SwiftUI MeshGradient runtime evidence.
-!proofs/mesh-gradient/*.png
-!proofs/mesh-gradient/*.webp
-!proofs/mesh-gradient/outcome.json
-
-# Reviewed iOS 27 SwiftUI Menu primary-action runtime evidence.
-!proofs/menu-primary-action/*.png
-!proofs/menu-primary-action/*.webp
-!proofs/menu-primary-action/outcome.json
-
-# Reviewed iOS 27 App Intents Shortcuts evidence.
-!proofs/app-intents/*.png
-!proofs/app-intents/*.webp
-!proofs/app-intents/outcome.json
-
-# Reviewed iOS 27 Menu Picker evidence.
-!proofs/menu-picker/*.png
-!proofs/menu-picker/*.webp
-!proofs/menu-picker/outcome.json
-
-# android share callback acceptance at native pixel density.
-!proofs/android-share-callback/*.webp
+# proof captures, logs and receipts are never committed; keep them out of the repo
+proofs/

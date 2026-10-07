@@ -86,7 +86,7 @@ accounts are unavailable).
   SwiftUI submenu, checkmarks before and after accepted selection, an ignored
   React update, and a `revision` reset; in ContextMenu, the same four states
   through the UIKit single-selection submenu after a long press.
-  `tests/native-features/proofs/menu-picker` stores the AX/PNG states, sampled
+  `menu-picker` (proof no longer committed) stores the AX/PNG states, sampled
   checkmark pixels, build receipt, and side-by-side WebP. An Android contract
   rejects Picker nodes before the popup and keeps `onPickerChange` off the
   trigger View.
@@ -101,7 +101,7 @@ accounts are unavailable).
   both gestures. The ordinary Menu still opened on tap and dispatched its
   item without a primary callback. Eight AX/PNG pairs, a side-by-side WebP, the Xcode build log,
   and built/installed debug-dylib hashes are tracked in
-  `tests/native-features/proofs/menu-primary-action`. Context previews,
+  `menu-primary-action` (proof no longer committed). Context previews,
   Picker content inside Menu, and other iOS versions remain unproven. A
   broader `tabs-menu` run passed 51 checks before its palette pixel floor
   rejected a visibly open native palette (`1 < 200`); the failed outcome,
@@ -121,7 +121,7 @@ accounts are unavailable).
   their `packages/one/ios` tree hashes match. Seven AX/PNG states and pixel
   gates prove 2×2 and 3×3 grids, vertex colors and movement, background,
   smoothing, and device/perceptual interpolation. The tracked
-  `tests/native-features/proofs/mesh-gradient` bundle includes sampled pixels,
+  `mesh-gradient` (proof no longer committed) bundle includes sampled pixels,
   side-by-side WebP, build/generation logs, and matching built/installed debug
   dylib hashes. Bezier-point and resolved-color initializers and other iOS
   versions remain unproven.
@@ -131,7 +131,7 @@ accounts are unavailable).
   with Xcode 27.1. Nine AX/PNG states and off-axis pixel gates prove the
   elliptical contour, both radius fractions, center movement, reversed
   colors, one and three colors, alpha over yellow, and transparent empty
-  input. The tracked `tests/native-features/proofs/elliptical-gradient`
+  input. The tracked `elliptical-gradient` (proof no longer committed)
   bundle includes sampled pixels, side-by-side WebP, logs, and a matching
   built/installed debug dylib receipt. Explicit stops, arbitrary SwiftUI
   colors, and other iOS versions remain unproven.
@@ -141,7 +141,7 @@ accounts are unavailable).
   AX/PNG states and off-axis pixel gates prove a half-turn angle, moved
   center, reversed colors, one and three colors, alpha over yellow, and
   transparent empty input. The tracked
-  `tests/native-features/proofs/angular-gradient` bundle includes the
+  `angular-gradient` (proof no longer committed) bundle includes the
   side-by-side WebP, sampled pixels, build log, and matching built/installed
   debug dylib hashes. The partial-arc initializer, explicit color stops,
   arbitrary SwiftUI colors, and other iOS versions remain unproven.
@@ -151,7 +151,7 @@ accounts are unavailable).
   `swiftStyle.controlSize`
   both grew from 28 to 50.33 points (`mini` → `extraLarge`), restored to 28,
   and dispatched taps to React. The tracked
-  `tests/native-features/proofs/control-size` bundle holds AX/PNG states,
+  `control-size` (proof no longer committed) bundle holds AX/PNG states,
   measured frames, side-by-side WebP, and source/binary receipt. The native
   source tree matches the reused iOS build at `c593ca7e2`; other controls,
   sizes, and iOS versions remain unproven.
@@ -161,7 +161,7 @@ accounts are unavailable).
   its freshly built native binary (`packages/one/ios` tree `96f68d997`).
   Pixel gates proved center movement, both radii, reversed colors,
   single and three-color arrays, alpha over a yellow underlay, and transparent
-  empty input. The tracked `tests/native-features/proofs/radial-gradient`
+  empty input. The tracked `radial-gradient` (proof no longer committed)
   bundle contains AX/PNG states, sampled pixels, side-by-side WebP, logs,
   and source/binary/runtime receipt. Explicit stops and arbitrary SwiftUI
   colors are unbound.
@@ -173,7 +173,7 @@ accounts are unavailable).
   After high review, the runtime gate also rejects either edge gap above 2
   points, and the exact suite revision passed again on iOS 27.
   Both native button actions reached React. The tracked
-  `tests/native-features/proofs/horizontal-bar` bundle contains two AX/PNG
+  `horizontal-bar` (proof no longer committed) bundle contains two AX/PNG
   pairs, measurements, outcome, a WebP, and source/runtime/binary receipt.
   Generated ViewSlot and Overlay host Swift blobs match the earlier native
   build. Other host sizes and scroll content remain unproven.
@@ -184,7 +184,7 @@ accounts are unavailable).
   horizontal points and alpha, and left the box transparent for an empty
   array. The unlabeled gradient was decorative in AX; a labeled gradient
   remained accessible. The tracked
-  `tests/native-features/proofs/linear-gradient` bundle preserves seven
+  `linear-gradient` (proof no longer committed) bundle preserves seven
   AX/PNG pairs, sampled RGB values, outcome, runtime metadata, generation
   check, and RN-versus-SwiftUI WebP. That earlier bridge used sRGB hex colors
   and normalized `{ x, y }` points; arbitrary SwiftUI `Color` values and
@@ -196,7 +196,7 @@ accounts are unavailable).
   SwiftUI `safeAreaInsetWithHorizontalEdge` slot placed its action eight points
   left of the base for `leading` and eight points right for `trailing`, within
   separate 280 × 180 point hosts; both native buttons reached React. The
-  tracked `tests/native-features/proofs/horizontal-inset` bundle contains two
+  tracked `horizontal-inset` (proof no longer committed) bundle contains two
   AX/PNG pairs, measurements, outcome, a WebP, and source/runtime/binary
   receipt. Its generated ViewSlot and Overlay host Swift blobs match the
   earlier native build. Scroll content and other container sizes are unproven.
@@ -208,7 +208,7 @@ accounts are unavailable).
   options. A native Beta tap changed only
   the palette selection, an external React update selected Gamma, and a tap
   on the segmented reference changed only that control. The tracked
-  `tests/native-features/proofs/picker-palette` bundle contains three AX/PNG
+  `picker-palette` (proof no longer committed) bundle contains three AX/PNG
   pairs, outcome, side-by-side WebP, and a receipt for suite source
   `972728c59`, regenerated JavaScript, and matching built/installed native
   debug dylib hashes. Picker Swift source blobs are identical to the earlier
@@ -222,7 +222,7 @@ accounts are unavailable).
   `c9fde9de93d0a91d333f8a29923582cfbc720db7`. The later protected-store
   merge added a separate Nitro file; the ScrollView, NavigationStack, style,
   and async bridge source files match the proof build. The tracked
-  `tests/native-features/proofs/scroll-search-refresh` bundle contains four
+  `scroll-search-refresh` (proof no longer committed) bundle contains four
   compressed AX/PNG pairs, outcome, runtime and matching built/installed
   code-bearing dylib hashes, and a side-by-side WebP. Pulling a vertical
   `ScrollView` invoked `refreshable` twice, with the second pull after the
@@ -235,7 +235,7 @@ accounts are unavailable).
   iPhone 17 Pro / iOS 27.0 simulator, Xcode 27.1, suite source `a11f9e9fd`
   and native iOS tree `c9fde9de93d0a91d333f8a29923582cfbc720db7`
   built at `db32abfd6`. The
-  `tests/native-features/proofs/list-search-refresh` directory tracks the
+  `list-search-refresh` (proof no longer committed) directory tracks the
   13-check outcome, four compressed AX/PNG pairs, source/runtime receipt,
   matching built/installed code-bearing debug dylib hashes, the reused native
   build log, and a side-by-side WebP. Pulling the plain List invoked

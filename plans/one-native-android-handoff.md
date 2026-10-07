@@ -20,7 +20,7 @@ RAN: final existing `w-1311` passes all 79 system checks at `f29ae4b7a`,
 through filesystem, Device, KeepAwake, orientation, Share, Print,
 QuickActions, AppIcon, Location, MapServices, unenrolled LocalAuthentication
 and window capture/delete/unsubscribe/resume. Proofs are in
-`tests/native-features/proofs/android-system-final/` and adjacent unit dirs.
+`android-system-final` (proof no longer committed) and adjacent unit dirs.
 RAN: beast builds and 158 Compose/documentation tests pass; changed Android
 targets compile. Local release installs 17 package entries into Contrast,
 native bytes match and immediate downstream manifest/lock bytes remain.

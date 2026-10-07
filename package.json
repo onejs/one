@@ -33,6 +33,7 @@
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
+    "check:proofs": "bun scripts/check-no-proofs.ts",
     "check": "bun check:deps & turbo check",
     "ci": "bun install && bun run build && bun run check && bun run typecheck && bun run lint && bun run test && git diff --exit-code",
     "clean": "bun run turbo:run clean:build",

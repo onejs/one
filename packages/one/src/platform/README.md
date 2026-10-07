@@ -682,7 +682,7 @@ and an unlabeled view is decorative. Explicit stops and arbitrary SwiftUI
 The iOS 27 iPhone 17 Pro proof passed 18 checks covering both radius fractions,
 center movement, off-axis elliptical geometry, reversed colors, one and three
 colors, alpha over yellow, and transparent empty input. The tracked
-`tests/native-features/proofs/elliptical-gradient` bundle has nine AX/PNG pairs,
+`elliptical-gradient` (proof no longer committed) bundle has nine AX/PNG pairs,
 pixel samples, build and generation logs, and source/binary receipt. Other iOS
 versions remain unproven.
 
@@ -699,7 +699,7 @@ and resolved-color initializers are not bound.
 
 The iOS 27 iPhone 17 Pro proof passed 15 checks across 2×2 and 3×3 grids,
 vertex colors and movement, background, smoothing, and both color spaces.
-`tests/native-features/proofs/mesh-gradient` preserves seven AX/PNG states,
+`mesh-gradient` (proof no longer committed) preserves seven AX/PNG states,
 sampled pixels, build and generation logs, and a matching native source and
 binary receipt. Other iOS versions remain unproven.
 
@@ -1245,7 +1245,7 @@ RAN on iOS 27: a bordered prominent Button inside `Host controlSize` and a
 standalone Button using `swiftStyle.controlSize` both grew from 28 to 50.33
 points when changed from `mini` to `extraLarge`, and returned to 28 points
 when restored. The ten-check proof (five control-size checks) is in
-`tests/native-features/proofs/control-size`; other controls and sizes remain
+`control-size` (proof no longer committed); other controls and sizes remain
 unproven by that run.
 This set covers the environment values React Native can express as stable scalar or
 color props and that directly affect appearance, text layout, localization, and
