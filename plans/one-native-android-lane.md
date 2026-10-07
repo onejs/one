@@ -1,6 +1,6 @@
 # One native Android lane
 
-Owner: android (m22158), manager and One native Android hands-on owner. Branch `tm/android-app-icon-cold` from `v2-beta`; validated fixes land on `v2-beta`. This lane owns Android Native Build and Checks for its pushes; Contrast shared delivery stays with p67014. REVIEW: none.
+Owner: android (m22158), manager and One native Android hands-on owner. Branch `tm/android-native-rewritten` from rewritten `v2-beta`; validated fixes land on `v2-beta`. This lane owns Android Native Build and Checks for its pushes; Contrast shared delivery stays with p67014. REVIEW: none.
 
 Current restart, 2026-10-07: the brief from p67073 resumes this lane on Nate's
 word: "android like peach SIM support yes and one native yes definitely".
@@ -36,8 +36,11 @@ released resources. The first repaired runtime returns
 record `getDuration` during Preparing, then error `-38`. INFERRED: the loading
 status read corrupts the MediaPlayer state. The next candidate returns loading
 or failed status without querying that player, and now-playing metadata reuses
-the same guarded status owner. Its compile and unchanged Audio acceptance are
-pending. Evidence stays in Contrast
+the same guarded status owner. RAN: the guarded candidate compiles on pro-64, APK SHA256
+`e136a9296083ea44e40d7a8826f1b0094485e15b49a00c96c7bf34c9bc40814c`;
+both Kotlin source hashes match. Two subsequent runtime attempts reached no
+API assertions because the Pixel 8 lease was held after capacity admission.
+Unchanged Audio behavior acceptance remains open. Evidence stays in Contrast
 `scripts/tmp/android-m22158/runtime-audio-promotion/`. RAN: final device and
 Metro8107 reads are empty and the emulator lease was released.
 
@@ -60,22 +63,24 @@ candidate's local dispatch failed before native compilation with TS2307 for
 `@tamagui/web/internal-runtime`. Turbo's strict task environment omitted
 `SKIP_TYPES`; its build task now declares that input so the flag reaches the
 builder and JavaScript-only output has a distinct cache key. The ordinary
-declaration baseline remains open. The first Kotlin candidate compiled; the
-newly guarded playback read still needs compilation. RAN: the source-pinned
+declaration baseline remains open. Both Kotlin candidates compiled. The
+guarded playback read still needs runtime acceptance. RAN: the source-pinned
 Expo library APK and instrumentation APK build passes, 1696 Gradle tasks in
 16m24s. Their hashes, fixture and lock match source `5cd581266e` on pro-64;
-the unchanged four picker tests are capturing its native oracle. Paired
-fidelity remains open.
+the repaired four picker tests pass on the native oracle in 115 seconds
+and on Peach in 95 seconds, with ten inspected native captures. The test
+repair lands in Contrast at `ea2637b02d`; paired fidelity remains open.
 
 Evidence remains outside One git in Contrast
 `scripts/tmp/android-m22158/runtime-media-picker-fixed/`. Cleanup removed
 Metro8107, the owned emulator and fixture. The three earlier media runs retain
 the original boot failure, picker failure and passing Contacts diagnostic.
-Peach owner s16717 works its width candidate. One proof-history rewrite is
-prepared but its force-push requires Nate; p67073 owns that final step. Rebase
-onto rewritten `v2-beta` after the cleanup owner confirms its rewritten
-ancestry. The fetched `ec569a328` is a normal successor of `4d946b837`, so that
-tip movement does not establish the history rewrite. No captures or
+Peach owner s16717 works its width candidate. RAN: the six owned commits were rebased onto rewritten `v2-beta` at
+`2611d1957` in new branch `tm/android-native-rewritten`; old `4d946b837` is
+absent from its ancestry. Audio Kotlin, debug-host/media drivers, AppIcon
+fixtures and Turbo configuration match the pre-rewrite candidate byte for
+byte. The old save point remains local for recovery; the new branch receives
+an ordinary push. No captures or
 logs are committed. Android service promotion requirements are documented in
 [Android foreground service lifecycle](https://developer.android.com/develop/background-work/services/fgs/stop-fgs)
 and [ActiveServices](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/services/core/java/com/android/server/am/ActiveServices.java).
