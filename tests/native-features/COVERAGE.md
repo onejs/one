@@ -210,7 +210,7 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.UI.Fonts` | fonts | fonts |  |
 | `One.UI.SafeArea` | safe-area | safe-area |  |
 | `One.UI.TextInput` | ui-text-input | missing | Android suite missing |
-| `One.UI.ReservedRegions` | missing | missing | fixture exists, no suite opens it |
+| `One.UI.ReservedRegions` | adaptive-flat | missing | Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven |
 | `One.Notifications` | notifications | notifications |  |
 | `One.Clipboard` | paste-button, share, clipboard | share | Android setString and getString proven only through the share suite Copy check; no Android clipboard suite |
 | `One.Haptics` | haptics | haptics |  |
@@ -224,15 +224,15 @@ Suite names record fixture references, not successful runs or complete behavior 
 | `One.Storage` | storage, app-intents | storage |  |
 | `One.Speech` | speech | speech |  |
 | `One.Updates` | updates | updates |  |
-| `useSizeClass` | missing | missing | fixture exists, no suite opens it |
-| `getSizeClass` | missing | missing | no fixture or suite |
-| `useHinge` | missing | missing | fixture exists, no suite opens it |
-| `getHinge` | missing | missing | no fixture or suite |
-| `onHingeChange` | missing | missing | no fixture or suite |
-| `useReservedRegions` | missing | missing | fixture exists, no suite opens it |
-| `useReservedRegionsReady` | missing | missing | no fixture or suite |
-| `useWindowSegments` | missing | missing | fixture exists, no suite opens it |
-| `useSpanning` | missing | missing | fixture exists, no suite opens it |
+| `useSizeClass` | adaptive-flat | missing | Android suite missing; iOS flat workspace getter/hook agreement proven; live trait changes unproven |
+| `getSizeClass` | adaptive-flat | missing | Android suite missing; iOS flat workspace current and refreshed reads proven; live trait changes unproven |
+| `useHinge` | adaptive-flat | missing | Android suite missing; iOS flat workspace null proven; hardware posture and angles unproven |
+| `getHinge` | adaptive-flat | missing | Android suite missing; iOS flat workspace null reads proven; hardware posture and angles unproven |
+| `onHingeChange` | adaptive-flat | missing | Android suite missing; iOS flat workspace initial null callbacks and cleanup calls proven; hardware events and callback suppression after removal unproven |
+| `useReservedRegions` | adaptive-flat | missing | Android suite missing; iOS flat workspace empty active/all regions proven; nonempty filtering unproven |
+| `useReservedRegionsReady` | adaptive-flat | missing | Android suite missing; iOS flat workspace first native reading and two remounts proven |
+| `useWindowSegments` | adaptive-flat | missing | Android suite missing; iOS flat workspace one segment tracks provider resize; folding segments unproven |
+| `useSpanning` | adaptive-flat | missing | Android suite missing; iOS flat workspace false proven; spanning divisions unproven |
 | `useNativeState` | state, ui-text-input | missing | iOS suite only |
 | `useFonts` | fonts | fonts |  |
 | `useNetworkState` | network | missing | Android suite missing; iOS workspace live state, refresh and two remounts proven |

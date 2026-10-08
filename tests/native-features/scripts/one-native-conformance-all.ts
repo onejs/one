@@ -36,6 +36,7 @@ const iphoneSuites = [
   'apple-file',
   'ui-map',
   'ui-icon',
+  'adaptive-flat',
   'gpu',
 ] as const
 

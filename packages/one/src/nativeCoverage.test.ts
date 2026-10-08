@@ -34,7 +34,8 @@ const knownGaps: Record<string, string> = {
   'UI.Blur': 'effects fixture has a capture proof script, not a suite',
   'UI.Mask': 'effects fixture has a capture proof script, not a suite',
   'UI.TextInput': 'Android suite missing',
-  'UI.ReservedRegions': 'fixture exists, no suite opens it',
+  'UI.ReservedRegions':
+    'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',
   openURL:
     'Android suite missing; iOS workspace Safari destination and app return proven',
   LaunchScreen: 'Android suite missing',
@@ -46,15 +47,24 @@ const knownGaps: Record<string, string> = {
   useNetworkState:
     'Android suite missing; iOS workspace live state, refresh and two remounts proven',
   useNativeState: 'iOS suite only',
-  useSizeClass: 'fixture exists, no suite opens it',
-  getSizeClass: 'no fixture or suite',
-  useHinge: 'fixture exists, no suite opens it',
-  getHinge: 'no fixture or suite',
-  onHingeChange: 'no fixture or suite',
-  useReservedRegions: 'fixture exists, no suite opens it',
-  useReservedRegionsReady: 'no fixture or suite',
-  useWindowSegments: 'fixture exists, no suite opens it',
-  useSpanning: 'fixture exists, no suite opens it',
+  useSizeClass:
+    'Android suite missing; iOS flat workspace getter/hook agreement proven; live trait changes unproven',
+  getSizeClass:
+    'Android suite missing; iOS flat workspace current and refreshed reads proven; live trait changes unproven',
+  useHinge:
+    'Android suite missing; iOS flat workspace null proven; hardware posture and angles unproven',
+  getHinge:
+    'Android suite missing; iOS flat workspace null reads proven; hardware posture and angles unproven',
+  onHingeChange:
+    'Android suite missing; iOS flat workspace initial null callbacks and cleanup calls proven; hardware events and callback suppression after removal unproven',
+  useReservedRegions:
+    'Android suite missing; iOS flat workspace empty active/all regions proven; nonempty filtering unproven',
+  useReservedRegionsReady:
+    'Android suite missing; iOS flat workspace first native reading and two remounts proven',
+  useWindowSegments:
+    'Android suite missing; iOS flat workspace one segment tracks provider resize; folding segments unproven',
+  useSpanning:
+    'Android suite missing; iOS flat workspace false proven; spanning divisions unproven',
 }
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.

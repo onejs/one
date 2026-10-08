@@ -58,9 +58,20 @@ suite. Remaining iOS holes, in launch order:
   `318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e`.
 - [ ] `One.UI.Blur`, `Mask`, `EdgeFade`, `sampleCurve`, `serializeCurve`: turn
   the effects capture script into a suite with a pixel assertion.
-- [ ] adaptive: `ReservedRegions`, `useReservedRegions(Ready)`, `useSizeClass`,
+- [x] adaptive flat iOS: `ReservedRegions`, `useReservedRegions(Ready)`, `useSizeClass`,
   `getSizeClass`, `useHinge`, `getHinge`, `onHingeChange`,
-  `useWindowSegments`, `useSpanning`: one suite over the existing fixture.
+  `useWindowSegments`, `useSpanning`: `adaptive-flat`, source `bb3096241`,
+  bound to size-class repair `40b7027b8`. iPhone 17 Pro/iOS 27.0 canonical,
+  wrong-size-hook and restored exits 0/1/0. Native readiness, empty active/all
+  regions, one unspanned segment matching provider layout 280 by 300 then
+  220 by 220, getter/hook agreement, initial null hinge listener callbacks,
+  getter refresh and two remounts pass. Explicit cleanup calls balance
+  subscription setup including StrictMode replay; callback suppression after
+  removal is unproven. Workspace source and reused native shell only, with
+  original native build source not newly authenticated. Receipts:
+  `/Users/n8/Library/Logs/one-adaptive-ios-proof/`. Live trait transitions,
+  hinge postures/angles, nonempty divisions/occlusions, iOS 27.1 ArrangementView,
+  Android and current production canary acceptance remain open.
 - [x] `useNetworkState`: network suite on iPhone 17 Pro/iOS 27.0,
   source `7d8666b1d`. State/hook agreement, listener event, refresh and two
   remounts pass twice. Omitting the hook fails its agreement assertion after
