@@ -1,0 +1,73 @@
+---
+title: useServerHeadInsertion
+---
+
+Register elements to be inserted into the document `<head>` during server rendering. This hook is server-only and is used for adding custom head content from anywhere in your component tree.
+
+## Usage
+
+```tsx
+import { useServerHeadInsertion } from 'one'
+
+function CustomHeadContent() {
+  useServerHeadInsertion(() => (
+    <>
+      <meta name="custom-tag" content="my-value" />
+      <link rel="preload" href="/fonts/custom.woff2" as="font" type="font/woff2" />
+    </>
+  ))
+
+  return <div>Page content</div>
+}
+```
+
+## When to Use
+
+Use `useServerHeadInsertion` when you need to:
+- Add head elements from a nested component (not just from the page root)
+- Conditionally insert head elements based on component state
+- Keep head content close to the component that needs it
+
+For static head content or when you have a clear layout, prefer the `<Head>` component.
+
+## Server-Only
+
+This hook only runs on the server during SSR/SSG. On the client, it has no effect. All head elements must be registered before the initial render completes.
+
+```tsx
+function MyComponent() {
+  useServerHeadInsertion(() => (
+    <title>Dynamic Title</title>
+  ))
+
+  // This hook runs on server, but not on client
+  return <div>Content</div>
+}
+```
+
+## Callback Function
+
+The callback receives no parameters and should return a React element or fragment containing the head elements:
+
+```tsx
+useServerHeadInsertion(() => (
+  <>
+    <title>Page Title</title>
+    <meta name="description" content="Page description" />
+    <meta property="og:title" content="My Page" />
+  </>
+))
+```
+
+## Type
+
+The hook accepts a callback that returns a `ServerHeadInsertionCallback`:
+
+```ts
+type ServerHeadInsertionCallback = () => React.ReactElement
+```
+
+## Related
+
+- [<Head />](/docs/components-Head) - Component for inserting head elements
+- [Dynamic OpenGraph Images](/docs/guides-open-graph) - Generate dynamic OG images
