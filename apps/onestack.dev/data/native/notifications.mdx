@@ -80,6 +80,22 @@ the app reads on launch; `clearLastResponse` dismisses it. The iOS delegate
 installs at launch, before React Native starts, so the cold-start tap is cached
 no matter how early it arrives.
 
+Every notification tap carries the default action identifier; custom actions are
+out of scope. Compare the action identifier against the default:
+
+```tsx
+import { One } from 'one'
+
+const response = One.Notifications.getLastResponse()
+const DEFAULT = 'expo.modules.notifications.actions.DEFAULT'
+if (response?.actionIdentifier === DEFAULT) {
+  // user tapped the notification (not a custom action)
+}
+```
+
+You can also import the constant `DEFAULT_ACTION_IDENTIFIER` from the platform notifications module
+to avoid the string literal.
+
 Two more triggers schedule into the future: `{ type: 'timeInterval', seconds,
 repeats? }` and `{ type: 'date', date }`, where the date is a timestamp or a
 `Date`. A past date delivers immediately. Both take an Android `channelId`;
