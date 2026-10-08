@@ -78,6 +78,20 @@ and `picker-tint-accepted/`. The next Metro startup reached its prepared bundle
 log contains no Watchman cookie timeout. Incremental native workspace retention
 is queued with RSI after this cold build executed every Gradle task.
 
+Published picker delivery, 2026-10-08: RAN Android Native Build
+`37735062538` passes at `82a413d12c`; both Checks jobs pass in
+`37732571679` at docs repair `681b3a4cc5`. Publish step `37733771858`
+passes at `c11472e03e660347fd75c8273ba85131ea681a1a`.
+Exact npm artifact `one@2.0.0-0.canary.1791438659890` identifies that source,
+which contains the accepted picker fix. Its picker, Compose view and both
+Audio Kotlin files match the accepted source byte for byte. Tarball SHA256
+is `18a8d086600a5cba15a2f87bc19889da939e1c52c633bff99a5875608f431aa8`.
+The source repair formats a docs reference as inline code; actual MDX and
+React SSR reproduce the original undefined `Head` error and pass after repair.
+Runtime, required CI and published source acceptance are closed for the tint
+fix; exact dialog host-theme matching remains open. Receipts stay outside One
+git in Contrast `scripts/tmp/android-m22158/picker-canary-verified/`.
+
 Prior launch failures stopped before Audio assertions: an index route instead
 of the requested deep link, a System UI keyguard ANR, and conflicting AVD leases.
 The private initial URL reader returned HTTP404 at One's inspector endpoint,
