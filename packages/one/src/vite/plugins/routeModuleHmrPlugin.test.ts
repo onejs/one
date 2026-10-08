@@ -29,6 +29,22 @@ function runHotUpdate({
 }
 
 describe(createRouteModuleHmrPlugin, () => {
+  it('ignores rolldown hmr updates without a vite server', () => {
+    const plugin = createRouteModuleHmrPlugin('app-sootsim')
+    const hotUpdate =
+      typeof plugin.hotUpdate === 'object' ? plugin.hotUpdate.handler : plugin.hotUpdate
+    if (!hotUpdate) throw new Error('route HMR plugin has no hotUpdate hook')
+
+    const result = Reflect.apply(hotUpdate, {}, [
+      {
+        file: '/project/app-sootsim/index.tsx',
+        modules: [{ id: '/project/app-sootsim/index.tsx' }],
+      },
+    ])
+
+    expect(result).toBeUndefined()
+  })
+
   it('applies client hmr to the configured router root', () => {
     const routeModule: { id: string; acceptedHmrExports?: Set<string> } = {
       id: '/project/app-sootsim/_layout.tsx?one',

@@ -27,7 +27,9 @@ export function createRouteModuleHmrPlugin(routerRoot: string): Plugin {
       )
     },
 
-    hotUpdate({ server, modules, file }) {
+    hotUpdate(options) {
+      if (!options.server) return
+      const { server, modules, file } = options
       const absoluteRouterRoot = path.resolve(server.config.root, routerRoot)
       const fileRelativePath = path.relative(server.config.root, file)
 
