@@ -40,12 +40,14 @@ Port priority (highest wins):
 - `ONE_APP_NAME` is set to your `native.app.name` setting, falling back to [`native.key`](/docs/configuration#nativekey).
 - `ONE_SERVER_URL` is set in development mode to the current running server URL, like `http://0.0.0.0:8081`. You are expected to set this yourself for production builds.
 - `ONE_DEFAULT_RENDER_MODE` is set to either `"ssr"`, `"ssg"`, or `"spa"` based on your [defaultRenderMode setting](/docs/configuration#webdefaultrendermode).
+- `ONE_RENDER_MODE` is the render mode of the current page being rendered (`"ssr"`, `"ssg"`, or `"spa"`). Set before the setup file runs so you can conditionally skip setup logic for certain modes.
 
 #### Platform Detection
 
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
 - `VITE_NATIVE` is `"1"` for native platforms (iOS and Android), or `""` for web (client and SSR). Uses truthy/falsy strings to avoid polluting `process.env` types. Useful for tree-shaking native-only code.
 - `ONE_PLATFORM` is `"web"`, `"ios"`, or `"android"`. Expo packages also receive `EXPO_OS` as `"ios"` or `"android"` in native builds; One does not define it on web.
+- `TAMAGUI_TARGET` is `"web"` for web builds or `"native"` for native builds. Used by Tamagui and One native route branches.
 
 #### React Native
 
@@ -53,6 +55,7 @@ Available in native builds:
 
 - `REACT_NATIVE_VERSION` contains the React Native version string.
 - `REACT_NATIVE_PLATFORM` is set to `"ios"` or `"android"` in native builds.
+- `REACT_NATIVE_SERVER_PUBLIC_PORT` is the dev server port for React Native.
 
 ### TypeScript Types
 
