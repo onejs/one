@@ -304,7 +304,9 @@ export async function scanDepsToOptimize(
           const exports = [...definedExports, ...specialExports].filter(
             (d) => !EXCLUDE_LIST_SET.has(d)
           )
-          if (mainExport) {
+          // match vite's default optimizable entry extensions; JSX/TSX source
+          // remains in its module graph while we still discover child dependencies.
+          if (mainExport && (!extname(mainExport) || /\.[cm]?[jt]s$/.test(mainExport))) {
             if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
               exports.unshift(dep)
             }

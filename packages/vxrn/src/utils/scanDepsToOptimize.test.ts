@@ -111,3 +111,35 @@ describe('scanDepsToOptimize codegenConfig', () => {
     expect(result.prebundleDeps).not.toContain('@expo/log-box')
   })
 })
+
+describe('scanDepsToOptimize source entries', () => {
+  test('keeps linked TSX source out of prebundling while discovering its React dependency', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-scan-source-')))
+    writePkg(root, {
+      name: 'source-fixture',
+      dependencies: { 'source-ui': 'file:packages/source-ui' },
+    })
+    writePkg(join(root, 'node_modules', 'source-ui'), {
+      name: 'source-ui',
+      main: './index.tsx',
+      dependencies: { 'built-ui': '*' },
+    })
+    writeFileSync(
+      join(root, 'node_modules', 'source-ui', 'index.tsx'),
+      'export default <div />\n'
+    )
+    writePkg(join(root, 'node_modules', 'built-ui'), {
+      name: 'built-ui',
+      main: './index.js',
+      dependencies: { react: '*' },
+    })
+    writePkg(join(root, 'node_modules', 'react'), {
+      name: 'react',
+      main: './index.js',
+    })
+
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+    expect(result.prebundleDeps).not.toContain('source-ui')
+    expect(result.prebundleDeps).toContain('built-ui')
+  })
+})
