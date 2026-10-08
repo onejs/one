@@ -229,78 +229,38 @@ describe('one native integration tests', () => {
   // -- zoom transitions --
 
   describe('Zoom Transitions', () => {
-    test('zoom source list renders correctly', sharedTestOptions, async () => {
-      await navigateTo(driver, '/zoom-test')
-      await waitForElement(driver, 'zoom-test-screen', { timeout: 30_000 })
-
-      const title = await waitForElement(driver, 'zoom-test-title')
-      expect(await title.getText()).toBe('Zoom Transition Test')
-
-      // verify all zoom source items rendered
-      const itemIds = ['item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6']
-      for (const itemId of itemIds) {
-        const source = driver.$(`~zoom-source-${itemId}`)
-        try {
-          await source.waitForDisplayed({ timeout: 3000 })
-        } catch {
-          await driver.execute('mobile: scroll', { direction: 'down' })
-          await source.waitForDisplayed({ timeout: 5000 })
-        }
-        expect(await source.isDisplayed()).toBe(true)
-      }
-
-      // verify status text
-      const status = await waitForElement(driver, 'zoom-source-complete')
-      expect(await status.getText()).toBe('6 zoom sources rendered')
-
-      await captureScreenshot(driver, 'zoom-transition-source-list')
-    })
-
     test(
-      'tapping zoom source shows detail with transition',
+      'native zoom resolves its mounted source and alignment with controls',
       sharedTestOptions,
       async () => {
-        // tap the first item to trigger zoom transition
-        const firstItem = driver.$('~zoom-source-item-1')
-        try {
-          await firstItem.waitForDisplayed({ timeout: 5000 })
-          await firstItem.click()
-        } catch {
-          // scroll back up if needed
-          await driver.execute('mobile: scroll', { direction: 'up' })
-          await firstItem.waitForDisplayed({ timeout: 5000 })
-          await firstItem.click()
-        }
-
-        // wait for detail screen to appear
-        await waitForElement(driver, 'zoom-detail-screen', { timeout: 10_000 })
-
-        const detailTitle = await waitForElement(driver, 'zoom-detail-title')
-        expect(await detailTitle.getText()).toBe('Mountain View')
-
-        const detailId = await waitForElement(driver, 'zoom-detail-id')
-        expect(await detailId.getText()).toBe('ID: item-1')
-
-        const detailStatus = await waitForElement(driver, 'zoom-detail-complete')
-        expect(await detailStatus.getText()).toBe('Zoom detail rendered')
-
-        await captureScreenshot(driver, 'zoom-transition-detail-view')
+        const capabilities = driver.capabilities as Record<string, any>
+        const simulatorId = getSimulatorUdid(driver)
+        const bundleId =
+          capabilities['appium:options']?.bundleId ||
+          capabilities['appium:bundleId'] ||
+          capabilities.bundleId
+        expect(simulatorId).toMatch(/^[0-9A-F-]{36}$/i)
+        expect(bundleId).toBeTypeOf('string')
+        execFileSync(
+          'bun',
+          [
+            'scripts/one-native-conformance.ts',
+            '--simulator-id',
+            simulatorId,
+            '--bundle-id',
+            bundleId,
+            '--suite',
+            'zoom',
+            '--artifact-dir',
+            process.env.ZOOM_ARTIFACT_DIR || '/tmp/one-native-zoom-e2e',
+            ...(process.env.TEST_ENV === 'dev'
+              ? ['--js-location', `localhost:${process.env.DEV_PORT || '8081'}`]
+              : []),
+          ],
+          { stdio: 'inherit' }
+        )
       }
     )
-
-    test('back button returns to zoom source list', sharedTestOptions, async () => {
-      const backButton = await waitForElement(driver, 'zoom-back-button')
-      await backButton.click()
-
-      // wait for the list to reappear
-      await waitForElement(driver, 'zoom-test-screen', { timeout: 10_000 })
-
-      // verify we're back to the list
-      const status = await waitForElement(driver, 'zoom-source-complete')
-      expect(await status.getText()).toBe('6 zoom sources rendered')
-
-      await captureScreenshot(driver, 'zoom-transition-back-to-list')
-    })
   })
 
   // -- toolbar --
@@ -369,18 +329,22 @@ describe('one native integration tests', () => {
   // -- bars action bar (track A): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
 
   describe('Bars Action Bar', () => {
-    test('action bar renders clustered toolbar with status', sharedTestOptions, async () => {
-      await navigateTo(driver, '/bars-action-bar')
-      const title = await waitForElement(driver, 'bars-action-title', {
-        timeout: 30_000,
-      })
-      expect(await title.getText()).toBe('Action Bar')
+    test(
+      'action bar renders clustered toolbar with status',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/bars-action-bar')
+        const title = await waitForElement(driver, 'bars-action-title', {
+          timeout: 30_000,
+        })
+        expect(await title.getText()).toBe('Action Bar')
 
-      const lastAction = await waitForElement(driver, 'bars-action-last-action')
-      expect(await lastAction.getText()).toBe('none')
+        const lastAction = await waitForElement(driver, 'bars-action-last-action')
+        expect(await lastAction.getText()).toBe('none')
 
-      await captureScreenshot(driver, 'bars-action-initial')
-    })
+        await captureScreenshot(driver, 'bars-action-initial')
+      }
+    )
 
     test('each cluster button reports its onPress', sharedTestOptions, async () => {
       const buttons: [string, string][] = [
@@ -435,24 +399,28 @@ describe('one native integration tests', () => {
       }
     )
 
-    test('tab bar minimizes on scroll with inline accessory', sharedTestOptions, async () => {
-      for (let index = 0; index < 4; index++) {
-        await driver.execute('mobile: scroll', { direction: 'down' })
+    test(
+      'tab bar minimizes on scroll with inline accessory',
+      sharedTestOptions,
+      async () => {
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'down' })
+        }
+
+        const placement = await waitForElement(
+          driver,
+          'bars-double-accessory-placement-inline',
+          { timeout: 10_000 }
+        )
+        expect(await placement.getText()).toBe('inline')
+
+        await captureScreenshot(driver, 'bars-double-minimized')
+
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'up' })
+        }
       }
-
-      const placement = await waitForElement(
-        driver,
-        'bars-double-accessory-placement-inline',
-        { timeout: 10_000 }
-      )
-      expect(await placement.getText()).toBe('inline')
-
-      await captureScreenshot(driver, 'bars-double-minimized')
-
-      for (let index = 0; index < 4; index++) {
-        await driver.execute('mobile: scroll', { direction: 'up' })
-      }
-    })
+    )
   })
 
   // -- bars button probe (track C): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
@@ -605,49 +573,66 @@ describe('one native integration tests', () => {
   // -- tab view parity --
 
   describe('One Native TabView Parity', () => {
-    test('bottom accessory takes touches in expanded and inline modes', sharedTestOptions, async () => {
-      await navigateTo(driver, '/one-native-tabview')
-      const accessory = await waitForElement(driver, 'tabview-accessory', { timeout: 30_000 })
-      expect(await accessory.isDisplayed()).toBe(true)
+    test(
+      'bottom accessory takes touches in expanded and inline modes',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/one-native-tabview')
+        const accessory = await waitForElement(driver, 'tabview-accessory', {
+          timeout: 30_000,
+        })
+        expect(await accessory.isDisplayed()).toBe(true)
 
-      await accessory.click()
+        await accessory.click()
 
-      const events = await waitForElement(driver, 'tabview-events')
-      await events.waitUntil(
-        async () => (await events.getText()).includes('accessory'),
-        { timeout: 5000, timeoutMsg: 'accessory press event was not received in expanded mode' }
-      )
-      expect(await events.getText()).toContain('accessory')
+        const events = await waitForElement(driver, 'tabview-events')
+        await events.waitUntil(
+          async () => (await events.getText()).includes('accessory'),
+          {
+            timeout: 5000,
+            timeoutMsg: 'accessory press event was not received in expanded mode',
+          }
+        )
+        expect(await events.getText()).toContain('accessory')
 
-      const accBtn = await waitForElement(driver, 'test-acc-plain')
-      await accBtn.click()
-      await events.waitUntil(
-        async () => (await events.getText()).includes('acc-plain'),
-        { timeout: 5000, timeoutMsg: 'native accessory button press event was not received' }
-      )
-      expect(await events.getText()).toContain('acc-plain')
+        const accBtn = await waitForElement(driver, 'test-acc-plain')
+        await accBtn.click()
+        await events.waitUntil(
+          async () => (await events.getText()).includes('acc-plain'),
+          {
+            timeout: 5000,
+            timeoutMsg: 'native accessory button press event was not received',
+          }
+        )
+        expect(await events.getText()).toContain('acc-plain')
 
-      await captureScreenshot(driver, 'tabview-accessory-expanded')
+        await captureScreenshot(driver, 'tabview-accessory-expanded')
 
-      // minimize tab bar on scroll to test inline mode
-      for (let index = 0; index < 4; index++) {
-        await driver.execute('mobile: scroll', { direction: 'down' })
+        // minimize tab bar on scroll to test inline mode
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'down' })
+        }
+
+        const inlineAccessory = await waitForElement(driver, 'tabview-accessory', {
+          timeout: 10_000,
+        })
+        await inlineAccessory.click()
+
+        await events.waitUntil(
+          async () => (await events.getText()).includes('accessory'),
+          {
+            timeout: 5000,
+            timeoutMsg: 'accessory press event was not received in inline mode',
+          }
+        )
+        expect(await events.getText()).toContain('accessory')
+
+        await captureScreenshot(driver, 'tabview-accessory-inline')
+
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'up' })
+        }
       }
-
-      const inlineAccessory = await waitForElement(driver, 'tabview-accessory', { timeout: 10_000 })
-      await inlineAccessory.click()
-
-      await events.waitUntil(
-        async () => (await events.getText()).includes('accessory'),
-        { timeout: 5000, timeoutMsg: 'accessory press event was not received in inline mode' }
-      )
-      expect(await events.getText()).toContain('accessory')
-
-      await captureScreenshot(driver, 'tabview-accessory-inline')
-
-      for (let index = 0; index < 4; index++) {
-        await driver.execute('mobile: scroll', { direction: 'up' })
-      }
-    })
+    )
   })
 })
