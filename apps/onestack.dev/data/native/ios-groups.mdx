@@ -124,15 +124,23 @@ while the native content expands within its box.
 />
 
 ```tsx
+import { useState } from 'react'
 import { One } from 'one'
 
-<One.iOS.DisclosureGroup
-  label="Advanced"
-  isExpanded={open}
-  onIsExpandedChange={setOpen}
->
-  <One.iOS.Toggle label="Debug" isOn={debug} onIsOnChange={setDebug} />
-</One.iOS.DisclosureGroup>
+export function AdvancedSettings() {
+  const [open, setOpen] = useState(false)
+  const [debug, setDebug] = useState(false)
+
+  return (
+    <One.iOS.DisclosureGroup
+      label="Advanced"
+      isExpanded={open}
+      onIsExpandedChange={setOpen}
+    >
+      <One.iOS.Toggle label="Debug" isOn={debug} onIsOnChange={setDebug} />
+    </One.iOS.DisclosureGroup>
+  )
+}
 ```
 
 The iOS 27 conformance fixture verifies native taps, external React resets,
