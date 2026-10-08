@@ -4698,6 +4698,9 @@ async function runUpdates(config: Config) {
     // 2. a published update stages, then runs after a cold relaunch with the
     // image only its own bundle carries.
     const first = publish('v2')
+    // the publish saturates the host; tapping check immediately after fails
+    // before its request reaches the server, so let host and emulator settle.
+    if (happyOnly) await Bun.sleep(60_000)
     tap('one-native-updates-check')
     await wait('served update checks available', (n) => labelValue(n, 'Check') === `available:${first.id}`)
     tap('one-native-updates-fetch')
@@ -4806,6 +4809,9 @@ async function runUpdates(config: Config) {
     // 6. reload runs the staged bundle in-session, then twenty reloads in a
     // row run without a crash.
     const staged = publish('p5', ['updateSeverity=critical'])
+    // same post-publish settle as step 2: the check's request is lost when
+    // the tap lands while the host is still saturated.
+    if (happyOnly) await Bun.sleep(60_000)
     tap('one-native-updates-check')
     await wait('staged update checks available', (n) => labelValue(n, 'Check') === `available:${staged.id}`)
     tap('one-native-updates-fetch')
