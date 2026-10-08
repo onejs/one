@@ -329,10 +329,9 @@ prefetchCSS()
       globalThis['__vxrnresetState']?.()
 
       if (foundRoute.type === 'ssg') {
-        // Aggressive mode: only modulepreload critical scripts, skip deferred to prevent network saturation
-        // Regular after-lcp mode: modulepreload all scripts for parallel downloads, defer execution
-        // Default: all scripts load normally
-        const renderPreloads = criticalPreloads || preloads
+        // aggressive mode leaves the connection to images and styles until the
+        // bootstrap starts scripts. regular mode retains parallel preloads.
+        const renderPreloads = useAfterLCPAggressive ? [] : criticalPreloads || preloads
         const renderDeferredPreloads = useAfterLCPAggressive ? [] : deferredPreloads
 
         t0 = performance.now()

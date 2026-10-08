@@ -533,7 +533,7 @@ export default {
 
 - **`'after-lcp'`**: Scripts download immediately via modulepreload but execution is deferred until after first paint using double requestAnimationFrame. This allows the browser to paint the SSR content before executing JavaScript. Only applies to SSG pages.
 
-- **`'after-lcp-aggressive'`**: Only modulepreloads critical scripts (entry, layouts). Non-critical scripts have no modulepreload hints, reducing network saturation. Best for pages with many chunks or slow networks.
+- **`'after-lcp-aggressive'`**: Omits initial JavaScript modulepreload hints so images and styles can use the connection first. The deferred bootstrap loads the entry and layout scripts; their imports load the remaining chunks. Best for pages with many chunks or slow networks. Only applies to SSG pages.
 
 **Default:** `undefined` (all scripts load with async)
 
