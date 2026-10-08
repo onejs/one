@@ -5,6 +5,10 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { expect, test } from 'vitest'
+import {
+  iosExternalAcceptanceAPIs,
+  modeAPIs,
+} from '../../../tests/native-features/fixtures/realapps-api-coverage'
 import * as PublicApi from './index'
 import { One } from './one'
 import * as PlatformApi from './platform'
@@ -34,7 +38,8 @@ const knownGaps: Record<string, string> = {
   'UI.Blur': 'effects fixture has a capture proof script, not a suite',
   'UI.Mask': 'effects fixture has a capture proof script, not a suite',
   'UI.TextInput': 'Android suite missing',
-  'UI.ReservedRegions': 'fixture exists, no suite opens it',
+  'UI.ReservedRegions':
+    'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',
   openURL:
     'Android suite missing; iOS workspace Safari destination and app return proven',
   LaunchScreen: 'Android suite missing',
@@ -46,15 +51,24 @@ const knownGaps: Record<string, string> = {
   useNetworkState:
     'Android suite missing; iOS workspace live state, refresh and two remounts proven',
   useNativeState: 'iOS suite only',
-  useSizeClass: 'fixture exists, no suite opens it',
-  getSizeClass: 'no fixture or suite',
-  useHinge: 'fixture exists, no suite opens it',
-  getHinge: 'no fixture or suite',
-  onHingeChange: 'no fixture or suite',
-  useReservedRegions: 'fixture exists, no suite opens it',
-  useReservedRegionsReady: 'no fixture or suite',
-  useWindowSegments: 'fixture exists, no suite opens it',
-  useSpanning: 'fixture exists, no suite opens it',
+  useSizeClass:
+    'Android suite missing; iOS flat workspace getter/hook agreement proven; live trait changes unproven',
+  getSizeClass:
+    'Android suite missing; iOS flat workspace current and refreshed reads proven; live trait changes unproven',
+  useHinge:
+    'Android suite missing; iOS flat workspace null proven; hardware posture and angles unproven',
+  getHinge:
+    'Android suite missing; iOS flat workspace null reads proven; hardware posture and angles unproven',
+  onHingeChange:
+    'Android suite missing; iOS flat workspace initial null callbacks and cleanup calls proven; hardware events and callback suppression after removal unproven',
+  useReservedRegions:
+    'Android suite missing; iOS flat workspace empty active/all regions proven; nonempty filtering unproven',
+  useReservedRegionsReady:
+    'Android suite missing; iOS flat workspace first native reading and two remounts proven',
+  useWindowSegments:
+    'Android suite missing; iOS flat workspace one segment tracks provider resize; folding segments unproven',
+  useSpanning:
+    'Android suite missing; iOS flat workspace false proven; spanning divisions unproven',
 }
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
@@ -221,18 +235,10 @@ test('every One namespace member has a conformance fixture reference or a docume
     }
   }
 
-  // standalone contracts retain the report and independently verified output.
+  // standalone suites use an AppRegistry entry instead of a router screen.
+  // receipts are checked separately with scripts/native-coverage-receipts.ts.
   for (const platform of ['android', 'ios'] as const) {
-    const directory = `evidence/uniform-native-modules/${platform}`
-    const runtime = JSON.parse(read(`${directory}/runtime.json`))
-    const pixels = JSON.parse(read(`${directory}/pixels.json`))
-    expect(runtime.passed, `${platform} native module contract`).toBe(true)
-    expect(pixels.passed, `${platform} independently decoded pixels`).toBe(true)
-    expect(pixels.counterclockwiseNegativeControlRejected).toBe(true)
-    const core = exportsUsed(read('fixtures/one-native-modules.tsx'))
     if (platform === 'android') {
-      expect(runtime.unavailable.passed, 'Android no-native service contract').toBe(true)
-      expect(runtime.unavailable.checks.length).toBeGreaterThan(60)
       for (const name of exportsUsed(read('fixtures/one-unavailable-services.ts'))) {
         proof.android.set(name, [
           ...(proof.android.get(name) ?? []),
@@ -240,37 +246,18 @@ test('every One namespace member has a conformance fixture reference or a docume
         ])
       }
     }
-    for (const name of core) {
+    for (const name of exportsUsed(read('fixtures/one-native-modules.tsx'))) {
       proof[platform].set(name, [...(proof[platform].get(name) ?? []), 'native-modules'])
     }
   }
 
-  // this external suite selects three APIs, not every service in its fixture.
-  const external = 'evidence/realapps/share-cancel-controls'
-  const receipt = JSON.parse(read(`${external}/restored-positive/receipt.json`))
-  const results = JSON.parse(read(`${external}/restored-positive/api-results.json`))
-  const run = JSON.parse(read(`${external}/restored-positive/run-result.json`))
-  expect(receipt.platform).toBe('ios')
-  expect(receipt.mode).toBe('external')
-  expect(receipt.apis).toEqual(['One.openShare', 'One.openURL', 'One.openSettings'])
-  expect(run.exitCode).toBe(0)
+  // the bounded external acceptance unit selects three APIs from this mode.
   const services = exportsUsed(read('fixtures/realapps-api-services.native.tsx'))
-  for (const api of receipt.apis) {
+  for (const api of iosExternalAcceptanceAPIs) {
     const name = api.replace(/^One\./, '')
+    expect(modeAPIs('external', 'ios')).toContain(api)
     expect(services.has(name), `${api} external fixture`).toBe(true)
-    expect(results[api].status, `${api} external result`).toBe('observed')
     proof.ios.set(name, [...(proof.ios.get(name) ?? []), 'realapps:external'])
-  }
-  const copy = JSON.parse(read(`${external}/copy/api-results.json`))
-  expect(copy['One.openShare.nativeActivity'].value.action).toBe('sharedAction')
-  expect(results['One.openShare.nativeActivity'].value.action).toBe('dismissedAction')
-  for (const api of ['One.openURL', 'One.openSettings']) {
-    const states = results[`${api}.appStates`].value.states
-    expect(states.indexOf('background')).toBeGreaterThanOrEqual(0)
-    expect(states.slice(states.indexOf('background') + 1)).toContain('active')
-  }
-  for (const control of ['negative-url', 'negative-settings']) {
-    expect(JSON.parse(read(`${external}/${control}/run-result.json`)).exitCode).toBe(1)
   }
 
   const rows: string[] = []
@@ -295,7 +282,8 @@ test('every One namespace member has a conformance fixture reference or a docume
       'Generated by `packages/one/src/nativeCoverage.test.ts` (`vitest -u` rewrites it).',
       'A cell names the conformance suites whose fixture uses the export.',
       'Suite names record fixture references, not successful runs or complete behavior coverage.',
-      '`native-modules:unavailable` records historical rejection checks, not proof of a supported implementation.',
+      '`native-modules:unavailable` references rejection checks, not proof of a supported implementation.',
+      'Run receipts stay outside Git and are checked with `bun scripts/native-coverage-receipts.ts <evidence-root>`.',
       '',
       '| export | iOS suites | Android suites | gap |',
       '| --- | --- | --- | --- |',

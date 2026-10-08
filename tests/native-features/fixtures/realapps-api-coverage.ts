@@ -20,6 +20,13 @@ export const iosAPIs = [
   'One.iOS.ToolbarItemGroup',
 ] as const
 
+// bounded iOS external acceptance; other actions in the mode have separate gaps.
+export const iosExternalAcceptanceAPIs = [
+  'One.openShare',
+  'One.openURL',
+  'One.openSettings',
+]
+
 export function modeAPIs(mode: string, platform: string): string[] {
   const common: Record<string, string[]> = {
     services: [
