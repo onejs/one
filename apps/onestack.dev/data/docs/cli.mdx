@@ -2,91 +2,52 @@
 title: CLI
 ---
 
-One provides a simple CLI for development, building, and serving your apps.
+One provides a single CLI for development, building, and serving your apps. Run `npx one --help` for the full list, or `npx one <command> --help` for one command.
+
+## npx one
+
+Scaffolding and entry point:
+
+```bash
+npx one [name]
+```
+
+With no arguments inside an existing app (a `vite.config.ts` is present), this runs the dev server. Otherwise it starts the create flow, scaffolding a new app into `[name]`.
 
 ## one dev
 
-Developing an app with One is as simple as `one dev`.
+Start the development server. See [one dev](/docs/one-dev) for details.
 
 ```bash
 one dev [options]
 
---clean    # clear all caches before running
---host     # set the hostname to bind to
---port     # set the port to bind to
---debug    # turns on vite debugging
+--clean           # clear all caches before running
+--host            # set the hostname to bind to
+--port            # set the port to bind to
+--mode            # "development" or "production": run the dev server against the production bundle
+--debug-bundle    # write the bundle to a temp file and serve it from there for debugging
+--debug           # pass debug args to Vite
+--extra-config    # path to an extra Vite config file to merge on top of the project config
 ```
 
 The One development server serves both web and native apps on the same port at the same time, and should hot reload both at once. When you see the `Server running on` message with a host and port, that is the same for both native and web.
 
-### Native Development
-
-The `one dev` command only starts the development server — it does not build or run the native iOS/Android shell. One ships native code inside the `one` package, so native development uses your own app build rather than Expo Go:
-
-1. Run `one prebuild` to generate the native Xcode/Android project
-2. Run `one run:ios` or `one run:android` to build and launch the app
-
-See the [Build or Run the Native iOS App](/docs/guides-ios-native) guide for detailed instructions.
-
----
-
 ## one build
 
-Building your app for production happens through `one build`.
+Build your app for production. See [one build](/docs/one-build) for details.
 
 ```bash
-one build [--platform web|ios|android]
+one build [options]
+
+--platform web|ios|android   # what to build (default: web)
+--only <pattern>             # limit the pages built to a micromatch pattern
+--step <name>                # run a single internal build step
+--skip-env                   # skip loading .env files during build
 ```
-
-The `--platform` flag defaults to `web`. To build for iOS:
-
-```bash
-npx one build --platform ios
-```
-
-### Building for web
-
-When building One for web, the output will be a mostly static directory of HTML, CSS, and JavaScript. Internally, One runs a few different Vite production builds to output client, server, and API folders. This output is always in the `dist` directory.
-
-Ensure your `.env` file has a `ONE_SERVER_URL` set to your production URL:
-
-```
-ONE_SERVER_URL=https://onestack.dev
-```
-
-We provide a production server based on Hono with `one serve` that handles loaders, SSR, and API routes for you. You can choose a deploy target for that server via your Vite configuration:
-
-```tsx fileName=vite.config.ts
-import { one } from 'one/vite'
-
-export default {
-  plugins: [
-    one({
-      web: {
-        deploy: 'vercel' // defaults to 'node'
-      }
-    })
-  ]
-}
-```
-
-For detailed deployment instructions, see the [Deployment Guide](/docs/guides-deployment).
-
-If you are only using SPA and SSG routes and aren't using loaders, you can statically serve the results of `dist/client` using any server you'd like.
-
-### Building for native
-
-We don't have an end-to-end build command yet, but One is designed to be easy to integrate into existing Expo or React Native build processes.
-
-If you're familiar with EAS, see how to [Build and Deliver Native Apps with EAS](/docs/guides-eas).
-
-Or check out the [iOS Native Guide](/docs/guides-ios-native) for instructions on building your iOS app with Xcode.
-
----
 
 ## one serve
 
-Serve your web apps for production with `one serve`, after you've successfully run `one build`.
+Serve a built web app for production. See [one serve](/docs/one-serve) for details.
 
 ```bash
 one serve [options]
@@ -95,15 +56,12 @@ one serve [options]
 --port          # set the port to bind to
 --compress      # enable gzip compression (default: true)
 --loadEnv       # load .env files before running
+--outDir        # build output directory (default: dist)
 --cluster       # enable cluster mode using all CPU cores
 --cluster=N     # enable cluster mode with N workers
 ```
 
-One comes with a serve command that is powered by [Hono](https://hono.dev). For high-traffic production deployments, use `--cluster` to fork multiple worker processes that share the same port. See [one serve](/docs/one-serve) for details.
-
-If you are only using SPA and SSG routes and aren't using loaders, you don't need to use `one serve` - you can statically serve the results of `dist/client` using any server you'd like.
-
-You must run a `one build` before serve.
+You must run `one build` before serve.
 
 ### Programmatic Usage
 
@@ -125,20 +83,65 @@ type ServeOptions = {
   host?: string
   port?: number
   compress?: boolean
+  outDir?: string
 
   /**
     * Whether to run the Vite logic to load .env files before running the server
     * @default false
     */
   loadEnv?: boolean
+
+  /**
+    * Enable cluster mode with multiple worker processes.
+    * Pass true to use all CPU cores, or a number for specific worker count.
+    */
+  cluster?: boolean | number
 }
 ```
 
----
+## one prebuild
+
+Generate the native Xcode/Android project for Expo-free apps. Requires `native.app` in your Vite config with the app name, iOS bundle ID, and Android application ID. See the [Build or Run the Native iOS App](/docs/guides-ios-native) guide.
+
+```bash
+one prebuild [options]
+
+--platform ios|android   # which native project to generate
+--no-install             # skip installing native dependencies
+```
+
+Apps with `expo` in their dependencies cannot use this command. Run Expo prebuild with `vxrn/expo-plugin` in the Expo config instead.
+
+## one run:ios
+
+Build and launch the app on an iOS simulator. Generates the native project with `prebuild` first when `./ios` does not exist yet. Start `one dev` first so the app can connect to the bundler.
+
+```bash
+one run:ios [options]
+
+--simulator <name>   # explicitly set the simulator to use, e.g. "iPhone 16"
+--udid <udid>        # explicitly set the simulator to use by UDID
+```
+
+## one run:android
+
+Build and launch the app on Android. Generates the native project with `prebuild` first when `./android` does not exist yet. Start `one dev` first so the app can connect to the bundler.
+
+```bash
+one run:android
+```
+
+## one clean
+
+Remove build folders and caches for the current project.
+
+```bash
+one clean
+```
 
 ## one patch
 
-Manually apply package patches configured via the `patches` option in your Vite config. Patches are automatically applied during `one dev` and `one build`, but you can run this command to apply them manually.
+Apply package patches configured via the [`patches` option](/docs/configuration#patches) in your Vite config. Patches are automatically applied during `one dev` and `one build`, but you can run this command to apply them manually.
 
 ```bash
 one patch [options]
@@ -146,4 +149,64 @@ one patch [options]
 --force    # re-apply all patches, even if already applied
 ```
 
-See [patches configuration](/docs/configuration#patches) for how to configure patches.
+## one generate-routes
+
+Generate route type definitions (`app/routes.d.ts`). See [Typed Routes](/docs/routing-typed-routes) for details.
+
+```bash
+one generate-routes [options]
+
+--appDir <path>        # path to app directory (default: "app")
+--typed type|runtime    # auto-generate route helpers alongside the types
+```
+
+## one typegen
+
+Alias for `one generate-routes`. Takes the same options.
+
+```bash
+one typegen [--appDir <path>] [--typed type|runtime]
+```
+
+## one metro-eject
+
+Write `babel.config.cjs` and `metro.config.cjs` into your project so you can own and customize the Metro configs freely. The generated files delegate to `one/babel-preset` and `one/metro-config`. See [Metro Mode](/docs/metro-mode) for details.
+
+```bash
+one metro-eject [options]
+
+--force    # overwrite existing files
+```
+
+## one daemon
+
+Multi-app development server proxy. Coordinates several One dev servers behind one port.
+
+```bash
+one daemon [subcommand] [options]
+
+start (default)   # start the daemon
+stop              # stop the daemon
+status            # show running servers and active routes
+route             # route a bundle ID to a server slot
+
+--port <port>       # port to listen on (default: 8081)
+--host <host>       # host to bind to (default: 0.0.0.0)
+--app <bundle-id>   # bundle ID for the route subcommand
+--slot <n>          # slot number for the route subcommand
+--project <path>    # project path for the route subcommand
+--tui               # show TUI (default: true if TTY)
+```
+
+## one updates publish
+
+Bundle the native JS and publish an over-the-air update directory with `manifest.json` and assets. Requires `native.app.updates.runtimeVersion` in your Vite config, so the binary only takes updates published for its own runtime version. See [Over-the-air Updates](/native/updates) for the full flow.
+
+```bash
+one updates publish [options]
+
+--platform ios|android       # which platform to bundle for (required)
+--out <dir>                  # directory to write manifest.json and assets into (required, must be empty)
+--metadata key=value          # manifest metadata (repeatable, values parse as JSON scalars)
+--intermediatesOut <dir>     # separate directory for the local debug bundle and composed source map
+```

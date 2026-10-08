@@ -4,13 +4,16 @@ title: one dev
 
 Developing an app with One is as simple as `one dev`.
 
-It takes the following arguments:
+It takes the following arguments (see the [CLI reference](/docs/cli) for every command):
 
 ```bash
---clean    # boolean, will clear all caches before running
---host     # string, set the hostname to bind to
---port     # string, set the port to bind to
---debug    # turns on vite debugging
+--clean           # boolean, will clear all caches before running
+--host            # string, set the hostname to bind to
+--port            # string, set the port to bind to
+--mode            # "development" or "production": serve the production bundle from the dev server
+--debug-bundle    # string, write the bundle to a temp file and serve it from there for debugging
+--debug           # string, pass debug args to Vite
+--extra-config    # string, path to an extra Vite config file to merge on top of the project config
 ```
 
 You can also set the port with the `ONE_PORT` or `ONE_FORCE_PORT` environment variables. See [Environment Variables](/docs/environment#server) for details.
