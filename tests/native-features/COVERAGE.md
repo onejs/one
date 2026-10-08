@@ -13,8 +13,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.openSettings` | realapps:external | missing | Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven |
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
-| `One.Widgets` | missing | native-modules:unavailable | needs a widget extension target in the fixture app |
-| `One.LiveActivities` | missing | native-modules:unavailable | needs a widget extension target in the fixture app |
+| `One.Widgets` | realapps:widgets | native-modules:unavailable | bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted |
+| `One.LiveActivities` | realapps:widgets | native-modules:unavailable | bounded iOS cover-sheet scalar/JSX and expanded JSX Island fixture; Android supported rendering, compact/minimal, scalar Island and hardware-lock unproven; root/aggregate unaccepted |
 | `One.LocalAuthentication` | local-authentication | local-authentication, native-modules:unavailable |  |
 | `One.ProtectedStore` | protected-store | native-modules:unavailable |  |
 | `One.KeepAwake` | keep-awake | keep-awake, native-modules:unavailable |  |
@@ -129,7 +129,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.FileImporter` | apple-file | n/a |  |
 | `One.iOS.EditButton` | edit-button | n/a | Edit/Done label cycle proven; List edit state unobserved and row actions unavailable |
 | `One.iOS.EmptyView` | tab-slot | n/a |  |
-| `One.iOS.WidgetUI` | missing | n/a | needs a widget extension target in the fixture app |
+| `One.iOS.WidgetUI` | realapps:widgets | n/a | bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted |
 | `One.iOS.CameraView` | camera-preview | n/a |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a |  |

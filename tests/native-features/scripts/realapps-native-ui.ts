@@ -1,3 +1,4 @@
+import { runNativeWidgets } from './realapps-widgets'
 import { modeAPIs } from '../fixtures/realapps-api-coverage'
 import { createRequire } from 'node:module'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
@@ -278,9 +279,7 @@ if (values.mode === 'home') {
   if (values.platform !== 'ios') throw new Error('Widgets require iOS')
   tap('realapps-open-api')
   tap('realapps-api-section-widgets')
-  scrollTap('realapps-api-widgets-write')
-  scrollTap('realapps-api-widgets-jsx')
-  scrollTap('realapps-api-activity-cycle')
+  // inspect each native system surface before the next write or lifecycle step.
 } else throw new Error(`Unknown UI mode ${values.mode}`)
 flow += '- takeScreenshot: final\n'
 const path = join(out, `${values.mode}.yaml`)
@@ -312,6 +311,8 @@ try {
     if (await copied.exited) throw new Error('Could not retain remote native UI proof')
   }
   if (status) throw new Error(`Maestro exited ${status}; see ${out}`)
+  if (values.mode === 'widgets')
+    await runNativeWidgets({ device: values.device, appId, out, machine: values.machine })
   if (collector) {
     await Promise.race([
       received,
@@ -387,6 +388,7 @@ writeFileSync(
       apis: required,
       shareAction: values['share-action'],
       text: values.text,
+      ...(values.mode === 'widgets' ? { nativeSurfaces: 'widget-surfaces.json' } : {}),
       ...(values.mode === 'routing' ? { stack: 1, tabs: 1, drawer: 1 } : {}),
     },
     null,
