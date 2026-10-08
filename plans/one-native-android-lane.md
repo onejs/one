@@ -21,9 +21,27 @@ PID holds the AVD lease. The prepared diagnostic records requested and actual
 launch URLs using the existing inspector client and leaves app source untouched.
 Evidence stays in Contrast `scripts/tmp/android-m22158/`. RAN: One Android
 Native Build run `37701854644` passed on the preceding beta `78da16402`.
-The restart manager now watches the post-purge Android run `37706157870` and
-Release; its verdict remains pending here. Android lane CI ownership resumes
-for this lane's future beta pushes.
+The restart manager's post-purge Android and Release runs were superseded;
+no successful verdict is recorded for them. Android manager m22158 now watches
+Android Native Build, Checks and Release on beta `d21a15e1e`. RAN: Checks on
+preceding beta `ce772d052` fails on the Icon React Native mock and stale crypto
+declarations. The successor contains p67085's repairs for those exact files;
+current CI supplies their terminal verdict.
+
+RAN: the next Audio run passes both launcher readiness checks and installs
+the source-matched APK, then fails waiting for the audio route. Native logcat
+records `nativefeatures://app/one-native-audio` in the launch request, while the
+retained UI hierarchy is the test-suite index. No Audio API assertion is
+reached. Owned cleanup uninstalls the app and stops its emulator and Metro;
+logs and hierarchies are retained outside One git.
+
+INFERRED from `link/linking.native.ts`: its 150 ms initial-URL race may replace
+a delayed deep link with `/`. That is not yet the runtime cause. A private
+observer records the original React Native URL promise's result and timing,
+returning that same promise. Its diagnostic setup import is backed up and
+restored, and the inspector receipt is read before teardown. The next probe
+keeps the original Audio route, API assertions and deadlines. A native result
+within 150 ms would contradict the proposed timeout explanation.
 
 Current restart, 2026-10-07: the brief from p67073 resumes this lane on Nate's
 word: "android like peach SIM support yes and one native yes definitely".
