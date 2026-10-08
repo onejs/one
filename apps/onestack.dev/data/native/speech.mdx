@@ -3,51 +3,59 @@ title: Speech
 description: Stream dictation through the platform speech recognizer
 ---
 
-`One.Speech` provides speech recognition (dictation) through the native platform recognizer on iOS and Android, and the Web Speech API on web browsers.
+`One.Speech` provides dictation through the platform recognizer on iOS and Android, and the Web Speech API in browsers. It has `isAvailable()`, `getPermissions()`, `requestPermissions()`, and `start(options, onEvent)`.
 
 ```tsx
 import { One } from 'one'
 
-if (!One.Speech.isAvailable()) {
-  console.log('Speech recognition not available')
-  return
-}
+export async function dictate(onText: (text: string) => void) {
+  if (!One.Speech.isAvailable()) return null
 
-const permissions = await One.Speech.requestPermissions()
-if (!permissions.granted) return
+  const permissions = await One.Speech.requestPermissions()
+  if (!permissions.granted) return null
 
-const session = One.Speech.start({ lang: 'en-US' }, (event) => {
-  if (event.type === 'transcript') {
-    console.log('Heard:', event.transcript)
-  } else if (event.type === 'error') {
-    console.error('Error:', event.error, event.message)
-  } else if (event.type === 'end') {
-    console.log('Final:', event.transcript)
-  }
-})
-
-setTimeout(() => session.stop(), 5000)
-```
-
-`isAvailable()` reports whether the platform recognizer is available. `getPermissions()` and `requestPermissions()` return a permission response with `status` ('granted', 'denied', or 'undetermined'), a boolean `granted` flag, and `canAskAgain`. On iOS, `restricted` indicates screen time or device management blocks the feature.
-
-`start(options, onEvent)` begins listening and returns a session handle. Pass optional `lang` (a BCP-47 tag such as `en-US`); it defaults to the device language. `onEvent` receives events with a `type` ('start', 'transcript', 'end', or 'error'), the full `transcript` so far, and on error, an `error` code and optional `message`.
-
-The session returns `stop()` and `abort()`. `stop()` finishes listening and emits a final `end` event with the complete transcript. `abort()` ends silently with no further events. Starting a new session replaces the previous one; its callback and handle no longer affect the recognizer.
-
-On iOS and Android, configure `native.app.speech` with usage descriptions:
-
-```json
-{
-  "native": {
-    "app": {
-      "speech": {
-        "recognition": "We need microphone access for dictation",
-        "microphone": "We need microphone access for dictation"
-      }
-    }
-  }
+  return One.Speech.start({ lang: 'en-US' }, (event) => {
+    if (event.type === 'transcript' || event.type === 'end') onText(event.transcript)
+    if (event.type === 'error') console.error(event.error, event.message)
+  })
 }
 ```
 
-Without the configuration, speech recognition throws `MissingPermissionError`. On web, the SpeechRecognition or webkitSpeechRecognition API provides dictation where supported. `isAvailable()` reflects constructor availability, but the browser's recognition service can still reject a session. Permission methods check or request microphone access; a denied recognition service also marks permission denied. Browsers may prompt again when recognition starts and may require a user gesture. Without a recognizer, `isAvailable()` returns false, permissions report denied, and `start` throws.
+`isAvailable()` returns a boolean synchronously. The permission methods resolve `{ status, granted, canAskAgain }`, where `status` is `'granted'`, `'denied'`, or `'undetermined'`. On iOS, `restricted: true` means Screen Time or device management blocks speech recognition.
+
+`start` takes an optional BCP-47 `lang`, which defaults to the device language, and returns a session with `stop()` and `abort()`. A session emits `start`, full `transcript` updates, then exactly one `end` or `error`. Every event carries the whole transcript so far. `stop()` finishes listening and the final transcript arrives in `end`. `abort()` ends silently. Starting another session replaces the previous one; its callback and session handle no longer affect the new recognizer.
+
+Error events carry one of `not-allowed`, `service-not-allowed`, `language-not-supported`, `audio-capture`, `interrupted`, `network`, `busy`, or `unknown`, plus an optional `message`.
+
+Set `native.app.speech` so prebuild writes the iOS usage descriptions (`NSSpeechRecognitionUsageDescription` and `NSMicrophoneUsageDescription`) and the Android recognition service query:
+
+```ts fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'MyApp',
+          speech: {
+            recognition: 'Dictate notes by voice',
+            microphone: 'Dictate notes by voice',
+          },
+        },
+      },
+    }),
+  ],
+}
+```
+
+On web, SpeechRecognition or webkitSpeechRecognition supplies dictation where
+present. `isAvailable()` reflects constructor availability; the browser's
+recognition service can still reject a session, including network failures.
+Permission methods check or request microphone access. A denied recognition
+service also marks permission denied. Browsers may prompt again when recognition
+starts and may require a user gesture. Recognition errors use the same codes.
+Without a recognizer, permission reads report denied and `start` throws
+`Speech.start needs an iOS or Android build`. SSR has the same unavailable
+contract. Browser service availability and actual transcription still depend on
+the browser, network, language, and device.

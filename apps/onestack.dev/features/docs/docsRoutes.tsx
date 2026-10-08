@@ -88,6 +88,7 @@ export const docsRoutes = [
       { title: 'useLoader', route: '/docs/hooks-useLoader' },
       { title: 'useLoaderState', route: '/docs/hooks-useLoaderState' },
       { title: 'useMatches', route: '/docs/hooks-useMatches' },
+      { title: 'useServerHeadInsertion', route: '/docs/hooks-useServerHeadInsertion' },
       { title: 'useBlocker', route: '/docs/hooks-useBlocker' },
       { title: 'useFocusEffect', route: '/docs/hooks-useFocusEffect' },
       { title: 'useScrollGroup', route: '/docs/hooks-useScrollGroup' },

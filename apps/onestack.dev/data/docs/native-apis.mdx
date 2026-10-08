@@ -23,7 +23,6 @@ signature, configuration, permission behavior, event cleanup, and errors.
 | [One.DocumentPicker](/native/document-picker) | Select documents with cancellation and file metadata |
 | [One.SecureStore](/native/secure-store) | Store strings in Keychain or encrypted Android storage, asynchronously or synchronously |
 | [One.Database](/native/database) | Open and query SQLite databases through OP SQLite |
-| `One.Speech` | Request permission and start or stop speech recognition; see the dictation section below |
 | [One.LaunchScreen](/native/launch-screen) | Hold the launch screen until the app is ready, then hide it |
 | [One.Updates](/native/updates) | Check, download, stage, and reload OTA bundles; the launcher handles early-failure rollback and cache pruning |
 | [One.openURL, One.openShare, One.openSettings](/native/open-url) | Hand a URL, share payload, or settings request to the system |
@@ -129,8 +128,6 @@ For a component that also needs the initial snapshot, use the exported
 `useNetworkState` hook. Other services can return an unsubscribe function or
 another handle; follow their own cleanup signature rather than assuming every
 service uses `remove()`.
-
-
 
 ## HTTP
 

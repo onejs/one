@@ -32,7 +32,7 @@ For static head content or when you have a clear layout, prefer the `<Head>` com
 
 ## Server-Only
 
-This hook only runs on the server during SSR/SSG. On the client, it has no effect. All head elements must be registered before the initial render completes.
+This hook only runs on the server during SSR/SSG. On the client, it has no effect. One calls every registered callback after the page finishes rendering and adds the markup to `<head>`, so a callback can return what the tree collected during render, such as CSS-in-JS styles.
 
 ```tsx
 function MyComponent() {

@@ -61,6 +61,8 @@ export const nativeRoutes = [
       { title: 'Clipboard', route: '/native/clipboard' },
       { title: 'Network', route: '/native/network' },
       { title: 'Browser', route: '/native/browser' },
+      { title: 'Open URL and Settings', route: '/native/open-url' },
+      { title: 'Sign in with Apple', route: '/native/auth' },
       { title: 'Haptics', route: '/native/haptics' },
       { title: 'Crypto', route: '/native/crypto' },
       { title: 'App Info', route: '/native/app-info' },

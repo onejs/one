@@ -11,8 +11,12 @@ This is useful for:
 
 ## Basic Usage
 
+`loaderData` is typed `unknown`, since a match can come from any route. Give it the type of the loader that produced it:
+
 ```tsx
-import { useMatches, type RouteMatch } from 'one'
+import { useMatches } from 'one'
+
+type PageData = { title?: string }
 
 function Breadcrumbs() {
   const matches = useMatches()
@@ -21,7 +25,7 @@ function Breadcrumbs() {
     <nav>
       {matches.map((match) => (
         <a key={match.routeId} href={match.pathname}>
-          {(match.loaderData as { title?: string })?.title ?? match.routeId}
+          {(match.loaderData as PageData | undefined)?.title ?? match.routeId}
         </a>
       ))}
     </nav>
@@ -35,18 +39,19 @@ A common use case is accessing a layout's loader data from a page component:
 
 ```tsx
 import { useMatches } from 'one'
+import type { DocsLayoutData } from './_layout'
 
 // in a page component
 function DocsPage() {
   const matches = useMatches()
 
   // find the docs layout match
-  const docsLayout = matches.find(m => m.routeId.includes('docs/_layout'))
-  const navItems = (docsLayout?.loaderData as { navItems?: any })?.navItems
+  const docsLayout = matches.find((m) => m.routeId.includes('docs/_layout'))
+  const navItems = (docsLayout?.loaderData as DocsLayoutData | undefined)?.navItems
 
   return (
     <div>
-      {navItems && <nav>{/* render nav items */}</nav>}
+      <Sidebar items={navItems} />
       {/* page content */}
     </div>
   )
@@ -58,28 +63,32 @@ function DocsPage() {
 Layouts can access their child page's loader data to render things like a table of contents:
 
 ```tsx fileName=app/docs/_layout.tsx
-import { useMatches, Slot } from 'one'
+import { Slot, useMatches } from 'one'
 
 export async function loader() {
   return {
-    navItems: []
+    navItems: await fetchDocsNav(),
   }
 }
+
+export type DocsLayoutData = Awaited<ReturnType<typeof loader>>
+
+type DocsPageData = { headings: { id: string; title: string }[] }
 
 export default function DocsLayout() {
   const matches = useMatches()
 
   // the last match is the current page
   const pageMatch = matches[matches.length - 1]
-  const headings = (pageMatch?.loaderData as { headings?: any })?.headings
+  const headings = (pageMatch?.loaderData as DocsPageData | undefined)?.headings
 
   return (
     <div>
-      <nav>{/* navigation */}</nav>
+      <Sidebar />
       <main>
         <Slot />
       </main>
-      {headings && <aside>{/* table of contents */}</aside>}
+      <TableOfContents headings={headings} />
     </div>
   )
 }
@@ -90,11 +99,11 @@ export default function DocsLayout() {
 Each match in the array has this shape:
 
 ```ts
-interface RouteMatch {
-  routeId: string      // e.g., './docs/_layout.tsx'
-  pathname: string     // e.g., '/docs/intro'
-  params: Record<string, string | string[]>  // URL params like { slug: 'intro' }
-  loaderData?: unknown // data from the route's loader
+type RouteMatch = {
+  routeId: string // e.g., './docs/_layout.tsx'
+  pathname: string // e.g., '/docs/intro'
+  params: Record<string, string | string[]> // URL params like { slug: 'intro' }
+  loaderData: unknown // data from the route's loader
 }
 ```
 
@@ -106,11 +115,12 @@ Find a specific route's match by its route ID:
 
 ```tsx
 import { useMatch } from 'one'
+import type { DocsLayoutData } from './docs/_layout'
 
 function Component() {
   // find a specific layout's data
   const docsMatch = useMatch('./docs/_layout.tsx')
-  const navItems = (docsMatch?.loaderData as { navItems?: any })?.navItems
+  const navItems = (docsMatch?.loaderData as DocsLayoutData | undefined)?.navItems
 }
 ```
 
@@ -121,17 +131,19 @@ Returns `undefined` if the route is not in the current match list.
 Get the current page's match (the last/deepest match):
 
 ```tsx
-import { usePageMatch } from 'one'
+import { Head, usePageMatch } from 'one'
+
+type PageMeta = { title?: string; description?: string }
 
 function Layout() {
   const pageMatch = usePageMatch()
-  const loaderData = (pageMatch?.loaderData as { title?: string; description?: string }) ?? {}
+  const { title, description } = (pageMatch?.loaderData as PageMeta | undefined) ?? {}
 
   return (
-    <div>
-      {loaderData.title && <h1>{loaderData.title}</h1>}
-      {loaderData.description && <meta name="description" content={loaderData.description} />}
-    </div>
+    <Head>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </Head>
   )
 }
 ```
