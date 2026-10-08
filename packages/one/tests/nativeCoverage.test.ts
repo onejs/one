@@ -20,9 +20,6 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   Database: 'Android suite missing',
-  Widgets: 'needs a widget extension target in the fixture app',
-  LiveActivities: 'needs a widget extension target in the fixture app',
-  'iOS.WidgetUI': 'needs a widget extension target in the fixture app',
   'Android.Color': 'no fixture or suite',
   'Android.Menu': 'no fixture or suite',
   'Android.ContextMenu': 'no fixture or suite',
@@ -75,6 +72,12 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  Widgets:
+    'bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted',
+  LiveActivities:
+    'bounded iOS cover-sheet scalar/JSX and expanded JSX Island fixture; Android supported rendering, compact/minimal, scalar Island and hardware-lock unproven; root/aggregate unaccepted',
+  'iOS.WidgetUI':
+    'bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted',
   Clipboard:
     'Android setString and getString proven only through the share suite Copy check; no Android clipboard suite',
   BackgroundTasks:
@@ -262,6 +265,14 @@ test('every One namespace member has a conformance fixture reference or a docume
     expect(modeAPIs('external', 'ios')).toContain(api)
     expect(services.has(name), `${api} external fixture`).toBe(true)
     proof.ios.set(name, [...(proof.ios.get(name) ?? []), 'realapps:external'])
+  }
+
+  // registration records the bounded fixture, never a successful runtime run.
+  const widgets = exportsUsed(read('fixtures/realapps-api-widgets.ios.tsx'))
+  for (const api of modeAPIs('widgets', 'ios')) {
+    const name = api.replace(/^One\./, '')
+    expect(widgets.has(name), `${api} widget fixture`).toBe(true)
+    proof.ios.set(name, [...(proof.ios.get(name) ?? []), 'realapps:widgets'])
   }
 
   const rows: string[] = []
