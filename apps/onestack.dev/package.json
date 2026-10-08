@@ -14,6 +14,7 @@
     "serve:railway": "one serve --host 0.0.0.0",
     "subset-font-pn": "tsx ./helpers/subset-font.ts",
     "typecheck": "tsc --noEmit",
+    "check:snippets": "bun scripts/check-doc-snippets.ts",
     "test": "bun run test:dev && bun run test:prod",
     "test:dev": "TEST_ONLY=dev bun run vitest run --mode dev",
     "test:prod": "TEST_ONLY=prod bun run vitest run --mode prod"
