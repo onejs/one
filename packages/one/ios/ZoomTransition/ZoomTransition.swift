@@ -300,20 +300,24 @@ class ZoomTransitionEnablerView: RCTView {
       if #available(iOS 18.0, *) {
         let options = UIViewController.Transition.ZoomOptions()
 
+        // keep destination geometry through dismissal after React removes its detector.
+        var destinationAlignmentRect: CGRect?
         options.alignmentRectProvider = { context in
           guard let sourceInfo = self.sourceRepository.getSource(
             identifier: self._zoomTransitionSourceIdentifier)
           else { return nil }
           guard let alignmentView = self.alignmentViewRepository.get(
             identifier: self._zoomTransitionSourceIdentifier)
-          else { return sourceInfo.alignment }
+          else { return destinationAlignmentRect ?? sourceInfo.alignment }
 
           let rect = alignmentView.convert(
             alignmentView.bounds, to: context.zoomedViewController.view)
           if sourceInfo.animateAspectRatioChange, let sourceView = sourceInfo.view {
-            return self.calculateAdjustedRect(rect, toMatch: sourceView.bounds.size)
+            destinationAlignmentRect = self.calculateAdjustedRect(rect, toMatch: sourceView.bounds.size)
+          } else {
+            destinationAlignmentRect = rect
           }
-          return rect
+          return destinationAlignmentRect
         }
 
         if let rect = _dismissalBoundsRect {
