@@ -1,6 +1,29 @@
 # One native Android lane
 
-Owner: android (m22158), manager and One native Android hands-on owner. Branch `tm/android-native-rewritten` from rewritten `v2-beta`; validated fixes land on `v2-beta`. This lane owns Android Native Build and Checks for its pushes; Contrast shared delivery stays with p67014. REVIEW: none.
+Owner: android (m22158), manager and One native Android hands-on owner. Branch `tm/android-native-evidence-clean` from rewritten `v2-beta`; validated fixes land on `v2-beta`. This lane owns Android Native Build and Checks for its pushes; Contrast shared delivery stays with p67014. REVIEW: none.
+
+Second evidence rewrite, 2026-10-08: RAN: the seven owned commits rebase
+cleanly onto `da7b8f040`, a descendant of the purged beta `b75e72df0`.
+The old `dd534b216` and rewritten `b75e72df0` have identical tip trees.
+All nine owned runtime paths retain their SHA256 hashes; the old `2611d1957`
+base is absent from this branch ancestry. No tracked evidence or proofs remain,
+the expanded proof guard passes, and no autostash was created. Published save
+points move through an ordinary new branch push; no force-push belongs to this
+lane. The compiled Audio candidate remains source-matched, with behavior
+acceptance open.
+
+RAN: the launcher readiness check rejects a System UI keyguard ANR before
+Audio app installation after a 1150-second admission wait. It retains the
+native harness's 60-second readiness deadline and all original Audio assertions.
+The owned emulator and Metro stop; no Audio API assertion was reached.
+The next Expo probe also stops before starting an emulator because another live
+PID holds the AVD lease. The prepared diagnostic records requested and actual
+launch URLs using the existing inspector client and leaves app source untouched.
+Evidence stays in Contrast `scripts/tmp/android-m22158/`. RAN: One Android
+Native Build run `37701854644` passed on the preceding beta `78da16402`.
+The restart manager now watches the post-purge Android run `37706157870` and
+Release; its verdict remains pending here. Android lane CI ownership resumes
+for this lane's future beta pushes.
 
 Current restart, 2026-10-07: the brief from p67073 resumes this lane on Nate's
 word: "android like peach SIM support yes and one native yes definitely".
