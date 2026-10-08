@@ -3,6 +3,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runZoomSuite } from './one-native-zoom-suite'
 import { runEffectsSuite } from './one-native-effects-suite'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
 import {
@@ -137,6 +138,7 @@ const suites = [
   'ui-icon',
   'adaptive-flat',
   'ui-effects',
+  'zoom',
   'gpu',
   'updates',
 ] as const
@@ -676,6 +678,7 @@ const navigationLoaded = (nodes: Node[]) =>
 // the fixture the suite drives, and the home row that reaches it. pickers and forms share
 // one screen; tabs-menu drives the One Native hub rather than a control fixture.
 const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
+  zoom: (nodes) => Boolean(id(nodes, 'zoom-source-identity') || id(nodes, 'zoom-detail-card')),
   'tabs-menu': fixtureLoaded,
   pickers: pickersLoaded,
   'picker-palette': pickerPaletteLoaded,
@@ -792,6 +795,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   updates: updatesLoaded,
 }
 const suiteHome: Record<Suite, string> = {
+  zoom: 'nav-zoom-test',
   'tabs-menu': 'nav-one-native',
   pickers: 'nav-one-native-controls',
   'picker-palette': 'nav-one-native-picker-palette',
@@ -1233,7 +1237,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
 
   const launchApp = () =>
-    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, config.bundleId], {
+    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, config.bundleId,
+      ...(config.jsLocation ? ['-RCT_jsLocation', config.jsLocation] : []),
+    ], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'pipe'],
       timeout: 30_000,
@@ -1437,6 +1443,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Hide again: true')
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'zoom') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-zoom-test')
+    await runZoomSuite({
+      simulatorId: config.simulatorId,
+      artifactDir: config.artifactDir,
+      tap,
+      wait,
+      screenshot,
+      pass: (name) => { checks.push({ name, durationMs: 0 }); console.log(`PASS ${name}`) },
+    })
     return
   }
   if (config.suite === 'sheets') {
