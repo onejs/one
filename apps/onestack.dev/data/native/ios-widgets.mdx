@@ -99,3 +99,7 @@ const id = await One.LiveActivities.start('Trip', { status: 'Boarding', value: '
 await One.LiveActivities.update(id, { status: 'Departed', value: 'On time' })
 await One.LiveActivities.end(id)
 ```
+
+## Current limits
+
+Live Activities are verified rendering, updating and ending on the iOS simulator's Lock Screen. Dynamic Island presentation has not been verified yet. Home Screen widget writes reach the shared app container, but whether the widget extension renders them depends on a signed build whose extension shares that app group; an unsigned build keeps showing the default content. Treat widget content updates as preview until that path is verified.
