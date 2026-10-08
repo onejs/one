@@ -24,7 +24,7 @@ compiled in the actual One/Nitro arm64 host. The committed runtime evidence
 passes 92 checks over 64 native results, including the required bounded
 negative controls. The host, fault variant and permission-omitted APK have
 separate identities. See
-[proof and limits](../tests/native-features/protected-store-runtime/evidence/README.md).
+proof and limits (local run output, not committed).
 Package and harness TypeScript checks passed. Production source has no test
 receiver or fault switches. First-layer p61184 and assembled p60786 gates remain
 assigned; manager p61056 owns beta integration and delivery CI. No main or stable

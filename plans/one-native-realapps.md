@@ -18,7 +18,7 @@ RAN: final Basic scaffold clean install took 2.6s; the plain production web buil
 
 ## retained proof and scope
 
-[Final receipts](../tests/native-features/evidence/realapps/final/) contain API result values, exact source locations, package graph negatives/positives, native build output, routing receipts and captured preview hierarchies. [Earlier failures](../tests/native-features/evidence/realapps/diagnostic/negative-history.md) retain the original beta.168.1 matrix and complete failure excerpts. Temporary full build logs and install roots are named in [matrix.json](../tests/native-features/evidence/realapps/final/matrix.json).
+Final receipts (local run output, not committed) contain API result values, exact source locations, package graph negatives/positives, native build output, routing receipts and captured preview hierarchies. [Earlier failures](../tests/native-features/evidence/realapps/diagnostic/negative-history.md) retain the original beta.168.1 matrix and complete failure excerpts. Temporary full build logs and install roots are named in [matrix.json](../tests/native-features/evidence/realapps/final/matrix.json).
 
 RAN: Contrast authenticated as the existing `qa-ota-smoke@test.local` fixture and opened chat plus design on a standard iPhone 17 Pro, iOS 27.0. The retained command log asserts the composer/Pager and design controls; screenshots show the compact path without invoking ArrangementView. No Arrangement fallback was added.
 
