@@ -28,15 +28,19 @@ const knownGaps: Record<string, string> = {
   'Android.Color': 'no fixture or suite',
   'Android.Menu': 'no fixture or suite',
   'Android.ContextMenu': 'no fixture or suite',
-  'UI.sampleCurve': 'effects helper; no suite asserts it',
-  'UI.serializeCurve': 'effects helper; no suite asserts it',
+  'UI.sampleCurve':
+    'Android suite missing; iOS preset, custom, bezier and clamped values proven',
+  'UI.serializeCurve':
+    'Android suite missing; iOS preset, custom and bezier serialization proven',
   'UI.Icon':
     'Android suite missing; iOS workspace sizing, image accessibility, SF Symbol ink and role/explicit colors proven',
   'UI.Image': 'Android suite missing',
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
-  'UI.EdgeFade': 'effects fixture has a capture proof script, not a suite',
-  'UI.Blur': 'effects fixture has a capture proof script, not a suite',
-  'UI.Mask': 'effects fixture has a capture proof script, not a suite',
+  'UI.EdgeFade':
+    'Android suite missing; iOS bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven',
+  'UI.Blur':
+    'Android suite missing; iOS bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven',
+  'UI.Mask': 'Android suite missing; iOS bounded hidden/visible/half-alpha pixels proven',
   'UI.TextInput': 'Android suite missing',
   'UI.ReservedRegions':
     'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',

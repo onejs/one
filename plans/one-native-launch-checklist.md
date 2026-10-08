@@ -64,8 +64,21 @@ Remaining iOS holes, in launch order:
   runtime suites were not rerun. Receipts and captures:
   `/Users/n8/Library/Logs/one-icon-ios-proof/`; installed executable SHA256
   `318da9592123f5820a0bb158e4ba31d22b97d0851b043c8484c41519aeb2021e`.
-- [ ] `One.UI.Blur`, `Mask`, `EdgeFade`, `sampleCurve`, `serializeCurve`: turn
-  the effects capture script into a suite with a pixel assertion.
+- [x] bounded iOS effects: `One.UI.Blur`, `Mask`, `EdgeFade`, `sampleCurve`,
+  `serializeCurve`: `ui-effects`, source `c6dfd856b`, iPhone 17 Pro/iOS 27.0.
+  Worker TESTED 168 checks and 26 native 3x captures pass in 298523 ms.
+  Hidden/visible/half alpha, custom native mask and overlay curves, current
+  layered EdgeFade blur, ordinary backdrop blur with sharp children, and known
+  curve values/serialization pass. Mounted bypass, opaque/empty/wrong-curve,
+  detached/zero-strength/gray and wrong-foreground controls fail the intended
+  pixel predicates; restored predicates pass. Controls are rejected predicates
+  inside the passing harness, not separate failing process exits.
+  Workspace source and reused native shell only; original native build source
+  is not newly authenticated to this HEAD. No current npm/production, exact
+  progressive/private filter, Android, Peach, physical-device performance or
+  live scroll/tint/lifecycle acceptance. Source hashes and receipts:
+  `/Users/n8/Library/Logs/one-effects-ios-proof/final/`;
+  parent verified tested sources match the landed files.
 - [x] adaptive flat iOS: `ReservedRegions`, `useReservedRegions(Ready)`, `useSizeClass`,
   `getSizeClass`, `useHinge`, `getHinge`, `onHingeChange`,
   `useWindowSegments`, `useSpanning`: `adaptive-flat`, source `bb3096241`,

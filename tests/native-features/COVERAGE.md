@@ -196,15 +196,15 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.Color` | n/a | missing | no fixture or suite |
 | `One.Android.Menu` | n/a | missing | no fixture or suite |
 | `One.Android.ContextMenu` | n/a | missing | no fixture or suite |
-| `One.UI.sampleCurve` | missing | missing | effects helper; no suite asserts it |
-| `One.UI.serializeCurve` | missing | missing | effects helper; no suite asserts it |
-| `One.UI.EdgeFade` | missing | missing | effects fixture has a capture proof script, not a suite |
+| `One.UI.sampleCurve` | ui-effects | missing | Android suite missing; iOS preset, custom, bezier and clamped values proven |
+| `One.UI.serializeCurve` | ui-effects | missing | Android suite missing; iOS preset, custom and bezier serialization proven |
+| `One.UI.EdgeFade` | ui-effects | missing | Android suite missing; iOS bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
 | `One.UI.Icon` | ui-icon | missing | Android suite missing; iOS workspace sizing, image accessibility, SF Symbol ink and role/explicit colors proven |
 | `One.UI.Image` | ui-image | missing | Android suite missing |
 | `One.UI.Map` | ui-map | ui-map |  |
 | `One.UI.PictureInPicture` | missing | missing | fixture exists; simulators report no PiP, needs a device run |
-| `One.UI.Blur` | missing | missing | effects fixture has a capture proof script, not a suite |
-| `One.UI.Mask` | missing | missing | effects fixture has a capture proof script, not a suite |
+| `One.UI.Blur` | ui-effects | missing | Android suite missing; iOS bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven |
+| `One.UI.Mask` | ui-effects | missing | Android suite missing; iOS bounded hidden/visible/half-alpha pixels proven |
 | `One.UI.Portal` | portal | portal |  |
 | `One.UI.PortalHost` | portal | portal |  |
 | `One.UI.Pager` | pager | nav-one-ui-pager |  |
