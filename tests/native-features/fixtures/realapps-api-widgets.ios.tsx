@@ -41,13 +41,13 @@ function activityView(step: number) {
     compactLeading: <W.Text>Probe</W.Text>,
     compactTrailing: <W.Text>{step}</W.Text>,
     minimal: <W.Text>{step}</W.Text>,
-    expandedLeading: <W.Text>Native API probe</W.Text>,
+    expandedLeading: <W.Text style={{ padding: 8 }}>{`Step ${step}`}</W.Text>,
     expandedTrailing: <W.Gauge value={step} total={3} />,
     expandedBottom: (
       <W.VStack style={{ spacing: 6 }}>
         <W.HStack style={{ spacing: 8 }}>
           <W.Image systemName="shippingbox.fill" />
-          <W.Text>{`Step ${step}`}</W.Text>
+          <W.Text>Native API probe</W.Text>
           <W.Link url="https://onestack.dev">
             <W.Text>Open probe</W.Text>
           </W.Link>
