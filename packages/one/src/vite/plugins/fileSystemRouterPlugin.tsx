@@ -929,6 +929,7 @@ export function createFileSystemRouterPlugin(
               return
             }
 
+            res.setHeader('Content-Type', 'text/html; charset=utf-8')
             res.write(reply)
             res.end()
             return
