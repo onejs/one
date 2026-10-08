@@ -14,7 +14,6 @@ import {
 } from 'vite'
 import {
   type ClientManifestEntry,
-  fillOptions,
   getOptimizeDeps,
   rollupRemoveUnusedImportsPlugin,
   build as vxrnBuild,
@@ -283,7 +282,9 @@ export async function build(args: {
     return
   }
 
-  const options = await fillOptions(vxrnOutput.options, { mode: 'prod' })
+  // vxrn's build already filled these. filling again would require the port it
+  // picked to still be free after the bundle, which another process can take.
+  const { options } = vxrnOutput
 
   const { optimizeDeps } = getOptimizeDeps('build')
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
