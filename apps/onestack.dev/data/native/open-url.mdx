@@ -1,0 +1,52 @@
+---
+title: Opening URLs and Settings
+description: System URL opening, sharing, and app settings
+---
+
+`One.openURL`, `One.openShare`, and `One.openSettings` hand requests to the system. They are top-level functions on `One`.
+
+## Opening URLs
+
+`One.openURL(url)` opens a URL in the system browser or a registered handler. It returns a promise that resolves when the request completes.
+
+```tsx
+import { One } from 'one'
+
+await One.openURL('https://example.com')
+```
+
+On iOS it uses `UIApplication.shared.open(_:options:completionHandler:)`; on Android it uses `startActivity` with an intent. The promise resolves on both platforms regardless of whether the URL was opened; failures are rare (a malformed URL).
+
+On web it opens a new tab with `window.open(url, '_blank', 'noopener')`.
+
+## Sharing
+
+`One.openShare(content)` presents the system share sheet. The content is an object with optional `title`, `message`, and `url` fields. It returns a promise that resolves when the sheet closes.
+
+```tsx
+import { One } from 'one'
+
+await One.openShare({
+  title: 'Check this out',
+  message: 'I found something interesting',
+  url: 'https://example.com',
+})
+```
+
+On iOS both message and URL are included in the share sheet. On Android the message and URL are combined into a single text field, since the share intent carries text only; if both are present they are space-separated.
+
+On web it uses `navigator.share` if available. If the browser has no share implementation or the user cancels, the promise rejects.
+
+## App Settings
+
+`One.openSettings()` opens the app's settings page in the system Settings app. It returns a promise that resolves when the app returns to the foreground.
+
+```tsx
+import { One } from 'one'
+
+await One.openSettings()
+```
+
+On iOS it opens the app settings by URL. On Android it opens the app's system settings page. On web the operation is not supported and the promise rejects.
+
+All three functions are available on web but may not succeed; handle rejections if you need different behavior.
