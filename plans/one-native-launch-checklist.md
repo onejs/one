@@ -173,11 +173,20 @@ because a nested scroll view collapsed under the Sheet header; one scroll
 owner now accepts the same action. Original rejection and final captures remain
 outside Git in `/Users/n8/.local/share/one-native-docs-compiler-p67085/v3/`.
 
-Production site build and production browser replay remain required before this
-branch lands on v2-beta. One CI owner m22158 owns required Checks and Tests,
-Release and canary content; Contrast delivery owner p68879 owns runtime 96
-production acceptance separately. These web checks do not accept native app,
-Peach or production package delivery.
+RAN production build: `de4d37677` on the shared Linux builder generates
+176 static pages and the Cloudflare worker; workspace JS build and secret scan
+pass. The returned archive SHA256 is
+`1192414ee1d847b8b41a84142c830ce1219e8d47f13f12bd0d28e65639060b6b`.
+TESTED the actual returned production artifact with the same docs keyboard/Copy,
+homepage keyboard command Copy and mobile navigation checks: all HTTP 200,
+zero page or console errors. Delivery, source receipt, logs and production
+captures remain under the protected evidence root above.
+
+One CI owner m22158 owns required Checks and Tests, Release, exact canary
+content and deployed docs-site follow-up. Contrast delivery owner p68879 owns
+runtime 96 production acceptance separately. This compiled artifact and local
+production-server replay do not accept deployed site, native app, Peach or
+production package delivery.
 
 
 - [ ] every shipped native API has a page whose props match its types; the
