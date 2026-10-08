@@ -254,7 +254,27 @@ function MyComponent() {
 }
 ```
 
-## Related
+## Related Hooks
+
+### useRootNavigationState
+
+Returns the root navigation state object from the NavigationContainer. This gives you access to the top-level navigation tree.
+
+```tsx
+import { useRootNavigationState } from 'one'
+
+function Component() {
+  const rootState = useRootNavigationState()
+  
+  // Access the current route index and history
+  console.log('Current index:', rootState.index)
+  console.log('Routes:', rootState.routes.map(r => r.name))
+}
+```
+
+Use this when you need to access the root-level navigation state directly. For most use cases, `useNavigation()` is preferable.
+
+## Related Pages
 
 - [useRouter](/docs/hooks-useRouter) - Recommended hook for navigation
 - [useBlocker](/docs/hooks-useBlocker) - Block navigation with a simpler API
