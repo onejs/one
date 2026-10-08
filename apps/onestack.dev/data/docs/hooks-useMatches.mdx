@@ -12,7 +12,7 @@ This is useful for:
 ## Basic Usage
 
 ```tsx
-import { useMatches } from 'one'
+import { useMatches, type RouteMatch } from 'one'
 
 function Breadcrumbs() {
   const matches = useMatches()
@@ -21,7 +21,7 @@ function Breadcrumbs() {
     <nav>
       {matches.map((match) => (
         <a key={match.routeId} href={match.pathname}>
-          {match.loaderData?.title ?? match.routeId}
+          {(match.loaderData as { title?: string })?.title ?? match.routeId}
         </a>
       ))}
     </nav>
@@ -42,11 +42,11 @@ function DocsPage() {
 
   // find the docs layout match
   const docsLayout = matches.find(m => m.routeId.includes('docs/_layout'))
-  const navItems = docsLayout?.loaderData?.navItems
+  const navItems = (docsLayout?.loaderData as { navItems?: any })?.navItems
 
   return (
     <div>
-      <Sidebar items={navItems} />
+      {navItems && <nav>{/* render nav items */}</nav>}
       {/* page content */}
     </div>
   )
@@ -62,7 +62,7 @@ import { useMatches, Slot } from 'one'
 
 export async function loader() {
   return {
-    navItems: await fetchDocsNav()
+    navItems: []
   }
 }
 
@@ -71,15 +71,15 @@ export default function DocsLayout() {
 
   // the last match is the current page
   const pageMatch = matches[matches.length - 1]
-  const headings = pageMatch?.loaderData?.headings
+  const headings = (pageMatch?.loaderData as { headings?: any })?.headings
 
   return (
     <div>
-      <Sidebar />
+      <nav>{/* navigation */}</nav>
       <main>
         <Slot />
       </main>
-      <TableOfContents headings={headings} />
+      {headings && <aside>{/* table of contents */}</aside>}
     </div>
   )
 }
@@ -110,7 +110,7 @@ import { useMatch } from 'one'
 function Component() {
   // find a specific layout's data
   const docsMatch = useMatch('./docs/_layout.tsx')
-  const navItems = docsMatch?.loaderData?.navItems
+  const navItems = (docsMatch?.loaderData as { navItems?: any })?.navItems
 }
 ```
 
@@ -125,13 +125,13 @@ import { usePageMatch } from 'one'
 
 function Layout() {
   const pageMatch = usePageMatch()
-  const { title, description } = pageMatch?.loaderData ?? {}
+  const loaderData = (pageMatch?.loaderData as { title?: string; description?: string }) ?? {}
 
   return (
-    <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-    </Head>
+    <div>
+      {loaderData.title && <h1>{loaderData.title}</h1>}
+      {loaderData.description && <meta name="description" content={loaderData.description} />}
+    </div>
   )
 }
 ```
