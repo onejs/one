@@ -18,6 +18,10 @@ export const docsRoutes = [
       { title: 'Environment', route: '/docs/environment' },
       { title: 'Metro Mode', route: '/docs/metro-mode' },
       { title: 'CLI', route: '/docs/cli' },
+      { title: 'one dev', route: '/docs/one-dev' },
+      { title: 'one build', route: '/docs/one-build' },
+      { title: 'one serve', route: '/docs/one-serve' },
+      { title: 'Dev Tools', route: '/docs/dev-tools' },
     ],
   },
 
@@ -42,6 +46,7 @@ export const docsRoutes = [
       { title: 'Layouts', route: '/docs/routing-layouts' },
       { title: 'Loaders', route: '/docs/routing-loader' },
       { title: 'Middlewares', route: '/docs/routing-middlewares' },
+      { title: 'API Routes', route: '/docs/routing-api-routes' },
       { title: 'Typed Routes', route: '/docs/routing-typed-routes' },
     ],
   },
@@ -77,6 +82,7 @@ export const docsRoutes = [
       { title: 'useRouter', route: '/docs/hooks-useRouter' },
       { title: 'useParams', route: '/docs/hooks-useParams' },
       { title: 'useActiveParams', route: '/docs/hooks-useActiveParams' },
+      { title: 'useSearchParams', route: '/docs/hooks-useSearchParams' },
       { title: 'usePathname', route: '/docs/hooks-usePathname' },
       { title: 'useSegments', route: '/docs/hooks-useSegments' },
       { title: 'useLoader', route: '/docs/hooks-useLoader' },
@@ -107,6 +113,8 @@ export const docsRoutes = [
       { title: 'Ship with EAS', route: '/docs/guides-eas' },
       { title: 'OTA Updates', route: '/docs/guides-ota-updates' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },
+      { title: 'Images', route: '/docs/guides-images' },
+      { title: 'CSS Loading', route: '/docs/guides-css' },
       { title: 'Light and Dark mode', route: '/docs/guides-dark-mode' },
       { title: 'Tamagui', route: '/docs/guides-tamagui' },
       {
@@ -115,6 +123,7 @@ export const docsRoutes = [
       },
       { title: 'OpenGraph Images', route: '/docs/guides-open-graph' },
       { title: 'Skew Protection', route: '/docs/guides-skew-protection' },
+      { title: 'Incremental Static Regeneration', route: '/docs/guides-isr' },
     ],
   },
 

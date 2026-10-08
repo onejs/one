@@ -17,6 +17,7 @@ export const nativeRoutes = [
       { title: 'Gradients', route: '/native/gradients' },
       { title: 'Fonts', route: '/native/fonts' },
       { title: 'Safe Area', route: '/native/safe-area' },
+      { title: 'Adaptive Layout', route: '/native/adaptive-layout' },
     ],
   },
 
@@ -74,6 +75,7 @@ export const nativeRoutes = [
       { title: 'Device Attestation', route: '/native/device-attestation' },
       { title: 'Purchases', route: '/native/purchases' },
       { title: 'Launch Screen', route: '/native/launch-screen' },
+      { title: 'Updates', route: '/native/updates' },
       { title: 'Contacts', route: '/native/contacts' },
       { title: 'Calendar', route: '/native/calendar' },
       { title: 'ImagePicker', route: '/native/image-picker' },
@@ -92,6 +94,7 @@ export const nativeRoutes = [
       { title: 'Location', route: '/native/location' },
       { title: 'FileSystem', route: '/native/file-system' },
       { title: 'Audio', route: '/native/audio' },
+      { title: 'Speech', route: '/native/speech' },
       { title: 'Share', route: '/native/share' },
       { title: 'Photo Library', route: '/native/photo-library' },
       { title: 'WebGPU', route: '/native/webgpu' },
