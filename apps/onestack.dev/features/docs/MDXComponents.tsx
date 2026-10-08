@@ -108,7 +108,29 @@ const New = () => (
   </Text>
 )
 
+const startedScripts = new Set<string>()
+
+const MDXScript = (props: React.ComponentProps<'script'>) => {
+  const ref = React.useRef<HTMLScriptElement>(null)
+  React.useEffect(() => {
+    const placeholder = ref.current
+    if (!placeholder) return
+    const key = `${props.type ?? ''}:${placeholder.src}:${placeholder.textContent}`
+    if (startedScripts.has(key)) return
+    const script = placeholder.cloneNode(true)
+    if (!(script instanceof HTMLScriptElement)) return
+    startedScripts.add(key)
+    script.type = props.type ?? ''
+    script.addEventListener('load', () => script.remove(), { once: true })
+    document.head.append(script)
+  }, [props.type, props.src, props.children])
+
+  // code-block modules mutate accessibility attributes, so start after hydration.
+  return <script {...props} ref={ref} type="text/plain" />
+}
+
 const componentsIn = {
+  script: MDXScript,
   New,
   IntroParagraph,
   Spacer,
