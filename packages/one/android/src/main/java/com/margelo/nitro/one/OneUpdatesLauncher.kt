@@ -726,6 +726,11 @@ object OneUpdatesLauncher {
         connection.readTimeout = 120_000
         connection.instanceFollowRedirects = true
         connection.requestMethod = "GET"
+        // the updater makes a handful of requests per session with long idle
+        // gaps between them; a pooled keep-alive socket the server already
+        // closed fails the next check or fetch, so every request takes a
+        // fresh connection instead.
+        connection.setRequestProperty("Connection", "close")
         return connection
     }
 
