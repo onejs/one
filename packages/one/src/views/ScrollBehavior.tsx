@@ -50,7 +50,9 @@ function restorePosition(pathname: string) {
     const positions = getState()
     const saved = positions[pathname]
     if (typeof saved === 'number') {
-      window.scrollTo(0, saved)
+      setTimeout(() => {
+        window.scrollTo(0, saved)
+      })
     }
   } catch (error) {
     console.error(`Error restoring scroll position`, error)
@@ -63,7 +65,9 @@ function restoreGroupPosition(groupId: string) {
     const positions = getGroupState()
     const saved = positions[groupId]
     if (typeof saved === 'number') {
-      window.scrollTo(0, saved)
+      setTimeout(() => {
+        window.scrollTo(0, saved)
+      })
     }
   } catch (error) {
     console.error(`Error restoring scroll position for group ${groupId}`, error)
@@ -127,11 +131,6 @@ function configure(props: ScrollBehaviorProps) {
   }
 
   disable?.()
-
-  // One restores at the route commit. automatic browser restoration would
-  // otherwise overwrite it later in the popstate task.
-  const previousRestoration = window.history.scrollRestoration
-  window.history.scrollRestoration = 'manual'
 
   // routeInfo carries no hash, so the mount comparison below is pathname+search
   const initialLocation = `${window.location.pathname}${window.location.search}`
@@ -229,7 +228,6 @@ function configure(props: ScrollBehaviorProps) {
 
   disable = () => {
     pendingScroll = null
-    window.history.scrollRestoration = previousRestoration
     popStateController.abort()
     disposeOnLoadState()
     disposeOnRootState()

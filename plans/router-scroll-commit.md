@@ -10,7 +10,7 @@ INFERRED from those probes and the diff: cb6a85d86a390 (2026-09-25) reintroduced
 
 The fix queues scroll work from root notifications and consumes it in a layout effect inside the focused leaf screen. The marker commits with page content and waits through suspension. The route's contextual href prevents another screen consuming it, and repeated notifications for the handled location cannot reset it twice. Existing hash, group and scroll:false handling use the same commit point. Restoration reads the destination pathname explicitly because the linking listener can update the URL later.
 
-RAN: moving restoration to commit exposed the browser subsequently overwriting One's back restoration (1200 to 0 with no additional scrollTo call). One now sets history.scrollRestoration to manual for the configured lifetime and returns its prior value on cleanup. The browser test includes back navigation and passes with this change.
+RAN: moving restoration to commit exposed the browser subsequently overwriting One's back restoration (1200 to 0 with no additional scrollTo call). Restoration retains its existing deferred callback, now scheduled only after the destination commits. This preserves browser restoration on reload while placing One's back restoration after the browser's popstate task. The browser test includes back navigation.
 
 RAN validation:
 
@@ -18,6 +18,6 @@ RAN validation:
 - `bun run --cwd packages/one test src/views/ScrollBehavior.test.tsx`: eight tests pass.
 - `TEST_ONLY=dev DEV_SERVER_URL=http://localhost:4317 PLAYWRIGHT_CHROMIUM_CHANNEL=chrome bun run vitest --run tests/scroll-commit.test.ts --retry=0` in tests/test-headless-web: two tests pass. It holds a real destination component on a controlled promise, asserts the source stays at 1200 with zero scroll calls, then asserts a single reset with the destination DOM present and back restoration to 1200. The second test checks hash scrolling to a destination heading.
 
-Cost: one null marker per mounted leaf screen, one focus/context subscription and a layout effect. Scroll checks are constant time per committed leaf. There is no timer, observer or polling in the production fix. Existing scroll-group lookup cost remains unchanged.
+Cost: one null marker per mounted leaf screen, one focus/context subscription and a layout effect. Scroll checks are constant time per committed leaf. The reset uses no timer, observer or polling. The existing restoration timer remains. Existing scroll-group lookup cost remains unchanged.
 
 The public deployment has not changed yet. The beta-branch canary supplies the package for downstream installation. Parent m22514 owns normal CI follow-up; this lane verifies the requested canary tarball before finishing.
