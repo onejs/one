@@ -14,7 +14,7 @@ const token = await One.SecureStore.getItem('token')
 await One.SecureStore.deleteItem('token')
 ```
 
-`getItemSync`, `setItemSync`, and `deleteItemSync` do the same work synchronously, blocking the JS thread on the Keychain or Keystore the way `expo-secure-store`'s `getItem` and `setItem` do. Use them for a value the first render needs, such as a saved session token:
+`getItemSync`, `setItemSync`, and `deleteItemSync` do the same work synchronously, blocking the JS thread on the Keychain or Keystore. Use them for a value the first render needs, such as a saved session token:
 
 ```tsx
 const token = One.SecureStore.getItemSync('token')

@@ -29,9 +29,8 @@ If iOS dismisses the prompt without a choice, the request returns
 permission prompts close.
 
 Add a non-empty `NSUserTrackingUsageDescription` to the iOS Info.plist before
-building. With One prebuild, set
-`native.app.ios.infoPlist.NSUserTrackingUsageDescription`. With Expo prebuild,
-set `expo.ios.infoPlist.NSUserTrackingUsageDescription`. Without it,
+building by setting
+`native.app.ios.infoPlist.NSUserTrackingUsageDescription`. Without it,
 `requestPermission()` rejects with `E_APP_TRACKING_MANIFEST`.
 
 App Tracking Transparency is implemented on iOS. Android and web return `denied` from both permission methods. See

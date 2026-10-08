@@ -17,9 +17,6 @@ native: {
 }
 ```
 
-For Expo prebuild, pass the same text to the `vxrn/expo-plugin` option
-`location: { whenInUse: 'Show places near you.' }`.
-
 Call the permission request while the app is active, usually after a tap:
 
 ```tsx
@@ -59,7 +56,7 @@ missing or revoked; that ends the subscription. Other location failures report
 
 Pass `{ background: true }` as the third argument to keep receiving updates
 while another app is in front. Set `location.background: true` in the manifest
-or the `vxrn/expo-plugin` option first; it adds `location` to
+first; it adds `location` to
 `UIBackgroundModes`. Start this watch while your
 app is active, after the user grants location permission. It uses the same
 stop function and displays iOS's background location indicator. Tracking

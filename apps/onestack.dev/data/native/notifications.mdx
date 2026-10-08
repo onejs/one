@@ -152,18 +152,4 @@ permissions and receiver plus the iOS delegate gate. Without it the iOS
 delegate never installs, so an app that uses its own push library keeps
 that library's delegate.
 
-Expo-prebuilt apps pass the same choice to `vxrn/expo-plugin`, which writes
-the same entries during `expo prebuild`. `mode` sets `aps-environment`, as
-in `expo-notifications`, and defaults to `development`:
-
-```json
-{
-  "expo": {
-    "plugins": [
-      ["vxrn/expo-plugin", { "notifications": { "push": true, "mode": "production" } }]
-    ]
-  }
-}
-```
-
-Use `{ "notifications": {} }` for local notifications without push.
+Set `native.app.notifications.apsEnvironment` to `production` for a build signed for TestFlight or the App Store; iOS push uses `development` otherwise. Use `notifications: {}` for local notifications without push.

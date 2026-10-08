@@ -32,14 +32,11 @@ ended item from the beginning.
 
 Recording writes AAC in an `.m4a` file under the app cache. Set
 `native.app.audio.microphone` to the purpose shown in the iOS microphone
-prompt and rerun prebuild. For Expo-prebuilt apps, pass the same
-`audio: { microphone: '...' }` option to the `vxrn` config plugin. Playback
+prompt and rerun prebuild. Playback
 alone needs no microphone permission or purpose string.
 
 For playback while another app is in front, set `native.app.audio.background: true`
-and rerun prebuild. Expo-prebuilt apps use the same `audio: { background: true }`
-option in the `vxrn` config plugin. This adds `audio` to `UIBackgroundModes`; the
-Expo plugin preserves other background modes. `Audio.play()` activates the iOS
+and rerun prebuild. This adds `audio` to `UIBackgroundModes`. `Audio.play()` activates the iOS
 playback category before your app enters the background. Apple
 [requires that category and background mode](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback)
 for continued playback. Picture in Picture also declares the same mode. Request

@@ -15,10 +15,9 @@ photoLibrary: {
 }
 ```
 
-For an Expo-prebuilt app, pass the same `photoLibrary` option to the VXRN Expo
-plugin. Both paths set `NSPhotoLibraryAddUsageDescription` for `addOnly` and
-`NSPhotoLibraryUsageDescription` for `readWrite`. With `readWrite`, both paths
-also set `PHPhotoLibraryPreventAutomaticLimitedAccessAlert` so your app controls
+Prebuild sets `NSPhotoLibraryAddUsageDescription` for `addOnly` and
+`NSPhotoLibraryUsageDescription` for `readWrite`. With `readWrite`, it
+also sets `PHPhotoLibraryPreventAutomaticLimitedAccessAlert` so your app controls
 when the limited-selection picker appears. Configure only the permission
 your app uses, or both when it saves and browses assets.
 
