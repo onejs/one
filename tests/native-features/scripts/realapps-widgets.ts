@@ -307,7 +307,11 @@ export async function runNativeWidgets(config: {
       ? assertIsland(nodes, islandStep, pids)
       : assertWidgetSurface(nodes, expected, pids)
     capture(name, nodes)
-    save(`${name}.assert`, { ...result, passed: true })
+    save(`${name}.assert`, {
+      ...result,
+      renderer: run(['ps', '-p', String(result.pid), '-o', 'comm=']).trim(),
+      passed: true,
+    })
     return nodes
   }
   const omitted = (
@@ -495,6 +499,7 @@ export async function runNativeWidgets(config: {
         'cover-sheet scalar/JSX lifecycle',
         'expanded JSX Island lifecycle',
       ],
+      expandedIslandProof: 'Native renderer AX; simulator PNG excludes this overlay',
       limits:
         'No root/aggregate, compact/minimal Island, scalar Island or hardware-lock acceptance',
     })
