@@ -1,0 +1,43 @@
+---
+title: Authentication
+description: Apple sign-in for iOS
+---
+
+`One.Auth.Apple` enables Sign in with Apple on iOS. On Android and web, `isAvailable` is false and authorization calls reject.
+
+```tsx
+import { One } from 'one'
+
+export async function signInWithApple() {
+  if (!One.Auth.Apple.isAvailable) return null
+  const result = await One.Auth.Apple.signIn({
+    requestedScopes: ['fullName', 'email'],
+  })
+  return result.type === 'success' ? result.credential : null
+}
+```
+
+`isAvailable` is a boolean readable on all platforms. `signIn(options?)` returns a promise that resolves a discriminated result: either `{ type: 'success', credential }` on success or `{ type: 'cancel' }` when the user backs out. The credential includes the user identifier, name, email, and tokens for server verification.
+
+Options include `requestedScopes` (an array of `'fullName'` and `'email'`), `state` (a string you control), and `nonce` (a string your server validates). Neither scope grants persistent access; the user authorizes each request. The credential returns null values for scopes the user did not grant.
+
+`getCredentialState(user)` reads the current state of a credential. It resolves one of `'notFound'`, `'revoked'`, or `'authorized'`. If the credential state is revoked, the user has removed the app from their Apple account; your session is no longer valid.
+
+Enable Sign in with Apple in the app's entitlements and signing capabilities. Set `native.app.ios.usesAppleSignIn: true` in your app's manifest so one prebuild stamps the entitlement. Your server owns credential verification and the session it creates.
+
+You can also use the native SignInWithApple button from `One.iOS.SignInWithAppleButton`:
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.SignInWithAppleButton
+  label="signIn"
+  onCompletion={(result) => {
+    if (result.type === 'success') {
+      // Handle successful sign-in
+    }
+  }}
+/>
+```
+
+The button label is `signIn`, `signUp`, `continue`, or undefined (defaults to signIn). The native button is accessible with the correct labels and traits built in.

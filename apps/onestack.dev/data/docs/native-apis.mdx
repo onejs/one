@@ -16,7 +16,7 @@ signature, configuration, permission behavior, event cleanup, and errors.
 | [One.Clipboard](/native/clipboard) | Read, write, and check clipboard text |
 | [One.Network, useNetworkState](/native/network) | Read and subscribe to connection state |
 | [One.Browser](/native/browser) | Open a system browser or authentication session and dismiss it |
-| `One.Auth.Apple` | Start Apple authorization on iOS; see the authentication section below |
+| [One.Auth.Apple](/native/auth) | Start Apple authorization on iOS |
 | [One.Haptics](/native/haptics) | Produce selection, impact, and notification feedback |
 | [One.AppInfo](/native/app-info) | Read the installed version, build, and application identifier |
 | [One.ImagePicker](/native/image-picker) | Pick library media or use the system camera picker |
@@ -26,7 +26,8 @@ signature, configuration, permission behavior, event cleanup, and errors.
 | `One.Speech` | Request permission and start or stop speech recognition; see the dictation section below |
 | [One.LaunchScreen](/native/launch-screen) | Hold the launch screen until the app is ready, then hide it |
 | [One.Updates](/native/updates) | Check, download, stage, and reload OTA bundles; the launcher handles early-failure rollback and cache pruning |
-| `One.openURL`, `One.openShare`, `One.openSettings` | Hand a URL, share payload, or settings request to the system |
+| [One.openURL, One.openShare, One.openSettings](/native/open-url) | Hand a URL, share payload, or settings request to the system |
+| [One.Speech](/native/speech) | Request permission and start or stop speech recognition |
 | [global crypto](/native/crypto) | Generate secure random values and UUIDs |
 | `global fetch` | Stream native HTTP responses and upload React Native file parts |
 
@@ -129,51 +130,9 @@ For a component that also needs the initial snapshot, use the exported
 another handle; follow their own cleanup signature rather than assuming every
 service uses `remove()`.
 
-## Apple authentication
 
-`One.Auth.Apple.isAvailable` is a boolean. `signIn` accepts optional
-`requestedScopes` (`'fullName'` and `'email'`), `state`, and `nonce`, and
-resolves a discriminated result. Cancellation resolves `{ type: 'cancel' }`.
-On success the credential includes the user identifier and nullable identity
-token, authorization code, name, and email fields.
 
-```ts
-import { One } from 'one'
-
-export async function signInWithApple() {
-  if (!One.Auth.Apple.isAvailable) return null
-  const result = await One.Auth.Apple.signIn({
-    requestedScopes: ['fullName', 'email'],
-  })
-  return result.type === 'success' ? result.credential : null
-}
-```
-
-Use `getCredentialState(user)` to read the credential's current state. Enable
-Sign in with Apple in the app's entitlements and signing capabilities;
-`native.app.ios.usesAppleSignIn` configures the One prebuild entitlement.
-Your server owns credential verification and the session it creates.
-
-## Dictation
-
-`One.Speech.isAvailable()` reports native recognizer availability.
-`getPermissions()` and `requestPermissions()` return permission responses.
-After a grant, `start({ lang? }, onEvent)` returns a session with `stop()`
-and `abort()`. `lang` is a language tag such as `en-US`.
-
-The callback receives `{ type, transcript, error?, message? }`; `type` is
-`start`, `transcript`, `end`, or `error`. Each transcript is the whole result
-so far. `stop()` finishes with a final event, while `abort()` tears down the
-session silently. Configure `native.app.speech` with `recognition` and `microphone` usage
-descriptions before prebuild. On web,
-availability is false, permissions are denied, and `start` throws.
-
-## System actions and HTTP
-
-`One.openURL(url)` and `One.openSettings()` return `Promise<void>`.
-`One.openShare({ title?, message?, url? })` passes content to the system share
-surface. On web, URL opening uses a new tab, sharing needs `navigator.share`,
-and app settings are unsupported.
+## HTTP
 
 Native global `fetch` streams response bodies and accepts React Native file
 parts in `FormData`. Use its standard request and response objects by calling
