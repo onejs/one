@@ -3,6 +3,7 @@ package dev.onejs.onenative
 import android.content.Context
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerColors
 import androidx.compose.material3.DatePickerDefaults
@@ -227,6 +228,10 @@ private fun timePickerColors(options: OneNativePickerOptions): TimePickerColors 
     )
 }
 
+@Composable
+private fun pickerDialogButtonColors(options: OneNativePickerOptions) =
+    ButtonDefaults.textButtonColors(contentColor = options.color?.let(::Color) ?: Color.Unspecified)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OneDatePickerContent(
@@ -318,16 +323,17 @@ internal fun RenderComposeDatePickerDialog(
     // each presentation starts from the supplied selection
     val state = rememberOneDatePickerState(options, props.variant, selected, node.dialogPresentation)
     val colors = datePickerColors(options)
+    val buttonColors = pickerDialogButtonColors(options)
     DatePickerDialog(
         onDismissRequest = { node.handleDialogDismiss() },
         confirmButton = {
-            TextButton(onClick = { node.handleDialogConfirm((state.selectedDateMillis ?: selected).toDouble()) }) {
+            TextButton(onClick = { node.handleDialogConfirm((state.selectedDateMillis ?: selected).toDouble()) }, colors = buttonColors) {
                 Text(props.confirmLabel ?: stringResource(android.R.string.ok))
             }
         },
         modifier = modifier,
         dismissButton = {
-            TextButton(onClick = { node.handleDialogDismiss() }) {
+            TextButton(onClick = { node.handleDialogDismiss() }, colors = buttonColors) {
                 Text(props.dismissLabel ?: stringResource(android.R.string.cancel))
             }
         },
@@ -353,16 +359,17 @@ internal fun RenderComposeTimePickerDialog(
     val options = props.pickerOptions
     val minutes = props.numberValue.toInt().coerceIn(0, 24 * 60 - 1)
     val state = rememberOneTimePickerState(options, minutes, node.dialogPresentation)
+    val buttonColors = pickerDialogButtonColors(options)
     AlertDialog(
         onDismissRequest = { node.handleDialogDismiss() },
         confirmButton = {
-            TextButton(onClick = { node.handleDialogConfirm((state.hour * 60 + state.minute).toDouble()) }) {
+            TextButton(onClick = { node.handleDialogConfirm((state.hour * 60 + state.minute).toDouble()) }, colors = buttonColors) {
                 Text(props.confirmLabel ?: stringResource(android.R.string.ok))
             }
         },
         modifier = modifier,
         dismissButton = {
-            TextButton(onClick = { node.handleDialogDismiss() }) {
+            TextButton(onClick = { node.handleDialogDismiss() }, colors = buttonColors) {
                 Text(props.dismissLabel ?: stringResource(android.R.string.cancel))
             }
         },

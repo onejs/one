@@ -22,13 +22,61 @@ deadline. Owned cleanup uninstalls the fixture, stops emulator and Metro8107,
 and leaves no device or listener. Evidence stays outside One git in Contrast
 `scripts/tmp/android-m22158/runtime-audio-background-phase/` on pro-64 and air-32.
 
-RAN beta `d21a15e1e` Android Native Build `37709204880` and Release
-`37709204892` pass. The canary manifest identifies that SHA, and both Audio Kotlin
-sources plus the repaired crypto declarations match it byte for byte. Checks
-`37709204793` passes tests but fails the coverage test's cross-project TypeScript
-import. Beta `aaeee8308` moves that test into the existing native platform test
-project; its CI and the newly landed native candidate remain delivery checks.
-The published d21 artifact precedes these Audio fixes.
+Published Audio delivery, 2026-10-08: RAN `one@2.0.0-beta.362.1`
+identifies source `6b489d521782af129132654d2baeb318f4bc2fdc`, which contains
+accepted Audio fix `345ea28754a050be99d2b599f9f3559d72a7643e`.
+Both published Audio Kotlin files match that accepted source byte for byte.
+Tarball SHA256 is `bf134f168553854e783da173c936537cf0d59c735d59f73995ee2f1411eb497a`.
+RAN required Android Native Build `37718671441` and Checks and Tests
+`37718671504` both pass at `c4d7aa156256c89dbdc96bc44494ba852da8e2aa`.
+Artifact and CI receipts stay in Contrast `scripts/tmp/android-m22158/`.
+Release and Contrast upgrade follow-through is owned by a24912.
+
+Picker comparison, 2026-10-08: RAN `r67636` passes seven native checks on
+Pixel 8/API37 r06: initial date, 12-hour and 24-hour clocks, both dialogs,
+date dismissal and time confirmation. The existing controlled rejection and
+lifecycle fixture is unchanged. The separate reference route uses March 12,
+2031, 10:15 and explicit colors matching Expo's seeded picker bodies.
+Kotlin, JavaScript, fixture and APK identities are retained outside One git;
+the run removes its app, emulator and Metro8107.
+
+RAN the named 1080 by 1992 picker-region comparisons with
+`conformance-corpus/pixel-comparison`, threshold 0.1, radius 1,
+antialiasing included, flat-shade tolerance 16 and the 1% budget:
+
+| initial state | differing pixels / total | difference | threshold-zero audit |
+| --- | --- | --- | --- |
+| date | 594 / 2,151,360 | 0.0276104% | 0.3449446% |
+| 12-hour time | 747 / 2,151,360 | 0.0347222% | 0.2019653% |
+| 24-hour time | 128 / 2,151,360 | 0.0059497% | 0.0230552% |
+
+TESTED the dialog tint repair: the four OK/Cancel labels previously painted
+`#4C5E8B` despite explicit `color="#65558F"`; the same native label-bounds
+probe found zero requested-tint pixels in every action. After sharing Material
+button colors from the existing picker tint, `r68291` passes all seven unchanged
+native checks and all four color probes. Each OK label contains 413 opaque
+`#65558F` pixels, each Cancel label 767; the required minimum remains 100.
+The original controlled rejection and lifecycle fixture remains unchanged.
+
+RAN the repair compiles on pro-64 in 19m25s, 370 Gradle tasks. APK SHA256 is
+`1f240fd4c5b5ab39b1df5111f5f2214cc283f44efaf82185a49c1ea38c7d9623`;
+its delivered picker Kotlin matches
+`aff4dead27ce583d1185ac2c825d44d5a69916b48a4fcfad12a7f18ee5d2c313`.
+The unchanged native Compose view also matches its receipt. Builder cleanup
+reports exit 0 and released resources. Runtime cleanup removes the installed
+app, emulator and Metro8107; final device and listener reads are empty.
+
+RAN repeated inline pixel grades retain the table above. Full-frame dialog
+diagnostics after tint repair are 0.4950231% for date and 0.4839892% for time.
+Their headers, status chrome and outer host themes differ; these numbers do
+not establish an exact host-theme match. Threshold-zero audits are 1.2304012%
+for date and 26.3607253% for time. The native default theme is unchanged and
+no public API is added. Captures, grades and source guards remain outside One
+git under Contrast `scripts/tmp/android-m22158/runtime-one-picker-dialog-tint/`
+and `picker-tint-accepted/`. The next Metro startup reached its prepared bundle
+45 seconds after launch, including the parallel emulator startup; its saved
+log contains no Watchman cookie timeout. Incremental native workspace retention
+is queued with RSI after this cold build executed every Gradle task.
 
 Prior launch failures stopped before Audio assertions: an index route instead
 of the requested deep link, a System UI keyguard ANR, and conflicting AVD leases.
