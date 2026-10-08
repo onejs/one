@@ -55,6 +55,9 @@ For an explicit branch canary:
 gh workflow run release.yml --repo onejs/one --ref <branch> -f release=canary
 ```
 
+Manual canaries use a queue per branch, separate from push canaries. A newer
+`v2-beta` push cannot replace a queued manual canary.
+
 One V2 canaries use `2.0.0-0.canary.<timestamp>`. Pin the printed version
 because the shared `canary` tag moves. A main-branch canary needs the owner's
 approval. Branch canaries and normal beta releases use separate queues.
