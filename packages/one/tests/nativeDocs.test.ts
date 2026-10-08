@@ -149,7 +149,7 @@ describe('native docs reference', () => {
     for (const { name, file } of referenceDocs) {
       const text = readFileSync(file, 'utf8')
       for (const [, namespace, member] of text.matchAll(
-        /\bOne\.([A-Za-z]+)(?:\.([A-Za-z]+))?/g
+        /\bOne\.([A-Za-z]+)(?:\.([A-Za-z_]+))?/g
       )) {
         const service = Reflect.get(One, namespace)
         expect(service, `${name}: One.${namespace}`).toBeDefined()
