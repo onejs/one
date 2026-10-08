@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
-// runs the iPhone suites by default, the iPad sidebar suite, or the iOS 27.1
-// Duo ArrangementView suite. the iPhone
+// routes iPhone suites to their calibrated iPhone 16 or iPhone 17 Pro,
+// or runs the iPad sidebar or iOS 27.1 Duo ArrangementView suite. the iPhone
 // visual pass runs last and against the artifact root because several checks
 // take their negative capture from a different suite's directory.
 import { execFileSync } from 'node:child_process'
@@ -9,37 +9,37 @@ import { join } from 'node:path'
 import { runAllVisualChecks } from './visual-verification'
 
 const iphoneSuites = [
-  'tabs-menu',
-  'pickers',
-  'forms',
-  'sheets',
-  'leaves',
-  'dialogs',
-  'host',
-  'containers',
-  'glass-container',
-  'building-blocks',
-  'view-slot',
-  'swipe-actions',
-  'disclosure-group',
-  'control-group',
-  'share-empty',
-  'web-photos',
-  'tab-slot',
-  'tab-sidebar',
-  'edit-button',
-  'view-that-fits',
-  'popover',
-  'accessibility',
-  'media',
-  'map',
-  'apple-file',
-  'ui-map',
-  'ui-icon',
-  'adaptive-flat',
-  'ui-effects',
-  'zoom',
-  'gpu',
+  ['tabs-menu', 'iphone16'],
+  ['pickers', 'iphone16'],
+  ['forms', 'iphone16'],
+  ['sheets', 'iphone16'],
+  ['leaves', 'iphone16'],
+  ['dialogs', 'iphone16'],
+  ['host', 'iphone16'],
+  ['containers', 'iphone16'],
+  ['glass-container', 'iphone16'],
+  ['building-blocks', 'iphone16'],
+  ['view-slot', 'iphone16'],
+  ['swipe-actions', 'iphone16'],
+  ['disclosure-group', 'iphone16'],
+  ['control-group', 'iphone16'],
+  ['share-empty', 'iphone16'],
+  ['web-photos', 'iphone16'],
+  ['tab-slot', 'iphone16'],
+  ['tab-sidebar', 'iphone16'],
+  ['edit-button', 'iphone16'],
+  ['view-that-fits', 'iphone16'],
+  ['popover', 'iphone16'],
+  ['accessibility', 'iphone16'],
+  ['media', 'iphone16'],
+  ['map', 'iphone16'],
+  ['apple-file', 'iphone17Pro'],
+  ['ui-map', 'iphone16'],
+  ['ui-icon', 'iphone16'],
+  ['adaptive-flat', 'iphone16'],
+  ['ui-effects', 'iphone16'],
+  ['zoom', 'iphone16'],
+  ['gpu', 'iphone16'],
 ] as const
 
 const args = process.argv.slice(2)
@@ -48,6 +48,8 @@ const value = (name: string, fallback = '') => {
   return index === -1 ? fallback : args[index + 1] || ''
 }
 const simulatorId = value('--simulator-id')
+const iphone16SimulatorId = value('--iphone16-simulator-id')
+const iphone17ProSimulatorId = value('--iphone17-pro-simulator-id')
 const bundleId = value('--bundle-id')
 const artifactDir = value('--artifact-dir', '/tmp/one-native-conformance')
 const timeout = value('--timeout', '15000')
@@ -56,16 +58,21 @@ const jsLocation = value('--js-location')
 if (device !== 'iphone' && device !== 'ipad' && device !== 'duo')
   throw new Error('--device must be iphone, ipad, or duo')
 const suites =
-  device === 'ipad' ? ['tab-sidebar'] : device === 'duo' ? ['arrangement'] : iphoneSuites
-if (!simulatorId || !bundleId) {
+  device === 'iphone'
+    ? iphoneSuites.map(([suite, calibratedDevice]) => [
+        suite,
+        calibratedDevice === 'iphone16' ? iphone16SimulatorId : iphone17ProSimulatorId,
+      ] as const)
+    : [[device === 'ipad' ? 'tab-sidebar' : 'arrangement', simulatorId] as const]
+if (!bundleId || suites.some(([, id]) => !id)) {
   console.log(
-    'Usage: bun one-native-conformance-all.ts --simulator-id <UUID> --bundle-id <ID> [--device iphone|ipad|duo] [--js-location HOST:PORT] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun one-native-conformance-all.ts --bundle-id <ID> (--iphone16-simulator-id <UUID> --iphone17-pro-simulator-id <UUID> | --device ipad|duo --simulator-id <UUID>) [--js-location HOST:PORT] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
   process.exit(1)
 }
 
 let total = 0
-for (const suite of suites) {
+for (const [suite, suiteSimulatorId] of suites) {
   const dir = join(artifactDir, suite)
   mkdirSync(dir, { recursive: true })
   try {
@@ -76,7 +83,7 @@ for (const suite of suites) {
         '--suite',
         suite,
         '--simulator-id',
-        simulatorId,
+        suiteSimulatorId,
         '--bundle-id',
         bundleId,
         '--artifact-dir',

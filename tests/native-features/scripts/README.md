@@ -177,7 +177,7 @@ deletes it. The suite also checks prepermission and invalid-limit errors.
 
 `gpu` covers the WebGPU path One stands on instead of shipping a GL view: a raw `react-native-webgpu` triangle pane and an R3F cube on `WebGPURenderer` mounted through `createRoot` (never `@react-three/fiber/native`). It asserts both canvases take layout, each pane reports its first painted frame, the R3F loop keeps ticking, and the GLSL `ShaderMaterial` probe reaches a verdict (logged as `gpu probe: shader verdict ...`). Run it with `ONE_NATIVE_BUNDLER=rolldown`: the metro path has no resolver hook for the `three` to `three/webgpu` rewrite.
 
-Run suites sequentially against one simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
+Run individual suites sequentially against their calibrated simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
 
 Artifacts are written to `--artifact-dir`: key rendered screenshots, an `.ax.json` accessibility snapshot captured with every screenshot, and outcome.json with passed checks, durations, and `suite`.
 
@@ -192,12 +192,18 @@ is a real failure mode: the same bug was found in `@expo/ui`'s segmented picker,
 already write. Run everything with one command:
 
 ```sh
-bun scripts/one-native-conformance-all.ts --simulator-id <UUID> --bundle-id dev.one.native.tests \
+bun scripts/one-native-conformance-all.ts \
+  --iphone16-simulator-id <IPHONE_16_UUID> --iphone17-pro-simulator-id <IPHONE_17_PRO_UUID> \
+  --bundle-id dev.one.native.tests \
   --artifact-dir /tmp/one-native-conformance
 ```
 
-That runs the 12 suites into `<artifact-dir>/<suite>/`, then the visual pass against the artifact
-root. The visual pass runs last and against the root rather than per suite because several checks
+That runs the 31 suites into `<artifact-dir>/<suite>/`, then the visual pass against the artifact
+root. `tabs-menu`, `pickers`, and the other iPhone suites run on iPhone 16 (393×852);
+`apple-file` runs on iPhone 17 Pro (402×874). Install the same app on both and keep its source
+unchanged throughout the run. For `--device ipad` or `--device duo`, pass `--simulator-id`
+for that device instead of the two iPhone IDs. The visual pass runs last and against the root
+rather than per suite because several checks
 take their negative capture from another suite's directory.
 
 Each check in `visual-declarations.ts` declares an accessibility anchor, a crop relative to its

@@ -113,13 +113,17 @@ bun scripts/one-native-conformance.ts \
   --artifact-dir /tmp/one-native-final-sheets
 ```
 
-Or run everything, all twelve suites then the visual pass, with one command:
+Or run all 31 iPhone suites, then the visual pass, with one command:
 
 ```sh
 bun scripts/one-native-conformance-all.ts \
-  --simulator-id 36CB8903-C59C-4438-BA29-E7A3C8876C37 \
+  --iphone16-simulator-id <IPHONE_16_UUID> \
+  --iphone17-pro-simulator-id <IPHONE_17_PRO_UUID> \
   --bundle-id dev.one.native.tests --artifact-dir /tmp/one-native-conformance
 ```
+
+The aggregate routes `apple-file` to its calibrated 402×874 iPhone 17 Pro and the remaining
+iPhone suites to iPhone 16 (393×852). Install the same app on both devices.
 
 The visual pass runs last and against the artifact root rather than per suite, because several
 checks take their negative capture from another suite's directory.
