@@ -38,6 +38,7 @@ const iphoneSuites = [
   'ui-icon',
   'adaptive-flat',
   'ui-effects',
+  'zoom',
   'gpu',
 ] as const
 

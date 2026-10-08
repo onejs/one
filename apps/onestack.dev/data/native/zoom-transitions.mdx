@@ -32,7 +32,11 @@ function DetailScreen() {
     <View>
       <Stack.Screen options={{ headerShown: false }} />
       <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier={id} />
-      <Text>Detail for {id}</Text>
+      <One.iOS.ZoomTransitionAlignmentRectDetector identifier={id}>
+        <View collapsable={false}>
+          <Text>Detail for {id}</Text>
+        </View>
+      </One.iOS.ZoomTransitionAlignmentRectDetector>
     </View>
   )
 }
@@ -53,3 +57,53 @@ function DetailScreen() {
 (`minX`, `maxX`, `minY`, `maxY`) that bounds the dismiss gesture.
 `ZoomTransitionAlignmentRectDetector` takes the matching `identifier` and
 wraps the destination element.
+
+Keep the source element mounted while the destination is open. UIKit resolves
+that element again when returning. The detector has one native child; use a
+non-collapsible `View` when that child wraps other content. Its destination
+rectangle is retained for the current transition's dismissal after React removes
+the detector.
+
+<PropsTable
+  source="zoom/types.ts#ZoomTransitionSourceProps"
+  data={[
+    { name: 'identifier', type: 'string', description: 'Required source identifier matched by the destination enabler.' },
+    { name: 'alignment', type: 'SourceAlignmentRect', description: 'Optional source alignment rectangle.' },
+    { name: 'animateAspectRatioChange', type: 'boolean', description: 'Adjust the destination rectangle to the source aspect ratio.' },
+  ]}
+/>
+
+<PropsTable
+  source="zoom/types.ts#ZoomTransitionEnablerProps"
+  data={[
+    { name: 'zoomTransitionSourceIdentifier', type: 'string', description: 'Required identifier of the mounted source element.' },
+    { name: 'dismissalBoundsRect', type: 'DismissalBoundsRect | null', description: 'Optional bounds for beginning an interactive dismissal.' },
+  ]}
+/>
+
+<PropsTable
+  source="zoom/types.ts#ZoomTransitionAlignmentRectDetectorProps"
+  data={[
+    { name: 'identifier', type: 'string', description: 'Required identifier matched by the source and destination enabler.' },
+  ]}
+/>
+
+<PropsTable
+  source="zoom/types.ts#SourceAlignmentRect"
+  data={[
+    { name: 'x', type: 'number', description: 'Horizontal source origin in points.' },
+    { name: 'y', type: 'number', description: 'Vertical source origin in points.' },
+    { name: 'width', type: 'number', description: 'Source rectangle width in points.' },
+    { name: 'height', type: 'number', description: 'Source rectangle height in points.' },
+  ]}
+/>
+
+<PropsTable
+  source="zoom/types.ts#DismissalBoundsRect"
+  data={[
+    { name: 'minX', type: 'number', description: 'Optional minimum horizontal gesture location.' },
+    { name: 'maxX', type: 'number', description: 'Optional maximum horizontal gesture location.' },
+    { name: 'minY', type: 'number', description: 'Optional minimum vertical gesture location.' },
+    { name: 'maxY', type: 'number', description: 'Optional maximum vertical gesture location.' },
+  ]}
+/>

@@ -23,8 +23,6 @@ const knownGaps: Record<string, string> = {
   Widgets: 'needs a widget extension target in the fixture app',
   LiveActivities: 'needs a widget extension target in the fixture app',
   'iOS.WidgetUI': 'needs a widget extension target in the fixture app',
-  'iOS.ZoomTransitionAlignmentRectDetector': 'no fixture or suite',
-  'iOS.ZoomTransitionEnabler': 'on zoom-detail, which the zoom e2e reaches only by tap',
   'Android.Color': 'no fixture or suite',
   'Android.Menu': 'no fixture or suite',
   'Android.ContextMenu': 'no fixture or suite',
@@ -153,6 +151,8 @@ function iosSuites() {
   )
   // the apple-file flow also opens the imperative document picker route.
   suites.push({ suite: 'apple-file', route: 'one-native-document-picker' })
+  // zoom navigates from its source screen to a separate destination fixture.
+  suites.push({ suite: 'zoom', route: 'zoom-detail' })
   // the appium e2e tests open routes directly
   const e2e = read('tests/native-features.test.ios.ts')
   for (const [, route] of e2e.matchAll(/navigateTo\(driver, '\/([a-z0-9/-]+)'\)/g)) {

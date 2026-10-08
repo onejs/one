@@ -136,9 +136,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.SplitView` | e2e:split-view-test | n/a |  |
 | `One.iOS.ToolbarHost` | e2e:toolbar-test | n/a |  |
 | `One.iOS.BarButtonItem` | e2e:toolbar-test | n/a |  |
-| `One.iOS.ZoomTransitionAlignmentRectDetector` | missing | n/a | no fixture or suite |
-| `One.iOS.ZoomTransitionEnabler` | missing | n/a | on zoom-detail, which the zoom e2e reaches only by tap |
-| `One.iOS.ZoomTransitionSource` | e2e:zoom-test | n/a |  |
+| `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a |  |
+| `One.iOS.ZoomTransitionEnabler` | zoom | n/a |  |
+| `One.iOS.ZoomTransitionSource` | zoom | n/a |  |
 | `One.Android.Column` | n/a | android, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers |  |
 | `One.Android.Spacer` | n/a | android-flow-row |  |
