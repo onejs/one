@@ -4640,6 +4640,10 @@ async function runUpdates(config: Config) {
   const home = (marker: string) => (nodes: Node[]) =>
     exactlyOneId(nodes, 'home-screen') && textIncludes(nodes, `Marker: ${marker}`)
   const tap = (testID: string) => tapFresh(config, testID, { id: testID })
+  const snap = (name: string) => {
+    writeFileSync(path.join(config.artifactDir, `${name}.png`), adbBytes(config, ['exec-out', 'screencap', '-p']))
+    writeFileSync(path.join(config.artifactDir, `${name}.xml`), dumpNodes(config).xml)
+  }
   const openFixture = async () => {
     await wait('updates home mounted', (nodes) => exactlyOneId(nodes, 'home-screen'))
     await tapNavigation(config, 'nav-one-native-updates')
@@ -4685,6 +4689,7 @@ async function runUpdates(config: Config) {
     )
     const embeddedId = labelValue(embedded, 'UpdateId')
     if (!embeddedId || embeddedId === 'none') throw new Error('embedded launch has no update id')
+    if (happyOnly) snap('updates-embedded')
     tap('one-native-updates-check')
     await wait('empty server checks none', (n) => labelValue(n, 'Check') === 'none')
     tap('one-native-updates-fetch')
@@ -4715,6 +4720,7 @@ async function runUpdates(config: Config) {
           labelValue(n, 'Image') === '48x32'
       )
     )
+    if (happyOnly) snap('updates-v2')
 
     if (!happyOnly) {
     // 3. a tampered asset rejects fetch and stages nothing.
@@ -4810,6 +4816,7 @@ async function runUpdates(config: Config) {
     await wait('reloaded update reports staged metadata', (n) =>
       Boolean(labelValue(n, 'UpdateId') === staged.id && labelValue(n, 'Meta') === 'critical')
     )
+    if (happyOnly) snap('updates-p5-reload')
     if (!happyOnly) for (let cycle = 1; cycle <= 20; cycle++) {
       tap('one-native-updates-reload')
       await wait(`reload ${cycle} boots clean`, home('p5'))
