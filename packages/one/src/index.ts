@@ -86,7 +86,7 @@ export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-c
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware
-export { createMiddleware, type Middleware } from './createMiddleware'
+export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware'
 // api routes
 export {
   createAPIRoute,

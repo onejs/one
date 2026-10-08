@@ -40,7 +40,7 @@ export { useHeaderHeight } from './useHeaderHeight';
 export * from '@vxrn/color-scheme';
 export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';
-export { createMiddleware, type Middleware } from './createMiddleware';
+export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute';
 export { getURL } from './getURL';
 export { Head } from './head';
