@@ -4,10 +4,15 @@ title: one build
 
 Building your app for production happens through `one build`.
 
-It takes the first argument as the platform, which defaults to `web`.
+It takes the following arguments (see the [CLI reference](/docs/cli) for every command):
 
 ```bash
-npx one build [--platform web|ios|android]
+npx one build [options]
+
+--platform web|ios|android   # what to build (default: web)
+--only <pattern>             # limit the pages built to a micromatch pattern
+--step <name>                # run a single internal build step
+--skip-env                   # skip loading .env files during build
 ```
 
 To build for iOS for example, you would run:
@@ -108,8 +113,8 @@ The scanner detects common API key patterns (Anthropic, OpenAI, Stripe, GitHub, 
 
 ## Building for native
 
-We don't have an end-to-end build command yet, but One is designed to be easy to integrate into existing Expo or React Native build processes.
+Build the native JS bundle with `--platform ios` or `--platform android`. This always runs through the Rolldown path, regardless of your `native.bundler` dev setting.
 
-If you're familiar with EAS, see how to [Build and Deliver Native Apps with EAS](/docs/guides-eas).
+To ship to devices, integrate the bundle into the existing native build process. If you're familiar with EAS, see how to [Build and Deliver Native Apps with EAS](/docs/guides-eas).
 
 Or check out the [iOS Native Guide](/docs/guides-ios-native) for instructions on building your iOS app with Xcode.
