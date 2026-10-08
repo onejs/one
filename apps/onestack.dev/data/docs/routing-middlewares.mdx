@@ -75,7 +75,7 @@ export default createMiddleware(handler)
 | `next`    | `() => Promise<Response \| void \| null>`                             | Calls the next middleware in the chain, then the route    |
 | `context` | `MiddlewareContext`                                                   | Mutable object shared across all middlewares in the chain |
 
-`MiddlewareContext` is an empty object type by default. Give it your own shape by casting it to an app-specific type, as shown in [Sharing Data with Context](#sharing-data-with-context).
+`MiddlewareContext` accepts any key. Declare your own keys on it to type them, as shown in [Sharing Data with Context](#sharing-data-with-context).
 
 ### Return Values
 
@@ -178,30 +178,28 @@ export default createMiddleware(async ({ request, next }) => {
 
 ### Sharing Data with Context
 
-Pass data between middlewares and to your route handlers:
+Pass data between the middlewares in a request's chain. `context` starts empty for each request and accepts any key; declare the keys you use on `MiddlewareContext` to type them:
 
 ```tsx fileName=app/_middleware.ts
 import { createMiddleware } from 'one'
 
-// context is an empty object type by default, so define
-// your own shape and cast to it
-type AppContext = {
-  requestId?: string
-  timestamp?: number
-  user?: { id: string }
+declare module 'one' {
+  interface MiddlewareContext {
+    requestId?: string
+    timestamp?: number
+    user?: { id: string }
+  }
 }
 
 export default createMiddleware(async ({ request, next, context }) => {
-  const ctx = context as AppContext
-
   // Parse and validate request data once
-  ctx.requestId = crypto.randomUUID()
-  ctx.timestamp = Date.now()
+  context.requestId = crypto.randomUUID()
+  context.timestamp = Date.now()
 
   // Add user info if authenticated
   const token = request.headers.get('authorization')
   if (token) {
-    ctx.user = await getUserFromToken(token)
+    context.user = await getUserFromToken(token)
   }
 
   return await next()
@@ -213,17 +211,9 @@ Access the context in nested middlewares:
 ```tsx fileName=app/api/_middleware.ts
 import { createMiddleware } from 'one'
 
-type AppContext = {
-  requestId?: string
-  timestamp?: number
-  user?: { id: string }
-}
-
 export default createMiddleware(async ({ request, next, context }) => {
-  const ctx = context as AppContext
-
   // Context from parent middleware is available
-  console.log(`Request ${ctx.requestId} from user ${ctx.user?.id}`)
+  console.log(`Request ${context.requestId} from user ${context.user?.id}`)
 
   return await next()
 })
