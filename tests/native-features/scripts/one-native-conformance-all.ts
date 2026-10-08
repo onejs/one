@@ -57,7 +57,7 @@ const device = value('--device', 'iphone')
 const jsLocation = value('--js-location')
 if (device !== 'iphone' && device !== 'ipad' && device !== 'duo')
   throw new Error('--device must be iphone, ipad, or duo')
-const suites =
+const suites: readonly (readonly [string, string])[] =
   device === 'iphone'
     ? iphoneSuites.map(([suite, calibratedDevice]) => [
         suite,
@@ -70,6 +70,9 @@ if (!bundleId || suites.some(([, id]) => !id)) {
   )
   process.exit(1)
 }
+
+if (device === 'iphone' && iphone16SimulatorId === iphone17ProSimulatorId)
+  throw new Error('The iPhone 16 and iPhone 17 Pro simulator IDs must be distinct.')
 
 let total = 0
 for (const [suite, suiteSimulatorId] of suites) {
