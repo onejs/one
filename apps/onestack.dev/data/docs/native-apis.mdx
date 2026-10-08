@@ -3,10 +3,10 @@ title: Native Platform APIs
 description: Find the shipped shared and iOS service APIs, permissions, and lifecycle contracts
 ---
 
-Services live on `One` when they support both native platforms, and on
-`One.iOS` when they expose an iOS capability. Hooks are named imports from
-`one`. Use each reference for the complete signature, configuration, permission
-behavior, event cleanup, and errors.
+Service namespaces live on `One`, including services with platform-specific
+operations. The camera view and widget layout helpers below use `One.iOS`.
+Hooks are named imports from `one`. Use each reference for the complete
+signature, configuration, permission behavior, event cleanup, and errors.
 
 ## Shared services
 
@@ -55,40 +55,41 @@ A missing key reads `null`. SecureStore rejects on web; choose a separate web
 session strategy. The synchronous verbs block the JavaScript thread, so reserve
 them for a value needed synchronously, such as an initial session read.
 
-## iOS services
+## More native services
 
-These are exported on `One.iOS`; they do not acquire Android implementations
-because the same app also uses Compose.
+These service namespaces are exported on `One`. Their references describe
+supported platforms, native configuration and unavailable operations.
+`One.iOS.CameraView` and `One.iOS.WidgetUI` are iOS components.
 
 | API | What you can do |
 | --- | --- |
-| [LocalAuthentication](/native/local-authentication) | Check biometric support and request system authentication |
-| [ProtectedStore](/native/protected-store) | Protect Keychain items with biometric or device-passcode access policies |
-| [Storage](/native/storage) | Fast synchronous key-value storage |
-| [Location](/native/location) | Request permission, locate, watch position, and geocode; background updates need configuration |
-| [MapServices](/native/map#ios-search-and-directions) | Search places, request suggestions, reverse-geocode, and obtain directions |
-| [FileSystem](/native/file-system) | Read and write sandbox files, inspect directories, and manage files |
-| [Audio](/native/audio) | Play and record audio, configure background playback, and handle interruptions and Now Playing |
-| [CameraView](/native/camera) | Render a camera preview and receive scanned codes |
-| [Share](/native/share) | Present the iOS share sheet and receive its result |
-| [PhotoLibrary](/native/photo-library) | Save, query, export, and manage Photos assets and albums |
-| [ImageManipulator](/native/image-manipulator) | Crop, resize, rotate, and encode local images |
-| [Contacts](/native/contacts) | Request access, search, create, update, delete, and use the system contact picker |
-| [Calendar](/native/calendar) | Manage events and reminders, including supported recurrence rules |
-| [Device](/native/device) | Read device and localization snapshots |
-| [Motion](/native/motion) | Subscribe to available motion sensors |
-| [ScreenOrientation](/native/screen-orientation) | Read, lock, unlock, and observe the active scene orientation |
-| [ScreenCapture](/native/screen-capture) | Observe capture state and screenshot events; capture a window or mounted view as PNG |
-| [Purchases](/native/purchases) | Read StoreKit products, purchase, restore, and observe transactions |
-| [BackgroundTasks](/native/background-tasks) | Register and schedule system-managed background work |
-| [DeviceAttestation](/native/device-attestation) | Use App Attest and DeviceCheck with app-owned server validation |
-| [AppTracking](/native/app-tracking) | Read and request tracking permission |
-| [AppIcon](/native/app-icon) | Read and change configured alternate icons |
-| [KeepAwake](/native/keep-awake) | Control the app's idle-timer flag |
-| [Print](/native/print) | Present the system print sheet for a local PDF |
-| [StoreReview](/native/store-review) | Request a system review prompt; iOS decides whether to display it |
-| [QuickActions](/native/quick-actions) | Manage Home Screen actions and receive warm or cold selections |
-| [Widgets, LiveActivities, WidgetUI](/native/ios-widgets) | Update a generated WidgetKit extension and ActivityKit presentations |
+| [One.LocalAuthentication](/native/local-authentication) | Check biometric support and request system authentication |
+| [One.ProtectedStore](/native/protected-store) | Protect Keychain items with biometric or device-passcode access policies |
+| [One.Storage](/native/storage) | Fast synchronous key-value storage |
+| [One.Location](/native/location) | Request permission, locate, watch position, and geocode; background updates need configuration |
+| [One.MapServices](/native/map#ios-search-and-directions) | Search places, request suggestions, reverse-geocode, and obtain directions |
+| [One.FileSystem](/native/file-system) | Read and write sandbox files, inspect directories, and manage files |
+| [One.Audio](/native/audio) | Play and record audio, configure background playback, and handle interruptions and Now Playing |
+| [One.iOS.CameraView](/native/camera) | Render a camera preview and receive scanned codes |
+| [One.Share](/native/share) | Present the iOS share sheet and receive its result |
+| [One.PhotoLibrary](/native/photo-library) | Save, query, export, and manage Photos assets and albums |
+| [One.ImageManipulator](/native/image-manipulator) | Crop, resize, rotate, and encode local images |
+| [One.Contacts](/native/contacts) | Request access, search, create, update, delete, and use the system contact picker |
+| [One.Calendar](/native/calendar) | Manage events and reminders, including supported recurrence rules |
+| [One.Device](/native/device) | Read device and localization snapshots |
+| [One.Motion](/native/motion) | Subscribe to available motion sensors |
+| [One.ScreenOrientation](/native/screen-orientation) | Read, lock, unlock, and observe the active scene orientation |
+| [One.ScreenCapture](/native/screen-capture) | Observe capture state and screenshot events; capture a window or mounted view as PNG |
+| [One.Purchases](/native/purchases) | Read StoreKit products, purchase, restore, and observe transactions |
+| [One.BackgroundTasks](/native/background-tasks) | Register and schedule system-managed background work |
+| [One.DeviceAttestation](/native/device-attestation) | Use App Attest and DeviceCheck with app-owned server validation |
+| [One.AppTracking](/native/app-tracking) | Read and request tracking permission |
+| [One.AppIcon](/native/app-icon) | Read and change configured alternate icons |
+| [One.KeepAwake](/native/keep-awake) | Control the app's idle-timer flag |
+| [One.Print](/native/print) | Present the system print sheet for a local PDF |
+| [One.StoreReview](/native/store-review) | Request a system review prompt; iOS decides whether to display it |
+| [One.QuickActions](/native/quick-actions) | Manage Home Screen actions and receive warm or cold selections |
+| [One.Widgets, One.LiveActivities, One.iOS.WidgetUI](/native/ios-widgets) | Update a generated WidgetKit extension and ActivityKit presentations |
 
 Widget and Live Activity APIs need a generated extension, App Group, and the
 relevant signing capabilities. [Native project setup](/docs/guides-ios-native#ios-widgets-and-live-activities)
@@ -175,6 +176,6 @@ surface. On web, URL opening uses a new tab, sharing needs `navigator.share`,
 and app settings are unsupported.
 
 Native global `fetch` streams response bodies and accepts React Native file
-parts in `FormData`. Use its standard request and response objects; no
-`One.fetch` wrapper is required. Streaming is separate from
+parts in `FormData`. Use its standard request and response objects by calling
+the global `fetch` function directly. Streaming is separate from
 `One.Network`, which reports connection state.

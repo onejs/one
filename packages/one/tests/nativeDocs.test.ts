@@ -7,6 +7,15 @@ import { One } from '../src/one'
 // that type declares, with the declared types, so the reference cannot drift from source.
 const docs = join(__dirname, '../../../apps/onestack.dev/data/native')
 const platform = join(__dirname, '../src/platform')
+const indexes = join(docs, '../docs')
+const referenceDocs = [
+  ...readdirSync(docs)
+    .filter((name) => name.endsWith('.mdx'))
+    .map((name) => ({ name, file: join(docs, name) })),
+  ...readdirSync(indexes)
+    .filter((name) => name.startsWith('native-') && name.endsWith('.mdx'))
+    .map((name) => ({ name, file: join(indexes, name) })),
+]
 
 // the text between a brace at `start` and its matching close.
 function block(text: string, start: number) {
@@ -137,20 +146,11 @@ describe('native docs reference', () => {
   it('finds sourced tables', () => {
     expect(tables.length).toBeGreaterThan(0)
     // service references resolve against the public object, including namespace ownership.
-    for (const name of readdirSync(docs).filter((name) => name.endsWith('.mdx'))) {
-      const text = readFileSync(join(docs, name), 'utf8')
+    for (const { name, file } of referenceDocs) {
+      const text = readFileSync(file, 'utf8')
       for (const [, namespace, member] of text.matchAll(
         /\bOne\.([A-Za-z]+)(?:\.([A-Za-z]+))?/g
       )) {
-        if (namespace === 'UI' || namespace === 'Android') continue
-        if (namespace === 'iOS') {
-          if (member && Object.hasOwn(One, member)) {
-            expect(Object.hasOwn(One.iOS, member), `${name}: One.iOS.${member}`).toBe(
-              true
-            )
-          }
-          continue
-        }
         const service = Reflect.get(One, namespace)
         expect(service, `${name}: One.${namespace}`).toBeDefined()
         if (member) {
