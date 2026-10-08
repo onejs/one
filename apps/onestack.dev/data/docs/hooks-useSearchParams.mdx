@@ -123,6 +123,15 @@ const sort = searchParams.get('sort')
 const page = searchParams.get('page')
 ```
 
+## Expo Router Compatibility
+
+For easier migration from Expo Router, the following aliases are available (but deprecated):
+
+- `useGlobalSearchParams` - Alias to `useActiveParams()`. Returns params that update even when the route is unfocused.
+- `useLocalSearchParams` - Alias to `useParams()`. Returns focus-aware params.
+
+Prefer the non-aliased names in new code.
+
 ## Related
 
 - [useParams](/docs/hooks-useParams) - Get params as a plain object
