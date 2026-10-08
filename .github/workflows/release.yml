@@ -33,7 +33,8 @@ on:
 permissions: {}
 
 concurrency:
-  group: npm-release-${{ github.event_name == 'push' && 'canary' || inputs.release == 'canary' && 'canary' || inputs.release == 'beta' && 'beta' || 'stable' }}
+  # manual branch canaries must not be replaced by pending beta push releases.
+  group: npm-release-${{ github.event_name == 'push' && 'canary' || inputs.release == 'canary' && format('canary-{0}', github.ref) || inputs.release == 'beta' && 'beta' || 'stable' }}
   cancel-in-progress: false
 
 jobs:
