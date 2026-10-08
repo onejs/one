@@ -102,4 +102,12 @@ await One.LiveActivities.end(id)
 
 ## Current limits
 
-Live Activities are verified rendering, updating and ending on the iOS simulator's Lock Screen. Dynamic Island presentation has not been verified yet. Home Screen widget writes reach the shared app container, but whether the widget extension renders them depends on a signed build whose extension shares that app group; an unsigned build keeps showing the default content. Treat widget content updates as preview until that path is verified.
+On an iOS 27 simulator, Home Screen widgets render and update both typed
+payloads and JSX content. Live Activities render, update and end with both
+forms on the Lock Screen. Expanded Dynamic Island content has been verified
+with JSX. Compact and minimal Dynamic Island presentations, scalar content
+in the Dynamic Island, and a physically locked device remain unverified.
+
+The app and WidgetKit extension must use the same App Group and have the
+required signing capabilities. A successful write alone does not prove that
+the system widget has rendered the new content.
