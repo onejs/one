@@ -338,6 +338,11 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
         // See: https://github.com/facebook/react-native/blob/v0.80.0-rc.4/packages/react-native/React/Base/RCTBundleURLProvider.mm#L87-L113
         if (req.url === '/status' && isNativeRequest) {
           res.statusCode = 200
+          // the header react native's statusPageMiddleware sends
+          res.setHeader(
+            'X-React-Native-Project-Root',
+            new URL(`file:///${projectRoot}`).pathname.slice(1)
+          )
           res.end('packager-status:running')
           return
         }
