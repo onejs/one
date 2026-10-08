@@ -8,14 +8,19 @@ import { YStack, XStack, Text } from 'tamagui'
  */
 export default function InterceptTestLayout({ modal }: { modal?: ReactNode }) {
   return (
-    <YStack flex={1} bg="$background" testID="intercept-test-layout">
-      <XStack p="$3" bg="$color2" borderBottomWidth={1} borderColor="$borderColor">
+    <YStack flex={1} backgroundColor="background" testID="intercept-test-layout">
+      <XStack
+        padding="3"
+        backgroundColor="color2"
+        borderBottomWidth={1}
+        borderColor="borderColor"
+      >
         <Link href="/" asChild>
-          <Text color="$blue10" testID="back-home">
+          <Text color="blue10" testID="back-home">
             Home
           </Text>
         </Link>
-        <Text ml="$3" fontWeight="bold">
+        <Text marginLeft="3" fontWeight="bold">
           Intercept Test
         </Text>
       </XStack>

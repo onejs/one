@@ -1,12 +1,9 @@
 import { styled, View } from 'tamagui'
 
 export const PageContainer = styled(View, {
-  w: '100%',
-  maw: 600,
-  mx: 'auto',
-  bg: '$color1',
-
-  '$platform-web': {
-    py: '$4',
-  },
+  width: '100%',
+  marginHorizontal: 'auto',
+  backgroundColor: 'color1',
+  paddingVertical: 'web:4',
+  maxWidth: 600,
 })

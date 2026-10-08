@@ -1,4 +1,4 @@
-import { ChevronLeft } from '@tamagui/lucide-icons-2'
+import { ChevronLeft } from '~/components/icons'
 import { getMDXComponent } from '@vxrn/mdx-rust/client'
 import { createRoute, Link, useLoader } from 'one'
 import { useMemo } from 'react'
@@ -65,37 +65,37 @@ export default function BlogPost() {
       <TopNav />
 
       <Container>
-        <YStack py="$8" gap="$6" maw={720} mx="auto">
+        <YStack paddingVertical="8" gap="6" marginHorizontal="auto" maxWidth={720}>
           <Link href="/blog">
-            <XStack gap="$2" ai="center" opacity={0.5} hoverStyle={{ opacity: 1 }}>
+            <XStack gap="2" opacity="0.5 hover:1" alignItems="center">
               <ChevronLeft size={16} />
-              <SizableText size="$3">Back to Blog</SizableText>
+              <SizableText size="3">Back to Blog</SizableText>
             </XStack>
           </Link>
 
-          <YStack gap="$4">
-            <H1 size="$10">{frontmatter.title}</H1>
+          <YStack gap="4">
+            <H1 size="10">{frontmatter.title}</H1>
             {frontmatter.description && (
-              <Paragraph size="$6" color="$color11">
+              <Paragraph size="6" color="color11">
                 {frontmatter.description}
               </Paragraph>
             )}
-            <XStack gap="$3" ai="center">
+            <XStack gap="3" alignItems="center">
               {author && (
-                <SizableText size="$4" fontWeight="500">
+                <SizableText size="4" fontWeight="500">
                   {author.name}
                 </SizableText>
               )}
-              {author && date && <SizableText color="$color10">·</SizableText>}
+              {author && date && <SizableText color="color10">·</SizableText>}
               {date && (
-                <SizableText size="$4" color="$color10">
+                <SizableText size="4" color="color10">
                   {date}
                 </SizableText>
               )}
               {frontmatter.readingTime && (
                 <>
-                  <SizableText color="$color10">·</SizableText>
-                  <SizableText size="$4" color="$color10">
+                  <SizableText color="color10">·</SizableText>
+                  <SizableText size="4" color="color10">
                     {frontmatter.readingTime.text}
                   </SizableText>
                 </>

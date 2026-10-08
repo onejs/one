@@ -66,7 +66,7 @@ function UseLoaderStateComponent() {
 
 function SharedCacheContent() {
   return (
-    <YStack gap="$4" p="$4">
+    <YStack gap="4" padding="4">
       <Text id="title">Shared Cache Test</Text>
       <UseLoaderComponent />
       <UseLoaderStateComponent />

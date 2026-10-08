@@ -35,12 +35,12 @@ function LoaderContent() {
   }
 
   return (
-    <YStack gap="$4" p="$4">
-      <Text fontSize="$6" fontWeight="bold">
+    <YStack gap="4" p="4">
+      <Text fontSize="6" fontWeight="bold">
         Loader Refetch Test
       </Text>
 
-      <YStack gap="$2" backgroundColor="$gray2" padding="$3" borderRadius="$2">
+      <YStack gap="2" backgroundColor="gray2" padding="3" borderRadius="2">
         <Text>Timestamp: {isClient ? data.timestamp : 'SSR'}</Text>
         <Text>Server Count: {data.count}</Text>
         <Text>Client Refetch Count: {refetchCount}</Text>
@@ -50,13 +50,13 @@ function LoaderContent() {
       <Button
         onPress={handleRefetch}
         disabled={state === 'loading'}
-        size="$5"
+        size="5"
         theme={state === 'loading' ? 'gray' : 'blue'}
       >
         {state === 'loading' ? 'Refetching...' : 'Refetch Loader'}
       </Button>
 
-      <Text fontSize="$2" color="$gray10">
+      <Text fontSize="2" color="gray10">
         Open console to see loader calls
       </Text>
     </YStack>

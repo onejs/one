@@ -1,5 +1,6 @@
-import { ColorTokens, Paragraph, Text, Tooltip } from 'tamagui'
-import type { KeyDownEvent } from 'react-native'
+import { tokens } from '~/config/tokens'
+import { Paragraph, Text, Tooltip } from 'tamagui'
+import type { KeyboardEvent } from 'react'
 
 export const Hint = ({
   children,
@@ -10,16 +11,14 @@ export const Hint = ({
   hintContents: React.ReactNode
   tint?: 'green' | 'pink' | 'blue' | 'red' | 'purple'
 }) => {
-  const handleKeyDown = (event: KeyDownEvent) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.nativeEvent.key === 'Enter' || event.nativeEvent.key === ' ') {
       event.preventDefault()
-      // Trigger the tooltip (this depends on how Tamagui's Tooltip handles this)
-      // You might need to use a ref or other method to programmatically show the tooltip
     }
   }
 
-  const color = `$${tint}Fg` as ColorTokens
-  const bg = `$${tint}` as ColorTokens
+  const color = `${tint}Fg`
+  const bg = tint
 
   return (
     <Tooltip placement="top" allowFlip disableRTL offset={15} restMs={40} delay={240}>
@@ -27,16 +26,13 @@ export const Hint = ({
         render="span"
         display="inline"
         cursor="default"
+        color={`hover:${color}`}
+        backgroundColor={`hover:${bg}`}
+        borderRadius="4"
+        paddingHorizontal={2}
+        paddingVertical={1}
+        margin={-2}
         data-tint-link={tint}
-        hoverStyle={{
-          // @ts-ignore
-          color,
-          bg,
-        }}
-        br="$4"
-        px={2}
-        py={1}
-        m={-2}
         aria-describedby="tooltip-content"
         role="button"
         tabIndex={0}
@@ -46,30 +42,27 @@ export const Hint = ({
       </Tooltip.Trigger>
       <Tooltip.Content
         zIndex={1_000_000_000}
-        enterStyle={{ x: 0, y: -4, opacity: 0, scale: 0.96 }}
-        exitStyle={{ x: 0, y: -4, opacity: 0, scale: 0.96 }}
-        x={0}
-        scale={1}
+        opacity="enter:0 exit:0"
+        x="0 enter:0 exit:0"
+        scale="1 enter:0.96 exit:0.96"
+        y="0 enter:-4px exit:-4px"
         transformOrigin="center bottom"
-        y={0}
-        br="$8"
-        elevation="$8"
-        p="$5"
-        maw={250}
-        animateOnly={['transform', 'opacity']}
-        bg={bg}
+        shadowColor="shadowColor"
+        shadowRadius={44}
+        shadowOffset={{ height: 22, width: 0 }}
+        padding="5"
+        backgroundColor={bg}
+        transition={{
+          preset: 'quicker',
+          opacity: { preset: 'quicker', spring: { overshootClamping: true } },
+          properties: 'transform, opacity',
+        }}
+        borderRadius="8"
+        maxWidth={250}
         style={{
           backdropFilter: 'blur(18px)',
           WebkitBackdropFilter: 'blur(18px)',
         }}
-        transition={[
-          'quicker',
-          {
-            opacity: {
-              overshootClamping: true,
-            },
-          },
-        ]}
         id="tooltip-content"
         role="tooltip"
         aria-hidden={false}
@@ -79,10 +72,10 @@ export const Hint = ({
             backdropFilter: 'blur(18px)',
             WebkitBackdropFilter: 'blur(18px)',
           }}
-          bg={bg}
-          size="$4"
+          backgroundColor={bg}
+          size={tokens.size[4].val}
         />
-        <Paragraph color={color} size="$6">
+        <Paragraph color={color} size="6">
           {hintContents}
         </Paragraph>
       </Tooltip.Content>

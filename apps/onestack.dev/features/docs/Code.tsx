@@ -3,17 +3,17 @@ import { Text, Theme, styled } from '@tamagui/core'
 export const Code = styled(Text, {
   name: 'Code',
   render: 'code',
-  fontFamily: '$mono',
-  lineHeight: 18,
+  fontFamily: 'mono',
+  lineHeight: '18px',
   cursor: 'inherit',
   whiteSpace: 'pre',
-  padding: '$1',
-  borderRadius: '$4',
+  padding: '1',
+  borderRadius: '4',
   variants: {
     colored: {
       true: {
-        color: '$color',
-        backgroundColor: '$background',
+        color: 'color',
+        backgroundColor: 'background',
       },
     },
     allowMultiline: {
@@ -27,15 +27,15 @@ export const Code = styled(Text, {
 const CodeInlineBase = styled(Text, {
   name: 'CodeInline',
   render: 'code',
-  fontFamily: '$mono',
-  color: '$color12',
-  backgroundColor: '$background08',
+  fontFamily: 'mono',
+  color: 'color12',
+  backgroundColor: 'background08',
   cursor: 'inherit',
-  br: '$3',
   // @ts-ignore
   fontSize: '88%',
-  p: '$1.5',
+  padding: '1-5',
   whiteSpace: 'pre-wrap',
+  borderRadius: '3',
 })
 
 export const CodeInline = (props: any) => (

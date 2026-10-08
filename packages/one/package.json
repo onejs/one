@@ -322,14 +322,14 @@
     }
   },
   "devDependencies": {
-    "@tamagui/sheet": "3.0.0-beta.1537.1",
+    "@tamagui/sheet": "3.0.0-beta.1670.1",
     "@callstack/liquid-glass": "^0.8.1",
     "@react-native/babel-plugin-codegen": "0.87.1",
     "@react-native/codegen": "^0.87.1",
     "@react-navigation/core": "8.0.0-alpha.40",
     "@react-navigation/drawer": "8.0.0-alpha.57",
     "@react-navigation/native": "8.0.0-alpha.50",
-    "@tamagui/build": "3.0.0-beta.1432.1",
+    "@tamagui/build": "3.0.0-beta.1670.1",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.2.2",
     "@types/react-test-renderer": "^19.1.0",
@@ -352,7 +352,7 @@
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
     "yoga-layout": "^3.2.1",
-    "@tamagui/web": "3.0.0-beta.1537.1"
+    "@tamagui/web": "3.0.0-beta.1670.1"
   },
   "publishConfig": {
     "access": "public"

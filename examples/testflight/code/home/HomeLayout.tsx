@@ -29,19 +29,33 @@ export function HomeLayout() {
 
 function HomeLayoutTouch() {
   return (
-    <YStack f={1}>
-      <XStack ai="center" jc="space-between" py="$1" px="$4" bbc="$borderColor" bbw={1}>
+    <YStack flex={1}>
+      <XStack
+        alignItems="center"
+        justifyContent="space-between"
+        paddingVertical="1"
+        paddingHorizontal="4"
+        borderBottomColor="borderColor"
+        borderBottomWidth={1}
+      >
         <Logo />
-        <ToggleThemeLink f={0} />
+        <ToggleThemeLink flex={0} />
       </XStack>
 
-      <YStack f={1}>
+      <YStack flex={1}>
         <ScrollView>
           <Slot />
         </ScrollView>
       </YStack>
 
-      <XStack ai="center" jc="space-around" btw={1} btc="$borderColor" py="$1" gap="$1">
+      <XStack
+        alignItems="center"
+        justifyContent="space-around"
+        borderTopWidth={1}
+        borderTopColor="borderColor"
+        paddingVertical="1"
+        gap="1"
+      >
         <NavLinks />
       </XStack>
     </YStack>
@@ -50,27 +64,22 @@ function HomeLayoutTouch() {
 
 function HomeLayoutMouse() {
   return (
-    <XStack f={1} mah="100vh">
+    <XStack flex={1} maxHeight="100vh">
       <YStack
-        miw={220}
-        ai="center"
-        brw={1}
-        brc="$borderColor"
-        px="$2"
-        py="$4"
-        gap="$1"
-        $xs={{
-          miw: 'auto',
-        }}
+        minWidth="220px xs:auto"
+        alignItems="center"
+        borderRightWidth={1}
+        borderRightColor="borderColor"
+        paddingHorizontal="2"
+        paddingVertical="4"
+        gap="1"
       >
         <XStack
-          mb="$3"
-          $xs={{
-            w: '$5',
-            h: '$5',
-            ai: 'center',
-            jc: 'center',
-          }}
+          marginBottom="3"
+          width="xs:5"
+          height="xs:5"
+          alignItems="xs:center"
+          justifyContent="xs:center"
         >
           <Logo />
         </XStack>
@@ -82,7 +91,7 @@ function HomeLayoutMouse() {
         <ToggleThemeLink />
       </YStack>
 
-      <YStack f={1}>
+      <YStack flex={1}>
         <ScrollView>
           <Slot />
         </ScrollView>
@@ -110,10 +119,8 @@ function NavLinks() {
 }
 
 const IconFrame = styled(View, {
-  $gtXs: {
-    scale: 0.8,
-    m: -5,
-  },
+  scale: 'gtXs:0.8',
+  margin: 'gtXs:-5px',
 })
 
 const ToggleThemeLink = (props: ViewProps) => {
@@ -160,14 +167,10 @@ const SideMenuLink = ({
 const LinkText = styled(SizableText, {
   context: Context,
   userSelect: 'none',
-  dsp: 'flex',
-  f: 10,
-  size: '$5',
-  cur: 'pointer',
-  $xs: {
-    display: 'none',
-  },
-
+  size: '5',
+  display: 'flex xs:none',
+  flex: 10,
+  cursor: 'pointer',
   variants: {
     isVertical: {
       true: {},
@@ -177,45 +180,35 @@ const LinkText = styled(SizableText, {
 
 const LinkContainer = styled(XStack, {
   context: Context,
-  tag: 'a',
+  render: 'a',
   className: 'text-decoration-none',
-  gap: '$4',
-  br: '$6',
-  cur: 'pointer',
-  ai: 'center',
-  hoverStyle: {
-    bg: '$color3',
-  },
-  pressStyle: {
-    bg: '$color3',
-  },
-
+  gap: '4',
+  backgroundColor: 'hover:color3 press:color3',
+  borderRadius: '6',
+  cursor: 'pointer',
+  alignItems: 'center',
   variants: {
     isActive: {
       true: {
-        backgroundColor: '$color2',
+        backgroundColor: 'color2',
       },
     },
 
     isVertical: {
       true: {
-        f: 1,
-        jc: 'center',
-        px: '$2',
-        py: '$2.5',
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: '2',
+        paddingVertical: '2-5',
       },
       false: {
-        w: '100%',
-        px: '$4',
-        py: '$2.5',
-
-        $xs: {
-          p: 0,
-          w: '$6',
-          h: '$6',
-          ai: 'center',
-          jc: 'center',
-        },
+        width: '100% xs:6',
+        paddingHorizontal: '4',
+        paddingVertical: '2-5',
+        padding: 'xs:0px',
+        height: 'xs:6',
+        alignItems: 'xs:center',
+        justifyContent: 'xs:center',
       },
     },
   } as const,

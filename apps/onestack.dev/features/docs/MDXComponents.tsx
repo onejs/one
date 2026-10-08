@@ -1,4 +1,4 @@
-import { ChevronRight } from '@tamagui/lucide-icons-2'
+import { ChevronRight } from '~/components/icons'
 import { Link } from 'one'
 import React from 'react'
 import {
@@ -33,16 +33,12 @@ const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
   return (
     <Paragraph
       render="p"
-      size="$8"
-      lh={39}
-      mt="$2"
-      mb="$2"
-      fow="400"
-      $sm={{
-        size: '$7',
-        fow: '400',
-      }}
+      size="8 sm:7"
+      marginTop="2"
+      marginBottom="2"
       {...props}
+      lineHeight="39px"
+      fontWeight="400"
     >
       {disableUnwrapText ? children : unwrapText(children)}
     </Paragraph>
@@ -51,25 +47,25 @@ const IntroParagraph = ({ children, disableUnwrapText, ...props }: any) => {
 
 const LI = styled(Paragraph, {
   display: 'list-item' as any,
+  size: '5',
+  paddingBottom: '1',
   render: 'li',
-  size: '$5',
-  pb: '$1',
 })
 
 const UL = styled(YStack, {
   render: 'ul',
-  my: '$1',
-  ml: '$4',
-  mr: '$2',
+  marginVertical: '1',
+  marginLeft: '4',
+  marginRight: '2',
 })
 
 const HR = () => (
   <YStack
-    mt="$9"
-    mb="$5"
-    mx="auto"
+    marginTop="9"
+    marginBottom="5"
+    marginHorizontal="auto"
     width="50%"
-    borderBottomColor="$color5"
+    borderBottomColor="color5"
     borderBottomWidth={1}
   />
 )
@@ -94,15 +90,15 @@ const code = (props) => {
 
 const New = () => (
   <Text
-    fontFamily="$mono"
+    fontFamily="mono"
     fontSize={11}
-    px="$1.5"
-    py="$0.5"
-    br="$2"
-    bg="$green5"
-    color="$green11"
+    paddingHorizontal="1-5"
+    paddingVertical="0-5"
+    backgroundColor="green5"
+    color="green11"
     textTransform="uppercase"
     letterSpacing={1}
+    borderRadius="2"
   >
     new
   </Text>
@@ -152,29 +148,28 @@ const componentsIn = {
       <YStack
         render="a"
         transition="quickest"
+        y="0 hover:-2px press:2px"
+        backgroundColor="color2 hover:color3 press:color1"
+        paddingRight="6"
+        paddingLeft="6"
+        paddingVertical="6"
+        flex={1}
+        borderRadius="4"
         className="text-underline-none"
-        f={1}
-        y={0}
-        bg="$color2"
-        br="$4"
-        p="$6"
-        py="$6"
-        hoverStyle={{ y: -2, bg: '$color3' }}
-        pressStyle={{ y: 2, bg: '$color1' }}
       >
-        <XStack ai="center" jc="space-between" f={1} w="100%">
+        <XStack alignItems="center" justifyContent="space-between" flex={1} width="100%">
           <YStack flexShrink={1}>
-            <Heading size="$4" color="$color7" {...(!!category && { mt: '$-2' })}>
+            <Heading size="4" color="color7" {...(!!category && { marginTop: '-2' })}>
               {category}
             </Heading>
-            <Paragraph size="$7" color="$color11">
+            <Paragraph size="7" color="color11">
               {title}
             </Paragraph>
           </YStack>
 
           <Spacer flex={1} />
 
-          <ChevronRight color="$color11" />
+          <ChevronRight color="color11" />
         </XStack>
       </YStack>
     )
@@ -190,38 +185,39 @@ const componentsIn = {
     return content
   },
 
-  CardCol: (props) => <YStack mt="$6" mb="$6" gap="$3" {...props} />,
+  CardCol: (props) => <YStack marginTop="6" marginBottom="6" gap="3" {...props} />,
 
-  h1: (props) => <H1 width="max-content" pos="relative" mb="$2" {...props} />,
+  h1: (props) => (
+    <H1 width="max-content" marginBottom="2" {...props} position="relative" />
+  ),
 
   h2: ({ children, ...props }) => (
     <H2
-      pos="relative"
-      width={`fit-content` as any}
-      pt="$6"
-      mt="$2"
-      bbw={1}
-      w="100%"
-      pb="$4"
-      bbc="$color4"
-      data-heading
+      position="relative"
+      width="100%"
+      paddingTop="6"
+      marginTop="2"
+      paddingBottom="4"
       {...props}
+      borderBottomWidth={1}
+      borderBottomColor="color4"
+      data-heading
     >
       {children}
     </H2>
   ),
 
   h3: ({ children, id, ...props }) => (
-    <LinkHeading pt="$4" mb="$1" id={id}>
+    <LinkHeading paddingTop="4" marginBottom="1" id={id}>
       <H3
-        fontFamily="$mono"
-        size="$5"
+        fontFamily="mono"
+        size="5"
         letterSpacing={-0.5}
-        pos="relative"
         width={`fit-content` as any}
+        {...props}
+        position="relative"
         id={id}
         data-heading
-        {...props}
       >
         {children}
       </H3>
@@ -230,25 +226,25 @@ const componentsIn = {
 
   h4: (props) => (
     <H4
-      pos="relative"
+      position="relative"
       width={`fit-content` as any}
-      mt="$6"
-      mb="$3"
-      fow="400"
+      marginTop="6"
+      marginBottom="3"
       {...props}
+      fontWeight="400"
     />
   ),
 
-  h5: (props) => <H5 mt="$4" {...props} />,
+  h5: (props) => <H5 marginTop="4" {...props} />,
 
   p: (props) => (
     <Paragraph
       className="docs-paragraph"
       display="block"
-      size="$6"
-      lh={30}
-      my="$3"
+      size="6"
+      marginVertical="3"
       {...props}
+      lineHeight="30px"
     />
   ),
 
@@ -256,17 +252,17 @@ const componentsIn = {
 
   ul: ({ children }) => {
     return (
-      <UL my="$2">
+      <UL marginVertical="2">
         {React.Children.toArray(children).map((x) => (typeof x === 'string' ? null : x))}
       </UL>
     )
   },
 
-  ol: (props) => <YStack {...props} render="ol" mb="$3" />,
+  ol: (props) => <YStack {...props} marginBottom="3" render="ol" />,
 
   li: (props) => {
     return (
-      <LI size="$6" className="docs-paragraph">
+      <LI size="6" className="docs-paragraph">
         {props.children}
       </LI>
     )
@@ -285,44 +281,10 @@ const componentsIn = {
           {...props}
         >
           {children}
-          {/* {href.startsWith('http') ? (
-            <>
-              &nbsp;
-              <Text
-                // @ts-ignore
-                fontSize="inherit"
-                display="inline-flex"
-                y={2}
-                ml={-1}
-              >
-                <ExternalIcon />
-              </Text>
-            </>
-          ) : null} */}
         </Paragraph>
       </Link>
     )
   },
-
-  // hr: HR,
-
-  // ul: ({ children }) => {
-  //   return (
-  //     <UL my="$4">
-  //       {React.Children.toArray(children).map((x) => (typeof x === 'string' ? null : x))}
-  //     </UL>
-  //   )
-  // },
-
-  // ol: (props) => <YStack {...props} render="ol" mb="$3" />,
-
-  // li: (props) => {
-  //   return (
-  //     <LI size="$6" my="$1.5" className="docs-paragraph">
-  //       {props.children}
-  //     </LI>
-  //   )
-  // },
 
   strong: (props) => (
     <Paragraph render="strong" fontSize="inherit" {...props} fontWeight="700" />
@@ -336,8 +298,7 @@ const componentsIn = {
   td: Td,
 
   img: ({ ...props }) => (
-    <View render="span" my="$6">
-      {/* TODO make this a proper <Image /> component */}
+    <View render="span" marginVertical="6">
       <View render="img" {...props} maxWidth="100%" />
     </View>
   ),
@@ -350,22 +311,22 @@ const componentsIn = {
   blockquote: ({ children, ...props }) => {
     return (
       <View
-        my="$4"
-        px="$6"
-        ml="$3"
+        marginVertical="4"
+        paddingHorizontal="6"
+        marginLeft="3"
         borderLeftWidth={1}
-        borderColor="$borderColor"
-        jc="center"
+        borderColor="borderColor"
         {...props}
+        justifyContent="center"
       >
         <Paragraph
-          fontFamily="$body"
+          fontFamily="body"
           whiteSpace="revert"
-          size="$8"
-          lh="$9"
-          fow="300"
-          color="$color"
+          size="8 sm:7"
+          color="color"
           opacity={0.65}
+          lineHeight="9"
+          fontWeight="300"
         >
           {unwrapText(children)}
         </Paragraph>

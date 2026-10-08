@@ -154,6 +154,32 @@ These are product choices. Launch does not block on them unless Nate says so.
 
 ## 5. docs
 
+The docs/compiler migration uses published `3.0.0-beta.1670.1` from
+Tamagui source `23b9b37ef498bb7ebe306138c1d635a807db8ac1`, on
+`tm/native-docs-compiler` (owner p67085).
+
+RAN: seven package tarballs pass SHA512 integrity and all 1567 installed-byte
+comparisons. All 129 installed Tamagui packages use this beta. Published V3
+config parsing resolves the One app alias under TypeScript 7.0.2. The migration
+keeps the existing V5 theme and custom scale, converts flat values and Sheet
+composition, and generates only consumed icons with the published CLI.
+
+RAN: the docs site and five test app projects pass cold types; the Testflight
+example still rejects three existing missing database imports. The docs strict
+style check passes 86 files. Native Widgets docs load without browser errors;
+code-copy and keyboard code-block access pass. Homepage keyboard copy and
+mobile menu navigation pass. The initial mobile menu rejected a normal click
+because a nested scroll view collapsed under the Sheet header; one scroll
+owner now accepts the same action. Original rejection and final captures remain
+outside Git in `/Users/n8/.local/share/one-native-docs-compiler-p67085/v3/`.
+
+Production site build and production browser replay remain required before this
+branch lands on v2-beta. One CI owner m22158 owns required Checks and Tests,
+Release and canary content; Contrast delivery owner p68879 owns runtime 96
+production acceptance separately. These web checks do not accept native app,
+Peach or production package delivery.
+
+
 - [ ] every shipped native API has a page whose props match its types; the
   drift suite stays green.
 - [ ] `native-components.mdx` lists every `One.iOS` and `One.UI` family

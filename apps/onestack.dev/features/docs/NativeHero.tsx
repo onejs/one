@@ -4,14 +4,13 @@ import { YStack } from 'tamagui'
 export function NativeHero({ src, alt }: { src: string; alt: string }) {
   return (
     <YStack
-      mt="$4"
-      mb="$6"
-      br="$6"
-      ov="hidden"
+      marginTop="4"
+      marginBottom="6"
       borderWidth={0.5}
-      borderColor="$borderColor"
-      mx="$-4"
-      $sm={{ mx: 0, br: '$4' }}
+      borderColor="borderColor"
+      marginHorizontal="-4 sm:0px"
+      borderRadius="6 sm:4"
+      overflow="hidden"
     >
       <img
         src={src}
