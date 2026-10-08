@@ -9,6 +9,7 @@ export declare function registerScrollGroup(groupId: string): () => void;
 type ScrollBehaviorProps = {
     disable?: boolean | 'restore';
 };
+export declare function ScrollBehaviorRouteCommit(): null;
 export declare function ScrollBehavior(props: ScrollBehaviorProps): null;
 export {};
 //# sourceMappingURL=ScrollBehavior.d.ts.map

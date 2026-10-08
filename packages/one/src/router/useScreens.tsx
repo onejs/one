@@ -18,6 +18,7 @@ import { NamedSlot } from '../views/Navigator'
 import { RouteErrorView } from '../views/RouteErrorView'
 import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
 import { Try } from '../views/Try'
+import { ScrollBehaviorRouteCommit } from '../views/ScrollBehavior'
 import { DevHead } from '../vite/DevHead'
 import { getServerContext, useServerContext } from '../vite/one-server-only'
 import { getReactNavigationRouteName } from '../getReactNavigationConfig'
@@ -492,7 +493,14 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     }
 
     if (value.type !== 'layout') {
-      return rendered
+      return process.env.VITE_ENVIRONMENT === 'client' ? (
+        <>
+          {rendered}
+          <ScrollBehaviorRouteCommit />
+        </>
+      ) : (
+        rendered
+      )
     }
 
     const providedSuspenseFallback = LayoutSuspenseFallback ?? InheritedSuspenseFallback

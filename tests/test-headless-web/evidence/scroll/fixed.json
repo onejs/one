@@ -1,0 +1,50 @@
+[
+  {
+    "kind": "start",
+    "t": 737.8999999761581,
+    "y": 1200,
+    "url": "/scroll-source",
+    "source": true,
+    "target": false
+  },
+  {
+    "kind": "scroll",
+    "t": 746.8000000119209,
+    "y": 1200,
+    "url": "/scroll-source",
+    "source": true,
+    "target": false
+  },
+  {
+    "kind": "scrollTo [0,0]",
+    "t": 796.8000000119209,
+    "y": 1200,
+    "url": "/scroll-source",
+    "source": false,
+    "target": true
+  },
+  {
+    "kind": "after-scroll",
+    "t": 796.8999999761581,
+    "y": 0,
+    "url": "/scroll-source",
+    "source": false,
+    "target": true
+  },
+  {
+    "kind": "mutation",
+    "t": 797,
+    "y": 0,
+    "url": "/scroll-source",
+    "source": false,
+    "target": true
+  },
+  {
+    "kind": "scroll",
+    "t": 805,
+    "y": 0,
+    "url": "/scroll-target",
+    "source": false,
+    "target": true
+  }
+]

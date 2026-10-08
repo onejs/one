@@ -1,0 +1,66 @@
+[
+  {
+    "kind": "start",
+    "t": 693.4000000357628,
+    "y": 1200,
+    "url": "/scroll-source",
+    "source": true,
+    "target": false
+  },
+  {
+    "kind": "scroll",
+    "t": 699.7000000476837,
+    "y": 1200,
+    "url": "/scroll-source",
+    "source": true,
+    "target": false
+  },
+  {
+    "kind": "scrollTo [0,0]",
+    "t": 736.4000000357628,
+    "y": 1200,
+    "url": "/scroll-source",
+    "source": true,
+    "target": false
+  },
+  {
+    "kind": "after-scroll",
+    "t": 736.4000000357628,
+    "y": 0,
+    "url": "/scroll-source",
+    "source": true,
+    "target": false
+  },
+  {
+    "kind": "mutation",
+    "t": 749.8000000119209,
+    "y": 0,
+    "url": "/scroll-source",
+    "source": false,
+    "target": true
+  },
+  {
+    "kind": "scroll",
+    "t": 756.2000000476837,
+    "y": 0,
+    "url": "/scroll-source",
+    "source": false,
+    "target": true
+  },
+  {
+    "kind": "scrollTo [0,0]",
+    "t": 757.5,
+    "y": 0,
+    "url": "/scroll-source",
+    "source": false,
+    "target": true
+  },
+  {
+    "kind": "after-scroll",
+    "t": 757.5,
+    "y": 0,
+    "url": "/scroll-source",
+    "source": false,
+    "target": true
+  }
+]
