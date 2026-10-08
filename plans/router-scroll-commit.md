@@ -20,4 +20,8 @@ RAN validation:
 
 Cost: one null marker per mounted leaf screen, one focus/context subscription and a layout effect. Scroll checks are constant time per committed leaf. The reset uses no timer, observer or polling. The existing restoration timer remains. Existing scroll-group lookup cost remains unchanged.
 
+RAN: CI exposed the commit marker being rendered for inline 404 routes outside a navigator screen, where useIsFocused throws. The marker now belongs to the qualified navigator screen under the same suspense boundary as the page. Inline 404 and named-slot routes have no navigation prop and do not register a screen commit. Both missing-route browser probes render their original not-found message after this repair. The two existing test-loaders client-side missing-slug tests also pass with their original 10-second assertions and retry=0. Package build, focused oxlint and check:proofs pass. The 13 focused route/scroll unit tests and both scroll browser tests pass.
+
+The JSON traces are preserved outside git at `/Users/n8/contrast/artifacts/one-scroll-regression/`; check:proofs rejects tracked evidence directories.
+
 The public deployment has not changed yet. The beta-branch canary supplies the package for downstream installation. Parent m22514 owns normal CI follow-up; this lane verifies the requested canary tarball before finishing.

@@ -493,14 +493,7 @@ export function getQualifiedRouteComponent(value: RouteNode) {
     }
 
     if (value.type !== 'layout') {
-      return process.env.VITE_ENVIRONMENT === 'client' ? (
-        <>
-          {rendered}
-          <ScrollBehaviorRouteCommit />
-        </>
-      ) : (
-        rendered
-      )
+      return rendered
     }
 
     const providedSuspenseFallback = LayoutSuspenseFallback ?? InheritedSuspenseFallback
@@ -574,15 +567,20 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         <Route route={route} node={value}>
           <>
             {wrapSuspense(
-              <ScreenComponent
-                {...{
-                  ...props,
-                  ref,
-                  // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-                  // the intention is to make it possible to deduce shared routes.
-                  segment: value.route,
-                }}
-              />,
+              <>
+                <ScreenComponent
+                  {...{
+                    ...props,
+                    ref,
+                    // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+                    // the intention is to make it possible to deduce shared routes.
+                    segment: value.route,
+                  }}
+                />
+                {process.env.VITE_ENVIRONMENT === 'client' &&
+                  value.type !== 'layout' &&
+                  navigation && <ScrollBehaviorRouteCommit />}
+              </>,
               InheritedSuspenseFallback
             )}
           </>
