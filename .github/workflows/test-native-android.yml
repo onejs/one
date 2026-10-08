@@ -65,7 +65,7 @@ jobs:
         working-directory: packages/one
         run: >-
           bun run vitest --run
-          src/nativeFixturePrebuild.test.ts src/nativeCoverage.test.ts
+          src/nativeFixturePrebuild.test.ts tests/nativeCoverage.test.ts
           src/cli/prebuild.test.ts src/cli/runAndroid.test.ts
           src/native/appManifest.test.ts src/platform/AndroidMenu.test.tsx
           src/platform/nativeBarrel.test.ts tests/compose.test.ts

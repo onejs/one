@@ -7,7 +7,10 @@ import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
 // hooks and the renderer must share the renderer's installed react instance.
 const react = createRequire(require.resolve('react-test-renderer')).resolve('react')
-const reactNativeWeb = resolve(__dirname, '../../node_modules/react-native-web/dist/index.js')
+const reactNativeWeb = resolve(
+  __dirname,
+  '../../node_modules/react-native-web/dist/index.js'
+)
 const extensions = [
   '.web.mjs',
   '.web.js',
@@ -34,7 +37,7 @@ const router = {
   define,
   test: {
     name: 'one',
-    include: ['./src/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
+    include: ['./src/**/*.{test,spec}.?(c|m)[jt]s?(x)', './tests/nativeCoverage.test.ts'],
     server: {
       deps: {
         inline: [
@@ -93,6 +96,7 @@ export default defineConfig({
         test: {
           name: 'platform',
           include: ['./tests/**/*.test.?(c|m)[jt]s?(x)'],
+          exclude: ['./tests/nativeCoverage.test.ts'],
           setupFiles: [resolve(__dirname, 'tests/setupNativeState.ts')],
         },
         resolve: {
