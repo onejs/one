@@ -45,7 +45,7 @@ The major features in version 1 are:
   single config option.
 - <New /> **[useLoaderState](/docs/hooks-useLoaderState)**, **[setServerData and
   getServerData](/docs/helpers-utility-functions)** for advanced data loading.
-- <New /> **[setResponseHeaders](/docs/helpers-utility-functions#setresponseheaders)** for
+- <New /> **[setResponseHeaders](/docs/helpers-setResponseHeaders)** for
   ISR/caching via CDN cache headers, cookies, and custom response headers.
 - <New /> Automatic **[NativeWind](https://www.nativewind.dev)** and
   **[Reanimated](https://docs.swmansion.com/react-native-reanimated)** detection and
@@ -89,7 +89,7 @@ The major features in version 1 are:
 - <New /> **[Environment Guard Imports](/docs/configuration#environmentguards)** - `import 'server-only'`,
   `'client-only'`, `'native-only'`, and `'web-only'` to prevent modules from leaking into
   the wrong build environment.
-- <New /> **[SPA Shell Rendering](/docs/configuration#webrenderrootlayout)** - Render your
+- <New /> **[SPA Shell Rendering](/docs/configuration)** - Render your
   root layout into the HTML shell for SPA pages, giving users immediate visual content
   (nav, head tags, CSS) while page content loads client-side. Supports per-route titles
   via `usePathname()` and static, SSR, or hybrid modes.
