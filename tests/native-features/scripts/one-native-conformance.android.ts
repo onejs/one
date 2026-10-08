@@ -4658,6 +4658,11 @@ async function runUpdates(config: Config) {
 
   const updates = startUpdatesServer(config.artifactDir, 'android')
   const { publish } = updates
+  // bounded proof mode: the first genuine happy-path cycle only (embedded
+  // launch, publish v2 check/fetch/stage/cold-apply, publish p5
+  // check/fetch/reload-apply). skips the tamper/rollback/stress matrices;
+  // every kept assertion is unchanged.
+  const happyOnly = process.env.ONE_UPDATES_HAPPY_PATH_ONLY === '1'
   try {
     launchApp()
 
@@ -4711,6 +4716,7 @@ async function runUpdates(config: Config) {
       )
     )
 
+    if (!happyOnly) {
     // 3. a tampered asset rejects fetch and stages nothing.
     const tampered = publish('v2')
     updates.tamperLaunchAsset()
@@ -4789,6 +4795,7 @@ async function runUpdates(config: Config) {
     await wait('killed proven update is selected again', home('slow'))
     await openFixture()
     await wait('reselected update runs', (n) => labelValue(n, 'UpdateId') === slow.id)
+    }
 
     // 6. reload runs the staged bundle in-session, then twenty reloads in a
     // row run without a crash.
@@ -4803,13 +4810,14 @@ async function runUpdates(config: Config) {
     await wait('reloaded update reports staged metadata', (n) =>
       Boolean(labelValue(n, 'UpdateId') === staged.id && labelValue(n, 'Meta') === 'critical')
     )
-    for (let cycle = 1; cycle <= 20; cycle++) {
+    if (!happyOnly) for (let cycle = 1; cycle <= 20; cycle++) {
       tap('one-native-updates-reload')
       await wait(`reload ${cycle} boots clean`, home('p5'))
       await openFixture()
       await wait(`reload ${cycle} keeps the update`, (n) => labelValue(n, 'UpdateId') === staged.id)
     }
 
+    if (!happyOnly) {
     // 7. a deleted bundle file falls through to the previous update in the
     // same launch.
     const doomed = `${updatesDir}/${staged.id}/main.jsbundle`
@@ -4866,6 +4874,7 @@ async function runUpdates(config: Config) {
     await wait('escaping paths fetch rejects', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
     tap('one-native-updates-refresh')
     await wait('escaping paths leave staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+    }
   } catch (error) {
     const stem = path.join(config.artifactDir, 'updates-failure')
     try {
@@ -4878,7 +4887,11 @@ async function runUpdates(config: Config) {
   } finally {
     updates.stop()
   }
-  console.log('ALL ONE NATIVE ANDROID UPDATES CHECKS PASSED')
+  console.log(
+    happyOnly
+      ? 'ONE NATIVE ANDROID UPDATES HAPPY PATH PASSED'
+      : 'ALL ONE NATIVE ANDROID UPDATES CHECKS PASSED'
+  )
 }
 
 try {
