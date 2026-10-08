@@ -15,3 +15,36 @@ export default function Layout() {
   )
 }
 ```
+
+## NamedSlot
+
+For intercepting routes, layouts render one `<NamedSlot>` per parallel `@slotName` directory. It renders the intercepted route when an intercept is active, and its children (or the slot's `default.tsx`) otherwise:
+
+```tsx
+import { NamedSlot } from 'one'
+
+export default function Layout({ children, modal }) {
+  return (
+    <>
+      {children}
+      <NamedSlot name="modal">{modal}</NamedSlot>
+    </>
+  )
+}
+```
+
+`name` matches the `@modal` directory name. Pass `layoutContextKey` to scope slot state to one layout so duplicate modals do not render across layouts.
+
+Close an intercepted modal with `closeIntercept()` instead of `router.back()`. It restores the pre-intercept URL and returns `true` when an intercept was active, `false` otherwise:
+
+```tsx
+import { closeIntercept } from 'one'
+
+function CloseButton() {
+  return <button onClick={() => closeIntercept()}>Close</button>
+}
+```
+
+Use `isInterceptedNavigation()` to check whether the current history entry came from an interception.
+
+See [Intercepting Routes](/plans/routing-intercepting-routes) for the full file conventions.
