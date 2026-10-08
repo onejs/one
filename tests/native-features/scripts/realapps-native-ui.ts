@@ -199,6 +199,8 @@ if (values.mode === 'home') {
         '- extendedWaitUntil:\n    visible: "Open settings for runner return"\n    timeout: 20000\n'
     }
   }
+  flow += '- scrollUntilVisible:\n    element:\n      id: realapps-api-shell-return-marker\n    direction: DOWN\n    visibilityPercentage: 100\n'
+  flow += '- assertVisible:\n    id: realapps-api-shell-return-marker\n'
   visible('Injected route remains inside the original shell')
 } else if (values.mode === 'ui') {
   tap('realapps-open-api')
