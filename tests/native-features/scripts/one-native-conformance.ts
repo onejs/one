@@ -3,6 +3,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runEffectsSuite } from './one-native-effects-suite'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
 import {
   countChangedPixels,
@@ -135,6 +136,7 @@ const suites = [
   'ui-image',
   'ui-icon',
   'adaptive-flat',
+  'ui-effects',
   'gpu',
   'updates',
 ] as const
@@ -782,6 +784,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   portal: (nodes: Node[]) => Boolean(id(nodes, 'portal-toggle-host')),
   pager: (nodes: Node[]) => Boolean(id(nodes, 'one-ui-pager-root')),
   'ui-text-input': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-text-input-field')),
+  'ui-effects': (nodes: Node[]) => Boolean(id(nodes, 'effects-reading')),
   'adaptive-flat': (nodes: Node[]) => Boolean(id(nodes, 'adaptive-fixture')),
   'ui-icon': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-icon-invalid')),
   'ui-image': (nodes: Node[]) => Boolean(id(nodes, 'one-native-image-switch')),
@@ -896,6 +899,7 @@ const suiteHome: Record<Suite, string> = {
   pager: 'nav-one-ui-pager',
   'ui-text-input': 'nav-one-ui-text-input',
   'ui-image': 'nav-one-native-image',
+  'ui-effects': 'nav-one-native-effects',
   'adaptive-flat': 'nav-one-native-adaptive',
   'ui-icon': 'nav-one-ui-icon',
   gpu: 'nav-one-native-gpu',
@@ -6854,6 +6858,60 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'ui-effects') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-effects')
+    await wait('effects fixture mounted', (nodes) =>
+      Boolean(id(nodes, 'effects-reading'))
+    )
+    const reading = (nodes: Node[]) =>
+      JSON.parse(String(id(nodes, 'effects-reading')?.AXLabel || '{}'))
+    let index = 0
+    await runEffectsSuite({
+      artifactDir: config.artifactDir,
+      pass: (name) => {
+        checks.push({ name, durationMs: 0 })
+        console.log(`PASS ${name}`)
+      },
+      capture: async (effect, variant) => {
+        tap({ id: `effect-${effect}` })
+        await wait(
+          `${effect} selected`,
+          (nodes) =>
+            reading(nodes).effect === effect && reading(nodes).variant === 'canonical'
+        )
+        tap({ id: `variant-${variant}` })
+        const nodes = await wait(
+          `${effect} ${variant} mounted with native geometry`,
+          (nodes) => {
+            const value = reading(nodes)
+            return (
+              value.effect === effect &&
+              value.variant === variant &&
+              value.bounds?.width === 300 &&
+              value.bounds?.height === 240
+            )
+          }
+        )
+        const viewport = nodes.find((node) => node.type === 'Application')?.frame
+        const stage = id(nodes, 'effects-stage')?.frame
+        const root = id(nodes, 'one-native-effects-mounted')?.frame
+        if (!viewport || !stage || !root)
+          throw new Error('Effects stage or application has no native frame')
+        return {
+          file: screenshot(`effects-${index++}-${effect}-${variant}.png`, nodes),
+          reading: reading(nodes),
+          viewport,
+          stage,
+          root,
+        }
+      },
+    })
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+
   if (config.suite === 'adaptive-flat') {
     type Reading = {
       ready: boolean
