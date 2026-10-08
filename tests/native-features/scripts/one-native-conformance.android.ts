@@ -2,6 +2,7 @@
 import { execFileSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { stampAndroidDebugHost } from './android-debug-host'
 import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Bounds = { left: number; top: number; right: number; bottom: number }
@@ -845,34 +846,12 @@ function launcherComponent(config: Config) {
 // wipe app data so permissions start undetermined like a fresh install.
 function clearAppData(config: Config) {
   adbText(config, ['shell', 'pm', 'clear', config.packageId])
-  relaunchApp(config)
   stampDebugHost(config)
   relaunchApp(config)
 }
 
-// point the debug host at this run's metro: the stock emulator reaches the
-// host loopback as 10.0.2.2, so whoever else owns host:8081 does not
-// matter. call after a launch that guarantees the data dir exists; pm clear
-// wipes the stamp, so call again after every clear.
 function stampDebugHost(config: Config) {
-  // android 17 gates metro behind local-network permission, including on
-  // fresh installs and after pm clear. grant only this dev-tooling permission;
-  // the module-under-test permissions remain untouched.
-  const sdk = Number(adbText(config, ['shell', 'getprop', 'ro.build.version.sdk']).trim())
-  if (sdk >= 37) {
-    adbText(config, [
-      'shell',
-      'pm',
-      'grant',
-      config.packageId,
-      'android.permission.ACCESS_LOCAL_NETWORK',
-    ])
-  }
-  // adb shell joins argv with spaces and re-parses on device, so the -c
-  // script travels inside its own double quotes; the xml attribute quotes
-  // are backslash-escaped for the device shell.
-  const script = `mkdir -p shared_prefs && echo '<map><string name=\\"debug_http_host\\">10.0.2.2:${config.metroPort}</string></map>' > shared_prefs/${config.packageId}_preferences.xml`
-  adbText(config, ['shell', 'run-as', config.packageId, 'sh', '-c', `"${script}"`])
+  stampAndroidDebugHost(config.packageId, config.metroPort, (args) => adbText(config, args))
 }
 
 async function run(config: Config) {
@@ -965,6 +944,7 @@ async function run(config: Config) {
     await expect(
       'system-app-icon-mounted',
       (nodes) =>
+        joined(nodes).includes('Startup support: true') &&
         joined(nodes).includes('Supported: true') &&
         joined(nodes).includes('Current icon: primary'),
       'one-native-app-icon-alternate'
@@ -2010,7 +1990,6 @@ async function run(config: Config) {
   try {
     preflight(config)
     requireMetroReverse(config)
-    relaunchApp(config)
     stampDebugHost(config)
     relaunchApp(config)
 
@@ -4125,7 +4104,6 @@ async function runCompose(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   preflight(config)
   requireMetroReverse(config)
-  relaunchApp(config)
   stampDebugHost(config)
   relaunchApp(config)
 

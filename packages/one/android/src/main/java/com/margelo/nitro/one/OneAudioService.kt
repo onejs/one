@@ -18,13 +18,15 @@ class OneAudioService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // a stop can arrive while foreground promotion is still pending.
+        // satisfy that obligation before stopping the service.
+        val title = intent?.getStringExtra(EXTRA_TITLE) ?: "Audio playing"
+        startForegroundNow(title)
         if (intent?.action == ACTION_STOP) {
             stopForeground(STOP_FOREGROUND_REMOVE)
             stopSelf()
             return START_NOT_STICKY
         }
-        val title = intent?.getStringExtra(EXTRA_TITLE) ?: "Audio playing"
-        startForegroundNow(title)
         return START_STICKY
     }
 

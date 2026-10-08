@@ -665,11 +665,19 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         if (current == null) {
             return AudioPlaybackStatus(AudioPlaybackState.IDLE, null, 0.0, null, null)
         }
+        // duration and position are unavailable until preparation completes.
+        if (!playerPrepared || playbackError != null) {
+            return AudioPlaybackStatus(
+                if (playbackError != null) AudioPlaybackState.FAILED else AudioPlaybackState.LOADING,
+                playerUri,
+                0.0,
+                null,
+                playbackError
+            )
+        }
         val state = when {
-            playbackError != null -> AudioPlaybackState.FAILED
             playbackEnded -> AudioPlaybackState.ENDED
             playbackPaused -> AudioPlaybackState.PAUSED
-            !playerPrepared -> AudioPlaybackState.LOADING
             else -> try {
                 if (current.isPlaying) AudioPlaybackState.PLAYING else AudioPlaybackState.PAUSED
             } catch (e: Exception) {
@@ -733,23 +741,11 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             } catch (e: Exception) {
             }
         }
-        val duration = try {
-            current.duration.toLong()
-        } catch (e: Exception) {
-            -1L
-        }
-        if (duration >= 0) metadata.putLong(MediaMetadata.METADATA_KEY_DURATION, duration)
+        val status = playbackStatus()
+        status.durationMs?.let { metadata.putLong(MediaMetadata.METADATA_KEY_DURATION, it.toLong()) }
         session.setMetadata(metadata.build())
-        val position = try {
-            current.currentPosition.toLong()
-        } catch (e: Exception) {
-            0L
-        }
-        val playing = !playbackEnded && !playbackPaused && try {
-            current.isPlaying
-        } catch (e: Exception) {
-            false
-        }
+        val position = status.positionMs.toLong()
+        val playing = status.state == AudioPlaybackState.PLAYING
         session.setPlaybackState(
             PlaybackState.Builder()
                 .setActions(

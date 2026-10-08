@@ -7,10 +7,11 @@
 // Usage:
 //   bun tests/native-features/scripts/one-native-android-media-proof.ts \
 //     --device-id emulator-5560 --apk tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk \
-//     [--suite contacts|calendar|photo|audio|all] [--artifact-dir DIR] [--install-only] [--no-install]
+//     [--suite contacts|calendar|photo|audio|all] [--artifact-dir DIR] [--metro-port PORT] [--install-only] [--no-install]
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { stampAndroidDebugHost } from './android-debug-host'
 
 const PACKAGE = 'dev.vxrn.nativefeatures.tests'
 const ADB = process.env.ADB ?? 'adb'
@@ -22,6 +23,7 @@ type Args = {
   artifactDir: string
   installOnly: boolean
   noInstall: boolean
+  metroPort: number
 }
 
 function parse(args: string[]): Args {
@@ -32,22 +34,27 @@ function parse(args: string[]): Args {
     artifactDir: 'tests/native-features/evidence/one-native-android-media',
     installOnly: false,
     noInstall: false,
+    metroPort: 8081,
   }
   for (let i = 0; i < args.length; i++) {
     const arg = args[i]
     if (arg === '--device-id') out.deviceId = args[++i] ?? ''
     else if (arg === '--apk') out.apk = args[++i] ?? ''
+    else if (arg === '--metro-port') out.metroPort = Number(args[++i])
     else if (arg === '--suite') out.suite = args[++i] ?? 'all'
     else if (arg === '--artifact-dir') out.artifactDir = args[++i] ?? out.artifactDir
     else if (arg === '--install-only') out.installOnly = true
     else if (arg === '--no-install') out.noInstall = true
     else if (arg === '--help' || arg === '-h') {
-      console.log('Usage: one-native-android-media-proof.ts --device-id <SERIAL> --apk <APK> [--suite all|contacts|calendar|photo|audio] [--artifact-dir DIR] [--install-only] [--no-install]')
+      console.log('Usage: one-native-android-media-proof.ts --device-id <SERIAL> --apk <APK> [--suite all|contacts|calendar|photo|audio] [--artifact-dir DIR] [--metro-port PORT] [--install-only] [--no-install]')
       process.exit(0)
     } else throw new Error(`unknown argument: ${arg}`)
   }
   if (!out.deviceId) throw new Error('--device-id is required')
   if (!out.noInstall && !out.apk) throw new Error('--apk is required unless --no-install')
+  if (!Number.isInteger(out.metroPort) || out.metroPort <= 0 || out.metroPort > 65535) {
+    throw new Error('a valid Metro port is required: --metro-port <PORT>')
+  }
   return out
 }
 
@@ -122,7 +129,7 @@ function dump(saveName?: string): { xml: string; nodes: XmlNode[] } {
   }
   const xml = adb(['exec-out', 'cat', remote])
   dumpCount += 1
-  if (saveName) writeFileSync(resolve(artifacts, saveName), xml)
+  writeFileSync(resolve(artifacts, saveName ?? `dump-${String(dumpCount).padStart(3, '0')}.xml`), xml)
   return { xml, nodes: parseXml(xml) }
 }
 
@@ -361,6 +368,7 @@ function launch(route: string, revoke: string[] = []) {
   for (const perm of revoke) {
     adbQuiet(['shell', 'pm', 'revoke', PACKAGE, `android.permission.${perm}`])
   }
+  stampAndroidDebugHost(PACKAGE, config.metroPort, adb)
   adb(['shell', 'am', 'force-stop', PACKAGE])
   adb(['shell', 'am', 'start', '-a', 'android.intent.action.VIEW', '-d', `nativefeatures://app/${route}`])
 }
@@ -499,10 +507,10 @@ async function suiteContacts() {
   launch('one-native-contacts', ['READ_CONTACTS', 'WRITE_CONTACTS'])
   await tapTestIdOrText('one-native-contacts-run', 'Run Contacts proof')
   // the system picker covers the app, so drive it by its own markers.
-  // dumps are slower than the picker's close/reopen gap, so the first
-  // sighting double-taps the proof contact (the selection) and every
-  // later sighting cancels with back (the two cancels).
-  let pickerTapped = false
+  // a tap does not prove that the picker has closed. each subsequent
+  // cancel targets a new native activity instance after selection.
+  let selectedPickerActivity: string | undefined
+  const canceledPickerActivities = new Set<string>()
   const nodes = await waitFor(
     (current) => findContaining(current, 'Status: passed') !== undefined || findContaining(current, 'Status: failed') !== undefined,
     {
@@ -511,14 +519,25 @@ async function suiteContacts() {
       serviceKeywords: ['contact'],
       onDump: async (current) => {
         if (findContaining(current, 'Choose a contact') === undefined) return
-        if (!pickerTapped) {
-          pickerTapped = true
+        const activityState = adb(['shell', 'dumpsys', 'activity', 'activities'])
+        const pickerActivity = activityState.match(
+          /topResumedActivity=ActivityRecord\{(\S+) [^\n]*ContactPickerActivity\b/
+        )?.[1]
+        if (!pickerActivity) return
+        writeFileSync(resolve(artifacts, `contacts-picker-${dumpCount}.activities.txt`), activityState)
+        if (selectedPickerActivity === undefined) {
           const contact = findContaining(current, 'OneEdited')
-          // one tap only: a second lands on the next picker opening.
-          if (contact?.bounds) tapNode(contact)
-        } else {
-          adbQuiet(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
-          await sleep(1500)
+          if (!contact?.bounds) return
+          writeFileSync(resolve(artifacts, `contacts-picker-${dumpCount}.json`), JSON.stringify({ action: 'select', pickerActivity, contact }, null, 2))
+          tapNode(contact)
+          selectedPickerActivity = pickerActivity
+        } else if (
+          pickerActivity !== selectedPickerActivity &&
+          !canceledPickerActivities.has(pickerActivity)
+        ) {
+          writeFileSync(resolve(artifacts, `contacts-picker-${dumpCount}.json`), JSON.stringify({ action: 'cancel', pickerActivity }, null, 2))
+          adb(['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+          canceledPickerActivities.add(pickerActivity)
         }
       },
     }

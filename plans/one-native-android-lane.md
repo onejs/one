@@ -1,19 +1,130 @@
 # One native Android lane
 
-Owner: one-native-android (p66065). Branch `tm/one-native-android-location-ready` from `v2-beta`; validated fixes land on `v2-beta`. Delivery CI owner: one-ci (s15186), assigned by the coordinator after the Checks failures. REVIEW: none.
+Owner: android (m22158), manager and One native Android hands-on owner. Validated runtime fixes are re-anchored on current rewritten `v2-beta` in `tm/android-native-runtime-accepted`. This lane owns Android Native Build, Checks and canary verification for its pushes; Contrast shared delivery stays with p67014. REVIEW: none.
 
-Current status: stopped at Nate's request, relayed by the coordinator
-on 2026-10-07: "we can also slow down just a bit so i can re-plan the day
-lanes can start to wind down" and "please tell agents to stop urgent".
-RAN: the final existing system sweep `w-1311` passes all 79 checks at
-`f29ae4b7a`, including the 27 focused Location checks previously validated
-and landed as `acc949ff8`. Compose/picker, AppIcon and repaired Share units
-are validated. Captures are preserved and shared; the two owned worktrees
-are removed, with no owned emulator, Metro server, child or active watcher
-remaining. Media reruns, remaining focused Compose suites and paired Expo
-UI fidelity, host lifecycle, IME ownership, predictive back and insets remain
-open. They wait for Nate's new lane plan. Delivery CI stays with one-ci.
-The concise close-out is [one-native-android-handoff.md](one-native-android-handoff.md).
+Runtime acceptance, 2026-10-08: RAN `r66696` passes the full unchanged Audio
+suite on the pinned pro-64 Pixel 8, Android 17 API 37 r06. Recording, playback,
+pause, seek, resume, stop and URI/state errors pass. Background playback advances
+32,609 ms over 32,650 ms while remaining playing. Real GSM focus interruption
+reports began/ended events and leaves playback paused; remote pause/play,
+metadata errors and session clearing pass. The native build's guarded Kotlin
+files and APK hashes match the candidate. Its APK SHA256 is
+`e136a9296083ea44e40d7a8826f1b0094485e15b49a00c96c7bf34c9bc40814c`.
+The setup fixture and all ten changed runtime/build paths retain their bytes
+when carried onto beta `aaeee8308`. No old rewritten history is merged.
+
+RAN the background fixture first failed on an active event before a captured
+background transition. A private React runtime probe reproduces that error,
+then passes after the listener waits for its actual background phase. Duplicate
+background events preserve the first capture; missing transitions and stopped
+playback still fail. The native suite retains every original assertion and
+deadline. Owned cleanup uninstalls the fixture, stops emulator and Metro8107,
+and leaves no device or listener. Evidence stays outside One git in Contrast
+`scripts/tmp/android-m22158/runtime-audio-background-phase/` on pro-64 and air-32.
+
+RAN beta `d21a15e1e` Android Native Build `37709204880` and Release
+`37709204892` pass. The canary manifest identifies that SHA, and both Audio Kotlin
+sources plus the repaired crypto declarations match it byte for byte. Checks
+`37709204793` passes tests but fails the coverage test's cross-project TypeScript
+import. Beta `aaeee8308` moves that test into the existing native platform test
+project; its CI and the newly landed native candidate remain delivery checks.
+The published d21 artifact precedes these Audio fixes.
+
+Prior launch failures stopped before Audio assertions: an index route instead
+of the requested deep link, a System UI keyguard ANR, and conflicting AVD leases.
+The private initial URL reader returned HTTP404 at One's inspector endpoint,
+so the proposed 150 ms linking race remains unproven and no production linking
+change is made. Normal heavy admission now precedes a kernel event wait on the
+observed live AVD owner, removing a queue gap before the same atomic lease claim.
+The full passing suite follows that ordering without interrupting another run.
+RSI admission defect `t-muyp6nvp-1zpy0` remains separately owned.
+
+Current restart, 2026-10-07: the brief from p67073 resumes this lane on Nate's
+word: "android like peach SIM support yes and one native yes definitely".
+RAN: cold-start AppIcon acceptance passes on `6e3040d3f` with all eight
+focused checks. Native JavaScript setup requests support before router
+mount; the screen reports `Startup support: true` and `Supported: true`.
+Alternate switching preserves process and focus; cold relaunch persists
+the alternate, primary restoration and invalid-input rejection pass.
+Native sources are unchanged, matching APK SHA256
+`652f08da010fc553c4ed1a48874e54aa3af4d6f6e03a8581dfcbc92be0017a5d`.
+No native AppIcon repair is justified by this run. The original 167 focused
+fixture, barrel, Compose and native documentation tests also pass.
+
+Raw runtime captures, hierarchy/status records, logs and cleanup live on
+pro-64 and air-32 under Contrast `scripts/tmp/android-m22158/runtime-app-icon/`.
+Cleanup uninstalls the owned fixture and stops the owned emulator and
+Metro8107; saved final device and listener reads are empty. Metro8097 belongs
+to the OpenURL lane and stays untouched. Peer preparation and runtime shells
+`r65607` and `r65637` have exited. RAN: the media rerun passes 7 Contacts, 18 Calendar and 27 Photo checks.
+The runner now restores the chosen Metro host and Android 17 dev-network
+permission before every cleared launch. Contacts cancellation targets a new
+native picker activity instance after selection. All original API assertions
+and deadlines remain. Native Audio then crashes during record/play with
+`ForegroundServiceDidNotStartInTimeException`; the saved log identifies
+`OneAudioService` and its STOP action. INFERRED: stopping before pending
+foreground promotion causes the crash. The candidate promotes first, even
+when STOP arrives before the initial start callback. RAN: the
+candidate compiles, 370 Gradle tasks in 17m25s. APK SHA256 is
+`880abd45dee2b732d3aa50744f650d32a468d24ba940d884773f6ead569ab655`;
+its Kotlin source matches the candidate and the build cleanup receipt reports
+released resources. The first repaired runtime returns
+`Status: error at play: playback did not advance: failed 1718`. Native logs
+record `getDuration` during Preparing, then error `-38`. INFERRED: the loading
+status read corrupts the MediaPlayer state. The next candidate returns loading
+or failed status without querying that player, and now-playing metadata reuses
+the same guarded status owner. RAN: the guarded candidate compiles on pro-64, APK SHA256
+`e136a9296083ea44e40d7a8826f1b0094485e15b49a00c96c7bf34c9bc40814c`;
+both Kotlin source hashes match. Two subsequent runtime attempts reached no
+API assertions because the Pixel 8 lease was held after capacity admission.
+The later full Audio acceptance above supersedes these admission-only attempts. Evidence stays in Contrast
+`scripts/tmp/android-m22158/runtime-audio-promotion/`. RAN: final device and
+Metro8107 reads are empty and the emulator lease was released.
+
+RAN: local `bun release --into` installs all 17 package-family entries into
+isolated Contrast `~/.worktrees/contrast-android-one-audio-downstream`. It reuses
+JavaScript outputs built from `aaff03e29`, whose package JavaScript matches this
+native-only candidate. The downstream service source matches byte for byte.
+This was package content verification before the full Audio acceptance above. RAN: all eight remaining focused Compose
+suites pass on pro-64 using the unchanged APK, 45 checkpoints plus AppIcon's
+eight checks. Badges, list slots, flow wrapping, icon/FAB/toggle interactions,
+loading, Surface rejection and acceptance, progress and segmented controls
+pass. This also validates the migrated debug-host caller. Full native captures
+and empty final device/listener reads remain in Contrast
+`scripts/tmp/android-m22158/runtime-conformance-host-fixed/`; a native-density
+quality-90 controls capture was inspected and shared.
+
+The Audio candidate build uses the existing `SKIP_TYPES=1` JavaScript graph
+mode before native prebuild and Gradle on a cold builder. RAN: the guarded
+candidate's local dispatch failed before native compilation with TS2307 for
+`@tamagui/web/internal-runtime`. Turbo's strict task environment omitted
+`SKIP_TYPES`; its build task now declares that input so the flag reaches the
+builder and JavaScript-only output has a distinct cache key. The ordinary
+declaration baseline remains open. Both Kotlin candidates compiled. The
+guarded playback read still needs runtime acceptance. RAN: the source-pinned
+Expo library APK and instrumentation APK build passes, 1696 Gradle tasks in
+16m24s. Their hashes, fixture and lock match source `5cd581266e` on pro-64;
+the repaired four picker tests pass on the native oracle in 115 seconds
+and on Peach in 95 seconds, with ten inspected native captures. The test
+repair lands in Contrast at `ea2637b02d`; paired fidelity remains open.
+
+Evidence remains outside One git in Contrast
+`scripts/tmp/android-m22158/runtime-media-picker-fixed/`. Cleanup removed
+Metro8107, the owned emulator and fixture. The three earlier media runs retain
+the original boot failure, picker failure and passing Contacts diagnostic.
+Peach owner s16717 works its width candidate. RAN: the six owned commits were rebased onto rewritten `v2-beta` at
+`2611d1957` in new branch `tm/android-native-rewritten`; old `4d946b837` is
+absent from its ancestry. Audio Kotlin, debug-host/media drivers, AppIcon
+fixtures and Turbo configuration match the pre-rewrite candidate byte for
+byte. The old save point remains local for recovery; the new branch receives
+an ordinary push. No captures or
+logs are committed. Android service promotion requirements are documented in
+[Android foreground service lifecycle](https://developer.android.com/develop/background-work/services/fgs/stop-fgs)
+and [ActiveServices](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/services/core/java/com/android/server/am/ActiveServices.java).
+
+The preceding wind-down passed 79 system checks on `f29ae4b7a`; both owned
+worktrees and all owned processes were removed. Audio runtime, paired Expo UI fidelity, host lifecycle, IME,
+predictive back and insets remain open in this restart.
 
 ## Android restart, 2026-10-07
 

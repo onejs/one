@@ -74,25 +74,30 @@ export default function OneNativeAudio() {
         throw new Error(`clip did not start: ${playback.state}, ${playback.durationMs}`)
       }
       backgroundResult.current = null
-      let backgroundAt = 0
-      let backgroundStatus: ReturnType<typeof audio.getPlaybackStatus> | null = null
+      let backgroundTransition: {
+        at: number
+        status: ReturnType<typeof audio.getPlaybackStatus>
+      } | null = null
       const subscription = AppState.addEventListener('change', async (state) => {
         if (state === 'background') {
-          backgroundAt = Date.now()
-          backgroundStatus = audio.getPlaybackStatus()
+          if (!backgroundTransition) {
+            backgroundTransition = {
+              at: Date.now(),
+              status: audio.getPlaybackStatus(),
+            }
+          }
           return
         }
-        if (state !== 'active') return
+        if (state !== 'active' || !backgroundTransition) return
+        const captured = backgroundTransition
+        backgroundTransition = null
         subscription.remove()
         backgroundSubscription.current = null
         try {
-          if (!backgroundAt || !backgroundStatus) {
-            throw new Error('background transition did not capture playback position')
-          }
-          const positionWhenBackgrounded = (await backgroundStatus).positionMs
+          const positionWhenBackgrounded = (await captured.status).positionMs
           const resumed = await audio.getPlaybackStatus()
           const advanced = resumed.positionMs - positionWhenBackgrounded
-          const elapsed = Date.now() - backgroundAt
+          const elapsed = Date.now() - captured.at
           backgroundResult.current = {
             state: resumed.state,
             start: positionWhenBackgrounded,
