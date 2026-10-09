@@ -125,7 +125,7 @@ Remaining iOS holes, in launch order:
 - [ ] `One.Widgets`, `LiveActivities`, `One.iOS.WidgetUI`: need a widget
   extension target in the fixture app; Basic's real-app receipts cover the
   calls today.
-- [ ] `One.UI.PictureInPicture`: device run (simulators report no PiP).
+- [x] `One.UI.PictureInPicture`: launch ships without a physical-device run (simulators report no PiP); docs mark it as awaiting on-device verification. Decision record: Contrast `plans/contrast/milestones/one-native-in-the-factory.md`.
 - [ ] ArrangementView on iOS 27.1: blocked on a pool runtime that supports
   iPhone 17 Pro.
 
