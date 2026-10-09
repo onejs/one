@@ -3,11 +3,12 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { iosExternalAcceptanceAPIs } from '../tests/native-features/fixtures/realapps-api-coverage'
+import { peachProof } from '../tests/native-features/fixtures/peach-proof'
 
 const directory = process.argv[2]
 assert(
   directory,
-  'Expected an evidence root containing uniform-native-modules/ and realapps/'
+  'Expected an evidence root containing uniform-native-modules/, realapps/ and peach/'
 )
 const read = (path: string) => JSON.parse(readFileSync(resolve(directory, path), 'utf8'))
 
@@ -48,4 +49,14 @@ for (const control of ['negative-url', 'negative-settings']) {
   assert.equal(read(`${external}/${control}/run-result.json`).exitCode, 1)
 }
 
-console.info('Saved native module and bounded iOS external receipts passed')
+// every peach case the matrix claims ran green in this evidence root.
+const peach = read('peach/runtime.json')
+assert.equal(peach.platform, 'peach', 'peach runtime identity')
+assert.equal(peach.passed, true, 'peach library case contract')
+for (const cases of Object.values(peachProof)) {
+  for (const name of cases) {
+    assert.equal(peach.cases?.[name]?.passed, true, `${name} peach receipt`)
+  }
+}
+
+console.info('Saved native module, bounded iOS external and peach receipts passed')
