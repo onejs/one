@@ -141,4 +141,38 @@ module.exports = x
     expect(result?.code).toBeTruthy()
     expect(result?.code).not.toContain('index.js.flow')
   })
+
+  it('executes namespace re-exports on the Metro path', () => {
+    const result = transformSync('export * as core from "./core.js"', {
+      filename: path.join(projectRoot, 'node_modules/dependency/index.js'),
+      cwd: projectRoot,
+      presets: [presetWithBase],
+      caller: metroViteCaller,
+    })
+    const exports: Record<string, unknown> = {}
+    const core = { answer: 42 }
+    new Function('exports', 'require', result?.code ?? '')(exports, () => core)
+    expect(exports.core).toMatchObject(core)
+  })
+
+  it('removes namespace type exports before transforming runtime exports', () => {
+    const result = transformSync(
+      'export type * as Types from "./types"; export * as core from "./core.js"',
+      {
+        filename: path.join(projectRoot, 'src/namespace.ts'),
+        cwd: projectRoot,
+        presets: [presetWithBase],
+        caller: metroViteCaller,
+      }
+    )
+    const requested: string[] = []
+    const exports: Record<string, unknown> = {}
+    new Function('exports', 'require', result?.code ?? '')(exports, (id: string) => {
+      requested.push(id)
+      return { answer: 42 }
+    })
+    expect(requested).toEqual(['./core.js'])
+    expect(exports.core).toMatchObject({ answer: 42 })
+    expect(exports).not.toHaveProperty('Types')
+  })
 })
