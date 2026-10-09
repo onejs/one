@@ -1,8 +1,14 @@
-<!-- plan: status=active owner=p67085 reviewed=2026-10-07 -->
+<!-- plan: status=active owner=p73233 reviewed=2026-10-09 -->
 
 # One native: launch checklist
 
 Nate (2026-10-05, voice, relayed by native-lead p63991): "get One Native to basically launch ready."
+
+Launch scope is One's own surface: native controls, APIs, the bridge, Android
+support and Peach parity. Third-party libraries a sample app happens to use
+(WebGPU, Three.js) never block launch; fix them only when a starter or real
+app needs them. Direction record: Contrast
+`plans/contrast/milestones/one-native-in-the-factory.md`.
 
 Launch ready means: one package builds a first-class app on iOS, Android and
 web; every public native export has runtime proof on each platform it runs
