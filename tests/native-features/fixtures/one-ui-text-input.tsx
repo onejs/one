@@ -1,5 +1,5 @@
 import { useRef, useState, type ComponentProps } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One, useNativeState } from 'one'
 
 // the ref handle type is not exported from `one`; read it off the component.
@@ -29,6 +29,7 @@ export default function OneUITextInput() {
         defaultValue="hello"
         placeholder="Type here"
         maxLength={8}
+        returnKeyType={Platform.OS === 'android' ? 'done' : undefined}
         autoCorrect={false}
         autoCapitalize="none"
         onChangeText={setChanged}
@@ -44,9 +45,21 @@ export default function OneUITextInput() {
       <Text>{`Submits: ${submits}`}</Text>
       <Text>{`IsFocused: ${isFocused}`}</Text>
       <View style={styles.row}>
-        <Chip id="one-ui-text-input-focus" label="Focus" onPress={() => field.current?.focus()} />
-        <Chip id="one-ui-text-input-blur" label="Blur" onPress={() => field.current?.blur()} />
-        <Chip id="one-ui-text-input-clear" label="Clear" onPress={() => field.current?.clear()} />
+        <Chip
+          id="one-ui-text-input-focus"
+          label="Focus"
+          onPress={() => field.current?.focus()}
+        />
+        <Chip
+          id="one-ui-text-input-blur"
+          label="Blur"
+          onPress={() => field.current?.blur()}
+        />
+        <Chip
+          id="one-ui-text-input-clear"
+          label="Clear"
+          onPress={() => field.current?.clear()}
+        />
         <Chip
           id="one-ui-text-input-check"
           label="Check"
@@ -63,7 +76,11 @@ export default function OneUITextInput() {
         style={styles.input}
       />
       <Text>{`Shared: ${shared.value === '' ? 'empty' : shared.value}`}</Text>
-      <Chip id="one-ui-text-input-external" label="Set external" onPress={() => shared.set('external')} />
+      <Chip
+        id="one-ui-text-input-external"
+        label="Set external"
+        onPress={() => shared.set('external')}
+      />
 
       <One.UI.TextInput
         testID="one-ui-text-input-secure"
@@ -85,9 +102,22 @@ export default function OneUITextInput() {
   )
 }
 
-function Chip({ id, label, onPress }: { id: string; label: string; onPress: () => void }) {
+function Chip({
+  id,
+  label,
+  onPress,
+}: {
+  id: string
+  label: string
+  onPress: () => void
+}) {
   return (
-    <Pressable testID={id} accessibilityRole="button" style={styles.chip} onPress={onPress}>
+    <Pressable
+      testID={id}
+      accessibilityRole="button"
+      style={styles.chip}
+      onPress={onPress}
+    >
       <Text>{label}</Text>
     </Pressable>
   )

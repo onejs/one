@@ -31,7 +31,6 @@ const knownGaps: Record<string, string> = {
   'UI.Blur':
     'Android suite missing; iOS bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven',
   'UI.Mask': 'Android suite missing; iOS bounded hidden/visible/half-alpha pixels proven',
-  'UI.TextInput': 'Android suite missing',
   'UI.ReservedRegions':
     'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',
   LaunchScreen: 'Android suite missing',
@@ -157,11 +156,13 @@ function iosSuites() {
 function androidSuites() {
   const script = read('scripts/one-native-conformance.android.ts')
   const navIds = new Set(['nav-one-native-android'])
-  for (const [, navId] of script.matchAll(/tapNavigation\(config, '(nav-[a-z-]+)'\)/g)) {
+  for (const [, navId] of script.matchAll(
+    /(?:tapNavigation|navigateFixture)\(config, '(nav-[a-z-]+)'\)/g
+  )) {
     navIds.add(navId)
   }
   return [...navIds].map((navId) => ({
-    suite: navId.replace(/^nav-one-native-?/, '') || 'android',
+    suite: navId.replace(/^nav-one-(?:native-)?/, '') || 'android',
     route: navId.replace(/^nav-/, ''),
   }))
 }
@@ -226,7 +227,11 @@ test('every One namespace member has a conformance fixture reference or a docume
     ['android', androidSuites()],
   ] as const) {
     for (const { suite, route } of suites) {
-      for (const name of exportsUsed(routeSource(route))) {
+      const used = exportsUsed(routeSource(route))
+      // controlled input checks do not replace the dedicated hook lifetime suite.
+      if (platform === 'android' && route === 'one-ui-text-input')
+        used.delete('useNativeState')
+      for (const name of used) {
         proof[platform].set(name, [...(proof[platform].get(name) ?? []), suite])
       }
     }

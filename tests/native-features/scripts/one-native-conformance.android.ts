@@ -35,7 +35,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
   apkPath: string
 }
 
@@ -57,7 +57,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -86,7 +86,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -600,15 +600,19 @@ function clearDocumentsUi(config: Config) {
   adbText(config, ['shell', 'pm', 'clear', match])
 }
 
-// the ime leg is vacuous unless the keyboard is actually raised, so fail
-// loudly when it is not. grep runs on-device: the full dumpsys exceeds
-// execFileSync's buffer.
-function requireKeyboardShown(config: Config) {
+// grep runs on-device because the full dumpsys exceeds execFileSync's buffer.
+function keyboardShown(config: Config) {
   const shown = adbText(config, [
     'shell',
     'dumpsys input_method | grep -m1 mInputShown || true',
   ])
-  if (!/mInputShown\s*=\s*true/.test(shown))
+  return /mInputShown\s*=\s*true/.test(shown)
+}
+
+// the ime leg is vacuous unless the keyboard is actually raised, so fail
+// loudly when it is not.
+function requireKeyboardShown(config: Config) {
+  if (!keyboardShown(config))
     throw new Error('safe-area-ime-excluded: the soft keyboard never raised')
 }
 
@@ -725,6 +729,18 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
     if (!advanced) continue
   }
   throw new Error(`Could not bring ${navId} into view on the home list.`)
+}
+
+// reuse the fixture's existing route input for focused UI suites.
+async function navigateFixture(config: Config, navId: string) {
+  const route = navId.replace(/^nav-/, '/')
+  tapFresh(config, 'fixture route input', { id: 'quick-navigate-path-input' })
+  adbText(config, ['shell', 'input', 'text', route])
+  await waitFor(config, 'fixture route entered', (nodes) =>
+    matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
+  )
+  pressBack(config)
+  tapFresh(config, 'fixture route submit', { id: 'quick-navigate-submit' })
 }
 
 function shortNode(node: Node | undefined) {
@@ -4915,6 +4931,166 @@ async function runCompose(config: Config) {
     console.log('ALL ONE UI IMAGE ANDROID CHECKS PASSED')
     return
   }
+  if (config.suite === 'ui-text-input') {
+    const status = (nodes: Node[], prefix: string) =>
+      nodes.find((node) => node.text.startsWith(`${prefix}: `))?.text
+    const textField = (nodes: Node[], id: string) => {
+      const owner = matching(nodes, { id })[0]
+      return nodes.find((node) => {
+        if (!node.className.includes('EditText')) return false
+        let current: Node | undefined = node
+        while (current) {
+          if (current === owner) return true
+          current = nodes[current.parent]
+        }
+        return false
+      })
+    }
+    const fieldText = (nodes: Node[], id: string) => textField(nodes, id)?.text
+    await navigateFixture(config, 'nav-one-ui-text-input')
+    await check('ui-text-input-default-and-readonly', (nodes) => {
+      const field = textField(nodes, 'one-ui-text-input-field')
+      const readonly = textField(nodes, 'one-ui-text-input-readonly')
+      return (
+        exactlyOneId(nodes, 'one-ui-text-input-screen') &&
+        field?.text === 'hello' &&
+        readonly?.text === 'locked' &&
+        readonly.enabled === false &&
+        status(nodes, 'Changed') === 'Changed: none' &&
+        status(nodes, 'Focus') === 'Focus: 0 Blur: 0' &&
+        status(nodes, 'Submits') === 'Submits: 0' &&
+        status(nodes, 'Shared') === 'Shared: empty' &&
+        status(nodes, 'Secret length') === 'Secret length: 0'
+      )
+    })
+    if (keyboardShown(config))
+      throw new Error(
+        'Android input method was already shown before any TextInput focus.'
+      )
+
+    tapFresh(config, 'disabled TextInput', {
+      id: 'one-ui-text-input-readonly',
+    })
+    await check('ui-text-input-disabled-tap-does-not-focus', (nodes) => {
+      const readonly = textField(nodes, 'one-ui-text-input-readonly')
+      return (
+        readonly?.enabled === false &&
+        readonly.attrs.focused !== 'true' &&
+        status(nodes, 'Focus') === 'Focus: 0 Blur: 0'
+      )
+    })
+    if (keyboardShown(config))
+      throw new Error('Tapping editable={false} opened the Android input method.')
+    tapFresh(config, 'TextInput isFocused before focus', {
+      id: 'one-ui-text-input-check',
+    })
+    await check(
+      'ui-text-input-isFocused-before-focus',
+      (nodes) => status(nodes, 'IsFocused') === 'IsFocused: false'
+    )
+
+    tapFresh(config, 'TextInput ref focus', { id: 'one-ui-text-input-focus' })
+    await check(
+      'ui-text-input-ref-focus-opens-ime',
+      (nodes) =>
+        textField(nodes, 'one-ui-text-input-field')?.attrs.focused === 'true' &&
+        status(nodes, 'Focus') === 'Focus: 1 Blur: 0'
+    )
+    if (!keyboardShown(config))
+      throw new Error('TextInput ref.focus() did not open the Android input method.')
+    tapFresh(config, 'TextInput isFocused after focus', {
+      id: 'one-ui-text-input-check',
+    })
+    await check(
+      'ui-text-input-isFocused-after-focus',
+      (nodes) => status(nodes, 'IsFocused') === 'IsFocused: true'
+    )
+
+    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END'])
+    adbType(config, 'world')
+    await check(
+      'ui-text-input-max-length-and-change-event',
+      (nodes) =>
+        fieldText(nodes, 'one-ui-text-input-field') === 'hellowor' &&
+        status(nodes, 'Changed') === 'Changed: hellowor'
+    )
+
+    tapFresh(config, 'TextInput ref blur', { id: 'one-ui-text-input-blur' })
+    await check(
+      'ui-text-input-ref-blur-event',
+      (nodes) =>
+        textField(nodes, 'one-ui-text-input-field')?.attrs.focused !== 'true' &&
+        status(nodes, 'Focus') === 'Focus: 1 Blur: 1'
+    )
+    if (keyboardShown(config))
+      throw new Error('TextInput ref.blur() left the Android input method open.')
+    tapFresh(config, 'TextInput isFocused after blur', {
+      id: 'one-ui-text-input-check',
+    })
+    await check(
+      'ui-text-input-isFocused-after-blur',
+      (nodes) => status(nodes, 'IsFocused') === 'IsFocused: false'
+    )
+
+    tapFresh(config, 'TextInput refocus', { id: 'one-ui-text-input-focus' })
+    await check(
+      'ui-text-input-refocus-event',
+      (nodes) =>
+        textField(nodes, 'one-ui-text-input-field')?.attrs.focused === 'true' &&
+        status(nodes, 'Focus') === 'Focus: 2 Blur: 1'
+    )
+    if (!keyboardShown(config))
+      throw new Error('TextInput ref.focus() did not reopen the Android input method.')
+    adbText(config, ['shell', 'input', 'keyevent', '66'])
+    await check(
+      'ui-text-input-done-submits-once',
+      (nodes) => status(nodes, 'Submits') === 'Submits: 1 hellowor'
+    )
+
+    tapFresh(config, 'TextInput ref clear', { id: 'one-ui-text-input-clear' })
+    await check('ui-text-input-ref-clear', (nodes) => {
+      const field = textField(nodes, 'one-ui-text-input-field')
+      return field?.text === '' || field?.text === 'Type here'
+    })
+
+    tapFresh(config, 'NativeState external update', {
+      id: 'one-ui-text-input-external',
+    })
+    await check(
+      'ui-text-input-controlled-native-state-update',
+      (nodes) =>
+        fieldText(nodes, 'one-ui-text-input-controlled') === 'external' &&
+        status(nodes, 'Shared') === 'Shared: external'
+    )
+    tapFresh(config, 'controlled TextInput focus', {
+      id: 'one-ui-text-input-controlled',
+    })
+    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END'])
+    adbType(config, 'x')
+    await check(
+      'ui-text-input-controlled-native-state-edit',
+      (nodes) =>
+        fieldText(nodes, 'one-ui-text-input-controlled') === 'externalx' &&
+        status(nodes, 'Shared') === 'Shared: externalx'
+    )
+
+    tapFresh(config, 'secure TextInput focus', { id: 'one-ui-text-input-secure' })
+    adbType(config, 'pass')
+    const secure = await check(
+      'ui-text-input-secure-entry-is-masked',
+      (nodes) => {
+        const field = textField(nodes, 'one-ui-text-input-secure')
+        return (
+          field?.attrs.password === 'true' &&
+          status(nodes, 'Secret length') === 'Secret length: 4'
+        )
+      }
+    )
+    if (secure.nodes.some((node) => node.text === 'pass' || node.contentDescription === 'pass'))
+      throw new Error('secureTextEntry exposed plaintext to Android UIAutomator.')
+    console.log('ALL ONE UI TEXT INPUT ANDROID CHECKS PASSED')
+    return
+  }
   if (config.suite === 'compose-badges') {
     await badges()
     console.log('ALL ONE NATIVE ANDROID BADGE CHECKS PASSED')
@@ -5343,7 +5519,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image' || config.suite === 'ui-text-input'
       ? runCompose(config)
       : run(config))
 } catch (error) {

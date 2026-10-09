@@ -207,10 +207,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.Mask` | ui-effects | missing | Android suite missing; iOS bounded hidden/visible/half-alpha pixels proven |
 | `One.UI.Portal` | portal | portal |  |
 | `One.UI.PortalHost` | portal | portal |  |
-| `One.UI.Pager` | pager | nav-one-ui-pager |  |
+| `One.UI.Pager` | pager | ui-pager |  |
 | `One.UI.Fonts` | fonts | fonts |  |
 | `One.UI.SafeArea` | safe-area | safe-area |  |
-| `One.UI.TextInput` | ui-text-input | missing | Android suite missing |
+| `One.UI.TextInput` | ui-text-input | ui-text-input |  |
 | `One.UI.ReservedRegions` | adaptive-flat | missing | Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven |
 | `One.Notifications` | notifications | notifications |  |
 | `One.Clipboard` | paste-button, share, clipboard | share | Android setString and getString proven only through the share suite Copy check; no Android clipboard suite |

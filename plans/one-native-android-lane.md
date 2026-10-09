@@ -1301,3 +1301,21 @@ pass; captured image-view bounds are 120x80 dp. Receipt:
 Run with `--suite ui-image --device-id emulator-5554 --package-id
 dev.vxrn.nativefeatures.tests --metro-port 8097`; Android platform-tools
 must lead PATH for Bun. The native APK is unchanged.
+
+## Android TextInput suite, 2026-10-09
+
+RAN: `ui-text-input` passes 16 captured checkpoints on Pixel 8/API 37.
+Default text, editable=false, ref focus/blur/isFocused/clear, exact focus and
+submit events, maxLength, NativeState-controlled updates/edits, and masked
+secure entry pass. Disabled input rejects focus and IME opening; typing past
+the limit rejects extra characters. The suite moves the caret to the end
+before typing and inspects EditText descendants of Fabric test-ID wrappers.
+It reuses the existing QuickNavigatePixel route input. Receipt:
+`tests/native-features/evidence/android-native-ui-suites/text-input-final/`.
+The installed native APK is unchanged, SHA256
+`657ca0b7c9881f7f5a2e5636a0e95ae0c557cc8cf1c37b64d6b34f0fc37065fd`.
+Command: `--suite ui-text-input --device-id emulator-5554 --package-id
+dev.vxrn.nativefeatures.tests --metro-port 8098`, with device tcp:8081
+reversed to tcp:8098. Focused fixture/runner TypeScript, formatting of the
+fixture and coverage generator, and native coverage test pass. CI owner:
+s23249; test-only delivery remains with the beta pipeline.
