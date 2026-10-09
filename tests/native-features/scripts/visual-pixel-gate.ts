@@ -236,7 +236,7 @@ export function countMatchingPixels(
 
 /** measures the SDK27 September 11 selection in the existing 55-point date crop. */
 export function measureCalendarSelectionBadge(crop: PNG): number {
-  // the independent apple capture and one capture have identical pixels. the
+  // the prior independent apple oracle recorded identical calendar pixels. the
   // anchored crop clips the circle above and to the left; do not recenter it.
   if (crop.width !== 165 || crop.height !== 166) return 0
   const numeral = new Set<number>()

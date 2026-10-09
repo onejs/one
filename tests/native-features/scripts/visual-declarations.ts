@@ -305,13 +305,13 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     minSubjectFloor: 5_000,
     calibration: {
       positiveMeasured: 7_200,
-      negativeMeasured: null,
+      negativeMeasured: 0,
       threshold: 5_000,
-      changedPixelsMeasured: null,
+      changedPixelsMeasured: 14_128,
       crossSubstitutionMatches: 2,
       corpusSize: 2,
       nullStateReads:
-        'SDK27 retained Apple and One crops both read 7,200; 2/2 native crop matches. Prior blue-only reading was 0 on both, with 0 changed of 1,169,460 calendar pixels. Live wheel negative and runtime calibration pending.',
+        'SDK27 fresh One corrected/restored pairs read 7,200 versus natural wheel 0; 14,128/27,390 changed pixels, 2/2 fresh pair cross-substitutions. Offline missing badge, missing numeral, rectangle, displacement and opaque fill read 0. Prior r72081 Apple-only oracle recorded 0/1,169,460 calendar pixels different from One; transferred Apple crop reads 7,200 but its provenance remains unverified. Original Sep12 value/request and wheel Sep13 pass; omitted graphical callback rejects the same selection predicate, byte-identical restoration passes.',
     },
   },
 
