@@ -3,6 +3,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { observeAlertRollback } from './one-native-dialog-observation'
 import { runZoomSuite } from './one-native-zoom-suite'
 import { runEffectsSuite } from './one-native-effects-suite'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
@@ -7894,18 +7895,25 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-dialog-reject', role: 'button' })
     await wait('Alert reject-close mode enabled', (n) => status(n, 'Reject', 'on'))
-    tap({ id: 'one-native-dialog-open' })
-    await wait('Alert reopens before the refused dismissal', alertPresented)
-    tap({ label: 'Cancel alert' })
-    // the native side dismissed itself and React refused the change, so the controlled
-    // protocol has to roll the native value back and present the alert again. a presented
-    // dialog owns the accessibility tree, so the app's own status rows are gone while it
-    // is up; their absence is what distinguishes this from a dismissed alert.
-    await wait(
-      'refused dismissal rolls the native host back to presented',
-      (n) =>
-        alertPresented(n) && !labels(n).some((label) => label.startsWith('Presented: '))
+    const rollback = observeAlertRollback(
+      config.simulatorId,
+      config.bundleId,
+      config.artifactDir
     )
+    try {
+      tap({ id: 'one-native-dialog-open' })
+      await wait('Alert reopens before the refused dismissal', alertPresented)
+      tap({ label: 'Cancel alert' })
+      // sdk 27 exposes background rows while the alert is up. require the native
+      // dismissal, held-true acknowledgement and live controller reappearance instead.
+      await wait(
+        'refused dismissal rolls the native host back to presented',
+        (n) =>
+          alertPresented(n) && labels(n).includes('One Native Alert') && rollback.observed()
+      )
+    } finally {
+      rollback.close()
+    }
     screenshot('alert-refused-dismissal.png')
     tap({ label: 'Reset alert revision' })
     await wait(
