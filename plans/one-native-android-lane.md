@@ -1,5 +1,15 @@
 # One native Android lane
 
+## One Native API suites, 2026-10-09
+
+Nate direction (2026-10-09): "One native launch means One's own controls, APIs, bridge, Android and Peach parity. No third-party libraries (WebGPU, Three.js, etc)." The Android runtime API suites here cover One-owned exports only; adaptive proofs use the existing flat Pixel 8 oracle.
+
+The focused Android `state` conformance suite is being added for
+`useNativeState`; its Android fixture binds two One Compose text fields to one
+handle, checks a native edit through `.value` and `.get()`, verifies a JS write
+reaches both native fields, and keeps a separate handle as the isolation
+negative control. Runtime acceptance is pending.
+
 Owner: android-m27558 (m27558), manager and One native Android hands-on owner. Validated runtime fixes are re-anchored on current rewritten `v2-beta` in `tm/android-native-runtime-accepted`. This lane owns Android Native Build, Checks and canary verification for its pushes; Contrast shared delivery stays with m23914. REVIEW: none.
 
 TimeInput acceptance, 2026-10-09: TESTED the existing One dialogs fixture on

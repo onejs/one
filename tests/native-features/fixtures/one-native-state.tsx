@@ -1,9 +1,60 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One, useNativeState } from 'one'
 
 export default function OneNativeState() {
   const name = useNativeState('')
   const flag = useNativeState(false)
+  const untouched = useNativeState('untouched')
+
+  if (Platform.OS === 'android') {
+    return (
+      <One.Android.Column spacing={12} style={{ flex: 1, padding: 16 }}>
+        <One.Android.TextField
+          label="Name"
+          text={name}
+          onTextChange={() => {}}
+          testID="one-native-state-field"
+        />
+        <One.Android.TextField
+          label="Name copy"
+          text={name}
+          onTextChange={() => {}}
+          testID="one-native-state-shared-field"
+        />
+        <One.Android.TextField
+          label="Independent"
+          text={untouched}
+          onTextChange={() => {}}
+          disabled
+          testID="one-native-state-independent-field"
+        />
+        <One.Android.Text
+          text={`Name: ${name.value} · Get: ${name.get()} · Independent: ${untouched.get()}`}
+        />
+        <One.Android.Text text={`Flag: ${flag.value}`} />
+        <One.Android.Switch
+          label="First"
+          isOn={flag.value}
+          onIsOnChange={flag.set}
+          testID="one-native-state-switch"
+        />
+        <One.Android.Switch
+          label="Second"
+          isOn={flag.value}
+          onIsOnChange={flag.set}
+          testID="one-native-state-switch-copy"
+        />
+        <One.Android.Button
+          label="Set from JavaScript"
+          testID="one-native-state-set"
+          onPress={() => {
+            name.set('ada')
+            flag.set(true)
+          }}
+        />
+      </One.Android.Column>
+    )
+  }
 
   return (
     <View style={styles.screen} testID="one-native-state-screen">

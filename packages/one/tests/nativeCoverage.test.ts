@@ -49,7 +49,6 @@ const knownGaps: Record<string, string> = {
   DocumentPicker: 'Android fixture exists, no suite opens it',
   useNetworkState:
     'Android suite missing; iOS workspace live state, refresh and two remounts proven',
-  useNativeState: 'iOS suite only',
   useSizeClass:
     'Android suite missing; iOS flat workspace getter/hook agreement proven; live trait changes unproven',
   getSizeClass:

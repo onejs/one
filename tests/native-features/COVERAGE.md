@@ -139,7 +139,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a |  |
 | `One.iOS.ZoomTransitionEnabler` | zoom | n/a |  |
 | `One.iOS.ZoomTransitionSource` | zoom | n/a |  |
-| `One.Android.Column` | n/a | android, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
+| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers |  |
 | `One.Android.Spacer` | n/a | android-flow-row |  |
 | `One.Android.FlowRow` | n/a | android-pickers, android-flow-row |  |
@@ -157,9 +157,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.AssistChip` | n/a | android-chips |  |
 | `One.Android.InputChip` | n/a | android-chips |  |
 | `One.Android.SuggestionChip` | n/a | android-chips |  |
-| `One.Android.Text` | n/a | android, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
+| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips |  |
 | `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-icon-buttons, android-filter-chip, android-chips |  |
-| `One.Android.Button` | n/a | android, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip |  |
+| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip |  |
 | `One.Android.IconButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons |  |
@@ -175,10 +175,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.SingleChoiceSegmentedButtonRow` | n/a | android-segmented |  |
 | `One.Android.MultiChoiceSegmentedButtonRow` | n/a | android-segmented |  |
 | `One.Android.SegmentedButton` | n/a | android-segmented |  |
-| `One.Android.Switch` | n/a | android |  |
+| `One.Android.Switch` | n/a | android, state |  |
 | `One.Android.Checkbox` | n/a | android-selection |  |
 | `One.Android.RadioButton` | n/a | android-selection |  |
-| `One.Android.TextField` | n/a | android-inputs |  |
+| `One.Android.TextField` | n/a | state, android-inputs |  |
 | `One.Android.Slider` | n/a | android-inputs |  |
 | `One.Android.AlertDialog` | n/a | android-inputs |  |
 | `One.Android.Dialog` | n/a | android-inputs |  |
@@ -234,7 +234,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useReservedRegionsReady` | adaptive-flat | missing | Android suite missing; iOS flat workspace first native reading and two remounts proven |
 | `useWindowSegments` | adaptive-flat | missing | Android suite missing; iOS flat workspace one segment tracks provider resize; folding segments unproven |
 | `useSpanning` | adaptive-flat | missing | Android suite missing; iOS flat workspace false proven; spanning divisions unproven |
-| `useNativeState` | state, ui-text-input | missing | iOS suite only |
+| `useNativeState` | state, ui-text-input | state |  |
 | `useFonts` | fonts | fonts |  |
 | `useNetworkState` | network | missing | Android suite missing; iOS workspace live state, refresh and two remounts proven |
 | `useSafeAreaInsets` | safe-area | safe-area |  |
