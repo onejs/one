@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-android-color-home",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "capturedAt": "2026-10-09T19:57:59.875Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/color/02-system-android-color-home.png",
+    "xml": "evidence/one-native-android-suites/color/02-system-android-color-home.xml",
+    "status": "evidence/one-native-android-suites/color/02-system-android-color-home.status.json"
+  }
+}

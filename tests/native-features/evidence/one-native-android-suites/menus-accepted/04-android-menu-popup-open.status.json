@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "android-menu-popup-open",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 11,
+  "capturedAt": "2026-10-09T20:06:58.380Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus-accepted/04-android-menu-popup-open.png",
+    "xml": "evidence/one-native-android-suites/menus-accepted/04-android-menu-popup-open.xml",
+    "status": "evidence/one-native-android-suites/menus-accepted/04-android-menu-popup-open.status.json"
+  }
+}

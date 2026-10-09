@@ -1,0 +1,110 @@
+{
+  "suite": "one-native-android menus",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "checks": [
+    {
+      "name": "app-mounted",
+      "result": "passed",
+      "durationMs": 2568,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/01-app-mounted.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/01-app-mounted.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/01-app-mounted.status.json"
+      }
+    },
+    {
+      "name": "system-android-menus-home",
+      "result": "passed",
+      "durationMs": 3087,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/02-system-android-menus-home.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/02-system-android-menus-home.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/02-system-android-menus-home.status.json"
+      }
+    },
+    {
+      "name": "android-menus-mounted",
+      "result": "passed",
+      "durationMs": 2410,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/03-android-menus-mounted.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/03-android-menus-mounted.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/03-android-menus-mounted.status.json"
+      }
+    },
+    {
+      "name": "android-menu-popup-open",
+      "result": "passed",
+      "durationMs": 2204,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/04-android-menu-popup-open.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/04-android-menu-popup-open.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/04-android-menu-popup-open.status.json"
+      }
+    },
+    {
+      "name": "android-menu-action-returned",
+      "result": "passed",
+      "durationMs": 2068,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/05-android-menu-action-returned.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/05-android-menu-action-returned.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/05-android-menu-action-returned.status.json"
+      }
+    },
+    {
+      "name": "android-context-menu-needs-long-press",
+      "result": "passed",
+      "durationMs": 1922,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/06-android-context-menu-needs-long-press.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/06-android-context-menu-needs-long-press.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/06-android-context-menu-needs-long-press.status.json"
+      }
+    },
+    {
+      "name": "android-context-popup-open",
+      "result": "passed",
+      "durationMs": 1966,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/07-android-context-popup-open.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/07-android-context-popup-open.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/07-android-context-popup-open.status.json"
+      }
+    },
+    {
+      "name": "android-context-action-returned",
+      "result": "passed",
+      "durationMs": 1991,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/08-android-context-action-returned.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/08-android-context-action-returned.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/08-android-context-action-returned.status.json"
+      }
+    },
+    {
+      "name": "android-disabled-menu-stays-closed",
+      "result": "passed",
+      "durationMs": 1917,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/09-android-disabled-menu-stays-closed.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/09-android-disabled-menu-stays-closed.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/09-android-disabled-menu-stays-closed.status.json"
+      }
+    },
+    {
+      "name": "android-disabled-context-stays-closed",
+      "result": "passed",
+      "durationMs": 1931,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/menus-accepted/10-android-disabled-context-stays-closed.png",
+        "xml": "evidence/one-native-android-suites/menus-accepted/10-android-disabled-context-stays-closed.xml",
+        "status": "evidence/one-native-android-suites/menus-accepted/10-android-disabled-context-stays-closed.status.json"
+      }
+    }
+  ],
+  "checkCount": 10,
+  "completedAt": "2026-10-09T20:07:24.503Z"
+}

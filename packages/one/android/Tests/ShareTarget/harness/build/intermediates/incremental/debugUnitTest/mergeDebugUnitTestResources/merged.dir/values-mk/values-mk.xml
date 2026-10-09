@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"Автоматско пополнување"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"Автоматско пополнување"</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Одговори"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Видео"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Одбиј"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Спушти"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Дојдовен повик"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Тековен повик"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Проверка на дојдовен повик"</string>
+    <string msgid="406453423630273620" name="close_drawer">"Затворете го менито за навигација"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Затворете го листот"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Неважечки запис"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Скокачки прозорец"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Паѓачко мени"</string>
+    <string msgid="6827826412747255547" name="in_progress">"Во тек"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Делумно проверено"</string>
+    <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Собери го долниот лист"</string>
+    <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"Отфрли го долниот лист"</string>
+    <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"Рачка за влечење"</string>
+    <string msgid="6670819569745899763" name="m3c_bottom_sheet_expand_description">"Прошири го долниот лист"</string>
+    <string msgid="3010635850035863127" name="m3c_bottom_sheet_pane_title">"Долен лист"</string>
+    <string msgid="3990875819916144919" name="m3c_button_group_more_options">"Повеќе опции"</string>
+    <string msgid="8166741421776570875" name="m3c_date_input_headline">"Внесен датум"</string>
+    <string msgid="229313757840775812" name="m3c_date_input_headline_description">"Внесен датум: %1$s"</string>
+    <string msgid="6116910750161463197" name="m3c_date_input_invalid_for_pattern">"Не се совпаѓа со очекуваната шема: %1$s"</string>
+    <string msgid="2521768508935305279" name="m3c_date_input_invalid_not_allowed">"Датумот не е дозволен: %1$s"</string>
+    <string msgid="7052898923934555305" name="m3c_date_input_invalid_year_range">"Датумот не е во очекуваниот опсег на години %1$s - %2$s"</string>
+    <string msgid="2895559812010326913" name="m3c_date_input_label">"Датум"</string>
+    <string msgid="1237013946323089826" name="m3c_date_input_no_input_description">"Нема"</string>
+    <string msgid="7306227249789210568" name="m3c_date_input_title">"Изберете датум"</string>
+    <string msgid="7605002211875882969" name="m3c_date_picker_headline">"Избран датум"</string>
+    <string msgid="3664277305226978227" name="m3c_date_picker_headline_description">"Тековен избор: %1$s"</string>
+    <string msgid="8436650776581492840" name="m3c_date_picker_navigate_to_year_description">"Одете на %1$s година"</string>
+    <string msgid="5811000998184572395" name="m3c_date_picker_no_selection_description">"Нема"</string>
+    <string msgid="7813882352367152251" name="m3c_date_picker_scroll_to_earlier_years">"Лизгајте за да ги прикажете претходните години"</string>
+    <string msgid="5727367015496556177" name="m3c_date_picker_scroll_to_later_years">"Лизгајте за да ги прикажете подоцнежните години"</string>
+    <string msgid="1804346892470238807" name="m3c_date_picker_switch_to_calendar_mode">"Префрли на режим за внесување во календарот"</string>
+    <string msgid="395627960681594326" name="m3c_date_picker_switch_to_day_selection">"Повлечете за да изберете година или допрете за да се вратите на избирање ден"</string>
+    <string msgid="2219746470065162704" name="m3c_date_picker_switch_to_input_mode">"Префрли на режим за внесување текст"</string>
+    <string msgid="7142101321095356500" name="m3c_date_picker_switch_to_next_month">"Промени на следниот месец"</string>
+    <string msgid="228438865139394590" name="m3c_date_picker_switch_to_previous_month">"Промени на претходниот месец"</string>
+    <string msgid="791651718641787594" name="m3c_date_picker_switch_to_year_selection">"Префрли на избирање година"</string>
+    <string msgid="7430790972741451689" name="m3c_date_picker_title">"Изберете датум"</string>
+    <string msgid="3199387177749801575" name="m3c_date_picker_today_description">"Денес"</string>
+    <string msgid="2068382232816991922" name="m3c_date_picker_year_picker_pane_title">"Избирачот на година е видлив"</string>
+    <string msgid="3190049423327661366" name="m3c_date_range_input_invalid_range_input">"Внесовте неважечки временски период"</string>
+    <string msgid="3148384720560189467" name="m3c_date_range_input_title">"Внесете датуми"</string>
+    <string msgid="2138321128465719402" name="m3c_date_range_picker_day_in_range">"Во опсег"</string>
+    <string msgid="4947636797751277713" name="m3c_date_range_picker_end_headline">"Датум на завршување"</string>
+    <string msgid="602077859540990149" name="m3c_date_range_picker_scroll_to_next_month">"Лизгајте за да се прикаже следниот месец"</string>
+    <string msgid="4592174524846109496" name="m3c_date_range_picker_scroll_to_previous_month">"Лизгајте за да се прикаже претходниот месец"</string>
+    <string msgid="4665981448952749820" name="m3c_date_range_picker_start_headline">"Датум на започнување"</string>
+    <string msgid="3134165431120340385" name="m3c_date_range_picker_title">"Изберете датуми"</string>
+    <string msgid="7617233117134790350" name="m3c_dialog">"Дијалог"</string>
+    <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"Собрано"</string>
+    <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"Проширено"</string>
+    <string msgid="8687821690726149911" name="m3c_dropdown_menu_toggle">"Вклучување/исклучување паѓачко мени"</string>
+    <string msgid="6072492480528318635" name="m3c_floating_toolbar_collapse">"Собери го алатникот"</string>
+    <string msgid="6880757017246780255" name="m3c_floating_toolbar_expand">"Прошири го алатникот"</string>
+    <string msgid="5546418917311349543" name="m3c_floating_toolbar_more_options">"Повеќе опции"</string>
+    <string msgid="6152806324422087846" name="m3c_search_bar_search">"Пребарување"</string>
+    <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"Отфрли"</string>
+    <string msgid="3868801555855510515" name="m3c_snackbar_pane_title">"Предупредување"</string>
+    <string msgid="7655536806087401899" name="m3c_suggestions_available">"Предлозите се наведени подолу"</string>
+    <string msgid="409352516511718051" name="m3c_time_input_dialog_title">"Внесете време"</string>
+    <string msgid="2786685010796619560" name="m3c_time_picker_am">"прет."</string>
+    <string msgid="7412665527536641863" name="m3c_time_picker_dialog_title">"Изберете време"</string>
+    <string msgid="2349193472625211372" name="m3c_time_picker_hour">"Час"</string>
+    <string msgid="9179527532316922345" name="m3c_time_picker_hour_24h_suffix">"%1$d часа"</string>
+    <string msgid="1097071570318581307" name="m3c_time_picker_hour_error">"Опсег на часот: 1 – 12"</string>
+    <string msgid="7720688108712561777" name="m3c_time_picker_hour_error_24h">"Опсег на часот: 0 – 23"</string>
+    <string msgid="8876759303332837035" name="m3c_time_picker_hour_selection">"Изберете час"</string>
+    <string msgid="3458167507790628988" name="m3c_time_picker_hour_suffix">"%1$d часот"</string>
+    <string msgid="6973808109666874069" name="m3c_time_picker_hour_text_field">"за час"</string>
+    <string msgid="4313071914266462005" name="m3c_time_picker_minute">"Минута"</string>
+    <string msgid="8576727470211431214" name="m3c_time_picker_minute_error">"Опсег на мин.: 0 – 59"</string>
+    <string msgid="4699133535056739733" name="m3c_time_picker_minute_selection">"Изберете минути"</string>
+    <string msgid="5064177921781937179" name="m3c_time_picker_minute_suffix">"%1$d минути"</string>
+    <string msgid="7661234488295443182" name="m3c_time_picker_minute_text_field">"за минути"</string>
+    <string msgid="5865171949528594571" name="m3c_time_picker_period_toggle_description">"Изберете претпладне или попладне"</string>
+    <string msgid="6616362054113087709" name="m3c_time_picker_pm">"попл."</string>
+    <string msgid="4323189593686596153" name="m3c_time_picker_toggle_keyboard">"Префрли на „Режим за внесување текст“"</string>
+    <string msgid="1380272826693645088" name="m3c_time_picker_toggle_touch">"Префрли на „Режим за внесување на часовникот“"</string>
+    <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Прикажи совет за алатка"</string>
+    <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Совет за алатка"</string>
+    <string msgid="6564222473543418073" name="m3c_wide_navigation_rail_close_rail">"Затворање на шината"</string>
+    <string msgid="8350283435461615411" name="m3c_wide_navigation_rail_pane_title">"Шина за навигација"</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Мени за навигација"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Не е избрано"</string>
+    <string msgid="5941395253238309765" name="range_end">"Крај на опсегот"</string>
+    <string msgid="7097486360902471446" name="range_start">"Почеток на опсегот"</string>
+    <string msgid="6043586758067023" name="selected">"Избрано"</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"Предупредување"</string>
+    <string msgid="4139871816613051306" name="state_empty">"Празно"</string>
+    <string msgid="5834637030682409883" name="state_off">"Исклучено"</string>
+    <string msgid="1490883874751719580" name="state_on">"Вклучено"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"Прекинувач"</string>
+    <string msgid="1672349317127674378" name="tab">"Картичка"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> проценти."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"совет за алатка"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"прикажи совет за алатка"</string>
+</resources>

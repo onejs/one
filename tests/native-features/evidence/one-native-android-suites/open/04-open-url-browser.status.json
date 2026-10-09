@@ -1,0 +1,18 @@
+{
+  "suite": "one-native-android",
+  "name": "open-url-browser",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 40,
+  "detail": {
+    "focus": "  mCurrentFocus=Window{982a2fe u0 com.android.chrome/org.chromium.chrome.browser.ChromeTabbedActivity}",
+    "visibleText": "com.android.chrome:id/action_bar_root\nandroid:id/content\ncom.android.chrome:id/edge_to_edge_base_layout\ncom.android.chrome:id/coordinator\ncom.android.chrome:id/compositor_view_holder\nThis domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.\nهذا النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تجنب الاعتماد عليها لأغراض الاختبار والمراقبة.\n该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。\nL’usage de ce domaine est réservé à des exemples de documentation, sans autorisation préalable. Il ne s’agit pas d’un service ; son utilisation à des fins de test ou de surveillance est à éviter.\nДанный домен предназначен для использования в примерах документации без необходимости получения предварительного разрешения. Это не сервис; не рекомендуется его использование для тестирования и мониторинга.\nEste dominio está destinado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un servicio; evitar utilizarlo para realizar pruebas o monitoreos.\nLearn more\nLearn more\ncom.android.chrome:id/control_container\ncom.android.chrome:id/toolbar_container\ncom.android.chrome:id/toolbar\nOpen the home page\ncom.android.chrome:id/home_button\ncom.android.chrome:id/location_bar\ncom.android.chrome:id/location_bar_status\ncom.android.chrome:id/location_bar_status_icon_view\nConnection is secure\ncom.android.chrome:id/location_bar_status_icon\ncom.android.chrome:id/focus_thief\nexample.com/one-native-open-proof\ncom.android.chrome:id/url_bar\ncom.android.chrome:id/toolbar_buttons\ncom.android.chrome:id/optional_toolbar_button_container\nAsk Gemini\ncom.android.chrome:id/optional_toolbar_button\nSee 2 tabs\ncom.android.chrome:id/tab_switcher_button\ncom.android.chrome:id/menu_button_wrapper\nCustomize and control Google Chrome\ncom.android.chrome:id/menu_button\ncom.android.chrome:id/toolbar_hairline\ncom.android.chrome:id/toolbar_progress_bar_container\ncom.android.chrome:id/edge_to_edge_bottom_chin"
+  },
+  "capturedAt": "2026-10-09T19:28:55.795Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open/04-open-url-browser.png",
+    "xml": "evidence/one-native-android-suites/open/04-open-url-browser.xml",
+    "status": "evidence/one-native-android-suites/open/04-open-url-browser.status.json"
+  }
+}

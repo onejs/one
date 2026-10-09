@@ -1,0 +1,89 @@
+{
+  "suite": "one-native-android color",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "checks": [
+    {
+      "name": "app-mounted",
+      "result": "passed",
+      "durationMs": 2666,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/color/01-app-mounted.png",
+        "xml": "evidence/one-native-android-suites/color/01-app-mounted.xml",
+        "status": "evidence/one-native-android-suites/color/01-app-mounted.status.json"
+      }
+    },
+    {
+      "name": "system-android-color-home",
+      "result": "passed",
+      "durationMs": 2566,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/color/02-system-android-color-home.png",
+        "xml": "evidence/one-native-android-suites/color/02-system-android-color-home.xml",
+        "status": "evidence/one-native-android-suites/color/02-system-android-color-home.status.json"
+      }
+    },
+    {
+      "name": "android-color-mounted",
+      "result": "passed",
+      "durationMs": 2415,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/color/03-android-color-mounted.png",
+        "xml": "evidence/one-native-android-suites/color/03-android-color-mounted.xml",
+        "status": "evidence/one-native-android-suites/color/03-android-color-mounted.status.json"
+      }
+    },
+    {
+      "name": "android-color-pixels-match",
+      "result": "passed",
+      "durationMs": 135,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/color/04-android-color-pixels-match.png",
+        "xml": "evidence/one-native-android-suites/color/04-android-color-pixels-match.xml",
+        "status": "evidence/one-native-android-suites/color/04-android-color-pixels-match.status.json"
+      },
+      "detail": {
+        "platformBlack": {
+          "expected": [
+            0,
+            0,
+            0
+          ],
+          "actual": [
+            0,
+            0,
+            0
+          ]
+        },
+        "materialPrimary": {
+          "expected": [
+            103,
+            80,
+            164
+          ],
+          "actual": [
+            103,
+            80,
+            164
+          ]
+        },
+        "dynamicPrimary": {
+          "expected": [
+            76,
+            94,
+            139
+          ],
+          "actual": [
+            76,
+            94,
+            139
+          ]
+        },
+        "channelTolerance": 4
+      }
+    }
+  ],
+  "checkCount": 4,
+  "completedAt": "2026-10-09T19:59:31.711Z"
+}

@@ -1,0 +1,45 @@
+{
+  "suite": "one-native-android",
+  "result": "failed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "error": "open-url-browser timed out after 15000ms",
+  "checks": [
+    {
+      "name": "app-mounted",
+      "result": "passed",
+      "durationMs": 3625,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open/01-app-mounted.png",
+        "xml": "evidence/one-native-android-suites/open/01-app-mounted.xml",
+        "status": "evidence/one-native-android-suites/open/01-app-mounted.status.json"
+      }
+    },
+    {
+      "name": "system-open-home",
+      "result": "passed",
+      "durationMs": 2628,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open/02-system-open-home.png",
+        "xml": "evidence/one-native-android-suites/open/02-system-open-home.xml",
+        "status": "evidence/one-native-android-suites/open/02-system-open-home.status.json"
+      }
+    },
+    {
+      "name": "open-apis-mounted",
+      "result": "passed",
+      "durationMs": 2366,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open/03-open-apis-mounted.png",
+        "xml": "evidence/one-native-android-suites/open/03-open-apis-mounted.xml",
+        "status": "evidence/one-native-android-suites/open/03-open-apis-mounted.status.json"
+      }
+    }
+  ],
+  "failureArtifacts": {
+    "png": "evidence/one-native-android-suites/open/04-failure.png",
+    "xml": "evidence/one-native-android-suites/open/04-failure.xml",
+    "status": "evidence/one-native-android-suites/open/04-failure.status.json"
+  },
+  "completedAt": "2026-10-09T19:25:13.683Z"
+}

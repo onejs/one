@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "android-disabled-menu-stays-closed",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 38,
+  "capturedAt": "2026-10-09T20:07:19.505Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus-accepted/09-android-disabled-menu-stays-closed.png",
+    "xml": "evidence/one-native-android-suites/menus-accepted/09-android-disabled-menu-stays-closed.xml",
+    "status": "evidence/one-native-android-suites/menus-accepted/09-android-disabled-menu-stays-closed.status.json"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "android-menus-mounted",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 38,
+  "capturedAt": "2026-10-09T20:04:32.961Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus/03-android-menus-mounted.png",
+    "xml": "evidence/one-native-android-suites/menus/03-android-menus-mounted.xml",
+    "status": "evidence/one-native-android-suites/menus/03-android-menus-mounted.status.json"
+  }
+}

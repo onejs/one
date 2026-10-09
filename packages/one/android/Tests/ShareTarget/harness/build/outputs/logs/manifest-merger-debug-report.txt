@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml:1:1-72
+INJECTED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml:1:1-72
+	package
+		INJECTED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml
+INJECTED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/n8/one/packages/one/android/Tests/ShareTarget/harness/src/main/AndroidManifest.xml

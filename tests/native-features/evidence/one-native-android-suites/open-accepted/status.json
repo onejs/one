@@ -1,0 +1,118 @@
+{
+  "suite": "one-native-android open",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "checks": [
+    {
+      "name": "app-mounted",
+      "result": "passed",
+      "durationMs": 3152,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/01-app-mounted.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/01-app-mounted.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/01-app-mounted.status.json"
+      }
+    },
+    {
+      "name": "system-open-home",
+      "result": "passed",
+      "durationMs": 2835,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/02-system-open-home.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/02-system-open-home.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/02-system-open-home.status.json"
+      }
+    },
+    {
+      "name": "open-apis-mounted",
+      "result": "passed",
+      "durationMs": 2379,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/03-open-apis-mounted.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/03-open-apis-mounted.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/03-open-apis-mounted.status.json"
+      }
+    },
+    {
+      "name": "open-url-browser",
+      "result": "passed",
+      "durationMs": 2598,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/04-open-url-browser.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/04-open-url-browser.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/04-open-url-browser.status.json"
+      },
+      "detail": {
+        "focus": "  mCurrentFocus=Window{245726d u0 com.android.chrome/org.chromium.chrome.browser.ChromeTabbedActivity}",
+        "visibleText": "com.android.chrome:id/action_bar_root\nandroid:id/content\ncom.android.chrome:id/edge_to_edge_base_layout\ncom.android.chrome:id/coordinator\ncom.android.chrome:id/compositor_view_holder\nThis domain is for use in documentation examples without needing permission. This is not a service; avoid relying on it for testing and monitoring purposes.\nهذا النطاق مُخصص للاستخدام في أمثلة التوثيق دون الحاجة إلى إذن. هذه ليست خدمة، يُرجى تجنب الاعتماد عليها لأغراض الاختبار والمراقبة.\n该域名仅用于文档示例，无需获得许可。这并非一项服务，请勿将其用于测试和监控目的。\nL’usage de ce domaine est réservé à des exemples de documentation, sans autorisation préalable. Il ne s’agit pas d’un service ; son utilisation à des fins de test ou de surveillance est à éviter.\nДанный домен предназначен для использования в примерах документации без необходимости получения предварительного разрешения. Это не сервис; не рекомендуется его использование для тестирования и мониторинга.\nEste dominio está destinado al uso en ejemplos de documentación sin necesidad de permiso. Esto no es un servicio; evitar utilizarlo para realizar pruebas o monitoreos.\nLearn more\nLearn more\ncom.android.chrome:id/control_container\ncom.android.chrome:id/toolbar_container\ncom.android.chrome:id/toolbar\nOpen the home page\ncom.android.chrome:id/home_button\ncom.android.chrome:id/location_bar\ncom.android.chrome:id/location_bar_status\ncom.android.chrome:id/location_bar_status_icon_view\nConnection is secure\ncom.android.chrome:id/location_bar_status_icon\ncom.android.chrome:id/focus_thief\nexample.com/one-native-open-proof\ncom.android.chrome:id/url_bar\ncom.android.chrome:id/toolbar_buttons\ncom.android.chrome:id/optional_toolbar_button_container\nAsk Gemini\ncom.android.chrome:id/optional_toolbar_button\nSee 1 tab\ncom.android.chrome:id/tab_switcher_button\ncom.android.chrome:id/menu_button_wrapper\nCustomize and control Google Chrome\ncom.android.chrome:id/menu_button\ncom.android.chrome:id/toolbar_hairline\ncom.android.chrome:id/toolbar_progress_bar_container\ncom.android.chrome:id/edge_to_edge_bottom_chin"
+      }
+    },
+    {
+      "name": "open-url-returned",
+      "result": "passed",
+      "durationMs": 1966,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/05-open-url-returned.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/05-open-url-returned.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/05-open-url-returned.status.json"
+      }
+    },
+    {
+      "name": "open-share-sheet",
+      "result": "passed",
+      "durationMs": 2411,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/06-open-share-sheet.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/06-open-share-sheet.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/06-open-share-sheet.status.json"
+      }
+    },
+    {
+      "name": "open-share-completed",
+      "result": "passed",
+      "durationMs": 1999,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/07-open-share-completed.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/07-open-share-completed.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/07-open-share-completed.status.json"
+      }
+    },
+    {
+      "name": "open-empty-share-rejected",
+      "result": "passed",
+      "durationMs": 1953,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/08-open-empty-share-rejected.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/08-open-empty-share-rejected.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/08-open-empty-share-rejected.status.json"
+      }
+    },
+    {
+      "name": "open-settings-app-details",
+      "result": "passed",
+      "durationMs": 2546,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/09-open-settings-app-details.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/09-open-settings-app-details.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/09-open-settings-app-details.status.json"
+      },
+      "detail": {
+        "focus": "  mCurrentFocus=Window{f068fc2 u0 com.android.settings/com.android.settings.spa.SpaActivity}",
+        "visibleText": "android:id/content\nNativeFeatureTests\nArchive\nUninstall\nForce stop\nNotifications\nAbout 0 notifications per week\nPermissions\nNearby devices and Notifications\nStorage & cache\n168 MB used in internal storage\nMobile data usage\n32.89 kB used since Oct 2\nScreen time\n6 minutes today\nApp battery usage\nNo battery use since last full charge\nOpen by default\nAllow app to open supported links\nNavigate up\nApp info\nOpen"
+      }
+    },
+    {
+      "name": "open-settings-returned",
+      "result": "passed",
+      "durationMs": 1948,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/open-accepted/10-open-settings-returned.png",
+        "xml": "evidence/one-native-android-suites/open-accepted/10-open-settings-returned.xml",
+        "status": "evidence/one-native-android-suites/open-accepted/10-open-settings-returned.status.json"
+      }
+    }
+  ],
+  "checkCount": 10,
+  "completedAt": "2026-10-09T19:32:58.109Z"
+}

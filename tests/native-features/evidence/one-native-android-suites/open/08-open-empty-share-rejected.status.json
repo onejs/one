@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "open-empty-share-rejected",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 34,
+  "capturedAt": "2026-10-09T19:29:10.765Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open/08-open-empty-share-rejected.png",
+    "xml": "evidence/one-native-android-suites/open/08-open-empty-share-rejected.xml",
+    "status": "evidence/one-native-android-suites/open/08-open-empty-share-rejected.status.json"
+  }
+}

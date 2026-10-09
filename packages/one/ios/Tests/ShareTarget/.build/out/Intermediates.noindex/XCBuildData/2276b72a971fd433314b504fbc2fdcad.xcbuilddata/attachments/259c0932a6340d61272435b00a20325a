@@ -1,0 +1,59 @@
+{
+  "" : {
+    "diagnostics" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetCore-primary.dia",
+    "emit-module-dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetCore-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetCore-primary-emit-module.dia",
+    "pch" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetCore-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetCore-primary.swiftdeps"
+  },
+  "/Users/n8/one/packages/one/ios/Tests/ShareTarget/Sources/OneShareTargetCore/OneShareTargetAdapter.swift" : {
+    "const-values" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter.swiftconstvalues",
+    "dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter.d",
+    "diagnostics" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter.dia",
+    "index-unit-output-path" : "/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter.o",
+    "llvm-bc" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter.bc",
+    "object" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter.o",
+    "swift-dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter.swiftdeps",
+    "swiftmodule" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetAdapter~partial.swiftmodule"
+  },
+  "/Users/n8/one/packages/one/ios/Tests/ShareTarget/Sources/OneShareTargetCore/OneShareTargetConfiguration.swift" : {
+    "const-values" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration.swiftconstvalues",
+    "dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration.d",
+    "diagnostics" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration.dia",
+    "index-unit-output-path" : "/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration.o",
+    "llvm-bc" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration.bc",
+    "object" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration.o",
+    "swift-dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration.swiftdeps",
+    "swiftmodule" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetConfiguration~partial.swiftmodule"
+  },
+  "/Users/n8/one/packages/one/ios/Tests/ShareTarget/Sources/OneShareTargetCore/OneShareTargetDraftStore.swift" : {
+    "const-values" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore.swiftconstvalues",
+    "dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore.d",
+    "diagnostics" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore.dia",
+    "index-unit-output-path" : "/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore.o",
+    "llvm-bc" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore.bc",
+    "object" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore.o",
+    "swift-dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore.swiftdeps",
+    "swiftmodule" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetDraftStore~partial.swiftmodule"
+  },
+  "/Users/n8/one/packages/one/ios/Tests/ShareTarget/Sources/OneShareTargetCore/OneShareTargetIntake.swift" : {
+    "const-values" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake.swiftconstvalues",
+    "dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake.d",
+    "diagnostics" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake.dia",
+    "index-unit-output-path" : "/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake.o",
+    "llvm-bc" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake.bc",
+    "object" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake.o",
+    "swift-dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake.swiftdeps",
+    "swiftmodule" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetIntake~partial.swiftmodule"
+  },
+  "/Users/n8/one/packages/one/ios/Tests/ShareTarget/Sources/OneShareTargetCore/OneShareTargetSubmissionCoordinator.swift" : {
+    "const-values" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator.swiftconstvalues",
+    "dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator.d",
+    "diagnostics" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator.dia",
+    "index-unit-output-path" : "/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator.o",
+    "llvm-bc" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator.bc",
+    "object" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator.o",
+    "swift-dependencies" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator.swiftdeps",
+    "swiftmodule" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex/OneShareTargetHarness.build/Debug/OneShareTargetCore-t.build/Objects-normal/arm64/OneShareTargetSubmissionCoordinator~partial.swiftmodule"
+  }
+}

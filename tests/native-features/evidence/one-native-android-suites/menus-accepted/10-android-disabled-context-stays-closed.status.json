@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "android-disabled-context-stays-closed",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 38,
+  "capturedAt": "2026-10-09T20:07:24.503Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus-accepted/10-android-disabled-context-stays-closed.png",
+    "xml": "evidence/one-native-android-suites/menus-accepted/10-android-disabled-context-stays-closed.xml",
+    "status": "evidence/one-native-android-suites/menus-accepted/10-android-disabled-context-stays-closed.status.json"
+  }
+}

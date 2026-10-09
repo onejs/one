@@ -1,0 +1,991 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "/Users/n8/one/node_modules/one/android/build/intermediates/cxx/Debug/32n6wj1u/obj/arm64-v8a/libOne.so"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"include",
+			"add_definitions",
+			"target_compile_definitions",
+			"target_include_directories",
+			"include_directories",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"/Users/n8/one/node_modules/one/nitrogen/generated/android/One+autolinking.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 21,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 31,
+				"parent" : 0
+			},
+			{
+				"file" : 1,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 141,
+				"parent" : 3
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 150,
+				"parent" : 3
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 17,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 121,
+				"parent" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 20,
+				"parent" : 3
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 29,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 23,
+				"parent" : 3
+			},
+			{
+				"command" : 7,
+				"file" : 1,
+				"line" : 30,
+				"parent" : 3
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC"
+				},
+				{
+					"fragment" : "-std=gnu++20"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 7,
+					"define" : "BUILDING_ONE_WITH_GENERATED_CMAKE_PROJECT"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_CFG_NO_COROUTINES=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_HAVE_CLOCK_GETTIME=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_HAVE_PTHREAD=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_HAVE_RECVMMSG=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_HAVE_XSI_STRERROR_R=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_MOBILE=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_NO_CONFIG=1"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "FOLLY_USE_LIBCPP=1"
+				},
+				{
+					"define" : "One_EXPORTS"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "RN_SERIALIZABLE_STATE"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 10,
+					"path" : "/Users/n8/one/node_modules/one/android/../cpp"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "/Users/n8/one/node_modules/one/android/src/main/cpp"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "/Users/n8/one/node_modules/one/android/../nitrogen/generated/shared/c++"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "/Users/n8/one/node_modules/one/android/../nitrogen/generated/android/c++"
+				},
+				{
+					"backtrace" : 11,
+					"path" : "/Users/n8/one/node_modules/one/android/../nitrogen/generated/android"
+				},
+				{
+					"backtrace" : 4,
+					"isSystem" : true,
+					"path" : "/Users/n8/.gradle/caches/9.4.1/transforms/3cb1792e16d0777e9535521c99f0b7b5/transformed/fbjni-0.7.0/prefab/modules/fbjni/include"
+				},
+				{
+					"backtrace" : 4,
+					"isSystem" : true,
+					"path" : "/Users/n8/.gradle/caches/9.4.1/transforms/2f3f04f29a7d86f4d7cc17e86688042f/transformed/react-android-0.87.1-debug/prefab/modules/jsi/include"
+				},
+				{
+					"backtrace" : 4,
+					"isSystem" : true,
+					"path" : "/Users/n8/one/node_modules/react-native-nitro-modules/android/build/headers/nitromodules"
+				},
+				{
+					"backtrace" : 5,
+					"isSystem" : true,
+					"path" : "/Users/n8/.gradle/caches/9.4.1/transforms/2f3f04f29a7d86f4d7cc17e86688042f/transformed/react-android-0.87.1-debug/prefab/modules/reactnative/include"
+				},
+				{
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/Users/n8/one/node_modules/react-native-worklets/android/build/prefab-headers/worklets"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "20"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85
+			],
+			"sysroot" : 
+			{
+				"path" : "/Users/n8/Library/Android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/darwin-x86_64/sysroot"
+			}
+		}
+	],
+	"id" : "One::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/Users/n8/one/node_modules/react-native-nitro-modules/android/build/intermediates/cxx/Debug/z3w15185/obj/arm64-v8a/libNitroModules.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/Users/n8/.gradle/caches/9.4.1/transforms/3cb1792e16d0777e9535521c99f0b7b5/transformed/fbjni-0.7.0/prefab/modules/fbjni/libs/android.arm64-v8a/libfbjni.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/Users/n8/.gradle/caches/9.4.1/transforms/2f3f04f29a7d86f4d7cc17e86688042f/transformed/react-android-0.87.1-debug/prefab/modules/jsi/libs/android.arm64-v8a/libjsi.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "/Users/n8/.gradle/caches/9.4.1/transforms/2f3f04f29a7d86f4d7cc17e86688042f/transformed/react-android-0.87.1-debug/prefab/modules/reactnative/libs/android.arm64-v8a/libreactnative.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "/Users/n8/one/node_modules/react-native-worklets/android/build/intermediates/cxx/Debug/1t5d4952/obj/arm64-v8a/libworklets.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "-landroid",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 6,
+				"fragment" : "-llog",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-latomic -lm",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX",
+		"sysroot" : 
+		{
+			"path" : "/Users/n8/Library/Android/sdk/ndk/27.1.12297006/toolchains/llvm/prebuilt/darwin-x86_64/sysroot"
+		}
+	},
+	"name" : "One",
+	"nameOnDisk" : "libOne.so",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main/cpp/OneNativeSyncJni.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main/cpp/OneStorageDirectory.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/cpp/OneNativeSyncHost.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/cpp/HybridOneStorage.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/cpp/HybridOneCrypto.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/OneOnLoad.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneAdaptiveSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneAppIconSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneAppInfoSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneAppIntentsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneAppleAuthSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneAppTrackingSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneAudioSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneBackgroundTasksSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneCalendarSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneContactsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneDeviceSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneDeviceAttestationSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneDocumentPickerSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneFetchSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneFileSystemSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneFontsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneHapticsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneImageManipulatorSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneKeepAwakeSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneLaunchScreenSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneLocationSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneMapServicesSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneMotionSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneNativeModulesSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOnePhotoLibrarySpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOnePrintSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneProtectedStoreSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOnePurchasesSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneQuickActionsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneScreenCaptureSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneScreenOrientationSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneShareSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneStorageSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneStoreReviewSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneAdaptiveSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneAppIconSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneAudioSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneCalendarSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneContactsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneDeviceSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneDocumentPickerSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneFetchSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneFileSystemSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneFontsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneHapticsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneImageManipulatorSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneKeepAwakeSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneLaunchScreenSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneLocalAuthenticationSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneLocationSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneMapServicesSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneMotionSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOnePhotoLibrarySpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOnePrintSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneProtectedStoreSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneQuickActionsSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneScreenCaptureSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneScreenOrientationSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneShareSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 12,
+			"compileGroupIndex" : 0,
+			"path" : "/Users/n8/one/node_modules/one/nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

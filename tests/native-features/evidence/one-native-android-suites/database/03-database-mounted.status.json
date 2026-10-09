@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "database-mounted",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 36,
+  "capturedAt": "2026-10-09T19:50:30.997Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/database/03-database-mounted.png",
+    "xml": "evidence/one-native-android-suites/database/03-database-mounted.xml",
+    "status": "evidence/one-native-android-suites/database/03-database-mounted.status.json"
+  }
+}

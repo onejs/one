@@ -12,8 +12,8 @@ declare module 'one' {
         | `/color-test`
         | `/menu-test`
         | `/one-native`
-        | `/one-native-android`
         | `/one-native-accessibility`
+        | `/one-native-android`
         | `/one-native-containers`
         | `/one-native-controls`
         | `/one-native-dialogs`

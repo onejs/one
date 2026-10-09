@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-android-menus-home",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "capturedAt": "2026-10-09T20:03:11.129Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus/02-system-android-menus-home.png",
+    "xml": "evidence/one-native-android-suites/menus/02-system-android-menus-home.xml",
+    "status": "evidence/one-native-android-suites/menus/02-system-android-menus-home.status.json"
+  }
+}

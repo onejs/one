@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-database-home",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "capturedAt": "2026-10-09T19:49:29.664Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/database/02-system-database-home.png",
+    "xml": "evidence/one-native-android-suites/database/02-system-database-home.xml",
+    "status": "evidence/one-native-android-suites/database/02-system-database-home.status.json"
+  }
+}

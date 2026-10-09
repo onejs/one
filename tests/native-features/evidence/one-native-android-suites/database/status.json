@@ -1,0 +1,90 @@
+{
+  "suite": "one-native-android database",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "checks": [
+    {
+      "name": "app-mounted",
+      "result": "passed",
+      "durationMs": 2599,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/01-app-mounted.png",
+        "xml": "evidence/one-native-android-suites/database/01-app-mounted.xml",
+        "status": "evidence/one-native-android-suites/database/01-app-mounted.status.json"
+      }
+    },
+    {
+      "name": "system-database-home",
+      "result": "passed",
+      "durationMs": 2612,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/02-system-database-home.png",
+        "xml": "evidence/one-native-android-suites/database/02-system-database-home.xml",
+        "status": "evidence/one-native-android-suites/database/02-system-database-home.status.json"
+      }
+    },
+    {
+      "name": "database-mounted",
+      "result": "passed",
+      "durationMs": 2391,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/03-database-mounted.png",
+        "xml": "evidence/one-native-android-suites/database/03-database-mounted.xml",
+        "status": "evidence/one-native-android-suites/database/03-database-mounted.status.json"
+      }
+    },
+    {
+      "name": "database-sync-async-queries",
+      "result": "passed",
+      "durationMs": 1962,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/04-database-sync-async-queries.png",
+        "xml": "evidence/one-native-android-suites/database/04-database-sync-async-queries.xml",
+        "status": "evidence/one-native-android-suites/database/04-database-sync-async-queries.status.json"
+      }
+    },
+    {
+      "name": "database-reopen-persisted-row",
+      "result": "passed",
+      "durationMs": 1945,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/05-database-reopen-persisted-row.png",
+        "xml": "evidence/one-native-android-suites/database/05-database-reopen-persisted-row.xml",
+        "status": "evidence/one-native-android-suites/database/05-database-reopen-persisted-row.status.json"
+      }
+    },
+    {
+      "name": "database-key-value-reopen-and-remove",
+      "result": "passed",
+      "durationMs": 1958,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/06-database-key-value-reopen-and-remove.png",
+        "xml": "evidence/one-native-android-suites/database/06-database-key-value-reopen-and-remove.xml",
+        "status": "evidence/one-native-android-suites/database/06-database-key-value-reopen-and-remove.status.json"
+      }
+    },
+    {
+      "name": "database-query-error-rejected",
+      "result": "passed",
+      "durationMs": 1946,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/07-database-query-error-rejected.png",
+        "xml": "evidence/one-native-android-suites/database/07-database-query-error-rejected.xml",
+        "status": "evidence/one-native-android-suites/database/07-database-query-error-rejected.status.json"
+      }
+    },
+    {
+      "name": "database-clear-row",
+      "result": "passed",
+      "durationMs": 1956,
+      "artifacts": {
+        "png": "evidence/one-native-android-suites/database/08-database-clear-row.png",
+        "xml": "evidence/one-native-android-suites/database/08-database-clear-row.xml",
+        "status": "evidence/one-native-android-suites/database/08-database-clear-row.status.json"
+      }
+    }
+  ],
+  "checkCount": 8,
+  "completedAt": "2026-10-09T19:50:51.088Z"
+}

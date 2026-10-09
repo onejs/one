@@ -1,0 +1,15 @@
+{
+  "suite": "one-native-android",
+  "name": "failure",
+  "result": "failed",
+  "error": "Android preflight: no adb reverse mapping device tcp:8081 to host tcp:8098 (Metro port 8098 from --metro-port or RCT_METRO_PORT). Run: adb -s emulator-5554 reverse tcp:8081 tcp:8098",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 34,
+  "capturedAt": "2026-10-09T19:49:04.030Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/database/01-failure.png",
+    "xml": "evidence/one-native-android-suites/database/01-failure.xml",
+    "status": "evidence/one-native-android-suites/database/01-failure.status.json"
+  }
+}

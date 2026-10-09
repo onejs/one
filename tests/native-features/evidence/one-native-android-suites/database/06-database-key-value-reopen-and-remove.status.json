@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "database-key-value-reopen-and-remove",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 39,
+  "capturedAt": "2026-10-09T19:50:43.028Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/database/06-database-key-value-reopen-and-remove.png",
+    "xml": "evidence/one-native-android-suites/database/06-database-key-value-reopen-and-remove.xml",
+    "status": "evidence/one-native-android-suites/database/06-database-key-value-reopen-and-remove.status.json"
+  }
+}

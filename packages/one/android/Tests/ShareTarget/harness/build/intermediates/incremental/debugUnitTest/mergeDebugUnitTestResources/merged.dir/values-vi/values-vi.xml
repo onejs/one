@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"Tự động điền"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"Tự động điền"</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Trả lời"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Video"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Từ chối"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Kết thúc"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Cuộc gọi đến"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Cuộc gọi đang thực hiện"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Đang sàng lọc cuộc gọi đến"</string>
+    <string msgid="406453423630273620" name="close_drawer">"Đóng trình đơn điều hướng"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Đóng trang tính"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Giá trị nhập không hợp lệ"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Cửa sổ bật lên"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Trình đơn thả xuống"</string>
+    <string msgid="6827826412747255547" name="in_progress">"Đang thực hiện"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Đã kiểm tra một phần"</string>
+    <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Thu gọn bảng dưới cùng"</string>
+    <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"Đóng bảng dưới cùng"</string>
+    <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"Nút kéo"</string>
+    <string msgid="6670819569745899763" name="m3c_bottom_sheet_expand_description">"Mở rộng bảng dưới cùng"</string>
+    <string msgid="3010635850035863127" name="m3c_bottom_sheet_pane_title">"Bảng dưới cùng"</string>
+    <string msgid="3990875819916144919" name="m3c_button_group_more_options">"Tuỳ chọn khác"</string>
+    <string msgid="8166741421776570875" name="m3c_date_input_headline">"Ngày đã nhập"</string>
+    <string msgid="229313757840775812" name="m3c_date_input_headline_description">"Ngày đã nhập: %1$s"</string>
+    <string msgid="6116910750161463197" name="m3c_date_input_invalid_for_pattern">"Ngày không khớp với định dạng dự kiến: %1$s"</string>
+    <string msgid="2521768508935305279" name="m3c_date_input_invalid_not_allowed">"Ngày không được phép: %1$s"</string>
+    <string msgid="7052898923934555305" name="m3c_date_input_invalid_year_range">"Ngày không thuộc phạm vi năm dự kiến %1$s – %2$s"</string>
+    <string msgid="2895559812010326913" name="m3c_date_input_label">"Ngày"</string>
+    <string msgid="1237013946323089826" name="m3c_date_input_no_input_description">"Không có"</string>
+    <string msgid="7306227249789210568" name="m3c_date_input_title">"Chọn ngày"</string>
+    <string msgid="7605002211875882969" name="m3c_date_picker_headline">"Ngày đã chọn"</string>
+    <string msgid="3664277305226978227" name="m3c_date_picker_headline_description">"Lựa chọn hiện tại: %1$s"</string>
+    <string msgid="8436650776581492840" name="m3c_date_picker_navigate_to_year_description">"Chuyển đến năm %1$s"</string>
+    <string msgid="5811000998184572395" name="m3c_date_picker_no_selection_description">"Không có"</string>
+    <string msgid="7813882352367152251" name="m3c_date_picker_scroll_to_earlier_years">"Cuộn để hiện những năm trước"</string>
+    <string msgid="5727367015496556177" name="m3c_date_picker_scroll_to_later_years">"Cuộn để hiện những năm sau"</string>
+    <string msgid="1804346892470238807" name="m3c_date_picker_switch_to_calendar_mode">"Chuyển sang chế độ nhập lịch"</string>
+    <string msgid="395627960681594326" name="m3c_date_picker_switch_to_day_selection">"Vuốt để chọn một năm hoặc nhấn để chuyển lại về chọn một ngày"</string>
+    <string msgid="2219746470065162704" name="m3c_date_picker_switch_to_input_mode">"Chuyển sang chế độ nhập văn bản"</string>
+    <string msgid="7142101321095356500" name="m3c_date_picker_switch_to_next_month">"Chuyển sang tháng tiếp theo"</string>
+    <string msgid="228438865139394590" name="m3c_date_picker_switch_to_previous_month">"Chuyển về tháng trước"</string>
+    <string msgid="791651718641787594" name="m3c_date_picker_switch_to_year_selection">"Chuyển sang chọn năm"</string>
+    <string msgid="7430790972741451689" name="m3c_date_picker_title">"Chọn ngày"</string>
+    <string msgid="3199387177749801575" name="m3c_date_picker_today_description">"Hôm nay"</string>
+    <string msgid="2068382232816991922" name="m3c_date_picker_year_picker_pane_title">"Bộ chọn năm hiển thị"</string>
+    <string msgid="3190049423327661366" name="m3c_date_range_input_invalid_range_input">"Phạm vi ngày đã nhập không hợp lệ"</string>
+    <string msgid="3148384720560189467" name="m3c_date_range_input_title">"Nhập ngày"</string>
+    <string msgid="2138321128465719402" name="m3c_date_range_picker_day_in_range">"Trong khoảng"</string>
+    <string msgid="4947636797751277713" name="m3c_date_range_picker_end_headline">"Ngày kết thúc"</string>
+    <string msgid="602077859540990149" name="m3c_date_range_picker_scroll_to_next_month">"Cuộn để hiện tháng sau"</string>
+    <string msgid="4592174524846109496" name="m3c_date_range_picker_scroll_to_previous_month">"Cuộn để hiện tháng trước"</string>
+    <string msgid="4665981448952749820" name="m3c_date_range_picker_start_headline">"Ngày bắt đầu"</string>
+    <string msgid="3134165431120340385" name="m3c_date_range_picker_title">"Chọn ngày"</string>
+    <string msgid="7617233117134790350" name="m3c_dialog">"Hộp thoại"</string>
+    <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"Đã thu gọn"</string>
+    <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"Đã mở rộng"</string>
+    <string msgid="8687821690726149911" name="m3c_dropdown_menu_toggle">"Bật/tắt trình đơn thả xuống"</string>
+    <string msgid="6072492480528318635" name="m3c_floating_toolbar_collapse">"Thu gọn thanh công cụ"</string>
+    <string msgid="6880757017246780255" name="m3c_floating_toolbar_expand">"Mở rộng thanh công cụ"</string>
+    <string msgid="5546418917311349543" name="m3c_floating_toolbar_more_options">"Lựa chọn khác"</string>
+    <string msgid="6152806324422087846" name="m3c_search_bar_search">"Tìm kiếm"</string>
+    <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"Đóng"</string>
+    <string msgid="3868801555855510515" name="m3c_snackbar_pane_title">"Cảnh báo"</string>
+    <string msgid="7655536806087401899" name="m3c_suggestions_available">"Các đề xuất ở bên dưới"</string>
+    <string msgid="409352516511718051" name="m3c_time_input_dialog_title">"Nhập thời gian"</string>
+    <string msgid="2786685010796619560" name="m3c_time_picker_am">"SA"</string>
+    <string msgid="7412665527536641863" name="m3c_time_picker_dialog_title">"Chọn thời gian"</string>
+    <string msgid="2349193472625211372" name="m3c_time_picker_hour">"Giờ"</string>
+    <string msgid="9179527532316922345" name="m3c_time_picker_hour_24h_suffix">"%1$d giờ"</string>
+    <string msgid="1097071570318581307" name="m3c_time_picker_hour_error">"Số giờ phải từ 1 đến 12"</string>
+    <string msgid="7720688108712561777" name="m3c_time_picker_hour_error_24h">"Số giờ phải từ 0 đến 23"</string>
+    <string msgid="8876759303332837035" name="m3c_time_picker_hour_selection">"Chọn giờ"</string>
+    <string msgid="3458167507790628988" name="m3c_time_picker_hour_suffix">"%1$d giờ"</string>
+    <string msgid="6973808109666874069" name="m3c_time_picker_hour_text_field">"nhập giờ"</string>
+    <string msgid="4313071914266462005" name="m3c_time_picker_minute">"Phút"</string>
+    <string msgid="8576727470211431214" name="m3c_time_picker_minute_error">"Số phút phải từ 0 đến 59"</string>
+    <string msgid="4699133535056739733" name="m3c_time_picker_minute_selection">"Chọn phút"</string>
+    <string msgid="5064177921781937179" name="m3c_time_picker_minute_suffix">"%1$d phút"</string>
+    <string msgid="7661234488295443182" name="m3c_time_picker_minute_text_field">"nhập phút"</string>
+    <string msgid="5865171949528594571" name="m3c_time_picker_period_toggle_description">"Chọn SA hoặc CH"</string>
+    <string msgid="6616362054113087709" name="m3c_time_picker_pm">"CH"</string>
+    <string msgid="4323189593686596153" name="m3c_time_picker_toggle_keyboard">"Chuyển sang chế độ nhập văn bản"</string>
+    <string msgid="1380272826693645088" name="m3c_time_picker_toggle_touch">"Chuyển sang chế độ đồng hồ"</string>
+    <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Hiện chú giải công cụ"</string>
+    <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Chú giải công cụ"</string>
+    <string msgid="6564222473543418073" name="m3c_wide_navigation_rail_close_rail">"Đóng dải điều hướng"</string>
+    <string msgid="8350283435461615411" name="m3c_wide_navigation_rail_pane_title">"Dải điều hướng"</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Trình đơn điều hướng"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Chưa chọn"</string>
+    <string msgid="5941395253238309765" name="range_end">"Điểm kết thúc phạm vi"</string>
+    <string msgid="7097486360902471446" name="range_start">"Điểm bắt đầu phạm vi"</string>
+    <string msgid="6043586758067023" name="selected">"Đã chọn"</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"Cảnh báo"</string>
+    <string msgid="4139871816613051306" name="state_empty">"Trống"</string>
+    <string msgid="5834637030682409883" name="state_off">"Đang tắt"</string>
+    <string msgid="1490883874751719580" name="state_on">"Đang bật"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"Chuyển"</string>
+    <string msgid="1672349317127674378" name="tab">"Thẻ"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g>%%."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"chú thích"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"hiện chú thích"</string>
+</resources>

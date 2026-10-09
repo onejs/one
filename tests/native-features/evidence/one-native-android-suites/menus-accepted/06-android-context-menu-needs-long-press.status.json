@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "android-context-menu-needs-long-press",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 38,
+  "capturedAt": "2026-10-09T20:07:06.458Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus-accepted/06-android-context-menu-needs-long-press.png",
+    "xml": "evidence/one-native-android-suites/menus-accepted/06-android-context-menu-needs-long-press.xml",
+    "status": "evidence/one-native-android-suites/menus-accepted/06-android-context-menu-needs-long-press.status.json"
+  }
+}

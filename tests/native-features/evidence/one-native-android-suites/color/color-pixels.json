@@ -1,0 +1,39 @@
+{
+  "platformBlack": {
+    "expected": [
+      0,
+      0,
+      0
+    ],
+    "actual": [
+      0,
+      0,
+      0
+    ]
+  },
+  "materialPrimary": {
+    "expected": [
+      103,
+      80,
+      164
+    ],
+    "actual": [
+      103,
+      80,
+      164
+    ]
+  },
+  "dynamicPrimary": {
+    "expected": [
+      76,
+      94,
+      139
+    ],
+    "actual": [
+      76,
+      94,
+      139
+    ]
+  },
+  "channelTolerance": 4
+}

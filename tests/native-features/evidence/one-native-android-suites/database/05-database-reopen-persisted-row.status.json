@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "database-reopen-persisted-row",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 39,
+  "capturedAt": "2026-10-09T19:50:39.017Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/database/05-database-reopen-persisted-row.png",
+    "xml": "evidence/one-native-android-suites/database/05-database-reopen-persisted-row.xml",
+    "status": "evidence/one-native-android-suites/database/05-database-reopen-persisted-row.status.json"
+  }
+}

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string msgid="8719607706653693137" name="androidx_compose_foundation_autofill">"Autofill"</string>
+    <string msgid="1150566100598813236" name="androidx_compose_ui_autofill">"Autofill"</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Sagutin"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Video"</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Tanggihan"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Ibaba"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Papasok na tawag"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Kasalukuyang tawag"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Nagsi-screen ng papasok na tawag"</string>
+    <string msgid="406453423630273620" name="close_drawer">"Isara ang menu ng navigation"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Isara ang sheet"</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Invalid na input"</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Window ng Pop-Up"</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Drop-down na menu"</string>
+    <string msgid="6827826412747255547" name="in_progress">"Isinasagawa"</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Bahagyang may check"</string>
+    <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"I-collapse ang bottom sheet"</string>
+    <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"I-dismiss ang bottom sheet"</string>
+    <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"Handle sa pag-drag"</string>
+    <string msgid="6670819569745899763" name="m3c_bottom_sheet_expand_description">"Palawakin ang bottom sheet"</string>
+    <string msgid="3010635850035863127" name="m3c_bottom_sheet_pane_title">"Bottom Sheet"</string>
+    <string msgid="3990875819916144919" name="m3c_button_group_more_options">"Higit pang opsyon"</string>
+    <string msgid="8166741421776570875" name="m3c_date_input_headline">"Inilagay na petsa"</string>
+    <string msgid="229313757840775812" name="m3c_date_input_headline_description">"Inilagay na petsa: %1$s"</string>
+    <string msgid="6116910750161463197" name="m3c_date_input_invalid_for_pattern">"Hindi tumutugma ang petsa sa inaasahang pattern: %1$s"</string>
+    <string msgid="2521768508935305279" name="m3c_date_input_invalid_not_allowed">"Hindi pinapayagan ang petsa: %1$s"</string>
+    <string msgid="7052898923934555305" name="m3c_date_input_invalid_year_range">"Wala ang petsa sa inaasahang hanay ng taon na %1$s - %2$s"</string>
+    <string msgid="2895559812010326913" name="m3c_date_input_label">"Petsa"</string>
+    <string msgid="1237013946323089826" name="m3c_date_input_no_input_description">"Wala"</string>
+    <string msgid="7306227249789210568" name="m3c_date_input_title">"Pumili ng petsa"</string>
+    <string msgid="7605002211875882969" name="m3c_date_picker_headline">"Piniling petsa"</string>
+    <string msgid="3664277305226978227" name="m3c_date_picker_headline_description">"Kasalukuyang napili: %1$s"</string>
+    <string msgid="8436650776581492840" name="m3c_date_picker_navigate_to_year_description">"Mag-navigate papunta sa taong %1$s"</string>
+    <string msgid="5811000998184572395" name="m3c_date_picker_no_selection_description">"Wala"</string>
+    <string msgid="7813882352367152251" name="m3c_date_picker_scroll_to_earlier_years">"Mag-scroll para ipakita ang mga mas naunang taon"</string>
+    <string msgid="5727367015496556177" name="m3c_date_picker_scroll_to_later_years">"Mag-scroll para makita ang mga mas kamakailang taon"</string>
+    <string msgid="1804346892470238807" name="m3c_date_picker_switch_to_calendar_mode">"Lumipat sa pamamaraan ng pag-input ng kalendaryo"</string>
+    <string msgid="395627960681594326" name="m3c_date_picker_switch_to_day_selection">"Mag-swipe para pumili ng taon, o mag-tap para bumalik sa pagpili ng araw"</string>
+    <string msgid="2219746470065162704" name="m3c_date_picker_switch_to_input_mode">"Lumipat sa pamamaraan ng pag-input ng text"</string>
+    <string msgid="7142101321095356500" name="m3c_date_picker_switch_to_next_month">"Lumipat sa susunod na buwan"</string>
+    <string msgid="228438865139394590" name="m3c_date_picker_switch_to_previous_month">"Lumipat sa nakaraang buwan"</string>
+    <string msgid="791651718641787594" name="m3c_date_picker_switch_to_year_selection">"Lumipat sa pagpili ng taon"</string>
+    <string msgid="7430790972741451689" name="m3c_date_picker_title">"Pumili ng petsa"</string>
+    <string msgid="3199387177749801575" name="m3c_date_picker_today_description">"Ngayon"</string>
+    <string msgid="2068382232816991922" name="m3c_date_picker_year_picker_pane_title">"Nakikita ang picker ng taon"</string>
+    <string msgid="3190049423327661366" name="m3c_date_range_input_invalid_range_input">"Invalid ang input na hanay ng petsa"</string>
+    <string msgid="3148384720560189467" name="m3c_date_range_input_title">"Maglagay ng mga petsa"</string>
+    <string msgid="2138321128465719402" name="m3c_date_range_picker_day_in_range">"May signal"</string>
+    <string msgid="4947636797751277713" name="m3c_date_range_picker_end_headline">"Petsa ng pagtatapos"</string>
+    <string msgid="602077859540990149" name="m3c_date_range_picker_scroll_to_next_month">"Mag-scroll para ipakita ang susunod na buwan"</string>
+    <string msgid="4592174524846109496" name="m3c_date_range_picker_scroll_to_previous_month">"Mag-scroll para ipakita ang nakaraang buwan"</string>
+    <string msgid="4665981448952749820" name="m3c_date_range_picker_start_headline">"Petsa ng pagsisimula"</string>
+    <string msgid="3134165431120340385" name="m3c_date_range_picker_title">"Pumili ng mga petsa"</string>
+    <string msgid="7617233117134790350" name="m3c_dialog">"Dialog"</string>
+    <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"Naka-collapse"</string>
+    <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"Naka-expand"</string>
+    <string msgid="8687821690726149911" name="m3c_dropdown_menu_toggle">"I-toggle ang dropdown menu"</string>
+    <string msgid="6072492480528318635" name="m3c_floating_toolbar_collapse">"I-collapse ang toolbar"</string>
+    <string msgid="6880757017246780255" name="m3c_floating_toolbar_expand">"I-expand ang toolbar"</string>
+    <string msgid="5546418917311349543" name="m3c_floating_toolbar_more_options">"Higit pang opsyon"</string>
+    <string msgid="6152806324422087846" name="m3c_search_bar_search">"Maghanap"</string>
+    <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"I-dismiss"</string>
+    <string msgid="3868801555855510515" name="m3c_snackbar_pane_title">"Alerto"</string>
+    <string msgid="7655536806087401899" name="m3c_suggestions_available">"Mga suhestyon sa ibaba"</string>
+    <string msgid="409352516511718051" name="m3c_time_input_dialog_title">"Maglagay ng Oras"</string>
+    <string msgid="2786685010796619560" name="m3c_time_picker_am">"AM"</string>
+    <string msgid="7412665527536641863" name="m3c_time_picker_dialog_title">"Pumili ng Oras"</string>
+    <string msgid="2349193472625211372" name="m3c_time_picker_hour">"Oras"</string>
+    <string msgid="9179527532316922345" name="m3c_time_picker_hour_24h_suffix">"%1$d oras"</string>
+    <string msgid="1097071570318581307" name="m3c_time_picker_hour_error">"Dapat 1–12 ang oras"</string>
+    <string msgid="7720688108712561777" name="m3c_time_picker_hour_error_24h">"Dapat 0–23 ang oras"</string>
+    <string msgid="8876759303332837035" name="m3c_time_picker_hour_selection">"Pumili ng oras"</string>
+    <string msgid="3458167507790628988" name="m3c_time_picker_hour_suffix">"%1$d o\'clock"</string>
+    <string msgid="6973808109666874069" name="m3c_time_picker_hour_text_field">"nang ilang oras"</string>
+    <string msgid="4313071914266462005" name="m3c_time_picker_minute">"Minuto"</string>
+    <string msgid="8576727470211431214" name="m3c_time_picker_minute_error">"Dapat 0–59 ang minuto"</string>
+    <string msgid="4699133535056739733" name="m3c_time_picker_minute_selection">"Pumili ng mga minuto"</string>
+    <string msgid="5064177921781937179" name="m3c_time_picker_minute_suffix">"%1$d (na) minuto"</string>
+    <string msgid="7661234488295443182" name="m3c_time_picker_minute_text_field">"nang ilang minuto"</string>
+    <string msgid="5865171949528594571" name="m3c_time_picker_period_toggle_description">"Piliin ang AM o PM"</string>
+    <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
+    <string msgid="4323189593686596153" name="m3c_time_picker_toggle_keyboard">"Lumipat sa pamamaraan ng pag-input ng text"</string>
+    <string msgid="1380272826693645088" name="m3c_time_picker_toggle_touch">"Lumipat sa clock mode"</string>
+    <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Ipakita ang tooltip"</string>
+    <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Tooltip"</string>
+    <string msgid="6564222473543418073" name="m3c_wide_navigation_rail_close_rail">"Isara ang rail"</string>
+    <string msgid="8350283435461615411" name="m3c_wide_navigation_rail_pane_title">"Navigation rail"</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Menu ng navigation"</string>
+    <string msgid="6610465462668679431" name="not_selected">"Hindi napili"</string>
+    <string msgid="5941395253238309765" name="range_end">"Katapusan ng range"</string>
+    <string msgid="7097486360902471446" name="range_start">"Simula ng range"</string>
+    <string msgid="6043586758067023" name="selected">"Napili"</string>
+    <string msgid="2792228137354697160" name="snackbar_pane_title">"Alerto"</string>
+    <string msgid="4139871816613051306" name="state_empty">"Walang laman"</string>
+    <string msgid="5834637030682409883" name="state_off">"Naka-off"</string>
+    <string msgid="1490883874751719580" name="state_on">"Naka-on"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string msgid="2561197295334830845" name="switch_role">"Lumipat"</string>
+    <string msgid="1672349317127674378" name="tab">"Tab"</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> (na) porsyento."</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"tooltip"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"ipakita ang tooltip"</string>
+</resources>

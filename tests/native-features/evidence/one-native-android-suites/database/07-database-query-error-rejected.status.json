@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "database-query-error-rejected",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 39,
+  "capturedAt": "2026-10-09T19:50:47.059Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/database/07-database-query-error-rejected.png",
+    "xml": "evidence/one-native-android-suites/database/07-database-query-error-rejected.xml",
+    "status": "evidence/one-native-android-suites/database/07-database-query-error-rejected.status.json"
+  }
+}

@@ -1,0 +1,8 @@
+Target dependency graph (3 targets)
+Target 'AllIncludingTests' in project 'Aggregate'
+➜ Explicit dependency on target 'OneShareTargetHarnessTests-product' in project 'OneShareTargetHarness'
+➜ Dependency on target 'OneShareTargetHarnessTests-product' in project 'OneShareTargetHarness' via transitive dependency through 'OneShareTargetHarnessTests-test-runner'
+➜ Explicit dependency on target 'OneShareTargetCore' in project 'OneShareTargetHarness'
+Target 'OneShareTargetHarnessTests-product' in project 'OneShareTargetHarness'
+➜ Explicit dependency on target 'OneShareTargetCore' in project 'OneShareTargetHarness'
+Target 'OneShareTargetCore' in project 'OneShareTargetHarness' (no dependencies)

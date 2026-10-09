@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "open-settings-returned",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 34,
+  "capturedAt": "2026-10-09T19:29:17.641Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open/10-open-settings-returned.png",
+    "xml": "evidence/one-native-android-suites/open/10-open-settings-returned.xml",
+    "status": "evidence/one-native-android-suites/open/10-open-settings-returned.status.json"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "android-context-popup-open",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 11,
+  "capturedAt": "2026-10-09T20:07:11.490Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus-accepted/07-android-context-popup-open.png",
+    "xml": "evidence/one-native-android-suites/menus-accepted/07-android-context-popup-open.xml",
+    "status": "evidence/one-native-android-suites/menus-accepted/07-android-context-popup-open.status.json"
+  }
+}

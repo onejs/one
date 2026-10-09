@@ -1,0 +1,8 @@
+/Users/n8/one/node_modules/one/android/.cxx/Debug/32n6wj1u/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/ReactAndroid/ReactAndroidConfig.cmake
+/Users/n8/one/node_modules/one/android/.cxx/Debug/32n6wj1u/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/ReactAndroid/ReactAndroidConfigVersion.cmake
+/Users/n8/one/node_modules/one/android/.cxx/Debug/32n6wj1u/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/fbjni/fbjniConfig.cmake
+/Users/n8/one/node_modules/one/android/.cxx/Debug/32n6wj1u/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/fbjni/fbjniConfigVersion.cmake
+/Users/n8/one/node_modules/one/android/.cxx/Debug/32n6wj1u/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/react-native-nitro-modules/react-native-nitro-modulesConfig.cmake
+/Users/n8/one/node_modules/one/android/.cxx/Debug/32n6wj1u/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/react-native-worklets/react-native-workletsConfig.cmake
+/Users/n8/one/node_modules/one/android/.cxx/Debug/32n6wj1u/prefab/armeabi-v7a/prefab/lib/arm-linux-androideabi/cmake/react-native-worklets/react-native-workletsConfigVersion.cmake
+/Users/n8/one/node_modules/one/android/CMakeLists.txt

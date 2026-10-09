@@ -1,0 +1,24 @@
+{
+  "node": {
+    "text": "",
+    "contentDescription": "One Android Color, →",
+    "resourceId": "nav-one-native-android-color",
+    "className": "android.view.ViewGroup",
+    "clickable": true,
+    "enabled": true,
+    "checkable": false,
+    "checked": false,
+    "bounds": {
+      "left": 53,
+      "top": 1663,
+      "right": 1028,
+      "bottom": 1814
+    }
+  },
+  "viewport": {
+    "left": 0,
+    "top": 0,
+    "right": 1080,
+    "bottom": 2400
+  }
+}

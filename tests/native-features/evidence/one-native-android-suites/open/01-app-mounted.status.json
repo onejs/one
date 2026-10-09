@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "app-mounted",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "capturedAt": "2026-10-09T19:27:30.264Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open/01-app-mounted.png",
+    "xml": "evidence/one-native-android-suites/open/01-app-mounted.xml",
+    "status": "evidence/one-native-android-suites/open/01-app-mounted.status.json"
+  }
+}

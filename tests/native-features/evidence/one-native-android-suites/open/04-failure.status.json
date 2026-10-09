@@ -1,0 +1,15 @@
+{
+  "suite": "one-native-android",
+  "name": "failure",
+  "result": "failed",
+  "error": "open-url-browser timed out after 15000ms",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 24,
+  "capturedAt": "2026-10-09T19:25:13.683Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open/04-failure.png",
+    "xml": "evidence/one-native-android-suites/open/04-failure.xml",
+    "status": "evidence/one-native-android-suites/open/04-failure.status.json"
+  }
+}

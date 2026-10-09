@@ -1,0 +1,15 @@
+{
+  "suite": "one-native-android",
+  "name": "failure",
+  "result": "failed",
+  "error": "android-menu-save found text \"Menu Save\" with no clickable ancestor.",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 11,
+  "capturedAt": "2026-10-09T20:04:41.284Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/menus/05-failure.png",
+    "xml": "evidence/one-native-android-suites/menus/05-failure.xml",
+    "status": "evidence/one-native-android-suites/menus/05-failure.status.json"
+  }
+}

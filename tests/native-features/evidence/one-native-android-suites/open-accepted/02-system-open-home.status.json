@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "system-open-home",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 52,
+  "capturedAt": "2026-10-09T19:31:36.473Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open-accepted/02-system-open-home.png",
+    "xml": "evidence/one-native-android-suites/open-accepted/02-system-open-home.xml",
+    "status": "evidence/one-native-android-suites/open-accepted/02-system-open-home.status.json"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "android-color-mounted",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 28,
+  "capturedAt": "2026-10-09T19:59:31.576Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/color/03-android-color-mounted.png",
+    "xml": "evidence/one-native-android-suites/color/03-android-color-mounted.xml",
+    "status": "evidence/one-native-android-suites/color/03-android-color-mounted.status.json"
+  }
+}

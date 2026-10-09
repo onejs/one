@@ -1,0 +1,130 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildOnly"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "ALL-INCLUDING-TESTS",
+      "parameters" : {
+        "action" : "build",
+        "activeRunDestination" : {
+          "disableOnlyActiveArch" : false,
+          "hostTargetedPlatform" : null,
+          "platform" : "macosx",
+          "sdk" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+          "sdkVariant" : null,
+          "supportedArchitectures" : [
+
+          ],
+          "targetArchitecture" : "arm64"
+        },
+        "arenaInfo" : {
+          "buildIntermediatesPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex",
+          "buildProductsPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Products",
+          "derivedDataPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out",
+          "indexDataStoreFolderPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out",
+          "indexEnableDataStore" : false,
+          "indexPCHPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out",
+          "pchPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/PCH"
+        },
+        "configurationName" : "Debug",
+        "overrides" : {
+          "synthesized" : {
+            "table" : {
+              "ADD_TOOLCHAIN_CONCURRENCY_BACK_DEPLOY_RPATH" : "YES",
+              "ADD_TOOLCHAIN_SPAN_BACK_DEPLOY_RPATH" : "YES",
+              "CLANG_COVERAGE_MAPPING" : "NO",
+              "COLOR_DIAGNOSTICS" : "YES",
+              "DEAD_CODE_STRIPPING" : "YES",
+              "DEPLOYMENT_POSTPROCESSING" : "NO",
+              "ENABLE_TESTABILITY" : "YES",
+              "GENERATE_TEST_ENTRYPOINTS_FOR_BUNDLES" : "YES",
+              "LM_SKIP_METADATA_EXTRACTION" : "YES",
+              "ONLY_ACTIVE_ARCH" : "YES",
+              "OTHER_CFLAGS" : "$(inherited)",
+              "OTHER_CFLAGS[__destination_platform=YES]" : "$(inherited)",
+              "OTHER_CPLUSPLUSFLAGS" : "$(inherited)",
+              "OTHER_CPLUSPLUSFLAGS[__destination_platform=YES]" : "$(inherited)",
+              "OTHER_LDFLAGS" : "$(inherited) $(OTHER_LDFLAGS_SWIFTC_LINKER_DRIVER_$(LINKER_DRIVER))",
+              "OTHER_LDFLAGS[__destination_platform=YES]" : "$(inherited)",
+              "OTHER_LDFLAGS_SWIFTC_LINKER_DRIVER_swiftc" : "$(inherited)",
+              "OTHER_LDFLAGS_SWIFTC_LINKER_DRIVER_swiftc[__destination_platform=YES]" : "$(inherited)",
+              "OTHER_SWIFT_FLAGS" : "$(inherited)",
+              "OTHER_SWIFT_FLAGS[__destination_platform=YES]" : "$(inherited)",
+              "STRIP_INSTALLED_PRODUCT" : "NO",
+              "SWIFT_FORCE_STATIC_LINK_STDLIB" : "NO",
+              "TOOLCHAINS" : "com.apple.dt.toolchain.Metal.32023.921.5 com.apple.dt.toolchain.XcodeDefault $(inherited)"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : true,
+  "parameters" : {
+    "action" : "build",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : false,
+      "hostTargetedPlatform" : null,
+      "platform" : "macosx",
+      "sdk" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX27.0.sdk",
+      "sdkVariant" : null,
+      "supportedArchitectures" : [
+
+      ],
+      "targetArchitecture" : "arm64"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Intermediates.noindex",
+      "buildProductsPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/Products",
+      "derivedDataPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out",
+      "indexDataStoreFolderPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out",
+      "indexEnableDataStore" : false,
+      "indexPCHPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out",
+      "pchPath" : "/Users/n8/one/packages/one/ios/Tests/ShareTarget/.build/out/PCH"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ADD_TOOLCHAIN_CONCURRENCY_BACK_DEPLOY_RPATH" : "YES",
+          "ADD_TOOLCHAIN_SPAN_BACK_DEPLOY_RPATH" : "YES",
+          "CLANG_COVERAGE_MAPPING" : "NO",
+          "COLOR_DIAGNOSTICS" : "YES",
+          "DEAD_CODE_STRIPPING" : "YES",
+          "DEPLOYMENT_POSTPROCESSING" : "NO",
+          "ENABLE_TESTABILITY" : "YES",
+          "GENERATE_TEST_ENTRYPOINTS_FOR_BUNDLES" : "YES",
+          "LM_SKIP_METADATA_EXTRACTION" : "YES",
+          "ONLY_ACTIVE_ARCH" : "YES",
+          "OTHER_CFLAGS" : "$(inherited)",
+          "OTHER_CFLAGS[__destination_platform=YES]" : "$(inherited)",
+          "OTHER_CPLUSPLUSFLAGS" : "$(inherited)",
+          "OTHER_CPLUSPLUSFLAGS[__destination_platform=YES]" : "$(inherited)",
+          "OTHER_LDFLAGS" : "$(inherited) $(OTHER_LDFLAGS_SWIFTC_LINKER_DRIVER_$(LINKER_DRIVER))",
+          "OTHER_LDFLAGS[__destination_platform=YES]" : "$(inherited)",
+          "OTHER_LDFLAGS_SWIFTC_LINKER_DRIVER_swiftc" : "$(inherited)",
+          "OTHER_LDFLAGS_SWIFTC_LINKER_DRIVER_swiftc[__destination_platform=YES]" : "$(inherited)",
+          "OTHER_SWIFT_FLAGS" : "$(inherited)",
+          "OTHER_SWIFT_FLAGS[__destination_platform=YES]" : "$(inherited)",
+          "STRIP_INSTALLED_PRODUCT" : "NO",
+          "SWIFT_FORCE_STATIC_LINK_STDLIB" : "NO",
+          "TOOLCHAINS" : "com.apple.dt.toolchain.Metal.32023.921.5 com.apple.dt.toolchain.XcodeDefault $(inherited)"
+        }
+      }
+    }
+  },
+  "recordBuildBacktraces" : false,
+  "schedulerLaneWidthOverride" : 18,
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

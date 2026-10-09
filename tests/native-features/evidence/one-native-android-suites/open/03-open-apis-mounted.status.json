@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "open-apis-mounted",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 34,
+  "capturedAt": "2026-10-09T19:28:50.384Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open/03-open-apis-mounted.png",
+    "xml": "evidence/one-native-android-suites/open/03-open-apis-mounted.xml",
+    "status": "evidence/one-native-android-suites/open/03-open-apis-mounted.status.json"
+  }
+}

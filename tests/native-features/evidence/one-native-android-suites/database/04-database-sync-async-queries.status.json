@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "database-sync-async-queries",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 39,
+  "capturedAt": "2026-10-09T19:50:35.010Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/database/04-database-sync-async-queries.png",
+    "xml": "evidence/one-native-android-suites/database/04-database-sync-async-queries.xml",
+    "status": "evidence/one-native-android-suites/database/04-database-sync-async-queries.status.json"
+  }
+}

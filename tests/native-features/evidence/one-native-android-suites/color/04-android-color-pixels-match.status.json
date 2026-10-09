@@ -1,0 +1,53 @@
+{
+  "suite": "one-native-android",
+  "name": "android-color-pixels-match",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 28,
+  "detail": {
+    "platformBlack": {
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "actual": [
+        0,
+        0,
+        0
+      ]
+    },
+    "materialPrimary": {
+      "expected": [
+        103,
+        80,
+        164
+      ],
+      "actual": [
+        103,
+        80,
+        164
+      ]
+    },
+    "dynamicPrimary": {
+      "expected": [
+        76,
+        94,
+        139
+      ],
+      "actual": [
+        76,
+        94,
+        139
+      ]
+    },
+    "channelTolerance": 4
+  },
+  "capturedAt": "2026-10-09T19:59:31.711Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/color/04-android-color-pixels-match.png",
+    "xml": "evidence/one-native-android-suites/color/04-android-color-pixels-match.xml",
+    "status": "evidence/one-native-android-suites/color/04-android-color-pixels-match.status.json"
+  }
+}

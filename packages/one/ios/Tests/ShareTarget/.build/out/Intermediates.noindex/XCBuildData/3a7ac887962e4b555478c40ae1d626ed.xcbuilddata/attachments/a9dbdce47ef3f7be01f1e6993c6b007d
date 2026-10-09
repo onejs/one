@@ -1,0 +1,4 @@
+module OneShareTargetCore {
+header "OneShareTargetCore-Swift.h"
+export *
+}

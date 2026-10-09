@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "dev.onejs.one.sharetarget.harness.test-mergeDebugUnitTestResources-36:/values-v18/values-v18.xml",
+            "map": [
+                {
+                    "source": "/Users/n8/.gradle/caches/9.4.1/transforms/ba5629afb24a8426bcc86ec54d2ce873/transformed/core-1.6.1/res/values-v18/values.xml",
+                    "from": {
+                        "startLines": "4,12",
+                        "startColumns": "0,0",
+                        "startOffsets": "146,562",
+                        "endLines": "11,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "561,975"
+                    },
+                    "to": {
+                        "startLines": "2,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,475",
+                        "endLines": "9,17",
+                        "endColumns": "8,8",
+                        "endOffsets": "470,888"
+                    }
+                }
+            ]
+        }
+    ]
+}

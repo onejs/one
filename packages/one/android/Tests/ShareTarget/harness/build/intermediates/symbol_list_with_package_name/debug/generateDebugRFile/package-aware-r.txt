@@ -1,0 +1,1 @@
+dev.onejs.one.sharetarget.harness

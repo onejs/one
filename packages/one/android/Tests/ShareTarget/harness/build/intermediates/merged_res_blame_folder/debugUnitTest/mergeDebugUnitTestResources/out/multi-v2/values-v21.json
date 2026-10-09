@@ -1,0 +1,47 @@
+{
+    "logs": [
+        {
+            "outputFile": "dev.onejs.one.sharetarget.harness.test-mergeDebugUnitTestResources-36:/values-v21/values-v21.xml",
+            "map": [
+                {
+                    "source": "/Users/n8/.gradle/caches/9.4.1/transforms/fd33a89cef9a868326e7ddb4b0148daf/transformed/core-1.16.0/res/values-v21/values-v21.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,237,304,368,484,610,736,864,1036",
+                        "endLines": "2,3,4,5,6,7,8,9,12,17",
+                        "endColumns": "117,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "168,232,299,363,479,605,731,859,1031,1383"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,28,31",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,237,304,368,484,610,736,1820,1992",
+                        "endLines": "2,3,4,5,6,7,8,9,30,35",
+                        "endColumns": "117,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "168,232,299,363,479,605,731,859,1987,2339"
+                    }
+                },
+                {
+                    "source": "/Users/n8/.gradle/caches/9.4.1/transforms/ba5629afb24a8426bcc86ec54d2ce873/transformed/core-1.6.1/res/values-v21/values.xml",
+                    "from": {
+                        "startLines": "4,13",
+                        "startColumns": "0,0",
+                        "startOffsets": "146,621",
+                        "endLines": "12,21",
+                        "endColumns": "8,8",
+                        "endOffsets": "620,1093"
+                    },
+                    "to": {
+                        "startLines": "10,19",
+                        "startColumns": "4,4",
+                        "startOffsets": "864,1343",
+                        "endLines": "18,27",
+                        "endColumns": "8,8",
+                        "endOffsets": "1338,1815"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "suite": "one-native-android",
+  "name": "open-settings-app-details",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 57,
+  "detail": {
+    "focus": "  mCurrentFocus=Window{a908f98 u0 com.android.settings/com.android.settings.spa.SpaActivity}",
+    "visibleText": "android:id/content\nNativeFeatureTests\nArchive\nUninstall\nForce stop\nNotifications\nAbout 0 notifications per week\nPermissions\nNearby devices and Notifications\nStorage & cache\n168 MB used in internal storage\nMobile data usage\n32.89 kB used since Oct 2\nScreen time\n3 minutes today\nApp battery usage\nNo battery use since last full charge\nOpen by default\nAllow app to open supported links\nNavigate up\nApp info\nOpen"
+  },
+  "capturedAt": "2026-10-09T19:29:15.563Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open/09-open-settings-app-details.png",
+    "xml": "evidence/one-native-android-suites/open/09-open-settings-app-details.xml",
+    "status": "evidence/one-native-android-suites/open/09-open-settings-app-details.status.json"
+  }
+}

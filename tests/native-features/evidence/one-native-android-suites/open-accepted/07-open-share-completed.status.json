@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "open-share-completed",
+  "result": "passed",
+  "deviceId": "emulator-5554",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 34,
+  "capturedAt": "2026-10-09T19:32:47.402Z",
+  "artifacts": {
+    "png": "evidence/one-native-android-suites/open-accepted/07-open-share-completed.png",
+    "xml": "evidence/one-native-android-suites/open-accepted/07-open-share-completed.xml",
+    "status": "evidence/one-native-android-suites/open-accepted/07-open-share-completed.status.json"
+  }
+}
