@@ -258,8 +258,9 @@ and the selection does not move. It never reaches the controlled protocol, so th
 optimistic selection to undo and no flash of an empty page. Every tab needs exactly one of
 `onPress` and `children`, and the selection may not name an action tab.
 
-Add `role="search"` to detach it from the main tab bar pill. On iOS 18+ the search role is
-what moves a tab into its own capsule on the trailing side; iOS 27 adds `role="prominent"`.
+Use `role="search"` for Apple's search tab role on iOS 18+. Its placement follows the
+native tab bar; on iOS 27 an inactive search tab can remain in the main pill.
+iOS 27 also supports `role="prominent"`.
 A role below its runtime version throws from the adapter; on iOS 17 tabs render through the
 legacy `TabView`, which has no roles.
 
