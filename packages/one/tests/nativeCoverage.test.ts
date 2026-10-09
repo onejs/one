@@ -24,10 +24,7 @@ const knownGaps: Record<string, string> = {
   'UI.ReservedRegions':
     'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',
   LaunchScreen: 'Android suite missing',
-  Network: 'iOS suite only',
   DocumentPicker: 'Android fixture exists, no suite opens it',
-  useNetworkState:
-    'Android suite missing; iOS workspace live state, refresh and two remounts proven',
   useSizeClass:
     'Android suite missing; iOS flat workspace getter/hook agreement proven; live trait changes unproven',
   getSizeClass:

@@ -217,7 +217,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Clipboard` | paste-button, share, clipboard | share | OneNativeBehavioralLibraryCase | Android setString and getString proven only through the share suite Copy check; no Android clipboard suite |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
 | `One.LaunchScreen` | launch-screen | missing | OneNativeLaunchScreenLibraryCase | Android suite missing |
-| `One.Network` | network | missing | OneNativeBehavioralLibraryCase | iOS suite only |
+| `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
 | `One.ImagePicker` | image-picker, camera-preview | image-picker | OneNativeBehavioralLibraryCase |  |
@@ -237,6 +237,6 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useSpanning` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace false proven; spanning divisions unproven |
 | `useNativeState` | state, ui-text-input | state | missing |  |
 | `useFonts` | fonts | fonts | missing |  |
-| `useNetworkState` | network | missing | missing | Android suite missing; iOS workspace live state, refresh and two remounts proven |
+| `useNetworkState` | network | network | missing |  |
 | `useSafeAreaInsets` | safe-area | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
 | `useSafeAreaFrame` | safe-area | safe-area | OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |

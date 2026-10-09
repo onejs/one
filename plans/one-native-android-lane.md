@@ -1,5 +1,31 @@
 # One native Android lane
 
+## Network receipt, 2026-10-09
+
+TESTED: `w-16b178` passes the Android `network` suite, twelve checks,
+then its frozen-hook negative control fails the offline assertion while the
+independent listener reports offline; restored source passes twelve checks.
+Wi-Fi and mobile-data transitions exercise getters, hook and observer,
+observer removal, continued hook delivery and two monitor restarts.
+Cleanup awaits the restored live connection before another Metro launch.
+
+RAN: baseline `w-d2e468` leaves the hook online after Android has no active
+network and an explicit native getter reports offline. The repair derives
+listener state from callback capabilities, with `onLost` emitting offline,
+instead of reading synchronous ConnectivityManager getters from callbacks.
+The Android callback contract documents the stale-state race:
+[NetworkCallback](https://developer.android.com/reference/android/net/ConnectivityManager.NetworkCallback).
+
+RAN: `w-b01035` prebuilds Android and compiles arm64 `:app:assembleDebug`,
+370 tasks in 5m03s. APK SHA256:
+`fa3c1aa28d38d0ad58ba01840ac6bf0dd87cc8c7d7060fbb387b1c1be510771d`.
+Candidate Network Kotlin SHA256:
+`f902f774b8f68c8a8ecb7f3e51943a4e2b3c9186e48d9671b604715e4c9426a5`.
+Receipts remain in `/tmp/one-android-hooks-m28192/network-accepted/` on air-32.
+The initial repaired restored launch failed before mounting because the radio
+was still reconnecting; no API assertion was relaxed. CI owner: `s23249`,
+Android Native Build, Checks and Tests, and canary artifact delivery pending.
+
 ## Native state receipt, 2026-10-09
 
 Android acceptance is limited to One-owned controls, APIs, bridge behavior and flat-device adaptive state. Third-party graphics libraries are outside this lane.
