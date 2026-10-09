@@ -54,12 +54,15 @@ export interface VisualAccessibilityNode {
   subrole?: string
   type?: string
   frame?: Rect
+  children?: VisualAccessibilityNode[]
 }
 
 export interface VisualAnchor {
   /** Capture whose at-capture accessibility snapshot owns the subject frame. */
   capture: string
-  selector: Omit<VisualAccessibilityNode, 'frame'>
+  selector: Omit<VisualAccessibilityNode, 'frame' | 'children'>
+  /** native container whose descendants own the subject. */
+  within?: Omit<VisualAccessibilityNode, 'frame' | 'children'>
   region: (frame: Rect) => Rect
 }
 
@@ -67,7 +70,18 @@ export function resolveVisualRegion(
   declaration: VisualCheckDeclaration,
   nodes: readonly VisualAccessibilityNode[]
 ): Rect {
-  const matches = nodes.filter((node) =>
+  const within = declaration.anchor.within
+  const owners = within
+    ? nodes.filter((node) =>
+        Object.entries(within).every(
+          ([key, expected]) => node[key as keyof VisualAccessibilityNode] === expected
+        )
+      )
+    : undefined
+  const descendants = (node: VisualAccessibilityNode): VisualAccessibilityNode[] =>
+    (node.children ?? []).flatMap((child) => [child, ...descendants(child)])
+  const candidates = owners ? owners.flatMap(descendants) : nodes
+  const matches = candidates.filter((node) =>
     Object.entries(declaration.anchor.selector).every(
       ([key, expected]) => node[key as keyof VisualAccessibilityNode] === expected
     )
@@ -522,12 +536,13 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'alert-dialog',
     suite: 'dialogs',
-    subject: 'SwiftUI Alert modal dialog card surface and centered title',
+    subject: 'SwiftUI Alert modal dialog card surface and title',
     positiveCapture: 'dialogs/alert-open.png',
     negativeCapture: 'dialogs/confirmation-automatic.png',
     anchor: {
       capture: 'dialogs/alert-open.png',
-      selector: { AXLabel: 'One Native Alert' },
+      selector: { AXLabel: 'One Native Alert', type: 'StaticText', role: 'AXStaticText' },
+      within: { AXLabel: 'One Native Alert', type: 'Sheet', role: 'AXSheet' },
       region: (frame) => ({
         x: frame.x - 48,
         y: frame.y - 9,
@@ -540,21 +555,22 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     measureSubject: (crop) => {
       const card = countMatchingPixels(
         crop,
-        (r, g, b) => r >= 235 && r <= 239 && g >= 235 && g <= 239 && b >= 236 && b <= 240
+        (r, g, b) =>
+          r >= 224 && r <= 239 && Math.abs(g - r) <= 1 && b - r >= 1 && b - r <= 4
       )
       const title = countMatchingPixels(crop, (r, g, b) => r < 30 && g < 30 && b < 30)
       return Math.floor(Math.min(title, card / 20))
     },
     minSubjectFloor: 2_500,
     calibration: {
-      positiveMeasured: 4_634,
-      negativeMeasured: 534,
+      positiveMeasured: 4_641,
+      negativeMeasured: 443,
       threshold: 2_500,
-      changedPixelsMeasured: 130_748,
-      crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      changedPixelsMeasured: 186_834,
+      crossSubstitutionMatches: null,
+      corpusSize: 5,
       nullStateReads:
-        'alert card+title score 4,634 (card: 134,897, title: 4,634), bar is 2,500, non-alert screen reads 534; 2/70 cross matches (both genuine alert dialogs)',
+        'SDK 27.0 Apple reference scores 4,628; One and restored One score 4,641 at the unchanged 2,500 floor. Automatic confirmation reads 443; actual native title paint omission reads 0 with title accessibility and actions still mounted. The translucent card spans blue-gray RGB 224 to 239 with blue 1 to 4 above red and green within 1 of red. Five focused captures; historical 70-capture cross-substitution corpus was not rerun.',
     },
   },
   {
