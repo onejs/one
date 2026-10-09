@@ -1,9 +1,8 @@
-import { useRouter } from 'one'
+import { One, useRouter } from 'one'
 import { useCallback, useEffect, useState } from 'react'
 import { Button, Text, TextInput, View } from 'react-native'
-import { MMKV } from 'react-native-mmkv'
 
-const storage = new MMKV()
+const storage = One.Database.openKeyValue({ name: 'test-navigation-helper' })
 const STORAGE_KEY = 'TestNavigationHelper_recentPaths'
 
 export function TestNavigationHelper() {
@@ -11,7 +10,7 @@ export function TestNavigationHelper() {
   const [recentPaths, setRecentPaths] = useState<string[]>([])
 
   useEffect(() => {
-    const raw = storage.getString(STORAGE_KEY)
+    const raw = storage.getItem(STORAGE_KEY)
     if (raw) {
       try {
         setRecentPaths(JSON.parse(raw))
@@ -24,7 +23,7 @@ export function TestNavigationHelper() {
 
     setRecentPaths((prev) => {
       const next = [target, ...prev.filter((p) => p !== target)].slice(0, 3)
-      storage.set(STORAGE_KEY, JSON.stringify(next))
+      storage.setItem(STORAGE_KEY, JSON.stringify(next))
       return next
     })
 

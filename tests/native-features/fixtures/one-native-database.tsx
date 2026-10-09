@@ -6,6 +6,7 @@ const name = 'one-native-conformance.sqlite'
 
 export default function OneNativeDatabase() {
   const [persisted, setPersisted] = useState('pending')
+  const [kv, setKv] = useState('pending')
   const [results, setResults] = useState<string[]>([])
   const [status, setStatus] = useState('idle')
 
@@ -71,10 +72,33 @@ export default function OneNativeDatabase() {
     }
   }
 
+  const runKeyValue = () => {
+    const store = One.Database.openKeyValue({ name: 'one-native-kv' })
+    try {
+      store.clear()
+      store.setItem('reloadTarget', 'update-1')
+      store.setItem('reloadTarget', 'update-2')
+      const first = store.getItem('reloadTarget')
+      store.close()
+      const reopened = One.Database.openKeyValue({ name: 'one-native-kv' })
+      try {
+        const second = reopened.getItem('reloadTarget')
+        reopened.removeItem('reloadTarget')
+        const removed = reopened.getItem('reloadTarget')
+        setKv(`${first}|${second}|${removed}`)
+      } finally {
+        reopened.close()
+      }
+    } catch (error) {
+      setKv(`failed ${String(error)}`)
+    }
+  }
+
   return (
     <View style={styles.screen}>
       <Text>{`Status: ${status}`}</Text>
       <Text>{`Persisted: ${persisted}`}</Text>
+      <Text testID="one-native-kv-result">{`KV: ${kv}`}</Text>
       {results.map((result) => <Text key={result}>{result}</Text>)}
       <Pressable testID="one-native-database-run" style={styles.button} onPress={run}>
         <Text>Run database checks</Text>
@@ -84,6 +108,9 @@ export default function OneNativeDatabase() {
       </Pressable>
       <Pressable testID="one-native-database-clear" style={styles.button} onPress={clear}>
         <Text>Clear database</Text>
+      </Pressable>
+      <Pressable testID="one-native-kv-run" style={styles.button} onPress={runKeyValue}>
+        <Text>Run key-value checks</Text>
       </Pressable>
     </View>
   )
