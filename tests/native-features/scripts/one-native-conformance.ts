@@ -6666,6 +6666,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'host') {
+    // sdk 27.0 (24A430), iphone 16 at 3x: apple-only swiftui measures
+    // packed 80 1/3, wrapped 94 2/3, and spaced 120 1/3 points. the fixture
+    // rounds onLayout to whole points; require the independently rounded child union too.
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
     // SwiftUI does not publish Host itself as an accessibility element. Require its native
@@ -6728,7 +6731,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'children mounted later grow the host',
       (n) =>
-        size(n, 361, 84) &&
+        size(n, 361, 80) &&
         Boolean(control(n, 'Button', 'Composed button')) &&
         Boolean(control(n, 'Button', 'Composed stepper, Increment'))
     )
@@ -6751,7 +6754,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'a wrapping label on a composed child regrows the host',
       (n) =>
-        size(n, 361, 107) &&
+        size(n, 361, 95) &&
         Boolean(
           control(
             n,
@@ -6761,12 +6764,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
     )
     tap({ id: 'one-native-host-relabel' })
-    await wait('the shorter label shrinks it back', (n) => size(n, 361, 84))
+    await wait('the shorter label shrinks it back', (n) => size(n, 361, 80))
 
     tap({ id: 'one-native-host-spacing-20' })
-    await wait('spacing adds exactly two gaps', (n) => size(n, 361, 124))
+    await wait('spacing adds exactly two gaps', (n) => size(n, 361, 120))
     tap({ id: 'one-native-host-spacing-0' })
-    await wait('removing spacing restores the packed height', (n) => size(n, 361, 84))
+    await wait('removing spacing restores the packed height', (n) => size(n, 361, 80))
 
     tap({ id: 'one-native-host-axis-horizontal' })
     tap({ id: 'one-native-host-expand' })
@@ -6783,7 +6786,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         button &&
         decrement &&
         increment &&
-        status(n, 'Host', '361 x 128') &&
+        status(n, 'Host', '361 x 108') &&
         pixels(toggle.x + toggle.width) <= pixels(button.x) &&
         pixels(button.x + button.width) <= pixels(decrement.x) &&
         pixels(decrement.x + decrement.width) === pixels(increment.x) &&
