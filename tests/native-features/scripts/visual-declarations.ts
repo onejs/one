@@ -326,7 +326,12 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'forms/form-controls.png',
     anchor: {
       capture: 'forms/toggle-rejected.png',
-      selector: { AXLabel: 'Enable notifications' },
+      selector: {
+        AXLabel: 'Enable notifications',
+        AXUniqueId: 'one-native-control',
+        type: 'CheckBox',
+        subrole: 'AXSwitch',
+      },
       region: (frame) => ({
         x: frame.x + frame.width - 63,
         y: frame.y + (frame.height - 35) / 2,
