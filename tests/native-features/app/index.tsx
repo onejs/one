@@ -179,6 +179,11 @@ const testScreens = [
     testID: 'nav-one-native-navigation',
   },
   {
+    href: '/one-native-navigation-split-view',
+    label: 'One Native Navigation Split View',
+    testID: 'nav-one-native-navigation-split-view',
+  },
+  {
     href: '/one-native-leaves',
     label: 'One Native Leaves',
     testID: 'nav-one-native-leaves',

@@ -43,6 +43,7 @@ import {
   ToolbarItemGroup,
   ToolbarSpacer,
 } from './NavigationStack.native'
+import { NavigationSplitView } from './NavigationSplitView.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import { ArrangementView } from './ArrangementView.native'
 import * as Controls from './generated/Controls.native'
@@ -143,6 +144,7 @@ export const Swift =
         Pager,
         Page,
         NavigationStack,
+        NavigationSplitView,
         Toolbar,
         ToolbarItem,
         ToolbarItemGroup,

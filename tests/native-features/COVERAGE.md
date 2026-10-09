@@ -29,7 +29,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.MapServices` | map-services | map-services, native-modules:unavailable |  |
 | `One.AppTracking` | app-tracking | native-modules:unavailable |  |
 | `One.AppIcon` | app-icon | app-icon, native-modules:unavailable |  |
-| `One.ScreenOrientation` | screen-orientation | screen-orientation, native-modules:unavailable |  |
+| `One.ScreenOrientation` | screen-orientation, navigation-split-view | screen-orientation, native-modules:unavailable |  |
 | `One.ScreenCapture` | screen-capture, view-snapshot | screen-capture, native-modules:unavailable |  |
 | `One.Purchases` | purchases | native-modules:unavailable |  |
 | `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | native-modules |  |
@@ -60,10 +60,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Glass` | building-blocks | n/a |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a |  |
-| `One.iOS.Button` | leaves, host, control-size, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, e2e:one-native-tabview | n/a |  |
+| `One.iOS.Button` | leaves, host, control-size, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, navigation-split-view, e2e:one-native-tabview | n/a |  |
 | `One.iOS.Spacer` | building-blocks | n/a |  |
 | `One.iOS.Slot` | containers | n/a |  |
-| `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button | n/a | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
+| `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button, navigation-split-view | n/a | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
 | `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids | n/a | vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven |
 | `One.iOS.LazyVStack` | lists, list-row-background, scroll-search-refresh | n/a |  |
 | `One.iOS.LazyHStack` | lists, list-row-background | n/a |  |
@@ -84,8 +84,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Pager` | groups | n/a |  |
 | `One.iOS.Page` | groups | n/a |  |
 | `One.iOS.NavigationStack` | list-search-refresh, scroll-search-refresh, navigation | n/a |  |
-| `One.iOS.Toolbar` | navigation | n/a |  |
-| `One.iOS.ToolbarItem` | navigation | n/a |  |
+| `One.iOS.NavigationSplitView` | navigation-split-view | n/a |  |
+| `One.iOS.Toolbar` | navigation, navigation-split-view | n/a |  |
+| `One.iOS.ToolbarItem` | navigation, navigation-split-view | n/a |  |
 | `One.iOS.ToolbarItemGroup` | navigation | n/a |  |
 | `One.iOS.ToolbarSpacer` | navigation | n/a |  |
 | `One.iOS.Picker` | pickers, picker-palette, forms, navigation | n/a | palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven |
@@ -95,7 +96,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Slider` | pickers, forms | n/a |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a |  |
 | `One.iOS.PasteButton` | paste-button | n/a |  |
-| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility | n/a |  |
+| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view | n/a |  |
 | `One.iOS.Label` | leaves, containers | n/a |  |
 | `One.iOS.ProgressView` | leaves | n/a |  |
 | `One.iOS.Gauge` | leaves | n/a |  |

@@ -97,6 +97,7 @@ const suites = [
   'menu-picker',
   'popover',
   'navigation',
+  'navigation-split-view',
   'accessibility',
   'media',
   'map',
@@ -802,6 +803,10 @@ const navigationLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-navigation-open')) ||
     Boolean(id(nodes, 'Mailbox')) ||
     labels(nodes).includes('Inbox page'))
+const navigationSplitViewLoaded = (nodes: Node[]) =>
+  nodes.some((n) => n.type === 'Application') &&
+  (Boolean(id(nodes, 'one-native-navigation-split-view-screen')) ||
+    Boolean(id(nodes, 'split-view-test-screen')))
 // the fixture the suite drives, and the home row that reaches it. pickers and forms share
 // one screen; tabs-menu drives the One Native hub rather than a control fixture.
 const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
@@ -874,6 +879,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'menu-picker': menuPickerLoaded,
   popover: popoverLoaded,
   navigation: navigationLoaded,
+  'navigation-split-view': navigationSplitViewLoaded,
   accessibility: accessibilityLoaded,
   media: mediaLoaded,
   map: mapLoaded,
@@ -1035,6 +1041,7 @@ const suiteHome: Record<Suite, string> = {
   'ui-icon': 'nav-one-ui-icon',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
+  'navigation-split-view': 'nav-one-native-navigation-split-view',
   updates: 'nav-one-native-updates',
 }
 const homeLoaded = (nodes: Node[], suite: Suite) => Boolean(id(nodes, suiteHome[suite]))
@@ -6520,6 +6527,174 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       return text(n, 'Archive page') && text(n, 'Page: archive')
     })
     screenshot('navigation-reopened.png')
+
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'navigation-split-view') {
+    const status = (nodes: Node[], label: string, expected: string | number) =>
+      labels(nodes).includes(`${label}: ${expected}`)
+    const screenSize = (nodes: Node[]) => {
+      const value = labels(nodes).find((label) => label.startsWith('Screen: '))
+      const match = value && /^Screen: (\d+)x(\d+)$/.exec(value)
+      return match ? { width: Number(match[1]), height: Number(match[2]) } : undefined
+    }
+    const detailWidth = (nodes: Node[]) => {
+      const value = labels(nodes).find((label) => label.startsWith('Detail width: '))
+      const width = value && Number(value.slice('Detail width: '.length))
+      return Number.isFinite(width) ? width : undefined
+    }
+
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-navigation-split-view')
+    const initial = await wait('the three-column fixture mounts', (nodes) =>
+      status(nodes, 'Mailbox', 'inbox') &&
+      status(nodes, 'Mailbox proposal', 'none') &&
+      status(nodes, 'Compact column', 'sidebar') &&
+      status(nodes, 'Visibility', 'automatic') &&
+      Boolean(id(nodes, 'one-native-split-view-mailbox-archive'))
+    )
+    screenshot('navigation-split-view-portrait.png', initial)
+
+    tap({ id: 'one-native-split-view-accept-selection' })
+    await wait('controlled selection can be refused', (nodes) =>
+      labels(nodes).includes('Accept selection: false')
+    )
+    tap({ id: 'one-native-split-view-mailbox-archive' })
+    const refused = await wait('a controlled native List reports without committing', (nodes) =>
+      status(nodes, 'Mailbox proposal', 'archive') &&
+      status(nodes, 'Mailbox', 'inbox') &&
+      status(nodes, 'Compact proposal', 'content') &&
+      status(nodes, 'Compact column', 'sidebar')
+    )
+    screenshot('navigation-split-view-refused-selection.png', refused)
+
+    tap({ id: 'one-native-split-view-accept-selection' })
+    await wait('controlled selection is accepted', (nodes) =>
+      labels(nodes).includes('Accept selection: true')
+    )
+    tap({ id: 'one-native-split-view-mailbox-archive' })
+    const content = await wait('the accepted mailbox selection opens Content', (nodes) =>
+      status(nodes, 'Mailbox proposal', 'archive') &&
+      status(nodes, 'Mailbox', 'archive') &&
+      status(nodes, 'Compact column', 'content') &&
+      Boolean(id(nodes, 'one-native-split-view-message-receipt'))
+    )
+    screenshot('navigation-split-view-content.png', content)
+
+    tap({ label: 'Compose' })
+    await wait('the Content toolbar action reaches React', (nodes) =>
+      status(nodes, 'Toolbar actions', 1)
+    )
+    tap({ id: 'one-native-split-view-accept-selection' })
+    await wait('message selection can be refused', (nodes) =>
+      labels(nodes).includes('Accept selection: false')
+    )
+    tap({ id: 'one-native-split-view-message-receipt' })
+    const refusedMessage = await wait('controlled message and compact-column proposals do not commit', (nodes) =>
+      status(nodes, 'Message proposal', 'receipt') &&
+      status(nodes, 'Message', 'welcome') &&
+      status(nodes, 'Compact proposal', 'detail') &&
+      status(nodes, 'Compact column', 'content')
+    )
+    screenshot('navigation-split-view-refused-message.png', refusedMessage)
+
+    tap({ id: 'one-native-split-view-accept-selection' })
+    await wait('message selection is accepted', (nodes) =>
+      labels(nodes).includes('Accept selection: true')
+    )
+    tap({ id: 'one-native-split-view-message-receipt' })
+    const detail = await wait('the accepted message selection opens Detail', (nodes) =>
+      status(nodes, 'Message', 'receipt') &&
+      status(nodes, 'Compact proposal', 'detail') &&
+      status(nodes, 'Compact column', 'detail')
+    )
+    screenshot('navigation-split-view-detail.png', detail)
+    tap({ label: 'Flag' })
+    await wait('the Detail toolbar action reaches React', (nodes) =>
+      status(nodes, 'Toolbar actions', 2) && status(nodes, 'Message', 'receipt')
+    )
+
+    tap({ id: 'one-native-split-view-toggle-compact-control' })
+    await wait('the compact column becomes uncontrolled', (nodes) =>
+      labels(nodes).includes('Compact control: false')
+    )
+    const sidebar = await wait('uncontrolled compact state returns to its retained Sidebar value', (nodes) =>
+      Boolean(id(nodes, 'one-native-split-view-mailbox-inbox'))
+    )
+    screenshot('navigation-split-view-uncontrolled-sidebar.png', sidebar)
+    tap({ id: 'one-native-split-view-mailbox-inbox' })
+    const uncontrolledContent = await wait('native selection updates the uncontrolled compact column', (nodes) =>
+      status(nodes, 'Mailbox proposal', 'inbox') &&
+      status(nodes, 'Mailbox', 'inbox') &&
+      status(nodes, 'Compact proposal', 'content') &&
+      status(nodes, 'Compact column', 'content')
+    )
+    screenshot('navigation-split-view-uncontrolled-content.png', uncontrolledContent)
+    tap({ id: 'one-native-split-view-toggle-compact-control' })
+    await wait('controlled compact state resumes with the accepted value', (nodes) =>
+      labels(nodes).includes('Compact control: true') && status(nodes, 'Compact column', 'content')
+    )
+
+    tap({ id: 'one-native-split-view-toggle-visibility' })
+    await wait('controlled column visibility updates', (nodes) =>
+      status(nodes, 'Visibility', 'all')
+    )
+    tap({ id: 'one-native-split-view-landscape' })
+    const expanded = await wait('landscape expands the native columns and retains state', (nodes) => {
+      const size = screenSize(nodes)
+      return Boolean(
+        size &&
+          size.width > size.height &&
+          size.width >= 700 &&
+          status(nodes, 'Mailbox', 'inbox') &&
+          status(nodes, 'Message', 'receipt') &&
+          status(nodes, 'Toolbar actions', 2) &&
+          labels(nodes).includes('Inbox') &&
+          labels(nodes).includes('Welcome') &&
+          labels(nodes).includes('Add mailbox') &&
+          labels(nodes).includes('Compose') &&
+          labels(nodes).includes('Flag') &&
+          Boolean(id(nodes, 'one-native-split-view-detail-frame'))
+      )
+    })
+    const measuredDetailWidth = detailWidth(expanded)
+    if (measuredDetailWidth === undefined || measuredDetailWidth < 280 || measuredDetailWidth > 320)
+      throw new Error(`SwiftUI proposed a ${measuredDetailWidth}px Detail width, expected 300px`)
+    screenshot('navigation-split-view-expanded.png', expanded)
+
+    tap({ label: 'Flag' })
+    await wait('expanded toolbar remains connected to React', (nodes) =>
+      status(nodes, 'Toolbar actions', 3) && status(nodes, 'Message', 'receipt')
+    )
+    tap({ id: 'one-native-split-view-portrait' })
+    const compactAgain = await wait('portrait returns with split-view state retained', (nodes) => {
+      const size = screenSize(nodes)
+      return Boolean(
+        size &&
+          size.width < size.height &&
+          status(nodes, 'Mailbox', 'inbox') &&
+          status(nodes, 'Message', 'receipt') &&
+          status(nodes, 'Toolbar actions', 3)
+      )
+    })
+    screenshot('navigation-split-view-compact-retained.png', compactAgain)
+
+    tap({ label: 'index' })
+    await wait('home returns after the split-view proof', () => true, true)
+    await tapNav('nav-split-view-test')
+    const routedSplit = await wait('the routed One.iOS.SplitView still mounts', (nodes) =>
+      labels(nodes).includes('One.iOS.SplitView test rendered') &&
+      status(nodes, 'Selected', 'inbox') &&
+      Boolean(id(nodes, 'split-view-test-screen'))
+    )
+    screenshot('navigation-routed-split-view.png', routedSplit)
+    tap({ id: 'split-sidebar-item-archive' })
+    const routedSelection = await wait('the routed split view still updates its selection', (nodes) =>
+      status(nodes, 'Selected', 'archive')
+    )
+    screenshot('navigation-routed-split-view-selection.png', routedSelection)
 
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

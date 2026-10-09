@@ -538,8 +538,13 @@ export const components = [
     publicName: 'List',
     props: {
       listStyle: 'string',
+      selection: 'string',
+      selectionIsControlled: 'boolean',
     },
-    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    events: {
+      onNativeListSelectionChange: { selection: 'string' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
     swiftStyle: true,
     enumProps: { listStyle: 'ListStyle' },
     layout: { kind: 'container' },
