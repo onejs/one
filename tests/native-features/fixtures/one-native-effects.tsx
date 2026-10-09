@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { useRef, useState, type ComponentRef } from 'react'
+import { PixelRatio, Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 const effects = ['mask', 'edge-mask', 'overlay', 'edge-blur', 'blur'] as const
@@ -22,7 +22,16 @@ function Stripes({
   return (
     <View style={[foreground ? styles.foreground : styles.fill, { opacity }]}>
       {Array.from({ length: foreground ? 10 : 60 }, (_, i) => (
-        <View key={i} style={{ height: 4, flexDirection: 'row' }}>
+        <View
+          key={i}
+          style={{
+            // opaque stripe edges must align in the blurred and sharp references.
+            height:
+              PixelRatio.roundToNearestPixel((i + 1) * 4) -
+              PixelRatio.roundToNearestPixel(i * 4),
+            flexDirection: 'row',
+          }}
+        >
           <View style={{ flex: 1, backgroundColor: i % 2 ? '#808080' : '#000000' }} />
           <View style={{ flex: 1, backgroundColor: i % 2 ? '#ffffff' : '#808080' }} />
         </View>
@@ -37,7 +46,7 @@ export default function OneNativeEffects() {
   const [effect, setEffect] = useState<Effect>('mask')
   const [variant, setVariant] = useState<Variant>('canonical')
   const [bounds, setBounds] = useState({ x: 0, y: 0, width: 0, height: 0 })
-  const stage = useRef<View>(null)
+  const stage = useRef<ComponentRef<typeof View>>(null)
   const curve = variant === 'wrong' ? 'linear' : custom
   const bypass = variant === 'bypass'
   const content = (
@@ -113,7 +122,7 @@ export default function OneNativeEffects() {
         {!bypass && variant !== 'wrong' && (
           <One.UI.Blur
             intensity={variant === 'zero' ? 0 : 100}
-            tint="light"
+            tint={Platform.OS === 'android' ? 'systemUltraThinMaterial' : 'light'}
             style={styles.fill}
           >
             <Stripes foreground opacity={variant === 'wrong-child' ? 0.5 : 1} />
@@ -134,6 +143,7 @@ export default function OneNativeEffects() {
       bezier: One.UI.sampleCurve(linearBezier),
       clamped: One.UI.sampleCurve({ type: 'stops', values: [2, 0.5, -1] }),
       presetSerialization: One.UI.serializeCurve('smooth'),
+      wrongPresetSerialization: One.UI.serializeCurve('linear'),
       customSerialization: One.UI.serializeCurve(custom),
       bezierSerialization: One.UI.serializeCurve(linearBezier),
     },

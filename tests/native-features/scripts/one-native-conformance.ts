@@ -7062,6 +7062,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     let index = 0
     await runEffectsSuite({
       artifactDir: config.artifactDir,
+      captureScale: 3,
       pass: (name) => {
         checks.push({ name, durationMs: 0 })
         console.log(`PASS ${name}`)

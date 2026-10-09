@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
+import { runEffectsSuite } from './one-native-effects-suite'
 import { countDistinctColors, readPng } from './visual-pixel-gate'
 import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
@@ -35,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state'
   apkPath: string
   negativeControl: boolean
 }
@@ -58,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -89,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -300,6 +301,8 @@ function clickableTarget(nodes: Node[], node: Node): Node | undefined {
 
 function dumpNodes(config: Config): Snapshot {
   const remote = `/sdcard/one-native-android-proof-${process.pid}.xml`
+  // a failed dump can exit zero; never accept a hierarchy from an earlier capture.
+  adbText(config, ['shell', 'rm', '-f', remote])
   adbText(config, ['shell', 'uiautomator', 'dump', remote])
   const xml = adbText(config, ['exec-out', 'cat', remote])
   return { xml, nodes: parseXml(xml) }
@@ -5287,6 +5290,104 @@ async function runCompose(config: Config) {
     console.log('ALL ONE UI ICON ANDROID CHECKS PASSED')
     return
   }
+  if (config.suite === 'ui-effects') {
+    const scale = densityScale(config)
+    const toDp = (
+      bounds: Bounds
+    ): { x: number; y: number; width: number; height: number } => ({
+      x: bounds.left / scale,
+      y: bounds.top / scale,
+      width: (bounds.right - bounds.left) / scale,
+      height: (bounds.bottom - bounds.top) / scale,
+    })
+    const reading = (nodes: Node[]) => {
+      const node = matching(nodes, { id: 'effects-reading' })[0]
+      const value = node?.contentDescription || node?.text
+      if (!value) throw new Error('Android effects fixture has no accessibility reading.')
+      return JSON.parse(value) as {
+        effect: string
+        variant: string
+        bounds: { x: number; y: number; width: number; height: number }
+        curves: {
+          linear: number[]
+          smooth: number[]
+          custom: number[]
+          bezier: number[]
+          clamped: number[]
+          presetSerialization: string
+          customSerialization: string
+          bezierSerialization: string
+          wrongPresetSerialization: string
+        }
+      }
+    }
+
+    await navigateFixture(config, 'nav-one-native-effects')
+    await check(
+      'ui-effects-fixture-mounted',
+      (nodes) =>
+        exactlyOneId(nodes, 'one-native-effects-mounted') &&
+        exactlyOneId(nodes, 'effects-stage') &&
+        exactlyOneId(nodes, 'effects-reading')
+    )
+    await runEffectsSuite({
+      artifactDir: config.artifactDir,
+      captureScale: scale,
+      geometryTolerance: 1 / scale,
+      pass: (name) => console.log(`PASS ${name}`),
+      capture: async (effect, variant) => {
+        tapFresh(config, `select ${effect} effect`, {
+          id: `effect-${effect}`,
+          clickable: true,
+        })
+        await check(`ui-effects-${effect}-canonical-selected`, (nodes) => {
+          const value = reading(nodes)
+          return value.effect === effect && value.variant === 'canonical'
+        })
+        tapFresh(config, `select ${variant} ${effect} variant`, {
+          id: `variant-${variant}`,
+          clickable: true,
+        })
+        const captured = await check(`ui-effects-${effect}-${variant}`, (nodes) => {
+          const value = reading(nodes)
+          return (
+            value.effect === effect &&
+            value.variant === variant &&
+            Math.round(value.bounds.width * scale) === Math.round(300 * scale) &&
+            Math.round(value.bounds.height * scale) === Math.round(240 * scale)
+          )
+        })
+        const stage = matching(captured.nodes, { id: 'effects-stage' })[0]?.bounds
+        const root = matching(captured.nodes, {
+          id: 'one-native-effects-mounted',
+        })[0]?.bounds
+        if (!stage || !root)
+          throw new Error('Android effects stage or root has no accessibility bounds.')
+        const value = reading(captured.nodes)
+        const rootDp = toDp(root)
+        writeFileSync(
+          captured.pngPath.replace(/\.png$/, '.json'),
+          JSON.stringify({ value, scale, stage, root }, null, 2)
+        )
+        return {
+          file: captured.pngPath,
+          reading: {
+            ...value,
+            bounds: {
+              ...value.bounds,
+              x: value.bounds.x - rootDp.x,
+              y: value.bounds.y - rootDp.y,
+            },
+          },
+          viewport: toDp(applicationBounds(captured.nodes)),
+          stage: toDp(stage),
+          root: toDp(root),
+        }
+      },
+    })
+    console.log('ALL ONE UI EFFECTS ANDROID CHECKS PASSED')
+    return
+  }
   if (config.suite === 'compose-badges') {
     await badges()
     console.log('ALL ONE NATIVE ANDROID BADGE CHECKS PASSED')
@@ -5715,7 +5816,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
       ? runCompose(config)
       : run(config))
 } catch (error) {

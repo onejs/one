@@ -23,6 +23,10 @@ import android.widget.FrameLayout
  */
 class OneNativeMaskView(context: Context) : FrameLayout(context) {
 
+  override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+    // fabric owns mask and content bounds, including flattened descendants.
+  }
+
   private var maskBitmap: Bitmap? = null
   private var maskCanvas: Canvas? = null
 
@@ -57,21 +61,26 @@ class OneNativeMaskView(context: Context) : FrameLayout(context) {
     }
     val maskCanvas = maskCanvas!!
     maskCanvas.drawColor(0x00000000, PorterDuff.Mode.CLEAR)
-    val wasVisible = mask.visibility == VISIBLE
-    mask.visibility = VISIBLE
     val saveCount = maskCanvas.save()
     maskCanvas.translate(mask.left.toFloat(), mask.top.toFloat())
     mask.draw(maskCanvas)
     maskCanvas.restoreToCount(saveCount)
 
-    // Content pass with the mask hidden, then DST_IN the mask bitmap over it.
-    mask.visibility = GONE
+    // skip the mask in the content pass without requesting layout during drawing.
     val sc = canvas.saveLayer(0f, 0f, w.toFloat(), h.toFloat(), null)
     super.dispatchDraw(canvas)
     maskPaint.shader = null
     canvas.drawBitmap(bitmap, 0f, 0f, maskPaint)
     canvas.restoreToCount(sc)
-    if (wasVisible) mask.visibility = VISIBLE
+  }
+
+  override fun drawChild(canvas: Canvas, child: View, drawingTime: Long): Boolean =
+    child !== maskChild && super.drawChild(canvas, child, drawingTime)
+
+  override fun onDescendantInvalidated(child: View, target: View) {
+    super.onDescendantInvalidated(child, target)
+    // a changed mask subtree needs a fresh alpha bitmap, while idle masks stay idle.
+    invalidate()
   }
 
   override fun onDetachedFromWindow() {

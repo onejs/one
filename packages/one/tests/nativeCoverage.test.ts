@@ -20,16 +20,7 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // exports with no suite yet on a platform they run on. remove an entry when its
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
-  'UI.sampleCurve':
-    'Android suite missing; iOS preset, custom, bezier and clamped values proven',
-  'UI.serializeCurve':
-    'Android suite missing; iOS preset, custom and bezier serialization proven',
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
-  'UI.EdgeFade':
-    'Android suite missing; iOS bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven',
-  'UI.Blur':
-    'Android suite missing; iOS bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven',
-  'UI.Mask': 'Android suite missing; iOS bounded hidden/visible/half-alpha pixels proven',
   'UI.ReservedRegions':
     'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',
   LaunchScreen: 'Android suite missing',
@@ -59,6 +50,10 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  'UI.EdgeFade':
+    'iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven',
+  'UI.Blur':
+    'iOS and Android bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven',
   Widgets:
     'bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted',
   LiveActivities:
