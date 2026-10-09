@@ -9,9 +9,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 
 | export | iOS suites | Android suites | Peach cases | gap |
 | --- | --- | --- | --- | --- |
-| `One.openURL` | realapps:external | open | missing |  |
-| `One.openShare` | realapps:external | open | missing |  |
-| `One.openSettings` | realapps:external | open | missing |  |
+| `One.openURL` | realapps:external | open | OneNativeExternalActionsLibraryCase |  |
+| `One.openShare` | realapps:external | open | OneNativeExternalActionsLibraryCase |  |
+| `One.openSettings` | realapps:external | open | OneNativeExternalActionsLibraryCase |  |
 | `One.AppInfo` | app-info | app-info | OneNativeBehavioralLibraryCase |  |
 | `One.Database` | database | database | OneNativeBehavioralLibraryCase |  |
 | `One.Widgets` | realapps:widgets | native-modules:unavailable | missing | bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted |
@@ -221,7 +221,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
 | `One.ImagePicker` | image-picker, camera-preview | image-picker | OneNativeBehavioralLibraryCase |  |
-| `One.DocumentPicker` | apple-file | missing | missing | Android fixture exists, no suite opens it |
+| `One.DocumentPicker` | apple-file | missing | OneNativeDocumentPickerLibraryCase | Android fixture exists, no suite opens it |
 | `One.SecureStore` | secure-store | secure-store | OneNativeBehavioralLibraryCase |  |
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
 | `One.Speech` | speech | speech | OneNativeBehavioralLibraryCase |  |

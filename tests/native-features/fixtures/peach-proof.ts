@@ -1,5 +1,5 @@
 // peach library cases whose fixture uses each one export, scanned from the
-// contrast checkout at 8a9d6d9d33 against one 3149dfd5c with contrast
+// contrast checkout at f999d7df70 against one f1d80284c with contrast
 // scripts/conformance/one-export-proof-matrix.ts. names are case base file
 // names under packages/peach-library-conformance/src/cases. refresh when
 // peach cases land; the matrix test fails on unknown export keys, and
@@ -44,6 +44,7 @@ export const peachProof: Record<string, string[]> = {
   'Browser': ['OneNativeBehavioralLibraryCase'],
   'Clipboard': ['OneNativeBehavioralLibraryCase'],
   'Database': ['OneNativeBehavioralLibraryCase'],
+  'DocumentPicker': ['OneNativeDocumentPickerLibraryCase'],
   'FileSystem': ['OneNativeBehavioralLibraryCase'],
   'Haptics': ['OneNativeBehavioralLibraryCase'],
   'ImageManipulator': ['OneNativeBehavioralLibraryCase'],
@@ -160,6 +161,9 @@ export const peachProof: Record<string, string[]> = {
   'iOS.ZoomTransitionEnabler': ['ScreensTransitionLibraryCase'],
   'iOS.ZoomTransitionSource': ['ScreensTransitionLibraryCase'],
   'onHingeChange': ['OneNativeAdaptiveLibraryCase'],
+  'openSettings': ['OneNativeExternalActionsLibraryCase'],
+  'openShare': ['OneNativeExternalActionsLibraryCase'],
+  'openURL': ['OneNativeExternalActionsLibraryCase'],
   'useHinge': ['OneNativeAdaptiveLibraryCase'],
   'useReservedRegions': ['OneNativeAdaptiveLibraryCase'],
   'useReservedRegionsReady': ['OneNativeAdaptiveLibraryCase'],
