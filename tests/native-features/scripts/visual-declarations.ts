@@ -581,28 +581,31 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'dialogs/confirmation-hidden.png',
     anchor: {
       capture: 'dialogs/confirmation-visible.png',
-      selector: { AXLabel: 'One Native Confirmation' },
+      selector: { AXLabel: 'One Native Confirmation', type: 'StaticText', role: 'AXStaticText' },
+      within: { AXLabel: 'One Native Confirmation', type: 'Sheet', role: 'AXSheet' },
       region: (frame) => ({ x: frame.x, y: frame.y, width: 90, height: 12 }),
     },
     prompt: 'A dialog card displaying the title Confirmation header is visible.',
     measureSubject: (crop) => {
       const card = countMatchingPixels(
         crop,
-        (r, g, b) => r >= 241 && r <= 245 && g >= 241 && g <= 245 && b >= 242 && b <= 246
+        // sdk 27 native popover paint over the light fixture and Apple reference.
+        (r, g, b) =>
+          r >= 246 && r <= 251 && g - r >= 0 && g - r <= 1 && b - r >= 1 && b - r <= 5
       )
       const text = countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60)
       return Math.floor(Math.min(text, card / 3))
     },
     minSubjectFloor: 1_200,
     calibration: {
-      positiveMeasured: 2_150,
+      positiveMeasured: 1_931,
       negativeMeasured: 0,
       threshold: 1_200,
-      changedPixelsMeasured: 3_263,
-      crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      changedPixelsMeasured: 7_005,
+      crossSubstitutionMatches: null,
+      corpusSize: 6,
       nullStateReads:
-        'confirmation title header text score 2,150 (card: 6,452, text: 2,492), bar is 1,200, hidden title reads 0; 1/70 cross matches (only confirmation-visible)',
+        'SDK 27.0 Apple reference scores 1,929; One and restored One score 1,931 at the unchanged 1,200 floor. Automatic, natural hidden title and actual native title paint omission read 0; omission retains title accessibility and the native action. Native card red spans 246 to 251, green is 0 to 1 above red and blue is 1 to 5 above red. Six focused captures; historical 70-capture corpus and its 1 cross match were not rerun.',
     },
   },
 
