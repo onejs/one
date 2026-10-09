@@ -7810,18 +7810,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       Boolean(id(n, 'one-native-media-open'))
     )
     tap({ id: 'one-native-media-category-player' })
-    await withTransport(
-      'autoplay starts the fresh player',
-      (n) => Boolean(elapsed(n)) && elapsed(n) !== '0:00 elapsed'
-    )
     const playbackPosition = (nodes: Node[]) =>
       Number(labels(nodes).find((label) => label.startsWith('PositionMs: '))?.slice(12) ?? -1)
     const playbackDuration = (nodes: Node[]) =>
       Number(labels(nodes).find((label) => label.startsWith('DurationMs: '))?.slice(12) ?? -1)
-    await wait('native player reports playback and duration', (n) =>
-      status(n, 'Playback', 'playing') && playbackPosition(n) > 0 &&
-      playbackDuration(n) > 5000
+    // observe elapsed time and the playback event in the same native snapshot.
+    // a second snapshot can arrive after this six-second clip has already ended.
+    await withTransport(
+      'autoplay starts the fresh player',
+      (n) => Boolean(elapsed(n)) && elapsed(n) !== '0:00 elapsed' &&
+        status(n, 'Playback', 'playing') && playbackPosition(n) > 0 &&
+        playbackDuration(n) > 5000
     )
+    checks.push({ name: 'native player reports playback and duration', durationMs: 0 })
+    console.log('PASS native player reports playback and duration')
     await wait('autoplay clip reaches a known end state', (n) =>
       status(n, 'Playback', 'ended') && playbackPosition(n) >= 5000
     )
