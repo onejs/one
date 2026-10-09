@@ -36,6 +36,30 @@ function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
  */
 const FMT_CXX17_MARKER = '# [vxrn/one] fmt c++17 fix'
 
+const WEBGPU_HEADERS_MARKER = '# [vxrn/one] webgpu isolated package headers'
+
+function injectWebGPUHeaderPathsIntoPodfile(podfile) {
+  if (podfile.includes(WEBGPU_HEADERS_MARKER)) return podfile
+  const match = podfile.match(/post_install\s+do\s+\|installer\|/)
+  if (!match) throw new Error('[vxrn] Podfile lost its post_install anchor')
+  const patch = `
+    ${WEBGPU_HEADERS_MARKER}
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'react-native-webgpu'
+
+      target.build_configurations.each do |build_config|
+        paths = Array(build_config.build_settings['HEADER_SEARCH_PATHS'] || '$(inherited)')
+        paths |= %w[cpp/rnwgpu cpp/rnwgpu/api cpp/rnwgpu/api/descriptors cpp/jsi].map do |directory|
+          "$(PODS_TARGET_SRCROOT)/#{directory}"
+        end
+        build_config.build_settings['HEADER_SEARCH_PATHS'] = paths
+      end
+    end
+`
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
+}
+
 function injectFmtCxx17FixIntoPodfile(podfile) {
   if (podfile.includes(FMT_CXX17_MARKER)) {
     return podfile
@@ -724,6 +748,7 @@ function holdLaunchScreenInMainActivity(mainActivity) {
 }
 
 module.exports = {
+  injectWebGPUHeaderPathsIntoPodfile,
   holdLaunchScreenInMainActivity,
   ONE_NOTIFICATIONS,
   ONE_UPDATES,
