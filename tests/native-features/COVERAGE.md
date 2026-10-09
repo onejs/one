@@ -197,15 +197,15 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.Color` | n/a | android-color | missing |  |
 | `One.Android.Menu` | n/a | android-menus | missing |  |
 | `One.Android.ContextMenu` | n/a | android-menus | missing |  |
-| `One.UI.sampleCurve` | ui-effects | missing | missing | Android suite missing; iOS preset, custom, bezier and clamped values proven |
-| `One.UI.serializeCurve` | ui-effects | missing | missing | Android suite missing; iOS preset, custom and bezier serialization proven |
-| `One.UI.EdgeFade` | ui-effects | missing | missing | Android suite missing; iOS bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
+| `One.UI.sampleCurve` | ui-effects | effects | missing |  |
+| `One.UI.serializeCurve` | ui-effects | effects | missing |  |
+| `One.UI.EdgeFade` | ui-effects | effects | missing | iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
 | `One.UI.Icon` | ui-icon | ui-icon | missing |  |
 | `One.UI.Image` | ui-image | image | OneNativeVisualLibraryCase |  |
 | `One.UI.Map` | ui-map | ui-map | OneNativeVisualLibraryCase |  |
 | `One.UI.PictureInPicture` | missing | missing | missing | fixture exists; simulators report no PiP, needs a device run |
-| `One.UI.Blur` | ui-effects | missing | OneNativeVisualLibraryCase | Android suite missing; iOS bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven |
-| `One.UI.Mask` | ui-effects | missing | OneNativeVisualLibraryCase | Android suite missing; iOS bounded hidden/visible/half-alpha pixels proven |
+| `One.UI.Blur` | ui-effects | effects | OneNativeVisualLibraryCase | iOS and Android bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven |
+| `One.UI.Mask` | ui-effects | effects | OneNativeVisualLibraryCase |  |
 | `One.UI.Portal` | portal | portal | OnePortalLibraryCase |  |
 | `One.UI.PortalHost` | portal | portal | OnePortalLibraryCase |  |
 | `One.UI.Pager` | pager | ui-pager | OneUIPagerLibraryCase |  |

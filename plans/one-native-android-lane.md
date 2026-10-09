@@ -1335,3 +1335,48 @@ Command: `--suite ui-icon --device-id emulator-5554 --package-id
 dev.vxrn.nativefeatures.tests --metro-port 8098`. Focused fixture/runner
 TypeScript, fixture formatting, native coverage generation and diff checks
 pass. CI delivery remains with s23249.
+
+
+## Android effects suites, 2026-10-09
+
+RAN: `ui-effects` passes all 174 checks on Pixel 8/API 37, covering Mask,
+EdgeFade mask/overlay/blur, Blur, sampleCurve and serializeCurve. Bypass,
+wrong curve, opaque effect, empty content, zero radius/intensity, and wrong
+foreground controls reject their intended gates; every effect restores.
+Actual smooth samples reject the linear predicate and actual linear
+serialization rejects the smooth predicate. Mask half alpha is 0.498039.
+Blur foreground MAE is 0.0; its backdrop left/right is 0.464151/0.743391.
+EdgeFade blur contrast is 0.001795 against sharp 0.048004.
+
+The suites fix four Android causes: Mask changed visibility during drawing
+and never reached idle; FrameLayout replaced Fabric child bounds in the
+native effect containers; EdgeFade radius zero entered the alpha-mask path;
+Blur applied a Gaussian to a uniform tint instead of the actual backdrop.
+Mask now skips its alpha child in the content pass. Mask and EdgeFade leave
+child layout to Fabric. Zero radius draws sharp content. Blur records only
+the preceding backdrop into a retained RenderNode, leaving foreground sharp.
+
+The fixture quantizes stripe boundaries to physical pixels. Its former
+10.5px rows left five one-pixel foreground gaps over the changed backdrop,
+producing 0.024293 MAE. The existing pixel gates are unchanged; iOS 3x stripe
+boundaries are unchanged. Geometry checks account only for Android's pixel
+rounding and independently read the native density and accessibility bounds.
+
+Receipt: primary `tests/native-features/evidence/android-native-ui-suites/effects-aligned/`.
+Earlier failing captures remain in `effects-current/`, `effects-layout-fixed/`
+and `effects-final/`. Build logs, APK and source hashes are in sibling `build/`.
+APK SHA256: `b10b7581b2246ea9e0e01d6e6761b3adf09863aea4f3f8899fc05c82f213b206`.
+Command: `--suite ui-effects --device-id emulator-5554 --package-id
+ dev.vxrn.nativefeatures.tests --metro-port 8098`, with platform-tools first
+on PATH and device tcp:8081 reversed to tcp:8098.
+
+RAN: arm64 Android assembleDebug, 25 effect contract tests, focused TypeScript,
+fixture/helper/coverage formatting and generated native coverage pass. A local
+runtime build with SKIP_TYPES=1 and `bun release --into ~/contrast` installs
+17 packages; installed Kotlin bytes match source. Full vxrn type emit was
+canceled after seven minutes without a result; build diagnostics/cancellation
+defect t-mv1k0t0j-yoh0 is filed in team-machine. Recompiling Kotlin without
+its incremental cache resolves the intermediate internal-class access error.
+Exact progressive/live-scrolling EdgeFade and live tint/lifecycle Blur remain
+explicit limits in COVERAGE.md. CI, native build and canary delivery belong
+to s23249; runtime acceptance does not assert their result.

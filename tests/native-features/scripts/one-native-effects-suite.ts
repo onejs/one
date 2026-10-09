@@ -16,6 +16,7 @@ type Reading = {
     presetSerialization: string
     customSerialization: string
     bezierSerialization: string
+    wrongPresetSerialization: string
   }
 }
 type Capture = {
@@ -69,9 +70,12 @@ function childDifference(a: Image, b: Image) {
 // measures only the mounted bounded public effects and the current layered blur.
 export async function runEffectsSuite(options: {
   artifactDir: string
+  captureScale: number
+  geometryTolerance?: number
   capture: (effect: string, variant: string) => Promise<Capture>
   pass: (name: string) => void
 }) {
+  const geometryTolerance = options.geometryTolerance ?? 0
   const measurements: unknown[] = []
   const ensure = (name: string, accepted: boolean) => {
     if (!accepted)
@@ -83,21 +87,21 @@ export async function runEffectsSuite(options: {
     const { bounds } = result.reading
     ensure(
       `${effect} ${variant} native stage is visible and measured`,
-      bounds.width === 300 &&
-        bounds.height === 240 &&
+      Math.abs(bounds.width - 300) <= geometryTolerance &&
+        Math.abs(bounds.height - 240) <= geometryTolerance &&
         result.stage.x >= 0 &&
         result.stage.y >= 0 &&
         result.stage.x + bounds.width <= result.viewport.width &&
         result.stage.y + bounds.height <= result.viewport.height &&
-        bounds.x + result.root.x === result.stage.x &&
-        bounds.y + result.root.y === result.stage.y &&
-        result.stage.width === 300 &&
-        result.stage.height === 240
+        Math.abs(bounds.x + result.root.x - result.stage.x) <= geometryTolerance &&
+        Math.abs(bounds.y + result.root.y - result.stage.y) <= geometryTolerance &&
+        Math.abs(result.stage.width - 300) <= geometryTolerance &&
+        Math.abs(result.stage.height - 240) <= geometryTolerance
     )
     const png = readPng(result.file)
     ensure(
-      `${effect} ${variant} capture is native 3x`,
-      png.width === result.viewport.width * 3
+      `${effect} ${variant} capture is native ${options.captureScale}x`,
+      png.width === Math.round(result.viewport.width * options.captureScale)
     )
     return {
       image: extractCrop(png, { ...result.stage, viewportWidth: result.viewport.width }),
@@ -111,26 +115,34 @@ export async function runEffectsSuite(options: {
       JSON.stringify(measurements, null, 2)
     )
   }
-  for (const effect of ['mask', 'edge-mask', 'overlay', 'edge-blur', 'blur']) {
+  for (const effect of ['blur', 'edge-blur', 'mask', 'edge-mask', 'overlay']) {
     const canonical = await capture(effect, 'canonical')
     const curves = canonical.reading.curves
+    const linearSamples = (values: number[]) =>
+      values.length === 32 && values[0] === 1 && values[31] === 0 && values[8] === 0.7419
+    const smoothSerialization = (value: string) => value === 'smooth'
     ensure(
       `${effect} public curves have known endpoints and serialization`,
-      curves.linear.length === 32 &&
-        curves.linear[0] === 1 &&
-        curves.linear[31] === 0 &&
-        curves.linear[8] === 0.7419 &&
+      linearSamples(curves.linear) &&
         curves.smooth[8] === 0.4084 &&
         JSON.stringify(curves.custom) === '[1,1,0,0]' &&
         JSON.stringify(curves.clamped) === '[1,0.5,0]' &&
         JSON.stringify(curves.bezier) === JSON.stringify(curves.linear) &&
-        curves.presetSerialization === 'smooth' &&
+        smoothSerialization(curves.presetSerialization) &&
         curves.customSerialization === '1,1,0,0' &&
         curves.bezierSerialization === curves.bezier.join(',')
     )
+    ensure(
+      `${effect} smooth control rejects linear samples`,
+      !linearSamples(curves.smooth)
+    )
+    ensure(
+      `${effect} linear control rejects smooth serialization`,
+      !smoothSerialization(curves.wrongPresetSerialization)
+    )
     const bypass = await capture(effect, 'bypass')
     const wrong = await capture(effect, 'wrong')
-    const gate = (image: Image) => {
+    const gate = (image: Image): Record<string, boolean> => {
       if (effect === 'mask')
         return {
           hidden: mean(image, 20, 80) < 0.01,
