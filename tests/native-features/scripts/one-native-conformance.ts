@@ -301,6 +301,16 @@ const has = (nodes: Node[], text: string) =>
   labels(nodes).some((label) => label.includes(text))
 const id = (nodes: Node[], value: string) =>
   nodes.find((node) => node.AXUniqueId === value)
+// native hosts share their testID with their group; only the editable control owns the value.
+export const nativeTextField = (nodes: Node[], testID: string) => {
+  const fields = nodes.filter(
+    (node) =>
+      node.AXUniqueId === testID &&
+      node.type === 'TextField' &&
+      node.role === 'AXTextField'
+  )
+  return fields.length === 1 ? fields[0] : undefined
+}
 const value = (nodes: Node[], expected: string) =>
   labels(nodes).includes(`Value: ${expected}`)
 const request = (nodes: Node[], expected: string) =>
@@ -941,7 +951,7 @@ const firstState = (nodes: Node[]) =>
   fixtureLoaded(nodes) &&
   has(nodes, 'First tab') &&
   labels(nodes).includes('1') &&
-  id(nodes, 'one-native-input-first')?.AXValue === 'Retained'
+  nativeTextField(nodes, 'one-native-input-first')?.AXValue === 'Retained'
 
 async function run(config: Config, checks: { name: string; durationMs: number }[]) {
   fs.mkdirSync(config.artifactDir, { recursive: true })
@@ -1490,7 +1500,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     let expectedCount = 1
     const retained = (nodes: Node[]) =>
       id(nodes, 'one-native-sheet-counter')?.AXLabel === String(expectedCount) &&
-      id(nodes, 'one-native-sheet-input')?.AXValue === 'Retained'
+      nativeTextField(nodes, 'one-native-sheet-input')?.AXValue === 'Retained'
     const sheetContentHasGeometry = (nodes: Node[], yPixels: number) => {
       const frame = nodes.find(
         (node) => node.type === 'StaticText' && node.AXLabel === 'Sheet Content'
@@ -1562,7 +1572,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await typeInto(
       'RN sheet input',
       'retained',
-      (n) => id(n, 'one-native-sheet-input')?.AXValue
+      (n) => nativeTextField(n, 'one-native-sheet-input')?.AXValue
     )
     await wait('RN sheet input accepts text', retained)
     screenshot('sheet-input.png')
@@ -1605,7 +1615,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'blocked drag leaves the sheet present and interactive',
       (n) =>
         id(n, 'one-native-sheet-counter')?.AXLabel === '2' &&
-        id(n, 'one-native-sheet-input')?.AXValue === 'Retained'
+        nativeTextField(n, 'one-native-sheet-input')?.AXValue === 'Retained'
     )
     expectedCount = 2
     tap({ id: 'one-native-sheet-close' })
@@ -1688,11 +1698,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'forms') {
     const nativeValue = (nodes: Node[], label: string, expected: string | number) =>
       nodes.some((n) => n.AXLabel === label && String(n.AXValue) === String(expected))
-    // the native TextField publishes no AXLabel, so its testID is the only handle on its value.
-    // matching on AXLabel found nothing, which made the typing probe unable to observe the
-    // character it had just sent, so the check could never pass rather than never fail.
     const typeField = (name: string, testID: string, text: string) =>
-      typeInto(name, text, (n) => id(n, testID)?.AXValue)
+      typeInto(name, text, (n) => nativeTextField(n, testID)?.AXValue)
     const submit = () => axe(['key', '40'], config.simulatorId)
     const pressSwitch = async () => {
       const nodes = await wait('native switch is ready', (n) =>
@@ -3111,7 +3118,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const frame = control(nodes, 'CheckBox', label)!.frame!
       touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
     }
-    const fieldValue = (nodes: Node[]) => id(nodes, 'one-native-state-field')?.AXValue
+    const fieldValue = (nodes: Node[]) => nativeTextField(nodes, 'one-native-state-field')?.AXValue
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -7239,9 +7246,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'ui-text-input') {
     const status = (nodes: Node[], text: string) => labels(nodes).includes(text)
-    // the host Group carries the same testID as the native field inside it; read the field.
-    const field = (nodes: Node[], testID: string) =>
-      nodes.find((node) => node.AXUniqueId === testID && node.type === 'TextField')
+    const field = nativeTextField
     const fieldValue = (nodes: Node[], testID: string) => field(nodes, testID)?.AXValue
     const submit = async () => {
       await wait('software keyboard is up for return', keyboardUp)
