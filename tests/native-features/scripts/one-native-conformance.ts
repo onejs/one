@@ -321,6 +321,49 @@ export const nativeButton = (nodes: Node[], testID: string) => {
   )
   return buttons.length === 1 ? buttons[0] : undefined
 }
+// standalone image hosts repeat the testID; the descendant symbol owns its painted frame.
+export const nativeSymbol = (nodes: Node[], testID: string, systemName: string) => {
+  const owners = nodes.filter((node) => node.AXUniqueId === testID)
+  const nested = new Set<Node>()
+  const descendants = (node: Node): void => {
+    for (const child of (node.children as Node[] | undefined) ?? []) {
+      nested.add(child)
+      descendants(child)
+    }
+  }
+  owners.forEach(descendants)
+  const roots = owners.filter((node) => !nested.has(node))
+  if (roots.length !== 1) return undefined
+  const symbols: Node[] = []
+  const visit = (node: Node, parent?: Node): boolean => {
+    const children = (node.children as Node[] | undefined) ?? []
+    if (node.AXUniqueId === testID) {
+      if (node.type !== 'Image' || node.role !== 'AXImage' || children.length !== 1)
+        return false
+    } else if (node.AXUniqueId === systemName) {
+      if (
+        node.type !== 'Image' ||
+        node.role !== 'AXImage' ||
+        children.length ||
+        parent?.AXUniqueId !== testID ||
+        !node.frame ||
+        node.frame.width <= 0 ||
+        node.frame.height <= 0
+      )
+        return false
+      symbols.push(node)
+    } else if (
+      node.AXUniqueId ||
+      node.type !== 'Group' ||
+      node.role !== 'AXGroup' ||
+      children.length !== 1
+    ) {
+      return false
+    }
+    return children.every((child) => visit(child, node))
+  }
+  return visit(roots[0]) && symbols.length === 1 ? symbols[0] : undefined
+}
 const value = (nodes: Node[], expected: string) =>
   labels(nodes).includes(`Value: ${expected}`)
 const request = (nodes: Node[], expected: string) =>
@@ -2202,8 +2245,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     // the status panel only reports what React holds, so scale is checked against the rendered
     // symbol instead: imageScale that never reached SwiftUI leaves the image the same size.
-    const imageWidth = (nodes: Node[]) =>
-      id(nodes, 'one-native-leaf-image')?.frame?.width ?? 0
+    const imageWidth = (nodes: Node[], systemName = 'star.fill') =>
+      nativeSymbol(nodes, 'one-native-leaf-image', systemName)?.frame?.width ?? NaN
     const mediumWidth = imageWidth(snapshot(config.simulatorId))
     if (!mediumWidth) throw new Error('the leaf image reported no width at medium scale')
     tap({ id: 'one-native-leaf-cycle-scale' })
@@ -2228,10 +2271,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'Image speaker symbol reaches the native frame',
       (n) =>
         status(n, 'SystemName', 'speaker.wave.3') &&
-        imageWidth(n) > 0 &&
-        imageWidth(n) !== mediumWidth
+        imageWidth(n, 'speaker.wave.3') > 0 &&
+        imageWidth(n, 'speaker.wave.3') !== mediumWidth
     )
-    const speakerFrame = id(speakerUnset, 'one-native-leaf-image')!.frame!
+    const speakerFrame = nativeSymbol(
+      speakerUnset, 'one-native-leaf-image', 'speaker.wave.3'
+    )!.frame!
     const captureSpeakerInk = async (
       name: string,
       accepts: (ink: number) => boolean
