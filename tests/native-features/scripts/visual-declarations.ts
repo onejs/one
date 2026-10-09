@@ -2,6 +2,7 @@ import type { PNG } from 'pngjs'
 import {
   countDistinctColorsInCrop,
   countMatchingPixels,
+  measureCalendarSelectionBadge,
   type Rect,
 } from './visual-pixel-gate'
 
@@ -289,7 +290,8 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'date-graphical',
     suite: 'pickers',
-    subject: 'Graphical calendar month view with blue date selection accent badge',
+    subject:
+      'Graphical calendar month view with filled circular selection and contrasting numeral',
     positiveCapture: 'pickers/date-graphical.png',
     negativeCapture: 'pickers/date-wheel.png',
     anchor: {
@@ -298,24 +300,18 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       region: (frame) => ({ x: frame.x + 265, y: frame.y + 149, width: 55, height: 55 }),
     },
     prompt:
-      'A graphical calendar grid with month days and blue circular date selection accent is visible.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
-        crop,
-        (r, g, b) =>
-          (r < 30 && g >= 130 && g <= 145 && b > 240) ||
-          (r >= 210 && r <= 220 && g >= 228 && g <= 236 && b >= 244 && b <= 252)
-      ),
+      'A graphical calendar grid with month days and a black circular selection containing a white numeral is visible.',
+    measureSubject: measureCalendarSelectionBadge,
     minSubjectFloor: 5_000,
     calibration: {
-      positiveMeasured: 13_131,
-      negativeMeasured: 0,
+      positiveMeasured: 7_200,
+      negativeMeasured: null,
       threshold: 5_000,
-      changedPixelsMeasured: 14_665,
-      crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: 2,
+      corpusSize: 2,
       nullStateReads:
-        'calendar selection badge accent pixels 13,131, bar is 5,000, wheel picker reads 0; 1/70 cross matches (only date-graphical; 0 on segmented and sheets)',
+        'SDK27 retained Apple and One crops both read 7,200; 2/2 native crop matches. Prior blue-only reading was 0 on both, with 0 changed of 1,169,460 calendar pixels. Live wheel negative and runtime calibration pending.',
     },
   },
 

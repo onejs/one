@@ -233,3 +233,88 @@ export function countMatchingPixels(
   }
   return count
 }
+
+/** measures the SDK27 September 11 selection in the existing 55-point date crop. */
+export function measureCalendarSelectionBadge(crop: PNG): number {
+  // the independent apple capture and one capture have identical pixels. the
+  // anchored crop clips the circle above and to the left; do not recenter it.
+  if (crop.width !== 165 || crop.height !== 166) return 0
+  const numeral = new Set<number>()
+  let interior = 0,
+    darkInterior = 0,
+    exterior = 0,
+    background = 0
+  const dark = countMatchingPixels(crop, (r, g, b, a, x, y) => {
+    const distance = (x - 63.5) ** 2 + (y - 48.5) ** 2
+    const black = a === 255 && r < 30 && g < 30 && b < 30
+    const textBox = x >= 36 && x <= 88 && y >= 24 && y <= 72
+    if (distance < 62 ** 2 && !textBox) {
+      interior++
+      if (black) darkInterior++
+    }
+    if (distance > 68 ** 2) {
+      exterior++
+      if (
+        a === 255 &&
+        r >= 242 &&
+        r <= 248 &&
+        g >= 242 &&
+        g <= 248 &&
+        b >= 244 &&
+        b <= 250
+      )
+        background++
+    }
+    if (textBox && a === 255 && r > 245 && g > 245 && b > 245)
+      numeral.add(y * crop.width + x)
+    return black
+  })
+  if (darkInterior / interior < 0.99 || background / exterior < 0.99) return 0
+
+  // two contrasting glyphs with the measured stem height, width and placement.
+  // a bare circle, solid text-box fill or displaced numeral cannot satisfy this.
+  const components: {
+    left: number
+    right: number
+    top: number
+    bottom: number
+    count: number
+  }[] = []
+  const white = numeral.size
+  while (numeral.size) {
+    const first = numeral.values().next().value!
+    const pending = [first]
+    numeral.delete(first)
+    const component = { left: 165, right: 0, top: 165, bottom: 0, count: 0 }
+    while (pending.length) {
+      const pixel = pending.pop()!
+      const x = pixel % 165,
+        y = Math.floor(pixel / 165)
+      component.left = Math.min(component.left, x)
+      component.right = Math.max(component.right, x)
+      component.top = Math.min(component.top, y)
+      component.bottom = Math.max(component.bottom, y)
+      component.count++
+      for (const neighbor of [pixel - 1, pixel + 1, pixel - 165, pixel + 165]) {
+        if (numeral.delete(neighbor)) pending.push(neighbor)
+      }
+    }
+    components.push(component)
+  }
+  components.sort((a, b) => a.left - b.left)
+  if (components.length !== 2) return 0
+  for (const [index, component] of components.entries()) {
+    const left = index === 0 ? 39 : 67
+    const right = index === 0 ? 56 : 84
+    if (
+      Math.abs(component.left - left) > 1 ||
+      Math.abs(component.right - right) > 1 ||
+      Math.abs(component.top - 27) > 1 ||
+      Math.abs(component.bottom - 68) > 1 ||
+      component.count < 300 ||
+      component.count > 400
+    )
+      return 0
+  }
+  return Math.min(dark, white * 10)
+}
