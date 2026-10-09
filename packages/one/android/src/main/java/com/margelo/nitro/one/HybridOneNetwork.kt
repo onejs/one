@@ -36,14 +36,12 @@ class HybridOneNetwork : HybridOneNetworkSpec() {
             if (callback == null) {
                 val next =
                     object : ConnectivityManager.NetworkCallback() {
-                        override fun onAvailable(network: Network) = emit()
-
-                        override fun onLost(network: Network) = emit()
+                        override fun onLost(network: Network) = emit(stateFromCapabilities(null))
 
                         override fun onCapabilitiesChanged(
                             network: Network,
                             capabilities: NetworkCapabilities
-                        ) = emit()
+                        ) = emit(stateFromCapabilities(capabilities))
                     }
                 callback = next
                 connectivity().registerDefaultNetworkCallback(next)
@@ -61,16 +59,20 @@ class HybridOneNetwork : HybridOneNetworkSpec() {
         }
     }
 
-    private fun emit() {
-        val state = currentState()
+    private fun emit(state: NetworkState) {
         val current = synchronized(this) { listeners.values.toList() }
         current.forEach { it(state) }
     }
 
     private fun currentState(): NetworkState {
         val manager = connectivity()
-        val capabilities = manager.getNetworkCapabilities(manager.activeNetwork)
-            ?: return NetworkState(NetworkStateType.NONE, false, false)
+        return stateFromCapabilities(manager.getNetworkCapabilities(manager.activeNetwork))
+    }
+
+    // callback arguments are ordered; synchronous connectivity getters inside
+    // callbacks may still describe the network that has just been lost.
+    private fun stateFromCapabilities(capabilities: NetworkCapabilities?): NetworkState {
+        if (capabilities == null) return NetworkState(NetworkStateType.NONE, false, false)
         val connected = capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
         val reachable = capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
         val type =

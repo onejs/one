@@ -35,7 +35,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network'
   apkPath: string
   negativeControl: boolean
 }
@@ -58,7 +58,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -89,7 +89,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1721,6 +1721,61 @@ async function run(config: Config) {
     ])
   }
 
+  const network = async () => {
+    await tapNavigation(config, 'nav-one-native-network')
+    const events = (nodes: Node[]) => Number(joined(nodes).match(/Events: (\d+)/)?.[1])
+    const online = (nodes: Node[]) =>
+      textIncludes(nodes, 'State: wifi true true') &&
+      textIncludes(nodes, 'Hook: wifi true true') && events(nodes) > 0
+    const offline = (nodes: Node[]) =>
+      textIncludes(nodes, 'State: none false false') &&
+      textIncludes(nodes, 'Hook: none false false')
+    const radio = (enabled: boolean) => {
+      adbText(config, ['shell', 'svc', 'wifi', enabled ? 'enable' : 'disable'])
+      adbText(config, ['shell', 'svc', 'data', enabled ? 'enable' : 'disable'])
+    }
+    const saveConnectivity = (phase: string) =>
+      writeFileSync(path.join(config.artifactDir, `network-${phase}-connectivity.txt`),
+        adbText(config, ['shell', 'dumpsys', 'connectivity']))
+    try {
+      radio(true)
+      await expect('network-getter-hook-and-listener-online', online,
+        'one-native-network-refresh')
+      saveConnectivity('online')
+      tapFresh(config, 'Refresh network getter', { id: 'one-native-network-refresh' })
+      await expect('network-refreshed-native-getter', online)
+      if (config.negativeControl) {
+        tapFresh(config, 'Freeze the observed hook state', { id: 'one-native-network-freeze' })
+      }
+      radio(false)
+      await expect('network-listener-and-hook-offline', offline)
+      saveConnectivity('offline')
+      tapFresh(config, 'Refresh offline getter', { id: 'one-native-network-refresh' })
+      await expect('network-getter-offline', offline)
+      tapFresh(config, 'Remove network observer', { id: 'one-native-network-stop' })
+      const stopped = await expect('network-observer-removed', (nodes) =>
+        offline(nodes) && textIncludes(nodes, 'Stopped: true'))
+      const stoppedEvents = events(stopped.nodes)
+      radio(true)
+      await expect('network-hook-live-after-observer-removal', (nodes) =>
+        textIncludes(nodes, 'Hook: wifi true true') &&
+        textIncludes(nodes, 'State: none false false') &&
+        events(nodes) === stoppedEvents)
+      tapFresh(config, 'Refresh after removing observer', { id: 'one-native-network-refresh' })
+      await expect('network-getter-live-without-listener', (nodes) =>
+        online(nodes) && events(nodes) === stoppedEvents)
+      for (const cycle of [1, 2]) {
+        pressBack(config)
+        await expect(`network-remount-${cycle}-home`, (nodes) => exactlyOneId(nodes, 'home-screen'))
+        await tapNavigation(config, 'nav-one-native-network')
+        await expect(`network-remount-${cycle}-monitor-restarted`, (nodes) =>
+          online(nodes) && textIncludes(nodes, 'Stopped: false'))
+      }
+    } finally {
+      radio(true)
+    }
+  }
+
   const nativeState = async () => {
     await tapNavigation(config, 'nav-one-native-state')
     await expect(
@@ -2458,6 +2513,11 @@ async function run(config: Config) {
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
       await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : system())
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'network') {
+      await network()
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }
