@@ -117,7 +117,10 @@ function fetchConformanceEndpoints(): Plugin {
 type NativeOptions = NonNullable<Parameters<typeof one>[0]>['native']
 
 const nativeBundler = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
-  ? ({ bundler: 'vite' } satisfies NativeOptions)
+  ? ({
+      bundler: 'vite',
+      bundlerOptions: { plugins: [nativeWebgpuAliases()] },
+    } satisfies NativeOptions)
   : ({
       bundler: 'metro',
       bundlerOptions: {

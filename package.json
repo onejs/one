@@ -222,7 +222,6 @@
     "image-size@1.2.1": "patches/image-size@1.2.1.patch",
     "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch",
     "react-native-safe-area-context@5.7.0": "patches/react-native-safe-area-context@5.7.0.patch",
-    "react-native-webgpu@0.5.14": "patches/react-native-webgpu@0.5.14.patch",
     "@react-navigation/bottom-tabs@8.0.0-alpha.56": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.56.patch"
   }
 }
