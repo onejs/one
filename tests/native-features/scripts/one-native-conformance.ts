@@ -5211,13 +5211,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const secondColor = sample(secondImage)
     if (!near(firstColor, [217, 240, 209]) || !near(secondColor, [215, 230, 255]))
       throw new Error(`WebView captures lack their expected HTML backgrounds: ${JSON.stringify({ firstColor, secondColor })}`)
-    tap({ id: 'one-native-web-photos-ping' })
-    await wait('WebView bridge delivers the page message', (nodes) =>
-      labels(nodes).includes('Web message: ping'))
-    tap({ id: 'one-native-web-photos-back' })
-    await wait('WebView goBack returns to document A', (nodes) =>
+    tap({ id: 'one-native-web-photos-swap' })
+    await wait('React swaps the native WebView back to document A', (nodes) =>
+      labels(nodes).includes('Document index: 0') &&
       labels(nodes).includes('Web title: Local A') &&
-      labels(nodes).includes('Document index: 1') &&
+      labels(nodes).includes('Web history: true/false'))
+    tap({ id: 'one-native-web-photos-back' })
+    await wait('WebView goBack returns to document B', (nodes) =>
+      labels(nodes).includes('Web title: Local B') &&
+      labels(nodes).includes('Document index: 0') &&
+      labels(nodes).includes('Web history: true/true'))
+    tap({ id: 'one-native-web-photos-ping' })
+    await wait('WebView bridge delivers the page message without reloading', (nodes) =>
+      labels(nodes).includes('Web message: ping') &&
+      labels(nodes).includes('Web title: Local B'))
+    tap({ id: 'one-native-web-photos-back' })
+    await wait('WebView goBack reaches document A', (nodes) =>
+      labels(nodes).includes('Web title: Local A') &&
+      labels(nodes).includes('Document index: 0') &&
       labels(nodes).includes('Web history: false/true'))
     execFileSync('xcrun', [
       'simctl', 'addmedia', config.simulatorId,

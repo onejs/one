@@ -217,7 +217,10 @@ private struct WebViewContent: View {
 @available(iOS 26.0, *)
 @MainActor private final class OneNativeWebSession: ObservableObject {
   @Published private(set) var page: WebPage?
-  private var loaded: String?
+  // last source React asked for, and what the page actually holds. after a
+  // back/forward traversal these differ, and an unchanged prop must not reload.
+  private var requested: String?
+  private var pageLoaded: String?
   private var configKey: String?
   private var appliedRevision: Double = 0
   private var navigationTask: Task<Void, Never>?
@@ -252,7 +255,7 @@ private struct WebViewContent: View {
     let key = String(limits) + "|" + String(inlineMedia) + "|" + script
     if key != configKey {
       configKey = key
-      loaded = nil
+      pageLoaded = nil
       install(script: script, limits: limits, inlineMedia: inlineMedia)
     }
     page?.isInspectable = inspectable
@@ -265,14 +268,18 @@ private struct WebViewContent: View {
 
   func load(url: String, html: String) {
     let source = html.isEmpty ? "url:" + url : "html:" + html
-    guard loaded != source, let page else { return }
-    loaded = source
-    if sourceIndex < 0 || sources[sourceIndex] != source {
+    guard let page else { return }
+    if requested != source {
+      requested = source
       sources = Array(sources.prefix(sourceIndex + 1))
       sources.append(source)
       sourceIndex = sources.count - 1
     }
-    load(source: source, on: page)
+    guard sourceIndex >= 0 else { return }
+    let current = sources[sourceIndex]
+    guard pageLoaded != current else { return }
+    pageLoaded = current
+    load(source: current, on: page)
   }
 
   private func load(source: String, on page: WebPage) {
@@ -295,7 +302,7 @@ private struct WebViewContent: View {
         page.load(item)
       } else if sourceIndex > 0 {
         sourceIndex -= 1
-        loaded = sources[sourceIndex]
+        pageLoaded = sources[sourceIndex]
         load(source: sources[sourceIndex], on: page)
       }
     case "goForward":
@@ -303,7 +310,7 @@ private struct WebViewContent: View {
         page.load(item)
       } else if sourceIndex >= 0 && sourceIndex + 1 < sources.count {
         sourceIndex += 1
-        loaded = sources[sourceIndex]
+        pageLoaded = sources[sourceIndex]
         load(source: sources[sourceIndex], on: page)
       }
     case "evaluate":
