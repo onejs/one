@@ -311,6 +311,16 @@ export const nativeTextField = (nodes: Node[], testID: string) => {
   )
   return fields.length === 1 ? fields[0] : undefined
 }
+// an action can share its id with status text; only one native button owns the tap.
+export const nativeButton = (nodes: Node[], testID: string) => {
+  const buttons = nodes.filter(
+    (node) =>
+      node.AXUniqueId === testID &&
+      node.type === 'Button' &&
+      node.role === 'AXButton'
+  )
+  return buttons.length === 1 ? buttons[0] : undefined
+}
 const value = (nodes: Node[], expected: string) =>
   labels(nodes).includes(`Value: ${expected}`)
 const request = (nodes: Node[], expected: string) =>
@@ -1039,11 +1049,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     return output
   }
-  const tap = (target: { id?: string; label?: string }) => {
+  const tap = (target: { id?: string; label?: string; role?: 'button' }) => {
     if (!target.id && !target.label) throw new Error('A tap target is required.')
     const nodes = snapshot(config.simulatorId)
     const frame = target.id
-      ? id(nodes, target.id)?.frame
+      ? (target.role === 'button'
+          ? nativeButton(nodes, target.id)
+          : id(nodes, target.id))?.frame
       : nodes.find((node) => node.AXLabel === target.label)?.frame
     if (!frame)
       throw new Error(
@@ -2084,7 +2096,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'TextField accepts exact text',
       (n) => value(n, 'leaf') && request(n, 'leaf') && field(n)?.AXValue === 'leaf'
     )
-    tap({ id: 'one-native-leaf-reject' })
+    tap({ id: 'one-native-leaf-reject', role: 'button' })
     await wait('TextField rejection enabled', (n) => status(n, 'Reject', 'on'))
     await focus()
     // one character makes the rejected request independent of per-keystroke rollback.
@@ -2107,7 +2119,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Revision', 1) &&
         field(n)?.AXValue === 'Type a leaf note'
     )
-    tap({ id: 'one-native-leaf-reject' })
+    tap({ id: 'one-native-leaf-reject', role: 'button' })
     await wait('TextField rejection disabled', (n) => status(n, 'Reject', 'off'))
     await focus()
     await type('submit')
