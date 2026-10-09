@@ -2,6 +2,7 @@ import type { PNG } from 'pngjs'
 import {
   countDistinctColorsInCrop,
   countMatchingPixels,
+  measureCalendarSelectionBadge,
   type Rect,
 } from './visual-pixel-gate'
 
@@ -289,7 +290,8 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'date-graphical',
     suite: 'pickers',
-    subject: 'Graphical calendar month view with blue date selection accent badge',
+    subject:
+      'Graphical calendar month view with filled circular selection and contrasting numeral',
     positiveCapture: 'pickers/date-graphical.png',
     negativeCapture: 'pickers/date-wheel.png',
     anchor: {
@@ -298,24 +300,18 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       region: (frame) => ({ x: frame.x + 265, y: frame.y + 149, width: 55, height: 55 }),
     },
     prompt:
-      'A graphical calendar grid with month days and blue circular date selection accent is visible.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
-        crop,
-        (r, g, b) =>
-          (r < 30 && g >= 130 && g <= 145 && b > 240) ||
-          (r >= 210 && r <= 220 && g >= 228 && g <= 236 && b >= 244 && b <= 252)
-      ),
+      'A graphical calendar grid with month days and a black circular selection containing a white numeral is visible.',
+    measureSubject: measureCalendarSelectionBadge,
     minSubjectFloor: 5_000,
     calibration: {
-      positiveMeasured: 13_131,
+      positiveMeasured: 7_200,
       negativeMeasured: 0,
       threshold: 5_000,
-      changedPixelsMeasured: 14_665,
-      crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      changedPixelsMeasured: 14_128,
+      crossSubstitutionMatches: 2,
+      corpusSize: 2,
       nullStateReads:
-        'calendar selection badge accent pixels 13,131, bar is 5,000, wheel picker reads 0; 1/70 cross matches (only date-graphical; 0 on segmented and sheets)',
+        'SDK27 fresh One corrected/restored pairs read 7,200 versus natural wheel 0; 14,128/27,390 changed pixels, 2/2 fresh pair cross-substitutions. Offline missing badge, missing numeral, rectangle, displacement and opaque fill read 0. Prior r72081 Apple-only oracle recorded 0/1,169,460 calendar pixels different from One; transferred Apple crop reads 7,200 but its provenance remains unverified. Original Sep12 value/request and wheel Sep13 pass; omitted graphical callback rejects the same selection predicate, byte-identical restoration passes.',
     },
   },
 
