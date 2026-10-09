@@ -858,7 +858,9 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       selector: { AXUniqueId: 'one-native-a11y-text' },
       region: (frame) => ({
         x: frame.x + frame.width - 127,
-        y: frame.y + 60,
+        // default swiftui text at width 361, category l, ios 27 paints line 3
+        // at offsets 47 2/3 through 63; this crop stays inside that line.
+        y: frame.y + 50,
         width: 110,
         height: 12,
       }),
@@ -868,14 +870,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       countMatchingPixels(crop, (r, g, b) => r < 80 && g < 80 && b < 80),
     minSubjectFloor: 1_500,
     calibration: {
-      positiveMeasured: 2_926,
+      positiveMeasured: 2_927,
       negativeMeasured: 0,
       threshold: 1_500,
-      changedPixelsMeasured: 6_451,
+      changedPixelsMeasured: 4_754,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 2,
       nullStateReads:
-        'wrapped line 3 trailing edge dark text pixels 2,926, bar is 1,500, short text reads 0; 1/70 cross matches (only a11y-wrapped-text)',
+        'default Apple Text and fresh native paragraph pixels match at width 361, category L, iOS 27, 3x; line 3 trailing edge reads 2,927, floor 1,500, short text reads 0; 1/2 fresh pair matches; historical 70-capture corpus unjudged',
     },
   },
 ]
