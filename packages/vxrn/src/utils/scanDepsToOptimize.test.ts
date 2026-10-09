@@ -1,7 +1,9 @@
 import { mkdirSync, mkdtempSync, realpathSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { createServer } from 'vite'
 import { describe, expect, test } from 'vitest'
+import { getScannedOptimizeDepsConfig } from '../plugins/autoDepOptimizePlugin'
 
 import { scanDepsToOptimize } from './scanDepsToOptimize'
 
@@ -52,6 +54,7 @@ describe('scanDepsToOptimize codegenConfig', () => {
 
     expect(result.prebundleDeps).toContain('fake-js-lib')
     expect(result.prebundleDeps).not.toContain('fake-native-tabs')
+    expect(result.noExternalDeps).toContain('fake-native-tabs')
   })
 
   test('prebundles installed Expo modules without requiring Expo in the app', async () => {
@@ -141,5 +144,38 @@ describe('scanDepsToOptimize source entries', () => {
     const result = await scanDepsToOptimize(join(root, 'package.json'))
     expect(result.prebundleDeps).not.toContain('source-ui')
     expect(result.prebundleDeps).toContain('built-ui')
+  })
+})
+
+describe('codegen SSR entrypoints', () => {
+  test('runs extensionless web entrypoints through vite without prebundling native codegen', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-codegen-ssr-')))
+    writePkg(root, { name: 'fixture', dependencies: { 'fake-native-tabs': '1' } })
+    const dep = join(root, 'node_modules', 'fake-native-tabs')
+    writePkg(dep, {
+      name: 'fake-native-tabs',
+      version: '1.0.0',
+      type: 'module',
+      main: './index.js',
+      codegenConfig: { name: 'Fixture', type: 'all', jsSrcsDir: './specs' },
+    })
+    writeFileSync(join(dep, 'index.js'), "export { answer } from './web-entry'\n")
+    writeFileSync(join(dep, 'web-entry.js'), 'export const answer = 42\n')
+    writeFileSync(join(root, 'entry.js'), "export { answer } from 'fake-native-tabs'\n")
+    const config = await getScannedOptimizeDepsConfig({ root, mode: 'production' })
+    expect(config.ssr.optimizeDeps.include).not.toContain('fake-native-tabs')
+    const server = await createServer({
+      configFile: false,
+      root,
+      ssr: config.ssr,
+      server: { middlewareMode: true },
+      optimizeDeps: { noDiscovery: true },
+    })
+    try {
+      const result = await server.ssrLoadModule(join(root, 'entry.js'))
+      expect(result.answer).toBe(42)
+    } finally {
+      await server.close()
+    }
   })
 })

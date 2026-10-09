@@ -6,6 +6,7 @@ const { debug, debugDetails } = createDebugger(`vxrn:scanDepsToOptimize`)
 
 export type ScanDepsResult = {
   prebundleDeps: string[]
+  noExternalDeps: string[]
   hasReanimated: boolean
   hasNativewind: boolean
 }
@@ -150,6 +151,7 @@ export async function scanDepsToOptimize(
     console.info(`[one] Scanning node_modules to auto-optimize...`)
   }
 
+  const noExternalDeps = new Set<string>()
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
@@ -193,12 +195,10 @@ export async function scanDepsToOptimize(
           hasReanimated = true
         }
 
-        // A package declaring `codegenConfig` is a native Fabric component or
-        // TurboModule library. Its codegen entry points import from
-        // `react-native/Libraries/...`, which do not exist under SSR where
-        // react-native is aliased to a web implementation, so it can never be
-        // pre-bundled. Exclude the whole class instead of naming packages.
+        // native codegen entrypoints cannot be prebundled for web, but web
+        // entrypoints still need vite to resolve platform files and ESM imports.
         if (depPkgJson.codegenConfig != null) {
+          noExternalDeps.add(dep)
           debug?.(`${dep} skipped: declares codegenConfig (native codegen package)`)
           return []
         }
@@ -208,6 +208,8 @@ export async function scanDepsToOptimize(
           pkgJsonContent: depPkgJson,
           proceededDeps,
         })
+
+        for (const dep of subDeps.noExternalDeps) noExternalDeps.add(dep)
 
         if (subDeps.hasReanimated) {
           hasReanimated = true
@@ -338,6 +340,7 @@ export async function scanDepsToOptimize(
 
   return {
     prebundleDeps,
+    noExternalDeps: [...noExternalDeps],
     hasReanimated,
     // only check if set in root, dont want to enable css mode too easily
     hasNativewind,
