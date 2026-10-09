@@ -77,7 +77,7 @@ as an action tab, never both. Ids must be unique and nonempty.
   data={[
     { name: 'id', required: true, type: 'string', description: 'Identifies the tab in selection.' },
     { name: 'title', required: true, type: 'string', description: 'The tab label.' },
-    { name: 'systemImage', type: 'string', description: 'An SF Symbol. Not with image.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol. Not with image.' },
     { name: 'image', type: 'string', description: 'An asset catalog image. Not with systemImage.' },
     { name: 'labelStyle', type: 'SDKLabelStyle', description: 'iconOnly keeps the title for VoiceOver only.' },
     { name: 'badge', type: 'string | number', description: 'A badge on the tab item.' },
@@ -132,7 +132,7 @@ are `Tab` elements, at least one.
     { name: 'defaultSectionExpansion', type: 'TabSectionExpansion', description: 'automatic, expanded, or collapsed at first.' },
     {
       name: 'sectionActions',
-      type: 'readonly { id: string title: string systemImage?: string onPress: () => void }[]',
+      type: 'readonly { id: string title: string systemImage?: SFSymbolName | "" onPress: () => void }[]',
       description: 'Buttons in the section header.',
     },
     { name: 'children', required: true, type: 'ReactNode', description: 'The tabs.' },

@@ -154,7 +154,7 @@ The selection must lie within the bounds, and `minimumDate` must not be after
   source="generated/controlTypes.ts#PhotosPickerProps"
   data={[
     { name: 'label', type: 'string', description: 'The button title. Required at runtime; an empty label throws.' },
-    { name: 'systemImage', type: 'string', default: '""', description: 'An SF Symbol shown with the title.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol shown with the title.' },
     { name: 'onPick', type: '(url: string, index: number, count: number) => void', description: 'Once per picked asset, with a local file URL.' },
     {
       name: 'onPickItemIdentifier',

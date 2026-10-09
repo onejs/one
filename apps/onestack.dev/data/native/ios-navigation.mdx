@@ -93,7 +93,7 @@ running iOS throws.
   data={[
     { name: 'placement', type: 'ToolbarItemPlacement', default: '"automatic"', description: 'Where the group goes.' },
     { name: 'label', type: 'string', default: '""', description: 'Names the group when SwiftUI collapses it.' },
-    { name: 'systemImage', type: 'string', default: '""', description: 'An SF Symbol with the label. Needs a label.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol with the label. Needs a label.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The items.' },
   ]}
 />

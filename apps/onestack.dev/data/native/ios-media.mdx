@@ -35,7 +35,7 @@ import { One } from 'one'
   title="Props"
   source="generated/controlTypes.ts#ImageProps"
   data={[
-    { name: 'systemName', type: 'string', default: '""', description: 'The SF Symbol to draw.' },
+    { name: 'systemName', type: 'SFSymbolName | ""', default: '""', description: 'The SF Symbol to draw.' },
     { name: 'uri', type: 'string', default: '""', description: 'A remote image to draw in place of a symbol. It fills its frame.' },
     { name: 'renderingMode', type: '"original" | "template"', default: '"original"', description: 'template lets a toolbar tint a remote image.' },
     {
@@ -345,7 +345,7 @@ import { One } from 'one'
   source="generated/controlTypes.ts#ContentUnavailableViewProps"
   data={[
     { name: 'title', type: 'string', default: '""', description: 'The headline.' },
-    { name: 'systemImage', type: 'string', default: '""', description: 'An SF Symbol above the title.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol above the title.' },
     { name: 'description', type: 'string', default: '""', description: 'Text under the title.' },
     { name: 'actions', required: true, type: 'readonly DialogAction[]', description: 'Buttons, each { id, label, role }.' },
     { name: 'onAction', type: '(id: string) => void', description: 'A tapped action.' },

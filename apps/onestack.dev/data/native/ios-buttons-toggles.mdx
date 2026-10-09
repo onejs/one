@@ -67,7 +67,7 @@ children.
   data={[
     { name: 'onPress', type: '() => void', description: 'Runs when tapped.' },
     { name: 'label', type: 'string', default: '""', description: 'The title.' },
-    { name: 'systemImage', type: 'string', default: '""', description: 'An SF Symbol shown with the title.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol shown with the title.' },
     { name: 'subtitle', type: 'string', default: '""', description: 'A second line under the title.' },
     {
       name: 'buttonRole',
@@ -109,7 +109,7 @@ prominent Button grew from 28 to 50.33 points when changed from `mini` to
     { name: 'onIsOnChange', required: true, type: '(value: boolean) => void', description: 'A native flip, with the new value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isOn to reset it from outside.' },
     { name: 'label', type: 'string', description: 'The text before the switch.' },
-    { name: 'systemImage', type: 'string', description: 'An SF Symbol before the label.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol before the label.' },
     { name: 'toggleStyle', type: 'ToggleStyle', default: '"automatic"', description: 'automatic, switch, or button.' },
     { name: 'disabled', type: 'boolean', description: 'Dims the toggle and ignores taps.' },
   ]}
@@ -195,7 +195,7 @@ report completion.
   source="generated/controlTypes.ts#ShareLinkProps"
   data={[
     { name: 'label', type: 'string', description: 'The button title.' },
-    { name: 'systemImage', type: 'string', description: 'An SF Symbol shown with the title.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol shown with the title.' },
     { name: 'item', type: 'string', description: 'The text or URL to share.' },
     { name: 'itemType', type: '"text" | "url"', description: 'How iOS receives the item. A URL gets a link preview.' },
     { name: 'subject', type: 'string', description: 'A subject, for activities such as Mail.' },

@@ -94,7 +94,7 @@ and a fixed-height group.
   source="groupTypes.ts#ControlGroupProps"
   data={[
     { name: 'label', type: 'string', default: '""', description: 'The group title.' },
-    { name: 'systemImage', type: 'string', default: '""', description: 'An SF Symbol for the title.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol for the title.' },
     { name: 'controlGroupStyle', type: 'ControlGroupStyle', default: '"automatic"', description: 'automatic, palette, navigation, menu, or compactMenu.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The controls.' },
   ]}
@@ -178,7 +178,7 @@ or children.
   data={[
     { name: 'label', required: true, type: 'string', description: 'The row title.' },
     { name: 'value', type: 'string', description: 'The trailing value.' },
-    { name: 'systemImage', type: 'string', description: 'An SF Symbol before the title.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol before the title.' },
     { name: 'children', type: 'ReactNode', description: 'A custom value view in place of value.' },
   ]}
 />
