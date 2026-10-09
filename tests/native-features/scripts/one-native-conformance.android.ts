@@ -34,7 +34,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
   apkPath: string
 }
 
@@ -56,7 +56,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -85,7 +85,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1101,6 +1101,83 @@ async function run(config: Config) {
     console.log(`PASS one-native-android open ${checks.length} checks`)
   }
 
+  const database = async () => {
+    await freshLeg('database')
+    await tapNavigation(config, 'nav-one-native-database')
+    await expect('database-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-database-screen') &&
+      joined(nodes).includes('Status: idle') &&
+      joined(nodes).includes('Persisted: pending')
+    )
+
+    tapFresh(config, 'database-run', {
+      id: 'one-native-database-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-sync-async-queries', (nodes) =>
+      joined(nodes).includes('Status: done') &&
+      joined(nodes).includes("Sync: quote's ?") &&
+      joined(nodes).includes("Async: quote's ?") &&
+      joined(nodes).includes('Deleted: 0')
+    )
+
+    tapFresh(config, 'database-read-persisted', {
+      id: 'one-native-database-read',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-reopen-persisted-row', (nodes) =>
+      joined(nodes).includes('Persisted: kept')
+    )
+
+    tapFresh(config, 'database-key-value', {
+      id: 'one-native-kv-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-key-value-reopen-and-remove', (nodes) =>
+      joined(nodes).includes('KV: update-2|reloadTarget|update-2|null')
+    )
+
+    tapFresh(config, 'database-reject-missing-table', {
+      id: 'one-native-database-reject-missing-table',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-query-error-rejected', (nodes) =>
+      joined(nodes).includes('Negative: rejected:')
+    )
+
+    tapFresh(config, 'database-clear', {
+      id: 'one-native-database-clear',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-clear-row', (nodes) =>
+      joined(nodes).includes('Persisted: missing') &&
+      joined(nodes).includes('Status: cleared')
+    )
+
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android database',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android database ${checks.length} checks`)
+  }
+
   const share = async () => {
     // Share: text/url completion through the chooser Copy target, file
     // dismissal, busy guard, and all four input codes.
@@ -2092,6 +2169,10 @@ async function run(config: Config) {
     )
     if (config.suite === 'open') {
       await openAPIs()
+      return
+    }
+    if (config.suite === 'database') {
+      await database()
       return
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {

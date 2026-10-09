@@ -12,7 +12,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.openShare` | realapps:external | open |  |
 | `One.openSettings` | realapps:external | open |  |
 | `One.AppInfo` | app-info | app-info |  |
-| `One.Database` | database | missing | Android suite missing |
+| `One.Database` | database | database |  |
 | `One.Widgets` | realapps:widgets | native-modules:unavailable | bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted |
 | `One.LiveActivities` | realapps:widgets | native-modules:unavailable | bounded iOS cover-sheet scalar/JSX and expanded JSX Island fixture; Android supported rendering, compact/minimal, scalar Island and hardware-lock unproven; root/aggregate unaccepted |
 | `One.LocalAuthentication` | local-authentication | local-authentication, native-modules:unavailable |  |

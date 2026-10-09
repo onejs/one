@@ -7,6 +7,7 @@ const name = 'one-native-conformance.sqlite'
 export default function OneNativeDatabase() {
   const [persisted, setPersisted] = useState('pending')
   const [kv, setKv] = useState('pending')
+  const [negative, setNegative] = useState('idle')
   const [results, setResults] = useState<string[]>([])
   const [status, setStatus] = useState('idle')
 
@@ -79,13 +80,14 @@ export default function OneNativeDatabase() {
       store.setItem('reloadTarget', 'update-1')
       store.setItem('reloadTarget', 'update-2')
       const first = store.getItem('reloadTarget')
+      const keys = store.getAllKeys().join(',')
       store.close()
       const reopened = One.Database.openKeyValue({ name: 'one-native-kv' })
       try {
         const second = reopened.getItem('reloadTarget')
         reopened.removeItem('reloadTarget')
         const removed = reopened.getItem('reloadTarget')
-        setKv(`${first}|${second}|${removed}`)
+        setKv(`${first}|${keys}|${second}|${removed}`)
       } finally {
         reopened.close()
       }
@@ -94,11 +96,27 @@ export default function OneNativeDatabase() {
     }
   }
 
+  const rejectMissingTable = () => {
+    setNegative('running')
+    try {
+      const db = One.Database.open({ name })
+      try {
+        db.executeSync('SELECT * FROM one_native_missing_table')
+      } finally {
+        db.close()
+      }
+      setNegative('unexpectedly resolved')
+    } catch (error) {
+      setNegative(`rejected: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
+
   return (
-    <View style={styles.screen}>
+    <View style={styles.screen} testID="one-native-database-screen">
       <Text>{`Status: ${status}`}</Text>
       <Text>{`Persisted: ${persisted}`}</Text>
       <Text testID="one-native-kv-result">{`KV: ${kv}`}</Text>
+      <Text>{`Negative: ${negative}`}</Text>
       {results.map((result) => <Text key={result}>{result}</Text>)}
       <Pressable testID="one-native-database-run" style={styles.button} onPress={run}>
         <Text>Run database checks</Text>
@@ -111,6 +129,9 @@ export default function OneNativeDatabase() {
       </Pressable>
       <Pressable testID="one-native-kv-run" style={styles.button} onPress={runKeyValue}>
         <Text>Run key-value checks</Text>
+      </Pressable>
+      <Pressable testID="one-native-database-reject-missing-table" style={styles.button} onPress={rejectMissingTable}>
+        <Text>Reject missing table query</Text>
       </Pressable>
     </View>
   )

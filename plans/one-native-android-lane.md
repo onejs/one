@@ -1250,3 +1250,16 @@ The conformance command uses `--suite open --device-id emulator-5554
 platform-tools must lead PATH for Bun. `bun run prebuild:native
 --platform android`, the arm64 `:app:assembleDebug` build, package typecheck,
 and the focused native coverage test pass.
+
+## Database suite, 2026-10-09
+
+RAN: the Android `database` suite passes 8 checks on the same Pixel 8/API 37
+AVD. It proves synchronous and asynchronous parameterized SQL, row deletion,
+closing and reopening a persistent database, key-value set/read/list/remove
+across reopen, rejection of a query against a missing table, and clear.
+Receipt: `tests/native-features/evidence/one-native-android-suites/database/`.
+The installed arm64 APK is the unchanged native build above; only the JS
+fixture and runner changed. Run with `--suite database --device-id
+emulator-5554 --package-id dev.vxrn.nativefeatures.tests --metro-port 8098`
+after `adb -s emulator-5554 reverse tcp:8081 tcp:8098`. The focused native
+coverage test passes after regenerating the coverage table.
