@@ -35,7 +35,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
   apkPath: string
 }
 
@@ -57,7 +57,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -86,7 +86,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -5091,6 +5091,131 @@ async function runCompose(config: Config) {
     console.log('ALL ONE UI TEXT INPUT ANDROID CHECKS PASSED')
     return
   }
+  if (config.suite === 'ui-icon') {
+    const scale = densityScale(config)
+    const labels = [
+      'Icon default',
+      'Icon font',
+      'Icon frame',
+      'Icon style',
+      'Icon danger',
+      'Reference danger',
+      'Icon explicit',
+    ]
+    const testIds = [
+      'icon-default',
+      'icon-font',
+      'icon-frame',
+      'icon-style',
+      'icon-danger',
+      'icon-reference-danger',
+      'icon-explicit',
+    ]
+    const icon = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.contentDescription === label || node.text === label)
+    const iconSize = (node: Node | undefined, width: number, height: number) =>
+      Boolean(
+        node?.bounds &&
+        Math.abs((node.bounds.right - node.bounds.left) / scale - width) <= 1 &&
+        Math.abs((node.bounds.bottom - node.bounds.top) / scale - height) <= 1
+      )
+
+    await navigateFixture(config, 'nav-one-ui-icon')
+    const capture = await check(
+      'ui-icon-accessibility-and-bounds',
+      (nodes) =>
+        testIds.every((id) => exactlyOneId(nodes, id)) &&
+        labels.every((label) => icon(nodes, label)) &&
+        iconSize(icon(nodes, 'Icon default'), 24, 24) &&
+        iconSize(icon(nodes, 'Icon font'), 36, 36) &&
+        iconSize(icon(nodes, 'Icon frame'), 48, 32) &&
+        iconSize(icon(nodes, 'Icon style'), 44, 28) &&
+        ['Icon danger', 'Reference danger', 'Icon explicit'].every((label) =>
+          iconSize(icon(nodes, label), 40, 40)
+        )
+    )
+
+    const png = readPng(capture.pngPath)
+    const frame = capture.nodes.find((node) => idMatches(node, 'icon-decoration-frame'))
+    if (!frame?.bounds || !icon(capture.nodes, 'Icon danger')?.bounds)
+      throw new Error('Android icon pixel reference bounds are missing.')
+    const crop = (bounds: Bounds) => ({
+      x: bounds.left + 2,
+      y: bounds.top + 2,
+      width: bounds.right - bounds.left - 4,
+      height: bounds.bottom - bounds.top - 4,
+      isPixel: true,
+    })
+    const colorFraction = (
+      bounds: Bounds,
+      expected: readonly [number, number, number]
+    ) => {
+      let matched = 0
+      let total = 0
+      for (let y = bounds.top; y < bounds.bottom; y++) {
+        for (let x = bounds.left; x < bounds.right; x++) {
+          if (x < 0 || y < 0 || x >= png.width || y >= png.height) continue
+          const offset = (y * png.width + x) * 4
+          const close = [0, 1, 2].every(
+            (channel) => Math.abs(png.data[offset + channel]! - expected[channel]!) <= 3
+          )
+          if (close) matched++
+          total++
+        }
+      }
+      return total === 0 ? 0 : matched / total
+    }
+    const danger = icon(capture.nodes, 'Icon danger')!.bounds!
+    const reference = icon(capture.nodes, 'Reference danger')!.bounds!
+    const explicit = icon(capture.nodes, 'Icon explicit')!.bounds!
+    const ink = Object.fromEntries(
+      ['Icon default', 'Icon font', 'Icon frame', 'Icon style'].map((label) => {
+        const bounds = icon(capture.nodes, label)!.bounds!
+        return [label, countDistinctColors(capture.pngPath, crop(bounds))]
+      })
+    )
+    const pixels = {
+      ink,
+      decoration: countDistinctColors(capture.pngPath, crop(frame.bounds)),
+      danger: colorFraction(danger, [179, 38, 30]),
+      reference: colorFraction(reference, [179, 38, 30]),
+      explicit: colorFraction(explicit, [18, 184, 90]),
+    }
+    writeFileSync(
+      path.join(config.artifactDir, 'ui-icon-pixels.json'),
+      JSON.stringify(pixels, null, 2)
+    )
+    if (Object.values(ink).some((colors) => colors <= 1) || pixels.decoration <= 1)
+      throw new Error(
+        `Android One.UI.Icon glyph ink is missing: ${JSON.stringify(pixels)}`
+      )
+    if (
+      pixels.danger <= 0.1 ||
+      pixels.reference <= 0.1 ||
+      Math.abs(pixels.danger - pixels.reference) >= 0.03
+    )
+      throw new Error(
+        `Semantic danger color differs from its reference: ${JSON.stringify(pixels)}`
+      )
+    if (pixels.explicit <= 0.1)
+      throw new Error(`Explicit Android icon color is missing: ${JSON.stringify(pixels)}`)
+    console.log('PASS ui-icon-decorative-ink')
+    console.log('PASS ui-icon-semantic-danger-color')
+    console.log('PASS ui-icon-explicit-color')
+
+    tapFresh(config, 'reject invalid One.UI.Icon element', {
+      id: 'one-ui-icon-invalid',
+      clickable: true,
+    })
+    await check('ui-icon-invalid-element-rejected', (nodes) =>
+      textIncludes(
+        nodes,
+        'Rejected: One.UI.Icon icons.android must be a One.Android.Icon element'
+      )
+    )
+    console.log('ALL ONE UI ICON ANDROID CHECKS PASSED')
+    return
+  }
   if (config.suite === 'compose-badges') {
     await badges()
     console.log('ALL ONE NATIVE ANDROID BADGE CHECKS PASSED')
@@ -5519,7 +5644,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image' || config.suite === 'ui-text-input'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon'
       ? runCompose(config)
       : run(config))
 } catch (error) {

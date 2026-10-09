@@ -1319,3 +1319,19 @@ dev.vxrn.nativefeatures.tests --metro-port 8098`, with device tcp:8081
 reversed to tcp:8098. Focused fixture/runner TypeScript, formatting of the
 fixture and coverage generator, and native coverage test pass. CI owner:
 s23249; test-only delivery remains with the beta pipeline.
+
+## Android Icon suite, 2026-10-09
+
+RAN: `ui-icon` passes on Pixel 8/API 37 with the unchanged installed APK.
+Default/font/frame/style sizes and image accessibility labels pass. The
+four glyph crops contain 52, 90, 57 and 57 distinct colors; the unlabeled
+decorative icon contains 56. Semantic danger and its native reference both
+contain 19.8095% exact danger-color pixels; the explicit green matches the
+same ink fraction. An invalid Android element throws the exact public
+validation error before host rendering. This negative control calls the
+synchronous validator; valid controls mount through React and Fabric.
+Receipt: `tests/native-features/evidence/android-native-ui-suites/icon-accepted/`.
+Command: `--suite ui-icon --device-id emulator-5554 --package-id
+dev.vxrn.nativefeatures.tests --metro-port 8098`. Focused fixture/runner
+TypeScript, fixture formatting, native coverage generation and diff checks
+pass. CI delivery remains with s23249.

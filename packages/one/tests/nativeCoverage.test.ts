@@ -23,8 +23,6 @@ const knownGaps: Record<string, string> = {
     'Android suite missing; iOS preset, custom, bezier and clamped values proven',
   'UI.serializeCurve':
     'Android suite missing; iOS preset, custom and bezier serialization proven',
-  'UI.Icon':
-    'Android suite missing; iOS workspace sizing, image accessibility, SF Symbol ink and role/explicit colors proven',
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
   'UI.EdgeFade':
     'Android suite missing; iOS bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven',
