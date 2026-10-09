@@ -33,3 +33,5 @@ ignores:
   - "babel-preset-expo"
   # native only: its nitro hybrid objects load one.ui.image urls, linked through react-native-config
   - "react-native-nitro-web-image"
+  # resolved from one's package location for the standalone babel preset
+  - "@babel/plugin-transform-export-namespace-from"
