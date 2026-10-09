@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { observeAlertRollback } from './one-native-dialog-observation'
+import { observeGpuMount } from './one-native-gpu-observation'
 import { runZoomSuite } from './one-native-zoom-suite'
 import { runEffectsSuite } from './one-native-effects-suite'
 import { resolveVisualRegion, VISUAL_CHECKS } from './visual-declarations'
@@ -7703,8 +7704,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // the canvases publish no accessibility content of their own; the pane
     // wrappers carry the test ids and the fixture reports paint through its
     // status labels, one per pane plus the frame tick and shader verdict.
-    const triangle = (nodes: Node[]) => id(nodes, 'one-native-gpu-triangle')
-    const fiber = (nodes: Node[]) => id(nodes, 'one-native-gpu-fiber')
+    const triangle = (nodes: Node[]) => nodes.find((node) =>
+      node.AXUniqueId === 'one-native-gpu-triangle' && node.type === 'Group')
+    const fiber = (nodes: Node[]) => nodes.find((node) =>
+      node.AXUniqueId === 'one-native-gpu-fiber' && node.type === 'Group')
     const ticks = (nodes: Node[]) =>
       Number(
         labels(nodes)
@@ -7718,16 +7721,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
-    await tapNav('nav-one-native-gpu')
-    await wait(
-      'fresh gpu fixture mounted',
-      (n) => Boolean(id(n, 'one-native-gpu-screen')) && status(n, 'Triangle', 'pending')
-    )
+    const mount = observeGpuMount(config.simulatorId, config.bundleId, config.artifactDir)
+    try {
+      await tapNav('nav-one-native-gpu')
+      await wait('fresh gpu fixture mounted', (n) =>
+        Boolean(id(n, 'one-native-gpu-screen')) && mount.pending())
+    } finally {
+      mount.close()
+    }
+    // ax exposes float32 endpoint subtraction; require the original 220 points
+    // exactly on the native 3x pixel grid, including both pane boundaries.
+    const height = (node: Node | undefined) => node?.frame &&
+      (Math.round((node.frame.y + node.frame.height) * 3) - Math.round(node.frame.y * 3)) / 3
     await wait(
       'both canvases took layout',
       (n) =>
-        triangle(n)?.frame?.height === 220 &&
-        fiber(n)?.frame?.height === 220 &&
+        height(triangle(n)) === 220 &&
+        height(fiber(n)) === 220 &&
         (triangle(n)?.frame?.width ?? 0) > 0
     )
     await wait('raw webgpu triangle painted its first frame', (n) =>
@@ -7735,6 +7745,27 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait('r3f scene painted its first frame', (n) => status(n, 'Fiber', 'ready'))
     screenshot('gpu-painted.png')
+    const painted = snapshot(config.simulatorId)
+    const image = readPng(path.join(config.artifactDir, 'gpu-painted.png'))
+    const app = painted.find((node) => node.type === 'Application')?.frame
+    const triangleFrame = triangle(painted)?.frame
+    const fiberFrame = fiber(painted)?.frame
+    if (!app || !triangleFrame || !fiberFrame || image.width !== app.width * 3 ||
+        image.height !== app.height * 3) throw new Error('gpu capture requires native 3x canvases')
+    const triangleCrop = extractCrop(image, { ...triangleFrame, viewportWidth: app.width })
+    const fiberCrop = extractCrop(image, { ...fiberFrame, viewportWidth: app.width })
+    const magenta = countMatchingPixels(triangleCrop, (r, g, b) => r > 240 && g < 16 && b > 240)
+    const cube = countMatchingPixels(fiberCrop, (r, g, b) => r > 200 && g < 100 && b < 80)
+    const triangleRatio = magenta / (triangleCrop.width * triangleCrop.height)
+    const cubeRatio = cube / (fiberCrop.width * fiberCrop.height)
+    fs.writeFileSync(path.join(config.artifactDir, 'gpu-pixels.json'), JSON.stringify({
+      magenta, cube, triangleRatio, cubeRatio, triangleFrame, fiberFrame,
+      width: image.width, height: image.height,
+    }, null, 2))
+    if (triangleRatio < 0.45 || triangleRatio > 0.55 || cubeRatio < 0.01 || cubeRatio > 0.1)
+      throw new Error('gpu-painted pixels lack the magenta triangle or Three cube')
+    checks.push({ name: 'native pixels show the magenta triangle and Three cube', durationMs: 0 })
+    console.log('PASS native pixels show the magenta triangle and Three cube')
     const before = ticks(snapshot(config.simulatorId))
     await wait('the fiber loop keeps rendering', (n) => ticks(n) > before)
     await wait('shader probe reached a verdict', (n) => shader(n) !== 'pending')
@@ -11480,6 +11511,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
 
 if (import.meta.main) {
   const config = parse(process.argv.slice(2))
+  if (config.suite === 'gpu') process.env.XCODEBUILDMCP_DEBUGGER_BACKEND = 'lldb-cli'
   const checks: { name: string; durationMs: number }[] = []
   const started = Date.now()
   let failure: string | undefined
