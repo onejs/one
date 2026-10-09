@@ -45,6 +45,28 @@ async function devServerRunning(port: number): Promise<boolean> {
   }
 }
 
+// community cli logs a missing android device as an error and still exits
+// 0, so a run with no target would read as a successful install. one checks
+// the target itself, with the adb community cli resolves.
+function connectedAndroidDevices(): string[] {
+  const sdk = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT
+  const adb = sdk ? path.join(sdk, 'platform-tools', 'adb') : 'adb'
+  let out: string
+  try {
+    out = execFileSync(adb, ['devices'], { encoding: 'utf8' })
+  } catch {
+    throw new Error(
+      `\nCould not run ${adb}. Install the Android SDK platform tools and set ANDROID_HOME.`
+    )
+  }
+  return out
+    .split('\n')
+    .slice(1)
+    .map((line) => line.trim().split(/\s+/))
+    .filter(([serial, state]) => serial && state === 'device')
+    .map(([serial]) => serial!)
+}
+
 export type NativeRunSpawn = (
   executable: string,
   argv: string[],
@@ -87,6 +109,18 @@ export async function nativeRun({
       `\nNo dev server running on http://localhost:${resolvedPort} — the app loads its JS from it.\n` +
         `Start it first (e.g. \`bun dev\` or \`one dev\`), then re-run this command.`
     )
+  }
+
+  if (platform === 'android') {
+    const devices = connectedAndroidDevices()
+    const serial = process.env.ANDROID_SERIAL
+    if (!devices.length || (serial && !devices.includes(serial))) {
+      throw new Error(
+        serial
+          ? `\nAndroid device ${serial} is not connected (connected: ${devices.join(', ') || 'none'}).`
+          : '\nNo Android device or emulator is connected. Start an emulator or plug in a device, then re-run this command.'
+      )
+    }
   }
 
   // source-built React-Core bakes RCT_METRO_PORT from this environment

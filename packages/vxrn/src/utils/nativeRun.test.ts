@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { createServer } from 'node:http'
 import { dirname, join } from 'node:path'
@@ -16,6 +16,49 @@ vi.mock('../utils/patches', () => ({
 
 const here = dirname(fileURLToPath(import.meta.url))
 const workspaceRoot = join(here, '..', '..', '..')
+
+// an android sdk whose adb reports exactly these connected serials
+function fakeAndroidSdk(serials: string[]) {
+  const sdk = mkdtempSync(join(tmpdir(), 'nativerun-sdk-'))
+  mkdirSync(join(sdk, 'platform-tools'))
+  const listing = ['List of devices attached', ...serials.map((serial) => `${serial}\tdevice`)]
+  writeFileSync(
+    join(sdk, 'platform-tools', 'adb'),
+    `#!/bin/sh\nprintf '%s\\n' ${listing.map((line) => `'${line}'`).join(' ')}\n`
+  )
+  chmodSync(join(sdk, 'platform-tools', 'adb'), 0o755)
+  return sdk
+}
+
+async function withAndroidSdk<T>(serials: string[], serial: string | undefined, run: () => Promise<T>) {
+  const sdk = fakeAndroidSdk(serials)
+  const previous = { home: process.env.ANDROID_HOME, serial: process.env.ANDROID_SERIAL }
+  process.env.ANDROID_HOME = sdk
+  if (serial) process.env.ANDROID_SERIAL = serial
+  else delete process.env.ANDROID_SERIAL
+  try {
+    return await run()
+  } finally {
+    if (previous.home === undefined) delete process.env.ANDROID_HOME
+    else process.env.ANDROID_HOME = previous.home
+    if (previous.serial === undefined) delete process.env.ANDROID_SERIAL
+    else process.env.ANDROID_SERIAL = previous.serial
+    rmSync(sdk, { recursive: true, force: true })
+  }
+}
+
+async function withDevServer<T>(run: (port: number) => Promise<T>) {
+  const server = createServer((req, res) => {
+    res.end(req.url === '/status' ? 'packager-status:running' : 'ok')
+  })
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
+  const address = server.address()
+  try {
+    return await run(typeof address === 'object' && address ? address.port : 0)
+  } finally {
+    server.close()
+  }
+}
 
 describe('expo-free run commands', () => {
   it('delegates build/install/launch to community cli with no packager', () => {
@@ -115,18 +158,20 @@ describe('expo-free run commands', () => {
     )
 
     try {
-      const launch = nativeRun({
-        root: workspaceRoot,
-        platform: 'android',
-        port,
-        spawn: (_executable, argv) => calls.push(argv),
-      })
-      await new Promise<void>((resolve) => setImmediate(resolve))
-      expect(calls).toHaveLength(0)
+      await withAndroidSdk(['emulator-5554'], undefined, async () => {
+        const launch = nativeRun({
+          root: workspaceRoot,
+          platform: 'android',
+          port,
+          spawn: (_executable, argv) => calls.push(argv),
+        })
+        await new Promise<void>((resolve) => setImmediate(resolve))
+        expect(calls).toHaveLength(0)
 
-      finishPatches?.()
-      await launch
-      expect(calls).toHaveLength(1)
+        finishPatches?.()
+        await launch
+        expect(calls).toHaveLength(1)
+      })
     } finally {
       server.close()
     }
@@ -182,5 +227,45 @@ describe('expo-free run commands', () => {
         },
       })
     ).rejects.toThrow(/No dev server running/)
+  })
+
+  it('fails before launching when no android device is connected', async () => {
+    const spawn = vi.fn()
+    await withDevServer((port) =>
+      withAndroidSdk([], undefined, () =>
+        expect(
+          nativeRun({ root: workspaceRoot, platform: 'android', port, spawn })
+        ).rejects.toThrow(/No Android device or emulator is connected/)
+      )
+    )
+    expect(spawn).not.toHaveBeenCalled()
+  })
+
+  it('fails before launching when the chosen android serial is not connected', async () => {
+    const spawn = vi.fn()
+    await withDevServer((port) =>
+      withAndroidSdk(['emulator-5554'], 'emulator-5556', () =>
+        expect(
+          nativeRun({ root: workspaceRoot, platform: 'android', port, spawn })
+        ).rejects.toThrow(/emulator-5556 is not connected \(connected: emulator-5554\)/)
+      )
+    )
+    expect(spawn).not.toHaveBeenCalled()
+  })
+
+  it('launches on the chosen android serial when it is connected', async () => {
+    const calls: string[][] = []
+    await withDevServer((port) =>
+      withAndroidSdk(['emulator-5554', 'emulator-5556'], 'emulator-5556', () =>
+        nativeRun({
+          root: workspaceRoot,
+          platform: 'android',
+          port,
+          spawn: (_executable, argv) => calls.push(argv),
+        })
+      )
+    )
+    expect(calls).toHaveLength(1)
+    expect(calls[0]).toEqual(expect.arrayContaining(['--device', 'emulator-5556']))
   })
 })
