@@ -35,8 +35,9 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state'
   apkPath: string
+  negativeControl: boolean
 }
 
 type Selector = {
@@ -57,7 +58,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -68,6 +69,7 @@ function parse(args: string[]): Config {
   let metroPort = 8081
   let suite: Config['suite'] = 'proof'
   let apkPath = ''
+  let negativeControl = false
   if (process.env.RCT_METRO_PORT !== undefined && process.env.RCT_METRO_PORT !== '')
     metroPort = Number(process.env.RCT_METRO_PORT)
 
@@ -84,9 +86,10 @@ function parse(args: string[]): Config {
     else if (arg === '--artifact-dir') artifactDir = args[++index] || ''
     else if (arg === '--timeout') timeout = Number(args[++index])
     else if (arg === '--metro-port') metroPort = Number(args[++index])
+    else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -110,7 +113,7 @@ function parse(args: string[]): Config {
   }
   if (suite === 'updates' && !apkPath)
     throw new Error('The updates suite requires --apk-path for a fresh install.')
-  return { deviceId, packageId, artifactDir, timeout, metroPort, suite, apkPath }
+  return { deviceId, packageId, artifactDir, timeout, metroPort, suite, apkPath, negativeControl }
 }
 
 function adbRaw(args: string[]): string {
@@ -1718,6 +1721,69 @@ async function run(config: Config) {
     ])
   }
 
+  const nativeState = async () => {
+    await tapNavigation(config, 'nav-one-native-state')
+    await expect(
+      'state-mounted',
+      (nodes) =>
+        diagnose(nodes, [
+          ['primary text field mounted', (n) => matching(n, { id: 'one-native-state-field' }).length === 1],
+          ['shared text field mounted', (n) => matching(n, { id: 'one-native-state-shared-field' }).length === 1],
+          ['independent control mounted', (n) => matching(n, { id: 'one-native-state-independent-field' }).length === 1],
+          ['initial hook getter and isolation values', (n) => textIncludes(n, 'Get:') && textIncludes(n, 'Independent: untouched')],
+          ['initial boolean value', (n) => textIncludes(n, 'Flag: false')],
+        ]),
+      'one-native-state-field'
+    )
+
+    if (config.negativeControl) {
+      tapFresh(config, 'Disconnect the shared state binding', { id: 'one-native-state-disconnect' })
+    }
+    tapFresh(config, 'State primary native text field', { id: 'one-native-state-field' })
+    adbType(config, 'grace')
+    await expect(
+      'state-native-edit-updates-hook-and-shared-field',
+      (nodes) =>
+        diagnose(nodes, [
+          ['hook value follows native edit', (n) => textIncludes(n, 'Name: grace · Get: grace')],
+          ['second bound native field follows edit', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'grace'],
+        ]),
+      'one-native-state-field'
+    )
+    await expect(
+      'state-independent-handle-negative-control',
+      (nodes) =>
+        textIncludes(nodes, 'Name: grace · Get: grace') &&
+        textIncludes(nodes, 'Independent: untouched'),
+      'one-native-state-independent-field'
+    )
+    pressBack(config)
+
+    tapFresh(config, 'State JavaScript write button', {
+      id: 'one-native-state-set',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'state-javascript-write-reaches-native-fields',
+      (nodes) =>
+        diagnose(nodes, [
+          ['hook getter reads JavaScript write', (n) => textIncludes(n, 'Name: ada · Get: ada')],
+          ['shared native field receives JavaScript write', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'ada'],
+        ]),
+      'one-native-state-field'
+    )
+
+    tapFresh(config, 'State native switch', { id: 'one-native-state-switch' })
+    await expect(
+      'state-native-switch-updates-hook',
+      (nodes) =>
+        textIncludes(nodes, 'Flag: true') &&
+        matching(nodes, { id: 'one-native-state-switch-copy' })[0]?.checked === true,
+      'one-native-state-switch'
+    )
+  }
+
   // Ten Android system services through their existing fixtures: device
   // snapshot, keep-awake round trip, orientation locks, share chooser
   // completion, print sheet cancel, quick-action cold/warm delivery,
@@ -2392,6 +2458,11 @@ async function run(config: Config) {
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
       await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : system())
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'state') {
+      await nativeState()
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }
