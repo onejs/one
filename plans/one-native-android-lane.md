@@ -1,5 +1,27 @@
 # One native Android lane
 
+## Native state receipt, 2026-10-09
+
+Android acceptance is limited to One-owned controls, APIs, bridge behavior and flat-device adaptive state. Third-party graphics libraries are outside this lane.
+
+TESTED: `w-67eef2` passes the Android `state` suite, six checkpoints, on the
+existing flat Pixel 8/API37 r06 with the existing arm64 debug APK. Native text
+edits update `.value`, `.get()` and a second bound field; a JavaScript write
+reaches both fields; a distinct handle remains untouched; a native switch
+updates the hook and second switch. The deliberate `--negative-control`
+disconnects the shared field, fails its exact value assertion, and restored
+source passes all six checks again. No native One repair was needed.
+
+RAN: the same AVD boots with `-gpu host -no-snapshot-load`, and
+`sys.boot_completed=1` precedes install. Prior software-rendered boots exposed
+a System UI startup ANR before One assertions. Primary-checkout edits vanished
+during resource admission, so source is now kept in an owned worktree.
+Receipt PNG/XML/check records and pass/fail/restored logs remain outside Git at
+`/tmp/one-android-hooks-m28192/` on air-32. Every successful check has its own
+status JSON; the original runner's early suite return emits no success
+`status.json`. The older failed root `state/status.json` is retained as a
+startup-failure receipt, not used for acceptance. CI owner: `s23249`.
+
 ## Android native suite assignment, 2026-10-09
 
 Scope: One's own controls, APIs, bridge, Android behavior and Peach parity.
