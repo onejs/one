@@ -185,7 +185,10 @@ ${APP_DELEGATE_PBXPROJ}`,
     })
     expect(podfile.content).toContain("platform :ios, '17.0'")
     expect(podfile.content).toContain(
-      "  config = use_native_modules!\n  # [vxrn/one] nitro web image modular header\n  pod 'SDWebImage', :modular_headers => true\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
+      `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
+    )
+    expect(podfile.content).toContain(
+      "  # [vxrn/one] nitro web image modular header\n  pod 'SDWebImage', :modular_headers => true\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
     )
     expect(podfile.content).toContain(
       "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
@@ -905,6 +908,44 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
       })
     )
     expect(iosConfig).toEqual(cliConfig)
+
+    writeFileSync(
+      join(dirname(dirname(cliPath)), 'package.json'),
+      JSON.stringify({ name: '@react-native-community/cli', main: 'index.js' })
+    )
+    writeFileSync(
+      join(dirname(dirname(cliPath)), 'index.js'),
+      "exports.run = () => require('./build/bin.js')"
+    )
+    const podfile = renderPrebuildFile({
+      relativePath: 'Podfile',
+      content:
+        "target 'HelloWorld' do\n  config = use_native_modules!\n  post_install do |installer|\n    react_native_post_install(installer)\n  end\nend",
+      platform: 'ios',
+      app,
+    })
+    const podScript = podfile.content?.match(
+      /use_native_modules!\(\['node', '-e', "([^"\n]+)"\]\)/
+    )?.[1]
+    if (!podScript) throw new Error('expected iOS pod discovery command')
+    expect(
+      JSON.parse(
+        execFileSync(process.execPath, ['-e', podScript], {
+          cwd: root,
+          encoding: 'utf8',
+        })
+      )
+    ).toEqual(cliConfig)
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        [
+          '-e',
+          "process.argv=['', '', 'config'];require('@react-native-community/cli').run()",
+        ],
+        { cwd: root, stdio: 'pipe' }
+      )
+    ).toThrow()
 
     const androidReact = patches.replaceAppBuildGradleReactBlock('react {\n}\n')
     const bundleResolver = [

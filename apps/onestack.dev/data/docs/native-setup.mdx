@@ -56,12 +56,11 @@ Add `react-native.config.cjs` at the app root:
 module.exports = require('one/react-native-config')
 ```
 
-For an existing app, ensure its `devDependencies` include the community
-native template and CLI. The current One examples use template 0.87.1 and
-CLI 20.2.0:
+For an existing app, install the community native template as a development
+dependency. One supplies the CLI and platform build tools:
 
 ```bash
-npm install --save-dev @react-native-community/template@0.87.1 @react-native-community/cli@20.2.0
+npm install --save-dev @react-native-community/template@0.87.1
 ```
 
 Then generate the projects from the app directory:
