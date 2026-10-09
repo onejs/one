@@ -28,6 +28,7 @@ declare module 'one' {
         | `/one-native-android-badges`
         | `/one-native-android-cards`
         | `/one-native-android-chips`
+        | `/one-native-android-color`
         | `/one-native-android-dividers`
         | `/one-native-android-filter-chip`
         | `/one-native-android-flow-row`

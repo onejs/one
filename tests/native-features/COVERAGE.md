@@ -193,7 +193,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.TimePicker` | n/a | android-pickers |  |
 | `One.Android.DatePickerDialog` | n/a | android-pickers |  |
 | `One.Android.TimePickerDialog` | n/a | android-pickers |  |
-| `One.Android.Color` | n/a | missing | no fixture or suite |
+| `One.Android.Color` | n/a | android-color |  |
 | `One.Android.Menu` | n/a | missing | no fixture or suite |
 | `One.Android.ContextMenu` | n/a | missing | no fixture or suite |
 | `One.UI.sampleCurve` | ui-effects | missing | Android suite missing; iOS preset, custom, bezier and clamped values proven |

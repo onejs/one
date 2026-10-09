@@ -19,7 +19,6 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // exports with no suite yet on a platform they run on. remove an entry when its
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
-  'Android.Color': 'no fixture or suite',
   'Android.Menu': 'no fixture or suite',
   'Android.ContextMenu': 'no fixture or suite',
   'UI.sampleCurve':

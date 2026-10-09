@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
+import { readPng } from './visual-pixel-gate'
 import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Bounds = { left: number; top: number; right: number; bottom: number }
@@ -34,7 +35,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
   apkPath: string
 }
 
@@ -56,7 +57,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|color|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -85,7 +86,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1178,6 +1179,94 @@ async function run(config: Config) {
     console.log(`PASS one-native-android database ${checks.length} checks`)
   }
 
+  const androidColor = async () => {
+    await freshLeg('android-color')
+    await tapNavigation(config, 'nav-one-native-android-color')
+    const colorScreen = await expect('android-color-mounted', (nodes) => {
+      const text = joined(nodes)
+      return exactlyOneId(nodes, 'one-native-android-color-screen') &&
+        /^Material primary: #[0-9a-f]{6}$/im.test(text) &&
+        /^Dynamic primary: #[0-9a-f]{6}$/im.test(text) &&
+        text.includes('Unknown material: null') &&
+        exactlyOneId(nodes, 'one-native-android-color-platform-black') &&
+        exactlyOneId(nodes, 'one-native-android-color-material-primary') &&
+        exactlyOneId(nodes, 'one-native-android-color-dynamic-primary')
+    }, 'one-native-android-color-screen')
+
+    const pixelCheckStartedAt = Date.now()
+    const imagePath = checks[checks.length - 1]?.artifacts.png
+    if (!imagePath) throw new Error('Android color screenshot was not captured.')
+    const image = readPng(imagePath)
+    const sample = (id: string) => {
+      const bounds = matching(colorScreen.nodes, { id })[0]?.bounds
+      if (!bounds) throw new Error(`Android color swatch ${id} has no bounds.`)
+      const x = Math.floor((bounds.left + bounds.right) / 2)
+      const y = Math.floor((bounds.top + bounds.bottom) / 2)
+      const offset = (y * image.width + x) * 4
+      return [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
+    }
+    const colorText = joined(colorScreen.nodes)
+    const expectedHex = (label: string) => {
+      const match = colorText.match(new RegExp(`${label}: #([0-9a-f]{6})`, 'i'))
+      if (!match) throw new Error(`${label} did not resolve to a six-digit color.`)
+      return [0, 2, 4].map((offset) => Number.parseInt(match[1]!.slice(offset, offset + 2), 16))
+    }
+    const observed = {
+      platformBlack: { expected: [0, 0, 0], actual: sample('one-native-android-color-platform-black') },
+      materialPrimary: { expected: expectedHex('Material primary'), actual: sample('one-native-android-color-material-primary') },
+      dynamicPrimary: { expected: expectedHex('Dynamic primary'), actual: sample('one-native-android-color-dynamic-primary') },
+      channelTolerance: 4,
+    }
+    writeFileSync(
+      path.join(config.artifactDir, 'color-pixels.json'),
+      JSON.stringify(observed, null, 2)
+    )
+    const mismatch = Object.entries(observed)
+      .filter(([name]) => name !== 'channelTolerance')
+      .filter(([, entry]) => {
+        const color = entry as { expected: number[]; actual: number[] }
+        return color.actual.some(
+          (channel, index) => Math.abs(channel - color.expected[index]!) > observed.channelTolerance
+        )
+      })
+      .map(([name, entry]) => `${name} ${JSON.stringify(entry)}`)
+    if (mismatch.length) throw new Error(`Android color pixels did not match: ${mismatch.join('; ')}`)
+
+    const pixelArtifacts = capture(
+      'android-color-pixels-match',
+      colorScreen,
+      'passed',
+      undefined,
+      observed
+    )
+    checks.push({
+      name: 'android-color-pixels-match',
+      result: 'passed',
+      durationMs: Date.now() - pixelCheckStartedAt,
+      artifacts: pixelArtifacts,
+      detail: observed,
+    })
+    console.log('PASS android-color-pixels-match')
+
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android color',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android color ${checks.length} checks`)
+  }
+
   const share = async () => {
     // Share: text/url completion through the chooser Copy target, file
     // dismissal, busy guard, and all four input codes.
@@ -2173,6 +2262,10 @@ async function run(config: Config) {
     }
     if (config.suite === 'database') {
       await database()
+      return
+    }
+    if (config.suite === 'color') {
+      await androidColor()
       return
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {

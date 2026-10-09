@@ -1263,3 +1263,15 @@ fixture and runner changed. Run with `--suite database --device-id
 emulator-5554 --package-id dev.vxrn.nativefeatures.tests --metro-port 8098`
 after `adb -s emulator-5554 reverse tcp:8081 tcp:8098`. The focused native
 coverage test passes after regenerating the coverage table.
+
+## Android Color suite, 2026-10-09
+
+RAN: the Android `color` suite passes 4 checks on the same API 37 AVD. It
+proves platform black, static Material `primary` and dynamic Material
+`primary` resolve to their rendered swatch pixels, with exact RGB matches
+`[0,0,0]`, `[103,80,164]` and `[76,94,139]`; an unknown material role
+returns `null`. Receipt: `tests/native-features/evidence/one-native-android-suites/color/`.
+The native APK is unchanged. Run with `--suite color --device-id
+emulator-5554 --package-id dev.vxrn.nativefeatures.tests --metro-port 8098`
+after reversing `tcp:8081` to `tcp:8098`. The focused native coverage test
+passes after regenerating the coverage table.
