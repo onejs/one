@@ -1680,6 +1680,15 @@ async function generateSplashScreen(args: {
   const artworkHeight = Number(
     (artworkWidth * (metadata.height / metadata.width)).toFixed(3)
   )
+  // a full-bleed background keeps its own resolution on both platforms; the
+  // launch surface scales it (aspect-fill on ios, fill on android).
+  const readBackground = (sourcePath: string) => {
+    const source = path.resolve(root, sourcePath)
+    if (!FSExtra.existsSync(source)) {
+      throw new Error(`[vxrn] native.app.splash backgroundImage does not exist: ${source}`)
+    }
+    return sharp(source).rotate().png().toBuffer({ resolveWithObject: true })
+  }
 
   if (platform === 'ios') {
     const appDir = path.join(dest, app.name)
@@ -1725,13 +1734,6 @@ async function generateSplashScreen(args: {
       )
     }
     await writeImageSet('Splash', artwork, darkArtwork, cover ? undefined : artworkWidth)
-    const readBackground = (sourcePath: string) => {
-      const source = path.resolve(root, sourcePath)
-      if (!FSExtra.existsSync(source)) {
-        throw new Error(`[vxrn] native.app.splash backgroundImage does not exist: ${source}`)
-      }
-      return sharp(source).rotate().png().toBuffer({ resolveWithObject: true })
-    }
     const background = app.splash.backgroundImage
       ? await readBackground(app.splash.backgroundImage)
       : undefined
@@ -1854,12 +1856,43 @@ ${
         .toFile(path.join(drawableDensity, 'splash.png'))
     }
   }
+  // the background paints full-bleed under the mark. one nodpi asset per
+  // appearance: gravity fill stretches it over the layer bounds on every
+  // screen, which the gradient art this contract carries survives exactly.
+  // a night appearance without its own image falls back to the light one,
+  // the way the ios imageset falls back to its universal entry.
+  const background = app.splash.backgroundImage
+    ? await readBackground(app.splash.backgroundImage)
+    : undefined
+  const darkBackground = dark?.backgroundImage
+    ? (await readBackground(dark.backgroundImage)).data
+    : undefined
+  if (background) {
+    const nodpi = path.join(mainRes, 'drawable-nodpi')
+    FSExtra.mkdirSync(nodpi, { recursive: true })
+    FSExtra.writeFileSync(path.join(nodpi, 'splash_background.png'), background.data)
+    if (darkBackground) {
+      const nightNodpi = path.join(mainRes, 'drawable-night-nodpi')
+      FSExtra.mkdirSync(nightNodpi, { recursive: true })
+      FSExtra.writeFileSync(
+        path.join(nightNodpi, 'splash_background.png'),
+        darkBackground
+      )
+    }
+  }
   FSExtra.writeFileSync(
     path.join(drawable, 'launch_screen.xml'),
     `<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/splash_background" />
-    <item>
+${
+  background
+    ? `    <item>
+        <bitmap android:gravity="fill" android:src="@drawable/splash_background" />
+    </item>
+`
+    : ''
+}    <item>
         <bitmap android:gravity="center" android:src="@drawable/splash" />
     </item>
 </layer-list>

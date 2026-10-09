@@ -216,8 +216,9 @@ The rest of `native.app` covers appearance, links, and store settings:
 - `splash.dark`: `backgroundColor`, and optionally `source` and
   `backgroundImage`, for a launch in dark appearance.
 - `splash.backgroundImage`: a full-bleed image, such as a gradient, under the
-  artwork on the iOS launch screen. Android's system splash shows only the
-  color.
+  artwork on the launch screen: iOS aspect-fills it, Android stretches it to
+  fill (a gradient renders the same either way). Android's system splash
+  itself shows only the color and icon.
 - The launch screen stays up until the first screen draws. To reveal the app
   later (after a cache loads), call `One.LaunchScreen.preventAutoHide()` while
   modules evaluate and `One.LaunchScreen.hide({ fade: true })` when ready.

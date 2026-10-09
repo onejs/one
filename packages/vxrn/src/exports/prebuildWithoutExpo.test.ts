@@ -1734,6 +1734,52 @@ describe('generateForPlatform determinism', () => {
     expect(storyboard).toContain('firstAttribute="width" constant="60"')
   }, 180000)
 
+  it('lays a full-bleed background image under the android launch artwork', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-splash-bg-android-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    const backgroundImage = join(output, 'ground.png')
+    await sharp({
+      create: { width: 30, height: 60, channels: 3, background: '#ececec' },
+    })
+      .png()
+      .toFile(backgroundImage)
+    const splash = {
+      source,
+      backgroundColor: '#ececec',
+      width: 60,
+      backgroundImage,
+      dark: { backgroundColor: '#111111', backgroundImage },
+    }
+    await generateForPlatform(
+      workspaceRoot,
+      'android',
+      { ...app, splash },
+      join(output, 'android')
+    )
+    const res = join(output, 'android', 'app', 'src', 'main', 'res')
+    // one nodpi asset per appearance at the source resolution
+    for (const prefix of ['drawable-nodpi', 'drawable-night-nodpi']) {
+      expect(
+        await sharp(join(res, prefix, 'splash_background.png')).metadata()
+      ).toMatchObject({ width: 30, height: 60 })
+    }
+    const launchScreen = readFileSync(join(res, 'drawable', 'launch_screen.xml'), 'utf8')
+    // the background paints first and fills, so the centered mark sits above it
+    expect(launchScreen.indexOf('@drawable/splash_background')).toBeGreaterThan(-1)
+    expect(launchScreen.indexOf('@drawable/splash_background')).toBeLessThan(
+      launchScreen.indexOf('@drawable/splash"')
+    )
+    expect(launchScreen).toContain(
+      '<bitmap android:gravity="fill" android:src="@drawable/splash_background" />'
+    )
+    expect(launchScreen).toContain(
+      '<bitmap android:gravity="center" android:src="@drawable/splash" />'
+    )
+  }, 180000)
+
   it('writes the accent color asset and names it in the Info.plist', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-accent-'))
