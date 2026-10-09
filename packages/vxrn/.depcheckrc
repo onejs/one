@@ -21,3 +21,5 @@ ignores:
   # resolved by string id from the app root in rnCodegenPlugin, with this copy
   # as the fallback, so depcheck cannot see it
   - "@react-native/codegen"
+  # resolved from vxrn and imported by file url for native dependency inventory
+  - "@react-native-community/cli-config"
