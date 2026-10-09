@@ -2,6 +2,19 @@
 
 Owner: android-m27558 (m27558), manager and One native Android hands-on owner. Validated runtime fixes are re-anchored on current rewritten `v2-beta` in `tm/android-native-runtime-accepted`. This lane owns Android Native Build, Checks and canary verification for its pushes; Contrast shared delivery stays with m23914. REVIEW: none.
 
+TimeInput acceptance, 2026-10-09: TESTED the existing One dialogs fixture on
+the light Pixel 8/API37 r06. Its TimeInput crop failed at 1.272432% before
+the simulator repair and passes at 0.299733% after. All seven dialog/picker
+checkpoints pass the unchanged 1% budget with matching bounds. All fourteen
+captures, final three identical raw frames and forty-three seeded native color
+roles authenticate. Six library and fourteen core text/input checks pass.
+Native APK source `4b182dd316` and One Kotlin are unchanged. The repair ships
+in Contrast `e81dba5b092435c5bd8b284823804264a5b7bd25`; no One native fix or
+release is required. Source identities, grades and receipts remain outside
+One git in Contrast `scripts/tmp/android-m27558/timeinput-accepted-verdict.json`
+on pro-64 and air-32. Contrast delivery is assigned to m23914. Broader Android
+UI, lifecycle and deployment scope remains open in the Contrast lane plan.
+
 Runtime acceptance, 2026-10-08: RAN `r66696` passes the full unchanged Audio
 suite on the pinned pro-64 Pixel 8, Android 17 API 37 r06. Recording, playback,
 pause, seek, resume, stop and URI/state errors pass. Background playback advances
