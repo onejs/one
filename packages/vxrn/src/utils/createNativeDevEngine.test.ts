@@ -2682,59 +2682,62 @@ describe('postProcessNativeBundle', () => {
 })
 
 describe('native package context identity', () => {
-  it('shares app contexts with dependencies containing a second package copy', async () => {
-    const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-context-')))
-    const consumer = join(root, 'node_modules/consumer')
-    const packages = [
-      join(root, 'node_modules/@tamagui/web'),
-      join(consumer, 'node_modules/@tamagui/web'),
-    ]
-    for (const packageRoot of packages) {
-      await mkdir(packageRoot, { recursive: true })
+  it.each(['@tamagui/web', '@tamagui/adapt'])(
+    'shares %s contexts with dependencies containing a second package copy',
+    async (packageName) => {
+      const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-context-')))
+      const consumer = join(root, 'node_modules/consumer')
+      const packages = [
+        join(root, `node_modules/${packageName}`),
+        join(consumer, `node_modules/${packageName}`),
+      ]
+      for (const packageRoot of packages) {
+        await mkdir(packageRoot, { recursive: true })
+        await writeFile(
+          join(packageRoot, 'package.json'),
+          JSON.stringify({
+            name: packageName,
+            type: 'module',
+            exports: {
+              '.': { 'react-native': './native.js', default: './web.js' },
+              './internal-runtime': './native.js',
+            },
+          })
+        )
+        await writeFile(
+          join(packageRoot, 'native.js'),
+          'export const context = { platform: "native" }'
+        )
+        await writeFile(
+          join(packageRoot, 'web.js'),
+          'export const context = { platform: "web" }'
+        )
+      }
       await writeFile(
-        join(packageRoot, 'package.json'),
-        JSON.stringify({
-          name: '@tamagui/web',
-          type: 'module',
-          exports: {
-            '.': { 'react-native': './native.js', default: './web.js' },
-            './internal-runtime': './native.js',
-          },
+        join(consumer, 'package.json'),
+        JSON.stringify({ name: 'consumer', main: 'index.js', type: 'module' })
+      )
+      await writeFile(
+        join(consumer, 'index.js'),
+        `export { context } from '${packageName}/internal-runtime'`
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `import { context } from '${packageName}'; import { context as nested } from 'consumer'; globalThis.contextIdentity = [context === nested, context.platform]`
+      )
+      try {
+        const bundle = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: false,
         })
-      )
-      await writeFile(
-        join(packageRoot, 'native.js'),
-        'export const context = { platform: "native" }'
-      )
-      await writeFile(
-        join(packageRoot, 'web.js'),
-        'export const context = { platform: "web" }'
-      )
+        const context: any = {}
+        runInNewContext(bundle.code, context)
+        expect(context.contextIdentity).toEqual([true, 'native'])
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
     }
-    await writeFile(
-      join(consumer, 'package.json'),
-      JSON.stringify({ name: 'consumer', main: 'index.js', type: 'module' })
-    )
-    await writeFile(
-      join(consumer, 'index.js'),
-      "export { context } from '@tamagui/web/internal-runtime'"
-    )
-    await writeFile(
-      join(root, 'entry.js'),
-      "import { context } from '@tamagui/web'; import { context as nested } from 'consumer'; globalThis.contextIdentity = [context === nested, context.platform]"
-    )
-    try {
-      const bundle = await buildNativeBundle({
-        root,
-        platform: 'ios',
-        entryFile: 'entry.js',
-        dev: false,
-      })
-      const context: any = {}
-      runInNewContext(bundle.code, context)
-      expect(context.contextIdentity).toEqual([true, 'native'])
-    } finally {
-      await rm(root, { recursive: true, force: true })
-    }
-  })
+  )
 })

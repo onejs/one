@@ -20,6 +20,7 @@ export const dedupe = [
   '@react-navigation/bottom-tabs',
   '@tamagui/core',
   '@tamagui/web',
+  '@tamagui/adapt',
   '@tamagui/react-native-web',
   '@tamagui/react-native-web-lite',
   'tamagui',
