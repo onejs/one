@@ -4,6 +4,7 @@ import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 import type { IconColorRole } from '../ui/iconRoles'
+import type { SFSymbolName } from './sfSymbolNames'
 import type { NativeState } from '../syncNativeState'
 
 export const glassEffects = ['regular', 'clear', 'identity'] as const
@@ -3574,7 +3575,7 @@ export interface ToggleProps extends OneNativeViewProps {
   revision?: number
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   toggleStyle?: Styles.ToggleStyle
 }
 export interface SliderProps extends OneNativeViewProps {
@@ -3611,7 +3612,7 @@ export interface TextProps extends OneNativeViewProps {
 export interface LabelProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
 }
 export interface ProgressViewProps extends OneNativeViewProps {
   label?: string
@@ -3632,7 +3633,7 @@ export interface GaugeProps extends OneNativeViewProps {
   gaugeStyle?: Styles.GaugeStyle
 }
 export interface ImageProps extends OneNativeViewProps {
-  systemName?: string
+  systemName?: SFSymbolName | ''
   uri?: string
   renderingMode?: 'original' | 'template'
   symbolRenderingMode?: Styles.SymbolRenderingMode | ''
@@ -3645,7 +3646,7 @@ export interface ImageProps extends OneNativeViewProps {
 export interface ShareLinkProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   item?: string
   itemType?: 'text' | 'url'
   subject?: string
@@ -3654,7 +3655,7 @@ export interface ShareLinkProps extends OneNativeViewProps {
 export interface ContentUnavailableViewProps extends OneNativeViewProps {
   onAction?: (id: string) => void
   title?: string
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   description?: string
   actions: readonly DialogAction[]
 }
@@ -3748,7 +3749,7 @@ export interface PhotosPickerProps extends OneNativeViewProps {
   onPickError?: (message: string) => void
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   maxSelectionCount?: number
   selectionBehavior?: Styles.PhotosPickerSelectionBehavior
   filter?:

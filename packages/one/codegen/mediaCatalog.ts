@@ -1,4 +1,5 @@
 import { commonFields, type Control } from './controlTypes'
+import { SF_SYMBOL_PUBLIC_TYPE } from './sfSymbolNames'
 
 // controls that come from SwiftUI's overlay modules rather than SwiftUI itself. VideoPlayer
 // lives in _AVKit_SwiftUI, PhotosPicker in _PhotosUI_SwiftUI and WebView in _WebKit_SwiftUI,
@@ -394,7 +395,7 @@ private struct LivePhotoSurface: View {
     ],
     fields: {
       ...commonFields,
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       // zero is the SDK's nil, which is an unlimited selection.
       maxSelectionCount: { type: 'Double', default: 1 },
       selectionBehavior: {

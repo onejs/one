@@ -5,6 +5,7 @@ import {
   type ComponentType,
   type ReactNode,
 } from 'react'
+import type { SFSymbolName } from '../generated/sfSymbolNames'
 
 export type WidgetStyle = {
   color?: string
@@ -23,7 +24,7 @@ export type WidgetStyle = {
 }
 
 type WidgetProps = { children?: ReactNode; style?: WidgetStyle }
-type ImageProps = Omit<WidgetProps, 'children'> & { systemName: string }
+type ImageProps = Omit<WidgetProps, 'children'> & { systemName: SFSymbolName }
 type ProgressProps = Omit<WidgetProps, 'children'> & { value: number; total?: number }
 type ShapeProps = Omit<WidgetProps, 'children'> & { fill?: string; cornerRadius?: number }
 type LinkProps = WidgetProps & { url: string }

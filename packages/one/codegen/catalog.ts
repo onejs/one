@@ -1,5 +1,7 @@
 // semantic mappings that the Swift declarations alone cannot determine.
 
+import { SF_SYMBOL_PUBLIC_TYPE } from './sfSymbolNames'
+
 // frameworks whose SwiftUI overlay declares modifiers or enum cases emitted below.
 // importing the framework is what loads its _<Framework>_SwiftUI overlay, the same way a
 // control declares `imports`.
@@ -265,7 +267,7 @@ export const enumTypes = [
 export const fields = {
   id: { type: 'string', default: '' },
   title: { type: 'string', default: '' },
-  systemImage: { type: 'string', default: '' },
+  systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
   role: { type: 'ButtonRole', default: '' },
   disabled: { type: 'boolean', default: false },
   hidden: { type: 'boolean', default: false },

@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
+import type { SFSymbolName } from './sfSymbolNames';
 import type { MenuOrder, MenuActionDismissBehavior, ButtonRole, ControlGroupStyle } from './swiftui';
 export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabViewStyle, ButtonRole, TabRole, TabPlacement, AdaptableTabBarPlacement, TabCustomizationBehavior, TabSectionExpansion, SpringLoadingBehavior, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, Edge, PresentationAdaptation, PresentationContentInteraction, ColorScheme, DynamicTypeSize, ControlSize, SymbolRenderingMode, SymbolVariants, ImageScale, PhotosPickerSelectionBehavior, EncodingDisambiguationPolicy, BackForwardNavigationGesturesBehavior, MagnificationGesturesBehavior, LinkPreviewBehavior, ElementFullscreenBehavior, ListStyle, ToolbarItemPlacement, SpacerSizing, } from './swiftui';
 export interface SwiftMenuAction {
     type: 'action';
     id: string;
     title: string;
-    systemImage?: string;
+    systemImage?: SFSymbolName | '';
     role?: ButtonRole;
     disabled?: boolean;
     hidden?: boolean;
@@ -17,7 +18,7 @@ export interface MenuToggle {
     type: 'toggle';
     id: string;
     title: string;
-    systemImage?: string;
+    systemImage?: SFSymbolName | '';
     values: readonly boolean[];
     disabled?: boolean;
     hidden?: boolean;
@@ -28,7 +29,7 @@ export interface MenuSubmenu {
     type: 'submenu';
     id: string;
     title: string;
-    systemImage?: string;
+    systemImage?: SFSymbolName | '';
     disabled?: boolean;
     hidden?: boolean;
     help?: string;
@@ -47,7 +48,7 @@ export interface MenuControlGroup {
     type: 'controlGroup';
     id: string;
     title?: string;
-    systemImage?: string;
+    systemImage?: SFSymbolName | '';
     disabled?: boolean;
     hidden?: boolean;
     controlGroupStyle?: ControlGroupStyle;
@@ -57,7 +58,7 @@ export interface MenuPicker {
     type: 'picker';
     id: string;
     title: string;
-    systemImage?: string;
+    systemImage?: SFSymbolName | '';
     selection: string;
     disabled?: boolean;
     hidden?: boolean;

@@ -275,6 +275,7 @@ ${styleFields
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 import type { IconColorRole } from '../ui/iconRoles'
+import type { SFSymbolName } from './sfSymbolNames'
 ${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 
 ${publicStyleFields

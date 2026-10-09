@@ -4079,7 +4079,8 @@
         },
         "systemImage": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "publicType": "SFSymbolName"
         },
         "role": {
           "type": "ButtonRole",

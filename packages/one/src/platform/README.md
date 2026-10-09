@@ -567,7 +567,7 @@ function Leaves() {
 
 `Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
 pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
-SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRenderingMode`,
+SwiftUI does. `Image` renders an SF Symbol with `systemName` (`SFSymbolName`, exported from `one`), optional `symbolRenderingMode`,
 `symbolVariant`, `imageScale`, and `variableValue`, or a remote image with `uri` (exactly one of
 the two). A `uri` image loads into `Image(uiImage:)`, fills the frame `swiftStyle` gives it, and
 keeps its own colors, so as a `Button`'s label in a toolbar it becomes the bar item's image: the

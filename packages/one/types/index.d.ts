@@ -1,7 +1,7 @@
 export { createApp } from './createApp';
 export { One } from './one';
 export { useFonts, useNativeState, useNetworkState, useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform';
-export type { PortalProps, PortalHostProps, FontMap, FontSource, UseFontsResult, NativeState, NetworkState, NetworkStateType, UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, } from './platform';
+export type { PortalProps, PortalHostProps, FontMap, FontSource, UseFontsResult, NativeState, NetworkState, NetworkStateType, UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, SFSymbolName, } from './platform';
 export type { OneRouter } from './interfaces/router';
 /**
  * Image data returned by ?imagedata imports.

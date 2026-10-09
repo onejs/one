@@ -33,6 +33,7 @@ export type {
   ReservedRegion,
   WindowSegment,
   ReservedRegionOptions,
+  SFSymbolName,
 } from './platform'
 export type { OneRouter } from './interfaces/router'
 

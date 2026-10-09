@@ -1,3 +1,4 @@
+export type { SFSymbolName } from './generated/sfSymbolNames';
 export type * from './generated/types';
 export type * from './generated/controlTypes';
 export type * from './generated/sheetTypes';
@@ -11,6 +12,7 @@ import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 import type { OneNativeStyle, SDKLabelStyle } from './generated/controlTypes';
 import type { AdaptableTabBarPlacement, SpringLoadingBehavior, TabCustomizationBehavior, TabPlacement, TabRole, TabSectionExpansion, TabViewStyle, Visibility } from './generated/swiftui';
+import type { SFSymbolName } from './generated/sfSymbolNames';
 import type { TabViewSlotName } from './generated/viewSlots';
 export interface TabContentProps {
     disabled?: boolean;
@@ -34,7 +36,7 @@ export interface TabContentProps {
 export interface TabProps extends TabContentProps {
     id: string;
     title: string;
-    systemImage?: string;
+    systemImage?: SFSymbolName | '';
     image?: string;
     labelStyle?: SDKLabelStyle;
     badge?: string | number;
@@ -52,7 +54,7 @@ export interface TabSectionProps extends TabContentProps {
     sectionActions?: readonly {
         id: string;
         title: string;
-        systemImage?: string;
+        systemImage?: SFSymbolName | '';
         onPress: () => void;
     }[];
     children: ReactNode;

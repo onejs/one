@@ -5,6 +5,7 @@ import {
   commonFields,
   type Control,
 } from './controlTypes'
+import { SF_SYMBOL_PUBLIC_TYPE } from './sfSymbolNames'
 
 // leaves with no two-way value: Button signals, Text/Label/ProgressView/Gauge display.
 export const leafControls: Control[] = [
@@ -51,7 +52,7 @@ export const leafControls: Control[] = [
     name: 'Label',
     fields: {
       ...commonFields,
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
     },
     constructors: [
       {
@@ -193,7 +194,7 @@ export const leafControls: Control[] = [
     name: 'Image',
     decorativeWhenUnlabeled: true,
     fields: {
-      systemName: { type: 'string', default: '' },
+      systemName: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       // a remote image drawn with Image(uiImage:), see OneNativeRemoteImage.swift
       uri: { type: 'string', default: '' },
       // how a uri image draws: its own colors, or as a template the container
@@ -282,7 +283,7 @@ export const leafControls: Control[] = [
     name: 'ShareLink',
     fields: {
       ...commonFields,
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       item: { type: 'string', default: '' },
       itemType: { type: 'string', default: 'text', publicType: "'text' | 'url'" },
       subject: { type: 'string', default: '' },
@@ -342,7 +343,7 @@ export const leafControls: Control[] = [
     actions: [{ prop: 'onAction', event: 'Action', payload: { id: 'string' } }],
     fields: {
       title: { type: 'string', default: '' },
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       description: { type: 'string', default: '' },
       actions: actionsField,
     },

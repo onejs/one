@@ -1,4 +1,5 @@
 import { commonFields, type Control } from './controlTypes'
+import { SF_SYMBOL_PUBLIC_TYPE } from './sfSymbolNames'
 
 export const formControls: Control[] = [
   {
@@ -6,7 +7,7 @@ export const formControls: Control[] = [
     value: { type: 'boolean', prop: 'isOn', event: 'onIsOnChange', initial: false, sync: true },
     fields: {
       ...commonFields,
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       toggleStyle: { type: 'string', default: 'automatic', enum: 'ToggleStyle' },
     },
     constructors: [
