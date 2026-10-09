@@ -11263,7 +11263,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       has(n, 'Search: on')
   )
   screenshot('05-search-role.png')
-  await tapTab(325, 'search native')
+  // ios 27 keeps a search tab without an activating search field in the main pill.
+  await tapTab(240, 'search native')
   await wait(
     'search native tab is accepted',
     (n) =>
