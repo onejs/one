@@ -35,7 +35,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state'
   apkPath: string
 }
 
@@ -57,7 +57,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -86,7 +86,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1359,6 +1359,66 @@ async function run(config: Config) {
     console.log(`PASS one-native-android menus ${checks.length} checks`)
   }
 
+  const nativeState = async () => {
+    await tapNavigation(config, 'nav-one-native-state')
+    await expect(
+      'state-mounted',
+      (nodes) =>
+        diagnose(nodes, [
+          ['primary text field mounted', (n) => matching(n, { id: 'one-native-state-field' }).length === 1],
+          ['shared text field mounted', (n) => matching(n, { id: 'one-native-state-shared-field' }).length === 1],
+          ['independent control mounted', (n) => matching(n, { id: 'one-native-state-independent-field' }).length === 1],
+          ['initial hook getter and isolation values', (n) => textIncludes(n, 'Get:') && textIncludes(n, 'Independent: untouched')],
+          ['initial boolean value', (n) => textIncludes(n, 'Flag: false')],
+        ]),
+      'one-native-state-field'
+    )
+
+    tapFresh(config, 'State primary native text field', { id: 'one-native-state-field' })
+    adbType(config, 'grace')
+    await expect(
+      'state-native-edit-updates-hook-and-shared-field',
+      (nodes) =>
+        diagnose(nodes, [
+          ['hook value follows native edit', (n) => textIncludes(n, 'Name: grace · Get: grace')],
+          ['second bound native field follows edit', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'grace'],
+        ]),
+      'one-native-state-field'
+    )
+    await expect(
+      'state-independent-handle-negative-control',
+      (nodes) =>
+        textIncludes(nodes, 'Name: grace · Get: grace') &&
+        textIncludes(nodes, 'Independent: untouched'),
+      'one-native-state-independent-field'
+    )
+    pressBack(config)
+
+    tapFresh(config, 'State JavaScript write button', {
+      id: 'one-native-state-set',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'state-javascript-write-reaches-native-fields',
+      (nodes) =>
+        diagnose(nodes, [
+          ['hook getter reads JavaScript write', (n) => textIncludes(n, 'Name: ada · Get: ada')],
+          ['shared native field receives JavaScript write', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'ada'],
+        ]),
+      'one-native-state-field'
+    )
+
+    tapFresh(config, 'State native switch', { id: 'one-native-state-switch' })
+    await expect(
+      'state-native-switch-updates-hook',
+      (nodes) =>
+        textIncludes(nodes, 'Flag: true') &&
+        matching(nodes, { id: 'one-native-state-switch-copy' })[0]?.checked === true,
+      'one-native-state-switch'
+    )
+  }
+
   const share = async () => {
     // Share: text/url completion through the chooser Copy target, file
     // dismissal, busy guard, and all four input codes.
@@ -2362,6 +2422,11 @@ async function run(config: Config) {
     }
     if (config.suite === 'menus') {
       await androidMenus()
+      return
+    }
+    if (config.suite === 'state') {
+      await nativeState()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
