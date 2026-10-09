@@ -457,6 +457,10 @@ const updatesPublish = defineCommand({
       type: 'string',
       description: 'Separate directory for local debug bundle and composed source map; never upload it',
     },
+    runtimeVersion: {
+      type: 'string',
+      description: 'Runtime version for an app built with expo prebuild, which has no native.app',
+    },
   },
   async run({ args }) {
     const { runUpdatesPublish } = await import('./cli/updatesPublish')

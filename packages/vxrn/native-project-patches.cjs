@@ -332,6 +332,11 @@ function addEmbeddedUpdatesManifestToBundleReactNativeShellScript(input, runtime
     'ONE_UPDATES_RESOURCES="$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"',
     'if [ -f "$ONE_UPDATES_RESOURCES/main.jsbundle" ]; then',
     `  "\${NODE_BINARY:-node}" -e 'const fs = require("fs"); const manifest = { id: require("crypto").randomUUID(), createdAt: new Date().toISOString(), runtimeVersion: "${runtime}" }; fs.writeFileSync(process.argv[1], JSON.stringify(manifest));' "$ONE_UPDATES_RESOURCES/one-updates-embedded.json"`,
+    // react-native-xcode.sh exits 0 when hermesc fails, so a release build
+    // would otherwise ship with no bundle and nothing for the launcher to run.
+    'elif [[ "$CONFIGURATION" != *Debug* && -z "$SKIP_BUNDLING" ]]; then',
+    '  echo "error: [one] release build has no main.jsbundle: the bundle phase failed" >&2',
+    '  exit 1',
     'fi',
   ].join('\n')
 

@@ -22,6 +22,7 @@ type PublishArgs = {
   out?: string | string[]
   metadata?: string | string[]
   intermediatesOut?: string | string[]
+  runtimeVersion?: string | string[]
 }
 
 function lastValue(value: string | string[] | undefined): string | undefined {
@@ -130,6 +131,40 @@ function resolveHermesc(root: string, platform: string): string {
   return npm
 }
 
+// one prebuild reads the runtime version from native.app.updates. an app
+// whose native project comes from expo prebuild configures One.Updates
+// through vxrn/expo-plugin instead and has no native.app, so it names the
+// runtime version it built with on the command line.
+async function resolveRuntimeVersion(
+  platform: 'ios' | 'android',
+  flag: string | undefined
+): Promise<string> {
+  const { oneOptions } = await loadUserOneOptions('build', true)
+  const native = oneOptions?.native
+  const app = typeof native === 'object' ? native.app : undefined
+  if (!app) {
+    if (!flag) {
+      throw new Error(
+        '[one] one updates publish needs native.app.updates.runtimeVersion, or --runtime-version for an app built with expo prebuild: the binary only takes updates published for its own runtime version'
+      )
+    }
+    return flag
+  }
+  validateNativeApp(app, platform)
+  const runtimeVersion = app.updates?.runtimeVersion
+  if (!runtimeVersion) {
+    throw new Error(
+      '[one] one updates publish needs native.app.updates.runtimeVersion: the binary only takes updates published for its own runtime version'
+    )
+  }
+  if (flag !== undefined && flag !== runtimeVersion) {
+    throw new Error(
+      `[one] --runtime-version ${flag} differs from native.app.updates.runtimeVersion ${runtimeVersion}`
+    )
+  }
+  return runtimeVersion
+}
+
 export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
   const platform = lastValue(args.platform)
   if (platform !== 'ios' && platform !== 'android') {
@@ -155,21 +190,10 @@ export async function runUpdatesPublish(args: PublishArgs): Promise<void> {
     }
   }
   const root = process.cwd()
-  const { oneOptions } = await loadUserOneOptions('build', true)
-  const native = oneOptions?.native
-  const app = typeof native === 'object' ? native.app : undefined
-  if (!app) {
-    throw new Error(
-      '[one] native.app is required: configure one({ native: { app } }) with name, ios.bundleId, and android.applicationId'
-    )
-  }
-  validateNativeApp(app, platform)
-  const runtimeVersion = app.updates?.runtimeVersion
-  if (!runtimeVersion) {
-    throw new Error(
-      '[one] one updates publish needs native.app.updates.runtimeVersion: the binary only takes updates published for its own runtime version'
-    )
-  }
+  const runtimeVersion = await resolveRuntimeVersion(
+    platform,
+    lastValue(args.runtimeVersion)
+  )
   if (existsSync(out) && readdirSync(out).length > 0) {
     throw new Error(
       `[one] refusing to publish into non-empty ${out}: every publish writes a fresh directory`
