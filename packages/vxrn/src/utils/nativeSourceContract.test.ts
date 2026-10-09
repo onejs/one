@@ -66,13 +66,12 @@ import { AudioMath as Kotlin } from './Audio.kt'
 const a: Promise<number> = Swift.rms([1, 2])
 const b: Promise<string> = Kotlin.label('good')
 void [a, b]
+Swift.rms('wrong')
 `)
-    expect(spawnSync(process.execPath, [tsc, '-p', temp], { encoding: 'utf8' }).status).toBe(0)
-    writeFileSync(join(temp, 'call.ts'), `import { AudioMath } from './Audio.swift'
-AudioMath.rms('wrong')
-`)
+    // one compilation must accept the valid calls and reject only the wrong argument.
     const badCall = spawnSync(process.execPath, [tsc, '-p', temp], { encoding: 'utf8' })
-    expect(badCall.status).not.toBe(0)
+    expect(badCall.status).toBe(1)
+    expect(badCall.stdout.match(/error TS\d+:/g)).toEqual(['error TS2345:'])
     expect(badCall.stdout).toMatch(/TS2345:.*string.*number\[\]/)
   })
 
