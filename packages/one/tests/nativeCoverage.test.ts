@@ -39,12 +39,7 @@ const knownGaps: Record<string, string> = {
   'UI.TextInput': 'Android suite missing',
   'UI.ReservedRegions':
     'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',
-  openURL:
-    'Android suite missing; iOS workspace Safari destination and app return proven',
   LaunchScreen: 'Android suite missing',
-  openShare: 'Android suite missing; iOS workspace Copy and cancellation proven',
-  openSettings:
-    'Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven',
   Network: 'iOS suite only',
   DocumentPicker: 'Android fixture exists, no suite opens it',
   useNetworkState:

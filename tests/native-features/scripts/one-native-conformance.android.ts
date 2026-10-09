@@ -34,7 +34,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
   apkPath: string
 }
 
@@ -56,7 +56,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -85,7 +85,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -936,6 +936,11 @@ async function run(config: Config) {
   const foregroundApp = () =>
     adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
 
+  const focusedWindow = () =>
+    adbText(config, ['shell', 'dumpsys', 'window'])
+      .split(/\r?\n/)
+      .find((line) => line.includes('mCurrentFocus')) ?? ''
+
   const appIcon = async () => {
     // AppIcon: alias discovery, switch to TestAlternate and back, unknown
     // name rejection.
@@ -1009,6 +1014,91 @@ async function run(config: Config) {
         launcherComponent(config).endsWith('.Primary'),
       'one-native-app-icon-invalid'
     )
+  }
+
+  const openAPIs = async () => {
+    await freshLeg('open')
+    await tapNavigation(config, 'nav-one-native-open')
+    await expect(
+      'open-apis-mounted',
+      (nodes) => exactlyOneId(nodes, 'one-native-open-screen') &&
+        joined(nodes).includes('URL: idle') && joined(nodes).includes('Settings: idle'),
+      'one-native-open-screen'
+    )
+
+    tapFresh(config, 'open-url', { id: 'one-native-open-url', role: 'button', clickable: true })
+    await expect(
+      'open-url-browser',
+      (nodes) =>
+        focusedWindow().includes('com.android.chrome') &&
+        (joined(nodes).includes('example.com') ||
+          adbText(config, ['shell', 'dumpsys', 'activity', 'activities']).includes(
+            'https://example.com/one-native-open-proof'
+          )),
+      undefined,
+      (nodes) => ({ focus: focusedWindow(), visibleText: joined(nodes) })
+    )
+    writeFileSync(
+      path.join(config.artifactDir, 'open-url-activity.txt'),
+      adbText(config, ['shell', 'dumpsys', 'activity', 'activities'])
+    )
+    pressBack(config)
+    await expect('open-url-returned', (nodes) => joined(nodes).includes('URL: opened'))
+
+    tapFresh(config, 'open-share', { id: 'one-native-open-share', role: 'button', clickable: true })
+    await expect('open-share-sheet', (nodes) =>
+      nodes.some((node) => node.contentDescription === 'Copy text') &&
+      joined(nodes).includes('One openShare message')
+    )
+    tapMatching(config, 'open-share-copy', 'system Copy text action',
+      (node) => node.contentDescription === 'Copy text'
+    )
+    await expect('open-share-completed', (nodes) => joined(nodes).includes('Share: completed'))
+
+    tapFresh(config, 'open-empty-share', {
+      id: 'one-native-open-share-empty',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('open-empty-share-rejected', (nodes) =>
+      joined(nodes).includes('Empty share: rejected: openShare: pass a message or a url')
+    )
+
+    tapFresh(config, 'open-settings', {
+      id: 'one-native-open-settings',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'open-settings-app-details',
+      (nodes) =>
+        focusedWindow().includes('com.android.settings') &&
+        joined(nodes).includes('App info') &&
+        joined(nodes).includes('Force stop'),
+      undefined,
+      (nodes) => ({ focus: focusedWindow(), visibleText: joined(nodes) })
+    )
+    pressBack(config)
+    await expect('open-settings-returned', (nodes) =>
+      joined(nodes).includes('Settings: opened')
+    )
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android open',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android open ${checks.length} checks`)
   }
 
   const share = async () => {
@@ -2000,6 +2090,10 @@ async function run(config: Config) {
         textIncludes(nodes, 'One Native Test Suite'),
       'home-screen'
     )
+    if (config.suite === 'open') {
+      await openAPIs()
+      return
+    }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
       await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : system())
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)

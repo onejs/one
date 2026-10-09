@@ -1,5 +1,31 @@
 # One native Android lane
 
+## Android native suite assignment, 2026-10-09
+
+Scope: One's own controls, APIs, bridge, Android behavior and Peach parity.
+Third-party libraries such as WebGPU and Three.js are excluded.
+
+Work in this lane proves One's Android exports with the existing native-features
+runner and fixtures, fixes any One runtime defects they expose, generates
+`tests/native-features/COVERAGE.md`, and commits each passing suite with its
+validation to `v2-beta`. Each suite includes a behavior assertion and a
+negative control. CI delivery is owned by `s23249` (`one-v2-beta-ci`).
+
+Priority order: `One.openURL`, `One.openShare`, `One.openSettings`,
+`One.Database`, `One.Android.Menu`, `One.Android.ContextMenu`,
+`One.Android.Color`, `One.UI.Image`, `One.UI.TextInput`, `One.UI.Icon`,
+`useNetworkState` and `One.Network`, `One.DocumentPicker`, `useNativeState`,
+`One.LaunchScreen`, then `One.UI.Blur`, `One.UI.Mask`, `One.UI.EdgeFade` and
+curve helpers, then size-class, hinge, and reserved-region hooks with flat-device
+proof only. `One.UI.PictureInPicture` is excluded.
+
+## Current split, 2026-10-09
+
+Current lane allocation: this session covers `One.openURL`, `One.openShare`,
+`One.openSettings`, `One.Database`, `One.Android.Color`, `Menu` and
+`ContextMenu`. The other Android UI view and hook rows remain in their sibling
+lanes.
+
 Owner: android-m27558 (m27558), manager and One native Android hands-on owner. Validated runtime fixes are re-anchored on current rewritten `v2-beta` in `tm/android-native-runtime-accepted`. This lane owns Android Native Build, Checks and canary verification for its pushes; Contrast shared delivery stays with m23914. REVIEW: none.
 
 TimeInput acceptance, 2026-10-09: TESTED the existing One dialogs fixture on
@@ -1208,3 +1234,19 @@ No native/API work, build or new capability run starts after wind-down.
 Delivery workflows and exact canary artifact verification remain assigned
 to live one-ci (s15186). The remaining media and paired UI scope is parked
 for Nate's revised lane plan, rather than marked complete.
+
+## Open API suite, 2026-10-09
+
+RAN: the Android `open` suite passes 10 checks on the pinned Pixel 8/API 37
+AVD: route mount, `One.openURL` Chrome handoff and return,
+`One.openShare` Copy completion, empty-share rejection, and
+`One.openSettings` app-details handoff and return. Chrome's first-run
+screens were completed on this AVD before the accepted run. Receipt:
+`tests/native-features/evidence/one-native-android-suites/open-accepted/`.
+The source-matched arm64 APK SHA256 is
+`a2ab0f3fd404350a6d9fffc6b41d4964f91790eee9bff30b022edcd08e0ba6b1`.
+The conformance command uses `--suite open --device-id emulator-5554
+--package-id dev.vxrn.nativefeatures.tests --metro-port 8097`; Android
+platform-tools must lead PATH for Bun. `bun run prebuild:native
+--platform android`, the arm64 `:app:assembleDebug` build, package typecheck,
+and the focused native coverage test pass.

@@ -113,6 +113,7 @@ declare module 'one' {
         | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-notifications`
+        | `/one-native-open`
         | `/one-native-paste-button`
         | `/one-native-photo-library`
         | `/one-native-picker-palette`

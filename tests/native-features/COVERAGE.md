@@ -8,9 +8,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 
 | export | iOS suites | Android suites | gap |
 | --- | --- | --- | --- |
-| `One.openURL` | realapps:external | missing | Android suite missing; iOS workspace Safari destination and app return proven |
-| `One.openShare` | realapps:external | missing | Android suite missing; iOS workspace Copy and cancellation proven |
-| `One.openSettings` | realapps:external | missing | Android suite missing; iOS workspace Settings root and app return proven, app-specific page unproven |
+| `One.openURL` | realapps:external | open |  |
+| `One.openShare` | realapps:external | open |  |
+| `One.openSettings` | realapps:external | open |  |
 | `One.AppInfo` | app-info | app-info |  |
 | `One.Database` | database | missing | Android suite missing |
 | `One.Widgets` | realapps:widgets | native-modules:unavailable | bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted |
