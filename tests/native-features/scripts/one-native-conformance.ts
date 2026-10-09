@@ -16,6 +16,7 @@ import {
 import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Node = {
+  children?: Node[]
   AXLabel?: string
   AXUniqueId?: string
   AXValue?: string | number
@@ -321,6 +322,41 @@ export const nativeButton = (nodes: Node[], testID: string) => {
       node.role === 'AXButton'
   )
   return buttons.length === 1 ? buttons[0] : undefined
+}
+const nativeActivitySheet = (nodes: Node[]) => {
+  const app = nodes.find((node) => node.type === 'Application')
+  const sheets = nodes.filter((node) => node.AXUniqueId === 'ActivityListView')
+  const remotes = nodes.filter((node) => node.AXUniqueId === 'ShareSheet.RemoteContainerView')
+  const sheet = sheets[0]
+  const remote = remotes[0]
+  if (sheets.length !== 1 || remotes.length !== 1 || !app ||
+    sheet?.type !== 'Group' || remote?.type !== 'Group' ||
+    sheet.enabled !== true || remote.enabled !== true ||
+    sheet.pid !== app.pid || remote.pid !== app.pid ||
+    !sheet.frame || !remote.frame ||
+    sheet.frame.width <= 0 || sheet.frame.height <= 0 ||
+    sheet.frame.x !== remote.frame.x || sheet.frame.y !== remote.frame.y ||
+    sheet.frame.width !== remote.frame.width ||
+    sheet.frame.height !== remote.frame.height) return undefined
+  return sheet
+}
+// the activity service reports local bounds; its native container owns the screen origin.
+export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
+  const sheet = nativeActivitySheet(nodes)
+  const app = nodes.find((node) => node.type === 'Application')
+  const copy = nativeButton(
+    (actions.children ?? []).filter((node) => node.AXLabel === 'Copy'),
+    'actionGroupCell'
+  )
+  const frame = copy?.frame
+  if (!sheet?.frame || !app || !copy || !frame ||
+    actions.type !== 'ScrollArea' || actions.enabled !== true ||
+    typeof actions.pid !== 'number' || actions.pid === app.pid ||
+    copy.pid !== actions.pid || copy.enabled !== true ||
+    frame.width <= 0 || frame.height <= 0 || frame.x < 0 || frame.y < 0 ||
+    frame.x + frame.width > sheet.frame.width ||
+    frame.y + frame.height > sheet.frame.height) return undefined
+  return { ...copy, frame: { ...frame, x: sheet.frame.x + frame.x, y: sheet.frame.y + frame.y } }
 }
 // standalone image hosts repeat the testID; the descendant symbol owns its painted frame.
 export const nativeSymbol = (nodes: Node[], testID: string, systemName: string) => {
@@ -5146,6 +5182,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         throw error
       }
     }
+    const copyAction = (nodes: Node[]) => {
+      const sheet = nativeActivitySheet(nodes)?.frame
+      if (!sheet) return undefined
+      // the bottom center enters the remote action list, rather than a tile's icon.
+      const actions = activityAt(sheet.x + sheet.width / 2, sheet.y + sheet.height - 1)
+      return actions && nativeActivityCopy(nodes, actions)
+    }
+    const copyItem = (nodes: Node[]) => {
+      const copy = copyAction(nodes)
+      if (!copy) throw new Error('System activity sheet has no unique enabled Copy action')
+      fs.writeFileSync(path.join(config.artifactDir, `copy-action-${checks.length}.json`), JSON.stringify(copy, null, 2))
+      point(copy.frame.x + copy.frame.width / 2, copy.frame.y + copy.frame.height / 2)
+    }
     const clipboard = () =>
       execFileSync('xcrun', ['simctl', 'pbpaste', config.simulatorId], { encoding: 'utf8' }).trim()
     const seedClipboard = (value: string) =>
@@ -5162,10 +5211,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error(`ShareLink did not take its assigned width: ${JSON.stringify(shareFrame)}`)
     seedClipboard('share-empty text sentinel')
     tap({ label: 'Share' })
-    const textSheet = await wait('ShareLink opens system activity sheet', () =>
-      activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy')
+    const textSheet = await wait('ShareLink opens system activity sheet', (nodes) =>
+      Boolean(copyAction(nodes)))
     screenshot('share-link-text-sheet.png', textSheet)
-    point(70, 780)
+    copyItem(textSheet)
     await wait('text ShareLink copies its item', (nodes) =>
       Boolean(id(nodes, 'one-native-share-empty-share')) &&
       clipboard() === 'shared from one-native\nsent by the one-native fixture')
@@ -5174,10 +5223,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Share type: text-url'))
     seedClipboard('share-empty text-url sentinel')
     tap({ label: 'Share' })
-    const textUrlSheet = await wait('URL text opens the native activity sheet', () =>
-      activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy')
+    const textUrlSheet = await wait('URL text opens the native activity sheet', (nodes) =>
+      Boolean(copyAction(nodes)))
     screenshot('share-link-url-as-text-sheet.png', textUrlSheet)
-    point(70, 780)
+    copyItem(textUrlSheet)
     await wait('URL text Copy keeps the URL in the text payload', (nodes) =>
       Boolean(id(nodes, 'one-native-share-empty-share')) &&
       clipboard() === 'https://onestack.dev\nsent by the one-native fixture')
@@ -5186,11 +5235,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Share type: url'))
     seedClipboard('share-empty url sentinel')
     tap({ label: 'Share' })
-    const urlSheet = await wait('URL ShareLink opens sheet with link preview', () =>
-      activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy' &&
-      JSON.stringify(activityAt(180, 525)).includes('onestack.dev'))
+    const urlSheet = await wait('URL ShareLink opens sheet with link preview', (nodes) => {
+      const sheet = nativeActivitySheet(nodes)?.frame
+      return Boolean(sheet && copyAction(nodes) &&
+        JSON.stringify(activityAt(sheet.x + sheet.width / 2, sheet.y + 1)).includes('onestack.dev'))
+    })
     screenshot('share-link-url-sheet.png', urlSheet)
-    point(70, 780)
+    copyItem(urlSheet)
     await wait('URL ShareLink Copy uses the native URL path', (nodes) =>
       Boolean(id(nodes, 'one-native-share-empty-share')) &&
       labels(nodes).includes('Share type: url') &&
@@ -5200,10 +5251,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Share disabled: true') &&
       nodes.some((node) => node.type === 'Button' && node.AXLabel === 'Share' &&
         node.AXUniqueId === 'one-native-share-empty-share' && node.enabled === false))
+    seedClipboard('share-empty disabled sentinel')
     tap({ label: 'Share' })
     await new Promise((resolve) => setTimeout(resolve, 350))
-    if (activityAt(70, 780)?.AXLabel?.toLowerCase() === 'copy')
+    if (nativeActivitySheet(snapshot(config.simulatorId)))
       throw new Error('Disabled ShareLink opened the system activity sheet')
+    if (clipboard() !== 'share-empty disabled sentinel')
+      throw new Error('Disabled ShareLink changed the clipboard')
     console.log('PASS disabled ShareLink does not open the activity sheet')
 
     const empty = await wait('ContentUnavailableView mounts native title, description, and actions', (nodes) =>
