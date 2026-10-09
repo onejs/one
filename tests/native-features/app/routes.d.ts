@@ -36,6 +36,7 @@ declare module 'one' {
         | `/one-native-android-inputs`
         | `/one-native-android-list-items`
         | `/one-native-android-loading`
+        | `/one-native-android-menus`
         | `/one-native-android-picker-reference`
         | `/one-native-android-pickers`
         | `/one-native-android-progress`

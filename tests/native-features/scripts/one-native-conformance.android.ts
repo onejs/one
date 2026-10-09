@@ -35,7 +35,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
   apkPath: string
 }
 
@@ -57,7 +57,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|color|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -86,7 +86,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1267,6 +1267,98 @@ async function run(config: Config) {
     console.log(`PASS one-native-android color ${checks.length} checks`)
   }
 
+  const androidMenus = async () => {
+    await freshLeg('android-menus')
+    await tapNavigation(config, 'nav-one-native-android-menus')
+    await expect('android-menus-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-menus-screen') &&
+      joined(nodes).includes('Menu action: none') &&
+      joined(nodes).includes('Context action: none')
+    )
+    const tapPopupItem = (label: string) => {
+      const candidates = snapshot(config).nodes.filter((node) => node.text === label)
+      if (candidates.length !== 1)
+        throw new Error(`Android popup item ${label} resolved ${candidates.length} fresh labels.`)
+      const bounds = validBounds(candidates[0]!, `Android popup item ${label}`)
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    }
+
+    tapFresh(config, 'android-menu-open', { id: 'one-native-android-menu-trigger' })
+    await expect('android-menu-popup-open', (nodes) =>
+      joined(nodes).includes('Menu Save') && joined(nodes).includes('Menu Duplicate')
+    )
+    tapPopupItem('Menu Save')
+    await expect('android-menu-action-returned', (nodes) =>
+      joined(nodes).includes('Menu action: save') && !joined(nodes).includes('Menu Save')
+    )
+
+    tapFresh(config, 'android-context-short-tap', {
+      id: 'one-native-android-context-trigger',
+    })
+    await expect('android-context-menu-needs-long-press', (nodes) =>
+      joined(nodes).includes('Context action: none') &&
+      !joined(nodes).includes('Context Open')
+    )
+    const longPress = (name: string, id: string) => {
+      const target = nodeById(snapshot(config).nodes, id)
+      const bounds = validBounds(target, name)
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, [
+        'shell',
+        'input',
+        'swipe',
+        String(x),
+        String(y),
+        String(x),
+        String(y),
+        '1000',
+      ])
+    }
+    longPress('android-context-long-press', 'one-native-android-context-trigger')
+    await expect('android-context-popup-open', (nodes) =>
+      joined(nodes).includes('Context Open') && joined(nodes).includes('Context Delete')
+    )
+    tapPopupItem('Context Open')
+    await expect('android-context-action-returned', (nodes) =>
+      joined(nodes).includes('Context action: open') &&
+      !joined(nodes).includes('Context Open')
+    )
+
+    tapFresh(config, 'android-disabled-menu-tap', {
+      id: 'one-native-android-disabled-menu-trigger',
+    })
+    await expect('android-disabled-menu-stays-closed', (nodes) =>
+      joined(nodes).includes('Menu action: save') &&
+      !joined(nodes).includes('Disabled Menu action')
+    )
+    longPress('android-disabled-context-long-press', 'one-native-android-disabled-context-trigger')
+    await expect('android-disabled-context-stays-closed', (nodes) =>
+      joined(nodes).includes('Context action: open') &&
+      !joined(nodes).includes('Disabled Context action')
+    )
+
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android menus',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android menus ${checks.length} checks`)
+  }
+
   const share = async () => {
     // Share: text/url completion through the chooser Copy target, file
     // dismissal, busy guard, and all four input codes.
@@ -2266,6 +2358,10 @@ async function run(config: Config) {
     }
     if (config.suite === 'color') {
       await androidColor()
+      return
+    }
+    if (config.suite === 'menus') {
+      await androidMenus()
       return
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {

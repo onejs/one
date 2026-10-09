@@ -440,6 +440,11 @@ const testScreens = [
     testID: 'nav-one-native-android-color',
   },
   {
+    href: '/one-native-android-menus',
+    label: 'One Android Menus',
+    testID: 'nav-one-native-android-menus',
+  },
+  {
     href: '/one-native-android-inputs',
     label: 'One Native Android Inputs',
     testID: 'nav-one-native-android-inputs',

@@ -1264,6 +1264,21 @@ emulator-5554 --package-id dev.vxrn.nativefeatures.tests --metro-port 8098`
 after `adb -s emulator-5554 reverse tcp:8081 tcp:8098`. The focused native
 coverage test passes after regenerating the coverage table.
 
+## Android Menu and ContextMenu suite, 2026-10-09
+
+RAN: the Android `menus` suite passes 10 checks on the same API 37 AVD.
+`One.Android.Menu` opens on tap and returns the selected action;
+`One.Android.ContextMenu` stays closed on tap, opens on long press, and
+returns its selected action. Disabled Menu tap and ContextMenu long press
+leave both popups closed. Receipt:
+`tests/native-features/evidence/one-native-android-suites/menus-accepted/`.
+Android popup item nodes are not marked clickable in the captured hierarchy,
+so the runner selects the exact unique visible label by bounds and verifies
+the React callback. The native APK is unchanged. Run with `--suite menus
+--device-id emulator-5554 --package-id dev.vxrn.nativefeatures.tests
+--metro-port 8098` after reversing `tcp:8081` to `tcp:8098`. The focused
+native coverage test passes after regenerating the coverage table.
+
 ## Android Color suite, 2026-10-09
 
 RAN: the Android `color` suite passes 4 checks on the same API 37 AVD. It
