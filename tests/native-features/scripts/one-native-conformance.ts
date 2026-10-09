@@ -229,7 +229,7 @@ function axe(args: string[], simulatorId: string) {
 // a hit at the center from another pid is a remote sheet (safari, photo
 // picker) covering the app, which leaves only the application node, and a
 // hit in the banner strip is springboard's notification banner.
-function snapshot(simulatorId: string): Node[] {
+function snapshot(simulatorId: string, inspectColorPalette = false): Node[] {
   const [app] = JSON.parse(axe(['describe-ui'], simulatorId)) as Node[]
   const frame = app.frame!
   const probe = (x: number, y: number): Node => {
@@ -273,6 +273,15 @@ function snapshot(simulatorId: string): Node[] {
     ((node.children as Node[] | undefined)?.some(hasQuickLookOverlay) ?? false)
   if (foreign(center) && !hasQuickLookOverlay(app)) nodes.push({ ...app, children: [] })
   else visit(app)
+  // sdk 27 hosts the color palette in another process. the calibrated point
+  // probes observe its actual controls instead of treating a hidden app tree as proof.
+  if (
+    inspectColorPalette && foreign(center) && frame.width === 393 && frame.height === 852
+  )
+    for (const [x, y] of [
+      [81, 304], [197, 304], [311, 304], [349, 243], [359, 348],
+    ])
+      visit(probe(x, y))
   // a remote sheet reaches the banner strip too; only a third process there
   // is a banner.
   if (foreign(banner) && banner.pid !== center.pid) visit(banner)
@@ -300,8 +309,25 @@ const fixtureLoaded = (nodes: Node[]) =>
   (has(nodes, 'One Native') && has(nodes, 'Selected:')) ||
   (nodes.some((node) => node.type === 'Application') &&
     labels(nodes).includes('Dismiss context menu'))
+const colorPalettePresented = (nodes: Node[]) => {
+  const app = nodes.find((node) => node.type === 'Application')
+  const grid = nodes.find(
+    (node) => node.type === 'RadioButton' && node.AXLabel === 'Grid'
+  )
+  return Boolean(
+    app && grid && grid.pid !== app.pid && grid.AXValue === 1 &&
+    [
+      ['Spectrum', 'RadioButton'], ['Sliders', 'RadioButton'],
+      ['close', 'Button'], ['black 0', 'GenericElement'],
+    ].every(([label, type]) => nodes.some(
+      (node) => node.AXLabel === label && node.type === type &&
+        node.pid === grid.pid && node.frame && node.frame.width > 0 && node.frame.height > 0
+    )) && !has(nodes, 'Value: ')
+  )
+}
 const pickersLoaded = (nodes: Node[]) => {
   if (!nodes.some((node) => node.type === 'Application')) return false
+  if (colorPalettePresented(nodes)) return true
   if (labels(nodes).includes('Dismiss context menu'))
     return ['Alpha', 'Beta', 'Gamma'].every((row) => labels(nodes).includes(row))
   if (id(nodes, 'PopoverDismissRegion'))
@@ -951,7 +977,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const deadline = started + config.timeout
     let nodes: Node[] = []
     do {
-      nodes = snapshot(config.simulatorId)
+      nodes = snapshot(config.simulatorId, config.suite === 'pickers')
       const loaded = home
         ? homeLoaded(nodes, config.suite)
         : suiteLoaded[config.suite](nodes)
@@ -981,7 +1007,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // --tap-style physical silently drops a large share of touches (16 of 40
   // measured, against none for touch); a device whose input touch cannot
   // open fails loudly below.
-  const touch = (x: number, y: number) => {
+  const touch = (x: number, y: number, delay?: number) => {
     const output = axe(
       [
         'touch',
@@ -991,6 +1017,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         String(Math.round(y)),
         '--down',
         '--up',
+        ...(delay === undefined ? [] : ['--delay', String(delay)]),
       ],
       config.simulatorId
     )
@@ -8271,20 +8298,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, '#3366FF') && n.some((x) => x.AXLabel === 'Accent color')
     )
     const well = color.find((n) => n.AXLabel === 'Accent color')!.frame!
-    point(well.x + well.width - well.height / 2, well.y + well.height / 2)
-    const colors = await wait(
-      'color palette presented',
-      (n) =>
-        n.some((x) => x.AXLabel === 'dismiss popup' && x.type === 'Group') &&
-        !has(n, 'Value: ')
-    )
+    touch(well.x + well.width - well.height / 2, well.y + well.height / 2, 0.15)
+    const colors = await wait('color palette presented', colorPalettePresented)
     const colorApp = colors.find((n) => n.type === 'Application')!.frame!
     if (colorApp.width !== 393 || colorApp.height !== 852)
       throw new Error('Color palette coordinates require the calibrated 393x852 display')
     screenshot('color-picker.png')
-    // UIKit's color popup exposes only its dismiss group to this snapshot API.
-    point(150, 768)
-    point(359, 277)
+    // use the observed remote swatch and close bounds.
+    const black = colors.find((node) => node.AXLabel === 'black 0')!.frame!
+    const close = colors.find((node) => node.AXLabel === 'close')!.frame!
+    touch(black.x + black.width / 2, black.y + black.height / 2, 0.15)
+    touch(close.x + close.width / 2, close.y + close.height / 2, 0.15)
     await wait(
       'color palette sends opaque black RGBA',
       (n) => value(n, '#000000FF') && request(n, '#000000FF')
