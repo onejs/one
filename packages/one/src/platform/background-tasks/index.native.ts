@@ -110,6 +110,31 @@ function cancel(identifier: string): void {
 
 const nativeBackgroundTasks = Object.freeze({ defineTask, submit, getPending, cancel })
 
-// BGTaskScheduler is iOS only, so Android keeps the unavailable contract
+const androidBackgroundTasks = Object.freeze({
+  defineTask(identifier: string, handler: BackgroundTaskHandler): () => void {
+    validateDefinition(identifier, handler)
+    throw new Error('BackgroundTasks.defineTask requires an iOS native build')
+  },
+  submit(
+    identifier: string,
+    options: {
+      earliestBeginDateMs?: number
+      requiresNetworkConnectivity?: boolean
+      requiresExternalPower?: boolean
+    } = {}
+  ): Promise<void> {
+    validateSubmission(identifier, options.earliestBeginDateMs)
+    return Promise.reject(
+      new Error('BackgroundTasks.submit requires an iOS native build')
+    )
+  },
+  getPending: unavailableBackgroundTasks.getPending,
+  cancel(identifier: string): void {
+    validateCancellation(identifier)
+    throw new Error('BackgroundTasks.cancel requires an iOS native build')
+  },
+})
+
+// bgtasks is iOS only; Android actions report that platform limit.
 export const BackgroundTasks: typeof nativeBackgroundTasks =
-  Platform.OS === 'android' ? unavailableBackgroundTasks : nativeBackgroundTasks
+  Platform.OS === 'android' ? androidBackgroundTasks : nativeBackgroundTasks

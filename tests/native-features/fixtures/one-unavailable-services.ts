@@ -8,17 +8,18 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     }
     checks.push(name)
   }
-  async function rejected(operation: string, call: () => unknown) {
+  async function rejected(
+    operation: string,
+    call: () => unknown,
+    expected = `${operation} needs an iOS or Android build`
+  ) {
     let failure: unknown
     try {
       await call()
     } catch (error) {
       failure = error
     }
-    if (
-      !(failure instanceof Error) ||
-      failure.message !== `${operation} needs an iOS or Android build`
-    ) {
+    if (!(failure instanceof Error) || failure.message !== expected) {
       throw new Error(
         `${operation}: expected the missing-native rejection, got ${String(failure)}`
       )
@@ -176,11 +177,45 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   await One.AppIcon.setIcon()
   equal(await One.ScreenOrientation.lock('portrait'), 'unknown', 'ScreenOrientation.lock')
   equal(await One.ScreenOrientation.unlock(), 'unknown', 'ScreenOrientation.unlock')
-  await One.BackgroundTasks.submit('one-proof')
-  One.BackgroundTasks.cancel('one-proof')
-  await One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' })
-  await One.LiveActivities.update('one-proof', { status: 'proof', value: 'absent' })
-  await One.LiveActivities.end('one-proof')
+  if (One.platform === 'android') {
+    const actions: [string, () => unknown][] = [
+      ['BackgroundTasks.submit', () => One.BackgroundTasks.submit('one-proof')],
+      [
+        'BackgroundTasks.defineTask',
+        () => One.BackgroundTasks.defineTask('one-proof', () => {}),
+      ],
+      ['BackgroundTasks.cancel', () => One.BackgroundTasks.cancel('one-proof')],
+      [
+        'Widgets.write',
+        () => One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' }),
+      ],
+      ['Widgets.writeView', () => One.Widgets.writeView(null)],
+      [
+        'LiveActivities.startView',
+        () => One.LiveActivities.startView('One', { lockScreen: null }),
+      ],
+      [
+        'LiveActivities.update',
+        () =>
+          One.LiveActivities.update('one-proof', { status: 'proof', value: 'absent' }),
+      ],
+      [
+        'LiveActivities.updateView',
+        () => One.LiveActivities.updateView('one-proof', { lockScreen: null }),
+      ],
+      ['LiveActivities.end', () => One.LiveActivities.end('one-proof')],
+      ['LiveActivities.onPushToken', () => One.LiveActivities.onPushToken(() => {})],
+    ]
+    for (const [operation, call] of actions) {
+      await rejected(operation, call, `${operation} requires an iOS native build`)
+    }
+  } else {
+    await One.BackgroundTasks.submit('one-proof')
+    One.BackgroundTasks.cancel('one-proof')
+    await One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' })
+    await One.LiveActivities.update('one-proof', { status: 'proof', value: 'absent' })
+    await One.LiveActivities.end('one-proof')
+  }
   await One.Audio.stop()
   await One.Audio.setNowPlayingInfo({ title: 'One proof' })
   await One.Audio.clearNowPlayingInfo()
@@ -198,9 +233,13 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     One.ScreenCapture.addStateListener(() => {}),
     One.ScreenCapture.addScreenshotListener(() => {}),
     One.Purchases.addTransactionListener(() => {}),
-    One.BackgroundTasks.defineTask('one-proof', () => {}),
     One.AppIntents.defineAction('one-proof', () => 'proof'),
-    One.LiveActivities.onPushToken(() => {}),
+    ...(One.platform === 'android'
+      ? []
+      : [
+          One.BackgroundTasks.defineTask('one-proof', () => {}),
+          One.LiveActivities.onPushToken(() => {}),
+        ]),
   ]
   for (const remove of removers) {
     remove()
@@ -251,8 +290,12 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   await rejected('Calendar.create', () =>
     One.Calendar.create({ title: 'One proof', startMs: 0, endMs: 1000 })
   )
-  await rejected('LiveActivities.start', () =>
-    One.LiveActivities.start('One', { status: 'proof', value: 'absent' })
+  await rejected(
+    'LiveActivities.start',
+    () => One.LiveActivities.start('One', { status: 'proof', value: 'absent' }),
+    One.platform === 'android'
+      ? 'LiveActivities.start requires an iOS native build'
+      : undefined
   )
 
   const invalidCalls: [string, () => unknown, string][] = [
