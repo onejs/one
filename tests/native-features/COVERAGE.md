@@ -200,7 +200,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.serializeCurve` | ui-effects | missing | Android suite missing; iOS preset, custom and bezier serialization proven |
 | `One.UI.EdgeFade` | ui-effects | missing | Android suite missing; iOS bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
 | `One.UI.Icon` | ui-icon | missing | Android suite missing; iOS workspace sizing, image accessibility, SF Symbol ink and role/explicit colors proven |
-| `One.UI.Image` | ui-image | missing | Android suite missing |
+| `One.UI.Image` | ui-image | image |  |
 | `One.UI.Map` | ui-map | ui-map |  |
 | `One.UI.PictureInPicture` | missing | missing | fixture exists; simulators report no PiP, needs a device run |
 | `One.UI.Blur` | ui-effects | missing | Android suite missing; iOS bounded backdrop blur and sharp foreground pixels proven; live tint/lifecycle unproven |

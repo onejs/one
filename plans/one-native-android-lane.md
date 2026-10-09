@@ -1290,3 +1290,14 @@ The native APK is unchanged. Run with `--suite color --device-id
 emulator-5554 --package-id dev.vxrn.nativefeatures.tests --metro-port 8098`
 after reversing `tcp:8081` to `tcp:8098`. The focused native coverage test
 passes after regenerating the coverage table.
+
+## Android Image suite, 2026-10-09
+
+RAN: the Android `ui-image` suite passes on the Pixel 8/API 37 AVD. It proves
+the bundled 48x32 asset event, remote 120x80 and changed 60x40 load events,
+blank rejected-image pixels, and fresh-launch loads. All four image checks
+pass; captured image-view bounds are 120x80 dp. Receipt:
+`tests/native-features/evidence/android-native-ui-suites/image/`.
+Run with `--suite ui-image --device-id emulator-5554 --package-id
+dev.vxrn.nativefeatures.tests --metro-port 8097`; Android platform-tools
+must lead PATH for Bun. The native APK is unchanged.

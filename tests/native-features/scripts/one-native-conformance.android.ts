@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
-import { readPng } from './visual-pixel-gate'
+import { countDistinctColors, readPng } from './visual-pixel-gate'
 import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Bounds = { left: number; top: number; right: number; bottom: number }
@@ -35,7 +35,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location'
   apkPath: string
 }
 
@@ -57,7 +57,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -86,7 +86,7 @@ function parse(args: string[]): Config {
     else if (arg === '--metro-port') metroPort = Number(args[++index])
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -209,6 +209,16 @@ function adbBytes(config: Config, args: string[]) {
     const detail = error instanceof Error ? error.message : String(error)
     throw new Error(`adb ${['-s', config.deviceId, ...args].join(' ')} failed: ${detail}`)
   }
+}
+
+function densityScale(config: Config) {
+  const output = adbText(config, ['shell', 'wm', 'density'])
+  const density =
+    Number(/Override density:\s*(\d+)/.exec(output)?.[1]) ||
+    Number(/Physical density:\s*(\d+)/.exec(output)?.[1])
+  if (!Number.isFinite(density) || density <= 0)
+    throw new Error(`Android display density is unavailable: ${output.trim()}`)
+  return density / 160
 }
 
 function xmlUnescape(value: string) {
@@ -4474,17 +4484,96 @@ async function runCompose(config: Config) {
   let captureNumber = 0
   const idText = (nodes: Node[], id: string, expected: string) =>
     matching(nodes, { id }).some((node) => nodeValues(node).some((value) => value.includes(expected)))
-  const check = async (name: string, predicate: (nodes: Node[]) => boolean) => {
-    const { snapshot: current } = await waitFor(config, name, predicate)
+  const check = async (
+    name: string,
+    predicate: (nodes: Node[]) => boolean,
+    timeoutMs = config.timeout
+  ) => {
+    const { snapshot: current } = await waitFor(config, name, predicate, undefined, timeoutMs)
     const stem = `${String(++captureNumber).padStart(2, '0')}-${name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`
     const png = adbBytes(config, ['exec-out', 'screencap', '-p'])
     if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a')
       throw new Error(`${name} screenshot was not a PNG`)
-    writeFileSync(path.join(config.artifactDir, `${stem}.png`), png)
+    const pngPath = path.join(config.artifactDir, `${stem}.png`)
+    writeFileSync(pngPath, png)
     writeFileSync(path.join(config.artifactDir, `${stem}.xml`), current.xml)
     console.log(`PASS ${name}`)
+    return { nodes: current.nodes, pngPath }
   }
   const home = () => check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'))
+  const uiImage = async () => {
+    const scale = densityScale(config)
+    const status = (nodes: Node[], prefix: string) =>
+      nodes.find((node) => node.text.startsWith(`${prefix}: `))?.text
+    const images = (nodes: Node[]) =>
+      nodes.filter((node) => node.className === 'android.widget.ImageView')
+    const imageSize = (node: Node) => {
+      const bounds = node.bounds
+      return Boolean(
+        bounds &&
+          Math.abs((bounds.right - bounds.left) / scale - 120) <= 1 &&
+          Math.abs((bounds.bottom - bounds.top) / scale - 80) <= 1
+      )
+    }
+    const imagePixels = (name: string, capture: { nodes: Node[]; pngPath: string }) => {
+      const views = images(capture.nodes)
+      if (views.length !== 3 || views.some((view) => !view.bounds))
+        throw new Error(
+          `Android One.UI.Image expected three bounded native image views, found ${views.length}.`
+        )
+      const counts = views.map((view) => {
+        const bounds = view.bounds!
+        return countDistinctColors(capture.pngPath, {
+          x: bounds.left + 10,
+          y: bounds.top + 10,
+          width: bounds.right - bounds.left - 20,
+          height: bounds.bottom - bounds.top - 20,
+          isPixel: true,
+        })
+      })
+      const pixels = { asset: counts[0]!, remote: counts[1]!, broken: counts[2]! }
+      writeFileSync(
+        path.join(config.artifactDir, `ui-image-${name}-pixels.json`),
+        JSON.stringify(pixels, null, 2)
+      )
+      if (pixels.asset <= 1 || pixels.remote <= 1 || pixels.broken !== 1)
+        throw new Error(
+          `Android One.UI.Image pixel visibility failed: ${JSON.stringify(pixels)}.`
+        )
+    }
+    const initial = (nodes: Node[]) =>
+      exactlyOneId(nodes, 'one-ui-image-screen') &&
+      status(nodes, 'Asset') === 'Asset: loaded 48x32' &&
+      status(nodes, 'Remote') === 'Remote: loaded 120x80' &&
+      status(nodes, 'Remote loads') === 'Remote loads: 1' &&
+      status(nodes, 'Broken') === 'Broken: error' &&
+      images(nodes).length === 3 && images(nodes).every(imageSize)
+
+    await tapNavigation(config, 'nav-one-native-image')
+    const initialCapture = await check('ui-image-initial-events', initial, 60_000)
+    imagePixels('initial', initialCapture)
+    tapFresh(config, 'switch remote image source', {
+      id: 'one-native-image-switch',
+      role: 'button',
+      clickable: true,
+    })
+    const changedCapture = await check(
+      'ui-image-source-change-loads-again',
+      (nodes) =>
+        status(nodes, 'Asset') === 'Asset: loaded 48x32' &&
+        status(nodes, 'Remote') === 'Remote: loaded 60x40' &&
+        status(nodes, 'Remote loads') === 'Remote loads: 2' &&
+        status(nodes, 'Broken') === 'Broken: error',
+      60_000
+    )
+    imagePixels('source-change', changedCapture)
+
+    relaunchApp(config)
+    await check('ui-image-fresh-launch-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 60_000)
+    await tapNavigation(config, 'nav-one-native-image')
+    const relaunchCapture = await check('ui-image-fresh-launch-loads', initial, 60_000)
+    imagePixels('fresh-launch', relaunchCapture)
+  }
   const progress = async () => {
     await tapNavigation(config, 'nav-one-native-android-progress')
     await check('compose-progress-mounted', (nodes) =>
@@ -4821,6 +4910,11 @@ async function runCompose(config: Config) {
   }
 
   await home()
+  if (config.suite === 'ui-image') {
+    await uiImage()
+    console.log('ALL ONE UI IMAGE ANDROID CHECKS PASSED')
+    return
+  }
   if (config.suite === 'compose-badges') {
     await badges()
     console.log('ALL ONE NATIVE ANDROID BADGE CHECKS PASSED')
@@ -5249,7 +5343,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image'
       ? runCompose(config)
       : run(config))
 } catch (error) {

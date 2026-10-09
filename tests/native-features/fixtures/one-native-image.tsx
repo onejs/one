@@ -18,7 +18,7 @@ export default function OneNativeImage() {
   const [remoteIndex, setRemoteIndex] = useState(0)
   const [broken, setBroken] = useState('pending')
   return (
-    <View style={styles.screen}>
+    <View testID="one-ui-image-screen" collapsable={false} style={styles.screen}>
       <One.UI.Image
         source={require('../assets/updates-v2.png')}
         resizeMode="contain"
