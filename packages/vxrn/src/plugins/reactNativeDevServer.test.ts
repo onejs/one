@@ -47,11 +47,12 @@ it('serves native media with byte ranges and preview content types', async () =>
       expect(response.headers.get('content-range')).toBe('bytes */8')
       expect(await response.text()).toBe('')
     }
-    for (const headers of [
+    const fullResponseHeaders: Record<string, string>[] = [
       { range: 'items=0-1' },
       { range: 'bytes=0-1,4-5' },
       { range: 'bytes=0-1', 'if-range': '"old"' },
-    ]) {
+    ]
+    for (const headers of fullResponseHeaders) {
       const response = await fetch(`${origin}/clip.mp4`, { headers })
       expect(response.status).toBe(200)
       expect(Buffer.from(await response.arrayBuffer())).toEqual(bytes)
