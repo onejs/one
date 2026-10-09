@@ -690,7 +690,7 @@ if (intoIdx !== -1) {
       for (const entry of await fs.readdir(modulesDir, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue
         const dir = join(modulesDir, entry.name)
-        if (entry.name === '.bun') {
+        if (entry.name === '.bun' || entry.name === '.pnpm') {
           for (const stored of await fs.readdir(dir, { withFileTypes: true })) {
             if (stored.isDirectory()) await visit(join(dir, stored.name, 'node_modules'))
           }
