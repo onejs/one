@@ -7892,7 +7892,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Actions', 2) &&
         status(n, 'Last', 'confirm')
     )
-    tap({ id: 'one-native-dialog-reject' })
+    tap({ id: 'one-native-dialog-reject', role: 'button' })
     await wait('Alert reject-close mode enabled', (n) => status(n, 'Reject', 'on'))
     tap({ id: 'one-native-dialog-open' })
     await wait('Alert reopens before the refused dismissal', alertPresented)
@@ -7946,7 +7946,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Actions', 1) &&
         status(n, 'Last', 'confirm')
     )
-    tap({ id: 'one-native-dialog-title-visibility' })
+    tap({ id: 'one-native-dialog-title-visibility', role: 'button' })
     await wait('ConfirmationDialog title visibility is visible', (n) =>
       status(n, 'Title visibility', 'visible')
     )
@@ -7966,7 +7966,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(n, 'Actions', 2) &&
         status(n, 'Last', 'cancel')
     )
-    tap({ id: 'one-native-dialog-title-visibility' })
+    tap({ id: 'one-native-dialog-title-visibility', role: 'button' })
     await wait('ConfirmationDialog title visibility is hidden', (n) =>
       status(n, 'Title visibility', 'hidden')
     )
