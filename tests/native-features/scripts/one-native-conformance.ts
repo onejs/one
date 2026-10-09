@@ -6328,8 +6328,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes(`${label}: ${expected}`)
     const control = (nodes: Node[], type: string, label: string) =>
       nodes.find((node) => node.type === type && node.AXLabel === label)
-    // the SwiftUI Button's own ideal height, which is what the trigger measures.
-    const triggerHeight = 24
+    // the matching Apple SDK/runtime 27.0 probe measures this default Trigger at
+    // 61 native pixels on the 3x iPhone 16. React and the native frame both round it.
+    const triggerHeight = 20
     // iOS dismisses a popover when you tap outside it. that is the only path where the
     // native side changes isPresented on its own, so it is how the controlled protocol
     // gets exercised in this direction.
