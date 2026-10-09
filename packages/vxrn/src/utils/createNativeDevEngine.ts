@@ -31,6 +31,7 @@ import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
+import { dedupe } from '../config/getBaseViteConfigOnly'
 
 // Hermes needs the whole class shape lowered *together*. downleveling only the
 // class fields while leaving `class ... extends` as modern ES6 produces a
@@ -284,6 +285,7 @@ function getNativePlugins(
     // @react-native/virtualized-lists itself makes — fail resolution against
     // the export map. metro resolves those from the filesystem, so do the same.
     reactNativeDedupePlugin(root),
+    nativePackageDedupePlugin(root),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -1469,6 +1471,21 @@ function nativeAssetRegistryPlugin(root: string): Plugin {
       if (registryPath) {
         return this.resolve(normalizePath(registryPath), importer, { skipSelf: true })
       }
+    },
+  }
+}
+
+function nativePackageDedupePlugin(root: string): Plugin {
+  const packages = new Set(dedupe)
+  return {
+    name: 'vxrn:native-package-dedupe',
+    async resolveId(source) {
+      const parts = source.split('/')
+      const packageName = source.startsWith('@') ? parts.slice(0, 2).join('/') : parts[0]
+      if (!packages.has(packageName)) return
+      // use the app's package copy for contexts and subpaths, preserving the
+      // native export conditions selected by rolldown.
+      return this.resolve(source, join(root, 'package.json'), { skipSelf: true })
     },
   }
 }
