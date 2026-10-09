@@ -11,19 +11,33 @@ await new Promise<void>((resolve, reject) => {
   const watcher = watch(logfile, () => {
     void check()
   })
+  // a redirected log is appended by another process, which fs.watch does not always report
+  const interval = setInterval(() => void check(), 500)
   let complete = false
   function finish(error?: Error) {
     if (complete) return
     complete = true
     clearTimeout(timer)
+    clearInterval(interval)
     watcher.close()
     error ? reject(error) : resolve()
   }
+  let checking = false
   async function check() {
+    if (checking || complete) return
+    checking = true
+    try {
+      await read()
+    } finally {
+      checking = false
+    }
+  }
+  async function read() {
     const output = readFileSync(logfile, 'utf8')
     if (/Port \d+ is already in use|(?:^|\n)Error:/.test(output))
       return finish(new Error(output.trim()))
-    if (!/(?:http:\/\/|listening|packager-status:running)/i.test(output)) return
+    // plugins print their own urls before the server listens; wait for its Local line
+    if (!/Local:\s+http:\/\//.test(output)) return
     try {
       const response = await fetch(url, { signal: AbortSignal.timeout(5000) })
       if (!response.ok) return finish(new Error(`${url}: HTTP ${response.status}`))

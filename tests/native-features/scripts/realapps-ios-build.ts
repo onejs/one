@@ -50,6 +50,8 @@ mcp('build', [
   derived,
 ])
 if (mode === '--build-only') process.exit(0)
+// a claimed simulator may be shut down; boot it if needed and wait until it accepts installs
+execFileSync('xcrun', ['simctl', 'bootstatus', simulator, '-b'], { stdio: 'inherit' })
 mcp('install', [
   '--simulator-id',
   simulator,

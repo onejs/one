@@ -279,7 +279,8 @@ function step(
   const output = join(runDir, name, `${key}.log`)
   mkdirSync(dirname(output), { recursive: true })
   const started = performance.now()
-  const actual = build ? ['bash', heavy, '--cores', '4', '--', ...argv] : argv
+  // installed apps live outside git and native builds need this host, so admission stays local
+  const actual = build ? ['bash', heavy, '--local', '--cores', '4', '--', ...argv] : argv
   const process = spawnSync(actual[0], actual.slice(1), {
     cwd,
     encoding: 'utf8',
@@ -363,6 +364,7 @@ async function web(name: string, app: AppResult) {
     )
   )
     return
+  writeFileSync(join(runDir, name, 'web-server.log'), '')
   const log = Bun.file(join(runDir, name, 'web-server.log'))
   const server = Bun.spawn(
     ['bunx', '--no-install', 'one', 'serve', '--port', values.port!],
@@ -668,7 +670,10 @@ for (const name of appNames) {
       const json = JSON.parse(readFileSync(manifest, 'utf8'))
       for (const group of ['dependencies', 'devDependencies', 'resolutions'])
         for (const [pkg, version] of Object.entries(json[group] ?? {})) {
-          if (typeof version === 'string' && version.startsWith('workspace:'))
+          if (
+            typeof version === 'string' &&
+            (version.startsWith('workspace:') || pkg === 'vxrn' || pkg.startsWith('@vxrn/'))
+          )
             json[group][pkg] = state.version
         }
       json.dependencies.one = state.version
@@ -684,8 +689,10 @@ for (const name of appNames) {
     if (!step(name, app, 'install', ['bun', 'install'], installRoot)) continue
   }
   {
-    const artifactPath = createRequire(join(app.cwd!, 'package.json')).resolve(
-      'one/package.json'
+    // a fresh process: this one's resolver cached the app before its install existed
+    const artifactPath = command(
+      ['node', '-p', "require.resolve('one/package.json')"],
+      app.cwd!
     )
     const installed = JSON.parse(readFileSync(artifactPath, 'utf8'))
     if (installed.version !== state.version)
@@ -809,6 +816,8 @@ for (const name of appNames) {
         !step(name, app, 'ios-pods', ['pod', 'install'], join(app.cwd!, 'ios'), true)
       )
         continue
+      // a rerun reuses the run directory; stale server output would read as ready
+      writeFileSync(join(runDir, name, `${platform}-dev-server.log`), '')
       const devLog = Bun.file(join(runDir, name, `${platform}-dev-server.log`))
       const dev = Bun.spawn(
         ['bunx', '--no-install', 'one', 'dev', '--port', values.port!],
