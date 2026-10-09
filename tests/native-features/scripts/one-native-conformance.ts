@@ -981,7 +981,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // --tap-style physical silently drops a large share of touches (16 of 40
   // measured, against none for touch); a device whose input touch cannot
   // open fails loudly below.
-  const touch = (x: number, y: number) => {
+  const touch = (x: number, y: number, delay?: number) => {
     const output = axe(
       [
         'touch',
@@ -991,6 +991,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         String(Math.round(y)),
         '--down',
         '--up',
+        ...(delay === undefined ? [] : ['--delay', String(delay)]),
       ],
       config.simulatorId
     )
@@ -8271,7 +8272,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (n) => value(n, '#3366FF') && n.some((x) => x.AXLabel === 'Accent color')
     )
     const well = color.find((n) => n.AXLabel === 'Accent color')!.frame!
-    point(well.x + well.width - well.height / 2, well.y + well.height / 2)
+    touch(well.x + well.width - well.height / 2, well.y + well.height / 2, 0.15)
     const colors = await wait(
       'color palette presented',
       (n) =>
