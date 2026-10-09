@@ -1773,6 +1773,10 @@ async function run(config: Config) {
       }
     } finally {
       radio(true)
+      // the next cold launch needs a live route to the metro debug host.
+      await waitFor(config, 'network-radio-restored-for-metro', (nodes) =>
+        textIncludes(nodes, 'State: wifi true true'))
+      saveConnectivity('restored')
     }
   }
 
