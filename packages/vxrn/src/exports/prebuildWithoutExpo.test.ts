@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process'
+import { createRequire } from 'node:module'
 import {
   mkdtempSync,
   mkdirSync,
@@ -812,7 +813,7 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     )
   })
 
-  it('resolves the gradle plugin from the react-native package without hoisting', () => {
+  it('resolves build tools from their owning packages without hoisting', () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-gradle-plugin-'))
     const settingsDir = join(root, 'android')
     mkdirSync(settingsDir, { recursive: true })
@@ -838,12 +839,18 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     const cliPath = join(
       root,
       'node_modules',
+      'vxrn',
+      'node_modules',
       '@react-native-community',
       'cli',
       'build',
       'bin.js'
     )
     mkdirSync(dirname(cliPath), { recursive: true })
+    writeFileSync(
+      join(root, 'node_modules', 'vxrn', 'package.json'),
+      JSON.stringify({ name: 'vxrn', version: '0.0.0' })
+    )
     writeFileSync(
       cliPath,
       "if (process.argv[2] !== 'config') process.exit(1); console.log(JSON.stringify({root: process.cwd(), dependencies: {}}))"
@@ -881,6 +888,45 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
       })
     )
     expect(cliConfig).toEqual({ root: realpathSync(root), dependencies: {} })
+
+    const patches = createRequire(import.meta.url)('../../native-project-patches.cjs')
+    const iosPhase = patches.addSetCliPathToBundleReactNativeShellScript(
+      '`"$NODE_BINARY" --print "react-native-xcode.sh"`'
+    )
+    const cliExport = iosPhase
+      .split('\n')
+      .find((line) => line.startsWith('export CLI_PATH='))
+    if (!cliExport) throw new Error('expected iOS CLI export')
+    const iosConfig = JSON.parse(
+      execFileSync('bash', ['-c', `${cliExport}\n"$NODE_BINARY" "$CLI_PATH" config`], {
+        cwd: root,
+        env: { ...process.env, NODE_BINARY: process.execPath },
+        encoding: 'utf8',
+      })
+    )
+    expect(iosConfig).toEqual(cliConfig)
+
+    const androidReact = patches.replaceAppBuildGradleReactBlock('react {\n}\n')
+    const bundleResolver = [
+      ...androidReact.matchAll(/commandLine\("node", "--print", "([^"\n]+)"\)/g),
+    ]
+      .map((match) => match[1])
+      .find((script) => script.includes('@react-native-community/cli/build/bin.js'))
+    if (!bundleResolver) throw new Error('expected Android bundle CLI resolver')
+    expect(
+      execFileSync(process.execPath, ['--print', bundleResolver], {
+        cwd: settingsDir,
+        encoding: 'utf8',
+      }).trim()
+    ).toBe(resolvedCli)
+
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        ['--print', "require.resolve('@react-native-community/cli/build/bin.js')"],
+        { cwd: root, stdio: 'pipe' }
+      )
+    ).toThrow()
 
     // negative control: a bare top-level resolution fails here, proving the
     // fixture is genuinely non-hoisted and the old snippet would break
@@ -1228,24 +1274,16 @@ class ReactNativeDelegate:${templateRnDelegate}`,
 })
 
 describe('community autolink inventory', () => {
-  it('discovers installed packages through community config, sorted', async () => {
+  it('generates both projects and discovers native packages without an app cli', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-autolink-'))
-    // everything resolves from the fixture root, exactly as in a real app;
-    // workspace installs are linked so the test needs no network.
+    // the app owns its template and native packages, while vxrn owns the cli.
+    // link installed inputs so this strict app layout needs no network.
     const workspaceModules = fileURLToPath(
       new URL('../../../../node_modules', import.meta.url)
     )
     mkdirSync(join(root, 'node_modules', '@react-native-community'), { recursive: true })
     const { symlinkSync } = await import('node:fs')
-    for (const name of [
-      'cli',
-      'cli-config',
-      'cli-config-android',
-      'cli-config-apple',
-      'cli-tools',
-      'cli-types',
-      'template',
-    ]) {
+    for (const name of ['template']) {
       symlinkSync(
         join(workspaceModules, '@react-native-community', name),
         join(root, 'node_modules', '@react-native-community', name)

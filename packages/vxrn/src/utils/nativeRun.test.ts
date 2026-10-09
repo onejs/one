@@ -77,9 +77,10 @@ describe('expo-free run commands', () => {
     const port = typeof address === 'object' && address ? address.port : 0
     const calls: Array<{ executable: string; argv: string[] }> = []
     const previousMetroPort = process.env.RCT_METRO_PORT
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-run-no-app-cli-'))
     try {
       await nativeRun({
-        root: workspaceRoot,
+        root,
         platform: 'ios',
         port,
         spawn: (executable, argv) => {
@@ -96,6 +97,7 @@ describe('expo-free run commands', () => {
       if (previousMetroPort === undefined) delete process.env.RCT_METRO_PORT
       else process.env.RCT_METRO_PORT = previousMetroPort
       server.close()
+      rmSync(root, { recursive: true, force: true })
     }
   })
 

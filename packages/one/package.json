@@ -227,6 +227,8 @@
     "@bacons/text-decoder": "^0.0.0",
     "@cloudflare/vite-plugin": "^1.33.1",
     "@op-engineering/op-sqlite": "18.2.5",
+    "@react-native-community/cli-platform-android": "^20.2.0",
+    "@react-native-community/cli-platform-ios": "^20.2.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
     "@react-navigation/elements": "3.0.0-alpha.54",

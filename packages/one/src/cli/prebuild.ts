@@ -4,7 +4,7 @@ import { validateNativeApp } from '../native/appManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
 // default react-native config: xcodebuild's bundle phase and gradle's react
-// block both invoke `react-native bundle` via react-native/cli.js, which
+// block both invoke `react-native bundle` via vxrn's community cli, which
 // loads its `bundle` command override from here. without it the stock bundle
 // command runs: it rejects the --config-cmd xcode passes and needs a
 // metro.config.js One apps do not have. constant bytes, no per-app inputs.

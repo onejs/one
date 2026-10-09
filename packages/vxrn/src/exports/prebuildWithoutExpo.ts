@@ -51,7 +51,8 @@ type NativeProjectPatches = {
   addReactNativeScreensFix(input: string): string
 }
 
-const nativeProjectPatches = module.createRequire(import.meta.url)(
+const requireVxrn = module.createRequire(import.meta.url)
+const nativeProjectPatches = requireVxrn(
   '../../native-project-patches.cjs'
 ) as NativeProjectPatches
 const notificationsHost = nativeProjectPatches.ONE_NOTIFICATIONS
@@ -2726,7 +2727,7 @@ end`
       }
       rendered = rendered.replace(
         autolinkCommand,
-        `ex.autolinkLibrariesFromCommand(["node", ["node", "--print", "require.resolve('@react-native-community/cli/build/bin.js')"].execute(null, settingsDir).text.trim(), "config"])`
+        `ex.autolinkLibrariesFromCommand(["node", ["node", "--print", "require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli/build/bin.js')"].execute(null, settingsDir).text.trim(), "config"])`
       )
     }
     if (platform === 'android' && relativePath === 'app/build.gradle' && app.android?.minify) {
@@ -2795,9 +2796,7 @@ export const generateForPlatform = async (
   validatePrebuildApp(app, platform)
   const dest = outDir
   const require = module.createRequire(root + '/')
-  const importPath = require.resolve('@react-native-community/cli/build/tools/walk.js', {
-    paths: [root],
-  })
+  const importPath = requireVxrn.resolve('@react-native-community/cli/build/tools/walk.js')
   const src = path.join(
     path.dirname(
       require.resolve('@react-native-community/template/template/package.json', {
@@ -3095,10 +3094,7 @@ export function applyAndroidDependencyPatches(args: {
 export async function getNativeDependencyInventory(
   root: string
 ): Promise<NativeDependencyInventory[]> {
-  const require = module.createRequire(root + '/')
-  const cliConfigPath = require.resolve('@react-native-community/cli-config', {
-    paths: [root],
-  })
+  const cliConfigPath = requireVxrn.resolve('@react-native-community/cli-config')
   const cliConfig = (await import(pathToFileURL(cliConfigPath).href)) as {
     loadConfigAsync: (options: { projectRoot: string }) => Promise<{
       dependencies: Record<

@@ -63,7 +63,7 @@ describe('vxrn Expo project patches', () => {
     let result = patches.replaceAppBuildGradleReactBlock(input)
     result = patches.addDepsPatchToAppBuildGradle(result)
 
-    expect(result).toContain('cliFile = new File(')
+    expect(result).toContain('cliFile = file(providers.exec {')
     expect(result).toContain('autolinkLibrariesWithApp()')
     expect(result).not.toContain('entryFile = file("../index.js")')
     expect(result).toContain('[vxrn/one] ensure patches are applied')

@@ -78,6 +78,7 @@
     "@jridgewell/remapping": "^2.3.0",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@react-native/codegen": "^0.87.1",
+    "@react-native-community/cli": "^20.2.0",
     "@react-native-community/cli-config": "^20.2.0",
     "@react-native/dev-middleware": "^0.87.1",
     "@vxrn/compiler": "workspace:*",
@@ -118,7 +119,6 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@jridgewell/gen-mapping": "^0.3.5",
-    "@react-native-community/cli": "^20.2.0",
     "@tamagui/build": "3.0.0-beta.1670.1",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^24.10.0",

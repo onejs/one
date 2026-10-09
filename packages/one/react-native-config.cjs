@@ -1,5 +1,7 @@
 const { existsSync } = require('node:fs')
 const path = require('node:path')
+const ios = require('@react-native-community/cli-platform-ios')
+const android = require('@react-native-community/cli-platform-android')
 const { absorbedPackageNames } = require('./dist/cjs/utils/absorbedPackages.cjs')
 // one's own native code autolinks as the `one` dependency. these are its native
 // dependencies, which the app does not declare, so they resolve from one.
@@ -23,7 +25,14 @@ function appRoot() {
 }
 
 module.exports = {
-  commands: [...require('vxrn/react-native-commands')],
+  commands: [...ios.commands, ...android.commands, ...require('vxrn/react-native-commands')],
+  platforms: {
+    ios: { projectConfig: ios.projectConfig, dependencyConfig: ios.dependencyConfig },
+    android: {
+      projectConfig: android.projectConfig,
+      dependencyConfig: android.dependencyConfig,
+    },
+  },
   dependencies: Object.fromEntries([
     ...bundledNativePackages.map((name) => [
       name,

@@ -211,9 +211,11 @@ react {
     // the application has its own node_modules directory.
     reactNativeDir = file(resolveNodePackage("react-native/package.json")).parentFile
     codegenDir = file(resolveReactNativeDependency("@react-native/codegen/package.json")).parentFile
-    // [vxrn/one] cli.js is not in react-native's exports map since 0.87, so
-    // resolve the exported package.json and step to the sibling cli.js on disk
-    cliFile = new File(file(resolveNodePackage("react-native/package.json")).parentFile, "cli.js")
+    // [vxrn/one] vxrn owns the cli even when the app has no hoisted cli package
+    cliFile = file(providers.exec {
+        workingDir(rootDir)
+        commandLine("node", "--print", "require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli/build/bin.js')")
+    }.standardOutput.asText.get().trim())
     // [vxrn/one] resolve hermesc from the same react-native installation
     hermesCommand = new File(file(resolveReactNativeDependency("hermes-compiler/package.json")).parentFile, "hermesc/%OS-BIN%/hermesc").absolutePath
 
@@ -349,7 +351,7 @@ function addSetCliPathToBundleReactNativeShellScript(input) {
 
   const codeToAdd = `
 ${SET_CLI_PATH_MARKER}
-export CLI_PATH="$("\${NODE_BINARY:-node}" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
+export CLI_PATH="$("\${NODE_BINARY:-node}" --print "require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli/build/bin.js')")"
 `.trim()
 
   return insertBeforeBundlePhaseRunner(input, codeToAdd)

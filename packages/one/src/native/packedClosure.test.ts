@@ -292,6 +292,24 @@ for (const specifier of [
   }
 }
 const config = require('one/react-native-config')
+const fs = require('node:fs')
+const path = require('node:path')
+const root = process.cwd()
+fs.mkdirSync(path.join(root, 'ios', 'Packed.xcodeproj'), {recursive: true})
+fs.writeFileSync(path.join(root, 'ios', 'Podfile'), "target 'Packed' do\\nend\\n")
+fs.mkdirSync(path.join(root, 'android', 'app', 'src', 'main'), {recursive: true})
+fs.writeFileSync(path.join(root, 'android', 'app', 'build.gradle'), 'android { namespace "dev.one.packed" }')
+fs.writeFileSync(path.join(root, 'android', 'app', 'src', 'main', 'AndroidManifest.xml'), '<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="dev.one.packed"><application /></manifest>')
+const ios = config.platforms.ios.projectConfig(root, {})
+const android = config.platforms.android.projectConfig(root, {})
+if (ios.sourceDir !== path.join(root, 'ios') || android.sourceDir !== path.join(root, 'android')) {
+  throw new Error('native config did not discover both app-owned projects')
+}
+for (const name of ['run-ios', 'run-android', 'bundle']) {
+  if (!config.commands.some(command => command.name === name)) {
+    throw new Error('native config is missing command ' + name)
+  }
+}
 for (const [name, dependency] of Object.entries(config.dependencies)) {
   // a package one absorbs has no root: the entry only turns its native code off
   if (dependency.root === undefined) {

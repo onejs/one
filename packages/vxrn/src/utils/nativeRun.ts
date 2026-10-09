@@ -95,12 +95,9 @@ export async function nativeRun({
   // (8081), so the simulator default below is what points the app.
   process.env.RCT_METRO_PORT = String(resolvedPort)
 
-  // resolve the community cli from the user's project, since vxrn may be
-  // installed globally or at the root workspace.
-  const require = module.createRequire(root + '/')
-  const cliPackageJson = require.resolve('@react-native-community/cli/package.json', {
-    paths: [root],
-  })
+  // vxrn owns the cli; cwd still selects the app's config and native project.
+  const require = module.createRequire(import.meta.url)
+  const cliPackageJson = require.resolve('@react-native-community/cli/package.json')
   const bin = path.join(path.dirname(cliPackageJson), 'build', 'bin.js')
 
   spawn(process.execPath, [bin, command, ...argv], {
