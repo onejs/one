@@ -25,6 +25,19 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     }
     checks.push(operation)
   }
+  async function requiresIOS(operation: string, call: () => unknown) {
+    let failure: unknown
+    try {
+      await call()
+    } catch (error) {
+      failure = error
+    }
+    const expected = `${operation} requires an iOS native build`
+    if (!(failure instanceof Error) || failure.message !== expected) {
+      throw new Error(`${operation}: expected ${expected}, got ${String(failure)}`)
+    }
+    checks.push(operation)
+  }
 
   equal(
     One.LocalAuthentication.canEvaluatePolicy(),
@@ -176,11 +189,35 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   await One.AppIcon.setIcon()
   equal(await One.ScreenOrientation.lock('portrait'), 'unknown', 'ScreenOrientation.lock')
   equal(await One.ScreenOrientation.unlock(), 'unknown', 'ScreenOrientation.unlock')
-  await One.BackgroundTasks.submit('one-proof')
-  One.BackgroundTasks.cancel('one-proof')
-  await One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' })
-  await One.LiveActivities.update('one-proof', { status: 'proof', value: 'absent' })
-  await One.LiveActivities.end('one-proof')
+  await requiresIOS('BackgroundTasks.submit', () =>
+    One.BackgroundTasks.submit('one-proof')
+  )
+  await requiresIOS('BackgroundTasks.defineTask', () =>
+    One.BackgroundTasks.defineTask('one-proof', () => {})
+  )
+  await requiresIOS('BackgroundTasks.cancel', () =>
+    One.BackgroundTasks.cancel('one-proof')
+  )
+  await requiresIOS('Widgets.write', () =>
+    One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' })
+  )
+  await requiresIOS('Widgets.writeView', () => One.Widgets.writeView(null))
+  await requiresIOS('LiveActivities.start', () =>
+    One.LiveActivities.start('One', { status: 'proof', value: 'absent' })
+  )
+  await requiresIOS('LiveActivities.startView', () =>
+    One.LiveActivities.startView('One', { lockScreen: null })
+  )
+  await requiresIOS('LiveActivities.update', () =>
+    One.LiveActivities.update('one-proof', { status: 'proof', value: 'absent' })
+  )
+  await requiresIOS('LiveActivities.updateView', () =>
+    One.LiveActivities.updateView('one-proof', { lockScreen: null })
+  )
+  await requiresIOS('LiveActivities.end', () => One.LiveActivities.end('one-proof'))
+  await requiresIOS('LiveActivities.onPushToken', () =>
+    One.LiveActivities.onPushToken(() => {})
+  )
   await One.Audio.stop()
   await One.Audio.setNowPlayingInfo({ title: 'One proof' })
   await One.Audio.clearNowPlayingInfo()

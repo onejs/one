@@ -81,4 +81,4 @@ completion and expiration. Apple documents its debugger launch and expiration ho
 [device-only](https://developer.apple.com/documentation/backgroundtasks/starting-and-terminating-tasks-during-development).
 Actual OS cold launch, timing, and expiration still need a physical-device run.
 
-Background scheduling is implemented on iOS. Android and web validate registrations and requests, return an empty pending list, and leave registration, submission, and cancellation without system effects.
+Background scheduling is implemented on iOS. Android reports the iOS-only limit for registration, submission, and cancellation; `getPending` returns an empty list. Web validates registrations and requests, returns an empty pending list, and leaves registration, submission, and cancellation without system effects.

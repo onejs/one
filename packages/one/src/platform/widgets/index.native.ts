@@ -1,7 +1,10 @@
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
 import type { ReactNode } from 'react'
 import { encodeActivityView, encodeWidgetView, type ActivityView } from './view'
-import { Widgets as unavailableWidgets, LiveActivities as unavailableLiveActivities } from './unavailable'
+import {
+  Widgets as unavailableWidgets,
+  LiveActivities as unavailableLiveActivities,
+} from './unavailable'
 
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
 
@@ -66,8 +69,44 @@ const nativeLiveActivities = Object.freeze({
   },
 })
 
-// WidgetKit and ActivityKit are iOS only, so Android keeps the unavailable contract
+function androidLimit(operation: string): Error {
+  return new Error(`${operation} requires an iOS native build`)
+}
+
+const androidWidgets = Object.freeze({
+  ...unavailableWidgets,
+  write(_data: WidgetData): Promise<void> {
+    return Promise.reject(androidLimit('Widgets.write'))
+  },
+  writeView(_view: ReactNode): Promise<void> {
+    return Promise.reject(androidLimit('Widgets.writeView'))
+  },
+})
+
+const androidLiveActivities = Object.freeze({
+  ...unavailableLiveActivities,
+  start(_title: string, _state: LiveActivityState, _push = false): Promise<string> {
+    return Promise.reject(androidLimit('LiveActivities.start'))
+  },
+  startView(_title: string, _view: ActivityView, _push = false): Promise<string> {
+    return Promise.reject(androidLimit('LiveActivities.startView'))
+  },
+  update(_id: string, _state: LiveActivityState): Promise<void> {
+    return Promise.reject(androidLimit('LiveActivities.update'))
+  },
+  updateView(_id: string, _view: ActivityView): Promise<void> {
+    return Promise.reject(androidLimit('LiveActivities.updateView'))
+  },
+  end(_id: string): Promise<void> {
+    return Promise.reject(androidLimit('LiveActivities.end'))
+  },
+  onPushToken(_listener: (event: PushTokenEvent) => void): () => void {
+    throw androidLimit('LiveActivities.onPushToken')
+  },
+})
+
+// widgetkit and activitykit are iOS only; Android action methods report that limit.
 export const Widgets: typeof nativeWidgets =
-  Platform.OS === 'android' ? unavailableWidgets : nativeWidgets
+  Platform.OS === 'android' ? androidWidgets : nativeWidgets
 export const LiveActivities: typeof nativeLiveActivities =
-  Platform.OS === 'android' ? unavailableLiveActivities : nativeLiveActivities
+  Platform.OS === 'android' ? androidLiveActivities : nativeLiveActivities
