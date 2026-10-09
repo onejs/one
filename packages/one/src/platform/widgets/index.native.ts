@@ -1,10 +1,7 @@
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native'
 import type { ReactNode } from 'react'
 import { encodeActivityView, encodeWidgetView, type ActivityView } from './view'
-import {
-  Widgets as unavailableWidgets,
-  LiveActivities as unavailableLiveActivities,
-} from './unavailable'
+import { LiveActivities as unavailableLiveActivities } from './unavailable'
 
 export { WidgetUI, type WidgetStyle, type ActivityView } from './view'
 
@@ -74,7 +71,6 @@ function androidLimit(operation: string): Error {
 }
 
 const androidWidgets = Object.freeze({
-  ...unavailableWidgets,
   write(_data: WidgetData): Promise<void> {
     return Promise.reject(androidLimit('Widgets.write'))
   },
