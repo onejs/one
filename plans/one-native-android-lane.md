@@ -1,6 +1,6 @@
 # One native Android lane
 
-Owner: android (m22158), manager and One native Android hands-on owner. Validated runtime fixes are re-anchored on current rewritten `v2-beta` in `tm/android-native-runtime-accepted`. This lane owns Android Native Build, Checks and canary verification for its pushes; Contrast shared delivery stays with p67014. REVIEW: none.
+Owner: android-m27558 (m27558), manager and One native Android hands-on owner. Validated runtime fixes are re-anchored on current rewritten `v2-beta` in `tm/android-native-runtime-accepted`. This lane owns Android Native Build, Checks and canary verification for its pushes; Contrast shared delivery stays with m23914. REVIEW: none.
 
 Runtime acceptance, 2026-10-08: RAN `r66696` passes the full unchanged Audio
 suite on the pinned pro-64 Pixel 8, Android 17 API 37 r06. Recording, playback,
