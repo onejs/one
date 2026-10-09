@@ -8215,9 +8215,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const group = graphical.find(
       (n) => n.type === 'Group' && n.AXLabel === 'Date'
     )!.frame!
-    if (Math.round(group.width * 3) !== 1119 || Math.round(group.height * 3) !== 1133)
+    // matched against an Apple-only SDK 27.0 graphical DatePicker on iPhone 16.
+    if (Math.round(group.width * 3) !== 1095 || Math.round(group.height * 3) !== 1068)
       throw new Error(
-        'Graphical calendar geometry differs from the calibrated iOS 26.4 fixture'
+        'Graphical calendar geometry differs from the calibrated iOS 27.0 oracle'
       )
     await visualScreenshot('date-graphical.png', 'date-graphical')
     // the AX snapshot omits calendar cells; this fixture uses September 2026 on the calibrated iPhone display.
