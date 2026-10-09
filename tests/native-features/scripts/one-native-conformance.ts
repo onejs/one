@@ -5183,6 +5183,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Web loading: false') &&
       labels(nodes).includes('Web progress: 100') &&
       webEventCount(nodes) > initialEvents)
+    await wait('WebView reports back history after the swap', (nodes) =>
+      labels(nodes).includes('Web history: true/false'))
     const secondImage = screenshot('web-document-b.png', second)
     const appWidth = second.find((node) => node.type === 'Application')?.frame?.width
     if (!appWidth) throw new Error('WebView visual proof has no application width')
@@ -5209,6 +5211,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const secondColor = sample(secondImage)
     if (!near(firstColor, [217, 240, 209]) || !near(secondColor, [215, 230, 255]))
       throw new Error(`WebView captures lack their expected HTML backgrounds: ${JSON.stringify({ firstColor, secondColor })}`)
+    tap({ id: 'one-native-web-photos-ping' })
+    await wait('WebView bridge delivers the page message', (nodes) =>
+      labels(nodes).includes('Web message: ping'))
+    tap({ id: 'one-native-web-photos-back' })
+    await wait('WebView goBack returns to document A', (nodes) =>
+      labels(nodes).includes('Web title: Local A') &&
+      labels(nodes).includes('Document index: 1') &&
+      labels(nodes).includes('Web history: false/true'))
     execFileSync('xcrun', [
       'simctl', 'addmedia', config.simulatorId,
       fileURLToPath(new URL('../assets/one-native-picker-portrait.heic', import.meta.url)),

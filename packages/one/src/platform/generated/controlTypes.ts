@@ -3771,8 +3771,23 @@ export interface WebViewProps extends OneNativeViewProps {
   onNavigate?: (url: string) => void
   onTitleChange?: (title: string) => void
   onLoadingChange?: (loading: boolean, progress: number) => void
+  onLoadStart?: () => void
+  onLoadEnd?: () => void
+  onError?: (message: string) => void
+  onHttpError?: (statusCode: number) => void
+  onMessage?: (data: string) => void
+  onHistoryChange?: (canGoBack: boolean, canGoForward: boolean) => void
+  onProcessTerminate?: () => void
   url?: string
   html?: string
+  script?: string
+  command?: 'reload' | 'goBack' | 'goForward' | 'evaluate' | 'postMessage' | ''
+  commandRevision?: number
+  commandValue?: string
+  limitsNavigationsToAppBoundDomains?: boolean
+  inlineMedia?: boolean
+  inspectable?: boolean
+  bounces?: boolean
   backForwardNavigationGestures?: Styles.BackForwardNavigationGesturesBehavior | ''
   magnificationGestures?: Styles.MagnificationGesturesBehavior | ''
   linkPreviews?: Styles.LinkPreviewBehavior | ''

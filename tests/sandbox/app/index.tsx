@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native'
-import WebView from 'react-native-webview'
+import { One } from 'one'
 
 export default () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -9,7 +9,7 @@ export default () => (
     <Text>Welcome to VXS</Text>
 
     <View style={{ width: '100%', height: 500, backgroundColor: 'green' }}>
-      <WebView
+      <One.iOS.WebView
         style={{
           flex: 1,
           width: '100%',
@@ -18,8 +18,7 @@ export default () => (
           minHeight: 200,
           minWidth: 200,
         }}
-        source={{ html: '<h1>Hello world</h1>' }}
-        originWhitelist={['*']}
+        html="<h1>Hello world</h1>"
       />
     </View>
   </View>

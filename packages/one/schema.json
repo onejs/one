@@ -2309,6 +2309,30 @@
         "html": {
           "type": "string"
         },
+        "script": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "commandRevision": {
+          "type": "Double"
+        },
+        "commandValue": {
+          "type": "string"
+        },
+        "limitsNavigationsToAppBoundDomains": {
+          "type": "boolean"
+        },
+        "inlineMedia": {
+          "type": "boolean"
+        },
+        "inspectable": {
+          "type": "boolean"
+        },
+        "bounces": {
+          "type": "boolean"
+        },
         "backForwardNavigationGestures": {
           "type": "string",
           "enum": "BackForwardNavigationGesturesBehavior"
@@ -2365,6 +2389,56 @@
           "eventCount": {
             "type": "Int32"
           }
+        },
+        "onNativeWebViewLoadStart": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewLoadEnd": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewError": {
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewHttpError": {
+          "statusCode": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewMessage": {
+          "data": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewHistoryChange": {
+          "canGoBack": {
+            "type": "boolean"
+          },
+          "canGoForward": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewProcessTerminate": {
+          "eventCount": {
+            "type": "Int32"
+          }
         }
       },
       "actions": [
@@ -2379,6 +2453,34 @@
         {
           "publicProp": "onLoadingChange",
           "event": "onNativeWebViewLoadingChange"
+        },
+        {
+          "publicProp": "onLoadStart",
+          "event": "onNativeWebViewLoadStart"
+        },
+        {
+          "publicProp": "onLoadEnd",
+          "event": "onNativeWebViewLoadEnd"
+        },
+        {
+          "publicProp": "onError",
+          "event": "onNativeWebViewError"
+        },
+        {
+          "publicProp": "onHttpError",
+          "event": "onNativeWebViewHttpError"
+        },
+        {
+          "publicProp": "onMessage",
+          "event": "onNativeWebViewMessage"
+        },
+        {
+          "publicProp": "onHistoryChange",
+          "event": "onNativeWebViewHistoryChange"
+        },
+        {
+          "publicProp": "onProcessTerminate",
+          "event": "onNativeWebViewProcessTerminate"
         }
       ],
       "layout": {

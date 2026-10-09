@@ -35,6 +35,14 @@ type OneNativeStyleNative = Readonly<{
 interface NativeProps extends ViewProps {
     url: string;
     html: string;
+    script: string;
+    command: string;
+    commandRevision: Double;
+    commandValue: string;
+    limitsNavigationsToAppBoundDomains: boolean;
+    inlineMedia: boolean;
+    inspectable: boolean;
+    bounces: boolean;
     backForwardNavigationGestures: string;
     magnificationGestures: string;
     linkPreviews: string;
@@ -56,6 +64,32 @@ interface NativeProps extends ViewProps {
     onNativeWebViewLoadingChange?: DirectEventHandler<Readonly<{
         loading: boolean;
         progress: Double;
+        eventCount: Int32;
+    }>>;
+    onNativeWebViewLoadStart?: DirectEventHandler<Readonly<{
+        eventCount: Int32;
+    }>>;
+    onNativeWebViewLoadEnd?: DirectEventHandler<Readonly<{
+        eventCount: Int32;
+    }>>;
+    onNativeWebViewError?: DirectEventHandler<Readonly<{
+        message: string;
+        eventCount: Int32;
+    }>>;
+    onNativeWebViewHttpError?: DirectEventHandler<Readonly<{
+        statusCode: Double;
+        eventCount: Int32;
+    }>>;
+    onNativeWebViewMessage?: DirectEventHandler<Readonly<{
+        data: string;
+        eventCount: Int32;
+    }>>;
+    onNativeWebViewHistoryChange?: DirectEventHandler<Readonly<{
+        canGoBack: boolean;
+        canGoForward: boolean;
+        eventCount: Int32;
+    }>>;
+    onNativeWebViewProcessTerminate?: DirectEventHandler<Readonly<{
         eventCount: Int32;
     }>>;
 }

@@ -528,12 +528,37 @@ private struct PhotosPickerSurface: View {
         event: 'LoadingChange',
         payload: { loading: 'boolean', progress: 'Double' },
       },
+      { prop: 'onLoadStart', event: 'LoadStart' },
+      { prop: 'onLoadEnd', event: 'LoadEnd' },
+      { prop: 'onError', event: 'Error', payload: { message: 'string' } },
+      { prop: 'onHttpError', event: 'HttpError', payload: { statusCode: 'Double' } },
+      { prop: 'onMessage', event: 'Message', payload: { data: 'string' } },
+      {
+        prop: 'onHistoryChange',
+        event: 'HistoryChange',
+        payload: { canGoBack: 'boolean', canGoForward: 'boolean' },
+      },
+      { prop: 'onProcessTerminate', event: 'ProcessTerminate' },
     ],
     fields: {
       url: { type: 'string', default: '' },
       // markup the app already holds, loaded through WebPage.load(html:) rather than
       // fetched. exclusive with url.
       html: { type: 'string', default: '' },
+      // document-start javascript in the main frame. installed with the page
+      // configuration, so changing it builds a new page and loads the source again.
+      script: { type: 'string', default: '' },
+      command: {
+        type: 'string',
+        default: '',
+        publicType: "'reload' | 'goBack' | 'goForward' | 'evaluate' | 'postMessage'",
+      },
+      commandRevision: { type: 'Double', default: 0 },
+      commandValue: { type: 'string', default: '' },
+      limitsNavigationsToAppBoundDomains: { type: 'boolean', default: false },
+      inlineMedia: { type: 'boolean', default: false },
+      inspectable: { type: 'boolean', default: false },
+      bounces: { type: 'boolean', default: true },
       backForwardNavigationGestures: {
         type: 'string',
         default: '',
@@ -567,46 +592,316 @@ private struct PhotosPickerSurface: View {
         Color.clear
       }
     }`,
-    extraSwift: `// webpage owns the loaded page and its back-forward list. state preserves this
-// instance for the view identity, while load only runs when the url actually changes:
-// reloading on any other prop would throw away the scroll position and the history.
+    extraSwift: `// the page is created with its script bridge and navigation policy, because those
+// are configuration. url and html still load once per value so later prop changes
+// keep the scroll position and the back-forward list. commands are a separate
+// revision, same shape as VideoPlayer.
+@available(iOS 26.0, *)
+@MainActor private final class OneNativeWebSession: ObservableObject {
+  @Published private(set) var page: WebPage?
+  private var loaded: String?
+  private var configKey: String?
+  private var appliedRevision: Double = 0
+  private var navigationTask: Task<Void, Never>?
+  private var bridge: OneNativeWebBridge?
+  private var decider: OneNativeWebDecider?
+  private var inspectable = false
+  var onMessage: ((String) -> Void)?
+  var onLoadStart: (() -> Void)?
+  var onLoadEnd: (() -> Void)?
+  var onError: ((String) -> Void)?
+  var onHttpError: ((Double) -> Void)?
+  var onHistory: ((Bool, Bool) -> Void)?
+  var onProcessTerminate: (() -> Void)?
+
+  func receive(_ data: String) { onMessage?(data) }
+  func receiveHttp(_ statusCode: Int) { onHttpError?(Double(statusCode)) }
+
+  // the surface observes page.url only once the page exists and WebView mounts,
+  // which is after load() already set it. report the current url once per page
+  // so the initial value is not lost; later changes still arrive via onChange.
+  private var seededURLPage: ObjectIdentifier?
+  func seedURL() -> String? {
+    guard let page else { return nil }
+    let id = ObjectIdentifier(page)
+    guard seededURLPage != id else { return nil }
+    seededURLPage = id
+    return page.url?.absoluteString ?? ""
+  }
+
+  func configure(script: String, limits: Bool, inlineMedia: Bool, inspectable: Bool) {
+    self.inspectable = inspectable
+    let key = String(limits) + "|" + String(inlineMedia) + "|" + script
+    if key != configKey {
+      configKey = key
+      loaded = nil
+      install(script: script, limits: limits, inlineMedia: inlineMedia)
+    }
+    page?.isInspectable = inspectable
+  }
+
+  // sources the component loaded, oldest first. WebKit records no history for
+  // consecutive html loads, so back/forward past the native list traverse these.
+  private var sources: [String] = []
+  private var sourceIndex: Int = -1
+
+  func load(url: String, html: String) {
+    let source = html.isEmpty ? "url:" + url : "html:" + html
+    guard loaded != source, let page else { return }
+    loaded = source
+    if sourceIndex < 0 || sources[sourceIndex] != source {
+      sources = Array(sources.prefix(sourceIndex + 1))
+      sources.append(source)
+      sourceIndex = sources.count - 1
+    }
+    load(source: source, on: page)
+  }
+
+  private func load(source: String, on page: WebPage) {
+    if source.hasPrefix("html:") {
+      page.load(html: String(source.dropFirst(5)))
+    } else if let parsed = URL(string: String(source.dropFirst(4))) {
+      page.load(parsed)
+    }
+  }
+
+  func apply(command: String, revision: Double, value: String) {
+    guard revision > appliedRevision else { return }
+    guard let page else { return }
+    appliedRevision = revision
+    switch command {
+    case "reload":
+      page.reload()
+    case "goBack":
+      if let item = page.backForwardList.backList.last {
+        page.load(item)
+      } else if sourceIndex > 0 {
+        sourceIndex -= 1
+        loaded = sources[sourceIndex]
+        load(source: sources[sourceIndex], on: page)
+      }
+    case "goForward":
+      if let item = page.backForwardList.forwardList.first {
+        page.load(item)
+      } else if sourceIndex >= 0 && sourceIndex + 1 < sources.count {
+        sourceIndex += 1
+        loaded = sources[sourceIndex]
+        load(source: sources[sourceIndex], on: page)
+      }
+    case "evaluate":
+      runJavaScript("eval(s)", value: value)
+    case "postMessage":
+      runJavaScript("window.dispatchEvent(new MessageEvent('message', { data: s }))", value: value)
+    default:
+      break
+    }
+  }
+
+  private func install(script: String, limits: Bool, inlineMedia: Bool) {
+    navigationTask?.cancel()
+    let controller = WKUserContentController()
+    let bootstrap = "window.ReactNativeWebView = { postMessage: function(data) { window.webkit.messageHandlers.ReactNativeWebView.postMessage(String(data)); } };"
+    controller.addUserScript(WKUserScript(source: bootstrap, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+    if !script.isEmpty {
+      controller.addUserScript(WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: true))
+    }
+    let bridge = OneNativeWebBridge()
+    bridge.session = self
+    self.bridge = bridge
+    controller.add(bridge, name: "ReactNativeWebView")
+    var configuration = WebPage.Configuration()
+    configuration.userContentController = controller
+    configuration.limitsNavigationsToAppBoundDomains = limits
+    if inlineMedia { configuration.mediaPlaybackBehavior = .allowsInlinePlayback }
+    let decider = OneNativeWebDecider()
+    decider.session = self
+    self.decider = decider
+    let next = WebPage(configuration: configuration, navigationDecider: decider)
+    next.isInspectable = inspectable
+    page = next
+    watch(next)
+  }
+
+  private func watch(_ page: WebPage) {
+    navigationTask = Task { @MainActor [weak self] in
+      do {
+        for try await event in page.navigations {
+          guard let self else { return }
+          switch event {
+          case .startedProvisionalNavigation:
+            self.onLoadStart?()
+            self.publishHistory()
+          case .finished:
+            self.onLoadEnd?()
+            self.publishHistory()
+          case .committed, .receivedServerRedirect:
+            self.publishHistory()
+          @unknown default:
+            break
+          }
+        }
+      } catch let error as WebPage.NavigationError {
+        guard let self else { return }
+        switch error {
+        case .webContentProcessTerminated:
+          self.onProcessTerminate?()
+        case .failedProvisionalNavigation(let underlying):
+          self.onError?(underlying.localizedDescription)
+        case .invalidURL:
+          self.onError?("invalid URL")
+        case .pageClosed:
+          break
+        @unknown default:
+          self.onError?(String(describing: error))
+        }
+      } catch {
+        self?.onError?(error.localizedDescription)
+      }
+    }
+  }
+
+  private func publishHistory() {
+    guard let page else { return }
+    let list = page.backForwardList
+    let back = !list.backList.isEmpty || sourceIndex > 0
+    let forward = !list.forwardList.isEmpty || (sourceIndex >= 0 && sourceIndex + 1 < sources.count)
+    onHistory?(back, forward)
+  }
+
+  private func runJavaScript(_ body: String, value: String) {
+    guard let page else { return }
+    Task { @MainActor in
+      do {
+        _ = try await page.callJavaScript(body, arguments: ["s": value])
+      } catch {
+        self.onError?(error.localizedDescription)
+      }
+    }
+  }
+}
+
+@available(iOS 26.0, *)
+private final class OneNativeWebBridge: NSObject, WKScriptMessageHandler {
+  weak var session: OneNativeWebSession?
+  func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    let body = message.body as? String ?? String(describing: message.body)
+    let session = self.session
+    Task { @MainActor in session?.receive(body) }
+  }
+}
+
+@available(iOS 26.0, *)
+@MainActor
+private final class OneNativeWebDecider: WebPage.NavigationDeciding {
+  weak var session: OneNativeWebSession?
+  func decidePolicy(for response: WebPage.NavigationResponse) async -> WKNavigationResponsePolicy {
+    if let http = response.response as? HTTPURLResponse, http.statusCode >= 400 {
+      session?.receiveHttp(http.statusCode)
+    }
+    return .allow
+  }
+}
+
+@available(iOS 26.0, *)
+private struct OneNativeWebScroll: UIViewRepresentable {
+  var bounces: Bool
+  func makeUIView(context: Context) -> UIView {
+    let view = UIView(frame: .zero)
+    view.isUserInteractionEnabled = false
+    view.backgroundColor = .clear
+    return view
+  }
+  func updateUIView(_ view: UIView, context: Context) {
+    let bounces = self.bounces
+    DispatchQueue.main.async {
+      guard let web = OneNativeWebScroll.find(from: view) else { return }
+      web.scrollView.bounces = bounces
+      web.scrollView.contentInsetAdjustmentBehavior = .never
+    }
+  }
+  private static func findDown(_ view: UIView) -> WKWebView? {
+    if let web = view as? WKWebView { return web }
+    for subview in view.subviews {
+      if let found = findDown(subview) { return found }
+    }
+    return nil
+  }
+  private static func find(from view: UIView) -> WKWebView? {
+    var current: UIView? = view
+    var hops = 0
+    while let next = current, hops < 16 {
+      for subview in next.subviews {
+        if let found = findDown(subview) { return found }
+      }
+      current = next.superview
+      hops += 1
+    }
+    return nil
+  }
+}
+
 @available(iOS 26.0, *)
 @MainActor private struct WebViewSurface: View {
   @ObservedObject var model: WebViewModel
-  @State private var page = WebPage()
-  @State private var loaded: String?
-  // url and html are one source with two spellings, so the prefix keeps a url and a piece
-  // of markup that happen to be the same string from counting as the same load.
-  private var source: String { model.html.isEmpty ? "url:" + model.url : "html:" + model.html }
+  @StateObject private var session = OneNativeWebSession()
   var body: some View {
-    WebView(page)
-      // reading these here is what subscribes to WebPage's observation. WebKit
-      // coalesces its own progress reporting, so this is not a per-frame event.
-      .onChange(of: page.url) { _, url in model.navigate(url?.absoluteString ?? "") }
-      .onChange(of: page.title) { _, title in model.titleChange(title) }
-      .onChange(of: page.isLoading) { _, loading in
-        model.loadingChange(loading, page.estimatedProgress)
+    Group {
+      if let page = session.page {
+        WebView(page)
+          // reading these here is what subscribes to WebPage's observation. WebKit
+          // coalesces its own progress reporting, so this is not a per-frame event.
+          .onChange(of: page.url) { _, url in model.navigate(url?.absoluteString ?? "") }
+          .onChange(of: page.title) { _, title in model.titleChange(title) }
+          .onChange(of: page.isLoading) { _, loading in
+            model.loadingChange(loading, page.estimatedProgress)
+          }
+          .onChange(of: page.estimatedProgress) { _, progress in
+            model.loadingChange(page.isLoading, progress)
+          }
+          .overlay(OneNativeWebScroll(bounces: model.bounces).allowsHitTesting(false))
+      } else {
+        Color.clear
       }
-      .onChange(of: page.estimatedProgress) { _, progress in
-        model.loadingChange(page.isLoading, progress)
-      }
-      .onAppear { load() }
-      .onChange(of: model.url) { load() }
-      .onChange(of: model.html) { load() }
+    }
+    .onAppear { sync(includeCommand: true) }
+    .onChange(of: model.url) { sync(includeCommand: false) }
+    .onChange(of: model.html) { sync(includeCommand: false) }
+    .onChange(of: model.script) { sync(includeCommand: false) }
+    .onChange(of: model.limitsNavigationsToAppBoundDomains) { sync(includeCommand: false) }
+    .onChange(of: model.inlineMedia) { sync(includeCommand: false) }
+    .onChange(of: model.inspectable) { sync(includeCommand: false) }
+    .onChange(of: model.commandRevision) { sync(includeCommand: true) }
   }
-  private func load() {
-    guard loaded != source else { return }
-    loaded = source
-    if model.html.isEmpty {
-      guard let url = URL(string: model.url) else { return }
-      page.load(url)
-    } else {
-      page.load(html: model.html)
+  private func sync(includeCommand: Bool) {
+    session.onMessage = { [weak model] data in model?.message(data) }
+    session.onLoadStart = { [weak model] in model?.loadStart() }
+    session.onLoadEnd = { [weak model] in model?.loadEnd() }
+    session.onError = { [weak model] message in model?.error(message) }
+    session.onHttpError = { [weak model] status in model?.httpError(status) }
+    session.onHistory = { [weak model] back, forward in model?.historyChange(back, forward) }
+    session.onProcessTerminate = { [weak model] in model?.processTerminate() }
+    session.configure(
+      script: model.script,
+      limits: model.limitsNavigationsToAppBoundDomains,
+      inlineMedia: model.inlineMedia,
+      inspectable: model.inspectable
+    )
+    session.load(url: model.url, html: model.html)
+    if let url = session.seedURL() { model.navigate(url) }
+    if includeCommand {
+      session.apply(command: model.command, revision: model.commandRevision, value: model.commandValue)
     }
   }
 }
 `,
-    validate: `  if (!url === !html) throw new Error('WebView takes exactly one of url and html')`,
+    validate: `  if (!url === !html) throw new Error('WebView takes exactly one of url and html')
+  if (!['', 'reload', 'goBack', 'goForward', 'evaluate', 'postMessage'].includes(command)) throw new Error('Unknown WebView command: ' + command)
+  if (!Number.isSafeInteger(commandRevision) || commandRevision < 0) throw new Error('WebView commandRevision must be a nonnegative safe integer')
+  if (command && commandRevision === 0) throw new Error('WebView command requires a positive commandRevision')
+  if (!command && commandRevision > 0) throw new Error('WebView commandRevision requires a command')
+  if (typeof commandValue !== 'string') throw new Error('WebView commandValue must be a string')
+  if ((command === 'evaluate' || command === 'postMessage') && !commandValue) throw new Error('WebView ' + command + ' requires commandValue')
+  if (typeof script !== 'string') throw new Error('WebView script must be a string')`,
   },
   {
     // one view covers the button and the request: the props set what onRequest would

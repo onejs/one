@@ -1269,8 +1269,23 @@ export function WebView({
   onNavigate,
   onTitleChange,
   onLoadingChange,
+  onLoadStart,
+  onLoadEnd,
+  onError,
+  onHttpError,
+  onMessage,
+  onHistoryChange,
+  onProcessTerminate,
   url = '',
   html = '',
+  script = '',
+  command = '',
+  commandRevision = 0,
+  commandValue = '',
+  limitsNavigationsToAppBoundDomains = false,
+  inlineMedia = false,
+  inspectable = false,
+  bounces = true,
   backForwardNavigationGestures = '',
   magnificationGestures = '',
   linkPreviews = '',
@@ -1281,6 +1296,19 @@ export function WebView({
   ...props
 }: Types.WebViewProps) {
   if (!url === !html) throw new Error('WebView takes exactly one of url and html')
+  if (!['', 'reload', 'goBack', 'goForward', 'evaluate', 'postMessage'].includes(command))
+    throw new Error('Unknown WebView command: ' + command)
+  if (!Number.isSafeInteger(commandRevision) || commandRevision < 0)
+    throw new Error('WebView commandRevision must be a nonnegative safe integer')
+  if (command && commandRevision === 0)
+    throw new Error('WebView command requires a positive commandRevision')
+  if (!command && commandRevision > 0)
+    throw new Error('WebView commandRevision requires a command')
+  if (typeof commandValue !== 'string')
+    throw new Error('WebView commandValue must be a string')
+  if ((command === 'evaluate' || command === 'postMessage') && !commandValue)
+    throw new Error('WebView ' + command + ' requires commandValue')
+  if (typeof script !== 'string') throw new Error('WebView script must be a string')
   if (backForwardNavigationGestures)
     assertSwiftUIValue(
       'BackForwardNavigationGesturesBehavior',
@@ -1321,6 +1349,14 @@ export function WebView({
       }
       url={url}
       html={html}
+      script={script}
+      command={command}
+      commandRevision={commandRevision}
+      commandValue={commandValue}
+      limitsNavigationsToAppBoundDomains={limitsNavigationsToAppBoundDomains}
+      inlineMedia={inlineMedia}
+      inspectable={inspectable}
+      bounces={bounces}
       backForwardNavigationGestures={backForwardNavigationGestures}
       magnificationGestures={magnificationGestures}
       linkPreviews={linkPreviews}
@@ -1331,6 +1367,17 @@ export function WebView({
       onNativeWebViewLoadingChange={({ nativeEvent }) =>
         onLoadingChange?.(nativeEvent.loading, nativeEvent.progress)
       }
+      onNativeWebViewLoadStart={({ nativeEvent }) => onLoadStart?.()}
+      onNativeWebViewLoadEnd={({ nativeEvent }) => onLoadEnd?.()}
+      onNativeWebViewError={({ nativeEvent }) => onError?.(nativeEvent.message)}
+      onNativeWebViewHttpError={({ nativeEvent }) =>
+        onHttpError?.(nativeEvent.statusCode)
+      }
+      onNativeWebViewMessage={({ nativeEvent }) => onMessage?.(nativeEvent.data)}
+      onNativeWebViewHistoryChange={({ nativeEvent }) =>
+        onHistoryChange?.(nativeEvent.canGoBack, nativeEvent.canGoForward)
+      }
+      onNativeWebViewProcessTerminate={({ nativeEvent }) => onProcessTerminate?.()}
     />
   )
 }

@@ -250,9 +250,24 @@ iCloud original; a cloud-only asset may fail with `E_LIVE_PHOTO_LOAD`.
   data={[
     { name: 'url', type: 'string', default: '""', description: 'The page to load.' },
     { name: 'html', type: 'string', default: '""', description: 'Markup to load in place of a url.' },
+    { name: 'script', type: 'string', default: '""', description: 'JavaScript to insert at document start.' },
+    { name: 'command', type: '"reload" | "goBack" | "goForward" | "evaluate" | "postMessage" | ""', default: '""', description: 'A command to run. See below.' },
+    { name: 'commandRevision', type: 'number', default: '0', description: 'Increase to run command again.' },
+    { name: 'commandValue', type: 'string', default: '""', description: 'The script or message for evaluate and postMessage.' },
+    { name: 'limitsNavigationsToAppBoundDomains', type: 'boolean', default: 'false', description: 'Only allow app-bound domains.' },
+    { name: 'inlineMedia', type: 'boolean', default: 'false', description: 'Play page media inline.' },
+    { name: 'inspectable', type: 'boolean', default: 'false', description: 'Expose the page to Safari devtools.' },
+    { name: 'bounces', type: 'boolean', default: 'true', description: 'Rubber-band past the content edge.' },
     { name: 'onNavigate', type: '(url: string) => void', description: 'The page URL changed.' },
     { name: 'onTitleChange', type: '(title: string) => void', description: 'The page title changed.' },
     { name: 'onLoadingChange', type: '(loading: boolean, progress: number) => void', description: 'Loading started, progressed, or ended.' },
+    { name: 'onLoadStart', type: '() => void', description: 'A navigation started.' },
+    { name: 'onLoadEnd', type: '() => void', description: 'A navigation finished.' },
+    { name: 'onError', type: '(message: string) => void', description: 'A load failed.' },
+    { name: 'onHttpError', type: '(statusCode: number) => void', description: 'A response carried an HTTP error status.' },
+    { name: 'onMessage', type: '(data: string) => void', description: 'The page posted a bridge message.' },
+    { name: 'onHistoryChange', type: '(canGoBack: boolean, canGoForward: boolean) => void', description: 'Back-forward availability changed.' },
+    { name: 'onProcessTerminate', type: '() => void', description: 'The web content process ended.' },
     {
       name: 'backForwardNavigationGestures',
       type: 'BackForwardNavigationGesturesBehavior | ""',
@@ -270,6 +285,14 @@ The gesture and behavior props take `automatic`, `enabled`, or `disabled`, and
 `""` leaves them unset. Use `html` for markup already in the app. Updating that string loads the new
 document and reports its title through `onTitleChange`; give the view an
 explicit height because WebView fills its React Native box.
+
+Set `command` to `reload`, `goBack`, `goForward`, `evaluate`, or `postMessage`
+and increment `commandRevision` for each command, including repeated commands
+of the same kind. `evaluate` runs `commandValue` as JavaScript; `postMessage`
+dispatches a `message` event whose `data` is `commandValue`. The page calls
+`window.ReactNativeWebView.postMessage` to reach `onMessage`. `script` runs at
+document start but rebuilds the page when it changes, so it is for fixed page
+setup rather than repeated calls.
 
 ## PhotosPicker
 
