@@ -44,7 +44,9 @@ const appId =
         /applicationId\s+["']([^"']+)/
       )?.[1]
 if (!appId) throw new Error('No generated application id')
-let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: true\n    permissions: {}\n`
+// the home marker is a first-launch screen, so a session or seen-state left
+// on the device by an earlier install must not carry into the run
+let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: true\n    clearState: true\n    clearKeychain: true\n    permissions: {}\n`
 const visible = (text: string) => {
   flow += `- assertVisible: ${JSON.stringify(text)}\n`
 }
