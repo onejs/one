@@ -524,6 +524,7 @@ module.exports = function withVxrn(config, options = {}) {
 
           let podfile = fs.readFileSync(podfilePath, 'utf8')
           podfile = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(podfile)
+          podfile = nativeProjectPatches.injectWebGPUHeaderPathsIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(podfile)
           if (nativeProjectPatches.hasNitroWebImage(projectRoot)) {
