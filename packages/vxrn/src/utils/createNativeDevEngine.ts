@@ -269,6 +269,7 @@ function getNativePlugins(
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
     environmentGuardPlugin(),
+    missingDynamicImportPlugin(),
     // alias RN's Metro HMR client to a no-op; vxrn drives HMR itself (the
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
@@ -1225,6 +1226,33 @@ function serverFileExclusionPlugin(): Plugin {
       if (/[\\/]_middleware\.\w+$/.test(id)) {
         return { code: 'export default undefined;', moduleType: 'js' as any }
       }
+    },
+  }
+}
+
+/**
+ * An `import()` of a package that is not installed stays a raw dynamic import
+ * in the bundle, which Hermes cannot parse. Metro resolves it as an optional
+ * dependency: the import rejects with "Cannot find module" when it runs. Do the
+ * same, so a library that probes an optional peer (`await import('x')` inside
+ * try) builds and falls back at runtime.
+ */
+function missingDynamicImportPlugin(): Plugin {
+  const PREFIX = '\0vxrn-missing-module:'
+  return {
+    name: 'vxrn:missing-dynamic-import',
+    async resolveId(source, importer, options) {
+      if (options.kind !== 'dynamic-import') return
+      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
+      if (source.startsWith('\0')) return
+      const resolved = await this.resolve(source, importer, { skipSelf: true, kind: options.kind })
+      if (resolved) return resolved
+      return { id: `${PREFIX}${source}`, external: false }
+    },
+    load(id) {
+      if (!id.startsWith(PREFIX)) return
+      const source = JSON.stringify(`Cannot find module '${id.slice(PREFIX.length)}'`)
+      return { code: `throw new Error(${source});`, moduleType: 'js' as any }
     },
   }
 }
