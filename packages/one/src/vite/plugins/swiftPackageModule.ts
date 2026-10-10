@@ -54,16 +54,27 @@ export function renderSwiftPackageModule(id: string, platform: string, root: str
           .join(',')}})`
     )
     .join('\n')
+  const views = contract.views
+    .map(
+      (view) =>
+        `export function ${view.name}(props) { return createElement(SwiftPackageView, { packageName: ${JSON.stringify(packageName)}, view: ${JSON.stringify(view.name)}, contractHash: ${JSON.stringify(hash)}, props, fill: false }) }`
+    )
+    .join('\n')
   const code = `${contract.modules.length > 0 ? `import { callNativeSource } from ${JSON.stringify(nativeSource)}\n` : ''}${
-    contract.defaultView
+    contract.defaultView || views
       ? `import { createElement } from 'react'
 import { SwiftPackageView } from ${JSON.stringify(swiftHost)}
-export default function SwiftPackage(props) {
-  return createElement(SwiftPackageView, { packageName: ${JSON.stringify(packageName)}, props, fill: ${fill} })
+`
+      : ''
+  }${
+    contract.defaultView
+      ? `export default function SwiftPackage(props) {
+  return createElement(SwiftPackageView, { packageName: ${JSON.stringify(packageName)}, view: '', contractHash: '', props, fill: ${fill} })
 }
 `
       : ''
   }${exports}
+${views}
 `
   return { code, watchFiles }
 }

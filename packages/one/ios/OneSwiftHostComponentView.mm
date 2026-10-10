@@ -24,6 +24,12 @@ using namespace facebook::react;
     _hostView.onMeasure = ^(CGFloat height) {
       [weakSelf updateMeasuredHeight:height];
     };
+    _hostView.onEvent = ^(NSString *name, NSString *args) {
+      OneSwiftHostComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneSwiftHostEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onHostEvent({.name = std::string(name.UTF8String), .args = std::string(args.UTF8String)});
+    };
   }
   return self;
 }
@@ -31,6 +37,8 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneSwiftHostProps>(props);
   [_hostView configureWithPackageName:RCTNSStringFromString(next.packageName)
+                                 view:RCTNSStringFromString(next.view)
+                         contractHash:RCTNSStringFromString(next.contractHash)
                                 props:RCTNSStringFromString(next.props)
                                  fill:next.fill];
   [super updateProps:props oldProps:oldProps];

@@ -1,10 +1,8 @@
 import Foundation
-#if os(WASI)
 import SwiftUI
-#endif
 
 @MainActor public enum OneNativeSourceBody_Showcase {
-  public static let hash = "d8f5f62fd83ec8410984c25719e48a88e3a9544420ec4b71a379d65e57d1e672"
+  public static let hash = "c3a6982b9f084717b70118a7a7e18a8387267833a33c4e3d747bba12a278a1d3"
 #if os(WASI)
   private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
   private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
@@ -65,9 +63,31 @@ import SwiftUI
         return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
       default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
       }
-    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
+    default:
+      throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
     }
   }
+#if !os(WASI)
+  private static func missing(_ path: String) throws -> Any {
+    throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(path): required"])
+  }
+  private static func args(_ values: [any Encodable]) -> String {
+    "[" + values.map { String(decoding: (try? JSONEncoder().encode($0)) ?? Data("null".utf8), as: UTF8.self) }.joined(separator: ",") + "]"
+  }
+  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {
+    guard let props = try JSONSerialization.jsonObject(with: Data(propsJson.utf8)) as? [String: Any] else {
+      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "props must be a JSON object"])
+    }
+    switch name {
+    case "Level":
+      return AnyView(Level(
+        value: try decode(props["value"] ?? missing("props.value"), as: Double.self),
+        onChange: { (a0: Double) -> Void in emit("onChange", args([a0])) }
+      ))
+    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \(name) is not linked; rebuild the app"])
+    }
+  }
+#endif
 }
 
 #if os(WASI)
@@ -77,6 +97,9 @@ import SwiftUI
 @_expose(wasm, "peach_call_poll")
 @_cdecl("peach_call_poll")
 @MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.pollWasm(id) }
+@main struct OneNativeSourceMain_Showcase: App {
+  var body: some Scene { WindowGroup { EmptyView() } }
+}
 #endif
 
 #if canImport(ObjectiveC) && !os(WASI)
@@ -84,5 +107,10 @@ import SwiftUI
   public required override init() {}
   public var contractHash: String { OneNativeSourceBody_Showcase.hash }
   public func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String { try await OneNativeSourceBody_Showcase.call(module, method, argsJson) }
+}
+@objc(OneNativeSourceViews_Showcase) @MainActor public final class OneNativeSourceViews_Showcase: NSObject, OneNativeSourceViewDispatch {
+  public required override init() {}
+  public var contractHash: String { OneNativeSourceBody_Showcase.hash }
+  public func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView { try OneNativeSourceBody_Showcase.view(name, propsJson, emit) }
 }
 #endif

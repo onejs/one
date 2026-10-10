@@ -1,7 +1,7 @@
 {
   "generatedBy": "one typegen",
   "packageId": "native_source",
-  "hash": "7b458180a55c0d7229eb0240f4143a3147da6e0bbe4c08c0e4a72d46422cc87d",
+  "hash": "9e06fe5fd63521be6abf44242e1f962a214d8f341d5e29a0cf2ec18d7e540c45",
   "files": {
     "Audio.swift": [
       "AudioMath"
@@ -13,5 +13,6 @@
       "label"
     ]
   },
+  "views": {},
   "defaultViewFiles": []
 }

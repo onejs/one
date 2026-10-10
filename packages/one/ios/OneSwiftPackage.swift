@@ -77,6 +77,15 @@ public protocol PeachPackage {
   func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String
 }
 
+// a package's typed views (`public struct X: View`), built from the element's
+// props as json text; a callback prop reports its arguments through emit as
+// (prop name, json array)
+@MainActor public protocol OneNativeSourceViewDispatch: AnyObject {
+  init()
+  var contractHash: String { get }
+  func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView
+}
+
 extension PeachPackage {
   @MainActor public static func main() {
     OneSwiftPackages.pending = { AnyView(Self().view(props: $0)) }
