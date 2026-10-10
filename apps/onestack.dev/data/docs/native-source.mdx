@@ -129,7 +129,8 @@ fills the space it is given.
 ## Kotlin functions and views
 
 A Kotlin file can sit anywhere in the app outside `android`, `ios`,
-`node_modules` and nested packages. An `object` that implements `OneModule`
+`node_modules` and nested packages. Packages declared in the build root's
+`workspaces` are included; their source IDs use paths relative to that build root. An `object` that implements `OneModule`
 becomes a named export, and each of its public functions an async function.
 `suspend` functions are awaited. A public `@Composable` function with a
 capitalized name becomes a React component whose props are its parameters;
