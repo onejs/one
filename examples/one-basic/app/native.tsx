@@ -15,7 +15,14 @@ export default function NativeDemo() {
   }, [])
 
   useEffect(() => {
-    Device.sha256(text).then(setHash)
+    // a digest that resolves after a newer edit belongs to old text
+    let current = true
+    Device.sha256(text).then((digest) => {
+      if (current) setHash(digest)
+    })
+    return () => {
+      current = false
+    }
   }, [text])
 
   const step = (delta: number) =>
