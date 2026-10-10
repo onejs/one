@@ -3178,8 +3178,11 @@ export function installNativeDependencies(args: {
 }): void {
   const { root, platform } = args
   if (!platform || platform === 'ios') {
+    // cocoapods reads podfiles and native module config as the locale's
+    // encoding; a shell without a utf-8 locale fails on any non-ascii byte.
     execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
       stdio: 'inherit',
+      env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
     })
   }
 }
