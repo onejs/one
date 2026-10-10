@@ -44,7 +44,7 @@ SOFTWARE.
 
 ## EdgeFade (`OneNativeEdgeFade`, `UI.EdgeFade`)
 
-Owner direction (Nate, 2026-10-04): One's blur is built on `@sbaiahmed1/react-native-blur` (MIT), the library the Team Machine app used (team-machine 4fe201b06): its "PLATFORM native" blur effects and "a real iOS progressive blur" (`CAFilter` `variableBlur`); "literally just use that code". The react-native-edge-fade blur stack described below fakes progressive blur with three `UIVisualEffectView` levels. Its replacement is held pending a supported route meeting the exact behavior; the private upstream filter is not adopted. Also: "blur should just be behind the composer": chrome sits above the blur by layer order and is never offset around it.
+Direction: One's blur is built on `@sbaiahmed1/react-native-blur` (MIT): its platform native blur effects and a real iOS progressive blur (`CAFilter` `variableBlur`). The react-native-edge-fade blur stack described below fakes progressive blur with three `UIVisualEffectView` levels. Its replacement is held pending a supported route meeting the exact behavior; the private upstream filter is not adopted. The blur sits behind the composer: chrome sits above the blur by layer order and is never offset around it.
 
 Vendored from `react-native-edge-fade@0.2.0` (MIT, Copyright (c) 2026 Giulio
 Amato), owned in-tree under `OneNative*` names so the symbols never collide

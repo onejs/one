@@ -4,8 +4,7 @@ Assigned reviewer: m19584. Candidate Contrast merge/one-background-computation-f
 8f3896a221d7d05a64b0bcc5cee47533fa807206, worktree
 `/Users/n8/.worktrees/contrast-contrast-background-computation-final`.
 Base main4def3f39bd; published featurefd086fc8e4; subsequent review fix8f3896a221.
-Nate directly approved the API and shared compiler/custom-preview integration
-in the two shares recorded in one-background-api-proposal.md. One main is untouched.
+The API and shared compiler/custom-preview integration are approved. One main is untouched.
 
 Both requested changes to prior candidateb5f14fddd are addressed. The shared
 resolver defaults are restored. Browser/import conditions are scoped to

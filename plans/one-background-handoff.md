@@ -1,7 +1,7 @@
 # Background computation handoff
 
-Rank5 by s8381 / one-native-background. Nate directly approved API and compiler/
-preview shares. Assigned m19584 reviewed original implementation, shared compiler
+Rank5 by s8381 / one-native-background. API and compiler/
+preview integration approved. Assigned m19584 reviewed original implementation, shared compiler
 and final Contrast8f3896a221. One main untouched. No new survey primitive built.
 
 One v2-beta: API/docs4395848b3; output-retention fix75982e8ee;

@@ -42,8 +42,7 @@ The API doc and a ranked platform-duplication survey are included. Next candidat
 are proposals only: persistence, speech, restart, material blur, masks, an existing
 document-picker migration, and a GPU canvas integration.
 
-Nate approved this shared API and migration directly on 2026-10-03, referencing
-share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187. Assigned assembled
+The shared API and migration are approved (2026-10-03). Assigned assembled
 review passed. One API and compiler are on v2-beta. RAN: Contrast migration and
 cache follow-up are on main, with final merge a7b1c5c3c66 landed by main-sync.
 The scoped tool guard blocked this lane's main push; the assigned owner completed it.
@@ -72,9 +71,7 @@ factory reader and published native build pipeline: 15 routes, 427 files,
 artifact 404 is retained as a negative receipt. Both compile catalogs now serve
 the pinned family. Home Rally is a canonical example; no registry entry was added.
 
-Nate directly approved the shared compiler integration and custom-preview proof
-via “Rally passes on both custom preview runtimes”
-(`share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`).
+The shared compiler integration and custom-preview proof are approved.
 The publication, complete factory build and final merge-candidate checks passed.
 Assigned adapter review and re-review passed. RAN: Contrast main now contains
 migration/pin df23ed5000 and the composed geometry reuse hook88970f9985, with its
