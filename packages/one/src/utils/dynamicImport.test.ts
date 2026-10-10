@@ -19,6 +19,9 @@ describe('isChunkLoadError', () => {
     ).toBe(true)
     expect(isChunkLoadError(new Error('Importing a module script failed.'))).toBe(true)
     expect(isChunkLoadError('Failed to fetch dynamically imported module')).toBe(true)
+    expect(
+      isChunkLoadError(new Error('Unable to preload CSS for /assets/page.css'))
+    ).toBe(true)
     expect(isChunkLoadError(new Error('TypeError: x is not a function'))).toBe(false)
   })
 })

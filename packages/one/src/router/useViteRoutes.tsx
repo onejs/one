@@ -144,15 +144,9 @@ export async function preloadRouteModules(href: string): Promise<void> {
 
     if ((isStaticMatch || isDynamicMatch) && typeof globbed[key] === 'function') {
       promises.push(
-        globbed[key]()
-          .then((mod: any) => {
-            preloadedModules[key] = mod
-          })
-          .catch((err: any) => {
-            if (isChunkLoadError(err)) {
-              handleSkewError()
-            }
-          })
+        globbed[key]().then((mod: any) => {
+          preloadedModules[key] = mod
+        })
       )
     }
   }
