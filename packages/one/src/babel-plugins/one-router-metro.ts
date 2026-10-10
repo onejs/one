@@ -44,8 +44,8 @@ function oneRouterMetroPlugin(_: any, options: PluginOptions) {
       Program(path: NodePath<t.Program>, state: any) {
         // Inject setup file import AFTER existing imports in metro-entry.js
         // This ensures react-native is initialized (via createApp's import) before
-        // the setup file runs, so native modules like react-native-mmkv can safely
-        // access Platform/PlatformConstants at module scope.
+        // the setup file runs, so native modules can safely access
+        // Platform/PlatformConstants at module scope.
         if (ONE_SETUP_FILE_NATIVE && state.filename?.endsWith('metro-entry.js')) {
           const importDeclaration = t.importDeclaration(
             [],

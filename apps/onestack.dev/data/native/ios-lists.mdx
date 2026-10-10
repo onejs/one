@@ -1,0 +1,325 @@
+---
+title: iOS Lists and Forms
+description: Form, Section, List, ScrollView, lazy stacks, and grids under One.iOS
+---
+
+<NativeHero
+  src="/native/ios-lists.webp"
+  alt="One.iOS List in the inset grouped style with section headers and symbol rows"
+/>
+
+Lists, forms, and scrolling containers under `One.iOS`, drawn by SwiftUI.
+
+- `Form` and `List` give native grouped rows, section headers, and footers.
+- `ScrollView`, lazy stacks, and grids lay out long or two-dimensional content.
+- Row modifiers, swipe actions, pull to refresh, and search come through
+  `swiftStyle`.
+- Every view here throws on web and Android.
+
+These are greedy containers: they take the box they are given, so give each
+its own box instead of nesting one inside a stack.
+
+## Form
+
+`One.iOS.Form` is a grouped settings form. `sizing` is `'fill'` (the
+default, flexes to its box) or `'content'` (wraps its rows). Switching
+sizing remounts the form. `Form` also takes the environment values
+(`colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`, `tint`,
+`isEnabled`).
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#FormProps"
+  data={[
+    { name: 'sizing', type: 'FormSizing', default: '"fill"', description: 'fill flexes to its box; content wraps its rows.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'Sections and rows.' },
+  ]}
+/>
+
+`Form` also takes the environment props `colorScheme`, `dynamicTypeSize`,
+`controlSize`, `locale`, `tint`, and `isEnabled`, as described in
+[iOS Stacks](/native/ios-stacks).
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Form>
+  <One.iOS.Section title="General">
+    <One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+  </One.iOS.Section>
+</One.iOS.Form>
+```
+
+## Section
+
+`One.iOS.Section` groups rows with a `title` header and a `footer` string.
+Its `swiftStyle` accepts SwiftUI section modifiers such as `headerProminence`
+and `listSectionMargins`. React updates to these modifiers refresh that section.
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#SectionProps"
+  data={[
+    { name: 'title', type: 'string', default: '""', description: 'The header.' },
+    { name: 'footer', type: 'string', default: '""', description: 'Text under the rows.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'Section modifiers such as headerProminence.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The rows.' },
+  ]}
+/>
+
+## List
+
+<PropsTable
+  title="Props"
+  source="listTypes.ts#ListProps"
+  data={[
+    { name: 'listStyle', type: 'ListStyle', default: '"automatic"', description: 'automatic, sidebar, inset, grouped, insetGrouped, or plain.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'List modifiers, refreshable, and section spacing.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'Sections and rows.' },
+  ]}
+/>
+
+`One.iOS.List` is a SwiftUI list. `listStyle` is `'automatic'`,
+`'sidebar'`, `'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`. You
+can use `swiftStyle` on the List for modifiers such as `listSectionSpacingWithCGFloat`.
+For example, a larger spacing value separates adjacent sections. Sections
+can set their own `swiftStyle` for header prominence and margins:
+
+```tsx
+<One.iOS.List
+  listStyle="insetGrouped"
+  style={{ height: 520 }}
+  swiftStyle={{ listSectionSpacingWithCGFloat: expanded ? 100 : 10 }}
+>
+  <One.iOS.Section
+    title="First section"
+    swiftStyle={{
+      headerProminence: expanded ? 'increased' : 'standard',
+      listSectionMargins: { edges: 'leading', length: expanded ? 80 : 16 },
+    }}
+  >
+    <One.iOS.Text text="Apple" />
+  </One.iOS.Section>
+  <One.iOS.Section title="Second section">
+    <One.iOS.Text text="Banana" />
+  </One.iOS.Section>
+</One.iOS.List>
+```
+
+On iOS 27, changing these values moved the first section's leading edge by
+64 points, enlarged its header, and moved the second section down by about
+94 points. Returning to the original values restored all three positions.
+Other section modifiers, these modifiers inside `Form`, and other List styles
+still need runtime proof.
+
+Use `swiftStyle.refreshable` for a native pull to refresh action. The bridge
+waits for the returned promise. Put `swiftStyle.searchable` on a
+`One.iOS.NavigationStack` around the List so iOS presents its native search
+field; keep the text in React state and filter the rows yourself:
+
+```tsx
+<One.iOS.NavigationStack
+  style={{ flex: 1 }}
+  swiftStyle={{ searchable: { value: query, onChange: setQuery } }}
+>
+  <One.iOS.List
+    listStyle="plain"
+    style={{ flex: 1 }}
+    swiftStyle={{ refreshable: async () => { await reloadItems() } }}
+  >
+    {items.filter((item) => item.includes(query)).map((item) => (
+      <One.iOS.Text key={item} text={item} />
+    ))}
+  </One.iOS.List>
+</One.iOS.NavigationStack>
+```
+
+An iOS 27 simulator proof pulled twice, observed the async callback, and
+started the second pull after the first callback's promise resolved. It also
+checked native search edits and external React updates. The proof does not
+measure how long the native refresh indicator remains visible.
+The search field appeared in the NavigationStack's toolbar. A standalone List
+host did not present a search field in that run. ScrollView refresh and search
+have a separate vertical-scroll proof below. Native indicator duration remains
+unmeasured for both containers.
+
+Rows support swipe actions through
+[Swift.SwipeActions](/native/ios-groups). An `EditButton` composed inside the
+list changes its native label between Edit and Done. Row deletion and move
+actions are not yet exposed.
+
+Use `One.iOS.ViewSlot` with `name="listRowBackground"` to supply a SwiftUI
+view behind one row. Its base child is the row; `ViewSlot.Content` is the
+background. Changing the background child from React updates the native row.
+
+```tsx
+<One.iOS.List style={{ flex: 1 }}>
+  <One.iOS.ViewSlot name="listRowBackground">
+    <One.iOS.Text text="Apple" />
+    <One.iOS.ViewSlot.Content>
+      <One.iOS.Rectangle fill="#B1DAFD" />
+    </One.iOS.ViewSlot.Content>
+  </One.iOS.ViewSlot>
+</One.iOS.List>
+```
+
+Use a row's `swiftStyle` for SwiftUI row modifiers. For example,
+`listRowInsets` changes the leading inset (iOS 26 or later), while
+`listRowSeparator` and `listRowSeparatorTint` control the separator. React
+updates to these modifiers refresh that row in the native List.
+`swiftStyle` applies SDK modifiers in object order. When setting both a tint
+and visibility, put `listRowSeparatorTint` before `listRowSeparator` so the
+visibility modifier takes precedence.
+
+```tsx
+<One.iOS.List listStyle="plain" style={{ height: 240 }}>
+  <One.iOS.Text
+    text="Inbox"
+    swiftStyle={{
+      listRowInsets: { edges: 'leading', length: expanded ? 96 : 16 },
+      listRowSeparatorTint: { color: 'red', edges: 'bottom' },
+      listRowSeparator: {
+        visibility: expanded ? 'hidden' : 'visible',
+        edges: 'bottom',
+      },
+    }}
+  />
+</One.iOS.List>
+```
+
+On iOS 27, the `Text` row moved by 80 points and its separator disappeared
+when these values changed; adjacent rows kept their positions. Returning to
+the original values restored the inset and red separator.
+
+## ScrollView
+
+<PropsTable
+  title="Props"
+  source="listTypes.ts#ScrollViewProps"
+  data={[
+    { name: 'axes', type: 'ScrollViewAxes', default: '"vertical"', description: 'vertical, horizontal, or both.' },
+    { name: 'showsIndicators', type: 'boolean', default: 'true', description: 'Shows the scroll indicators.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'Scroll modifiers and refreshable.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The content.' },
+  ]}
+/>
+
+`One.iOS.ScrollView` scrolls its children. `axes` is `'vertical'`,
+`'horizontal'`, or `'both'`; `showsIndicators` toggles the scroll
+indicators; `swiftStyle` applies native modifiers.
+
+For a vertical ScrollView, `swiftStyle.refreshable` invokes a callback when
+the user pulls down. Place the ScrollView inside `NavigationStack` and put
+`swiftStyle.searchable` on the stack to show the native search field. The
+search text is controlled by React state, as in the List example above.
+An iOS 27 simulator proof covered two successive callback invocations,
+external query changes, and typing in the native field. It did not measure
+the refresh indicator's duration or exercise horizontal and both-axis scrolls.
+
+## LazyVStack, LazyHStack
+
+`One.iOS.LazyVStack` and `One.iOS.LazyHStack` lay children out lazily along
+one axis. Both take `spacing`. `LazyVStack` aligns with `'leading'`,
+`'center'`, or `'trailing'`; `LazyHStack` aligns with `'top'`,
+`'center'`, `'bottom'`, `'firstTextBaseline'`, or `'lastTextBaseline'`.
+
+<PropsTable
+  title="LazyVStack"
+  source="listTypes.ts#LazyVStackProps"
+  data={[
+    { name: 'alignment', type: 'LazyVStackAlignment', default: '"center"', description: 'leading, center, or trailing.' },
+    { name: 'spacing', type: 'number', description: 'The gap between children.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The rows.' },
+  ]}
+/>
+
+<PropsTable
+  title="LazyHStack"
+  source="listTypes.ts#LazyHStackProps"
+  data={[
+    { name: 'alignment', type: 'LazyHStackAlignment', default: '"center"', description: 'top, center, bottom, firstTextBaseline, or lastTextBaseline.' },
+    { name: 'spacing', type: 'number', description: 'The gap between children.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The columns.' },
+  ]}
+/>
+
+## Grids
+
+`One.iOS.LazyVGrid` lays out cells in columns, and `One.iOS.LazyHGrid` lays
+them out in rows. Put a lazy grid inside a scroll view along its lazy axis.
+`columns` or `rows` is an array of `GridItem` values. Each item has a SwiftUI
+size: `fixed` needs `value`, `flexible` accepts `minimum` and `maximum`, and
+`adaptive` needs `minimum` and accepts `maximum`. Items can also set `spacing`
+and a two-axis `alignment`. Omitted bounds and spacing use SwiftUI defaults;
+signed spacing passes through to SwiftUI; iOS 27 may clamp a negative row gap to zero.
+
+<PropsTable
+  title="LazyVGrid"
+  source="gridTypes.ts#LazyVGridProps"
+  data={[
+    { name: 'columns', required: true, type: 'readonly GridItem[]', description: 'One item per column.' },
+    { name: 'alignment', type: 'GridHorizontalAlignment', description: 'leading, center, or trailing.' },
+    { name: 'spacing', type: 'number', description: 'The gap between rows.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The cells.' },
+  ]}
+/>
+
+<PropsTable
+  title="LazyHGrid"
+  source="gridTypes.ts#LazyHGridProps"
+  data={[
+    { name: 'rows', required: true, type: 'readonly GridItem[]', description: 'One item per row.' },
+    { name: 'alignment', type: 'GridVerticalAlignment', description: 'top, center, bottom, firstTextBaseline, or lastTextBaseline.' },
+    { name: 'spacing', type: 'number', description: 'The gap between columns.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The cells.' },
+  ]}
+/>
+
+```tsx
+<One.iOS.ScrollView style={{ height: 200 }}>
+  <One.iOS.LazyVGrid
+    columns={[{ size: 'fixed', value: 80 }, { size: 'flexible', minimum: 80 }]}
+    spacing={12}
+  >
+    {items.map((item) => <One.iOS.Text key={item.id} text={item.title} />)}
+  </One.iOS.LazyVGrid>
+</One.iOS.ScrollView>
+```
+
+`One.iOS.Grid` builds a non-lazy two-dimensional layout. Put cells in
+`One.iOS.GridRow`; a child directly under `Grid` spans every column, following
+SwiftUI. `Grid` accepts `alignment`, `horizontalSpacing`, and
+`verticalSpacing`. `GridRow` accepts a vertical `alignment`.
+
+<PropsTable
+  title="Grid"
+  source="gridTypes.ts#GridProps"
+  data={[
+    { name: 'alignment', type: 'GridAlignment', default: '"center"', description: 'Cell alignment, such as topLeading or center.' },
+    { name: 'horizontalSpacing', type: 'number', description: 'The gap between columns.' },
+    { name: 'verticalSpacing', type: 'number', description: 'The gap between rows.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'GridRow children and full-width views.' },
+  ]}
+/>
+
+<PropsTable
+  title="GridRow"
+  source="gridTypes.ts#GridRowProps"
+  data={[
+    { name: 'alignment', type: 'GridVerticalAlignment', description: 'Vertical alignment of the row\'s cells.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'One cell per column.' },
+  ]}
+/>
+
+```tsx
+<One.iOS.Grid horizontalSpacing={16} verticalSpacing={8}>
+  <One.iOS.GridRow>
+    <One.iOS.Text text="Name" />
+    <One.iOS.Text text="Value" />
+  </One.iOS.GridRow>
+  <One.iOS.GridRow>
+    <One.iOS.Text text="Width" />
+    <One.iOS.Text text="80" />
+  </One.iOS.GridRow>
+</One.iOS.Grid>
+```

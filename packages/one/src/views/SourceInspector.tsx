@@ -7,7 +7,7 @@ import type { ReactNode } from 'react'
  * The source inspector is automatically enabled in development mode when
  * devtools.inspector is enabled (default: true).
  *
- * Usage: Hold Shift+Cmd (Mac) or Shift+Ctrl (Windows/Linux) and hover over elements.
+ * Usage: Hold Option (Mac) or Alt (Windows/Linux) for 0.8s and hover over elements.
  */
 
 type ModifierKey = 'Alt' | 'Control' | 'Meta' | 'Shift'

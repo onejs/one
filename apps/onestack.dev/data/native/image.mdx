@@ -1,0 +1,99 @@
+---
+title: Image
+description: Shared images through the native image loader
+---
+
+<NativeHero
+  src="/native/image.webp"
+  alt="One.UI.Image on iOS and Android: a photo grid loaded from remote URLs"
+/>
+
+`One.UI.Image` shows local and remote images through Nitro Image on iOS and
+Android, and an `img` element on web.
+
+- Takes a URL string, a `{ uri }` source, or a bundled image.
+- Load events match React Native's image.
+- `recyclingKey` keeps recycled list cells from flashing old images.
+- The loader ships with `one`, so remote images need no extra install.
+
+## Usage
+
+Give the image a size. `cover` is the default resize mode.
+
+```tsx
+import { One } from 'one'
+
+<One.UI.Image
+  source={{ uri: photo.url }}
+  style={{ width: 240, height: 160 }}
+  onError={({ nativeEvent }) => console.warn(nativeEvent.error)}
+/>
+```
+
+In long lists, set `recyclingKey` to the image's URL so a reused cell shows
+nothing until its new image loads.
+
+```tsx
+<One.UI.Image source={item.url} recyclingKey={item.url} style={styles.thumb} />
+```
+
+## API reference
+
+Image also accepts React Native `ImageProps` other than the four below,
+including `style`, `onLoadStart`, and `onLoadEnd`.
+
+<PropsTable
+  title="Props"
+  source="ui/Image.native.tsx#ImageProps"
+  data={[
+    {
+      name: 'source',
+      required: true,
+      type: 'string | number | { uri: string }',
+      description: 'A URL, a { uri } object, or a bundled image from require().',
+    },
+    {
+      name: 'resizeMode',
+      type: '"cover" | "contain" | "center" | "stretch"',
+      default: '"cover"',
+      description: 'How the image fits the view when their shapes differ.',
+    },
+    {
+      name: 'recyclingKey',
+      type: 'string',
+      description: 'When it changes, the view clears until the new image loads.',
+    },
+  ]}
+/>
+
+<PropsTable
+  title="Events"
+  source="ui/Image.native.tsx#ImageProps"
+  data={[
+    {
+      name: 'onLoad',
+      type: '(event: { nativeEvent: { source: { uri: string; width: number; height: number } } }) => void',
+      description: 'The image loaded. Width and height are its pixel size.',
+    },
+    {
+      name: 'onError',
+      type: '(event: { nativeEvent: { error: string } }) => void',
+      description: 'The image failed to load.',
+    },
+  ]}
+/>
+
+## Behavior
+
+- `onLoadStart` and `onLoadEnd` fire around every source change.
+- The view stays empty until the current source loads; it never shows the
+  previous image under a new source.
+- Android does not round the image itself with `borderRadius`. To round
+  corners on both platforms, wrap the image in a `View` with `borderRadius`
+  and `overflow: 'hidden'`.
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renderer | Nitro Image | Nitro Image | `img` |
+| Bundled images | Yes | Yes | Throws; use a URL |
+| `center` | Centered at natural size | Centered at natural size | `object-fit: none` |

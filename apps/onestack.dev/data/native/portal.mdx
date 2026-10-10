@@ -1,0 +1,129 @@
+---
+title: Portal
+description: Move React content into a named native host.
+---
+
+<NativeHero
+  src="/native/portal.webp"
+  alt="One.UI.Portal on iOS and Android: a menu declared inside one list row, drawn above the whole screen"
+/>
+
+`One.UI.Portal` renders its children inside a `One.UI.PortalHost` somewhere
+else in the app. The children stay in their place in the React tree.
+
+- Context, state, and event handlers keep working across the move.
+- No provider is required.
+- Hosted children lay out against the host, not the source.
+- It replaces `react-native-teleport`.
+
+## Usage
+
+Mount a host where the content should appear, then name it from a portal.
+The host draws portals above its own children.
+
+```tsx
+import { One } from 'one'
+import { StyleSheet, View } from 'react-native'
+
+export function Screen() {
+  return (
+    <View style={{ flex: 1 }}>
+      <MessageList />
+      <One.UI.PortalHost name="overlay" style={StyleSheet.absoluteFill} />
+    </View>
+  )
+}
+
+function MessageRow({ menuOpen }: { menuOpen: boolean }) {
+  return (
+    <View style={{ overflow: 'hidden' }}>
+      <RowContent />
+      {menuOpen && (
+        <One.UI.Portal hostName="overlay" name="menu">
+          <RowMenu />
+        </One.UI.Portal>
+      )}
+    </View>
+  )
+}
+```
+
+The menu escapes the row's clip because it renders in the host, yet it still
+reads the row's context and state.
+
+## API reference
+
+### Portal
+
+Portal also accepts React Native `ViewProps`, applied to the view that wraps
+its children.
+
+<PropsTable
+  title="Props"
+  source="ui/portalTypes.ts#PortalProps"
+  data={[
+    {
+      name: 'children',
+      required: true,
+      type: 'ReactNode',
+      description: 'The content to move.',
+    },
+    {
+      name: 'hostName',
+      type: 'string',
+      description: 'The host to render in. Without it, children render in place.',
+    },
+    {
+      name: 'name',
+      type: 'string',
+      description: 'A later portal with the same name in the same host replaces this one.',
+    },
+  ]}
+/>
+
+### PortalHost
+
+PortalHost also accepts React Native `ViewProps`. `style` sizes the host.
+
+<PropsTable
+  title="Props"
+  source="ui/portalTypes.ts#PortalHostProps"
+  data={[
+    {
+      name: 'name',
+      required: true,
+      type: 'string',
+      description: 'The name portals use as their hostName.',
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'The host\'s own content, drawn below its portals.',
+    },
+  ]}
+/>
+
+## Behavior
+
+- A host never takes touches itself, so a full-screen host blocks nothing
+  under it. Only its portals and children receive touches.
+- Portals appear in mount order above the host's own children.
+- Unnamed portals coexist. Removing a replacement reveals the portal it replaced.
+- Hosted children lay out against the host's size, including percentages and
+  absolute right and bottom offsets. Resizing the host lays them out again.
+- If the named host has not mounted yet, the portal renders in place and moves
+  when the host mounts.
+- Removing a host returns its portals to their source.
+- Changing `hostName` moves the same children, with their state, to the new host.
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Host | Fabric view | Native view group | Stable DOM container |
+| Layout | Host size measured natively, no JS round trip | Same | CSS |
+
+## Migrating from react-native-teleport
+
+Replace imports from `react-native-teleport` with `One.UI.Portal` and
+`One.UI.PortalHost`, remove `PortalProvider`, and mount any root overlay host
+yourself. `@tamagui/native/setup-teleport` keeps its import path and binds
+Tamagui portals to these components.

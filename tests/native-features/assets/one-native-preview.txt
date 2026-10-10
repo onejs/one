@@ -1,0 +1,4 @@
+One Native Quick Look fixture.
+
+QLPreviewController previews a bundled text asset served by Metro in development and copied
+to the app bundle for release builds.

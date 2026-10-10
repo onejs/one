@@ -22,7 +22,7 @@ export default () => {
   const { data, refetch, state } = useLoaderState(loader)
 
   return (
-    <YStack gap="$4" p="$4">
+    <YStack gap="4" p="4">
       <Text id="ssr-mode">Mode: {data.mode}</Text>
       <Text id="ssr-query">Query: {data.query}</Text>
       <Text id="ssr-call-count">Call count: {data.callCount}</Text>

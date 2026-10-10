@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useParams } from 'one'
 
 // /nested/[id]/[sub] sibling leaf — must NOT mount when the URL is only
-// /nested/foo. mirrors soot's project/[projectId]/[sessionId].tsx.
+// /nested/foo. mirrors contrast's project/[projectId]/[sessionId].tsx.
 //
 // the bug being guarded: the [id] navigator's late-mount resolver used to
 // rank screens by matching them against the full browser path after a

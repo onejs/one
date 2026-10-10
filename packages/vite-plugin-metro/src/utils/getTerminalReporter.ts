@@ -1,4 +1,4 @@
-// For Metro and Expo, we only import types here.
+// only import Metro types here.
 // We use `projectImport` to dynamically import the actual modules
 // at runtime to ensure they are loaded from the user's project root.
 import type { TerminalReporter as TerminalReporterT, Terminal as TerminalT } from 'metro'

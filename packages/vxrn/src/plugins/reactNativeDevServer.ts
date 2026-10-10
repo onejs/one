@@ -2,14 +2,23 @@ import type { Connect, Plugin, ViteDevServer } from 'vite'
 import { WebSocketServer, type WebSocket } from 'ws'
 import { createMessageSocket } from '@vxrn/utils'
 import {
+  expoClientFromNativeApp,
+  type NativeAppManifest,
+} from '@vxrn/utils/nativeAppManifest'
+import {
   addConnectedNativeClient,
   removeConnectedNativeClient,
 } from '../utils/connectedNativeClients'
 import type { VXRNOptionsFilled } from '../config/getOptionsFilled'
 import { URL } from 'node:url'
+import { createRequire } from 'node:module'
+import { extname, join, resolve, sep } from 'node:path'
+import { randomUUID } from 'node:crypto'
+import { existsSync, readFileSync, statSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createNativeDevEngine } from '../utils/createNativeDevEngine'
+import { nativeDevBytecodeCompiler } from '../utils/compileNativeDevBytecode'
 import { getBoundPort } from '../utils/getBoundPort'
 import {
   getNativeFramePlatform,
@@ -29,17 +38,35 @@ type NativeHmrSocket = WebSocket & {
   vxrnPlatform: 'ios' | 'android'
 }
 
+// metro's asset server answers `/assets/<path>` for any asset file inside the
+// project root, registered by the bundle or not.
+function getProjectAssetFile(
+  root: string,
+  pathname: string
+): { filePath: string; type: string } | undefined {
+  const filePath = resolve(root, pathname.slice('/assets/'.length))
+  if (!filePath.startsWith(resolve(root) + sep)) return
+  const type = extname(filePath).slice(1)
+  if (getNativeAssetContentType(type) === 'application/octet-stream') return
+  if (!existsSync(filePath) || !statSync(filePath).isFile()) return
+  return { filePath, type }
+}
+
 export function getNativeAssetContentType(type: string): string {
   switch (type.toLowerCase()) {
     case 'bmp':
       return 'image/bmp'
     case 'gif':
       return 'image/gif'
+    case 'glb':
+      return 'model/gltf-binary'
     case 'jpeg':
     case 'jpg':
       return 'image/jpeg'
     case 'json':
       return 'application/json'
+    case 'mp4':
+      return 'video/mp4'
     case 'otf':
       return 'font/otf'
     case 'png':
@@ -48,6 +75,8 @@ export function getNativeAssetContentType(type: string): string {
       return 'image/svg+xml'
     case 'ttf':
       return 'font/ttf'
+    case 'txt':
+      return 'text/plain'
     case 'webp':
       return 'image/webp'
     case 'woff':
@@ -84,6 +113,7 @@ export function createReactNativeDevServerPlugin(
       const devEngineCreating: Record<string, Promise<unknown> | null> = {}
       const warnedProdBundleRequest = new Set<string>()
       const pendingReloadPlatforms = new Set<'ios' | 'android'>()
+      let compileBytecode: ReturnType<typeof nativeDevBytecodeCompiler> | undefined
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
       const reactNativeDevToolsUrl = `http://${host}:${getBoundPort(server)}`
@@ -95,9 +125,143 @@ export function createReactNativeDevServerPlugin(
         },
       })
 
+      // an expo project's clients (dev launcher, expo-updates, peach) ask `/`,
+      // `/manifest` or `/index.exp` for the evaluated app config with an
+      // `expo-platform` header or `?platform=`. answer with the expo updates
+      // manifest expo cli's ExpoGoManifestHandlerMiddleware serves. only apps
+      // that declare expo use expo prebuild; a hoisted @expo/config alone does
+      // not make a one native app an expo app.
+      const projectRequire = createRequire(join(root, 'package.json'))
+      const packageJsonPath = join(root, 'package.json')
+      const packageJson = existsSync(packageJsonPath)
+        ? JSON.parse(readFileSync(packageJsonPath, 'utf8'))
+        : {}
+      const hasExpo =
+        Object.hasOwn(packageJson.dependencies ?? {}, 'expo') ||
+        Object.hasOwn(packageJson.devDependencies ?? {}, 'expo')
+      // a one app that declares no expo answers from its native.app manifest,
+      // mapped to the same expo config shape.
+      const nativeApp: NativeAppManifest | undefined = hasExpo
+        ? undefined
+        : (globalThis as any).__vxrnNativeEntryConfig?.app
+      const anonymousScopeId = randomUUID()
+      server.middlewares.use(async (req, res, next) => {
+        if (!hasExpo && !nativeApp) return next()
+        if (req.method !== 'GET' && req.method !== 'HEAD') return next()
+        const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`)
+        if (
+          url.pathname !== '/' &&
+          url.pathname !== '/manifest' &&
+          url.pathname !== '/index.exp'
+        ) {
+          return next()
+        }
+        const header = req.headers['expo-platform'] || req.headers['exponent-platform']
+        const platform =
+          validPlatforms[url.searchParams.get('platform') || String(header || '')]
+        if (!platform) return next()
+
+        let expoConfigPath: string | undefined
+        if (!nativeApp) {
+          try {
+            expoConfigPath = projectRequire.resolve('@expo/config')
+          } catch {
+            return next()
+          }
+        }
+
+        try {
+          const hostUri = req.headers.host || `localhost:${getBoundPort(server)}`
+          const { exp, mainModuleName, runtimeVersion } = nativeApp
+            ? {
+                exp: expoClientFromNativeApp(nativeApp),
+                // the vite native server answers any `.bundle` path with the
+                // app entry, so `index` is what a one app's native build loads.
+                mainModuleName: 'index',
+                runtimeVersion: nativeApp.updates?.runtimeVersion ?? null,
+              }
+            : await (async () => {
+                const expoRequire = createRequire(expoConfigPath!)
+                const { getConfig } = expoRequire('@expo/config')
+                const { resolveRelativeEntryPoint } = expoRequire('@expo/config/paths')
+                const { Updates } = expoRequire('@expo/config-plugins')
+                const { exp, pkg } = getConfig(root)
+                return {
+                  exp,
+                  mainModuleName: resolveRelativeEntryPoint(root, {
+                    platform,
+                    pkg,
+                  }) as string,
+                  runtimeVersion: await Updates.getRuntimeVersionAsync(
+                    root,
+                    {
+                      ...exp,
+                      runtimeVersion: exp.runtimeVersion ?? { policy: 'sdkVersion' },
+                    },
+                    platform
+                  ),
+                }
+              })()
+          const manifest = JSON.stringify({
+            id: randomUUID(),
+            createdAt: new Date().toISOString(),
+            runtimeVersion,
+            launchAsset: {
+              key: 'bundle',
+              contentType: 'application/javascript',
+              url: `http://${hostUri}/${encodeURI(mainModuleName.replace(/^\/+/, ''))}.bundle?platform=${platform}&dev=true&hot=false`,
+            },
+            assets: [],
+            metadata: nativeApp ? { oneNativeApp: true } : {},
+            extra: {
+              eas: { projectId: exp.extra?.eas?.projectId ?? undefined },
+              expoClient: { ...exp, hostUri },
+              expoGo: {
+                debuggerHost: hostUri,
+                developer: { tool: 'expo-cli', projectRoot: root },
+                packagerOpts: { dev: true },
+                mainModuleName,
+              },
+              scopeKey: `@anonymous/${exp.slug}-${anonymousScopeId}`,
+            },
+          })
+
+          const headers: Record<string, string> = {
+            'expo-protocol-version': '0',
+            'expo-sfv-version': '0',
+            'cache-control': 'private, max-age=0',
+          }
+          const accept = String(req.headers.accept || '')
+          if (accept.includes('multipart/mixed')) {
+            const boundary = `vxrn-${randomUUID()}`
+            res.writeHead(200, {
+              ...headers,
+              'content-type': `multipart/mixed; boundary=${boundary}`,
+            })
+            res.end(
+              `--${boundary}\r\ncontent-disposition: form-data; name="manifest"\r\ncontent-type: application/json\r\n\r\n${manifest}\r\n--${boundary}--\r\n`
+            )
+            return
+          }
+          const contentType = accept.includes('application/expo+json')
+            ? 'application/expo+json'
+            : accept.includes('application/json')
+              ? 'application/json'
+              : 'text/plain'
+          res.writeHead(200, { ...headers, 'content-type': contentType })
+          res.end(req.method === 'HEAD' ? undefined : manifest)
+        } catch (error) {
+          res.writeHead(500, { 'Content-Type': 'text/plain' })
+          res.end(error instanceof Error ? error.stack || error.message : String(error))
+        }
+      })
+
       // Native AssetSourceResolver requests the URL registered in the Rolldown
-      // bundle. Install this before React Native's generic middleware, which
-      // otherwise terminates unknown /assets requests with an HTML 404.
+      // bundle. Like Metro, any other project file is served at
+      // `/assets/<project-relative path>`: a splash image or font that only the
+      // app config names is never in the bundle. Install this before React
+      // Native's generic middleware, which otherwise terminates unknown
+      // /assets requests with an HTML 404.
       server.middlewares.use(async (req, res, next) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') return next()
 
@@ -109,7 +273,6 @@ export function createReactNativeDevServerPlugin(
 
         const platform = validPlatforms[url.searchParams.get('platform') || '']
         const engine = platform ? devEngines[platform] : undefined
-        if (!engine) return next()
 
         let pathname: string
         try {
@@ -120,8 +283,11 @@ export function createReactNativeDevServerPlugin(
           return
         }
 
-        const asset = engine.getAsset(pathname, url.searchParams.get('hash') || undefined)
+        const asset =
+          engine?.getAsset(pathname, url.searchParams.get('hash') || undefined) ??
+          getProjectAssetFile(root, pathname)
         if (!asset) {
+          if (!engine) return next()
           res.writeHead(404, { 'Content-Type': 'text/plain' })
           res.end('Native asset not found')
           return
@@ -129,11 +295,49 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const contents = await readFile(asset.filePath)
-          res.writeHead(200, {
+          const headers = {
             'Cache-Control': 'no-cache',
+            'Accept-Ranges': 'bytes',
             'Content-Length': String(contents.byteLength),
             'Content-Type': getNativeAssetContentType(asset.type),
-          })
+          }
+          // avfoundation probes remote media with byte ranges before loading it.
+          // ignore unsupported range units, multipart requests and if-range without
+          // a matching validator; these receive the complete representation.
+          const range =
+            req.method === 'GET' &&
+            !req.headers['if-range'] &&
+            /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '')
+          if (range && (range[1] || range[2])) {
+            const size = contents.byteLength
+            const start = range[1]
+              ? Number(range[1])
+              : Math.max(0, size - Number(range[2]))
+            const end =
+              range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1
+            if (
+              !Number.isSafeInteger(start) ||
+              !Number.isSafeInteger(end) ||
+              start > end ||
+              start >= size
+            ) {
+              res.writeHead(416, {
+                ...headers,
+                'Content-Length': '0',
+                'Content-Range': `bytes */${size}`,
+              })
+              res.end()
+              return
+            }
+            res.writeHead(206, {
+              ...headers,
+              'Content-Length': String(end - start + 1),
+              'Content-Range': `bytes ${start}-${end}/${size}`,
+            })
+            res.end(contents.subarray(start, end + 1))
+            return
+          }
+          res.writeHead(200, headers)
           res.end(req.method === 'HEAD' ? undefined : contents)
         } catch (error) {
           console.error(
@@ -353,6 +557,14 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const bundle = await (await getDevEngine(platform)).getBundle()
+          let body: string | Buffer = bundle.code
+          if (platform === 'ios' && url.searchParams.get('bytecode') === 'hermes') {
+            compileBytecode ||= nativeDevBytecodeCompiler(root)
+            body = await compileBytecode(
+              bundle,
+              `${url.origin}/index.bundle?platform=${platform}`
+            )
+          }
           // a client that connects after this response starts from the current
           // route map and does not need the pending reload intended for the
           // previous runtime.
@@ -365,7 +577,7 @@ export function createReactNativeDevServerPlugin(
             'Cache-Control': 'no-store',
             'Content-Type': 'text/javascript',
           })
-          res.end(bundle.code)
+          res.end(body)
         } catch (err) {
           console.error(` Error building React Native bundle`)
           console.error(err)
@@ -377,7 +589,7 @@ export function createReactNativeDevServerPlugin(
         }
       }
 
-      // handle any .bundle request (expo sdk 55 may use /packages/one/metro-entry.bundle)
+      // handle any metro bundle request
       server.middlewares.use((req, res, next) => {
         if (req.url?.split('?')[0].endsWith('.bundle')) {
           handleRNBundle(req, res, next)

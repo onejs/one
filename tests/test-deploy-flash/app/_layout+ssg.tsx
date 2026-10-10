@@ -1,6 +1,6 @@
 import { Slot } from 'one'
 
-// mirrors soot: root layout is +ssg so the shell is statically generated.
+// mirrors contrast: root layout is +ssg so the shell is statically generated.
 // multiple route groups ((app), (auth), (site)) are resolved by the root
 // navigator during spa-shell hydration.
 export default function RootLayout() {

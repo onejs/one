@@ -4,13 +4,16 @@ title: one dev
 
 Developing an app with One is as simple as `one dev`.
 
-It takes the following arguments:
+It takes the following arguments (see the [CLI reference](/docs/cli) for every command):
 
 ```bash
---clean    # boolean, will clear all caches before running
---host     # string, set the hostname to bind to
---port     # string, set the port to bind to
---debug    # turns on vite debugging
+--clean           # boolean, will clear all caches before running
+--host            # string, set the hostname to bind to
+--port            # string, set the port to bind to
+--mode            # "development" or "production": serve the production bundle from the dev server
+--debug-bundle    # string, write the bundle to a temp file and serve it from there for debugging
+--debug           # string, pass debug args to Vite
+--extra-config    # string, path to an extra Vite config file to merge on top of the project config
 ```
 
 You can also set the port with the `ONE_PORT` or `ONE_FORCE_PORT` environment variables. See [Environment Variables](/docs/environment#server) for details.
@@ -19,15 +22,7 @@ The One development server serves both web and native apps on the same port at t
 
 ## Native Development
 
-The `one dev` command only starts the development server — it does not build or run the native iOS/Android shell. For native development you have two options:
-
-### Using Expo Go
-
-For quick development without custom native dependencies, install [Expo Go](https://apps.apple.com/us/app/expo-go/id982107779) on your device. It will auto-detect from your simulator, or press <kbd>q</kbd>, <kbd>r</kbd> in the terminal to open the app.
-
-### Building the Native Shell
-
-If you need custom native dependencies, you'll need to build the native shell first:
+The `one dev` command only starts the development server — it does not build or run the native iOS/Android shell. One ships native code inside the `one` package, so native development uses your own app build rather than Expo Go:
 
 1. Run `one prebuild` to generate the native Xcode/Android project
 2. Run `one run:ios` or `one run:android` to build and launch the app
@@ -36,4 +31,4 @@ See the [Build or Run the Native iOS App](/docs/guides-ios-native) guide for det
 
 ## Metro Mode
 
-By default, One uses Vite as the native bundler. For production apps, you may want to use [Metro mode](/docs/metro-mode) which provides better stability and compatibility with React Native packages.
+By default, One bundles native apps with Rolldown. If a dependency requires Metro, use [Metro mode](/docs/metro-mode).

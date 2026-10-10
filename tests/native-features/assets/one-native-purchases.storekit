@@ -1,0 +1,27 @@
+{
+  "identifier": "A9B04C71",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "2.99",
+      "familyShareable": false,
+      "internalID": "F0C0A101",
+      "localizations": [
+        {
+          "description": "One StoreKit fixture product",
+          "displayName": "Native Proof Unlock",
+          "locale": "en_US"
+        }
+      ],
+      "productID": "dev.vxrn.native.tests.purchases.unlock",
+      "referenceName": "Native Proof Unlock",
+      "type": "NonConsumable"
+    }
+  ],
+  "settings": {},
+  "subscriptionGroups": [],
+  "version": {
+    "major": 1,
+    "minor": 1
+  }
+}

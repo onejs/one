@@ -1,0 +1,66 @@
+---
+title: Device attestation
+description: Create App Attest keys and assertions, or a DeviceCheck token, on supported iOS devices.
+---
+
+`One.DeviceAttestation` exposes Apple's App Attest and DeviceCheck client
+operations in an iOS native build. Availability depends on the device and app
+registration. Check it before starting either flow.
+
+```tsx
+import { One } from 'one'
+
+const { appAttest, deviceCheck } = One.DeviceAttestation.getAvailability()
+
+if (appAttest) {
+  const keyId = await One.DeviceAttestation.generateKey()
+  // save keyId for this account and app installation
+  const attestationBase64 = await One.DeviceAttestation.attestKey(
+    keyId,
+    clientDataHashBase64
+  )
+  // send keyId, challenge data, and attestationBase64 to your server
+
+  const assertionBase64 = await One.DeviceAttestation.generateAssertion(
+    keyId,
+    nextClientDataHashBase64
+  )
+  // send the new challenge data and assertionBase64 to your server
+}
+
+if (deviceCheck) {
+  const tokenBase64 = await One.DeviceAttestation.generateDeviceToken()
+  // send tokenBase64 to your server to query or update the two device bits
+}
+```
+
+Both hash arguments are the standard base64 encoding of exactly 32 SHA-256
+bytes. Hash unique client data that includes a server challenge. Reuse a key
+identifier for later assertions; generating a key for every request defeats
+the per-installation identity. The native API returns Apple data as base64 and
+does not verify it. Your server must verify the attestation certificate,
+app identifier, challenge, and later assertion signatures and counter. A
+DeviceCheck token also needs Apple's server API; the client cannot read or
+change the two bits itself.
+
+Register the app ID for the services in your Apple Developer account. App
+Attest uses Apple's development environment for a development build unless
+you configure its entitlement otherwise. Development keys do not work in the
+production environment. App Store and TestFlight distribution use production
+regardless of a development entitlement.
+
+Invalid key identifiers or noncanonical, non-32-byte hashes reject with
+`E_DEVICE_ATTESTATION_INPUT`. Unsupported hardware or app contexts reject
+with `E_DEVICE_ATTESTATION_UNAVAILABLE`. Apple operation failures use
+`E_DEVICE_ATTESTATION_GENERATE`, `E_DEVICE_ATTESTATION_ATTEST`,
+`E_DEVICE_ATTESTATION_ASSERTION`, or `E_DEVICE_ATTESTATION_TOKEN`.
+
+The iOS 27 simulator proof covers actual availability, input rejection, and
+the unavailable result for each operation. Key generation, Apple attestation,
+assertions, and DeviceCheck tokens need a registered physical-device proof.
+
+See Apple's [App Attest service](https://developer.apple.com/documentation/devicecheck/dcappattestservice),
+[server validation guide](https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server),
+and [DeviceCheck API](https://developer.apple.com/documentation/devicecheck/dcdevice).
+
+Attestation is implemented on iOS. On Android and web, `getAvailability()` reports both capabilities as `false`; key, token, attestation, and assertion calls reject with `DeviceAttestation.<verb> needs an iOS or Android build`.

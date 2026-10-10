@@ -1,5 +1,5 @@
 import { SizableText, styled, View, YStack, type SizableTextProps } from 'tamagui'
-import { type LinkProps, useLinkTo } from 'one'
+import { Link, type LinkProps } from 'one'
 import { GithubIcon } from '~/features/icons/GithubIcon'
 import { DiscordIcon } from '~/features/icons/DiscordIcon'
 
@@ -9,12 +9,12 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
   return (
     <>
       <HoverableLink
-        mr={-3}
+        marginRight={-3}
         target="_blank"
         href="https://x.com/one__js"
         aria-label="X (formerly Twitter)"
       >
-        <Container miw={large ? 60 : 45}>
+        <Container minWidth={large ? 60 : 45}>
           <svg
             style={{
               width: 44 * scale,
@@ -35,7 +35,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
               d="M323.74 148.35h36.12l-78.91 90.2 92.83 122.73h-72.69l-56.93-74.43-65.15 74.43h-36.14l84.4-96.47-89.05-116.46h74.53l51.46 68.04 59.53-68.04zm-12.68 191.31h20.02l-129.2-170.82H180.4l130.66 170.82z"
             />
           </svg>
-          <SubTitle dsp={large ? 'flex' : 'none'}>X</SubTitle>
+          <SubTitle display={large ? 'flex' : 'none'}>X</SubTitle>
         </Container>
       </HoverableLink>
 
@@ -44,21 +44,21 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
         href="https://github.com/onejs/one"
         aria-label="GitHub"
       >
-        <Container miw={large ? 60 : 45} y={-1}>
+        <Container minWidth={large ? 60 : 45} y={-1}>
           <GithubIcon width={28 * scale} height={28 * scale} aria-hidden="true" />
-          <SubTitle dsp={large ? 'flex' : 'none'}>Github</SubTitle>
+          <SubTitle display={large ? 'flex' : 'none'}>Github</SubTitle>
         </Container>
       </HoverableLink>
 
-      <View dsp={large ? 'flex' : 'none'} $group-card-gtXs={{ dsp: 'inline-flex' }}>
+      <View display={`${large ? 'flex' : 'none'} @gtXs/card:inline-flex`}>
         <HoverableLink
           target="_blank"
           href="https://discord.gg/YpUKRqaFtm"
           aria-label="Discord"
         >
-          <Container miw={large ? 60 : 45}>
+          <Container minWidth={large ? 60 : 45}>
             <DiscordIcon width={25 * scale} height={25 * scale} aria-hidden="true" />
-            <SubTitle dsp={large ? 'flex' : 'none'}>Discord</SubTitle>
+            <SubTitle display={large ? 'flex' : 'none'}>Discord</SubTitle>
           </Container>
         </HoverableLink>
       </View>
@@ -67,33 +67,34 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
 }
 
 const Container = styled(YStack, {
-  gap: '$4',
-  mx: -5,
-  ai: 'center',
+  gap: '4',
+  marginHorizontal: -5,
+  alignItems: 'center',
 })
 
 const SubTitle = styled(SizableText, {
-  size: '$4',
-  als: 'center',
+  size: '4',
+  alignSelf: 'center',
 })
 
 const HoverableLink = (props: SizableTextProps & LinkProps) => {
-  const linkProps = useLinkTo({ href: props.href as any, replace: props.replace })
+  const { href, replace, target, onPress, ...textProps } = props
 
   return (
-    <SizableText
-      render="a"
-      cur="pointer"
-      p="$2"
-      px="$3"
-      o={0.66}
-      hoverStyle={{ o: 1 }}
-      textDecorationColor="transparent"
-      ai="center"
-      jc="center"
-      dsp="inline-flex"
-      {...linkProps}
-      {...props}
-    />
+    <Link href={href} replace={replace} target={target} onPress={onPress} asChild>
+      <SizableText
+        render="a"
+        cursor="pointer"
+        paddingTop="2"
+        paddingBottom="2"
+        paddingHorizontal="3"
+        opacity="0.66 hover:1"
+        textDecorationColor="transparent"
+        {...textProps}
+        alignItems="center"
+        justifyContent="center"
+        display="inline-flex"
+      />
+    </Link>
   )
 }

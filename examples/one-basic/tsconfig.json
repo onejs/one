@@ -10,6 +10,7 @@
     "module": "Preserve",
     "moduleResolution": "Bundler",
     "preserveSymlinks": true,
+    "allowArbitraryExtensions": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
@@ -25,7 +26,6 @@
   },
   "exclude": [
     "node_modules",
-    ".expo",
     "**/test",
     "**/dist",
     "**/types",

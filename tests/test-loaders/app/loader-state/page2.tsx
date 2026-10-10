@@ -30,7 +30,7 @@ export default () => {
   const { data, refetch, state } = useLoaderState(loader)
 
   return (
-    <YStack gap="$4" p="$4">
+    <YStack gap="4" p="4">
       <Text id="page-name">Page: {data.page}</Text>
       <Text id="call-count">Count: {data.callCount}</Text>
 

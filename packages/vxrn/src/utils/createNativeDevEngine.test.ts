@@ -1,5 +1,5 @@
 import { existsSync, realpathSync } from 'node:fs'
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
@@ -59,7 +59,7 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
         })
       )
       const previousPlugins = globalThis.__vxrnAddNativePlugins
-      globalThis.__vxrnAddNativePlugins = [plugins[0]]
+      globalThis.__vxrnAddNativePlugins = () => [plugins[0]]
       const configuredPlugins: Plugin[] = [
         plugins[1],
         {
@@ -399,6 +399,16 @@ async function createWorkletsProject(throwOnTransform = true) {
 }
 
 describe('native prelude', () => {
+  it('sets matching One and Expo platform values', () => {
+    const context = {}
+
+    runInNewContext(getNativePrelude({ dev: false, platform: 'android' }), context)
+
+    const runtimeProcess = Reflect.get(context, 'process')
+    expect(runtimeProcess.env.ONE_PLATFORM).toBe('android')
+    expect(runtimeProcess.env.EXPO_OS).toBe('android')
+  })
+
   it('does not advertise a host event API that cannot remove listeners', () => {
     const context = {
       addEventListener() {},
@@ -973,6 +983,52 @@ describe('native production import.meta lowering', () => {
   })
 })
 
+describe('native production react-native deep imports', () => {
+  it('resolves react native subpaths that are missing from its exports map', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-deep-import-'))
+    const reactNativeRoot = join(testRoot, 'node_modules', 'react-native')
+    await mkdir(join(reactNativeRoot, 'src', 'private', 'featureflags'), {
+      recursive: true,
+    })
+    // react native 0.87 narrowed package.json exports to explicit subpaths and
+    // dropped the old `./*` / `./src/*` patterns, so a deep import like
+    // `react-native/src/private/featureflags/Flags` no longer matches the export
+    // map. metro still resolves it from the filesystem, and so must we —
+    // @react-native/virtualized-lists itself imports RN that way.
+    await writeFile(
+      join(reactNativeRoot, 'package.json'),
+      JSON.stringify({
+        name: 'react-native',
+        version: '0.0.0',
+        main: './index.js',
+        exports: { '.': './index.js', './package.json': './package.json' },
+      })
+    )
+    await writeFile(
+      join(reactNativeRoot, 'src', 'private', 'featureflags', 'Flags.js'),
+      `module.exports.deepImportResolved = true`
+    )
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `globalThis.__vxrnNativeDeepImportProbe = require('react-native/src/private/featureflags/Flags').deepImportResolved`
+    )
+
+    try {
+      const result = await buildNativeBundle({
+        root: testRoot,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+
+      const context = { globalThis: {}, process: { env: {} } }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context.globalThis, '__vxrnNativeDeepImportProbe')).toBe(true)
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native animated guard transform', () => {
   it('preserves line count and returns a composable source map', async () => {
     const plugin = nativeAnimatedGuardPlugin()
@@ -1025,7 +1081,10 @@ describe('getNativeTransformConfig platform env defines', () => {
         // sibling platform vars that already worked — guard against accidental removal
         expect(define['import.meta.env.VITE_ENVIRONMENT']).toBe(JSON.stringify(platform))
         expect(define['import.meta.env.VITE_NATIVE']).toBe('"1"')
+        expect(define['import.meta.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
+        expect(define['process.env.ONE_PLATFORM']).toBe(JSON.stringify(platform))
         expect(define['import.meta.env.EXPO_OS']).toBe(JSON.stringify(platform))
+        expect(define['process.env.EXPO_OS']).toBe(JSON.stringify(platform))
 
         // the whole import.meta.env object (used by JSON.stringify(import.meta.env)) must carry it too
         const envObject = JSON.parse(define['import.meta.env'] as string)
@@ -1035,8 +1094,8 @@ describe('getNativeTransformConfig platform env defines', () => {
     }
   }
 
-  it('inlines EXPO_PUBLIC values supplied by the native build environment', () => {
-    const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
+  it('inlines One and Expo aliases supplied by the native build environment', () => {
+    const key = 'ONE_PUBLIC_VXRN_NATIVE_ENV_PROBE'
     const previous = process.env[key]
     process.env[key] = 'native-env-value'
 
@@ -1044,9 +1103,30 @@ describe('getNativeTransformConfig platform env defines', () => {
       const { define } = getNativeTransformConfig('ios', false, root)
       expect(define[`process.env.${key}`]).toBe('"native-env-value"')
       expect(define[`import.meta.env.${key}`]).toBe('"native-env-value"')
+      expect(define['process.env.EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBe(
+        '"native-env-value"'
+      )
+      expect(define['import.meta.env.EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBe(
+        '"native-env-value"'
+      )
       expect(JSON.parse(define['import.meta.env'] as string)[key]).toBe(
         'native-env-value'
       )
+    } finally {
+      if (previous === undefined) delete process.env[key]
+      else process.env[key] = previous
+    }
+  })
+
+  it('accepts Expo public input without creating a One alias', () => {
+    const key = 'EXPO_PUBLIC_VXRN_NATIVE_ENV_PROBE'
+    const previous = process.env[key]
+    process.env[key] = 'native-env-value'
+
+    try {
+      const { define } = getNativeTransformConfig('ios', false, root)
+      expect(define[`process.env.${key}`]).toBe('"native-env-value"')
+      expect(define['process.env.ONE_PUBLIC_VXRN_NATIVE_ENV_PROBE']).toBeUndefined()
     } finally {
       if (previous === undefined) delete process.env[key]
       else process.env[key] = previous
@@ -1141,6 +1221,72 @@ describe('getHermesSWCIncludes', () => {
     ])
     expect(result.code).not.toContain('async function*')
     expect(result.code).not.toContain('async function *')
+  })
+
+  it.each([true, false])('lowers complete class hierarchies for Hermes (dev=%s)', async (dev) => {
+    const plugin = hermesCompatSWCPlugin(dev)
+    const result = await Reflect.apply(plugin.transform as Function, undefined, [
+      `class Base { value = 2; getValue() { return this.value } }
+       class Derived extends Base { extra = 3; getValue() { return super.getValue() + this.extra } }
+       globalThis.__classProbe = new Derived().getValue()`,
+      '/project/classes.ts',
+    ])
+    expect(result.code).not.toMatch(/\bclass\s+(?:Base|Derived|extends)/)
+    const context: any = {}
+    runInNewContext(result.code, context)
+    expect(context.__classProbe).toBe(5)
+  })
+
+  it('lowers constructor block bindings before production name mangling', async () => {
+    const plugin = hermesCompatSWCPlugin(false)
+    const result = await Reflect.apply(plugin.transform as Function, undefined, [
+      `class Client {
+         constructor(options) {
+           if (options.dsn) { let url = options.url; this.url = url }
+           this.callbacks = []
+           for (let index = 0; index < 2; index++) this.callbacks.push(() => index)
+         }
+       }
+       globalThis.__constructorScope = new Client({dsn: true, url: 3})`,
+      '/project/constructor-scope.js',
+    ])
+    expect(result.code).not.toMatch(/\b(?:let|const)\s/)
+    const context: any = {}
+    runInNewContext(result.code, context)
+    expect(context.__constructorScope.url).toBe(3)
+    const values = Array.from(context.__constructorScope.callbacks, (callback: any) => callback())
+    expect(values).toEqual([0, 1])
+  })
+
+  it.each([true, false])('preserves class-free parameter shadowing for Hermes (dev=%s)', async (dev) => {
+    const plugin = hermesCompatSWCPlugin(dev)
+    const result = await Reflect.apply(plugin.transform as Function, undefined, [
+      `function createStore(config) {
+         if (!globalThis.factory) {
+           const config = { install() { globalThis.factory = value => value.id } }
+           config.install()
+         }
+         return globalThis.factory(config)
+       }
+       globalThis.__storeId = createStore({id: 'device'})`,
+      '/project/class-free-storage.js',
+    ])
+    expect(result.code).not.toMatch(/\b(?:let|const)\s/)
+    const context: any = {}
+    runInNewContext(result.code, context)
+    expect(context.__storeId).toBe('device')
+  })
+
+  it('lowers classes in large prebuilt modules', async () => {
+    const plugin = hermesCompatSWCPlugin(false)
+    const result = await Reflect.apply(plugin.transform as Function, undefined, [
+      '/*' + ' '.repeat(500_000) + '*/ class Large { value = 7 } globalThis.__largeClass = new Large().value',
+      '/project/prebuilt.js',
+    ])
+    expect(result.code).not.toMatch(/\bclass\s+Large/)
+    const context: any = {}
+    runInNewContext(result.code, context)
+    expect(context.__largeClass).toBe(7)
   })
 
   it('downlevels private fields, public class fields, and static blocks for Hermes', async () => {
@@ -1343,7 +1489,11 @@ describe('native required transform failures', () => {
       const spy = vi
         .spyOn(compiler, 'transformWorklets')
         .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: true,
+        enableNativeWorklets: true,
+      })
+      expect(compiler.isNativeWorkletsEnabled()).toBe(true)
 
       try {
         const plugin = vxrnCompilerPlugin('ios', dev, testRoot)
@@ -1359,7 +1509,10 @@ describe('native required transform failures', () => {
         ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
       } finally {
         spy.mockRestore()
-        compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+        compiler.configureVXRNCompilerPlugin({
+          enableReanimated: false,
+          enableNativeWorklets: false,
+        })
         await rm(testRoot, { recursive: true, force: true })
       }
     }
@@ -1371,7 +1524,11 @@ describe('native required transform failures', () => {
     const spy = vi
       .spyOn(compiler, 'transformWorklets')
       .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
-    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    expect(compiler.isNativeWorkletsEnabled()).toBe(true)
     let resolveOutput!: (output: unknown) => void
     const output = new Promise<unknown>((resolve) => {
       resolveOutput = resolve
@@ -1394,7 +1551,10 @@ describe('native required transform failures', () => {
     } finally {
       spy.mockRestore()
       await engine.close()
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
       await rm(testRoot, { recursive: true, force: true })
     }
   })
@@ -1405,7 +1565,11 @@ describe('native required transform failures', () => {
     const spy = vi
       .spyOn(compiler, 'transformWorklets')
       .mockRejectedValue(new Error('NATIVE_TRANSFORM_NEGATIVE_CONTROL'))
-    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    expect(compiler.isNativeWorkletsEnabled()).toBe(true)
 
     try {
       await expect(
@@ -1417,7 +1581,10 @@ describe('native required transform failures', () => {
       ).rejects.toThrow('NATIVE_TRANSFORM_NEGATIVE_CONTROL')
     } finally {
       spy.mockRestore()
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
       await rm(testRoot, { recursive: true, force: true })
     }
   })
@@ -1439,7 +1606,11 @@ describe('native required transform failures', () => {
   it('returns maps for every required production transform', async () => {
     const testRoot = await createWorkletsProject(false)
     const compiler = await import('@vxrn/compiler')
-    compiler.configureVXRNCompilerPlugin({ enableReanimated: true })
+    compiler.configureVXRNCompilerPlugin({
+      enableReanimated: true,
+      enableNativeWorklets: true,
+    })
+    expect(compiler.isNativeWorkletsEnabled()).toBe(true)
 
     try {
       const compilerPlugin = vxrnCompilerPlugin('ios', false, testRoot, true)
@@ -1462,7 +1633,10 @@ describe('native required transform failures', () => {
       ])
       expect(hermesResult.map).toBeTruthy()
     } finally {
-      compiler.configureVXRNCompilerPlugin({ enableReanimated: false })
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: false,
+        enableNativeWorklets: false,
+      })
       await rm(testRoot, { recursive: true, force: true })
     }
   })
@@ -1592,7 +1766,7 @@ export async function* probe() { throw new Error("MARKER"); }
     }
   })
 
-  it('transforms worklets via native Rust/Wasm SWC with zero Babel execution and accurate sourcemaps', async () => {
+  it('transforms worklets via One OXC with zero Babel execution and accurate sourcemaps', async () => {
     const { TraceMap, originalPositionFor } = await import('@jridgewell/trace-mapping')
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
@@ -1654,7 +1828,7 @@ export function Box() {
     }
   })
 
-  it('retains the existing Babel backend by default when enableNativeWorklets is false for auto-detected Reanimated and ordinary configured worklets plugin', async () => {
+  it('respects an explicitly configured Babel plugin when One worklet compilation is disabled', async () => {
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
     const babelSpy = vi.spyOn(compiler, 'transformBabel').mockResolvedValue({
@@ -1662,7 +1836,7 @@ export function Box() {
     } as any)
     const workletSpy = vi.spyOn(compiler, 'transformWorklets')
 
-    // enableReanimated is auto-detected, but enableNativeWorklets is NOT explicitly enabled
+    // this tests explicit Babel configuration, not automatic backend selection.
     compiler.configureVXRNCompilerPlugin({
       enableReanimated: true,
       enableNativeWorklets: false,
@@ -1684,7 +1858,7 @@ export function Box() {
       const result = await Reflect.apply(plugin.transform, undefined, [inputCode, id])
 
       expect(result).toBeDefined()
-      // Retained existing Babel backend: Babel was called with the plugin
+      // the caller explicitly supplied this Babel plugin.
       expect(babelSpy).toHaveBeenCalledWith(
         id,
         inputCode,
@@ -1692,7 +1866,7 @@ export function Box() {
           plugins: expect.arrayContaining(['react-native-reanimated/plugin']),
         })
       )
-      // Native SWC was NOT called
+      // One compilation was disabled by the caller.
       expect(workletSpy).not.toHaveBeenCalled()
     } finally {
       babelSpy.mockRestore()
@@ -1705,7 +1879,7 @@ export function Box() {
     }
   })
 
-  it('intercepts tuple worklet plugins with options, executes native SWC with options, and skips Babel when enableNativeWorklets is true', async () => {
+  it('intercepts tuple worklet plugins with options, executes One OXC with options, and skips Babel when enableNativeWorklets is true', async () => {
     const compiler = await import('@vxrn/compiler')
     const { vi } = await import('vitest')
     const babelSpy = vi.spyOn(compiler, 'transformBabel')
@@ -1792,8 +1966,14 @@ globalThis.minifyProbe = describeHeader()`
   }
 
   function runFixture(code: string) {
-    const context: Record<string, unknown> = { console }
-    runInNewContext(code, context)
+    const context = createContext({ console })
+    runInContext(code, context)
+    expect(
+      runInContext(
+        'Object.getOwnPropertyDescriptor(globalThis, "describeHeader")',
+        context
+      )
+    ).toBeUndefined()
     return Reflect.get(context, 'minifyProbe')
   }
 
@@ -1851,6 +2031,191 @@ globalThis.minifyProbe = describeHeader()`
 })
 
 describe('native production assets', () => {
+  it.each(['ios', 'android'] as const)('preserves CommonJS package main exports on %s', async (platform) => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-cjs-main-'))
+    try {
+      const directory = join(root, 'node_modules', 'native-punycode')
+      await mkdir(directory, { recursive: true })
+      await writeFile(
+        join(directory, 'package.json'),
+        JSON.stringify({ name: 'native-punycode', main: './cjs.js', module: './esm.mjs' })
+      )
+      await writeFile(
+        join(directory, 'cjs.js'),
+        `module.exports = { ucs2: { decode: value => Array.from(value) } }`
+      )
+      await writeFile(
+        join(directory, 'esm.mjs'),
+        `export default { ucs2: { decode: value => Array.from(value) } }`
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `import imported from 'native-punycode'
+         const required = require('native-punycode')
+         globalThis.decoded = [required.ucs2.decode('ab').join(','), imported.ucs2.decode('cd').join(',')]`
+      )
+      const result = await buildNativeBundle({ root, platform, entryFile: 'entry.js' })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'decoded')).toEqual(['a,b', 'c,d'])
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('uses browser fallbacks and mappings after React Native overrides', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-browser-'))
+    try {
+      for (const [name, manifest] of Object.entries({
+        mapped: { main: './node.js', browser: { './node.js': './browser.js' } },
+        identity: {
+          main: './index.js',
+          browser: { './node': './browser' },
+          'react-native': { './node': './node' },
+        },
+        fallback: { main: './node.js', browser: './browser.js' },
+        conditional: { exports: { browser: './browser.js', default: './node.js' } },
+        both: {
+          exports: {
+            browser: './browser.js',
+            'react-native': './native.js',
+            default: './node.js',
+          },
+        },
+        native: {
+          main: './node.js',
+          browser: './browser.js',
+          'react-native': './native.js',
+        },
+      })) {
+        const directory = join(root, 'node_modules', name)
+        await mkdir(directory, { recursive: true })
+        await writeFile(
+          join(directory, 'package.json'),
+          JSON.stringify({ name, ...manifest })
+        )
+        await writeFile(join(directory, 'index.js'), `module.exports = require('./node')`)
+        for (const target of ['node', 'browser', 'native']) {
+          await writeFile(join(directory, `${target}.js`), `module.exports = '${target}'`)
+        }
+      }
+      await writeFile(
+        join(root, 'entry.js'),
+        `globalThis.targets = [require('mapped'), require('fallback'), require('conditional'), require('both'), require('native'), require('identity')]`
+      )
+      const result = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'targets')).toEqual([
+        'browser',
+        'browser',
+        'browser',
+        'native',
+        'native',
+        'node',
+      ])
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it('uses runtime exports for declaration aliases while preserving source aliases', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-declaration-alias-'))
+    const packageRoot = join(root, 'node_modules/example')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(
+      join(packageRoot, 'package.json'),
+      JSON.stringify({
+        name: 'example',
+        type: 'module',
+        exports: { './value': { import: './esm.js', require: './cjs.cjs' } },
+      })
+    )
+    await writeFile(join(packageRoot, 'esm.js'), 'export const value = 42')
+    await writeFile(join(packageRoot, 'cjs.cjs'), 'exports.value = 43')
+    await writeFile(join(root, 'runtime.js'), 'export const value = 44')
+    await writeFile(
+      join(root, 'declaration.d.ts'),
+      'export class Value { constructor(); }'
+    )
+    await writeFile(
+      join(root, 'tsconfig.json'),
+      JSON.stringify({
+        compilerOptions: {
+          paths: {
+            'example/value': ['./declaration.d.ts'],
+            '@runtime': ['./runtime.js'],
+          },
+        },
+      })
+    )
+    await writeFile(
+      join(root, 'entry.ts'),
+      `import { value } from 'example/value'; import { value as local } from '@runtime'; globalThis.aliasValues = [value, require('example/value').value, local]`
+    )
+    try {
+      const result = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.ts',
+      })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'aliasValues')).toEqual([42, 43, 44])
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
+  it.each(['legacy', 'exported'])(
+    'shares the %s React Native asset registry with library imports',
+    async (registryKind) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-native-registry-'))
+      const rnRoot = join(root, 'node_modules/react-native')
+      const registryRoot = join(root, 'node_modules/@react-native/assets-registry')
+      await mkdir(join(rnRoot, 'src'), { recursive: true })
+      await mkdir(registryRoot, { recursive: true })
+      await writeFile(
+        join(rnRoot, 'package.json'),
+        JSON.stringify({ name: 'react-native', main: 'index.js' })
+      )
+      await writeFile(join(rnRoot, 'index.js'), 'export {}')
+      await writeFile(
+        join(registryRoot, 'package.json'),
+        JSON.stringify({ name: '@react-native/assets-registry' })
+      )
+      const registryFile =
+        registryKind === 'exported'
+          ? join(rnRoot, 'src/asset-registry.js')
+          : join(registryRoot, 'registry.js')
+      await writeFile(
+        registryFile,
+        'const assets = []; export function registerAsset(asset) { return assets.push(asset) }; export function getAssetByID(id) { return assets[id - 1] }'
+      )
+      await writeFile(join(root, 'icon.png'), 'icon')
+      await writeFile(
+        join(root, 'entry.js'),
+        `import icon from './icon.png'; import { getAssetByID } from '@react-native/assets-registry/registry'; globalThis.registryAsset = getAssetByID(icon)`
+      )
+      try {
+        const result = await buildNativeBundle({
+          root,
+          entryFile: 'entry.js',
+          platform: 'ios',
+        })
+        const context = createContext({ console })
+        runInContext(result.code, context)
+        expect(context.registryAsset.name).toBe('icon')
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+
   it('registers scale siblings and keeps monorepo assets inside assetsDest', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-assets-'))
     const appRoot = join(testRoot, 'workspace/apps/native-app')
@@ -1862,6 +2227,8 @@ describe('native production assets', () => {
     await writeFile(join(appAssets, 'icon.png'), 'icon-1x')
     await writeFile(join(appAssets, 'icon@2x.png'), 'icon-2x')
     await writeFile(join(appAssets, 'icon@3x.png'), 'icon-3x')
+    const animationBytes = Buffer.from([0x50, 0x4b, 0xff, 0x00])
+    await writeFile(join(appAssets, 'animation.lottie'), animationBytes)
     await writeFile(join(packageAssets, 'back.png'), 'back-1x')
     await writeFile(join(packageAssets, 'back@2x.png'), 'back-2x')
     await writeFile(
@@ -1869,7 +2236,8 @@ describe('native production assets', () => {
       `
 import icon from './assets/icon.png'
 import back from '../../node_modules/example/assets/back.png'
-globalThis.__nativeAssetProbe = [icon, back]
+import animation from './assets/animation.lottie'
+globalThis.__nativeAssetProbe = [icon, back, animation]
 `
     )
 
@@ -1922,7 +2290,11 @@ globalThis.__nativeAssetProbe = [icon, back]
       expect(registered.map((asset) => [asset.name, asset.scales])).toEqual([
         ['icon', [1, 2, 3]],
         ['back', [1, 2]],
+        ['animation', [1]],
       ])
+      expect(await readFile(join(assetsDest, 'assets/assets/animation.lottie'))).toEqual(
+        animationBytes
+      )
       for (const file of ['icon.png', 'icon@2x.png', 'icon@3x.png']) {
         expect(existsSync(join(assetsDest, 'assets/assets', file))).toBe(true)
       }
@@ -2107,6 +2479,36 @@ globalThis.__vxrnConditionalExportProbe = helper()
 })
 
 describe('native Flow sources', () => {
+  it('strips typed arrows and class fields without a Flow pragma or type import', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-unmarked-flow-'))
+    await writeFile(
+      join(root, 'entry.js'),
+      `
+const URI = { isFileURI: (uri: string): boolean => uri.startsWith('file://') }
+class Response {
+  taskId: string;
+  lengthComputable: boolean = false;
+  onabort: (event: string) => void = () => {};
+  constructor(id: string) { this.taskId = id }
+}
+function filePath(path: string) { return new Response(path).taskId }
+globalThis.unmarkedFlowResult = URI.isFileURI(filePath('file://'))
+`
+    )
+    try {
+      const result = await buildNativeBundle({
+        root,
+        platform: 'ios',
+        entryFile: 'entry.js',
+      })
+      const context = { console }
+      runInNewContext(result.code, context)
+      expect(Reflect.get(context, 'unmarkedFlowResult')).toBe(true)
+    } finally {
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it.each(['', `/* ${'license text '.repeat(150)} */\n`])(
     'strips third-party Flow following a license header (%#)',
     async (license) => {
@@ -2277,4 +2679,65 @@ describe('postProcessNativeBundle', () => {
     expect(out).not.toContain('export {')
     expect(out.split('\n')[4]).toBe('var b = 2;')
   })
+})
+
+describe('native package context identity', () => {
+  it.each(['@tamagui/web', '@tamagui/adapt'])(
+    'shares %s contexts with dependencies containing a second package copy',
+    async (packageName) => {
+      const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-context-')))
+      const consumer = join(root, 'node_modules/consumer')
+      const packages = [
+        join(root, `node_modules/${packageName}`),
+        join(consumer, `node_modules/${packageName}`),
+      ]
+      for (const packageRoot of packages) {
+        await mkdir(packageRoot, { recursive: true })
+        await writeFile(
+          join(packageRoot, 'package.json'),
+          JSON.stringify({
+            name: packageName,
+            type: 'module',
+            exports: {
+              '.': { 'react-native': './native.js', default: './web.js' },
+              './internal-runtime': './native.js',
+            },
+          })
+        )
+        await writeFile(
+          join(packageRoot, 'native.js'),
+          'export const context = { platform: "native" }'
+        )
+        await writeFile(
+          join(packageRoot, 'web.js'),
+          'export const context = { platform: "web" }'
+        )
+      }
+      await writeFile(
+        join(consumer, 'package.json'),
+        JSON.stringify({ name: 'consumer', main: 'index.js', type: 'module' })
+      )
+      await writeFile(
+        join(consumer, 'index.js'),
+        `export { context } from '${packageName}/internal-runtime'`
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `import { context } from '${packageName}'; import { context as nested } from 'consumer'; globalThis.contextIdentity = [context === nested, context.platform]`
+      )
+      try {
+        const bundle = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev: false,
+        })
+        const context: any = {}
+        runInNewContext(bundle.code, context)
+        expect(context.contextIdentity).toEqual([true, 'native'])
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
 })

@@ -1,7 +1,6 @@
 import { View } from '@tamagui/core'
 import React, { useState } from 'react'
 import type { ViewProps } from 'tamagui'
-import { ReleaseStatus } from '../../components/ReleaseStatus'
 
 export const OneBall = (props) => {
   const scaleDownBy = (1 / 20) * (props.size ?? 1)
@@ -99,20 +98,19 @@ export const OneBall = (props) => {
 export function OneLogo({
   size = 1,
   animate,
-  minimal,
   ...props
-}: ViewProps & { size?: number; animate?: boolean; minimal?: boolean }) {
+}: ViewProps & { size?: number; animate?: boolean }) {
   const [start, setStart] = React.useState(false)
   const scaleDownBy = 0.12 * size
 
   return (
     <View
-      pos="relative"
+      position="relative"
       width={1840 * scaleDownBy}
       height={1451 * scaleDownBy}
       x={-23 * size}
-      mt={-28 * size}
-      mb={-30 * size}
+      marginTop={-28 * size}
+      marginBottom={-30 * size}
       transformOrigin="left top"
       onMouseEnter={() => {
         if (animate) {
@@ -153,22 +151,6 @@ export function OneLogo({
           zIndex: -1,
         }}
       />
-
-      {!minimal && (
-        <View
-          pos="absolute"
-          t={20}
-          r={-60}
-          transition="quickest"
-          y={0}
-          mr={5}
-          pe="auto"
-          scale={10 * scaleDownBy}
-          transformOrigin="center top"
-        >
-          <ReleaseStatus />
-        </View>
-      )}
     </View>
   )
 }
@@ -216,11 +198,11 @@ function OneBallAnimation({
     <View
       // opacity={0}
       // $group-hover={{ opacity: 1 }}
-      pos="absolute"
-      w={size}
-      h={size}
-      t={65 * sizeProp}
-      l={180 * sizeProp}
+      position="absolute"
+      width={size}
+      height={size}
+      top={65 * sizeProp}
+      left={180 * sizeProp}
       onMouseEnter={() => setHovered(true)}
       userSelect="none"
     >

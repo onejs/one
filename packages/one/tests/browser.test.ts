@@ -1,0 +1,180 @@
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { Browser } from '../src/platform/browser/index'
+
+vi.mock('react-native-nitro-modules', () => ({
+  NitroModules: { createHybridObject: vi.fn() },
+}))
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
+
+async function loadNativeEntry(hybrid: unknown) {
+  vi.resetModules()
+  const { NitroModules } = await import('react-native-nitro-modules')
+  vi.mocked(NitroModules.createHybridObject).mockReturnValue(hybrid as never)
+  return import('../src/platform/browser/index.native')
+}
+
+describe('browser web', () => {
+  it('opens a blank-target popup and reports opened', async () => {
+    const popup = { closed: false, opener: {} }
+    const open = vi.fn(() => popup)
+    vi.stubGlobal('window', { open })
+    expect(await Browser.open('https://example.com')).toEqual({ type: 'opened' })
+    expect(open).toHaveBeenCalledWith('https://example.com', '_blank')
+    expect(popup.opener).toBe(null)
+  })
+
+  it('rejects with a stable code when the browser blocks the popup', async () => {
+    vi.stubGlobal('window', { open: () => null })
+    const openError = await Browser.open('https://example.com').catch((error) => error)
+    expect(openError).toBeInstanceOf(Error)
+    expect(openError.message).toBe(
+      'Browser.open: the browser blocked the popup. Open it from a user gesture.'
+    )
+    expect(openError.code).toBe('E_BROWSER_BLOCKED')
+  })
+
+  it('resolves dismiss without native work', async () => {
+    expect(await Browser.dismiss()).toEqual({ type: 'dismiss' })
+  })
+
+  it('rejects the auth session on web without opening a popup', async () => {
+    const open = vi.fn(() => ({ closed: false }))
+    vi.stubGlobal('window', { open })
+    await expect(Browser.openAuthSession('https://example.com')).rejects.toThrow(
+      'Browser.openAuthSession needs an iOS or Android build'
+    )
+    expect(open).not.toHaveBeenCalled()
+  })
+
+  it('dismissAuthSession is a no-op on web', () => {
+    Browser.dismissAuthSession()
+  })
+
+  it('returns false for a valid launch hint without opening a popup', async () => {
+    const open = vi.fn()
+    vi.stubGlobal('window', { open })
+    await expect(Browser.mayLaunchUrl('https://example.com')).resolves.toBe(false)
+    expect(open).not.toHaveBeenCalled()
+  })
+
+  it('throws synchronously for invalid arguments', () => {
+    expect(() => Browser.open('')).toThrow('Browser.open: url must be a non-empty string')
+    expect(() => Browser.open('https://example.com', 'nope' as never)).toThrow(
+      'Browser.open: options must be an object'
+    )
+    expect(() =>
+      Browser.open('https://example.com', { presentationStyle: 'huge' as never })
+    ).toThrow('Browser.open: unknown presentationStyle "huge"')
+    expect(() =>
+      Browser.open('https://example.com', { presentationStyle: 'popover' as never })
+    ).toThrow('Browser.open: unknown presentationStyle "popover"')
+    expect(() =>
+      Browser.open('https://example.com', { browserPackage: 7 as never })
+    ).toThrow('Browser.open: browserPackage must be a string')
+    expect(() =>
+      Browser.openAuthSession('https://example.com', 7 as never)
+    ).toThrow('Browser.openAuthSession: redirectUrl must be a string or null')
+    expect(() =>
+      Browser.openAuthSession('https://example.com', null, {
+        preferEphemeralSession: 'yes' as never,
+      })
+    ).toThrow('Browser.openAuthSession: preferEphemeralSession must be a boolean')
+  })
+
+  it('exposes the namespace object', () => {
+    expect(Object.keys(Browser).sort()).toEqual([
+      'dismiss',
+      'dismissAuthSession',
+      'mayLaunchUrl',
+      'open',
+      'openAuthSession',
+      'warmup',
+    ])
+    expect(Object.isFrozen(Browser)).toBe(true)
+  })
+})
+
+describe.each(['web', 'native'] as const)(
+  'browser %s launch hint validation',
+  (entry) => {
+    it.each(['', 123, null, undefined, {}, []].map((url) => ({ url })))(
+      'rejects invalid url $url synchronously without platform work',
+      async ({ url }) => {
+        const open = vi.fn()
+        vi.stubGlobal('window', { open })
+        const mayLaunchUrl = vi.fn()
+        const browser =
+          entry === 'web' ? Browser : (await loadNativeEntry({ mayLaunchUrl })).Browser
+        const { NitroModules } = await import('react-native-nitro-modules')
+        vi.mocked(NitroModules.createHybridObject).mockClear()
+
+        expect(() => browser.mayLaunchUrl(url as never)).toThrow(
+          'Browser.mayLaunchUrl: url must be a non-empty string'
+        )
+        expect(open).not.toHaveBeenCalled()
+        expect(NitroModules.createHybridObject).not.toHaveBeenCalled()
+        expect(mayLaunchUrl).not.toHaveBeenCalled()
+      }
+    )
+  }
+)
+
+describe('browser native entry', () => {
+  it('delegates every call', async () => {
+    const nativeModule = {
+      open: vi.fn(async () => ({ type: 'opened' })),
+      dismiss: vi.fn(async () => ({ type: 'dismiss' })),
+      openAuthSession: vi.fn(async (): Promise<{ type: string; url?: string }> => ({
+        type: 'success',
+        url: 'a://b',
+      })),
+      dismissAuthSession: vi.fn(),
+      warmup: vi.fn(async () => true),
+      mayLaunchUrl: vi.fn(async () => true),
+    }
+    const { Browser: native } = await loadNativeEntry(nativeModule)
+    expect(await native.open('https://example.com')).toEqual({ type: 'opened' })
+    expect(nativeModule.open).toHaveBeenCalledWith('https://example.com', {})
+    expect(await native.dismiss()).toEqual({ type: 'dismiss' })
+    expect(await native.openAuthSession('https://example.com', 'a://b')).toEqual({
+      type: 'success',
+      url: 'a://b',
+    })
+    expect(nativeModule.openAuthSession).toHaveBeenCalledWith(
+      'https://example.com',
+      'a://b',
+      {}
+    )
+    nativeModule.openAuthSession.mockResolvedValueOnce({ type: 'cancel' })
+    expect(await native.openAuthSession('https://example.com')).toEqual({ type: 'cancel' })
+    expect(nativeModule.openAuthSession).toHaveBeenLastCalledWith(
+      'https://example.com',
+      undefined,
+      {}
+    )
+    native.dismissAuthSession()
+    expect(nativeModule.dismissAuthSession).toHaveBeenCalledTimes(1)
+    expect(await native.warmup()).toBe(true)
+    expect(nativeModule.warmup).toHaveBeenCalled()
+    expect(await native.mayLaunchUrl('https://example.com')).toBe(true)
+    expect(nativeModule.mayLaunchUrl).toHaveBeenCalledWith('https://example.com', undefined)
+  })
+
+  it('throws the same argument checks as the web entry', async () => {
+    const { Browser: native } = await loadNativeEntry(null)
+    expect(() => native.open('')).toThrow('Browser.open: url must be a non-empty string')
+    expect(() =>
+      native.open('https://example.com', { presentationStyle: 'huge' as never })
+    ).toThrow('Browser.open: unknown presentationStyle "huge"')
+    expect(() =>
+      native.open('https://example.com', { presentationStyle: 'popover' as never })
+    ).toThrow('Browser.open: unknown presentationStyle "popover"')
+    expect(() => native.openAuthSession('https://example.com', 7 as never)).toThrow(
+      'Browser.openAuthSession: redirectUrl must be a string or null'
+    )
+  })
+})
+

@@ -1,13 +1,32 @@
-import { readFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
-import { glob } from 'glob'
 import { docsRoutes } from '~/features/docs/docsRoutes'
+import { nativeRoutes } from '~/features/docs/nativeRoutes'
+
+// bundled at build time so the route reads no filesystem at runtime (workers have none)
+const docsSources = byFileName(
+  import.meta.glob<string>('../data/docs/*.mdx', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  })
+)
+const nativeSources = byFileName(
+  import.meta.glob<string>('../data/native/*.mdx', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  })
+)
+
+function byFileName(sources: Record<string, string>) {
+  return new Map(
+    Object.entries(sources).map(([path, source]) => [path.split('/').pop()!, source])
+  )
+}
 
 export async function GET() {
   try {
-    // Get all MDX files from the docs directory
-    const docsPath = join(process.cwd(), 'data/docs')
-    const mdxFiles = await glob('*.mdx', { cwd: docsPath })
+    const mdxFiles = [...docsSources.keys()]
+    const nativeMdxFiles = [...nativeSources.keys()]
 
     let consolidatedContent = '# One Framework - Complete Documentation #\n\n'
     consolidatedContent +=
@@ -32,13 +51,34 @@ export async function GET() {
     orderedFiles.push(...remainingFiles.sort())
 
     for (const file of orderedFiles) {
-      const filePath = join(docsPath, file)
-      const resolvedFilePath = resolve(filePath)
-      if (!resolvedFilePath.startsWith(resolve(docsPath))) {
-        throw new Error(`Path traversal detected: ${filePath}`)
+      consolidatedContent += docsSources.get(file)
+      consolidatedContent += '\n\n\n\n'
+    }
+
+    // Native docs, ordered by nativeRoutes structure (/native index first)
+    consolidatedContent += '# One Framework - Native Documentation #\n\n'
+
+    const orderedNativeFiles: string[] = []
+
+    for (const section of nativeRoutes) {
+      if (section.pages) {
+        for (const page of section.pages) {
+          const filename =
+            (page.route.replace('/native', '') || '/overview').replace('/', '') + '.mdx'
+          if (nativeMdxFiles.includes(filename)) {
+            orderedNativeFiles.push(filename)
+          }
+        }
       }
-      const content = await readFile(resolvedFilePath, 'utf-8')
-      consolidatedContent += content
+    }
+
+    const remainingNativeFiles = nativeMdxFiles.filter(
+      (file) => !orderedNativeFiles.includes(file)
+    )
+    orderedNativeFiles.push(...remainingNativeFiles.sort())
+
+    for (const file of orderedNativeFiles) {
+      consolidatedContent += nativeSources.get(file)
       consolidatedContent += '\n\n\n\n'
     }
 

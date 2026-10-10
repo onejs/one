@@ -240,11 +240,11 @@ function updatePackageJsonVersions(version: string, dir: string) {
   const packageJsonPath = path.join(dir, 'package.json')
   if (existsSync(packageJsonPath)) {
     const content = readFileSync(packageJsonPath).toString()
-    // https://yarnpkg.com/features/workspaces#cross-references
-    const contentWithUpdatedVersions = content
-      .replace(/"workspace:\^"/gm, `"^${version}"`)
-      .replace(/"workspace:~"/gm, `"~${version}"`)
-      .replace(/"workspace:\*"/gm, `"^${version}"`)
+    // pin the matching release; ranges can resolve to unrelated legacy packages
+    const contentWithUpdatedVersions = content.replace(
+      /"workspace:(?:\^|~|\*)"/gm,
+      `"${version}"`
+    )
     writeFileSync(packageJsonPath, contentWithUpdatedVersions)
   }
 }

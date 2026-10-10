@@ -1,0 +1,363 @@
+---
+title: iOS Media and Empty States
+description: Image, shapes, VideoPlayer, LivePhotoView, WebView, PhotosPicker, Map, ContentUnavailableView, and EmptyView under One.iOS
+---
+
+<NativeHero
+  src="/native/ios-media.webp"
+  alt="One.iOS shapes, SF Symbols in several rendering modes, and a ContentUnavailableView"
+/>
+
+Media, shapes, and empty states under `One.iOS`, drawn by SwiftUI.
+
+- `Image` draws an SF Symbol, or a remote image that toolbars can tint.
+- Shapes fill the box React Native gives them.
+- `VideoPlayer`, `LivePhotoView`, and `WebView` play and show content.
+- `ContentUnavailableView` and `EmptyView` fill the gaps.
+- Every view here throws on web and Android. Keep them in an iOS branch or an
+  `.ios.tsx` file.
+
+Every view also accepts `accessibilityLabel`, `accessibilityHint`,
+`accessibilityValue`, `testID`, `style`, `onLayout`, and `swiftStyle`.
+
+## Image
+
+`One.iOS.Image` draws an SF Symbol by name, or a remote image from `uri`.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Image systemName="cloud.sun.rain.fill" symbolRenderingMode="multicolor" imageScale="large" />
+<One.iOS.Image systemName="wifi" variableValue={0.5} />
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ImageProps"
+  data={[
+    { name: 'systemName', type: 'SFSymbolName | ""', default: '""', description: 'The SF Symbol to draw.' },
+    { name: 'uri', type: 'string', default: '""', description: 'A remote image to draw in place of a symbol. It fills its frame.' },
+    { name: 'renderingMode', type: '"original" | "template"', default: '"original"', description: 'template lets a toolbar tint a remote image.' },
+    {
+      name: 'symbolRenderingMode',
+      type: 'SymbolRenderingMode | ""',
+      default: '""',
+      description: 'monochrome, multicolor, hierarchical, or palette.',
+    },
+    {
+      name: 'symbolVariant',
+      type: 'SymbolVariants | ""',
+      default: '""',
+      description: 'none, circle, square, rectangle, fill, or slash.',
+    },
+    { name: 'imageScale', type: 'ImageScale | ""', default: '""', description: 'small, medium, or large.' },
+    { name: 'variableValue', type: 'number', description: 'From 0 to 1, for symbols that fill in steps.' },
+    { name: 'colorRole', type: 'IconColorRole | ""', default: '""', description: 'A system color role, as in One.UI.Icon.' },
+    { name: 'resizable', type: 'boolean', default: 'false', description: 'Scales a symbol to its frame instead of its point size.' },
+  ]}
+/>
+
+`""` leaves a modifier unset. Size a symbol with `swiftStyle={{ fontSize }}`
+and give the view a matching `width` and `height`, or React Native lays it out
+smaller than the glyph and neighbors overlap it.
+
+For bundled, remote, and cross-platform images, use
+[One.UI.Image](/native/image) instead.
+
+## Shapes
+
+`Circle`, `Capsule`, `Rectangle`, `Ellipse`, `RoundedRectangle`,
+`UnevenRoundedRectangle`, and `ConcentricRectangle` fill a SwiftUI shape with
+`fill`, a color value. Every shape except `ConcentricRectangle` also takes
+`strokeBorder`, a color drawn inside its edge over the fill, `lineWidth` points
+wide. A shape fills the box React Native gives it.
+
+<PropsTable
+  title="RoundedRectangle"
+  source="generated/controlTypes.ts#RoundedRectangleProps"
+  data={[
+    { name: 'fill', type: 'ColorValue', description: 'The fill color. Every shape takes it.' },
+    { name: 'strokeBorder', type: 'ColorValue', description: 'A border color drawn inside the edge.' },
+    { name: 'lineWidth', type: 'number', default: '1', description: 'The border width in points.' },
+    { name: 'cornerRadius', type: 'number', default: '0', description: 'The corner radius in points.' },
+  ]}
+/>
+
+<PropsTable
+  title="UnevenRoundedRectangle"
+  source="generated/controlTypes.ts#UnevenRoundedRectangleProps"
+  data={[
+    { name: 'fill', type: 'ColorValue', description: 'The fill color.' },
+    { name: 'strokeBorder', type: 'ColorValue', description: 'A border color drawn inside the edge.' },
+    { name: 'lineWidth', type: 'number', default: '1', description: 'The border width in points.' },
+    { name: 'topLeadingRadius', type: 'number', default: '0', description: 'The top leading corner.' },
+    { name: 'bottomLeadingRadius', type: 'number', default: '0', description: 'The bottom leading corner.' },
+    { name: 'bottomTrailingRadius', type: 'number', default: '0', description: 'The bottom trailing corner.' },
+    { name: 'topTrailingRadius', type: 'number', default: '0', description: 'The top trailing corner.' },
+  ]}
+/>
+
+`ConcentricRectangle` needs iOS 26 and takes its corners from the enclosing
+container shape. With none, its corners can be square.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Circle fill="red" />
+<One.iOS.Ellipse fill="blue" />
+<One.iOS.RoundedRectangle fill="blue" cornerRadius={12} />
+<One.iOS.Capsule fill="white" strokeBorder="gray" lineWidth={2} />
+<One.iOS.UnevenRoundedRectangle fill="green" topLeadingRadius={16} bottomTrailingRadius={16} />
+<One.iOS.ConcentricRectangle fill="orange" style={{ width: 120, height: 80 }} />
+```
+
+## VideoPlayer
+
+`One.iOS.VideoPlayer` plays a local `file://` or remote video from `url` with
+AVKit's native transport controls. `autoplay` starts playback when a URL loads.
+The player keeps its position when other props change and creates a new player
+only when `url` changes.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.VideoPlayer url="https://example.com/trailer.mp4" autoplay />
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#VideoPlayerProps"
+  data={[
+    { name: 'url', type: 'string', default: '""', description: 'A file:// or remote video. A new url makes a new player.' },
+    { name: 'autoplay', type: 'boolean', default: 'false', description: 'Plays once the video loads.' },
+    { name: 'command', type: '"play" | "pause" | "seek" | ""', default: '""', description: 'A command to run. See below.' },
+    { name: 'commandRevision', type: 'number', default: '0', description: 'Increase to run command again.' },
+    { name: 'seekToMs', type: 'number', default: '0', description: 'Where a seek goes, in milliseconds.' },
+    {
+      name: 'onPlaybackStatus',
+      type: '(state: string, positionMs: number, durationMs: number) => void',
+      description: 'loading, playing, paused, ended, or failed, with the time.',
+    },
+  ]}
+/>
+
+Set `command` to `play`, `pause`, or `seek` and increment `commandRevision` for
+each command, including repeated commands of the same kind. For `seek`, pass a
+nonnegative `seekToMs`. Revisions start at 1 and increase for the lifetime of
+the view. `onPlaybackStatus(state, positionMs, durationMs)` reports `loading`,
+`playing`, `paused`, `ended`, or `failed` and the player's current time and
+duration in milliseconds. Unknown or indefinite duration is reported as 0.
+Status arrives on state changes, after commands, and about twice per second
+while playing. Native transport taps also change the reported status.
+
+```tsx
+import { useState } from 'react'
+import { Button, View } from 'react-native'
+import { One } from 'one'
+
+function ControlledVideo() {
+  const [control, setControl] = useState({ command: '' as '' | 'play' | 'pause' | 'seek', revision: 0, seekToMs: 0 })
+  const send = (command: 'play' | 'pause' | 'seek', seekToMs = 0) =>
+    setControl((previous) => ({ command, seekToMs, revision: previous.revision + 1 }))
+
+  return <View>
+    <One.iOS.VideoPlayer
+      url="https://example.com/trailer.mp4"
+      style={{ height: 220 }}
+      command={control.command}
+      commandRevision={control.revision}
+      seekToMs={control.seekToMs}
+      onPlaybackStatus={(state, positionMs, durationMs) => console.log(state, positionMs, durationMs)}
+    />
+    <Button title="Play" onPress={() => send('play')} />
+    <Button title="Pause" onPress={() => send('pause')} />
+    <Button title="Skip to 10s" onPress={() => send('seek', 10_000)} />
+  </View>
+}
+```
+
+The player follows the app's audio session. This view does not publish Now
+Playing metadata or remote transport callbacks. `One.Audio` manages a
+separate player and its own remote commands. Playback during backgrounding,
+cross-app audio arbitration, and picture in picture need device proof.
+
+## LivePhotoView
+
+`One.iOS.LivePhotoView` displays and plays a Live Photo already in the Photos
+library. Request read access with `One.PhotoLibrary.requestReadPermission()`,
+then pass the `identifier` of an asset whose `isLivePhoto` is `true`. Give the
+view an explicit size. It loads a nondegraded `PHLivePhoto` and shows its key
+photo at `ready`. It does not capture or assemble a still and video pair.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#LivePhotoViewProps"
+  data={[
+    { name: 'assetIdentifier', required: true, type: 'string', description: 'The Photos local identifier of a Live Photo.' },
+    { name: 'autoplay', type: 'boolean', default: 'false', description: 'Plays once the Live Photo is ready.' },
+    { name: 'command', type: '"play" | "stop" | ""', default: '""', description: 'A command to run.' },
+    { name: 'commandRevision', type: 'number', default: '0', description: 'Increase to run command again.' },
+    { name: 'onPlaybackState', type: '(state: string, errorCode: string) => void', description: 'loading, ready, playing, ended, or failed.' },
+  ]}
+/>
+
+```tsx
+import { useState } from 'react'
+import { Button, View } from 'react-native'
+import { One } from 'one'
+
+function LivePhoto({ assetIdentifier }: { assetIdentifier: string }) {
+  const [control, setControl] = useState({ command: '' as '' | 'play' | 'stop', revision: 0 })
+  const send = (command: 'play' | 'stop') =>
+    setControl((previous) => ({ command, revision: previous.revision + 1 }))
+
+  return <View>
+    <One.iOS.LivePhotoView
+      assetIdentifier={assetIdentifier}
+      style={{ width: 320, height: 240 }}
+      command={control.command}
+      commandRevision={control.revision}
+      onPlaybackState={(state, errorCode) => console.log(state, errorCode)}
+    />
+    <Button title="Play" onPress={() => send('play')} />
+    <Button title="Stop" onPress={() => send('stop')} />
+  </View>
+}
+```
+
+`autoplay` starts when the nondegraded Live Photo reaches `ready`. Otherwise,
+send `play` or `stop` with an increasing positive `commandRevision`. Revisions
+increase for the lifetime of the view, including repeated commands. The event
+order for a normal full play is `loading`, `ready`, `playing`, `ended`.
+`stop` returns to `ready` and shows the key photo. `onPlaybackState` receives
+`(state, errorCode)`; `errorCode` is `''` unless `state` is `failed`.
+
+Failures report `E_LIVE_PHOTO_INPUT` for a blank identifier supplied directly
+to the native component, `E_LIVE_PHOTO_PERMISSION` without Photos read access,
+`E_LIVE_PHOTO_NOT_FOUND` for an unknown or inaccessible asset,
+`E_LIVE_PHOTO_NOT_LIVE` for an ordinary image, or `E_LIVE_PHOTO_LOAD` if Photos
+cannot supply the Live Photo. The JavaScript wrapper rejects a blank identifier
+before mounting. The loader uses local Photos data and does not download an
+iCloud original; a cloud-only asset may fail with `E_LIVE_PHOTO_LOAD`.
+
+## WebView
+
+`One.iOS.WebView` embeds web content from `url` or an `html` string.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#WebViewProps"
+  data={[
+    { name: 'url', type: 'string', default: '""', description: 'The page to load.' },
+    { name: 'html', type: 'string', default: '""', description: 'Markup to load in place of a url.' },
+    { name: 'script', type: 'string', default: '""', description: 'JavaScript to insert at document start.' },
+    { name: 'command', type: '"reload" | "goBack" | "goForward" | "evaluate" | "postMessage" | ""', default: '""', description: 'A command to run. See below.' },
+    { name: 'commandRevision', type: 'number', default: '0', description: 'Increase to run command again.' },
+    { name: 'commandValue', type: 'string', default: '""', description: 'The script or message for evaluate and postMessage.' },
+    { name: 'limitsNavigationsToAppBoundDomains', type: 'boolean', default: 'false', description: 'Only allow app-bound domains.' },
+    { name: 'inlineMedia', type: 'boolean', default: 'false', description: 'Play page media inline.' },
+    { name: 'inspectable', type: 'boolean', default: 'false', description: 'Expose the page to Safari devtools.' },
+    { name: 'bounces', type: 'boolean', default: 'true', description: 'Rubber-band past the content edge.' },
+    { name: 'onNavigate', type: '(url: string) => void', description: 'The page URL changed.' },
+    { name: 'onTitleChange', type: '(title: string) => void', description: 'The page title changed.' },
+    { name: 'onLoadingChange', type: '(loading: boolean, progress: number) => void', description: 'Loading started, progressed, or ended.' },
+    { name: 'onLoadStart', type: '() => void', description: 'A navigation started.' },
+    { name: 'onLoadEnd', type: '() => void', description: 'A navigation finished.' },
+    { name: 'onError', type: '(message: string) => void', description: 'A load failed.' },
+    { name: 'onHttpError', type: '(statusCode: number) => void', description: 'A response carried an HTTP error status.' },
+    { name: 'onMessage', type: '(data: string) => void', description: 'The page posted a bridge message.' },
+    { name: 'onHistoryChange', type: '(canGoBack: boolean, canGoForward: boolean) => void', description: 'Back-forward availability changed.' },
+    { name: 'onProcessTerminate', type: '() => void', description: 'The web content process ended.' },
+    {
+      name: 'backForwardNavigationGestures',
+      type: 'BackForwardNavigationGesturesBehavior | ""',
+      default: '""',
+      description: 'Edge swipes to go back and forward.',
+    },
+    { name: 'magnificationGestures', type: 'MagnificationGesturesBehavior | ""', default: '""', description: 'Pinch to zoom.' },
+    { name: 'linkPreviews', type: 'LinkPreviewBehavior | ""', default: '""', description: 'Long press link previews.' },
+    { name: 'elementFullscreen', type: 'ElementFullscreenBehavior | ""', default: '""', description: 'Lets page video go full screen.' },
+    { name: 'contentBackground', type: 'Visibility | ""', default: '""', description: 'The web view background.' },
+  ]}
+/>
+
+The gesture and behavior props take `automatic`, `enabled`, or `disabled`, and
+`""` leaves them unset. Use `html` for markup already in the app. Updating that string loads the new
+document and reports its title through `onTitleChange`; give the view an
+explicit height because WebView fills its React Native box.
+
+Set `command` to `reload`, `goBack`, `goForward`, `evaluate`, or `postMessage`
+and increment `commandRevision` for each command, including repeated commands
+of the same kind. `evaluate` runs `commandValue` as JavaScript; `postMessage`
+dispatches a `message` event whose `data` is `commandValue`. The page calls
+`window.ReactNativeWebView.postMessage` to reach `onMessage`. `script` runs at
+document start but rebuilds the page when it changes, so it is for fixed page
+setup rather than repeated calls.
+
+## PhotosPicker
+
+`One.iOS.PhotosPicker` is documented with the other pickers in
+[iOS Pickers](/native/ios-pickers#photospicker).
+
+## Map
+
+`One.iOS.Map` is the SwiftUI map.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#MapProps"
+  data={[
+    { name: 'latitude', type: 'number', default: '37.7749', description: 'The region center.' },
+    { name: 'longitude', type: 'number', default: '-122.4194', description: 'The region center.' },
+    { name: 'distance', type: 'number', default: '5000', description: 'How far the camera sits from the center, in meters.' },
+    { name: 'markers', required: true, type: 'readonly MapMarker[]', description: 'Pins, each { id, label, latitude, longitude }.' },
+    {
+      name: 'onRegionChange',
+      type: '(latitude: number, longitude: number, distance: number) => void',
+      description: 'The region when a move ends.',
+    },
+  ]}
+/>
+
+For a cross-platform map with polylines, polygons, and circles, use
+[One.UI.Map](/native/map) instead.
+
+## ContentUnavailableView
+
+`One.iOS.ContentUnavailableView` renders an empty state with action
+buttons. Give it a height or `flex: 1`; it fills the area React Native assigns. A
+React state update after an action can change the view or replace it.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.ContentUnavailableView
+  title="No results"
+  systemImage="magnifyingglass"
+  description="Try a different search."
+  actions={[{ id: 'retry', label: 'Retry' }]}
+  onAction={(id) => id === 'retry' && reload()}
+/>
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ContentUnavailableViewProps"
+  data={[
+    { name: 'title', type: 'string', default: '""', description: 'The headline.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol above the title.' },
+    { name: 'description', type: 'string', default: '""', description: 'Text under the title.' },
+    { name: 'actions', required: true, type: 'readonly DialogAction[]', description: 'Buttons, each { id, label, role }.' },
+    { name: 'onAction', type: '(id: string) => void', description: 'A tapped action.' },
+  ]}
+/>
+
+## EmptyView
+
+`One.iOS.EmptyView` renders nothing. It is a placeholder where SwiftUI
+expects a view, with no props beyond the shared view props.
+Inside a SwiftUI `HStack`, it adds no visible element or extra spacing.
+It has zero visible height. In a React Native container with `gap`, the gaps
+on either side still apply to its position in the child list.
+
+On web and Android these views throw. Keep them behind a platform check.

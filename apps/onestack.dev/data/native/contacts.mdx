@@ -1,0 +1,75 @@
+---
+title: Contacts
+description: Request access, find contacts, and create, edit, or delete them on iOS
+---
+
+`One.Contacts` uses the iOS Contacts store. Set a purpose string before
+prebuild so the system can show the permission prompt:
+
+```ts
+contacts: { usage: 'Find people to invite.' }
+```
+
+Prebuild sets `NSContactsUsageDescription`.
+
+```tsx
+import { One } from 'one'
+
+const permission = await One.Contacts.requestPermission()
+if (permission === 'authorized' || permission === 'limited') {
+  const matches = await One.Contacts.search('Ada', 20)
+  console.log(matches.map(({ givenName, familyName }) => `${givenName} ${familyName}`))
+}
+```
+
+`getPermissionStatus()` reads without prompting. The status can be
+`notDetermined`, `restricted`, `denied`, `authorized`, or `limited`. Limited
+access returns only contacts the person has shared with the app.
+
+`pickContact()` opens Apple's system contact picker and resolves with the
+selected contact in the same shape as `search`, or `undefined` when the person
+cancels. The picker exposes only the chosen contact and does not request
+Contacts permission. Call it from a visible screen; a concurrent picker or
+missing presentation surface rejects with `E_CONTACTS_PICKER`.
+
+`search(name, limit = 100)` returns at most 100 matching contacts with an
+identifier, given and family names, phone number strings, email address
+strings, and structured postal addresses. It requires a nonempty name and a whole-number limit from 1 to 100.
+`create({ givenName, familyName, phoneNumbers, emailAddresses, postalAddresses })` saves a
+contact and returns its identifier. `update(identifier, changes)` edits any
+combination of these fields and returns the updated contact. Omitted fields
+keep their values. Supplied phone and email arrays replace their whole field;
+entries with the same value keep their existing iOS labels, while new entries
+use the default label. An empty array clears that field. Blank phone and email
+entries are rejected by both create and update. A contact
+must keep at least one given or family name if either name is changed.
+`postalAddresses` is optional at create time and replaces the whole address
+field when supplied to update. Each address accepts `label`, `street`,
+`subLocality`, `city`, `subAdministrativeArea`, `state`, `postalCode`, `country`,
+and `isoCountryCode`; at least one address part must be nonblank. Search and
+update return all these parts and the raw iOS label. An omitted label uses
+the iOS home label for a new address. On update, an unchanged value with an
+omitted or unchanged label keeps its native label and identifier. An empty
+array clears addresses.
+`delete(identifier)` removes a contact the app is allowed to change. Ask the
+person before changing their contacts. Search and writes run away from the UI
+thread.
+
+Missing usage text rejects with `E_CONTACTS_MANIFEST`; missing access with
+`E_CONTACTS_PERMISSION`; invalid input with `E_CONTACTS_INPUT`. Editing an
+unknown identifier on update or delete rejects with `E_CONTACTS_NOT_FOUND`. Store failures use
+`E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. Contacts are implemented on iOS and Android. On Android, the address book runs over ContactsContract with `native.app.contacts.usage`; there is no limited tier. Web and SSR return denied address-book permission and empty searches. Picker and save calls that return a contact reject with `Contacts.<verb> needs an iOS or Android build` where unimplemented; deletion does nothing there. Contact notes require an Apple-granted
+entitlement and are not exposed.
+
+See [Apple's Contacts access guide](https://developer.apple.com/documentation/contacts/accessing-the-contact-store)
+for how full and limited access differ.
+
+On browsers with the Contact Picker API, `pickContact()` opens the system picker
+from a user gesture and returns one selected contact. Cancellation returns
+`undefined`. The picker grants access to that selection only; it does not grant
+address-book permission. The display name is returned as `givenName`, with an
+empty family name and identifier because the browser exposes neither separate
+name fields nor a stable contact identifier. Phone, email, and postal fields are
+requested only when supported. Search, create, update, and delete retain their
+unavailable contracts. Browsers without Contact Picker keep the existing
+`Contacts.pickContact` rejection.

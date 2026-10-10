@@ -35,6 +35,7 @@ export * from './transformWorklets'
 export * from './reactNativeCodegen'
 export * from './transformHermesLoops'
 export * from './transformHermesAsync'
+export * from './transformHermesClasses'
 export { clearTransformCache } from './cache'
 export { JS_GLOBALS } from './worklets/globals'
 export { getClosureVariables } from './worklets/scope'
@@ -162,10 +163,14 @@ async function performBabelTransform({
   }
 
   if (userTransform !== 'swc' && userTransform !== 'oxc') {
-    const babelOptions = getBabelOptions({
+    let babelOptions = getBabelOptions({
       ...transformProps,
       userSetting: userTransform,
     })
+    // worklets run without requesting a babel pass.
+    if (!babelOptions && shouldTransformWorklets({ id, code })) {
+      babelOptions = { plugins: [] }
+    }
 
     if (babelOptions) {
       const hasCompilerPlugin = babelOptions.plugins?.some(
@@ -643,6 +648,11 @@ ${rootJS.code}
       transform(code, _id) {
         if (this.environment.name !== 'client') return
         if (code.includes(runtimePublicPath)) return // already wrapped
+        // vite's special queries (the same pattern as its SPECIAL_QUERY_RE) make
+        // a string, url, or worker wrapper module, never the component source.
+        // wrapping one imports the refresh runtime, which writes to `window` and
+        // so throws when a worker imports `Foo.tsx?raw`.
+        if (/[?&](?:worker|sharedworker|raw|url)\b/.test(_id)) return
 
         const id = _id.split('?')[0]
         if (id.includes('node_modules')) return

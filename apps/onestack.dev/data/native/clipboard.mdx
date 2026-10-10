@@ -1,0 +1,16 @@
+---
+title: Clipboard
+description: String clipboard backed by the native pasteboard
+---
+
+String clipboard through `One.Clipboard`. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+
+```tsx
+import { One } from 'one'
+
+await One.Clipboard.setString('hello')
+const text = await One.Clipboard.getString()
+const has = await One.Clipboard.hasString()
+```
+
+`setString` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.

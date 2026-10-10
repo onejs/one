@@ -1,0 +1,45 @@
+---
+title: Authentication
+description: Sign in with Apple on iOS
+---
+
+`One.Auth.Apple` runs Sign in with Apple on iOS. A user who backs out resolves `{ type: 'cancel' }` instead of rejecting.
+
+```tsx
+import { One } from 'one'
+
+export async function signInWithApple() {
+  if (!One.Auth.Apple.isAvailable) return null
+  const result = await One.Auth.Apple.signIn({
+    requestedScopes: ['fullName', 'email'],
+  })
+  return result.type === 'success' ? result.credential : null
+}
+```
+
+`isAvailable` is `true` on iOS and `false` on Android and web, where `signIn` and `getCredentialState` reject with `Auth.Apple.signIn needs an iOS build`.
+
+`signIn(options?)` takes `requestedScopes` (`'fullName'` and `'email'`), `state`, and `nonce`. It resolves `{ type: 'success', credential }` or `{ type: 'cancel' }`. The credential has `user`, `state`, `fullName`, `email`, `realUserStatus`, `identityToken`, and `authorizationCode`. Apple sends `fullName` and `email` only on the first authorization for an app, so store them then; later sign ins return `null` for both. Send `identityToken` and `authorizationCode` to your server, which verifies them and owns the session.
+
+`getCredentialState(user)` resolves `'authorized'`, `'revoked'`, `'notFound'`, or `'transferred'`. A revoked credential means the user stopped using Apple ID with your app, so end their session.
+
+Set `native.app.ios.usesAppleSignIn: true` so `one prebuild` adds the `com.apple.developer.applesignin` entitlement:
+
+```ts fileName=vite.config.ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'MyApp',
+          ios: { bundleId: 'com.example.myapp', usesAppleSignIn: true },
+        },
+      },
+    }),
+  ],
+}
+```
+
+For the system button, use [`One.iOS.SignInWithAppleButton`](/native/ios-buttons-toggles#signinwithapplebutton). It runs the same flow and reports through `onCompletion`. Any other button can call `One.Auth.Apple.signIn` instead.

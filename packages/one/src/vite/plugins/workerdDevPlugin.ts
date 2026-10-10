@@ -12,6 +12,7 @@ import { getManifest } from '../getManifest'
 import { getRouterRootFromOneOptions } from '../../utils/getRouterRootFromOneOptions'
 import type { RouteIndex } from '../../utils/routeIndex'
 import type { One, RouteInfo } from '../types'
+import { absorbedPackageAliases } from '../../utils/absorbedPackages'
 import {
   createCloudflareWranglerConfig,
   getCloudflareProjectNameSync,
@@ -285,13 +286,7 @@ export function createWorkerdDevPlugins(
     : ['/@vite/client', virtalEntryIdClient]
 
   const empty = resolvePath('@vxrn/vite-plugin-metro/empty', root)
-  const rnWebAssetRegistry = resolvePath(
-    'react-native-web/dist/modules/AssetRegistry',
-    root
-  )
-  const rnWebPkg = resolvePath('react-native-web/package.json', root)
-  const rnWeb = resolvePath('react-native-web', root)
-  const safeArea = resolvePath('@vxrn/safe-area', root)
+  const absorbed = absorbedPackageAliases(root, 'web')
 
   const preparePlugin: Plugin = {
     name: 'one:workerd-dev-prepare',
@@ -332,7 +327,7 @@ export function createWorkerdDevPlugins(
     // worker aliases with a worker-only resolveId (rolldown cannot parse RN Flow)
     resolveId: {
       filter: {
-        id: /^(react-native(\/|$)|react-native-safe-area-context$|@react-native\/assets-registry\/registry$)/,
+        id: /^(react-native(\/|$|-safe-area-context$)|@react-native\/assets-registry\/registry$)/,
       },
       handler(source) {
         if (this.environment.name !== 'worker') return
@@ -343,10 +338,11 @@ export function createWorkerdDevPlugins(
           source === 'react-native/asset-registry' ||
           source === '@react-native/assets-registry/registry'
         )
-          return rnWebAssetRegistry
-        if (source === 'react-native/package.json') return rnWebPkg
-        if (source === 'react-native') return rnWeb
-        if (source === 'react-native-safe-area-context') return safeArea
+          return resolvePath('react-native-web/dist/modules/AssetRegistry', root)
+        if (source === 'react-native/package.json')
+          return resolvePath('react-native-web/package.json', root)
+        if (source === 'react-native') return resolvePath('react-native-web', root)
+        if (source in absorbed) return absorbed[source]
       },
     },
 

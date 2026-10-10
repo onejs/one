@@ -2,7 +2,7 @@ import { Image as Image2, type ImageProps, isWeb, View } from 'tamagui'
 
 export function Image({ src, ...props }: ImageProps) {
   return isWeb ? (
-    <View userSelect="none" pe="none" ov="hidden" {...props}>
+    <View userSelect="none" pointerEvents="none" overflow="hidden" {...props}>
       <img
         src={src}
         style={{

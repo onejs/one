@@ -1,0 +1,360 @@
+import { describe, expect, test } from 'vitest'
+import {
+  expoClientFromNativeApp,
+  validateNativeApp,
+  type NativeAppManifest,
+} from './nativeAppManifest'
+
+const app = {
+  name: 'MyApp',
+  displayName: 'My App',
+  scheme: ['myapp', 'myapp-dev'],
+  version: '1.0.0',
+  imagePicker: { camera: 'Take profile photos.' },
+  ios: {
+    bundleId: 'dev.one.myapp',
+    buildNumber: '42',
+    tablet: true,
+    deploymentTarget: '17.0',
+    screensGamma: true,
+    useFrameworks: 'static',
+    ccache: true,
+    usesNonExemptEncryption: false,
+  },
+  android: { applicationId: 'dev.one.myapp', versionCode: 42, minSdk: 28 },
+} satisfies NativeAppManifest
+
+describe('native.app manifest', () => {
+  test('accepts a valid manifest', () => {
+    expect(() => validateNativeApp(app)).not.toThrow()
+    expect(() => validateNativeApp(app, 'ios')).not.toThrow()
+    expect(() => validateNativeApp(app, 'android')).not.toThrow()
+    expect(validateNativeApp(app)).toBe(app)
+  })
+
+  test('rejects invalid target names and schemes', () => {
+    expect(() => validateNativeApp({} as any)).toThrow(/name/)
+    expect(() => validateNativeApp({ name: 'my-app' } as any)).toThrow(/name/)
+    expect(() => validateNativeApp({ ...app, scheme: 'not a scheme' })).toThrow(/scheme/)
+  })
+
+  test('rejects bad versions, icons, and splashes', () => {
+    expect(() => validateNativeApp({ ...app, version: 'latest' })).toThrow(/version/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        icon: { source: '', backgroundColor: '#000000' },
+      })
+    ).toThrow(/icon/)
+    expect(() => validateNativeApp({
+      ...app, ios: { ...app.ios, alternateIcons: {
+        TestAlternate: { source: 'alternate.svg', backgroundColor: '#123456' },
+      } },
+    })).toThrow(/requires a primary icon/)
+    expect(() => validateNativeApp({
+      ...app, icon: { source: 'primary.svg', backgroundColor: '#123456' },
+      ios: { ...app.ios, alternateIcons: {
+        AppIcon: { source: 'alternate.svg', backgroundColor: '#123456' },
+      } },
+    })).toThrow(/other than AppIcon/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: 'black' },
+      })
+    ).toThrow(/splash/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: '#000000', width: 0.99 },
+      })
+    ).toThrow(/splash/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        splash: { source: './splash.png', backgroundColor: '#000000', width: 289 },
+      })
+    ).toThrow(/splash/)
+  })
+
+  test('requires both speech usage strings', () => {
+    const speech = { recognition: 'Dictate messages.', microphone: 'Dictate messages.' }
+    expect(() => validateNativeApp({ ...app, speech })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, speech: { ...speech, microphone: ' ' } })).toThrow(
+      /speech\.recognition and speech\.microphone/
+    )
+  })
+
+  test('requires an audio recording prompt', () => {
+    expect(() => validateNativeApp({ ...app, audio: { microphone: 'Record notes.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, audio: { background: true } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, audio: {} })).toThrow(/audio must configure/)
+    expect(() => validateNativeApp({ ...app, audio: { background: 'yes' } as any })).toThrow(
+      /audio\.background/
+    )
+    expect(() => validateNativeApp({ ...app, audio: { microphone: ' ' } })).toThrow(
+      /audio\.microphone/
+    )
+  })
+
+  test('requires a Photos purpose string for each configured access level', () => {
+    expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: 'Save edits.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, photoLibrary: { readWrite: 'Browse photos.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, photoLibrary: {} })).toThrow(
+      /photoLibrary must configure/
+    )
+    expect(() => validateNativeApp({ ...app, photoLibrary: null } as any)).toThrow(
+      /photoLibrary must configure/
+    )
+    expect(() => validateNativeApp({ ...app, photoLibrary: { addOnly: ' ' } })).toThrow(
+      /photoLibrary\.addOnly/
+    )
+    expect(() => validateNativeApp({ ...app, photoLibrary: { readWrite: ' ' } })).toThrow(
+      /photoLibrary\.readWrite/
+    )
+  })
+
+  test('requires a Contacts purpose string', () => {
+    expect(() => validateNativeApp({ ...app, contacts: { usage: 'Find people.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, contacts: null } as any)).toThrow(/contacts\.usage/)
+    expect(() => validateNativeApp({ ...app, contacts: { usage: ' ' } })).toThrow(
+      /contacts\.usage/
+    )
+  })
+
+  test('requires a Calendar purpose string', () => {
+    expect(() => validateNativeApp({ ...app, calendar: { usage: 'Show events.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, calendar: { remindersUsage: 'Manage tasks.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, calendar: {} })).toThrow(/calendar\.usage/)
+    expect(() => validateNativeApp({ ...app, calendar: null } as any)).toThrow(/calendar\.usage/)
+    expect(() => validateNativeApp({ ...app, calendar: { usage: ' ' } })).toThrow(/calendar\.usage/)
+    expect(() => validateNativeApp({ ...app, calendar: { remindersUsage: ' ' } })).toThrow(
+      /calendar\.remindersUsage/
+    )
+  })
+
+  test('accepts a camera permission string and rejects empty ones', () => {
+    expect(() => validateNativeApp({ ...app, imagePicker: undefined })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, imagePicker: { camera: '' } })).toThrow(
+      /imagePicker\.camera/
+    )
+    expect(() => validateNativeApp({ ...app, imagePicker: { camera: '   ' } })).toThrow(
+      /imagePicker\.camera/
+    )
+  })
+
+  test('requires a non-empty foreground location usage string', () => {
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.' } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.', background: true } })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: 'Find me.', background: 'yes' } } as any)).toThrow(/location\.background/)
+    expect(() => validateNativeApp({ ...app, location: null } as any)).toThrow(/location\.whenInUse/)
+    expect(() => validateNativeApp({ ...app, location: { whenInUse: ' ' } })).toThrow(
+      /location\.whenInUse/
+    )
+  })
+
+  test('validates the iOS widget target and App Group before prebuild', () => {
+    const widgets = {
+      appGroup: 'group.dev.one.myapp',
+      kind: 'MyAppStatus',
+      displayName: 'Status',
+      description: 'Current status',
+    }
+    expect(() =>
+      validateNativeApp({ ...app, ios: { ...app.ios, widgets } })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { ...app.ios, widgets: { ...widgets, pushNotifications: 'yes' as any } },
+      })
+    ).toThrow(/pushNotifications/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { ...app.ios, deploymentTarget: '16.4', widgets },
+      })
+    ).toThrow(/deploymentTarget/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { ...app.ios, widgets: { ...widgets, appGroup: 'dev.one.myapp' } },
+      })
+    ).toThrow(/appGroup/)
+  })
+
+  test('validates static App Intent identifiers and shortcut phrases', () => {
+    const first = {
+      id: 'dev.one.myapp.echo',
+      title: 'Echo text',
+      textParameterTitle: 'Text',
+      shortcutPhrase: 'Echo text in {app}',
+    }
+    const withActions = (actions: Array<typeof first>) =>
+      ({ ...app, ios: { ...app.ios, appIntents: { actions } } })
+    expect(() => validateNativeApp(withActions([first]))).not.toThrow()
+    expect(() => validateNativeApp(withActions([first, { ...first }]))).toThrow(/duplicated/)
+    expect(() => validateNativeApp(withActions([{ ...first, shortcutPhrase: 'Echo text' }]))).toThrow(/shortcu\w*Phrase/)
+    expect(() => validateNativeApp(withActions([{ ...first, shortcutPhrase: '{app} in {app}' }]))).toThrow(/shortcu\w*Phrase/)
+    expect(() => validateNativeApp(withActions([{ ...first, textParameterTitle: ' ' }]))).toThrow(/textParameterTitle/)
+  })
+
+  test('rejects missing platform ids and out-of-range platform values', () => {
+    expect(() => validateNativeApp({ name: 'MyApp' } as any)).toThrow(/bundleId/)
+    expect(() =>
+      validateNativeApp({ name: 'MyApp', android: app.android } as any)
+    ).toThrow(/bundleId/)
+    expect(() =>
+      validateNativeApp({
+        name: 'MyApp',
+        ios: { bundleId: 'not-an-id' },
+        android: app.android,
+      } as any)
+    ).toThrow(/bundleId/)
+    expect(() => validateNativeApp({ name: 'MyApp', ios: app.ios } as any)).toThrow(
+      /applicationId/
+    )
+    expect(() =>
+      validateNativeApp({
+        name: 'MyApp',
+        ios: app.ios,
+        android: { applicationId: '' },
+      } as any)
+    ).toThrow(/applicationId/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { bundleId: 'dev.one.myapp', deploymentTarget: 'latest' },
+      } as any)
+    ).toThrow(/deploymentTarget/)
+    expect(() =>
+      validateNativeApp({ ...app, android: { ...app.android, minSdk: 20 } } as any)
+    ).toThrow(/minSdk/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '1 2' },
+      })
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        ios: { bundleId: 'dev.one.myapp', buildNumber: '' },
+      })
+    ).toThrow(/buildNumber/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { applicationId: 'dev.one.myapp', versionCode: 0 },
+      })
+    ).toThrow(/versionCode/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { applicationId: 'dev.one.myapp', versionCode: 1.5 },
+      })
+    ).toThrow(/versionCode/)
+  })
+
+  test('accepts notifications and rejects a non-boolean push', () => {
+    expect(() => validateNativeApp({ ...app, notifications: undefined })).not.toThrow()
+    expect(() =>
+      validateNativeApp({ ...app, notifications: { push: true } })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({ ...app, notifications: { push: 'yes' } } as any)
+    ).toThrow(/notifications\.push/)
+    expect(() => validateNativeApp({ ...app, notifications: true } as any)).toThrow(
+      /notifications\.push/
+    )
+  })
+
+  test('accepts a maps key and rejects empty ones', () => {
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { ...app.android, googleMapsApiKey: 'AIza-test' },
+      })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { ...app.android, googleMapsApiKey: '' },
+      })
+    ).toThrow(/googleMapsApiKey/)
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        android: { ...app.android, googleMapsApiKey: '   ' },
+      })
+    ).toThrow(/googleMapsApiKey/)
+  })
+
+  test('accepts updates with a runtime version and an optional url', () => {
+    expect(() => validateNativeApp({ ...app, updates: undefined })).not.toThrow()
+    expect(() =>
+      validateNativeApp({
+        ...app,
+        updates: { url: 'https://updates.example.com', runtimeVersion: 'test-1' },
+      })
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({ ...app, updates: { runtimeVersion: 'test-1' } })
+    ).not.toThrow()
+    expect(() => validateNativeApp({ ...app, updates: {} } as any)).toThrow(
+      /updates\.runtimeVersion/
+    )
+    expect(() =>
+      validateNativeApp({ ...app, updates: { runtimeVersion: '  ' } })
+    ).toThrow(/updates\.runtimeVersion/)
+    expect(() =>
+      validateNativeApp({ ...app, updates: { url: '', runtimeVersion: 'test-1' } })
+    ).toThrow(/updates\.url/)
+  })
+
+  // prebuild writes no UIUserInterfaceStyle for an unset style, so the built
+  // app follows the system; an expo client reads a missing style as light.
+  test('the dev manifest states the interface style the built app has', () => {
+    expect(expoClientFromNativeApp(app).userInterfaceStyle).toBe('automatic')
+    expect(
+      expoClientFromNativeApp({ ...app, userInterfaceStyle: 'dark' }).userInterfaceStyle
+    ).toBe('dark')
+  })
+
+  test('the dev manifest carries both native launch background images', () => {
+    const client = expoClientFromNativeApp({
+      ...app,
+      splash: {
+        source: './assets/mark.png',
+        backgroundImage: './assets/launch-light.png',
+        backgroundColor: '#ffffff',
+        dark: {
+          source: './assets/mark-dark.png',
+          backgroundImage: './assets/launch-dark.png',
+          backgroundColor: '#000000',
+        },
+      },
+    })
+    expect(client.splash).toEqual({
+      image: './assets/mark.png',
+      backgroundImage: './assets/launch-light.png',
+      backgroundColor: '#ffffff',
+      imageWidth: undefined,
+      resizeMode: undefined,
+      dark: {
+        image: './assets/mark-dark.png',
+        backgroundImage: './assets/launch-dark.png',
+        backgroundColor: '#000000',
+      },
+    })
+  })
+
+  test('platform scope skips the other platform requirement', () => {
+    expect(() =>
+      validateNativeApp({ name: 'MyApp', android: app.android } as any, 'android')
+    ).not.toThrow()
+    expect(() =>
+      validateNativeApp({ name: 'MyApp', ios: app.ios } as any, 'ios')
+    ).not.toThrow()
+  })
+})

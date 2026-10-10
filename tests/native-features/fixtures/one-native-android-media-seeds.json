@@ -1,0 +1,63 @@
+{
+  "$schema": "one-native-android-media-seeds",
+  "note": "Candidate fixture for the Android Audio/PhotoLibrary/Contacts/Calendar proposal. Deterministic seeds only; no native code. Media bytes reuse tests/native-features/fixtures/photo-library-proof-media.ts and the 60s WAV recipe in fixtures/one-native-audio.tsx.",
+  "contacts": {
+    "givenName": "Ada",
+    "familyName": "OneSeed",
+    "phoneNumbers": ["+15551234567"],
+    "emailAddresses": ["ada.oneseed@example.com"],
+    "postalAddresses": [
+      {
+        "label": "home",
+        "street": "1 Seed Lane",
+        "city": "Seedville",
+        "state": "CA",
+        "postalCode": "90210",
+        "country": "United States",
+        "isoCountryCode": "US"
+      }
+    ],
+    "searchText": "Ada OneSeed",
+    "searchLimit": 20,
+    "update": { "familyName": "OneEdited" }
+  },
+  "calendar": {
+    "title": "Seed review",
+    "dayOffset": 1,
+    "durationMs": 3600000,
+    "location": "Room 4",
+    "recurrence": { "frequency": "daily", "interval": 1, "occurrenceCount": 3 },
+    "listLimit": 100,
+    "updateTitle": "Seed review moved"
+  },
+  "audio": {
+    "playbackInput": {
+      "kind": "wav",
+      "seconds": 60,
+      "sampleRateHz": 8000,
+      "channels": 1,
+      "bytes": 960044,
+      "note": "Playback input fixture only, written to cache as file:// before play."
+    },
+    "recordOutput": {
+      "kind": "aac-m4a",
+      "note": "Record output: Kotlin writes AAC .m4a under cache; empty files reject."
+    },
+    "seekMs": 30000,
+    "nowPlaying": { "title": "Seed episode", "artist": "One seeds" }
+  },
+  "photoLibrary": {
+    "assetsModule": "tests/native-features/fixtures/photo-library-proof-media.ts",
+    "moduleResolutionBase": "repo root",
+    "listLimit": 50,
+    "saveKinds": ["image", "video"]
+  },
+  "negativeControls": [
+    "adb revoke then denial and re-grant",
+    "missing native.app config proves E_*_MANIFEST",
+    "empty title, bad range, limit 0/501, blank phone prove E_*_INPUT",
+    "picker cancel resolves undefined",
+    "rotation with pending picker proves teardown-reject",
+    "reminders, album mutations, replace/revert keep unavailable.ts behavior"
+  ]
+}

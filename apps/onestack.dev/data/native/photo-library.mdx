@@ -1,0 +1,230 @@
+---
+title: Photo Library
+description: Save, edit, browse, and export photos and videos from iOS Photos
+---
+
+`One.PhotoLibrary` saves an existing `file://` image or video to Photos,
+edits still images, and reads photo and video asset metadata. Saving can use
+add-only permission; browsing needs read/write permission. Configure the permission messages in
+`native.app` before prebuild:
+
+```ts
+photoLibrary: {
+  addOnly: 'Save edited photos and videos to your library.',
+  readWrite: 'Browse photos and videos in your library.',
+}
+```
+
+Prebuild sets `NSPhotoLibraryAddUsageDescription` for `addOnly` and
+`NSPhotoLibraryUsageDescription` for `readWrite`. With `readWrite`, it
+also sets `PHPhotoLibraryPreventAutomaticLimitedAccessAlert` so your app controls
+when the limited-selection picker appears. Configure only the permission
+your app uses, or both when it saves and browses assets.
+
+```tsx
+import { One } from 'one'
+
+const permission = await One.PhotoLibrary.requestAddPermission()
+if (permission === 'authorized') {
+  const assetId = await One.PhotoLibrary.saveImage(imageFileUri)
+  console.log('Saved Photos asset', assetId)
+}
+```
+
+`getAddPermissionStatus()` reads the current status without a prompt.
+`saveVideo(fileUri)` saves a video the same way. Both save methods resolve with
+the new Photos asset identifier after Photos commits the change. They accept
+local files produced by `One.FileSystem`, `One.ImagePicker`, or
+`One.DocumentPicker`; they do not download network URLs.
+An app with read/write access can also save without requesting add-only access.
+
+The methods reject with `error.code` `E_PHOTO_LIBRARY_MANIFEST` when the usage
+message is missing, `E_PHOTO_LIBRARY_PERMISSION` when add permission is not
+granted, `E_PHOTO_LIBRARY_URI` for a non-file URI, `E_PHOTO_LIBRARY_FILE` for a
+missing file, or `E_PHOTO_LIBRARY_SAVE` if Photos rejects the asset. Photos are implemented on iOS and Android. On Android, browsing, albums, favorites, deletion, export, and saving run over MediaStore with `native.app.photoLibrary`; album edits and content replace/revert stay unavailable, and the limited picker returns newly granted identifiers only. Web returns denied permissions and empty asset or album pages. Calls that create or export an asset or album reject with `PhotoLibrary.<verb> needs an iOS or Android build` where unimplemented; deletion and album membership changes do nothing there.
+
+To browse metadata, request read access and fetch bounded pages. The list is
+sorted by creation date, newest first. A page contains at most 100 assets;
+`totalCount` counts the assets visible to the app. The asset identifier can be
+passed to `getAsset()` to retrieve its current metadata:
+
+```tsx
+const permission = await One.PhotoLibrary.requestReadPermission()
+if (permission === 'authorized' || permission === 'limited') {
+  const { assets, totalCount } = await One.PhotoLibrary.listAssets(0, 50)
+  const first = assets[0] && await One.PhotoLibrary.getAsset(assets[0].identifier)
+  console.log(totalCount, first?.mediaType, first?.width, first?.height)
+}
+```
+
+`getReadPermissionStatus()` reads the current status without a prompt. Limited
+permission exposes only the user's selected assets. When the status is `limited`,
+call `presentLimitedLibraryPicker()` from an active screen to let the user add
+more assets. The promise resolves after the system picker closes with only the
+newly selected asset identifiers; it can return an empty array. On Android 14
+and later the return is likewise the newly granted additions since the picker
+opened, never the whole visible set, with two platform differences: a partial
+grant reports `authorized` at every OS layer, so the status echoes the OS and
+partial visibility shows only in the listed set; and the call opens app
+Settings for the user to revoke, then re-requests on return, so revoking
+restarts the app and the next call completes the reshow against the remembered
+selection. Read the library again to see the current visible set:
+
+```tsx
+if (One.PhotoLibrary.getReadPermissionStatus() === 'limited') {
+  const newlySelectedIds = await One.PhotoLibrary.presentLimitedLibraryPicker()
+  const page = await One.PhotoLibrary.listAssets(0, 50)
+  console.log(newlySelectedIds, page.totalCount)
+}
+```
+
+The system picker's X button closes it with an empty array and keeps the
+previously selected assets readable. You can open the picker again afterward.
+On Android, backing out of Settings unchanged also resolves an empty array.
+
+The picker rejects with `E_PHOTO_LIBRARY_PERMISSION` unless the app has read
+access, `E_PHOTO_LIBRARY_MANIFEST` without the read/write usage message,
+`E_PHOTO_LIBRARY_UNAVAILABLE` when no active view controller can present it
+(or no Settings page can open the reshow on Android), or
+`E_PHOTO_LIBRARY_BUSY` when another limited picker or permission request is
+in flight.
+
+Each asset has an
+`identifier`, `mediaType`, pixel `width` and `height`, `durationMs`, optional
+`creationDateMs`, `isFavorite`, and `isLivePhoto`. An asset with `isLivePhoto`
+can be displayed with [`One.iOS.LivePhotoView`](/native/ios-media#livephotoview).
+These methods read metadata; they do not
+return image or video bytes. `listAssets()` accepts integer `offset` from 0 to
+1,000,000 and integer `limit` from 1 to 100. The read methods reject with
+`E_PHOTO_LIBRARY_MANIFEST` or `E_PHOTO_LIBRARY_PERMISSION` when configuration or
+permission is missing, `E_PHOTO_LIBRARY_INPUT` for invalid arguments, and
+`E_PHOTO_LIBRARY_NOT_FOUND` for an unknown identifier. Page offsets use the current library
+order, so insertions or deletions between requests can shift later pages.
+
+With read/write permission, `setFavorite(identifier, true)` marks an asset as a
+favorite; pass `false` to remove it. `deleteAsset(identifier)` asks Photos to
+delete the asset from the entire library, which may show a system confirmation.
+Both methods resolve only after Photos commits the change. Use `getAsset()` to
+read the updated favorite state or confirm that a deleted identifier now returns
+`E_PHOTO_LIBRARY_NOT_FOUND`:
+
+```tsx
+await One.PhotoLibrary.setFavorite(asset.identifier, true)
+const updated = await One.PhotoLibrary.getAsset(asset.identifier)
+console.log(updated.isFavorite)
+await One.PhotoLibrary.deleteAsset(asset.identifier)
+```
+
+The write methods use the same manifest, permission, input, and missing-asset
+errors as `getAsset()`. A rejected Photos change returns
+`E_PHOTO_LIBRARY_CHANGE` for favorites or `E_PHOTO_LIBRARY_DELETE` for deletion.
+Deleting is permanent from the app's point of view; Photos may retain the item
+in Recently Deleted.
+
+`replaceImageContent(identifier, jpegFileUri)` replaces the visible content of
+a still photo with an upright JPEG from your app's sandbox. It keeps the asset
+identifier and original image, so `revertAssetContent(identifier)` restores the
+original. Photos may ask the user to confirm either change. Live Photos, videos,
+and assets that disallow content edits reject with `E_PHOTO_LIBRARY_UNSUPPORTED`.
+The JPEG must contain upright pixels rather than relying on orientation metadata.
+Use `One.ImageManipulator.transform()` to prepare one:
+
+```tsx
+const edited = await One.ImageManipulator.transform(sourceUri, {
+  format: 'jpeg', resize: { width: 600 },
+})
+await One.PhotoLibrary.replaceImageContent(asset.identifier, edited.uri)
+const current = await One.PhotoLibrary.getAsset(asset.identifier)
+console.log(current.width, current.height)
+await One.PhotoLibrary.revertAssetContent(asset.identifier)
+await One.FileSystem.delete(edited.uri)
+```
+
+Both methods use the same manifest, permission, identifier, and missing-asset
+errors as `getAsset()`. The replacement also returns `E_PHOTO_LIBRARY_URI` for a
+non-file URI, `E_PHOTO_LIBRARY_FILE` for a missing file, or
+`E_PHOTO_LIBRARY_INPUT` for a file that is not an upright JPEG. Photos input or
+commit failures return `E_PHOTO_LIBRARY_EDIT`. The edit requests a local Photos
+input; an iCloud-only input also returns `E_PHOTO_LIBRARY_EDIT`. Replacing a
+large image requires Photos to process and store a new rendered copy.
+
+`replaceVideoContent(identifier, movieFileUri)` replaces the visible content of
+a video with a local QuickTime `.mov` file whose frames are upright without a
+rotation transform. Photos keeps the original video, and
+`revertAssetContent(identifier)` restores it. Prepare the movie in your app,
+then pass its `file://` URI. This method copies a validated movie into Photos;
+it does not transcode or rotate it. It uses the same manifest, permission,
+identifier, and missing-asset errors as `getAsset()`. A non-video or read-only
+asset returns `E_PHOTO_LIBRARY_UNSUPPORTED`; a non-file URI returns
+`E_PHOTO_LIBRARY_URI`, a missing file returns `E_PHOTO_LIBRARY_FILE`, and a file
+that is not an upright QuickTime movie returns `E_PHOTO_LIBRARY_INPUT`. Photos
+input or commit failure returns `E_PHOTO_LIBRARY_EDIT`. The edit requests only
+a local Photos input, so an iCloud-only input returns `E_PHOTO_LIBRARY_EDIT`.
+
+With full read/write permission, `listAlbums()` returns user-created albums
+sorted by title. `getAlbum(identifier)` reads an album's current title, and
+`listAlbumAssets(identifier)` returns a bounded, newest-first page of its
+assets. The two list methods accept the same `offset` and `limit` bounds as
+`listAssets()`. They do not include smart albums or folders.
+
+```tsx
+const albumId = await One.PhotoLibrary.createAlbum('Trip photos')
+await One.PhotoLibrary.addAssetToAlbum(albumId, assetId)
+const page = await One.PhotoLibrary.listAlbumAssets(albumId, 0, 50)
+await One.PhotoLibrary.renameAlbum(albumId, 'Summer trip')
+await One.PhotoLibrary.removeAssetFromAlbum(albumId, assetId)
+await One.PhotoLibrary.deleteAlbum(albumId)
+```
+
+Album titles are trimmed and must contain 1 to 255 characters. Adding or
+removing an asset changes only its album membership. Deleting an album removes
+the album, not its photos or videos, and Photos may ask the user to confirm.
+Album methods reject with `E_PHOTO_LIBRARY_PERMISSION` without full read/write
+access, `E_PHOTO_LIBRARY_MANIFEST` without its usage message,
+`E_PHOTO_LIBRARY_INPUT` for invalid titles, identifiers, or pages, and
+`E_PHOTO_LIBRARY_NOT_FOUND` for unknown or non-user album identifiers. An
+album that disallows the requested edit returns `E_PHOTO_LIBRARY_ALBUM_READONLY`;
+a rejected Photos change returns `E_PHOTO_LIBRARY_ALBUM_CHANGE`.
+
+`exportOriginalAsset(identifier)` writes the asset's original photo, video, or
+audio resource to a unique temporary file and returns its `file://` URI. By
+default it reads only local originals. Pass `true` as the second argument to
+allow Photos to download an iCloud original; large downloads may take time and
+use cellular data. The returned file is yours to read, share, move, or delete.
+Delete temporary exports when you are finished:
+
+```tsx
+const uri = await One.PhotoLibrary.exportOriginalAsset(asset.identifier)
+try {
+  const info = await One.FileSystem.getInfo(uri)
+  console.log(info.size)
+} finally {
+  await One.FileSystem.delete(uri)
+}
+```
+
+For a Live Photo, this exports the original still image only. It does not
+apply later Photos edits. The same manifest, read permission, input, and
+missing-asset errors apply. `E_PHOTO_LIBRARY_RESOURCE` means the original
+resource or its file type is unavailable; `E_PHOTO_LIBRARY_EXPORT` means Photos
+could not write it, including when the original requires network access and the
+second argument is false. Network downloads have no progress or cancellation
+callback yet.
+
+`exportCurrentImage(identifier)` exports the visible, edited image as a unique
+temporary file. It works for still images and the still portion of a Live Photo;
+videos and audio return `E_PHOTO_LIBRARY_UNSUPPORTED`. The second argument
+defaults to `false`; pass `true` to allow an iCloud download. It uses the same
+read errors as `getAsset()` and `E_PHOTO_LIBRARY_EXPORT` if Photos cannot render
+or write the current image. Delete the temporary file when finished. Photos
+provides the full image data to the app before it is written to disk, so large
+images can temporarily use substantial memory.
+
+`exportCurrentVideo(identifier)` writes the visible, edited video to a unique
+temporary QuickTime `.mov` file. It rejects images and audio with
+`E_PHOTO_LIBRARY_UNSUPPORTED`, uses the same read errors as `getAsset()`, and
+returns `E_PHOTO_LIBRARY_EXPORT` if Photos cannot prepare or write the video.
+Its optional second argument defaults to `false`; pass `true` to allow an
+iCloud download. Export can take time and use substantial temporary storage.
+Delete the returned file when finished. The original resource remains available
+through `exportOriginalAsset(identifier)` after a content edit.

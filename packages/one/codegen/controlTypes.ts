@@ -1,0 +1,156 @@
+// semantic recipes for bounded SwiftUI controls; the SDK supplies signatures and style cases.
+export type ScalarType = 'string' | 'boolean' | 'Double'
+// React Native codegen cannot put arrays in event payloads. jsonStrings is a
+// string on the native wire and a string array in the public callback.
+export type ActionPayloadType = ScalarType | 'jsonStrings'
+export type ControlField = {
+  // `strings` is an array of plain strings, for open or SDK-external sets like
+  // ASAuthorization.Scope and UTType identifiers. `objects` stays for payloads.
+  // `color` is a React Native color: ColorValue in the spec and the public types,
+  // SharedColor through Fabric, UIColor on the Swift side.
+  type: ScalarType | 'color' | 'objects' | 'strings'
+  default: string | boolean | number | readonly string[]
+  enum?: string
+  publicType?: string
+  // Public props such as a gradient's color list can be mandatory even when
+  // the Fabric spec needs a safe initial value before React first configures it.
+  required?: true
+  jsDefault?: string
+  nativeValue?: string
+  // native-only prop computed from the public props; not part of the public interface.
+  derived?: boolean
+  // for `objects`: the payload type name, its element fields, and any public type
+  // overrides for those fields (the native side always carries the scalar).
+  payload?: {
+    name: string
+    element: Record<string, ScalarType>
+    publicTypes?: Record<string, string>
+    // fields a caller may omit; the native struct still carries the scalar default.
+    optional?: readonly string[]
+  }
+}
+// a two-way value using the shared controlled protocol: optimistic native state,
+// numbered events, acknowledgement and reset revisions.
+export type ControlValue = {
+  type: ScalarType
+  prop: string
+  event: string
+  initial: string | boolean | number
+  publicType?: string
+  nativeValue?: string
+  eventValue?: string
+  // when true, the public prop also accepts a NativeState handle: the generated
+  // adapter resolves it to a plain value for the native view and writes native
+  // events back into the handle synchronously, same frame, before forwarding
+  // to the event callback. the schema marks these values with `sync: true`.
+  sync?: true
+}
+// a one-way native signal with no value, numbered so a fixture can assert exact counts.
+export type ControlAction = {
+  // public callback prop, for example onPress
+  prop: string
+  // native event suffix, for example Press for onNative<Control>Press
+  event: string
+  // extra event fields, passed to the public callback in declaration order.
+  payload?: Record<string, ActionPayloadType>
+  // when present, the public callback takes one object instead of the payload
+  // fields as separate arguments. the native event stays flat; the adapter
+  // maps it onto this discriminated union by the payload's `type` field. the
+  // last variant is the default when the native type matches none. fields
+  // name payload entries besides `type`.
+  object?: {
+    variants: readonly { type: string; fields: readonly string[] }[]
+  }
+}
+export type ModifierSelector = {
+  name: string
+  parameters: readonly { label: string; type: string }[]
+  requirements: readonly string[]
+}
+// a declarative leaf: the generic emitter builds the Swift body from the SDK signature
+// plus these argument descriptors, instead of the recipe spelling the body out. enum
+// fields the args do not consume are chained as modifiers automatically, resolved
+// through the SDK by their enum type. controls with conditional constructors,
+// converted bindings, or custom surfaces keep hand-written `swift`.
+export type LeafArg =
+  | { label: string; field: string }
+  | { label: string; enum: string; field: string }
+  | { label: string; localizedKey: string }
+  | { label: string; text: string }
+  | { label: string; binding: 'controlled' }
+  | { label: string; range: readonly [string, string] }
+  // an event closure the control ignores, rendered as a trailing `{ _ in }`.
+  | { label: string; discard: true }
+export type LeafRecipe = {
+  constructor: {
+    type: string
+    parameters: readonly { label: string; type: string }[]
+  }
+  args: readonly LeafArg[]
+}
+export type Control = {
+  name: string
+  // images with no explicit label are decoration; a label turns them into one image element.
+  decorativeWhenUnlabeled?: true
+  value?: ControlValue
+  focus?: boolean
+  actions?: readonly ControlAction[]
+  fields: Record<string, ControlField>
+  constructors: readonly {
+    type: string
+    parameters: readonly { label: string; type: string }[]
+  }[]
+  // modifiers the recipe applies directly, selected from the SDK for provenance.
+  methods?: readonly ModifierSelector[]
+  // when present, the generic leaf emitter derives `swift` from this recipe and the
+  // SDK; the hand-written body stays as the byte-for-byte oracle until migration.
+  leaf?: LeafRecipe
+  swift: string
+  extraSwift?: string
+  validate: string
+  // replaces the generated set<Key> body for a strings array field with raw
+  // Swift. the body sees `items: [String]` and the view's `model`, and must
+  // assign model.<field> itself when the items are acceptable.
+  setBody?: Record<string, string>
+  // how the control occupies the box React Native gave it. the default is measured:
+  // SwiftUI reports its ideal height and Yoga sizes the row, which is why no control
+  // declares a height. `fill` is for content with no ideal height, like video, which
+  // takes the box instead. `presentation` renders nothing inline and takes no space.
+  layout?: 'fill' | 'presentation'
+  // frameworks the generated Swift needs beyond SwiftUI and UIKit, such as AVKit.
+  imports?: readonly string[]
+}
+
+export const commonFields = {
+  label: { type: 'string', default: '' },
+  disabled: { type: 'boolean', default: false },
+} as const
+
+// a list of buttons that report an id back, shared by the dialogs and by the empty state.
+// the buttons travel as data so one host renders every action.
+export const actionsField = {
+  type: 'objects',
+  default: '',
+  payload: {
+    name: 'DialogAction',
+    element: { id: 'string', label: 'string', role: 'string' },
+    publicTypes: { role: 'Styles.ButtonRole' },
+    optional: ['role'],
+  },
+} as const
+
+export const actionsValidate = (name: string) => `  for (const action of actions) {
+    if (typeof action?.id !== 'string' || typeof action?.label !== 'string') throw new Error('${name} actions must contain string id and label fields')
+    if (action.role) assertSwiftUIValue('ButtonRole', action.role, Number.parseFloat(String(Platform.Version)))
+  }
+  if (new Set(actions.map(action => action.id)).size !== actions.length) throw new Error('${name} action ids must be unique')`
+
+// action lists share buttons, with an optional extra event argument.
+export const actionButtons = (
+  indent: string,
+  extraArg = ''
+) => `${indent}ForEach(model.actions, id: \\.id) { action in
+${indent}  Button(role: OneNativeGenerated.buttonRole(action.role), action: { model.action(action.id${extraArg}) }) {
+${indent}    Text(action.label)
+${indent}  }
+${indent}}`

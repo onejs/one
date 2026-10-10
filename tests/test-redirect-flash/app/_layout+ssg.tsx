@@ -1,6 +1,6 @@
 import { Slot } from 'one'
 
-// mirrors soot: root layout is +ssg so the shell is statically generated.
+// mirrors contrast: root layout is +ssg so the shell is statically generated.
 // the (app)/_layout.tsx below hydrates on top of this, which is the context
 // in which the redirect-flash bug surfaces.
 export default function RootLayout() {

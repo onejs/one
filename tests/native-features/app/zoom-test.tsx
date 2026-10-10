@@ -1,5 +1,5 @@
-import { useRouter } from 'one'
-import { ZoomTransitionSource } from '@vxrn/native'
+import { useRouter, One } from 'one'
+import { useState } from 'react'
 import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native'
 
 const items = [
@@ -13,6 +13,8 @@ const items = [
 
 export default function ZoomTestScreen() {
   const router = useRouter()
+  const [mode, setMode] = useState('aligned')
+  const [mount] = useState(() => String(Date.now()))
 
   return (
     <ScrollView
@@ -25,23 +27,42 @@ export default function ZoomTestScreen() {
       </Text>
       <Text style={styles.description}>Tap a card to test zoom transition animation</Text>
 
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+        {['aligned', 'omitted', 'mismatched', 'unaligned'].map((value) => (
+          <Pressable
+            key={value}
+            testID={`zoom-mode-${value}`}
+            onPress={() => setMode(value)}
+            style={{ padding: 8 }}
+          >
+            <Text>{value}</Text>
+          </Pressable>
+        ))}
+      </View>
+      <Text testID="zoom-source-identity">{`mount:${mount};mode:${mode}`}</Text>
       <View style={styles.grid} testID="zoom-items-grid">
         {items.map((item) => (
-          <ZoomTransitionSource key={item.id} identifier={item.id}>
+          <One.iOS.ZoomTransitionSource key={item.id} identifier={item.id}>
             <Pressable
               testID={`zoom-source-${item.id}`}
               style={[styles.card, { backgroundColor: item.color }]}
               onPress={() =>
                 router.push({
                   pathname: '/zoom-detail',
-                  params: { id: item.id, title: item.title, color: item.color },
+                  params: {
+                    id: item.id,
+                    title: item.title,
+                    color: item.color,
+                    mode,
+                    mount,
+                  },
                 } as any)
               }
             >
               <Text style={styles.cardTitle}>{item.title}</Text>
               <Text style={styles.cardId}>{item.id}</Text>
             </Pressable>
-          </ZoomTransitionSource>
+          </One.iOS.ZoomTransitionSource>
         ))}
       </View>
 

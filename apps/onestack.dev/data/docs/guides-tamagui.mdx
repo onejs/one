@@ -11,20 +11,45 @@ Tamagui does many things that no other universal libraries do: all of its featur
   Try concrete Tamagui examples by running `npx one`.
 </Notice>
 
-We're going to support SSR-safe light and dark mode with `@vxrn/color-scheme`:
+We're going to support SSR-safe light and dark mode with the `@vxrn/color-scheme` helpers that `one` re-exports:
 
 ```
-npm add tamagui @tamagui/config @tamagui/vite-plugin @vxrn/color-scheme
+npm add tamagui @tamagui/config @tamagui/vite-plugin
 ```
 
 Be sure to check out the [Dark mode guide](/docs/guides-dark-mode) for more detail there.
 
-Next, update your root `_layout.tsx`:
+Add your `config/tamagui.config.ts`:
+
+```tsx fileName=config/tamagui.config.ts
+import { defaultConfig } from '@tamagui/config/v5'
+import { animations } from '@tamagui/config/v5-css'
+import { createTamagui } from 'tamagui'
+
+export const config = createTamagui({
+  ...defaultConfig,
+  animations,
+})
+
+type Conf = typeof config
+
+declare module 'tamagui' {
+  interface TamaguiCustomConfig extends Conf {}
+}
+
+export default config
+```
+
+The reason we separate this file out is that it lets the Tamagui compiler optimize things. You don't have to do this, but it's pretty easy. The `declare module` block types your tokens and themes across the app.
+
+This preset config we recommend as it lets you just get working on your app, but if you want a custom configuration, the Takeout Free starter in `npx one` has a [nice custom configuration example](https://github.com/tamagui/takeout-free/blob/main/src/tamagui/tamagui.config.ts).
+
+Next, update your root `_layout.tsx`. `one` re-exports the `@vxrn/color-scheme` helpers, so `SchemeProvider` and `useUserScheme` come straight from `one`:
 
 ```tsx fileName=app/_layout.tsx
-import { TamaguiProvider, Theme } from 'tamagui'
-import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot, usePathname } from 'one'
+import type { ReactNode } from 'react'
+import { SchemeProvider, Slot, useUserScheme } from 'one'
+import { TamaguiProvider } from 'tamagui'
 import config from '../config/tamagui.config'
 
 export default function Layout() {
@@ -38,7 +63,7 @@ export default function Layout() {
 }
 
 // this is in its own component so it can access the useUserScheme hook
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const userScheme = useUserScheme()
   return (
     <TamaguiProvider config={config} defaultTheme={userScheme.value}>
@@ -48,31 +73,22 @@ const ThemeProvider = ({ children }) => {
 }
 ```
 
-And add your `config/tamagui.config.ts`:
-
-```tsx fileName=config/tamagui.config.ts
-import { config as configBase } from '@tamagui/config/v3'
-import { createTamagui } from 'tamagui'
-
-export const config = createTamagui(configBase)
-```
-
-The reason we separate this file out is that it lets the Tamagui compiler optimize things. You don't have to do this, but it's pretty easy.
-
-This preset config we recommend as it lets you just get working on your app, but if you want a custom configuration, the `npx one` starter has a [nice custom configuration example](https://github.com/onejs/one/blob/main/examples/one-tamagui/config/tamagui/tamagui.config.ts).
-
-Next for the Vite plugin. You don't need to set up the Tamagui Vite plugin, but even if not using the optimizing compiler, it adds a lot of nice stuff: debug attributes, broader react-native compatibility, and the optimizing compiler.
+Next for the Vite plugin. You don't need to set up the Tamagui Vite plugin, but it adds a lot of nice stuff: debug attributes, broader react-native compatibility, and the optimizing compiler. The compiler runs for every component listed in `components`; pass `disableExtraction: true` to turn it off.
 
 ```tsx fileName=vite.config.ts
+import { tamaguiPlugin } from '@tamagui/vite-plugin'
+import { one } from 'one/vite'
+import type { UserConfig } from 'vite'
+
 export default {
   plugins: [
+    one(),
     tamaguiPlugin({
-      optimize: true,
       components: ['tamagui'],
       config: './config/tamagui.config.ts',
-    })
-  ]
-}
+    }),
+  ],
+} satisfies UserConfig
 ```
 
 ### Optimizing further
@@ -80,16 +96,20 @@ export default {
 If you want to optimize things a bit further, we can output the Tamagui design system CSS to a stylesheet by changing our plugin configuration:
 
 ```tsx fileName=vite.config.ts
+import { tamaguiPlugin } from '@tamagui/vite-plugin'
+import { one } from 'one/vite'
+import type { UserConfig } from 'vite'
+
 export default {
   plugins: [
+    one(),
     tamaguiPlugin({
-      optimize: true,
       components: ['tamagui'],
       config: './config/tamagui.config.ts',
-      outputCSS: './public/tamagui.css'
-    })
-  ]
-}
+      outputCSS: './public/tamagui.css',
+    }),
+  ],
+} satisfies UserConfig
 ```
 
 And then changing our root layout to add `disableInjectCSS`, and instead importing the CSS at the top:
@@ -97,9 +117,9 @@ And then changing our root layout to add `disableInjectCSS`, and instead importi
 ```tsx fileName=app/_layout.tsx
 import '../public/tamagui.css'
 
-import { TamaguiProvider, Theme } from 'tamagui'
-import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot, usePathname } from 'one'
+import type { ReactNode } from 'react'
+import { SchemeProvider, Slot, useUserScheme } from 'one'
+import { TamaguiProvider } from 'tamagui'
 import config from '../config/tamagui.config'
 
 export default function Layout() {
@@ -112,7 +132,7 @@ export default function Layout() {
   )
 }
 
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const userScheme = useUserScheme()
   return (
     <TamaguiProvider config={config} defaultTheme={userScheme.value} disableInjectCSS>

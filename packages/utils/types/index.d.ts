@@ -4,4 +4,5 @@ export * from './createMessageSocket';
 export * from './detectPackageManager';
 export * from './exec';
 export * from './mustReplace';
+export * from './publicEnv';
 //# sourceMappingURL=index.d.ts.map

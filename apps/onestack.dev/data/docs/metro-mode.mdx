@@ -1,26 +1,33 @@
 ---
 title: Metro Mode
-description: Using Metro bundler for more stable native builds
+description: Opting into Metro for native builds
 ---
 
 ## Overview
 
-One supports using Metro as the bundler for native builds, providing a more stable and battle-tested bundling experience. The default native bundler now uses Rolldown's experimental `dev()` API (alpha), while Metro mode offers production-ready stability by leveraging React Native's standard bundler.
+One uses Rolldown for native builds by default. Metro is available when you select it explicitly.
 
-## Why Use Metro Mode?
+## When to Use Metro Mode
 
-- **Production Stability**: Metro is the official React Native bundler with years of production use
-- **Better Compatibility**: Works seamlessly with all React Native packages and libraries
-- **Familiar Tooling**: If you're coming from standard React Native development, Metro works as expected
+- **Existing Metro configuration**: Keep a project that relies on Metro-specific resolver or transformer settings
+- **Familiar tooling**: Use the Metro workflow when your team already depends on it
 
 <Notice theme="blue">
-  The Rolldown-based native pipeline is now the default in Vite mode (alpha). It provides fast dev builds with HMR via React Refresh, and production builds with treeshaking. It requires Hermes V1. Metro mode remains recommended for production applications.
+  The Rolldown-based native pipeline is the recommended default. It provides fast dev builds with HMR via React Refresh and production builds with tree shaking. Metro remains available for apps that need it.
 </Notice>
 
 
 ## Enabling Metro Mode
 
 Configure the native bundler to Metro in your `vite.config.ts`:
+
+Install the Expo Babel preset in the app first:
+
+```sh
+bun add -d babel-preset-expo
+```
+
+One reports an installation error when Metro starts without it. The default Rolldown path does not load the preset.
 
 ```tsx fileName=vite.config.ts
 import type { UserConfig } from 'vite'
@@ -57,7 +64,7 @@ Only the following Vite features and configurations are supported in Metro mode 
 
 ## Configuration
 
-By default, the Metro bundler is configured with [Expo's defaults](https://docs.expo.dev/versions/latest/config/metro/).
+By default, One starts from React Native's Metro configuration and applies the same One router, environment, and server transforms used by the native Rolldown path.
 
 <Notice theme="green">
   We recommend using the standard Vite way for configuring if possible, as it provides a more consistent experience across web and native builds, and will be more future-proof to switch between bundlers.
@@ -66,24 +73,22 @@ By default, the Metro bundler is configured with [Expo's defaults](https://docs.
 Like ordinary React Native apps, you can still configure Metro using `metro.config.js` for more advanced settings, such as resolver or watcher options:
 
 ```js fileName=metro.config.js
-const { getDefaultConfig } = require('expo/metro-config');
+const { withOne } = require('one/metro-config')
 
-const config = getDefaultConfig(__dirname);
-
-module.exports = config;
+module.exports = withOne(__dirname)
 ```
 
 `metro.config.js` works exactly as it would in a standard React Native project, giving you full control over the bundling process.
 
 ### No Babel
 
-By default, One replaces Expo's Babel transformer with its own worker built around Oxc. The worker combines Oxc's Rust parser and transforms with TypeScript implementations of One's native transforms, Hermes parsing for Flow, and esbuild for syntax lowering. This pipeline runs without Babel; it is not a standalone Rust bundler. `babel.config.js` and `babel-preset-expo` do not configure this worker.
+By default, One uses its own Metro worker built around Oxc. The worker combines Oxc's Rust parser and transforms with TypeScript implementations of One's native transforms, Hermes parsing for Flow, and esbuild for syntax lowering. This pipeline runs without Babel.
 
 A Babel plugin One has no port for would silently do nothing, so instead the build fails and names it. You have three options:
 
 - Port it and list it in `native.bundlerOptions.nativeTransformModules`. Each entry is a module id (Metro runs transforms in separate worker processes, so it has to be serializable) that default-exports `(code, ctx) => string | null`. Your transforms run first, on the original source, with an absolute `ctx.filename`.
 - Remove it from `native.bundlerOptions.babelConfigOverrides`.
-- Set `native.bundlerOptions.nativeTransforms: false` to go back to the Babel transformer, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run.
+- Set `native.bundlerOptions.nativeTransforms: false` to use Babel, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run. Install `@react-native/babel-preset`, then run `one metro-eject` to create a Babel config that delegates to `one/babel-preset`, which builds on React Native's preset. Expo presets are optional app configuration and are never loaded by One.
 
 A native transform receives source text and returns updated source text. It can use Oxc or another tool suited to the transformation:
 
@@ -145,4 +150,4 @@ This can significantly speed up dev server startup when you don't always need na
 
 ## Performance
 
-Metro mode is designed for production stability, but it may not match the performance of Vite, which bundles with Rolldown. Both paths transform with oxc and run no Babel. We observed that Metro mode provides better memory efficiency.
+Metro can use more mature React Native tooling. One's default Rolldown path remains the recommended choice for new apps. Both native bundlers use Oxc by default; Metro can opt back into Babel.

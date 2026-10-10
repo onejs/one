@@ -64,7 +64,6 @@ export function getAdditionalViteConfig(): Omit<InlineConfig, 'plugins'> {
           '**/android/build/**',
           '**/android/app/build/**',
           '**/android/.gradle/**',
-          '**/.expo/**',
         ],
       },
 

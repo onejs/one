@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <cache-path name="one-native-image-picker" path="one-native-image-picker/" />
+    <!-- share serves any file the app wrote to its cache through this root. -->
+    <cache-path name="one-native-cache" path="." />
+</paths>

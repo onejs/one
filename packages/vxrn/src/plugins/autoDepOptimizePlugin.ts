@@ -89,7 +89,10 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode)
         include: filteredDeps,
         exclude: EXCLUDE_LIST,
       },
-      noExternal: filteredDeps,
+      noExternal: [
+        ...filteredDeps,
+        ...result.noExternalDeps.filter((dep) => !excludeSet.has(dep)),
+      ],
     },
   }
 }
@@ -136,7 +139,8 @@ export async function findDepsToOptimize({
       if (
         lockFileHash === cachedLockFileHash &&
         !!cachedDepsToPreBundle &&
-        'prebundleDeps' in cachedDepsToPreBundle
+        'prebundleDeps' in cachedDepsToPreBundle &&
+        Array.isArray(cachedDepsToPreBundle.noExternalDeps)
       ) {
         value = cachedDepsToPreBundle
         debug?.(`Using cached scan results from ${cacheFilePath}`)

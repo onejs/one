@@ -32,7 +32,10 @@ export const clientTreeShakePlugin = (opts?: {
         if (runtime === 'vite' && this.environment?.name === 'ssr') {
           return
         }
-        if (!/\.(js|jsx|ts|tsx)/.test(extname(id))) {
+        // anchored: unanchored, `.json` matches the `js` alternative and a JSON
+        // module reaches the JS parser below, where a large enough one is
+        // certain to contain `loader` somewhere and fail the prod build.
+        if (!/\.(js|jsx|ts|tsx)$/.test(extname(id))) {
           return
         }
         if (/node_modules/.test(id)) {
@@ -665,6 +668,16 @@ function doTreeShakeClient(
   // Use MagicString to apply modifications
   const s = new MagicString(code)
 
+  // downstream JSX transforms derive debug attributes from source lines on both sides.
+  const overwritePreservingLines = (start: number, end: number, replacement = '') => {
+    const lineBreaks =
+      code
+        .slice(start, end)
+        .match(/\r\n|\r|\n/g)
+        ?.join('') ?? ''
+    s.overwrite(start, end, replacement + lineBreaks)
+  }
+
   // 1. Replace server export declarations with stubs
   for (const [stmt, info] of serverExportStmts) {
     const stubs: string[] = []
@@ -687,7 +700,7 @@ function doTreeShakeClient(
     }
 
     if (info.replaceAll) {
-      s.overwrite(stmt.start, stmt.end, stubs.join('\n'))
+      overwritePreservingLines(stmt.start, stmt.end, stubs.join(' '))
     } else {
       // Remove only the server declarators
       const decl = stmt.declaration
@@ -696,14 +709,14 @@ function doTreeShakeClient(
         if (info.declaratorsToRemove.has(d)) {
           if (i === 0) {
             const next = decl.declarations[1]
-            s.remove(d.start, next.start)
+            overwritePreservingLines(d.start, next.start)
           } else {
             const prev = decl.declarations[i - 1]
-            s.remove(prev.end, d.end)
+            overwritePreservingLines(prev.end, d.end)
           }
         }
       }
-      s.appendRight(stmt.end, '\n' + stubs.join('\n'))
+      s.appendRight(stmt.end, '; ' + stubs.join(' '))
     }
   }
 
@@ -722,7 +735,7 @@ function doTreeShakeClient(
       if (code[end] === ';') end++
       if (code[end] === '\r' && code[end + 1] === '\n') end += 2
       else if (code[end] === '\n') end += 1
-      s.remove(stmt.start, end)
+      overwritePreservingLines(stmt.start, end)
     } else if (stmt.type === 'VariableDeclaration') {
       const allExclusive = stmt.declarations.every((d: any) => {
         const names = new Set<string>()
@@ -734,7 +747,7 @@ function doTreeShakeClient(
         if (code[end] === ';') end++
         if (code[end] === '\r' && code[end + 1] === '\n') end += 2
         else if (code[end] === '\n') end += 1
-        s.remove(stmt.start, end)
+        overwritePreservingLines(stmt.start, end)
       } else {
         // Check if any individual declarators should be removed
         for (let i = stmt.declarations.length - 1; i >= 0; i--) {
@@ -744,10 +757,10 @@ function doTreeShakeClient(
           if (Array.from(names).every((n) => exclusiveServerBindings.has(n))) {
             if (i === 0) {
               const next = stmt.declarations[1]
-              s.remove(d.start, next.start)
+              overwritePreservingLines(d.start, next.start)
             } else {
               const prev = stmt.declarations[i - 1]
-              s.remove(prev.end, d.end)
+              overwritePreservingLines(prev.end, d.end)
             }
           }
         }
@@ -761,7 +774,7 @@ function doTreeShakeClient(
       if (code[end] === ';') end++
       if (code[end] === '\r' && code[end + 1] === '\n') end += 2
       else if (code[end] === '\n') end += 1
-      s.remove(stmt.start, end)
+      overwritePreservingLines(stmt.start, end)
     }
   }
 
@@ -781,7 +794,7 @@ function doTreeShakeClient(
       if (code[end] === ';') end++
       if (code[end] === '\r' && code[end + 1] === '\n') end += 2
       else if (code[end] === '\n') end += 1
-      s.remove(stmt.start, end)
+      overwritePreservingLines(stmt.start, end)
     } else if (kept.length < stmt.specifiers.length) {
       const declCode = code.slice(stmt.start, stmt.source.start)
       const prefixMatch = declCode.match(/^import\s+/)
@@ -811,7 +824,7 @@ function doTreeShakeClient(
           .join(', ')
         parts.push('{ ' + namedStr + ' }')
       }
-      s.overwrite(prefixEnd, fromStart, parts.join(', ') + ' ')
+      overwritePreservingLines(prefixEnd, fromStart, parts.join(', ') + ' ')
     }
   }
 

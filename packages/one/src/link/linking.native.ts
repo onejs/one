@@ -1,11 +1,7 @@
-import * as Linking from 'expo-linking'
+import { Linking } from 'react-native'
 
-import { adjustPathname } from '../fork/extractPathFromURL'
 import { getPathFromState } from '../fork/getPathFromState'
 import { getStateFromPath } from '../fork/getStateFromPath'
-
-// @ts-expect-error
-const isExpoGo = typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo
 
 // A custom getInitialURL is used on native to ensure the app always starts at
 // the root path if it's launched from something other than a deep link.
@@ -13,34 +9,9 @@ const isExpoGo = typeof expo !== 'undefined' && globalThis.expo?.modules?.ExpoGo
 // For example, if you had a root navigator where the first screen was `/settings` and the second was `/index`
 // then `/index` would be used on web and `/settings` would be used on native.
 export function getInitialURL(): Promise<string | null> | string {
-  if (process.env.NODE_ENV === 'test') {
-    return Linking.getInitialURL() ?? getRootURL()
-  }
-
   return Promise.race<string>([
     (async () => {
       const url = await Linking.getInitialURL()
-
-      // NOTE: This could probably be wrapped with the development boundary
-      // since Expo Go is mostly just used in development.
-
-      // Expo Go is weird and requires the root path to be `/--/`
-      if (url && isExpoGo) {
-        const parsed = Linking.parse(url)
-        // If the URL is defined (default in Expo Go dev apps) and the URL has no path:
-        // `exp://192.168.87.39:19000/` then use the default `exp://192.168.87.39:19000/--/`
-        if (
-          parsed.path === null ||
-          ['', '/'].includes(
-            adjustPathname({
-              hostname: parsed.hostname,
-              pathname: parsed.path,
-            })
-          )
-        ) {
-          return getRootURL()
-        }
-      }
       // The path will be nullish in bare apps when the app is launched from the home screen.
       // TODO: define some policy around notifications.
       return url ?? getRootURL()
@@ -53,49 +24,16 @@ export function getInitialURL(): Promise<string | null> | string {
   ])
 }
 
-let _rootURL: string | undefined
-
 export function getRootURL(): string {
-  if (_rootURL === undefined) {
-    _rootURL = Linking.createURL('/')
-  }
-  return _rootURL
+  return '/'
 }
 
 export function getDefaultLinkingPrefixes(): string[] {
-  return (
-    Linking.collectManifestSchemes?.().flatMap((scheme) => {
-      const normalized = scheme.replace(/:\/+$/, '')
-      return [`${normalized}://`, `${normalized}:///`]
-    }) ?? []
-  )
+  return []
 }
 
 export function addEventListener(listener: (url: string) => void) {
-  let callback: (({ url }: { url: string }) => void) | undefined
-
-  if (isExpoGo) {
-    // This extra work is only done in the Expo Go app.
-    callback = ({ url }: { url: string }) => {
-      const parsed = Linking.parse(url)
-
-      // If the URL is defined (default in Expo Go dev apps) and the URL has no path:
-      // `exp://192.168.87.39:19000/` then use the default `exp://192.168.87.39:19000/--/`
-      if (
-        parsed.path === null ||
-        ['', '/'].includes(
-          adjustPathname({ hostname: parsed.hostname, pathname: parsed.path })
-        )
-      ) {
-        listener(getRootURL())
-      } else {
-        listener(url)
-      }
-    }
-  } else {
-    callback = ({ url }: { url: string }) => listener(url)
-  }
-  const subscription = Linking.addEventListener('url', callback)
+  const subscription = Linking.addEventListener('url', ({ url }) => listener(url))
 
   return () => {
     // https://github.com/facebook/react-native/commit/6d1aca806cee86ad76de771ed3a1cc62982ebcd7

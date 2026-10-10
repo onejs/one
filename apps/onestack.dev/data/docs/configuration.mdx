@@ -17,12 +17,6 @@ export default {
         // can be one of "spa", "ssg" or "ssr"
         defaultRenderMode: 'spa', // defaults to 'ssg'
 
-        // If using a server-rendered render mode, looseHydration will collapse large hydration
-        // error logs in development mode. React can gracefully recover from hydration issues,
-        // and they can often be ignored, but by default React produces large error logs.
-        // Turning this on will collapse those logs to one line.
-        looseHydration: false, // defaults to true
-
         // Define server redirects for development and production
         redirects: [
           {
@@ -38,7 +32,7 @@ export default {
         ],
 
         // Configure production server compatibility (default node)
-        // Options: 'node' or 'vercel'
+        // Options: 'node', 'vercel', or 'cloudflare'
         deploy: 'node',
       },
 
@@ -87,7 +81,7 @@ export default {
          *
          * @default 'flat'
          */
-        autoEntriesScanning?: boolean | 'flat'
+        autoEntriesScanning: 'flat',
       },
 
       // native-specific config:
@@ -97,9 +91,9 @@ export default {
         key: 'AppName',
 
         // Choose the bundler for native builds
-        // - 'metro' is recommended for production stability.
-        // - 'vite' is experimental but offers faster builds with SWC.
-        bundler: 'metro', // defaults to 'vite'
+        // - 'vite' (default) bundles with Rolldown and Oxc, no Babel.
+        // - 'metro' is available for dependencies that require it.
+        bundler: 'vite',
       },
 
       alias: {
@@ -133,12 +127,9 @@ export default {
 
       /**
        * Per-file control over how code transforms.
-       * Defaults to SWC, runs babel before SWC if:
-       *
-       *  - options.react.compiler is `true`, on tsx files in your app
-       *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
-       *
-       * Otherwise One defaults to using `@swc/core`.
+       * One uses OXC for worklets and React Compiler. Reanimated callbacks,
+       * gesture callbacks and explicit worklets do not require a Babel plugin.
+       * Babel still runs for configured Babel transforms and syntax that needs it.
        *
        * Accepts a function:
        *
@@ -153,6 +144,7 @@ export default {
        *      | false    // no transforms
        *      | 'babel'  // force babel default transform
        *      | 'swc'    // force swc default transform
+       *      | 'oxc'    // force oxc default transform
        *
        *       // force babel, custom transform
        *
@@ -161,11 +153,11 @@ export default {
        *          excludeDefaultPlugins?: boolean
        *        } & babel.TransformOptions
        *
-       *      // force swc, custom transform
+       *      // force swc or oxc, custom transform
        *
        *      | {
-       *          transform: 'swc'
-       *        } & SWCOptions
+       *          transform: 'swc' | 'oxc'
+       *        } & OxcTransformOptions
        *
        * Babel defaults to preset `@babel/preset-typescript` with plugins:
        *
@@ -176,10 +168,10 @@ export default {
        *  - @babel/plugin-transform-async-to-generator
        *
        *
-       * SWC default to target es5 for native, es2020 for web.
+       * SWC defaults to target es5 for native, es2020 for web.
        *
        */
-      transform: true,
+      transform: ({ id }) => (id.includes('/app/') ? true : false),
     }),
   ],
 } satisfies UserConfig
@@ -274,22 +266,18 @@ This setting must match the key you gave the React Native app container you've b
 
 ### native.bundler
 
-Choose the bundler for native builds. Options are:
+Which bundler serves the native dev bundle. Options are:
 
-- `'metro'` (recommended): Uses the standard React Native Metro bundler for maximum stability and compatibility
-- `'vite'` (alpha): Uses Rolldown for native bundling with fast builds, HMR via React Refresh, and treeshaking in production. Requires Hermes V1.
+- `'vite'` (default): Runs Rolldown with OXC transforms and no Babel
+- `'metro'`: Runs Metro, also with no Babel by default
 
-**We strongly recommend using Metro mode for production applications** as it provides:
-
-- Full compatibility with all React Native packages
-- Battle-tested stability
-- Standard React Native bundling behavior
-
-When using Metro mode, you can also configure `bundlerOptions.startup: 'lazy'` to defer Metro startup until a native client connects, which speeds up dev server startup when you don't always need native builds.
+Use Metro when a dependency requires it. You can also set the `ONE_METRO_MODE` environment variable to override this setting to `'metro'` for a single run.
 
 For detailed information including limitations, configuration options, and performance considerations, see the [Metro Mode documentation](/docs/metro-mode).
 
-Note that `native.bundler` only affects dev. `one build --platform ios` and `--platform android` always produce the native bundle through Rolldown.
+Note that `native.bundler` only affects dev. `one build --platform ios` and `--platform android` always produce the native bundle through the Rolldown path.
+
+**Default:** `'vite'`
 
 ### native.bundlerOptions
 
@@ -348,9 +336,37 @@ Initialization happens lazily once per runtime and live module version. Editing 
 
 Node built-ins, React Native runtime packages, dynamic imports, and unsupported free runtime globals are rejected. The plugin cannot prove that a function is pure: the selected functions and their dependencies must not rely on host objects, runtime-specific properties on `globalThis`, or asynchronous module initialization.
 
+### native.app
+
+Typed native app manifest. This replaces the Expo-shaped `app.json`. `name` is the native target and AppRegistry key. `one prebuild` requires `name` with `ios.bundleId` and `android.applicationId` configured.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'OneApp',
+          ios: { bundleId: 'com.example.oneapp' },
+          android: { applicationId: 'com.example.oneapp' },
+        },
+      },
+    }),
+  ],
+}
+```
+
+See the [iOS Native Guide](/docs/guides-ios-native) for the full setup.
+
+### native.suspendRoutes
+
+Wrap each route screen in a React Suspense boundary on native. On native the JS bundle already contains all route modules, so the boundary only catches the async `import()` wrapper which resolves on the next microtick. Set this to `false` to remove the `<Suspense fallback={null}>` wrapper, which prevents a blank flash when JS-driven navigation animations slide a screen in before the fallback is replaced.
+
+**Default:** `true`
+
 ### native.css
 
-Enables [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code.
+Turns on [react-native-css-interop](https://github.com/marklawlor/nativewind) support when importing CSS on native. This allows you to use CSS imports in your React Native code.
 
 ```tsx fileName=vite.config.ts
 export default {
@@ -539,7 +555,7 @@ export default {
 
 - **`'after-lcp'`**: Scripts download immediately via modulepreload but execution is deferred until after first paint using double requestAnimationFrame. This allows the browser to paint the SSR content before executing JavaScript. Only applies to SSG pages.
 
-- **`'after-lcp-aggressive'`**: Only modulepreloads critical scripts (entry, layouts). Non-critical scripts have no modulepreload hints, reducing network saturation. Best for pages with many chunks or slow networks.
+- **`'after-lcp-aggressive'`**: Omits initial JavaScript modulepreload hints so images and styles can use the connection first. The deferred bootstrap loads the entry and layout scripts; their imports load the remaining chunks. Best for pages with many chunks or slow networks. Only applies to SSG pages.
 
 **Default:** `undefined` (all scripts load with async)
 
@@ -584,6 +600,54 @@ The sitemap automatically:
 **Route-level overrides:** Routes can export a `sitemap` object to customize their entry. See [Routing Exports](/docs/routing-exports#sitemap) for details.
 
 **Base URL:** If `baseUrl` isn't specified, One uses the `ONE_SERVER_URL` environment variable. If neither is set, paths are relative.
+
+### web.skewProtection
+
+Skew protection detects when deployed assets have changed and handles stale client bundles gracefully instead of showing broken pages.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        skewProtection: 'proactive',
+      },
+    }),
+  ],
+}
+```
+
+**Options:**
+
+- **`true`** (default): Detects chunk load failures and auto-reloads
+- **`'proactive'`**: Also polls for new versions and forces full-page navigation when a new deployment is detected
+- **`false`**: Disable skew protection entirely
+
+See the [Skew Protection guide](/docs/guides-skew-protection) for details.
+
+### web.suspendRoutes
+
+Wrap each route screen in a React Suspense boundary on web. By default web does not wrap routes in Suspense, to avoid flickers during navigation. Enable this if your routes use React `use()` or lazy loading and you want Suspense boundaries per route.
+
+**Default:** `false`
+
+### web.experimentalBundledDev
+
+Serve the web client through Vite's bundled dev mode (Rolldown-powered full bundle dev environment) instead of unbundled ESM dev. This means fewer requests and faster parsing, especially for apps with large icon or utility imports. This is dev-only and is ignored for builds.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      web: {
+        experimentalBundledDev: true,
+      },
+    }),
+  ],
+}
+```
+
+**Default:** `false`
 
 ## react
 
@@ -704,6 +768,7 @@ export default {
       // Configure individual tools
       devtools: {
         inspector: true, // enabled by default
+        editor: 'cursor', // editor CLI for the inspector, or set LAUNCH_EDITOR
         seoPreview: true, // enabled by default
       },
     }),
@@ -715,11 +780,27 @@ export default {
 
 The source inspector lets you quickly find the source code for any element on the page:
 
-1. Hold **Shift+Cmd** (Mac) or **Shift+Ctrl** (Windows/Linux)
+1. Hold **Option** (Mac) or **Alt** (Windows/Linux) for 0.8 seconds
 2. Hover over any element to see its source file location
 3. Click to open the file in your editor
 
 This works automatically without any additional setup - One injects the necessary data attributes during development and handles opening files in your configured editor.
+
+### devtools.editor
+
+Editor CLI command for the source inspector to open files with. Examples: `'cursor'`, `'code'`, `'zed'`, `'subl'`, `'webstorm'`. You can also set it with the `LAUNCH_EDITOR` or `EDITOR` environment variable.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      devtools: {
+        editor: 'cursor',
+      },
+    }),
+  ],
+}
+```
 
 ### devtools.seoPreview
 
@@ -815,10 +896,11 @@ export default {
           version: '~15.2.0',
 
           // you can use globs to apply to only specific files
-          // if you pass an array value, One will apply one of two transforms to matching files:
+          // if you pass an array value, One applies those transforms to matching files:
           //    swc => @swc/core will transform your file into CommonJS compatible code, removing JSX as well
           //    flow => the FlowType transformer will run to remove Flow types
-          '**/*.js': ['flow', 'swc']
+          //    jsx => transforms JSX only
+          '**/*.js': ['flow', 'swc'],
 
           // you can also apply custom transforms using a function
           'dist/js/utils/environment.js': (contents) => {
@@ -840,6 +922,10 @@ Any transforms that are applied to specific files in node_modules will only be a
 ## router
 
 The router object allows you to configure routing behavior.
+
+### router.root
+
+Dangerously customize the router root directory. This may lead to unexpected behavior. Prefer the default `app` directory, or pass `--appDir` to `one generate-routes` when your routes live elsewhere.
 
 ### router.ignoredRouteFiles
 
@@ -905,6 +991,38 @@ The insertion happens automatically when route files are created or modified, wi
 
 For more information, see the [Typed Routes documentation](/docs/routing-typed-routes).
 
+## build
+
+Build-time options. See [one build](/docs/one-build) for the full build documentation.
+
+### build.concurrency
+
+Maximum number of static pages to build concurrently. Lower this when builds share a machine with other CPU-heavy work. `ONE_BUILD_CONCURRENCY` overrides this value.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      build: {
+        concurrency: 4,
+      },
+    }),
+  ],
+}
+```
+
+**Default:** the smaller of your CPU core count and 8
+
+### build.workers
+
+Use worker threads for parallel static page generation during build. This utilizes multiple CPU cores for faster builds. Set to `false` to disable, or use `ONE_BUILD_WORKERS=0` for a single run (`=1` forces them on).
+
+**Default:** `true`
+
+### build.server / build.api
+
+`build.server` accepts VXRN server build options, or `false`. `build.api` accepts VXRN build options for API routes.
+
 ### build.securityScan
 
 Scan client bundles for leaked secrets (API keys, tokens, passwords) after building. This catches accidental exposure of server-side secrets in client-facing JavaScript before they reach production.
@@ -948,6 +1066,30 @@ export default {
 
 The scanner checks for common secret patterns including Anthropic, OpenAI, Stripe, GitHub, and AWS keys, as well as generic secret/password/token assignments. Known safe patterns (WebRTC constants, CSS tokens) are automatically excluded. Use `safePatterns` to add your own.
 
+## server
+
+Production server options, passed through to the underlying server. See [one serve](/docs/one-serve) for the CLI side.
+
+### server.loggingEnabled
+
+Log HTTP requests to the console.
+
+**Default:** `true`
+
+## skipEnv
+
+Skip loading `.env` files during build. The same effect for a single run comes from the `one build --skip-env` flag, which takes precedence when passed.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      skipEnv: true,
+    }),
+  ],
+}
+```
+
 ## ssr
 
 Server-side rendering configuration.
@@ -982,6 +1124,26 @@ export default {
 
 **Default:** `{ include: /node_modules/ }`
 
+### ssr.dedupeSymlinkedModules
+
+In monorepos with symlinked workspace packages, Vite's SSR optimizer registers pre-bundled deps by their `node_modules` path, but the resolver follows symlinks to the real source path. This creates duplicate module instances: the optimizer serves one copy while source imports create another.
+
+Enable this to redirect symlink-resolved paths back to `node_modules` paths so the optimizer can recognize and deduplicate them.
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      ssr: {
+        dedupeSymlinkedModules: true,
+      },
+    }),
+  ],
+}
+```
+
+**Default:** `false`
+
 ## environmentGuards
 
 Configure environment guard behavior for `server-only`, `client-only`, `native-only`, and `web-only` imports.
@@ -1013,9 +1175,40 @@ export default {
 
 **Default:** All guards are enabled.
 
+## transform
+
+Per-file control over how code transforms. One uses OXC for worklets and React Compiler. Reanimated callbacks, gesture callbacks and explicit worklets do not require a Babel plugin. Babel still runs for configured Babel transforms and syntax that needs it.
+
+Pass a function that receives the file id, its code, and the build context, and returns how to transform it:
+
+```tsx fileName=vite.config.ts
+export default {
+  plugins: [
+    one({
+      transform: ({ id }) => {
+        if (id.includes('node_modules')) return false
+        return true
+      },
+    }),
+  ],
+}
+```
+
+The function receives `{ id, code, development, environment, reactForRNVersion }`, where `environment` is `'ios' | 'android' | 'client' | 'ssr'`. It returns:
+
+- **`true`**: default transforms
+- **`false`**: no transforms
+- **`'babel'`**: force the Babel default transform
+- **`'swc'`**: force the SWC default transform
+- **`'oxc'`**: force the OXC default transform
+- **`{ transform: 'babel', ... }`**: force Babel with custom options
+- **`{ transform: 'swc' | 'oxc', ... }`**: force SWC or OXC with custom options
+
+Babel defaults to preset `@babel/preset-typescript` with plugins for destructuring, runtime helpers, JSX, and async functions. SWC targets es5 for native and es2020 for web.
+
 ## The Environment API
 
-One runs on Vite 6 and makes use of their [new Environment API](https://main.vitejs.dev/guide/api-environment).
+One runs on Vite 8 and makes use of its [Environment API](https://main.vitejs.dev/guide/api-environment).
 
 This makes it easier to target React Native, as you can specify configuration for iOS, Android and web separately. One defines `ios` and `android` environments, respectively. For web, we follow the Vite standard of having a `client` and `ssr` environments (for client-side and server-side bundles).
 

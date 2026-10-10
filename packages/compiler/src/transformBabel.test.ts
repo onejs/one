@@ -6,6 +6,7 @@ import { configureVXRNCompilerPlugin } from './configure'
 import {
   findUserBabelConfig,
   getBabelOptions,
+  stripFlowTypes,
   transformBabel,
   transformOxcReactCompiler,
 } from './transformBabel'
@@ -13,8 +14,8 @@ import {
 afterEach(() => {
   configureVXRNCompilerPlugin({ enableReanimated: false })
 })
-describe('getBabelOptions Worklets resolution', () => {
-  it('uses the app-installed Worklets Babel plugin', () => {
+describe('getBabelOptions worklets ownership', () => {
+  it('does not add an automatic Worklets Babel pass', () => {
     const projectRoot = fs.realpathSync(
       fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-worklets-'))
     )
@@ -40,7 +41,7 @@ describe('getBabelOptions Worklets resolution', () => {
         projectRoot,
       })
 
-      expect(options?.plugins).toContain(pluginPath)
+      expect(options).toBeNull()
     } finally {
       fs.rmSync(projectRoot, { recursive: true, force: true })
     }
@@ -247,7 +248,7 @@ export async function* generatorProbe() {
 })
 
 describe('shared compiler worklets backend selection', () => {
-  it('retains Babel for worklets by default when enableNativeWorklets is false', async () => {
+  it('does not fall back to Babel when worklet compilation is disabled', async () => {
     const { vi } = await import('vitest')
     const { createVXRNCompilerPlugin } = await import('./index')
     const workletsModule = await import('./transformWorklets')
@@ -269,8 +270,8 @@ describe('shared compiler worklets backend selection', () => {
       const hook = plugin.transform.handler || plugin.transform
       const context = { environment: { name: 'ios' } }
       const result = await hook.call(context, inputCode, tempFile)
-      expect(result).toBeDefined()
-      // With enableNativeWorklets: false, transformWorklets (SWC) is NOT called
+      expect(result).toBeNull()
+      // disabling the transform does not select a second backend.
       expect(workletSpy).not.toHaveBeenCalled()
     } finally {
       workletSpy.mockRestore()
@@ -282,7 +283,7 @@ describe('shared compiler worklets backend selection', () => {
     }
   })
 
-  it('uses native SWC for worklets when enableNativeWorklets is true', async () => {
+  it('compiles worklets with One when no Babel pass is requested', async () => {
     const compiler = await import('./index')
     const { vi } = await import('vitest')
     const workletsModule = await import('./transformWorklets')
@@ -305,7 +306,8 @@ describe('shared compiler worklets backend selection', () => {
       const context = { environment: { name: 'ios' } }
       const result = await hook.call(context, inputCode, tempFile)
       expect(result).toBeDefined()
-      // With enableNativeWorklets: true, transformWorklets (SWC) IS called
+      expect(result.code).toContain('__workletHash')
+      // the worklet-only file still reaches the One transform.
       expect(workletSpy).toHaveBeenCalled()
     } finally {
       workletSpy.mockRestore()
@@ -328,7 +330,7 @@ describe('shared compiler worklets backend selection', () => {
     fs.writeFileSync(tempFile, inputCode)
 
     try {
-      // Step 1: Run with Babel backend (enableNativeWorklets: false)
+      // begin with worklet compilation disabled.
       configureVXRNCompilerPlugin({
         enableReanimated: true,
         enableNativeWorklets: false,
@@ -341,10 +343,10 @@ describe('shared compiler worklets backend selection', () => {
       const context = { environment: { name: 'ios' } }
 
       const res1 = await hook1.call(context, inputCode, tempFile)
-      expect(res1).toBeDefined()
+      expect(res1).toBeNull()
       expect(workletSpy).toHaveBeenCalledTimes(0)
 
-      // Step 2: Toggle to native SWC backend on the SAME file without changes
+      // enable the transform on the same unchanged file.
       configureVXRNCompilerPlugin({
         enableReanimated: true,
         enableNativeWorklets: true,
@@ -357,15 +359,16 @@ describe('shared compiler worklets backend selection', () => {
 
       const res2 = await hook2.call(context, inputCode, tempFile)
       expect(res2).toBeDefined()
-      // Cache must NOT serve the Babel entry; native transformWorklets must be invoked
+      expect(res2.code).toContain('__workletHash')
+      // the cache must not serve the untransformed entry.
       expect(workletSpy).toHaveBeenCalledTimes(1)
 
-      // Step 3: Call again with native SWC to verify caching works for the native backend
+      // reuse the transformed cache entry.
       const res3 = await hook2.call(context, inputCode, tempFile)
       expect(res3).toBeDefined()
       expect(workletSpy).toHaveBeenCalledTimes(1)
 
-      // Step 4: Toggle back to Babel backend; cache must not serve SWC entry
+      // disable the transform; the cache must not serve a transformed entry.
       configureVXRNCompilerPlugin({
         enableReanimated: true,
         enableNativeWorklets: false,
@@ -377,8 +380,8 @@ describe('shared compiler worklets backend selection', () => {
       const hook3 = plugin3.transform.handler || plugin3.transform
 
       const res4 = await hook3.call(context, inputCode, tempFile)
-      expect(res4).toBeDefined()
-      // workletSpy should still have only been called once
+      expect(res4).toBeNull()
+      // no second transform was requested.
       expect(workletSpy).toHaveBeenCalledTimes(1)
     } finally {
       workletSpy.mockRestore()
@@ -474,30 +477,40 @@ describe('findUserBabelConfig and user Babel config respect', () => {
     }
   })
 
-  it('tells user babel config it runs in a bundler that keeps static esm', async () => {
-    const projectRoot = fs.realpathSync(
-      fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
-    )
-    const userConfig = path.join(projectRoot, 'babel.config.js')
-    // presets such as babel-preset-expo read this caller to decide whether to
-    // rewrite esm to commonjs and import.meta to a metro runtime global
-    fs.writeFileSync(
-      userConfig,
-      `module.exports = (api) => ({
-        comments: !api.caller((c) => c?.name === 'vxrn' && c?.supportsStaticESM === true),
-      })`
-    )
-    try {
-      const res = await transformBabel(
-        path.join(projectRoot, 'src', 'index.ts'),
-        '/* remove me */ export const x = 1',
-        { configFile: userConfig, babelrc: true }
+  it.each(['ios', 'android', 'client', 'ssr'] as const)(
+    'tells user babel config the %s platform and that the bundler keeps static esm',
+    async (environment) => {
+      const projectRoot = fs.realpathSync(
+        fs.mkdtempSync(path.join(os.tmpdir(), 'vxrn-babel-conf-'))
       )
-      expect(res.code).not.toContain('remove me')
-    } finally {
-      fs.rmSync(projectRoot, { recursive: true, force: true })
+      const userConfig = path.join(projectRoot, 'babel.config.js')
+      // presets such as babel-preset-expo read this caller to decide whether to
+      // rewrite esm to commonjs and import.meta to a metro runtime global
+      fs.writeFileSync(
+        userConfig,
+        `module.exports = (api) => ({
+        comments: !api.caller((c) => c?.name === 'vxrn' && c?.supportsStaticESM === true && c?.platform === '${environment === 'ios' || environment === 'android' ? environment : 'web'}'),
+      })`
+      )
+      try {
+        const id = path.join(projectRoot, 'src', 'index.ts')
+        const code = '/* remove me */ export const x = 1'
+        const options = getBabelOptions({
+          id,
+          code,
+          projectRoot,
+          environment,
+          development: false,
+          reactForRNVersion: '19',
+        })
+        expect(options).not.toBeNull()
+        const res = await transformBabel(id, code, options!)
+        expect(res.code).not.toContain('remove me')
+      } finally {
+        fs.rmSync(projectRoot, { recursive: true, force: true })
+      }
     }
-  })
+  )
 })
 describe('explicit swc/oxc per-file choice with a user babel config', () => {
   it('returns null for swc/oxc string and object forms', () => {
@@ -654,5 +667,16 @@ describe('user babel config end-to-end through the compiler plugin', () => {
       })
       fs.rmSync(projectRoot, { recursive: true, force: true })
     }
+  })
+})
+
+describe('Flow and JSX parsing', () => {
+  it('strips Flow types while retaining JSX in published JavaScript', async () => {
+    const result = await stripFlowTypes(
+      '/app/VideoView.js',
+      `export function View(props: {value: string}) { return <NativeView {...props} /> }`
+    )
+    expect(result.code).not.toContain('value: string')
+    expect(result.code).toContain('<NativeView')
   })
 })

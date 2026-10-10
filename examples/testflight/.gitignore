@@ -29,8 +29,6 @@ tsconfig.tsbuildinfo
 .env.test.localp
 .env.production.local
 
-.expo
-
 # generated code
 /ios
 /android

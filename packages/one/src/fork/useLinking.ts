@@ -729,7 +729,7 @@ export function useLinking(
       ) {
         // @modified - use recursive depth across nested navigator states.
         // when navigation pushes a route whose nested navigator gains a focused
-        // child (e.g. / → /docs/sootsim), comparing only the matching state's
+        // child (e.g. / → /docs/peach), comparing only the matching state's
         // top-level routes.length misses the nested push and yields delta=0,
         // which would replace history instead of push.
         const historyDelta =

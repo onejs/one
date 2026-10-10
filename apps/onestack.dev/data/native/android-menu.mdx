@@ -1,0 +1,81 @@
+---
+title: Android Menus
+description: Menu and ContextMenu under One.Android
+---
+
+<NativeHero
+  src="/native/android-menu.webp"
+  alt="One.Android.ContextMenu open on a photo card"
+/>
+
+`One.Android.Menu` opens on tap and `One.Android.ContextMenu` opens on long
+press. Both show the platform popup, anchored to the trigger. They take
+the same props and `items` as the iOS menu (see
+[Presentations and Menus](/native/ios-presentations#menu)), with the
+differences below.
+
+```tsx
+import { One } from 'one'
+
+<One.Android.Menu
+  accessibilityLabel="Options"
+  items={[
+    { type: 'action', id: 'share', title: 'Share' },
+    { type: 'toggle', id: 'pin', title: 'Pin', values: [pinned] },
+    { type: 'action', id: 'delete', title: 'Delete' },
+  ]}
+  onAction={(id) => act(id)}
+  onValueChange={(id, value) => setPinned(value)}
+>
+  <One.Android.Icon name="more_vert" />
+</One.Android.Menu>
+```
+
+<PropsTable
+  title="Props"
+  source="generated/types.ts#MenuProps"
+  data={[
+    { name: 'items', required: true, type: 'readonly MenuItem[]', description: 'The menu content. Picker items throw.' },
+    { name: 'onAction', required: true, type: '(id: string) => void', description: 'A tapped action item.' },
+    {
+      name: 'onValueChange',
+      type: '(id: string, value: boolean, sourceIndex: number) => void',
+      description: 'A tapped toggle item. Required when items has toggles.',
+    },
+    { name: 'accessibilityLabel', required: true, type: 'string', description: 'Names the trigger.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Blocks the tap and the long press.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The trigger.' },
+    { name: 'primaryAction', type: '() => void', description: 'Ignored on Android.' },
+    { name: 'onPickerChange', type: '(id: string, value: string) => void', description: 'Ignored on Android.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Ignored on Android.' },
+    { name: 'menuOrder', type: 'MenuOrder', default: '"automatic"', description: 'Ignored on Android.' },
+    {
+      name: 'menuActionDismissBehavior',
+      type: 'MenuActionDismissBehavior',
+      default: '"automatic"',
+      description: 'Ignored on Android. A tap always closes the menu.',
+    },
+  ]}
+/>
+
+`ContextMenu` takes the same props without `primaryAction`, and its
+`accessibilityLabel` is optional because the trigger keeps its own.
+
+The popup draws titles only, so `systemImage`, `role`, and `help` have no
+effect. Items map like this:
+
+| `type` | On Android |
+| --- | --- |
+| `'action'` | A row. `disabled` grays it, `hidden` leaves it out. |
+| `'toggle'` | A checkable row per value; several values add a number to each title. |
+| `'submenu'` | A row that opens a nested popup. |
+| `'section'` | Also a nested popup, titled by the section. |
+| `'controlGroup'` | Its children inline. |
+| `'divider'` | Nothing. |
+| `'picker'` | Throws. |
+
+Item ids must be unique and nonempty. The menu reads the trigger's native
+view when it opens, and throws if there is none.
+
+These components throw when rendered outside an Android build, so keep
+those branches behind platform checks.

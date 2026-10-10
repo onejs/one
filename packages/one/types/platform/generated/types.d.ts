@@ -1,0 +1,89 @@
+import type { ReactNode } from 'react';
+import type { ViewProps } from 'react-native';
+import type { SFSymbolName } from './sfSymbolNames';
+import type { MenuOrder, MenuActionDismissBehavior, ButtonRole, ControlGroupStyle } from './swiftui';
+export type { MenuOrder, Visibility, PickerStyle, DatePickerStyle, ToggleStyle, MenuActionDismissBehavior, TabViewStyle, ButtonRole, TabRole, TabPlacement, AdaptableTabBarPlacement, TabCustomizationBehavior, TabSectionExpansion, SpringLoadingBehavior, ControlGroupStyle, PrimitiveButtonStyle, ProgressViewStyle, GaugeStyle, TextFieldStyle, SubmitLabel, TextInputAutocapitalization, Axis, Edge, PresentationAdaptation, PresentationContentInteraction, ColorScheme, DynamicTypeSize, ControlSize, SymbolRenderingMode, SymbolVariants, ImageScale, PhotosPickerSelectionBehavior, EncodingDisambiguationPolicy, BackForwardNavigationGesturesBehavior, MagnificationGesturesBehavior, LinkPreviewBehavior, ElementFullscreenBehavior, ListStyle, ToolbarItemPlacement, SpacerSizing, } from './swiftui';
+export interface SwiftMenuAction {
+    type: 'action';
+    id: string;
+    title: string;
+    systemImage?: SFSymbolName | '';
+    role?: ButtonRole;
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+}
+export interface MenuToggle {
+    type: 'toggle';
+    id: string;
+    title: string;
+    systemImage?: SFSymbolName | '';
+    values: readonly boolean[];
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+}
+export interface MenuSubmenu {
+    type: 'submenu';
+    id: string;
+    title: string;
+    systemImage?: SFSymbolName | '';
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    menuOrder?: MenuOrder;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+    children: readonly MenuItem[];
+}
+export interface MenuSection {
+    type: 'section';
+    id: string;
+    title?: string;
+    hidden?: boolean;
+    children: readonly MenuItem[];
+}
+export interface MenuControlGroup {
+    type: 'controlGroup';
+    id: string;
+    title?: string;
+    systemImage?: SFSymbolName | '';
+    disabled?: boolean;
+    hidden?: boolean;
+    controlGroupStyle?: ControlGroupStyle;
+    children: readonly MenuItem[];
+}
+export interface MenuPicker {
+    type: 'picker';
+    id: string;
+    title: string;
+    systemImage?: SFSymbolName | '';
+    selection: string;
+    disabled?: boolean;
+    hidden?: boolean;
+    help?: string;
+    children: readonly SwiftMenuAction[];
+}
+export interface MenuDivider {
+    type: 'divider';
+    id: string;
+}
+export type MenuItem = SwiftMenuAction | MenuToggle | MenuSubmenu | MenuSection | MenuControlGroup | MenuPicker | MenuDivider;
+export interface MenuProps extends ViewProps {
+    items: readonly MenuItem[];
+    onAction: (id: string) => void;
+    primaryAction?: () => void;
+    onValueChange?: (id: string, value: boolean, sourceIndex: number) => void;
+    onPickerChange?: (id: string, value: string) => void;
+    accessibilityLabel: string;
+    revision?: number;
+    disabled?: boolean;
+    menuOrder?: MenuOrder;
+    menuActionDismissBehavior?: MenuActionDismissBehavior;
+    children: ReactNode;
+}
+export type ContextMenuProps = Omit<MenuProps, 'accessibilityLabel' | 'primaryAction'> & {
+    accessibilityLabel?: string;
+};
+//# sourceMappingURL=types.d.ts.map

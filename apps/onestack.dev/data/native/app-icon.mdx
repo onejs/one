@@ -1,0 +1,125 @@
+---
+title: App Icon
+description: Let people choose a bundled alternate app icon
+---
+
+`One.AppIcon` reads and changes the launcher icon for your app. The
+icon images must be bundled into the binary before calling `setIcon`.
+
+With One prebuild, configure a primary icon and named alternates in
+`native.app`:
+
+```ts
+native: {
+  app: {
+    // ...name and platform IDs
+    icon: { source: 'assets/icon.svg', backgroundColor: '#154a9c' },
+    ios: {
+      // ...bundleId
+      alternateIcons: {
+        Blue: { source: 'assets/icon-blue.svg', backgroundColor: '#154a9c' },
+        Orange: { source: 'assets/icon-orange.svg', backgroundColor: '#d95918' },
+      },
+    },
+  },
+}
+```
+
+Each source must be square and at least 1024 pixels wide. One prebuild creates
+the iOS icon sets and selects them in Xcode's Alternate App Icon Sets build
+setting. The names in `alternateIcons` are the names passed to `setIcon`.
+After changing icon configuration, rebuild the native app. An over-the-air
+JavaScript update cannot add icon images to an installed binary.
+
+```ts
+import { One } from 'one'
+
+if (await One.AppIcon.isSupported()) {
+  const current = await One.AppIcon.getCurrentName()
+  // undefined means the primary icon is showing.
+  if (current !== 'Orange') await One.AppIcon.setIcon('Orange')
+  // Passing no name restores the primary icon.
+  await One.AppIcon.setIcon()
+}
+```
+
+iOS displays a system alert when the icon changes. Call `setIcon` from a user
+action while the app is active. `getCurrentName` returns the installed icon's
+name, or `undefined` for the primary icon. Repeating the current selection
+returns without another alert. An unknown name rejects with
+`E_APP_ICON_INPUT`; unavailable icon switching, an inactive app, concurrent
+changes, and system failures reject with `E_APP_ICON_UNAVAILABLE`,
+`E_APP_ICON_INACTIVE`, `E_APP_ICON_BUSY`, and `E_APP_ICON_CHANGE` respectively.
+Alternate icons are implemented on iOS and Android. On Android, declare
+launcher `activity-alias` entries in your app manifest. Keep the real host
+activity enabled and move its MAIN/LAUNCHER intent filter to the primary
+alias. Each alias targets a small launcher activity that forwards into the
+permanent host and finishes before React Native renders. Android finishes
+running activities launched through an alias when that alias is disabled,
+so aliases must not target the React Native host directly.
+
+Add this activity in your app's Kotlin package:
+
+```kotlin
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+
+class AppIconLauncherActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        startActivity(Intent(intent).setClass(this, MainActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                Intent.FLAG_ACTIVITY_SINGLE_TOP))
+        finish()
+    }
+}
+```
+
+Exactly one launcher alias defaults to `android:enabled="true"`; each
+alternate defaults to `false`. Declare the launcher activity before its
+aliases, after the host activity:
+
+```xml
+<activity
+  android:name=".AppIconLauncherActivity"
+  android:exported="false"
+  android:taskAffinity=""
+  android:excludeFromRecents="true"
+  android:theme="@android:style/Theme.NoDisplay" />
+<activity-alias
+  android:name=".Primary"
+  android:targetActivity=".AppIconLauncherActivity"
+  android:enabled="true"
+  android:exported="true"
+  android:icon="@mipmap/ic_launcher">
+  <intent-filter>
+    <action android:name="android.intent.action.MAIN" />
+    <category android:name="android.intent.category.LAUNCHER" />
+  </intent-filter>
+</activity-alias>
+<activity-alias
+  android:name=".Blue"
+  android:targetActivity=".AppIconLauncherActivity"
+  android:enabled="false"
+  android:exported="true"
+  android:icon="@mipmap/ic_launcher_blue">
+  <intent-filter>
+    <action android:name="android.intent.action.MAIN" />
+    <category android:name="android.intent.category.LAUNCHER" />
+  </intent-filter>
+</activity-alias>
+```
+
+Pass the alternate alias's simple name, such as `Blue`, to `setIcon`.
+The launcher's empty task affinity and `FLAG_ACTIVITY_NEW_TASK` keep the
+host task rooted at MainActivity. Android removes tasks whose base intent
+targets a disabled alias, even after the launcher activity has finished.
+Passing no name restores the manifest's primary alias. One switches only
+launcher aliases, preserving the running host activity. `isSupported()`
+requires the primary alias and at least one alternate; `getCurrentName()`
+returns `undefined` for the primary icon. Without this alias configuration,
+Android reports unsupported and restoring the primary icon rejects with
+`E_APP_ICON_UNAVAILABLE`. Rebuild after changing the manifest or resources.
+On web, support is false, the current name is empty, and changing it does
+nothing.

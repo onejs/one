@@ -18,4 +18,11 @@ describe('getOptimizeDeps', () => {
 
     expect(optimizeDeps.include).toContain('nativewind')
   })
+
+  it('defines the expo platform for pre-bundled deps, which never see babel', () => {
+    for (const mode of ['serve', 'build'] as const) {
+      const { optimizeDeps } = getOptimizeDeps(mode)
+      expect(optimizeDeps.rolldownOptions?.transform?.define?.['process.env.EXPO_OS']).toBe('"web"')
+    }
+  })
 })

@@ -1,6 +1,6 @@
 {
   "name": "test-app-cases",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,17 +21,16 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
-    "@tamagui/config": "2.6.2",
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@tamagui/config": "3.0.0-beta.1670.1",
     "@vxrn/color-scheme": "workspace:*",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.87.1",
-    "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.27.0",
     "react-native-web": "^0.21.2",
-    "tamagui": "2.6.2"
+    "tamagui": "3.0.0-beta.1670.1"
   },
   "devDependencies": {
     "playwright": "^1.58.2",

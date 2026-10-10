@@ -1,3 +1,0 @@
-// TODO the way tamagui-build is working it always
-// builds the .native but it needs to detect .ios/.android and avoid...
-export default 'lazy'

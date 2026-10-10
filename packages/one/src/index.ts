@@ -1,12 +1,47 @@
 export { createApp } from './createApp'
 
-export type { One, OneRouter } from './interfaces/router'
+export { One } from './one'
+// native hooks and adaptive reads are named exports for react-hooks lint.
+export {
+  useFonts,
+  useNativeState,
+  useNetworkState,
+  useSizeClass,
+  getSizeClass,
+  useHinge,
+  getHinge,
+  onHingeChange,
+  useReservedRegions,
+  useReservedRegionsReady,
+  useWindowSegments,
+  useSpanning,
+} from './platform'
+export type {
+  PortalProps,
+  PortalHostProps,
+  FontMap,
+  FontSource,
+  UseFontsResult,
+  NativeState,
+  NetworkState,
+  NetworkStateType,
+  UserInterfaceSizeClass,
+  SizeClass,
+  HingeStatus,
+  HingeState,
+  ReservedRegionKind,
+  ReservedRegion,
+  WindowSegment,
+  ReservedRegionOptions,
+  SFSymbolName,
+} from './platform'
+export type { OneRouter } from './interfaces/router'
 
 /**
  * Image data returned by ?imagedata imports.
  * Install `sharp` to enable this feature: `npm install sharp`
  *
- * NOTE: This interface is also declared in types/env.d.ts for Vite module augmentation.
+ * NOTE: env.d.ts declares the same shape for `?imagedata` module imports.
  * Keep both definitions in sync.
  */
 export interface ImageData {
@@ -42,16 +77,17 @@ export type RouteType<Path extends string = string> = OneRouter.RouteType<Path>
 
 // hooks
 export { useIsFocused } from '@react-navigation/core'
+export { useHeaderHeight } from './useHeaderHeight'
 // re-export
 export * from '@vxrn/color-scheme'
 // TODO breaking due to react-native-gesture-handler
 // export { Drawer } from './layouts/Drawer'
 // export { Unmatched } from './fallbackViews/Unmatched'
-export { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
+export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context'
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware
-export { createMiddleware, type Middleware } from './createMiddleware'
+export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware'
 // api routes
 export {
   createAPIRoute,
@@ -105,6 +141,28 @@ export type {
   StackHeaderTitleProps,
   StackScreenOptions,
   StackScreenProps,
+} from './layouts/stack-utils'
+// Stack toolbar compositional API types
+export type {
+  BottomToolbarButtonData,
+  BottomToolbarData,
+  BottomToolbarHostProps,
+  BottomToolbarMenuActionData,
+  BottomToolbarMenuData,
+  BottomToolbarSearchBarSlotData,
+  BottomToolbarSpacerData,
+  BottomToolbarSubmenuData,
+  StackToolbarBadgeProps,
+  StackToolbarButtonProps,
+  StackToolbarIconProps,
+  StackToolbarLabelProps,
+  StackToolbarMenuActionProps,
+  StackToolbarMenuProps,
+  StackToolbarPlacement,
+  StackToolbarProps,
+  StackToolbarSearchBarSlotProps,
+  StackToolbarSpacerProps,
+  StackToolbarVariant,
 } from './layouts/stack-utils'
 export { useTabs } from './headless/useTabs'
 export { useDrawer } from './headless/useDrawer'
@@ -189,3 +247,5 @@ export type { ErrorBoundaryProps, ErrorRouteInfo } from './views/Try'
 export { useScrollGroup } from './useScrollGroup'
 // server
 export { getServerData, setResponseHeaders, setServerData } from './vite/one-server-only'
+
+export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './platform/ui/pagerTypes'

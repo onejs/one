@@ -1,15 +1,283 @@
-import { defineConfig } from 'vite'
+import { fileURLToPath } from 'node:url'
+import { defineConfig, type Plugin } from 'vite'
 import { one } from 'one/vite'
+
+// the gpu fixture's three.js path: bare 'three' resolves to the webgpu
+// build and @react-three/fiber to its web entry on the native
+// environments only, so web keeps WebGL three. vite has no per-environment
+// resolve.alias, so this is a resolveId plugin scoped by environment name.
+// exact matches only: a prefix rewrite would also catch 'three/webgpu' and
+// 'three/tsl', which already resolve through three's exports map.
+function nativeWebgpuTarget(source: string): string | undefined {
+  if (source === 'three') return 'three/webgpu'
+  if (source === '@react-three/fiber')
+    return '@react-three/fiber/dist/react-three-fiber.esm.js'
+}
+
+function nativeWebgpuAliases(): Plugin {
+  return {
+    name: 'native-webgpu-aliases',
+    applyToEnvironment: (environment) =>
+      environment.name === 'ios' || environment.name === 'android',
+    async resolveId(source, _importer, options) {
+      const target = nativeWebgpuTarget(source)
+      if (target) {
+        return await this.resolve(target, undefined, {
+          ...options,
+          skipSelf: true,
+        })
+      }
+      return null
+    },
+  }
+}
+
+// endpoints the fetch fixture drives on the dev server the app already
+// talks to: a body streamed in timed chunks, an echo of what arrived, a
+// redirect, a cookie round trip, and a response that never finishes.
+function fetchConformanceEndpoints(): Plugin {
+  const prefix = '/__one-native-fetch/'
+  return {
+    name: 'one-native-fetch-endpoints',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (!req.url?.startsWith(prefix)) return next()
+        const route = req.url.slice(prefix.length).split('?')[0]
+        if (route === 'stream') {
+          res.writeHead(200, { 'content-type': 'application/x-ndjson' })
+          const lines = ['{"n":1}\n', '{"n":2}\n', '{"n":3}\n']
+          const send = (index: number) => {
+            if (index === lines.length) return res.end()
+            res.write(lines[index])
+            setTimeout(() => send(index + 1), 600)
+          }
+          send(0)
+          return
+        }
+        if (route === 'part') {
+          res.writeHead(200, { 'content-type': 'text/plain' })
+          res.end('part text')
+          return
+        }
+        if (route === 'bytes') {
+          res.writeHead(200, { 'content-type': 'application/octet-stream' })
+          res.end(Buffer.from([0, 1, 2, 255]))
+          return
+        }
+        if (route === 'redirect') {
+          res.writeHead(302, { location: `${prefix}echo` })
+          res.end()
+          return
+        }
+        if (route === 'set-cookie') {
+          res.writeHead(204, { 'set-cookie': 'one_fetch=1; Path=/' })
+          res.end()
+          return
+        }
+        if (route === 'no-content') {
+          res.writeHead(204)
+          res.end()
+          return
+        }
+        if (route === 'hang') {
+          // an event stream: text/plain would sit in URLSession's 512-byte
+          // content sniffing buffer before its first chunk surfaces
+          res.writeHead(200, { 'content-type': 'text/event-stream' })
+          res.write('first')
+          req.on('close', () => res.end())
+          return
+        }
+        if (route === 'echo') {
+          const chunks: Buffer[] = []
+          req.on('data', (chunk: Buffer) => chunks.push(chunk))
+          req.on('end', () => {
+            const body = Buffer.concat(chunks)
+            res.writeHead(200, { 'content-type': 'application/json', 'x-one-echo': 'yes' })
+            res.end(
+              JSON.stringify({
+                method: req.method,
+                contentType: req.headers['content-type'] ?? null,
+                custom: req.headers['x-one-test'] ?? null,
+                cookie: req.headers.cookie ?? null,
+                // a body of known length arrives with content-length, not chunked
+                length: req.headers['content-length'] ?? null,
+                hex: body.toString('hex'),
+                text: body.toString('latin1'),
+              })
+            )
+          })
+          return
+        }
+        next()
+      })
+    },
+  }
+}
+
+type NativeOptions = NonNullable<Parameters<typeof one>[0]>['native']
+
+const nativeBundler = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
+  ? ({
+      bundler: 'vite',
+      bundlerOptions: { plugins: [nativeWebgpuAliases()] },
+    } satisfies NativeOptions)
+  : ({
+      bundler: 'metro',
+      bundlerOptions: {
+        defaultConfigOverrides: (config) => {
+          if (!config) throw new Error('Metro default config is required')
+          const resolveRequest = config.resolver?.resolveRequest
+          return {
+            ...config,
+            resolver: {
+              ...config.resolver,
+              resolveRequest: (context, moduleName, platform) => {
+                if (
+                  process.env.ONE_NATIVE_SHEET_FIXTURE === '1' &&
+                  platform === 'ios' &&
+                  moduleName === 'one/metro-entry'
+                ) {
+                  return {
+                    type: 'sourceFile',
+                    filePath: fileURLToPath(new URL('./fixtures/sheet-entry.ts', import.meta.url)),
+                  }
+                }
+                // the focused android entry excludes the separate native-source demo.
+                if (
+                  process.env.ONE_NATIVE_PORTAL_FIXTURE === '1' &&
+                  platform === 'android' &&
+                  moduleName === 'one/metro-entry'
+                ) {
+                  return {
+                    type: 'sourceFile',
+                    filePath: fileURLToPath(new URL('./fixtures/portal-entry.ts', import.meta.url)),
+                  }
+                }
+                return (resolveRequest ?? context.resolveRequest)(
+                  context,
+                  nativeWebgpuTarget(moduleName) ?? moduleName,
+                  platform
+                )
+              },
+            },
+          }
+        },
+      },
+    } satisfies NativeOptions)
 
 export default defineConfig({
   plugins: [
     one({
+      // startup proofs run before any route mounts. updates swaps its boot
+      // file per publish; launch-screen selects its hold setup at server start.
       setupFile: {
-        native: './setup.native.ts',
+        native: process.env.ONE_NATIVE_LAUNCH_SCREEN_PROOF === '1'
+          ? './fixtures/launch-screen-setup.ts'
+          : './fixtures/updates-setup.ts',
       },
       native: {
-        key: 'native-feature-tests',
-        bundler: process.env.ONE_NATIVE_BUNDLER === 'rolldown' ? 'vite' : 'metro',
+        app: {
+          name: 'NativeFeatureTests',
+          scheme: 'nativefeatures',
+          notifications: {},
+          pictureInPicture: true,
+          orientation: 'default',
+          // non-default versions the app-info conformance suites assert
+          // exactly, proving prebuild stamping reaches runtime.
+          version: '9.9.9',
+          icon: {
+            source: 'assets/primary-icon.svg',
+            backgroundColor: '#154a9c',
+          },
+          imagePicker: {
+            camera: 'NativeFeatureTests verifies photo capture.',
+          },
+          photoLibrary: {
+            addOnly: 'NativeFeatureTests verifies saving photos and videos.',
+            readWrite: 'NativeFeatureTests verifies browsing photos and videos.',
+          },
+          contacts: {
+            usage: 'NativeFeatureTests verifies contact access.',
+          },
+          calendar: {
+            usage: 'NativeFeatureTests verifies calendar events.',
+            remindersUsage: 'NativeFeatureTests verifies reminders.',
+          },
+          location: {
+            whenInUse: 'NativeFeatureTests verifies current location.',
+            background: true,
+          },
+          // updates builds point at the suite's static server, set at
+          // prebuild time (127.0.0.1 for the ios simulator, 10.0.2.2 for
+          // the android emulator). unset builds launch embedded with
+          // updates disabled, which is every other suite.
+          updates: {
+            url: process.env.ONE_UPDATES_TEST_URL,
+            runtimeVersion: 'updates-suite',
+          },
+          speech: {
+            recognition: 'NativeFeatureTests verifies dictation.',
+            microphone: 'NativeFeatureTests verifies dictation.',
+          },
+          audio: {
+            microphone: 'NativeFeatureTests verifies audio recording.',
+            background: true,
+          },
+          ios: {
+            bundleId: 'dev.vxrn.native.tests',
+            widgets: {
+              appGroup: 'group.dev.vxrn.native.tests',
+              kind: 'NativeFeatureTestsWidget',
+              displayName: 'Native Feature Tests',
+              description: 'Widget content written by the native feature fixtures.',
+            },
+            backgroundTasks: {
+              refresh: ['dev.vxrn.native.tests.refresh'],
+              processing: ['dev.vxrn.native.tests.processing'],
+            },
+            appIntents: {
+              actions: [
+                {
+                  id: 'dev.vxrn.native.tests.echo',
+                  title: 'One Echo Text',
+                  textParameterTitle: 'Text',
+                  shortcutPhrase: 'Echo text in {app}',
+                },
+                {
+                  id: 'dev.vxrn.native.tests.unhandled',
+                  title: 'One Unhandled Action',
+                  shortcutPhrase: 'Try action in {app}',
+                },
+              ],
+            },
+            alternateIcons: {
+              TestAlternate: {
+                source: 'assets/alternate-icon.svg',
+                backgroundColor: '#d95918',
+              },
+            },
+            buildNumber: '4242',
+            deploymentTarget: '17.0',
+            tablet: true,
+            faceIdUsageDescription: 'NativeFeatureTests verifies biometric authentication.',
+            infoPlist: {
+              NSUserTrackingUsageDescription:
+                'NativeFeatureTests verifies the tracking permission prompt.',
+            },
+            fileSharing: true,
+          },
+          android: {
+            applicationId: 'dev.vxrn.nativefeatures.tests',
+            versionCode: 4242,
+            // react-native-webgpu calls AHardwareBuffer, which is api 26+.
+            minSdk: 26,
+            // maps builds set GOOGLE_MAPS_API_KEY at prebuild time (a
+            // placeholder compiles the maps source set in; tiles stay blank
+            // without a restricted key). unset keeps the nomaps flavor.
+            googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+          },
+        },
+        ...nativeBundler,
       },
       router: {
         linking: {
@@ -18,5 +286,7 @@ export default defineConfig({
         },
       },
     }),
+    nativeWebgpuAliases(),
+    fetchConformanceEndpoints(),
   ],
 })

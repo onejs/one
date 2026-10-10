@@ -1,18 +1,18 @@
 # One Native Conformance Runner
 
-## Android Compose in RNX
+## Android Compose in Peach
 
-The RNX lane uses Maestro for interaction and a thin runner for independent tree, layout,
+The Peach lane uses Maestro for interaction and a thin runner for independent tree, layout,
 accessibility, console error, failed request, and screenshot evidence. It requires one connected
 `pixel-8` simulator and runs the full flow three times by default.
 
 ```bash
-RNX_NO_OPEN=1 bun run dev
+PEACH_NO_OPEN=1 bun run dev
 
-bun run test-rnx:one-native-android -- \
-  --sim <RNX_SIM_ID> \
+bun run test-peach:one-native-android -- \
+  --sim <PEACH_SIM_ID> \
   --url http://localhost:8081 \
-  --artifact-dir /tmp/one-native-rnx-conformance
+  --artifact-dir /tmp/one-native-peach-conformance
 ```
 
 | Surface | Behavior | Gate |
@@ -34,7 +34,7 @@ evidence only. Machine-readable artifacts and the aggregate outcome are written 
 All waits are selector or state conditions in the Maestro flows. Keep the app source unchanged for
 the repeated run because Fast Refresh invalidates remount and flake evidence.
 
-Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, `host`, `containers`, `popover`, `accessibility`, `media`, or `map`.
+Runs a named One Native fixture against an installed simulator app. Each run stops and launches the named app. `--suite` selects `tabs-menu` (default), `pickers`, `forms`, `sheets`, `leaves`, `dialogs`, `host`, `containers`, `popover`, `navigation`, `accessibility`, `media`, `map`, `apple-file`, `clipboard`, `network`, `browser`, `ui-map`, or `gpu`. `apple-file` must run on a 402x874 iPhone 17 Pro simulator; the picker taps are calibrated to it.
 
 ```bash
 bun tests/native-features/scripts/one-native-conformance.ts \
@@ -47,9 +47,20 @@ bun tests/native-features/scripts/one-native-conformance.ts \
 
 `--simulator-udid` is accepted as an alias. Unknown arguments and invalid values fail, including an unknown suite. A failed stop is accepted only when its error explicitly says that the named app is not running.
 
+`launch-screen` runs against an iOS 27 native app with One's launch hold in
+the app delegate. Start the fixture dev server with
+`ONE_NATIVE_LAUNCH_SCREEN_PROOF=1 bun run dev --port 8081`, then pass the
+current `NativeFeatureTests.app` with `--app-path`. The proof setup module
+calls `One.LaunchScreen.preventAutoHide()` before the first render. The suite
+requires the storyboard labels to remain over an already rendered home route,
+opens `nativefeatures:///one-native-launch-screen?launch-screen-proof=hide`
+to call `hide()` in JS, requires the fixture to appear, then calls `hide()`
+again. The default fixture setup is the negative control: the storyboard
+footer is absent after first content and the held-state gate fails.
+
 Before home navigation and native tab taps, the runner waits for stable bounds and dismisses any observed development warning overlay and asserts it is gone. The overlay can cover the target while its accessibility node remains present.
 
-The runner uses `xcodebuildmcp simulator stop`, `launch-app`, `snapshot-ui`, `ui-automation tap`, `ui-automation swipe`, `ui-automation type-text`, and `xcrun simctl io … screenshot`. Screenshot failures fail the run.
+The runner drives the simulator with the [axe](https://github.com/cameroncooke/AXe) cli on `PATH` (`describe-ui`, `touch`, `swipe`, `key`, `type`) and `xcrun simctl` (`launch`, `terminate`, `io … screenshot`). Use axe 1.8 or later on Xcode 27; `xcodebuildmcp` 2.7 bundles it under `libexec/bundled/axe`. Screenshot failures fail the run.
 
 `tabs-menu` asserts the loaded fixture before every condition, then covers initial menu state and layout, React Native state retention through external, reordered, and native tab selection, native selection rejection and acceptance, menu visibility and disabled/hidden attributes, nested and deep menu actions, controlled kept-open toggles, the exact `Mixed: true,true` transition, palette and kept-open action dismissal behavior, search-role tab selection, and two leave/reenter cycles with identical menu payloads. Home loaded is `nav-one-native`. Fixture loaded is the original tabs predicate: `One Native` plus `Selected:`, or an Application node with `Dismiss context menu`.
 
@@ -61,17 +72,112 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `sheets` verifies RN button/input interaction, state retention across reopen and nested sheets, fraction and height detent changes, exact 393x300 Yoga layout for a 300-point sheet, programmatic dismissal, and the same drag with interactive dismissal blocked and allowed. It checks presentation state and dismissal callback counts, then leaves/reenters the route and verifies identical medium detents are restored after native host recycling. Hardware keyboard input is enabled in the test simulator; this does not test software keyboard avoidance.
 
-`host` covers native composition. It asserts the measured height for one child (28), for three children mounted later (84), with 20-point spacing (124), and with a wrapping child label (107), all at a 361-point width, so a wrong measurement fails on the number rather than on a screenshot. It then taps each composed control kind: a Toggle (through a 150 ms press, since an instantaneous HID tap never starts switch tracking), a Button, and a Stepper whose native AXValue must follow React. A composed control that renders but never emits is the specific failure this suite exists to catch, because a composed child never gets a window and activates on publication instead. Horizontal hosts are asserted by child order rather than by height: width-greedy SwiftUI controls overflow a phone-width row, and SwiftUI then reports a much taller ideal height. Two leave/reenter cycles verify composition survives native host recycling.
+`host` covers native composition. It asserts the measured height for one child (28), for three children mounted later (80), with 20-point spacing (120), and with a wrapping child label (95), all at a 361-point width, so a wrong measurement fails on the number rather than on a screenshot. It then taps each composed control kind: a Toggle (through a 150 ms press, since an instantaneous HID tap never starts switch tracking), a Button, and a Stepper whose native AXValue must follow React. A composed control that renders but never emits is the specific failure this suite exists to catch, because a composed child never gets a window and activates on publication instead. The SDK 27.0 (24A430) Apple-only SwiftUI oracle on iPhone 16, runtime 27.0 (24A434), 3x, inherited control size and large content size category measures 80⅓, 120⅓, and 94⅔ points respectively. Each vertical size requires both the rounded native onLayout receipt and the independently rounded native child-frame union. Horizontal hosts assert native child order and the oracle’s rounded 108-point ideal height: width-greedy SwiftUI controls overflow a phone-width row, and SwiftUI then reports a much taller ideal height. Two leave/reenter cycles verify composition survives native host recycling.
 
 `containers` covers the container components: a `Swift.Form` holding `Swift.Section`s, a `Swift.Host` composed inside a section, and the generated `Text` and `Label`. It asserts the two standalone leaves take the catalog's 24-point default height, that the form fills its Yoga box (534 points here), and that a Toggle two containers deep still emits and its native AXValue follows React. A section mounted later, a section prop change (the footer), and unmounting a section are each asserted through the published SwiftUI tree, since React Native never displays a composed child's view. It also covers `Swift.Slot`: a React Native row inside a section and a second one inside the nested host, each asserted by taking a tap, which is the only evidence that touches reach React Native through the SwiftUI tree that displays it. Two leave/reenter cycles verify container recycling.
 
 `popover` covers `Swift.Popover`, which is a composed trigger and a presented React Native subtree at once. It asserts the trigger lays out inline and reports the height SwiftUI measured, that React can present the body and that the presented subtree takes a tap and can dismiss itself from inside, that the composed SwiftUI trigger presents it, and that a tap outside reaches React through the controlled protocol: the proof is that React can present it again afterwards, which a lost dismissal event would make a no-op. A second popover composed inside a `Swift.Section` covers a popover as a container's child and the default compact adaptation, which is a sheet on an iPhone. Two leave/reenter cycles verify the popover survives native host recycling while it presents.
 
-`media` covers the two controls that only exist because the generator reads SwiftUI's overlay modules: `Swift.VideoPlayer` from `_AVKit_SwiftUI` and `Swift.QuickLook` from `_QuickLook_SwiftUI`. The fixture writes a six second clip and a text file into the cache directory and reads their sizes back, so the byte counts prove both files reached disk before either control was handed a `file://` url. It asserts the player takes the Yoga box exactly (373 by 220) and follows it to 320 and back, which is the whole point of the `fill` layout kind: a fill control reports no ideal height, so nothing but the React Native box can be deciding that size. Playback is read off AVKit's transport overlay, which the runner reveals from the top edge of the surface because the play button covers the middle: elapsed time stays at `0:00` without autoplay and has moved on a player mounted with autoplay on. A presented Quick Look takes the whole accessibility tree, so the fixture behind it is unreadable while it is up; presentation is asserted through the QuickLook overlay's own ids, including the text-item search button, which is QuickLook having resolved the url to a text preview rather than merely presenting. Dismissal is asserted back on the fixture, where the change count must reach 2.
+`media` covers the two controls that only exist because the generator reads SwiftUI's overlay modules: `Swift.VideoPlayer` from `_AVKit_SwiftUI` and `Swift.QuickLook` from `_QuickLook_SwiftUI`. The fixture resolves a bundled six second clip and a text file before either control receives a URL. It asserts the player takes the Yoga box at the app's width minus 20 points and 220 points high, then follows it to 320 and back. A `fill` control reports no ideal height, so the React Native box decides its size. Playback is read from AVKit's transport overlay, revealed from the top edge of the surface because the play button covers the middle: elapsed time stays at `0:00` without autoplay and advances after a fresh autoplay mount. The suite then asserts the native status event includes a real duration and advancing position, a pause command stops the player, a seek command moves it near four seconds, resizing preserves that position, play reaches the end, and a second play command restarts it. Quick Look's document body may run in another process while its overlay controls remain in the app tree. Presentation is asserted through the QuickLook overlay's own ids, including the text-item search button, which proves QuickLook resolved the URL to a text preview. Dismissal is asserted back on the fixture, where the change count must reach 2.
+
+`navigation` covers `Swift.NavigationStack` and `Swift.Toolbar` inside a `Swift.Sheet`. It asserts the native navigation bar itself, because the bar's accessibility identifier is the `navigationTitle` the fixture sets through `swiftStyle`, then the principal segmented `Swift.Picker` as the native segmented control iOS exposes: each segment is a `RadioButton` with `1` on the selected one. Tapping a segment proves the composed Picker's controlled selection crosses back into React, since the React Native page under the bar has to change with it. It then takes a tap on the React Native root through the stack, runs the labelled `ToolbarItemGroup`'s button action, dismisses with the trailing close button, and presents again to show the page React holds survived. The fixture also carries a `Swift.ToolbarSpacer` beside the group, so the bar exercises the group and the iOS 26 spacer in one presentation.
+
+`clipboard` covers `One.Clipboard`: set reports true, get reads the write back, has sees the string, and the pasteboard outlives a fixture recycle.
+
+`local-authentication` covers `One.LocalAuthentication` on an iPhone 17 Pro
+with iOS 27. Grant the fixture Face ID permission once before the run with
+`applesimutils --byId <SIMULATOR_UUID> --bundle dev.vxrn.native.tests
+--setPermissions faceid=YES`; that command restarts SpringBoard, so launch the
+suite only after the simulator shows its home screen. The suite disables
+biometric enrollment, proves the policy unavailable and evaluation rejects with
+`E_LOCAL_AUTH_NOT_ENROLLED`, enables enrollment, proves the policy available,
+captures the Face ID tile, sends a matching Face ID response, and requires
+`evaluatePolicy` to resolve true. `applesimutils` is
+also used by the suite to change enrollment and send the match.
+
+`location` covers `One.Location` on an iOS 27 simulator. It resets the app's
+location permission, sets a fixed San Francisco coordinate, proves a position
+request without permission rejects, accepts the system's foreground permission
+prompt, and requires `getCurrentPosition()` to return the simulated coordinate.
+It moves the simulator twice while a watch is active, checks a one-shot read
+alongside the watch, then moves again after unsubscribe and confirms only the
+one-shot result changes. Forward geocoding must return Cupertino coordinates;
+reverse geocoding must identify San Francisco. Geocoding needs Apple's service.
+
+`file-system` covers `One.FileSystem` on an iOS 27 simulator. The fixture
+creates an app-cache directory, checks UTF-8 byte size and replacement writes,
+writes base64 bytes, reads files via native `fetch(file://)`, checks metadata and
+directory entries, copies and moves a file, creates intermediate directories,
+and deletes a non-empty directory. It verifies existing-destination, invalid
+URI, invalid base64, missing-file, and protected-root errors. The suite checks
+the full result.
+
+`apple-file` also covers `One.DocumentPicker`: it cancels one presentation,
+then selects a seeded text file from the Files app and checks its name, type,
+size, `fetch(file://)` byte count, cache URI, and exact copied bytes.
+
+`audio` covers `One.Audio` on an iOS 27 simulator. It resets microphone
+permission, asserts the configured prompt, records and pauses/resumes an AAC
+file, checks its size through FileSystem, then plays, pauses, seeks, resumes,
+and stops that file. Invalid URI and idle-player calls must reject with their
+documented codes.
+
+`audio-interruption` plays a local 60-second WAV. A non-audio Settings foreground
+pass first confirms playback continues without an interruption event. The iOS
+fixture scene delegate, prepared by `bun run prebuild:native`, then posts
+`AVAudioSession.interruptionNotification`
+objects into its process to prove One receives `began` and `ended`, reports
+`shouldResume`, and pauses its player. [Apple documents](https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/OptimizingForDeviceHardware/OptimizingForDeviceHardware.html)
+that Simulator does not simulate most audio-session interactions across processes. Cross-app arbitration,
+physical accessory route changes, and background policy need device proof.
+
+`audio-remote` starts a local WAV, calls Now Playing metadata setup and update
+through Nitro, checks the native state, title, and artwork errors, clears the
+metadata, and proves playback continues. It does not read back system metadata.
+The iOS 27 simulator reported an active `MPNowPlayingSession` in a disposable
+diagnostic build, but Control Center had no media tile and Lock Screen showed no
+track. The cause is unconfirmed. Visible system controls, tile removal, and
+remote command callbacks need device proof.
+
+`share` covers `One.Share` on an iOS 27 simulator. It opens the system
+share sheet with text and a URL, then opens it again with a real cache file.
+A second request rejects while the first sheet is open. Copy completes the
+first sheet with an activity type; canceling the file sheet resolves false.
+Invalid items reject with their documented codes.
+
+`photo-library` requests add-only Photos permission, saves real HEIC and MP4
+fixture assets, then reads original bytes and asset metadata with full access.
+It replaces a still image with a resized JPEG, exports the rendered version,
+checks decoded pixels and original bytes, then reverts to the preserved original.
+It also replaces a video with a shorter upright QuickTime movie, checks the
+current movie duration and preserved original, then reverts the video.
+The suite also checks albums, favorites, deletion, and validation errors.
+
+`image-manipulator` transforms an oriented HEIC on iOS 27 into JPEG and PNG
+files. It checks decoded dimensions, file sizes and signatures, then samples
+the rendered preview to prove the crop and clockwise rotation place the red
+source corner at the bottom right. Invalid inputs must return native codes.
+
+`device` reads the iOS device snapshot and asserts the iPhone simulator model,
+iOS 27 version, phone idiom, simulator flag, and a UUID vendor identifier.
+
+`contacts` resets Contacts permission, checks the configured system prompt,
+creates a contact, searches for its name, verifies its phone and email, and
+deletes it. The suite also checks prepermission and invalid-limit errors.
+
+`network` covers `One.Network`: the one-shot read publishes a live state with a named type and both flags true, the listener fires at least once, and a refresh re-reads. State republishes across two leave/reenter cycles.
+
+`browser` covers `One.Browser`: a user close-tap on the measured button point resolves cancel, a programmatic dismiss resolves dismiss on both the open and dismiss promises, dismissing a pending auth session resolves dismiss on its promise too, and a redirect to the app scheme resolves success with the url. The sheet exposes no accessibility children, so presentation is the collapsed tree. The redirect leg serves a local 302 (127.0.0.1:8123) from the runner in ephemeral mode, which skips the consent alert.
 
 `map` covers `Swift.Map` from the `_MapKit_SwiftUI` overlay module. Like the player it asserts the fill layout by number: 373 by 220, following the style to 320 and back. MapKit publishes each annotation as an accessibility element carrying the marker's title, so the markers React sent are readable without a screenshot; the runner asserts the two it sent are present and the third is not, which is what separates "the object array arrived" from "some annotation rendered", then adds the third and empties the array. Every pin has to sit inside the seeded camera's region, because MapKit publishes nothing for an annotation well outside it and a distant pin would read as a lost prop. The camera is asserted through `onRegionChange` rather than assumed: the fixture reports the centre MapKit settled on to four decimal places, and re-centring to a second place must both change that centre and raise the region count.
 
-Run suites sequentially against one simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
+`apple-file` covers `Swift.SignInWithAppleButton` and `Swift.FileImporter`. It asserts the button renders with nonzero size, taps it, and requires exactly one completion of type `failed` carrying a non-empty message. On a simulator with no Apple ID that message is the AuthorizationError 1000 text; the proof stops there and claims nothing about the success path, which needs a real credential. Both controls report one completion object typed `success`, `cancelled`, or `failed`, with `message` carrying the failure text only. The document picker runs out of process and answers no accessibility query, so presentation is the bare application tree and every picker tap is a calibrated point guarded by the asserted 402x874 app frame: close, Browse, the expandable Locations header, the On My iPhone row text, the app folder icon, and the seeded file thumbnail. The runner seeds one text file into the app's Documents (the test app sets `native.app.ios.fileSharing`), then proves the close button and a swipe-down each report dismissal with exactly one `cancelled` completion while the pick reports the Caches copy, whose bytes it reads back from the reported url, with no cancel alongside. The folder navigation reads the picker state off pixels and converges whether Browse restores the folder or lands on the root.
+
+`ui-map` covers `One.UI.Map`, the uniform map over the same SwiftUI surface, driven by a Google-style zoom instead of a camera distance. It asserts the same fill layout and marker round trip (two pins present, third and fourth absent, then added, then emptied), plus a pin tap reporting the marker id through selection while the map tap stays silent, and a surface-centre tap with no pins reporting the centre coordinates. The camera round trip is the zoom probe: the seed writes a Google-zoom span and the report inverts it, so each zoom the fixture seeds (12, 10, 14) must read back within one level with a raised move count. The pixel gate grades the three overlay kinds separately: a magenta tinted pin, an orange polygon and circle, and a cyan polyline, each against the bare-map negative.
+
+`gpu` covers the WebGPU path One stands on instead of shipping a GL view: a raw `react-native-webgpu` triangle pane and an R3F cube on `WebGPURenderer` mounted through `createRoot` (never `@react-three/fiber/native`). It asserts both canvases take layout, each pane reports its first painted frame, the R3F loop keeps ticking, and the GLSL `ShaderMaterial` probe reaches a verdict (logged as `gpu probe: shader verdict ...`). Run it with `ONE_NATIVE_BUNDLER=rolldown`: the metro path has no resolver hook for the `three` to `three/webgpu` rewrite.
+
+Run individual suites sequentially against their calibrated simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
 
 Artifacts are written to `--artifact-dir`: key rendered screenshots, an `.ax.json` accessibility snapshot captured with every screenshot, and outcome.json with passed checks, durations, and `suite`.
 
@@ -86,12 +192,18 @@ is a real failure mode: the same bug was found in `@expo/ui`'s segmented picker,
 already write. Run everything with one command:
 
 ```sh
-bun scripts/one-native-conformance-all.ts --simulator-id <UUID> --bundle-id dev.one.native.tests \
+bun scripts/one-native-conformance-all.ts \
+  --iphone16-simulator-id <IPHONE_16_UUID> --iphone17-pro-simulator-id <IPHONE_17_PRO_UUID> \
+  --bundle-id dev.one.native.tests \
   --artifact-dir /tmp/one-native-conformance
 ```
 
-That runs the 12 suites into `<artifact-dir>/<suite>/`, then the visual pass against the artifact
-root. The visual pass runs last and against the root rather than per suite because several checks
+That runs the 31 suites into `<artifact-dir>/<suite>/`, then the visual pass against the artifact
+root. `tabs-menu`, `pickers`, and the other iPhone suites run on iPhone 16 (393×852);
+`apple-file` runs on iPhone 17 Pro (402×874). Install the same app on both and keep its source
+unchanged throughout the run. For `--device ipad` or `--device duo`, pass `--simulator-id`
+for that device instead of the two iPhone IDs. The visual pass runs last and against the root
+rather than per suite because several checks
 take their negative capture from another suite's directory.
 
 Each check in `visual-declarations.ts` declares an accessibility anchor, a crop relative to its

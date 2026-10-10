@@ -14,7 +14,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'secure-json-parse',
 
     '@react-native/normalize-colors',
-    '@vxrn/safe-area',
     '@vxrn/vendor/react-19-prod',
     '@vxrn/vendor/react-19',
     '@vxrn/vendor/react-19-compiler-runtime',
@@ -44,8 +43,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'parse-numeric-range',
     'use-sync-external-store',
     'use-sync-external-store/shim',
-    'expo-constants',
-    'expo-linking',
     'inline-style-prefixer',
     '@docsearch/react',
     '@algolia/autocomplete-core',
@@ -84,6 +81,9 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@react-navigation/bottom-tabs',
     '@react-navigation/native-stack',
     'one',
+    'one/drawer',
+    // one's own copy, by alias: prebundled with one so both share one context
+    'react-native-safe-area-context',
     'styleq',
     'fbjs',
     '@vxrn/universal-color-scheme',
@@ -92,7 +92,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'querystringify',
     'compare-versions',
     'strict-uri-encode',
-    'expo-document-picker',
     'decode-uri-component',
     'split-on-first',
     'filter-obj',
@@ -100,7 +99,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'warn-once',
     '@radix-ui/react-compose-refs',
     '@radix-ui/react-slot',
-    'expo-splash-screen',
     'nanoid',
     'swr',
     'swr/mutation',
@@ -110,8 +108,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'invariant',
     'tamagui/linear-gradient',
     '@react-native/normalize-color',
-    'expo-modules-core',
-    'expo-status-bar',
     'react-native',
     '@floating-ui/react',
     '@floating-ui/react-dom',
@@ -134,8 +130,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
         '@swc/wasm',
         '@swc/core-darwin-arm64',
         'moti/author',
-        '@expo/log-box',
-        'qrcode-terminal',
         '@hot-updater/cli-tools',
       ],
       needsInterop,
@@ -146,12 +140,26 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
         resolve: {
           extensions: webExtensions,
         },
+        // expo reads its platform from this constant, which babel-preset-expo
+        // inlines during transform. a pre-bundled dep never goes through babel,
+        // so the constant has to be defined here or it reads as undefined and
+        // every expo module in a client chunk takes its native branch. expo's
+        // dev HMR client is the one that bites: setupHMR calls
+        // HMRClient.setup({ isEnabled: true }), the web form, and the native
+        // branch asserts a string platform, so the whole client fails to
+        // initialize and every route renders blank. rolldown takes define under
+        // `transform`, and vite's dep optimizer merges that one key into its own
+        // define; a top-level `define` is typed `never` and is rejected outright.
+        transform: {
+          define: {
+            'process.env.EXPO_OS': '"web"',
+          },
+        },
         // some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js).
         // .ts/.tsx must be declared too. when es-module-lexer can't read a dep entry,
         // vite's extractExportsData retries it as `moduleTypes[extname] || 'jsx'`, and
-        // lexer always fails on TS syntax — so an undeclared .ts entry gets re-parsed as
-        // JSX and dies on the first inline type specifier (`import { type Foo }`), which
-        // is how expo 57 packages are written.
+        // lexer always fails on TS syntax, so an undeclared .ts entry gets re-parsed as
+        // JSX and dies on the first inline type specifier (`import { type Foo }`).
         moduleTypes: { '.js': 'jsx', '.ts': 'ts', '.tsx': 'tsx' },
         // react-native packages import native-only exports (TurboModuleRegistry etc.)
         // from react-native, which is aliased to react-native-web on web. react-native-web

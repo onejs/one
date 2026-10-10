@@ -50,10 +50,16 @@ export default {
 
       web: {
         inlineLayoutCSS: true,
+        deploy: 'cloudflare',
         redirects: [
           {
             source: '/blog/version-one-rc1',
             destination: '/blog/version-one',
+            permanent: true,
+          },
+          {
+            source: '/docs/native-features',
+            destination: '/native',
             permanent: true,
           },
         ],

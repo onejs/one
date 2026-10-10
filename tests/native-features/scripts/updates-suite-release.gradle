@@ -1,0 +1,39 @@
+// the release build the android updates suite drives. it reads the
+// launcher's files through run-as, which only a debuggable package allows
+// (the stock emulator images refuse adb root), and its static update server
+// is plain http on the host, which release blocks without cleartext traffic.
+// neither changes bundle selection: react native's dev support follows
+// BuildConfig.DEBUG, which this suite keeps false in release.
+// react native's plugin writes the release placeholder in finalizeDsl, so
+// this registers after it there and runs last.
+allprojects {
+  afterEvaluate { project ->
+    if (project.name == 'app') {
+      project.extensions.getByName('androidComponents').finalizeDsl { ext ->
+        def release = ext.buildTypes.getByName('release')
+        release.debuggable = true
+        release.manifestPlaceholders.usesCleartextTraffic = 'true'
+
+        project.tasks.matching { it.name == 'generateReleaseBuildConfig' }.configureEach { task ->
+          task.outputs.upToDateWhen { false }
+          task.doLast {
+            def generated = project.fileTree("${project.buildDir}/generated/source/buildConfig/release")
+              .matching { include '**/BuildConfig.java' }
+              .files
+            if (generated.size() != 1) {
+              throw new GradleException("expected one release BuildConfig.java, found ${generated.size()}")
+            }
+            def buildConfig = generated.first()
+            def source = buildConfig.getText('UTF-8')
+            def enabled = 'public static final boolean DEBUG = Boolean.parseBoolean("true");'
+            def disabled = 'public static final boolean DEBUG = Boolean.parseBoolean("false");'
+            if (!source.contains(enabled) || source.indexOf(enabled) != source.lastIndexOf(enabled)) {
+              throw new GradleException('expected exactly one generated release BuildConfig.DEBUG=true field')
+            }
+            buildConfig.write(source.replace(enabled, disabled), 'UTF-8')
+          }
+        }
+      }
+    }
+  }
+}

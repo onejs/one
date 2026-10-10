@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -8,6 +8,11 @@
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
+    },
+    "./worklet-utils": {
+      "types": "./types/workletUtils.d.ts",
+      "import": "./dist/esm/workletUtils.mjs",
+      "require": "./dist/cjs/workletUtils.cjs"
     }
   },
   "main": "dist/cjs",
@@ -31,6 +36,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.28.5",
+    "@babel/plugin-transform-block-scoping": "^7.28.6",
+    "@babel/plugin-transform-classes": "^7.28.6",
     "@babel/plugin-transform-destructuring": "^7.28.5",
     "@babel/plugin-transform-flow-strip-types": "^7.27.1",
     "@babel/plugin-transform-react-jsx": "^7.27.1",
@@ -51,7 +58,7 @@
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@tamagui/build": "3.0.0-beta.1309.1",
+    "@tamagui/build": "3.0.0-beta.1670.1",
     "depcheck": "^1.4.7",
     "rolldown": "^1.2.8",
     "vite": "^8.2.2",

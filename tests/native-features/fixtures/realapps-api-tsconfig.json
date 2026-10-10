@@ -1,0 +1,6 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "noEmit": true, "declaration": false },
+  "include": ["realapps-api*.ts", "realapps-api*.tsx"],
+  "exclude": []
+}

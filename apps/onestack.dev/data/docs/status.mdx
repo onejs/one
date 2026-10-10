@@ -21,7 +21,7 @@ Broadly: web is stable, and native is stable in Metro mode.
 
 - Mac <Status is="stable" />
 - Linux <Status is="stable" />
-- Windows <Status is="early" />
+- Windows <Status is="early" /> (not officially supported; the CLI prints a warning)
 
 ---
 
@@ -37,9 +37,7 @@ Web is production ready.
 
 ### Native <Status is="stable" />
 
-Native is fully stable in [Metro mode](/docs/metro-mode). Every feature is stable and ready for production, including building to production and deploying to app stores, as it is in every way a normal Metro-built app.
-
-In Vite-native mode, we now use [Rolldown](https://rolldown.rs)'s experimental `dev()` API for both development and production builds. This replaces the previous Vite builder pipeline and is the default as of v1.13. It requires Hermes V1.
+Native supports two bundlers. [Rolldown](https://rolldown.rs) is the default native bundler for development and production builds. [Metro mode](/docs/metro-mode) remains available for dependencies that need it: a Metro-built app is in every way a normal Metro-built app, including building to production and deploying to app stores.
 
 - Local development <Status is="alpha" /> (rolldown dev() with HMR via React Refresh)
 - Production builds <Status is="alpha" /> (rolldown build() with treeshaking)
@@ -77,7 +75,7 @@ SSG, SPA, and SSR are all stable.
 
 ### Native Features (Alpha) <Status is="developing" />
 
-See the [Native Features guide](/docs/native-features) for details.
+See the [Native docs](/native) for details.
 
 - Color API <Status is="mostly-stable" />
 - Zoom Transitions <Status is="developing" />

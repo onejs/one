@@ -47,7 +47,7 @@ function WebTabsNavigator({
   id,
   ...rest
 }: WebTabsNavigatorProps) {
-  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder<
+  const { state, navigation, descriptors, render } = useNavigationBuilder<
     TabNavigationState<ParamListBase>,
     TabRouterOptions,
     TabActionHelpers<ParamListBase>,
@@ -103,14 +103,12 @@ function WebTabsNavigator({
     )
   }, [descriptors, linking, state])
 
-  return (
-    <NavigationContent>
-      <TabTriggerMapContext.Provider value={triggerMap as any}>
-        <NavigatorContext.Provider value={navigatorContextValue as any}>
-          <HeadlessTabsView customChildren={headlessChildren} />
-        </NavigatorContext.Provider>
-      </TabTriggerMapContext.Provider>
-    </NavigationContent>
+  return render(
+    <TabTriggerMapContext.Provider value={triggerMap as any}>
+      <NavigatorContext.Provider value={navigatorContextValue as any}>
+        <HeadlessTabsView customChildren={headlessChildren} />
+      </NavigatorContext.Provider>
+    </TabTriggerMapContext.Provider>
   )
 }
 

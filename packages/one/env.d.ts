@@ -24,8 +24,10 @@ interface OneEnvVariables {
   VITE_ENVIRONMENT: 'client' | 'ssr' | 'ios' | 'android'
   /** "1" for native platforms (iOS and Android), "" for web (client and SSR). Truthy/falsy for tree-shaking native-only code. */
   VITE_NATIVE: '' | '1'
-  /** "web" for web builds, "ios" or "android" for native. Matches Expo convention. */
-  EXPO_OS: 'web' | 'ios' | 'android'
+  /** "web" for web builds, "ios" or "android" for native. The One platform contract. */
+  ONE_PLATFORM: 'web' | 'ios' | 'android'
+  /** Expo-compatible native platform. Undefined on web. */
+  EXPO_OS: 'ios' | 'android'
   /** "web" for web builds, "native" for native builds. Used by Tamagui and One native route branches. */
   TAMAGUI_TARGET: 'web' | 'native'
 
@@ -38,10 +40,12 @@ interface OneEnvVariables {
   REACT_NATIVE_SERVER_PUBLIC_PORT: string
 }
 
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv extends Partial<OneEnvVariables> {}
-  }
+// a global declaration file: no top-level import or export, so these
+// interfaces merge with vite/client and node, and the module declarations
+// below are ambient rather than augmentations.
+
+declare namespace NodeJS {
+  interface ProcessEnv extends Partial<OneEnvVariables> {}
 }
 
 interface ImportMetaEnv extends Partial<OneEnvVariables> {}
@@ -50,10 +54,23 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
-export {}
-
-// environment guard imports — side-effect-only, no exports
+// environment guard imports, side-effect only
 declare module 'server-only' {}
 declare module 'client-only' {}
 declare module 'native-only' {}
 declare module 'web-only' {}
+
+// image metadata from ?imagedata imports; matches ImageData exported by 'one'
+declare module '*?imagedata' {
+  const imageData: {
+    /** URL path to the image */
+    src: string
+    /** Image width in pixels */
+    width: number
+    /** Image height in pixels */
+    height: number
+    /** Base64 blur placeholder (10px wide) */
+    blurDataURL: string
+  }
+  export default imageData
+}

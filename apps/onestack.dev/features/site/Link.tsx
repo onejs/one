@@ -9,22 +9,16 @@ export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
   return (
     <Text
       render="a"
-      // @ts-ignore
       fontFamily="inherit"
-      // always except-style
-      asChild={asChild ? 'except-style' : false}
-      className="t_Link"
       cursor="pointer"
-      color="inherit"
+      color="inherit hover:color12"
       fontSize="inherit"
       lineHeight="inherit"
-      textDecorationColor="$color04"
-      hoverStyle={{
-        color: '$color12',
-        textDecorationColor: '$color12',
-      }}
+      textDecorationColor="color04 hover:color12"
       {...props}
       {...(linkProps as any)}
+      asChild={asChild ? 'except-style' : false}
+      className="t_Link"
     />
   )
 }

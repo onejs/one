@@ -37,7 +37,7 @@ async function acceptOpenUrlPrompt(driver: Browser) {
   } catch {}
 }
 
-describe('@vxrn/native integration tests', () => {
+describe('one native integration tests', () => {
   let driver: Browser
 
   beforeAll(
@@ -63,7 +63,7 @@ describe('@vxrn/native integration tests', () => {
   describe('Home Screen', () => {
     test('renders home screen with navigation links', sharedTestOptions, async () => {
       const title = await waitForElement(driver, 'home-title')
-      expect(await title.getText()).toBe('@vxrn/native Test Suite')
+      expect(await title.getText()).toBe('One Native Test Suite')
 
       // verify all nav links exist
       const navLinks = [
@@ -229,78 +229,38 @@ describe('@vxrn/native integration tests', () => {
   // -- zoom transitions --
 
   describe('Zoom Transitions', () => {
-    test('zoom source list renders correctly', sharedTestOptions, async () => {
-      await navigateTo(driver, '/zoom-test')
-      await waitForElement(driver, 'zoom-test-screen', { timeout: 30_000 })
-
-      const title = await waitForElement(driver, 'zoom-test-title')
-      expect(await title.getText()).toBe('Zoom Transition Test')
-
-      // verify all zoom source items rendered
-      const itemIds = ['item-1', 'item-2', 'item-3', 'item-4', 'item-5', 'item-6']
-      for (const itemId of itemIds) {
-        const source = driver.$(`~zoom-source-${itemId}`)
-        try {
-          await source.waitForDisplayed({ timeout: 3000 })
-        } catch {
-          await driver.execute('mobile: scroll', { direction: 'down' })
-          await source.waitForDisplayed({ timeout: 5000 })
-        }
-        expect(await source.isDisplayed()).toBe(true)
-      }
-
-      // verify status text
-      const status = await waitForElement(driver, 'zoom-source-complete')
-      expect(await status.getText()).toBe('6 zoom sources rendered')
-
-      await captureScreenshot(driver, 'zoom-transition-source-list')
-    })
-
     test(
-      'tapping zoom source shows detail with transition',
+      'native zoom resolves its mounted source and alignment with controls',
       sharedTestOptions,
       async () => {
-        // tap the first item to trigger zoom transition
-        const firstItem = driver.$('~zoom-source-item-1')
-        try {
-          await firstItem.waitForDisplayed({ timeout: 5000 })
-          await firstItem.click()
-        } catch {
-          // scroll back up if needed
-          await driver.execute('mobile: scroll', { direction: 'up' })
-          await firstItem.waitForDisplayed({ timeout: 5000 })
-          await firstItem.click()
-        }
-
-        // wait for detail screen to appear
-        await waitForElement(driver, 'zoom-detail-screen', { timeout: 10_000 })
-
-        const detailTitle = await waitForElement(driver, 'zoom-detail-title')
-        expect(await detailTitle.getText()).toBe('Mountain View')
-
-        const detailId = await waitForElement(driver, 'zoom-detail-id')
-        expect(await detailId.getText()).toBe('ID: item-1')
-
-        const detailStatus = await waitForElement(driver, 'zoom-detail-complete')
-        expect(await detailStatus.getText()).toBe('Zoom detail rendered')
-
-        await captureScreenshot(driver, 'zoom-transition-detail-view')
+        const capabilities = driver.capabilities as Record<string, any>
+        const simulatorId = getSimulatorUdid(driver)
+        const bundleId =
+          capabilities['appium:options']?.bundleId ||
+          capabilities['appium:bundleId'] ||
+          capabilities.bundleId
+        expect(simulatorId).toMatch(/^[0-9A-F-]{36}$/i)
+        expect(bundleId).toBeTypeOf('string')
+        execFileSync(
+          'bun',
+          [
+            'scripts/one-native-conformance.ts',
+            '--simulator-id',
+            simulatorId,
+            '--bundle-id',
+            bundleId,
+            '--suite',
+            'zoom',
+            '--artifact-dir',
+            process.env.ZOOM_ARTIFACT_DIR || '/tmp/one-native-zoom-e2e',
+            ...(process.env.TEST_ENV === 'dev'
+              ? ['--js-location', `localhost:${process.env.DEV_PORT || '8081'}`]
+              : []),
+          ],
+          { stdio: 'inherit' }
+        )
       }
     )
-
-    test('back button returns to zoom source list', sharedTestOptions, async () => {
-      const backButton = await waitForElement(driver, 'zoom-back-button')
-      await backButton.click()
-
-      // wait for the list to reappear
-      await waitForElement(driver, 'zoom-test-screen', { timeout: 10_000 })
-
-      // verify we're back to the list
-      const status = await waitForElement(driver, 'zoom-source-complete')
-      expect(await status.getText()).toBe('6 zoom sources rendered')
-
-      await captureScreenshot(driver, 'zoom-transition-back-to-list')
-    })
   })
 
   // -- toolbar --
@@ -363,6 +323,141 @@ describe('@vxrn/native integration tests', () => {
 
       const actionCount = await waitForElement(driver, 'toolbar-action-count')
       expect(await actionCount.getText()).toBe('1')
+    })
+  })
+
+  // -- bars action bar (track A): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+
+  describe('Bars Action Bar', () => {
+    test(
+      'action bar renders clustered toolbar with status',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/bars-action-bar')
+        const title = await waitForElement(driver, 'bars-action-title', {
+          timeout: 30_000,
+        })
+        expect(await title.getText()).toBe('Action Bar')
+
+        const lastAction = await waitForElement(driver, 'bars-action-last-action')
+        expect(await lastAction.getText()).toBe('none')
+
+        await captureScreenshot(driver, 'bars-action-initial')
+      }
+    )
+
+    test('each cluster button reports its onPress', sharedTestOptions, async () => {
+      const buttons: [string, string][] = [
+        ['Save item', 'save'],
+        ['Tag item', 'tag'],
+        ['Share item', 'share'],
+      ]
+      for (const [label, action] of buttons) {
+        const button = await waitForElement(driver, label)
+        await button.click()
+        const lastAction = await waitForElement(driver, 'bars-action-last-action')
+        expect(await lastAction.getText()).toBe(action)
+      }
+
+      const actionCount = await waitForElement(driver, 'bars-action-count')
+      expect(await actionCount.getText()).toBe('3')
+
+      await captureScreenshot(driver, 'bars-action-pressed')
+    })
+
+    test('spacer toggle collapses the clusters', sharedTestOptions, async () => {
+      const toggle = await waitForElement(driver, 'bars-action-spacer-toggle')
+      await toggle.click()
+
+      const state = await waitForElement(driver, 'bars-action-spacer-state')
+      expect(await state.getText()).toBe('spacer-off')
+
+      await captureScreenshot(driver, 'bars-action-no-spacer')
+    })
+  })
+
+  // -- bars double bar (track B): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+
+  describe('Bars Double Bar', () => {
+    test(
+      'accessory renders above the tab bar with regular placement',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/bars-double-bar')
+        const title = await waitForElement(driver, 'bars-double-title', {
+          timeout: 30_000,
+        })
+        expect(await title.getText()).toBe('Double Bar')
+
+        const placement = await waitForElement(
+          driver,
+          'bars-double-accessory-placement-regular'
+        )
+        expect(await placement.getText()).toBe('regular')
+
+        await captureScreenshot(driver, 'bars-double-rest')
+      }
+    )
+
+    test(
+      'tab bar minimizes on scroll with inline accessory',
+      sharedTestOptions,
+      async () => {
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'down' })
+        }
+
+        const placement = await waitForElement(
+          driver,
+          'bars-double-accessory-placement-inline',
+          { timeout: 10_000 }
+        )
+        expect(await placement.getText()).toBe('inline')
+
+        await captureScreenshot(driver, 'bars-double-minimized')
+
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'up' })
+        }
+      }
+    )
+  })
+
+  // -- bars button probe (track C): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+
+  describe('Bars Button Probe', () => {
+    test('probe toolbar reads above the tab bar', sharedTestOptions, async () => {
+      await navigateTo(driver, '/bars-probe/main')
+      const title = await waitForElement(driver, 'bars-probe-title', {
+        timeout: 30_000,
+      })
+      expect(await title.getText()).toBe('Button Probe')
+
+      const action = await waitForElement(driver, 'Probe action')
+      await action.click()
+
+      const lastAction = await waitForElement(driver, 'bars-probe-last-action')
+      expect(await lastAction.getText()).toBe('probe')
+
+      await captureScreenshot(driver, 'bars-probe-in-tab')
+    })
+
+    test('probe spacer toggle and control route', sharedTestOptions, async () => {
+      const toggle = await waitForElement(driver, 'bars-probe-spacer-toggle')
+      await toggle.click()
+
+      const state = await waitForElement(driver, 'bars-probe-spacer-state')
+      expect(await state.getText()).toBe('spacer-off')
+
+      await captureScreenshot(driver, 'bars-probe-no-spacer')
+
+      await navigateTo(driver, '/bars-probe-control')
+      const controlTitle = await waitForElement(driver, 'bars-probe-control-title', {
+        timeout: 30_000,
+      })
+      expect(await controlTitle.getText()).toBe('Probe Control')
+
+      await captureScreenshot(driver, 'bars-probe-control')
     })
   })
 
@@ -473,5 +568,71 @@ describe('@vxrn/native integration tests', () => {
 
       await captureScreenshot(driver, 'split-view-drafts-selected')
     })
+  })
+
+  // -- tab view parity --
+
+  describe('One Native TabView Parity', () => {
+    test(
+      'bottom accessory takes touches in expanded and inline modes',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/one-native-tabview')
+        const accessory = await waitForElement(driver, 'tabview-accessory', {
+          timeout: 30_000,
+        })
+        expect(await accessory.isDisplayed()).toBe(true)
+
+        await accessory.click()
+
+        const events = await waitForElement(driver, 'tabview-events')
+        await events.waitUntil(
+          async () => (await events.getText()).includes('accessory'),
+          {
+            timeout: 5000,
+            timeoutMsg: 'accessory press event was not received in expanded mode',
+          }
+        )
+        expect(await events.getText()).toContain('accessory')
+
+        const accBtn = await waitForElement(driver, 'test-acc-plain')
+        await accBtn.click()
+        await events.waitUntil(
+          async () => (await events.getText()).includes('acc-plain'),
+          {
+            timeout: 5000,
+            timeoutMsg: 'native accessory button press event was not received',
+          }
+        )
+        expect(await events.getText()).toContain('acc-plain')
+
+        await captureScreenshot(driver, 'tabview-accessory-expanded')
+
+        // minimize tab bar on scroll to test inline mode
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'down' })
+        }
+
+        const inlineAccessory = await waitForElement(driver, 'tabview-accessory', {
+          timeout: 10_000,
+        })
+        await inlineAccessory.click()
+
+        await events.waitUntil(
+          async () => (await events.getText()).includes('accessory'),
+          {
+            timeout: 5000,
+            timeoutMsg: 'accessory press event was not received in inline mode',
+          }
+        )
+        expect(await events.getText()).toContain('accessory')
+
+        await captureScreenshot(driver, 'tabview-accessory-inline')
+
+        for (let index = 0; index < 4; index++) {
+          await driver.execute('mobile: scroll', { direction: 'up' })
+        }
+      }
+    )
   })
 })

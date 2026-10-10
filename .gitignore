@@ -3,6 +3,7 @@
 examples/*/ios/**
 examples/*/android/**
 packages/*/android/build/**
+packages/*/android/.cxx/**
 
 apps/*/ios/**
 apps/*/android/**
@@ -50,3 +51,7 @@ node_modules
 .vite-inspect
 .claude/worktrees/
 .claude/scheduled_tasks.lock
+
+# run evidence and proofs (captures, logs, receipts) stay local, never committed; scripts/check-no-proofs.ts enforces it
+evidence/
+proofs/

@@ -1,12 +1,14 @@
 import React, { startTransition, useEffect } from 'react'
 import { usePathname, useRouter } from 'one'
 import { allNotPending } from './docsRoutes'
+import { allNativeNotPending } from './nativeRoutes'
 
 export const useDocsMenu = () => {
   const [open, setOpen] = React.useState(false)
   const pathname = usePathname()
   const router = useRouter()
   let currentPath = pathname
+  const pages = pathname.startsWith('/native') ? allNativeNotPending : allNotPending
   let documentVersion = ''
 
   // if (Array.isArray(router.query.slug)) {
@@ -17,12 +19,12 @@ export const useDocsMenu = () => {
   // }
 
   const documentVersionPath = documentVersion ? `/${documentVersion}` : ''
-  const currentPageIndex = allNotPending.findIndex((page) => page.route === currentPath)
-  const previous = allNotPending[currentPageIndex - 1]
+  const currentPageIndex = pages.findIndex((page) => page.route === currentPath)
+  const previous = pages[currentPageIndex - 1]
   let nextIndex = currentPageIndex + 1
-  let next = allNotPending[nextIndex]
+  let next = pages[nextIndex]
   while (next && next.route.startsWith('http')) {
-    next = allNotPending[++nextIndex]
+    next = pages[++nextIndex]
   }
 
   // on route change close menu

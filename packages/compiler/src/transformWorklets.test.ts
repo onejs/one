@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import { createRequire } from 'node:module'
 import path from 'node:path'
+import { runInNewContext } from 'node:vm'
 import { afterEach, describe, expect, it } from 'vitest'
 import { configureVXRNCompilerPlugin } from './configure'
 import { shouldTransformWorklets, transformWorklets } from './transformWorklets'
@@ -65,6 +66,11 @@ describe('transformWorklets', () => {
     expect(result.code).toContain('__initData')
     expect(result.code).toContain('__closure')
     expect(result.map).toBeUndefined()
+    const serialized = result.code.match(/code: ("(?:\\.|[^"\\])*")/)?.[1]
+    expect(serialized, 'serialized worklet code').toBeTruthy()
+    const worklet = (0, eval)(JSON.parse(serialized!))
+    expect(worklet).toBeTypeOf('function')
+    expect(worklet()).toBe(42)
   })
 
   it('ignores calls whose callee name collides with Object.prototype', async () => {
@@ -137,7 +143,7 @@ describe('transformWorklets', () => {
     `
     const result = await transformWorklets('/app/handler.ts', code, false)
     expect(result.code).toContain('__workletHash')
-    expect(result.code).toMatch(/code: "function _worklet\(e\)/)
+    expect(result.code).toMatch(/code: "\(function _worklet\(e\)/)
     expect(result.code).toContain('var _worklet = function _worklet(e)')
   })
 
@@ -163,10 +169,36 @@ describe('transformWorklets', () => {
     const result = await transformWorklets('/app/setupLoop.ts', code, false)
 
     expect(result.code).toMatch(/setupLoop\.__closure = \{\s*\}/)
-    const init = result.code.match(/code: "function setupLoop[^"]*"/)
+    const init = result.code.match(/code: "\(function setupLoop[^"]*"/)
     expect(init, 'serialized worklet code').toBeTruthy()
     expect(init![0]).not.toContain('this.__closure')
     expect(init![0]).toContain('flushQueue')
+  })
+
+  it('keeps Reanimated UI-runtime globals out of the JavaScript closure', async () => {
+    const result = await transformWorklets(
+      '/app/valueUnpacker.ts',
+      `function valueUnpacker(value) { 'worklet'; return _toString(value) }
+       globalThis.__unpacker = valueUnpacker`,
+      false,
+      { pluginVersion: '3.19.1' }
+    )
+    const mainRuntime: any = {}
+    runInNewContext(result.code, mainRuntime)
+    expect(Object.keys(mainRuntime.__unpacker.__closure)).toEqual([])
+    const uiRuntime: any = { _toString: String }
+    const unpack = runInNewContext(mainRuntime.__unpacker.__initData.code, uiRuntime)
+    expect(unpack(42)).toBe('42')
+  })
+
+  it('keeps strict global configuration explicit for UI-runtime helpers', async () => {
+    const result = await transformWorklets(
+      '/app/strictGlobals.ts',
+      `function unpack(value) { 'worklet'; return _toString(value) }`,
+      false,
+      { pluginVersion: '3.19.1', strictGlobal: true }
+    )
+    expect(result.code).toMatch(/__closure = \{\s*_toString/)
   })
 
   it('honors no-worklet-closure and limit-init-data-hoisting the way the worklets runtime needs', async () => {
@@ -191,7 +223,7 @@ describe('transformWorklets', () => {
     `
     const result = await transformWorklets('/app/installUnpacker.ts', code, false)
 
-    const outerInit = result.code.match(/code: "function installUnpacker[^"]*"/)
+    const outerInit = result.code.match(/code: "\(function installUnpacker[^"]*"/)
     expect(outerInit, 'outer worklet serialized code').toBeTruthy()
     // no unpacker line: nothing is read off `this` on the worklet runtime.
     expect(outerInit![0]).not.toContain('this.__closure')
@@ -202,7 +234,7 @@ describe('transformWorklets', () => {
     // the inner worklet's init data is declared inside the outer function body,
     // not hoisted to module scope where the worklet runtime cannot see it.
     const innerVar = result.code.match(
-      /var (_worklet_\d+_init_data) = \{\s*code: "function _worklet/
+      /var (_worklet_\d+_init_data) = \{\s*code: "\(function _worklet/
     )
     expect(innerVar, 'inner worklet init data').toBeTruthy()
     // only look past the serialized string, which mentions the same name inside
@@ -617,6 +649,43 @@ describe('transformWorklets', () => {
     const reconstructed = eval(`(${f.__initData.code})`)
     const uiRes = reconstructed.call({ __closure: f.__closure })
     expect(uiRes).toBe(7)
+  })
+
+  it('captures the outer binding a property worklet shares its key with', async () => {
+    // react-native-gesture-handler's NativeProxy: the property worklet calls the
+    // module-level host function of the same name. naming the worklet after its
+    // key made it capture itself, so serializing its closure never ended.
+    const code = `
+      const updateConfig = (tag) => tag * 2
+      export const proxy = {
+        updateConfig: (tag) => {
+          'worklet'
+          return updateConfig(tag)
+        },
+        flush: function (tag) {
+          'worklet'
+          return updateConfig(tag) + 1
+        },
+      }
+    `
+    const result = await transformWorklets('/app/proxy.ts', code, false)
+
+    const sandbox = { global: globalThis, exports: {} as any }
+    const runner = new Function(
+      'exports',
+      'global',
+      result.code.replace('export const proxy', 'exports.proxy')
+    )
+    runner(sandbox.exports, sandbox.global)
+    const { proxy } = sandbox.exports
+
+    for (const worklet of [proxy.updateConfig, proxy.flush]) {
+      expect(worklet.__closure.updateConfig).not.toBe(worklet)
+      const reconstructed = eval(`(${worklet.__initData.code})`)
+      expect(reconstructed.call({ __closure: worklet.__closure }, 3)).toBe(worklet(3))
+    }
+    expect(proxy.updateConfig(3)).toBe(6)
+    expect(proxy.flush(3)).toBe(7)
   })
 
   it('transforms nested worklets with bottom-up composition', async () => {

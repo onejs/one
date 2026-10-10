@@ -1,0 +1,118 @@
+---
+title: iOS Stacks
+description: Host, HStack, VStack, ZStack, Spacer, and Slot under One.iOS
+---
+
+<NativeHero
+  src="/native/ios-stacks.webp"
+  alt="One.iOS HStack, VStack, ZStack, and Spacer laying out SwiftUI views in a card"
+/>
+
+SwiftUI stack layout under `One.iOS`.
+
+- `HStack`, `VStack`, and `ZStack` measure their SwiftUI children, so
+  controls inside them are sized by SwiftUI.
+- `Host` carries React Native children into a SwiftUI container.
+- Environment props set color scheme, type size, control size, locale, tint,
+  and enabled state for a whole subtree.
+- Every view here throws on web and Android.
+
+## Usage
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.VStack spacing={8} style={{ width: '100%' }}>
+  <One.iOS.HStack>
+    <One.iOS.Label label="Wi-Fi" systemImage="wifi" />
+    <One.iOS.Spacer />
+    <One.iOS.Text text="Home" />
+  </One.iOS.HStack>
+  <One.iOS.ProgressView value={0.4} />
+</One.iOS.VStack>
+```
+
+Greedy containers take the box they are given instead of reporting an ideal
+height, so they cannot be children of a stack: `Form`, `List`, `ScrollView`,
+`Tabs`, `Pager`, and `NavigationStack` each need their own box.
+
+## Host, HStack, VStack
+
+`One.iOS.Host` lays children along `axis`. `One.iOS.HStack` is always
+horizontal and `One.iOS.VStack` always vertical; both take the same props
+without `axis`. Children that are not SwiftUI views render through React
+Native inside the stack.
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#HostProps"
+  data={[
+    { name: 'axis', type: 'HostAxis', default: '"vertical"', description: 'vertical or horizontal. Host only.' },
+    { name: 'spacing', type: 'number', default: '0', description: 'The gap between children. Must be zero or more.' },
+    { name: 'alignment', type: 'HostAlignment', default: '"leading"', description: 'leading, center, or trailing.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'SwiftUI views or React Native views.' },
+  ]}
+/>
+
+### Environment
+
+`Host`, `HStack`, `VStack`, and `Form` apply these to their whole subtree.
+
+<PropsTable
+  title="Environment"
+  source="generated/containerTypes.ts#EnvironmentProps"
+  data={[
+    { name: 'colorScheme', type: 'ColorScheme', description: 'light or dark.' },
+    { name: 'dynamicTypeSize', type: 'DynamicTypeSize', description: 'xSmall through xxxLarge, or accessibility1 through accessibility5.' },
+    { name: 'controlSize', type: 'ControlSize', description: 'mini, small, regular, large, or extraLarge.' },
+    { name: 'locale', type: 'string', description: 'A non-empty locale identifier, such as fr_FR.' },
+    { name: 'tint', type: 'ColorValue', description: 'The accent color for controls.' },
+    { name: 'isEnabled', type: 'boolean', description: 'false disables every control inside.' },
+  ]}
+/>
+
+On an iOS 27 simulator, a bordered prominent Button inside
+`Host controlSize` grew when the value changed from `mini` to `extraLarge`
+and returned to its original height when restored.
+
+## ZStack
+
+`One.iOS.ZStack` layers children and takes the size of the largest one.
+`alignment` places the smaller children within it.
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#ZStackProps"
+  data={[
+    { name: 'alignment', type: 'ZStackAlignment', default: '"center"', description: 'topLeading, top, topTrailing, leading, center, trailing, bottomLeading, bottom, or bottomTrailing.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The layers, back to front.' },
+  ]}
+/>
+
+## Spacer
+
+`One.iOS.Spacer` expands along its stack's axis and pushes its neighbors
+apart. It must be inside a stack or another native container.
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#SpacerProps"
+  data={[
+    { name: 'minLength', type: 'number', default: '0', description: 'The least space it leaves. Must be zero or more.' },
+  ]}
+/>
+
+## Slot
+
+`One.iOS.Slot` reserves a fixed box inside a native container, for React
+Native content a measured parent cannot size.
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#SlotProps"
+  data={[
+    { name: 'height', required: true, type: 'number', description: 'The box height. Must be above zero.' },
+    { name: 'width', type: 'number', default: '0', description: 'The box width. 0 fills the width offered; inside an HStack, set one.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The React Native content.' },
+  ]}
+/>

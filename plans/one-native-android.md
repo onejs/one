@@ -15,7 +15,7 @@ Labels throughout:
 - **INFERRED:** conclusion or proposed design derived from named inspected sources. All recommendations remain unimplemented.
 - **GUESSED:** unverified prediction, including effort estimates. Cost bands mean relative engineering scope, not delivery promises.
 
-**RAN:** Read `plans/one-native-layout-design.md`, `plans/handoff-one-native-parity.md`, `codegen/catalog.ts`, `codegen/generate.ts`, and `ios/OneNativeComposition.swift` first. Additional package paths below are relative to `packages/native/` and refer to files opened during this session. Read the worktree's root `AGENTS.md`; this assignment's explicit one-file/no-commit boundary controls delivery.
+**RAN:** Read `plans/one-native-layout-design.md`, `plans/handoff-one-native-parity.md`, `codegen/catalog.ts`, `codegen/generate.ts`, and `ios/OneNativeComposition.swift` first. Additional package paths below are relative to `packages/one/` and refer to files opened during this session. Read the worktree's root `AGENTS.md`; this assignment's explicit one-file/no-commit boundary controls delivery.
 
 **RAN:** The handoff records 126 mapped symbols, 89 generated files, 9,715 extracted declarations and nine passing simulator suites. Those are prior-session receipts, not independently rerun results. The document's historical measurement results likewise remain attributed to that document.
 
@@ -114,7 +114,7 @@ Labels throughout:
 
 **RAN:** `codegen/emitControls.ts` emits public control props extending `Omit<ViewProps, 'children'>`; `codegen/emitContainers.ts` extends ViewProps too. `ios/OneNativeComposition.swift` renders composed content without displaying the child's UIView. The handoff explicitly records the loss of UIView-based testID, accessibility, background and layout behavior.
 
-**INFERRED:** This is the highest-value repair. The same JSX prop can mean different things depending on ancestry, so types and runtime behavior disagree. Map a deliberate subset into SwiftUI semantics and modifiers, and reject unsupported composed props. Record the distinction in the schema so Android and Soot do not independently invent it. Accessibility labels/identifiers, disabled state and focus/measurement expectations should be explicit before advertising general ViewProps compatibility.
+**INFERRED:** This is the highest-value repair. The same JSX prop can mean different things depending on ancestry, so types and runtime behavior disagree. Map a deliberate subset into SwiftUI semantics and modifiers, and reject unsupported composed props. Record the distinction in the schema so Android and Contrast do not independently invent it. Accessibility labels/identifiers, disabled state and focus/measurement expectations should be explicit before advertising general ViewProps compatibility.
 
 **RAN:** `src/Containers.native.tsx` only rejects a direct child whose React element type equals Form. It accepts arbitrary ReactNode children; the native container's `publish()` compact-maps noncomposable children away. **INFERRED:** A user component returning Form bypasses the direct-element check, and a plain RN child can disappear without explaining that Slot is required. I did not render those cases. Enforce container capabilities at the native composition boundary, where the actual mounted node is known; retain JS validation for useful early errors.
 

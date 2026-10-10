@@ -1,8 +1,54 @@
 import { describe, expect, it } from 'vitest'
+import { parseSync } from 'oxc-parser'
 import { transformTreeShakeClient } from './clientTreeShakePlugin'
 
 describe('clientTreeShakePlugin', () => {
   describe('transformTreeShakeClient', () => {
+    it.each(['\n', '\r\n'])(
+      'keeps JSX source lines identical to SSR after server removal (%j)',
+      async (newline) => {
+        const code = `import {
+  serverOnly,
+  shared
+} from './services'
+import { readFile } from 'node:fs'
+const local = () => readFile('secret')
+const serverValue = local(), clientValue = shared
+export const loader = () => serverOnly(serverValue),
+  kept = clientValue,
+  generateStaticParams = () => []
+export default function Page() {
+  return <section
+    aria-label="native docs"
+  >{kept}</section>
+}`.replaceAll('\n', newline)
+        const jsxLines = (source: string) => {
+          const parsed = parseSync('/project/app/index.tsx', source)
+          expect(parsed.errors).toEqual([])
+          const declaration = parsed.program.body.find(
+            (node) => node.type === 'ExportDefaultDeclaration'
+          )?.declaration
+          if (declaration?.type !== 'FunctionDeclaration' || !declaration.body) {
+            throw new Error('page function missing')
+          }
+          const element = declaration.body.body.find(
+            (node) => node.type === 'ReturnStatement'
+          )?.argument
+          if (element?.type !== 'JSXElement') throw new Error('page JSX missing')
+          return [element.openingElement.start, element.openingElement.end].map(
+            (offset) => source.slice(0, offset).split(/\r\n|\r|\n/).length
+          )
+        }
+        const result = await transformTreeShakeClient(
+          code,
+          '/project/app/index.tsx',
+          '/project'
+        )
+        expect(result).toBeDefined()
+        expect(jsxLines(result!.code)).toEqual(jsxLines(code))
+      }
+    )
+
     it('should remove loader export and its imports', async () => {
       const code = `
 import { serverOnlyModule } from 'server-only-pkg'
@@ -164,9 +210,9 @@ export default function Page() {
 `
       const result = await transformTreeShakeClient(
         code,
-        '/project/app-sootsim/(marketing)/changelog/index+ssg.tsx',
+        '/project/app-peach/(marketing)/changelog/index+ssg.tsx',
         '/project',
-        'app-sootsim'
+        'app-peach'
       )
       expect(result).toBeDefined()
       // buildPage looks the stub up by the route contextKey, which is relative

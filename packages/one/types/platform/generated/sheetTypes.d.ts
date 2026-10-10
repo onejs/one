@@ -1,0 +1,42 @@
+import type { ReactNode } from 'react';
+import type { ColorValue, ViewProps } from 'react-native';
+import type { PresentationContentInteraction, Visibility } from './swiftui';
+export type PresentationDetent = 'medium' | 'large' | {
+    fraction: number;
+} | {
+    height: number;
+};
+export type PresentationBackgroundInteraction = 'automatic' | 'enabled' | 'disabled' | {
+    enabledUpThrough: PresentationDetent;
+};
+export type PresentationSizing = 'automatic' | 'fitted' | 'form' | 'page';
+export interface SheetProps extends ViewProps {
+    isPresented: boolean;
+    onIsPresentedChange: (value: boolean) => void;
+    onDismiss?: () => void;
+    /** fires after the presented native content leaves its window following an accepted close. */
+    onDidDismiss?: () => void;
+    revision?: number;
+    presentationDetents?: readonly PresentationDetent[];
+    fitToContents?: boolean;
+    selectedDetent?: PresentationDetent;
+    onSelectedDetentChange?: (detent: PresentationDetent) => void;
+    detentRevision?: number;
+    presentationDragIndicator?: Visibility;
+    interactiveDismissDisabled?: boolean;
+    presentationBackground?: ColorValue;
+    presentationBackgroundInteraction?: PresentationBackgroundInteraction;
+    presentationContentInteraction?: PresentationContentInteraction;
+    presentationSizing?: PresentationSizing;
+    children: ReactNode;
+}
+export interface FullScreenCoverProps extends ViewProps {
+    isPresented: boolean;
+    onIsPresentedChange: (value: boolean) => void;
+    onDismiss?: () => void;
+    /** fires after the presented native content leaves its window following an accepted close. */
+    onDidDismiss?: () => void;
+    revision?: number;
+    children: ReactNode;
+}
+//# sourceMappingURL=sheetTypes.d.ts.map

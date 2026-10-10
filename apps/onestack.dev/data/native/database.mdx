@@ -1,0 +1,47 @@
+---
+title: Database
+description: SQLite through OP SQLite on iOS and Android
+---
+
+`One.Database` exposes OP SQLite's synchronous and asynchronous database opens
+on iOS and Android. Zero apps can use its existing `@rocicorp/zero/op-sqlite`
+store provider for the local sync database.
+
+```tsx
+import { One } from 'one'
+
+const db = One.Database.open({ name: 'app.sqlite' })
+const rows = db.executeSync('SELECT * FROM notes').rows
+
+const asyncDb = await One.Database.openAsync({ name: 'app.sqlite' })
+const result = await asyncDb.execute('SELECT * FROM notes WHERE id = ?', [1])
+asyncDb.close()
+```
+
+`open` returns the database synchronously; `openAsync` resolves it. Both
+take the OP SQLite open options. On web both throw: browser sqlite belongs
+to a native build.
+
+`openKeyValue({ name })` is the named string store that replaces an MMKV
+instance. Each name is its own database file on iOS and Android
+(`one-kv-<name>.sqlite`) and its own `localStorage` namespace on web. Values
+are strings. `getItem`, `setItem`, `removeItem`, `getAllKeys`, and `clear`
+are synchronous. `close` ends that connection; a later open of the same name
+reads what the previous one wrote. Names are 1-128 letters, digits, dots,
+underscores, or hyphens, which keeps the file beside the app's other
+databases. `One.Storage` remains the single process-wide store. Use a named
+key-value store when a caller needs its own id, the way MMKV instances did.
+
+```tsx
+const updates = One.Database.openKeyValue({ name: 'contrast-dev-update' })
+const target = updates.getItem('reloadTarget')
+updates.setItem('reloadTarget', nextId)
+updates.close()
+```
+
+`@op-engineering/op-sqlite` ships with `one`, so no extra install
+is needed.
+
+Use placeholders for values in SQL statements. Close each connection when you
+finish with it. The iOS conformance fixture checks synchronous and asynchronous
+queries against the same file, then reads a saved row after relaunch.

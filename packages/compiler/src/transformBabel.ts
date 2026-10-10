@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs'
-import { extname, join, relative } from 'node:path'
+import { extname, join } from 'node:path'
 // type-only, so that importing this module does not drag babel in. every metro
 // worker loads it through the package index, and on the native transform path
 // babel is never called at all: loading it there is pure startup cost.
@@ -66,6 +66,7 @@ export function getBabelOptions(props: Props): babel.TransformOptions | null {
   ) {
     if (props.userSetting?.excludeDefaultPlugins) {
       return {
+        caller: getBabelCaller(props),
         ...props.userSetting,
         ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
       }
@@ -116,17 +117,6 @@ const getOptions = (
     }
   }
 
-  if (enableNativewind || shouldBabelReanimated(props)) {
-    try {
-      const workletsPlugin = resolvePath(
-        'react-native-worklets/plugin',
-        props.projectRoot
-      )
-      debug?.(`Using babel worklets on file ${props.id}`)
-      plugins.push(workletsPlugin)
-    } catch {}
-  }
-
   if (shouldBabelReactCompiler(props)) {
     debug?.(`Using babel react compiler on file`)
     plugins.push(getBabelReactCompilerPlugin(props))
@@ -135,11 +125,27 @@ const getOptions = (
   if (plugins.length || userBabelConfig) {
     return {
       plugins,
+      caller: getBabelCaller(props),
       ...(userBabelConfig ? { configFile: userBabelConfig, babelrc: true } : {}),
     }
   }
 
   return null
+}
+
+function getBabelCaller(props: Props): babel.TransformOptions['caller'] {
+  // babel hands every caller field to presets (babel-preset-expo reads platform
+  // and isDev), but its types list only the esm support flags, so the extra
+  // fields go through a named value rather than a checked literal.
+  const caller = {
+    name: 'vxrn',
+    platform:
+      props.environment === 'ios' || props.environment === 'android'
+        ? props.environment
+        : 'web',
+    isDev: props.development,
+  }
+  return caller
 }
 
 /**
@@ -216,7 +222,7 @@ export async function transformBabel(
   const extension = extname(id)
   const isTSX = extension === '.tsx'
   const isTS = isTSX || extension === '.ts'
-  const babelOptions = {
+  const babelOptions: babel.TransformOptions = {
     filename: id,
     compact: false,
     babelrc: options.babelrc ?? false,
@@ -224,10 +230,19 @@ export async function transformBabel(
     sourceMaps: false,
     minified: false,
     ...options,
+    ...(!isTS
+      ? {
+          parserOpts: {
+            ...options.parserOpts,
+            plugins: [...(options.parserOpts?.plugins || []), 'jsx'],
+          },
+        }
+      : {}),
     // vite and rolldown own module syntax and import.meta, so presets written for
     // metro (babel-preset-expo) must keep esm instead of rewriting it for metro's runtime
     caller: {
       name: 'vxrn',
+      ...options.caller,
       supportsStaticESM: true,
       supportsDynamicImport: true,
     },
@@ -390,75 +405,4 @@ function shouldBabelGenerators({ code }: Props) {
   if (process.env.VXRN_USE_BABEL_FOR_GENERATORS) {
     return asyncGeneratorRegex.test(code)
   }
-}
-
-/**
- * ------- reanimated --------
- */
-
-/**
- * Taken from https://github.com/software-mansion/react-native-reanimated/blob/3.15.1/packages/react-native-reanimated/plugin/src/autoworkletization.ts#L19-L59, need to check if this is up-to-date when supporting newer versions of react-native-reanimated.
- */
-const REANIMATED_AUTOWORKLETIZATION_KEYWORDS = [
-  'worklet',
-  'useAnimatedGestureHandler',
-  'useAnimatedScrollHandler',
-  'useFrameCallback',
-  'useAnimatedStyle',
-  'useAnimatedProps',
-  'createAnimatedPropAdapter',
-  'useDerivedValue',
-  'useAnimatedReaction',
-  'useWorkletCallback',
-  'withTiming',
-  'withSpring',
-  'withDecay',
-  'withRepeat',
-  'runOnUI',
-  'executeOnUIRuntimeSync',
-]
-
-/**
- * Regex to test if a piece of code should be processed by react-native-reanimated's Babel plugin.
- */
-const REANIMATED_REGEX = new RegExp(REANIMATED_AUTOWORKLETIZATION_KEYWORDS.join('|'))
-
-// Packages to skip for reanimated babel transform
-// These either have false positives (mention keywords but don't use worklets)
-// or cause issues when transformed
-const REANIMATED_IGNORED_PATHS = [
-  // Prebuilt/vendored react-native that shouldn't be transformed
-  'react-native-prebuilt',
-  'node_modules/.vxrn/react-native',
-  // Known false positives - they mention worklet keywords in comments/strings but don't use them
-  'node_modules/react/',
-  'node_modules/react-dom/',
-  'node_modules/react-native/',
-  'node_modules/react-native-web/',
-]
-
-// `id`s are normalized to forward slashes at getBabelOptions' entry, so these
-// plain forward-slash paths match on every OS. before that normalization the
-// backslash `id`s Windows hands us slipped past this list, pushing react-native's
-// own files through the reanimated babel pass, which has no JSX/TS parser.
-const REANIMATED_IGNORED_PATHS_REGEX = new RegExp(REANIMATED_IGNORED_PATHS.join('|'))
-
-function shouldBabelReanimated({ code, id }: Props) {
-  if (!configuration.enableReanimated) {
-    return false
-  }
-
-  // Check if path should be ignored
-  if (REANIMATED_IGNORED_PATHS_REGEX.test(id)) {
-    return false
-  }
-
-  // Check regex for all files (both node_modules and user code)
-  if (REANIMATED_REGEX.test(code)) {
-    const location = id.includes('node_modules') ? 'node_modules' : 'user-code'
-    debug?.(` 🪄 [reanimated/${location}] ${relative(process.cwd(), id)}`)
-    return true
-  }
-
-  return false
 }

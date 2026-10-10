@@ -34,41 +34,47 @@ const rnCommunityCliPluginPath = (() => {
 
 const rnCommunityCliPlugin = require(rnCommunityCliPluginPath)
 
-const bundleCommand = {
-  ...rnCommunityCliPlugin.bundleCommand,
-  name: 'bundle',
-  options: [
-    ...rnCommunityCliPlugin.bundleCommand.options.map((o) => {
-      if (o.name.startsWith('--entry-file')) {
-        return {
-          ...o,
-          description: [
-            o.description,
-            'but note that with VxRN, this is not going to be used since the entry file should be specified via plugin options.',
-          ].join(', '),
+function createCommands(options = {}) {
+  const bundleCommand = {
+    ...rnCommunityCliPlugin.bundleCommand,
+    name: 'bundle',
+    options: [
+      ...rnCommunityCliPlugin.bundleCommand.options.map((o) => {
+        if (o.name.startsWith('--entry-file')) {
+          return {
+            ...o,
+            description: [
+              o.description,
+              'VxRN apps set entries.native through vxrn/react-native-commands.',
+            ].join(', '),
+          }
         }
-      }
 
-      return o
-    }),
-    {
-      name: '--config-cmd',
-      description:
-        'This is not actually in use, but it is needed for the compatibility with React Native v0.76 since it is passed during the build process of native apps (see: https://github.com/facebook/react-native/blob/v0.76.0/packages/react-native/scripts/react-native-xcode.sh#L142-L149).',
+        return o
+      }),
+      {
+        name: '--config-cmd',
+        description:
+          'This is not actually in use, but it is needed for the compatibility with React Native v0.76 since it is passed during the build process of native apps (see: https://github.com/facebook/react-native/blob/v0.76.0/packages/react-native/scripts/react-native-xcode.sh#L142-L149).',
+      },
+    ],
+
+    func: async (argv, ctx, args, bundleImpl) => {
+      const buildBundleModule = await import('./dist/rn-commands/bundle/buildBundle.mjs')
+      const { buildBundle } = buildBundleModule
+      return await buildBundle(
+        argv,
+        { ...ctx, vxrnEntries: options.entries },
+        args,
+        bundleImpl
+      )
     },
-  ],
+  }
 
-  func: async (...args) => {
-    const buildBundleModule = await import('./dist/rn-commands/bundle/buildBundle.mjs')
-    // const buildBundleModule = await import('./dist/rn-commands/bundle/buildBundle.metro.mjs')
-    // const buildBundle = buildBundleModule.buildBundle.bind({
-    //   rnCommunityCliPluginPath,
-    // })
-    const { buildBundle } = buildBundleModule
-    return await buildBundle(...args)
-  },
+  return [bundleCommand]
 }
 
-const commands = [bundleCommand]
+const commands = createCommands()
+commands.createCommands = createCommands
 
 module.exports = commands

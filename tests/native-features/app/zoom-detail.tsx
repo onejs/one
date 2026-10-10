@@ -1,31 +1,48 @@
-import { useLocalSearchParams, useRouter, Stack } from 'one'
-import { ZoomTransitionEnabler } from '@vxrn/native'
+import { useLocalSearchParams, useRouter, Stack, One } from 'one'
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 
 export default function ZoomDetailScreen() {
-  const { id, title, color } = useLocalSearchParams<{
+  const { id, title, color, mode, mount } = useLocalSearchParams<{
     id: string
     title: string
     color: string
+    mode: string
+    mount: string
   }>()
   const router = useRouter()
+  const card = (
+    <View
+      testID="zoom-detail-card"
+      collapsable={false}
+      style={[styles.detailCard, { backgroundColor: '#00e000' }]}
+    >
+      <Text testID="zoom-detail-title" style={styles.detailTitle}>
+        {title}
+      </Text>
+      <Text testID="zoom-detail-id" style={styles.detailSubtitle}>
+        ID: {id}
+      </Text>
+    </View>
+  )
 
   return (
     <View style={styles.container} testID="zoom-detail-screen">
       <Stack.Screen options={{ headerShown: false }} />
-      <ZoomTransitionEnabler zoomTransitionSourceIdentifier={id || ''} />
-
-      <View
-        testID="zoom-detail-card"
-        style={[styles.detailCard, { backgroundColor: color || '#4A90D9' }]}
-      >
-        <Text testID="zoom-detail-title" style={styles.detailTitle}>
-          {title}
-        </Text>
-        <Text testID="zoom-detail-id" style={styles.detailSubtitle}>
-          ID: {id}
-        </Text>
-      </View>
+      {mode !== 'omitted' && (
+        <One.iOS.ZoomTransitionEnabler
+          zoomTransitionSourceIdentifier={
+            mode === 'mismatched' ? 'missing-source' : id || ''
+          }
+        />
+      )}
+      {mode === 'unaligned' ? (
+        card
+      ) : (
+        <One.iOS.ZoomTransitionAlignmentRectDetector identifier={id || ''}>
+          {card}
+        </One.iOS.ZoomTransitionAlignmentRectDetector>
+      )}
+      <Text testID="zoom-detail-identity">{`mount:${mount};mode:${mode};source:${id};color:${color}`}</Text>
 
       <Pressable
         testID="zoom-back-button"

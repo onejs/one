@@ -1,0 +1,47 @@
+---
+title: Device
+description: Read the current device and operating system
+---
+
+`One.Device.getInfo()` returns a snapshot of the current device. It
+reads `UIDevice` on iOS and `Build` on Android, and does not request a
+permission.
+
+```tsx
+import { One } from 'one'
+
+const info = await One.Device.getInfo()
+console.log(info.model, info.systemName, info.systemVersion)
+console.log(info.interfaceIdiom, info.isSimulator, info.vendorIdentifier)
+
+const locale = await One.Device.getLocalizationInfo()
+console.log(locale.localeIdentifier, locale.preferredLanguages)
+console.log(locale.calendarIdentifier, locale.timeZoneIdentifier)
+```
+
+On iOS, `model` is Apple's device family string, such as `iPhone`, rather
+than a retail model name. On Android, `model` is the `Build.MODEL` string,
+`systemName` is `Android`, and `systemVersion` is the release string.
+`interfaceIdiom` is `phone`, `pad`, `tv`, `carPlay`, `mac`, `vision`, or
+`unspecified`; Android reports `tv` for television, `pad` for smallest
+width 600dp and up, and `phone` otherwise. `vendorIdentifier` is optional
+because iOS can return no vendor ID until after the user unlocks the
+device. It can also change after all of a vendor's apps are removed, so do
+not use it as a permanent account ID. See
+[Apple's identifierForVendor reference](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
+On Android the vendor identifier is `ANDROID_ID`, which is scoped to the
+app signing key and is never a hardware ID.
+
+`isSimulator` reports whether this binary runs in the iOS simulator or on
+an Android emulator. On web, `systemName` is the browser-reported
+`navigator.platform`; model and system version remain empty, interface
+idiom is `unspecified`, and no vendor identifier or simulator identity is
+invented. For the installed app's version, build, and bundle
+ID, use [`One.AppInfo`](/native/app-info).
+
+`getLocalizationInfo()` reads the app's effective locale as a BCP 47 tag,
+the device's preferred language tags, calendar identifier, time zone
+identifier, current UTC offset in seconds, and optional currency code. The
+offset is positive east of UTC and reflects daylight saving time at the
+moment of the call. These values are a snapshot. The API needs no permission
+On SSR, localization strings and language lists are empty, the UTC offset is zero, and the currency code is absent. On web, `Intl.DateTimeFormat` and `navigator.languages` supply locale, calendar, time zone, UTC offset, and preferred languages. Currency remains absent because a browser does not expose the user’s chosen currency.

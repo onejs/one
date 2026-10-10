@@ -1,10 +1,25 @@
-import { defaultConfig as configOptions } from '@tamagui/config/v5'
+import { defaultConfig as configOptions, defaultSizing } from '@tamagui/config/v5'
 import { createTamagui } from '@tamagui/core'
 import { animations } from './animations'
 
 export const config = createTamagui({
   ...configOptions,
   animations,
+  sizing: {
+    default: 'md',
+    sizes: {
+      ...defaultSizing.sizes,
+      '5': {
+        fontSize: '5',
+        controlFontSize: '5',
+        paddingInline: '5',
+        paddingBlock: '0',
+        gap: '5',
+        radius: '5',
+        px: { height: configOptions.tokens.size[5] - 2, icon: 16, square: 22 },
+      },
+    },
+  },
   themes: {
     ...configOptions.themes,
     light: {

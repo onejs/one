@@ -1,0 +1,140 @@
+---
+title: Native Components
+description: Choose SwiftUI, Compose, or shared native components and understand their layout boundaries
+---
+
+Use platform components when the screen should follow that platform's controls
+and layout. Use `One.UI` when its shared contract fits the feature. These
+components coexist with React Native views; their native layout systems own
+the content inside their hosts.
+
+## iOS components
+
+The following families are available through `One.iOS`. Each reference describes
+its props, events, child slots, and version limits.
+
+| Family | Components and reference |
+| --- | --- |
+| Layout | [Host, HStack, VStack, ZStack, Spacer, LabeledContent, grids, and lazy stacks](/native/ios-stacks) |
+| Groups | [Group, ControlGroup, DisclosureGroup, GroupBox, ViewThatFits, and GlassEffectContainer](/native/ios-groups) |
+| Lists | [List, ScrollView, Form, Section, Overlay, ViewSlot, and SwipeActions](/native/ios-lists) |
+| Actions | [Button, Toggle, Slider, Stepper, PasteButton, ShareLink, SignInWithAppleButton, and EditButton](/native/ios-buttons-toggles) |
+| Text | [TextField, SecureField, and TextEditor](/native/ios-text-fields) |
+| Selection | [Picker, DatePicker, and ColorPicker](/native/ios-pickers) |
+| Presentation | [Sheet, FullScreenCover, Popover, Alert, and ConfirmationDialog](/native/ios-presentations) |
+| Tabs | [Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page](/native/ios-tabs-pager) |
+| Navigation | [NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, and ToolbarSpacer](/native/ios-navigation) |
+| Indicators | [ProgressView and Gauge](/native/ios-progress-gauges) |
+| Content | [Text, Label, Image, VideoPlayer, LivePhotoView, PhotosPicker, WebView, Map, QuickLook, FileImporter, and ContentUnavailableView](/native/ios-media) |
+| Shapes | [Circle, Capsule, Rectangle, RoundedRectangle, Ellipse, UnevenRoundedRectangle, and ConcentricRectangle](/native/ios-media#shapes) |
+
+`style` controls the host's placement in the surrounding React Native layout.
+`swiftStyle` applies SwiftUI appearance and modifiers. Native containers can
+host React Native content through slots. Use a finite viewport for a scrolling
+or filling subtree so that the native container and Yoga have a defined size.
+The [layout reference](/native/ios-stacks) explains the boundary options.
+
+Plain controlled values work with React state:
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+export function Volume() {
+  const [volume, setVolume] = useState(0.5)
+
+  return (
+    <One.iOS.Slider
+      label="Volume"
+      value={volume}
+      onValueChange={setVolume}
+      minimumValue={0}
+      maximumValue={1}
+    />
+  )
+}
+```
+
+Keep this component in an iOS branch or an `.ios.tsx` file. Accept a native
+edit by updating the controlled value in its callback. For controls whose
+value props accept a native state handle, you can use `useNativeState` instead;
+see [TextInput and native state](/native/text-input).
+
+`One.iOS.Tabs` and `NavigationStack` are explicit native composition APIs.
+Use the router's [Tabs](/docs/components-Tabs) and
+[Stack](/docs/components-Stack) to navigate file routes. Routed stacks also
+have a [header and toolbar API](/docs/components-Stack).
+The UIKit-backed [toolbar](/native/toolbar),
+[split view](/native/split-view), and
+[zoom transitions](/native/zoom-transitions) have separate contracts.
+
+## Android components
+
+`One.Android` exposes Compose and Material components:
+
+| Family | Components |
+| --- | --- |
+| Layout | Column, Row, FlowRow, Box, Spacer |
+| Surfaces | Card, ElevatedCard, OutlinedCard, Surface, HorizontalDivider, VerticalDivider |
+| Content | Text, Icon, Badge, BadgedBox, ListItem |
+| Actions | Button, IconButton, FilledIconButton, FilledTonalIconButton, OutlinedIconButton; FloatingActionButton, SmallFloatingActionButton, LargeFloatingActionButton, ExtendedFloatingActionButton |
+| Selection | Switch, Checkbox, RadioButton; ToggleButton, IconToggleButton, FilledIconToggleButton, OutlinedIconToggleButton; SingleChoiceSegmentedButtonRow, MultiChoiceSegmentedButtonRow, SegmentedButton |
+| Chips | AssistChip, FilterChip, InputChip, SuggestionChip |
+| Input and presentation | TextField, Slider, DatePicker, TimePicker, DatePickerDialog, TimePickerDialog, AlertDialog, Dialog |
+| Indicators | ProgressIndicator, LinearProgressIndicator, CircularProgressIndicator, LinearWavyProgressIndicator, CircularWavyProgressIndicator, LoadingIndicator, ContainedLoadingIndicator |
+
+The [Compose reference](/native/android-compose) supplies the prop and slot
+contracts. [Android menus](/native/android-menu),
+[icons](/native/android-icons), and [colors](/native/android-color) have their
+own pages.
+
+A Compose root uses React Native `style`; its descendants use `composeStyle`.
+Supply a finite width, and either a height or a surrounding layout that bounds
+the root. Nested rows and columns use Compose's alignment, arrangement, and
+weight rules rather than Yoga flex props.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+export function AndroidSettings() {
+  const [enabled, setEnabled] = useState(true)
+
+  return (
+    <One.Android.Column
+      style={{ width: '100%', height: 180 }}
+      spacing={12}
+      composeStyle={{ padding: 16 }}
+    >
+      <One.Android.Text text="Notifications" fontSize={20} />
+      <One.Android.Switch
+        label="Allow notifications"
+        isOn={enabled}
+        onIsOnChange={setEnabled}
+      />
+    </One.Android.Column>
+  )
+}
+```
+
+## Shared components
+
+| API | Contract |
+| --- | --- |
+| `One.UI.Image` | [Image loading, sizing, and load events](/native/image) |
+| `One.UI.Icon` | [Per-platform elements and semantic color roles](/native/icons) |
+| `One.UI.Map` | [MapKit on iOS and Google Maps on Android](/native/map) |
+| `One.UI.Pager` | [Swipeable pages, scroll progress, and ref methods](/native/ui-pager) |
+| `One.UI.Portal`, `PortalHost` | [Content rendered in a named host elsewhere](/native/portal) |
+| `One.UI.TextInput`, `useNativeState` | [Native text input and shared observable state](/native/text-input) |
+| `One.UI.EdgeFade`, `Blur`, `Mask` | [Native effects and web behavior](/native/effects) |
+| `One.UI.PictureInPicture` | [Native picture-in-picture content and inline web content](/native/picture-in-picture) |
+| `One.UI.SafeArea` | [Provider, View, and initial metrics](/native/safe-area) |
+| `One.UI.Fonts`, `useFonts` | [Bundled and loaded fonts](/native/fonts) |
+| `One.UI.ReservedRegions` | [View-scoped reserved areas, size class, hinges, and window segments](/native/adaptive-layout) |
+
+The One router installs its root safe-area provider. Use an additional provider
+only when a subtree needs its own coordinate space. Shared does not imply
+identical web behavior: Map renders no web view, Blur and Mask require native,
+and PictureInPicture renders inline on web. Consult the
+[platform notes](/docs/native-platforms) before selecting a shared component.

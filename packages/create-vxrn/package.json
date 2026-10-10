@@ -1,17 +1,18 @@
 {
   "name": "create-vxrn",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "bin": {
     "create-vxrn": "run.js"
   },
-  "main": "dist/cjs",
-  "module": "dist/esm",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "./types/index.d.ts",
   "scripts": {
     "start": "./run.js",
     "prerelease": "rimraf ./dist/",
     "prepublish": "bun run build",
     "typecheck": "tsc --noEmit",
-    "build": "tamagui-build --skip-types",
+    "build": "tamagui-build",
     "watch": "bun run build --watch",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build"
@@ -21,12 +22,12 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
-      "require": "./dist/cjs/index.js"
+      "require": "./dist/cjs/index.cjs"
     },
     "./create": {
       "types": "./types/create.d.ts",
       "import": "./dist/esm/create.mjs",
-      "require": "./dist/cjs/create.js"
+      "require": "./dist/cjs/create.cjs"
     }
   },
   "dependencies": {
@@ -43,7 +44,7 @@
     "yocto-spinner": "^0.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "3.0.0-beta.1309.1",
+    "@tamagui/build": "3.0.0-beta.1670.1",
     "@types/prompts": "^2.4.9",
     "typescript": "7.0.2"
   },

@@ -7,7 +7,11 @@ This guide explains how to build and upload your iOS app to the App Store or Tes
 
 You'll use the `prebuild` command to generate the native code and Xcode project for iOS, open it with Xcode, and either run the app or archive it for distribution.
 
-**Note**: If you just want to run your iOS app in development mode without any custom native dependencies, you don't need this guide. All you need is an iOS device with [Expo Go](https://apps.apple.com/us/app/expo-go/id982107779) installed. It should auto-detect from your simulator, or press <kbd>q</kbd>, <kbd>r</kbd> in your terminal which is running the One dev server and follow the instructions to open the app in Expo Go.
+**Note**: The app's dependencies select one prebuild path. Apps with `expo` use
+Expo prebuild and `vxrn/expo-plugin`, so Expo modules and config plugins keep
+working. Expo-free apps use `one prebuild`, which generates the Xcode project
+from `native.app`. `one run:ios` launches either generated project on a
+simulator.
 
 <Notice>
   **Prerequisites**: To build and run the iOS app, you'll need a Mac with Xcode installed. To upload the app to the App Store or TestFlight, you'll additionally need a paid Apple Developer account.
@@ -22,7 +26,24 @@ You'll use the `prebuild` command to generate the native code and Xcode project 
 
 Before you can run or build your iOS app, you'll need to generate the native code and Xcode project for iOS.
 
-First, ensure the `prebuild:native` script is defined in your `package.json`:
+For an Expo app, list the One adapter in the app's Expo config:
+
+```json
+{
+  "expo": {
+    "plugins": ["expo-font", "vxrn/expo-plugin"]
+  }
+}
+```
+
+Run Expo prebuild:
+
+```bash
+npx expo prebuild
+```
+
+For an Expo-free app, ensure the `prebuild:native` script is defined in your
+`package.json`:
 
 ```json
 {
@@ -32,7 +53,7 @@ First, ensure the `prebuild:native` script is defined in your `package.json`:
  }
 ```
 
-Next, run the following command in your terminal:
+Then run:
 
 ```bash
 yarn prebuild:native
@@ -123,33 +144,215 @@ After the archive process completes, Xcode will automatically open the Organizer
 You should add a `react-native.config.cjs` file in your project root to configure React Native to use Vite as the JS bundler during the native build process:
 
 ```js
-module.exports = {
-  commands: [...require('one/react-native-commands')]
-}
+module.exports = require('one/react-native-config')
 ```
 
-By doing so, the `react-native build` command will be overwritten to use Vite as the JS bundler instead of Metro.
+This routes native build bundling through One and links One's native SwiftUI,
+Compose, effects, and safe area implementation through community autolinking.
 
 <Notice>
   If you are using React Native 0.74.x or below, we rely on a patch to the `@react-native-community/cli` package to make this work. For the patch to apply, you'll need to start the dev server at least once.
 </Notice>
 
-### Expo Prebuild
+### One Prebuild
 
-If you're using [Expo Prebuild](https://docs.expo.dev/workflow/prebuild), you should also add `"one/expo-plugin"` in your app config (app.json/app.config.js/app.config.ts):
+Configure the native application in `vite.config.ts`, then generate the React Native community projects with `one prebuild`:
 
-```json
-{
-  "expo": {
-    "plugins": ["one/expo-plugin"]
-  }
+```ts
+one({
+  native: {
+    app: {
+      name: 'MyApp',
+      icon: {
+        source: './public/app-icon.png',
+        backgroundColor: '#000000',
+      },
+      splash: {
+        source: './public/splash.png',
+        backgroundColor: '#000000',
+        width: 200,
+      },
+      ios: {
+        bundleId: 'com.example.myapp',
+        usesNonExemptEncryption: false,
+        fileSharing: true,
+      },
+      android: { applicationId: 'com.example.myapp' },
+      imagePicker: {
+        camera: 'Take profile photos.',
+      },
+    },
+  },
+})
+```
+
+This path is only for apps without `expo` in their dependencies. One reads this
+manifest directly. It generates the iOS and Android app icons and
+launch screens from the shared sources, and it does not require an Expo app config
+or config plugin. `imagePicker.camera` is the iOS camera usage description; prebuild
+writes it to `NSCameraUsageDescription` and declares the Android camera permission,
+both required for `One.ImagePicker.launchCamera`. The icon must be a square image at least 1024 pixels wide. Splash
+artwork is centered at `width` points on iOS and density-independent pixels on
+Android. One removes a solid outer border matching `backgroundColor` before sizing
+the artwork, then generates density-specific Android assets inside a 288 dp square. The launch screen
+stays up until React Native draws its first content, so it never gives way to an
+empty root.
+
+`ios.fileSharing` sets `UIFileSharingEnabled` plus
+`LSSupportsOpeningDocumentsInPlace` in the generated Info.plist. The user sees
+the app's Documents as a folder in the Files app and in document pickers under
+On My iPhone, and files the app saves there can be opened in place.
+
+### App appearance, links and store settings
+
+The rest of `native.app` covers appearance, links, and store settings:
+
+- `orientation`: `portrait`, `landscape` or `default` (all four). Unset keeps a
+  portrait-only phone.
+- `userInterfaceStyle`: `light` or `dark` locks the appearance; `automatic`,
+  like unset, follows the system.
+- `splash.resizeMode`: `cover` fills the iOS launch screen with untrimmed
+  artwork; `contain` (the default) centers it at `width`.
+- `splash.dark`: `backgroundColor`, and optionally `source` and
+  `backgroundImage`, for a launch in dark appearance.
+- `splash.backgroundImage`: a full-bleed image, such as a gradient, under the
+  artwork on the launch screen: iOS aspect-fills it, Android stretches it to
+  fill (a gradient renders the same either way). Android's system splash
+  itself shows only the color and icon.
+- The launch screen stays up until the first screen draws. To reveal the app
+  later (after a cache loads), call `One.LaunchScreen.preventAutoHide()` while
+  modules evaluate and `One.LaunchScreen.hide({ fade: true })` when ready.
+- `notifications.apsEnvironment`: `production` for a build signed for
+  TestFlight or the App Store; push uses `development` otherwise.
+- `ios.accentColor`: `{ light, dark }` hex colors for the app's tint (tab
+  selection, text cursor, system controls), read in JS as
+  `PlatformColor('AccentColor')`.
+- `fonts`: project-relative `.ttf` or `.otf` files bundled into the app. iOS
+  lists them in `UIAppFonts`; Android loads them from `assets/fonts`. Use the
+  font's own family name in styles.
+- `android.adaptiveIcon`: `foreground`, then `background` (an image) or
+  `backgroundColor`, and an optional `monochrome` layer for Android 13 themed
+  icons. The foreground is a 108 dp square with the artwork inside the central
+  66 dp.
+- `ios.associatedDomains` (such as `applinks:example.com`) and
+  `android.appLinks` (`{ host, pathPrefix }`, verified with `autoVerify`) route
+  https links into the app.
+- `ios.usesAppleSignIn` adds the Sign in with Apple entitlement.
+- `android.permissions` adds manifest permissions (a bare name means
+  `android.permission.<name>`); `android.blockedPermissions` removes ones a
+  library merges in.
+- `android.targetSdk` and `android.compileSdk` set the Gradle SDK levels.
+- `ios.googleServicesFile` and `android.googleServicesFile` bundle a Firebase
+  `GoogleService-Info.plist` and `google-services.json`; Android also gets the
+  `google-services` Gradle plugin. For Google Sign-In, add the plist's
+  `REVERSED_CLIENT_ID` to `scheme`.
+- `android.minify` runs R8 on release builds, `android.shrinkResources` (which
+  needs `minify`) drops unused resources, and `android.proguardRules` appends
+  keep rules to `proguard-rules.pro`.
+- `ios.infoPlist` and `ios.entitlements` add keys `native.app` does not model,
+  such as `NSUserTrackingUsageDescription`. A key the template or another field
+  already writes fails prebuild; set it through that field.
+
+### iOS widgets and Live Activities
+
+Set `ios.widgets` to have `one prebuild --platform ios` generate a WidgetKit extension,
+App Group entitlements for both targets, and a small SwiftUI widget and Live Activity.
+The app writes a typed payload to the App Group. The extension reads that payload
+without running the app's JavaScript.
+
+```ts
+ios: {
+  bundleId: 'com.example.myapp',
+  deploymentTarget: '17.0',
+  widgets: {
+    appGroup: 'group.com.example.myapp',
+    kind: 'MyAppStatus',
+    displayName: 'My status',
+    description: 'Shows the latest status.',
+  },
 }
 ```
+
+```ts
+import { One } from 'one'
+
+await One.Widgets.write({ title: 'Order', value: '2 of 3', subtitle: 'On the way' })
+const id = await One.LiveActivities.start('Order', { status: 'Preparing', value: '1 of 3' })
+await One.LiveActivities.update(id, { status: 'On the way', value: '2 of 3' })
+const token = await One.LiveActivities.pushToken(id)
+const unsubscribe = One.LiveActivities.onPushToken(({ id, token }) => {
+  // send the ActivityKit token to your server
+})
+await One.LiveActivities.end(id)
+unsubscribe()
+```
+
+Pass `true` as the third argument to `start` to request an ActivityKit push token.
+Set `ios.widgets.pushNotifications: true` before prebuild to add the APNs
+entitlement; the signing profile must also enable Push Notifications.
+If `notifications.push` is already enabled, One includes that entitlement in
+the same app entitlement file as the widget's App Group.
+`pushToken` returns the current token or `null` while iOS has not issued one;
+`onPushToken` reports later token changes. These APIs are separate from notification
+permissions and device tokens. App Groups and Live Activities need the corresponding
+capabilities in the app's signing profile on a physical device.
+
+One also accepts JSX layouts through `One.iOS.WidgetUI`. The app serializes the
+layout to the same typed App Group contract or ActivityKit state. The generated
+SwiftUI extension renders it without a JavaScript runtime or an extra package.
+
+```tsx
+import { One } from 'one'
+
+const W = One.iOS.WidgetUI
+
+function OrderStatus({ progress, step }: { progress: string; step: number }) {
+  return (
+    <W.VStack style={{ padding: 12, spacing: 8 }}>
+      <W.HStack>
+        <W.Image systemName="shippingbox.fill" style={{ color: '#1685B1' }} />
+        <W.Text style={{ fontSize: 18, fontWeight: 'bold' }}>Order</W.Text>
+      </W.HStack>
+      <W.Text>{progress}</W.Text>
+      <W.Progress value={step} total={3} style={{ color: '#1685B1' }} />
+    </W.VStack>
+  )
+}
+
+await One.Widgets.writeView(<OrderStatus progress="2 of 3" step={2} />)
+const id = await One.LiveActivities.startView('Order', {
+  lockScreen: <OrderStatus progress="1 of 3" step={1} />,
+  compactLeading: <W.Text>Order</W.Text>,
+  compactTrailing: <W.Text>1/3</W.Text>,
+  expandedBottom: <OrderStatus progress="1 of 3" step={1} />,
+})
+await One.LiveActivities.updateView(id, {
+  lockScreen: <OrderStatus progress="2 of 3" step={2} />,
+  compactLeading: <W.Text>Order</W.Text>,
+  compactTrailing: <W.Text>2/3</W.Text>,
+  expandedBottom: <OrderStatus progress="2 of 3" step={2} />,
+})
+await One.LiveActivities.end(id)
+```
+
+The activity view also accepts `expandedLeading`, `expandedTrailing`, and
+`expandedBottom` for the expanded Dynamic Island. The compact slots and
+`minimal` cover its other presentations.
+
+`WidgetUI` supports `Text`, `Image` (SF Symbols), `VStack`, `HStack`,
+`ZStack`, `Spacer`, `Divider`, `Progress`, `Gauge`, `Circle`, `Rectangle`,
+`RoundedRectangle`, and `Link`. Styles include color, background color, font size,
+weight and design, padding, corner radius, spacing, size, opacity, line limit,
+and alignment. Colors use six-digit hex values. JSX layouts can contain pure
+function components; compute hook state in the app and pass it as props. The
+`write` and `writeView` methods update the same widget. Android widgets require
+a separate Glance target, storage contract, and lifecycle; this setting
+generates only iOS targets.
 
 ### iOS Project Setup
 
 <Notice>
-  This isn't necessary if you're using Expo Prebuild, as `one/expo-plugin` already takes care of this.
+  `one prebuild` applies this configuration to generated projects. Follow the manual step only for an existing native project that One did not generate.
 </Notice>
 
 In the "Bundle React Native code and images" phase, make the following change in the shell script:
@@ -182,17 +385,7 @@ Try to delete `ios/.xcode.env.local`.
 1. Make sure there's a `react-native.config.cjs` in your project which contains something like this:
 
     ```js
-    module.exports = {
-      commands: [...require('one/react-native-commands')]
-    }
+    module.exports = require('one/react-native-config')
     ```
-2. Make sure you have `one/expo-plugin` included in your `app.json` (or .js, etc.):
-
-    ```json
-    {
-      "expo": {
-        "plugins": ["one/expo-plugin"]
-      }
-    }
-    ```
-3. Try to delete the `ios` directory and run `prebuild` again.
+2. Confirm `native.app.ios.bundleId` is set in `vite.config.ts`.
+3. Delete the generated `ios` directory and run `one prebuild` again.

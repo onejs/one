@@ -89,7 +89,8 @@ import { useMatches, Slot } from 'one'
 export default function DocsLayout() {
   const matches = useMatches()
   const pageMatch = matches[matches.length - 1]
-  const headings = pageMatch?.loaderData?.headings
+  // loaderData is unknown, so narrow it before reading fields
+  const { headings } = (pageMatch?.loaderData ?? {}) as { headings?: string[] }
 
   return (
     <div>
@@ -334,7 +335,7 @@ export default function FeedLayout() {
       ) : (
         <Stack>
           <Stack.Screen name="index" options={{ title: 'Feed' }} />
-          <Stack.Screen name="[id]" options={{ title: 'Post' }} />
+          <Stack.Screen name="post-[id]" options={{ title: 'Post' }} />
         </Stack>
       )}
     </>

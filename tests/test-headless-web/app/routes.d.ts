@@ -21,6 +21,8 @@ declare module 'one' {
         | `/kept-a`
         | `/kept-b`
         | `/profile`
+        | `/scroll-source`
+        | `/scroll-target`
       DynamicRoutes: never
       DynamicRouteTemplate: never
       IsTyped: true

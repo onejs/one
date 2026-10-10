@@ -1,15 +1,15 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const places = {
   Ferry: { label: 'Ferry Building', latitude: 37.7955, longitude: -122.3937 },
   Presidio: { label: 'Presidio', latitude: 37.7989, longitude: -122.4662 },
 } as const
 const pins = [
-  { id: 'coit', label: 'Coit Tower', latitude: 37.8024, longitude: -122.4058 },
-  { id: 'ballpark', label: 'Ballpark', latitude: 37.7786, longitude: -122.3893 },
-  { id: 'pyramid', label: 'Pyramid', latitude: 37.7952, longitude: -122.4028 },
+  { id: 'coit', label: 'One pin Coit Tower', latitude: 37.8024, longitude: -122.4058 },
+  { id: 'ballpark', label: 'One pin Ballpark', latitude: 37.7786, longitude: -122.3893 },
+  { id: 'pyramid', label: 'One pin Pyramid', latitude: 37.7952, longitude: -122.4028 },
 ]
 
 export default function OneNativeMap() {
@@ -18,6 +18,8 @@ export default function OneNativeMap() {
   const [regions, setRegions] = useState(0)
   const [center, setCenter] = useState('none')
   const [tall, setTall] = useState(false)
+  const [lookAroundOpen, setLookAroundOpen] = useState(false)
+  const [lookAroundDismissals, setLookAroundDismissals] = useState(0)
   const current = places[place]
 
   const status: [string, string | number][] = [
@@ -26,6 +28,8 @@ export default function OneNativeMap() {
     ['Regions', regions],
     ['Center', center],
     ['Height', tall ? 320 : 220],
+    ['Look Around', lookAroundOpen ? 'open' : 'closed'],
+    ['Look Around dismissals', lookAroundDismissals],
   ]
 
   return (
@@ -59,6 +63,14 @@ export default function OneNativeMap() {
         >
           <Text style={styles.actionText}>Toggle height</Text>
         </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          style={styles.action}
+          testID="one-native-map-look-around"
+          onPress={() => setLookAroundOpen(true)}
+        >
+          <Text style={styles.actionText}>Open Look Around</Text>
+        </Pressable>
       </View>
       <View style={styles.status}>
         {status.map(([label, value]) => (
@@ -69,13 +81,26 @@ export default function OneNativeMap() {
           >{`${label}: ${value}`}</Text>
         ))}
       </View>
-      <Swift.Map
+      <One.iOS.Map
         distance={4000}
         latitude={current.latitude}
         longitude={current.longitude}
         markers={pins.slice(0, pinCount)}
         style={[styles.map, { height: tall ? 320 : 220 }]}
         testID="one-native-map-view"
+        swiftStyle={{
+          lookAroundViewer: {
+            isPresented: {
+              value: lookAroundOpen,
+              onChange: (value) => {
+                setLookAroundOpen(value)
+                if (!value) setLookAroundDismissals((count) => count + 1)
+              },
+            },
+            latitude: 37.7934,
+            longitude: -122.3950,
+          },
+        }}
         onRegionChange={(latitude, longitude) => {
           setRegions((count) => count + 1)
           setCenter(`${latitude.toFixed(4)},${longitude.toFixed(4)}`)

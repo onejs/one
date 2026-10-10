@@ -1,0 +1,31 @@
+{
+  "nativePixels": 61,
+  "roundedHeight": 20,
+  "button": {
+    "height": 20.333333333333343,
+    "x": 16,
+    "y": 220,
+    "width": 54.33333333333333
+  },
+  "SDK": "27.0",
+  "sdkBuild": "24A430",
+  "runtime": "27.0",
+  "scale": 3,
+  "screen": "{{0, 0}, {393, 852}}",
+  "contentSizeCategory": "UICTContentSizeCategoryL",
+  "host": {
+    "height": 20.333333333333343,
+    "width": 361,
+    "x": 16,
+    "y": 220
+  },
+  "sourceSHA256": "bd699553f50ee29f3c3c4664767c87d318c884fbd3bdbf2936c619dfea0a26fa",
+  "buildSHA256": [
+    "bd699553f50ee29f3c3c4664767c87d318c884fbd3bdbf2936c619dfea0a26fa  PopoverOracle.swift",
+    "7386d0252450629d40f7db5674c667c1e65b340b1d58e03d78181bd0301c54b1  PopoverOracle.o",
+    "c7a28d4635036e89bf2863549c0bf5f5c476c9b89eeab16da4b2c2dd700a1d15  PopoverOracle.app/PopoverOracle"
+  ],
+  "evidence": "/Users/n8/.local/share/one-native-popover-p73032",
+  "builder": "studio-64",
+  "scope": "default inherited font, dynamic type and control size; automatic Button with Text(\"Trigger\") composed in leading VStack(spacing: 0), top-arrow popover, leading max-width frame, standalone fixed-size measurement; UIHostingController safeAreaRegions = []"
+}
