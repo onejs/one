@@ -1,10 +1,8 @@
 import Foundation
-#if os(WASI)
 import SwiftUI
-#endif
 
 @MainActor public enum OneNativeSourceBody_native_source {
-  public static let hash = "7b458180a55c0d7229eb0240f4143a3147da6e0bbe4c08c0e4a72d46422cc87d"
+  public static let hash = "9e06fe5fd63521be6abf44242e1f962a214d8f341d5e29a0cf2ec18d7e540c45"
 #if os(WASI)
   private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
   private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
@@ -66,7 +64,8 @@ import SwiftUI
         return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
       default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
       }
-    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
+    default:
+      throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
     }
   }
 }

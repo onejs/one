@@ -1,16 +1,22 @@
 import SwiftUI
 
-// the package's @main view is this file's default export:
-// `<Level value={0.4} />` arrives here as json props.
-@main struct Level: PeachPackage {
-  func view(props: JSON) -> some View {
-    let value = props["value"]?.doubleValue ?? 0
-    return Gauge(value: value) {
-      Text("Level")
-    } currentValueLabel: {
-      Text(value, format: .percent.precision(.fractionLength(0)))
+// a public view is a named, typed export: its stored properties are the
+// component's props, and a closure property is a callback.
+// `<Level value={level} onChange={setLevel} />` renders it.
+public struct Level: View {
+  let value: Double
+  let onChange: (Double) -> Void
+
+  public var body: some View {
+    HStack(spacing: 16) {
+      Gauge(value: value) {
+        Text("Level")
+      } currentValueLabel: {
+        Text(value, format: .percent.precision(.fractionLength(0)))
+      }
+      .gaugeStyle(.accessoryCircularCapacity)
+      Slider(value: Binding(get: { value }, set: onChange))
     }
-    .gaugeStyle(.accessoryCircularCapacity)
     .tint(.orange)
     .padding()
   }

@@ -48,6 +48,16 @@ describe('swift package native module', () => {
     expect(changed.code).toContain('AudioMath')
   })
 
+  it('exports a public swift view as a component bound to the package contract', () => {
+    const fixture = swiftFixture()
+    const level = join(fixture.packageDir, 'Level.swift')
+    writeFileSync(level, 'public struct Level: View {\n  let value: Double\n  let onChange: (Double) -> Void\n  public var body: some View { Text("") }\n}\n')
+    const module = renderSwiftPackageModule(level, 'ios', fixture.root)
+    const descriptor = JSON.parse(readFileSync(join(fixture.packageDir, '.one-native-source.json'), 'utf8'))
+    expect(descriptor.views).toEqual({ Level: ['value', 'onChange'] })
+    expect(module.code).toContain(`export function Level(props) { return createElement(SwiftPackageView, { packageName: "native_source", view: "Level", contractHash: ${JSON.stringify(descriptor.hash)}, props, fill: false }) }`)
+  })
+
   it('rejects Android, Expo prebuild, and Swift outside a package', () => {
     const fixture = swiftFixture()
     expect(() => renderSwiftPackageModule(fixture.source, 'android', fixture.root)).toThrow('Android build')
