@@ -28,7 +28,7 @@ import { resolve } from '../link/path'
 import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
-import { dynamicImport } from '../utils/dynamicImport'
+import { dynamicImport, handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { PLATFORM } from '../utils/platform'
 import { isVersionStale } from '../skewProtection'
 import { hasFileExtension, shouldLinkExternally, shouldPreloadRoute } from '../utils/url'
@@ -789,7 +789,7 @@ async function doPreloadDev(href: string): Promise<any> {
       const loaderJSUrl = getLoaderPath(href, true)
 
       const moduleLoadStart = performance.now()
-      const modulePromise = dynamicImport(loaderJSUrl)
+      const modulePromise = dynamicImport(loaderJSUrl, false)
       if (!modulePromise) {
         return null
       }
@@ -857,12 +857,9 @@ async function doPreload(href: string) {
 
   try {
     const [_preload, cssPreloadModule, loader] = await Promise.all([
-      dynamicImport(preloadPath)?.catch((err) => {
-        recordPreloadError(href, err instanceof Error ? err.message : String(err))
-        return null
-      }),
-      dynamicImport(cssPreloadPath)?.catch(() => null) ?? Promise.resolve(null),
-      dynamicImport(loaderPath)?.catch(() => null) ?? Promise.resolve(null),
+      dynamicImport(preloadPath, false),
+      dynamicImport(cssPreloadPath, false),
+      dynamicImport(loaderPath, false),
       preloadRouteModules(href),
     ])
 
@@ -891,7 +888,7 @@ async function doPreload(href: string) {
     const errorMessage = err instanceof Error ? err.message : String(err)
     console.error(`[one] preload error for ${href}:`, err)
     recordPreloadError(href, errorMessage)
-    return null
+    throw err
   }
 }
 
@@ -1014,26 +1011,43 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
       setBoundedPreloadRecord(
         preloadingLoader,
         href,
-        doPreload(href).then((data) => {
-          // Store the resolved data for synchronous access
-          setBoundedPreloadRecord(preloadedLoaderData, href, data)
-          return data
-        })
+        doPreload(href)
+          .then((data) => {
+            // store only successful preloads so navigation retries a failed hover.
+            setBoundedPreloadRecord(preloadedLoaderData, href, data)
+            return data
+          })
+          .catch((err) => {
+            delete preloadingLoader[href]
+            throw err
+          })
       )
     }
 
-    if (injectCSS) {
-      // Wait for preload to populate cssInjectFunctions, then inject CSS (max 800ms)
-      return preloadingLoader[href]?.then(async (data) => {
-        const inject = cssInjectFunctions[href]
-        if (inject) {
-          await Promise.race([inject(), new Promise((r) => setTimeout(r, 800))])
+    return preloadingLoader[href]?.then(
+      async (data) => {
+        if (injectCSS) {
+          // wait for CSS on navigation (max 800ms).
+          const inject = cssInjectFunctions[href]
+          if (inject) {
+            await Promise.race([inject(), new Promise((r) => setTimeout(r, 800))])
+          }
         }
         return data
-      })
-    }
-
-    return preloadingLoader[href]
+      },
+      (err) => {
+        // a speculative failure must not interrupt the page being read.
+        if (
+          injectCSS &&
+          process.env.ONE_SKEW_PROTECTION !== 'false' &&
+          isChunkLoadError(err) &&
+          handleSkewError()
+        ) {
+          return new Promise(() => {})
+        }
+        return null
+      }
+    )
   }
 }
 
@@ -1471,7 +1485,8 @@ export async function linkTo(
               ...existingRoutes,
               {
                 ...targetRoute,
-                key: existingTargetRoute?.key ?? `${targetRootName}-${freshRootState.key}`,
+                key:
+                  existingTargetRoute?.key ?? `${targetRootName}-${freshRootState.key}`,
               },
             ],
             index: existingRoutes.length,
@@ -1482,7 +1497,6 @@ export async function linkTo(
         navigationRef.dispatch(action)
       }
     }
-
   })
 
   let warningTm

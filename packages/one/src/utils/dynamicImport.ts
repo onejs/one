@@ -1,6 +1,6 @@
 // adds vite-ignore to avoid warning logs in vite:
 
-export const dynamicImport = (path: string) => {
+export const dynamicImport = (path: string, reloadOnError = true) => {
   if (process.env.TAMAGUI_TARGET === 'native') {
     // import causes an "invalid expression" bug in react native
     // TODO make this work, probably needs to fetch + eval?
@@ -23,7 +23,9 @@ export const dynamicImport = (path: string) => {
       ),
     {
       onChunkErrorExhausted: () =>
-        process.env.ONE_SKEW_PROTECTION !== 'false' ? handleSkewError() : false,
+        reloadOnError && process.env.ONE_SKEW_PROTECTION !== 'false'
+          ? handleSkewError()
+          : false,
     }
   )
 }
@@ -32,6 +34,7 @@ const CHUNK_ERROR_PATTERNS = [
   'Failed to fetch dynamically imported module', // chrome
   'error loading dynamically imported module', // firefox
   'Importing a module script failed', // safari
+  'Unable to preload CSS for', // vite
 ]
 
 export function isChunkLoadError(err: unknown): boolean {

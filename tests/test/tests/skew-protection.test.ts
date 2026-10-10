@@ -352,52 +352,79 @@ describe('Skew Protection', () => {
   )
 
   describe(
-    'stale build - hover prefetch failure triggers reload',
-    { retry: 1, timeout: 30_000 },
+    'stale build - failed hover prefetch preserves the reader',
+    { timeout: 30_000 },
     () => {
       if (ONLY_TEST_DEV) {
         it('skip in dev', () => expect(true).toBeTruthy())
         return
       }
 
-      it('preload abort on hover triggers reload via dynamicImport handler', async () => {
+      it('keeps the reader after failed prefetch and recovers on navigation', async () => {
         const page = await context.newPage()
+        await page.setViewportSize({ width: 1280, height: 300 })
+        try {
+          await page.goto(serverUrl)
+          await page.waitForSelector('[data-testid="welcome-message"]')
+          const link = page.locator('a[href="/sub-page/sub"]').first()
+          await link.scrollIntoViewIfNeeded()
 
-        await page.goto(serverUrl)
-        await page.waitForSelector('[data-testid="welcome-message"]')
+          const before = await page.evaluate(() => {
+            sessionStorage.removeItem('__one_skew_reload')
+            ;(window as any).__spaNavMarker = true
+            const range = document.createRange()
+            range.selectNodeContents(
+              document.querySelector('[data-testid="welcome-message"]')!
+            )
+            const selection = window.getSelection()!
+            selection.removeAllRanges()
+            selection.addRange(range)
+            return { y: scrollY, selection: selection.toString() }
+          })
+          expect(before.y).toBeGreaterThan(0)
+          expect(before.selection).toBe('Welcome to One')
 
-        await page.evaluate(() => sessionStorage.removeItem('__one_skew_reload'))
-        await page.evaluate(() => {
-          ;(window as any).__spaNavMarker = true
-        })
+          const failedRequests: string[] = []
+          await page.route('**/*_preload.js', (route) => {
+            failedRequests.push(route.request().url())
+            return route.abort('connectionrefused')
+          })
+          await page.route('**/*_preload_css.js', (route) => {
+            failedRequests.push(route.request().url())
+            return route.abort('connectionrefused')
+          })
 
-        await page.route('**/*_preload.js', (route) => {
-          route.abort('connectionrefused')
-        })
-        await page.route('**/*_preload_css.js', (route) => {
-          route.abort('connectionrefused')
-        })
+          // either the prefetch settles or the old recovery tears down the document.
+          const settled = Promise.race([
+            page.waitForEvent('console', {
+              predicate: (message) => message.text().includes('[one] preload error'),
+            }),
+            page.waitForEvent('framenavigated', {
+              predicate: (frame) => frame === page.mainFrame(),
+            }),
+          ])
+          await link.hover()
+          await settled
+          expect(failedRequests.length).toBeGreaterThan(0)
+          expect(
+            await page.evaluate(() => ({
+              marker: (window as any).__spaNavMarker,
+              guard: sessionStorage.getItem('__one_skew_reload'),
+              y: scrollY,
+              selection: window.getSelection()?.toString(),
+            }))
+          ).toEqual({ marker: true, guard: null, ...before })
+          expect(page.url()).toBe(new URL('/', serverUrl).href)
 
-        // hover triggers prefetch → dynamicImport → abort → handleSkewError → reload
-        const links = await page.locator('a[href^="/"]').all()
-        for (const link of links.slice(0, 3)) {
-          if (await link.boundingBox()) {
-            await link.hover()
-            await page.waitForTimeout(500)
-          }
+          // a failed speculative cache must not suppress recovery when the user navigates.
+          await spaNavigateTo(page, '/sub-page/sub')
+          await page.waitForFunction(() => !(window as any).__spaNavMarker)
+          expect(
+            await page.evaluate(() => sessionStorage.getItem('__one_skew_reload'))
+          ).not.toBeNull()
+        } finally {
+          await page.close()
         }
-
-        // after hover prefetch abort, dynamicImport handler triggers reload
-        const markerSurvived = await page.evaluate(
-          () => (window as any).__spaNavMarker === true
-        )
-        // reload should have happened (marker cleared)
-        expect(markerSurvived).toBe(false)
-
-        // page functional after reload
-        expect(await page.evaluate(() => !!document.body?.innerHTML)).toBe(true)
-
-        await page.close()
       })
     }
   )

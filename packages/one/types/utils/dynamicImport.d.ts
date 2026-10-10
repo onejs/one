@@ -1,4 +1,4 @@
-export declare const dynamicImport: (path: string) => Promise<any>;
+export declare const dynamicImport: (path: string, reloadOnError?: boolean) => Promise<any>;
 export declare function isChunkLoadError(err: unknown): boolean;
 export declare function handleSkewError(): boolean;
 export declare const CHUNK_RETRY_ATTEMPTS = 3;
