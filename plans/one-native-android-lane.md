@@ -33,6 +33,17 @@ Captures, XML and pass/fail/restored logs remain at
 baseline and native build logs beside them. Rotation restores portrait and
 unlocks; Metro8098 and emulator-5560 stop. CI owner: s23249.
 
+RAN: `w-47a8bf` runs `SKIP_TYPES=1 bun release --into` shared Contrast
+`~/.worktrees/contrast-one-native`, building and installing all seventeen
+package-family entries. Installed Adaptive Kotlin matches the accepted source
+byte for byte, SHA256 `b6105afc16d770ada6723d451dd2fb42214d9862312e9220c9e4dcd5b33009b8`.
+Log: `adaptive-downstream-release.log` beside the runtime receipts. Shared
+checkouts and the shared Contrast tree remain with the One native lane; no
+owned Metro, emulator or watcher remains. The private downstream tree was
+removed. The old One tree's source was preserved in its recovery ref and
+external patch before retirement. All five assigned suites are accepted;
+CI and canary delivery remain with s23249.
+
 ## LaunchScreen receipt, 2026-10-09
 
 TESTED: `w-ba3cd7` passes Android `launch-screen`, six checks; explicit early

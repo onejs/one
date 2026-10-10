@@ -21,7 +21,6 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
-
 }
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
@@ -46,7 +45,6 @@ const partialGaps: Record<string, string> = {
     'iOS and Android one segment tracks provider resize; folding segments unproven',
   useSpanning:
     'iOS and Android flat false proven; spanning divisions unproven',
-
   'UI.EdgeFade':
     'iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven',
   'UI.Blur':
