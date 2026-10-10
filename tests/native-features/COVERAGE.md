@@ -221,7 +221,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
 | `One.ImagePicker` | image-picker, camera-preview | image-picker | OneNativeBehavioralLibraryCase |  |
-| `One.DocumentPicker` | apple-file | missing | OneNativeDocumentPickerLibraryCase | Android fixture exists, no suite opens it |
+| `One.DocumentPicker` | apple-file | document-picker | OneNativeDocumentPickerLibraryCase |  |
 | `One.SecureStore` | secure-store | secure-store | OneNativeBehavioralLibraryCase |  |
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
 | `One.Speech` | speech | speech | OneNativeBehavioralLibraryCase |  |

@@ -36,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1724,6 +1724,101 @@ async function run(config: Config) {
     ])
   }
 
+  const documentPicker = async () => {
+    type Asset = { uri: string; name: string; mimeType: string; size: number; fetched: number }
+    const runId = Date.now().toString(36)
+    const seeds = [
+      { name: `one-document-${runId}-a.txt`, bytes: Buffer.from('one document α\n') },
+      { name: `one-document-${runId}-b.txt`, bytes: Buffer.from('two documents β\n') },
+    ]
+    const assets = (nodes: Node[]): Asset[] => {
+      const text = nodes.map((node) => node.text).find((text) => text.startsWith('Details: '))
+      return text ? JSON.parse(text.slice('Details: '.length)) : []
+    }
+    const picker = (nodes: Node[]) => nodes.some((node) =>
+      node.attrs.package === 'com.google.android.documentsui')
+    const copiesMatch = (nodes: Node[], expected: typeof seeds) => {
+      const picked = assets(nodes)
+      return textIncludes(nodes, 'Result: ok') && picked.length === expected.length &&
+        expected.every((seed) => {
+          const asset = picked.find((asset) => asset.name === seed.name)
+          return asset?.mimeType === 'text/plain' && asset.size === seed.bytes.length &&
+            asset.fetched === seed.bytes.length && asset.uri.startsWith('file://')
+        }) && new Set(picked.map((asset) => asset.uri)).size === expected.length
+    }
+    const checkBytes = async (name: string, picked: Snapshot, expected: typeof seeds) => {
+      const cached = assets(picked.nodes).map((asset) => {
+        const pathname = decodeURIComponent(new URL(asset.uri).pathname)
+        const prefix = `/data/user/0/${config.packageId}/cache/one-native-document-picker/`
+        if (!pathname.startsWith(prefix)) throw new Error(`DocumentPicker URI outside cache: ${asset.uri}`)
+        const relative = pathname.slice(`/data/user/0/${config.packageId}/`.length)
+        return { name: asset.name, bytes: adbBytes(config, ['exec-out', 'run-as', config.packageId, 'cat', relative]) }
+      })
+      await expect(name, () => expected.every((seed) =>
+        cached.find((copy) => copy.name === seed.name)?.bytes.equals(seed.bytes) === true))
+    }
+    const openDownloads = async (name: string) => {
+      await expect(`${name}-presented`, picker)
+      tapMatching(config, 'Document picker roots', 'Open from', (node) => node.contentDescription === 'Show roots')
+      await expect(`${name}-roots`, (nodes) => nodes.filter((node) =>
+        node.text === 'Downloads' && node.resourceId === 'android:id/title').length === 1)
+      const roots = snapshot(config).nodes.filter((node) =>
+        node.text === 'Downloads' && node.resourceId === 'android:id/title')
+      if (roots.length !== 1) throw new Error(`Downloads drawer row count: ${roots.length}`)
+      // system list rows delegate item clicks; their label need not be clickable.
+      const rootBounds = validBounds(roots[0], 'Downloads drawer row')
+      adbText(config, ['shell', 'input', 'tap',
+        String(Math.round((rootBounds.left + rootBounds.right) / 2)),
+        String(Math.round((rootBounds.top + rootBounds.bottom) / 2))])
+      await expect(`${name}-seed-visible`, (nodes) =>
+        !nodes.some((node) => node.resourceId === 'com.google.android.documentsui:id/drawer_roots') &&
+        nodes.some((node) => node.resourceId === 'com.google.android.documentsui:id/breadcrumb_text' && node.text === 'Downloads') &&
+        seeds.every((seed) => nodes.some((node) => node.text === seed.name)))
+    }
+    try {
+      clearDocumentsUi(config)
+      adbText(config, ['shell', 'mkdir', '-p', '/sdcard/Download'])
+      for (const [index, seed] of seeds.entries()) {
+        const local = path.join(config.artifactDir, seed.name)
+        const bytes = config.negativeControl && index === 0 ? Buffer.from('one document ω\n') : seed.bytes
+        writeFileSync(local, bytes)
+        adbText(config, ['push', local, `/sdcard/Download/${seed.name}`])
+        if (!adbBytes(config, ['exec-out', 'cat', `/sdcard/Download/${seed.name}`]).equals(bytes))
+          throw new Error(`Seed bytes differ on device: ${seed.name}`)
+        adbText(config, ['shell', 'am', 'broadcast', '-a',
+          'android.intent.action.MEDIA_SCANNER_SCAN_FILE', '-d', `file:///sdcard/Download/${seed.name}`])
+      }
+      await tapNavigation(config, 'nav-one-native-document-picker')
+      await expect('document-picker-mounted', (nodes) => textIncludes(nodes, 'Result: idle'))
+      tapFresh(config, 'Single document picker', { id: 'one-native-document-picker-single' })
+      await expect('document-picker-cancel-presented', picker)
+      pressBack(config)
+      await expect('document-picker-canceled', (nodes) =>
+        textIncludes(nodes, 'Result: canceled') && textIncludes(nodes, 'Assets: 0') && assets(nodes).length === 0)
+      tapFresh(config, 'Single document picker reopened', { id: 'one-native-document-picker-single' })
+      await openDownloads('document-picker-single')
+      tapByText(config, 'First document', seeds[0].name)
+      const single = await expect('document-picker-single-readable-copy', (nodes) => copiesMatch(nodes, [seeds[0]]))
+      await checkBytes('document-picker-single-exact-bytes', single, [seeds[0]])
+      tapFresh(config, 'Multiple document picker', { id: 'one-native-document-picker-multiple' })
+      await openDownloads('document-picker-multiple')
+      const current = snapshot(config)
+      const row = current.nodes.find((node) => node.text === seeds[0].name)!
+      const bounds = validBounds(row, 'First multi-select document')
+      const x = String(Math.round((bounds.left + bounds.right) / 2))
+      const y = String(Math.round((bounds.top + bounds.bottom) / 2))
+      adbText(config, ['shell', 'input', 'swipe', x, y, x, y, '800'])
+      await expect('document-picker-multiple-first-selected', (nodes) => textIncludes(nodes, '1 selected'))
+      tapByText(config, 'Second multi-select document', seeds[1].name)
+      await expect('document-picker-multiple-two-selected', (nodes) => textIncludes(nodes, '2 selected'))
+      tapMatching(config, 'Confirm selected documents', 'Select', (node) => node.text.toLowerCase() === 'select')
+      const multiple = await expect('document-picker-multiple-readable-copies', (nodes) => copiesMatch(nodes, seeds))
+      await checkBytes('document-picker-multiple-exact-bytes', multiple, seeds)
+    } finally {
+      for (const seed of seeds) adbText(config, ['shell', 'rm', '-f', `/sdcard/Download/${seed.name}`])
+    }
+  }
+
   const network = async () => {
     await tapNavigation(config, 'nav-one-native-network')
     const events = (nodes: Node[]) => Number(joined(nodes).match(/Events: (\d+)/)?.[1])
@@ -2520,6 +2615,11 @@ async function run(config: Config) {
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
       await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : system())
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'document-picker') {
+      await documentPicker()
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }

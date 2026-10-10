@@ -10,6 +10,7 @@ export default function OneNativeDocumentPicker() {
   const [size, setSize] = useState(0)
   const [fetched, setFetched] = useState(0)
   const [uri, setUri] = useState('')
+  const [details, setDetails] = useState<string>('[]')
   const [code, setCode] = useState('-')
   const [error, setError] = useState('-')
 
@@ -21,10 +22,11 @@ export default function OneNativeDocumentPicker() {
     setSize(0)
     setFetched(0)
     setUri('')
+    setDetails('[]')
     setCode('-')
     setError('-')
     try {
-      const picked = await One.DocumentPicker.getDocument({ multiple })
+      const picked = await One.DocumentPicker.getDocument({ multiple, type: 'text/plain' })
       if (picked.canceled) {
         setResult('canceled')
         return
@@ -36,8 +38,12 @@ export default function OneNativeDocumentPicker() {
       setSize(first.size ?? 0)
       setUri(first.uri)
       // reading needs no file system module: fetch reads file uris.
-      const bytes = await (await fetch(first.uri)).arrayBuffer()
-      setFetched(bytes.byteLength)
+      const copies = await Promise.all(picked.assets.map(async (asset) => {
+        const bytes = await (await fetch(asset.uri)).arrayBuffer()
+        return { ...asset, fetched: bytes.byteLength }
+      }))
+      setFetched(copies[0].fetched)
+      setDetails(JSON.stringify(copies))
       setResult('ok')
     } catch (unknown) {
       const failure = unknown as { code?: string; message?: string }
@@ -54,6 +60,7 @@ export default function OneNativeDocumentPicker() {
     ['Mime', mime],
     ['Size', size],
     ['Fetched', fetched],
+    ['Details', details],
     ['Code', code],
     ['Error', error],
   ]

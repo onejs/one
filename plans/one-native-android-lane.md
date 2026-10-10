@@ -1,5 +1,21 @@
 # One native Android lane
 
+## DocumentPicker receipt, 2026-10-09
+
+TESTED: `w-941983` passes Android `document-picker`, sixteen checks; a seed
+with equal-length altered UTF-8 bytes fails `document-picker-single-exact-bytes`;
+restored seeds pass sixteen checks again. The real system picker cancels,
+selects one file, then selects two. Name, MIME type, size, distinct file URIs,
+JavaScript fetch length and exact native cache bytes agree. Fresh run-specific
+seed names avoid deleted Downloads entries; device seed bytes and the closed
+roots drawer are preconditions. No native One repair was needed.
+
+RAN: the existing Pixel 8/API37 r06 and accepted Network APK run from the
+shared beta checkout. Captures, XML and logs remain at
+`/tmp/one-android-hooks-m28192/document-accepted-v5/` on air-32. Earlier
+picker-navigation failures and their captures remain beside them. Cleanup
+removes owned seeds and stops Metro8098 and emulator-5560. CI owner: s23249.
+
 ## Network receipt, 2026-10-09
 
 TESTED: `w-16b178` passes the Android `network` suite, twelve checks,
@@ -25,6 +41,10 @@ Receipts remain in `/tmp/one-android-hooks-m28192/network-accepted/` on air-32.
 The initial repaired restored launch failed before mounting because the radio
 was still reconnecting; no API assertion was relaxed. CI owner: `s23249`,
 Android Native Build, Checks and Tests, and canary artifact delivery pending.
+RAN: `w-4e84c6` builds and installs all seventeen package-family entries
+with `SKIP_TYPES=1 bun release --into` the isolated Contrast downstream.
+The installed Network Kotlin matches the accepted source byte for byte.
+Receipt: `network-downstream-release.log` beside the runtime evidence.
 
 ## Native state receipt, 2026-10-09
 
@@ -41,7 +61,8 @@ source passes all six checks again. No native One repair was needed.
 RAN: the same AVD boots with `-gpu host -no-snapshot-load`, and
 `sys.boot_completed=1` precedes install. Prior software-rendered boots exposed
 a System UI startup ANR before One assertions. Primary-checkout edits vanished
-during resource admission, so source is now kept in an owned worktree.
+during resource admission. The recovered source now lives in the shared beta
+checkout; the earlier private trees are retired after preserving evidence.
 Receipt PNG/XML/check records and pass/fail/restored logs remain outside Git at
 `/tmp/one-android-hooks-m28192/` on air-32. Every successful check has its own
 status JSON; the original runner's early suite return emits no success
