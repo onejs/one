@@ -44,9 +44,14 @@ const appId =
         /applicationId\s+["']([^"']+)/
       )?.[1]
 if (!appId) throw new Error('No generated application id')
+// clearState revokes runtime grants, and a debug build on android 17 asks for
+// local network access before it reaches the dev server; the developer allows it
+// once, so the run grants that and no app permission
+const permissions =
+  values.platform === 'android' ? '\n      android.permission.ACCESS_LOCAL_NETWORK: allow' : ' {}'
 // the home marker is a first-launch screen, so a session or seen-state left
 // on the device by an earlier install must not carry into the run
-let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: true\n    clearState: true\n    clearKeychain: true\n    permissions: {}\n`
+let flow = `appId: ${appId}\n---\n- launchApp:\n    stopApp: true\n    clearState: true\n    clearKeychain: true\n    permissions:${permissions}\n`
 const visible = (text: string) => {
   flow += `- assertVisible: ${JSON.stringify(text)}\n`
 }
@@ -180,7 +185,7 @@ if (values.mode === 'home') {
       flow += '- extendedWaitUntil:\n    visible: ".*onestack.*"\n    timeout: 20000\n'
     }
     flow += '- takeScreenshot: system-url\n'
-    flow += '- launchApp:\n    stopApp: false\n    permissions: {}\n'
+    flow += `- launchApp:\n    stopApp: false\n    permissions:${permissions}\n`
     if (values.platform === 'ios') {
       // return: fails when the app did not foreground again.
       flow +=
@@ -195,7 +200,7 @@ if (values.mode === 'home') {
       flow += '- extendedWaitUntil:\n    visible: "^Settings$"\n    timeout: 20000\n'
     }
     flow += '- takeScreenshot: system-settings\n'
-    flow += '- launchApp:\n    stopApp: false\n    permissions: {}\n'
+    flow += `- launchApp:\n    stopApp: false\n    permissions:${permissions}\n`
     if (values.platform === 'ios') {
       flow +=
         '- extendedWaitUntil:\n    visible: "Open settings for runner return"\n    timeout: 20000\n'
