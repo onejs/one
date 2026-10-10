@@ -5922,7 +5922,14 @@ async function runUpdates(config: Config) {
     // am start -W returns once the first frame draws, which the slow bundle
     // holds back, so the launch goes out without waiting for it.
     adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
-    await Bun.sleep(2500)
+    const splashDeadline = Date.now() + config.timeout
+    let launching = readState()
+    while (launching.launching !== slow.id && Date.now() < splashDeadline) {
+      await Bun.sleep(250)
+      launching = readState()
+    }
+    if (launching.launching !== slow.id)
+      throw new Error(`the slow update did not enter its splash: launching=${launching.launching}`)
     stopApp()
     const killed = readState()
     const slowEntry = killed.updates[slow.id]
