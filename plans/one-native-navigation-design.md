@@ -7,7 +7,20 @@ only for an explicitly isolated flow after a runtime experiment establishes its 
 Scope: written design, based on `4ea2cabda`. The assigned package floor is iOS 26.
 The older iOS 18 statements in `packages/one/README.md:5` and
 `plans/handoff-one-native-parity.md:22` are superseded by that instruction. No
-availability-gating project is proposed. No iOS app was built or run.
+availability-gating project is proposed. The initial NavigationStack proposal
+below was design-only; no app was built or run for that proposal.
+
+## Expo SDK 58 mail split-view API
+
+For the pinned Expo SDK 58 mail example, One exposes a reusable
+`One.iOS.NavigationSplitView` backed by SwiftUI's `NavigationSplitView`. It has
+direct `Sidebar`, optional `Content`, and `Detail` markers. `columnVisibility`
+and `preferredCompactColumn` support controlled and uncontrolled state: supplied
+values remain authoritative, and callbacks report native proposals for
+JavaScript to accept or refuse. Each column reuses One's existing style and
+toolbar owners. `List` selection is a string array keyed by unique string row
+tags, with a proposed-selection callback. The routed `One.iOS.SplitView` API
+remains separate and unchanged.
 
 ## Evidence convention and sources
 
@@ -317,7 +330,8 @@ Do not build:
 - All navigation/toolbar/search overloads merely to reduce the inventory gap;
   defer customization persistence, editable titles, title menus, token editing,
   programmatic search focus/selection, and arbitrary RN scope builders.
-- `NavigationSplitView`, app-router replacement, or navigation transitions in the
+- `NavigationSplitView` is covered by the separate SDK 58 split-view section above.
+  App-router replacement and navigation transitions remain out of scope for the
   initial binding. No fallback renderer or iOS availability work is needed here.
 
 **GUESSED, single riskiest unknown:** whether an isolated SwiftUI stack hosting RN

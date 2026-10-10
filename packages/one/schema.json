@@ -173,9 +173,20 @@
         "listStyle": {
           "type": "string",
           "enum": "ListStyle"
+        },
+        "selection": {
+          "type": "string"
+        },
+        "selectionIsControlled": {
+          "type": "boolean"
         }
       },
       "events": {
+        "onNativeListSelectionChange": {
+          "selection": {
+            "type": "string"
+          }
+        },
         "onNativeSDKEvent": {
           "name": {
             "type": "string"
@@ -3896,6 +3907,58 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeNavigationSplitView",
+      "publicName": "NavigationSplitView",
+      "props": {
+        "columnVisibility": {
+          "type": "string"
+        },
+        "columnVisibilityIsControlled": {
+          "type": "boolean"
+        },
+        "preferredCompactColumn": {
+          "type": "string"
+        },
+        "preferredCompactColumnIsControlled": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeNavigationSplitViewColumnVisibilityChange": {
+          "visibility": {
+            "type": "string"
+          }
+        },
+        "onNativeNavigationSplitViewPreferredCompactColumnChange": {
+          "column": {
+            "type": "string"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "columns",
+          "content": "OneNativeNavigationSplitViewColumn",
+          "cardinality": "many",
+          "key": "column",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeToolbar",
       "publicName": "Toolbar",
       "props": {},
@@ -4026,6 +4089,45 @@
         }
       ],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeNavigationSplitViewColumn",
+      "publicName": null,
+      "props": {
+        "column": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "toolbars",
+          "content": "OneNativeToolbar",
+          "cardinality": "many",
+          "layout": "composed"
+        },
+        {
+          "name": "content",
+          "content": "OneNativeNavigationStackContent",
+          "cardinality": "one",
+          "layout": "swiftui-proposal-to-yoga",
+          "origin": "local"
+        }
+      ],
+      "interfaceOnly": false
     },
     {
       "name": "OneNativePopover",

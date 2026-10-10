@@ -40,13 +40,9 @@ type OneNativeStyleNative = Readonly<{
   material?: string
   sdkModifiers?: string
 }>
-
 interface NativeProps extends ViewProps {
-  listStyle: string
-  selection: string
-  selectionIsControlled: boolean
+  column: string
   swiftStyle?: OneNativeStyleNative
-  onNativeListSelectionChange?: DirectEventHandler<Readonly<{ selection: string }>>
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeList')
+export default codegenNativeComponent<NativeProps>('OneNativeNavigationSplitViewColumn')
