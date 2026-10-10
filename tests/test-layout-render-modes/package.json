@@ -1,6 +1,6 @@
 {
   "name": "test-layout-render-modes",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "private": true,
   "type": "module",
   "scripts": {
