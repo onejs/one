@@ -100,7 +100,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Label` | leaves, containers | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ProgressView` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Gauge` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
-| `One.iOS.Image` | leaves, groups, ui-icon | n/a | OneSwiftLayoutContainersLibraryCase, OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.Image` | leaves, groups, ui-icon | n/a | OneNativeIconLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ShareLink` | share-empty | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ContentUnavailableView` | share-empty | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Circle` | leaves, view-slot | n/a | OneSwiftGlassLibraryCase, OneSwiftShapesGradientsLibraryCase |  |
@@ -159,7 +159,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.InputChip` | n/a | android-chips | missing |  |
 | `One.Android.SuggestionChip` | n/a | android-chips | missing |  |
 | `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
-| `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips | OneComposeActionsLibraryCase |  |
+| `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneNativeIconLibraryCase |  |
 | `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip | OneComposeFormLibraryCase |  |
 | `One.Android.IconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
@@ -199,8 +199,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.ContextMenu` | n/a | android-menus | missing |  |
 | `One.UI.sampleCurve` | ui-effects | effects | missing |  |
 | `One.UI.serializeCurve` | ui-effects | effects | missing |  |
-| `One.UI.EdgeFade` | ui-effects | effects | missing | iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
-| `One.UI.Icon` | ui-icon | ui-icon | missing |  |
+| `One.UI.EdgeFade` | ui-effects | effects | OneNativeVisualLibraryCase | iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
+| `One.UI.Icon` | ui-icon | ui-icon | OneNativeIconLibraryCase |  |
 | `One.UI.Image` | ui-image | image | OneNativeVisualLibraryCase |  |
 | `One.UI.Map` | ui-map | ui-map | OneNativeVisualLibraryCase |  |
 | `One.UI.PictureInPicture` | missing | missing | missing | fixture exists; simulators report no PiP, needs a device run |
@@ -211,7 +211,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.Pager` | pager | ui-pager | OneUIPagerLibraryCase |  |
 | `One.UI.Fonts` | fonts | fonts | OneNativeBehavioralLibraryCase |  |
 | `One.UI.SafeArea` | safe-area | safe-area | OneNativeAdaptiveLibraryCase, OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |
-| `One.UI.TextInput` | ui-text-input | ui-text-input | missing |  |
+| `One.UI.TextInput` | ui-text-input | ui-text-input | OneNativeTextInputLibraryCase |  |
 | `One.UI.ReservedRegions` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; folding and nonempty occlusions unproven |
 | `One.Notifications` | notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share | OneNativeBehavioralLibraryCase | Android setString and getString proven only through the share suite Copy check; no Android clipboard suite |
