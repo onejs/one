@@ -709,7 +709,6 @@ export function renderSwiftSourceGlue(
   // builds an imported view from the host's json props; a callback reports its
   // arguments to the host as a json array.
   const renderViews = (): string[] => [
-    '#if !os(WASI)',
     '  private static func missing(_ path: String) throws -> Any {',
     '    throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "\\(path): required"])',
     '  }',
@@ -741,7 +740,6 @@ export function renderSwiftSourceGlue(
     '    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \\(name) is not linked; rebuild the app"])',
     '    }',
     '  }',
-    '#endif',
   ]
   const source = [
     'import Foundation',
@@ -802,6 +800,18 @@ export function renderSwiftSourceGlue(
     '@_expose(wasm, "peach_call_poll")',
     '@_cdecl("peach_call_poll")',
     `@MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { ${bodyName}.pollWasm(id) }`,
+    // peach registers the typed views once per instance: the package's own
+    // @main, if any, stays its default view, as on device
+    ...(views.length > 0 ? [
+      '@_expose(wasm, "peach_register_views")',
+      '@_cdecl("peach_register_views")',
+      '@MainActor public func peach_register_views() {',
+      '  PeachTypedViews.register { name, contractHash, propsJson, emit in',
+      `    guard contractHash == ${bodyName}.hash else { return AnyView(Text("swift view ${packageId}.\\(name) changed; rebuild the app").foregroundStyle(.red)) }`,
+      `    do { return try ${bodyName}.view(name, propsJson, emit) } catch { return AnyView(Text("\\(name): \\(error.localizedDescription)").foregroundStyle(.red)) }`,
+      '  }',
+      '}',
+    ] : []),
     ...(!hasMain ? [
       `@main struct OneNativeSourceMain_${packageId}: App {`,
       '  var body: some Scene { WindowGroup { EmptyView() } }',

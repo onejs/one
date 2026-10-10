@@ -67,7 +67,6 @@ import SwiftUI
       throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
     }
   }
-#if !os(WASI)
   private static func missing(_ path: String) throws -> Any {
     throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "\(path): required"])
   }
@@ -87,7 +86,6 @@ import SwiftUI
     default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "swift view \(name) is not linked; rebuild the app"])
     }
   }
-#endif
 }
 
 #if os(WASI)
@@ -97,6 +95,14 @@ import SwiftUI
 @_expose(wasm, "peach_call_poll")
 @_cdecl("peach_call_poll")
 @MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.pollWasm(id) }
+@_expose(wasm, "peach_register_views")
+@_cdecl("peach_register_views")
+@MainActor public func peach_register_views() {
+  PeachTypedViews.register { name, contractHash, propsJson, emit in
+    guard contractHash == OneNativeSourceBody_Showcase.hash else { return AnyView(Text("swift view Showcase.\(name) changed; rebuild the app").foregroundStyle(.red)) }
+    do { return try OneNativeSourceBody_Showcase.view(name, propsJson, emit) } catch { return AnyView(Text("\(name): \(error.localizedDescription)").foregroundStyle(.red)) }
+  }
+}
 @main struct OneNativeSourceMain_Showcase: App {
   var body: some Scene { WindowGroup { EmptyView() } }
 }
