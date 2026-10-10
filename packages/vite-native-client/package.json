@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-native-client",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "sideEffects": [
     "*"
   ],
