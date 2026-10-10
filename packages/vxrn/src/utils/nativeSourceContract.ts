@@ -658,7 +658,9 @@ export function renderSwiftSourceGlue(
     ] : []),
     '#endif',
     '',
-    '#if canImport(ObjectiveC)',
+    // the dispatch class answers nitro on device; wasi uses the rnx_call
+    // exports above, and its sdk mirrors objectivec, so gate it off.
+    '#if canImport(ObjectiveC) && !os(WASI)',
     `@objc(${className}) @MainActor public final class ${className}: NSObject, OneNativeSourceDispatch {`,
     '  public required override init() {}',
     `  public var contractHash: String { ${bodyName}.hash }`,

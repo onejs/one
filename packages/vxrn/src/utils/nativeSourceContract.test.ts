@@ -4,7 +4,7 @@ import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { nativeSourceContract, renderKotlinSourceGlue, swiftPodManifest, writeNativeSourceDeclarations } from './nativeSourceContract'
+import { nativeSourceContract, renderKotlinSourceGlue, renderSwiftSourceGlue, swiftPodManifest, writeNativeSourceDeclarations } from './nativeSourceContract'
 
 const require = createRequire(import.meta.url)
 const tsc = join(require.resolve('typescript/package.json'), '..', 'bin', 'tsc')
@@ -118,6 +118,18 @@ fun helper(x: Int) = x`
     expect(() =>
       nativeSourceContract('/app/native/Bad.kt', '@Composable\nfun Bad(onTap: () -> Int) {}')
     ).toThrow(/must return Unit/)
+  })
+
+  it('keeps the objc dispatch class off wasi, whose sdk mirrors objectivec', () => {
+    const contract = nativeSourceContract(
+      '/app/native/Audio.swift',
+      `@MainActor final class AudioMath: RNXModule {
+  init() {}
+  func rms(_ samples: [Double]) -> Double { 1 }
+}`
+    )
+    const glue = renderSwiftSourceGlue('rn_host_app', [contract]).source
+    expect(glue).toContain('#if canImport(ObjectiveC) && !os(WASI)')
   })
 
   it('rejects unsupported signatures at their source location', () => {
