@@ -32,6 +32,7 @@ export const docsRoutes = [
       { title: 'Setup', route: '/docs/native-setup' },
       { title: 'Components', route: '/docs/native-components' },
       { title: 'Platform APIs', route: '/docs/native-apis' },
+      { title: 'Swift and Kotlin', route: '/docs/native-source' },
       { title: 'Platform Notes', route: '/docs/native-platforms' },
     ],
   },

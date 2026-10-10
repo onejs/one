@@ -122,9 +122,10 @@ native projects against your running One development server.
 
 You can also import Swift and Kotlin source from application code. One derives
 a typed contract for supported native functions and generates the glue used by
-the native build. Swift packages can expose native views. Editing native source
-still requires rebuilding the native binary; JavaScript hot reload cannot
-replace compiled Swift or Kotlin.
+the native build. Swift packages can expose native views, and public Kotlin
+composables import as React components. Editing native source still requires
+rebuilding the native binary; JavaScript hot reload cannot replace compiled
+Swift or Kotlin. See [Swift and Kotlin](/docs/native-source).
 
 Environment variables use `ONE_PUBLIC_` by default. `EXPO_PUBLIC_` remains
 supported for Expo dependencies. A `ONE_PUBLIC_X` value is available as
