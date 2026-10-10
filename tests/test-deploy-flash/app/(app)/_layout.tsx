@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { Slot, usePathname } from 'one'
 
-// mirrors soot's (app)/_layout.tsx:
+// mirrors contrast's (app)/_layout.tsx:
 //   1. reads usePathname() (causes re-renders on route change)
 //   2. Suspense boundary that suspends briefly during hydration
 //      (mimics Zero/auth provider init)

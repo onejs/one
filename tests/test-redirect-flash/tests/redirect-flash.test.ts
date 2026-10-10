@@ -4,8 +4,8 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 /**
  * Redirect Flash Regression Guard
  *
- * Reproduces soot's redirect-flash bug: loading /project/default_anon-umh7vfq6
- * fresh would briefly redirect to / and back (soot commit ea96e360).
+ * Reproduces contrast's redirect-flash bug: loading /project/default_anon-umh7vfq6
+ * fresh would briefly redirect to / and back (contrast commit ea96e360).
  *
  * Structure (intentionally has NO intermediate _layout.tsx files at project/
  * or project/[projectId]/, so `project/[projectId]/index` is hoisted into
@@ -20,7 +20,7 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest'
  *   app/(app)/index.tsx                         calls router.replace on mount
  *                                               when async gate flags resolve
  *                                               and window.location is /
- *                                               (mimics soot's HomePage)
+ *                                               (mimics contrast's HomePage)
  *   app/(app)/factory.tsx, editor.tsx           sibling leaves
  *   app/(app)/project/[projectId]/index.tsx     deep project leaf
  *   app/(app)/project/[projectId]/[sessionId].tsx
@@ -218,7 +218,7 @@ describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => 
 
     await installFlashDetector(page)
 
-    // fresh load of the deep route — this is the scenario soot hit
+    // fresh load of the deep route — this is the scenario contrast hit
     await page.goto(serverUrl + '/project/foo', { waitUntil: 'domcontentloaded' })
 
     await waitForHydrationToSettle(page)
@@ -230,7 +230,7 @@ describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => 
     // THE PRIMARY ASSERTION: the home route should never mount while the
     // browser URL is a /project/* path. if it does, the parent navigator
     // briefly picked `index` as the matched child during hydration, which
-    // is the exact failure mode that produced soot's redirect-flash bug.
+    // is the exact failure mode that produced contrast's redirect-flash bug.
     // use the mount log's `url` field so we catch the bug even when a
     // subsequent redirect changes the URL before we check.
     const homeMountsOnProjectUrl = results.homeRouteMountLog.filter((m) =>
@@ -245,7 +245,7 @@ describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => 
     ).toHaveLength(0)
 
     // secondary assertion: the home route's router.replace should never
-    // have fired during this load. in soot this was the observable symptom
+    // have fired during this load. in contrast this was the observable symptom
     // (URL bouncing from /project/foo → / → /project/target).
     expect(
       results.redirectFired,
@@ -264,8 +264,8 @@ describe('initial load of deep /project/[projectId] route', { retry: 1 }, () => 
   })
 
   test('loading /nested/foo should land on index, not the dynamic [sub] sibling', async () => {
-    // regression for soot commit 134dd5d9: when a nested navigator's layout
-    // path contains a dynamic segment (here /nested/[id], in soot
+    // regression for contrast commit 134dd5d9: when a nested navigator's layout
+    // path contains a dynamic segment (here /nested/[id], in contrast
     // /project/[projectId]), the late-mount resolver used to literal-
     // startsWith-strip the layout prefix from browserPath. that strip
     // fails because "/nested/foo" doesn't start with "/nested/[id]", so

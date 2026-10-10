@@ -1,12 +1,12 @@
 import { Suspense } from 'react'
 import { Slot, usePathname } from 'one'
 
-// reproduces soot's redirect-flash bug (commit ea96e360) with three ingredients:
+// reproduces contrast's redirect-flash bug (commit ea96e360) with three ingredients:
 //   1. parent layout reads usePathname()
 //   2. a Suspense boundary above the <Slot />, with something that suspends
 //      briefly during hydration (mimicking Zero sync / useLoader / provider init)
 //   3. a home route (index.tsx) that calls router.replace on mount when a
-//      gate passes (mimicking soot's HomePage redirect to /project/{activeProject.id})
+//      gate passes (mimicking contrast's HomePage redirect to /project/{activeProject.id})
 //
 // when these three are in place AND the project route is hoisted into this
 // navigator (i.e. no intermediate _layout.tsx files at project/ and

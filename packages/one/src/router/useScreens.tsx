@@ -519,10 +519,10 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       // native opt-out: set native.suspendRoutes to false in your one() config
       // OR set globalThis.__ONE_DISABLE_SUSPENSE_ROUTES__ = true at runtime
       // (the env var is used at the consuming app's build time, the runtime
-      // flag is for environments like sootsim that need to disable it after
+      // flag is for environments like peach that need to disable it after
       // one has already been bundled).
       //
-      // useful for JS-driven animations (e.g. sootsim canvas renderer) where
+      // useful for JS-driven animations (e.g. peach canvas renderer) where
       // the rAF-driven stack push animation dominates the main thread and
       // React 18 defers the suspense subtree commit until rAF stops, which
       // means the new route content is null for the entire enter animation

@@ -1,5 +1,5 @@
 export function generateStaticParams() {
-  return [{ slug: ['sootsim'] }]
+  return [{ slug: ['peach'] }]
 }
 
 export default function DocsSlugRoute() {

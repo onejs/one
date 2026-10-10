@@ -386,7 +386,7 @@ export function nativeSourceContract(file: string, source: string): NativeSource
       defaultView = true
     }
     const inherits = list.slice(i + 2, body).map((token) => token.text)
-    if (inherits.includes(language === 'swift' ? 'RNXModule' : 'OneModule')) {
+    if (inherits.includes(language === 'swift' ? 'PeachModule' : 'OneModule')) {
       modules.push({ name, methods: methods(file, list, body, end, language) })
     }
     i = end + 1
@@ -645,12 +645,12 @@ export function renderSwiftSourceGlue(
     '}',
     '',
     '#if os(WASI)',
-    '@_expose(wasm, "rnx_call")',
-    '@_cdecl("rnx_call")',
-    `@MainActor public func rnx_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { ${bodyName}.callWasm(payload, length) }`,
-    '@_expose(wasm, "rnx_call_poll")',
-    '@_cdecl("rnx_call_poll")',
-    `@MainActor public func rnx_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { ${bodyName}.pollWasm(id) }`,
+    '@_expose(wasm, "peach_call")',
+    '@_cdecl("peach_call")',
+    `@MainActor public func peach_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { ${bodyName}.callWasm(payload, length) }`,
+    '@_expose(wasm, "peach_call_poll")',
+    '@_cdecl("peach_call_poll")',
+    `@MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { ${bodyName}.pollWasm(id) }`,
     ...(!hasMain ? [
       `@main struct OneNativeSourceMain_${packageId}: App {`,
       '  var body: some Scene { WindowGroup { EmptyView() } }',
@@ -658,7 +658,7 @@ export function renderSwiftSourceGlue(
     ] : []),
     '#endif',
     '',
-    // the dispatch class answers nitro on device; wasi uses the rnx_call
+    // the dispatch class answers nitro on device; wasi uses the peach_call
     // exports above, and its sdk mirrors objectivec, so gate it off.
     '#if canImport(ObjectiveC) && !os(WASI)',
     `@objc(${className}) @MainActor public final class ${className}: NSObject, OneNativeSourceDispatch {`,

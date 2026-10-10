@@ -11,7 +11,7 @@ import type { One } from './vite/types'
 // formatErrorSafely + the prepareStackTrace guard prevent a buggy transitive
 // formatter (source-map-support without recursion guard) from pinning the
 // serve process forever. see cli/install-error-handlers.ts for the full
-// story behind the 9-day Onejs:build zombies on the soot CI runner.
+// story behind the 9-day Onejs:build zombies on the contrast CI runner.
 import {
   formatErrorSafely,
   installPrepareStackTraceGuard,

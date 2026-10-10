@@ -2,7 +2,7 @@ import SwiftUI
 
 // the device side of `import Badge from './Badge.swift'` in a react native app.
 // the same file the browser simulator compiles to wasm compiles natively here,
-// unchanged: `@main struct Badge: RNXPackage` builds in its own module, which
+// unchanged: `@main struct Badge: PeachPackage` builds in its own module, which
 // imports this one implicitly and renames its entry point to
 // `<package>_main`. the package's generated +load hands that entry to
 // OneSwiftRegisterPackage, and the first host that asks for the package runs
@@ -61,13 +61,13 @@ public enum JSON {
   }
 }
 
-public protocol RNXPackage {
+public protocol PeachPackage {
   associatedtype Content: View
   init()
   func view(props: JSON) -> Content
 }
 
-@MainActor public protocol RNXModule {
+@MainActor public protocol PeachModule {
   init()
 }
 
@@ -77,7 +77,7 @@ public protocol RNXPackage {
   func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String
 }
 
-extension RNXPackage {
+extension PeachPackage {
   @MainActor public static func main() {
     OneSwiftPackages.pending = { AnyView(Self().view(props: $0)) }
   }

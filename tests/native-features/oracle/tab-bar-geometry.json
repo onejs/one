@@ -5559,7 +5559,7 @@
     },
     {
       "id": "tabs3-minautomatic-sel0-light",
-      "axis": "tabBarMinimizeBehavior (no rnx consumer: the prop does not exist there)",
+      "axis": "tabBarMinimizeBehavior (no peach consumer: the prop does not exist there)",
       "note": "3 page tabs, tabBarMinimizeBehavior=\"automatic\", never scrolled",
       "spec": {
         "tabs": [
@@ -5721,7 +5721,7 @@
     },
     {
       "id": "tabs3-minonScrollDown-sel0-light",
-      "axis": "tabBarMinimizeBehavior (no rnx consumer: the prop does not exist there)",
+      "axis": "tabBarMinimizeBehavior (no peach consumer: the prop does not exist there)",
       "note": "3 page tabs, tabBarMinimizeBehavior=\"onScrollDown\", never scrolled",
       "spec": {
         "tabs": [
@@ -5883,7 +5883,7 @@
     },
     {
       "id": "tabs3-minonScrollUp-sel0-light",
-      "axis": "tabBarMinimizeBehavior (no rnx consumer: the prop does not exist there)",
+      "axis": "tabBarMinimizeBehavior (no peach consumer: the prop does not exist there)",
       "note": "3 page tabs, tabBarMinimizeBehavior=\"onScrollUp\", never scrolled",
       "spec": {
         "tabs": [
@@ -6045,7 +6045,7 @@
     },
     {
       "id": "tabs3-sidebar-sel0-light",
-      "axis": "sidebarAdaptable (no rnx consumer: the prop does not exist there)",
+      "axis": "sidebarAdaptable (no peach consumer: the prop does not exist there)",
       "note": "3 page tabs, sidebarAdaptable",
       "spec": {
         "tabs": [
@@ -6207,7 +6207,7 @@
     },
     {
       "id": "tabs5-sidebar-sel0-light",
-      "axis": "sidebarAdaptable (no rnx consumer: the prop does not exist there)",
+      "axis": "sidebarAdaptable (no peach consumer: the prop does not exist there)",
       "note": "5 page tabs, sidebarAdaptable",
       "spec": {
         "tabs": [

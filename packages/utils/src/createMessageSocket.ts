@@ -5,7 +5,7 @@ import { WebSocketServer } from 'ws'
 // broadcast / request / response routing, getid + getpeers server methods). RN's
 // packager connection dials /message on launch; an unanswered upgrade leaves the
 // socket dangling forever, and chromium then queues every later websocket handshake
-// to the same host:port behind it (blocking e.g. zero /sync in sootsim standalone).
+// to the same host:port behind it (blocking e.g. zero /sync in peach standalone).
 export function createMessageSocket() {
   const PROTOCOL_VERSION = 2
   const wss = new WebSocketServer({ noServer: true })

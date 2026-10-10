@@ -6,7 +6,7 @@ Do not touch /Users/n8/.worktrees/one-native (mine, live, another agent is writi
 
 Read first: plans/handoff-one-native-parity.md in full, especially the section "Known weak spots in the checks", then tests/native-features/scripts/one-native-conformance.ts in full.
 
-The defect taxonomy is not mine. A parallel audit of soot's rnx library conformance covered 42 cases and 146 checkpoints and found 13 that cannot be honestly admitted, in two classes:
+The defect taxonomy is not mine. A parallel audit of contrast's peach library conformance covered 42 cases and 146 checkpoints and found 13 that cannot be honestly admitted, in two classes:
 1. The graded region contains content that loads asynchronously and nothing waits for it, so the capture races the content. Found in an ExpoImage ImageBackground, a Tamagui WebView document, and six photos in a scroll showcase. Eight of the thirteen were this one defect.
 2. The assertion is looser than the pixels it claims to grade: a rounded scroll Y, a 148..152 width range, "nonzero and unchanged".
 

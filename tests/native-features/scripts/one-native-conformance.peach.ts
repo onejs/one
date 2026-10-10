@@ -17,7 +17,7 @@ const runs = Number(args.includes('--runs') ? option('--runs') : '3')
 const artifactRoot = resolve(
   args.includes('--artifact-dir')
     ? option('--artifact-dir')
-    : '/tmp/one-native-rnx-conformance'
+    : '/tmp/one-native-peach-conformance'
 )
 
 if (!Number.isInteger(runs) || runs < 2) {
@@ -33,20 +33,20 @@ for (let index = 0; index < args.length; index += 2) {
 mkdirSync(artifactRoot, { recursive: true })
 
 const run = (commandArgs: string[], outputPath?: string) => {
-  const rnxArgs =
+  const peachArgs =
     commandArgs[0] === 'device'
       ? [...commandArgs, '--sim', sim]
       : ['--sim', sim, ...commandArgs]
-  const result = spawnSync('rnx', rnxArgs, {
+  const result = spawnSync('peach', peachArgs, {
     cwd: resolve(import.meta.dirname, '..'),
     encoding: 'utf8',
-    env: { ...process.env, RNX_AGENT: '1' },
+    env: { ...process.env, PEACH_AGENT: '1' },
   })
   const transcript = [result.stdout, result.stderr].filter(Boolean).join('\n')
   if (outputPath) writeFileSync(outputPath, transcript)
   if (result.status !== 0) {
     throw new Error(
-      `rnx ${commandArgs.join(' ')} failed (${result.status})\n${transcript}`
+      `peach ${commandArgs.join(' ')} failed (${result.status})\n${transcript}`
     )
   }
   return result.stdout.trim()
@@ -371,4 +371,4 @@ writeFileSync(
   resolve(artifactRoot, 'outcome.json'),
   `${JSON.stringify({ passed: true, sim, url, runs: completedRuns }, null, 2)}\n`
 )
-console.log(`One Native RNX conformance passed ${runs} runs. Artifacts: ${artifactRoot}`)
+console.log(`One Native Peach conformance passed ${runs} runs. Artifacts: ${artifactRoot}`)

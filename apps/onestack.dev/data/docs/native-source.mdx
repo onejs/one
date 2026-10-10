@@ -38,7 +38,7 @@ let package = Package(
 )
 ```
 
-A class that conforms to `RNXModule` becomes a named export. Each method that
+A class that conforms to `PeachModule` becomes a named export. Each method that
 is not `private` or `fileprivate` becomes an async function:
 
 ```swift
@@ -46,7 +46,7 @@ is not `private` or `fileprivate` becomes an async function:
 import CryptoKit
 import UIKit
 
-@MainActor final class Device: RNXModule {
+@MainActor final class Device: PeachModule {
   init() {}
 
   func info() -> [String: String] {
@@ -74,13 +74,13 @@ dependencies instead.
 ## Swift views
 
 The package's `@main` type is the default export of its file when it conforms
-to `RNXPackage`. The element's props arrive as `JSON`:
+to `PeachPackage`. The element's props arrive as `JSON`:
 
 ```swift
 // native/Showcase/Level.swift
 import SwiftUI
 
-@main struct Level: RNXPackage {
+@main struct Level: PeachPackage {
   func view(props: JSON) -> some View {
     Gauge(value: props["value"]?.doubleValue ?? 0) { Text("Level") }
       .gaugeStyle(.accessoryCircularCapacity)

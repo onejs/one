@@ -10,7 +10,7 @@ The Opus review is recorded in `one-native-opus-review.md`. Before expanding:
 
 - Match SDK constructors by full parameter labels/types and fail on ambiguity.
 - Parse both Swift availability forms and typecheck generated Swift at iOS 18.
-- Emit a normalized component/props/events/slots schema for Soot.
+- Emit a normalized component/props/events/slots schema for Contrast.
 - Share the RN slot implementation with explicit allocation/interaction policy.
 - Share optimistic controlled values, numbered events, acknowledgements and reset revisions.
 - Compare menu payloads before Objective-C allocation; make conversion reusable.
@@ -109,7 +109,7 @@ runtime behavior. The current package remains usable during migration.
 - Compile generated output and check regeneration determinism. CI runs
   `generate:check`, TypeScript typecheck, package tests, then a native-features
   consumer prebuild, `pod install`, and xcodebuild.
-- Capture screenshots and machine-readable outcomes for future Soot conformance.
+- Capture screenshots and machine-readable outcomes for future Contrast conformance.
 - Measure package/JS/native size separately. Report runtime environment and configuration.
 - After 3–4 substantial families work, hand the committed branch, test commands,
   coverage matrix, failures, and worker ownership to Opus at extra-high reasoning.

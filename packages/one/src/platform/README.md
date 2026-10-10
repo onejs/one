@@ -1809,7 +1809,7 @@ records that React Native hands each payload to the component as
 A browser or preview runtime implements the native contract, not the public one:
 the public adapters in `src/generated/Controls.native.tsx` run unchanged on top,
 so they still validate props, apply the controlled protocol, and supply the
-default height. Soot resolves a Fabric host by its native view name through
+default height. Contrast resolves a Fabric host by its native view name through
 `registerNativeComponentImplementation`, which is the seam this schema targets.
 
 The schema does not yet carry accessibility role or label mapping, an executable

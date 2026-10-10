@@ -1,7 +1,7 @@
 import { one } from 'one/vite'
 import type { UserConfig } from 'vite'
 
-// mirrors soot: spa default render mode, root layout is +ssg
+// mirrors contrast: spa default render mode, root layout is +ssg
 export default {
   plugins: [
     one({

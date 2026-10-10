@@ -71,12 +71,12 @@ import SwiftUI
 }
 
 #if os(WASI)
-@_expose(wasm, "rnx_call")
-@_cdecl("rnx_call")
-@MainActor public func rnx_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.callWasm(payload, length) }
-@_expose(wasm, "rnx_call_poll")
-@_cdecl("rnx_call_poll")
-@MainActor public func rnx_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.pollWasm(id) }
+@_expose(wasm, "peach_call")
+@_cdecl("peach_call")
+@MainActor public func peach_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.callWasm(payload, length) }
+@_expose(wasm, "peach_call_poll")
+@_cdecl("peach_call_poll")
+@MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.pollWasm(id) }
 #endif
 
 #if canImport(ObjectiveC) && !os(WASI)

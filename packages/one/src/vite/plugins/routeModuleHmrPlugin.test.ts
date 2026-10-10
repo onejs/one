@@ -10,7 +10,7 @@ function runHotUpdate({
   file: string
   modules: Array<{ id?: string; acceptedHmrExports?: Set<string> }>
 }) {
-  const plugin = createRouteModuleHmrPlugin('app-sootsim')
+  const plugin = createRouteModuleHmrPlugin('app-peach')
   const send = vi.fn()
   const hotUpdate =
     typeof plugin.hotUpdate === 'object' ? plugin.hotUpdate.handler : plugin.hotUpdate
@@ -31,14 +31,14 @@ function runHotUpdate({
 describe(createRouteModuleHmrPlugin, () => {
   it('applies client hmr to the configured router root', () => {
     const routeModule: { id: string; acceptedHmrExports?: Set<string> } = {
-      id: '/project/app-sootsim/_layout.tsx?one',
+      id: '/project/app-peach/_layout.tsx?one',
     }
     const otherModule: { id: string; acceptedHmrExports?: Set<string> } = {
       id: '/project/app/index.tsx',
     }
     const { result, send } = runHotUpdate({
       environment: 'client',
-      file: '/project/app-sootsim/_layout.tsx',
+      file: '/project/app-peach/_layout.tsx',
       modules: [routeModule, otherModule],
     })
 
@@ -48,17 +48,17 @@ describe(createRouteModuleHmrPlugin, () => {
     expect(send).toHaveBeenCalledWith({
       type: 'custom',
       event: 'one:route-update',
-      data: { file: 'app-sootsim/_layout.tsx' },
+      data: { file: 'app-peach/_layout.tsx' },
     })
   })
 
   it('suppresses ssr reloads only inside the configured router root', () => {
-    const modules = [{ id: '/project/app-sootsim/index.tsx' }]
+    const modules = [{ id: '/project/app-peach/index.tsx' }]
 
     expect(
       runHotUpdate({
         environment: 'ssr',
-        file: '/project/app-sootsim/index.tsx',
+        file: '/project/app-peach/index.tsx',
         modules,
       }).result
     ).toEqual([])

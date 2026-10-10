@@ -4,11 +4,11 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 /**
  * useParams Stability Regression Guard
  *
- * Reproduces the soot bug where useParams() returns { id: '<the-id>' } on
+ * Reproduces the contrast bug where useParams() returns { id: '<the-id>' } on
  * the first render of a dynamic route but then returns {} (empty) on a
  * subsequent re-render, while the URL stays at /preview/<id>.
  *
- * Structure (mirrors soot as closely as possible):
+ * Structure (mirrors contrast as closely as possible):
  *
  *   app/_layout+ssg.tsx                 SSG shell (spa-shell mode)
  *   app/(site)/_layout.tsx              pass-through <Slot />

@@ -92,8 +92,6 @@ describe('root One export', () => {
     Reflect.set(globalThis, '__ONE_PLATFORM__', 'android')
     expect(One.platform).toBe('android')
 
-    Reflect.set(globalThis, '__ONE_PLATFORM__', 'rnx')
-    expect(One.platform).toBe('rnx')
     expect(One.iOS.Button).toBeTypeOf('function')
     expect(One.Android.Button).toBeTypeOf('function')
   })

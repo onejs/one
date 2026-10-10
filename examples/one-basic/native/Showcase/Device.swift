@@ -3,7 +3,7 @@ import UIKit
 
 // each method is an async function in typescript: `await Device.sha256('hi')`.
 // one generates Device.d.swift.ts from these signatures.
-@MainActor final class Device: RNXModule {
+@MainActor final class Device: PeachModule {
   init() {}
 
   func info() -> [String: String] {

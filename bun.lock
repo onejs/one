@@ -1197,6 +1197,27 @@
         "vitest": "^4.1.0",
       },
     },
+    "tests/test-peach-back": {
+      "name": "test-peach-back",
+      "version": "1.27.1",
+      "dependencies": {
+        "@callstack/liquid-glass": "^0.8.1",
+        "@react-navigation/native": "8.0.0-alpha.50",
+        "expo": "58.0.0-canary-20260909-ea7a89a",
+        "one": "workspace:*",
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
+        "react-native": "0.87.1",
+        "react-native-web": "^0.21.2",
+      },
+      "devDependencies": {
+        "get-port-please": "^3.1.2",
+        "playwright": "^1.58.2",
+        "typescript": "7.0.2",
+        "vite": "^8.2.2",
+        "vitest": "^4.1.0",
+      },
+    },
     "tests/test-redirect-flash": {
       "name": "test-redirect-flash",
       "version": "1.27.1",
@@ -1308,27 +1329,6 @@
       },
       "devDependencies": {
         "@vxrn/test": "workspace:*",
-        "get-port-please": "^3.1.2",
-        "playwright": "^1.58.2",
-        "typescript": "7.0.2",
-        "vite": "^8.2.2",
-        "vitest": "^4.1.0",
-      },
-    },
-    "tests/test-sootsim-back": {
-      "name": "test-sootsim-back",
-      "version": "1.27.1",
-      "dependencies": {
-        "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
-        "expo": "58.0.0-canary-20260909-ea7a89a",
-        "one": "workspace:*",
-        "react": "19.2.3",
-        "react-dom": "19.2.3",
-        "react-native": "0.87.1",
-        "react-native-web": "^0.21.2",
-      },
-      "devDependencies": {
         "get-port-please": "^3.1.2",
         "playwright": "^1.58.2",
         "typescript": "7.0.2",
@@ -5109,6 +5109,8 @@
 
     "test-params-stability": ["test-params-stability@workspace:tests/test-params-stability"],
 
+    "test-peach-back": ["test-peach-back@workspace:tests/test-peach-back"],
+
     "test-redirect-flash": ["test-redirect-flash@workspace:tests/test-redirect-flash"],
 
     "test-route-chunking": ["test-route-chunking@workspace:tests/test-route-chunking"],
@@ -5122,8 +5124,6 @@
     "test-script-loading": ["test-script-loading@workspace:tests/test-script-loading"],
 
     "test-skew-protection": ["test-skew-protection@workspace:tests/test-skew-protection"],
-
-    "test-sootsim-back": ["test-sootsim-back@workspace:tests/test-sootsim-back"],
 
     "test-spa-shell-routing": ["test-spa-shell-routing@workspace:tests/test-spa-shell-routing"],
 

@@ -26,7 +26,7 @@ What you must NOT do:
 - Do not boot a simulator, do not run the device conformance suite. I own 36CB8903-C59C-4438-BA29-E7A3C8876C37 and another agent is capturing pixel oracles on it now; the suite is load-sensitive and a second CoreSimulator client corrupts both. I run the device suite at integration. This means you cannot visually confirm the tab fix yourself. Get it right by reading TabsContent and reasoning about the selection-to-content association, then tell me exactly what you want me to run to confirm it.
 - Do not touch port 8107.
 - Do not push. Commit to your branch, report the SHA to me.
-- Nothing outside packages/one and its fixture. Not soot, not rnx.
+- Nothing outside packages/one and its fixture. Not contrast, not peach.
 
 Visual check regions are ABSOLUTE fixture coordinates. Adding a control shifts everything below it; the handoff records a 39pt shift that broke five checks which were not regressions. Report any shift you cause with its offset. Never re-baseline a visual check to make it green.
 

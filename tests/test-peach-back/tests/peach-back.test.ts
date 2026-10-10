@@ -3,14 +3,14 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 const START_TIMEOUT = 60000
 
-// reproduces the sootsim.com back-navigation bug:
-// click a Link to /docs/sootsim, then hit browser back — expected to land
+// reproduces the peach.com back-navigation bug:
+// click a Link to /docs/peach, then hit browser back — expected to land
 // on /. before the fix, the docs navigator mounted late, picked `index` as
 // its initial route (first alphabetical screen) instead of the navigation
 // target `[...slug]`, and useLinking saw the resulting state as a same-
 // depth change → history.replace instead of history.push, so the only
 // entry was the initial / and going back exited the site.
-describe('sootsim.com back-navigation', () => {
+describe('peach.com back-navigation', () => {
   let browser: Browser
   let context: BrowserContext
 
@@ -54,24 +54,24 @@ describe('sootsim.com back-navigation', () => {
       const beforeLen = await page.evaluate(() => history.length)
 
       await page.click('#link-to-docs')
-      await page.waitForFunction(() => location.pathname === '/docs/sootsim', undefined, {
+      await page.waitForFunction(() => location.pathname === '/docs/peach', undefined, {
         timeout: 10000,
       })
 
       // the slug page must be visible (not docs/index) — confirms the docs
-      // navigator picked [...slug] as its focused route, with slug=['sootsim']
+      // navigator picked [...slug] as its focused route, with slug=['peach']
       await page.locator('#docs-slug-marker').waitFor({ timeout: 10000 })
       expect(await page.locator('#docs-index-marker').count()).toBe(0)
 
-      // we should have seen exactly one pushState for /docs/sootsim. replaces
+      // we should have seen exactly one pushState for /docs/peach. replaces
       // at the same path are harmless (same-state syncs from useLinking).
       const hlog = await page.evaluate(
         () => (window as any).__hlog as { op: 'push' | 'replace'; url: string }[]
       )
-      const pushes = hlog.filter((e) => e.op === 'push' && e.url === '/docs/sootsim')
+      const pushes = hlog.filter((e) => e.op === 'push' && e.url === '/docs/peach')
       expect(
         pushes.length,
-        `expected at least one pushState for /docs/sootsim, got history log:\n${JSON.stringify(
+        `expected at least one pushState for /docs/peach, got history log:\n${JSON.stringify(
           hlog,
           null,
           2

@@ -228,7 +228,7 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
             // metro parity: the packager message socket (metro serves /message via
             // @react-native-community/cli-server-api). leaving the upgrade unanswered
             // dangles the socket and chromium queues every later websocket handshake
-            // to the same host:port behind it (blocking e.g. zero /sync in sootsim).
+            // to the same host:port behind it (blocking e.g. zero /sync in peach).
             '/message': createMessageSocket(),
             ...devMiddleware.websocketEndpoints,
           }

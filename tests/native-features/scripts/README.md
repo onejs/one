@@ -1,18 +1,18 @@
 # One Native Conformance Runner
 
-## Android Compose in RNX
+## Android Compose in Peach
 
-The RNX lane uses Maestro for interaction and a thin runner for independent tree, layout,
+The Peach lane uses Maestro for interaction and a thin runner for independent tree, layout,
 accessibility, console error, failed request, and screenshot evidence. It requires one connected
 `pixel-8` simulator and runs the full flow three times by default.
 
 ```bash
-RNX_NO_OPEN=1 bun run dev
+PEACH_NO_OPEN=1 bun run dev
 
-bun run test-rnx:one-native-android -- \
-  --sim <RNX_SIM_ID> \
+bun run test-peach:one-native-android -- \
+  --sim <PEACH_SIM_ID> \
   --url http://localhost:8081 \
-  --artifact-dir /tmp/one-native-rnx-conformance
+  --artifact-dir /tmp/one-native-peach-conformance
 ```
 
 | Surface | Behavior | Gate |

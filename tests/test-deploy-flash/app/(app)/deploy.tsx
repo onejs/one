@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useRouter } from 'one'
 
-// mirrors soot's app/(app)/deploy.tsx — top-level /deploy redirect.
+// mirrors contrast's app/(app)/deploy.tsx — top-level /deploy redirect.
 // waits for project gate, then redirects to /project/{id}/main/deploy.
 
 export default function DeployRedirect() {

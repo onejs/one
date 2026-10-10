@@ -67,7 +67,7 @@ import {
 } from './platform'
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context'
 
-export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
+export type OnePlatform = 'web' | 'ios' | 'android'
 
 export type OneIOS = typeof Swift & {
   readonly WidgetUI: typeof WidgetUI
@@ -163,7 +163,7 @@ function currentPlatform(): OnePlatform {
   const defined =
     Reflect.get(globalThis, '__ONE_PLATFORM__') ??
     (typeof process !== 'undefined' ? process.env.ONE_PLATFORM : undefined)
-  return defined === 'ios' || defined === 'android' || defined === 'rnx' ? defined : 'web'
+  return defined === 'ios' || defined === 'android' ? defined : 'web'
 }
 
 const iOS: Readonly<OneIOS> = Object.freeze({

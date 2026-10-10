@@ -12,7 +12,7 @@ Search these roots ONLY, and prune node_modules, dist, .git, ios/build, and any 
   /Users/n8/one
   /Users/n8/chat
   /Users/n8/takeout
-  /Users/n8/soot
+  /Users/n8/contrast
   /Users/n8/takeout-free
   /Users/n8/orez
 Search for: the module specifier `one`, and separately each exported identifier name.

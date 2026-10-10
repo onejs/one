@@ -3005,7 +3005,7 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
 
 // every directory under the app root holding a Package.swift becomes one local
 // pod: its sources compile as their own module against One (which
-// supplies RNXPackage and JSON), the @main entry is renamed so it does not
+// supplies PeachPackage and JSON), the @main entry is renamed so it does not
 // clash with the app's main, and an objc +load files the entry with the
 // registry the OneSwiftHost view reads. the bundler resolves an import of any
 // .swift file in the package to a host view naming the same package id.

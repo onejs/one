@@ -210,9 +210,9 @@ export default function Page() {
 `
       const result = await transformTreeShakeClient(
         code,
-        '/project/app-sootsim/(marketing)/changelog/index+ssg.tsx',
+        '/project/app-peach/(marketing)/changelog/index+ssg.tsx',
         '/project',
-        'app-sootsim'
+        'app-peach'
       )
       expect(result).toBeDefined()
       // buildPage looks the stub up by the route contextKey, which is relative

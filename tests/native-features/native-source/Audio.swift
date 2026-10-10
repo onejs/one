@@ -1,4 +1,4 @@
-@MainActor final class AudioMath: RNXModule {
+@MainActor final class AudioMath: PeachModule {
   init() {}
 
   func rms(_ samples: [Double]) -> Double {

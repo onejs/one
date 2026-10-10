@@ -1,4 +1,4 @@
-# Soot effects cutover mapping
+# Contrast effects cutover mapping
 
 How each Contrast Mobile (`templates/contrast-mobile`) effects usage maps to
 `One.UI.*` from `one` at the zero-Expo cutover. This is a mapping note
@@ -7,7 +7,7 @@ native-effects track.
 
 ## Component map
 
-| Soot site | Today | Cutover |
+| Contrast site | Today | Cutover |
 |---|---|---|
 | `interface/effects/BlurView/*.tsx` | `expo-blur` `intensity` + `tint` | `UI.Blur intensity tint` (same props, same 21-tint union) |
 | `interface/effects/GradientBlurView.tsx` | `MaskedView` + `BlurView` + `LinearGradient` | `UI.EdgeFade mode="blur"` (bottom/top, `size` from band height, `curve` from easing) |
@@ -34,7 +34,7 @@ At cutover these imports delete with no replacement package:
   (expo's default path paints the scrim only), so Android gains parity with
   iOS rather than just matching expo.
 - `UI.EdgeFade` blur `curve` reshapes the sharp→frost profile directly;
-  Soot's easing lambdas map to `cubicBezier` or `stops` curves.
+  Contrast's easing lambdas map to `cubicBezier` or `stops` curves.
 - `UI.Mask` masks live on both platforms (iOS `maskView`, Android per-frame
   composite); animated mask content tracks.
 
