@@ -223,10 +223,10 @@ production package delivery.
 
 
 - [x] every shipped native API has a page whose props match its types; the
-  drift suite stays green. RAN 2026-10-10 on v2-beta HEAD `b6364ccff`:
-  `packages/one` `tests/nativeDocs.test.ts` 142/142 pass, and a namespace
-  probe finds a docs page for every top-level `One.*` service. Receipt: tm
-  task `t-mv30fd6x-tl40`.
+  drift suite stays green. RAN 2026-10-10 on v2-beta `b6364ccff` and again
+  after merging `a63612c1a`: `packages/one` `tests/nativeDocs.test.ts`
+  142/142 pass both times, and a namespace probe finds a docs page for every
+  top-level `One.*` service. Receipt: tm task `t-mv30fd6x-tl40`.
 - [ ] `native-components.mdx` lists every `One.iOS` and `One.UI` family
   (true at 2026-10-05).
 - [ ] `TextInputRef`, `TextInputProps` importable from `one` for typed refs.
@@ -236,10 +236,13 @@ production package delivery.
 ## 6. release
 
 - [x] beta canary content verified by tarball, not version string.
-  TESTED 2026-10-10: `npm pack one@2.0.0-0.canary.1791667902490`; its
-  `gitHead b6364ccff` equals `origin/v2-beta` HEAD, and
-  `ios/OneSwiftPackage.swift`, `ios/OneSwiftHostView.swift`,
-  `ios/OneSwiftHostComponentView.mm` are byte-identical to HEAD (including
-  `bdc4068e5` `OneNativeSourceViewDispatch`); `contractHash` ships in the CJS
-  and ESM `swiftPackageModule` dist. Receipt: tm task `t-mv30fd6x-tl40`.
+  TESTED 2026-10-10: `npm pack one@2.0.0-0.canary.1791674508910` (newest at
+  check time); its `releaseSourceCommit d44ce7d96` matches its content: the
+  three `ios/OneSwift*.swift`/`OneSwiftHostComponentView.mm` sources are
+  byte-identical to that commit (including `bdc4068e5`
+  `OneNativeSourceViewDispatch`), and `contractHash` ships in the CJS and ESM
+  `swiftPackageModule` dist. The matching `vxrn` canary likewise matches
+  `d44ce7d96` and predates `a63612c1a` (no `workspaceRoots` in its dist);
+  the next canary cut from this push covers it. Receipt: tm task
+  `t-mv30fd6x-tl40`.
 - [ ] stable `one` 2.0: the owner's word only.
