@@ -18,9 +18,18 @@ Tick a box only with a receipt (SHA, run id or evidence path).
 
 ## 1. works
 
-- [ ] v2-beta required CI green on one SHA: Checks and Tests, Release, iOS
-  Native Tests. RAN 2026-10-05: `Checks and Tests` failed on `62e0f7a4d`;
-  iOS Native Tests passed on the same SHA. Owner: v2-beta CI owner (p61056).
+- [x] v2-beta required CI green on `eaa6126fbe3`. RAN 2026-10-10:
+  Checks and Tests `38016426808`, Release `38016426795`, Android Native
+  Build `38016426800`, iOS Native Tests `38016426858` all succeeded on
+  that remote tip. Future One CI owner: s27204; current tarball contents
+  are a separate acceptance claim.
+- [x] local Swift source through One native bridge and Peach on published
+  `vxrn@2.0.0-0.canary.1791593480476`. REPORTED 2026-10-10 by s24746:
+  Release SwiftRNHost iOS 27 run `w-a4dfc8` passes 15/15 checks;
+  Peach run `w-3a89ed` passes Swift, Kotlin and shared guest assertions.
+  Source: One `1e0721a0f`, Contrast `7748c739e2` and `fe6df240a6`.
+  Canary tarball verified by owner. Receipts:
+  `~/.team-machine/handoffs/one-swift-bridge-full.md`.
 - [ ] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
   Basic, Takeout Free, Contrast mobile on iOS 27 and Android 37 plus web.
   Last full pass was canary `2.0.0-0.canary.1791082782289`.
