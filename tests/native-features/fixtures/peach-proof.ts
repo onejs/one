@@ -1,5 +1,5 @@
 // peach library cases whose fixture uses each one export, scanned from the
-// contrast checkout at e36f407a031 against one 6f30d74d513ec with contrast
+// contrast checkout at 2c0ded947f6 against one 1e0721a0f1eda with contrast
 // scripts/conformance/one-export-proof-matrix.ts. names are case base file
 // names under packages/peach-library-conformance/src/cases. refresh when
 // peach cases land; the matrix test fails on unknown export keys, and
@@ -101,7 +101,7 @@ export const peachProof: Record<string, string[]> = {
   'iOS.Group': ['OneSwiftLayoutContainersLibraryCase'],
   'iOS.GroupBox': ['OneSwiftLayoutContainersLibraryCase'],
   'iOS.HStack': ['OneNativeFormLayoutLibraryCase', 'OneNativeStackLayoutLibraryCase', 'OneSwiftGlassLibraryCase', 'OneSwiftListsLibraryCase', 'OneSwiftPasteEditLibraryCase', 'OneSwiftPhotosPickerLibraryCase', 'OneSwiftScrollViewportLibraryCase'],
-  'iOS.Host': ['OneNativeStackLayoutLibraryCase'],
+  'iOS.Host': ['OneNativeFormLayoutLibraryCase', 'OneNativeStackLayoutLibraryCase'],
   'iOS.Image': ['OneNativeIconLibraryCase', 'OneSwiftLayoutContainersLibraryCase', 'OneSwiftTextActionsLibraryCase'],
   'iOS.Label': ['OneSwiftTextActionsLibraryCase'],
   'iOS.LabeledContent': ['OneNativeFormLayoutLibraryCase'],
@@ -122,7 +122,7 @@ export const peachProof: Record<string, string[]> = {
   'iOS.Pager': ['OneSwiftListsLibraryCase'],
   'iOS.PasteButton': ['OneSwiftPasteEditLibraryCase'],
   'iOS.PhotosPicker': ['OneSwiftPhotosPickerLibraryCase'],
-  'iOS.Picker': ['OneNativeFormControlsLibraryCase'],
+  'iOS.Picker': ['OneNativeFormControlsLibraryCase', 'OneNativeFormLayoutLibraryCase'],
   'iOS.Popover': ['OneSwiftPresentationsLibraryCase'],
   'iOS.ProgressView': ['OneSwiftTextActionsLibraryCase'],
   'iOS.QuickLook': ['OneSwiftQuickLookLibraryCase'],
