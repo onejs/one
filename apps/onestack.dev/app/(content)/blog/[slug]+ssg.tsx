@@ -65,7 +65,7 @@ export default function BlogPost() {
       <TopNav />
 
       <Container>
-        <YStack paddingVertical="8" gap="6" marginHorizontal="auto" maxWidth={720}>
+        <YStack paddingVertical="8" gap="6" marginHorizontal="auto" maxWidth={720} width="100%">
           <Link href="/blog">
             <XStack gap="2" opacity="0.5 hover:1" alignItems="center">
               <ChevronLeft size={16} />
