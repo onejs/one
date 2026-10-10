@@ -83,7 +83,7 @@ import SwiftUI
 }
 #endif
 
-#if canImport(ObjectiveC)
+#if canImport(ObjectiveC) && !os(WASI)
 @objc(OneNativeSource_native_source) @MainActor public final class OneNativeSource_native_source: NSObject, OneNativeSourceDispatch {
   public required override init() {}
   public var contractHash: String { OneNativeSourceBody_native_source.hash }
