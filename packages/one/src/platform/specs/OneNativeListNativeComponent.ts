@@ -43,7 +43,10 @@ type OneNativeStyleNative = Readonly<{
 
 interface NativeProps extends ViewProps {
   listStyle: string
+  selection: string
+  selectionIsControlled: boolean
   swiftStyle?: OneNativeStyleNative
+  onNativeListSelectionChange?: DirectEventHandler<Readonly<{ selection: string }>>
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }
 export default codegenNativeComponent<NativeProps>('OneNativeList')

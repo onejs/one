@@ -1,6 +1,6 @@
 ---
 title: iOS Navigation and Toolbar
-description: NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, and ToolbarSpacer under One.iOS
+description: NavigationStack, NavigationSplitView, Toolbar, ToolbarItem, ToolbarItemGroup, and ToolbarSpacer under One.iOS
 ---
 
 <NativeHero
@@ -47,20 +47,95 @@ import { One } from 'one'
 Set the title with `swiftStyle`, for example
 `swiftStyle={{ navigationTitleWithText: 'Mailbox', navigationBarTitleDisplayMode: 'inline' }}`.
 
+## NavigationSplitView
+
+`One.iOS.NavigationSplitView` uses SwiftUI's two or three column split view.
+Its direct children are one `Sidebar`, an optional `Content`, and one
+`Detail`. Each column accepts React Native content and a column `swiftStyle`.
+Column styles can set their own navigation title and other SwiftUI modifiers.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.NavigationSplitView
+  columnVisibility={columnVisibility}
+  onColumnVisibilityChange={setColumnVisibility}
+  preferredCompactColumn={compactColumn}
+  onPreferredCompactColumnChange={setCompactColumn}
+>
+  <One.iOS.NavigationSplitView.Sidebar
+    swiftStyle={{ navigationTitleWithText: 'Mailboxes' }}
+  >
+    <One.iOS.Toolbar>
+      <One.iOS.List selection={selection} onSelectionChange={setSelection}>
+        {mailboxes.map((mailbox) => (
+          <One.iOS.Label
+            key={mailbox.id}
+            label={mailbox.name}
+            systemImage="tray"
+            swiftStyle={{ tag: mailbox.id }}
+          />
+        ))}
+      </One.iOS.List>
+      <One.iOS.Toolbar.Content>
+        <One.iOS.ToolbarItem placement="topBarTrailing">
+          <One.iOS.Button label="Add" onPress={addMailbox} />
+        </One.iOS.ToolbarItem>
+      </One.iOS.Toolbar.Content>
+    </One.iOS.Toolbar>
+  </One.iOS.NavigationSplitView.Sidebar>
+  <One.iOS.NavigationSplitView.Detail>
+    <MessageDetail />
+  </One.iOS.NavigationSplitView.Detail>
+</One.iOS.NavigationSplitView>
+```
+
+Omit `columnVisibility` and `preferredCompactColumn` to let SwiftUI manage
+them. Supplying either prop makes it controlled: its callback reports the
+native proposal, and the prop remains authoritative until React updates it.
+`columnVisibility` is `automatic`, `all`, `doubleColumn`, or `detailOnly`;
+`preferredCompactColumn` is `sidebar`, `content`, or `detail` and applies on
+iOS 17 or later.
+
+<PropsTable
+  title="Props"
+  source="generated/containerTypes.ts#NavigationSplitViewProps"
+  data={[
+    { name: 'columnVisibility', type: 'NavigationSplitViewVisibility', default: '"automatic"', description: 'The controlled visibility of the columns.' },
+    { name: 'onColumnVisibilityChange', type: '(visibility: NavigationSplitViewVisibility) => void', description: 'Receives a native visibility proposal.' },
+    { name: 'preferredCompactColumn', type: 'NavigationSplitViewColumn', default: '"sidebar"', description: 'The controlled compact column. Applies on iOS 17 or later.' },
+    { name: 'onPreferredCompactColumnChange', type: '(column: NavigationSplitViewColumn) => void', description: 'Receives a native compact-column proposal.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'A Sidebar, optional Content, and Detail column.' },
+  ]}
+/>
+
+Each column marker is a direct child of `NavigationSplitView`. `Toolbar` wraps
+that column's content; its `Toolbar.Content` child holds the toolbar items.
+Use `swiftStyle` on a column marker for its navigation title and other
+column-level modifiers.
+
 ## Toolbar
 
-`One.iOS.Toolbar` becomes one native toolbar. Its children must be
-`ToolbarItem`, `ToolbarItemGroup`, or `ToolbarSpacer` elements in order,
-and the stack merges every toolbar it is given. `One.iOS.Tabs` also takes a
-`Toolbar` child.
+`One.iOS.Toolbar` becomes one native toolbar. In a `NavigationStack` or
+`Tabs`, its children are `ToolbarItem`, `ToolbarItemGroup`, or
+`ToolbarSpacer` elements in order. A split view column uses `Toolbar` as a
+content wrapper and puts those toolbar entries inside `Toolbar.Content`.
+`NavigationStack` merges every toolbar it is given. `One.iOS.Tabs` also takes
+a `Toolbar` child.
 
 <PropsTable
   title="Props"
   source="generated/containerTypes.ts#ToolbarProps"
   data={[
-    { name: 'children', required: true, type: 'ReactNode', description: 'ToolbarItem, ToolbarItemGroup, and ToolbarSpacer elements.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'Toolbar entries, or column content with a Toolbar.Content marker.' },
   ]}
 />
+
+## Toolbar.Content
+
+`One.iOS.Toolbar.Content` marks the toolbar entries inside a split view
+column's content wrapper. Its children follow the same order and types as a
+regular toolbar.
 
 ## ToolbarItem
 

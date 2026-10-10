@@ -303,19 +303,46 @@ export function Section({
   )
 }
 
-export function List({ listStyle = 'automatic', children, swiftStyle, style, ...props }: ListProps) {
+export function List({
+  listStyle = 'automatic',
+  children,
+  selection,
+  onSelectionChange,
+  swiftStyle,
+  style,
+  ...props
+}: ListProps) {
   assertSwiftUIValue(
     'ListStyle',
     listStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  if (
+    selection !== undefined &&
+    (!Array.isArray(selection) ||
+      selection.some((value) => typeof value !== 'string') ||
+      new Set(selection).size !== selection.length)
+  )
+    throw new Error('Swift.List selection must contain unique string tags')
   assertOneNativeChildren(children, 'Swift.List')
   return (
     <NativeList
       {...props}
       style={viewportStyle(style)}
       listStyle={listStyle}
+      selection={JSON.stringify(selection ?? [])}
+      selectionIsControlled={selection !== undefined}
       swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeListSelectionChange={({ nativeEvent }) => {
+        const next: unknown = JSON.parse(nativeEvent.selection)
+        if (
+          !Array.isArray(next) ||
+          next.some((value) => typeof value !== 'string') ||
+          new Set(next).size !== next.length
+        )
+          throw new Error('Swift.List received an invalid native selection')
+        onSelectionChange?.(next)
+      }}
       onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
     >
       <InsideContainer value={true}>{children}</InsideContainer>

@@ -20,6 +20,11 @@ const testScreens = [
   { href: '/toolbar-test', label: 'Toolbar', testID: 'nav-toolbar-test' },
   { href: '/menu-test', label: 'Menu Actions', testID: 'nav-menu-test' },
   { href: '/split-view-test', label: 'Split View', testID: 'nav-split-view-test' },
+  {
+    href: '/one-native-navigation-split-view',
+    label: 'One Native Navigation Split View',
+    testID: 'nav-one-native-navigation-split-view',
+  },
   { href: '/bars-action-bar', label: 'Bars Action Bar', testID: 'nav-bars-action-bar' },
   { href: '/bars-double-bar', label: 'Bars Double Bar', testID: 'nav-bars-double-bar' },
   { href: '/bars-probe/main', label: 'Bars Button Probe', testID: 'nav-bars-probe' },

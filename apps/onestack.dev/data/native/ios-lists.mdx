@@ -74,6 +74,8 @@ and `listSectionMargins`. React updates to these modifiers refresh that section.
   source="listTypes.ts#ListProps"
   data={[
     { name: 'listStyle', type: 'ListStyle', default: '"automatic"', description: 'automatic, sidebar, inset, grouped, insetGrouped, or plain.' },
+    { name: 'selection', type: 'string[]', description: 'Selected row tags. Supplying it makes selection controlled.' },
+    { name: 'onSelectionChange', type: '(selection: string[]) => void', description: 'Receives the native selection proposal.' },
     { name: 'swiftStyle', type: 'OneNativeStyle', description: 'List modifiers, refreshable, and section spacing.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Sections and rows.' },
   ]}
@@ -106,9 +108,31 @@ can set their own `swiftStyle` for header prominence and margins:
 </One.iOS.List>
 ```
 
-On iOS 27, changing these values moved the first section's leading edge by
-64 points, enlarged its header, and moved the second section down by about
-94 points. Returning to the original values restored all three positions.
+For selection, give each selectable row a unique string `tag` through its
+`swiftStyle`. Omit `selection` to let SwiftUI manage selection. When supplied,
+`selection` is controlled and `onSelectionChange` reports the native proposal;
+update the prop to accept it.
+
+```tsx
+<One.iOS.List
+  selection={selectedMailboxes}
+  onSelectionChange={setSelectedMailboxes}
+>
+  {mailboxes.map((mailbox) => (
+    <One.iOS.Label
+      key={mailbox.id}
+      label={mailbox.name}
+      systemImage="tray"
+      swiftStyle={{ tag: mailbox.id }}
+    />
+  ))}
+</One.iOS.List>
+```
+
+On iOS 27, changing section spacing, margins, and header prominence moved the
+first section's leading edge by 64 points, enlarged its header, and moved the
+second section down by about 94 points. Returning to the original values
+restored all three positions.
 Other section modifiers, these modifiers inside `Form`, and other List styles
 still need runtime proof.
 
