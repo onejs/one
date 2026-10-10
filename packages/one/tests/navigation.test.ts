@@ -28,11 +28,13 @@ vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', () => ({
 vi.mock('react-native/Libraries/Types/CodegenTypes', () => ({}))
 
 let Navigation: typeof import('../src/platform/NavigationStack.native')
+let Split: typeof import('../src/platform/NavigationSplitView.native')
 let Containers: typeof import('../src/platform/Containers.native')
 
 beforeAll(async () => {
   Containers = await import('../src/platform/Containers.native')
   Navigation = await import('../src/platform/NavigationStack.native')
+  Split = await import('../src/platform/NavigationSplitView.native')
 })
 
 const render = (element: ReactNode) => {
@@ -49,6 +51,16 @@ const button = () => createElement(Containers.Button, { label: 'Save' })
 
 const stack = (children: ReactNode, props: object = {}) =>
   createElement(Navigation.NavigationStack, { ...props, children })
+
+const split = (children: ReactNode, props: object = {}) =>
+  createElement(Split.NavigationSplitView, { ...props, children })
+
+const column = (
+  name: 'Sidebar' | 'Content' | 'Detail',
+  children: ReactNode,
+  swiftStyle?: object
+) =>
+  createElement(Split.NavigationSplitView[name], { children, swiftStyle } as never)
 
 const toolbar = (children: ReactNode) => createElement(Navigation.Toolbar, { children })
 
@@ -256,5 +268,233 @@ describe('Swift.Toolbar markers', () => {
     const toolbarNode = tree.root.findByType(host('host-OneNativeToolbar'))
     expect(toolbarNode.findAllByType(host('host-OneNativeToolbarItem')).length).toBe(0)
     tree.unmount()
+  })
+
+  it('places Toolbar.Content items in the toolbar and keeps its sibling content', () => {
+    const tree = render(
+      stack(
+        toolbar([
+          createElement(Navigation.Toolbar.Content, {
+            children: item('topBarTrailing', button()),
+          }),
+        ])
+      )
+    )
+    expect(tree.root.findAllByType(host('host-OneNativeToolbarItem')).length).toBe(1)
+    tree.unmount()
+  })
+})
+
+describe('Swift.NavigationSplitView', () => {
+  const view = () => createElement('View', { testID: 'column-content' })
+  const splitColumns = () => [column('Sidebar', view()), column('Detail', view())]
+
+  it('renders sidebar and detail with optional content in semantic order', () => {
+    const tree = render(
+      split([
+        column('Detail', view()),
+        column('Content', view()),
+        column('Sidebar', view()),
+      ])
+    )
+    expect(
+      tree.root
+        .findAllByType(host('host-OneNativeNavigationSplitViewColumn'))
+        .map((node) => node.props.column)
+    ).toEqual(['sidebar', 'content', 'detail'])
+    expect(
+      tree.root.findAllByType(host('host-OneNativeNavigationStackContent')).length
+    ).toBe(3)
+    tree.unmount()
+  })
+
+  it('passes controlled values and reports proposals from SwiftUI', () => {
+    const onColumnVisibilityChange = vi.fn()
+    const onPreferredCompactColumnChange = vi.fn()
+    const tree = render(
+      split(splitColumns(), {
+        columnVisibility: 'all',
+        onColumnVisibilityChange,
+        preferredCompactColumn: 'detail',
+        onPreferredCompactColumnChange,
+      })
+    )
+    const native = tree.root.findByType(host('host-OneNativeNavigationSplitView'))
+    expect(native.props).toMatchObject({
+      columnVisibility: 'all',
+      columnVisibilityIsControlled: true,
+      preferredCompactColumn: 'detail',
+      preferredCompactColumnIsControlled: true,
+    })
+    TestRenderer.act(() =>
+      native.props.onNativeNavigationSplitViewColumnVisibilityChange({
+        nativeEvent: { visibility: 'doubleColumn' },
+      })
+    )
+    TestRenderer.act(() =>
+      native.props.onNativeNavigationSplitViewPreferredCompactColumnChange({
+        nativeEvent: { column: 'content' },
+      })
+    )
+    expect(onColumnVisibilityChange).toHaveBeenCalledWith('doubleColumn')
+    expect(onPreferredCompactColumnChange).toHaveBeenCalledWith('content')
+    tree.unmount()
+  })
+
+  it('starts with automatic visibility and sidebar compact preference', () => {
+    const tree = render(split(splitColumns()))
+    expect(
+      tree.root.findByType(host('host-OneNativeNavigationSplitView')).props
+    ).toMatchObject({
+      columnVisibility: 'automatic',
+      columnVisibilityIsControlled: false,
+      preferredCompactColumn: 'sidebar',
+      preferredCompactColumnIsControlled: false,
+    })
+    expect(
+      tree.root
+        .findAllByType(host('host-OneNativeNavigationSplitViewColumn'))
+        .map((node) => node.props.column)
+    ).toEqual(['sidebar', 'detail'])
+    tree.unmount()
+  })
+
+  it('rejects invalid values and malformed direct column markers', () => {
+    for (const [props, message] of [
+      [
+        { columnVisibility: 'hidden' },
+        'columnVisibility must be one of automatic, all, doubleColumn, detailOnly',
+      ],
+      [
+        { preferredCompactColumn: 'hidden' },
+        'preferredCompactColumn must be one of sidebar, content, detail',
+      ],
+    ] as const) {
+      expect(() => render(split(splitColumns(), props))).toThrow(message)
+    }
+    expect(() => render(split([column('Detail', view())]))).toThrow(
+      'Swift.NavigationSplitView needs a Sidebar column'
+    )
+    expect(() =>
+      render(
+        split([
+          column('Sidebar', view()),
+          column('Sidebar', view()),
+          column('Detail', view()),
+        ])
+      )
+    ).toThrow('Swift.NavigationSplitView accepts one sidebar column')
+    expect(() =>
+      render(split([view(), column('Sidebar', view()), column('Detail', view())]))
+    ).toThrow(
+      'Swift.NavigationSplitView accepts direct Sidebar, Content, and Detail elements'
+    )
+  })
+
+  it('uses a Toolbar wrapper for column content and its Content marker for toolbar items', () => {
+    const tree = render(
+      split([
+        column(
+          'Sidebar',
+          createElement(Navigation.Toolbar, {
+            children: [
+              view(),
+              createElement(Navigation.Toolbar.Content, {
+                children: item('topBarTrailing', button()),
+              }),
+            ],
+          }),
+          { navigationTitleWithText: 'Mailboxes' }
+        ),
+        column('Detail', view()),
+      ])
+    )
+    const columns = tree.root.findAllByType(
+      host('host-OneNativeNavigationSplitViewColumn')
+    )
+    expect(columns[0].findAllByType(host('host-OneNativeToolbar')).length).toBe(1)
+    expect(columns[0].findAllByType(host('host-OneNativeToolbarItem')).length).toBe(1)
+    expect(columns[0].props.swiftStyle).toBeDefined()
+    expect(
+      columns[0]
+        .findByType(host('host-OneNativeNavigationStackContent'))
+        .findAllByType('View' as never).length
+    ).toBe(1)
+    tree.unmount()
+  })
+
+  it('rejects empty columns and nested or empty toolbar content markers', () => {
+    expect(() =>
+      render(
+        split([
+          column(
+            'Sidebar',
+            toolbar(
+              createElement(Navigation.Toolbar.Content, {
+                children: item('topBarTrailing', button()),
+              })
+            )
+          ),
+          column('Detail', view()),
+        ])
+      )
+    ).toThrow('Swift.NavigationSplitView.sidebar needs column content')
+
+    expect(() =>
+      render(
+        split([
+          column(
+            'Sidebar',
+            createElement(Navigation.Toolbar.Content, {
+              children: item('topBarTrailing', button()),
+            })
+          ),
+          column('Detail', view()),
+        ])
+      )
+    ).toThrow('Swift.Toolbar.Content must be inside Swift.Toolbar')
+
+    expect(() =>
+      render(
+        split([
+          column(
+            'Sidebar',
+            createElement(Navigation.Toolbar, {
+              children: [
+                view(),
+                createElement(Navigation.Toolbar.Content, { children: [] }),
+              ],
+            })
+          ),
+          column('Detail', view()),
+        ])
+      )
+    ).toThrow('Swift.Toolbar.Content needs children')
+  })
+
+  it('rejects toolbar items outside the column Toolbar wrapper', () => {
+    expect(() =>
+      render(
+        split([
+          column('Sidebar', item('topBarTrailing', button())),
+          column('Detail', view()),
+        ])
+      )
+    ).toThrow(
+      'Swift.NavigationSplitView.sidebar toolbar items must be inside Swift.Toolbar'
+    )
+  })
+
+  it('requires split-view toolbar items to be inside Toolbar.Content', () => {
+    expect(() =>
+      render(
+        split([
+          column('Sidebar', toolbar([view(), item('topBarTrailing', button())])),
+          column('Detail', view()),
+        ])
+      )
+    ).toThrow(
+      'Swift.NavigationSplitView.sidebar toolbar items must be inside Swift.Toolbar.Content'
+    )
   })
 })

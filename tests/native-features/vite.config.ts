@@ -258,6 +258,7 @@ export default defineConfig({
             },
             buildNumber: '4242',
             deploymentTarget: '17.0',
+            screensGamma: true,
             tablet: true,
             faceIdUsageDescription: 'NativeFeatureTests verifies biometric authentication.',
             infoPlist: {

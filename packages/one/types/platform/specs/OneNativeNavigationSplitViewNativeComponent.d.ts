@@ -33,12 +33,16 @@ type OneNativeStyleNative = Readonly<{
     sdkModifiers?: string;
 }>;
 interface NativeProps extends ViewProps {
-    listStyle: string;
-    selection: string;
-    selectionIsControlled: boolean;
+    columnVisibility: string;
+    columnVisibilityIsControlled: boolean;
+    preferredCompactColumn: string;
+    preferredCompactColumnIsControlled: boolean;
     swiftStyle?: OneNativeStyleNative;
-    onNativeListSelectionChange?: DirectEventHandler<Readonly<{
-        selection: string;
+    onNativeNavigationSplitViewColumnVisibilityChange?: DirectEventHandler<Readonly<{
+        visibility: string;
+    }>>;
+    onNativeNavigationSplitViewPreferredCompactColumnChange?: DirectEventHandler<Readonly<{
+        column: string;
     }>>;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;
@@ -47,4 +51,4 @@ interface NativeProps extends ViewProps {
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;
-//# sourceMappingURL=OneNativeListNativeComponent.d.ts.map
+//# sourceMappingURL=OneNativeNavigationSplitViewNativeComponent.d.ts.map

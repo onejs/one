@@ -72,6 +72,48 @@ describe('list', () => {
       true
     )
   })
+
+  it('binds string tag selection and reports the native proposal', () => {
+    const onSelectionChange = vi.fn()
+    const list = render(Containers.List, {
+      children: null,
+      selection: ['inbox'],
+      onSelectionChange,
+    })
+    expect(list.props).toMatchObject({
+      selection: '["inbox"]',
+      selectionIsControlled: true,
+    })
+
+    list.props.onNativeListSelectionChange({
+      nativeEvent: { selection: '["sent"]' },
+    })
+    expect(onSelectionChange).toHaveBeenCalledWith(['sent'])
+  })
+
+  it('starts with an uncontrolled empty selection', () => {
+    expect(render(Containers.List, { children: null }).props).toMatchObject({
+      selection: '[]',
+      selectionIsControlled: false,
+    })
+  })
+
+  it('rejects duplicate or non-string selection tags', () => {
+    for (const selection of [['inbox', 'inbox'], [1]]) {
+      expect(() =>
+        render(Containers.List, { children: null, selection: selection as never })
+      ).toThrow('Swift.List selection must contain unique string tags')
+    }
+  })
+
+  it('rejects an invalid native selection payload', () => {
+    const list = render(Containers.List, { children: null })
+    expect(() =>
+      list.props.onNativeListSelectionChange({
+        nativeEvent: { selection: '[1]' },
+      })
+    ).toThrow('Swift.List received an invalid native selection')
+  })
 })
 
 describe('scrollview', () => {
@@ -228,6 +270,11 @@ describe('list schema', () => {
   it('carries the four containers with their props and slots', () => {
     expect(component('List').props).toMatchObject({
       listStyle: { type: 'string', enum: 'ListStyle' },
+      selection: { type: 'string' },
+      selectionIsControlled: { type: 'boolean' },
+    })
+    expect(component('List').events.onNativeListSelectionChange).toEqual({
+      selection: { type: 'string' },
     })
     expect(component('ScrollView').props).toMatchObject({
       axes: { type: 'string' },
@@ -258,6 +305,46 @@ describe('list schema', () => {
       expect(metadata.codegenConfig.ios.componentProvider[name]).toBe(
         `${name}ComponentView`
       )
+    for (const name of [
+      'OneNativeNavigationSplitView',
+      'OneNativeNavigationSplitViewColumn',
+    ])
+      expect(metadata.codegenConfig.ios.componentProvider[name]).toBe(
+        `${name}ComponentView`
+      )
+  })
+
+  it('registers the two and three column split view contract', () => {
+    expect(component('NavigationSplitView')).toMatchObject({
+      props: {
+        columnVisibility: { type: 'string' },
+        columnVisibilityIsControlled: { type: 'boolean' },
+        preferredCompactColumn: { type: 'string' },
+        preferredCompactColumnIsControlled: { type: 'boolean' },
+      },
+      slots: [
+        {
+          name: 'columns',
+          content: 'OneNativeNavigationSplitViewColumn',
+          cardinality: 'many',
+          key: 'column',
+          layout: 'composed',
+        },
+      ],
+    })
+    expect(component('NavigationSplitView').events).toMatchObject({
+      onNativeNavigationSplitViewColumnVisibilityChange: {
+        visibility: { type: 'string' },
+      },
+      onNativeNavigationSplitViewPreferredCompactColumnChange: {
+        column: { type: 'string' },
+      },
+    })
+    expect(
+      schema.components.find(
+        (entry: { name: string }) => entry.name === 'OneNativeNavigationSplitViewColumn'
+      )
+    ).toBeDefined()
   })
 
   it('binds the six list styles Expo documents', () => {
@@ -274,5 +361,15 @@ describe('list unsupported surface', () => {
         () => (UnsupportedSwift as Record<string, (props: object) => unknown>)[name]({}),
         name
       ).toThrow(`Swift.${name} requires an iOS native build`)
+  })
+
+  it('throws for NavigationSplitView and its markers without the native build', () => {
+    expect(() => UnsupportedSwift.NavigationSplitView({} as never)).toThrow(
+      'Swift.NavigationSplitView requires an iOS native build'
+    )
+    for (const marker of ['Sidebar', 'Content', 'Detail'] as const)
+      expect(() => UnsupportedSwift.NavigationSplitView[marker]({} as never)).toThrow(
+        'requires an iOS native build'
+      )
   })
 })

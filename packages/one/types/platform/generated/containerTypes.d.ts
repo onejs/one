@@ -75,7 +75,22 @@ export interface SlotProps extends ViewProps {
 export interface NavigationStackProps extends OneNativeViewProps {
     children: ReactNode;
 }
+export type NavigationSplitViewVisibility = 'automatic' | 'all' | 'doubleColumn' | 'detailOnly';
+export type NavigationSplitViewColumn = 'sidebar' | 'content' | 'detail';
+export interface NavigationSplitViewProps extends OneNativeViewProps {
+    columnVisibility?: NavigationSplitViewVisibility;
+    onColumnVisibilityChange?: (visibility: NavigationSplitViewVisibility) => void;
+    preferredCompactColumn?: NavigationSplitViewColumn;
+    onPreferredCompactColumnChange?: (column: NavigationSplitViewColumn) => void;
+    children: ReactNode;
+}
+export interface NavigationSplitViewColumnProps extends OneNativeViewProps {
+    children: ReactNode;
+}
 export interface ToolbarProps extends ViewProps {
+    children: ReactNode;
+}
+export interface ToolbarContentProps extends ViewProps {
     children: ReactNode;
 }
 export interface ToolbarItemProps extends OneNativeViewProps {

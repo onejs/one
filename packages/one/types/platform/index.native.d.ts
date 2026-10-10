@@ -2,7 +2,7 @@ import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffec
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
-import { NavigationStack, Toolbar, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
+import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
@@ -117,7 +117,14 @@ export declare const Swift: {
     Pager: typeof Pager;
     Page: typeof Page;
     NavigationStack: typeof NavigationStack;
-    Toolbar: typeof Toolbar;
+    NavigationSplitView: (({ children, columnVisibility, onColumnVisibilityChange, preferredCompactColumn, onPreferredCompactColumnChange, swiftStyle, style, ...props }: import("./types").NavigationSplitViewProps) => import("react/jsx-runtime").JSX.Element) & {
+        Sidebar: (props: import("./types").NavigationSplitViewColumnProps) => never;
+        Content: (props: import("./types").NavigationSplitViewColumnProps) => never;
+        Detail: (props: import("./types").NavigationSplitViewColumnProps) => never;
+    };
+    Toolbar: ((_props: import("./types").ToolbarProps) => never) & {
+        Content: typeof import("./NavigationStack.native").ToolbarContent;
+    };
     ToolbarItem: typeof ToolbarItem;
     ToolbarItemGroup: typeof ToolbarItemGroup;
     ToolbarSpacer: typeof ToolbarSpacer;
