@@ -1,4 +1,4 @@
-<!-- plan: status=active owner=p73233 reviewed=2026-10-09 -->
+<!-- plan: status=active owner=p74343 reviewed=2026-10-09 -->
 
 # One native: launch checklist
 
@@ -21,8 +21,11 @@ Tick a box only with a receipt (SHA, run id or evidence path).
 - [x] v2-beta required CI green on `eaa6126fbe3`. RAN 2026-10-10:
   Checks and Tests `38016426808`, Release `38016426795`, Android Native
   Build `38016426800`, iOS Native Tests `38016426858` all succeeded on
-  that remote tip. Future One CI owner: s27204; current tarball contents
-  are a separate acceptance claim.
+  that remote tip. One CI owner: s27204. TESTED published
+  `one@2.0.0-0.canary.1791598694403`: SHA512 verified, native CJS/ESM
+  URL/Settings calls resolve void, await completion and preserve errors;
+  old-artifact controls reject. Receipt: Contrast task `t-mv1xxcm4-opq0`.
+  Full current-canary app acceptance remains separate.
 - [x] local Swift source through One native bridge and Peach on published
   `vxrn@2.0.0-0.canary.1791593480476`. REPORTED 2026-10-10 by s24746:
   Release SwiftRNHost iOS 27 run `w-a4dfc8` passes 15/15 checks;
