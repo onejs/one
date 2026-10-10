@@ -21,6 +21,23 @@ function nativeCoreJsImports() {
     .filter((specifier) => specifier.startsWith('core-js/'))
 }
 
+// the transform is pure, so each core-js file is transformed once per run;
+// every evaluation still executes the modules in its own fresh context
+const transformed = new Map<string, string>()
+function metroTransform(filename: string) {
+  const cached = transformed.get(filename)
+  if (cached) return cached
+  const code = transformSync(readFileSync(filename, 'utf8'), {
+    filename,
+    babelrc: false,
+    configFile: false,
+    plugins: [inlineRequiresPlugin],
+  })?.code
+  if (!code) throw new Error(`Metro did not transform ${filename}`)
+  transformed.set(filename, code)
+  return code
+}
+
 function evaluateCoreJs(imports: string[], entry?: string) {
   const context = vm.createContext({
     process: { env: { ONE_ROUTER_ROOT_FOLDER_NAME: 'app' } },
@@ -38,14 +55,7 @@ function evaluateCoreJs(imports: string[], entry?: string) {
 
     const module = { exports: {} as any }
     cache.set(filename, module)
-    const source = readFileSync(filename, 'utf8')
-    const code = transformSync(source, {
-      filename,
-      babelrc: false,
-      configFile: false,
-      plugins: [inlineRequiresPlugin],
-    })?.code
-    if (!code) throw new Error(`Metro did not transform ${filename}`)
+    const code = metroTransform(filename)
 
     const factory = vm.runInContext(
       `(function(require, module, exports) { ${code}\n })`,
@@ -123,15 +133,20 @@ function compileMetroEntry(source: string) {
   return entry
 }
 
-it('initializes native array methods before configured app setup in the real Metro entry', () => {
-  const source = readFileSync(new URL('../../metro-entry.js', import.meta.url), 'utf8')
-  const imports = nativeCoreJsImports()
-  const control = source
+// compiling loads the whole react native babel preset on first use; do it once
+// at collection so the test times only what it asserts
+const metroEntrySource = readFileSync(new URL('../../metro-entry.js', import.meta.url), 'utf8')
+const compiledMetroEntry = compileMetroEntry(metroEntrySource)
+const compiledControlEntry = compileMetroEntry(
+  metroEntrySource
     .replace("import 'react-native/Libraries/Core/InitializeCore'", '')
     .replace("import './dist/esm/polyfills-mobile.native.js'", '')
-  expect(() => evaluateCoreJs(imports, compileMetroEntry(control))).toThrow('toSorted')
-  const entry = compileMetroEntry(source)
-  const evaluate = evaluateCoreJs(imports, entry)
+)
+
+it('initializes native array methods before configured app setup in the real Metro entry', () => {
+  const imports = nativeCoreJsImports()
+  expect(() => evaluateCoreJs(imports, compiledControlEntry)).toThrow('toSorted')
+  const evaluate = evaluateCoreJs(imports, compiledMetroEntry)
   expect(evaluate('setupArrays')).toBe('[[1,2],[2,1],[1,4,3],[1,3]]')
 })
 
