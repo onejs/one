@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@tamagui/build": "3.0.0-beta.1670.1",
+    "@tamagui/build": "3.0.0",
     "depcheck": "^1.4.7",
     "rolldown": "^1.2.8",
     "vite": "^8.2.2",

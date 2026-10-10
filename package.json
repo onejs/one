@@ -162,7 +162,7 @@
     "@hono/node-server": "^1.19.14",
     "@manypkg/cli": "^0.25.1",
     "@react-native-swc/worklets-plugin": "0.1.5",
-    "@tamagui/web": "3.0.0-beta.1670.1",
+    "@tamagui/web": "3.0.0",
     "@take-out/cli": "0.4.17",
     "@types/react": "^19.2.2",
     "axios": "1.20.0",
@@ -177,7 +177,7 @@
     "playwright": "^1.58.2",
     "prettier": "^3.5.3",
     "shell-quote": "1.11.0",
-    "tamagui": "3.0.0-beta.1670.1",
+    "tamagui": "3.0.0",
     "ts-pattern": "^5.6.2",
     "turbo": "^2.9.18",
     "typescript": "7.0.2",
@@ -185,7 +185,7 @@
     "update-ts-references": "^3.4.0",
     "vxrn": "workspace:*",
     "zod": "3.25.67",
-    "@tamagui/cli": "3.0.0-beta.1670.1"
+    "@tamagui/cli": "3.0.0"
   },
   "upgradeSets": {
     "takeout": [
