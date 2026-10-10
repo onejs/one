@@ -1,5 +1,5 @@
 // peach library cases whose fixture uses each one export, scanned from the
-// contrast checkout at f999d7df70 against one f1d80284c with contrast
+// contrast checkout at e36f407a031 against one 6f30d74d513ec with contrast
 // scripts/conformance/one-export-proof-matrix.ts. names are case base file
 // names under packages/peach-library-conformance/src/cases. refresh when
 // peach cases land; the matrix test fails on unknown export keys, and
@@ -20,7 +20,7 @@ export const peachProof: Record<string, string[]> = {
   'Android.FilledTonalIconButton': ['OneComposeActionsLibraryCase'],
   'Android.FilterChip': ['OneComposeActionsLibraryCase'],
   'Android.HorizontalDivider': ['OneComposeSelectionLibraryCase'],
-  'Android.Icon': ['OneComposeActionsLibraryCase'],
+  'Android.Icon': ['OneComposeActionsLibraryCase', 'OneNativeIconLibraryCase'],
   'Android.IconButton': ['OneComposeActionsLibraryCase'],
   'Android.IconToggleButton': ['OneComposeActionsLibraryCase'],
   'Android.LinearProgressIndicator': ['OneComposeSelectionLibraryCase'],
@@ -55,7 +55,9 @@ export const peachProof: Record<string, string[]> = {
   'Speech': ['OneNativeBehavioralLibraryCase'],
   'Storage': ['OneNativeBehavioralLibraryCase'],
   'UI.Blur': ['OneNativeVisualLibraryCase'],
+  'UI.EdgeFade': ['OneNativeVisualLibraryCase'],
   'UI.Fonts': ['OneNativeBehavioralLibraryCase'],
+  'UI.Icon': ['OneNativeIconLibraryCase'],
   'UI.Image': ['OneNativeVisualLibraryCase'],
   'UI.Map': ['OneNativeVisualLibraryCase'],
   'UI.Mask': ['OneNativeVisualLibraryCase'],
@@ -64,6 +66,7 @@ export const peachProof: Record<string, string[]> = {
   'UI.PortalHost': ['OnePortalLibraryCase'],
   'UI.ReservedRegions': ['OneNativeAdaptiveLibraryCase'],
   'UI.SafeArea': ['OneNativeAdaptiveLibraryCase', 'OneNativeBehavioralLibraryCase', 'OneNativeSafeAreaInsetsLibraryCase'],
+  'UI.TextInput': ['OneNativeTextInputLibraryCase'],
   'Updates': ['OneNativeBehavioralLibraryCase'],
   'getHinge': ['OneNativeAdaptiveLibraryCase'],
   'getSizeClass': ['OneNativeAdaptiveLibraryCase'],
@@ -99,7 +102,7 @@ export const peachProof: Record<string, string[]> = {
   'iOS.GroupBox': ['OneSwiftLayoutContainersLibraryCase'],
   'iOS.HStack': ['OneNativeFormLayoutLibraryCase', 'OneNativeStackLayoutLibraryCase', 'OneSwiftGlassLibraryCase', 'OneSwiftListsLibraryCase', 'OneSwiftPasteEditLibraryCase', 'OneSwiftPhotosPickerLibraryCase', 'OneSwiftScrollViewportLibraryCase'],
   'iOS.Host': ['OneNativeStackLayoutLibraryCase'],
-  'iOS.Image': ['OneSwiftLayoutContainersLibraryCase', 'OneSwiftTextActionsLibraryCase'],
+  'iOS.Image': ['OneNativeIconLibraryCase', 'OneSwiftLayoutContainersLibraryCase', 'OneSwiftTextActionsLibraryCase'],
   'iOS.Label': ['OneSwiftTextActionsLibraryCase'],
   'iOS.LabeledContent': ['OneNativeFormLayoutLibraryCase'],
   'iOS.LazyHGrid': ['OneSwiftListsLibraryCase'],
