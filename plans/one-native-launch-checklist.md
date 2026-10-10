@@ -40,8 +40,19 @@ Tick a box only with a receipt (SHA, run id or evidence path).
 - [ ] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
   Basic, Takeout Free, Contrast mobile on iOS 27 and Android 37 plus web.
   Last full pass was canary `2.0.0-0.canary.1791082782289`.
-- [ ] `bun create one` starters install and run from the published beta, not a
-  workspace link.
+- [x] `bun create one` starters install and run from the published beta, not a
+  workspace link. RAN 2026-10-10: Basic and Takeout scaffolded from published
+  `create-vxrn@2.0.0-beta.362.1` (the version `one@beta` depends on) in
+  `/tmp/one-starters-beta`, outside every repo. Basic pins `one`
+  `2.0.0-beta.362.1` with zero `workspace:` links (`bun install`, 719
+  packages): dev `HTTP 200`, production `build:web` (6 pages, secrets scan
+  pass), served build `HTTP 200`; headless playwright 0 console/page errors
+  on both, captures in `/tmp/one-starters-beta/basic-{dev,prod}.png`.
+  Takeout pins published `one@2.0.0-0.canary.1791082782289` (its own pin,
+  zero `workspace:` links): dev `HTTP 200` login, production build (8 pages,
+  sitemap, secrets scan pass), served build `HTTP 200` login; only errors are
+  missing-backend noise (Zero `ws :4948` refused, `/api/auth/get-session`
+  404 with no DB). Receipt: tm task `t-mv30fd6x-tl40`.
 
 ## 2. iOS runtime coverage (owner p67085 / one-native-ready)
 
@@ -211,8 +222,11 @@ production-server replay do not accept deployed site, native app, Peach or
 production package delivery.
 
 
-- [ ] every shipped native API has a page whose props match its types; the
-  drift suite stays green.
+- [x] every shipped native API has a page whose props match its types; the
+  drift suite stays green. RAN 2026-10-10 on v2-beta HEAD `b6364ccff`:
+  `packages/one` `tests/nativeDocs.test.ts` 142/142 pass, and a namespace
+  probe finds a docs page for every top-level `One.*` service. Receipt: tm
+  task `t-mv30fd6x-tl40`.
 - [ ] `native-components.mdx` lists every `One.iOS` and `One.UI` family
   (true at 2026-10-05).
 - [ ] `TextInputRef`, `TextInputProps` importable from `one` for typed refs.
@@ -221,5 +235,11 @@ production package delivery.
 
 ## 6. release
 
-- [ ] beta canary content verified by tarball, not version string.
+- [x] beta canary content verified by tarball, not version string.
+  TESTED 2026-10-10: `npm pack one@2.0.0-0.canary.1791667902490`; its
+  `gitHead b6364ccff` equals `origin/v2-beta` HEAD, and
+  `ios/OneSwiftPackage.swift`, `ios/OneSwiftHostView.swift`,
+  `ios/OneSwiftHostComponentView.mm` are byte-identical to HEAD (including
+  `bdc4068e5` `OneNativeSourceViewDispatch`); `contractHash` ships in the CJS
+  and ESM `swiftPackageModule` dist. Receipt: tm task `t-mv30fd6x-tl40`.
 - [ ] stable `one` 2.0: the owner's word only.
