@@ -24,8 +24,12 @@ Tick a box only with a receipt (SHA, run id or evidence path).
   that remote tip. One CI owner: s27204. TESTED published
   `one@2.0.0-0.canary.1791598694403`: SHA512 verified, native CJS/ESM
   URL/Settings calls resolve void, await completion and preserve errors;
-  old-artifact controls reject. Receipt: Contrast task `t-mv1xxcm4-opq0`.
-  Full current-canary app acceptance remains separate.
+  old-artifact controls reject. TESTED matching cached iOS 27 host with
+  the published Open ESM entry: URL and Settings resolve void, open their
+  system destinations and return to the original shell (`w-6a6915`);
+  the old URL entry fails the same strict assertion (`w-0fdd3f`).
+  Receipt: Contrast task `t-mv1xxcm4-opq0`. Full current-canary app
+  acceptance remains separate.
 - [x] local Swift source through One native bridge and Peach on published
   `vxrn@2.0.0-0.canary.1791593480476`. REPORTED 2026-10-10 by s24746:
   Release SwiftRNHost iOS 27 run `w-a4dfc8` passes 15/15 checks;
