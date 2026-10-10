@@ -21,6 +21,8 @@ export function buildNativeRunCommand(args: {
   // whenever more than one simulator exists.
   if (args.simulator) argv.push('--simulator', args.simulator)
   if (args.udid) argv.push('--udid', args.udid)
+  if (args.platform === 'android' && process.env.ANDROID_SERIAL)
+    argv.push('--device', process.env.ANDROID_SERIAL)
   return {
     command: args.platform === 'ios' ? 'run-ios' : 'run-android',
     argv,
@@ -41,6 +43,28 @@ async function devServerRunning(port: number): Promise<boolean> {
   } catch {
     return false
   }
+}
+
+// community cli logs a missing android device as an error and still exits
+// 0, so a run with no target would read as a successful install. one checks
+// the target itself, with the adb community cli resolves.
+function connectedAndroidDevices(): string[] {
+  const sdk = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT
+  const adb = sdk ? path.join(sdk, 'platform-tools', 'adb') : 'adb'
+  let out: string
+  try {
+    out = execFileSync(adb, ['devices'], { encoding: 'utf8' })
+  } catch {
+    throw new Error(
+      `\nCould not run ${adb}. Install the Android SDK platform tools and set ANDROID_HOME.`
+    )
+  }
+  return out
+    .split('\n')
+    .slice(1)
+    .map((line) => line.trim().split(/\s+/))
+    .filter(([serial, state]) => serial && state === 'device')
+    .map(([serial]) => serial!)
 }
 
 export type NativeRunSpawn = (
@@ -87,18 +111,27 @@ export async function nativeRun({
     )
   }
 
+  if (platform === 'android') {
+    const devices = connectedAndroidDevices()
+    const serial = process.env.ANDROID_SERIAL
+    if (!devices.length || (serial && !devices.includes(serial))) {
+      throw new Error(
+        serial
+          ? `\nAndroid device ${serial} is not connected (connected: ${devices.join(', ') || 'none'}).`
+          : '\nNo Android device or emulator is connected. Start an emulator or plug in a device, then re-run this command.'
+      )
+    }
+  }
+
   // source-built React-Core bakes RCT_METRO_PORT from this environment
   // into a preprocessor define that RCTBundleURLProvider uses as its
   // default packager port. with prebuilt pods the port is already baked
   // (8081), so the simulator default below is what points the app.
   process.env.RCT_METRO_PORT = String(resolvedPort)
 
-  // resolve the community cli from the user's project, since vxrn may be
-  // installed globally or at the root workspace.
-  const require = module.createRequire(root + '/')
-  const cliPackageJson = require.resolve('@react-native-community/cli/package.json', {
-    paths: [root],
-  })
+  // vxrn owns the cli; cwd still selects the app's config and native project.
+  const require = module.createRequire(import.meta.url)
+  const cliPackageJson = require.resolve('@react-native-community/cli/package.json')
   const bin = path.join(path.dirname(cliPackageJson), 'build', 'bin.js')
 
   spawn(process.execPath, [bin, command, ...argv], {

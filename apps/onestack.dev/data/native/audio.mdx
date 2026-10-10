@@ -3,7 +3,7 @@ title: Audio
 description: Play audio and record microphone files on iOS
 ---
 
-`One.iOS.Audio` plays a local `file://` URI or an `https://` audio URL through
+`One.Audio` plays a local `file://` URI or an `https://` audio URL through
 AVPlayer. It handles one playback or recording operation at a time. Starting
 playback replaces the previous player; stop a paused player before recording.
 An ended or failed player is cleared when recording starts. Calls reject with
@@ -12,14 +12,14 @@ a coded error when the requested operation cannot run.
 ```tsx
 import { One } from 'one'
 
-await One.iOS.Audio.play('https://example.com/episode.m4a')
-const status = await One.iOS.Audio.getPlaybackStatus()
+await One.Audio.play('https://example.com/episode.m4a')
+const status = await One.Audio.getPlaybackStatus()
 if (status.state === 'playing') {
-  await One.iOS.Audio.pause()
-  await One.iOS.Audio.seek(30_000)
-  await One.iOS.Audio.resume()
+  await One.Audio.pause()
+  await One.Audio.seek(30_000)
+  await One.Audio.resume()
 }
-await One.iOS.Audio.stop()
+await One.Audio.stop()
 ```
 
 `getPlaybackStatus()` returns `state`, `positionMs`, and a `durationMs` when the
@@ -32,14 +32,11 @@ ended item from the beginning.
 
 Recording writes AAC in an `.m4a` file under the app cache. Set
 `native.app.audio.microphone` to the purpose shown in the iOS microphone
-prompt and rerun prebuild. For Expo-prebuilt apps, pass the same
-`audio: { microphone: '...' }` option to the `vxrn` config plugin. Playback
+prompt and rerun prebuild. Playback
 alone needs no microphone permission or purpose string.
 
 For playback while another app is in front, set `native.app.audio.background: true`
-and rerun prebuild. Expo-prebuilt apps use the same `audio: { background: true }`
-option in the `vxrn` config plugin. This adds `audio` to `UIBackgroundModes`; the
-Expo plugin preserves other background modes. `Audio.play()` activates the iOS
+and rerun prebuild. This adds `audio` to `UIBackgroundModes`. `Audio.play()` activates the iOS
 playback category before your app enters the background. Apple
 [requires that category and background mode](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback)
 for continued playback. Picture in Picture also declares the same mode. Request
@@ -48,14 +45,14 @@ playing without the mode in our control run, so confirm background behavior on a
 device before relying on it in production.
 
 ```tsx
-const permission = await One.iOS.Audio.requestRecordingPermission()
+const permission = await One.Audio.requestRecordingPermission()
 if (permission === 'granted') {
-  const started = await One.iOS.Audio.startRecording()
-  await One.iOS.Audio.pauseRecording()
-  await One.iOS.Audio.resumeRecording()
-  const recorded = await One.iOS.Audio.stopRecording()
+  const started = await One.Audio.startRecording()
+  await One.Audio.pauseRecording()
+  await One.Audio.resumeRecording()
+  const recorded = await One.Audio.stopRecording()
   console.log(started.uri, recorded.uri, recorded.durationMs, recorded.size)
-  await One.iOS.Audio.play(recorded.uri)
+  await One.Audio.play(recorded.uri)
 }
 ```
 
@@ -63,7 +60,7 @@ if (permission === 'granted') {
 without prompting. `getRecordingStatus()` reports `idle`, `recording`, or
 `paused`, its file URI, and elapsed time. An interrupted recorder reports
 `paused`; call `resumeRecording()` after the interruption ends. Keep a file you want to
-retain by moving it from cache with `One.iOS.FileSystem.move`.
+retain by moving it from cache with `One.FileSystem.move`.
 
 Use `watchInterruptions()` to react when another audio session interrupts playback
 or recording. The callback receives `type` (`began` or `ended`) and `shouldResume`.
@@ -76,9 +73,9 @@ without a matching `ended`. Use app foreground state when deciding whether to
 offer playback again in that case.
 
 ```tsx
-const stopWatching = One.iOS.Audio.watchInterruptions((event) => {
+const stopWatching = One.Audio.watchInterruptions((event) => {
   if (event.type === 'ended' && event.shouldResume) {
-    void One.iOS.Audio.resume()
+    void One.Audio.resume()
   }
 })
 // call stopWatching() when this screen unmounts
@@ -95,15 +92,15 @@ the player remains active. Enable the background audio mode described above if
 playback must continue while another app is in front.
 
 ```tsx
-await One.iOS.Audio.play(trackUri)
-await One.iOS.Audio.setNowPlayingInfo({
+await One.Audio.play(trackUri)
+await One.Audio.setNowPlayingInfo({
   title: 'Chapter One',
   artist: 'Example Author',
   artworkUri: coverFileUri,
 })
-const stopWatchingRemote = One.iOS.Audio.watchRemoteCommands((event) => {
+const stopWatchingRemote = One.Audio.watchRemoteCommands((event) => {
   // event.type is play, pause, or seek; seek includes positionMs.
-  void One.iOS.Audio.getPlaybackStatus().then((status) => {
+  void One.Audio.getPlaybackStatus().then((status) => {
     console.log(event.type, status.state, status.positionMs)
   })
 })
@@ -123,3 +120,20 @@ recording use the app's shared audio session. Playback switches its category
 to playback and can replace another feature's audio session configuration,
 including picture in picture. Stop this audio before starting speech recognition
 or another audio feature. Background recording is not configured by this API.
+
+Audio is implemented on iOS and Android. On Android, playback runs over MediaPlayer, recording over MediaRecorder as AAC `.m4a` under cache, interruptions from audio focus, and now-playing metadata with play/pause/seek commands over MediaSession. Recording needs `native.app.audio.microphone`; background playback needs `native.app.audio.background`, which stamps a media-playback foreground service. SSR reports denied recording permission and idle status. Stop and metadata effects do nothing; listeners return a remover that does nothing. Starting playback or recording and requesting a recording file reject with `Audio.<verb> needs an iOS or Android build` where unimplemented.
+
+On web, HTMLAudioElement provides playback, pause, resume, millisecond seek,
+status, and stop. URI inputs use browser HTTP, HTTPS, data, or blob URLs.
+Autoplay policy can reject playback without a user gesture. MediaRecorder and
+getUserMedia provide microphone permission, recording, pause, resume, and stop.
+Playback and recording cannot run together. Recording duration excludes pauses,
+and a stopped recording returns its encoded byte length and a blob URL; the
+browser chooses the audio codec. Release returned URLs with
+`URL.revokeObjectURL` when finished. Media Session supplies metadata and remote
+commands when present. Metadata needs an existing player and decodable artwork.
+Remote play, pause, and seek update the player before notifying listeners;
+clearing metadata or stopping the player removes its controls. Removing a
+listener leaves controls active until the metadata is cleared. Operating-system audio interruptions have no equivalent
+browser event, so `watchInterruptions` retains its inert remover. Missing media
+capabilities and invalid operations reject rather than report success.

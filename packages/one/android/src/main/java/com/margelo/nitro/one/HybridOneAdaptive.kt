@@ -10,6 +10,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.util.Consumer
 import androidx.window.WindowSdkExtensions
@@ -36,6 +37,14 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
     private val sizeClassListeners = mutableMapOf<Int, (SizeClass) -> Unit>()
     private val hingeListeners = mutableMapOf<Int, (HingeState?) -> Unit>()
     private var nextListenerId = 0
+
+    private var sizeClassView: View? = null
+    private val sizeLayoutListener = View.OnLayoutChangeListener { _, left, top, right, bottom,
+            oldLeft, oldTop, oldRight, oldBottom ->
+        if (right - left != oldRight - oldLeft || bottom - top != oldBottom - oldTop) {
+            emitSizeClassIfChanged()
+        }
+    }
 
     private var configCallbacks: ComponentCallbacks? = null
     private var layoutTracker: WindowInfoTrackerCallbackAdapter? = null
@@ -232,8 +241,13 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
         if (shouldStop) stopMonitors()
     }
 
-    private fun startMonitors() {
-        val context = appContext() ?: return
+    private fun onMain(action: () -> Unit) {
+        if (Looper.myLooper() == Looper.getMainLooper()) action()
+        else Handler(Looper.getMainLooper()).post { action() }
+    }
+
+    private fun startMonitors() = onMain {
+        val context = appContext() ?: return@onMain
         synchronized(this) {
             if (configCallbacks == null) {
                 val callbacks =
@@ -249,8 +263,19 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
                 context.registerComponentCallbacks(callbacks)
             }
         }
+        startWindowSizeTracking()
         startLayoutTracking()
         startSensorIfNeeded()
+    }
+
+    private fun startWindowSizeTracking() {
+        val decor = activity()?.window?.decorView ?: return
+        if (sizeClassView === decor) return
+        sizeClassView?.removeOnLayoutChangeListener(sizeLayoutListener)
+        sizeClassView = decor
+        // configuration callbacks can precede updated metrics. decor layout
+        // observes the committed window size even when folding info is unchanged.
+        decor.addOnLayoutChangeListener(sizeLayoutListener)
     }
 
     private fun startLayoutTracking() {
@@ -323,7 +348,9 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
         }
     }
 
-    private fun stopMonitors() {
+    private fun stopMonitors() = onMain {
+        sizeClassView?.removeOnLayoutChangeListener(sizeLayoutListener)
+        sizeClassView = null
         val callbacks: ComponentCallbacks?
         val tracker: WindowInfoTrackerCallbackAdapter?
         synchronized(this) {
@@ -356,7 +383,10 @@ class HybridOneAdaptive : HybridOneAdaptiveSpec() {
         }
         // a rotation can detach the activity before the new window exists;
         // reattach layout tracking once it is back.
-        if (next.horizontal != UserInterfaceSizeClass.UNSPECIFIED) startLayoutTracking()
+        if (next.horizontal != UserInterfaceSizeClass.UNSPECIFIED) {
+            startWindowSizeTracking()
+            startLayoutTracking()
+        }
         val changed: Boolean
         synchronized(this) {
             changed = lastSizeClass == null || lastSizeClass != next

@@ -33,6 +33,7 @@
     "build": "turbo run build --filter='*' --filter='!example/*' --filter='!one-tray'",
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
+    "check:proofs": "bun scripts/check-no-proofs.ts",
     "check": "bun check:deps & turbo check",
     "ci": "bun install && bun run build && bun run check && bun run typecheck && bun run lint && bun run test && git diff --exit-code",
     "clean": "bun run turbo:run clean:build",
@@ -79,6 +80,8 @@
   },
   "resolutions": {
     "browserslist": "4.28.8",
+    "compression": "1.8.2",
+    "source-map-js": "1.2.2",
     "@isaacs/brace-expansion": "5.0.1",
     "@xmldom/xmldom": "0.9.12",
     "fast-xml-parser": "5.9.0",
@@ -99,16 +102,16 @@
     "react-dom": "19.2.3",
     "react-native": "0.87.1",
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "react-native-reanimated": "4.6.0",
-    "sharp": "0.35.4",
+    "sharp": "0.35.5",
     "image-size": "1.2.1",
     "minimatch": "3.1.5",
     "brace-expansion": "5.0.11",
     "node-forge": "1.4.0",
     "picomatch": "^4.0.4",
     "piscina": "4.9.4",
-    "shell-quote": "1.10.0",
+    "shell-quote": "1.11.0",
     "cross-spawn": "7.0.6",
     "got": "11.8.5",
     "hono": "4.12.25",
@@ -147,12 +150,19 @@
     "uuid": "11.1.1",
     "js-yaml": "4.3.2",
     "nanoid": "3.3.18",
-    "toml": "4.2.0"
+    "toml": "4.2.0",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
+    "@react-navigation/drawer": "8.0.0-alpha.57",
+    "@react-navigation/elements": "3.0.0-alpha.54",
+    "@react-navigation/routers": "8.0.0-alpha.20",
+    "@react-navigation/core": "8.0.0-alpha.40"
   },
   "devDependencies": {
     "@hono/node-server": "^1.19.14",
     "@manypkg/cli": "^0.25.1",
     "@react-native-swc/worklets-plugin": "0.1.5",
+    "@tamagui/web": "3.0.0-beta.1670.1",
     "@take-out/cli": "0.4.17",
     "@types/react": "^19.2.2",
     "axios": "1.20.0",
@@ -166,15 +176,16 @@
     "patch-package": "^8.0.0",
     "playwright": "^1.58.2",
     "prettier": "^3.5.3",
-    "shell-quote": "1.10.0",
-    "tamagui": "2.6.2",
+    "shell-quote": "1.11.0",
+    "tamagui": "3.0.0-beta.1670.1",
     "ts-pattern": "^5.6.2",
     "turbo": "^2.9.18",
     "typescript": "7.0.2",
     "ultra-runner": "^3.10.5",
     "update-ts-references": "^3.4.0",
     "vxrn": "workspace:*",
-    "zod": "3.25.67"
+    "zod": "3.25.67",
+    "@tamagui/cli": "3.0.0-beta.1670.1"
   },
   "upgradeSets": {
     "takeout": [
@@ -209,11 +220,8 @@
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
     "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
     "image-size@1.2.1": "patches/image-size@1.2.1.patch",
-    "@react-navigation/bottom-tabs@8.0.0-alpha.50": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.50.patch",
     "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch",
-    "@react-navigation/native@8.0.0-alpha.44": "patches/@react-navigation%2Fnative@8.0.0-alpha.44.patch",
     "react-native-safe-area-context@5.7.0": "patches/react-native-safe-area-context@5.7.0.patch",
-    "react-native-webgpu@0.5.14": "patches/react-native-webgpu@0.5.14.patch",
-    "@tamagui/web@2.6.2": "patches/@tamagui%2Fweb@2.6.2.patch"
+    "@react-navigation/bottom-tabs@8.0.0-alpha.56": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.56.patch"
   }
 }

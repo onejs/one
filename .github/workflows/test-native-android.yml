@@ -1,0 +1,87 @@
+name: Android Native Build
+
+on:
+  push:
+    branches:
+      - main
+      - v2-beta
+    paths:
+      - '.github/actions/install/**'
+      - '.github/workflows/test-native-android.yml'
+      - 'bun.lock'
+      - 'package.json'
+      - 'patches/**'
+      - 'packages/one/**'
+      - 'packages/vxrn/**'
+      - 'packages/vite-plugin-metro/**'
+      - 'tests/native-features/**'
+      - 'examples/one-basic/**'
+  pull_request:
+    paths:
+      - '.github/actions/install/**'
+      - '.github/workflows/test-native-android.yml'
+      - 'bun.lock'
+      - 'package.json'
+      - 'patches/**'
+      - 'packages/one/**'
+      - 'packages/vxrn/**'
+      - 'packages/vite-plugin-metro/**'
+      - 'tests/native-features/**'
+      - 'examples/one-basic/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build-android-native:
+    name: Compile One Native Android consumer
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools platforms;android-37.0 build-tools;37.0.0 ndk;27.1.12297006 cmake;3.22.1'
+      # caches gradle dependencies and the wrapper; pushes write it, pull requests read it.
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
+      - uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+          workspace-focus: one
+      # checks.yml runs the whole One suite; this job runs only the android
+      # contracts, so an unrelated web test cannot red the android build.
+      - name: Verify fixture prebuild and native Android contracts
+        working-directory: packages/one
+        run: >-
+          bun run vitest --run
+          src/nativeFixturePrebuild.test.ts tests/nativeCoverage.test.ts
+          src/cli/prebuild.test.ts src/cli/runAndroid.test.ts
+          src/native/appManifest.test.ts src/platform/AndroidMenu.test.tsx
+          src/platform/nativeBarrel.test.ts tests/compose.test.ts
+          tests/syncCompose.test.tsx tests/nativeDocs.test.ts
+      - name: Generate the Basic starter Android project
+        working-directory: examples/one-basic
+        run: bun run prebuild:native --platform android --no-install
+      - name: Generate the native features Android project
+        working-directory: tests/native-features
+        run: bun run prebuild:native --platform android --no-install
+      - name: Compile Kotlin, Compose, Fabric, Nitro, and the consumer APK
+        working-directory: tests/native-features/android
+        run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug -PreactNativeArchitectures=x86_64
+      - name: Upload native consumer APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: one-native-android-debug
+          path: tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error

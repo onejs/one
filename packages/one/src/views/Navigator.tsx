@@ -249,10 +249,10 @@ function QualifiedNavigator({
   //     segments don't appear in URLs)
   //   - hoisted deep dynamic routes, e.g. `project/[projectId]/index` as
   //     a flat sibling under (app) when there's no intermediate _layout
-  //     (seen in soot, commit ea96e360 — picking the first sibling mounts
+  //     (seen in contrast, commit ea96e360 — picking the first sibling mounts
   //     `index` while the browser URL is still /project/foo)
   // when this navigator is mounting because the user navigated to a path that
-  // targets a screen inside it (e.g. clicking /docs/sootsim while the docs
+  // targets a screen inside it (e.g. clicking /docs/peach while the docs
   // navigator hasn't been mounted yet), getNavigateAction encodes the deep
   // target as the parent route's `params.screen` chain. read that directly
   // here so we don't have to re-derive it from a URL — useful in prod where
@@ -290,14 +290,11 @@ function QualifiedNavigator({
     return hasScreen ? resolved : undefined
   }, [initialRouteName, screens, contextKey, screenFromParent])
 
-  const { state, navigation, descriptors, NavigationContent } = useNavigationBuilder(
-    router,
-    {
-      children: screens,
-      screenOptions,
-      initialRouteName: resolvedInitialRouteName,
-    }
-  )
+  const { state, navigation, descriptors, render } = useNavigationBuilder(router, {
+    children: screens,
+    screenOptions,
+    initialRouteName: resolvedInitialRouteName,
+  })
 
   // HYDRATION FIX: Use ref for descriptors to avoid context invalidation during hydration.
   // The descriptors object changes by reference on each render from useNavigationBuilder,
@@ -318,7 +315,7 @@ function QualifiedNavigator({
 
   return (
     <NavigatorContext.Provider value={value}>
-      <NavigationContent>{children}</NavigationContent>
+      {render(children)}
     </NavigatorContext.Provider>
   )
 }

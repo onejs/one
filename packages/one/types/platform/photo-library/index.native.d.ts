@@ -25,7 +25,7 @@ declare function exportCurrentImage(identifier: string, allowNetwork?: boolean):
 declare function exportCurrentVideo(identifier: string, allowNetwork?: boolean): Promise<string>;
 declare function saveImage(uri: string): Promise<string>;
 declare function saveVideo(uri: string): Promise<string>;
-export declare const PhotoLibrary: Readonly<{
+declare const nativePhotoLibrary: Readonly<{
     getAddPermissionStatus: typeof getAddPermissionStatus;
     requestAddPermission: typeof requestAddPermission;
     getReadPermissionStatus: typeof getReadPermissionStatus;
@@ -52,4 +52,5 @@ export declare const PhotoLibrary: Readonly<{
     saveImage: typeof saveImage;
     saveVideo: typeof saveVideo;
 }>;
+export declare const PhotoLibrary: typeof nativePhotoLibrary;
 //# sourceMappingURL=index.native.d.ts.map

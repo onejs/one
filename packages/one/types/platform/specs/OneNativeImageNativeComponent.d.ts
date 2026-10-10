@@ -42,6 +42,7 @@ interface NativeProps extends ViewProps {
     variableValue: Double;
     hasVariableValue: boolean;
     colorRole: string;
+    resizable: boolean;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;

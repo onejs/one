@@ -1,0 +1,560 @@
+<!-- plan: status=active owner=p61056 reviewed=2026-10-04 -->
+
+# One native: launch
+
+Goal: with a single package you can build a first class app on every platform.
+Web brings its own visuals, and the hooks and primitives work there too.
+
+Structure (the owner, 2026-10-03): `one-native-manager` (Opus, medium) reviews,
+directs and gives feedback. Sol workers build (`codex-sol-high`, or
+`codex-sol-xhigh` for hard work), at most four live. Every change gets a
+cross-model review, assembled per item, never per slice. Visible changes
+reach the owner as before/afters; new public One APIs wait for his OK. One main
+needs the owner's direct word; `v2-beta` takes fixes and betas freely.
+
+The go/no-go list is `one-native-launch-checklist.md`. Detail lives in the
+existing plans; this file holds the order:
+`one-native-coverage.md`, `one-native-ios-coverage.md`,
+`one-native-android-lane.md`, `one-native-speed.md`,
+`one-native-api-conventions.md`, `one-ui-portal-pager.md`, and Contrast's
+`plans/contrast/mobile-app/one-native-next.md` (goal 4).
+
+## ranked queue
+
+Ordered by the owner's six axes: works, tested in real apps, speed, coverage,
+docs, unified primitives.
+
+| rank | item | done means | owner |
+| --- | --- | --- | --- |
+| 1 | Contrast goal 4 | `one-native-next.md` done-means on Contrast main; Widgets hero shared to the owner; Android/browser mount blocker stays with the engine owner | s8153 / contrast-one-native-2 |
+| 2 | real-app matrix | the starter, every `create-one` template and Contrast's mobile template build and run on iOS 27 sim and Android emulator from a clean install of the current beta, each One native API they use exercised once; failures fixed on `v2-beta`; the matrix is a script anyone reruns | s8223 / one-native-realapps |
+| 3 | worklets and Reanimated first class | steps 3 and 4 landed (3b3e99560, reviewed): One's transform owns worklets, Babel fallback removed, faster bundles recorded in `one-native-speed.md`, layout, gesture and runOnUI proven on iOS 27, Android 37 and Chromium. Steps 1, 2 and the step 5 proposal wait for the owner on `feat/native-blessed-packages` (`plans/one-native-worklets-proposal.md`). Open: vxrn engine suite red on HMR timeouts and one source-map assertion, not yet attributed | The owner review |
+| 4 | speed rows | parked by the owner 2026-10-03; row states in `one-native-speed.md` (04b32bfe1); unlanded work on `tm/one-native-speed-parked` (5d2a77c49). Android FileSystem, Motion and ImageManipulator (they throw on Android today) move to rank 6 | parked |
+| 5 | unified primitives | background computation (Contrast `packages/contrast-native/src/background`: worklet runtime on native, Web Worker on web) upstreamed as one One primitive on a branch, proven iOS, Android, web with the rally course, shared to the owner; Android OS background tasks recorded as a rank 6 proposal; next candidates from the per-platform survey | s8381 / one-native-background |
+| 6 | coverage gaps | Expo UI and Expo modules still imported by our apps or templates, closed by the path the split below assigns | s8377 / one-native-android-modules (Android FileSystem, Motion, ImageManipulator; engine suite attribution); the rest after rank 2 reports |
+| 7 | docs | every shipped One native API has a page with props matching types (drift suite stays green), a hero where the page family has one, and a web behavior note | folded into each item; sweep last |
+
+## coverage split
+
+Go deep on one path and cover only what is unique in the others, so no
+proof exists three times.
+
+- One native (`One.*`, `One.UI.*`, `One.iOS.*`, `One.Android.*`): the deep
+  path. Every behavior an app needs gets its runtime proof here, on device,
+  iOS and Android.
+- Pure SwiftUI (s7767 / swiftui-coverage): Peach rendering conformance of
+  SwiftUI itself. Swift language, runtime, Foundation, UIKit from Swift and
+  compile and bridge simulation belong to s7979 / peach-swift. They do not re-prove One
+  behaviors; One's generated SwiftUI views take their visual conformance
+  from s7767's evidence instead of a second capture.
+- Apple frameworks (m19590 / apple-native-manager, split in Contrast
+  `plans/peach/apple-native-coverage.md` "one proof per surface"): WebKit,
+  Combine, Security, Network, ATT, notifications and location prove the Swift
+  API once in that lane; One reuses or links that proof. MapKit (`Swift.Map`)
+  is led by this lane.
+- Expo UI: only what One does not cover. Expo UI parity is a pixel oracle for
+  Peach, owned by s7767 (iOS) and r53511 (Android); One's lane does not build
+  Expo UI proofs.
+- Android (r53511 / android-manager): regular mobile Android first. Android
+  Expo UI visual conformance stays there. On-device One.UI.Pager return and
+  draft behavior and the regular-phone composer/IME proofs belong to p56058
+  under r54227; this lane reuses those retained proofs and does not rebuild them. One's
+  Compose surface is proved in r53511's lane; this lane only adds One API
+  behavior tests that are platform-neutral.
+
+## rank 5: unified background computation
+
+Manager correction: Contrast needed CPU computation, not OS background scheduling.
+`contrast-native/src/background` already owned latest-revision semantics, but Rally
+still selected executors with `.native.ts` and a hand-written worker entry.
+
+Implementation branches: One `feat/background-computation` off `v2-beta`, Contrast
+`feat/one-background-computation` off `main`. The owner approved the API and migration via share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187 on 2026-10-03. Assembled review: m19584.
+
+TESTED: real Rally hook on iOS 27, Android 37, Chromium development and production. Contract probes proved worker/worklet runtime identity, latest revision 3, current errors, disposal and hook freshness. SSR creates no worker. Retained outcomes, screenshots, exact scope and repeat commands: `tests/native-features/evidence/background-computation/README.md`.
+
+One source commit `f8e56cdc`; Contrast migration `fe0484e86f`. The One change is based on v2-beta `5808e174d`, including the explicit Android device selector fix. Main is untouched.
+
+RAN: One API and docs landed on v2-beta `4395848b3`; result-retention fix
+`75982e8ee` removes output references from React state while retaining exact current
+result identity. The browser retention probe proves replacement, disposal, reactivation,
+and six accepted executions; it makes no heap-collection or phone-memory claim.
+
+Shared compiler follow-up: Vite and Contrast use the same portable
+`vxrn/background-computation` transform. The native compiler entry validates
+capture globals and Hermes loops before Worklets serialization. m19584 approved
+source `30bcc005b`; compiler `c2a262012` and logical proof commit `6b5302bdc`
+landed on v2-beta. RAN: fresh One/dependency build passed 14 targets and the
+compiler/plugin suite passed 39 tests. The owner directly approved the shared preview
+item `share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`.
+
+RAN: automatic Release succeeded. Exact npm tarballs
+`2.0.0-0.canary.1791084352120` contain One background, both compiler SDK entries
+and ESM/CJS worklet utilities; all identify source `6b5302bdc`. Receipt:
+`contrast-preview/published-tarballs.json`. The earlier branch dispatch failed
+on One's Vite worker.plugins declaration signature; the existing beta fix
+`a4c1ed5a5` corrected it. Its log was fetched once. The earlier ref-tip hypothesis
+was wrong; the timeout and before-publication negatives remain retained.
+
+Contrast release branch `feat/one-background-computation-release` pins the whole
+family at `37d5b7ac11`, with native lock sync `470fda43fc` and check integration
+`bec04162b5`. TESTED: installed files match packed tarballs; the real Rally hook
+passes both custom preview runtimes with exact seven-field comparison, 37 objects
+and native heartbeat 8. These receipts are in `contrast-preview/published/`.
+RAN: 130 bundler tests / 348 assertions, bun check, seed/dependency checks and both
+template typechecks pass. Pod sync proves byte-identical iOS sources and an
+unchanged fingerprint; OTA runtime 84 is retained. The browser worker budget
+passes at 96.6 KB gzip. No full phone build or full playable game boot is claimed.
+
+RAN: both public compile catalogs serve the exact pinned family after watcher
+`w-2b69` completed. Publication run:
+https://github.com/sootbean/soot/actions/runs/37174653372.
+The current and legacy contrast-native source descriptors return 200 for both
+configurations. The complete canonical Home Rally factory seed now passes with
+15 routes, 427 files, 14,391,496 bundle bytes and a complete graph. It uses the
+actual factory source reader and published native build pipeline; Home Rally is
+a canonical example, not a newly published registry entry.
+
+TESTED: pushed Contrast candidate `b5f14fddd` merges current main `4def3f39bd`
+with the published feature, preserving the new pure assetCollision extraction.
+Both actual preview runtimes match all seven fields for 57 objects and four
+checkpoints/legs; native heartbeat reaches 11. The complete canonical factory
+build passes 15 routes, 450 files, 14,457,330 bytes and a complete graph. Receipts:
+`contrast-preview/final-main/`. The intermediate candidate passed bun check and
+130 bundler tests / 348 assertions; compiler/tests/package graph are unchanged,
+and the merged allowlist check passes. The proof derives expected metrics from
+the current starter model without weakening comparison or deadlines. Assigned
+assembled adapter review requested two changes before Contrast main: preserve
+ordinary resolver defaults and retain Blob URLs through Worker startup. Follow-up
+8f3896a221 scopes browser/import conditions to the computation boundary and
+releases URLs on first message/error/disposal, with constructor cleanup. RAN:
+nine tests pass; both restored before behaviors fail negative controls. TESTED:
+WebKit and Chromium match the real57-object course and observe Blob URL revocation
+after the first reply. Native preview matches it with heartbeat9. RAN:131 tests/
+356 assertions, bun check58.8s and97.0KB gzip budget pass; the complete factory
+graph retains15 routes/450 files/14,457,330 bytes. Evidence is under
+contrast-preview/review-fixes/. Assigned m19584 re-review passed8f3896a221. RAN: the migration and exact
+One pin are now ancestors of Contrast main (df23ed5000, composed hook88970f9985),
+with the goals row removed. The One-scoped tool guard prevented this session's
+main push; manager routed landing to Contrast-context main-sync p58675.
+
+Main also gained a0e3cc7b949, which reuses exact course geometry across cosmetic
+edits and accepted undo. TESTED: follow-up a0bbcb5b92 on
+fix/rally-background-cache-owner preserves main's module-scope One definition and
+adds the current-revision check after awaiting work. Actual Chromium, WebKit and
+native preview pass two reuses, two geometry edits, stale completion, disposal
+and reactivation: two owners, six executor calls, two disposals. Every accepted
+course matches the full synchronous JSON and exact getCurrent identity. Removing
+the cache or revision guard fails the negative probe. Both browser owners retire
+Blob URLs after their first reply. RAN:131 bundler tests/356 assertions,
+bun check46.7s and complete factory15 routes/450 files/14,469,639 bytes pass.
+Receipts and repeat commands: contrast-preview/geometry-reuse/. RAN: main-sync
+p58675 landed the final cache fix as a7b1c5c3c66. Validated a0bbcb5b92 is an
+ancestor of that merge, which is an ancestor of fetched main7ef5bbf301; main's
+hook blob exactly matches the validated source. No source or landing item remains
+open. One main untouched; manager/coordinator owns subsequent CI.
+
+Proposed public shape (`one/background`):
+
+```ts
+import { defineBackgroundComputation, useBackgroundComputation } from 'one/background'
+import { calculate } from './calculate'
+export const computation = defineBackgroundComputation(calculate)
+// in a component, with memoized input:
+const { result, getCurrent } = useBackgroundComputation(computation, input)
+```
+
+RAN: surveyed all Contrast template app source, `templates/contrast-mobile`, One
+`examples/` and `packages/create-vxrn/src/templates.ts` for `Platform.OS`, platform
+filename variants, and Expo/React Native package imports. The included Basic
+starter is `examples/one-basic`; Takeout Free is an external repo and its local
+checkout is absent, so its app source is not claimed surveyed. RAN: the Basic
+starter branch `origin/v2-beta-starter` (`bd6044cc3`) has no diff from this source
+under `examples/one-basic`, so the included starter survey covers the scaffold. Evidence describes
+Contrast source at `3eb55ee237` and One at `69591350d`, before this branch's edits.
+Generated icon files and intentional Apple-only chrome were excluded from ranking.
+
+The next candidates are proposals or migrations only. None is implemented here.
+INFERRED priority uses observed duplication, reuse across apps and implementation
+cost, rather than a package-import count alone.
+
+| priority | next unified job | source evidence and current limit | cost and next proof |
+| --- | --- | --- | --- |
+| 1 | persistent key/value cache provider | `contrast-mobile/data/zeroKvStore.ts` chooses IndexedDB; `.native.ts` imports Zero's op-sqlite provider. `One.Database` currently throws on web. App restart and cache recovery also split in `data/zeroRecovery*`. | Medium: define persistence, transaction and reset semantics independent of Zero; prove cold reopen and atomic reset on all three platforms. Keep Zero's own protocol in its adapter. |
+| 2 | speech transcription | `contrast-mobile/interface/chat/useComposerSpeech.ts` only provides conformance behavior and an unavailable message; `.native.ts` uses `systemSpeechEngine.native.ts` over `One.Speech`. One's web `Speech.start` throws. | High: browser support and permission policy differ; proposal needs a deliberate unavailable contract and event/session ownership, then real microphone proof. |
+| 3 | app restart | `contrast-mobile/features/ota/appRestart.ts` reloads the page; `.native.ts` chooses One.Updates versus DevSettings. Called by cache/diagnostic/OTA workflows. | Small to medium: one explicit restart operation covering development and staged OTA, with unsaved work semantics. Prove a boot marker changes exactly once without duplicate listeners. |
+| 4 | material blur | `contrast-mobile/interface/effects/BlurView/BlurView.tsx` duplicates intensity/tint CSS mapping; `.native.ts` wraps `One.UI.Blur`. Flights carries the same split. `interface/effects/GradientBlurView.tsx` also branches for Android. | Medium: establish web material rendering and shared prop meanings; compare all three backdrops, then migrate wrappers. Subjective visuals require the owner. |
+| 5 | alpha mask and fade | `templates/app/interface/effects/MaskedFade/MaskedFade.tsx` uses CSS maskImage; `.native.ts` constructs One.UI.Mask with a gradient view. App-empty and flights repeat it. | Medium: shared alpha-mask source and clipping/size contract, with a background-visible negative control. Keep app composition out of One. |
+| 6 | document selection, migration to existing One API | `contrast-mobile/helpers/media/documentPicker.ts` warns and returns null; `.native.ts` uses One.DocumentPicker. One's web implementation already opens a file input and returns blob URLs. | Small: existing API migration, no new primitive needed. Prove cancel and byte reads, and own blob URL lifetime. |
+| 7 | GPU canvas and pointer input | `templates/game/features/scene/SceneCanvas.tsx` uses R3F Canvas; `.native.ts` owns RN WebGPU layout, a canvas shim and PanResponder-to-pointer bridge. Same rendering job, large app-owned adapter. | High: consider a blessed integration before adding public API; prove picking, capture, resize and disposal under real GPU load. |
+
+One Basic's only `Platform.OS` branch is the document shell in `app/_layout.tsx`;
+its native tabs and widget demo deliberately expose native UI. Testflight's
+`HomeLayout.native.tsx` and split/toolbar routes deliberately demonstrate Apple
+chrome. These are not evidence that computation, storage or other shared jobs
+need separate app implementations. Platform-specific auth callback URLs,
+telemetry metadata and Apple sign-in visibility likewise describe real platform
+policy and are not ranked as a primitive gap.
+
+## rank 6: OS background task proposal
+
+RAN: `One.iOS.BackgroundTasks` declares an iOS-only Nitro spec and Swift
+registration in `nitro.json`; its native wrapper throws on Android. Web methods
+also throw `BackgroundTasks requires an iOS native build`. There is no Android
+WorkManager implementation to force-run. Keep the existing iOS scope honest.
+
+Android support is a new capability proposal: task identifiers/kinds in prebuild,
+WorkManager dependency and manifest registration, headless host startup, native
+listener delivery and completion/expiration ownership, constraints and pending
+queries, plus a common public namespace. Prove actual `adb shell cmd jobscheduler`
+execution and process cold launch before claiming parity. A web OS scheduler
+contract needs its own product decision; a running page's computation worker
+cannot provide OS background-launch guarantees.
+
+## every native API on all three platforms (2026-10-04)
+
+Scope (2026-10-04): make the existing native APIs work, plus some unification.
+Existing signatures only; no API changes.
+
+RAN: read every root namespace entry under `packages/one/src/platform`. Of the
+27 root services, Android has Kotlin for FileSystem, ImageManipulator and
+Motion; the other 24 share `unavailable.ts` on Android and web. Web also lacks
+Motion, ImageManipulator (rejects), FileSystem (resolves without writing, a bad
+state), Speech.start, Blur and Mask (throw), Database (throws).
+
+| lane | platform | namespaces | owner |
+| --- | --- | --- | --- |
+| android-system | Android, platform SDK and AndroidX only | Device, KeepAwake, ScreenOrientation, ScreenCapture, Share, Print, QuickActions, AppIcon, Location, MapServices, LocalAuthentication, ProtectedStore | r58412 / one-native-android-system |
+| android-media | Android, platform SDK and AndroidX only | Audio, PhotoLibrary, Contacts, Calendar | r58416 / one-native-android-media |
+| web | browser standards | Motion, ImageManipulator, FileSystem (OPFS), Speech, Blur, Mask, Device, KeepAwake, ScreenOrientation, Share, Print, Location, Audio, Contacts where the browser has a picker | r58421 / one-native-web |
+| native blur | iOS, Android | EdgeFade blur, One.UI.Blur on react-native-blur's code | a22608 |
+
+Stay honestly unavailable, no work now: AppIntents, LiveActivities, Widgets and
+AppTracking (iOS concepts), BackgroundTasks (rank 6 proposal), and Purchases,
+StoreReview and DeviceAttestation (each needs a Google Play library), Database
+on web. A method with no platform equivalent keeps the existing unavailable
+contract for that method only.
+
+Each lane works in `~/.worktrees/one-<lane>` off `v2-beta`, proves every method
+it implements at runtime (Android 37 emulator or Chromium and WebKit), updates
+the doc page and `platform-support.mdx`, keeps the drift and SSR suites green,
+and lands on `v2-beta` after the manager's assembled review.
+
+## worklets and Reanimated
+
+How One treats them today (RAN `grep` over `packages/`, read the files named):
+
+- Both are optional peers of `one` (`packages/one/package.json`), dev-pinned
+  at reanimated ~4.6.0 and worklets ~0.12.2, and the install docs list them.
+- One already depends on worklets at runtime: its native sync state
+  (`platform/syncInstaller.native.ts`) imports `react-native-worklets` to
+  reach the UI runtime. So any app using One's sync hooks needs it, while the
+  peer says optional.
+- One ships its own worklet transform (`packages/compiler/src/transformWorklets.ts`,
+  keyword-gated, React Compiler aware) and `workletImportsPlugin` in vxrn for
+  pure imports inside worklets. The config comment in `vite/types.ts` still
+  describes a babel fallback for Reanimated files.
+- "Blessed" exists only as a word in `one-native-ios-coverage.md`: a third
+  party library One recommends instead of wrapping (op-sqlite, file system,
+  image). No list, no version pin, no check.
+
+Proposal:
+
+1. Define blessed in one place: a typed list in `one` (name, pinned range,
+   why, platforms) that the docs page, the starter's `package.json`,
+   `one prebuild` and a doctor check all read. Initial set: worklets,
+   Reanimated, gesture handler, screens. A blessed package is installed by
+   the starter, version-checked at prebuild, and tested in the real-app matrix.
+2. Make worklets and Reanimated required native peers (keep them optional on
+   web-only apps): One already needs worklets, so the peer meta is wrong today.
+3. One transform owns worklets with no babel path: measure cold and warm
+   native bundle time against the Reanimated babel plugin on the starter and
+   Contrast mobile, and delete the stale babel fallback text and code if the
+   measurement holds.
+4. Prove it in the real-app matrix: a Reanimated layout animation, a gesture
+   worklet and `runOnUI` on iOS, Android and web.
+5. One APIs that produce per-frame values hand them to worklets: Pager page
+   offset, Motion sensors and keyboard height as shared values, readable on
+   the UI thread with no JS hop. This is new public API and waits for the owner.
+
+## namespaces (the owner, 2026-10-03)
+
+Unified APIs live at the root of `One` (`One.FileSystem`, `One.Motion`, ...),
+never under a platform. `One.iOS` and `One.Android` hold the generated,
+platform-specific API, which is fuller and exact to the platform, never an
+alias of a unified one. s8377 moves the misplaced uniform namespaces up.
+
+## scope (the owner, 2026-10-04)
+
+Done by tomorrow, clean and simple: every native API One ships works on iOS,
+Android and web, plus the unification already decided (unified APIs at the
+root). No new features. One's UI bridges to native views; it never draws
+custom UI and never depends on Reanimated. Worklets is the primitive; a
+headless component may offer worklet callbacks, and the app brings its own UI
+(page dots and the like). Reanimated stays an app choice: not required, not
+blessed into One's UI. Per-frame value hooks and shared-value props are off.
+
+## bundle speed (2026-10-04)
+
+TESTED: Contrast mobile's ejected Babel file only delegates to One's preset.
+Removing it leaves `withOne` selecting the native Metro worker, and the actual
+native CLI produces iOS and Android production bundles that compile with the
+pinned Hermes compiler. Keep the ejected Metro config for explicit Metro users.
+One's default native CLI path used by OTA is Rolldown.
+
+RAN: isolated Babel-config comparisons on air-24, under `bun heavy --exclusive`.
+Fresh Node processes build the full dev-mode bundle twice, without minification
+or source maps. Setup is measured separately; OS page caches are retained.
+
+| platform | cold before | cold after | warm before | warm after |
+| --- | ---: | ---: | ---: | ---: |
+| iOS | 18.109s | 14.091s | 18.001s | 13.153s |
+| Android | 19.084s | 16.157s | 18.014s | 15.852s |
+
+RAN: Babel self samples fell from 55.32% to 47.96% on iOS and from 56.15% to
+49.46% on Android. Remaining Babel work includes dependency Flow stripping.
+The original 968s air-32 profile and saturated studio-64 timings are excluded
+from speed claims.
+
+TESTED: three counterbalanced live dev-engine startups per condition, with the
+same newly built package family. Cold includes engine creation and its first
+bundle with source maps; warm is the cached second `getBundle` request. All
+samples are retained, including the slow third pair with substantial variance.
+
+| platform | before samples (s) | after samples (s) | median before | median after |
+| --- | --- | --- | ---: | ---: |
+| iOS | 20.439, 21.738, 77.793 | 15.739, 16.067, 36.597 | 21.738s | 16.067s |
+| Android | 20.429, 28.659, 63.420 | 15.960, 18.051, 31.253 | 28.659s | 18.051s |
+
+RAN: cached bundle requests take 0.107-0.269ms. Each cold/warm pair has identical
+bundle hashes. These are host bundle times, not on-device launch times.
+INFERRED: the third pair's large variance limits the precision of the startup
+speedup; exclusivity gates admitted work but cannot exclude every host process.
+
+TESTED: One commit `1cacb7ee4` moves the Cloudflare plugin import behind its
+existing feature gate. Three fresh-process static/dynamic controls against the
+same built artifact give median plugin setup 622.488ms versus 213.492ms. Samples
+are 2505.024/622.488/620.769ms before and 220.145/213.492/212.575ms after.
+The static control loads five Wrangler modules with the feature disabled; the
+fix loads zero. Enabling the feature loads five and resolves its plugin array.
+The matched startup profiles have 23.11% Wrangler self samples before and zero
+after. The final Contrast iOS bundle profile also has zero Wrangler samples.
+
+RAN: 21 focused One tests pass (`cloudflareWranglerConfig`, `workerdDevPlugin`,
+`one-defines`, `getViteMetroPluginOptions`, `withOne`). `bun release --into
+~/contrast` built and installed 17 packages from the isolated One worktree.
+Native production CLI plus Hermes validation produced 4,588 iOS and 4,603
+Android source-map sources. No OTA was uploaded.
+
+RAN: the existing benchmark now runs under Node, uses the bundled Vite config
+loader and built native engine, and accepts one-platform dev measurements:
+
+```sh
+node scripts/native-worklets-benchmark.ts --modes one --dev --platform ios \
+  --samples 3 --root ~/contrast/templates/contrast-mobile --output /tmp/native-ios.json
+```
+
+Repeat with `--platform android`. Full-bundle benchmark receipts distinguish
+these rebuilds from the live engine's cached second request. Raw receipts and
+CPU profiles are under `/tmp/one-native-speed-*` on air-24; local collected
+profiles are `/tmp/one-native-speed-profiles/air24-*.cpuprofile` on studio-64.
+
+INFERRED next optimization: profile `stripFlowTypes` and Hermes class lowering
+on the remaining React Native dependency graph. Flow stripping and native
+codegen must preserve their ordering and output semantics; removing required
+transforms would invalidate these bundle gains.
+
+## runtime 84 and 85 (2026-10-04)
+
+Contrast main is on runtime 85 (f41dd86ee3) with One 1791109310273; the root `One.Device` caller landed there as c2ae2ada63, which supersedes `fix/one-native-uniform-final` 4390d6d113. `one@2.0.0-0.canary.1791113593697` (baseline 6b5302bdc plus the ws/headless fixes; RAN: all 1392 native files byte-identical to 1791084352120) is for installed runtime-84 builds only and stays off main. Canaries need no owner approval from any branch (`release.yml` dispatch, release=canary).
+
+## workers
+
+| session | runner | item | review |
+| --- | --- | --- | --- |
+| r58412 / one-native-android-system | Sol high, pro-64 | android-system lane | manager reviews assembled diff |
+| r58416 / one-native-android-media | Sol high, pro-64 | android-media lane | manager reviews assembled diff |
+| r58421 / one-native-web | Sol high, pro-64 | web lane | manager reviews assembled diff |
+| a22608 / one-native-blur | Claude, air-24 | native blur on react-native-blur's code | manager reviews assembled diff |
+| one-native-bundle-speed (coordinator) | Sol high, pro-64 | bundle speed | manager reviews assembled One diff |
+| finished | s8223 rank 2 (reviewed), s8153 rank 1, s8225 rank 3, s8227 rank 4 (parked), s8377 rank 6, s8381 rank 5, s8395 stopped (Reanimated scope dropped) | | |
+
+## beta recovery (2026-10-04)
+
+Direction (2026-10-04): resume the One native lanes under one Sol medium manager with Muse Max workers, targeting One v2 beta; Tamagui targets v3 beta.
+
+Delivery manager: p61056 / spring-one-recovery, Sol medium. Target v2-beta. Tamagui has independent manager p61058. No main or stable publication, new look, public API, or unrelated parked work. Operations p60562 owns retained predecessor resources; substantive protected proposal and final gates remain p60786.
+
+RAN: origin/v2-beta is 95252a29d799f439c029a7d29541f1db0b6efa6a. Approved browser b185d7f12 and ordinary iOS blur b87d5facc are delivered there. Checks and Tests 37253320339 and Release 37253320349 succeeded. iOS Native Tests 37253320666 failed at generated SwiftUI bindings, listing portal specs, schema.json and package.json. Runtime native acceptance remains distinct from CI.
+
+RAN: prior Android system e43a2b4dd and media 6cef650ba are registration-only WIP branches with no Kotlin or runtime proof. Resume their existing service scope as two grouped branches. Web services already landed as 3d5841af0 with prior browser and tarball receipts; preserve disputed old branch notes and do not adopt its remaining commits blindly. Android halo/allocation and private variable blur remain held pending measured supported repair. Contrast native87 stays with its existing owner.
+
+First-layer public review and runtime validation: one assigned Muse Max Spark Contributor validator, fixed subscription account cam. Android workers prepare source-grounded implementation proposals for review before native changes. The validator supplies public first-layer findings; p60786 retains substantive gates. Manager serializes integration and owns required One CI, artifact identity, and canary content verification. Authors push bounded branches and clean their owned resources before finishing, without waiting on CI.
+
+### recovery checkpoints
+
+RAN: system proposal `669de43ea8ae0b233038bd8376f68adc77a471e8` is pushed to `tm/beta-android-system`, updating `plans/one-native-android-lane.md`. Media proposal `0ab0c5e08fd236abc6c593e88fccc82672857022` is pushed to `tm/beta-android-media`, updating `plans/one-native-realapps.md` and a public seed fixture. Both are based on `8631f54f9`; neither implements native services. Public validator p61184 has both exact checkpoints. Protected substantive review remains p60786 after first-layer disposition. CI ownership repair proposal is being prepared by p61201 on `tm/beta-native-ci`.
+
+RAN: the ordinary blur delivery task `t-muulkz5o-1un30` is closed for package provenance. Packed `one@2.0.0-0.canary.1791165360617` has `releaseSourceCommit=95252a29d799f439c029a7d29541f1db0b6efa6a`; the two native ordinary blur files and browser source/declaration byte-match that source. Receipt: `/Users/n8/Library/Caches/one-beta-recovery/canary-content.json`. Existing browser runtime and delivery proof is already complete in `t-muuj8ga1-g0c0`; no repeat historical runtime wave is assigned. Required iOS CI repair and Android native runtime proof stay open under `t-muuqrnrk-svg0`.
+
+Android continuation authors p61888 and p61890 own `~/.worktrees/one-beta-android-system` and `~/.worktrees/one-beta-android-media`. The generated-binding author finished; its clean pushed `tm/beta-native-ci` source is preserved and the manager removed its worktree through Team Machine, which archived ignored outputs. ProtectedStore design author r59432 finished with its Pro64 emulator, processes and worktree cleaned; proposal and probe receipts remain on `tm/protected-store-design`.
+
+### staffing clarification (2026-10-04)
+
+Staffing: no five-worker expansion per lane; add workers as needed, and One native may use a few more over time.
+
+The mandatory five-worker expansion is canceled in `t-muuu1o2d-1ugx0`. No additional model worker was launched for it. Existing Android system and media authors and the public validator continue. Add help only for a concrete remaining bottleneck, with disjoint source ownership and the current review gates. One focused Sol high worker on Pro64 will take the held ProtectedStore design research so the system author can stay on its ten approved services; native implementation remains held until its supported design is approved. ScreenCapture corrected design remains with the system author.
+
+Managers share verified results via tm share, about one per hour, while actively working; do not create hourly polling or wake loops.
+
+### delivery and required CI (2026-10-05 UTC)
+
+RAN: approved generated-only candidate `787f5681b` landed on v2-beta as
+`1fb90038c9005b28229947627672bfa42ba0f443`. Public first-layer p61184 and final
+reviewer p60786 verified unchanged contracts and the complete local CI step,
+including three intended negative controls. Checks `37269583772` and Release
+`37269583725` passed. Exact npm canary `2.0.0-0.canary.1791179486691` identifies
+that source; schema and both portal specs byte-match, and codegen configuration
+is value-equal. Manager receipt: `Library/Caches/one-beta-recovery/ci-canary-1fb/content-proof.json`.
+
+RAN: iOS workflow `37269583982` passed generated SwiftUI and consumer Fabric
+compilation, both app builds, and dev/metro, prod/metro and prod/rolldown runtime
+jobs. Required dev/rolldown failed HMR, protected-route and import-meta tests
+before cancellation at the existing job limit. This is an open runtime CI
+repair, not full CI acceptance. Task `t-muuxz7ec-17ju0`, author r59505 on Pro64,
+verified Muse Spark Contributor Max with fixed cam subscription. It owns a
+bounded diagnosis and prereview proposal, then assigned repair; p61184 and
+p60786 remain the review gates. Manager owns subsequent beta landing and CI.
+No timeout increase, retry, skip or weaker assertion is authorized.
+
+ScreenCapture corrected design `ce0bb43c4` received bounded implementation
+approval from p60786 at 07:41 UTC, with receipt timestamps, initial/event mapping,
+sub-gate silence, owned callback lifetime and the existing sub-26 render error.
+No new unsupported-error API is authorized. System author p61888 owns this
+service with its ten previously approved services.
+
+ProtectedStore supported-SDK design `ac832933e` received bounded implementation
+approval from p60786 at 07:55 UTC. Orphan-alias authenticated deletion and locked
+existing-item behavior are required corrections. Source owner r59519, Sol high
+on Pro64 with a verified fixed personal subscription, owns only this service;
+research author r59432 finished with its artifacts preserved and resources
+cleaned. SDK probes cover an API37 software emulator; hardware and One
+integration remain unproven. Both services retain their focused native/runtime
+controls and one assigned assembled review, with no repeated review or expanded
+matrix. Manager owns beta integration and CI.
+
+Pro128 disk admission recovered above its 35 GiB floor. The system author
+reported a rebuilt APK and removed the observed timeout increase and restart
+retry; its bundle-transfer mount failure remains under diagnosis. Air24's 14
+retained blur paths belong to stopped predecessor a22608. Operations owns source
+custody under `t-muuymnwo-qik0`; they remain untouched while sync owner r59503
+handles safe fast-forward metadata. Blur holds and parked speed work remain
+preserved; sync hygiene grants no native adoption or public-main approval.
+
+### current native acceptance (2026-10-05 UTC)
+
+ProtectedStore final candidate `d21c095c2080217dd422a49136f4825ef6f21efa`
+received p60786's sole final approval. Production and public-entry controls
+cover the API37 software envelope, with no hardware or lower-API claim.
+The corrected package-public create/get/delete/missing-get proof preserves the
+original security controls. Manager RAN source identity, receipt custody and
+APK hash equality, then integrated through beta `fe4b61b1a`.
+Required Checks and Tests, Release and all iOS native jobs passed for that SHA.
+Exact One/vxrn canary `2.0.0-0.canary.1791196322465` has matching source manifests
+and packaged native/generated/declaration bytes. The removed Android unavailable
+entry and declaration are absent, and ESM/CJS route to OneProtectedStore.
+Owned emulator, claim and servers are cleaned up. The clean pushed Pro64 tree
+is retained under manager custody because shared Watchman holds it; no shared
+service kill or forced removal is authorized.
+
+Media candidate `25e516090e7445d03a5771422503bcb165e67c70` remains unlanded.
+Completed first-layer p61184 assessment found Calendar detached-ID and split
+atomicity issues, Photo limited-permission issues, and Audio seek settlement
+issues. Sol's source-grounded proposal `db31539b3` corrects the first-layer
+claims about active-play replacement and limited album access: current Swift
+replaces the player and requires full authorization for albums. Manager READ
+both methods; do not change those contracts on the earlier premises. The
+recording floor silently resolved below API24; the assigned reviewer approved
+honest rejection with existing codes while preserving valid API24+ behavior.
+Contacts source was sound; reported Contacts,
+Calendar and Photo receipts do not establish full media acceptance. Preserve
+the full findings and these corrections. Owner r59617, private Sol high,
+implemented approved Photo/Audio source corrections in `c8bf89a75`. Public
+first-layer source/static disposition is PARTIAL PASS, with independent fixture
+negative controls. Seek/floor native behavior remains uncompiled and inferred.
+Calendar source is unchanged and held. Selected independent provider identity
+is accepted in design; normal exception investigation `8af11c0e3` proposes a
+transactional clone/detach/original-recurrence EXDATE batch. Preservation of
+non-owned unsynced exceptions, exact durations, cancellation and later selected
+edits/deletes remains unproven. No custom-field storage, synthetic sync ID,
+authority change or subset waiver is authorized. The predecessor Muse
+worker was stopped after broad protected-reviewer transcript reads outside its
+public-only scope. Its proposal is pushed and preserved; the successor received
+only source and assigned One evidence. Exact content exposure is not established
+by the trimmed record. Audio remains runtime-unverified, with one eventual
+assigned assembled substantive gate.
+
+RAN: the unchanged Audio proof driver and preserved APK failed on a second host,
+Pro64, using an existing standard Pixel8 API37 AVD in read-only mode. Boot
+completed, but the Audio leg lost the device before any acceptance criterion
+passed. The emulator then reported bad color buffers and a 15-second hang across
+all QEMU threads. This reproduces the failure signature across hosts; the
+underlying guest-media versus renderer cause remains unproven. Receipts are
+outside the worktree in `media-implemented-evidence/audio-pro64-failure` under
+the manager handoff directory. Existing platform owner s10097 and operations
+p60562 own the supported repair path. No further reboot, wipe, renderer change,
+audio HAL mutation or shared-service action is authorized by this observation.
+
+CI repair candidate `ac19e4daa` received p60786's sole final approval and
+landed as `337f25aba`, then combined with ProtectedStore at beta `fe4b61b1a`.
+The existing compiler-path mechanism preserves requested Hermes bytecode;
+production restores and the harness remain unchanged. RAN combined local
+generation check, One typecheck and 125 focused tests. Required Checks
+`37297114724`, Release `37297114635` and iOS Native Tests `37297115216` succeeded.
+The iOS run passed generated SwiftUI/Fabric checks, both app containers and all
+four dev/prod Metro/rolldown runtime jobs, including the formerly failing
+required dev/rolldown path. No timeout, retry, skip or assertion was loosened.
+Manager RAN exact packaged vxrn resolver controls: real HBC magic/shared promise,
+invalid code, missing/nonexecutable override rejection and blank override using
+original pod resolution. Content receipt and controls are in
+`Library/Caches/one-beta-recovery/ci-canary-fe4/`; final workflow snapshot is in
+`handoffs/one-beta-recovery/native-ci-fe4-final.json` outside the worktree.
+The clean pushed author tree remains retained by shared Watchman.
+
+System candidate `df6b4ebdd` remains unlanded under manager custody. Its
+MapServices exception correction is approved within the same source gate;
+RAN actual hybrid JVM controls fail before and pass four cases after correction.
+That control does not prove installed providers or Android scheduling. Original
+full system runtime, final print/share APK and lower-SDK capture silence/remover
+obligations remain held. Historical partial receipts are preserved; retained
+emulator and Metro exited before the validator suite, with cause unproven.
+No device campaign, new matrix or held blur adoption follows from CI completion.
+
+Operations placement disposition at 12:10 UTC retains explicit installed-final
+system and Audio runtime holds. No authenticated healthy original-contract
+ordinary device/window is established; empty admission queues do not prove
+health. Preserve final APKs, approved Map source, failed device data and all
+receipts. No alternate AVD/physical device, reboot/wipe, HAL/GPU/shared-service
+action, new build or duplicate source owner is authorized. Placement can reopen
+with concrete identity, availability and claim, original APK/driver/contract
+receipts, and a separately authorized run. The completed platform diagnosis
+stays completed. Calendar supported-path disposition remains with p60786.
+Completed first-layer validator p61184 finished its non-device unit; manager
+READ the 1687-byte handoff and recorded its eight verdicts and runtime limits.
+No owned worktree/server/claim remains and its watcher exited80.
+Manager retains pending runtime custody without retaining authors for placement.
+
+Media source author r59617 finished admitted non-device work at pushed branch
+`tm/beta-media-repair` head `656538d4e`. Manager RAN remote clean-tree status and
+matching source HEAD, fetched the branch, and preserved the outside-tree final
+handoff locally. Photo/Audio `c8bf89a75` remains partial source/static delivery;
+Calendar native source and fixture remain unchanged. Same-unit p60786 accepted
+`8af11c0e3` as a supported investigation direction, retaining implementation
+holds on local linked exceptions and exact timed/all-day durations. No further
+source/build/device campaign or CI wait belongs to the completed author.
+Normal managed-tree removal was held by a reported process despite scoped
+open-file checks returning no rows; this does not disprove a transient holder.
+The clean published Pro64 tree remains manager-owned, with no forced removal.
+Task `t-muv92lju-ed70` records tool attribution and the hidden task-ref sync
+limitation. Manager READ the final handoff and pulled task data containing the
+closeout commit; source publication and clean custody are established separately.

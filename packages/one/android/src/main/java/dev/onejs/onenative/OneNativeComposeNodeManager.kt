@@ -388,6 +388,10 @@ class OneNativeComposeNodeManager :
         view.stageProgressOptions(value)
     }
 
+    override fun setPickerOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stagePickerOptions(value)
+    }
+
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageComposeStyle(value)
     }

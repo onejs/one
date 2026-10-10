@@ -31,6 +31,7 @@ import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
 import { rnCodegenPlugin } from '../plugins/rnCodegenPlugin'
+import { dedupe } from '../config/getBaseViteConfigOnly'
 
 // Hermes needs the whole class shape lowered *together*. downleveling only the
 // class fields while leaving `class ... extends` as modern ES6 produces a
@@ -268,6 +269,7 @@ function getNativePlugins(
     serverFileExclusionPlugin(),
     // guard server-only / client-only / web-only / native-only imports
     environmentGuardPlugin(),
+    missingDynamicImportPlugin(),
     // alias RN's Metro HMR client to a no-op; vxrn drives HMR itself (the
     // rolldown-runtime WebSocket); RN's client otherwise opens a /hot socket and
     // red-boxes "unknown-message [object Object]" on every edit (new arch)
@@ -284,6 +286,7 @@ function getNativePlugins(
     // @react-native/virtualized-lists itself makes — fail resolution against
     // the export map. metro resolves those from the filesystem, so do the same.
     reactNativeDedupePlugin(root),
+    nativePackageDedupePlugin(root),
     // stub CSS imports — native doesn't support CSS and rolldown removed CSS bundling
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
@@ -1228,6 +1231,33 @@ function serverFileExclusionPlugin(): Plugin {
 }
 
 /**
+ * An `import()` of a package that is not installed stays a raw dynamic import
+ * in the bundle, which Hermes cannot parse. Metro resolves it as an optional
+ * dependency: the import rejects with "Cannot find module" when it runs. Do the
+ * same, so a library that probes an optional peer (`await import('x')` inside
+ * try) builds and falls back at runtime.
+ */
+function missingDynamicImportPlugin(): Plugin {
+  const PREFIX = '\0vxrn-missing-module:'
+  return {
+    name: 'vxrn:missing-dynamic-import',
+    async resolveId(source, importer, options) {
+      if (options.kind !== 'dynamic-import') return
+      if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
+      if (source.startsWith('\0')) return
+      const resolved = await this.resolve(source, importer, { skipSelf: true, kind: options.kind })
+      if (resolved) return resolved
+      return { id: `${PREFIX}${source}`, external: false }
+    },
+    load(id) {
+      if (!id.startsWith(PREFIX)) return
+      const source = JSON.stringify(`Cannot find module '${id.slice(PREFIX.length)}'`)
+      return { code: `throw new Error(${source});`, moduleType: 'js' as any }
+    },
+  }
+}
+
+/**
  * Guard environment-specific bare imports in native bundles.
  * - server-only, client-only, web-only → throw at runtime
  * - native-only → no-op (we ARE native)
@@ -1469,6 +1499,21 @@ function nativeAssetRegistryPlugin(root: string): Plugin {
       if (registryPath) {
         return this.resolve(normalizePath(registryPath), importer, { skipSelf: true })
       }
+    },
+  }
+}
+
+function nativePackageDedupePlugin(root: string): Plugin {
+  const packages = new Set(dedupe)
+  return {
+    name: 'vxrn:native-package-dedupe',
+    async resolveId(source) {
+      const parts = source.split('/')
+      const packageName = source.startsWith('@') ? parts.slice(0, 2).join('/') : parts[0]
+      if (!packages.has(packageName)) return
+      // use the app's package copy for contexts and subpaths, preserving the
+      // native export conditions selected by rolldown.
+      return this.resolve(source, join(root, 'package.json'), { skipSelf: true })
     },
   }
 }

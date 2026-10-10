@@ -36,7 +36,7 @@ import kotlin.math.roundToInt
  *   - `"mask"` — dissolves the content to transparent along the edge (alpha
  *     gradient composited with DST_IN).
  *   - `"blur"` — progressively blurs the content toward the edge (API 31+;
- *     degrades to `"mask"` below that, on a software canvas, or at radius 0).
+ *     degrades to `"mask"` below that or on a software canvas).
  *
  * The gradient shape of every edge follows a curve resolved by
  * [OneNativeEdgeFadeCurves]; mask shaders are cached in
@@ -52,6 +52,10 @@ import kotlin.math.roundToInt
  * paint it in JS.
  */
 class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
+
+  override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+    // fabric lays out children, including flattened descendants, in yoga coordinates.
+  }
 
   // ── Props (set by OneNativeEdgeFadeManager; sizes in px) ──────────────────
 
@@ -332,10 +336,14 @@ class OneNativeEdgeFadeView(context: Context) : FrameLayout(context) {
     try {
       val w = width.toFloat(); val h = height.toFloat()
 
+      if (blurRadius <= 0f) {
+        super.dispatchDraw(canvas)
+        return
+      }
+
       // createBlurEffect / drawRenderNode need API 31 and a hardware canvas.
       if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
-          !canvas.isHardwareAccelerated ||
-          blurRadius <= 0f) {
+          !canvas.isHardwareAccelerated) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) logBlurFallbackOnce()
         drawMask(canvas)
         return

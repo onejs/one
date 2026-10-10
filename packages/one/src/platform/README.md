@@ -258,8 +258,9 @@ and the selection does not move. It never reaches the controlled protocol, so th
 optimistic selection to undo and no flash of an empty page. Every tab needs exactly one of
 `onPress` and `children`, and the selection may not name an action tab.
 
-Add `role="search"` to detach it from the main tab bar pill. On iOS 18+ the search role is
-what moves a tab into its own capsule on the trailing side; iOS 27 adds `role="prominent"`.
+Use `role="search"` for Apple's search tab role on iOS 18+. Its placement follows the
+native tab bar; on iOS 27 an inactive search tab can remain in the main pill.
+iOS 27 also supports `role="prominent"`.
 A role below its runtime version throws from the adapter; on iOS 17 tabs render through the
 legacy `TabView`, which has no roles.
 
@@ -307,6 +308,7 @@ are rejected before submitting native props.
 | SwiftUI | One |
 | --- | --- |
 | `TabView(selection:)` | `selection`, `onSelectionChange` |
+| `UITabBarControllerDelegate` asked to select the selected tab | `onReselect` |
 | `tabViewStyle` | `tabViewStyle`: `automatic`, `tabBarOnly`, `sidebarAdaptable`, `page` |
 | `Tab(_:systemImage:/image:value:role:)` | `One.iOS.Tab` `title`, `systemImage` or `image`, `role` |
 | `badge` | `badge` (string or number) |
@@ -494,7 +496,7 @@ that range, and `minimumDate` must not be after `maximumDate`.
 `ColorPicker` `selection` is `#RRGGBB` or `#RRGGBBAA`. `supportsOpacity` defaults
 to true.
 
-`Toggle` `isOn` is a boolean. `toggleStyle` is `automatic`, `button`, or `switch`.
+`Toggle` `isOn` is a boolean or a `useNativeState` handle. `toggleStyle` is `automatic`, `button`, or `switch`.
 `systemImage` is an optional SF Symbol shown beside the label through SwiftUI's
 `Toggle(_:systemImage:isOn:)`; an omitted image keeps the text-only toggle.
 
@@ -565,7 +567,7 @@ function Leaves() {
 
 `Text` renders its `text` verbatim, so it never looks up a localized string. `Label`
 pairs a `label` with a required `systemImage` SF Symbol and localizes the label the way
-SwiftUI does. `Image` renders an SF Symbol with `systemName`, optional `symbolRenderingMode`,
+SwiftUI does. `Image` renders an SF Symbol with `systemName` (`SFSymbolName`, exported from `one`), optional `symbolRenderingMode`,
 `symbolVariant`, `imageScale`, and `variableValue`, or a remote image with `uri` (exactly one of
 the two). A `uri` image loads into `Image(uiImage:)`, fills the frame `swiftStyle` gives it, and
 keeps its own colors, so as a `Button`'s label in a toolbar it becomes the bar item's image: the
@@ -681,7 +683,7 @@ and an unlabeled view is decorative. Explicit stops and arbitrary SwiftUI
 The iOS 27 iPhone 17 Pro proof passed 18 checks covering both radius fractions,
 center movement, off-axis elliptical geometry, reversed colors, one and three
 colors, alpha over yellow, and transparent empty input. The tracked
-`tests/native-features/proofs/elliptical-gradient` bundle has nine AX/PNG pairs,
+`elliptical-gradient` (proof no longer committed) bundle has nine AX/PNG pairs,
 pixel samples, build and generation logs, and source/binary receipt. Other iOS
 versions remain unproven.
 
@@ -698,7 +700,7 @@ and resolved-color initializers are not bound.
 
 The iOS 27 iPhone 17 Pro proof passed 15 checks across 2×2 and 3×3 grids,
 vertex colors and movement, background, smoothing, and both color spaces.
-`tests/native-features/proofs/mesh-gradient` preserves seven AX/PNG states,
+`mesh-gradient` (proof no longer committed) preserves seven AX/PNG states,
 sampled pixels, build and generation logs, and a matching native source and
 binary receipt. Other iOS versions remain unproven.
 
@@ -814,24 +816,43 @@ url, the title and the load progress readable from React. `onNavigate` fires whe
 page's url changes, including redirects and in-page navigation, so it is where an OAuth
 redirect is caught. `onLoadingChange` carries both the loading flag and
 `estimatedProgress`; WebKit coalesces its own progress reporting, so it is not a
-per-frame event.
+per-frame event. `onLoadStart` and `onLoadEnd` follow provisional start and finish.
+`onHistoryChange` reports whether the back-forward list has a page in either direction.
+`onError` carries a failed provisional load. `onHttpError` carries an HTTP status of 400
+or higher and still allows the navigation. `onProcessTerminate` fires when the web
+content process ends.
 
 Pass `html` instead of `url` to render markup the app already holds rather than something
 it fetches. Exactly one of the two is required; passing both, or neither, throws.
 
-The source is loaded once per value, whichever of the two it is. Changing any other prop
-does not reload, because a reload would throw away the scroll position and the
+The source is loaded once per value, whichever of the two it is. Changing an ordinary
+prop does not reload, because a reload would throw away the scroll position and the
 back-forward list.
+
+`script` is JavaScript inserted at document start in the main frame. It is part of the
+page configuration, so changing it builds a new page and loads the source again. The page
+also installs `window.ReactNativeWebView.postMessage`, and those calls arrive as
+`onMessage`.
+
+Commands use the same revision pair as `VideoPlayer`. Raise `commandRevision` by one
+integer and set `command` to `reload`, `goBack`, `goForward`, `evaluate`, or
+`postMessage`. `evaluate` runs `commandValue` as JavaScript. `postMessage` dispatches a
+`message` event whose `data` is `commandValue`. A command without a positive revision, or
+a revision without a command, throws. `evaluate` and `postMessage` require `commandValue`.
+`goBack` and `goForward` traverse the page's own history first, then sources the
+component loaded before, because consecutive html loads leave no native history.
+
+`limitsNavigationsToAppBoundDomains`, `inlineMedia`, and `inspectable` map to the page
+configuration and `isInspectable`. The first two also rebuild the page when they change.
+`bounces` sets the underlying scroll view; the scroll view's content inset adjustment is
+left at `never` so the page uses the box React Native gave it.
 
 `backForwardNavigationGestures`, `magnificationGestures`, `linkPreviews`,
 `elementFullscreen` and `contentBackground` are the SDK's own `webView*` modifiers; each
 is `automatic`, `enabled` or `disabled` (`contentBackground` is a `Visibility`), and an
 omitted value leaves SwiftUI's default in place.
 
-There is no imperative surface: no `goBack`, `reload`, `stopLoading` or JavaScript
-evaluation. Those are commands rather than props, and this package has no command
-mechanism. Text selection (`webViewTextSelection`) and the scroll modifiers are not bound
-either.
+Text selection (`webViewTextSelection`) and the scroll modifiers are not bound.
 
 ## Sharing and the photo library
 
@@ -1244,7 +1265,7 @@ RAN on iOS 27: a bordered prominent Button inside `Host controlSize` and a
 standalone Button using `swiftStyle.controlSize` both grew from 28 to 50.33
 points when changed from `mini` to `extraLarge`, and returned to 28 points
 when restored. The ten-check proof (five control-size checks) is in
-`tests/native-features/proofs/control-size`; other controls and sizes remain
+`control-size` (proof no longer committed); other controls and sizes remain
 unproven by that run.
 This set covers the environment values React Native can express as stable scalar or
 color props and that directly affect appearance, text layout, localization, and
@@ -1788,7 +1809,7 @@ records that React Native hands each payload to the component as
 A browser or preview runtime implements the native contract, not the public one:
 the public adapters in `src/generated/Controls.native.tsx` run unchanged on top,
 so they still validate props, apply the controlled protocol, and supply the
-default height. Soot resolves a Fabric host by its native view name through
+default height. Contrast resolves a Fabric host by its native view name through
 `registerNativeComponentImplementation`, which is the seam this schema targets.
 
 The schema does not yet carry accessibility role or label mapping, an executable
@@ -1830,19 +1851,22 @@ function NameForm() {
   const notify = useNativeState(false)
   return (
     <>
-      <One.iOS.TextField label="Name" text={name.value} onTextChange={name.set} />
+      <One.iOS.TextField label="Name" text={name} onTextChange={() => {}} />
       <One.iOS.Text text={`Hello, ${name.value}`} />
-      <One.iOS.Toggle label="Notify" isOn={notify.value} onIsOnChange={notify.set} />
-      <One.iOS.Toggle label="Notify copy" isOn={notify.value} onIsOnChange={notify.set} />
+      <One.iOS.Toggle label="Notify" isOn={notify} onIsOnChange={() => {}} />
+      <One.iOS.Toggle label="Notify copy" isOn={notify} onIsOnChange={() => {}} />
     </>
   )
 }
 ```
 
-Writes travel through the React render cycle: there is no worklets runtime here,
-so synchronous UI-thread updates are out of scope. The handle also does not pass
-as a prop itself yet (`text={name}`); spread the pair until the generated
-adapters learn the object shape.
+`TextField`, `SecureField`, `TextEditor` and `Toggle` take the handle itself as
+their value prop (`text={name}`, `isOn={notify}`), which is Expo's `SyncToggle`
+and synced `TextField`. The native view binds the handle by id, so a change in one
+bound view reaches the others natively before the change callback runs. Other
+controls take the scalar pair (`value={state.value}` with `state.set`). There is
+no worklets runtime here, so a synchronous UI-thread callback such as Expo's
+`onIsOnChangeSync` is out of scope.
 
 The shared RN slot has three policies. SwiftUI allocates tab bounds and reports
 them to Fabric for Yoga. Passive menu triggers retain Yoga's coordinates and

@@ -55,16 +55,22 @@ export interface NativeAppManifest {
     // One.ImagePicker.launchCamera.
     camera?: string
   }
-  // photos permissions for saving and browsing through one.ios.photolibrary.
+  // photos permissions for saving and browsing. ios prompts come from
+  // these strings; android stamps the media read permissions from
+  // readWrite and the add-only marker plus bounded write permission
+  // from addOnly.
   photoLibrary?: {
     addOnly?: string
     readWrite?: string
   }
-  // ios Contacts permission prompt for One.iOS.Contacts.
+  // Contacts permission prompt for One.Contacts. android stamps the
+  // contacts read and write permissions from usage.
   contacts?: {
     usage: string
   }
-  // full EventKit access for calendar events and reminders.
+  // full EventKit access for calendar events and reminders. android
+  // stamps the calendar read and write permissions from usage;
+  // reminders stay unavailable there.
   calendar?: {
     usage?: string
     remindersUsage?: string
@@ -74,7 +80,9 @@ export interface NativeAppManifest {
     whenInUse: string
     background?: boolean
   }
-  // microphone prompt and background playback for One.iOS.Audio.
+  // microphone prompt and background playback for One.Audio. android
+  // stamps RECORD_AUDIO from microphone and the media-playback
+  // foreground service plus its marker from background.
   audio?: {
     microphone?: string
     background?: boolean
@@ -122,10 +130,10 @@ export interface NativeAppManifest {
       light: string
       dark?: string
     }
-    // extra home screen icons selectable through One.iOS.AppIcon. keys are
+    // extra home screen icons selectable through One.AppIcon. keys are
     // the icon names passed to setIcon; each source is a square 1024px image.
     alternateIcons?: Record<string, { source: string; backgroundColor: string }>
-    // system prompt text for Face ID through One.iOS.LocalAuthentication.
+    // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
     fileSharing?: boolean
@@ -149,13 +157,13 @@ export interface NativeAppManifest {
       description: string
       pushNotifications?: boolean
     }
-    // launch handlers for One.iOS.BackgroundTasks. define the matching JS
+    // launch handlers for One.BackgroundTasks. define the matching JS
     // handlers in the native setupFile so a background-only launch can run.
     backgroundTasks?: {
       refresh?: string[]
       processing?: string[]
     }
-    // statically compiled App Intents for One.iOS.AppIntents. handlers live
+    // statically compiled App Intents for One.AppIntents. handlers live
     // in the native setupFile so Shortcuts can start the app in the background.
     appIntents?: {
       actions: Array<{
@@ -287,15 +295,19 @@ export function validateNativeApp(
         fail(`ios.alternateIcons name "${name}" must be an identifier other than AppIcon`)
       }
       if (!icon?.source || !HEX_COLOR.test(icon.backgroundColor)) {
-        fail(`ios.alternateIcons.${name} requires source and a six-digit hex backgroundColor`)
+        fail(
+          `ios.alternateIcons.${name} requires source and a six-digit hex backgroundColor`
+        )
       }
     }
   }
   if (manifest.ios?.backgroundTasks !== undefined) {
     const tasks = manifest.ios.backgroundTasks
-    if (!tasks ||
+    if (
+      !tasks ||
       (tasks.refresh !== undefined && !Array.isArray(tasks.refresh)) ||
-      (tasks.processing !== undefined && !Array.isArray(tasks.processing))) {
+      (tasks.processing !== undefined && !Array.isArray(tasks.processing))
+    ) {
       fail('ios.backgroundTasks refresh and processing must be arrays of identifiers')
     }
     const identifiers = [...(tasks.refresh ?? []), ...(tasks.processing ?? [])]
@@ -304,7 +316,9 @@ export function validateNativeApp(
     }
     for (const identifier of identifiers) {
       if (typeof identifier !== 'string' || !REVERSE_DNS.test(identifier)) {
-        fail(`ios.backgroundTasks identifier "${identifier}" must use reverse DNS notation`)
+        fail(
+          `ios.backgroundTasks identifier "${identifier}" must use reverse DNS notation`
+        )
       }
     }
   }
@@ -315,15 +329,23 @@ export function validateNativeApp(
     }
     const ids = new Set<string>()
     for (const action of actions) {
-      if (!action || typeof action !== 'object' ||
-        typeof action.id !== 'string' || !action.id.trim() ||
-        typeof action.title !== 'string' || !action.title.trim() ||
+      if (
+        !action ||
+        typeof action !== 'object' ||
+        typeof action.id !== 'string' ||
+        !action.id.trim() ||
+        typeof action.title !== 'string' ||
+        !action.title.trim() ||
         (action.textParameterTitle !== undefined &&
-          (typeof action.textParameterTitle !== 'string' || !action.textParameterTitle.trim())) ||
+          (typeof action.textParameterTitle !== 'string' ||
+            !action.textParameterTitle.trim())) ||
         typeof action.shortcutPhrase !== 'string' ||
         action.shortcutPhrase.split('{app}').length !== 2 ||
-        !action.shortcutPhrase.replace('{app}', '').trim()) {
-        fail('ios.appIntents actions need unique non-empty id/title, optional textParameterTitle, and a shortcutPhrase with one {app}')
+        !action.shortcutPhrase.replace('{app}', '').trim()
+      ) {
+        fail(
+          'ios.appIntents actions need unique non-empty id/title, optional textParameterTitle, and a shortcutPhrase with one {app}'
+        )
       }
       if (ids.has(action.id)) fail(`ios.appIntents action "${action.id}" is duplicated`)
       ids.add(action.id)
@@ -399,17 +421,25 @@ export function validateNativeApp(
     fail('contacts.usage must be a non-empty string')
   }
   if (manifest.calendar !== undefined) {
-    if (!manifest.calendar ||
-      (manifest.calendar.usage === undefined && manifest.calendar.remindersUsage === undefined)) {
+    if (
+      !manifest.calendar ||
+      (manifest.calendar.usage === undefined &&
+        manifest.calendar.remindersUsage === undefined)
+    ) {
       fail('calendar.usage or calendar.remindersUsage must be a non-empty string')
     }
-    if (manifest.calendar.usage !== undefined &&
-      (typeof manifest.calendar.usage !== 'string' || manifest.calendar.usage.trim() === '')) {
+    if (
+      manifest.calendar.usage !== undefined &&
+      (typeof manifest.calendar.usage !== 'string' ||
+        manifest.calendar.usage.trim() === '')
+    ) {
       fail('calendar.usage must be a non-empty string')
     }
-    if (manifest.calendar.remindersUsage !== undefined &&
+    if (
+      manifest.calendar.remindersUsage !== undefined &&
       (typeof manifest.calendar.remindersUsage !== 'string' ||
-        manifest.calendar.remindersUsage.trim() === '')) {
+        manifest.calendar.remindersUsage.trim() === '')
+    ) {
       fail('calendar.remindersUsage must be a non-empty string')
     }
   }
@@ -421,8 +451,10 @@ export function validateNativeApp(
   ) {
     fail('location.whenInUse must be a non-empty string')
   }
-  if (manifest.location?.background !== undefined &&
-    typeof manifest.location.background !== 'boolean') {
+  if (
+    manifest.location?.background !== undefined &&
+    typeof manifest.location.background !== 'boolean'
+  ) {
     fail('location.background must be a boolean')
   }
   if (manifest.audio !== undefined) {
@@ -431,7 +463,8 @@ export function validateNativeApp(
     }
     if (
       manifest.audio.microphone !== undefined &&
-      (typeof manifest.audio.microphone !== 'string' || manifest.audio.microphone.trim() === '')
+      (typeof manifest.audio.microphone !== 'string' ||
+        manifest.audio.microphone.trim() === '')
     ) {
       fail('audio.microphone must be a non-empty string')
     }

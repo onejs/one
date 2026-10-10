@@ -2,6 +2,20 @@
     <!-- normal install-time permission, merged into the app manifest;
          the api-conventions section 6 exception for install-time permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- biometric authentication uses a normal install-time permission. -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- fastest sensor delivery above 200 hz is an install-time permission. -->
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+    <!-- background location watches run under a location-type foreground
+         service; both are normal install-time permissions. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- biometrics-only authentication; normal install-time permission. -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!-- screenshot and recording visibility callbacks; both normal
+         install-time permissions, declared for the api 34/35 gates. -->
+    <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
+    <uses-permission android:name="android.permission.DETECT_SCREEN_RECORDING" />
     <!-- android 11 package visibility: Browser finds the Custom Tabs browser
          through this service action -->
     <queries>
@@ -21,5 +35,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/one_native_file_paths" />
         </provider>
+        <service
+            android:name="dev.onejs.onenative.OneLocationService"
+            android:foregroundServiceType="location"
+            android:exported="false" />
     </application>
 </manifest>

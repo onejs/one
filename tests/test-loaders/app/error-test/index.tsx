@@ -14,7 +14,7 @@ export default function ErrorTestPage() {
   const pageMatch = usePageMatch()
 
   return (
-    <YStack padding="$4">
+    <YStack padding="4">
       <Text testID="error-test-page-data">Page data: {JSON.stringify(data)}</Text>
       <Text testID="error-test-matches-count">Matches: {matches.length}</Text>
       <Text testID="error-test-page-match">

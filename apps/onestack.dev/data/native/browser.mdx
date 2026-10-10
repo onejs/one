@@ -27,4 +27,6 @@ One.Browser.dismissAuthSession()
 
 `open` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSession` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissAuthSession` cancels a pending auth session, whose promise then resolves `dismiss`.
 
+`warmup(browserPackage?)` and `mayLaunchUrl(url, browserPackage?)` are Android Custom Tabs hints: `warmup` starts the browser process early and `mayLaunchUrl` tells it which page you will likely open next, so `open` shows it faster. Each resolves whether the browser accepted the hint. `browserPackage` picks the Custom Tabs browser. iOS and web have no equivalent, so both resolve `false` there. `mayLaunchUrl` validates its URL the same way `open` does.
+
 On web, `open` opens a blank-target tab and a blocked popup rejects with code `E_BROWSER_BLOCKED`; `openAuthSession` rejects with `Browser.openAuthSession needs an iOS or Android build`.

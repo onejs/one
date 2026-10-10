@@ -16,8 +16,8 @@ const typeText = (row: PropDef) =>
 
 // a reference table in the docs' regular table style, with the table's title as the
 // first column header. cells share a baseline so a row's first lines align. phones
-// drop the type column and show the type under the name, where long generic types
-// may break anywhere so the table never scrolls sideways.
+// stack each row in one column: name, type, then description, where long generic
+// types may break anywhere so the table never scrolls sideways.
 export function PropsTable({
   title = 'Props',
   data,
@@ -32,15 +32,15 @@ export function PropsTable({
       <Thead>
         <Tr>
           <Th>{title}</Th>
-          <Th $sm={{ display: 'none' }}>Type</Th>
-          <Th>Description</Th>
+          <Th display="sm:none">Type</Th>
+          <Th display="sm:none">Description</Th>
         </Tr>
       </Thead>
       <Tbody>
         {data.map((row) => (
           <Tr key={row.name}>
             <Td verticalAlign="baseline">
-              <YStack gap="$1.5" ai="flex-start">
+              <YStack gap="1-5" alignItems="flex-start">
                 <CodeInline
                   whiteSpace="nowrap"
                   textDecorationLine={row.deprecated ? 'line-through' : 'none'}
@@ -49,29 +49,33 @@ export function PropsTable({
                   {row.required ? ' (required)' : ''}
                 </CodeInline>
                 <Text
-                  display="none"
-                  $sm={{ display: 'flex' }}
-                  style={{ overflowWrap: 'anywhere' }}
-                  fontFamily="$mono"
+                  display="none sm:flex"
+                  fontFamily="mono"
                   fontSize={13}
-                  lineHeight={18}
-                  color="$color10"
+                  lineHeight="18px"
+                  color="color10"
+                  style={{ overflowWrap: 'anywhere' }}
                 >
                   {typeText(row)}
+                </Text>
+                <Text display="none sm:flex" fontSize="4" color="color12">
+                  {row.description}
                 </Text>
               </YStack>
             </Td>
             <Td
-              $sm={{ display: 'none' }}
-              fontFamily="$mono"
+              display="sm:none"
+              fontFamily="mono"
               fontSize={13}
-              lineHeight={18}
-              color="$color10"
+              lineHeight="18px"
+              color="color10"
               verticalAlign="baseline"
             >
               {typeText(row)}
             </Td>
-            <Td verticalAlign="baseline">{row.description}</Td>
+            <Td display="sm:none" verticalAlign="baseline">
+              {row.description}
+            </Td>
           </Tr>
         ))}
       </Tbody>

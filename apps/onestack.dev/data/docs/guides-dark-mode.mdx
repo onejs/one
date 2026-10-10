@@ -12,25 +12,22 @@ There's about one cross-platform React style library that has excellent SSR supp
 
 Tamagui gives you styling out of the box that works perfectly with no flickers, and even renders properly with JS turned off (give it a try on this very page).
 
-Using our style-library-agnostic `@vxrn/color-scheme` library, you can also let your users choose between three options: light, dark, or system settings - also, fully SSR safe.
+Using our style-library-agnostic `@vxrn/color-scheme` library, you can also let your users choose between three options: light, dark, or system settings - also, fully SSR safe. `one` re-exports everything from `@vxrn/color-scheme`, so you can import these from either package.
 
 Finally, there's another wrinkle in the [theme-color meta tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color) - it also requires some fancy scripting to be SSR safe. Luckily, `@vxrn/color-scheme` helps again with the MetaTheme component.
 
 Here's a complete example in just a few lines of code, all set up in your root `_layout.tsx` file. We're using Tamagui, but if you just want light/dark mode without SSR, you can swap out your own solution.
 
-```tsx
-import { Slot } from 'one'
-import { TamaguiProvider, Theme } from '@tamagui/core'
-import { config } from '@tamagui/config/v3'
-import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
+```tsx fileName=app/_layout.tsx
+import type { ReactNode } from 'react'
+import { MetaTheme, SchemeProvider, Slot, useUserScheme } from 'one'
+import { TamaguiProvider, Theme } from 'tamagui'
+import config from '../tamagui.config'
 
 export default function Layout() {
   return (
     <SchemeProvider>
-      <MetaTheme
-        darkColor={config.themes.dark.color1.val}
-        lightColor={config.themes.light.color1.val}
-      />
+      <MetaTheme darkColor="#050505" lightColor="#ffffff" />
       <TamaguiRoot>
         <Theme name="yellow">
           <Slot />
@@ -40,7 +37,7 @@ export default function Layout() {
   )
 }
 
-const TamaguiRoot = ({ children }) => {
+const TamaguiRoot = ({ children }: { children: ReactNode }) => {
   const userScheme = useUserScheme()
   return (
     <TamaguiProvider disableInjectCSS config={config} defaultTheme={userScheme.value}>
@@ -50,68 +47,37 @@ const TamaguiRoot = ({ children }) => {
 }
 ```
 
+`SchemeProvider` renders a small inline script that sets a `t_dark` or `t_light` class on `<html>` before the page paints, reading the stored setting or falling back to the system preference. It accepts:
+
+- `defaultScheme`: the scheme to use when the user has stored no preference, instead of the system preference.
+- `forceScheme`: lock the page to `light` or `dark`, ignoring stored and system preferences.
+- `getClassName`: change the class name for a scheme (defaults to `` (name) => `t_${name}` ``).
+
+`MetaTheme` takes `darkColor` and `lightColor`. Its inline script picks one before hydration; after that, an optional `color` prop replaces the scheme's color while it is set. `useUserScheme()` returns `{ setting, value, set }`: the stored setting (`system`, `light`, or `dark`), the resolved scheme (`light` or `dark`), and a setter. Outside React, use `getUserScheme`, `setUserScheme`, and `onUserSchemeChange`; `useSystemScheme` and `getSystemScheme` read the operating system's scheme.
+
 Now lets make a toggle button:
 
 ```tsx fileName=features/theme/ThemeToggleButton.tsx
-import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons-2'
-import { useUserScheme } from '@vxrn/color-scheme'
-import { View, Paragraph, YStack } from 'tamagui'
+import { Moon, Sun, SunMoon } from '~/components/icons'
+import { useUserScheme } from 'one'
+import { Button } from 'tamagui'
 
 const schemeSettings = ['light', 'dark', 'system'] as const
 
 export function ThemeToggleButton() {
-  const { onPress, Icon, setting } = useToggleTheme()
+  const { setting, set } = useUserScheme()
+  const Icon = setting === 'system' ? SunMoon : setting === 'dark' ? Moon : Sun
+  const next = schemeSettings[(schemeSettings.indexOf(setting) + 1) % schemeSettings.length]
 
   return (
-    <View group ai="center" containerType="normal" gap="$1">
-      <View
-        p="$3"
-        br="$10"
-        hoverStyle={{
-          bg: '$color2',
-        }}
-        pressStyle={{
-          bg: '$color1',
-        }}
-        pointerEvents="auto"
-        cur="pointer"
-        onPress={onPress}
-      >
-        <Icon size={20} />
-      </View>
-
-      <YStack>
-        <Paragraph
-          animation="100ms"
-          size="$1"
-          mb={-20}
-          color="$color10"
-          o={0}
-          $group-hover={{
-            o: 1,
-          }}
-        >
-          {setting[0].toUpperCase()}
-          {setting.slice(1)}
-        </Paragraph>
-      </YStack>
-    </View>
+    <Button
+      circular
+      icon={<Icon size={20} />}
+      aria-label={`Color scheme: ${setting}`}
+      onPress={() => set(next)}
+    />
   )
 }
-
-export function useToggleTheme() {
-  const userScheme = useUserScheme()
-  const Icon =
-    userScheme.setting === 'system' ? SunMoon : userScheme.setting === 'dark' ? Moon : Sun
-
-  return {
-    setting: userScheme.setting,
-    scheme: userScheme.value,
-    Icon,
-    onPress: () => {
-      const next = schemeSettings[(schemeSettings.indexOf(userScheme.setting) + 1) % 3]
-      userScheme.set(next)
-    },
-  }
-}
 ```
+
+Each press cycles light, dark, and system. The stored setting survives reloads, and with `system` the page follows the operating system's preference.

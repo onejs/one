@@ -12,6 +12,7 @@ import type {
   ReminderInfo,
   ReminderInput,
 } from '../specs/OneCalendar.nitro'
+import { Calendar as unavailableCalendar } from './unavailable'
 
 export type { CalendarEvent, CalendarEventChanges, CalendarPermissionStatus, CalendarRecurrence, CalendarRecurrenceFrequency, ReminderInfo, ReminderInput }
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
@@ -21,7 +22,6 @@ export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
 let hybrid: OneCalendar | undefined
 
 function native(): OneCalendar {
-  if (Platform.OS !== 'ios') throw new Error('Calendar requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneCalendar>('OneCalendar')
   return hybrid
 }
@@ -86,7 +86,7 @@ function deleteReminder(identifier: string): Promise<void> {
   return native().removeReminder(identifier).catch(rethrowNativeError)
 }
 
-export const Calendar = Object.freeze({
+const nativeCalendar = Object.freeze({
   getPermissionStatus,
   requestPermission,
   list,
@@ -100,3 +100,19 @@ export const Calendar = Object.freeze({
   setReminderCompleted,
   deleteReminder,
 })
+
+// Android implements the 6 event methods over CalendarContract. No
+// Android reminders provider exists, so the 6 reminder methods keep the
+// exact unavailable contract.
+const androidCalendar = Object.freeze({
+  ...nativeCalendar,
+  getRemindersPermissionStatus: unavailableCalendar.getRemindersPermissionStatus,
+  requestRemindersPermission: unavailableCalendar.requestRemindersPermission,
+  listReminders: unavailableCalendar.listReminders,
+  createReminder: unavailableCalendar.createReminder,
+  setReminderCompleted: unavailableCalendar.setReminderCompleted,
+  deleteReminder: unavailableCalendar.deleteReminder,
+})
+
+export const Calendar: typeof nativeCalendar =
+  Platform.OS === 'android' ? androidCalendar : nativeCalendar

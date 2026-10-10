@@ -5,6 +5,7 @@ import {
   commonFields,
   type Control,
 } from './controlTypes'
+import { SF_SYMBOL_PUBLIC_TYPE } from './sfSymbolNames'
 
 // leaves with no two-way value: Button signals, Text/Label/ProgressView/Gauge display.
 export const leafControls: Control[] = [
@@ -51,7 +52,7 @@ export const leafControls: Control[] = [
     name: 'Label',
     fields: {
       ...commonFields,
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
     },
     constructors: [
       {
@@ -193,7 +194,7 @@ export const leafControls: Control[] = [
     name: 'Image',
     decorativeWhenUnlabeled: true,
     fields: {
-      systemName: { type: 'string', default: '' },
+      systemName: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       // a remote image drawn with Image(uiImage:), see OneNativeRemoteImage.swift
       uri: { type: 'string', default: '' },
       // how a uri image draws: its own colors, or as a template the container
@@ -231,6 +232,9 @@ export const leafControls: Control[] = [
         nativeValue: 'variableValue !== undefined',
       },
       colorRole: { type: 'string', default: '', publicType: 'IconColorRole' },
+      // Image.resizable(): the symbol scales to the frame instead of drawing at its point
+      // size. a uri image is always resizable.
+      resizable: { type: 'boolean', default: false },
     },
     constructors: [
       {
@@ -249,7 +253,13 @@ export const leafControls: Control[] = [
         if !model.uri.isEmpty {
           OneNativeRemoteImage(uri: model.uri, template: model.renderingMode == "template")
         } else if model.hasVariableValue {
-          Image(systemName: model.systemName, variableValue: model.variableValue)
+          if model.resizable {
+            Image(systemName: model.systemName, variableValue: model.variableValue).resizable()
+          } else {
+            Image(systemName: model.systemName, variableValue: model.variableValue)
+          }
+        } else if model.resizable {
+          Image(systemName: model.systemName).resizable()
         } else {
           Image(systemName: model.systemName)
         }
@@ -263,7 +273,8 @@ export const leafControls: Control[] = [
   if (renderingMode === 'template' && !uri) throw new Error('Image renderingMode applies to a uri image; an SF Symbol is already a template')
   if (variableValue !== undefined && !Number.isFinite(variableValue)) throw new Error('Image variableValue must be a finite number or undefined')
   if (variableValue !== undefined && (variableValue < 0 || variableValue > 1)) throw new Error('Image variableValue must be between 0 and 1')
-  if (colorRole && !iconColorRoles.includes(colorRole)) throw new Error('Image colorRole must be a One.UI icon color role')`,
+  if (colorRole && !iconColorRoles.includes(colorRole)) throw new Error('Image colorRole must be a One.UI icon color role')
+  if (resizable && uri) throw new Error('Image resizable applies to an SF Symbol; a uri image is always resizable')`,
   },
   {
     // the share sheet is UIActivityViewController, which React Native has no equivalent for.
@@ -272,7 +283,7 @@ export const leafControls: Control[] = [
     name: 'ShareLink',
     fields: {
       ...commonFields,
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       item: { type: 'string', default: '' },
       itemType: { type: 'string', default: 'text', publicType: "'text' | 'url'" },
       subject: { type: 'string', default: '' },
@@ -332,7 +343,7 @@ export const leafControls: Control[] = [
     actions: [{ prop: 'onAction', event: 'Action', payload: { id: 'string' } }],
     fields: {
       title: { type: 'string', default: '' },
-      systemImage: { type: 'string', default: '' },
+      systemImage: { type: 'string', default: '', publicType: SF_SYMBOL_PUBLIC_TYPE },
       description: { type: 'string', default: '' },
       actions: actionsField,
     },

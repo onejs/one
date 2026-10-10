@@ -3,11 +3,12 @@ export type { LocationPermissionStatus, LocationPosition, LocationPlace };
 export type LocationWatchError = Error & {
     code: string;
 };
+declare function current(): Promise<LocationPosition>;
 export declare const Location: Readonly<{
     getPermissionStatus: () => LocationPermissionStatus;
     requestWhenInUsePermission: () => Promise<LocationPermissionStatus>;
-    getCurrentPosition: () => Promise<LocationPosition>;
-    watchPosition: (_onPosition: (position: LocationPosition) => void, _onError: (error: LocationWatchError) => void, _options?: {
+    getCurrentPosition: typeof current;
+    watchPosition: (onPosition: (value: LocationPosition) => void, onError: (error: LocationWatchError) => void, options?: {
         background?: boolean;
     }) => (() => void);
     geocodeAddress: (_address: string) => Promise<LocationPlace[]>;

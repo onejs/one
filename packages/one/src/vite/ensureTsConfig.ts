@@ -1,5 +1,4 @@
 import { writeFile } from 'node:fs/promises'
-import '../polyfills-server'
 import { existsAsync } from '../utils/existsAsync'
 
 export function ensureTSConfig() {

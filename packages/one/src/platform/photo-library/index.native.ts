@@ -5,13 +5,13 @@ import type {
   OnePhotoLibrary, PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage,
   PhotoLibraryMediaType, PhotoLibraryPermissionStatus,
 } from '../specs/OnePhotoLibrary.nitro'
+import { PhotoLibrary as unavailablePhotoLibrary } from './unavailable'
 
 export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryAlbum, PhotoLibraryAlbumPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus }
 
 let hybrid: OnePhotoLibrary | undefined
 
 function native(): OnePhotoLibrary {
-  if (Platform.OS !== 'ios') throw new Error('PhotoLibrary requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OnePhotoLibrary>('OnePhotoLibrary')
   return hybrid
 }
@@ -124,7 +124,7 @@ function saveVideo(uri: string): Promise<string> {
   return native().saveVideo(uri).catch(rethrowNativeError)
 }
 
-export const PhotoLibrary = Object.freeze({
+const nativePhotoLibrary = Object.freeze({
   getAddPermissionStatus,
   requestAddPermission,
   getReadPermissionStatus,
@@ -151,3 +151,21 @@ export const PhotoLibrary = Object.freeze({
   saveImage,
   saveVideo,
 })
+
+// Android implements 17 of 25 methods over MediaStore. Collection
+// membership and content edits have no Android equivalent, so those 8
+// keep the exact unavailable contract.
+const androidPhotoLibrary = Object.freeze({
+  ...nativePhotoLibrary,
+  createAlbum: unavailablePhotoLibrary.createAlbum,
+  renameAlbum: unavailablePhotoLibrary.renameAlbum,
+  addAssetToAlbum: unavailablePhotoLibrary.addAssetToAlbum,
+  removeAssetFromAlbum: unavailablePhotoLibrary.removeAssetFromAlbum,
+  deleteAlbum: unavailablePhotoLibrary.deleteAlbum,
+  replaceImageContent: unavailablePhotoLibrary.replaceImageContent,
+  replaceVideoContent: unavailablePhotoLibrary.replaceVideoContent,
+  revertAssetContent: unavailablePhotoLibrary.revertAssetContent,
+})
+
+export const PhotoLibrary: typeof nativePhotoLibrary =
+  Platform.OS === 'android' ? androidPhotoLibrary : nativePhotoLibrary

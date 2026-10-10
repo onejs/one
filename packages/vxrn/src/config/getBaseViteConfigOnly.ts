@@ -20,6 +20,7 @@ export const dedupe = [
   '@react-navigation/bottom-tabs',
   '@tamagui/core',
   '@tamagui/web',
+  '@tamagui/adapt',
   '@tamagui/react-native-web',
   '@tamagui/react-native-web-lite',
   'tamagui',
@@ -64,6 +65,7 @@ export async function getBaseViteConfig(
 
   return {
     mode,
+    assetsInclude: ['**/*.glb'],
 
     // we load the config ourselves
     // if you disable this is disables auto-reloading config changes

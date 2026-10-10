@@ -67,38 +67,11 @@ import {
 } from './platform'
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context'
 
-export type OnePlatform = 'web' | 'ios' | 'android' | 'rnx'
+export type OnePlatform = 'web' | 'ios' | 'android'
 
 export type OneIOS = typeof Swift & {
-  readonly Widgets: typeof Widgets
-  readonly LiveActivities: typeof LiveActivities
   readonly WidgetUI: typeof WidgetUI
-  readonly LocalAuthentication: typeof LocalAuthentication
-  readonly ProtectedStore: typeof ProtectedStore
-  readonly KeepAwake: typeof KeepAwake
-  readonly Print: typeof Print
-  readonly StoreReview: typeof StoreReview
-  readonly QuickActions: typeof QuickActions
-  readonly Location: typeof Location
-  readonly FileSystem: typeof FileSystem
-  readonly Audio: typeof Audio
   readonly CameraView: typeof CameraView
-  readonly Share: typeof Share
-  readonly PhotoLibrary: typeof PhotoLibrary
-  readonly MapServices: typeof MapServices
-  readonly AppTracking: typeof AppTracking
-  readonly AppIcon: typeof AppIcon
-  readonly ScreenOrientation: typeof ScreenOrientation
-  readonly ScreenCapture: typeof ScreenCapture
-  readonly Purchases: typeof Purchases
-  readonly ImageManipulator: typeof ImageManipulator
-  readonly Device: typeof Device
-  readonly Motion: typeof Motion
-  readonly BackgroundTasks: typeof BackgroundTasks
-  readonly AppIntents: typeof AppIntents
-  readonly DeviceAttestation: typeof DeviceAttestation
-  readonly Contacts: typeof Contacts
-  readonly Calendar: typeof Calendar
   readonly Color: ColorType['ios']
   readonly MenuAction: typeof MenuAction
   readonly SplitView: typeof SplitView
@@ -141,6 +114,33 @@ export type OneAPI = {
   readonly openSettings: typeof Open.openSettings
   readonly AppInfo: typeof AppInfo
   readonly Database: typeof Database
+  readonly Widgets: typeof Widgets
+  readonly LiveActivities: typeof LiveActivities
+  readonly LocalAuthentication: typeof LocalAuthentication
+  readonly ProtectedStore: typeof ProtectedStore
+  readonly KeepAwake: typeof KeepAwake
+  readonly Print: typeof Print
+  readonly StoreReview: typeof StoreReview
+  readonly QuickActions: typeof QuickActions
+  readonly Location: typeof Location
+  readonly FileSystem: typeof FileSystem
+  readonly Audio: typeof Audio
+  readonly Share: typeof Share
+  readonly PhotoLibrary: typeof PhotoLibrary
+  readonly MapServices: typeof MapServices
+  readonly AppTracking: typeof AppTracking
+  readonly AppIcon: typeof AppIcon
+  readonly ScreenOrientation: typeof ScreenOrientation
+  readonly ScreenCapture: typeof ScreenCapture
+  readonly Purchases: typeof Purchases
+  readonly ImageManipulator: typeof ImageManipulator
+  readonly Device: typeof Device
+  readonly Motion: typeof Motion
+  readonly BackgroundTasks: typeof BackgroundTasks
+  readonly AppIntents: typeof AppIntents
+  readonly DeviceAttestation: typeof DeviceAttestation
+  readonly Contacts: typeof Contacts
+  readonly Calendar: typeof Calendar
   readonly iOS: Readonly<OneIOS>
   readonly Android: Readonly<OneAndroid>
   readonly UI: Readonly<OneUI>
@@ -163,40 +163,13 @@ function currentPlatform(): OnePlatform {
   const defined =
     Reflect.get(globalThis, '__ONE_PLATFORM__') ??
     (typeof process !== 'undefined' ? process.env.ONE_PLATFORM : undefined)
-  return defined === 'ios' || defined === 'android' || defined === 'rnx' ? defined : 'web'
+  return defined === 'ios' || defined === 'android' ? defined : 'web'
 }
 
 const iOS: Readonly<OneIOS> = Object.freeze({
   ...Swift,
-  Widgets,
-  LiveActivities,
   WidgetUI,
-  LocalAuthentication,
-  ProtectedStore,
-  KeepAwake,
-  Print,
-  StoreReview,
-  QuickActions,
-  Location,
-  FileSystem,
-  Audio,
   CameraView,
-  Share,
-  PhotoLibrary,
-  MapServices,
-  AppTracking,
-  AppIcon,
-  ScreenOrientation,
-  ScreenCapture,
-  Purchases,
-  ImageManipulator,
-  Device,
-  Motion,
-  BackgroundTasks,
-  AppIntents,
-  DeviceAttestation,
-  Contacts,
-  Calendar,
   Color: Color.ios,
   MenuAction,
   SplitView,
@@ -237,6 +210,33 @@ export const One: OneAPI = Object.freeze({
   openSettings: Open.openSettings,
   AppInfo,
   Database,
+  Widgets,
+  LiveActivities,
+  LocalAuthentication,
+  ProtectedStore,
+  KeepAwake,
+  Print,
+  StoreReview,
+  QuickActions,
+  Location,
+  FileSystem,
+  Audio,
+  Share,
+  PhotoLibrary,
+  MapServices,
+  AppTracking,
+  AppIcon,
+  ScreenOrientation,
+  ScreenCapture,
+  Purchases,
+  ImageManipulator,
+  Device,
+  Motion,
+  BackgroundTasks,
+  AppIntents,
+  DeviceAttestation,
+  Contacts,
+  Calendar,
   iOS,
   Android,
   UI,

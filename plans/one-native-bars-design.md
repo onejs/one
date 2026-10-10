@@ -78,7 +78,7 @@ Scope: a written design against One `origin/v2-next` at `7767a3d31` and Contrast
   spacers keep their size. The primary action is last into overflow. The tab bar's
   bottom accessory stays a horizontal bar and never enters the column. Compression is
   chosen with `toolbarCompressionBehavior`, a 27.1 SDK symbol
-  (`~/contrast/plans/sootsim/duo-control-mapping.md:100-163,238`).
+  (`~/contrast/plans/peach/duo-control-mapping.md:100-163,238`).
 
 ## What Apple's Duo page changes (RAN: page data fetched and read in full)
 
@@ -277,7 +277,7 @@ is the recommended path.
 from rebuilding against the 27.1 SDK, with no One code. Apple states the opt-in is the
 rebuild. The proof is running the three fixtures on the iPhone Duo simulator, which
 exists only on pro-64 (Xcode 27.1, iOS 27.1 runtime, per
-`~/contrast/plans/sootsim/conformance/duo-column-conformance.md`). Expected from
+`~/contrast/plans/peach/conformance/duo-column-conformance.md`). Expected from
 Apple's rules, to be checked against the captures: Track A's items stack vertically
 with the spacer collapsed and the prominent item last into overflow; Track B's tab bar
 moves to the column and the accessory stays horizontal; Track C's button pins to the

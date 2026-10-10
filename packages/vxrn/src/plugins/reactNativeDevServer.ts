@@ -58,11 +58,15 @@ export function getNativeAssetContentType(type: string): string {
       return 'image/bmp'
     case 'gif':
       return 'image/gif'
+    case 'glb':
+      return 'model/gltf-binary'
     case 'jpeg':
     case 'jpg':
       return 'image/jpeg'
     case 'json':
       return 'application/json'
+    case 'mp4':
+      return 'video/mp4'
     case 'otf':
       return 'font/otf'
     case 'png':
@@ -71,6 +75,8 @@ export function getNativeAssetContentType(type: string): string {
       return 'image/svg+xml'
     case 'ttf':
       return 'font/ttf'
+    case 'txt':
+      return 'text/plain'
     case 'webp':
       return 'image/webp'
     case 'woff':
@@ -289,11 +295,49 @@ export function createReactNativeDevServerPlugin(
 
         try {
           const contents = await readFile(asset.filePath)
-          res.writeHead(200, {
+          const headers = {
             'Cache-Control': 'no-cache',
+            'Accept-Ranges': 'bytes',
             'Content-Length': String(contents.byteLength),
             'Content-Type': getNativeAssetContentType(asset.type),
-          })
+          }
+          // avfoundation probes remote media with byte ranges before loading it.
+          // ignore unsupported range units, multipart requests and if-range without
+          // a matching validator; these receive the complete representation.
+          const range =
+            req.method === 'GET' &&
+            !req.headers['if-range'] &&
+            /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '')
+          if (range && (range[1] || range[2])) {
+            const size = contents.byteLength
+            const start = range[1]
+              ? Number(range[1])
+              : Math.max(0, size - Number(range[2]))
+            const end =
+              range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1
+            if (
+              !Number.isSafeInteger(start) ||
+              !Number.isSafeInteger(end) ||
+              start > end ||
+              start >= size
+            ) {
+              res.writeHead(416, {
+                ...headers,
+                'Content-Length': '0',
+                'Content-Range': `bytes */${size}`,
+              })
+              res.end()
+              return
+            }
+            res.writeHead(206, {
+              ...headers,
+              'Content-Length': String(end - start + 1),
+              'Content-Range': `bytes ${start}-${end}/${size}`,
+            })
+            res.end(contents.subarray(start, end + 1))
+            return
+          }
+          res.writeHead(200, headers)
           res.end(req.method === 'HEAD' ? undefined : contents)
         } catch (error) {
           console.error(

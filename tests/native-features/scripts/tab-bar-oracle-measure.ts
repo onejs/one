@@ -345,7 +345,7 @@ export function capsules(capture: Capture): CapsuleMeasurement[] {
 
 /**
  * where the page content stops above the bar. the fixture paints the page one flat colour, so
- * this is SwiftUI's own bottom safe-area inset for tab content, which is the number rnx models
+ * this is SwiftUI's own bottom safe-area inset for tab content, which is the number peach models
  * as getFloatingTabBarHeight(). independent variable: the row the page colour ends on. a null
  * result (the page colour never appears) proves the fixture did not paint.
  */

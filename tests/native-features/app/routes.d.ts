@@ -23,10 +23,12 @@ declare module 'one' {
         | `/menu-test`
         | `/one-native`
         | `/one-native-accessibility`
+        | `/one-native-adaptive`
         | `/one-native-android`
         | `/one-native-android-badges`
         | `/one-native-android-cards`
         | `/one-native-android-chips`
+        | `/one-native-android-color`
         | `/one-native-android-dividers`
         | `/one-native-android-filter-chip`
         | `/one-native-android-flow-row`
@@ -34,6 +36,9 @@ declare module 'one' {
         | `/one-native-android-inputs`
         | `/one-native-android-list-items`
         | `/one-native-android-loading`
+        | `/one-native-android-menus`
+        | `/one-native-android-picker-reference`
+        | `/one-native-android-pickers`
         | `/one-native-android-progress`
         | `/one-native-android-segmented`
         | `/one-native-android-selection`
@@ -50,6 +55,7 @@ declare module 'one' {
         | `/one-native-audio`
         | `/one-native-autogen`
         | `/one-native-background-tasks`
+        | `/one-native-blur-proof`
         | `/one-native-browser`
         | `/one-native-building-blocks`
         | `/one-native-calendar`
@@ -109,6 +115,7 @@ declare module 'one' {
         | `/one-native-navigation`
         | `/one-native-network`
         | `/one-native-notifications`
+        | `/one-native-open`
         | `/one-native-paste-button`
         | `/one-native-photo-library`
         | `/one-native-picker-palette`
@@ -147,7 +154,10 @@ declare module 'one' {
         | `/one-native-view-snapshot`
         | `/one-native-view-that-fits`
         | `/one-native-web-photos`
+        | `/one-native-widgets`
+        | `/one-ui-icon`
         | `/one-ui-pager`
+        | `/one-ui-text-input`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`

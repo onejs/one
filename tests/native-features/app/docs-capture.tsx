@@ -1,12 +1,23 @@
 import { useEffect, useState } from 'react'
 import { Stack, useLocalSearchParams } from 'one'
 import { StatusBar, View } from 'react-native'
+import { AndroidComposeScene } from '../docs-captures/AndroidComposeScene'
+import { AndroidMenuScene } from '../docs-captures/AndroidMenuScene'
+import { AndroidIconsScene } from '../docs-captures/AndroidIconsScene'
+import { AndroidColorScene } from '../docs-captures/AndroidColorScene'
 import { IconScene } from '../docs-captures/IconScene'
 import { ImageScene } from '../docs-captures/ImageScene'
 import { IosActionsScene } from '../docs-captures/IosActionsScene'
+import { IosColorScene } from '../docs-captures/IosColorScene'
+import { IosGroupsScene } from '../docs-captures/IosGroupsScene'
 import { IosListsScene } from '../docs-captures/IosListsScene'
+import { IosPresentationsScene } from '../docs-captures/IosPresentationsScene'
+import { IosMediaScene } from '../docs-captures/IosMediaScene'
+import { IosNavigationScene } from '../docs-captures/IosNavigationScene'
 import { IosPickersScene } from '../docs-captures/IosPickersScene'
 import { IosProgressScene } from '../docs-captures/IosProgressScene'
+import { IosStacksScene } from '../docs-captures/IosStacksScene'
+import { IosTabsScene } from '../docs-captures/IosTabsScene'
 import { IosTextScene } from '../docs-captures/IosTextScene'
 import { MapScene } from '../docs-captures/MapScene'
 import { PagerScene } from '../docs-captures/PagerScene'
@@ -26,6 +37,17 @@ const scenes: Record<DocsSceneName, () => React.ReactNode> = {
   'ios-progress': IosProgressScene,
   'ios-text': IosTextScene,
   'ios-lists': IosListsScene,
+  'ios-stacks': IosStacksScene,
+  'ios-groups': IosGroupsScene,
+  'ios-presentations': IosPresentationsScene,
+  'ios-tabs': IosTabsScene,
+  'ios-navigation': IosNavigationScene,
+  'ios-media': IosMediaScene,
+  'ios-color': IosColorScene,
+  'android-compose': AndroidComposeScene,
+  'android-menu': AndroidMenuScene,
+  'android-icons': AndroidIconsScene,
+  'android-color': AndroidColorScene,
 }
 
 // the background alternates pure white and pure black so scripts/docs-capture.ts can

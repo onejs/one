@@ -5,20 +5,20 @@ const TableBase = styled(View, {
   render: 'table',
   display: 'table' as any,
   width: '100%',
-  my: '$4',
+  marginVertical: '4',
 })
 
 const TableWrapper = styled(View, {
   width: '100%',
   overflowX: 'auto' as any,
-  my: '$4',
+  marginVertical: '4',
 })
 
 export const Table = (props: any) => (
   <TableWrapper>
     <TableBase
       className="mdx-table"
-      my={0}
+      marginVertical={0}
       style={{ borderCollapse: 'collapse' }}
       {...props}
     />
@@ -43,26 +43,26 @@ export const Tr = styled(View, {
 export const Th = styled(Text, {
   render: 'th',
   display: 'table-cell' as any,
-  py: '$2.5',
-  px: '$3',
+  paddingVertical: '2-5',
+  paddingHorizontal: '3',
   fontWeight: '600',
-  fontSize: '$4',
-  color: '$color11',
+  fontSize: '4',
+  color: 'color11',
   textAlign: 'left' as any,
   verticalAlign: 'bottom' as any,
   borderBottomWidth: 1,
-  borderColor: '$color7',
+  borderColor: 'color7',
 })
 
 export const Td = styled(Text, {
   render: 'td',
   display: 'table-cell' as any,
-  py: '$2.5',
-  px: '$3',
-  fontSize: '$4',
-  color: '$color12',
+  paddingVertical: '2-5',
+  paddingHorizontal: '3',
+  fontSize: '4',
+  color: 'color12',
   textAlign: 'left' as any,
   verticalAlign: 'top' as any,
   borderBottomWidth: 1,
-  borderColor: '$color4',
+  borderColor: 'color4',
 })

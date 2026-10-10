@@ -8,6 +8,7 @@ export interface ScreenCaptureResult {
 }
 export interface OneScreenCapture extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     getState(): Promise<ScreenCaptureState>;
     captureWindow(): Promise<ScreenCaptureResult>;

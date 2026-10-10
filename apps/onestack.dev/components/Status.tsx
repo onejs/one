@@ -41,13 +41,13 @@ export const Status = ({
   return (
     <Badge
       alignSelf="flex-start"
-      fontFamily="$mono"
+      fontFamily="mono"
       letterSpacing={-0.5}
-      dsp="inline-flex"
       y={-2}
-      mx={6}
-      variant={info.theme}
+      marginHorizontal={6}
       {...rest}
+      display="inline-flex"
+      variant={info.theme}
     >
       {text || info.text}
     </Badge>

@@ -1,13 +1,13 @@
 export { createApp } from './createApp';
 export { One } from './one';
 export { useFonts, useNativeState, useNetworkState, useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform';
-export type { PortalProps, PortalHostProps, FontMap, FontSource, UseFontsResult, NativeState, NetworkState, NetworkStateType, UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, } from './platform';
+export type { PortalProps, PortalHostProps, FontMap, FontSource, UseFontsResult, NativeState, NetworkState, NetworkStateType, UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, SFSymbolName, } from './platform';
 export type { OneRouter } from './interfaces/router';
 /**
  * Image data returned by ?imagedata imports.
  * Install `sharp` to enable this feature: `npm install sharp`
  *
- * NOTE: This interface is also declared in types/env.d.ts for Vite module augmentation.
+ * NOTE: env.d.ts declares the same shape for `?imagedata` module imports.
  * Keep both definitions in sync.
  */
 export interface ImageData {
@@ -40,7 +40,7 @@ export { useHeaderHeight } from './useHeaderHeight';
 export * from '@vxrn/color-scheme';
 export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-context';
 export { onClientLoaderResolve } from './clientLoaderResolver';
-export { createMiddleware, type Middleware } from './createMiddleware';
+export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware';
 export { createAPIRoute, type APIRouteContext, type APIRouteHandler, type WorkerContext, type WorkerEnv, type WorkerExecutionContext, } from './createAPIRoute';
 export { getURL } from './getURL';
 export { Head } from './head';

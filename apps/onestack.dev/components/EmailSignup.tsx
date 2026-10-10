@@ -49,33 +49,31 @@ export const EmailSignup = () => {
   return (
     <View
       theme="yellow"
-      br="$6"
-      borderColor="$color5"
-      mt="$5"
-      gap="$3"
-      w="100%"
-      maw={600}
-      als="center"
-      $gtSm={{
-        px: '$8',
-      }}
+      borderRadius="6"
+      borderColor="color5"
+      marginTop="5"
+      gap="3"
+      width="100%"
+      paddingHorizontal="gtSm:8"
+      maxWidth={600}
+      alignSelf="center"
     >
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
 
       <form onSubmit={handleSubmit} action="/api/mailing-list-signup" method="POST">
-        <View fd="row" gap="$3">
+        <View flexDirection="row" gap="3">
           <Input
             // @ts-ignore TODO
             type={'email' as any}
-            f={1}
-            size="$4"
-            placeholderTextColor="$color11"
+            flex={1}
+            size="4"
+            placeholderTextColor="color11"
             placeholder="Your email, for development updates..."
           />
           <Button
-            size="$4"
+            size="4"
             icon={
-              <Text color="$color11">
+              <Text color="color11">
                 {formState.loading ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -153,10 +151,10 @@ export const EmailSignup = () => {
         {formState.message && (
           <View
             theme={formState.type === 'success' ? 'green' : 'red'}
-            mt="$3"
-            p="$2"
-            br="$4"
-            bg="$color2"
+            marginTop="3"
+            padding="2"
+            backgroundColor="color2"
+            borderRadius="4"
           >
             <Text>{formState.message}</Text>
           </View>

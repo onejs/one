@@ -7,6 +7,11 @@ import { updatesBoot } from '../fixtures/updates-boot'
 // entry-chunk throw and delay, which must run before anything mounts).
 
 const testScreens = [
+  {
+    href: '/one-native-blur-proof',
+    label: 'Blur Proof',
+    testID: 'nav-one-native-blur-proof',
+  },
   { href: '/one-native-portal', label: 'One Portal', testID: 'nav-one-native-portal' },
   { href: '/color-test', label: 'Color API', testID: 'nav-color-test' },
   { href: '/one-ui-pager', label: 'UI Pager', testID: 'nav-one-ui-pager' },
@@ -244,6 +249,11 @@ const testScreens = [
     testID: 'nav-one-native-share',
   },
   {
+    href: '/one-native-open',
+    label: 'One Native Open APIs',
+    testID: 'nav-one-native-open',
+  },
+  {
     href: '/one-native-photo-library',
     label: 'One Native Photo Library',
     testID: 'nav-one-native-photo-library',
@@ -425,6 +435,16 @@ const testScreens = [
     testID: 'nav-one-native-android',
   },
   {
+    href: '/one-native-android-color',
+    label: 'One Android Color',
+    testID: 'nav-one-native-android-color',
+  },
+  {
+    href: '/one-native-android-menus',
+    label: 'One Android Menus',
+    testID: 'nav-one-native-android-menus',
+  },
+  {
     href: '/one-native-android-inputs',
     label: 'One Native Android Inputs',
     testID: 'nav-one-native-android-inputs',
@@ -495,6 +515,11 @@ const testScreens = [
     testID: 'nav-one-native-android-segmented',
   },
   {
+    href: '/one-native-android-pickers',
+    label: 'One Native Android Pickers',
+    testID: 'nav-one-native-android-pickers',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',
@@ -535,9 +560,24 @@ const testScreens = [
     testID: 'nav-one-native-apple-file',
   },
   {
+    href: '/one-native-adaptive',
+    label: 'One Native Adaptive',
+    testID: 'nav-one-native-adaptive',
+  },
+  {
+    href: '/one-ui-icon',
+    label: 'One UI Icon',
+    testID: 'nav-one-ui-icon',
+  },
+  {
     href: '/one-native-image',
     label: 'One Native Image',
     testID: 'nav-one-native-image',
+  },
+  {
+    href: '/one-ui-text-input',
+    label: 'One UI TextInput',
+    testID: 'nav-one-ui-text-input',
   },
   {
     href: '/one-native-clipboard',
@@ -633,6 +673,11 @@ const testScreens = [
     href: '/one-native-app-intents',
     label: 'One Native App Intents',
     testID: 'nav-one-native-app-intents',
+  },
+  {
+    href: '/one-native-widgets',
+    label: 'One Native Widgets',
+    testID: 'nav-one-native-widgets',
   },
 ] as const
 

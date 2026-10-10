@@ -104,7 +104,18 @@ export default function oneBabelPreset(
   }
 
   return {
-    presets: [require(reactNativePresetPath)],
+    // presets run right to left: strip TypeScript exports before expanding
+    // runtime namespace exports, then let the RN module transform consume them.
+    presets: [
+      {
+        plugins: [
+          createRequire(require.resolve('one/package.json')).resolve(
+            '@babel/plugin-transform-export-namespace-from'
+          ),
+        ],
+      },
+      require(reactNativePresetPath),
+    ],
     plugins: hasViteInjectedOnePlugins
       ? []
       : buildOneBabelPlugins({

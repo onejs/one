@@ -1,8 +1,0 @@
-== Compiling HarnessShareExtension (application-extension, strict concurrency) ==
-== Compiling HarnessHost ==
-== Assembling bundles ==
-== Codesigning (ad-hoc, with app-group entitlements) ==
-/Users/n8/one/packages/one/ios/Tests/ShareTarget/UIHarness/.out/HarnessHost.app/PlugIns/HarnessShareExtension.appex: replacing existing signature
-/Users/n8/one/packages/one/ios/Tests/ShareTarget/UIHarness/.out/HarnessHost.app: replacing existing signature
-== Installing on C75DA2BC-721A-491D-A8C4-65943DA33F67 ==
-== Done: dev.one.sharetargetharness installed ==

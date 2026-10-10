@@ -1,4 +1,4 @@
-import { Platform } from 'react-native'
+import { validateCallback } from '../validateCallback'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -7,12 +7,14 @@ import type {
   ScreenOrientationValue,
 } from '../specs/OneScreenOrientation.nitro'
 
-export type { ScreenOrientationLock, ScreenOrientationValue } from '../specs/OneScreenOrientation.nitro'
+export type {
+  ScreenOrientationLock,
+  ScreenOrientationValue,
+} from '../specs/OneScreenOrientation.nitro'
 
 let hybrid: OneScreenOrientation | undefined
 
 function native(): OneScreenOrientation {
-  if (Platform.OS !== 'ios') throw new Error('ScreenOrientation requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneScreenOrientation>('OneScreenOrientation')
   return hybrid
 }
@@ -29,8 +31,10 @@ function unlock(): Promise<ScreenOrientationValue> {
   return native().unlock().catch(rethrowNativeError)
 }
 
-function addChangeListener(onChange: (orientation: ScreenOrientationValue) => void): () => void {
-  if (typeof onChange !== 'function') throw new TypeError('ScreenOrientation.addChangeListener requires a function')
+function addChangeListener(
+  onChange: (orientation: ScreenOrientationValue) => void
+): () => void {
+  validateCallback(onChange, 'ScreenOrientation.addChangeListener requires a function')
   return native().addChangeListener(onChange)
 }
 

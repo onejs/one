@@ -1,6 +1,6 @@
 import { Slot } from 'one'
 
-// mirrors soot: root layout is +ssg so the shell is statically generated.
+// mirrors contrast: root layout is +ssg so the shell is statically generated.
 // child routes hydrate on top of this spa-default tree.
 export default function RootLayout() {
   return (

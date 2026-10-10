@@ -1,6 +1,6 @@
 {
   "name": "vxrn",
-  "version": "2.6.0",
+  "version": "1.27.1",
   "sideEffects": false,
   "type": "module",
   "exports": {
@@ -38,6 +38,14 @@
     "./swift-package-id": {
       "types": "./types/swift-package-id.d.ts",
       "default": "./dist/swift-package-id.mjs"
+    },
+    "./background-computation": {
+      "types": "./types/backgroundComputation.d.ts",
+      "default": "./dist/backgroundComputation.mjs"
+    },
+    "./background-computation-native": {
+      "types": "./types/backgroundComputationNative.d.ts",
+      "default": "./dist/backgroundComputationNative.mjs"
     }
   },
   "module": "dist",
@@ -70,6 +78,7 @@
     "@jridgewell/remapping": "^2.3.0",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@react-native/codegen": "^0.87.1",
+    "@react-native-community/cli": "^20.2.0",
     "@react-native-community/cli-config": "^20.2.0",
     "@react-native/dev-middleware": "^0.87.1",
     "@vxrn/compiler": "workspace:*",
@@ -102,15 +111,15 @@
     "pkg-types": "^1.0.3",
     "rolldown": "^1.2.8",
     "semver": "^7.6.3",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "vite": "^8.2.2",
-    "ws": "^8.21.0"
+    "ws": "^8.21.0",
+    "sucrase": "3.35.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@jridgewell/gen-mapping": "^0.3.5",
-    "@react-native-community/cli": "^20.2.0",
-    "@tamagui/build": "3.0.0-beta.1432.1",
+    "@tamagui/build": "3.0.0-beta.1670.1",
     "@types/find-node-modules": "^2.1.2",
     "@types/node": "^24.10.0",
     "@types/ws": "^8.18.1",

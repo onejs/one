@@ -10,7 +10,7 @@ The Opus review is recorded in `one-native-opus-review.md`. Before expanding:
 
 - Match SDK constructors by full parameter labels/types and fail on ambiguity.
 - Parse both Swift availability forms and typecheck generated Swift at iOS 18.
-- Emit a normalized component/props/events/slots schema for Soot.
+- Emit a normalized component/props/events/slots schema for Contrast.
 - Share the RN slot implementation with explicit allocation/interaction policy.
 - Share optimistic controlled values, numbered events, acknowledgements and reset revisions.
 - Compare menu payloads before Objective-C allocation; make conversion reusable.
@@ -26,6 +26,32 @@ exists. Keep validation at public boundaries; do not silently replace invalid
 selection or unsupported styles. General content measurement and arbitrary
 modifier chains remain separate work. Fixed-detent sheets do not require a
 content-sized layout engine.
+
+## Expo UI component parity (2026-10-05)
+
+Goal (2026-10-05): general parity with Expo UI and the most popular Expo packages, full Compose and SwiftUI coverage, and Peach conformance for all of it.
+
+**RAN** (export diff of `@expo/ui@58.0.0-canary-20260909-ea7a89a` against `One.iOS` and `One.Compose` at v2-beta e5cd3d60a): each Expo UI component and its One counterpart. Peach visual grades for `Swift.*` live in Contrast's `plans/peach/conformance/swiftui-surface-inventory.md`; this table only records whether a counterpart exists.
+
+iOS (`@expo/ui/swift-ui`):
+
+| Expo UI | One | status |
+| --- | --- | --- |
+| Host, HStack, VStack, ZStack, LazyHStack, LazyVStack, Grid, Group, Form, Section, LabeledContent, List, ScrollView, Spacer, Divider, DisclosureGroup, ControlGroup, GlassEffectContainer, Overlay, Link, Menu, ContextMenu, SwipeActions, Popover, Alert, ConfirmationDialog, Button, Text, Label, Image, Picker, DatePicker, ColorPicker, Toggle, Slider, Stepper, TextField, SecureField, ProgressView, Gauge, ShareLink, ContentUnavailableView, shapes | same name under `Swift.*` | counterpart |
+| BottomSheet | `Swift.Sheet` | counterpart |
+| TabView | `Swift.Tabs`, `Swift.Pager` | counterpart |
+| RNHostView | `Swift.Slot` | counterpart |
+| Background, Mask | `Swift.ViewSlot name="background"` / `"mask"` | counterpart |
+| Namespace | implicit per host (`matchedGeometryEffect`, `glassEffectID` take ids) | counterpart |
+| SyncToggle | `Swift.Toggle isOn={useNativeState(...)}` (e5cd3d60a) | counterpart; no worklet `onIsOnChangeSync` |
+| useNativeState | `useNativeState` | counterpart |
+| Chart | none | gap: new public API, Apple-shaped `Chart` plus mark children; Peach has no Chart renderer for Expo either |
+| withAnimation | `animation` modifier only | gap: imperative transaction API |
+| AccessoryWidgetBackground | none in `Swift.*` | gap: widget-only, belongs with `WidgetUI` |
+
+Modifiers: every Expo modifier has an SDK-named One counterpart through `swiftStyle` or `ViewSlot` except the widget-only `widgetURL`, `widgetAccentedRenderingMode`, `activityBackgroundTint`.
+
+Android (`@expo/ui/jetpack-compose`): One.Compose has 50 nodes. DatePicker, TimePicker and their dialogs landed in b1326e261 with emulator proof. No counterpart yet for AnimatedVisibility, BasicAlertDialog, Carousel, DateRangePicker and its dialog, DockedSearchBar and SearchBar, DropdownMenu and ExposedDropdownMenuBox, HorizontalFloatingToolbar, HorizontalPager (One.UI.Pager is the uniform pager), Image, LazyColumn, LazyRow, ModalBottomSheet, NavigationBar, PullToRefreshBox, Shape, Snackbar, SyncSwitch and Tooltip. Android follows the iOS gaps.
 
 ## Coverage target
 
@@ -83,7 +109,7 @@ runtime behavior. The current package remains usable during migration.
 - Compile generated output and check regeneration determinism. CI runs
   `generate:check`, TypeScript typecheck, package tests, then a native-features
   consumer prebuild, `pod install`, and xcodebuild.
-- Capture screenshots and machine-readable outcomes for future Soot conformance.
+- Capture screenshots and machine-readable outcomes for future Contrast conformance.
 - Measure package/JS/native size separately. Report runtime environment and configuration.
 - After 3–4 substantial families work, hand the committed branch, test commands,
   coverage matrix, failures, and worker ownership to Opus at extra-high reasoning.

@@ -291,59 +291,58 @@ function FiberPane({
 
     let renderer: THREE.WebGPURenderer | null = null
     let canvas: unknown = null
-    try {
-      const context = ref.current?.getContext('webgpu')
-      if (!context) {
-        settle(() => onError('no webgpu context'))
-        return
+    let cancelled = false
+    const run = async () => {
+      try {
+        const context = ref.current?.getContext('webgpu')
+        if (!context) {
+          settle(() => onError('no webgpu context'))
+          return
+        }
+        canvas = context.canvas
+        const sized = canvas as unknown as {
+          width: number
+          height: number
+          clientWidth: number
+          clientHeight: number
+        }
+        sized.width = width * PixelRatio.get()
+        sized.height = height * PixelRatio.get()
+        renderer = new THREE.WebGPURenderer({
+          antialias: true,
+          canvas: canvas as HTMLCanvasElement,
+          context,
+        })
+        const active = renderer
+        // R3F starts its frame loop when the root mounts, so init must finish
+        // before configure/render rather than inside the onCreated callback.
+        await active.init()
+        if (cancelled) return
+        const renderFrame = active.render.bind(active)
+        active.render = ((scene: THREE.Scene, camera: THREE.Camera) => {
+          renderFrame(scene, camera)
+          context.present()
+        }) as typeof active.render
+        root.current = createRoot(canvas as HTMLCanvasElement)
+        await root.current.configure({
+          size: { top: 0, left: 0, width, height },
+          events,
+          gl: active as never,
+          frameloop: 'always',
+          dpr: 1,
+          onCreated: () => settle(onReady),
+        })
+        if (cancelled) return
+        root.current.render(<FiberScene onTick={onTick} />)
+      } catch (error) {
+        settle(() =>
+          onError(error instanceof Error ? error.message.slice(0, 80) : 'mount failed')
+        )
       }
-      canvas = context.canvas
-      const sized = canvas as unknown as {
-        width: number
-        height: number
-        clientWidth: number
-        clientHeight: number
-      }
-      sized.width = width * PixelRatio.get()
-      sized.height = height * PixelRatio.get()
-      renderer = new THREE.WebGPURenderer({
-        antialias: true,
-        canvas: canvas as HTMLCanvasElement,
-      })
-      const active = renderer
-      root.current = createRoot(canvas as HTMLCanvasElement)
-      root.current.configure({
-        size: { top: 0, left: 0, width, height },
-        events,
-        gl: active as never,
-        frameloop: 'always',
-        dpr: 1,
-        onCreated: async (state) => {
-          try {
-            // R3F types gl as WebGLRenderer; the configured renderer is a
-            // WebGPURenderer, which init()s explicitly and presents manually.
-            const gl = state.gl as unknown as THREE.WebGPURenderer
-            await gl.init()
-            const renderFrame = gl.render.bind(gl)
-            gl.render = ((scene: THREE.Scene, camera: THREE.Camera) => {
-              renderFrame(scene, camera)
-              context.present()
-            }) as typeof gl.render
-            settle(onReady)
-          } catch (error) {
-            settle(() =>
-              onError(error instanceof Error ? error.message.slice(0, 80) : 'init failed')
-            )
-          }
-        },
-      })
-      root.current.render(<FiberScene onTick={onTick} />)
-    } catch (error) {
-      settle(() =>
-        onError(error instanceof Error ? error.message.slice(0, 80) : 'mount failed')
-      )
     }
+    void run()
     return () => {
+      cancelled = true
       clearTimeout(verdictTimer)
       console.error = originalError
       if (canvas != null) unmountComponentAtNode(canvas as HTMLCanvasElement)

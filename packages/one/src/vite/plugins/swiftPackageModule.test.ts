@@ -17,7 +17,7 @@ function swiftFixture(expo = false) {
   writeFileSync(join(packageDir, 'Package.swift'), 'let package = Package(name: "Audio")\n')
   const source = join(packageDir, 'Audio.swift')
   const sibling = join(packageDir, 'Helper.swift')
-  writeFileSync(source, 'final class AudioMath: RNXModule { func rms(_ values: [Double]) -> Double { 1 } }\n')
+  writeFileSync(source, 'final class AudioMath: PeachModule { func rms(_ values: [Double]) -> Double { 1 } }\n')
   writeFileSync(sibling, 'struct Helper { let value = 1 }\n')
   return { root, packageDir, source, sibling }
 }
@@ -42,7 +42,7 @@ describe('swift package native module', () => {
     expect(watched).toContain(fixture.sibling)
     expect(readFileSync(join(fixture.packageDir, '.one-native-source.json'), 'utf8')).toContain('AudioMath')
 
-    writeFileSync(fixture.sibling, 'final class Helper: RNXModule { func next() -> Int { 2 } }\n')
+    writeFileSync(fixture.sibling, 'final class Helper: PeachModule { func next() -> Int { 2 } }\n')
     const changed = renderSwiftPackageModule(fixture.source, 'ios', fixture.root)
     expect(changed.code).not.toBe(metro.code)
     expect(changed.code).toContain('AudioMath')

@@ -11,6 +11,8 @@ import type {
   ComposeCheckboxProps,
   ComposeColumnProps,
   ComposeContainedLoadingIndicatorProps,
+  ComposeDatePickerDialogProps,
+  ComposeDatePickerProps,
   ComposeDialogProps,
   ComposeDividerProps,
   ComposeElevatedCardProps,
@@ -35,6 +37,8 @@ import type {
   ComposeSwitchProps,
   ComposeTextFieldProps,
   ComposeTextProps,
+  ComposeTimePickerDialogProps,
+  ComposeTimePickerProps,
   ComposeToggleButtonProps,
 } from './composeTypes'
 
@@ -282,6 +286,22 @@ function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps
   return unsupported('ContainedLoadingIndicator')
 }
 
+function DatePicker(_props: ComposeDatePickerProps): never {
+  return unsupported('DatePicker')
+}
+
+function TimePicker(_props: ComposeTimePickerProps): never {
+  return unsupported('TimePicker')
+}
+
+function DatePickerDialog(_props: ComposeDatePickerDialogProps): never {
+  return unsupported('DatePickerDialog')
+}
+
+function TimePickerDialog(_props: ComposeTimePickerDialogProps): never {
+  return unsupported('TimePickerDialog')
+}
+
 export const Compose = {
   Column,
   Row,
@@ -333,4 +353,8 @@ export const Compose = {
   CircularWavyProgressIndicator,
   LoadingIndicator,
   ContainedLoadingIndicator,
+  DatePicker,
+  TimePicker,
+  DatePickerDialog,
+  TimePickerDialog,
 }

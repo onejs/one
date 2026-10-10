@@ -56,7 +56,7 @@ export interface ReminderInfo {
   recurrence?: CalendarRecurrence
 }
 
-export interface OneCalendar extends HybridObject<{ ios: 'swift' }> {
+export interface OneCalendar extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getPermissionStatus(): CalendarPermissionStatus
   requestPermission(): Promise<CalendarPermissionStatus>
   list(startMs: number, endMs: number, limit: number): Promise<CalendarEvent[]>

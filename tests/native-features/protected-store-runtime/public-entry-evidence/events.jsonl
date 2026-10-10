@@ -1,0 +1,14 @@
+{"time":"2026-10-05T09:42:12.493Z","event":"ready"}
+{"time":"2026-10-05T09:42:55.254Z","event":"command","id":"public-entry-before","operation":"createItem","key":"public-entry-roundtrip","policy":"userPresence","reason":"Protected proof public-entry-before","value":"public entry value"}
+{"time":"2026-10-05T09:42:55.257Z","event":"result","id":"public-entry-before","outcome":"rejected","message":"Error: ProtectedStore.createItem needs an iOS or Android build","elapsedMs":0}
+{"time":"2026-10-05T09:42:57.126Z","event":"ready"}
+{"time":"2026-10-05T09:42:58.405Z","event":"ready"}
+{"time":"2026-10-05T09:43:24.075Z","event":"ready"}
+{"time":"2026-10-05T09:43:47.744Z","event":"command","id":"public-entry-create","operation":"createItem","key":"public-entry-roundtrip","policy":"userPresence","reason":"Protected proof public-entry-create","value":"public entry value"}
+{"time":"2026-10-05T09:43:47.795Z","event":"result","id":"public-entry-create","outcome":"resolved","elapsedMs":48}
+{"time":"2026-10-05T09:43:47.797Z","event":"command","id":"public-entry-get","operation":"getItem","key":"public-entry-roundtrip","policy":"userPresence","reason":"Protected proof public-entry-get"}
+{"time":"2026-10-05T09:43:51.156Z","event":"result","id":"public-entry-get","outcome":"resolved","value":"public entry value","elapsedMs":3355}
+{"time":"2026-10-05T09:43:51.158Z","event":"command","id":"public-entry-delete","operation":"deleteItem","key":"public-entry-roundtrip","policy":"userPresence","reason":"Protected proof public-entry-delete"}
+{"time":"2026-10-05T09:43:54.343Z","event":"result","id":"public-entry-delete","outcome":"resolved","elapsedMs":3183}
+{"time":"2026-10-05T09:43:54.345Z","event":"command","id":"public-entry-missing","operation":"getItem","key":"public-entry-roundtrip","policy":"userPresence","reason":"Protected proof public-entry-missing"}
+{"time":"2026-10-05T09:43:54.355Z","event":"result","id":"public-entry-missing","outcome":"resolved","value":null,"elapsedMs":8}

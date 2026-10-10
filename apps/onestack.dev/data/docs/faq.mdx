@@ -12,7 +12,7 @@ Yes! Thanks to many web bug fixes, tests and improvements, and native landing [M
 
 ### Does this use Metro?
 
-One supports two modes: [Metro mode](/docs/metro-mode) (recommended) uses Metro for native builds with maximum compatibility, while Vite-only mode is more experimental but offers a unified bundler experience.
+One uses Rolldown for native builds by default, with a unified bundler experience. [Metro mode](/docs/metro-mode) is available for dependencies that need Metro, with maximum compatibility.
 
 ### How does this relate to Expo Router?
 
@@ -60,7 +60,7 @@ SSG (Static Site Generation) pre-renders pages at build time - fast and cacheabl
 
 ### Can I use my existing React Native libraries?
 
-Yes. With [Metro mode](/docs/metro-mode) (recommended), you get full compatibility with the React Native ecosystem. For libraries that have issues with Vite, One provides a [`patches` system](/docs/configuration#patches) to fix common problems like Flow types or JSX in `.js` files.
+Yes. With [Metro mode](/docs/metro-mode), you get full compatibility with the React Native ecosystem. For libraries that have issues with Vite, One provides a [`patches` system](/docs/configuration#patches) to fix common problems like Flow types or JSX in `.js` files.
 
 ### How do I deploy a One app?
 
@@ -82,7 +82,7 @@ The core routing and rendering logic is under 20KB gzipped, but it brings in Rea
 
 ### Can I use One with an existing React Native app?
 
-Yes. One can be added incrementally to existing React Native projects. Start by installing `one` and setting up file-based routing alongside your existing navigation. [Metro mode](/docs/metro-mode) ensures compatibility with your current native setup.
+Yes. One can be added incrementally to existing React Native projects. Start by installing `one` and setting up file-based routing alongside your existing navigation. [Metro mode](/docs/metro-mode) keeps compatibility with your current native setup.
 
 ### Does One support monorepos?
 

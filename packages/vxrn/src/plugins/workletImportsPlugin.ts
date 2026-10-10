@@ -4,7 +4,8 @@ import { dirname, isAbsolute, join } from 'node:path'
 import { statSync } from 'node:fs'
 import { rolldown, type Plugin } from 'rolldown'
 import { parseSync } from 'oxc-parser'
-import { getClosureVariables, JS_GLOBALS, transformHermesLoops } from '@vxrn/compiler'
+import { createBackgroundWorkletModule } from '../backgroundComputation'
+import { prepareBackgroundWorkletModule } from '../backgroundComputationNative'
 import { hermesCompatSWCPlugin, hermesLoopsPlugin } from '../utils/createNativeDevEngine'
 
 /**
@@ -40,7 +41,12 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
       const instance: Plugin = {
         name: 'vxrn:worklet-imports:bundle',
         async resolveId(source, importer, options) {
-          const names = selections.get(source)
+          const marker = '?one-background='
+          const selected = source.indexOf(marker)
+          const names =
+            selected < 0
+              ? selections.get(source)
+              : [decodeURIComponent(source.slice(selected + marker.length))]
           if (!names) return
           if (!names.length)
             throw new Error(`[worklet imports] no exports selected for ${source}`)
@@ -48,7 +54,11 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
             throw new Error(`[worklet imports] ${source} requires a static ESM import`)
           }
           rejectRuntimeDependency(source)
-          const resolved = await this.resolve(source, importer, { skipSelf: true })
+          const resolved = await this.resolve(
+            selected < 0 ? source : source.slice(0, selected),
+            importer,
+            { skipSelf: true }
+          )
           if (
             !resolved ||
             resolved.external ||
@@ -173,7 +183,7 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
               )
             }
             // also cover closure-bearing loops in helpers emitted by the bundler.
-            code = transformHermesLoops(chunk.code, id)?.code ?? chunk.code
+            code = chunk.code
             for (const file of await bundle.watchFiles) {
               if (isAbsolute(file)) outerContext.addWatchFile(file)
             }
@@ -181,40 +191,12 @@ export function workletImportsPlugin(imports: Record<string, readonly string[]>)
             await bundle.close()
           }
 
-          const loader = `__oneLoadWorkletModule_${selected.key}`
-          const loaderCode = `function ${loader}() {
-  'worklet';
-  const cache = globalThis.__oneWorkletImportCache || (globalThis.__oneWorkletImportCache = new WeakMap());
-  let namespace = cache.get(${loader});
-  if (namespace === undefined) {
-    ${code}
-    namespace = __oneWorkletBundle;
-    cache.set(${loader}, namespace);
-  }
-  return namespace;
-}`
-          const parsed = parseSync(id, loaderCode, { lang: 'js' })
-          if (parsed.errors.length) throw new Error(parsed.errors[0].message)
-          const captures = getClosureVariables(
-            parsed.program.body[0],
-            new Set([...JS_GLOBALS, 'arguments'])
+          const moduleSource = createBackgroundWorkletModule(
+            code,
+            selected.names,
+            selected.key
           )
-          if (captures.length) {
-            throw new Error(
-              `[worklet imports] ${selected.entry} requires unsupported runtime globals: ${captures.join(', ')}`
-            )
-          }
-          return `${loaderCode}\n${selected.names
-            .map(
-              (name, index) => `
-function __oneExport${index}(...args) {
-  'worklet';
-  return (0, ${loader}().__export${index})(...args);
-}
-export { __oneExport${index} as ${JSON.stringify(name)} };
-`
-            )
-            .join('\n')}`
+          return prepareBackgroundWorkletModule(moduleSource, selected.entry)
         },
       }
       return {

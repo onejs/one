@@ -1,137 +1,218 @@
-import { useState } from 'react'
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useRef, useState, type ComponentRef } from 'react'
+import { PixelRatio, Platform, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
-// runtime proof for the native-effects track. mirrors Contrast Mobile's
-// consumption 1:1: a BottomBlurBand-shaped progressive blur over a scrolling
-// list, a masked fade band, a core-gradient overlay band, a tinted blur
-// card, and an arbitrary-element mask. every section carries a mounted
-// marker for Maestro plus negative controls (no-edge passthrough, zero
-// radius/intensity, invalid mask) proving the primitives — not the content —
-// draw the effect. readings travel as labels: RN Text testIDs vanish from
-// the accessibility snapshot while Pressable IDs survive.
-const ROWS = Array.from({ length: 24 }, (_, i) => i)
+const effects = ['mask', 'edge-mask', 'overlay', 'edge-blur', 'blur'] as const
+const variants = ['canonical', 'bypass', 'wrong', 'zero', 'wrong-child'] as const
+type Effect = (typeof effects)[number]
+type Variant = (typeof variants)[number]
+const custom = {
+  type: 'stops' as const,
+  values: [1, 1, 0, 0] as [number, number, ...number[]],
+}
+const linearBezier = { type: 'cubicBezier' as const, x1: 0, y1: 0, x2: 1, y2: 1 }
 
-function Stripes({ testID }: { testID: string }) {
+function Stripes({
+  foreground = false,
+  opacity = 1,
+}: {
+  foreground?: boolean
+  opacity?: number
+}) {
   return (
-    <View testID={testID}>
-      {ROWS.map((i) => (
+    <View style={[foreground ? styles.foreground : styles.fill, { opacity }]}>
+      {Array.from({ length: foreground ? 10 : 60 }, (_, i) => (
         <View
           key={i}
-          style={[styles.row, { backgroundColor: i % 2 === 0 ? '#111827' : '#f8fafc' }]}
+          style={{
+            // opaque stripe edges must align in the blurred and sharp references.
+            height:
+              PixelRatio.roundToNearestPixel((i + 1) * 4) -
+              PixelRatio.roundToNearestPixel(i * 4),
+            flexDirection: 'row',
+          }}
         >
-          <Text style={{ color: i % 2 === 0 ? '#f8fafc' : '#111827' }}>{`row ${i}`}</Text>
+          <View style={{ flex: 1, backgroundColor: i % 2 ? '#808080' : '#000000' }} />
+          <View style={{ flex: 1, backgroundColor: i % 2 ? '#ffffff' : '#808080' }} />
         </View>
       ))}
     </View>
   )
 }
 
+// each effect occupies the same measured stage. controls change the actual
+// primitive while retaining content and labels, so pixels must distinguish it.
 export default function OneNativeEffects() {
-  const [band, setBand] = useState(true)
-  return (
-    <View style={styles.screen}>
-      <Text testID="one-native-effects-mounted">Effects proof mounted</Text>
-
-      {/* Contrast BottomBlurBand shape: scrolling content under a pinned
-          progressive blur with live controls above it. */}
-      <View style={styles.stage} testID="one-native-effects-stage">
-        <ScrollView style={styles.fill}>
-          <Stripes testID="one-native-effects-stripes" />
-        </ScrollView>
-        {band && (
-          <One.UI.EdgeFade
-            testID="one-native-effects-blur-band"
-            mode="blur"
-            bottom={140}
-            blurRadius={24}
-            curve="gentle"
-            style={styles.band}
-          >
-            <View style={styles.bandContent}>
-              <Text style={styles.bandText}>blur band live</Text>
-              <Pressable
-                testID="one-native-effects-band-toggle"
-                style={styles.chip}
-                onPress={() => setBand(false)}
-              >
-                <Text>Hide band</Text>
-              </Pressable>
-            </View>
-          </One.UI.EdgeFade>
-        )}
-      </View>
-
-      {/* progressive mask over stripes. */}
-      <One.UI.EdgeFade testID="one-native-effects-mask" mode="mask" top={48} bottom={48}>
-        <Stripes testID="one-native-effects-mask-stripes" />
-      </One.UI.EdgeFade>
-
-      {/* RN-core overlay gradient over a solid block (no native code). */}
-      <One.UI.EdgeFade
-        testID="one-native-effects-overlay"
-        mode="overlay"
-        top={64}
-        color="#0f172a"
-        style={styles.overlayBlock}
-      >
-        <Text style={styles.overlayText}>overlay over solid</Text>
-      </One.UI.EdgeFade>
-
-      {/* regular tinted blur with a sharp child on top. */}
-      <View style={styles.blurStage}>
-        <Stripes testID="one-native-effects-blur-stripes" />
-        <One.UI.Blur
-          testID="one-native-effects-blur"
-          tint="systemChromeMaterial"
-          intensity={60}
-          style={styles.blurCard}
-        >
-          <Text style={styles.blurText}>sharp on blur</Text>
-        </One.UI.Blur>
-      </View>
-
-      {/* arbitrary-element mask: content shows only inside the diamond. */}
+  const [effect, setEffect] = useState<Effect>('mask')
+  const [variant, setVariant] = useState<Variant>('canonical')
+  const [bounds, setBounds] = useState({ x: 0, y: 0, width: 0, height: 0 })
+  const stage = useRef<ComponentRef<typeof View>>(null)
+  const curve = variant === 'wrong' ? 'linear' : custom
+  const bypass = variant === 'bypass'
+  const content = (
+    <View
+      style={[
+        styles.fill,
+        {
+          backgroundColor:
+            effect === 'mask'
+              ? variant === 'zero'
+                ? '#000000'
+                : '#ff00ff'
+              : variant === 'zero'
+                ? '#000000'
+                : '#ffffff',
+        },
+      ]}
+    />
+  )
+  let subject
+  if (effect === 'mask') {
+    subject = bypass ? (
+      content
+    ) : (
       <One.UI.Mask
-        testID="one-native-effects-mask-element"
-        style={styles.arbitraryMask}
-        maskElement={<View style={styles.diamond} />}
+        style={styles.fill}
+        maskElement={
+          <View style={styles.fill}>
+            <View style={[styles.maskHalf, { opacity: variant === 'wrong' ? 1 : 0.5 }]} />
+            <View style={[styles.maskHalf, { top: 120 }]} />
+          </View>
+        }
       >
-        <Stripes testID="one-native-effects-arbitrary-stripes" />
+        {content}
       </One.UI.Mask>
-
-      {/* negative controls: each must render identically to unstyled content. */}
-      <Text>Negatives (must match plain content)</Text>
-      <One.UI.EdgeFade testID="one-native-effects-negative-noedge">
-        <Text>no edges enabled</Text>
+    )
+  } else if (effect === 'edge-mask' || effect === 'overlay') {
+    subject = (
+      <One.UI.EdgeFade
+        mode={effect === 'overlay' ? 'overlay' : 'mask'}
+        top={bypass ? 0 : 120}
+        curve={curve}
+        color={effect === 'overlay' ? '#000000' : undefined}
+        style={styles.fill}
+      >
+        {content}
       </One.UI.EdgeFade>
-      <One.UI.EdgeFade testID="one-native-effects-negative-zero-blur" mode="blur" bottom={80} blurRadius={0}>
-        <Text>zero blur radius</Text>
-      </One.UI.EdgeFade>
-      <One.UI.Blur testID="one-native-effects-negative-zero-intensity" intensity={0}>
-        <Text>zero intensity</Text>
-      </One.UI.Blur>
-      <One.UI.Mask testID="one-native-effects-negative-invalid-mask">
-        <Text>invalid mask element</Text>
-      </One.UI.Mask>
+    )
+  } else if (effect === 'edge-blur') {
+    subject =
+      variant === 'wrong' ? (
+        <View style={[styles.fill, { backgroundColor: '#808080' }]} />
+      ) : bypass ? (
+        <Stripes />
+      ) : (
+        <One.UI.EdgeFade
+          mode="blur"
+          bottom={120}
+          blurRadius={variant === 'zero' ? 0 : 24}
+          curve="linear"
+          style={styles.fill}
+        >
+          <Stripes />
+        </One.UI.EdgeFade>
+      )
+  } else {
+    subject = (
+      <>
+        <Stripes />
+        {variant === 'wrong' && (
+          <View style={[styles.fill, { backgroundColor: '#808080' }]} />
+        )}
+        {!bypass && variant !== 'wrong' && (
+          <One.UI.Blur
+            intensity={variant === 'zero' ? 0 : 100}
+            tint={Platform.OS === 'android' ? 'systemUltraThinMaterial' : 'light'}
+            style={styles.fill}
+          >
+            <Stripes foreground opacity={variant === 'wrong-child' ? 0.5 : 1} />
+          </One.UI.Blur>
+        )}
+        {bypass && <Stripes foreground />}
+      </>
+    )
+  }
+  const reading = {
+    effect,
+    variant,
+    bounds,
+    curves: {
+      linear: One.UI.sampleCurve('linear'),
+      smooth: One.UI.sampleCurve('smooth'),
+      custom: One.UI.sampleCurve(custom),
+      bezier: One.UI.sampleCurve(linearBezier),
+      clamped: One.UI.sampleCurve({ type: 'stops', values: [2, 0.5, -1] }),
+      presetSerialization: One.UI.serializeCurve('smooth'),
+      wrongPresetSerialization: One.UI.serializeCurve('linear'),
+      customSerialization: One.UI.serializeCurve(custom),
+      bezierSerialization: One.UI.serializeCurve(linearBezier),
+    },
+  }
+  return (
+    <View style={styles.screen} testID="one-native-effects-mounted">
+      <Text>Native effects</Text>
+      <View style={styles.buttons}>
+        {effects.map((name) => (
+          <Pressable
+            key={name}
+            testID={`effect-${name}`}
+            style={styles.button}
+            onPress={() => {
+              setEffect(name)
+              setVariant('canonical')
+            }}
+          >
+            <Text>{name}</Text>
+          </Pressable>
+        ))}
+      </View>
+      <View style={styles.buttons}>
+        {variants.map((name) => (
+          <Pressable
+            key={name}
+            testID={`variant-${name}`}
+            style={styles.button}
+            onPress={() => setVariant(name)}
+          >
+            <Text>{name}</Text>
+          </Pressable>
+        ))}
+      </View>
+      <View
+        ref={stage}
+        collapsable={false}
+        testID="effects-stage"
+        style={styles.stage}
+        onLayout={() =>
+          stage.current?.measureInWindow((x, y, width, height) =>
+            setBounds({ x, y, width, height })
+          )
+        }
+      >
+        {subject}
+      </View>
+      <Pressable testID="effects-reading" accessibilityLabel={JSON.stringify(reading)}>
+        <Text>
+          {effect}: {variant}
+        </Text>
+      </Pressable>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 16, gap: 12 },
-  fill: { flex: 1 },
-  stage: { height: 320, backgroundColor: '#ffffff' },
-  row: { height: 44, justifyContent: 'center', paddingHorizontal: 12 },
-  band: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 140 },
-  bandContent: { flex: 1, justifyContent: 'flex-end', padding: 12, gap: 8 },
-  bandText: { color: '#0f172a', fontWeight: '600' },
-  chip: { backgroundColor: '#e2e8f0', padding: 8, borderRadius: 8, alignSelf: 'flex-start' },
-  overlayBlock: { height: 120, backgroundColor: '#38bdf8', justifyContent: 'center', padding: 12 },
-  overlayText: { color: '#ffffff', fontWeight: '600' },
-  blurStage: { height: 160, overflow: 'hidden' },
-  blurCard: { position: 'absolute', left: 24, right: 24, top: 40, height: 80, justifyContent: 'center', padding: 12 },
-  blurText: { fontWeight: '700' },
-  arbitraryMask: { height: 200, overflow: 'hidden' },
-  diamond: { flex: 1, margin: 24, backgroundColor: '#000000', transform: [{ rotate: '45deg' }, { scale: 0.7 }] },
+  screen: { flex: 1, padding: 16, gap: 12, backgroundColor: '#dddddd' },
+  buttons: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  button: { padding: 10, backgroundColor: '#ffffff' },
+  stage: { width: 300, height: 240, backgroundColor: '#000000', overflow: 'hidden' },
+  fill: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 },
+  maskHalf: {
+    position: 'absolute',
+    left: 60,
+    top: 40,
+    width: 180,
+    height: 80,
+    backgroundColor: '#00ff00',
+  },
+  foreground: { position: 'absolute', left: 40, top: 80, width: 40, height: 40 },
 })

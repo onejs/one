@@ -1,15 +1,20 @@
 {
   "name": "one",
-  "version": "2.6.0",
+  "version": "1.27.1",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
+    "metro-entry.js",
     "setup.mjs",
     "setup.js",
     "**/polyfills-mobile.*",
     "web-streams-polyfill/polyfill/es5",
     "@azure/core-asynciterator-polyfill",
     "core-js/internals/inspect-source",
+    "core-js/actual/array/to-sorted",
+    "core-js/actual/array/to-reversed",
+    "core-js/actual/array/to-spliced",
+    "core-js/actual/array/with",
     "core-js/actual/url",
     "core-js/actual/url-search-params"
   ],
@@ -153,6 +158,15 @@
       "types": "./types/tamagui.d.ts",
       "import": "./dist/esm/tamagui.mjs",
       "require": "./dist/cjs/tamagui.cjs"
+    },
+    "./background": {
+      "react-native": {
+        "types": "./types/background.native.d.ts",
+        "default": "./dist/esm/background.native.js"
+      },
+      "types": "./types/background.d.ts",
+      "import": "./dist/esm/background.mjs",
+      "require": "./dist/cjs/background.cjs"
     }
   },
   "main": "dist/cjs",
@@ -208,16 +222,19 @@
     "@babel/core": "^7.28.5",
     "@babel/generator": "7.29.7",
     "@babel/parser": "^7.28.5",
+    "@babel/plugin-transform-export-namespace-from": "^7.27.1",
     "@babel/traverse": "^7.28.5",
     "@babel/types": "^7.28.5",
     "@bacons/text-decoder": "^0.0.0",
     "@cloudflare/vite-plugin": "^1.33.1",
     "@op-engineering/op-sqlite": "18.2.5",
+    "@react-native-community/cli-platform-android": "^20.2.0",
+    "@react-native-community/cli-platform-ios": "^20.2.0",
     "@radix-ui/react-slot": "^1.0.2",
-    "@react-navigation/bottom-tabs": "8.0.0-alpha.50",
-    "@react-navigation/elements": "3.0.0-alpha.48",
-    "@react-navigation/native-stack": "8.0.0-alpha.52",
-    "@react-navigation/routers": "8.0.0-alpha.17",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
+    "@react-navigation/elements": "3.0.0-alpha.54",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
+    "@react-navigation/routers": "8.0.0-alpha.20",
     "@ungap/structured-clone": "^1.2.0",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/compiler": "workspace:*",
@@ -246,7 +263,7 @@
     "react-compiler-runtime": "^19.0.0-beta-201e55d-20241215",
     "react-native-css-interop": "^0.2.6",
     "react-native-nitro-image": "0.15.2",
-    "react-native-nitro-modules": "0.37.0",
+    "react-native-nitro-modules": "0.37.1",
     "react-native-nitro-web-image": "0.15.2",
     "ts-pattern": "^5.6.2",
     "tsconfig-paths": "^4",
@@ -260,9 +277,9 @@
   "peerDependencies": {
     "@callstack/liquid-glass": ">=0.6.0",
     "@react-native/babel-preset": "^0.87.1",
-    "@react-navigation/core": "8.0.0-alpha.34",
-    "@react-navigation/drawer": "8.0.0-alpha.51",
-    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/core": "8.0.0-alpha.40",
+    "@react-navigation/drawer": "8.0.0-alpha.57",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-native": "^0.87.0",
@@ -271,8 +288,9 @@
     "react-native-screens": ">=4.25.0",
     "react-native-web": "^0.21.2",
     "react-native-worklets": ">=0.12.2",
-    "sharp": "^0.35.4",
-    "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4"
+    "sharp": "^0.35.5",
+    "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1",
+    "@tamagui/web": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1"
   },
   "peerDependenciesMeta": {
     "@react-native/babel-preset": {
@@ -301,17 +319,20 @@
     },
     "@tamagui/sheet": {
       "optional": true
+    },
+    "@tamagui/web": {
+      "optional": true
     }
   },
   "devDependencies": {
-    "@tamagui/sheet": "3.0.0-beta.1537.1",
+    "@tamagui/sheet": "3.0.0-beta.1670.1",
     "@callstack/liquid-glass": "^0.8.1",
     "@react-native/babel-plugin-codegen": "0.87.1",
     "@react-native/codegen": "^0.87.1",
-    "@react-navigation/core": "8.0.0-alpha.34",
-    "@react-navigation/drawer": "8.0.0-alpha.51",
-    "@react-navigation/native": "8.0.0-alpha.44",
-    "@tamagui/build": "3.0.0-beta.1432.1",
+    "@react-navigation/core": "8.0.0-alpha.40",
+    "@react-navigation/drawer": "8.0.0-alpha.57",
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@tamagui/build": "3.0.0-beta.1670.1",
     "@types/node": "^24.10.0",
     "@types/react-dom": "^19.2.2",
     "@types/react-test-renderer": "^19.1.0",
@@ -319,7 +340,7 @@
     "depcheck": "^1.4.7",
     "esbuild": "^0.25.12",
     "immer": "^10.1.1",
-    "nitrogen": "0.37.0",
+    "nitrogen": "0.37.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.87.1",
@@ -330,10 +351,11 @@
     "react-native-worklets": "~0.12.2",
     "react-test-renderer": "^19.2.0",
     "rolldown": "^1.2.8",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
-    "yoga-layout": "^3.2.1"
+    "yoga-layout": "^3.2.1",
+    "@tamagui/web": "3.0.0-beta.1670.1"
   },
   "publishConfig": {
     "access": "public"
@@ -369,6 +391,7 @@
     },
     "ios": {
       "componentProvider": {
+        "OneNativePager": "OneNativePagerComponentView",
         "OneSwiftHost": "OneSwiftHostComponentView",
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
@@ -392,7 +415,7 @@
         "OneNativeOverlayContent": "OneNativeOverlayContentComponentView",
         "OneNativeSwipeActions": "OneNativeSwipeActionsComponentView",
         "OneNativeSwipeActionsActions": "OneNativeSwipeActionsActionsComponentView",
-        "OneNativePager": "OneNativePagerComponentView",
+        "OneNativeSwiftPager": "OneNativeSwiftPagerComponentView",
         "OneNativeSafeAreaProvider": "OneNativeSafeAreaProviderComponentView",
         "OneNativeReservedRegionsProvider": "OneNativeReservedRegionsProviderComponentView",
         "OneNativeEdgeFade": "OneNativeEdgeFadeComponentView",
@@ -400,6 +423,8 @@
         "OneNativeMask": "OneNativeMaskComponentView",
         "OneNativeUiMap": "OneNativeUiMapComponentView",
         "OneNativePictureInPicture": "OneNativePictureInPictureComponentView",
+        "OneNativePortalView": "OneNativePortalViewComponentView",
+        "OneNativePortalHostView": "OneNativePortalHostViewComponentView",
         "OneNativePicker": "OneNativePickerComponentView",
         "OneNativeDatePicker": "OneNativeDatePickerComponentView",
         "OneNativeColorPicker": "OneNativeColorPickerComponentView",
@@ -463,10 +488,7 @@
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
-        "OneNativePopoverContent": "OneNativePopoverContentComponentView",
-        "OneNativePortalView": "OneNativePortalViewComponentView",
-        "OneNativePortalHostView": "OneNativePortalHostViewComponentView",
-        "OneNativeSwiftPager": "OneNativeSwiftPagerComponentView"
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
       }
     }
   }

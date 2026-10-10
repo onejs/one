@@ -292,6 +292,9 @@ describe('createFileSystemRouterPlugin', () => {
       await handleRouteRequest(req, res, next)
       await finished
       expect(res.end).toHaveBeenCalled()
+      if (pathname === '/') {
+        expect(res.setHeader).toHaveBeenCalledWith('Content-Type', 'text/html; charset=utf-8')
+      }
       return chunks.join('')
     }
 

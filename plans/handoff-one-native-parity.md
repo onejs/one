@@ -54,7 +54,7 @@ bounded catalog, fixture and conformance work. Every worker goes through `tm run
   content, medium/large/fraction/height detents, drag indicator, dismissal blocking,
   and `onDismiss`. `codegen/emitSheet.ts`, `ios/OneNativeSheetView.swift`,
   `ios/OneNativeSheetComponentView.mm`, and `src/Sheet.native.tsx` are the sources.
-- `schema.json` is exported for Soot. Pure native content travels as data props;
+- `schema.json` is exported for Contrast. Pure native content travels as data props;
   RN subtrees use Fabric children. Menu parentId flattening exists because RN
   codegen cannot express recursively nested object arrays.
 - Recycled hosts retain Fabric `_props` so superclass diffs reset actual UIView
@@ -113,13 +113,17 @@ bun scripts/one-native-conformance.ts \
   --artifact-dir /tmp/one-native-final-sheets
 ```
 
-Or run everything, all twelve suites then the visual pass, with one command:
+Or run all 31 iPhone suites, then the visual pass, with one command:
 
 ```sh
 bun scripts/one-native-conformance-all.ts \
-  --simulator-id 36CB8903-C59C-4438-BA29-E7A3C8876C37 \
+  --iphone16-simulator-id <IPHONE_16_UUID> \
+  --iphone17-pro-simulator-id <IPHONE_17_PRO_UUID> \
   --bundle-id dev.one.native.tests --artifact-dir /tmp/one-native-conformance
 ```
+
+The aggregate routes `apple-file` to its calibrated 402×874 iPhone 17 Pro and the remaining
+iPhone suites to iPhone 16 (393×852). Install the same app on both devices.
 
 The visual pass runs last and against the artifact root rather than per suite, because several
 checks take their negative capture from another suite's directory.
@@ -297,10 +301,10 @@ items 1 and 4 plus the tab-mounting defect below. Neither lane runs the device s
 simulator is serving pixel-oracle captures and the suite is load-sensitive. They validate with
 `generate:check`, and the assembled branch gets one device run at integration.
 
-`sidebarAdaptable` is implemented and is deliberately not covered by rnx conformance, so do not log
+`sidebarAdaptable` is implemented and is deliberately not covered by peach conformance, so do not log
 it as a gap. `Tabs.native.tsx` passes the prop through the spec and the component view, and
 `OneNativeTabsView.swift:119` applies `.tabViewStyle(.sidebarAdaptable)` with `.tabBarOnly` as the
-else. rnx cannot grade it: its device catalog runs iPhone SE through iPhone 17 Pro Max with no iPad,
+else. peach cannot grade it: its device catalog runs iPhone SE through iPhone 17 Pro Max with no iPad,
 it has no size-class model anywhere in the engine, and its one non-phone profile is flagged
 experimental with no native device behind it. There is no surface for the style to adapt into and no
 oracle could ever exist, which is a fact about the simulator rather than about the API.
@@ -433,18 +437,18 @@ prebuild. Reconcile the two ids before anyone regenerates the project.
    what each stage changed against the plan. What it leaves open: a composed child's
    inherited `ViewProps` land on a UIView nobody displays, which the catalog should
    eventually map or reject.
-2. Connect Soot to `schema.json`. A read-only worker traced the seam: Soot
+2. Connect Contrast to `schema.json`. A read-only worker traced the seam: Contrast
    intercepts by NATIVE VIEW NAME, not npm specifier.
    `registerNativeComponentImplementation(viewName, component)` fills a global map
    that both `requireNativeComponent` and `codegenNativeComponent` consult first
-   (`~/soot/packages/sootsim-engine/src/react-native/index.ts`). `one` is
-   only a boot-time loader key in `~/soot/packages/compat/src/native-seam-loaders.ts`;
-   a register module is side-effect-only. So a Soot seam implements
+   (`~/contrast/packages/peach-engine/src/react-native/index.ts`). `one` is
+   only a boot-time loader key in `~/contrast/packages/compat/src/native-seam-loaders.ts`;
+   a register module is side-effect-only. So a Contrast seam implements
    `OneNativePicker`, `OneNativeAlert` and the rest, and our public adapters in
    `src/generated/Controls.native.tsx` run unchanged on top, keeping validation, the
    controlled protocol, and the default height. Seams emit RN-shaped
    `onX({ nativeEvent: payload })`, which matches `eventDelivery` in the schema.
-   No schema/manifest reader exists in Soot today; every seam there is hand-written.
+   No schema/manifest reader exists in Contrast today; every seam there is hand-written.
    The schema's honest gaps for an independent implementation are accessibility role
    and label mapping, an executable definition of the slot `layout` values, and any
    imperative ref/command/`setNativeProps`/measurement contract.

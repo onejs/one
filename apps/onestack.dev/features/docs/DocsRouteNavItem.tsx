@@ -30,52 +30,43 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
       <XStack
         ref={ref}
         className="docs-nav-item"
-        ai="center"
-        jc="flex-end"
-        px="$4"
-        py="$1.5"
+        alignItems="center"
+        justifyContent="flex-end"
+        paddingHorizontal="4"
+        paddingVertical="1-5 sm:1-5"
         opacity={pending ? 0.25 : 1}
-        pressStyle={{
-          backgroundColor: '$background04',
-        }}
+        backgroundColor="press:background04"
         pointerEvents={pending ? 'none' : ('inherit' as any)}
-        pos="relative"
-        $sm={{
-          py: '$1.5',
-        }}
         {...(inMenu && {
-          jc: 'flex-start',
+          justifyContent: 'flex-start',
         })}
+        position="relative"
       >
         {!inMenu && (
           <YStack
             className="sidebar-indicator"
-            o={active ? 1 : 0}
-            pos="absolute"
-            t={0}
-            b={0}
-            l={0}
-            br="$2"
-            w={2}
-            bg={active ? '$color10' : '$backgroundHover'}
+            opacity={active ? 1 : 0}
+            position="absolute"
+            top={0}
+            bottom={0}
+            left={0}
+            width={2}
+            backgroundColor={`${active ? 'color10' : 'backgroundHover'}`}
+            borderRadius="2"
           />
         )}
         <SizableText
-          size="$5"
-          lh="$5"
+          size="5"
           cursor="pointer"
           userSelect="none"
-          col="$color12"
-          opacity={active ? 1 : 0.65}
-          // ta={inMenu ? 'left' : 'right'}
-          w="100%"
-          hoverStyle={{
-            o: 0.85,
-          }}
+          opacity={`${active ? 1 : 0.65} hover:0.85`}
+          width="100%"
           {...(active && {
-            fow: '700',
+            fontWeight: '700',
             opacity: 1,
           })}
+          lineHeight="5"
+          color="color12"
         >
           {children}
           {!!icon && (
@@ -89,14 +80,20 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
         </SizableText>
         {isExternal && (
           <XStack opacity={0.5}>
-            <Spacer size="$2" />
+            <Spacer size="2" />
             <ExternalIcon />
           </XStack>
         )}
         {pending ? (
           <>
             <XStack flex={1} />
-            <SizableText size="$1" px="$2" py="$1" bg="$background" borderRadius="$3">
+            <SizableText
+              size="1"
+              paddingHorizontal="2"
+              paddingVertical="1"
+              backgroundColor="background"
+              borderRadius="3"
+            >
               WIP
             </SizableText>
           </>

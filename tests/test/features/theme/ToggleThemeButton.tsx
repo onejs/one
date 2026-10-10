@@ -1,5 +1,5 @@
 import { View } from '@tamagui/core'
-import { Moon, Sun, SunMoon } from '@tamagui/lucide-icons-2'
+import { Moon, Sun, SunMoon } from '~/components/icons'
 import { useUserScheme } from '@vxrn/color-scheme'
 
 const schemeSettings = ['light', 'dark', 'system'] as const

@@ -188,7 +188,8 @@ export function Toggle({
   style,
   ...props
 }: Types.ToggleProps) {
-  if (typeof isOn !== 'boolean') throw new Error('Toggle isOn must be a boolean')
+  if (typeof isOn !== 'boolean' && !isSyncState(isOn))
+    throw new Error('Toggle isOn must be a boolean or NativeState handle')
   if (typeof systemImage !== 'string')
     throw new Error('Toggle systemImage must be a string')
   assertSwiftUIValue(
@@ -196,11 +197,16 @@ export function Toggle({
     toggleStyle,
     Number.parseFloat(String(Platform.Version))
   )
+  const syncHandle = syncHandleOf<boolean>(isOn)
+  const syncedIsOn = useSyncValue<boolean>(isOn)
   const controlled = useControlled<{
     value: boolean
     eventCount: number
     revision: number
-  }>((event) => onIsOnChange(event.value), revision)
+  }>((event) => {
+    syncHandle?.set(event.value)
+    onIsOnChange(event.value)
+  }, revision)
   return (
     <NativeToggle
       {...props}
@@ -209,9 +215,10 @@ export function Toggle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-      value={isOn}
+      value={syncedIsOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -494,6 +501,7 @@ export function Image({
   imageScale = '',
   variableValue = undefined,
   colorRole = '',
+  resizable = false,
   swiftStyle,
   style,
   ...props
@@ -514,6 +522,10 @@ export function Image({
     throw new Error('Image variableValue must be between 0 and 1')
   if (colorRole && !iconColorRoles.includes(colorRole))
     throw new Error('Image colorRole must be a One.UI icon color role')
+  if (resizable && uri)
+    throw new Error(
+      'Image resizable applies to an SF Symbol; a uri image is always resizable'
+    )
   if (symbolRenderingMode)
     assertSwiftUIValue(
       'SymbolRenderingMode',
@@ -536,7 +548,7 @@ export function Image({
     <NativeImage
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -552,6 +564,7 @@ export function Image({
       variableValue={variableValue ?? 0}
       hasVariableValue={variableValue !== undefined}
       colorRole={colorRole}
+      resizable={resizable}
     />
   )
 }
@@ -642,10 +655,15 @@ export function ContentUnavailableView({
 import NativeCircle from '../specs/OneNativeCircleNativeComponent'
 export function Circle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.CircleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Circle lineWidth must be a non-negative number')
+
   return (
     <NativeCircle
       {...props}
@@ -655,16 +673,23 @@ export function Circle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeCapsule from '../specs/OneNativeCapsuleNativeComponent'
 export function Capsule({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.CapsuleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Capsule lineWidth must be a non-negative number')
+
   return (
     <NativeCapsule
       {...props}
@@ -674,16 +699,23 @@ export function Capsule({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeRectangle from '../specs/OneNativeRectangleNativeComponent'
 export function Rectangle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.RectangleProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Rectangle lineWidth must be a non-negative number')
+
   return (
     <NativeRectangle
       {...props}
@@ -693,12 +725,16 @@ export function Rectangle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeRoundedRectangle from '../specs/OneNativeRoundedRectangleNativeComponent'
 export function RoundedRectangle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   cornerRadius = 0,
   swiftStyle,
   style,
@@ -706,6 +742,8 @@ export function RoundedRectangle({
 }: Types.RoundedRectangleProps) {
   if (!Number.isFinite(cornerRadius) || cornerRadius < 0)
     throw new Error('RoundedRectangle cornerRadius must be a non-negative number')
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('RoundedRectangle lineWidth must be a non-negative number')
 
   return (
     <NativeRoundedRectangle
@@ -716,6 +754,8 @@ export function RoundedRectangle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
       cornerRadius={cornerRadius}
     />
   )
@@ -723,10 +763,15 @@ export function RoundedRectangle({
 import NativeEllipse from '../specs/OneNativeEllipseNativeComponent'
 export function Ellipse({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   swiftStyle,
   style,
   ...props
 }: Types.EllipseProps) {
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('Ellipse lineWidth must be a non-negative number')
+
   return (
     <NativeEllipse
       {...props}
@@ -736,12 +781,16 @@ export function Ellipse({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
     />
   )
 }
 import NativeUnevenRoundedRectangle from '../specs/OneNativeUnevenRoundedRectangleNativeComponent'
 export function UnevenRoundedRectangle({
   fill = undefined,
+  strokeBorder = undefined,
+  lineWidth = 1,
   topLeadingRadius = 0,
   bottomLeadingRadius = 0,
   bottomTrailingRadius = 0,
@@ -758,6 +807,8 @@ export function UnevenRoundedRectangle({
   ])
     if (!Number.isFinite(radius) || radius < 0)
       throw new Error('UnevenRoundedRectangle radii must be non-negative numbers')
+  if (!Number.isFinite(lineWidth) || lineWidth < 0)
+    throw new Error('UnevenRoundedRectangle lineWidth must be a non-negative number')
 
   return (
     <NativeUnevenRoundedRectangle
@@ -768,6 +819,8 @@ export function UnevenRoundedRectangle({
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
       fill={fill}
+      strokeBorder={strokeBorder}
+      lineWidth={lineWidth}
       topLeadingRadius={topLeadingRadius}
       bottomLeadingRadius={bottomLeadingRadius}
       bottomTrailingRadius={bottomTrailingRadius}
@@ -824,7 +877,7 @@ export function LinearGradient({
     <NativeLinearGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -866,7 +919,7 @@ export function RadialGradient({
     <NativeRadialGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -909,7 +962,7 @@ export function EllipticalGradient({
     <NativeEllipticalGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -951,7 +1004,7 @@ export function AngularGradient({
     <NativeAngularGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -1026,7 +1079,7 @@ export function MeshGradient({
     <NativeMeshGradient
       {...props}
       style={style}
-      accessible={Boolean(props.accessibilityLabel)}
+      accessible={false}
       accessibilityElementsHidden={!props.accessibilityLabel}
       accessibilityRole="image"
       swiftStyle={swiftStyleNative(swiftStyle)}
@@ -1216,8 +1269,23 @@ export function WebView({
   onNavigate,
   onTitleChange,
   onLoadingChange,
+  onLoadStart,
+  onLoadEnd,
+  onError,
+  onHttpError,
+  onMessage,
+  onHistoryChange,
+  onProcessTerminate,
   url = '',
   html = '',
+  script = '',
+  command = '',
+  commandRevision = 0,
+  commandValue = '',
+  limitsNavigationsToAppBoundDomains = false,
+  inlineMedia = false,
+  inspectable = false,
+  bounces = true,
   backForwardNavigationGestures = '',
   magnificationGestures = '',
   linkPreviews = '',
@@ -1228,6 +1296,19 @@ export function WebView({
   ...props
 }: Types.WebViewProps) {
   if (!url === !html) throw new Error('WebView takes exactly one of url and html')
+  if (!['', 'reload', 'goBack', 'goForward', 'evaluate', 'postMessage'].includes(command))
+    throw new Error('Unknown WebView command: ' + command)
+  if (!Number.isSafeInteger(commandRevision) || commandRevision < 0)
+    throw new Error('WebView commandRevision must be a nonnegative safe integer')
+  if (command && commandRevision === 0)
+    throw new Error('WebView command requires a positive commandRevision')
+  if (!command && commandRevision > 0)
+    throw new Error('WebView commandRevision requires a command')
+  if (typeof commandValue !== 'string')
+    throw new Error('WebView commandValue must be a string')
+  if ((command === 'evaluate' || command === 'postMessage') && !commandValue)
+    throw new Error('WebView ' + command + ' requires commandValue')
+  if (typeof script !== 'string') throw new Error('WebView script must be a string')
   if (backForwardNavigationGestures)
     assertSwiftUIValue(
       'BackForwardNavigationGesturesBehavior',
@@ -1268,6 +1349,14 @@ export function WebView({
       }
       url={url}
       html={html}
+      script={script}
+      command={command}
+      commandRevision={commandRevision}
+      commandValue={commandValue}
+      limitsNavigationsToAppBoundDomains={limitsNavigationsToAppBoundDomains}
+      inlineMedia={inlineMedia}
+      inspectable={inspectable}
+      bounces={bounces}
       backForwardNavigationGestures={backForwardNavigationGestures}
       magnificationGestures={magnificationGestures}
       linkPreviews={linkPreviews}
@@ -1278,6 +1367,17 @@ export function WebView({
       onNativeWebViewLoadingChange={({ nativeEvent }) =>
         onLoadingChange?.(nativeEvent.loading, nativeEvent.progress)
       }
+      onNativeWebViewLoadStart={({ nativeEvent }) => onLoadStart?.()}
+      onNativeWebViewLoadEnd={({ nativeEvent }) => onLoadEnd?.()}
+      onNativeWebViewError={({ nativeEvent }) => onError?.(nativeEvent.message)}
+      onNativeWebViewHttpError={({ nativeEvent }) =>
+        onHttpError?.(nativeEvent.statusCode)
+      }
+      onNativeWebViewMessage={({ nativeEvent }) => onMessage?.(nativeEvent.data)}
+      onNativeWebViewHistoryChange={({ nativeEvent }) =>
+        onHistoryChange?.(nativeEvent.canGoBack, nativeEvent.canGoForward)
+      }
+      onNativeWebViewProcessTerminate={({ nativeEvent }) => onProcessTerminate?.()}
     />
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'one'
 
-// sibling to project/[projectId]/index.tsx — mirrors soot's structure.
+// sibling to project/[projectId]/index.tsx — mirrors contrast's structure.
 // having multiple children under [projectId]/ means the nested navigator
 // has more than one screen to pick from.
 

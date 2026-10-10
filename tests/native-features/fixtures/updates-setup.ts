@@ -1,6 +1,7 @@
 import { updatesBoot } from './updates-boot'
 import './background-task-handlers'
 import './app-intent-handlers'
+import './app-icon-startup'
 
 // entry-chunk boot behavior for the updates suite (wired as the app's native
 // setupFile). the publish variants act before anything mounts: a throw here

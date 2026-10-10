@@ -1,4 +1,4 @@
-import { Search } from '@tamagui/lucide-icons-2'
+import { Search } from '~/components/icons'
 import { useContext, useRef } from 'react'
 import { styled, View, XStack, YStack } from 'tamagui'
 import { Link, usePathname } from 'one'
@@ -12,21 +12,14 @@ import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 const SimpleButton = styled(View, {
   role: 'button',
   cursor: 'pointer',
-  pos: 'relative',
-  pe: 'auto',
-  w: 42,
-  h: 42,
-  ai: 'center',
-  jc: 'center',
-  br: '$10',
-
-  hoverStyle: {
-    bg: '$color3',
-  },
-
-  pressStyle: {
-    bg: '$color2',
-  },
+  width: 42,
+  height: 42,
+  backgroundColor: 'hover:color3 press:color2',
+  position: 'relative',
+  pointerEvents: 'auto',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '10',
 })
 
 export const TopNav = () => {
@@ -42,41 +35,33 @@ export const TopNav = () => {
 
       <XStack
         ref={scrollParentRef}
-        pos="relative"
-        jc="space-between"
-        ai="center"
-        maw={isBlog ? 1100 : 1400}
-        w="100%"
-        zi={90_000}
-        pe="none"
-        mx="auto"
-        $md={{
-          px: '$5',
-          py: '$3',
-          y: 20,
-        }}
-        $gtMd={{
-          jc: isBlog ? 'space-between' : 'flex-end',
-          t: 26,
-          px: 25,
-        }}
+        position="relative"
+        justifyContent={`space-between gtMd:${isBlog ? 'space-between' : 'flex-end'}`}
+        alignItems="center"
+        maxWidth={isBlog ? 1100 : 1400}
+        width="100%"
+        marginHorizontal="auto"
+        paddingHorizontal="md:5 gtMd:25px"
+        paddingVertical="md:3"
+        y="md:20px"
+        top="gtMd:26px"
+        zIndex={90_000}
+        pointerEvents="none"
       >
         {/* Logo - only show on mobile for most pages, always show on blog */}
         <XStack
-          gap="$3"
-          left="$0"
-          ai="center"
-          pe="auto"
-          $gtMd={{
-            display: isBlog ? 'flex' : 'none',
-          }}
+          gap="3"
+          left="0"
+          display={`gtMd:${isBlog ? 'flex' : 'none'}`}
+          alignItems="center"
+          pointerEvents="auto"
         >
           <Link href="/">
             <View
               group
               containerType="normal"
-              pos="relative"
-              mx="auto"
+              position="relative"
+              marginHorizontal="auto"
               pointerEvents="none"
               y={-2}
             >
@@ -86,43 +71,44 @@ export const TopNav = () => {
         </XStack>
 
         <XStack
-          pos="relative"
-          pe="none"
-          ai="center"
-          jc="flex-end"
-          gap="$1"
-          f={1}
-          fb="auto"
-          fd="row"
+          position="relative"
+          pointerEvents="none"
+          alignItems="center"
+          justifyContent="flex-end"
+          gap="1"
+          flex={1}
+          flexBasis="auto"
+          flexDirection="row"
         >
           <XStack
-            pos="relative"
+            position="relative"
             group="card"
+            container="card"
             containerType="normal"
-            ai="center"
-            jc="flex-end"
-            fg={10}
-            $sm={{ dsp: 'none' }}
+            display="sm:none"
+            alignItems="center"
+            justifyContent="flex-end"
+            flexGrow={10}
           >
-            <XStack pe="auto" y={-2} mx="$4">
+            <XStack pointerEvents="auto" y={-2} marginHorizontal="4">
               <SocialLinksRow />
             </XStack>
           </XStack>
 
-          <XStack pe="none" ai="center">
+          <XStack pointerEvents="none" alignItems="center">
             {isDocs && (
-              <View pe="auto" mr="$2" $sm={{ dsp: 'none' }}>
+              <View pointerEvents="auto" marginRight="2" display="sm:none">
                 <DocsSectionTabs />
               </View>
             )}
 
-            <SimpleButton marginTop={-3} mr={8} onPress={onOpen}>
-              <Search width={24} height={24} color="$color12" strokeWidth={2} />
+            <SimpleButton marginTop={-3} marginRight={8} onPress={onOpen}>
+              <Search width={24} height={24} color="color12" strokeWidth={2} />
             </SimpleButton>
 
             <ToggleThemeButton />
 
-            {!isBlog && <YStack w={50} />}
+            {!isBlog && <YStack width={50} />}
           </XStack>
         </XStack>
       </XStack>

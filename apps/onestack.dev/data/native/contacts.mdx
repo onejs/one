@@ -3,22 +3,21 @@ title: Contacts
 description: Request access, find contacts, and create, edit, or delete them on iOS
 ---
 
-`One.iOS.Contacts` uses the iOS Contacts store. Set a purpose string before
+`One.Contacts` uses the iOS Contacts store. Set a purpose string before
 prebuild so the system can show the permission prompt:
 
 ```ts
 contacts: { usage: 'Find people to invite.' }
 ```
 
-Expo-prebuilt apps pass the same `contacts` option to the VXRN Expo plugin.
-Both paths set `NSContactsUsageDescription`.
+Prebuild sets `NSContactsUsageDescription`.
 
 ```tsx
 import { One } from 'one'
 
-const permission = await One.iOS.Contacts.requestPermission()
+const permission = await One.Contacts.requestPermission()
 if (permission === 'authorized' || permission === 'limited') {
-  const matches = await One.iOS.Contacts.search('Ada', 20)
+  const matches = await One.Contacts.search('Ada', 20)
   console.log(matches.map(({ givenName, familyName }) => `${givenName} ${familyName}`))
 }
 ```
@@ -59,9 +58,18 @@ thread.
 Missing usage text rejects with `E_CONTACTS_MANIFEST`; missing access with
 `E_CONTACTS_PERMISSION`; invalid input with `E_CONTACTS_INPUT`. Editing an
 unknown identifier on update or delete rejects with `E_CONTACTS_NOT_FOUND`. Store failures use
-`E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. The API is iOS
-only and throws on Android or web. Contact notes require an Apple-granted
+`E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. Contacts are implemented on iOS and Android. On Android, the address book runs over ContactsContract with `native.app.contacts.usage`; there is no limited tier. Web and SSR return denied address-book permission and empty searches. Picker and save calls that return a contact reject with `Contacts.<verb> needs an iOS or Android build` where unimplemented; deletion does nothing there. Contact notes require an Apple-granted
 entitlement and are not exposed.
 
 See [Apple's Contacts access guide](https://developer.apple.com/documentation/contacts/accessing-the-contact-store)
 for how full and limited access differ.
+
+On browsers with the Contact Picker API, `pickContact()` opens the system picker
+from a user gesture and returns one selected contact. Cancellation returns
+`undefined`. The picker grants access to that selection only; it does not grant
+address-book permission. The display name is returned as `givenName`, with an
+empty family name and identifier because the browser exposes neither separate
+name fields nor a stable contact identifier. Phone, email, and postal fields are
+requested only when supported. Search, create, update, and delete retain their
+unavailable contracts. Browsers without Contact Picker keep the existing
+`Contacts.pickContact` rejection.

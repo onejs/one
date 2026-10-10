@@ -302,7 +302,7 @@ host exists. Android rendering and browser rendering stay in
 `plans/one-native-architecture.md`. The `schema.json` gaps named in the README
 (accessibility mapping, an executable definition of slot `layout` values, and any
 imperative ref/command/measurement contract) become more pressing once containers
-exist, because a Soot implementation of a container needs the measurement contract
+exist, because a Contrast implementation of a container needs the measurement contract
 this proposal defines.
 
 ### What stage 6 changed against the plan

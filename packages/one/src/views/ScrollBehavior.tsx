@@ -1,4 +1,6 @@
-import { useEffect } from 'react'
+import { useIsFocused } from '@react-navigation/core'
+import { useContext, useEffect, useLayoutEffect } from 'react'
+import { RouteInfoContext } from '../router/RouteInfoContext'
 import { setLastAction } from '../router/lastAction'
 import {
   routeInfo,
@@ -43,10 +45,10 @@ function getGroupKey(pathname: string): string | null {
   return longestMatch
 }
 
-function restorePosition() {
+function restorePosition(pathname: string) {
   try {
     const positions = getState()
-    const saved = positions[window.location.pathname]
+    const saved = positions[pathname]
     if (typeof saved === 'number') {
       setTimeout(() => {
         window.scrollTo(0, saved)
@@ -101,6 +103,27 @@ type ScrollBehaviorProps = {
 }
 
 let disable: (() => void) | null = null
+let pendingScroll: { href: string; apply: () => void } | null = null
+let committedHref: string | undefined
+
+// a leaf screen commits this marker with its page, after any route suspension.
+export function ScrollBehaviorRouteCommit() {
+  const info = useContext(RouteInfoContext)
+  const href = info?.unstable_globalHref
+  const focused = useIsFocused()
+
+  useLayoutEffect(() => {
+    if (!focused) return
+    committedHref = href
+    if (pendingScroll && pendingScroll.href === href) {
+      const { apply } = pendingScroll
+      pendingScroll = null
+      apply()
+    }
+  })
+
+  return null
+}
 
 function configure(props: ScrollBehaviorProps) {
   if (typeof window === 'undefined' || !window.addEventListener) {
@@ -112,6 +135,7 @@ function configure(props: ScrollBehaviorProps) {
   // routeInfo carries no hash, so the mount comparison below is pathname+search
   const initialLocation = `${window.location.pathname}${window.location.search}`
   let isFirstStateChange = true
+  let handledLocation = initialLocation
   previousPathname = window.location.pathname
 
   const popStateController = new AbortController()
@@ -153,43 +177,57 @@ function configure(props: ScrollBehaviorProps) {
       }
     }
 
-    if (state.linkOptions?.scroll === false) {
+    const { hash } = state
+    const location = `${currentHref}${hash || ''}`
+    if (location === handledLocation) {
+      pendingScroll = null
       return
     }
 
-    const { hash } = state
-
-    if (hash) {
-      setTimeout(() => {
-        scrollToHash(hash)
-      })
-    } else if (didPop) {
-      if (props.disable !== 'restore') {
-        // for now only restore on back button
-        restorePosition()
-      }
-    } else {
-      // Check if we're navigating within a scroll group
-      // If both previous and current paths are in the same group, restore group position
-      const prevGroup = previousPathname ? getGroupKey(previousPathname) : null
-      const currentGroup = getGroupKey(currentPathname)
-
-      if (prevGroup && currentGroup && prevGroup === currentGroup) {
-        // Same scroll group - restore the group's scroll position
-        restoreGroupPosition(currentGroup)
-      } else if (state.linkOptions?.scrollGroup) {
-        // Custom scroll group specified in link options
-        restoreGroupPosition(state.linkOptions.scrollGroup)
-      } else {
-        // Different group or no group - scroll to top
-        window.scrollTo(0, 0)
-      }
+    pendingScroll = null
+    if (state.linkOptions?.scroll === false) {
+      handledLocation = location
+      previousPathname = currentPathname
+      return
     }
 
-    previousPathname = currentPathname
+    const restoring = didPop
+    const prevGroup = previousPathname ? getGroupKey(previousPathname) : null
+    const currentGroup = getGroupKey(currentPathname)
+    const scrollGroup = state.linkOptions?.scrollGroup
+
+    // route info publishes optimistically. apply scrolling only after the
+    // matching leaf screen commits its content.
+    pendingScroll = {
+      href: currentHref,
+      apply: () => {
+        handledLocation = location
+        previousPathname = currentPathname
+        if (hash) {
+          scrollToHash(hash)
+        } else if (restoring) {
+          if (props.disable !== 'restore') {
+            restorePosition(currentPathname)
+          }
+        } else if (prevGroup && currentGroup && prevGroup === currentGroup) {
+          restoreGroupPosition(currentGroup)
+        } else if (scrollGroup) {
+          restoreGroupPosition(scrollGroup)
+        } else {
+          window.scrollTo(0, 0)
+        }
+      },
+    }
+
+    if (committedHref === currentHref) {
+      const { apply } = pendingScroll
+      pendingScroll = null
+      apply()
+    }
   })
 
   disable = () => {
+    pendingScroll = null
     popStateController.abort()
     disposeOnLoadState()
     disposeOnRootState()

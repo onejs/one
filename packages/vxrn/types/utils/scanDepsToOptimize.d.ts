@@ -1,5 +1,6 @@
 export type ScanDepsResult = {
     prebundleDeps: string[];
+    noExternalDeps: string[];
     hasReanimated: boolean;
     hasNativewind: boolean;
 };

@@ -2,6 +2,9 @@
 import { execFileSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { stampAndroidDebugHost } from './android-debug-host'
+import { runEffectsSuite } from './one-native-effects-suite'
+import { countDistinctColors, readPng } from './visual-pixel-gate'
 import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Bounds = { left: number; top: number; right: number; bottom: number }
@@ -33,8 +36,9 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'portal' | 'pager' | 'updates'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat'
   apkPath: string
+  negativeControl: boolean
 }
 
 type Selector = {
@@ -55,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|portal|pager|updates --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker|launch-screen|adaptive-flat --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -66,6 +70,7 @@ function parse(args: string[]): Config {
   let metroPort = 8081
   let suite: Config['suite'] = 'proof'
   let apkPath = ''
+  let negativeControl = false
   if (process.env.RCT_METRO_PORT !== undefined && process.env.RCT_METRO_PORT !== '')
     metroPort = Number(process.env.RCT_METRO_PORT)
 
@@ -82,9 +87,10 @@ function parse(args: string[]): Config {
     else if (arg === '--artifact-dir') artifactDir = args[++index] || ''
     else if (arg === '--timeout') timeout = Number(args[++index])
     else if (arg === '--metro-port') metroPort = Number(args[++index])
+    else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'portal' && value !== 'pager' && value !== 'updates') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -108,7 +114,7 @@ function parse(args: string[]): Config {
   }
   if (suite === 'updates' && !apkPath)
     throw new Error('The updates suite requires --apk-path for a fresh install.')
-  return { deviceId, packageId, artifactDir, timeout, metroPort, suite, apkPath }
+  return { deviceId, packageId, artifactDir, timeout, metroPort, suite, apkPath, negativeControl }
 }
 
 function adbRaw(args: string[]): string {
@@ -200,10 +206,23 @@ function adbBytes(config: Config, args: string[]) {
     return execFileSync('adb', ['-s', config.deviceId, ...args], {
       stdio: ['ignore', 'pipe', 'pipe'],
       timeout: 30_000,
+      // native-density png captures can exceed execFileSync's default 1 mib.
+      maxBuffer: 16 * 1024 * 1024,
     })
   } catch (error) {
-    throw commandError('adb', ['-s', config.deviceId, ...args], error)
+    const detail = error instanceof Error ? error.message : String(error)
+    throw new Error(`adb ${['-s', config.deviceId, ...args].join(' ')} failed: ${detail}`)
   }
+}
+
+function densityScale(config: Config) {
+  const output = adbText(config, ['shell', 'wm', 'density'])
+  const density =
+    Number(/Override density:\s*(\d+)/.exec(output)?.[1]) ||
+    Number(/Physical density:\s*(\d+)/.exec(output)?.[1])
+  if (!Number.isFinite(density) || density <= 0)
+    throw new Error(`Android display density is unavailable: ${output.trim()}`)
+  return density / 160
 }
 
 function xmlUnescape(value: string) {
@@ -282,6 +301,8 @@ function clickableTarget(nodes: Node[], node: Node): Node | undefined {
 
 function dumpNodes(config: Config): Snapshot {
   const remote = `/sdcard/one-native-android-proof-${process.pid}.xml`
+  // a failed dump can exit zero; never accept a hierarchy from an earlier capture.
+  adbText(config, ['shell', 'rm', '-f', remote])
   adbText(config, ['shell', 'uiautomator', 'dump', remote])
   const xml = adbText(config, ['exec-out', 'cat', remote])
   return { xml, nodes: parseXml(xml) }
@@ -403,10 +424,10 @@ function validBounds(node: Node, description: string) {
 
 function visibleIn(bounds: Bounds, viewport: Bounds) {
   return (
-    bounds.right > viewport.left &&
-    bounds.left < viewport.right &&
-    bounds.bottom > viewport.top &&
-    bounds.top < viewport.bottom
+    bounds.left > viewport.left &&
+    bounds.right < viewport.right &&
+    bounds.top > viewport.top &&
+    bounds.bottom < viewport.bottom
   )
 }
 
@@ -490,14 +511,32 @@ function tapFresh(
 }
 
 function tapByText(config: Config, name: string, text: string) {
+  tapMatching(config, name, `text "${text}"`, (node) => node.text === text)
+}
+
+function tapNode(config: Config, name: string, nodes: Node[], node: Node) {
+  const target = clickableTarget(nodes, node)
+  if (!target) throw new Error(`${name} found its target with no clickable ancestor.`)
+  const bounds = validBounds(node, name)
+  const x = Math.round((bounds.left + bounds.right) / 2)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+}
+
+function tapMatching(
+  config: Config,
+  name: string,
+  what: string,
+  predicate: (node: Node) => boolean
+) {
   const current = snapshot(config)
-  const labeled = current.nodes.filter((node) => node.text === text)
+  const labeled = current.nodes.filter(predicate)
   if (labeled.length !== 1)
     throw new Error(
-      `${name} resolved ${labeled.length} nodes with text "${text}"; exactly one is required.`
+      `${name} resolved ${labeled.length} nodes with ${what}; exactly one is required.`
     )
   const target = clickableTarget(current.nodes, labeled[0])
-  if (!target) throw new Error(`${name} found text "${text}" with no clickable ancestor.`)
+  if (!target) throw new Error(`${name} found ${what} with no clickable ancestor.`)
   const bounds = validBounds(labeled[0], name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
@@ -537,6 +576,15 @@ function adbType(config: Config, text: string) {
   adbText(config, ['shell', 'input', 'text', text])
 }
 
+function expandNotificationShade(config: Config) {
+  const bounds = applicationBounds(snapshot(config).nodes)
+  const x = Math.round(bounds.left + (bounds.right - bounds.left) / 4)
+  const endY = Math.round(bounds.bottom * 0.65)
+  writeFileSync(path.join(config.artifactDir, 'notification-shade-gesture.json'),
+    JSON.stringify({ bounds, from: [x, 1], to: [x, endY], durationMs: 400 }, null, 2))
+  adbText(config, ['shell', 'input', 'swipe', String(x), '1', String(x), String(endY), '400'])
+}
+
 function pressBack(config: Config) {
   adbText(config, ['shell', 'input', 'keyevent', '4'])
 }
@@ -558,15 +606,19 @@ function clearDocumentsUi(config: Config) {
   adbText(config, ['shell', 'pm', 'clear', match])
 }
 
-// the ime leg is vacuous unless the keyboard is actually raised, so fail
-// loudly when it is not. grep runs on-device: the full dumpsys exceeds
-// execFileSync's buffer.
-function requireKeyboardShown(config: Config) {
+// grep runs on-device because the full dumpsys exceeds execFileSync's buffer.
+function keyboardShown(config: Config) {
   const shown = adbText(config, [
     'shell',
     'dumpsys input_method | grep -m1 mInputShown || true',
   ])
-  if (!/mInputShown\s*=\s*true/.test(shown))
+  return /mInputShown\s*=\s*true/.test(shown)
+}
+
+// the ime leg is vacuous unless the keyboard is actually raised, so fail
+// loudly when it is not.
+function requireKeyboardShown(config: Config) {
+  if (!keyboardShown(config))
     throw new Error('safe-area-ime-excluded: the soft keyboard never raised')
 }
 
@@ -648,6 +700,12 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
         id: navId,
         role: 'button',
         clickable: true,
+      }, (node) => {
+        const bounds = validBounds(node, 'Android proof navigation row')
+        const viewport = applicationBounds(current.nodes)
+        if (!visibleIn(bounds, viewport)) throw new Error('Android navigation row is clipped at the viewport edge.')
+        writeFileSync(path.join(config.artifactDir, `navigation-${navId}.json`),
+          JSON.stringify({ node: shortNode(node), viewport }, null, 2))
       })
       return
     }
@@ -677,6 +735,18 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
     if (!advanced) continue
   }
   throw new Error(`Could not bring ${navId} into view on the home list.`)
+}
+
+// reuse the fixture's existing route input for focused UI suites.
+async function navigateFixture(config: Config, navId: string) {
+  const route = navId.replace(/^nav-/, '/')
+  tapFresh(config, 'fixture route input', { id: 'quick-navigate-path-input' })
+  adbText(config, ['shell', 'input', 'text', route])
+  await waitFor(config, 'fixture route entered', (nodes) =>
+    matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
+  )
+  pressBack(config)
+  tapFresh(config, 'fixture route submit', { id: 'quick-navigate-submit' })
 }
 
 function shortNode(node: Node | undefined) {
@@ -807,33 +877,14 @@ function launcherComponent(config: Config) {
 }
 
 // wipe app data so permissions start undetermined like a fresh install.
-// pm clear also revokes ACCESS_LOCAL_NETWORK, which android 17 requires for
-// the debug host connection; its prompt belongs to dev tooling, never the
-// module under test, so grant it back before relaunching.
 function clearAppData(config: Config) {
   adbText(config, ['shell', 'pm', 'clear', config.packageId])
-  adbText(config, [
-    'shell',
-    'pm',
-    'grant',
-    config.packageId,
-    'android.permission.ACCESS_LOCAL_NETWORK',
-  ])
-  relaunchApp(config)
   stampDebugHost(config)
   relaunchApp(config)
 }
 
-// point the debug host at this run's metro: the stock emulator reaches the
-// host loopback as 10.0.2.2, so whoever else owns host:8081 does not
-// matter. call after a launch that guarantees the data dir exists; pm clear
-// wipes the stamp, so call again after every clear.
 function stampDebugHost(config: Config) {
-  // adb shell joins argv with spaces and re-parses on device, so the -c
-  // script travels inside its own double quotes; the xml attribute quotes
-  // are backslash-escaped for the device shell.
-  const script = `mkdir -p shared_prefs && echo '<map><string name=\\"debug_http_host\\">10.0.2.2:${config.metroPort}</string></map>' > shared_prefs/${config.packageId}_preferences.xml`
-  adbText(config, ['shell', 'run-as', config.packageId, 'sh', '-c', `"${script}"`])
+  stampAndroidDebugHost(config.packageId, config.metroPort, (args) => adbText(config, args))
 }
 
 async function run(config: Config) {
@@ -899,6 +950,1655 @@ async function run(config: Config) {
     checks.push(check)
     console.log(`PASS ${name}`)
     return result.snapshot
+  }
+
+  const joined = (nodes: Node[]) => nodes.flatMap(nodeValues).join('\n')
+  const freshLeg = async (name: string) => {
+    relaunchApp(config)
+    await expect(
+      `system-${name}-home`,
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      undefined,
+      60_000
+    )
+  }
+
+  const pressHome = () =>
+    adbText(config, ['shell', 'input', 'keyevent', '3'])
+  const foregroundApp = () =>
+    adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
+
+  const focusedWindow = () =>
+    adbText(config, ['shell', 'dumpsys', 'window'])
+      .split(/\r?\n/)
+      .find((line) => line.includes('mCurrentFocus')) ?? ''
+
+  const appIcon = async () => {
+    // AppIcon: alias discovery, switch to TestAlternate and back, unknown
+    // name rejection.
+    await freshLeg('app-icon')
+    await tapNavigation(config, 'nav-one-native-app-icon')
+    await expect(
+      'system-app-icon-mounted',
+      (nodes) =>
+        joined(nodes).includes('Startup support: true') &&
+        joined(nodes).includes('Supported: true') &&
+        joined(nodes).includes('Current icon: primary'),
+      'one-native-app-icon-alternate'
+    )
+    let hostPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    const hostIsPreserved = () =>
+      adbText(config, ['shell', 'pidof', config.packageId]).trim() === hostPid &&
+      adbText(config, ['shell', 'dumpsys', 'window']).split('\n').some((line) =>
+        line.includes('mCurrentFocus=Window{') && line.includes(` ${config.packageId}/`)
+      )
+    writeFileSync(path.join(config.artifactDir, 'app-icon-before.json'), JSON.stringify({
+      hostPid,
+      packageState: adbText(config, ['shell', 'dumpsys', 'package', config.packageId]),
+      activityState: adbText(config, ['shell', 'dumpsys', 'activity', 'activities']),
+    }, null, 2))
+    tapFresh(config, 'system-app-icon-alternate', {
+      id: 'one-native-app-icon-alternate',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-changed',
+      (nodes) =>
+        joined(nodes).includes('Icon result: changed') &&
+        joined(nodes).includes('Current icon: TestAlternate') &&
+        hostIsPreserved() && launcherComponent(config).endsWith('.TestAlternate'),
+      'one-native-app-icon-primary',
+      () => ({ hostPid, launcher: launcherComponent(config) })
+    )
+    await freshLeg('app-icon-relaunch')
+    await tapNavigation(config, 'nav-one-native-app-icon')
+    await expect(
+      'system-app-icon-persisted',
+      (nodes) => joined(nodes).includes('Supported: true') &&
+        joined(nodes).includes('Current icon: TestAlternate'),
+      'one-native-app-icon-primary'
+    )
+    hostPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    tapFresh(config, 'system-app-icon-primary', {
+      id: 'one-native-app-icon-primary',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-restored',
+      (nodes) =>
+        joined(nodes).includes('Icon result: changed') &&
+        joined(nodes).includes('Current icon: primary') &&
+        hostIsPreserved() && launcherComponent(config).endsWith('.Primary'),
+      'one-native-app-icon-invalid',
+      () => ({ hostPid, launcher: launcherComponent(config) })
+    )
+    tapFresh(config, 'system-app-icon-invalid', {
+      id: 'one-native-app-icon-invalid',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-app-icon-invalid',
+      (nodes) => joined(nodes).includes('invalid:E_APP_ICON_INPUT') &&
+        joined(nodes).includes('Current icon: primary') && hostIsPreserved() &&
+        launcherComponent(config).endsWith('.Primary'),
+      'one-native-app-icon-invalid'
+    )
+  }
+
+  const openAPIs = async () => {
+    await freshLeg('open')
+    await tapNavigation(config, 'nav-one-native-open')
+    await expect(
+      'open-apis-mounted',
+      (nodes) => exactlyOneId(nodes, 'one-native-open-screen') &&
+        joined(nodes).includes('URL: idle') && joined(nodes).includes('Settings: idle'),
+      'one-native-open-screen'
+    )
+
+    tapFresh(config, 'open-url', { id: 'one-native-open-url', role: 'button', clickable: true })
+    await expect(
+      'open-url-browser',
+      (nodes) =>
+        focusedWindow().includes('com.android.chrome') &&
+        (joined(nodes).includes('example.com') ||
+          adbText(config, ['shell', 'dumpsys', 'activity', 'activities']).includes(
+            'https://example.com/one-native-open-proof'
+          )),
+      undefined,
+      (nodes) => ({ focus: focusedWindow(), visibleText: joined(nodes) })
+    )
+    writeFileSync(
+      path.join(config.artifactDir, 'open-url-activity.txt'),
+      adbText(config, ['shell', 'dumpsys', 'activity', 'activities'])
+    )
+    pressBack(config)
+    await expect('open-url-returned', (nodes) => joined(nodes).includes('URL: opened'))
+
+    tapFresh(config, 'open-share', { id: 'one-native-open-share', role: 'button', clickable: true })
+    await expect('open-share-sheet', (nodes) =>
+      nodes.some((node) => node.contentDescription === 'Copy text') &&
+      joined(nodes).includes('One openShare message')
+    )
+    tapMatching(config, 'open-share-copy', 'system Copy text action',
+      (node) => node.contentDescription === 'Copy text'
+    )
+    await expect('open-share-completed', (nodes) => joined(nodes).includes('Share: completed'))
+
+    tapFresh(config, 'open-empty-share', {
+      id: 'one-native-open-share-empty',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('open-empty-share-rejected', (nodes) =>
+      joined(nodes).includes('Empty share: rejected: openShare: pass a message or a url')
+    )
+
+    tapFresh(config, 'open-settings', {
+      id: 'one-native-open-settings',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'open-settings-app-details',
+      (nodes) =>
+        focusedWindow().includes('com.android.settings') &&
+        joined(nodes).includes('App info') &&
+        joined(nodes).includes('Force stop'),
+      undefined,
+      (nodes) => ({ focus: focusedWindow(), visibleText: joined(nodes) })
+    )
+    pressBack(config)
+    await expect('open-settings-returned', (nodes) =>
+      joined(nodes).includes('Settings: opened')
+    )
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android open',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android open ${checks.length} checks`)
+  }
+
+  const database = async () => {
+    await freshLeg('database')
+    await tapNavigation(config, 'nav-one-native-database')
+    await expect('database-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-database-screen') &&
+      joined(nodes).includes('Status: idle') &&
+      joined(nodes).includes('Persisted: pending')
+    )
+
+    tapFresh(config, 'database-run', {
+      id: 'one-native-database-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-sync-async-queries', (nodes) =>
+      joined(nodes).includes('Status: done') &&
+      joined(nodes).includes("Sync: quote's ?") &&
+      joined(nodes).includes("Async: quote's ?") &&
+      joined(nodes).includes('Deleted: 0')
+    )
+
+    tapFresh(config, 'database-read-persisted', {
+      id: 'one-native-database-read',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-reopen-persisted-row', (nodes) =>
+      joined(nodes).includes('Persisted: kept')
+    )
+
+    tapFresh(config, 'database-key-value', {
+      id: 'one-native-kv-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-key-value-reopen-and-remove', (nodes) =>
+      joined(nodes).includes('KV: update-2|reloadTarget|update-2|null')
+    )
+
+    tapFresh(config, 'database-reject-missing-table', {
+      id: 'one-native-database-reject-missing-table',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-query-error-rejected', (nodes) =>
+      joined(nodes).includes('Negative: rejected:')
+    )
+
+    tapFresh(config, 'database-clear', {
+      id: 'one-native-database-clear',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('database-clear-row', (nodes) =>
+      joined(nodes).includes('Persisted: missing') &&
+      joined(nodes).includes('Status: cleared')
+    )
+
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android database',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android database ${checks.length} checks`)
+  }
+
+  const androidColor = async () => {
+    await freshLeg('android-color')
+    await tapNavigation(config, 'nav-one-native-android-color')
+    const colorScreen = await expect('android-color-mounted', (nodes) => {
+      const text = joined(nodes)
+      return exactlyOneId(nodes, 'one-native-android-color-screen') &&
+        /^Material primary: #[0-9a-f]{6}$/im.test(text) &&
+        /^Dynamic primary: #[0-9a-f]{6}$/im.test(text) &&
+        text.includes('Unknown material: null') &&
+        exactlyOneId(nodes, 'one-native-android-color-platform-black') &&
+        exactlyOneId(nodes, 'one-native-android-color-material-primary') &&
+        exactlyOneId(nodes, 'one-native-android-color-dynamic-primary')
+    }, 'one-native-android-color-screen')
+
+    const pixelCheckStartedAt = Date.now()
+    const imagePath = checks[checks.length - 1]?.artifacts.png
+    if (!imagePath) throw new Error('Android color screenshot was not captured.')
+    const image = readPng(imagePath)
+    const sample = (id: string) => {
+      const bounds = matching(colorScreen.nodes, { id })[0]?.bounds
+      if (!bounds) throw new Error(`Android color swatch ${id} has no bounds.`)
+      const x = Math.floor((bounds.left + bounds.right) / 2)
+      const y = Math.floor((bounds.top + bounds.bottom) / 2)
+      const offset = (y * image.width + x) * 4
+      return [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
+    }
+    const colorText = joined(colorScreen.nodes)
+    const expectedHex = (label: string) => {
+      const match = colorText.match(new RegExp(`${label}: #([0-9a-f]{6})`, 'i'))
+      if (!match) throw new Error(`${label} did not resolve to a six-digit color.`)
+      return [0, 2, 4].map((offset) => Number.parseInt(match[1]!.slice(offset, offset + 2), 16))
+    }
+    const observed = {
+      platformBlack: { expected: [0, 0, 0], actual: sample('one-native-android-color-platform-black') },
+      materialPrimary: { expected: expectedHex('Material primary'), actual: sample('one-native-android-color-material-primary') },
+      dynamicPrimary: { expected: expectedHex('Dynamic primary'), actual: sample('one-native-android-color-dynamic-primary') },
+      channelTolerance: 4,
+    }
+    writeFileSync(
+      path.join(config.artifactDir, 'color-pixels.json'),
+      JSON.stringify(observed, null, 2)
+    )
+    const mismatch = Object.entries(observed)
+      .filter(([name]) => name !== 'channelTolerance')
+      .filter(([, entry]) => {
+        const color = entry as { expected: number[]; actual: number[] }
+        return color.actual.some(
+          (channel, index) => Math.abs(channel - color.expected[index]!) > observed.channelTolerance
+        )
+      })
+      .map(([name, entry]) => `${name} ${JSON.stringify(entry)}`)
+    if (mismatch.length) throw new Error(`Android color pixels did not match: ${mismatch.join('; ')}`)
+
+    const pixelArtifacts = capture(
+      'android-color-pixels-match',
+      colorScreen,
+      'passed',
+      undefined,
+      observed
+    )
+    checks.push({
+      name: 'android-color-pixels-match',
+      result: 'passed',
+      durationMs: Date.now() - pixelCheckStartedAt,
+      artifacts: pixelArtifacts,
+      detail: observed,
+    })
+    console.log('PASS android-color-pixels-match')
+
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android color',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android color ${checks.length} checks`)
+  }
+
+  const androidMenus = async () => {
+    await freshLeg('android-menus')
+    await tapNavigation(config, 'nav-one-native-android-menus')
+    await expect('android-menus-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-menus-screen') &&
+      joined(nodes).includes('Menu action: none') &&
+      joined(nodes).includes('Context action: none')
+    )
+    const tapPopupItem = (label: string) => {
+      const candidates = snapshot(config).nodes.filter((node) => node.text === label)
+      if (candidates.length !== 1)
+        throw new Error(`Android popup item ${label} resolved ${candidates.length} fresh labels.`)
+      const bounds = validBounds(candidates[0]!, `Android popup item ${label}`)
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    }
+
+    tapFresh(config, 'android-menu-open', { id: 'one-native-android-menu-trigger' })
+    await expect('android-menu-popup-open', (nodes) =>
+      joined(nodes).includes('Menu Save') && joined(nodes).includes('Menu Duplicate')
+    )
+    tapPopupItem('Menu Save')
+    await expect('android-menu-action-returned', (nodes) =>
+      joined(nodes).includes('Menu action: save') && !joined(nodes).includes('Menu Save')
+    )
+
+    tapFresh(config, 'android-context-short-tap', {
+      id: 'one-native-android-context-trigger',
+    })
+    await expect('android-context-menu-needs-long-press', (nodes) =>
+      joined(nodes).includes('Context action: none') &&
+      !joined(nodes).includes('Context Open')
+    )
+    const longPress = (name: string, id: string) => {
+      const target = nodeById(snapshot(config).nodes, id)
+      const bounds = validBounds(target, name)
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, [
+        'shell',
+        'input',
+        'swipe',
+        String(x),
+        String(y),
+        String(x),
+        String(y),
+        '1000',
+      ])
+    }
+    longPress('android-context-long-press', 'one-native-android-context-trigger')
+    await expect('android-context-popup-open', (nodes) =>
+      joined(nodes).includes('Context Open') && joined(nodes).includes('Context Delete')
+    )
+    tapPopupItem('Context Open')
+    await expect('android-context-action-returned', (nodes) =>
+      joined(nodes).includes('Context action: open') &&
+      !joined(nodes).includes('Context Open')
+    )
+
+    tapFresh(config, 'android-disabled-menu-tap', {
+      id: 'one-native-android-disabled-menu-trigger',
+    })
+    await expect('android-disabled-menu-stays-closed', (nodes) =>
+      joined(nodes).includes('Menu action: save') &&
+      !joined(nodes).includes('Disabled Menu action')
+    )
+    longPress('android-disabled-context-long-press', 'one-native-android-disabled-context-trigger')
+    await expect('android-disabled-context-stays-closed', (nodes) =>
+      joined(nodes).includes('Context action: open') &&
+      !joined(nodes).includes('Disabled Context action')
+    )
+
+    writeFileSync(
+      path.join(config.artifactDir, 'status.json'),
+      JSON.stringify(
+        {
+          suite: 'one-native-android menus',
+          result: 'passed',
+          deviceId: config.deviceId,
+          packageId: config.packageId,
+          checks,
+          checkCount: checks.length,
+          completedAt: new Date().toISOString(),
+        },
+        null,
+        2
+      )
+    )
+    console.log(`PASS one-native-android menus ${checks.length} checks`)
+  }
+
+  const share = async () => {
+    // Share: text/url completion through the chooser Copy target, file
+    // dismissal, busy guard, and all four input codes.
+    await freshLeg('share')
+    await tapNavigation(config, 'nav-one-native-share')
+    await expect(
+      'system-share-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle') && textIncludes(nodes, 'Busy: none'),
+      'one-native-share-run'
+    )
+    tapFresh(config, 'system-share-run', {
+      id: 'one-native-share-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('system-share-chooser', (nodes) =>
+      nodes.filter((node) => node.contentDescription === 'Copy text').length === 1
+    )
+    // select the system copy action; app targets may also be labelled copy.
+    tapMatching(config, 'system-share-copy', 'system Copy text action',
+      (node) => node.contentDescription === 'Copy text'
+    )
+    // the completed text share advances the fixture to the file chooser,
+    // which covers the app: uiautomator sees the chooser, not the status
+    // text behind it, so assert the chooser itself. the passed check below
+    // pins the copy completion through the result triple.
+    await expect(
+      'system-share-file-sharing',
+      (nodes) =>
+        joined(nodes).includes('Sharing 1 file') &&
+        joined(nodes).includes('one-native-share-proof.txt'),
+      'one-native-share-run',
+      undefined,
+      30_000
+    )
+    pressBack(config)
+    await expect(
+      'system-share-passed',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: passed') &&
+          text.includes('Busy: E_SHARE_BUSY') &&
+          text.includes('text=true; activity=none; file=false; empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS; clipboard=true')
+        )
+      },
+      'one-native-share-run',
+      undefined,
+      30_000
+    )
+  }
+
+  const location = async () => {
+    // Location: prompt, concurrent request, current fix, watch moves,
+    // geocoding, background watch with its notification, revoke negative.
+    await freshLeg('location')
+    await tapNavigation(config, 'nav-one-native-location')
+    await expect(
+      'system-location-undetermined',
+      (nodes) => joined(nodes).includes('Permission: notDetermined'),
+      'one-native-location-request'
+    )
+    adbText(config, ['emu', 'geo', 'fix', '-122.4194', '37.7749'])
+    tapFresh(config, 'system-location-request', {
+      id: 'one-native-location-request',
+      role: 'button',
+      clickable: true,
+    })
+    await waitFor(config, 'system-location-prompt', (nodes) =>
+      textIncludes(nodes, 'While using the app')
+    )
+    tapByText(config, 'system-location-allow', 'While using the app')
+    await expect(
+      'system-location-granted',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Permission: whenInUse') &&
+          text.includes('Concurrent: whenInUse,whenInUse')
+        )
+      },
+      'one-native-location-current'
+    )
+    tapFresh(config, 'system-location-current', {
+      id: 'one-native-location-current',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-position',
+      (nodes) => joined(nodes).includes('Position: 37.7749,-122.4194'),
+      'one-native-location-watch'
+    )
+    tapFresh(config, 'system-location-watch', {
+      id: 'one-native-location-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-watch-first',
+      (nodes) => joined(nodes).includes('Watch: 37.7749,-122.4194'),
+      'one-native-location-stop-watch'
+    )
+    adbText(config, ['emu', 'geo', 'fix', '-122.4094', '37.7849'])
+    await expect(
+      'system-location-watch-moved',
+      (nodes) => joined(nodes).includes('Watch: 37.7849,-122.4094'),
+      'one-native-location-stop-watch'
+    )
+    tapFresh(config, 'system-location-stop-watch', {
+      id: 'one-native-location-stop-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-watch-stopped',
+      (nodes) => joined(nodes).includes('Watch: stopped'),
+      'one-native-location-forward'
+    )
+    tapFresh(config, 'system-location-forward', {
+      id: 'one-native-location-forward',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-forward',
+      (nodes) => /Forward: [1-9]\d*:37\.3\d,-122\.0\d/.test(joined(nodes)),
+      'one-native-location-reverse',
+      undefined,
+      45_000
+    )
+    tapFresh(config, 'system-location-reverse', {
+      id: 'one-native-location-reverse',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-reverse',
+      (nodes) => joined(nodes).includes('Reverse: San Francisco'),
+      'one-native-location-background-watch',
+      undefined,
+      45_000
+    )
+    const serviceDump = () =>
+      adbText(config, ['shell', 'dumpsys', 'activity', 'services', config.packageId])
+    const locationService = () => serviceDump().split(/(?=  \* ServiceRecord\{)/).find(
+      (record) => record.includes(`${config.packageId}/dev.onejs.onenative.OneLocationService`)
+    ) ?? ''
+    const serviceIsForeground = () => {
+      const record = locationService()
+      return record.includes('isForeground=true foregroundId=4301 types=0x00000008') &&
+        record.includes('channel=one-location')
+    }
+    const notificationDump = () => adbText(config, ['shell', 'dumpsys', 'notification', '--noredact'])
+    const locationNotification = () => notificationDump().split(/(?=    NotificationRecord\()/).find(
+      (record) => record.startsWith('    NotificationRecord(') &&
+        record.split('\n')[0].includes(`pkg=${config.packageId} `) &&
+        record.split('\n')[0].includes(' id=4301 ')
+    ) ?? ''
+    const notificationPermission = (granted: boolean) =>
+      adbText(config, ['shell', 'dumpsys', 'package', config.packageId]).includes(
+        `android.permission.POST_NOTIFICATIONS: granted=${granted},`
+      )
+    const backgroundFile = () => adbText(config, ['shell', 'run-as', config.packageId,
+      'cat', 'files/Documents/one-native-location-background-proof.txt']).trim()
+    const retainLocationState = (phase: string) => {
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-services.txt`), serviceDump())
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-notifications.txt`), notificationDump())
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-permissions.txt`),
+        adbText(config, ['shell', 'dumpsys', 'package', config.packageId]))
+      writeFileSync(path.join(config.artifactDir, `location-${phase}-background.txt`), backgroundFile())
+    }
+    const backgroundLeg = async (phase: 'denied' | 'granted', longitude: string, latitude: string) => {
+      tapFresh(config, `system-location-background-${phase}-watch`, {
+        id: 'one-native-location-background-watch',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        `system-location-background-${phase}-started`,
+        (nodes) => joined(nodes).includes('Background watch: active:') && backgroundFile() === 'starting',
+        'one-native-location-stop-background-watch'
+      )
+      pressHome()
+      await expect(
+        `system-location-background-${phase}-service`,
+        () => serviceIsForeground() && notificationPermission(phase === 'granted') &&
+          (phase === 'denied' ? locationNotification() === '' :
+            locationNotification().includes('Location updates active') &&
+            locationNotification().includes('FOREGROUND_SERVICE')),
+        undefined,
+        () => ({ service: locationService(), notification: locationNotification() })
+      )
+      retainLocationState(phase)
+      if (phase === 'granted') {
+        expandNotificationShade(config)
+        writeFileSync(path.join(config.artifactDir, 'location-granted-shade-window.txt'),
+          adbText(config, ['shell', 'dumpsys', 'window']))
+        await expect('system-location-notification-shade-opened',
+          (nodes) => nodes.some((node) => node.attrs.package === 'com.android.systemui'))
+        await expect(
+          'system-location-foreground-notification',
+          (nodes) => joined(nodes).includes('Location updates active') && serviceIsForeground()
+        )
+        pressBack(config)
+      }
+      adbText(config, ['emu', 'geo', 'fix', longitude, latitude])
+      const position = `background:${latitude},${longitude}`
+      await waitFor(config, `system-location-background-${phase}-file`,
+        () => backgroundFile() === position)
+      retainLocationState(`${phase}-delivered`)
+      foregroundApp()
+      await expect(
+        `system-location-background-${phase}-delivered`,
+        (nodes) => joined(nodes).includes(`Background watch: ${position}`),
+        'one-native-location-stop-background-watch',
+        () => ({ persistedBackgroundPosition: backgroundFile() }),
+        30_000
+      )
+      tapFresh(config, `system-location-stop-background-${phase}-watch`, {
+        id: 'one-native-location-stop-background-watch',
+        role: 'button',
+        clickable: true,
+      })
+      await expect(
+        `system-location-background-${phase}-stopped`,
+        (nodes) => joined(nodes).includes('Background watch: stopped') && locationService() === '' &&
+          locationNotification() === '',
+        'one-native-location-watch'
+      )
+      retainLocationState(`${phase}-stopped`)
+    }
+    // denial hides the drawer notice but must preserve background delivery.
+    if (!notificationPermission(false))
+      throw new Error('fresh location proof unexpectedly has notification permission')
+    await backgroundLeg('denied', '-122.4044', '37.7899')
+    // visibility requires its own notification grant, independent of location.
+    adbText(config, ['shell', 'pm', 'grant', config.packageId, 'android.permission.POST_NOTIFICATIONS'])
+    if (!notificationPermission(true))
+      throw new Error('location notification visibility precondition was not granted')
+    await backgroundLeg('granted', '-122.3994', '37.7949')
+    tapFresh(config, 'system-location-revoke-watch', {
+      id: 'one-native-location-watch',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-revoke-watch-live',
+      (nodes) => /Watch: 37\.79\d\d,-122\.3\d\d\d/.test(joined(nodes)),
+      'one-native-location-stop-watch'
+    )
+    const revokedPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+    if (!/^\d+$/.test(revokedPid))
+      throw new Error('location revocation requires one live fixture process')
+    adbText(config, [
+      'shell',
+      'pm',
+      'revoke',
+      config.packageId,
+      'android.permission.ACCESS_FINE_LOCATION',
+    ])
+    adbText(config, [
+      'shell',
+      'pm',
+      'revoke',
+      config.packageId,
+      'android.permission.ACCESS_COARSE_LOCATION',
+    ])
+    const foregroundPermissionsDenied = () => {
+      const permissions = adbText(config, ['shell', 'dumpsys', 'package', config.packageId])
+      return ['ACCESS_FINE_LOCATION', 'ACCESS_COARSE_LOCATION'].every((permission) =>
+        permissions.includes(`android.permission.${permission}: granted=false,`))
+    }
+    await expect('system-location-revoked-process', () => {
+      const events = adbText(config, ['logcat', '-d', '-b', 'events'])
+      return foregroundPermissionsDenied() && locationService() === '' &&
+        events.split('\n').some((line) => line.includes(`,${revokedPid},${config.packageId},`) &&
+          line.includes('am_kill') && line.includes('permissions revoked'))
+    }, undefined, () => ({ revokedPid, permissionsDenied: foregroundPermissionsDenied() }))
+    writeFileSync(path.join(config.artifactDir, 'location-revoked-events.txt'),
+      adbText(config, ['logcat', '-d', '-b', 'events']))
+    foregroundApp()
+    await expect('system-location-revoked-home', (nodes) => {
+      const currentPid = adbText(config, ['shell', 'pidof', config.packageId]).trim()
+      return exactlyOneId(nodes, 'home-screen') && /^\d+$/.test(currentPid) &&
+        currentPid !== revokedPid && foregroundPermissionsDenied()
+    }, 'home-screen', () => ({ revokedPid,
+      currentPid: adbText(config, ['shell', 'pidof', config.packageId]).trim() }), 30_000)
+    await tapNavigation(config, 'nav-one-native-location')
+    await expect(
+      'system-location-revoked',
+      (nodes) => joined(nodes).includes('Permission: denied') &&
+        joined(nodes).includes('Watch: none'),
+      'one-native-location-watch',
+      undefined,
+      30_000
+    )
+    tapFresh(config, 'system-location-revoked-watch', {
+      id: 'one-native-location-watch', role: 'button', clickable: true,
+    })
+    await expect('system-location-revoked-watch-rejected',
+      (nodes) => joined(nodes).includes('Watch: error: E_LOCATION_PERMISSION') &&
+        foregroundPermissionsDenied(), 'one-native-location-current')
+    tapFresh(config, 'system-location-revoked-current', {
+      id: 'one-native-location-current', role: 'button', clickable: true,
+    })
+    await expect('system-location-revoked-current-rejected',
+      (nodes) => joined(nodes).includes('Position: error: E_LOCATION_PERMISSION'),
+      'one-native-location-background-watch')
+    tapFresh(config, 'system-location-revoked-background', {
+      id: 'one-native-location-background-watch', role: 'button', clickable: true,
+    })
+    await expect('system-location-revoked-background-rejected',
+      (nodes) => joined(nodes).includes('Background watch: error: E_LOCATION_PERMISSION') &&
+        locationService() === '' && locationNotification() === '',
+      'one-native-location-refresh')
+    retainLocationState('revoked')
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.ACCESS_FINE_LOCATION',
+    ])
+    adbText(config, [
+      'shell',
+      'pm',
+      'grant',
+      config.packageId,
+      'android.permission.ACCESS_COARSE_LOCATION',
+    ])
+  }
+
+  const adaptiveFlat = async () => {
+    type Reading = {
+      ready: boolean; initialReady: boolean; layout: { width: number; height: number }
+      size: { horizontal: string; vertical: string }; hinge: unknown
+      regions: unknown[]; allRegions: unknown[]
+      segments: { x: number; y: number; width: number; height: number }[]
+      spanning: boolean
+      reading: { size: { horizontal: string; vertical: string }; hinge: unknown; reads: number } | null
+      listener: { events: number; value?: unknown }; error: string
+    }
+    type Lifecycle = { subscriptions: number; removals: number; events: number; nonNullEvents: number; effectPasses: number }
+    const reading = (nodes: Node[]): Reading | null => {
+      const text = matching(nodes, { id: 'adaptive-reading' })[0]?.text
+      return text ? JSON.parse(text) : null
+    }
+    const lifecycle = (nodes: Node[]): Lifecycle | null => {
+      const text = matching(nodes, { id: 'adaptive-lifecycle' })[0]?.text
+      return text ? JSON.parse(text) : null
+    }
+    const dp = densityScale(config)
+    const flat = (nodes: Node[], width: number, height: number, reads: number) => {
+      const value = reading(nodes)
+      if (!value || !value.reading) return false
+      const viewport = applicationBounds(nodes)
+      const horizontal = (viewport.right - viewport.left) / dp < 600 ? 'compact' : 'regular'
+      const vertical = (viewport.bottom - viewport.top) / dp < 480 ? 'compact' : 'regular'
+      const segment = value.segments[0]
+      // both the native event and onLayout report pixel-rounded dip bounds.
+      const samePixels = (actual: number, expected: number) => Math.round(actual * dp) === Math.round(expected * dp)
+      return diagnose(nodes, [
+        ['native readiness after initially unready render', () => value.ready && value.initialReady === false],
+        ['provider layout matches requested pixels', () => samePixels(value.layout.width, width) && samePixels(value.layout.height, height)],
+        ['flat active and all regions empty', () => value.regions.length === 0 && value.allRegions.length === 0],
+        ['flat hinge hook, getter and initial listener null', () => value.hinge === null && value.reading!.hinge === null && value.listener.events > 0 && value.listener.value === null],
+        ['no spanning or non-null hinge events', () => value.spanning === false && lifecycle(nodes)?.nonNullEvents === 0],
+        ['size hook matches device window', () => value.size.horizontal === horizontal && value.size.vertical === vertical],
+        ['refreshed getters match hooks', () => !value.error && value.reading!.reads === reads && value.reading!.size.horizontal === value.size.horizontal && value.reading!.size.vertical === value.size.vertical],
+        ['one segment follows provider bounds', () => value.segments.length === 1 && segment.x === 0 && segment.y === 0 && samePixels(segment.width, width) && samePixels(segment.height, height)],
+      ])
+    }
+    const mounted = (nodes: Node[], mounts: number, removals: number) => {
+      const value = lifecycle(nodes)
+      return !!value && (value.effectPasses === 1 || value.effectPasses === 2) &&
+        value.subscriptions === mounts * value.effectPasses &&
+        value.removals === removals + mounts * (value.effectPasses - 1)
+    }
+    try {
+      lockRotation(config, '0')
+      await tapNavigation(config, 'nav-one-native-adaptive')
+      const initial = await expect('adaptive-flat-ready-and-getter-hook-agreement', (nodes) =>
+        flat(nodes, 280, 300, 1) && mounted(nodes, 1, 0), 'adaptive-reading')
+      const bounds = validBounds(nodeById(initial.nodes, 'adaptive-provider'), 'Adaptive native provider')
+      await expect('adaptive-flat-native-provider-size', () =>
+        bounds.right - bounds.left === Math.round(280 * dp) && bounds.bottom - bounds.top === Math.round(300 * dp))
+      tapFresh(config, 'Refresh adaptive getters', { id: 'adaptive-refresh' })
+      await expect('adaptive-flat-refreshed-getters', (nodes) => flat(nodes, 280, 300, 2))
+      if (config.negativeControl) tapFresh(config, 'Freeze reported segments', { id: 'adaptive-freeze-segments' })
+      tapFresh(config, 'Resize adaptive provider', { id: 'adaptive-resize' })
+      await expect('adaptive-flat-segment-follows-resize', (nodes) => flat(nodes, 220, 220, 2))
+      for (let mount = 1; mount <= 2; mount++) {
+        tapFresh(config, 'Unmount adaptive provider', { id: 'adaptive-toggle' })
+        await expect(`adaptive-flat-unmount-${mount}-removes-listener`, (nodes) =>
+          matching(nodes, { id: 'adaptive-reading' }).length === 0 &&
+          matching(nodes, { id: 'adaptive-refresh' }).length === 0 && mounted(nodes, mount, mount))
+        tapFresh(config, 'Remount adaptive provider', { id: 'adaptive-toggle' })
+        await expect(`adaptive-flat-remount-${mount}-native-ready`, (nodes) =>
+          flat(nodes, 220, 220, 1) && mounted(nodes, mount + 1, mount))
+      }
+      tapFresh(config, 'Restore adaptive provider size', { id: 'adaptive-resize' })
+      await expect('adaptive-flat-restored-provider-bounds', (nodes) => flat(nodes, 280, 300, 1))
+      lockRotation(config, '1')
+      await expect('adaptive-flat-landscape-hook-matches-window', (nodes) => {
+        const viewport = applicationBounds(nodes)
+        return viewport.right - viewport.left > viewport.bottom - viewport.top &&
+          reading(nodes)?.size.horizontal === 'regular' && reading(nodes)?.size.vertical === 'compact'
+      })
+      tapFresh(config, 'Refresh landscape adaptive getters', { id: 'adaptive-refresh' })
+      await expect('adaptive-flat-landscape-getter-hook-agreement', (nodes) => flat(nodes, 280, 300, 2))
+      lockRotation(config, '0')
+      await expect('adaptive-flat-portrait-window-restored', (nodes) => {
+        const viewport = applicationBounds(nodes)
+        return viewport.right - viewport.left < viewport.bottom - viewport.top
+      })
+      tapFresh(config, 'Refresh restored portrait getters', { id: 'adaptive-refresh' })
+      await expect('adaptive-flat-portrait-native-getter', (nodes) =>
+        reading(nodes)?.reading?.reads === 3 && reading(nodes)?.reading?.size.horizontal === 'compact' &&
+        reading(nodes)?.reading?.size.vertical === 'regular')
+      await expect('adaptive-flat-portrait-getter-hook-agreement', (nodes) => flat(nodes, 280, 300, 3) && mounted(nodes, 3, 2))
+    } finally {
+      lockRotation(config, '0')
+      freeRotation(config)
+    }
+  }
+
+  const launchScreen = async () => {
+    // the proof setup calls preventAutoHide before react's first render.
+    // android exposes that render to accessibility while pre-draw stays held.
+    const ready = await expect('launch-screen-content-ready-under-hold', (nodes) =>
+      exactlyOneId(nodes, 'home-screen') && textIncludes(nodes, 'One Native Test Suite'))
+    const viewport = applicationBounds(ready.nodes)
+    const probe = path.join(config.artifactDir, 'launch-screen-current.png')
+    const pixels = (dark: boolean) => {
+      writeFileSync(probe, adbBytes(config, ['exec-out', 'screencap', '-p']))
+      const image = readPng(probe)
+      const left = Math.ceil(viewport.left + (viewport.right - viewport.left) * 0.2)
+      const right = Math.floor(viewport.right - (viewport.right - viewport.left) * 0.2)
+      const top = Math.ceil(viewport.top + (viewport.bottom - viewport.top) * 0.2)
+      const bottom = Math.floor(viewport.bottom - (viewport.bottom - viewport.top) * 0.2)
+      if (left < 0 || top < 0 || right > image.width || bottom > image.height || right <= left || bottom <= top)
+        throw new Error('Launch screen pixel region is outside the display')
+      let matchingPixels = 0
+      for (let y = top; y < bottom; y++) for (let x = left; x < right; x++) {
+        const offset = (y * image.width + x) * 4
+        const channels = [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
+        if (channels.every((value) => dark ? value <= 8 : value >= 200)) matchingPixels++
+      }
+      return matchingPixels / ((right - left) * (bottom - top)) >= 0.99
+    }
+    const hide = () => adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config),
+      '-a', 'android.intent.action.VIEW', '-d',
+      'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide'])
+    if (config.negativeControl) {
+      hide()
+      await expect('launch-screen-premature-release-visible', (nodes) =>
+        textIncludes(nodes, 'Launch screen fixture: visible') && pixels(false))
+    }
+    await expect('launch-screen-prevent-auto-hide-holds-pixels', () => pixels(true))
+    hide()
+    await expect('launch-screen-explicit-hide-reveals-content', (nodes) =>
+      textIncludes(nodes, 'Launch screen fixture: visible') && textIncludes(nodes, 'Hide again: false') && pixels(false))
+    pressBack(config)
+    await expect('launch-screen-home-after-release', (nodes) => exactlyOneId(nodes, 'home-screen'))
+    await tapNavigation(config, 'nav-one-native-launch-screen')
+    await expect('launch-screen-fixture-mounted', (nodes) => textIncludes(nodes, 'Hide again: false'))
+    tapFresh(config, 'Hide launch screen again', { id: 'one-native-launch-screen-hide-again' })
+    await expect('launch-screen-hide-is-idempotent', (nodes) =>
+      textIncludes(nodes, 'Hide again: true') && pixels(false))
+  }
+
+  const documentPicker = async () => {
+    type Asset = { uri: string; name: string; mimeType: string; size: number; fetched: number }
+    const runId = Date.now().toString(36)
+    const seeds = [
+      { name: `one-document-${runId}-a.txt`, bytes: Buffer.from('one document α\n') },
+      { name: `one-document-${runId}-b.txt`, bytes: Buffer.from('two documents β\n') },
+    ]
+    const assets = (nodes: Node[]): Asset[] => {
+      const text = nodes.map((node) => node.text).find((text) => text.startsWith('Details: '))
+      return text ? JSON.parse(text.slice('Details: '.length)) : []
+    }
+    const picker = (nodes: Node[]) => nodes.some((node) =>
+      node.attrs.package === 'com.google.android.documentsui')
+    const copiesMatch = (nodes: Node[], expected: typeof seeds) => {
+      const picked = assets(nodes)
+      return textIncludes(nodes, 'Result: ok') && picked.length === expected.length &&
+        expected.every((seed) => {
+          const asset = picked.find((asset) => asset.name === seed.name)
+          return asset?.mimeType === 'text/plain' && asset.size === seed.bytes.length &&
+            asset.fetched === seed.bytes.length && asset.uri.startsWith('file://')
+        }) && new Set(picked.map((asset) => asset.uri)).size === expected.length
+    }
+    const checkBytes = async (name: string, picked: Snapshot, expected: typeof seeds) => {
+      const cached = assets(picked.nodes).map((asset) => {
+        const pathname = decodeURIComponent(new URL(asset.uri).pathname)
+        const prefix = `/data/user/0/${config.packageId}/cache/one-native-document-picker/`
+        if (!pathname.startsWith(prefix)) throw new Error(`DocumentPicker URI outside cache: ${asset.uri}`)
+        const relative = pathname.slice(`/data/user/0/${config.packageId}/`.length)
+        return { name: asset.name, bytes: adbBytes(config, ['exec-out', 'run-as', config.packageId, 'cat', relative]) }
+      })
+      await expect(name, () => expected.every((seed) =>
+        cached.find((copy) => copy.name === seed.name)?.bytes.equals(seed.bytes) === true))
+    }
+    const openDownloads = async (name: string) => {
+      await expect(`${name}-presented`, picker)
+      tapMatching(config, 'Document picker roots', 'Open from', (node) => node.contentDescription === 'Show roots')
+      await expect(`${name}-roots`, (nodes) => nodes.filter((node) =>
+        node.text === 'Downloads' && node.resourceId === 'android:id/title').length === 1)
+      const roots = snapshot(config).nodes.filter((node) =>
+        node.text === 'Downloads' && node.resourceId === 'android:id/title')
+      if (roots.length !== 1) throw new Error(`Downloads drawer row count: ${roots.length}`)
+      // system list rows delegate item clicks; their label need not be clickable.
+      const rootBounds = validBounds(roots[0], 'Downloads drawer row')
+      adbText(config, ['shell', 'input', 'tap',
+        String(Math.round((rootBounds.left + rootBounds.right) / 2)),
+        String(Math.round((rootBounds.top + rootBounds.bottom) / 2))])
+      await expect(`${name}-seed-visible`, (nodes) =>
+        !nodes.some((node) => node.resourceId === 'com.google.android.documentsui:id/drawer_roots') &&
+        nodes.some((node) => node.resourceId === 'com.google.android.documentsui:id/breadcrumb_text' && node.text === 'Downloads') &&
+        seeds.every((seed) => nodes.some((node) => node.text === seed.name)))
+    }
+    try {
+      clearDocumentsUi(config)
+      adbText(config, ['shell', 'mkdir', '-p', '/sdcard/Download'])
+      for (const [index, seed] of seeds.entries()) {
+        const local = path.join(config.artifactDir, seed.name)
+        const bytes = config.negativeControl && index === 0 ? Buffer.from('one document ω\n') : seed.bytes
+        writeFileSync(local, bytes)
+        adbText(config, ['push', local, `/sdcard/Download/${seed.name}`])
+        if (!adbBytes(config, ['exec-out', 'cat', `/sdcard/Download/${seed.name}`]).equals(bytes))
+          throw new Error(`Seed bytes differ on device: ${seed.name}`)
+        adbText(config, ['shell', 'am', 'broadcast', '-a',
+          'android.intent.action.MEDIA_SCANNER_SCAN_FILE', '-d', `file:///sdcard/Download/${seed.name}`])
+      }
+      await tapNavigation(config, 'nav-one-native-document-picker')
+      await expect('document-picker-mounted', (nodes) => textIncludes(nodes, 'Result: idle'))
+      tapFresh(config, 'Single document picker', { id: 'one-native-document-picker-single' })
+      await expect('document-picker-cancel-presented', picker)
+      pressBack(config)
+      await expect('document-picker-canceled', (nodes) =>
+        textIncludes(nodes, 'Result: canceled') && textIncludes(nodes, 'Assets: 0') && assets(nodes).length === 0)
+      tapFresh(config, 'Single document picker reopened', { id: 'one-native-document-picker-single' })
+      await openDownloads('document-picker-single')
+      tapByText(config, 'First document', seeds[0].name)
+      const single = await expect('document-picker-single-readable-copy', (nodes) => copiesMatch(nodes, [seeds[0]]))
+      await checkBytes('document-picker-single-exact-bytes', single, [seeds[0]])
+      tapFresh(config, 'Multiple document picker', { id: 'one-native-document-picker-multiple' })
+      await openDownloads('document-picker-multiple')
+      const current = snapshot(config)
+      const row = current.nodes.find((node) => node.text === seeds[0].name)!
+      const bounds = validBounds(row, 'First multi-select document')
+      const x = String(Math.round((bounds.left + bounds.right) / 2))
+      const y = String(Math.round((bounds.top + bounds.bottom) / 2))
+      adbText(config, ['shell', 'input', 'swipe', x, y, x, y, '800'])
+      await expect('document-picker-multiple-first-selected', (nodes) => textIncludes(nodes, '1 selected'))
+      tapByText(config, 'Second multi-select document', seeds[1].name)
+      await expect('document-picker-multiple-two-selected', (nodes) => textIncludes(nodes, '2 selected'))
+      tapMatching(config, 'Confirm selected documents', 'Select', (node) => node.text.toLowerCase() === 'select')
+      const multiple = await expect('document-picker-multiple-readable-copies', (nodes) => copiesMatch(nodes, seeds))
+      await checkBytes('document-picker-multiple-exact-bytes', multiple, seeds)
+    } finally {
+      for (const seed of seeds) adbText(config, ['shell', 'rm', '-f', `/sdcard/Download/${seed.name}`])
+    }
+  }
+
+  const network = async () => {
+    await tapNavigation(config, 'nav-one-native-network')
+    const events = (nodes: Node[]) => Number(joined(nodes).match(/Events: (\d+)/)?.[1])
+    const online = (nodes: Node[]) =>
+      textIncludes(nodes, 'State: wifi true true') &&
+      textIncludes(nodes, 'Hook: wifi true true') && events(nodes) > 0
+    const offline = (nodes: Node[]) =>
+      textIncludes(nodes, 'State: none false false') &&
+      textIncludes(nodes, 'Hook: none false false')
+    const radio = (enabled: boolean) => {
+      adbText(config, ['shell', 'svc', 'wifi', enabled ? 'enable' : 'disable'])
+      adbText(config, ['shell', 'svc', 'data', enabled ? 'enable' : 'disable'])
+    }
+    const saveConnectivity = (phase: string) =>
+      writeFileSync(path.join(config.artifactDir, `network-${phase}-connectivity.txt`),
+        adbText(config, ['shell', 'dumpsys', 'connectivity']))
+    try {
+      radio(true)
+      await expect('network-getter-hook-and-listener-online', online,
+        'one-native-network-refresh')
+      saveConnectivity('online')
+      tapFresh(config, 'Refresh network getter', { id: 'one-native-network-refresh' })
+      await expect('network-refreshed-native-getter', online)
+      if (config.negativeControl) {
+        tapFresh(config, 'Freeze the observed hook state', { id: 'one-native-network-freeze' })
+      }
+      radio(false)
+      await expect('network-listener-and-hook-offline', offline)
+      saveConnectivity('offline')
+      tapFresh(config, 'Refresh offline getter', { id: 'one-native-network-refresh' })
+      await expect('network-getter-offline', offline)
+      tapFresh(config, 'Remove network observer', { id: 'one-native-network-stop' })
+      const stopped = await expect('network-observer-removed', (nodes) =>
+        offline(nodes) && textIncludes(nodes, 'Stopped: true'))
+      const stoppedEvents = events(stopped.nodes)
+      radio(true)
+      await expect('network-hook-live-after-observer-removal', (nodes) =>
+        textIncludes(nodes, 'Hook: wifi true true') &&
+        textIncludes(nodes, 'State: none false false') &&
+        events(nodes) === stoppedEvents)
+      tapFresh(config, 'Refresh after removing observer', { id: 'one-native-network-refresh' })
+      await expect('network-getter-live-without-listener', (nodes) =>
+        online(nodes) && events(nodes) === stoppedEvents)
+      for (const cycle of [1, 2]) {
+        pressBack(config)
+        await expect(`network-remount-${cycle}-home`, (nodes) => exactlyOneId(nodes, 'home-screen'))
+        await tapNavigation(config, 'nav-one-native-network')
+        await expect(`network-remount-${cycle}-monitor-restarted`, (nodes) =>
+          online(nodes) && textIncludes(nodes, 'Stopped: false'))
+      }
+    } finally {
+      radio(true)
+      // the next cold launch needs a live route to the metro debug host.
+      await waitFor(config, 'network-radio-restored-for-metro', (nodes) =>
+        textIncludes(nodes, 'State: wifi true true'))
+      saveConnectivity('restored')
+    }
+  }
+
+  const nativeState = async () => {
+    await tapNavigation(config, 'nav-one-native-state')
+    await expect(
+      'state-mounted',
+      (nodes) =>
+        diagnose(nodes, [
+          ['primary text field mounted', (n) => matching(n, { id: 'one-native-state-field' }).length === 1],
+          ['shared text field mounted', (n) => matching(n, { id: 'one-native-state-shared-field' }).length === 1],
+          ['independent control mounted', (n) => matching(n, { id: 'one-native-state-independent-field' }).length === 1],
+          ['initial hook getter and isolation values', (n) => textIncludes(n, 'Get:') && textIncludes(n, 'Independent: untouched')],
+          ['initial boolean value', (n) => textIncludes(n, 'Flag: false')],
+        ]),
+      'one-native-state-field'
+    )
+
+    if (config.negativeControl) {
+      tapFresh(config, 'Disconnect the shared state binding', { id: 'one-native-state-disconnect' })
+    }
+    tapFresh(config, 'State primary native text field', { id: 'one-native-state-field' })
+    adbType(config, 'grace')
+    await expect(
+      'state-native-edit-updates-hook-and-shared-field',
+      (nodes) =>
+        diagnose(nodes, [
+          ['hook value follows native edit', (n) => textIncludes(n, 'Name: grace · Get: grace')],
+          ['second bound native field follows edit', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'grace'],
+        ]),
+      'one-native-state-field'
+    )
+    await expect(
+      'state-independent-handle-negative-control',
+      (nodes) =>
+        textIncludes(nodes, 'Name: grace · Get: grace') &&
+        textIncludes(nodes, 'Independent: untouched'),
+      'one-native-state-independent-field'
+    )
+    pressBack(config)
+
+    tapFresh(config, 'State JavaScript write button', {
+      id: 'one-native-state-set',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'state-javascript-write-reaches-native-fields',
+      (nodes) =>
+        diagnose(nodes, [
+          ['hook getter reads JavaScript write', (n) => textIncludes(n, 'Name: ada · Get: ada')],
+          ['shared native field receives JavaScript write', (n) => matching(n, { id: 'one-native-state-shared-field' })[0]?.text === 'ada'],
+        ]),
+      'one-native-state-field'
+    )
+
+    tapFresh(config, 'State native switch', { id: 'one-native-state-switch' })
+    await expect(
+      'state-native-switch-updates-hook',
+      (nodes) =>
+        textIncludes(nodes, 'Flag: true') &&
+        matching(nodes, { id: 'one-native-state-switch-copy' })[0]?.checked === true,
+      'one-native-state-switch'
+    )
+  }
+
+  // Ten Android system services through their existing fixtures: device
+  // snapshot, keep-awake round trip, orientation locks, share chooser
+  // completion, print sheet cancel, quick-action cold/warm delivery,
+  // alternate icon switch, location permission/position/watch/geocode,
+  // map-services search split, and biometric status. Each leg asserts
+  // positives plus the platform negatives through real Kotlin.
+  const system = async () => {
+    const sysText = (nodes: Node[], id: string, expected: string) =>
+      matching(nodes, { id }).some((node) =>
+        nodeValues(node).some((value) => value.includes(expected))
+      )
+
+
+    // Fresh permissions and prefs; the debug host stamp survives.
+    clearAppData(config)
+    await expect(
+      'system-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      undefined,
+      90_000
+    )
+
+    // filesystem: valid binary writes and rejected writes preserve both destinations.
+    await freshLeg('file-system')
+    await tapNavigation(config, 'nav-one-native-file-system')
+    await expect(
+      'system-file-system-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-file-system-run'
+    )
+    tapFresh(config, 'system-file-system-run', {
+      id: 'one-native-file-system-run',
+      clickable: true,
+    })
+    await expect(
+      'system-file-system-lifecycle',
+      (nodes) =>
+        textIncludes(nodes, 'Status: passed') &&
+        textIncludes(
+          nodes,
+          'Result: text=Hello One; bytes=0,1,2,3; entries=binary.dat,moved.txt,note.txt; ' +
+          'moved=true; recursive=true; missing=false; ' +
+          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION'
+        ),
+      'one-native-file-system-run'
+    )
+
+    // Device: full snapshot from Build/Locale, emulator flagged.
+    await freshLeg('device')
+    await tapNavigation(config, 'nav-one-native-device')
+    await expect(
+      'system-device-mounted',
+      (nodes) => sysText(nodes, 'one-native-device-read', 'Read device'),
+      'one-native-device-read'
+    )
+    tapFresh(config, 'system-device-read', {
+      id: 'one-native-device-read',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-device-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          /Model: \S+/.test(text) &&
+          text.includes('System: Android') &&
+          text.includes('Idiom: phone') &&
+          text.includes('Simulator: true') &&
+          /Vendor: [0-9a-fA-F]+/.test(text) &&
+          !text.includes('pending') &&
+          text.includes('Error: none')
+        )
+      },
+      'one-native-device-read'
+    )
+
+    // KeepAwake: enable/disable round trip, validation, restore, and a
+    // home/foreground cycle proving the resume path holds.
+    await freshLeg('keep-awake')
+    await tapNavigation(config, 'nav-one-native-keep-awake')
+    tapFresh(config, 'system-keep-awake-run', {
+      id: 'one-native-keep-awake-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-keep-awake-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Initial: false') &&
+          text.includes('Enabled: true') &&
+          text.includes('Disabled: false') &&
+          text.includes('Invalid: KeepAwake.setEnabled: enabled must be a boolean') &&
+          text.includes('Restored: false')
+        )
+      },
+      'one-native-keep-awake-run'
+    )
+    pressHome()
+    await Bun.sleep(1000)
+    foregroundApp()
+    await expect(
+      'system-keep-awake-foregrounded',
+      (nodes) => sysText(nodes, 'one-native-keep-awake-run', 'Run keep-awake checks'),
+      'one-native-keep-awake-run'
+    )
+    tapFresh(config, 'system-keep-awake-rerun', {
+      id: 'one-native-keep-awake-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-keep-awake-report-after-resume',
+      (nodes) => joined(nodes).includes('Status: done'),
+      'one-native-keep-awake-run'
+    )
+
+    // Orientation: read, both locks with flipped dimensions, listener
+    // events, unlock. The landscapeLeft lock pins the left/right mapping.
+    await freshLeg('orientation')
+    await tapNavigation(config, 'nav-one-native-screen-orientation')
+    tapFresh(config, 'system-orientation-read', {
+      id: 'one-native-orientation-read',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-portrait',
+      (nodes) =>
+        joined(nodes).includes('Orientation: portrait') &&
+        joined(nodes).includes('Status: read'),
+      'one-native-orientation-read'
+    )
+    tapFresh(config, 'system-orientation-landscape', {
+      id: 'one-native-orientation-landscape',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-landscape-left',
+      (nodes) => {
+        const text = joined(nodes)
+        const dimensions = /Dimensions: (\d+)x(\d+)/.exec(text)
+        return (
+          text.includes('Status: locked-landscapeLeft') &&
+          text.includes('Orientation: landscapeLeft') &&
+          text.includes('landscapeLeft') &&
+          dimensions !== null &&
+          Number(dimensions[1]) > Number(dimensions[2])
+        )
+      },
+      'one-native-orientation-landscape',
+      undefined,
+      30_000
+    )
+    tapFresh(config, 'system-orientation-portrait-lock', {
+      id: 'one-native-orientation-portrait',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-portrait-locked',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: locked-portrait') &&
+          text.includes('Orientation: portrait')
+        )
+      },
+      'one-native-orientation-portrait',
+      undefined,
+      30_000
+    )
+    tapFresh(config, 'system-orientation-unlock', {
+      id: 'one-native-orientation-unlock',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-orientation-unlocked',
+      (nodes) =>
+        joined(nodes).includes('Status: unlocked') &&
+        joined(nodes).includes('Orientation: portrait'),
+      'one-native-orientation-unlock',
+      undefined,
+      30_000
+    )
+
+    await share()
+
+    // Print: cancel the system sheet, then busy and input codes; a second
+    // leg with the print service disabled proves honest unavailability.
+    adbText(config, [
+      'shell',
+      'settings',
+      'put',
+      'secure',
+      'enabled_print_services',
+      'com.android.bips/.BuiltInPrintService',
+    ])
+    await freshLeg('print')
+    await tapNavigation(config, 'nav-one-native-print')
+    tapFresh(config, 'system-print-run', {
+      id: 'one-native-print-run',
+      role: 'button',
+      clickable: true,
+    })
+    // the system sheet owns the visible tree while the fixture is behind it.
+    // require the rendered pdf page and actual window focus before cancelling.
+    await expect(
+      'system-print-sheet',
+      (nodes) => {
+        const pages = matching(nodes, {
+          id: 'com.android.printspooler:id/preview_page',
+          checked: true,
+        })
+        return (
+          pages.length === 1 &&
+          pages[0].contentDescription === 'Page 1 of 1' &&
+          exactlyOneId(nodes, 'com.android.printspooler:id/cancel_button') &&
+          /mCurrentFocus=Window\{[^\n]*com\.android\.printspooler\//.test(
+            adbText(config, ['shell', 'dumpsys', 'window'])
+          )
+        )
+      },
+      'com.android.printspooler:id/preview_page',
+      undefined,
+      30_000
+    )
+    pressBack(config)
+    await expect(
+      'system-print-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          /PdfBytes: \d+/.test(text) &&
+          text.includes('Busy: E_PRINT_BUSY') &&
+          text.includes('Completed: false') &&
+          text.includes('RemoteURI: E_PRINT_URI') &&
+          text.includes('Missing: E_PRINT_FILE') &&
+          text.includes('BadPDF: E_PRINT_PDF') &&
+          text.includes('InvalidType: Print.printPdf: fileUri must be a non-empty string') &&
+          text.includes(
+            'InvalidName: Print.printPdf: jobName must be a non-empty string when provided'
+          )
+        )
+      },
+      'one-native-print-run',
+      undefined,
+      90_000
+    )
+    adbText(config, ['shell', 'settings', 'delete', 'secure', 'enabled_print_services'])
+    relaunchApp(config)
+    await expect(
+      'system-print-relaunch-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen'
+    )
+    await tapNavigation(config, 'nav-one-native-print')
+    tapFresh(config, 'system-print-unavailable-run', {
+      id: 'one-native-print-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-print-unavailable',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Available: false') &&
+          text.includes('Status: failed system printing is unavailable')
+        )
+      },
+      'one-native-print-run'
+    )
+    adbText(config, [
+      'shell',
+      'settings',
+      'put',
+      'secure',
+      'enabled_print_services',
+      'com.android.bips/.BuiltInPrintService',
+    ])
+
+    // QuickActions: set/get round trip, validation, warm tap exactly once,
+    // cold start into the initial slot, clear.
+    await freshLeg('quick-actions')
+    await tapNavigation(config, 'nav-one-native-quick-actions')
+    tapFresh(config, 'system-quick-actions-set', {
+      id: 'one-native-quick-actions-set',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-registered',
+      (nodes) =>
+        joined(nodes).includes(
+          'Registered: 1:dev.vxrn.native.tests.quick-open:Open Quick Actions:One proof action'
+        ),
+      'one-native-quick-actions-set'
+    )
+    tapFresh(config, 'system-quick-actions-invalid', {
+      id: 'one-native-quick-actions-invalid',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-invalid',
+      (nodes) =>
+        joined(nodes).includes('Invalid: rejected,rejected,rejected,rejected,rejected'),
+      'one-native-quick-actions-invalid'
+    )
+    const quickAction = 'dev.vxrn.native.tests.quick-open'
+    const fireQuickAction = () =>
+      adbText(config, [
+        'shell',
+        'am',
+        'start',
+        '-n',
+        launcherComponent(config),
+        '-a',
+        'dev.onejs.one.QUICK_ACTION',
+        '--es',
+        'dev.onejs.one.QUICK_ACTION_ID',
+        quickAction,
+      ])
+    fireQuickAction()
+    await expect(
+      'system-quick-actions-warm',
+      (nodes) => joined(nodes).includes(`Warm: 1:${quickAction}`),
+      'one-native-quick-actions-set'
+    )
+    adbText(config, ['shell', 'am', 'force-stop', config.packageId])
+    fireQuickAction()
+    await expect(
+      'system-quick-actions-cold-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      undefined,
+      90_000
+    )
+    await tapNavigation(config, 'nav-one-native-quick-actions')
+    await expect(
+      'system-quick-actions-initial',
+      (nodes) => joined(nodes).includes(`Initial: ${quickAction}`),
+      'one-native-quick-actions-clear-initial'
+    )
+    tapFresh(config, 'system-quick-actions-clear-initial', {
+      id: 'one-native-quick-actions-clear-initial',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-initial-cleared',
+      (nodes) => joined(nodes).includes('Initial: null'),
+      'one-native-quick-actions-clear-initial'
+    )
+    tapFresh(config, 'system-quick-actions-clear', {
+      id: 'one-native-quick-actions-clear',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-quick-actions-cleared',
+      (nodes) => joined(nodes).includes('Registered: cleared:0'),
+      'one-native-quick-actions-clear'
+    )
+
+    await appIcon()
+
+    await location()
+
+    // MapServices: geocoder search positive, empty, and input guard, with
+    // the unavailable split held for the other three methods.
+    await freshLeg('map-services')
+    await tapNavigation(config, 'nav-one-native-map-services')
+    tapFresh(config, 'system-map-services-run', {
+      id: 'one-native-map-services-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-map-services-report',
+      (nodes) =>
+        /Map services: android-passed: .+; empty=true; input=E_MAP_INPUT; split=true/.test(
+          joined(nodes)
+        ),
+      'one-native-map-services-run',
+      undefined,
+      90_000
+    )
+
+    // LocalAuthentication: status triple on an unenrolled emulator and the
+    // matching evaluate rejection through the real prompt path.
+    await freshLeg('local-auth')
+    await tapNavigation(config, 'nav-one-native-local-authentication')
+    const authStatus = await expect(
+      'system-local-auth-status',
+      (nodes) =>
+        /Status: (true|false):(none|touchID|faceID):(\S+)/.test(joined(nodes)),
+      'one-native-local-auth-evaluate'
+    )
+    const authTriple = /Status: (true|false):(none|touchID|faceID):(\S+)/.exec(
+      joined(authStatus.nodes)
+    )
+    if (!authTriple) throw new Error('biometric status triple missing')
+    console.log(`PASS system-local-auth-triple ${authTriple[0]}`)
+    tapFresh(config, 'system-local-auth-evaluate', {
+      id: 'one-native-local-auth-evaluate',
+      role: 'button',
+      clickable: true,
+    })
+    if (authTriple[1] === 'false' && authTriple[3] === '11') {
+      await expect(
+        'system-local-auth-not-enrolled',
+        (nodes) => joined(nodes).includes('Result: error: E_LOCAL_AUTH_NOT_ENROLLED'),
+        'one-native-local-auth-refresh'
+      )
+    } else if (authTriple[1] === 'false' && authTriple[3] === '12') {
+      await expect(
+        'system-local-auth-no-hardware',
+        (nodes) => joined(nodes).includes('Result: error: E_LOCAL_AUTH_FAILED'),
+        'one-native-local-auth-refresh'
+      )
+    } else {
+      throw new Error(`unexpected biometric status for proof branching: ${authTriple[0]}`)
+    }
+
+    // ScreenCapture: the window-manager recording state reads inactive on
+    // a quiet device with no events delivered at registration, window
+    // capture writes a real PNG file with dimensions and bytes, delete
+    // removes it, the screenshot listener stays silent without a real
+    // screenshot, the remover is idempotent, and state still serves after
+    // a background/foreground cycle re-registers the activity callback.
+    await freshLeg('screen-capture')
+    await tapNavigation(config, 'nav-one-native-screen-capture')
+    await expect(
+      'system-screen-capture-initial',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Capture state: inactive') &&
+          text.includes('State events: none') &&
+          text.includes('Screenshot count: 0')
+        )
+      },
+      'one-native-screen-capture-window'
+    )
+    tapFresh(config, 'system-screen-capture-window', {
+      id: 'one-native-screen-capture-window',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-captured',
+      (nodes) => {
+        const text = joined(nodes)
+        const dimensions = /Window dimensions: (\d+)x(\d+)/.exec(text)
+        const bytes = /Window bytes: (\d+)/.exec(text)
+        return (
+          text.includes('Window capture: captured') &&
+          !text.includes('Window file: none') &&
+          dimensions !== null &&
+          Number(dimensions[1]) > 0 &&
+          Number(dimensions[2]) > 0 &&
+          bytes !== null &&
+          Number(bytes[1]) > 0
+        )
+      },
+      'one-native-screen-capture-delete'
+    )
+    tapFresh(config, 'system-screen-capture-delete', {
+      id: 'one-native-screen-capture-delete',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-deleted',
+      (nodes) => joined(nodes).includes('Window capture: deleted'),
+      'one-native-screen-capture-unsubscribe'
+    )
+    tapFresh(config, 'system-screen-capture-unsubscribe', {
+      id: 'one-native-screen-capture-unsubscribe',
+      role: 'button',
+      clickable: true,
+    })
+    tapFresh(config, 'system-screen-capture-unsubscribe-again', {
+      id: 'one-native-screen-capture-unsubscribe',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-unsubscribed',
+      (nodes) =>
+        joined(nodes).includes('Listening: false') &&
+        joined(nodes).includes('Screenshot count: 0'),
+      'one-native-screen-capture-refresh'
+    )
+    pressHome()
+    await Bun.sleep(1000)
+    foregroundApp()
+    tapFresh(config, 'system-screen-capture-rerefresh', {
+      id: 'one-native-screen-capture-refresh',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-screen-capture-after-resume',
+      (nodes) =>
+        joined(nodes).includes('Capture state: inactive') &&
+        joined(nodes).includes('Status: refreshed'),
+      'one-native-screen-capture-refresh'
+    )
   }
 
   // One.UI.Portal: hosted content keeps its React context and state, lays
@@ -1026,9 +2726,14 @@ async function run(config: Config) {
   try {
     preflight(config)
     requireMetroReverse(config)
-    relaunchApp(config)
     stampDebugHost(config)
     relaunchApp(config)
+
+    if (config.suite === 'launch-screen') {
+      await launchScreen()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
 
     await expect(
       'app-mounted',
@@ -1037,8 +2742,44 @@ async function run(config: Config) {
         textIncludes(nodes, 'One Native Test Suite'),
       'home-screen'
     )
-    if (config.suite === 'portal' || config.suite === 'pager') {
-      await (config.suite === 'portal' ? portal() : pager())
+    if (config.suite === 'open') {
+      await openAPIs()
+      return
+    }
+    if (config.suite === 'database') {
+      await database()
+      return
+    }
+    if (config.suite === 'color') {
+      await androidColor()
+      return
+    }
+    if (config.suite === 'menus') {
+      await androidMenus()
+      return
+    }
+    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
+      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : system())
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'adaptive-flat') {
+      await adaptiveFlat()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'document-picker') {
+      await documentPicker()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'network') {
+      await network()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'state') {
+      await nativeState()
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }
@@ -2675,7 +4416,7 @@ async function run(config: Config) {
     )
     const tapShade = (name: string, text: string) => {
       adbText(config, ['shell', 'input', 'keyevent', '3'])
-      adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+      expandNotificationShade(config)
       const current = snapshot(config)
       const target = current.nodes.find(
         (node) => node.text === text || node.contentDescription === text
@@ -2735,7 +4476,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a suppressed notification reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -2759,7 +4500,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a nulled handler reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -2859,7 +4600,7 @@ async function run(config: Config) {
     adbText(config, ['shell', 'input', 'keyevent', '3'])
     adbText(config, ['shell', 'am', 'kill', config.packageId])
     await new Promise((resolve) => setTimeout(resolve, 17_000))
-    adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+    expandNotificationShade(config)
     {
       const current = snapshot(config)
       const target = current.nodes.find(
@@ -3141,24 +4882,102 @@ async function runCompose(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   preflight(config)
   requireMetroReverse(config)
-  relaunchApp(config)
   stampDebugHost(config)
   relaunchApp(config)
 
   let captureNumber = 0
   const idText = (nodes: Node[], id: string, expected: string) =>
     matching(nodes, { id }).some((node) => nodeValues(node).some((value) => value.includes(expected)))
-  const check = async (name: string, predicate: (nodes: Node[]) => boolean) => {
-    const { snapshot: current } = await waitFor(config, name, predicate)
+  const check = async (
+    name: string,
+    predicate: (nodes: Node[]) => boolean,
+    timeoutMs = config.timeout
+  ) => {
+    const { snapshot: current } = await waitFor(config, name, predicate, undefined, timeoutMs)
     const stem = `${String(++captureNumber).padStart(2, '0')}-${name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`
     const png = adbBytes(config, ['exec-out', 'screencap', '-p'])
     if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a')
       throw new Error(`${name} screenshot was not a PNG`)
-    writeFileSync(path.join(config.artifactDir, `${stem}.png`), png)
+    const pngPath = path.join(config.artifactDir, `${stem}.png`)
+    writeFileSync(pngPath, png)
     writeFileSync(path.join(config.artifactDir, `${stem}.xml`), current.xml)
     console.log(`PASS ${name}`)
+    return { nodes: current.nodes, pngPath }
   }
   const home = () => check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'))
+  const uiImage = async () => {
+    const scale = densityScale(config)
+    const status = (nodes: Node[], prefix: string) =>
+      nodes.find((node) => node.text.startsWith(`${prefix}: `))?.text
+    const images = (nodes: Node[]) =>
+      nodes.filter((node) => node.className === 'android.widget.ImageView')
+    const imageSize = (node: Node) => {
+      const bounds = node.bounds
+      return Boolean(
+        bounds &&
+          Math.abs((bounds.right - bounds.left) / scale - 120) <= 1 &&
+          Math.abs((bounds.bottom - bounds.top) / scale - 80) <= 1
+      )
+    }
+    const imagePixels = (name: string, capture: { nodes: Node[]; pngPath: string }) => {
+      const views = images(capture.nodes)
+      if (views.length !== 3 || views.some((view) => !view.bounds))
+        throw new Error(
+          `Android One.UI.Image expected three bounded native image views, found ${views.length}.`
+        )
+      const counts = views.map((view) => {
+        const bounds = view.bounds!
+        return countDistinctColors(capture.pngPath, {
+          x: bounds.left + 10,
+          y: bounds.top + 10,
+          width: bounds.right - bounds.left - 20,
+          height: bounds.bottom - bounds.top - 20,
+          isPixel: true,
+        })
+      })
+      const pixels = { asset: counts[0]!, remote: counts[1]!, broken: counts[2]! }
+      writeFileSync(
+        path.join(config.artifactDir, `ui-image-${name}-pixels.json`),
+        JSON.stringify(pixels, null, 2)
+      )
+      if (pixels.asset <= 1 || pixels.remote <= 1 || pixels.broken !== 1)
+        throw new Error(
+          `Android One.UI.Image pixel visibility failed: ${JSON.stringify(pixels)}.`
+        )
+    }
+    const initial = (nodes: Node[]) =>
+      exactlyOneId(nodes, 'one-ui-image-screen') &&
+      status(nodes, 'Asset') === 'Asset: loaded 48x32' &&
+      status(nodes, 'Remote') === 'Remote: loaded 120x80' &&
+      status(nodes, 'Remote loads') === 'Remote loads: 1' &&
+      status(nodes, 'Broken') === 'Broken: error' &&
+      images(nodes).length === 3 && images(nodes).every(imageSize)
+
+    await tapNavigation(config, 'nav-one-native-image')
+    const initialCapture = await check('ui-image-initial-events', initial, 60_000)
+    imagePixels('initial', initialCapture)
+    tapFresh(config, 'switch remote image source', {
+      id: 'one-native-image-switch',
+      role: 'button',
+      clickable: true,
+    })
+    const changedCapture = await check(
+      'ui-image-source-change-loads-again',
+      (nodes) =>
+        status(nodes, 'Asset') === 'Asset: loaded 48x32' &&
+        status(nodes, 'Remote') === 'Remote: loaded 60x40' &&
+        status(nodes, 'Remote loads') === 'Remote loads: 2' &&
+        status(nodes, 'Broken') === 'Broken: error',
+      60_000
+    )
+    imagePixels('source-change', changedCapture)
+
+    relaunchApp(config)
+    await check('ui-image-fresh-launch-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 60_000)
+    await tapNavigation(config, 'nav-one-native-image')
+    const relaunchCapture = await check('ui-image-fresh-launch-loads', initial, 60_000)
+    imagePixels('fresh-launch', relaunchCapture)
+  }
   const progress = async () => {
     await tapNavigation(config, 'nav-one-native-android-progress')
     await check('compose-progress-mounted', (nodes) =>
@@ -3209,6 +5028,80 @@ async function runCompose(config: Config) {
     await check('compose-segmented-disabled', (nodes) =>
       idText(nodes, 'one-native-android-segmented-status', 'Single: Second · Checked: yes · Policy: accept · Requests: 2 · Disabled: 0')
     )
+  }
+  const pickers = async () => {
+    const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-pickers-status', text)
+    const dayNodes = (nodes: Node[], day: number) =>
+      nodes.filter((node) => new RegExp(`\\bOctober ${day}, 2026$`).test(node.text) && node.checkable)
+    const day = (nodes: Node[], value: number) => dayNodes(nodes, value).length === 1 ? dayNodes(nodes, value)[0] : undefined
+    // compose semantics nodes carry no resource id, so these taps resolve one node by its text
+    const tapText = (name: string, find: (nodes: Node[]) => Node[]) => {
+      const found = find(snapshot(config).nodes)
+      if (found.length !== 1) throw new Error(`${name} resolved ${found.length} nodes; exactly one is required.`)
+      const bounds = validBounds(found[0], name)
+      adbText(config, ['shell', 'input', 'tap', String(Math.round((bounds.left + bounds.right) / 2)), String(Math.round((bounds.top + bounds.bottom) / 2))])
+    }
+    await tapNavigation(config, 'nav-one-native-android-pickers')
+    await check('compose-pickers-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-pickers-date') &&
+      day(nodes, 5)?.checked === true &&
+      day(nodes, 2)?.enabled === false &&
+      day(nodes, 31)?.enabled === false &&
+      day(nodes, 15)?.enabled === true &&
+      status('Date: 2026-10-05 14:37 · Time: 14:37 · Policy: reject · Requests: 0 · Dialog: none')(nodes)
+    )
+    tapText('day 15 rejected', (nodes) => dayNodes(nodes, 15))
+    await check('compose-pickers-date-rejected', (nodes) =>
+      status('Date: 2026-10-05 14:37 · Time: 14:37 · Policy: reject · Requests: 1')(nodes) &&
+      day(nodes, 5)?.checked === true &&
+      day(nodes, 15)?.checked === false
+    )
+    tapText('disabled day 2', (nodes) => dayNodes(nodes, 2))
+    tapFresh(config, 'accept picker requests', { id: 'one-native-android-pickers-policy' })
+    await check('compose-pickers-policy', status('Policy: accept · Requests: 1'))
+    tapText('day 15 accepted', (nodes) => dayNodes(nodes, 15))
+    await check('compose-pickers-date-accepted', (nodes) =>
+      status('Date: 2026-10-15 14:37 · Time: 14:37 · Policy: accept · Requests: 2 · Dialog: none')(nodes) &&
+      day(nodes, 15)?.checked === true &&
+      day(nodes, 5)?.checked === false
+    )
+    tapFresh(config, 'show inline time picker', { id: 'one-native-android-pickers-swap' })
+    await check('compose-pickers-time-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-pickers-time') &&
+      nodes.some((node) => node.contentDescription === '14 hours' && node.text === '14')
+    )
+    const hour = (value: number) => (nodes: Node[]) => nodes.filter((node) => node.contentDescription === `${value} hours` && !node.text)
+    tapText('dial hour 9', hour(9))
+    await check('compose-pickers-time-accepted', (nodes) =>
+      status('Date: 2026-10-15 14:37 · Time: 09:37 · Policy: accept · Requests: 3 · Dialog: none')(nodes) &&
+      nodes.some((node) => node.contentDescription === '9 hours' && /^0?9$/.test(node.text))
+    )
+    const button = (label: string) => (nodes: Node[]) => nodes.filter((node) => node.text === label)
+    tapFresh(config, 'open date dialog', { id: 'one-native-android-pickers-open-date' })
+    await check('compose-pickers-date-dialog-open', (nodes) =>
+      button('Use date')(nodes).length === 1 && day(nodes, 15)?.checked === true
+    )
+    tapText('dialog day 20', (nodes) => dayNodes(nodes, 20))
+    await check('compose-pickers-date-dialog-changed', (nodes) => day(nodes, 20)?.checked === true)
+    tapText('confirm date dialog', button('Use date'))
+    await check('compose-pickers-date-dialog-confirmed', status('Date: 2026-10-15 14:37 · Time: 09:37 · Policy: accept · Requests: 3 · Dialog: date 2026-10-20 14:37'))
+    tapFresh(config, 'reopen date dialog', { id: 'one-native-android-pickers-open-date' })
+    await check('compose-pickers-date-dialog-reopened', (nodes) =>
+      button('Use date')(nodes).length === 1 && day(nodes, 15)?.checked === true && day(nodes, 20)?.checked === false
+    )
+    tapText('cancel date dialog', button('Cancel'))
+    await check('compose-pickers-date-dialog-dismissed', (nodes) =>
+      status('Dialog: dismissed')(nodes) && button('Use date')(nodes).length === 0
+    )
+    tapFresh(config, 'show inline date picker', { id: 'one-native-android-pickers-swap' })
+    await check('compose-pickers-date-remounted', (nodes) => day(nodes, 15)?.checked === true)
+    tapFresh(config, 'open time dialog', { id: 'one-native-android-pickers-open-time' })
+    await check('compose-pickers-time-dialog-open', (nodes) =>
+      button('Use time')(nodes).length === 1 && nodes.some((node) => node.contentDescription === '9 hours' && /^0?9$/.test(node.text))
+    )
+    tapText('dialog hour 18', hour(18))
+    tapText('confirm time dialog', button('Use time'))
+    await check('compose-pickers-time-dialog-confirmed', status('Date: 2026-10-15 14:37 · Time: 09:37 · Policy: accept · Requests: 3 · Dialog: time 2026-10-05 18:37'))
   }
   const surface = async () => {
     await tapNavigation(config, 'nav-one-native-android-surface')
@@ -3421,6 +5314,394 @@ async function runCompose(config: Config) {
   }
 
   await home()
+  if (config.suite === 'ui-image') {
+    await uiImage()
+    console.log('ALL ONE UI IMAGE ANDROID CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'ui-text-input') {
+    const status = (nodes: Node[], prefix: string) =>
+      nodes.find((node) => node.text.startsWith(`${prefix}: `))?.text
+    const textField = (nodes: Node[], id: string) => {
+      const owner = matching(nodes, { id })[0]
+      return nodes.find((node) => {
+        if (!node.className.includes('EditText')) return false
+        let current: Node | undefined = node
+        while (current) {
+          if (current === owner) return true
+          current = nodes[current.parent]
+        }
+        return false
+      })
+    }
+    const fieldText = (nodes: Node[], id: string) => textField(nodes, id)?.text
+    await navigateFixture(config, 'nav-one-ui-text-input')
+    await check('ui-text-input-default-and-readonly', (nodes) => {
+      const field = textField(nodes, 'one-ui-text-input-field')
+      const readonly = textField(nodes, 'one-ui-text-input-readonly')
+      return (
+        exactlyOneId(nodes, 'one-ui-text-input-screen') &&
+        field?.text === 'hello' &&
+        readonly?.text === 'locked' &&
+        readonly.enabled === false &&
+        status(nodes, 'Changed') === 'Changed: none' &&
+        status(nodes, 'Focus') === 'Focus: 0 Blur: 0' &&
+        status(nodes, 'Submits') === 'Submits: 0' &&
+        status(nodes, 'Shared') === 'Shared: empty' &&
+        status(nodes, 'Secret length') === 'Secret length: 0'
+      )
+    })
+    if (keyboardShown(config))
+      throw new Error(
+        'Android input method was already shown before any TextInput focus.'
+      )
+
+    tapFresh(config, 'disabled TextInput', {
+      id: 'one-ui-text-input-readonly',
+    })
+    await check('ui-text-input-disabled-tap-does-not-focus', (nodes) => {
+      const readonly = textField(nodes, 'one-ui-text-input-readonly')
+      return (
+        readonly?.enabled === false &&
+        readonly.attrs.focused !== 'true' &&
+        status(nodes, 'Focus') === 'Focus: 0 Blur: 0'
+      )
+    })
+    if (keyboardShown(config))
+      throw new Error('Tapping editable={false} opened the Android input method.')
+    tapFresh(config, 'TextInput isFocused before focus', {
+      id: 'one-ui-text-input-check',
+    })
+    await check(
+      'ui-text-input-isFocused-before-focus',
+      (nodes) => status(nodes, 'IsFocused') === 'IsFocused: false'
+    )
+
+    tapFresh(config, 'TextInput ref focus', { id: 'one-ui-text-input-focus' })
+    await check(
+      'ui-text-input-ref-focus-opens-ime',
+      (nodes) =>
+        textField(nodes, 'one-ui-text-input-field')?.attrs.focused === 'true' &&
+        status(nodes, 'Focus') === 'Focus: 1 Blur: 0'
+    )
+    if (!keyboardShown(config))
+      throw new Error('TextInput ref.focus() did not open the Android input method.')
+    tapFresh(config, 'TextInput isFocused after focus', {
+      id: 'one-ui-text-input-check',
+    })
+    await check(
+      'ui-text-input-isFocused-after-focus',
+      (nodes) => status(nodes, 'IsFocused') === 'IsFocused: true'
+    )
+
+    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END'])
+    adbType(config, 'world')
+    await check(
+      'ui-text-input-max-length-and-change-event',
+      (nodes) =>
+        fieldText(nodes, 'one-ui-text-input-field') === 'hellowor' &&
+        status(nodes, 'Changed') === 'Changed: hellowor'
+    )
+
+    tapFresh(config, 'TextInput ref blur', { id: 'one-ui-text-input-blur' })
+    await check(
+      'ui-text-input-ref-blur-event',
+      (nodes) =>
+        textField(nodes, 'one-ui-text-input-field')?.attrs.focused !== 'true' &&
+        status(nodes, 'Focus') === 'Focus: 1 Blur: 1'
+    )
+    if (keyboardShown(config))
+      throw new Error('TextInput ref.blur() left the Android input method open.')
+    tapFresh(config, 'TextInput isFocused after blur', {
+      id: 'one-ui-text-input-check',
+    })
+    await check(
+      'ui-text-input-isFocused-after-blur',
+      (nodes) => status(nodes, 'IsFocused') === 'IsFocused: false'
+    )
+
+    tapFresh(config, 'TextInput refocus', { id: 'one-ui-text-input-focus' })
+    await check(
+      'ui-text-input-refocus-event',
+      (nodes) =>
+        textField(nodes, 'one-ui-text-input-field')?.attrs.focused === 'true' &&
+        status(nodes, 'Focus') === 'Focus: 2 Blur: 1'
+    )
+    if (!keyboardShown(config))
+      throw new Error('TextInput ref.focus() did not reopen the Android input method.')
+    adbText(config, ['shell', 'input', 'keyevent', '66'])
+    await check(
+      'ui-text-input-done-submits-once',
+      (nodes) => status(nodes, 'Submits') === 'Submits: 1 hellowor'
+    )
+
+    tapFresh(config, 'TextInput ref clear', { id: 'one-ui-text-input-clear' })
+    await check('ui-text-input-ref-clear', (nodes) => {
+      const field = textField(nodes, 'one-ui-text-input-field')
+      return field?.text === '' || field?.text === 'Type here'
+    })
+
+    tapFresh(config, 'NativeState external update', {
+      id: 'one-ui-text-input-external',
+    })
+    await check(
+      'ui-text-input-controlled-native-state-update',
+      (nodes) =>
+        fieldText(nodes, 'one-ui-text-input-controlled') === 'external' &&
+        status(nodes, 'Shared') === 'Shared: external'
+    )
+    tapFresh(config, 'controlled TextInput focus', {
+      id: 'one-ui-text-input-controlled',
+    })
+    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END'])
+    adbType(config, 'x')
+    await check(
+      'ui-text-input-controlled-native-state-edit',
+      (nodes) =>
+        fieldText(nodes, 'one-ui-text-input-controlled') === 'externalx' &&
+        status(nodes, 'Shared') === 'Shared: externalx'
+    )
+
+    tapFresh(config, 'secure TextInput focus', { id: 'one-ui-text-input-secure' })
+    adbType(config, 'pass')
+    const secure = await check(
+      'ui-text-input-secure-entry-is-masked',
+      (nodes) => {
+        const field = textField(nodes, 'one-ui-text-input-secure')
+        return (
+          field?.attrs.password === 'true' &&
+          status(nodes, 'Secret length') === 'Secret length: 4'
+        )
+      }
+    )
+    if (secure.nodes.some((node) => node.text === 'pass' || node.contentDescription === 'pass'))
+      throw new Error('secureTextEntry exposed plaintext to Android UIAutomator.')
+    console.log('ALL ONE UI TEXT INPUT ANDROID CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'ui-icon') {
+    const scale = densityScale(config)
+    const labels = [
+      'Icon default',
+      'Icon font',
+      'Icon frame',
+      'Icon style',
+      'Icon danger',
+      'Reference danger',
+      'Icon explicit',
+    ]
+    const testIds = [
+      'icon-default',
+      'icon-font',
+      'icon-frame',
+      'icon-style',
+      'icon-danger',
+      'icon-reference-danger',
+      'icon-explicit',
+    ]
+    const icon = (nodes: Node[], label: string) =>
+      nodes.find((node) => node.contentDescription === label || node.text === label)
+    const iconSize = (node: Node | undefined, width: number, height: number) =>
+      Boolean(
+        node?.bounds &&
+        Math.abs((node.bounds.right - node.bounds.left) / scale - width) <= 1 &&
+        Math.abs((node.bounds.bottom - node.bounds.top) / scale - height) <= 1
+      )
+
+    await navigateFixture(config, 'nav-one-ui-icon')
+    const capture = await check(
+      'ui-icon-accessibility-and-bounds',
+      (nodes) =>
+        testIds.every((id) => exactlyOneId(nodes, id)) &&
+        labels.every((label) => icon(nodes, label)) &&
+        iconSize(icon(nodes, 'Icon default'), 24, 24) &&
+        iconSize(icon(nodes, 'Icon font'), 36, 36) &&
+        iconSize(icon(nodes, 'Icon frame'), 48, 32) &&
+        iconSize(icon(nodes, 'Icon style'), 44, 28) &&
+        ['Icon danger', 'Reference danger', 'Icon explicit'].every((label) =>
+          iconSize(icon(nodes, label), 40, 40)
+        )
+    )
+
+    const png = readPng(capture.pngPath)
+    const frame = capture.nodes.find((node) => idMatches(node, 'icon-decoration-frame'))
+    if (!frame?.bounds || !icon(capture.nodes, 'Icon danger')?.bounds)
+      throw new Error('Android icon pixel reference bounds are missing.')
+    const crop = (bounds: Bounds) => ({
+      x: bounds.left + 2,
+      y: bounds.top + 2,
+      width: bounds.right - bounds.left - 4,
+      height: bounds.bottom - bounds.top - 4,
+      isPixel: true,
+    })
+    const colorFraction = (
+      bounds: Bounds,
+      expected: readonly [number, number, number]
+    ) => {
+      let matched = 0
+      let total = 0
+      for (let y = bounds.top; y < bounds.bottom; y++) {
+        for (let x = bounds.left; x < bounds.right; x++) {
+          if (x < 0 || y < 0 || x >= png.width || y >= png.height) continue
+          const offset = (y * png.width + x) * 4
+          const close = [0, 1, 2].every(
+            (channel) => Math.abs(png.data[offset + channel]! - expected[channel]!) <= 3
+          )
+          if (close) matched++
+          total++
+        }
+      }
+      return total === 0 ? 0 : matched / total
+    }
+    const danger = icon(capture.nodes, 'Icon danger')!.bounds!
+    const reference = icon(capture.nodes, 'Reference danger')!.bounds!
+    const explicit = icon(capture.nodes, 'Icon explicit')!.bounds!
+    const ink = Object.fromEntries(
+      ['Icon default', 'Icon font', 'Icon frame', 'Icon style'].map((label) => {
+        const bounds = icon(capture.nodes, label)!.bounds!
+        return [label, countDistinctColors(capture.pngPath, crop(bounds))]
+      })
+    )
+    const pixels = {
+      ink,
+      decoration: countDistinctColors(capture.pngPath, crop(frame.bounds)),
+      danger: colorFraction(danger, [179, 38, 30]),
+      reference: colorFraction(reference, [179, 38, 30]),
+      explicit: colorFraction(explicit, [18, 184, 90]),
+    }
+    writeFileSync(
+      path.join(config.artifactDir, 'ui-icon-pixels.json'),
+      JSON.stringify(pixels, null, 2)
+    )
+    if (Object.values(ink).some((colors) => colors <= 1) || pixels.decoration <= 1)
+      throw new Error(
+        `Android One.UI.Icon glyph ink is missing: ${JSON.stringify(pixels)}`
+      )
+    if (
+      pixels.danger <= 0.1 ||
+      pixels.reference <= 0.1 ||
+      Math.abs(pixels.danger - pixels.reference) >= 0.03
+    )
+      throw new Error(
+        `Semantic danger color differs from its reference: ${JSON.stringify(pixels)}`
+      )
+    if (pixels.explicit <= 0.1)
+      throw new Error(`Explicit Android icon color is missing: ${JSON.stringify(pixels)}`)
+    console.log('PASS ui-icon-decorative-ink')
+    console.log('PASS ui-icon-semantic-danger-color')
+    console.log('PASS ui-icon-explicit-color')
+
+    tapFresh(config, 'reject invalid One.UI.Icon element', {
+      id: 'one-ui-icon-invalid',
+      clickable: true,
+    })
+    await check('ui-icon-invalid-element-rejected', (nodes) =>
+      textIncludes(
+        nodes,
+        'Rejected: One.UI.Icon icons.android must be a One.Android.Icon element'
+      )
+    )
+    console.log('ALL ONE UI ICON ANDROID CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'ui-effects') {
+    const scale = densityScale(config)
+    const toDp = (
+      bounds: Bounds
+    ): { x: number; y: number; width: number; height: number } => ({
+      x: bounds.left / scale,
+      y: bounds.top / scale,
+      width: (bounds.right - bounds.left) / scale,
+      height: (bounds.bottom - bounds.top) / scale,
+    })
+    const reading = (nodes: Node[]) => {
+      const node = matching(nodes, { id: 'effects-reading' })[0]
+      const value = node?.contentDescription || node?.text
+      if (!value) throw new Error('Android effects fixture has no accessibility reading.')
+      return JSON.parse(value) as {
+        effect: string
+        variant: string
+        bounds: { x: number; y: number; width: number; height: number }
+        curves: {
+          linear: number[]
+          smooth: number[]
+          custom: number[]
+          bezier: number[]
+          clamped: number[]
+          presetSerialization: string
+          customSerialization: string
+          bezierSerialization: string
+          wrongPresetSerialization: string
+        }
+      }
+    }
+
+    await navigateFixture(config, 'nav-one-native-effects')
+    await check(
+      'ui-effects-fixture-mounted',
+      (nodes) =>
+        exactlyOneId(nodes, 'one-native-effects-mounted') &&
+        exactlyOneId(nodes, 'effects-stage') &&
+        exactlyOneId(nodes, 'effects-reading')
+    )
+    await runEffectsSuite({
+      artifactDir: config.artifactDir,
+      captureScale: scale,
+      geometryTolerance: 1 / scale,
+      pass: (name) => console.log(`PASS ${name}`),
+      capture: async (effect, variant) => {
+        tapFresh(config, `select ${effect} effect`, {
+          id: `effect-${effect}`,
+          clickable: true,
+        })
+        await check(`ui-effects-${effect}-canonical-selected`, (nodes) => {
+          const value = reading(nodes)
+          return value.effect === effect && value.variant === 'canonical'
+        })
+        tapFresh(config, `select ${variant} ${effect} variant`, {
+          id: `variant-${variant}`,
+          clickable: true,
+        })
+        const captured = await check(`ui-effects-${effect}-${variant}`, (nodes) => {
+          const value = reading(nodes)
+          return (
+            value.effect === effect &&
+            value.variant === variant &&
+            Math.round(value.bounds.width * scale) === Math.round(300 * scale) &&
+            Math.round(value.bounds.height * scale) === Math.round(240 * scale)
+          )
+        })
+        const stage = matching(captured.nodes, { id: 'effects-stage' })[0]?.bounds
+        const root = matching(captured.nodes, {
+          id: 'one-native-effects-mounted',
+        })[0]?.bounds
+        if (!stage || !root)
+          throw new Error('Android effects stage or root has no accessibility bounds.')
+        const value = reading(captured.nodes)
+        const rootDp = toDp(root)
+        writeFileSync(
+          captured.pngPath.replace(/\.png$/, '.json'),
+          JSON.stringify({ value, scale, stage, root }, null, 2)
+        )
+        return {
+          file: captured.pngPath,
+          reading: {
+            ...value,
+            bounds: {
+              ...value.bounds,
+              x: value.bounds.x - rootDp.x,
+              y: value.bounds.y - rootDp.y,
+            },
+          },
+          viewport: toDp(applicationBounds(captured.nodes)),
+          stage: toDp(stage),
+          root: toDp(root),
+        }
+      },
+    })
+    console.log('ALL ONE UI EFFECTS ANDROID CHECKS PASSED')
+    return
+  }
   if (config.suite === 'compose-badges') {
     await badges()
     console.log('ALL ONE NATIVE ANDROID BADGE CHECKS PASSED')
@@ -3454,6 +5735,11 @@ async function runCompose(config: Config) {
   if (config.suite === 'compose-progress') {
     await progress()
     console.log('ALL ONE NATIVE ANDROID PROGRESS CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-pickers') {
+    await pickers()
+    console.log('ALL ONE NATIVE ANDROID PICKER CHECKS PASSED')
     return
   }
   if (config.suite === 'compose-segmented') {
@@ -3735,7 +6021,14 @@ async function runUpdates(config: Config) {
     // am start -W returns once the first frame draws, which the slow bundle
     // holds back, so the launch goes out without waiting for it.
     adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config)])
-    await Bun.sleep(2500)
+    const splashDeadline = Date.now() + config.timeout
+    let launching = readState()
+    while (launching.launching !== slow.id && Date.now() < splashDeadline) {
+      await Bun.sleep(250)
+      launching = readState()
+    }
+    if (launching.launching !== slow.id)
+      throw new Error(`the slow update did not enter its splash: launching=${launching.launching}`)
     stopApp()
     const killed = readState()
     const slowEntry = killed.updates[slow.id]
@@ -3844,7 +6137,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
       ? runCompose(config)
       : run(config))
 } catch (error) {

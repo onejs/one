@@ -6,6 +6,7 @@ const { debug, debugDetails } = createDebugger(`vxrn:scanDepsToOptimize`)
 
 export type ScanDepsResult = {
   prebundleDeps: string[]
+  noExternalDeps: string[]
   hasReanimated: boolean
   hasNativewind: boolean
 }
@@ -86,6 +87,9 @@ export const EXCLUDE_LIST = [
   '@nandorojo/galeria',
   'react-native-pager-view',
   '@react-native/debugger-shell',
+  // expo's debugger is a standalone app, not an SSR runtime dependency.
+  '@expo/cli',
+  '@expo/log-box',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
   'validator',
@@ -147,6 +151,7 @@ export async function scanDepsToOptimize(
     console.info(`[one] Scanning node_modules to auto-optimize...`)
   }
 
+  const noExternalDeps = new Set<string>()
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
@@ -154,7 +159,10 @@ export async function scanDepsToOptimize(
 
   // worklets without reanimated still needs the worklets transform, as the metro path assumes.
   const needsWorklets = (json: typeof pkgJson) =>
-    !!(json.dependencies?.['react-native-reanimated'] || json.dependencies?.['react-native-worklets'])
+    !!(
+      json.dependencies?.['react-native-reanimated'] ||
+      json.dependencies?.['react-native-worklets']
+    )
   let hasReanimated = needsWorklets(pkgJson)
 
   const prebundleDeps = (
@@ -187,12 +195,10 @@ export async function scanDepsToOptimize(
           hasReanimated = true
         }
 
-        // A package declaring `codegenConfig` is a native Fabric component or
-        // TurboModule library. Its codegen entry points import from
-        // `react-native/Libraries/...`, which do not exist under SSR where
-        // react-native is aliased to a web implementation, so it can never be
-        // pre-bundled. Exclude the whole class instead of naming packages.
+        // native codegen entrypoints cannot be prebundled for web, but web
+        // entrypoints still need vite to resolve platform files and ESM imports.
         if (depPkgJson.codegenConfig != null) {
+          noExternalDeps.add(dep)
           debug?.(`${dep} skipped: declares codegenConfig (native codegen package)`)
           return []
         }
@@ -202,6 +208,8 @@ export async function scanDepsToOptimize(
           pkgJsonContent: depPkgJson,
           proceededDeps,
         })
+
+        for (const dep of subDeps.noExternalDeps) noExternalDeps.add(dep)
 
         if (subDeps.hasReanimated) {
           hasReanimated = true
@@ -298,7 +306,9 @@ export async function scanDepsToOptimize(
           const exports = [...definedExports, ...specialExports].filter(
             (d) => !EXCLUDE_LIST_SET.has(d)
           )
-          if (mainExport) {
+          // match vite's default optimizable entry extensions; JSX/TSX source
+          // remains in its module graph while we still discover child dependencies.
+          if (mainExport && (!extname(mainExport) || /\.[cm]?[jt]s$/.test(mainExport))) {
             if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
               exports.unshift(dep)
             }
@@ -330,6 +340,7 @@ export async function scanDepsToOptimize(
 
   return {
     prebundleDeps,
+    noExternalDeps: [...noExternalDeps],
     hasReanimated,
     // only check if set in root, dont want to enable css mode too easily
     hasNativewind,

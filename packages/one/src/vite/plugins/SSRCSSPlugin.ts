@@ -75,7 +75,7 @@ export function SSRCSSPlugin(pluginOpts: { entries: string[] }): Plugin {
               hot.on("vite:beforeUpdate", () => {
                 document
                   .querySelectorAll("[data-ssr-css]")
-                  .forEach(node => node.remove());
+                  .forEach(node => { node.disabled = true; });
               });
             `,
           },

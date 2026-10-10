@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import {
   mkdtempSync,
   mkdirSync,
@@ -42,6 +43,34 @@ end
 `
 
 describe('vxrn Expo project patches', () => {
+  it('keeps WebGPU header resolution inside its own CocoaPods target', () => {
+    const generated = patches.injectWebGPUHeaderPathsIntoPodfile(podfile)
+    expect(patches.injectWebGPUHeaderPathsIntoPodfile(generated)).toBe(generated)
+    const result = JSON.parse(execFileSync('ruby', ['-rjson', '-e', `
+      Config = Struct.new(:build_settings)
+      Target = Struct.new(:name, :build_configurations)
+      Project = Struct.new(:targets)
+      Installer = Struct.new(:pods_project)
+      gpu = Config.new({'USE_HEADERMAP' => 'NO', 'HEADER_SEARCH_PATHS' => ['$(inherited)', '/dawn/include']})
+      unrelated = Config.new({'HEADER_SEARCH_PATHS' => '/other/include'})
+      $installer = Installer.new(Project.new([Target.new('react-native-webgpu', [gpu]), Target.new('other', [unrelated])]))
+      def target(name); yield; end
+      def use_native_modules!; {}; end
+      def post_install; yield $installer; end
+      def react_native_post_install(installer); end
+      eval(STDIN.read)
+      puts JSON.generate([gpu.build_settings, unrelated.build_settings])
+    `], { input: generated, encoding: 'utf8' }))
+    expect(result[0].USE_HEADERMAP).toBe('NO')
+    expect(result[0].HEADER_SEARCH_PATHS).toEqual([
+      '$(inherited)', '/dawn/include',
+      '$(PODS_TARGET_SRCROOT)/cpp/rnwgpu',
+      '$(PODS_TARGET_SRCROOT)/cpp/rnwgpu/api',
+      '$(PODS_TARGET_SRCROOT)/cpp/rnwgpu/api/descriptors',
+      '$(PODS_TARGET_SRCROOT)/cpp/jsi',
+    ])
+    expect(result[1]).toEqual({ HEADER_SEARCH_PATHS: '/other/include' })
+  })
   it('replaces Expo bundle defaults with One bundle configuration', () => {
     let result =
       patches.removeExpoDefaultsFromBundleReactNativeShellScript(expoBundlePhase)
@@ -63,7 +92,7 @@ describe('vxrn Expo project patches', () => {
     let result = patches.replaceAppBuildGradleReactBlock(input)
     result = patches.addDepsPatchToAppBuildGradle(result)
 
-    expect(result).toContain('cliFile = new File(')
+    expect(result).toContain('cliFile = file(providers.exec {')
     expect(result).toContain('autolinkLibrariesWithApp()')
     expect(result).not.toContain('entryFile = file("../index.js")')
     expect(result).toContain('[vxrn/one] ensure patches are applied')

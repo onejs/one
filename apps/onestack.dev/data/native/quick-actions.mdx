@@ -3,24 +3,24 @@ title: Home Screen Quick Actions
 description: Register dynamic Home Screen actions and receive their launch identifiers
 ---
 
-`One.iOS.QuickActions` registers dynamic actions in the iOS Home Screen menu shown when someone touches and holds your app icon. Each action has a unique `id`, a title, and an optional subtitle.
+`One.QuickActions` registers dynamic actions in the iOS Home Screen menu shown when someone touches and holds your app icon. Each action has a unique `id`, a title, and an optional subtitle.
 
 ```tsx
 import { One } from 'one'
 
-await One.iOS.QuickActions.setItems([
+await One.QuickActions.setItems([
   { id: 'open-inbox', title: 'Inbox', subtitle: 'View recent messages' },
 ])
 
 // mount this near the app root so it remains active while the app is running
-const remove = One.iOS.QuickActions.addListener((id) => {
+const remove = One.QuickActions.addListener((id) => {
   if (id === 'open-inbox') openInbox()
 })
 
 // a shortcut that started a new app process arrives before JavaScript runs
-const initial = One.iOS.QuickActions.getInitialAction()
+const initial = One.QuickActions.getInitialAction()
 if (initial === 'open-inbox') openInbox()
-One.iOS.QuickActions.clearInitialAction()
+One.QuickActions.clearInitialAction()
 
 // call remove() when the owner unmounts
 ```
@@ -29,4 +29,4 @@ One.iOS.QuickActions.clearInitialAction()
 
 `getInitialAction()` returns the identifier that cold-started the current process, or `null`. Reading it does not clear it; call `clearInitialAction()` after handling it. If multiple cold actions arrive before it is cleared, the latest one wins. `addListener` receives actions selected while the process is running and returns a remover. It does not replay the initial action. Warm selections made with no registered listener are dropped, so register the listener early if navigation should respond to a selection while the app is suspended. A selected dynamic action remains in the Home Screen menu after process termination until replaced or cleared by a later `setItems` call.
 
-`setItems` requires an array of items with unique, non-empty string IDs and titles and optional string subtitles. JavaScript rejects invalid input with `TypeError`; a direct native call rejects malformed items with `E_QUICK_ACTIONS_INPUT`. Web and Android validate arguments, then throw `QuickActions requires an iOS native build`. App Intents and Siri shortcuts are separate APIs and are not provided here.
+`setItems` requires an array of items with unique, non-empty string IDs and titles and optional string subtitles. JavaScript rejects invalid input with `TypeError`; a direct native call rejects malformed items with `E_QUICK_ACTIONS_INPUT`. On Android the items become dynamic launcher shortcuts with cold-start and warm-tap delivery matching iOS; more items than the system maximum rejects with `E_QUICK_ACTIONS_INPUT` instead of trimming, and below Android API 25 shortcuts do not exist so reads return empty. On web, argument validation still runs; setting and clearing actions do nothing, `getItems()` resolves `[]`, `getInitialAction()` returns `null`, and listeners return a remover that does nothing. App Intents and Siri shortcuts are separate APIs and are not provided here.

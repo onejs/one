@@ -1,4 +1,4 @@
-import { useImperativeHandle, useRef, useState, type Ref } from 'react'
+import { useImperativeHandle, useRef, type Ref } from 'react'
 
 import { SecureField, TextField } from '../../generated/Controls.native'
 import type { TextFieldProps as SwiftTextFieldProps } from '../../generated/controlTypes'
@@ -12,6 +12,7 @@ import {
   iosKeyboardType,
   iosSubmitLabel,
   resolveEditable,
+  useTextInputFocus,
 } from './textInputShared'
 
 export function TextInput({
@@ -48,24 +49,17 @@ export function TextInput({
   const fallback = useNativeState<string>(initialFallbackRef.current)
   const state = value ?? fallback
 
-  const [focused, setFocused] = useState(autoFocus ?? false)
-  const [focusRevision, setFocusRevision] = useState(0)
-  const isFocusedRef = useRef(autoFocus ?? false)
+  const { focused, focusRevision, focus, blur, isFocused, handleFocusChange } =
+    useTextInputFocus({ autoFocus, editable, onFocus, onBlur })
   useImperativeHandle(
     ref,
     () => ({
-      focus: () => {
-        setFocused(true)
-        setFocusRevision((revision) => revision + 1)
-      },
-      blur: () => {
-        setFocused(false)
-        setFocusRevision((revision) => revision + 1)
-      },
+      focus,
+      blur,
       clear: () => {
         state.set('')
       },
-      isFocused: () => isFocusedRef.current,
+      isFocused,
       setSelection: (start: number, end?: number) => {
         void start
         void end
@@ -82,13 +76,6 @@ export function TextInput({
     }),
     [secureTextEntry, state]
   )
-
-  const handleFocusChange = (next: boolean) => {
-    isFocusedRef.current = next
-    setFocused(next)
-    if (next) onFocus?.()
-    else onBlur?.()
-  }
 
   const handleTextChange = (text: string) => {
     // the generated field has no native maxLength clamp, so over-length

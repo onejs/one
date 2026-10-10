@@ -1,0 +1,88 @@
+import Foundation
+#if os(WASI)
+import SwiftUI
+#endif
+
+@MainActor public enum OneNativeSourceBody_Showcase {
+  public static let hash = "d8f5f62fd83ec8410984c25719e48a88e3a9544420ec4b71a379d65e57d1e672"
+#if os(WASI)
+  private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
+  private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
+  private static var output: [UInt8] = []
+  private static var finished: [Int32: Reply] = [:]
+  private static var nextCall: Int32 = 0
+  // peach runs tasks inline, so a call finishes before its task launch returns
+  // unless it waits on the clock; then it answers pending and the host polls
+  // it after running the timers.
+  static func callWasm(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? {
+    let id = nextCall
+    nextCall &+= 1
+    do {
+      guard let payload, length >= 0 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "missing call payload"]) }
+      let request = try JSONDecoder().decode(Request.self, from: Data(bytes: payload, count: Int(length)))
+      guard request.contractHash == hash else { throw NSError(domain: "OneNativeSource", code: 4, userInfo: [NSLocalizedDescriptionKey: "native module \(request.module) changed; rebuild the app"]) }
+      Task {
+        do {
+          finished[id] = Reply(ok: true, value: try await call(request.module, request.method, request.argsJson), error: nil, pending: nil)
+        } catch {
+          // the native hosts name the method on everything a call throws
+          finished[id] = Reply(ok: false, value: nil, error: "\(request.module).\(request.method): \(error.localizedDescription)", pending: nil)
+        }
+      }
+    } catch {
+      finished[id] = Reply(ok: false, value: nil, error: error.localizedDescription, pending: nil)
+    }
+    return pollWasm(id)
+  }
+  static func pollWasm(_ id: Int32) -> UnsafeMutablePointer<UInt8>? {
+    let reply = finished.removeValue(forKey: id) ?? Reply(ok: true, value: nil, error: nil, pending: id)
+    let bytes = (try? JSONEncoder().encode(reply)) ?? Data("{\"ok\":false,\"error\":\"encoding failed\"}".utf8)
+    let count = UInt32(bytes.count)
+    output = [UInt8(count & 0xff), UInt8((count >> 8) & 0xff), UInt8((count >> 16) & 0xff), UInt8(count >> 24)] + Array(bytes)
+    return output.withUnsafeMutableBufferPointer { $0.baseAddress }
+  }
+#endif
+  private static let DeviceInstance = Device()
+  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {
+    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])
+    return try JSONDecoder().decode(T.self, from: data)
+  }
+  static func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String {
+    guard let values = try JSONSerialization.jsonObject(with: Data(argsJson.utf8)) as? [Any] else {
+      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "arguments must be a JSON array"])
+    }
+    switch module {
+    case "Showcase.Device":
+      switch method {
+      case "info":
+        guard values.count == 0 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "Showcase.Device.info expects 0 arguments"]) }
+        let result = DeviceInstance.info()
+        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+      case "sha256":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "Showcase.Device.sha256 expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: String.self)
+        let result = DeviceInstance.sha256(arg0)
+        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
+      }
+    default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
+    }
+  }
+}
+
+#if os(WASI)
+@_expose(wasm, "peach_call")
+@_cdecl("peach_call")
+@MainActor public func peach_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.callWasm(payload, length) }
+@_expose(wasm, "peach_call_poll")
+@_cdecl("peach_call_poll")
+@MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_Showcase.pollWasm(id) }
+#endif
+
+#if canImport(ObjectiveC) && !os(WASI)
+@objc(OneNativeSource_Showcase) @MainActor public final class OneNativeSource_Showcase: NSObject, OneNativeSourceDispatch {
+  public required override init() {}
+  public var contractHash: String { OneNativeSourceBody_Showcase.hash }
+  public func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String { try await OneNativeSourceBody_Showcase.call(module, method, argsJson) }
+}
+#endif

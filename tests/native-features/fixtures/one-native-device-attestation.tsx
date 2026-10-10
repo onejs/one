@@ -8,7 +8,8 @@ async function codeOf(work: Promise<unknown>): Promise<string> {
     return 'resolved'
   } catch (error) {
     return error instanceof Error && 'code' in error && typeof error.code === 'string'
-      ? error.code : String(error)
+      ? error.code
+      : String(error)
   }
 }
 
@@ -18,19 +19,19 @@ export default function OneNativeDeviceAttestation() {
   const [attempts, setAttempts] = useState('pending')
 
   const read = () => {
-    const value = One.iOS.DeviceAttestation.getAvailability()
+    const value = One.DeviceAttestation.getAvailability()
     setAvailability(`AppAttest=${value.appAttest} DeviceCheck=${value.deviceCheck}`)
   }
 
   const validate = async () => {
-    const api = One.iOS.DeviceAttestation
+    const api = One.DeviceAttestation
     const invalidKey = await codeOf(api.attestKey(' ', 'AAAA'))
     const invalidHash = await codeOf(api.generateAssertion('key', 'AAAA'))
     setInvalid(`key=${invalidKey} hash=${invalidHash}`)
   }
 
   const probe = async () => {
-    const api = One.iOS.DeviceAttestation
+    const api = One.DeviceAttestation
     const hash = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
     const key = await codeOf(api.generateKey())
     const attest = await codeOf(api.attestKey('key', hash))
@@ -44,9 +45,15 @@ export default function OneNativeDeviceAttestation() {
       <Text>Availability: {availability}</Text>
       <Text>Invalid: {invalid}</Text>
       <Text>Attempts: {attempts}</Text>
-      <Pressable testID="one-native-device-attestation-read" onPress={read}><Text>Read availability</Text></Pressable>
-      <Pressable testID="one-native-device-attestation-validate" onPress={validate}><Text>Validate input</Text></Pressable>
-      <Pressable testID="one-native-device-attestation-probe" onPress={probe}><Text>Probe services</Text></Pressable>
+      <Pressable testID="one-native-device-attestation-read" onPress={read}>
+        <Text>Read availability</Text>
+      </Pressable>
+      <Pressable testID="one-native-device-attestation-validate" onPress={validate}>
+        <Text>Validate input</Text>
+      </Pressable>
+      <Pressable testID="one-native-device-attestation-probe" onPress={probe}>
+        <Text>Probe services</Text>
+      </Pressable>
     </View>
   )
 }

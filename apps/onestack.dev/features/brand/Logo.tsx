@@ -105,12 +105,12 @@ export function OneLogo({
 
   return (
     <View
-      pos="relative"
+      position="relative"
       width={1840 * scaleDownBy}
       height={1451 * scaleDownBy}
       x={-23 * size}
-      mt={-28 * size}
-      mb={-30 * size}
+      marginTop={-28 * size}
+      marginBottom={-30 * size}
       transformOrigin="left top"
       onMouseEnter={() => {
         if (animate) {
@@ -198,11 +198,11 @@ function OneBallAnimation({
     <View
       // opacity={0}
       // $group-hover={{ opacity: 1 }}
-      pos="absolute"
-      w={size}
-      h={size}
-      t={65 * sizeProp}
-      l={180 * sizeProp}
+      position="absolute"
+      width={size}
+      height={size}
+      top={65 * sizeProp}
+      left={180 * sizeProp}
       onMouseEnter={() => setHovered(true)}
       userSelect="none"
     >

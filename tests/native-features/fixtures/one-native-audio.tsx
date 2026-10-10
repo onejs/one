@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { AppState, Pressable, ScrollView, StyleSheet, Text } from 'react-native'
 import { One } from 'one'
 
-const pause = (durationMs: number) => new Promise((resolve) => setTimeout(resolve, durationMs))
+const pause = (durationMs: number) =>
+  new Promise((resolve) => setTimeout(resolve, durationMs))
 
 export default function OneNativeAudio() {
   const [status, setStatus] = useState('idle')
@@ -15,28 +16,39 @@ export default function OneNativeAudio() {
   const [remoteEvents, setRemoteEvents] = useState('none')
   const [remoteErrors, setRemoteErrors] = useState('none')
   const backgroundResult = useRef<{
-    state: string; start: number; advanced: number; elapsed: number
+    state: string
+    start: number
+    advanced: number
+    elapsed: number
   } | null>(null)
-  const backgroundSubscription = useRef<ReturnType<typeof AppState.addEventListener> | null>(null)
+  const backgroundSubscription = useRef<ReturnType<
+    typeof AppState.addEventListener
+  > | null>(null)
   const interruptionSubscription = useRef<(() => void) | null>(null)
   const interruptionEvents = useRef<string[]>([])
   const remoteSubscription = useRef<(() => void) | null>(null)
   const remotePlaybackChecks = useRef(0)
 
-  useEffect(() => () => {
-    backgroundSubscription.current?.remove()
-    interruptionSubscription.current?.()
-    remoteSubscription.current?.()
-  }, [])
+  useEffect(
+    () => () => {
+      backgroundSubscription.current?.remove()
+      interruptionSubscription.current?.()
+      remoteSubscription.current?.()
+    },
+    []
+  )
 
   async function writeBackgroundClip() {
-    const fs = One.iOS.FileSystem
+    const fs = One.FileSystem
     const uri = new URL('one-native-background-audio.wav', fs.getDirectories().cache).href
     // a 60 second, 8 khz mono pcm wav: 44 header bytes and zero samples.
-    const wav = 'UklGRiSmDgBXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCmDgAA' +
-      'A'.repeat(1_279_996) + 'AAA='
+    const wav =
+      'UklGRiSmDgBXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQCmDgAA' +
+      'A'.repeat(1_279_996) +
+      'AAA='
     await fs.writeFile(uri, wav, 'base64')
-    if ((await fs.getInfo(uri)).size !== 960_044) throw new Error('wav bytes did not match')
+    if ((await fs.getInfo(uri)).size !== 960_044)
+      throw new Error('wav bytes did not match')
     return uri
   }
 
@@ -45,7 +57,7 @@ export default function OneNativeAudio() {
     backgroundSubscription.current = null
     setBackground('preparing')
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       const uri = await writeBackgroundClip()
       await audio.play(uri)
       let playback = await audio.getPlaybackStatus()
@@ -54,36 +66,51 @@ export default function OneNativeAudio() {
         await pause(100)
         playback = await audio.getPlaybackStatus()
       }
-      if (playback.state !== 'playing' || !playback.durationMs ||
-        Math.abs(playback.durationMs - 60_000) > 500) {
+      if (
+        playback.state !== 'playing' ||
+        !playback.durationMs ||
+        Math.abs(playback.durationMs - 60_000) > 500
+      ) {
         throw new Error(`clip did not start: ${playback.state}, ${playback.durationMs}`)
       }
       backgroundResult.current = null
-      let backgroundAt = 0
-      let backgroundStatus: ReturnType<typeof audio.getPlaybackStatus> | null = null
+      let backgroundTransition: {
+        at: number
+        status: ReturnType<typeof audio.getPlaybackStatus>
+      } | null = null
       const subscription = AppState.addEventListener('change', async (state) => {
         if (state === 'background') {
-          backgroundAt = Date.now()
-          backgroundStatus = audio.getPlaybackStatus()
+          if (!backgroundTransition) {
+            backgroundTransition = {
+              at: Date.now(),
+              status: audio.getPlaybackStatus(),
+            }
+          }
           return
         }
-        if (state !== 'active') return
+        if (state !== 'active' || !backgroundTransition) return
+        const captured = backgroundTransition
+        backgroundTransition = null
         subscription.remove()
         backgroundSubscription.current = null
         try {
-          if (!backgroundAt || !backgroundStatus) {
-            throw new Error('background transition did not capture playback position')
-          }
-          const positionWhenBackgrounded = (await backgroundStatus).positionMs
+          const positionWhenBackgrounded = (await captured.status).positionMs
           const resumed = await audio.getPlaybackStatus()
           const advanced = resumed.positionMs - positionWhenBackgrounded
-          const elapsed = Date.now() - backgroundAt
+          const elapsed = Date.now() - captured.at
           backgroundResult.current = {
-            state: resumed.state, start: positionWhenBackgrounded, advanced, elapsed,
+            state: resumed.state,
+            start: positionWhenBackgrounded,
+            advanced,
+            elapsed,
           }
-          setBackground(`returned: ${resumed.state},${Math.round(positionWhenBackgrounded)},${Math.round(advanced)},${elapsed}`)
+          setBackground(
+            `returned: ${resumed.state},${Math.round(positionWhenBackgrounded)},${Math.round(advanced)},${elapsed}`
+          )
         } catch (error) {
-          setBackground(`error: ${error instanceof Error ? error.message : String(error)}`)
+          setBackground(
+            `error: ${error instanceof Error ? error.message : String(error)}`
+          )
         }
       })
       backgroundSubscription.current = subscription
@@ -100,7 +127,7 @@ export default function OneNativeAudio() {
     setInterruption('preparing')
     setInterruptionPlayback('none')
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       interruptionSubscription.current = audio.watchInterruptions((event) => {
         interruptionEvents.current.push(`${event.type}:${event.shouldResume}`)
         setInterruption(interruptionEvents.current.join(','))
@@ -112,7 +139,8 @@ export default function OneNativeAudio() {
         await pause(100)
         playback = await audio.getPlaybackStatus()
       }
-      if (playback.state !== 'playing') throw new Error(`clip did not start: ${playback.state}`)
+      if (playback.state !== 'playing')
+        throw new Error(`clip did not start: ${playback.state}`)
       setInterruption('ready')
     } catch (error) {
       setInterruption(`error: ${error instanceof Error ? error.message : String(error)}`)
@@ -121,10 +149,12 @@ export default function OneNativeAudio() {
 
   async function checkInterruptionPlayback() {
     try {
-      const playback = await One.iOS.Audio.getPlaybackStatus()
+      const playback = await One.Audio.getPlaybackStatus()
       setInterruptionPlayback(playback.state)
     } catch (error) {
-      setInterruptionPlayback(`error: ${error instanceof Error ? error.message : String(error)}`)
+      setInterruptionPlayback(
+        `error: ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 
@@ -136,13 +166,14 @@ export default function OneNativeAudio() {
     setRemoteErrors('none')
     remotePlaybackChecks.current = 0
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       await audio.stop()
       let stateError = ''
       try {
         await audio.setNowPlayingInfo({ title: 'No player' })
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) stateError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          stateError = String(error.code)
       }
       await audio.play(await writeBackgroundClip())
       let playback = await audio.getPlaybackStatus()
@@ -151,22 +182,33 @@ export default function OneNativeAudio() {
         await pause(100)
         playback = await audio.getPlaybackStatus()
       }
-      if (playback.state !== 'playing') throw new Error(`clip did not start: ${playback.state}`)
-      await audio.setNowPlayingInfo({ title: 'One Remote Proof', artist: 'Native Fixture' })
+      if (playback.state !== 'playing')
+        throw new Error(`clip did not start: ${playback.state}`)
       await audio.setNowPlayingInfo({
-        title: 'One Remote Proof Updated', artist: 'Native Fixture', albumTitle: 'Conformance',
+        title: 'One Remote Proof',
+        artist: 'Native Fixture',
+      })
+      await audio.setNowPlayingInfo({
+        title: 'One Remote Proof Updated',
+        artist: 'Native Fixture',
+        albumTitle: 'Conformance',
       })
       let titleError = ''
       try {
         await audio.setNowPlayingInfo({ title: '   ' })
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) titleError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          titleError = String(error.code)
       }
       let artworkError = ''
       try {
-        await audio.setNowPlayingInfo({ title: 'One Remote Proof', artworkUri: 'file:///missing-artwork.png' })
+        await audio.setNowPlayingInfo({
+          title: 'One Remote Proof',
+          artworkUri: 'file:///missing-artwork.png',
+        })
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) artworkError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          artworkError = String(error.code)
       }
       setRemoteErrors(`${stateError},${titleError},${artworkError}`)
       remoteSubscription.current = audio.watchRemoteCommands((event) => {
@@ -180,17 +222,19 @@ export default function OneNativeAudio() {
 
   async function checkRemotePlayback() {
     try {
-      const playback = await One.iOS.Audio.getPlaybackStatus()
+      const playback = await One.Audio.getPlaybackStatus()
       remotePlaybackChecks.current += 1
       setRemotePlayback(`${playback.state}:${remotePlaybackChecks.current}`)
     } catch (error) {
-      setRemotePlayback(`error: ${error instanceof Error ? error.message : String(error)}`)
+      setRemotePlayback(
+        `error: ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 
   async function clearRemotePlayback() {
     try {
-      await One.iOS.Audio.clearNowPlayingInfo()
+      await One.Audio.clearNowPlayingInfo()
       setRemote('cleared')
     } catch (error) {
       setRemote(`error: ${error instanceof Error ? error.message : String(error)}`)
@@ -199,14 +243,20 @@ export default function OneNativeAudio() {
 
   async function checkBackgroundPlayback() {
     try {
-      const audio = One.iOS.Audio
+      const audio = One.Audio
       const result = backgroundResult.current
       try {
-        if (!result || result.state !== 'playing' || result.elapsed < 30_000 ||
-          result.advanced < result.elapsed - 1000) {
+        if (
+          !result ||
+          result.state !== 'playing' ||
+          result.elapsed < 30_000 ||
+          result.advanced < result.elapsed - 1000
+        ) {
           throw new Error(`playback stopped in background: ${JSON.stringify(result)}`)
         }
-        setBackground(`passed: ${result.state},${Math.round(result.start)},${Math.round(result.advanced)},${result.elapsed}`)
+        setBackground(
+          `passed: ${result.state},${Math.round(result.start)},${Math.round(result.advanced)},${result.elapsed}`
+        )
       } finally {
         await audio.stop()
       }
@@ -219,10 +269,11 @@ export default function OneNativeAudio() {
     setStatus('running')
     let stage = 'permission'
     try {
-      const audio = One.iOS.Audio
-      const fs = One.iOS.FileSystem
+      const audio = One.Audio
+      const fs = One.FileSystem
       const permission = await audio.requestRecordingPermission()
-      if (permission !== 'granted') throw new Error(`microphone permission was ${permission}`)
+      if (permission !== 'granted')
+        throw new Error(`microphone permission was ${permission}`)
 
       stage = 'record'
       const started = await audio.startRecording()
@@ -260,7 +311,9 @@ export default function OneNativeAudio() {
         playing = await audio.getPlaybackStatus()
       }
       if (playing.state !== 'playing' || playing.positionMs <= 50) {
-        throw new Error(`playback did not advance: ${playing.state} ${playing.positionMs}`)
+        throw new Error(
+          `playback did not advance: ${playing.state} ${playing.positionMs}`
+        )
       }
       const playbackPaused = await audio.pause()
       if (playbackPaused.state !== 'paused') throw new Error('playback did not pause')
@@ -289,13 +342,15 @@ export default function OneNativeAudio() {
       try {
         await audio.play('relative.m4a')
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) uriError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          uriError = String(error.code)
       }
       let stateError = ''
       try {
         await audio.pause()
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) stateError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          stateError = String(error.code)
       }
       stage = 'seek while loading'
       await audio.play('https://example.invalid/one-native-audio.m4a')
@@ -303,7 +358,8 @@ export default function OneNativeAudio() {
       try {
         await audio.seek(0)
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) notReadyError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          notReadyError = String(error.code)
       }
       await audio.stop()
       setResult(
@@ -313,8 +369,11 @@ export default function OneNativeAudio() {
       )
       setStatus('passed')
     } catch (error) {
-      const code = error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
-      setStatus(`error at ${stage}: ${code} ${error instanceof Error ? error.message : String(error)}`)
+      const code =
+        error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
+      setStatus(
+        `error at ${stage}: ${code} ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 
@@ -326,31 +385,63 @@ export default function OneNativeAudio() {
         <Text>Record and play</Text>
       </Pressable>
       <Text testID="one-native-audio-background">Background: {background}</Text>
-      <Pressable testID="one-native-audio-background-start" style={styles.chip} onPress={prepareBackgroundPlayback}>
+      <Pressable
+        testID="one-native-audio-background-start"
+        style={styles.chip}
+        onPress={prepareBackgroundPlayback}
+      >
         <Text>Start background playback</Text>
       </Pressable>
-      <Pressable testID="one-native-audio-background-check" style={styles.chip} onPress={checkBackgroundPlayback}>
+      <Pressable
+        testID="one-native-audio-background-check"
+        style={styles.chip}
+        onPress={checkBackgroundPlayback}
+      >
         <Text>Check background playback</Text>
       </Pressable>
       <Text testID="one-native-audio-interruption">Interruption: {interruption}</Text>
-      <Pressable testID="one-native-audio-interruption-start" style={styles.chip} onPress={prepareInterruptionPlayback}>
+      <Pressable
+        testID="one-native-audio-interruption-start"
+        style={styles.chip}
+        onPress={prepareInterruptionPlayback}
+      >
         <Text>Start interruption playback</Text>
       </Pressable>
-      <Text testID="one-native-audio-interruption-playback">Interruption playback: {interruptionPlayback}</Text>
-      <Pressable testID="one-native-audio-interruption-check" style={styles.chip} onPress={checkInterruptionPlayback}>
+      <Text testID="one-native-audio-interruption-playback">
+        Interruption playback: {interruptionPlayback}
+      </Text>
+      <Pressable
+        testID="one-native-audio-interruption-check"
+        style={styles.chip}
+        onPress={checkInterruptionPlayback}
+      >
         <Text>Check interruption playback</Text>
       </Pressable>
       <Text testID="one-native-audio-remote">Remote: {remote}</Text>
-      <Pressable testID="one-native-audio-remote-start" style={styles.chip} onPress={prepareRemotePlayback}>
+      <Pressable
+        testID="one-native-audio-remote-start"
+        style={styles.chip}
+        onPress={prepareRemotePlayback}
+      >
         <Text>Start remote playback</Text>
       </Pressable>
       <Text testID="one-native-audio-remote-events">Remote event: {remoteEvents}</Text>
       <Text testID="one-native-audio-remote-errors">Remote errors: {remoteErrors}</Text>
-      <Text testID="one-native-audio-remote-playback">Remote playback: {remotePlayback}</Text>
-      <Pressable testID="one-native-audio-remote-check" style={styles.chip} onPress={checkRemotePlayback}>
+      <Text testID="one-native-audio-remote-playback">
+        Remote playback: {remotePlayback}
+      </Text>
+      <Pressable
+        testID="one-native-audio-remote-check"
+        style={styles.chip}
+        onPress={checkRemotePlayback}
+      >
         <Text>Check remote playback</Text>
       </Pressable>
-      <Pressable testID="one-native-audio-remote-clear" style={styles.chip} onPress={clearRemotePlayback}>
+      <Pressable
+        testID="one-native-audio-remote-clear"
+        style={styles.chip}
+        onPress={clearRemotePlayback}
+      >
         <Text>Clear remote controls</Text>
       </Pressable>
     </ScrollView>

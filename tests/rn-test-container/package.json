@@ -12,12 +12,11 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
     "react-native-gesture-handler": "~3.3.0",
-    "react-native-mmkv": "^3.3.3",
     "react-native-reanimated": "~4.6.0",
     "react-native-screens": "~4.27.0",
     "react-native-svg": "15.15.4",

@@ -257,6 +257,50 @@ export default function Page() {
 
 The refetch functionality always executes on the client, ensuring consistent behavior regardless of the initial rendering mode.
 
+## Loader Timing History
+
+For debugging and performance monitoring, you can access the timing history of loader executions:
+
+```tsx
+import { getLoaderTimingHistory } from 'one'
+
+function DebugPanel() {
+  const timings = getLoaderTimingHistory()
+  
+  return (
+    <div>
+      {timings.map((entry) => (
+        <div key={entry.path}>
+          <strong>{entry.path}</strong>: {entry.totalTime}ms
+          {entry.error && <span> (Error: {entry.error})</span>}
+        </div>
+      ))}
+    </div>
+  )
+}
+```
+
+The `LoaderTimingEntry` type contains:
+
+```ts
+type LoaderTimingEntry = {
+  path: string                      // Route path (e.g., '/users/123')
+  startTime: number                 // Timestamp when loader started
+  moduleLoadTime?: number           // Time to load the loader module
+  executionTime?: number            // Time to execute the loader
+  totalTime?: number                // Total time from start to finish
+  error?: string                    // Error message if loader failed
+  source: 'preload' | 'initial' | 'refetch'  // What triggered the load
+}
+```
+
+This function is useful for:
+- Performance monitoring in development
+- Debugging slow loaders
+- Building loader timing visualizations in devtools
+
+The history is only populated in development mode and stores the last 50 entries to avoid memory growth.
+
 ## Related
 
 - [useLoader](/docs/hooks-useLoader) - Basic loader data access

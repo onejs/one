@@ -162,7 +162,7 @@ the shape lands.
   protocol our view-driven composition lacks: children arrive as views,
   not tagged data. Cleanest after milestone 4 lands the `tag` plumbing;
   index-based selection is the fallback subset. Not started.
-- Rnx lane finding, done in M2 (icon-only Button branch + centering
+- Peach lane finding, done in M2 (icon-only Button branch + centering
   proof in the groups suite):
 
 - Icon-only Button: today `label` is required non-empty and `systemImage`

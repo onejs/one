@@ -158,39 +158,68 @@ test.skip('layout HMR', { retry: 3 }, async () => {
   )
 })
 
-// CSS HMR test - verifies that SSR CSS is removed after HMR so individual styles win
-test('CSS HMR - SSR CSS removed after update', { retry: 3 }, async () => {
-  const page = await context.newPage()
-  await page.goto(serverUrl + '/')
-  await page.waitForLoadState('networkidle')
+// retain the SSR link for hydration while individual styles take over after HMR.
+test(
+  'CSS HMR disables SSR CSS and updates only the edited stylesheet',
+  { retry: 0 },
+  async () => {
+    const page = await context.newPage()
+    try {
+      await page.goto(serverUrl + '/')
+      await page.waitForLoadState('networkidle')
 
-  // fill input to detect full page reload
-  const textInput = page.getByTestId('text-input')
-  await textInput.fill('page did not reload')
+      const textInput = page.getByTestId('text-input')
+      await textInput.fill('page did not reload')
 
-  // wait for CSS elements
-  await page.waitForSelector('[data-testid="css-test-a"]')
+      await page.waitForFunction(
+        () => {
+          const color = (id: string) => {
+            const element = document.querySelector(`[data-testid="${id}"]`)
+            return element && getComputedStyle(element).backgroundColor
+          }
+          return (
+            color('css-test-a') === 'rgb(255, 0, 0)' &&
+            color('css-test-b') === 'rgb(0, 255, 0)' &&
+            color('css-test-c') === 'rgb(0, 0, 255)'
+          )
+        },
+        {},
+        { timeout: 10000 }
+      )
 
-  // verify SSR CSS is present initially
-  const ssrBefore = await page.evaluate(() => !!document.querySelector('[data-ssr-css]'))
-  expect(ssrBefore).toBe(true)
+      expect(await page.locator('[data-ssr-css]').count()).toBeGreaterThan(0)
+      await page.evaluate(() => {
+        ;(window as any).__hmrSSRLinks = [...document.querySelectorAll('[data-ssr-css]')]
+      })
 
-  // edit CSS file to trigger HMR
-  editCSSFileB()
+      editCSSFileB()
 
-  // wait for SSR CSS to be removed (this is the fix!)
-  await page.waitForFunction(
-    () => !document.querySelector('[data-ssr-css]'),
-    {},
-    { timeout: 10000 }
-  )
+      await page.waitForFunction(
+        () => {
+          const links: HTMLLinkElement[] = (window as any).__hmrSSRLinks
+          const element = document.querySelector('[data-testid="css-test-b"]')
+          return (
+            links.every((link) => link.isConnected && link.disabled) &&
+            element &&
+            getComputedStyle(element).backgroundColor === 'rgb(255, 165, 0)'
+          )
+        },
+        {},
+        { timeout: 10000 }
+      )
 
-  // verify SSR CSS is gone
-  const ssrAfter = await page.evaluate(() => !!document.querySelector('[data-ssr-css]'))
-  expect(ssrAfter).toBe(false)
-
-  // verify no page reload
-  expect(await textInput.inputValue()).toBe('page did not reload')
-
-  await page.close()
-})
+      const colors = await page.evaluate(() =>
+        ['a', 'b', 'c'].map(
+          (suffix) =>
+            getComputedStyle(
+              document.querySelector(`[data-testid="css-test-${suffix}"]`)!
+            ).backgroundColor
+        )
+      )
+      expect(colors).toEqual(['rgb(255, 0, 0)', 'rgb(255, 165, 0)', 'rgb(0, 0, 255)'])
+      expect(await textInput.inputValue()).toBe('page did not reload')
+    } finally {
+      await page.close()
+    }
+  }
+)

@@ -117,7 +117,10 @@ function fetchConformanceEndpoints(): Plugin {
 type NativeOptions = NonNullable<Parameters<typeof one>[0]>['native']
 
 const nativeBundler = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
-  ? ({ bundler: 'vite' } satisfies NativeOptions)
+  ? ({
+      bundler: 'vite',
+      bundlerOptions: { plugins: [nativeWebgpuAliases()] },
+    } satisfies NativeOptions)
   : ({
       bundler: 'metro',
       bundlerOptions: {
@@ -129,6 +132,16 @@ const nativeBundler = process.env.ONE_NATIVE_BUNDLER === 'rolldown'
             resolver: {
               ...config.resolver,
               resolveRequest: (context, moduleName, platform) => {
+                if (
+                  process.env.ONE_NATIVE_SHEET_FIXTURE === '1' &&
+                  platform === 'ios' &&
+                  moduleName === 'one/metro-entry'
+                ) {
+                  return {
+                    type: 'sourceFile',
+                    filePath: fileURLToPath(new URL('./fixtures/sheet-entry.ts', import.meta.url)),
+                  }
+                }
                 // the focused android entry excludes the separate native-source demo.
                 if (
                   process.env.ONE_NATIVE_PORTAL_FIXTURE === '1' &&
@@ -212,6 +225,12 @@ export default defineConfig({
           },
           ios: {
             bundleId: 'dev.vxrn.native.tests',
+            widgets: {
+              appGroup: 'group.dev.vxrn.native.tests',
+              kind: 'NativeFeatureTestsWidget',
+              displayName: 'Native Feature Tests',
+              description: 'Widget content written by the native feature fixtures.',
+            },
             backgroundTasks: {
               refresh: ['dev.vxrn.native.tests.refresh'],
               processing: ['dev.vxrn.native.tests.processing'],

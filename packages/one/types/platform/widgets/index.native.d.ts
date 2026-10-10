@@ -14,11 +14,11 @@ export type PushTokenEvent = {
     id: string;
     token: string;
 };
-export declare const Widgets: Readonly<{
+declare const nativeWidgets: Readonly<{
     write(data: WidgetData): Promise<void>;
     writeView(view: ReactNode): Promise<void>;
 }>;
-export declare const LiveActivities: Readonly<{
+declare const nativeLiveActivities: Readonly<{
     start(title: string, state: LiveActivityState, push?: boolean): Promise<string>;
     startView(title: string, view: ActivityView, push?: boolean): Promise<string>;
     update(id: string, state: LiveActivityState): Promise<void>;
@@ -27,4 +27,6 @@ export declare const LiveActivities: Readonly<{
     pushToken(id: string): Promise<string | null>;
     onPushToken(listener: (event: PushTokenEvent) => void): () => void;
 }>;
+export declare const Widgets: typeof nativeWidgets;
+export declare const LiveActivities: typeof nativeLiveActivities;
 //# sourceMappingURL=index.native.d.ts.map

@@ -36,6 +36,30 @@ function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
  */
 const FMT_CXX17_MARKER = '# [vxrn/one] fmt c++17 fix'
 
+const WEBGPU_HEADERS_MARKER = '# [vxrn/one] webgpu isolated package headers'
+
+function injectWebGPUHeaderPathsIntoPodfile(podfile) {
+  if (podfile.includes(WEBGPU_HEADERS_MARKER)) return podfile
+  const match = podfile.match(/post_install\s+do\s+\|installer\|/)
+  if (!match) throw new Error('[vxrn] Podfile lost its post_install anchor')
+  const patch = `
+    ${WEBGPU_HEADERS_MARKER}
+    installer.pods_project.targets.each do |target|
+      next unless target.name == 'react-native-webgpu'
+
+      target.build_configurations.each do |build_config|
+        paths = Array(build_config.build_settings['HEADER_SEARCH_PATHS'] || '$(inherited)')
+        paths |= %w[cpp/rnwgpu cpp/rnwgpu/api cpp/rnwgpu/api/descriptors cpp/jsi].map do |directory|
+          "$(PODS_TARGET_SRCROOT)/#{directory}"
+        end
+        build_config.build_settings['HEADER_SEARCH_PATHS'] = paths
+      end
+    end
+`
+  const insertAt = match.index + match[0].length
+  return podfile.slice(0, insertAt) + '\n' + patch + podfile.slice(insertAt)
+}
+
 function injectFmtCxx17FixIntoPodfile(podfile) {
   if (podfile.includes(FMT_CXX17_MARKER)) {
     return podfile
@@ -211,9 +235,11 @@ react {
     // the application has its own node_modules directory.
     reactNativeDir = file(resolveNodePackage("react-native/package.json")).parentFile
     codegenDir = file(resolveReactNativeDependency("@react-native/codegen/package.json")).parentFile
-    // [vxrn/one] cli.js is not in react-native's exports map since 0.87, so
-    // resolve the exported package.json and step to the sibling cli.js on disk
-    cliFile = new File(file(resolveNodePackage("react-native/package.json")).parentFile, "cli.js")
+    // [vxrn/one] vxrn owns the cli even when the app has no hoisted cli package
+    cliFile = file(providers.exec {
+        workingDir(rootDir)
+        commandLine("node", "--print", "require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli/build/bin.js')")
+    }.standardOutput.asText.get().trim())
     // [vxrn/one] resolve hermesc from the same react-native installation
     hermesCommand = new File(file(resolveReactNativeDependency("hermes-compiler/package.json")).parentFile, "hermesc/%OS-BIN%/hermesc").absolutePath
 
@@ -330,6 +356,11 @@ function addEmbeddedUpdatesManifestToBundleReactNativeShellScript(input, runtime
     'ONE_UPDATES_RESOURCES="$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"',
     'if [ -f "$ONE_UPDATES_RESOURCES/main.jsbundle" ]; then',
     `  "\${NODE_BINARY:-node}" -e 'const fs = require("fs"); const manifest = { id: require("crypto").randomUUID(), createdAt: new Date().toISOString(), runtimeVersion: "${runtime}" }; fs.writeFileSync(process.argv[1], JSON.stringify(manifest));' "$ONE_UPDATES_RESOURCES/one-updates-embedded.json"`,
+    // react-native-xcode.sh exits 0 when hermesc fails, so a release build
+    // would otherwise ship with no bundle and nothing for the launcher to run.
+    'elif [[ "$CONFIGURATION" != *Debug* && -z "$SKIP_BUNDLING" ]]; then',
+    '  echo "error: [one] release build has no main.jsbundle: the bundle phase failed" >&2',
+    '  exit 1',
     'fi',
   ].join('\n')
 
@@ -349,7 +380,7 @@ function addSetCliPathToBundleReactNativeShellScript(input) {
 
   const codeToAdd = `
 ${SET_CLI_PATH_MARKER}
-export CLI_PATH="$("\${NODE_BINARY:-node}" --print "require('path').dirname(require.resolve('react-native/package.json')) + '/cli.js'")"
+export CLI_PATH="$("\${NODE_BINARY:-node}" --print "require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli/build/bin.js')")"
 `.trim()
 
   return insertBeforeBundlePhaseRunner(input, codeToAdd)
@@ -717,6 +748,7 @@ function holdLaunchScreenInMainActivity(mainActivity) {
 }
 
 module.exports = {
+  injectWebGPUHeaderPathsIntoPodfile,
   holdLaunchScreenInMainActivity,
   ONE_NOTIFICATIONS,
   ONE_UPDATES,

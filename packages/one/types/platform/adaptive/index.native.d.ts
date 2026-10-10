@@ -14,9 +14,9 @@ export declare function useSizeClass(): SizeClass;
 export declare function getSizeClass(): Promise<SizeClass>;
 /**
  * Returns the current hardware hinge state (angle in radians and status).
- * null before the first interaction update, after observation stops, or when
- * the current view hierarchy has no hinge. Use size class and reserved
- * regions to choose layout.
+ * The first render already reads the window's hinge once the system has
+ * reported one. null on a device or view hierarchy without a hinge. Use
+ * size class and reserved regions to choose layout.
  */
 export declare function useHinge(): HingeState | null;
 export declare function getHinge(): Promise<HingeState | null>;

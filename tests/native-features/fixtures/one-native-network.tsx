@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { One } from 'one'
+import { useEffect, useRef, useState } from 'react'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
+import { One, useNetworkState } from 'one'
 
 // exercises the network state api against the live radio: a one-shot read
 // plus a change listener whose first event proves the native monitor is
@@ -9,6 +9,9 @@ import { One } from 'one'
 export default function OneNativeNetwork() {
   const [state, setState] = useState('none')
   const [events, setEvents] = useState(0)
+  const subscriptionRef = useRef<{ remove(): void } | null>(null)
+  const [stopped, setStopped] = useState(false)
+  const [frozen, setFrozen] = useState<string | null>(null)
   useEffect(() => {
     One.Network.getState().then((next) =>
       setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
@@ -17,12 +20,32 @@ export default function OneNativeNetwork() {
       setEvents((count) => count + 1)
       setState(`${next.type} ${next.isConnected} ${next.isInternetReachable}`)
     })
+    subscriptionRef.current = subscription
     return () => subscription.remove()
   }, [])
+  // register the event-counting listener first: it starts the shared monitor.
+  const live = useNetworkState()
   return (
     <View style={styles.screen}>
       <Text>{`State: ${state}`}</Text>
+      <Text>{`Hook: ${frozen ?? `${live.type} ${live.isConnected} ${live.isInternetReachable}`}`}</Text>
       <Text>{`Events: ${events}`}</Text>
+      {Platform.OS === 'android' && (
+        <>
+          <Text>{`Stopped: ${stopped}`}</Text>
+          <Pressable testID="one-native-network-freeze" style={styles.chip} onPress={() =>
+            setFrozen(`${live.type} ${live.isConnected} ${live.isInternetReachable}`)
+          }>
+            <Text>Freeze hook reading</Text>
+          </Pressable>
+          <Pressable testID="one-native-network-stop" style={styles.chip} onPress={() => {
+            subscriptionRef.current?.remove()
+            setStopped(true)
+          }}>
+            <Text>Remove observer</Text>
+          </Pressable>
+        </>
+      )}
       <Pressable
         testID="one-native-network-refresh"
         style={styles.chip}

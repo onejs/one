@@ -11,11 +11,12 @@ import {
   getOptionsFilled,
   loadEnv,
   nearestPackageJson,
+  backgroundComputationPlugin,
+  workletImportsPlugin,
 } from 'vxrn'
 import vxrnVitePlugin from 'vxrn/vite-plugin'
 import { CACHE_KEY } from '../constants'
 import { getViteMetroPluginOptions } from '../metro-config/getViteMetroPluginOptions'
-import '../polyfills-server'
 import { setServerGlobals } from '../server/setServerGlobals'
 import { getRouterRootFromOneOptions } from '../utils/getRouterRootFromOneOptions'
 import { createRouteIndex } from '../utils/routeIndex'
@@ -39,10 +40,7 @@ import { SSRCSSPlugin } from './plugins/SSRCSSPlugin'
 import { virtualEntryId } from './plugins/virtualEntryConstants'
 import { createVirtualEntry } from './plugins/virtualEntryPlugin'
 import { environmentGuardPlugin } from './plugins/environmentGuardPlugin'
-import {
-  createWorkerdDevPlugins,
-  shouldEnableWorkerdDev,
-} from './plugins/workerdDevPlugin'
+import { shouldEnableWorkerdDev } from './cloudflareWranglerConfig'
 import type { One } from './types'
 
 type MetroOptions = MetroPluginOptions
@@ -911,6 +909,8 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         : (nativeOptions?.bundlerOptions as any)
 
     globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => [
+      backgroundComputationPlugin('native'),
+      workletImportsPlugin({}),
       ...(nativeApp
         ? [
             {
@@ -972,11 +972,25 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   })()
 
   const workerdDevPlugins = shouldEnableWorkerdDev(options.web?.deploy, root)
-    ? createWorkerdDevPlugins(options, root, routeIndex)
+    ? import('./plugins/workerdDevPlugin').then(({ createWorkerdDevPlugins }) =>
+        createWorkerdDevPlugins(options, root, routeIndex)
+      )
     : []
 
   return [
-    ...workerdDevPlugins,
+    backgroundComputationPlugin('web'),
+    {
+      name: 'one:background-worker-build',
+      config(config) {
+        const plugins = config.worker?.plugins
+        return {
+          worker: {
+            plugins: () => [...(plugins?.() ?? []), backgroundComputationPlugin('web')],
+          },
+        }
+      },
+    },
+    workerdDevPlugins,
     ...vxrnPlugins,
     ...devAndProdPlugins,
     ...inspectorPlugins,

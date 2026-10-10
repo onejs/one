@@ -2,7 +2,7 @@ import { Slot, router, routerStore, usePathname } from 'one'
 import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 
-// mirrors soot's app/(site)/_layout.tsx — just passes through <Slot />.
+// mirrors contrast's app/(site)/_layout.tsx — just passes through <Slot />.
 export default function SiteLayout() {
   const pathname = usePathname()
   const [tick, setTick] = useState(0)

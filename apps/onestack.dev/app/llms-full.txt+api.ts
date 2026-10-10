@@ -1,22 +1,32 @@
-import { readdir, readFile } from 'node:fs/promises'
-import { join, resolve } from 'node:path'
 import { docsRoutes } from '~/features/docs/docsRoutes'
 import { nativeRoutes } from '~/features/docs/nativeRoutes'
 
-async function mdxFilesIn(dir: string) {
-  const entries = await readdir(dir, { withFileTypes: true })
-  return entries
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.mdx'))
-    .map((entry) => entry.name)
+// bundled at build time so the route reads no filesystem at runtime (workers have none)
+const docsSources = byFileName(
+  import.meta.glob<string>('../data/docs/*.mdx', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  })
+)
+const nativeSources = byFileName(
+  import.meta.glob<string>('../data/native/*.mdx', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  })
+)
+
+function byFileName(sources: Record<string, string>) {
+  return new Map(
+    Object.entries(sources).map(([path, source]) => [path.split('/').pop()!, source])
+  )
 }
 
 export async function GET() {
   try {
-    // Get all MDX files from the docs and native directories
-    const docsPath = join(process.cwd(), 'data/docs')
-    const nativePath = join(process.cwd(), 'data/native')
-    const mdxFiles = await mdxFilesIn(docsPath)
-    const nativeMdxFiles = await mdxFilesIn(nativePath)
+    const mdxFiles = [...docsSources.keys()]
+    const nativeMdxFiles = [...nativeSources.keys()]
 
     let consolidatedContent = '# One Framework - Complete Documentation #\n\n'
     consolidatedContent +=
@@ -41,13 +51,7 @@ export async function GET() {
     orderedFiles.push(...remainingFiles.sort())
 
     for (const file of orderedFiles) {
-      const filePath = join(docsPath, file)
-      const resolvedFilePath = resolve(filePath)
-      if (!resolvedFilePath.startsWith(resolve(docsPath))) {
-        throw new Error(`Path traversal detected: ${filePath}`)
-      }
-      const content = await readFile(resolvedFilePath, 'utf-8')
-      consolidatedContent += content
+      consolidatedContent += docsSources.get(file)
       consolidatedContent += '\n\n\n\n'
     }
 
@@ -74,13 +78,7 @@ export async function GET() {
     orderedNativeFiles.push(...remainingNativeFiles.sort())
 
     for (const file of orderedNativeFiles) {
-      const filePath = join(nativePath, file)
-      const resolvedFilePath = resolve(filePath)
-      if (!resolvedFilePath.startsWith(resolve(nativePath))) {
-        throw new Error(`Path traversal detected: ${filePath}`)
-      }
-      const content = await readFile(resolvedFilePath, 'utf-8')
-      consolidatedContent += content
+      consolidatedContent += nativeSources.get(file)
       consolidatedContent += '\n\n\n\n'
     }
 

@@ -3,20 +3,32 @@ title: iOS Tabs and Pager
 description: Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page under One.iOS
 ---
 
-Tab navigation and swipe paging under `One.iOS`.
+<NativeHero
+  src="/native/ios-tabs.webp"
+  alt="One.iOS Tabs with a glass tab bar, a badge, a search tab, and a now playing accessory"
+/>
+
+Tab navigation and swipe paging under `One.iOS`, drawn by SwiftUI.
+
+- `Tabs` is controlled: a `selection`, an `onSelectionChange` callback, and a
+  `revision` for external resets. `onReselect` reports a tap on the selected tab.
+- `Tab` is a page, or an action tab that runs `onPress` and never becomes the
+  selection.
+- `TabSection` groups tabs in the iPad sidebar; `TabViewSlot` and
+  `TabViewBottomAccessory` add content around the bar.
+- `Pager` swipes between pages with no bar.
+- Every view here throws on web and Android. Keep them in an iOS branch or an
+  `.ios.tsx` file.
 
 ## Tabs
 
-`One.iOS.Tabs` is a SwiftUI tab view. `selection` with
-`onSelectionChange` (and `revision` for external resets) controls the
-active tab; `selection` must identify a mounted page tab. `tabViewStyle`
-selects the tab view style and `tabBarVisibility` sets the tab bar
-visibility on every page. `customization` with `onCustomizationChange`
-binds tab view customization as JSON: persist what it reports and pass it
-back.
+`One.iOS.Tabs` is a SwiftUI tab view. Only `Tab`, `TabSection`,
+`TabViewSlot`, and `TabViewBottomAccessory` may be its direct children.
 
-Only `Tab`, `TabSection`, `TabViewSlot`, and `TabViewBottomAccessory` may
-be direct children of `Tabs`.
+Each tab's navigation container is transparent on iOS 18 and later, so the
+system bar can show the content behind it. Your page owns its background.
+
+{/* direction (2026-10-06): "we need to fix the see-through bar ... no one wants to have a bar that you can't see through." */}
 
 ```tsx
 import { One } from 'one'
@@ -29,43 +41,120 @@ import { One } from 'one'
 </One.iOS.Tabs>
 ```
 
+<PropsTable
+  title="Props"
+  source="types.ts#TabsProps"
+  data={[
+    { name: 'selection', required: true, type: 'string', description: 'The id of the selected page tab.' },
+    { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A native tab change, with the new id.' },
+    { name: 'onReselect', type: '(id: string) => void', description: 'A tap on the selected tab outside a TabSection, with its id.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
+    {
+      name: 'tabViewStyle',
+      type: 'TabViewStyle',
+      default: '"automatic"',
+      description: 'automatic, sidebarAdaptable, tabBarOnly, or page.',
+    },
+    { name: 'tabBarVisibility', type: 'Visibility', default: '"automatic"', description: 'The tab bar on every page: automatic, visible, or hidden.' },
+    { name: 'customization', type: 'string', default: '""', description: 'Saved tab customization JSON, from onCustomizationChange.' },
+    { name: 'onCustomizationChange', type: '(customization: string) => void', description: 'People reordered or hid tabs. Persist the JSON.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers on the tab view.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'Tab, TabSection, TabViewSlot, and TabViewBottomAccessory elements.' },
+  ]}
+/>
+
+`selection` must name a mounted page tab, or Tabs throws. Sections, tab
+modifiers, styles, and customization need iOS 18.
+
 ## Tab
 
-`One.iOS.Tab` is one tab. It carries either `onPress` or children, never
-both: a tab with `onPress` is an action tab that runs its handler and never
-becomes the selection.
+`One.iOS.Tab` is one tab. It takes either children, as a page, or `onPress`,
+as an action tab, never both. Ids must be unique and nonempty.
 
-| Prop | Type |
-|------|------|
-| `id` | `string` (required) |
-| `title` | `string` |
-| `systemImage` | SF Symbol name (never with `image`) |
-| `image` | asset catalog image (never with `systemImage`) |
-| `badge` | `string` or `number` |
-| `role` | tab role |
-| `tabPlacement` | tab placement |
-| `onPress` | `() => void` (action tab) |
-| `testID` | `string` |
-| `swiftStyle` | native modifiers on the page content |
+<PropsTable
+  title="Props"
+  source="types.ts#TabProps"
+  data={[
+    { name: 'id', required: true, type: 'string', description: 'Identifies the tab in selection.' },
+    { name: 'title', required: true, type: 'string', description: 'The tab label.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol. Not with image.' },
+    { name: 'image', type: 'string', description: 'An asset catalog image. Not with systemImage.' },
+    { name: 'labelStyle', type: 'SDKLabelStyle', description: 'iconOnly keeps the title for VoiceOver only.' },
+    { name: 'badge', type: 'string | number', description: 'A badge on the tab item.' },
+    { name: 'role', type: 'TabRole', description: 'search or prominent, the SwiftUI tab roles.' },
+    { name: 'tabPlacement', type: 'TabPlacement', description: 'automatic, pinned, or sidebarOnly.' },
+    { name: 'testID', type: 'string', description: 'Identifies the page in tests.' },
+    { name: 'onPress', type: '() => void', description: 'Makes an action tab, which runs this and keeps the selection.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers on the page content.' },
+    { name: 'children', type: 'ReactNode', description: 'The page.' },
+  ]}
+/>
 
-Shared tab content modifiers apply to `Tab` and `TabSection`: `disabled`
-(iOS 18.4 or later), `hidden`, `customizationID`, `customizationBehavior`,
-`defaultVisibility`, `springLoadingBehavior`, accessibility labels, and
-`help` (iOS 27 or later).
+`Tab` and `TabSection` share these SwiftUI tab modifiers:
+
+<PropsTable
+  title="Modifiers"
+  source="types.ts#TabContentProps"
+  data={[
+    { name: 'disabled', type: 'boolean', description: 'Dims the tab. iOS 18.4 or later.' },
+    { name: 'hidden', type: 'boolean', description: 'Removes the tab from the bar and sidebar.' },
+    { name: 'customizationID', type: 'string', description: 'Lets people reorder or hide the tab.' },
+    {
+      name: 'customizationBehavior',
+      type: '{ behavior: TabCustomizationBehavior for?: readonly AdaptableTabBarPlacement[] }',
+      description: 'automatic, reorderable, or disabled, for the listed placements.',
+    },
+    {
+      name: 'defaultVisibility',
+      type: '{ visibility: Visibility for?: readonly AdaptableTabBarPlacement[] }',
+      description: 'Shown or hidden until people customize, for the listed placements.',
+    },
+    { name: 'springLoadingBehavior', type: 'SpringLoadingBehavior', description: 'Whether a drag hovering the tab opens it.' },
+    { name: 'accessibilityLabel', type: 'string', description: 'Read by VoiceOver in place of the title.' },
+    { name: 'accessibilityHint', type: 'string', description: 'What selecting the tab does.' },
+    { name: 'accessibilityValue', type: 'string', description: 'The tab\'s current value.' },
+    { name: 'accessibilityIdentifier', type: 'string', description: 'Identifies the tab item in UI tests.' },
+    { name: 'help', type: 'string', description: 'Help text for the tab. iOS 27 or later.' },
+  ]}
+/>
 
 ## TabSection
 
-`One.iOS.TabSection` groups tabs in the sidebar with a required `id` and
-`title`, an optional `defaultSectionExpansion`, and optional
-`sectionActions`: SwiftUI buttons (`{ id, title, systemImage, onPress }`)
-in the section header. Children are `Tab` elements.
+`One.iOS.TabSection` groups tabs under a heading in the sidebar. Its children
+are `Tab` elements, at least one.
+
+<PropsTable
+  title="Props"
+  source="types.ts#TabSectionProps"
+  data={[
+    { name: 'id', required: true, type: 'string', description: 'Identifies the section.' },
+    { name: 'title', required: true, type: 'string', description: 'The section heading.' },
+    { name: 'defaultSectionExpansion', type: 'TabSectionExpansion', description: 'automatic, expanded, or collapsed at first.' },
+    {
+      name: 'sectionActions',
+      type: 'readonly { id: string title: string systemImage?: SFSymbolName | "" onPress: () => void }[]',
+      description: 'Buttons in the section header.',
+    },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The tabs.' },
+  ]}
+/>
 
 ## TabViewSlot
 
-`One.iOS.TabViewSlot` fills a named tab view slot with a fixed `height`.
-Slot names are `tabViewBottomAccessory` (iOS 26), `tabViewSidebarBottomBar`,
-`tabViewSidebarFooter`, and `tabViewSidebarHeader` (iOS 18).
-The three sidebar slots display only when the tab view presents a sidebar;
+`One.iOS.TabViewSlot` fills a named tab view slot with React Native content.
+
+<PropsTable
+  title="Props"
+  source="types.ts#TabViewSlotProps"
+  data={[
+    { name: 'name', required: true, type: 'TabViewSlotName', description: 'tabViewBottomAccessory (iOS 26), or a sidebar slot (iOS 18).' },
+    { name: 'height', required: true, type: 'number', description: 'The slot height in points. Must be above zero.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The slot content.' },
+  ]}
+/>
+
+The sidebar slots are `tabViewSidebarHeader`, `tabViewSidebarFooter`, and
+`tabViewSidebarBottomBar`. Each name may appear once. The three sidebar slots display only when the tab view presents a sidebar;
 they are absent from the compact iPhone tab bar.
 Place it directly inside `Tabs`, alongside the `Tab` children. The bottom
 accessory remains above the system tab bar as selection changes; its React
@@ -109,16 +198,29 @@ import { Pressable, Text } from 'react-native'
 
 ## TabViewBottomAccessory
 
-`One.iOS.TabViewBottomAccessory` renders the bottom accessory with
-`inline` and `expanded` content. `isEnabled` hides the accessory without
-remounting it (iOS 26.1 or later).
+`One.iOS.TabViewBottomAccessory` sits above the tab bar, like a music
+player's now playing bar. It needs iOS 26, and Tabs takes one.
+
+<PropsTable
+  title="Props"
+  source="types.ts#TabViewBottomAccessoryProps"
+  data={[
+    { name: 'isEnabled', type: 'boolean', description: 'Hides the accessory without remounting it. iOS 26.1 or later.' },
+    { name: 'children', type: 'ReactNode', description: 'Content for both layouts.' },
+    { name: 'inline', type: 'ReactNode', description: 'Content while the bar is minimized beside it.' },
+    { name: 'expanded', type: 'ReactNode', description: 'Content above the full bar.' },
+  ]}
+/>
+
+It needs `children`, `inline`, or `expanded`. A missing layout falls back to
+the others.
 
 ## Pager, Page
 
-`One.iOS.Pager` is a tab bar without the bar: swipe between pages under a
-controlled `selection` with `onSelectionChange` and `revision`. Children
-must be `Page` elements with unique nonempty ids, and `selection` must
-identify a mounted page.
+`One.iOS.Pager` is a tab view without the bar: people swipe between pages.
+Children must be `Page` elements with unique nonempty ids, and `selection`
+must name a mounted page. For a pager on both platforms, use
+[One.UI.Pager](/native/ui-pager).
 
 ```tsx
 import { One } from 'one'
@@ -129,4 +231,23 @@ import { One } from 'one'
 </One.iOS.Pager>
 ```
 
-On web and Android these views throw. Keep them behind a platform check.
+<PropsTable
+  title="Pager"
+  source="groupTypes.ts#PagerProps"
+  data={[
+    { name: 'selection', required: true, type: 'string', description: 'The id of the shown page.' },
+    { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A swipe to another page.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'Page elements.' },
+  ]}
+/>
+
+<PropsTable
+  title="Page"
+  source="groupTypes.ts#PageProps"
+  data={[
+    { name: 'id', required: true, type: 'string', description: 'Identifies the page in selection.' },
+    { name: 'testID', type: 'string', description: 'Identifies the page in tests.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The page content.' },
+  ]}
+/>

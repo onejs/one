@@ -57,7 +57,7 @@ import { useActiveParams, usePathname } from 'one'
 
 function Breadcrumbs() {
   const pathname = usePathname()
-  const params = useActiveParams()
+  const params = useActiveParams<{ id?: string }>()
 
   // Always shows current route, even from a layout component
   return (

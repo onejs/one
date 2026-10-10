@@ -11,7 +11,7 @@ steps, not one shot.
 - iOS floor: 17. iOS 26-only API (glassEffect, tab roles, badges) must be
   availability-gated, never the deployment target.
 - Scope is native iOS + Android only. One-native never does web/canvas;
-  rnx/Contrast icons go lucide (per-app icon consts), not through us.
+  peach/Contrast icons go lucide (per-app icon consts), not through us.
 - SDK ceiling: MAXIMUM_IOS=26 (CI lane commit 7cc558e69; CI pins Xcode 26.4).
   Never bump it or commit post-26 symbols without a CI Xcode bump, or the
   branch re-reds. Regen output must be identical on any newer toolchain.
@@ -55,9 +55,9 @@ status file; the coordinator resolves.
    SearchBar, DropdownMenu + declarative registry. [android]
 9. Targeted imperative UIKit wrappers, auto-generated where the SDK allows
    (document picker, Safari view, StoreKit flows, haptics...). Later milestone.
-   Sequenced by the Expo top-50 + soot-template survey (worker
-   expo-supersede-survey, doc lives in the soot repo, never here).
-   Nate direction (via Sol verification): hand-curated coverage is intentional.
+   Sequenced by the Expo top-50 + contrast-template survey (worker
+   expo-supersede-survey, doc lives in the contrast repo, never here).
+   Owner direction (via Sol verification): hand-curated coverage is intentional.
    The catalog chooses which official APIs/components One exposes; generation
    enforces alignment (names, types, signatures, availability, behavior) for
    that selected surface only. Never pursue full SDK coverage. Cohesive One.*
@@ -85,7 +85,7 @@ status file; the coordinator resolves.
   merge time (and to the closed-world + static-config milestones when they
   land), not per green slice.
 
-## Design findings (from rnx lane)
+## Design findings (from peach lane)
 
 - Icon-only Button must be expressible directly. Expo renders an empty capsule
   for icon-only (systemImage is read only in the Label branch) and the

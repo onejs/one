@@ -22,6 +22,9 @@ export function Index() {
       <Link href="/widget-demo">
         <Text>Widget and Live Activity demo</Text>
       </Link>
+      <Link href="/native">
+        <Text>Swift and Kotlin demo</Text>
+      </Link>
     </View>
   )
 }

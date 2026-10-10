@@ -946,6 +946,55 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativePortalView",
+      "publicName": "Portal",
+      "props": {
+        "hostName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePortalHostView",
+      "publicName": "PortalHost",
+      "props": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "children",
+          "content": "react-native",
+          "cardinality": "many",
+          "layout": "yoga"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativePicker",
       "publicName": "Picker",
       "props": {
@@ -1137,6 +1186,9 @@
         "revision": {
           "type": "Int32"
         },
+        "syncStateId": {
+          "type": "Int32"
+        },
         "label": {
           "type": "string"
         },
@@ -1174,7 +1226,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeToggleValueChange"
+        "event": "onNativeToggleValueChange",
+        "sync": true
       },
       "actions": [],
       "layout": {
@@ -1535,6 +1588,9 @@
         },
         "colorRole": {
           "type": "string"
+        },
+        "resizable": {
+          "type": "boolean"
         }
       },
       "events": {
@@ -1650,6 +1706,12 @@
       "props": {
         "fill": {
           "type": "ColorValue"
+        },
+        "strokeBorder": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
         }
       },
       "events": {
@@ -1675,6 +1737,12 @@
       "props": {
         "fill": {
           "type": "ColorValue"
+        },
+        "strokeBorder": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
         }
       },
       "events": {
@@ -1700,6 +1768,12 @@
       "props": {
         "fill": {
           "type": "ColorValue"
+        },
+        "strokeBorder": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
         }
       },
       "events": {
@@ -1725,6 +1799,12 @@
       "props": {
         "fill": {
           "type": "ColorValue"
+        },
+        "strokeBorder": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
         },
         "cornerRadius": {
           "type": "Double"
@@ -1753,6 +1833,12 @@
       "props": {
         "fill": {
           "type": "ColorValue"
+        },
+        "strokeBorder": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
         }
       },
       "events": {
@@ -1778,6 +1864,12 @@
       "props": {
         "fill": {
           "type": "ColorValue"
+        },
+        "strokeBorder": {
+          "type": "ColorValue"
+        },
+        "lineWidth": {
+          "type": "Double"
         },
         "topLeadingRadius": {
           "type": "Double"
@@ -2217,6 +2309,30 @@
         "html": {
           "type": "string"
         },
+        "script": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "commandRevision": {
+          "type": "Double"
+        },
+        "commandValue": {
+          "type": "string"
+        },
+        "limitsNavigationsToAppBoundDomains": {
+          "type": "boolean"
+        },
+        "inlineMedia": {
+          "type": "boolean"
+        },
+        "inspectable": {
+          "type": "boolean"
+        },
+        "bounces": {
+          "type": "boolean"
+        },
         "backForwardNavigationGestures": {
           "type": "string",
           "enum": "BackForwardNavigationGesturesBehavior"
@@ -2273,6 +2389,56 @@
           "eventCount": {
             "type": "Int32"
           }
+        },
+        "onNativeWebViewLoadStart": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewLoadEnd": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewError": {
+          "message": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewHttpError": {
+          "statusCode": {
+            "type": "Double"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewMessage": {
+          "data": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewHistoryChange": {
+          "canGoBack": {
+            "type": "boolean"
+          },
+          "canGoForward": {
+            "type": "boolean"
+          },
+          "eventCount": {
+            "type": "Int32"
+          }
+        },
+        "onNativeWebViewProcessTerminate": {
+          "eventCount": {
+            "type": "Int32"
+          }
         }
       },
       "actions": [
@@ -2287,6 +2453,34 @@
         {
           "publicProp": "onLoadingChange",
           "event": "onNativeWebViewLoadingChange"
+        },
+        {
+          "publicProp": "onLoadStart",
+          "event": "onNativeWebViewLoadStart"
+        },
+        {
+          "publicProp": "onLoadEnd",
+          "event": "onNativeWebViewLoadEnd"
+        },
+        {
+          "publicProp": "onError",
+          "event": "onNativeWebViewError"
+        },
+        {
+          "publicProp": "onHttpError",
+          "event": "onNativeWebViewHttpError"
+        },
+        {
+          "publicProp": "onMessage",
+          "event": "onNativeWebViewMessage"
+        },
+        {
+          "publicProp": "onHistoryChange",
+          "event": "onNativeWebViewHistoryChange"
+        },
+        {
+          "publicProp": "onProcessTerminate",
+          "event": "onNativeWebViewProcessTerminate"
         }
       ],
       "layout": {
@@ -3110,6 +3304,9 @@
         },
         "presentation": {
           "type": "string"
+        },
+        "colorScheme": {
+          "type": "string"
         }
       },
       "events": {
@@ -3914,55 +4111,6 @@
         }
       ],
       "interfaceOnly": true
-    },
-    {
-      "name": "OneNativePortalView",
-      "publicName": "Portal",
-      "props": {
-        "hostName": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "events": {},
-      "actions": [],
-      "layout": {
-        "kind": "container"
-      },
-      "slots": [
-        {
-          "name": "children",
-          "content": "react-native",
-          "cardinality": "many",
-          "layout": "yoga"
-        }
-      ],
-      "interfaceOnly": true
-    },
-    {
-      "name": "OneNativePortalHostView",
-      "publicName": "PortalHost",
-      "props": {
-        "name": {
-          "type": "string"
-        }
-      },
-      "events": {},
-      "actions": [],
-      "layout": {
-        "kind": "container"
-      },
-      "slots": [
-        {
-          "name": "children",
-          "content": "react-native",
-          "cardinality": "many",
-          "layout": "yoga"
-        }
-      ],
-      "interfaceOnly": false
     }
   ],
   "payloads": {
@@ -4033,7 +4181,8 @@
         },
         "systemImage": {
           "type": "string",
-          "default": ""
+          "default": "",
+          "publicType": "SFSymbolName"
         },
         "role": {
           "type": "ButtonRole",

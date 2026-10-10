@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
@@ -17,6 +17,14 @@ export default function OneNativeWebPhotos() {
   const [webEvents, setWebEvents] = useState(0)
   const [picked, setPicked] = useState({ url: '', index: -1, count: 0 })
   const [pickError, setPickError] = useState('')
+  const [webMessage, setWebMessage] = useState('')
+  const [webHistory, setWebHistory] = useState('false/false')
+  const commandRevision = useRef(0)
+  const [command, setCommand] = useState({ command: '' as '' | 'reload' | 'goBack' | 'evaluate', revision: 0, value: '' })
+  const run = (next: 'reload' | 'goBack' | 'evaluate', value = '') => {
+    commandRevision.current += 1
+    setCommand({ command: next, revision: commandRevision.current, value })
+  }
 
   return (
     <View style={styles.screen} testID="one-native-web-photos-screen">
@@ -35,11 +43,25 @@ export default function OneNativeWebPhotos() {
           <Text>{`Web loading: ${loading}`}</Text>
           <Text>{`Web progress: ${Math.round(progress * 100)}`}</Text>
           <Text>{`Web loading events: ${webEvents}`}</Text>
+          <Text>{`Web message: ${webMessage}`}</Text>
+          <Text>{`Web history: ${webHistory}`}</Text>
           <Pressable testID="one-native-web-photos-swap" onPress={() => setDocumentIndex((value) => value === 0 ? 1 : 0)}>
             <Text>Swap document</Text>
           </Pressable>
+          <Pressable
+            testID="one-native-web-photos-ping"
+            onPress={() => run('evaluate', "window.ReactNativeWebView.postMessage('ping')")}
+          >
+            <Text>Ping</Text>
+          </Pressable>
+          <Pressable testID="one-native-web-photos-back" onPress={() => run('goBack')}>
+            <Text>Back</Text>
+          </Pressable>
           <One.iOS.WebView
             html={documents[documentIndex]}
+            command={command.command}
+            commandRevision={command.revision}
+            commandValue={command.value}
             style={{ height: 260 }}
             testID="one-native-web-photos-webview"
             onLoadingChange={(value, amount) => {
@@ -47,8 +69,12 @@ export default function OneNativeWebPhotos() {
               setProgress(amount)
               setWebEvents((count) => count + 1)
             }}
+            onMessage={setWebMessage}
             onNavigate={setWebURL}
             onTitleChange={setWebTitle}
+            onHistoryChange={(canGoBack, canGoForward) =>
+              setWebHistory(`${canGoBack}/${canGoForward}`)
+            }
           />
         </>
       ) : (

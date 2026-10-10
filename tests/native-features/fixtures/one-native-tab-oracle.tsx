@@ -1,4 +1,4 @@
-// geometry oracle fixture for the SwiftUI floating tab bar. every number rnx pins its
+// geometry oracle fixture for the SwiftUI floating tab bar. every number peach pins its
 // FloatingTabBar against is measured off captures of this screen, so the screen exists to be
 // photographed rather than tapped:
 //

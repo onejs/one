@@ -39,9 +39,14 @@ on:
       - 'packages/one/cpp/**'
       - 'packages/one/nitrogen/**'
       - 'packages/one/codegen/**'
+      - 'packages/one/schema.json'
       - 'packages/one/src/platform/**'
       - 'packages/one/One.podspec'
+      - 'packages/one/package.json'
+      - 'packages/one/nitro.json'
+      - 'packages/one/react-native.config.cjs'
       - 'tests/native-features/**'
+      - 'examples/one-basic/**'
       - 'tests/rn-test-container/app.json'
       - 'tests/rn-test-container/e2e/**'
       - 'tests/rn-test-container/ios/**'
@@ -75,6 +80,9 @@ jobs:
           git diff --exit-code -- types/platform/generated
           bun run typecheck
           bun run test
+      - name: Generate the Basic starter iOS project
+        working-directory: examples/one-basic
+        run: bun run prebuild:native --platform ios --no-install
       - name: Generate the One Native consumer project
         working-directory: tests/native-features
         env:
@@ -180,6 +188,28 @@ jobs:
           key: ${{ needs.build-ios-test-container-prod.outputs.hermesc-cache-key }}
           path: ${{ needs.build-ios-test-container-prod.outputs.hermesc-path }}
 
+      - name: Download Hermes V1 hermesc (Dev)
+        if: ${{ matrix.env == 'dev' && matrix.bundler == 'rolldown' && needs.build-ios-test-container-dev.outputs.hermesc-cache-key }}
+        id: download-hermesc-dev
+        uses: actions/cache/restore@v5
+        with:
+          fail-on-cache-miss: true
+          key: ${{ needs.build-ios-test-container-dev.outputs.hermesc-cache-key }}
+          path: ${{ needs.build-ios-test-container-dev.outputs.hermesc-path }}
+
+      - name: Validate Hermes V1 hermesc (Dev)
+        if: ${{ matrix.env == 'dev' && matrix.bundler == 'rolldown' }}
+        env:
+          HERMESC_CACHE_KEY: ${{ needs.build-ios-test-container-dev.outputs.hermesc-cache-key }}
+          HERMESC_MATCHED_KEY: ${{ steps.download-hermesc-dev.outputs.cache-matched-key }}
+          HERMESC_PATH: ${{ format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.hermesc-path) }}
+        run: |
+          [ -n "$HERMESC_MATCHED_KEY" ] || { echo "hermesc cache restore produced no matched key for $HERMESC_CACHE_KEY"; exit 1; }
+          [ "$HERMESC_MATCHED_KEY" = "$HERMESC_CACHE_KEY" ] || { echo "hermesc key mismatch: wanted $HERMESC_CACHE_KEY, got $HERMESC_MATCHED_KEY"; exit 1; }
+          [ -f "$HERMESC_PATH" ] || { echo "hermesc missing at $HERMESC_PATH"; exit 1; }
+          [ -x "$HERMESC_PATH" ] || { echo "hermesc not executable at $HERMESC_PATH"; exit 1; }
+          echo "hermesc validated: $HERMESC_PATH ($HERMESC_MATCHED_KEY)"
+
       - name: Get Simulator UDID
         id: get-simulator-udid
         env:
@@ -284,7 +314,7 @@ jobs:
           SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ matrix.env == 'dev' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.built-app-path) || '' }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ matrix.env == 'prod' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.built-app-path) || '' }}
-          HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || '' }}
+          HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || steps.download-hermesc-dev.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.hermesc-path) || '' }}
         run: |
           bun run --filter test-test ${{ matrix.test-script }}
 

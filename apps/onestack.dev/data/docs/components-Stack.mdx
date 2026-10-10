@@ -16,7 +16,7 @@ export default function Layout() {
       screenOptions={{
         headerRight() {
           return (
-            <Button label="Settings" />
+            <Button title="Settings" onPress={() => {}} />
           )
         },
       }}
@@ -113,6 +113,7 @@ Props:
 - `children` - The title text
 - `large` - Enable iOS large title mode
 - `style` - Text style (`fontWeight`, `fontSize`, `color`, `textAlign`)
+- `largeStyle` - Text style for large title mode
 
 #### Stack.Header.BackButton
 
@@ -128,6 +129,8 @@ Props:
 - `hidden` - Hide the back button
 - `displayMode` - `'default'`, `'generic'`, or `'minimal'`
 - `withMenu` - Enable long-press menu on iOS
+- `src` - Custom back button image
+- `style` - Back button title style
 
 #### Stack.Header.Left / Stack.Header.Right
 
@@ -161,8 +164,8 @@ Add an iOS-style search bar:
 
 Props:
 - `placeholder` - Placeholder text
-- `autoCapitalize` - `'none'`, `'words'`, `'sentences'`, `'characters'`
-- `placement` - `'automatic'` or `'stacked'`
+- `autoCapitalize` - `'systemDefault'`, `'none'`, `'words'`, `'sentences'`, `'characters'`
+- `placement` - `'automatic'`, `'inline'`, `'stacked'`, `'integrated'`, `'integratedButton'`, `'integratedCentered'`
 - `hideWhenScrolling` - Hide when scrolling
 - `obscureBackground` - Obscure background when active
 
@@ -201,6 +204,23 @@ toolbar from screen content:
 See [Toolbar and Menus](/native/toolbar) for the full toolbar reference,
 including menus, the bottom toolbar, and the lower-level `One.iOS.ToolbarHost`
 primitive.
+
+### Typing the composition API
+
+The prop types for the header and toolbar components are exported from `one`:
+
+```tsx
+import type {
+  StackHeaderBackButtonProps,
+  StackHeaderLeftProps,
+  StackHeaderProps,
+  StackHeaderRightProps,
+  StackHeaderSearchBarProps,
+  StackHeaderTitleProps,
+  StackToolbarButtonProps,
+  StackToolbarProps,
+} from 'one'
+```
 
 ### On web
 

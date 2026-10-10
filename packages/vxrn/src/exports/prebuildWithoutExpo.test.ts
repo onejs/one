@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process'
+import { createRequire } from 'node:module'
 import {
   mkdtempSync,
   mkdirSync,
@@ -6,6 +7,7 @@ import {
   existsSync,
   readFileSync,
   realpathSync,
+  rmSync,
   statSync,
   writeFileSync,
 } from 'node:fs'
@@ -183,7 +185,10 @@ ${APP_DELEGATE_PBXPROJ}`,
     })
     expect(podfile.content).toContain("platform :ios, '17.0'")
     expect(podfile.content).toContain(
-      "  config = use_native_modules!\n  # [vxrn/one] nitro web image modular header\n  pod 'SDWebImage', :modular_headers => true\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
+      `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
+    )
+    expect(podfile.content).toContain(
+      "  # [vxrn/one] nitro web image modular header\n  pod 'SDWebImage', :modular_headers => true\n  # [vxrn/one] swift packages\n  Dir[File.join(__dir__, 'OneSwiftPackages'"
     )
     expect(podfile.content).toContain(
       "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
@@ -490,6 +495,85 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(androidManifest.content).not.toContain('android.permission.RECORD_AUDIO')
   })
 
+  it('stamps Android media permissions and markers from native.app', () => {
+    const media = {
+      ...app,
+      audio: { microphone: 'Record audio', background: true },
+      photoLibrary: { addOnly: 'Save photos', readWrite: 'Read photos' },
+      contacts: { usage: 'Find people' },
+      calendar: { usage: 'Show events' },
+    } satisfies PrebuildAppConfig
+    const manifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: media,
+    })
+    for (const permission of [
+      'android.permission.RECORD_AUDIO',
+      'android.permission.READ_MEDIA_IMAGES',
+      'android.permission.READ_MEDIA_VIDEO',
+      'android.permission.READ_CONTACTS',
+      'android.permission.WRITE_CONTACTS',
+      'android.permission.READ_CALENDAR',
+      'android.permission.WRITE_CALENDAR',
+      'android.permission.FOREGROUND_SERVICE',
+      'android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK',
+    ]) {
+      expect(manifest.content).toContain(permission)
+    }
+    expect(manifest.content).toContain(
+      '<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />'
+    )
+    expect(manifest.content).toContain(
+      '<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />'
+    )
+    expect(manifest.content).toContain('one.photoLibrary.addOnly')
+    expect(manifest.content).toContain('one.audio.background')
+    expect(manifest.content).toContain('com.margelo.nitro.one.OneAudioService')
+    expect(manifest.content).toContain('android:foregroundServiceType="mediaPlayback"')
+    // speech stamps RECORD_AUDIO first; the media block must not duplicate it.
+    expect(
+      (manifest.content ?? '').split('android.permission.RECORD_AUDIO').length - 1
+    ).toBe(1)
+
+    const bare = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: {
+        ...app,
+        audio: undefined,
+        photoLibrary: undefined,
+        contacts: undefined,
+        calendar: undefined,
+      },
+    })
+    for (const permission of [
+      'android.permission.READ_MEDIA_IMAGES',
+      'android.permission.READ_CONTACTS',
+      'android.permission.READ_CALENDAR',
+      'android.permission.FOREGROUND_SERVICE',
+    ]) {
+      expect(bare.content).not.toContain(permission)
+    }
+    expect(bare.content).not.toContain('one.photoLibrary.addOnly')
+    expect(bare.content).not.toContain('one.audio.background')
+    expect(bare.content).not.toContain('OneAudioService')
+
+    // reminders-only calendar needs no Android event permissions.
+    const remindersOnly = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: { ...app, calendar: { remindersUsage: 'Manage tasks' } },
+    })
+    expect(remindersOnly.content).not.toContain('android.permission.READ_CALENDAR')
+  })
+
   it('stamps the maps key and flag only when googleMapsApiKey is set', () => {
     const maps = {
       ...app,
@@ -732,7 +816,7 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     )
   })
 
-  it('resolves the gradle plugin from the react-native package without hoisting', () => {
+  it('resolves build tools from their owning packages without hoisting', () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-gradle-plugin-'))
     const settingsDir = join(root, 'android')
     mkdirSync(settingsDir, { recursive: true })
@@ -758,12 +842,18 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     const cliPath = join(
       root,
       'node_modules',
+      'vxrn',
+      'node_modules',
       '@react-native-community',
       'cli',
       'build',
       'bin.js'
     )
     mkdirSync(dirname(cliPath), { recursive: true })
+    writeFileSync(
+      join(root, 'node_modules', 'vxrn', 'package.json'),
+      JSON.stringify({ name: 'vxrn', version: '0.0.0' })
+    )
     writeFileSync(
       cliPath,
       "if (process.argv[2] !== 'config') process.exit(1); console.log(JSON.stringify({root: process.cwd(), dependencies: {}}))"
@@ -801,6 +891,83 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
       })
     )
     expect(cliConfig).toEqual({ root: realpathSync(root), dependencies: {} })
+
+    const patches = createRequire(import.meta.url)('../../native-project-patches.cjs')
+    const iosPhase = patches.addSetCliPathToBundleReactNativeShellScript(
+      '`"$NODE_BINARY" --print "react-native-xcode.sh"`'
+    )
+    const cliExport = iosPhase
+      .split('\n')
+      .find((line) => line.startsWith('export CLI_PATH='))
+    if (!cliExport) throw new Error('expected iOS CLI export')
+    const iosConfig = JSON.parse(
+      execFileSync('bash', ['-c', `${cliExport}\n"$NODE_BINARY" "$CLI_PATH" config`], {
+        cwd: root,
+        env: { ...process.env, NODE_BINARY: process.execPath },
+        encoding: 'utf8',
+      })
+    )
+    expect(iosConfig).toEqual(cliConfig)
+
+    writeFileSync(
+      join(dirname(dirname(cliPath)), 'package.json'),
+      JSON.stringify({ name: '@react-native-community/cli', main: 'index.js' })
+    )
+    writeFileSync(
+      join(dirname(dirname(cliPath)), 'index.js'),
+      "exports.run = () => require('./build/bin.js')"
+    )
+    const podfile = renderPrebuildFile({
+      relativePath: 'Podfile',
+      content:
+        "target 'HelloWorld' do\n  config = use_native_modules!\n  post_install do |installer|\n    react_native_post_install(installer)\n  end\nend",
+      platform: 'ios',
+      app,
+    })
+    const podScript = podfile.content?.match(
+      /use_native_modules!\(\['node', '-e', "([^"\n]+)"\]\)/
+    )?.[1]
+    if (!podScript) throw new Error('expected iOS pod discovery command')
+    expect(
+      JSON.parse(
+        execFileSync(process.execPath, ['-e', podScript], {
+          cwd: root,
+          encoding: 'utf8',
+        })
+      )
+    ).toEqual(cliConfig)
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        [
+          '-e',
+          "process.argv=['', '', 'config'];require('@react-native-community/cli').run()",
+        ],
+        { cwd: root, stdio: 'pipe' }
+      )
+    ).toThrow()
+
+    const androidReact = patches.replaceAppBuildGradleReactBlock('react {\n}\n')
+    const bundleResolver = [
+      ...androidReact.matchAll(/commandLine\("node", "--print", "([^"\n]+)"\)/g),
+    ]
+      .map((match) => match[1])
+      .find((script) => script.includes('@react-native-community/cli/build/bin.js'))
+    if (!bundleResolver) throw new Error('expected Android bundle CLI resolver')
+    expect(
+      execFileSync(process.execPath, ['--print', bundleResolver], {
+        cwd: settingsDir,
+        encoding: 'utf8',
+      }).trim()
+    ).toBe(resolvedCli)
+
+    expect(() =>
+      execFileSync(
+        process.execPath,
+        ['--print', "require.resolve('@react-native-community/cli/build/bin.js')"],
+        { cwd: root, stdio: 'pipe' }
+      )
+    ).toThrow()
 
     // negative control: a bare top-level resolution fails here, proving the
     // fixture is genuinely non-hoisted and the old snippet would break
@@ -1148,24 +1315,16 @@ class ReactNativeDelegate:${templateRnDelegate}`,
 })
 
 describe('community autolink inventory', () => {
-  it('discovers installed packages through community config, sorted', async () => {
+  it('generates both projects and discovers native packages without an app cli', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-autolink-'))
-    // everything resolves from the fixture root, exactly as in a real app;
-    // workspace installs are linked so the test needs no network.
+    // the app owns its template and native packages, while vxrn owns the cli.
+    // link installed inputs so this strict app layout needs no network.
     const workspaceModules = fileURLToPath(
       new URL('../../../../node_modules', import.meta.url)
     )
     mkdirSync(join(root, 'node_modules', '@react-native-community'), { recursive: true })
     const { symlinkSync } = await import('node:fs')
-    for (const name of [
-      'cli',
-      'cli-config',
-      'cli-config-android',
-      'cli-config-apple',
-      'cli-tools',
-      'cli-types',
-      'template',
-    ]) {
+    for (const name of ['template']) {
       symlinkSync(
         join(workspaceModules, '@react-native-community', name),
         join(root, 'node_modules', '@react-native-community', name)
@@ -1575,6 +1734,52 @@ describe('generateForPlatform determinism', () => {
     expect(storyboard).toContain('firstAttribute="width" constant="60"')
   }, 180000)
 
+  it('lays a full-bleed background image under the android launch artwork', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-splash-bg-android-'))
+    const source = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/splash.png', import.meta.url)
+    )
+    const backgroundImage = join(output, 'ground.png')
+    await sharp({
+      create: { width: 30, height: 60, channels: 3, background: '#ececec' },
+    })
+      .png()
+      .toFile(backgroundImage)
+    const splash = {
+      source,
+      backgroundColor: '#ececec',
+      width: 60,
+      backgroundImage,
+      dark: { backgroundColor: '#111111', backgroundImage },
+    }
+    await generateForPlatform(
+      workspaceRoot,
+      'android',
+      { ...app, splash },
+      join(output, 'android')
+    )
+    const res = join(output, 'android', 'app', 'src', 'main', 'res')
+    // one nodpi asset per appearance at the source resolution
+    for (const prefix of ['drawable-nodpi', 'drawable-night-nodpi']) {
+      expect(
+        await sharp(join(res, prefix, 'splash_background.png')).metadata()
+      ).toMatchObject({ width: 30, height: 60 })
+    }
+    const launchScreen = readFileSync(join(res, 'drawable', 'launch_screen.xml'), 'utf8')
+    // the background paints first and fills, so the centered mark sits above it
+    expect(launchScreen.indexOf('@drawable/splash_background')).toBeGreaterThan(-1)
+    expect(launchScreen.indexOf('@drawable/splash_background')).toBeLessThan(
+      launchScreen.indexOf('@drawable/splash"')
+    )
+    expect(launchScreen).toContain(
+      '<bitmap android:gravity="fill" android:src="@drawable/splash_background" />'
+    )
+    expect(launchScreen).toContain(
+      '<bitmap android:gravity="center" android:src="@drawable/splash" />'
+    )
+  }, 180000)
+
   it('writes the accent color asset and names it in the Info.plist', async () => {
     const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
     const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-accent-'))
@@ -1889,6 +2094,42 @@ describe('app kotlin source discovery', () => {
     expect(ids).toHaveLength(1)
     expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(source)
   }, 180000)
+
+  it('skips evidence directories holding preserved proof sources', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-evidence-'))
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-evidence-dest-'))
+    const live = 'package app.counter\nclass Counter\n'
+    writeFileSync(join(root, 'Counter.kt'), live)
+    mkdirSync(join(root, 'proofs', 'evidence'), { recursive: true })
+    const duplicate = 'class Preserved\n'
+    writeFileSync(join(root, 'proofs', 'evidence', 'source-before-build.kt'), duplicate)
+    writeFileSync(join(root, 'proofs', 'evidence', 'fault-source.kt'), duplicate)
+    await generateKotlinSources({ root, dest })
+    const generated = join(dest, 'app', 'src', 'main', 'java', 'one', 'source')
+    const ids = readdirSync(generated)
+    expect(ids).toHaveLength(1)
+    expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(live)
+  })
+
+  it('drops sources an earlier prebuild generated that are gone now', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-stale-'))
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-stale-dest-'))
+    const live = 'package app.counter\nclass Counter\n'
+    writeFileSync(join(root, 'Counter.kt'), live)
+    mkdirSync(join(root, 'proofs'), { recursive: true })
+    writeFileSync(join(root, 'proofs', 'Removed.kt'), 'class Removed\n')
+    await generateKotlinSources({ root, dest })
+    const generated = join(dest, 'app', 'src', 'main', 'java', 'one', 'source')
+    expect(readdirSync(generated)).toHaveLength(2)
+    rmSync(join(root, 'proofs'), { recursive: true })
+    await generateKotlinSources({ root, dest })
+    const ids = readdirSync(generated)
+    expect(ids).toHaveLength(1)
+    expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(live)
+    rmSync(join(root, 'Counter.kt'))
+    await generateKotlinSources({ root, dest })
+    expect(existsSync(generated)).toBe(false)
+  })
 })
 
 describe('swift cxx interop', () => {
@@ -2415,7 +2656,7 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
       '<meta-data android:name="dev.onejs.updates.url" android:value="https://updates.example.com" />'
     )
     expect(rendered.content).toContain(
-      '<meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="test-1" />'
+      '<meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="@string/one_updates_runtime_version" />'
     )
   })
 

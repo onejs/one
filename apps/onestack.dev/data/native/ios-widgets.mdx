@@ -1,15 +1,15 @@
 ---
 title: iOS Widgets and Live Activities
-description: Widgets, LiveActivities, and WidgetUI under One.iOS
+description: Widget and Live Activity services, with iOS widget views
 ---
 
-Home Screen widgets and Live Activities under `One.iOS`. These need
-`native.app.ios.widgets` and a new iOS build; without the native bridge
-every call throws. Outside iOS they throw as well.
+<NativeHero src="/native/ios-widgets.webp" alt="One Home Screen widget with content written from React" />
+
+Home Screen widgets and Live Activities use `One.Widgets` and `One.LiveActivities`. Their iOS implementation needs `native.app.ios.widgets` and a new iOS build; calls without that configured bridge throw. Android reports the iOS-only limit for widget writes, activity starts, updates, endings, and push-token listener registration. `pushToken` returns `null`. On web, widget writes and activity updates or endings have no effect, push tokens return `null`, and listener removers do nothing. Starting an activity on web rejects with `LiveActivities.<verb> needs an iOS or Android build`. The iOS view tree remains under `One.iOS.WidgetUI`.
 
 ## Widgets
 
-`One.iOS.Widgets` writes the widget's content.
+`One.Widgets` writes the widget's content.
 
 | Function | Signature |
 |----------|-----------|
@@ -21,7 +21,7 @@ every call throws. Outside iOS they throw as well.
 
 ## LiveActivities
 
-`One.iOS.LiveActivities` manages Live Activities. State is `{ status:
+`One.LiveActivities` manages Live Activities. State is `{ status:
 string; value: string }`; push token events are `{ id: string; token:
 string }`.
 
@@ -35,33 +35,79 @@ string }`.
 | `pushToken` | `(id: string) => Promise<string \| null>` |
 | `onPushToken` | `(listener: (event) => void) => () => void` (returns an unsubscribe function) |
 
-`push` opts into push updates. An `ActivityView` is `{ lockScreen,
-compactLeading, compactTrailing, minimal, expandedLeading,
-expandedTrailing, expandedBottom }` of widget nodes.
+`push` opts into push updates. An `ActivityView` places a `WidgetUI` tree in
+each Live Activity region:
+
+<PropsTable
+  title="ActivityView"
+  source="widgets/view.ts#ActivityView"
+  data={[
+    { name: 'lockScreen', required: true, type: 'ReactNode', description: 'The Lock Screen banner.' },
+    { name: 'compactLeading', type: 'ReactNode', description: 'Left of the camera in the compact Dynamic Island.' },
+    { name: 'compactTrailing', type: 'ReactNode', description: 'Right of the camera in the compact Dynamic Island.' },
+    { name: 'minimal', type: 'ReactNode', description: 'The Dynamic Island when another activity shares it.' },
+    { name: 'expandedLeading', type: 'ReactNode', description: 'The expanded Dynamic Island, leading side.' },
+    { name: 'expandedTrailing', type: 'ReactNode', description: 'The expanded Dynamic Island, trailing side.' },
+    { name: 'expandedBottom', type: 'ReactNode', description: 'The expanded Dynamic Island, below the sides.' },
+  ]}
+/>
 
 ## WidgetUI
 
-`One.iOS.WidgetUI` builds widget content from `Text`, `VStack`, `HStack`,
-`ZStack`, `Spacer`, `Divider`, `Image` (`systemName`), `Progress` and
-`Gauge` (`value`, `total`), `Circle`, `Rectangle`, `RoundedRectangle`
-(`fill`, `cornerRadius`), and `Link` (`url`). Styling goes through a small
-style object: `color`, `backgroundColor`, `fontSize`, `fontWeight`
-(`regular`, `medium`, `semibold`, `bold`), `fontDesign` (`default`,
-`rounded`, `serif`, `monospaced`), `padding`, `borderRadius`, `spacing`,
-`width`, `height`, `opacity`, `lineLimit`, and `alignment` (`leading`,
-`center`, `trailing`).
+`One.iOS.WidgetUI` builds widget content. Each element takes a `style`.
+
+| Element | Props |
+| --- | --- |
+| `Text`, `VStack`, `HStack`, `ZStack` | `children` |
+| `Spacer`, `Divider` | none |
+| `Image` | `systemName` |
+| `Progress`, `Gauge` | `value`, `total` |
+| `Circle`, `Rectangle`, `RoundedRectangle` | `fill`, `cornerRadius` |
+| `Link` | `url`, `children` |
+
+<PropsTable
+  title="WidgetStyle"
+  source="widgets/view.ts#WidgetStyle"
+  data={[
+    { name: 'color', type: 'string', description: 'The text and symbol color.' },
+    { name: 'backgroundColor', type: 'string', description: 'The fill behind the element.' },
+    { name: 'fontSize', type: 'number', description: 'The text size in points.' },
+    { name: 'fontWeight', type: '"regular" | "medium" | "semibold" | "bold"', description: 'The text weight.' },
+    { name: 'fontDesign', type: '"default" | "rounded" | "serif" | "monospaced"', description: 'The system font design.' },
+    { name: 'padding', type: 'number', description: 'Space inside the element on every side.' },
+    { name: 'borderRadius', type: 'number', description: 'Rounds the background.' },
+    { name: 'spacing', type: 'number', description: 'The gap between a stack\'s children.' },
+    { name: 'width', type: 'number', description: 'A fixed width.' },
+    { name: 'height', type: 'number', description: 'A fixed height.' },
+    { name: 'opacity', type: 'number', description: 'From 0 to 1.' },
+    { name: 'lineLimit', type: 'number', description: 'The most lines a Text shows.' },
+    { name: 'alignment', type: '"leading" | "center" | "trailing"', description: 'How a stack aligns its children.' },
+  ]}
+/>
 
 ```tsx
 import { One } from 'one'
 
-await One.iOS.Widgets.writeView(
+await One.Widgets.writeView(
   <One.iOS.WidgetUI.VStack>
     <One.iOS.WidgetUI.Text>Next train</One.iOS.WidgetUI.Text>
     <One.iOS.WidgetUI.Text>4 min</One.iOS.WidgetUI.Text>
   </One.iOS.WidgetUI.VStack>
 )
 
-const id = await One.iOS.LiveActivities.start('Trip', { status: 'Boarding', value: 'Gate 12' })
-await One.iOS.LiveActivities.update(id, { status: 'Departed', value: 'On time' })
-await One.iOS.LiveActivities.end(id)
+const id = await One.LiveActivities.start('Trip', { status: 'Boarding', value: 'Gate 12' })
+await One.LiveActivities.update(id, { status: 'Departed', value: 'On time' })
+await One.LiveActivities.end(id)
 ```
+
+## Current limits
+
+On an iOS 27 simulator, Home Screen widgets render and update both typed
+payloads and JSX content. Live Activities render, update and end with both
+forms on the Lock Screen. Expanded Dynamic Island content has been verified
+with JSX. Compact and minimal Dynamic Island presentations, scalar content
+in the Dynamic Island, and a physically locked device remain unverified.
+
+The app and WidgetKit extension must use the same App Group and have the
+required signing capabilities. A successful write alone does not prove that
+the system widget has rendered the new content.

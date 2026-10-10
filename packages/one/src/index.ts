@@ -33,6 +33,7 @@ export type {
   ReservedRegion,
   WindowSegment,
   ReservedRegionOptions,
+  SFSymbolName,
 } from './platform'
 export type { OneRouter } from './interfaces/router'
 
@@ -40,7 +41,7 @@ export type { OneRouter } from './interfaces/router'
  * Image data returned by ?imagedata imports.
  * Install `sharp` to enable this feature: `npm install sharp`
  *
- * NOTE: This interface is also declared in types/env.d.ts for Vite module augmentation.
+ * NOTE: env.d.ts declares the same shape for `?imagedata` module imports.
  * Keep both definitions in sync.
  */
 export interface ImageData {
@@ -86,7 +87,7 @@ export { SafeAreaView, useSafeAreaFrame, useSafeAreaInsets } from './safe-area-c
 export { onClientLoaderResolve } from './clientLoaderResolver'
 
 // middleware
-export { createMiddleware, type Middleware } from './createMiddleware'
+export { createMiddleware, type Middleware, type MiddlewareContext } from './createMiddleware'
 // api routes
 export {
   createAPIRoute,

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Spacer(_props: ComposeSpacerProps): never;
@@ -62,6 +62,10 @@ declare function LinearWavyProgressIndicator(_props: ProgressVariantProps): neve
 declare function CircularWavyProgressIndicator(_props: ProgressVariantProps): never;
 declare function LoadingIndicator(_props: ComposeLoadingIndicatorProps): never;
 declare function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps): never;
+declare function DatePicker(_props: ComposeDatePickerProps): never;
+declare function TimePicker(_props: ComposeTimePickerProps): never;
+declare function DatePickerDialog(_props: ComposeDatePickerDialogProps): never;
+declare function TimePickerDialog(_props: ComposeTimePickerDialogProps): never;
 export declare const Compose: {
     Column: typeof Column;
     Row: typeof Row;
@@ -167,6 +171,10 @@ export declare const Compose: {
     CircularWavyProgressIndicator: typeof CircularWavyProgressIndicator;
     LoadingIndicator: typeof LoadingIndicator;
     ContainedLoadingIndicator: typeof ContainedLoadingIndicator;
+    DatePicker: typeof DatePicker;
+    TimePicker: typeof TimePicker;
+    DatePickerDialog: typeof DatePickerDialog;
+    TimePickerDialog: typeof TimePickerDialog;
 };
 export {};
 //# sourceMappingURL=compose.d.ts.map

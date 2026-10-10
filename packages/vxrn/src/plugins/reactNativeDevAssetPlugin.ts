@@ -1,5 +1,6 @@
 import path from 'node:path'
 import FSExtra from 'fs-extra'
+import { getMimeType } from 'hono/utils/mime'
 
 import type { Plugin, ResolvedConfig } from 'vite'
 import colors from 'picocolors'
@@ -138,7 +139,10 @@ export default asset;
         try {
           const asset = await FSExtra.readFile(assetPath)
 
-          res.setHeader('content-type', 'image/png')
+          res.setHeader(
+            'content-type',
+            getMimeType(assetPath) || 'application/octet-stream'
+          )
           res.write(asset)
           res.end()
         } catch (e) {

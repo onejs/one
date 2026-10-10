@@ -6,7 +6,7 @@ import {
   TabletSmartphone,
   Triangle,
   X,
-} from '@tamagui/lucide-icons-2'
+} from '~/components/icons'
 import { useState, type KeyboardEvent } from 'react'
 import {
   Circle,
@@ -36,9 +36,9 @@ import { SocialLinksRow } from '~/features/site/SocialLinksRow'
 import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 
 const ButtonText = styled(Text, {
-  lh: 0,
+  lineHeight: '0px',
   transition: 'quickest',
-  color: '$color11',
+  color: 'color11',
   fontWeight: '600',
 })
 
@@ -55,47 +55,39 @@ export default function HomePage() {
         }}
       />
 
-      <Spacer size="$8" $gtSm={{ size: '$4' }} />
+      <Spacer size="8 gtSm:4" />
 
       <ContainerSm>
-        <XStack jc="space-between" mb="$2">
+        <XStack justifyContent="space-between" marginBottom="2">
           <View
             group
             containerType="normal"
-            pos="relative"
-            scale={0.9}
-            ml={-10}
-            mt={-5}
-            $sm={{ scale: 0.75, mx: -32, my: -28 }}
+            scale="0.9 sm:0.75"
+            marginLeft={-10}
+            marginTop={-5}
+            marginHorizontal="sm:-32px"
+            marginVertical="sm:-28px"
+            position="relative"
           >
             <OneLogo size={0.8} animate />
           </View>
 
           <View
-            jc="center"
-            fd="row-reverse"
-            gap="$4"
-            ai="center"
+            justifyContent="center"
+            flexDirection="row-reverse"
+            gap="4 sm:2"
             contain="paint layout"
-            $sm={{
-              gap: '$2',
-              mt: -20,
-            }}
+            marginTop="sm:-20px"
+            alignItems="center"
           >
-            <XStack ai="center" gap="$3" $sm={{ jc: 'center', gap: '$3' }}>
-              <View $sm={{ ml: '$3' }}>
+            <XStack alignItems="center" gap="3 sm:3" justifyContent="sm:center">
+              <View marginLeft="sm:3">
                 <ToggleThemeButton />
               </View>
 
               <Link href="/docs/status" asChild>
-                <Button
-                  size="$4"
-                  br="$10"
-                  $sm={{
-                    display: 'none',
-                  }}
-                >
-                  <ButtonText color="$color12" fontFamily="$mono" lh={0}>
+                <Button size="4" display="sm:none" borderRadius="10">
+                  <ButtonText color="color12" fontFamily="mono" lineHeight="0px">
                     Status
                   </ButtonText>
                 </Button>
@@ -104,22 +96,16 @@ export default function HomePage() {
               <Theme name="accent">
                 <Link href="/docs/introduction" asChild>
                   <Button
-                    size="$4"
-                    bg="$color2"
-                    br="$10"
+                    size="4"
+                    backgroundColor="color2 hover:color5 press:color9"
                     group
                     transition="quickest"
                     containerType="normal"
                     gap={0}
-                    bw={0}
-                    hoverStyle={{
-                      bg: '$color5',
-                    }}
-                    pressStyle={{
-                      bg: '$color9',
-                    }}
+                    borderRadius="10"
+                    borderWidth={0}
                   >
-                    <ButtonText color="$color12" fontFamily="$mono" lh={0}>
+                    <ButtonText color="color12" fontFamily="mono" lineHeight="0px">
                       Docs
                     </ButtonText>
                   </Button>
@@ -129,26 +115,20 @@ export default function HomePage() {
 
             <XStack
               group="card"
+              container="card"
               containerType="normal"
-              ai="center"
               y={-2}
-              mr={-10}
-              gap="$2"
-              $sm={{ display: 'none' }}
+              marginRight={-10}
+              gap="2"
+              display="sm:none"
+              alignItems="center"
             >
               <SocialLinksRow />
             </XStack>
           </View>
         </XStack>
 
-        <View
-          theme="yellow"
-          gap="$4"
-          pt="$5"
-          $sm={{
-            pt: '$8',
-          }}
-        >
+        <View theme="yellow" gap="4" paddingTop="5 sm:8">
           <PrettyTextBigger>
             The simplest, fastest, all-in-one React&nbsp;Native framework.
           </PrettyTextBigger>
@@ -181,8 +161,14 @@ export default function HomePage() {
             , Vercel or Cloudflare server.
           </PrettyTextBigger>
 
-          <YStack mt={20} als="center" ai="center" jc="center" px="$6">
-            <Paragraph size="$5" theme="gray" color="$color9">
+          <YStack
+            marginTop={20}
+            paddingHorizontal="6"
+            alignSelf="center"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Paragraph size="5" color="color9" theme="gray">
               Get started:
             </Paragraph>
             <CopyCommand />
@@ -209,23 +195,19 @@ export default function HomePage() {
               <XStack
                 render="a"
                 className="text-underline-none"
-                gap="$6"
-                ai="center"
-                jc="center"
+                gap="6"
                 transition="medium"
-                cur="pointer"
-                als="center"
-                px="$4"
-                py="$5"
-                mt="$-4"
-                br="$9"
-                hoverStyle={{
-                  y: -2,
-                  bg: '$color2',
-                }}
-                $sm={{
-                  fd: 'column',
-                }}
+                paddingHorizontal="4"
+                paddingVertical="5"
+                marginTop="-4"
+                y="hover:-2px"
+                backgroundColor="hover:color2"
+                flexDirection="sm:column"
+                alignItems="center"
+                justifyContent="center"
+                cursor="pointer"
+                alignSelf="center"
+                borderRadius="9"
               >
                 <img
                   width={80}
@@ -236,22 +218,19 @@ export default function HomePage() {
 
                 <YStack>
                   <PrettyText
-                    fontFamily="$mono"
-                    mb="$1"
-                    mt="$-2"
+                    fontFamily="mono"
+                    marginBottom="1"
+                    marginTop="-2"
+                    fontSize="7 sm:5"
+                    lineHeight="7 sm:5"
+                    color="color"
                     className="text-underline-none"
-                    fontSize="$7"
-                    lineHeight="$7"
-                    cur="inherit"
-                    color="$color"
-                    $sm={{
-                      size: '$5',
-                    }}
+                    cursor="inherit"
                   >
                     Demo
                   </PrettyText>
 
-                  <PrettyText o={0.8} cur="inherit" maw={400}>
+                  <PrettyText opacity={0.8} cursor="inherit" maxWidth={400}>
                     See a sample app on Testflight.
                   </PrettyText>
                 </YStack>
@@ -275,12 +254,12 @@ export default function HomePage() {
 const InfoBoxes = () => {
   return (
     <XStack
-      mx="$-8"
-      fw="wrap"
-      rowGap="$1"
-      columnGap="$5"
-      mb="$13"
-      $sm={{ fd: 'column', mx: 0 }}
+      marginHorizontal="-8 sm:0px"
+      rowGap="1"
+      columnGap="5"
+      marginBottom="13"
+      flexDirection="sm:column"
+      flexWrap="wrap"
     >
       <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
         Typed file-system routing, nested layouts with groups.
@@ -305,26 +284,29 @@ const InfoBoxes = () => {
   )
 }
 
-const ViteIcon = (props) => <Triangle rotate="180deg" {...props} />
+const ViteIcon = (props) => (
+  <View rotate="180deg">
+    <Triangle {...props} />
+  </View>
+)
 
 const InfoCard = ({ title, Icon, children }) => {
   return (
     <YStack
-      pos="relative"
-      width="calc(50% - var(--t-space-3))"
-      mb="$4"
-      py="$2"
-      // br="$5"
-      // bg="$background06"
-      $sm={{ w: '100%', mb: '$2' }}
+      position="relative"
+      width="calc(50% - var(--t-space-3)) sm:100%"
+      marginBottom="4 sm:2"
+      paddingVertical="2"
     >
-      <YStack fullscreen o={0.25}></YStack>
-      <YStack gap="$2" p="$4">
-        <Icon als="flex-end" mb={-20} o={0.1} size={28} />
-        <H5 fontFamily="$mono" size="$2" color="$color12" mt={-10}>
+      <YStack position="absolute" inset={0} opacity={0.25}></YStack>
+      <YStack gap="2" padding="4">
+        <View alignSelf="flex-end" marginBottom={-20} opacity={0.1}>
+          <Icon size={28} />
+        </View>
+        <H5 fontFamily="mono" size="2" color="color12" marginTop={-10}>
           {title}
         </H5>
-        <PrettyText color="$gray11">{children}</PrettyText>
+        <PrettyText color="gray11">{children}</PrettyText>
       </YStack>
     </YStack>
   )
@@ -339,16 +321,16 @@ function Video() {
         <Portal zIndex={1000}>
           <YStack
             position={'fixed' as any}
-            t={0}
-            l={0}
-            r={0}
-            b={0}
-            zi={100_000}
-            jc="center"
-            ai="center"
-            bg="rgba(0,0,0,0.95)"
-            gap="$4"
-            pe="auto"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            backgroundColor="rgba(0,0,0,0.95)"
+            gap="4"
+            zIndex={100_000}
+            justifyContent="center"
+            alignItems="center"
+            pointerEvents="auto"
             onPress={() => setShowVideo(false)}
           >
             <div className="video-background">
@@ -364,11 +346,11 @@ function Video() {
               />
             </div>
             <Button
-              pos="absolute"
-              t={10}
-              r={10}
-              br="$10"
-              p="$2"
+              position="absolute"
+              top={10}
+              right={10}
+              padding="2"
+              borderRadius="10"
               onPress={() => setShowVideo(false)}
               aria-label="Close Video"
             >
@@ -379,27 +361,28 @@ function Video() {
       )}
 
       <View
-        als="center"
-        miw={250}
-        maw={350}
-        h={290}
-        w="100%"
-        ai="center"
+        alignSelf="center"
+        minWidth={250}
+        maxWidth={350}
+        height={290}
+        width="100%"
+        alignItems="center"
         contain="size layout"
         group="card"
+        container="card"
         containerType="normal"
         onPress={() => setShowVideo(true)}
-        zi={0}
+        zIndex={0}
         scale={0.85}
-        m={-40}
-        mb={0}
+        margin={-40}
+        marginBottom={0}
       >
         <View
           transition="quick"
-          als="center"
+          alignSelf="center"
           maxWidth={380}
-          w="100%"
-          ov="hidden"
+          width="100%"
+          overflow="hidden"
           cursor="pointer"
           render="button"
           aria-label="Promo Video Launcher"
@@ -408,7 +391,7 @@ function Video() {
           userSelect="none"
           y={10}
         >
-          <YStack w="100%" h={205}>
+          <YStack width="100%" height={205}>
             <div
               style={{
                 backgroundImage: `url(/cover.webp)`,
@@ -423,21 +406,21 @@ function Video() {
           </YStack>
 
           <View
-            pos="absolute"
+            position="absolute"
             top={0}
             right={0}
             bottom={0}
             left={0}
-            ai="center"
-            jc="center"
+            alignItems="center"
+            justifyContent="center"
           >
             <Circle
               transition="bouncy"
               y={35}
-              ai="center"
+              alignItems="center"
               size={60}
-              shac="$shadowColor"
-              shar={10}
+              shadowColor="shadowColor"
+              shadowRadius={10}
             >
               <svg
                 style={{ marginTop: -10 }}
@@ -456,29 +439,21 @@ function Video() {
         </View>
         <Paragraph
           transition="quickest"
-          fontFamily="$mono"
-          size="$3"
-          ta="center"
-          w={340}
-          zi={2}
-          px="$5"
-          pt={6}
-          pb={11}
-          bg="$color2"
-          br="$8"
-          shac="$shadowColor"
-          shar={10}
-          cur="pointer"
-          $group-card-hover={{
-            scale: 1.02,
-          }}
-          $group-card-press={{
-            y: 0,
-            scale: 0.99,
-          }}
-          $sm={{
-            size: '$6',
-          }}
+          fontFamily="mono"
+          size="3 sm:6"
+          width={340}
+          paddingHorizontal="5"
+          paddingTop={6}
+          paddingBottom={11}
+          backgroundColor="color2"
+          scale="group-hover/card:1.02 group-press/card:0.99"
+          y="group-press/card:0"
+          textAlign="center"
+          zIndex={2}
+          borderRadius="8"
+          shadowColor="shadowColor"
+          shadowRadius={10}
+          cursor="pointer"
         >
           5m video intro
         </Paragraph>
@@ -490,11 +465,11 @@ function Video() {
 const Separator = styled(View, {
   width: '100%',
   height: 1,
-  borderColor: '$color2',
+  borderColor: 'color2',
   borderStyle: 'dotted',
-  bw: 0,
-  bbw: 1,
-  my: '$4',
+  marginVertical: '4',
+  borderWidth: 0,
+  borderBottomWidth: 1,
 })
 
 const CopyCommand = () => {
@@ -515,46 +490,32 @@ const CopyCommand = () => {
     <Tooltip open={showCopy} placement="right">
       <Tooltip.Trigger asChild>
         <View
-          als="center"
+          alignSelf="center"
           cursor="pointer"
           transition="quick"
+          paddingHorizontal="3"
+          paddingTop={27}
+          paddingBottom={27}
+          backgroundColor="hover:color2 press:color2"
+          borderRadius="6"
+          flexDirection="row"
+          alignItems="center"
           onPress={handleCopyNpxRunCommand}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          px="$3"
-          pt={27}
-          pb={27}
-          br="$6"
-          fd="row"
-          ai="center"
-          hoverStyle={{
-            bg: '$color2',
-            //@ts-ignore
-            color: '$color11',
-          }}
-          pressStyle={{
-            bg: '$color2',
-          }}
-          // Add these props
           role="button"
           tabIndex={0}
-          // @ts-ignore
           onKeyDown={handleKeyDown}
           aria-label="Copy npx one command"
         >
           <Text
-            fontFamily="$mono"
-            color="inherit"
-            fontSize={46}
-            lineHeight={46}
-            ls={-2}
-            lh={0}
+            fontFamily="mono"
+            color={hovered ? 'color11' : 'color'}
+            fontSize="46px sm:32px"
+            lineHeight="0px"
             y={-3}
-            fow="bold"
-            $sm={{
-              fontSize: 32,
-              ls: -1,
-            }}
+            letterSpacing="-2px sm:-1px"
+            fontWeight="bold"
           >
             npx one
           </Text>
@@ -566,7 +527,7 @@ const CopyCommand = () => {
               height={22}
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke={hovered ? 'var(--color11)' : 'var(--color)'}
               strokeWidth="2"
               style={{
                 marginRight: 4,
@@ -582,22 +543,16 @@ const CopyCommand = () => {
         </View>
       </Tooltip.Trigger>
       <Tooltip.Content
-        enterStyle={{ x: -2, y: 0, opacity: 0, scale: 0.98 }}
-        exitStyle={{ x: -2, y: 0, opacity: 0, scale: 0.98 }}
-        scale={1}
-        x={0}
-        y={-1}
-        opacity={1}
-        transition={[
-          'quick',
-          {
-            opacity: {
-              overshootClamping: true,
-            },
-          },
-        ]}
+        scale="1 enter:0.98 exit:0.98"
+        x="0 enter:-2px exit:-2px"
+        y="-1px enter:0 exit:0"
+        opacity="1 enter:0 exit:0"
+        transition={{
+          preset: 'quick',
+          opacity: { preset: 'quick', spring: { overshootClamping: true } },
+        }}
       >
-        <Paragraph size="$2" lineHeight="$1">
+        <Paragraph size="2" lineHeight="1">
           {hasNpxRunCommandCopied ? 'Copied!' : 'Copy'}
         </Paragraph>
       </Tooltip.Content>

@@ -4,7 +4,7 @@ import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { nativeSourceContract, renderKotlinSourceGlue, swiftPodManifest, writeNativeSourceDeclarations } from './nativeSourceContract'
+import { nativeSourceContract, renderKotlinSourceGlue, renderSwiftSourceGlue, swiftPodManifest, writeNativeSourceDeclarations } from './nativeSourceContract'
 
 const require = createRequire(import.meta.url)
 const tsc = join(require.resolve('typescript/package.json'), '..', 'bin', 'tsc')
@@ -13,7 +13,7 @@ describe('native source contract', () => {
   it('derives matching typed exports from Swift and Kotlin module sources', () => {
     const swift = nativeSourceContract(
       '/app/native/Audio.swift',
-      `@MainActor final class AudioMath: RNXModule {
+      `@MainActor final class AudioMath: PeachModule {
   init() {}
   func rms(_ samples: [Double]) -> Double { 1 }
   func label(name: String) throws -> String { name }
@@ -66,20 +66,19 @@ import { AudioMath as Kotlin } from './Audio.kt'
 const a: Promise<number> = Swift.rms([1, 2])
 const b: Promise<string> = Kotlin.label('good')
 void [a, b]
+Swift.rms('wrong')
 `)
-    expect(spawnSync(process.execPath, [tsc, '-p', temp], { encoding: 'utf8' }).status).toBe(0)
-    writeFileSync(join(temp, 'call.ts'), `import { AudioMath } from './Audio.swift'
-AudioMath.rms('wrong')
-`)
+    // one compilation must accept the valid calls and reject only the wrong argument.
     const badCall = spawnSync(process.execPath, [tsc, '-p', temp], { encoding: 'utf8' })
-    expect(badCall.status).not.toBe(0)
+    expect(badCall.status).toBe(1)
+    expect(badCall.stdout.match(/error TS\d+:/g)).toEqual(['error TS2345:'])
     expect(badCall.stdout).toMatch(/TS2345:.*string.*number\[\]/)
   })
 
   it('declares a Swift default view only from the file with @main', () => {
     const view = nativeSourceContract(
       '/app/native/Badge.swift',
-      `@main struct Badge: RNXPackage {
+      `@main struct Badge: PeachPackage {
   init() {}
   func view(props: JSON) -> some View { Text("badge") }
 }`
@@ -121,11 +120,23 @@ fun helper(x: Int) = x`
     ).toThrow(/must return Unit/)
   })
 
+  it('keeps the objc dispatch class off wasi, whose sdk mirrors objectivec', () => {
+    const contract = nativeSourceContract(
+      '/app/native/Audio.swift',
+      `@MainActor final class AudioMath: PeachModule {
+  init() {}
+  func rms(_ samples: [Double]) -> Double { 1 }
+}`
+    )
+    const glue = renderSwiftSourceGlue('rn_host_app', [contract]).source
+    expect(glue).toContain('#if canImport(ObjectiveC) && !os(WASI)')
+  })
+
   it('rejects unsupported signatures at their source location', () => {
     expect(() =>
       nativeSourceContract(
         '/app/native/Audio.swift',
-        `final class AudioMath: RNXModule {
+        `final class AudioMath: PeachModule {
   func unsupported(_ callback: () -> Void) -> Void {}
 }`
       )
@@ -133,7 +144,7 @@ fun helper(x: Int) = x`
   })
 
   it('does not export a private method or hide the method after it', () => {
-    const contract = nativeSourceContract('/app/native/Audio.swift', `final class AudioMath: RNXModule {
+    const contract = nativeSourceContract('/app/native/Audio.swift', `final class AudioMath: PeachModule {
   private func key() -> String { "secret" }
   func label() -> String { "public" }
 }`)
@@ -141,7 +152,7 @@ fun helper(x: Int) = x`
   })
 
   it('reads modifiers from the method alone, not from a property declared above it', () => {
-    const swift = nativeSourceContract('/app/native/Audio.swift', `final class AudioMath: RNXModule {
+    const swift = nativeSourceContract('/app/native/Audio.swift', `final class AudioMath: PeachModule {
   private var hits = 0
   static let shared = AudioMath()
   @available(iOS 17, *) func rms(_ samples: [Double]) -> Double { 0 }
@@ -162,7 +173,7 @@ object AudioMath : OneModule {
     const root = mkdtempSync(join(tmpdir(), 'one-native-source-project-'))
     const source = join(root, 'Audio.swift')
     const declaration = join(root, 'Audio.d.swift.ts')
-    writeFileSync(source, 'class Audio: RNXModule { func level() -> Int { 1 } }')
+    writeFileSync(source, 'class Audio: PeachModule { func level() -> Int { 1 } }')
     writeNativeSourceDeclarations(root)
     expect(readFileSync(declaration, 'utf8')).toContain('level(): Promise<number>')
     writeFileSync(source, 'class Audio {}')

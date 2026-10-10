@@ -80,6 +80,17 @@ the app reads on launch; `clearLastResponse` dismisses it. The iOS delegate
 installs at launch, before React Native starts, so the cold-start tap is cached
 no matter how early it arrives.
 
+A tap on the notification itself reports `One.Notifications.DEFAULT_ACTION_IDENTIFIER` as its `actionIdentifier`:
+
+```tsx
+import { One } from 'one'
+
+const response = One.Notifications.getLastResponse()
+if (response?.actionIdentifier === One.Notifications.DEFAULT_ACTION_IDENTIFIER) {
+  // the user tapped the notification body
+}
+```
+
 Two more triggers schedule into the future: `{ type: 'timeInterval', seconds,
 repeats? }` and `{ type: 'date', date }`, where the date is a timestamp or a
 `Date`. A past date delivers immediately. Both take an Android `channelId`;
@@ -141,18 +152,4 @@ permissions and receiver plus the iOS delegate gate. Without it the iOS
 delegate never installs, so an app that uses its own push library keeps
 that library's delegate.
 
-Expo-prebuilt apps pass the same choice to `vxrn/expo-plugin`, which writes
-the same entries during `expo prebuild`. `mode` sets `aps-environment`, as
-in `expo-notifications`, and defaults to `development`:
-
-```json
-{
-  "expo": {
-    "plugins": [
-      ["vxrn/expo-plugin", { "notifications": { "push": true, "mode": "production" } }]
-    ]
-  }
-}
-```
-
-Use `{ "notifications": {} }` for local notifications without push.
+Set `native.app.notifications.apsEnvironment` to `production` for a build signed for TestFlight or the App Store; iOS push uses `development` otherwise. Use `notifications: {}` for local notifications without push.

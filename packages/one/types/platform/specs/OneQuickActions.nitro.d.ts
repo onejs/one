@@ -6,6 +6,7 @@ export interface QuickActionItem {
 }
 export interface OneQuickActions extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     setItems(items: QuickActionItem[]): Promise<void>;
     getItems(): Promise<QuickActionItem[]>;

@@ -1,7 +1,10 @@
 import { createElement, isValidElement } from 'react'
 import { beforeAll, describe, expect, test, vi } from 'vitest'
 
-vi.mock('react-native', () => ({ Platform: { OS: 'ios', Version: '26.4' } }))
+vi.mock('react-native', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-native')>()
+  return { Platform: { OS: 'ios', Version: '27.0' }, StyleSheet: actual.StyleSheet }
+})
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', async () => {
   const { createElement } = await import('react')
   return { default: () => (props: object) => createElement('div', props) }
@@ -56,6 +59,8 @@ describe('One.UI.Icon', () => {
     expect(ios.props.colorRole).toBe('accent')
     expect(ios.props.swiftStyle).toEqual({
       fontSize: 20,
+      width: 20,
+      height: 20,
       foregroundStyle: undefined,
     })
     expect(ios.props.style).toEqual([{ width: 20, height: 20 }, undefined])
@@ -80,6 +85,8 @@ describe('One.UI.Icon', () => {
     expect(ios.props.colorRole).toBeUndefined()
     expect(ios.props.swiftStyle).toEqual({
       fontSize: 20,
+      width: 20,
+      height: 20,
       foregroundStyle: '#123456',
     })
     expect(android.props.colorRole).toBeUndefined()
@@ -103,6 +110,42 @@ describe('One.UI.Icon', () => {
 
     expect(ios.props.colorRole).toBe('primary')
     expect(android.props.colorRole).toBe('primary')
+  })
+
+  test('keeps Yoga and SwiftUI frames equal for defaults and nested style overrides', () => {
+    const defaultIcon = IOSIcon({
+      icons: { ios: createElement(Image, { systemName: 'star' }) },
+    })
+    const styledIcon = IOSIcon({
+      icons: {
+        ios: createElement(Image, {
+          systemName: 'star',
+          swiftStyle: { fontSize: 36, width: 48, height: 32 },
+          style: [{ width: 44 }, [{ height: 28 }]],
+        }),
+      },
+    })
+    if (
+      !isValidElement<ResponsiveIconProps>(defaultIcon) ||
+      !isValidElement<ResponsiveIconProps>(styledIcon)
+    )
+      throw new Error('expected iOS icon elements')
+
+    expect(defaultIcon.props.style).toEqual([{ width: 24, height: 24 }, undefined])
+    expect(defaultIcon.props.swiftStyle).toMatchObject({
+      fontSize: 24,
+      width: 24,
+      height: 24,
+    })
+    expect(styledIcon.props.style).toEqual([
+      { width: 48, height: 32 },
+      [{ width: 44 }, [{ height: 28 }]],
+    ])
+    expect(styledIcon.props.swiftStyle).toMatchObject({
+      fontSize: 36,
+      width: 44,
+      height: 28,
+    })
   })
 
   test('rejects native elements that cannot consume the color contract', () => {
@@ -130,12 +173,13 @@ describe('One.UI.Icon', () => {
     ).toThrow(/colorRole/)
   })
 
-  test('exposes labeled iOS images and hides unlabeled decoration', () => {
+  test('delegates labeled images to native accessibility and hides decoration', () => {
     const labeled = Image({ systemName: 'star', accessibilityLabel: 'Favorite' })
     const decorative = Image({ systemName: 'star' })
 
     expect(labeled.props).toMatchObject({
-      accessible: true,
+      accessible: false,
+      accessibilityLabel: 'Favorite',
       accessibilityElementsHidden: false,
       accessibilityRole: 'image',
     })

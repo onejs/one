@@ -14,7 +14,6 @@ import {
 } from 'vite'
 import {
   type ClientManifestEntry,
-  fillOptions,
   getOptimizeDeps,
   rollupRemoveUnusedImportsPlugin,
   build as vxrnBuild,
@@ -283,7 +282,9 @@ export async function build(args: {
     return
   }
 
-  const options = await fillOptions(vxrnOutput.options, { mode: 'prod' })
+  // vxrn's build already filled these. filling again would require the port it
+  // picked to still be free after the bundle, which another process can take.
+  const { options } = vxrnOutput
 
   const { optimizeDeps } = getOptimizeDeps('build')
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
@@ -1390,6 +1391,9 @@ export default {
 
       // Bundle the worker using Cloudflare's Vite plugin so we pick up unenv
       // polyfills and esmExternalRequirePlugin for Node-first CJS deps.
+      const ssrExternal = viteLoadedConfig?.config?.ssr?.external
+      const workerExternals = Array.isArray(ssrExternal) ? ssrExternal : []
+
       console.info('\n [cloudflare] Bundling worker...')
       const { cloudflare } = await import('@cloudflare/vite-plugin')
       const builder = await createBuilder({
@@ -1451,6 +1455,9 @@ export default {
           outDir,
           emptyOutDir: false,
           rolldownOptions: {
+            // packages the app keeps out of its ssr bundle (native bindings
+            // used only by build-time loaders) stay out of the worker too
+            external: workerExternals,
             // Match the main web build behavior so RN packages that import
             // native-only symbols from react-native can still bundle against
             // the react-native-web alias in the worker graph.

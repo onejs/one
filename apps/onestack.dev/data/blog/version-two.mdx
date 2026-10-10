@@ -1,7 +1,7 @@
 ---
 title: 'One v2'
-publishedAt: '2026-10-05'
-description: 'Full SwiftUI and Compose access, native UI included, and one Vite plugin for web, iOS, and Android.'
+publishedAt: '2026-10-12'
+description: 'Import Swift and Kotlin directly, full SwiftUI and Compose access, native UI included, and one Vite plugin for web, iOS, and Android.'
 by: nate
 draft: true
 ---
@@ -27,6 +27,56 @@ npx one
 One sets up your app. Your routes live in files, your configuration lives in
 Vite, and you can share code across all three platforms.
 
+## Import Swift and Kotlin
+
+Write a Swift or Kotlin file and import it the way you import TypeScript.
+One reads the file, writes its TypeScript declaration beside it, and generates
+the native glue that `one prebuild` compiles into your app. There is no module
+boilerplate, no bridge to register, and no codegen step to run by hand.
+
+```tsx
+import { Device } from './native/Showcase/Device.swift'
+import Level from './native/Showcase/Level.swift'
+
+const hash = await Device.sha256('hello') // Promise<string>
+
+<Level value={0.4} />
+```
+
+In Swift, a module class becomes a named export and each of its methods an
+async function; methods can be `async` and can `throw`, and the package can
+import Apple's frameworks directly. A SwiftUI view renders as a React
+component. In Kotlin, an `object` module works the same way, `suspend`
+functions are awaited, and a public `@Composable` becomes a React component
+whose parameters are its props:
+
+```kotlin
+@Composable
+fun Level(value: Double, onChange: (Double) -> Unit, modifier: Modifier = Modifier) {
+    Slider(
+        value = value.toFloat(),
+        onValueChange = { onChange(it.toDouble()) },
+        modifier = modifier,
+    )
+}
+```
+
+```tsx
+import { Level } from './native/Device.kt'
+
+<Level value={value} onChange={setValue} />
+```
+
+Strings, numbers, booleans, arrays, dictionaries, and optionals arrive with
+matching TypeScript types, and a signature One can't carry is reported with
+its file and line. Native code compiles into your app, so after editing it you
+run `one prebuild` and rebuild. If JavaScript or an over-the-air update ever
+reaches a binary built from different native code, calls reject with
+`E_NATIVE_SOURCE_REBUILD` rather than running mismatched code.
+
+The starter includes a working example at its `/native` route. Read the
+[Swift and Kotlin guide](/docs/native-source).
+
 ## One Native: the whole platform, in your React app
 
 One Native gives you full access to SwiftUI on iOS and Jetpack Compose on
@@ -39,12 +89,9 @@ components. Build with Apple's Liquid Glass, native forms and menus, Material
 controls, maps, and media. The operating system renders the native UI, with
 its own appearance and behavior.
 
-And you have the full native languages available. Import Swift and Kotlin
-source directly into React. One generates the TypeScript declarations and
-native glue, so a custom view or module works like any other import.
-Custom SwiftUI and Compose views can use the complete platform frameworks.
-You can build a native view for your app and use it like a React component,
-without writing a bridge by hand.
+And because you can import Swift and Kotlin, anything the built-in
+components don't cover is one file away: a custom SwiftUI or Compose view can
+use the complete platform frameworks and render as a React component.
 
 One also includes the shared components you reach for across apps: images,
 maps, icons, text inputs, blur, masks, safe areas, pagers, portals, and Picture

@@ -114,10 +114,9 @@ One automatically sets `ONE_SERVER_URL` in development mode to the current runni
 
 ### Application has not been registered
 
-One calls AppRegistry.registerComponent for you to set up your React Native entry component.
+One calls AppRegistry.registerComponent for you to set up your React Native entry component, using `native.app.name` (falling back to `native.key`).
 
-If your React Native app is erroring on startup, you need to make sure your One Vite plugin is configured to
-register the component:
+If your React Native app is erroring on startup, make sure your One Vite plugin names the app, and that the name matches the key your native app container was built with:
 
 ```tsx fileName=vite.config.ts
 import { one } from 'one/vite'
@@ -126,9 +125,10 @@ export default {
   plugins: [
     one({
       native: {
-        // make sure this matches the key you use to build your native app
-        key: 'my-app'
-      }
+        app: {
+          name: 'my-app',
+        },
+      },
     })
   ]
 }

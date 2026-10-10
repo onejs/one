@@ -18,6 +18,7 @@ import { NamedSlot } from '../views/Navigator'
 import { RouteErrorView } from '../views/RouteErrorView'
 import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
 import { Try } from '../views/Try'
+import { ScrollBehaviorRouteCommit } from '../views/ScrollBehavior'
 import { DevHead } from '../vite/DevHead'
 import { getServerContext, useServerContext } from '../vite/one-server-only'
 import { getReactNavigationRouteName } from '../getReactNavigationConfig'
@@ -518,10 +519,10 @@ export function getQualifiedRouteComponent(value: RouteNode) {
       // native opt-out: set native.suspendRoutes to false in your one() config
       // OR set globalThis.__ONE_DISABLE_SUSPENSE_ROUTES__ = true at runtime
       // (the env var is used at the consuming app's build time, the runtime
-      // flag is for environments like sootsim that need to disable it after
+      // flag is for environments like peach that need to disable it after
       // one has already been bundled).
       //
-      // useful for JS-driven animations (e.g. sootsim canvas renderer) where
+      // useful for JS-driven animations (e.g. peach canvas renderer) where
       // the rAF-driven stack push animation dominates the main thread and
       // React 18 defers the suspense subtree commit until rAF stops, which
       // means the new route content is null for the entire enter animation
@@ -566,15 +567,20 @@ export function getQualifiedRouteComponent(value: RouteNode) {
         <Route route={route} node={value}>
           <>
             {wrapSuspense(
-              <ScreenComponent
-                {...{
-                  ...props,
-                  ref,
-                  // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
-                  // the intention is to make it possible to deduce shared routes.
-                  segment: value.route,
-                }}
-              />,
+              <>
+                <ScreenComponent
+                  {...{
+                    ...props,
+                    ref,
+                    // Expose the template segment path, e.g. `(home)`, `[foo]`, `index`
+                    // the intention is to make it possible to deduce shared routes.
+                    segment: value.route,
+                  }}
+                />
+                {process.env.VITE_ENVIRONMENT === 'client' &&
+                  value.type !== 'layout' &&
+                  navigation && <ScrollBehaviorRouteCommit />}
+              </>,
               InheritedSuspenseFallback
             )}
           </>

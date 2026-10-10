@@ -781,7 +781,14 @@ export function createFileSystemRouterPlugin(
         // only fires if nothing else handled the request.
         server.middlewares.use((req, res, next) => {
           if (req.url === '/status' || req.url?.startsWith('/status?')) {
-            res.writeHead(200, { 'Content-Type': 'text/plain' })
+            // the header react native's statusPageMiddleware sends: tools read
+            // it to find the project the packager serves
+            res.writeHead(200, {
+              'Content-Type': 'text/plain',
+              'X-React-Native-Project-Root': new URL(
+                `file:///${server.config.root}`
+              ).pathname.slice(1),
+            })
             res.end('packager-status:running')
             return
           }
@@ -929,6 +936,7 @@ export function createFileSystemRouterPlugin(
               return
             }
 
+            res.setHeader('Content-Type', 'text/html; charset=utf-8')
             res.write(reply)
             res.end()
             return

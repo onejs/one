@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
-const action = { id: 'dev.vxrn.native.tests.quick-open', title: 'Open Quick Actions', subtitle: 'One proof action' }
+const action = {
+  id: 'dev.vxrn.native.tests.quick-open',
+  title: 'Open Quick Actions',
+  subtitle: 'One proof action',
+}
 
 export default function OneNativeQuickActions() {
   const [initial, setInitial] = useState('waiting')
@@ -12,15 +16,17 @@ export default function OneNativeQuickActions() {
   const [error, setError] = useState('none')
 
   useEffect(() => {
-    setInitial(One.iOS.QuickActions.getInitialAction() ?? 'null')
-    return One.iOS.QuickActions.addListener((id) => setWarm((events) => [...events, id]))
+    setInitial(One.QuickActions.getInitialAction() ?? 'null')
+    return One.QuickActions.addListener((id) => setWarm((events) => [...events, id]))
   }, [])
 
   async function setItems() {
     try {
-      await One.iOS.QuickActions.setItems([action])
-      const items = await One.iOS.QuickActions.getItems()
-      setRegistered(`${items.length}:${items[0]?.id}:${items[0]?.title}:${items[0]?.subtitle}`)
+      await One.QuickActions.setItems([action])
+      const items = await One.QuickActions.getItems()
+      setRegistered(
+        `${items.length}:${items[0]?.id}:${items[0]?.title}:${items[0]?.subtitle}`
+      )
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause))
     }
@@ -28,8 +34,8 @@ export default function OneNativeQuickActions() {
 
   async function clearItems() {
     try {
-      await One.iOS.QuickActions.setItems([])
-      setRegistered(`cleared:${(await One.iOS.QuickActions.getItems()).length}`)
+      await One.QuickActions.setItems([])
+      setRegistered(`cleared:${(await One.QuickActions.getItems()).length}`)
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause))
     }
@@ -37,8 +43,8 @@ export default function OneNativeQuickActions() {
 
   function clearInitial() {
     try {
-      One.iOS.QuickActions.clearInitialAction()
-      setInitial(One.iOS.QuickActions.getInitialAction() ?? 'null')
+      One.QuickActions.clearInitialAction()
+      setInitial(One.QuickActions.getInitialAction() ?? 'null')
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : String(cause))
     }
@@ -53,14 +59,14 @@ export default function OneNativeQuickActions() {
     ]
     const results = cases.map((items) => {
       try {
-        One.iOS.QuickActions.setItems(items as typeof action[])
+        One.QuickActions.setItems(items as (typeof action)[])
         return 'accepted'
       } catch (cause) {
         return cause instanceof TypeError ? 'rejected' : 'wrong-error'
       }
     })
     try {
-      One.iOS.QuickActions.addListener(null as never)
+      One.QuickActions.addListener(null as never)
       results.push('accepted')
     } catch (cause) {
       results.push(cause instanceof TypeError ? 'rejected' : 'wrong-error')
@@ -75,16 +81,32 @@ export default function OneNativeQuickActions() {
       <Text>{`Registered: ${registered}`}</Text>
       <Text>{`Invalid: ${invalid}`}</Text>
       <Text>{`Error: ${error}`}</Text>
-      <Pressable testID="one-native-quick-actions-set" style={styles.chip} onPress={setItems}>
+      <Pressable
+        testID="one-native-quick-actions-set"
+        style={styles.chip}
+        onPress={setItems}
+      >
         <Text>Set quick action</Text>
       </Pressable>
-      <Pressable testID="one-native-quick-actions-clear" style={styles.chip} onPress={clearItems}>
+      <Pressable
+        testID="one-native-quick-actions-clear"
+        style={styles.chip}
+        onPress={clearItems}
+      >
         <Text>Clear quick actions</Text>
       </Pressable>
-      <Pressable testID="one-native-quick-actions-clear-initial" style={styles.chip} onPress={clearInitial}>
+      <Pressable
+        testID="one-native-quick-actions-clear-initial"
+        style={styles.chip}
+        onPress={clearInitial}
+      >
         <Text>Clear initial action</Text>
       </Pressable>
-      <Pressable testID="one-native-quick-actions-invalid" style={styles.chip} onPress={checkInvalid}>
+      <Pressable
+        testID="one-native-quick-actions-invalid"
+        style={styles.chip}
+        onPress={checkInvalid}
+      >
         <Text>Check invalid arguments</Text>
       </Pressable>
     </View>
@@ -93,5 +115,10 @@ export default function OneNativeQuickActions() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 12, backgroundColor: '#fff' },
-  chip: { padding: 9, borderRadius: 8, backgroundColor: '#e5e7eb', alignSelf: 'flex-start' },
+  chip: {
+    padding: 9,
+    borderRadius: 8,
+    backgroundColor: '#e5e7eb',
+    alignSelf: 'flex-start',
+  },
 })

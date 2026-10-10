@@ -1,3 +1,4 @@
+export type { SFSymbolName } from './generated/sfSymbolNames'
 export type * from './generated/types'
 export type * from './generated/controlTypes'
 export type * from './generated/sheetTypes'
@@ -20,6 +21,7 @@ import type {
   TabViewStyle,
   Visibility,
 } from './generated/swiftui'
+import type { SFSymbolName } from './generated/sfSymbolNames'
 import type { TabViewSlotName } from './generated/viewSlots'
 
 // the TabContent modifiers a Tab and a TabSection share, named and shaped as SwiftUI
@@ -47,7 +49,7 @@ export interface TabProps extends TabContentProps {
   id: string
   title: string
   // a tab label shows an SF Symbol or an asset catalog image, never both.
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   image?: string
   // the tab item's label style, as .labelStyle on its Label: 'iconOnly' drops the title
   // from the bar and keeps it for accessibility.
@@ -70,7 +72,7 @@ export interface TabSectionProps extends TabContentProps {
   sectionActions?: readonly {
     id: string
     title: string
-    systemImage?: string
+    systemImage?: SFSymbolName | ''
     onPress: () => void
   }[]
   children: ReactNode
@@ -78,6 +80,10 @@ export interface TabSectionProps extends TabContentProps {
 export interface TabsProps extends ViewProps {
   selection: string
   onSelectionChange: (id: string) => void
+  // a tap on the selected tab, which changes no selection. UIKit asks the tab bar
+  // controller's delegate before every selection, the selected tab included; tabs inside a
+  // TabSection do not report it.
+  onReselect?: (id: string) => void
   revision?: number
   tabViewStyle?: TabViewStyle
   // toolbarVisibility(_:for: .tabBar) on every page.

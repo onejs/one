@@ -1,22 +1,11 @@
 ---
 title: One Native
-description: Full SwiftUI and Compose access, shared native UI, and device APIs included in One
+description: Build native screens and use platform services from the One package
 ---
 
-One Native brings SwiftUI, Jetpack Compose, shared native components, and
-device APIs into your React app, included in `one`. Use the built-in React
-components for native controls and layouts, or import custom Swift and Kotlin
-views to access the full native frameworks. You can compose them alongside
-React Native views and use One's file router for your app.
-
-The [Swift and Kotlin import guide](/docs/native-source) shows how to add a
-custom view or native module, generate its declarations, and build it into
-your app.
-
-The shared UI includes images, maps, icons, text inputs, effects, pagers,
-portals, and Picture in Picture. One's UIKit collection continues to grow
-alongside its SwiftUI and Compose components. Native components are included,
-so you can use them without installing a separate package for each one.
+One Native is the native component and service library included in `one`.
+Use it alongside React Native views and One's file router. It supplies SwiftUI
+on iOS, Jetpack Compose on Android, shared components, and native services.
 
 Start with [setup](/docs/native-setup), choose your
 [components](/docs/native-components), and look up the
@@ -34,8 +23,8 @@ import { One, useNativeState, useSizeClass } from 'one'
 | --- | --- |
 | `One.iOS` | SwiftUI components and iOS services such as Location, Audio, and Photos |
 | `One.Android` | Compose components, Android colors, and native menus |
-| `One.UI` | Shared components: Image, Map, Icon, TextInput, effects, fonts, safe areas, Portal, and Pager |
-| `One` | Shared services such as Notifications, Clipboard, Browser, Storage, and SecureStore |
+| `One.UI` | Shared components: Image, Map, Icon, TextInput, effects, fonts, and safe areas |
+| `One` | Shared services such as Notifications, Clipboard, Browser, and SecureStore |
 
 Hooks are named imports. For example, `useNativeState` creates state that bound
 native controls can share; `useSizeClass` reads the current window size class.
@@ -88,12 +77,6 @@ export function NotificationsSetting() {
 You can also put native implementations in `.ios.tsx` and `.android.tsx`
 files and the web implementation in `.tsx`. See
 [platform-specific routing](/docs/routing).
-
-Use [Portal and PortalHost](/native/portal) to render React content in a named
-host. Use [One.UI.Pager](/native/ui-pager) to swipe between ordinary React Native
-page views on iOS, Android, and web. It is separate from `One.iOS.Pager`, which
-composes SwiftUI pages. [Storage](/native/storage) is a shared synchronous
-service for settings and caches; [SecureStore](/native/secure-store) stores secrets.
 
 The routed `Stack` and `Tabs` remain the navigation layer for file routes.
 `One.iOS.NavigationStack` and `One.iOS.Tabs` are separate primitives for

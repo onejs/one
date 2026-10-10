@@ -1,12 +1,18 @@
+import { validateDefinition, validateSubmission, validateCancellation } from './validate'
 import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
-  BackgroundTaskInvocation, OneBackgroundTasks, PendingBackgroundTask,
+  BackgroundTaskInvocation,
+  OneBackgroundTasks,
+  PendingBackgroundTask,
 } from '../specs/OneBackgroundTasks.nitro'
+import { BackgroundTasks as unavailableBackgroundTasks } from './unavailable'
 
 export type {
-  BackgroundTaskInvocation, BackgroundTaskKind, PendingBackgroundTask,
+  BackgroundTaskInvocation,
+  BackgroundTaskKind,
+  PendingBackgroundTask,
 } from '../specs/OneBackgroundTasks.nitro'
 
 export interface BackgroundTaskContext extends BackgroundTaskInvocation {
@@ -21,7 +27,8 @@ const handlers = new Map<string, BackgroundTaskHandler>()
 const running = new Map<string, AbortController>()
 
 function native(): OneBackgroundTasks {
-  if (Platform.OS !== 'ios') throw new Error('BackgroundTasks requires an iOS native build')
+  if (Platform.OS !== 'ios')
+    throw new Error('BackgroundTasks requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneBackgroundTasks>('OneBackgroundTasks')
   return hybrid
 }
@@ -53,8 +60,7 @@ function addNativeListener(): void {
 }
 
 function defineTask(identifier: string, handler: BackgroundTaskHandler): () => void {
-  if (typeof identifier !== 'string' || !identifier.trim() || typeof handler !== 'function')
-    throw new TypeError('BackgroundTasks.defineTask requires an identifier and handler')
+  validateDefinition(identifier, handler)
   if (handlers.has(identifier))
     throw new Error(`BackgroundTasks.defineTask: ${identifier} is already defined`)
   handlers.set(identifier, handler)
@@ -82,14 +88,15 @@ function submit(
     requiresExternalPower?: boolean
   } = {}
 ): Promise<void> {
-  if (!identifier.trim()) throw new TypeError('BackgroundTasks.submit requires an identifier')
-  if (options.earliestBeginDateMs !== undefined &&
-    (!Number.isFinite(options.earliestBeginDateMs) || options.earliestBeginDateMs < 0))
-    throw new RangeError('BackgroundTasks.submit earliestBeginDateMs must be a timestamp')
-  return native().submit(
-    identifier, options.earliestBeginDateMs,
-    options.requiresNetworkConnectivity, options.requiresExternalPower
-  ).catch(rethrowNativeError)
+  validateSubmission(identifier, options.earliestBeginDateMs)
+  return native()
+    .submit(
+      identifier,
+      options.earliestBeginDateMs,
+      options.requiresNetworkConnectivity,
+      options.requiresExternalPower
+    )
+    .catch(rethrowNativeError)
 }
 
 function getPending(): Promise<PendingBackgroundTask[]> {
@@ -97,8 +104,37 @@ function getPending(): Promise<PendingBackgroundTask[]> {
 }
 
 function cancel(identifier: string): void {
-  if (!identifier.trim()) throw new TypeError('BackgroundTasks.cancel requires an identifier')
+  validateCancellation(identifier)
   native().cancel(identifier)
 }
 
-export const BackgroundTasks = Object.freeze({ defineTask, submit, getPending, cancel })
+const nativeBackgroundTasks = Object.freeze({ defineTask, submit, getPending, cancel })
+
+const androidBackgroundTasks = Object.freeze({
+  defineTask(identifier: string, handler: BackgroundTaskHandler): () => void {
+    validateDefinition(identifier, handler)
+    throw new Error('BackgroundTasks.defineTask requires an iOS native build')
+  },
+  submit(
+    identifier: string,
+    options: {
+      earliestBeginDateMs?: number
+      requiresNetworkConnectivity?: boolean
+      requiresExternalPower?: boolean
+    } = {}
+  ): Promise<void> {
+    validateSubmission(identifier, options.earliestBeginDateMs)
+    return Promise.reject(
+      new Error('BackgroundTasks.submit requires an iOS native build')
+    )
+  },
+  getPending: unavailableBackgroundTasks.getPending,
+  cancel(identifier: string): void {
+    validateCancellation(identifier)
+    throw new Error('BackgroundTasks.cancel requires an iOS native build')
+  },
+})
+
+// bgtasks is iOS only; Android actions report that platform limit.
+export const BackgroundTasks: typeof nativeBackgroundTasks =
+  Platform.OS === 'android' ? androidBackgroundTasks : nativeBackgroundTasks

@@ -1,6 +1,6 @@
 # One.Updates: One's own over-the-air updates
 
-Nate decided that One owns OTA updates and that expo-updates goes. That covers our
+The owner decided that One owns OTA updates and that expo-updates goes. That covers our
 own client and our own server. This plan designs both and lists what must be proven
 before any Contrast binary ships on it. It was reviewed against the expo-updates and
 React Native 0.87.1 sources (r46099). Each rule below that came from that review cites

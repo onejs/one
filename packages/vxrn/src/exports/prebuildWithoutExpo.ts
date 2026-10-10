@@ -41,6 +41,7 @@ type NativeProjectPatches = {
     runtimeVersion: string
   ): string
   injectFmtCxx17FixIntoPodfile(input: string): string
+  injectWebGPUHeaderPathsIntoPodfile(input: string): string
   injectOneSwiftPackagesIntoPodfile(input: string): string
   injectHermesMinificationPatchIntoPodfile(input: string): string
   injectReactNativeScreensGammaIntoPodfile(input: string): string
@@ -51,7 +52,8 @@ type NativeProjectPatches = {
   addReactNativeScreensFix(input: string): string
 }
 
-const nativeProjectPatches = module.createRequire(import.meta.url)(
+const requireVxrn = module.createRequire(import.meta.url)
+const nativeProjectPatches = requireVxrn(
   '../../native-project-patches.cjs'
 ) as NativeProjectPatches
 const notificationsHost = nativeProjectPatches.ONE_NOTIFICATIONS
@@ -1678,6 +1680,15 @@ async function generateSplashScreen(args: {
   const artworkHeight = Number(
     (artworkWidth * (metadata.height / metadata.width)).toFixed(3)
   )
+  // a full-bleed background keeps its own resolution on both platforms; the
+  // launch surface scales it (aspect-fill on ios, fill on android).
+  const readBackground = (sourcePath: string) => {
+    const source = path.resolve(root, sourcePath)
+    if (!FSExtra.existsSync(source)) {
+      throw new Error(`[vxrn] native.app.splash backgroundImage does not exist: ${source}`)
+    }
+    return sharp(source).rotate().png().toBuffer({ resolveWithObject: true })
+  }
 
   if (platform === 'ios') {
     const appDir = path.join(dest, app.name)
@@ -1723,13 +1734,6 @@ async function generateSplashScreen(args: {
       )
     }
     await writeImageSet('Splash', artwork, darkArtwork, cover ? undefined : artworkWidth)
-    const readBackground = (sourcePath: string) => {
-      const source = path.resolve(root, sourcePath)
-      if (!FSExtra.existsSync(source)) {
-        throw new Error(`[vxrn] native.app.splash backgroundImage does not exist: ${source}`)
-      }
-      return sharp(source).rotate().png().toBuffer({ resolveWithObject: true })
-    }
     const background = app.splash.backgroundImage
       ? await readBackground(app.splash.backgroundImage)
       : undefined
@@ -1852,12 +1856,43 @@ ${
         .toFile(path.join(drawableDensity, 'splash.png'))
     }
   }
+  // the background paints full-bleed under the mark. one nodpi asset per
+  // appearance: gravity fill stretches it over the layer bounds on every
+  // screen, which the gradient art this contract carries survives exactly.
+  // a night appearance without its own image falls back to the light one,
+  // the way the ios imageset falls back to its universal entry.
+  const background = app.splash.backgroundImage
+    ? await readBackground(app.splash.backgroundImage)
+    : undefined
+  const darkBackground = dark?.backgroundImage
+    ? (await readBackground(dark.backgroundImage)).data
+    : undefined
+  if (background) {
+    const nodpi = path.join(mainRes, 'drawable-nodpi')
+    FSExtra.mkdirSync(nodpi, { recursive: true })
+    FSExtra.writeFileSync(path.join(nodpi, 'splash_background.png'), background.data)
+    if (darkBackground) {
+      const nightNodpi = path.join(mainRes, 'drawable-night-nodpi')
+      FSExtra.mkdirSync(nightNodpi, { recursive: true })
+      FSExtra.writeFileSync(
+        path.join(nightNodpi, 'splash_background.png'),
+        darkBackground
+      )
+    }
+  }
   FSExtra.writeFileSync(
     path.join(drawable, 'launch_screen.xml'),
     `<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/splash_background" />
-    <item>
+${
+  background
+    ? `    <item>
+        <bitmap android:gravity="fill" android:src="@drawable/splash_background" />
+    </item>
+`
+    : ''
+}    <item>
         <bitmap android:gravity="center" android:src="@drawable/splash" />
     </item>
 </layer-list>
@@ -2109,6 +2144,28 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.location !== undefined
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp location permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      const stamps = [
+        '    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />',
+        '    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />',
+      ]
+      if (app.location.background) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />'
+        )
+      }
+      rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       app.notifications !== undefined
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
@@ -2166,6 +2223,93 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         throw new Error('[vxrn] failed to stamp the push service into app manifest')
       }
     }
+    // after the notification receiver and push service stamps, which own
+    // the activity and receiver anchors; this block only needs </application>.
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      (app.audio !== undefined ||
+        app.photoLibrary !== undefined ||
+        app.contacts !== undefined ||
+        app.calendar?.usage !== undefined)
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp media permissions: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      const stamps: string[] = []
+      if (
+        app.audio?.microphone !== undefined &&
+        !rendered.includes('android.permission.RECORD_AUDIO')
+      ) {
+        stamps.push('    <uses-permission android:name="android.permission.RECORD_AUDIO" />')
+      }
+      if (app.photoLibrary?.readWrite !== undefined) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />',
+          '    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />',
+          '    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />'
+        )
+      }
+      if (app.photoLibrary?.addOnly !== undefined) {
+        // no install-time permission past 28; the meta-data below is the
+        // declaration the Kotlin add check reads.
+        stamps.push(
+          '    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />'
+        )
+      }
+      if (app.contacts !== undefined) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.READ_CONTACTS" />',
+          '    <uses-permission android:name="android.permission.WRITE_CONTACTS" />'
+        )
+      }
+      if (app.calendar?.usage !== undefined) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.READ_CALENDAR" />',
+          '    <uses-permission android:name="android.permission.WRITE_CALENDAR" />'
+        )
+      }
+      if (app.audio?.background === true) {
+        stamps.push(
+          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />',
+          '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />'
+        )
+      }
+      if (stamps.length) {
+        rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
+      }
+      // config markers the Kotlin manifest checks read: add-only has no
+      // permission past 28, and background playback gates the service.
+      const appStamps: string[] = []
+      if (app.photoLibrary?.addOnly !== undefined) {
+        appStamps.push(
+          '      <meta-data android:name="one.photoLibrary.addOnly" android:value="true" />'
+        )
+      }
+      if (app.audio?.background === true) {
+        appStamps.push(
+          '      <meta-data android:name="one.audio.background" android:value="true" />',
+          '      <service android:name="com.margelo.nitro.one.OneAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />'
+        )
+      }
+      if (appStamps.length) {
+        // before the application close, so this composes with the
+        // notification receiver stamp that owns the activity anchor.
+        const appAnchor = '    </application>'
+        if (!rendered.includes(appAnchor)) {
+          throw new Error(
+            '[vxrn] cannot stamp media components: expected </application> in app/src/main/AndroidManifest.xml'
+          )
+        }
+        rendered = rendered.replace(
+          appAnchor,
+          `${appStamps.join('\n')}\n${appAnchor}`
+        )
+      }
+    }
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/java/com/helloworld/MainApplication.kt' &&
@@ -2193,9 +2337,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
         )
       }
       stamps.push(
-        `      <meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="${escapeXml(app.updates.runtimeVersion)}" />`
+        '      <meta-data android:name="dev.onejs.updates.runtimeVersion" android:value="@string/one_updates_runtime_version" />'
       )
       rendered = rendered.replace(anchor, `${stamps.join('\n')}\n${anchor}`)
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/res/values/strings.xml' &&
+      app.updates !== undefined
+    ) {
+      // aapt infers an inline numeric version as an integer. a string resource
+      // preserves the exact runtime identifier read by the native launcher.
+      const version = app.updates.runtimeVersion.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+      rendered = rendered.replace(
+        '</resources>',
+        `    <string name="one_updates_runtime_version" translatable="false">"${escapeXml(version)}"</string>\n</resources>`
+      )
     }
     if (
       platform === 'android' &&
@@ -2548,11 +2705,20 @@ end`
         rendered = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(rendered)
       }
       rendered = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(rendered)
+      rendered = nativeProjectPatches.injectWebGPUHeaderPathsIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(rendered)
       if (nitroWebImage)
         rendered =
           nativeProjectPatches.injectNitroWebImageModularHeaderIntoPodfile(rendered)
       rendered = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(rendered)
+      const nativeModulesCall = 'config = use_native_modules!'
+      if (rendered.split(nativeModulesCall).length !== 2) {
+        throw new Error('[vxrn] expected one iOS native module discovery call')
+      }
+      rendered = rendered.replace(
+        nativeModulesCall,
+        `config = use_native_modules!(['node', '-e', "process.argv=['', '', 'config'];require(require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli')).run()"])`
+      )
       if (
         !rendered.includes('[vxrn/one] fmt c++17 fix') ||
         !rendered.includes('[vxrn/one] minify iOS Hermes Release bundle input')
@@ -2604,7 +2770,7 @@ end`
       }
       rendered = rendered.replace(
         autolinkCommand,
-        `ex.autolinkLibrariesFromCommand(["node", ["node", "--print", "require.resolve('@react-native-community/cli/build/bin.js')"].execute(null, settingsDir).text.trim(), "config"])`
+        `ex.autolinkLibrariesFromCommand(["node", ["node", "--print", "require('module').createRequire(require.resolve('vxrn/package.json')).resolve('@react-native-community/cli/build/bin.js')"].execute(null, settingsDir).text.trim(), "config"])`
       )
     }
     if (platform === 'android' && relativePath === 'app/build.gradle' && app.android?.minify) {
@@ -2673,9 +2839,7 @@ export const generateForPlatform = async (
   validatePrebuildApp(app, platform)
   const dest = outDir
   const require = module.createRequire(root + '/')
-  const importPath = require.resolve('@react-native-community/cli/build/tools/walk.js', {
-    paths: [root],
-  })
+  const importPath = requireVxrn.resolve('@react-native-community/cli/build/tools/walk.js')
   const src = path.join(
     path.dirname(
       require.resolve('@react-native-community/template/template/package.json', {
@@ -2796,7 +2960,9 @@ export function enableAppComposeIntegration(dest: string) {
 // the native source contract loads only for an app that has kotlin or swift
 // sources to generate glue for.
 export async function generateKotlinSources({ root, dest }: { root: string; dest: string }) {
-  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts'])
+  // evidence holds preserved proof sources, never app sources; sweeping it
+  // breaks :app:compileDebugKotlin when two preserved copies declare one class.
+  const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts', 'evidence'])
   const sources: string[] = []
   const collect = (dir: string) => {
     // nested javascript packages own their native sources, including fixtures.
@@ -2809,6 +2975,10 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
     }
   }
   collect(root)
+  // the generator owns this directory: rebuild it so a moved or deleted source
+  // cannot leave a stale copy that redeclares a live class.
+  const output = path.join(dest, 'app/src/main/java/one/source')
+  FSExtra.removeSync(output)
   if (sources.length === 0) return
   const { kotlinSourceId, renderKotlinSourceGlue, writeNativeSourceDeclaration } = await import(
     '../utils/nativeSourceContract'
@@ -2816,7 +2986,7 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   let hasViews = false
   for (const source of sources) {
     const id = kotlinSourceId(root, source)
-    const target = path.join(dest, 'app/src/main/java/one/source', id)
+    const target = path.join(output, id)
     FSExtra.mkdirSync(target, { recursive: true })
     FSExtra.copyFileSync(source, path.join(target, path.basename(source)))
     const contract = writeNativeSourceDeclaration(source)
@@ -2835,7 +3005,7 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
 
 // every directory under the app root holding a Package.swift becomes one local
 // pod: its sources compile as their own module against One (which
-// supplies RNXPackage and JSON), the @main entry is renamed so it does not
+// supplies PeachPackage and JSON), the @main entry is renamed so it does not
 // clash with the app's main, and an objc +load files the entry with the
 // registry the OneSwiftHost view reads. the bundler resolves an import of any
 // .swift file in the package to a host view naming the same package id.
@@ -2967,10 +3137,7 @@ export function applyAndroidDependencyPatches(args: {
 export async function getNativeDependencyInventory(
   root: string
 ): Promise<NativeDependencyInventory[]> {
-  const require = module.createRequire(root + '/')
-  const cliConfigPath = require.resolve('@react-native-community/cli-config', {
-    paths: [root],
-  })
+  const cliConfigPath = requireVxrn.resolve('@react-native-community/cli-config')
   const cliConfig = (await import(pathToFileURL(cliConfigPath).href)) as {
     loadConfigAsync: (options: { projectRoot: string }) => Promise<{
       dependencies: Record<
@@ -3011,8 +3178,11 @@ export function installNativeDependencies(args: {
 }): void {
   const { root, platform } = args
   if (!platform || platform === 'ios') {
+    // cocoapods reads podfiles and native module config as the locale's
+    // encoding; a shell without a utf-8 locale fails on any non-ascii byte.
     execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
       stdio: 'inherit',
+      env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
     })
   }
 }

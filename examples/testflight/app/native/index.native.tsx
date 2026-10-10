@@ -128,14 +128,14 @@ function NativeCapabilitiesScreen({
       </ScrollView>
 
       <One.iOS.ToolbarHost>
-        <One.iOS.ToolbarItem
+        <One.iOS.BarButtonItem
           identifier="testflight-add"
           title="Add"
           systemImageName="plus"
           accessibilityLabel="Native toolbar add"
           onSelected={() => recordAction('add')}
         />
-        <One.iOS.ToolbarItem identifier="testflight-space" type="fluidSpacer" />
+        <One.iOS.BarButtonItem identifier="testflight-space" type="fluidSpacer" />
         <One.iOS.MenuAction
           identifier="testflight-actions"
           title="Actions"

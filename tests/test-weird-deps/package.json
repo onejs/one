@@ -1,6 +1,6 @@
 {
   "name": "test-weird-deps",
-  "version": "2.6.0",
+  "version": "1.27.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
     "@lexical/react": "^0.21.0",
     "@react-native-masked-view/masked-view": "^0.3.2",
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "@rn-primitives/slot": "^1.1.0",
     "@sentry/react-native": "^7.4.0",
     "@shopify/flash-list": "^2.1.0",

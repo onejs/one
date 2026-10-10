@@ -1,6 +1,6 @@
 {
   "name": "test-routing-flicker",
-  "version": "2.6.0",
+  "version": "1.27.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
-    "@tamagui/config": "2.6.2",
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@tamagui/config": "3.0.0-beta.1670.1",
     "@vxrn/color-scheme": "workspace:*",
     "expo": "58.0.0-canary-20260909-ea7a89a",
     "one": "workspace:*",
@@ -31,7 +31,7 @@
     "react-native": "0.87.1",
     "react-native-reanimated": "~4.6.0",
     "react-native-web": "^0.21.2",
-    "tamagui": "2.6.2"
+    "tamagui": "3.0.0-beta.1670.1"
   },
   "devDependencies": {
     "@react-native-community/cli": "^20.2.0",

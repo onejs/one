@@ -5,8 +5,7 @@ description: Hold the native launch screen until your app is ready.
 
 `One.LaunchScreen` controls the native launch screen during app startup. One
 prebuild keeps the iOS storyboard and Android system splash visible until React
-Native draws its first content. An Expo-prebuilt app needs
-`holdLaunchScreen: true` in `vxrn/expo-plugin` for the same behavior.
+Native draws its first content.
 
 Call `preventAutoHide()` at module evaluation time, before the first render,
 when startup work needs longer. Call `hide()` after that work completes:

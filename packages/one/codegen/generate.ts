@@ -532,11 +532,20 @@ const fieldType = (type: string, publicType = false) =>
         ? type
         : 'string'
       : type
+// an SF Symbol name stays a string on the native wire and a closed union in public props.
+// empty string is the absent value the Swift side already treats as no symbol.
+const menuFieldType = (field: (typeof fields)[keyof typeof fields]) => {
+  if ('publicType' in field) {
+    return field.default === '' ? `${field.publicType} | ''` : field.publicType
+  }
+  return fieldType(field.type, true)
+}
 outputs.set(
   'src/platform/generated/types.ts',
   header +
     `import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
+import type { SFSymbolName } from './sfSymbolNames'
 import type { ${enumTypes.join(', ')} } from './swiftui'
 export type { ${enumTypes.join(', ')} } from './swiftui'
 ` +
@@ -544,7 +553,7 @@ export type { ${enumTypes.join(', ')} } from './swiftui'
       .map(
         (node) => `export interface ${node.name} {
   type: '${node.kind}'
-${node.fields.map((name) => `  ${name}${(node.required as readonly string[]).includes(name) ? '' : '?'}: ${fieldType(fields[name].type, true)}`).join('\n')}
+${node.fields.map((name) => `  ${name}${(node.required as readonly string[]).includes(name) ? '' : '?'}: ${menuFieldType(fields[name])}`).join('\n')}
 ${node.children ? `  children: readonly ${node.kind === 'picker' ? 'SwiftMenuAction' : 'MenuItem'}[]\n` : ''}}
 `
       )

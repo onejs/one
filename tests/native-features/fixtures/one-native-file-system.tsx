@@ -10,7 +10,7 @@ export default function OneNativeFileSystem() {
     setStatus('running')
     let stage = 'directories'
     try {
-      const fs = One.iOS.FileSystem
+      const fs = One.FileSystem
       const directories = fs.getDirectories()
       stage = 'path'
       const dir = new URL(`one-native-file-system-${Date.now()}/`, directories.cache).href
@@ -51,7 +51,8 @@ export default function OneNativeFileSystem() {
       try {
         await fs.copy(note, moved)
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) existingError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          existingError = String(error.code)
       }
       stage = 'nested directory'
       await fs.makeDirectory(nested)
@@ -65,26 +66,68 @@ export default function OneNativeFileSystem() {
 
       stage = 'base64'
       await fs.writeFile(binary, 'AAECAw==', 'base64')
-      const bytes = Array.from(new Uint8Array(await (await fetch(binary)).arrayBuffer())).join(',')
+      const bytes = Array.from(
+        new Uint8Array(await (await fetch(binary)).arrayBuffer())
+      ).join(',')
       const entries = (await fs.readDirectory(dir)).map((entry) => entry.name).join(',')
       let encodingError = ''
       try {
         await fs.writeFile(new URL('bad.dat', dir).href, '!?', 'base64')
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) encodingError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          encodingError = String(error.code)
+      }
+      stage = 'malformed base64 preserves files'
+      const rejected = new URL('rejected.dat', dir).href
+      for (const malformed of [
+        '====',
+        'AA=A',
+        'AAAA=',
+        'A===',
+        'AAA',
+        'AA==AAAA',
+        'AA\n==',
+        'AA==\n',
+        '!?',
+        '__8=',
+      ]) {
+        for (const target of [binary, rejected]) {
+          let code = ''
+          try {
+            await fs.writeFile(target, malformed, 'base64')
+          } catch (error) {
+            if (error && typeof error === 'object' && 'code' in error)
+              code = String(error.code)
+          }
+          if (code !== 'E_FILE_ENCODING') {
+            throw new Error(
+              `malformed base64 did not reject: ${JSON.stringify(malformed)}`
+            )
+          }
+        }
+        const preserved = Array.from(
+          new Uint8Array(await (await fetch(binary)).arrayBuffer())
+        ).join(',')
+        if (preserved !== '0,1,2,3' || (await fs.getInfo(rejected)).exists) {
+          throw new Error(
+            'malformed base64 changed an existing file or created a new one'
+          )
+        }
       }
       let rootError = ''
       try {
         await fs.delete(directories.cache)
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) rootError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          rootError = String(error.code)
       }
 
       let invalidURI = ''
       try {
         await fs.getInfo('https://example.com/file.txt')
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) invalidURI = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          invalidURI = String(error.code)
       }
 
       stage = 'delete'
@@ -97,7 +140,8 @@ export default function OneNativeFileSystem() {
       try {
         await fs.delete(note)
       } catch (error) {
-        if (error && typeof error === 'object' && 'code' in error) missingError = String(error.code)
+        if (error && typeof error === 'object' && 'code' in error)
+          missingError = String(error.code)
       }
 
       setResult(
@@ -107,8 +151,11 @@ export default function OneNativeFileSystem() {
       )
       setStatus('passed')
     } catch (error) {
-      const code = error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
-      setStatus(`error at ${stage}: ${code} ${error instanceof Error ? error.message : String(error)}`)
+      const code =
+        error && typeof error === 'object' && 'code' in error ? String(error.code) : ''
+      setStatus(
+        `error at ${stage}: ${code} ${error instanceof Error ? error.message : String(error)}`
+      )
     }
   }
 

@@ -24,7 +24,7 @@ export default function NestedPage() {
   const pageMatch = matches.find((m) => m.routeId.includes('level2/page'))
 
   return (
-    <YStack padding="$4" gap="$2">
+    <YStack padding="4" gap="2">
       <Text testID="nested-page-data">Page: {JSON.stringify(data)}</Text>
       <Text testID="nested-total-matches">Total matches: {matches.length}</Text>
       <Text testID="nested-level1-data">

@@ -95,6 +95,7 @@ internal class OneNativeComposeNodeDialogConfirmEvent(
     surfaceId: Int,
     viewTag: Int,
     private val eventCount: Int,
+    private val value: Double,
 ) : Event<OneNativeComposeNodeDialogConfirmEvent>(surfaceId, viewTag) {
     override fun getEventName(): String = "topNativeComposeNodeDialogConfirm"
 
@@ -103,6 +104,7 @@ internal class OneNativeComposeNodeDialogConfirmEvent(
     override fun getEventData(): WritableMap =
         Arguments.createMap().apply {
             putInt("eventCount", eventCount)
+            putDouble("value", value)
         }
 }
 

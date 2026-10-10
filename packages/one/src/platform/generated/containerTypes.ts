@@ -17,6 +17,7 @@ import type {
   SpacerSizing,
   ToolbarItemPlacement,
 } from './swiftui'
+import type { SFSymbolName } from './sfSymbolNames'
 export type HostAxis = 'vertical' | 'horizontal'
 export type HostAlignment = 'leading' | 'center' | 'trailing'
 export type ZStackAlignment =
@@ -65,7 +66,7 @@ export interface SectionProps extends ViewProps {
 export interface LabeledContentProps extends ViewProps {
   label: string
   value?: string
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   children?: ReactNode
 }
 export interface ButtonProps extends OneNativeViewProps {
@@ -73,7 +74,7 @@ export interface ButtonProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
   subtitle?: string
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   buttonRole?: Styles.ButtonRole | ''
   buttonStyle?: Styles.PrimitiveButtonStyle
   disclosureIndicator?: boolean
@@ -107,7 +108,7 @@ export interface ToolbarItemProps extends OneNativeViewProps {
 export interface ToolbarItemGroupProps extends OneNativeViewProps {
   placement?: ToolbarItemPlacement
   label?: string
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   children: ReactNode
 }
 export interface ToolbarSpacerProps extends ViewProps {

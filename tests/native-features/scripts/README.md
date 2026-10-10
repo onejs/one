@@ -1,18 +1,18 @@
 # One Native Conformance Runner
 
-## Android Compose in RNX
+## Android Compose in Peach
 
-The RNX lane uses Maestro for interaction and a thin runner for independent tree, layout,
+The Peach lane uses Maestro for interaction and a thin runner for independent tree, layout,
 accessibility, console error, failed request, and screenshot evidence. It requires one connected
 `pixel-8` simulator and runs the full flow three times by default.
 
 ```bash
-RNX_NO_OPEN=1 bun run dev
+PEACH_NO_OPEN=1 bun run dev
 
-bun run test-rnx:one-native-android -- \
-  --sim <RNX_SIM_ID> \
+bun run test-peach:one-native-android -- \
+  --sim <PEACH_SIM_ID> \
   --url http://localhost:8081 \
-  --artifact-dir /tmp/one-native-rnx-conformance
+  --artifact-dir /tmp/one-native-peach-conformance
 ```
 
 | Surface | Behavior | Gate |
@@ -72,7 +72,7 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `sheets` verifies RN button/input interaction, state retention across reopen and nested sheets, fraction and height detent changes, exact 393x300 Yoga layout for a 300-point sheet, programmatic dismissal, and the same drag with interactive dismissal blocked and allowed. It checks presentation state and dismissal callback counts, then leaves/reenters the route and verifies identical medium detents are restored after native host recycling. Hardware keyboard input is enabled in the test simulator; this does not test software keyboard avoidance.
 
-`host` covers native composition. It asserts the measured height for one child (28), for three children mounted later (84), with 20-point spacing (124), and with a wrapping child label (107), all at a 361-point width, so a wrong measurement fails on the number rather than on a screenshot. It then taps each composed control kind: a Toggle (through a 150 ms press, since an instantaneous HID tap never starts switch tracking), a Button, and a Stepper whose native AXValue must follow React. A composed control that renders but never emits is the specific failure this suite exists to catch, because a composed child never gets a window and activates on publication instead. Horizontal hosts are asserted by child order rather than by height: width-greedy SwiftUI controls overflow a phone-width row, and SwiftUI then reports a much taller ideal height. Two leave/reenter cycles verify composition survives native host recycling.
+`host` covers native composition. It asserts the measured height for one child (28), for three children mounted later (80), with 20-point spacing (120), and with a wrapping child label (95), all at a 361-point width, so a wrong measurement fails on the number rather than on a screenshot. It then taps each composed control kind: a Toggle (through a 150 ms press, since an instantaneous HID tap never starts switch tracking), a Button, and a Stepper whose native AXValue must follow React. A composed control that renders but never emits is the specific failure this suite exists to catch, because a composed child never gets a window and activates on publication instead. The SDK 27.0 (24A430) Apple-only SwiftUI oracle on iPhone 16, runtime 27.0 (24A434), 3x, inherited control size and large content size category measures 80⅓, 120⅓, and 94⅔ points respectively. Each vertical size requires both the rounded native onLayout receipt and the independently rounded native child-frame union. Horizontal hosts assert native child order and the oracle’s rounded 108-point ideal height: width-greedy SwiftUI controls overflow a phone-width row, and SwiftUI then reports a much taller ideal height. Two leave/reenter cycles verify composition survives native host recycling.
 
 `containers` covers the container components: a `Swift.Form` holding `Swift.Section`s, a `Swift.Host` composed inside a section, and the generated `Text` and `Label`. It asserts the two standalone leaves take the catalog's 24-point default height, that the form fills its Yoga box (534 points here), and that a Toggle two containers deep still emits and its native AXValue follows React. A section mounted later, a section prop change (the footer), and unmounting a section are each asserted through the published SwiftUI tree, since React Native never displays a composed child's view. It also covers `Swift.Slot`: a React Native row inside a section and a second one inside the nested host, each asserted by taking a tap, which is the only evidence that touches reach React Native through the SwiftUI tree that displays it. Two leave/reenter cycles verify container recycling.
 
@@ -84,7 +84,7 @@ That fixture must be on an iPhone 16 size simulator. Native tabs expose no acces
 
 `clipboard` covers `One.Clipboard`: set reports true, get reads the write back, has sees the string, and the pasteboard outlives a fixture recycle.
 
-`local-authentication` covers `One.iOS.LocalAuthentication` on an iPhone 17 Pro
+`local-authentication` covers `One.LocalAuthentication` on an iPhone 17 Pro
 with iOS 27. Grant the fixture Face ID permission once before the run with
 `applesimutils --byId <SIMULATOR_UUID> --bundle dev.vxrn.native.tests
 --setPermissions faceid=YES`; that command restarts SpringBoard, so launch the
@@ -95,7 +95,7 @@ captures the Face ID tile, sends a matching Face ID response, and requires
 `evaluatePolicy` to resolve true. `applesimutils` is
 also used by the suite to change enrollment and send the match.
 
-`location` covers `One.iOS.Location` on an iOS 27 simulator. It resets the app's
+`location` covers `One.Location` on an iOS 27 simulator. It resets the app's
 location permission, sets a fixed San Francisco coordinate, proves a position
 request without permission rejects, accepts the system's foreground permission
 prompt, and requires `getCurrentPosition()` to return the simulated coordinate.
@@ -104,7 +104,7 @@ alongside the watch, then moves again after unsubscribe and confirms only the
 one-shot result changes. Forward geocoding must return Cupertino coordinates;
 reverse geocoding must identify San Francisco. Geocoding needs Apple's service.
 
-`file-system` covers `One.iOS.FileSystem` on an iOS 27 simulator. The fixture
+`file-system` covers `One.FileSystem` on an iOS 27 simulator. The fixture
 creates an app-cache directory, checks UTF-8 byte size and replacement writes,
 writes base64 bytes, reads files via native `fetch(file://)`, checks metadata and
 directory entries, copies and moves a file, creates intermediate directories,
@@ -116,7 +116,7 @@ the full result.
 then selects a seeded text file from the Files app and checks its name, type,
 size, `fetch(file://)` byte count, cache URI, and exact copied bytes.
 
-`audio` covers `One.iOS.Audio` on an iOS 27 simulator. It resets microphone
+`audio` covers `One.Audio` on an iOS 27 simulator. It resets microphone
 permission, asserts the configured prompt, records and pauses/resumes an AAC
 file, checks its size through FileSystem, then plays, pauses, seeks, resumes,
 and stops that file. Invalid URI and idle-player calls must reject with their
@@ -139,7 +139,7 @@ diagnostic build, but Control Center had no media tile and Lock Screen showed no
 track. The cause is unconfirmed. Visible system controls, tile removal, and
 remote command callbacks need device proof.
 
-`share` covers `One.iOS.Share` on an iOS 27 simulator. It opens the system
+`share` covers `One.Share` on an iOS 27 simulator. It opens the system
 share sheet with text and a URL, then opens it again with a real cache file.
 A second request rejects while the first sheet is open. Copy completes the
 first sheet with an activity type; canceling the file sheet resolves false.
@@ -177,7 +177,7 @@ deletes it. The suite also checks prepermission and invalid-limit errors.
 
 `gpu` covers the WebGPU path One stands on instead of shipping a GL view: a raw `react-native-webgpu` triangle pane and an R3F cube on `WebGPURenderer` mounted through `createRoot` (never `@react-three/fiber/native`). It asserts both canvases take layout, each pane reports its first painted frame, the R3F loop keeps ticking, and the GLSL `ShaderMaterial` probe reaches a verdict (logged as `gpu probe: shader verdict ...`). Run it with `ONE_NATIVE_BUNDLER=rolldown`: the metro path has no resolver hook for the `three` to `three/webgpu` rewrite.
 
-Run suites sequentially against one simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
+Run individual suites sequentially against their calibrated simulator. Keep app source unchanged during state-retention checks; Fast Refresh invalidates that evidence. If the loaded-state assertion shows a RedBox, fix the app/dev server before rerunning.
 
 Artifacts are written to `--artifact-dir`: key rendered screenshots, an `.ax.json` accessibility snapshot captured with every screenshot, and outcome.json with passed checks, durations, and `suite`.
 
@@ -192,12 +192,18 @@ is a real failure mode: the same bug was found in `@expo/ui`'s segmented picker,
 already write. Run everything with one command:
 
 ```sh
-bun scripts/one-native-conformance-all.ts --simulator-id <UUID> --bundle-id dev.one.native.tests \
+bun scripts/one-native-conformance-all.ts \
+  --iphone16-simulator-id <IPHONE_16_UUID> --iphone17-pro-simulator-id <IPHONE_17_PRO_UUID> \
+  --bundle-id dev.one.native.tests \
   --artifact-dir /tmp/one-native-conformance
 ```
 
-That runs the 12 suites into `<artifact-dir>/<suite>/`, then the visual pass against the artifact
-root. The visual pass runs last and against the root rather than per suite because several checks
+That runs the 31 suites into `<artifact-dir>/<suite>/`, then the visual pass against the artifact
+root. `tabs-menu`, `pickers`, and the other iPhone suites run on iPhone 16 (393×852);
+`apple-file` runs on iPhone 17 Pro (402×874). Install the same app on both and keep its source
+unchanged throughout the run. For `--device ipad` or `--device duo`, pass `--simulator-id`
+for that device instead of the two iPhone IDs. The visual pass runs last and against the root
+rather than per suite because several checks
 take their negative capture from another suite's directory.
 
 Each check in `visual-declarations.ts` declares an accessibility anchor, a crop relative to its

@@ -1845,7 +1845,7 @@ let workletsConfigured = false
  * process when the project actually depends on reanimated.
  */
 type OneNativeTransforms = typeof import('one/native-transforms') & {
-  renderSwiftPackageModule: (
+  renderNativeSourceModule: (
     id: string,
     platform: string,
     root: string
@@ -1903,11 +1903,11 @@ export async function transform(
   assertNoUnportedBabelPlugins(options)
 
   let sourceCode = typeof data === 'string' ? data : data.toString('utf8')
-  if (filename.endsWith('.swift')) {
+  if (/\.(swift|kt)$/.test(filename)) {
     const oneTransforms = loadOneNativeTransforms(projectRoot)
     if (!oneTransforms)
       throw new Error(`[vxrn/metro] ${filename} requires One native transforms`)
-    sourceCode = oneTransforms.renderSwiftPackageModule(
+    sourceCode = oneTransforms.renderNativeSourceModule(
       path.isAbsolute(filename) ? filename : path.resolve(projectRoot, filename),
       options.platform ?? '',
       projectRoot

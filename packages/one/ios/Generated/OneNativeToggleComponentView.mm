@@ -3,13 +3,14 @@
 #import "OneNativeToggleComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeSyncBridge.h"
 #import "OneNativeToggleShadowNode.h"
 #import "OneNativeMeasuredHeight.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 #import "OneNativeStyleDictionary.h"
 using namespace facebook::react;
-@implementation OneNativeToggleComponentView { OneNativeToggleView *_nativeView; OneNativeMeasuredHeight *_measured; }
+@implementation OneNativeToggleComponentView { OneNativeToggleView *_nativeView; OneNativeMeasuredHeight *_measured; int32_t _syncStateId; }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeToggleComponentDescriptor>(); }
 - (NSObject *)accessibilityElement { return _nativeView; }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState { [_measured adopt:state]; }
@@ -31,6 +32,7 @@ using namespace facebook::react;
     };
     _nativeView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
       OneNativeToggleComponentView *strongSelf = weakSelf;
+      if (strongSelf && strongSelf->_syncStateId != 0) { OneNativeSyncDidSetExternally(strongSelf->_syncStateId); }
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const OneNativeToggleEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeToggleValueChange({.value = (bool)value, .eventCount = (int)eventCount, .revision = (int)revision});
@@ -47,8 +49,9 @@ using namespace facebook::react;
     value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  _syncStateId = next.syncStateId;
   [_nativeView configure:next.value
-    acknowledgedEvent:next.acknowledgedEvent revision:next.revision label:RCTNSStringFromString(next.label) disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) toggleStyle:RCTNSStringFromString(next.toggleStyle)];
+    acknowledgedEvent:next.acknowledgedEvent revision:next.revision syncStateId:next.syncStateId label:RCTNSStringFromString(next.label) disabled:next.disabled systemImage:RCTNSStringFromString(next.systemImage) toggleStyle:RCTNSStringFromString(next.toggleStyle)];
 
   [super updateProps:props oldProps:oldProps];
 }

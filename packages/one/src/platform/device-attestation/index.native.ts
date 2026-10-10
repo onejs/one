@@ -2,6 +2,7 @@ import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type { DeviceAttestationAvailability, OneDeviceAttestation } from '../specs/OneDeviceAttestation.nitro'
+import { DeviceAttestation as unavailableDeviceAttestation } from './unavailable'
 
 export type { DeviceAttestationAvailability } from '../specs/OneDeviceAttestation.nitro'
 
@@ -37,6 +38,10 @@ function generateDeviceToken(): Promise<string> {
   return native().generateDeviceToken().catch(rethrowNativeError)
 }
 
-export const DeviceAttestation = Object.freeze({
+const nativeDeviceAttestation = Object.freeze({
   getAvailability, generateKey, attestKey, generateAssertion, generateDeviceToken,
 })
+
+// App Attest and DeviceCheck are iOS only, so Android keeps the unavailable contract
+export const DeviceAttestation: typeof nativeDeviceAttestation =
+  Platform.OS === 'android' ? unavailableDeviceAttestation : nativeDeviceAttestation

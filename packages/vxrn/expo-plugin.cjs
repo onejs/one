@@ -41,6 +41,7 @@ module.exports = function withVxrn(config, options = {}) {
     withGradleProperties,
     withInfoPlist,
     withMainActivity,
+    withMainApplication,
     withPlugins,
     withXcodeProject,
   } = projectRequire('@expo/config-plugins')
@@ -123,6 +124,26 @@ module.exports = function withVxrn(config, options = {}) {
             return nextConfig
           },
         ],
+        [
+          withAndroidManifest,
+          (nextConfig) => {
+            const manifest = nextConfig.modResults.manifest
+            manifest['uses-permission'] ??= []
+            const names = [
+              'android.permission.ACCESS_COARSE_LOCATION',
+              'android.permission.ACCESS_FINE_LOCATION',
+            ]
+            if (location.background === true) {
+              names.push('android.permission.ACCESS_BACKGROUND_LOCATION')
+            }
+            for (const name of names) {
+              if (!manifest['uses-permission'].some((p) => p.$['android:name'] === name)) {
+                manifest['uses-permission'].push({ $: { 'android:name': name } })
+              }
+            }
+            return nextConfig
+          },
+        ],
       ]
   const audioPlugins = !audio
     ? []
@@ -184,6 +205,85 @@ module.exports = function withVxrn(config, options = {}) {
           },
         ],
       ]
+  // mirrors one prebuild's Android media stamps: the same permissions,
+  // meta-data markers and audio service from the same option fields.
+  const mediaPlugins =
+    audio === undefined &&
+    photoLibrary === undefined &&
+    contacts === undefined &&
+    calendar === undefined
+      ? []
+      : [
+          [
+            withAndroidManifest,
+            (nextConfig) => {
+              const manifest = nextConfig.modResults.manifest
+              manifest['uses-permission'] ??= []
+              const ensurePermission = (name, maxSdkVersion) => {
+                if (
+                  manifest['uses-permission'].some((p) => p.$['android:name'] === name)
+                )
+                  return
+                manifest['uses-permission'].push({
+                  $: {
+                    'android:name': name,
+                    ...(maxSdkVersion === undefined
+                      ? {}
+                      : { 'android:maxSdkVersion': String(maxSdkVersion) }),
+                  },
+                })
+              }
+              if (audio?.microphone !== undefined)
+                ensurePermission('android.permission.RECORD_AUDIO')
+              if (photoLibrary?.readWrite !== undefined) {
+                ensurePermission('android.permission.READ_MEDIA_IMAGES')
+                ensurePermission('android.permission.READ_MEDIA_VIDEO')
+                ensurePermission('android.permission.READ_EXTERNAL_STORAGE', 32)
+              }
+              if (photoLibrary?.addOnly !== undefined)
+                ensurePermission('android.permission.WRITE_EXTERNAL_STORAGE', 28)
+              if (contacts !== undefined) {
+                ensurePermission('android.permission.READ_CONTACTS')
+                ensurePermission('android.permission.WRITE_CONTACTS')
+              }
+              if (calendar?.usage !== undefined) {
+                ensurePermission('android.permission.READ_CALENDAR')
+                ensurePermission('android.permission.WRITE_CALENDAR')
+              }
+              if (audio?.background === true) {
+                ensurePermission('android.permission.FOREGROUND_SERVICE')
+                ensurePermission('android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK')
+              }
+              const application =
+                AndroidConfig.Manifest.getMainApplicationOrThrow(nextConfig.modResults)
+              const ensureMetaData = (name) => {
+                application['meta-data'] = (application['meta-data'] ?? []).filter(
+                  (entry) => entry.$['android:name'] !== name
+                )
+                application['meta-data'].push({
+                  $: { 'android:name': name, 'android:value': 'true' },
+                })
+              }
+              if (photoLibrary?.addOnly !== undefined)
+                ensureMetaData('one.photoLibrary.addOnly')
+              if (audio?.background === true) {
+                ensureMetaData('one.audio.background')
+                const serviceName = 'com.margelo.nitro.one.OneAudioService'
+                application['service'] = (application['service'] ?? []).filter(
+                  (entry) => entry.$['android:name'] !== serviceName
+                )
+                application['service'].push({
+                  $: {
+                    'android:name': serviceName,
+                    'android:exported': 'false',
+                    'android:foregroundServiceType': 'mediaPlayback',
+                  },
+                })
+              }
+              return nextConfig
+            },
+          ],
+        ]
   const host = nativeProjectPatches.ONE_NOTIFICATIONS
   const notificationPlugins = !notifications
     ? []
@@ -342,6 +442,7 @@ module.exports = function withVxrn(config, options = {}) {
     ...photoLibraryPlugins,
     ...contactsPlugins,
     ...calendarPlugins,
+    ...mediaPlugins,
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,
@@ -382,6 +483,23 @@ module.exports = function withVxrn(config, options = {}) {
       },
     ],
     [
+      withMainApplication,
+      (nextConfig) => {
+        const anchor = 'context = applicationContext,'
+        const contents = nextConfig.modResults.contents
+        if (!contents.includes('ExpoReactHostFactory.getDefaultReactHost(') || !contents.includes(anchor)) {
+          throw new Error('[vxrn/expo-plugin] expected ExpoReactHostFactory in MainApplication')
+        }
+        const configured = `${anchor}\n      jsMainModulePath = "index",\n      useDevSupport = BuildConfig.DEBUG,`
+        // the prebuilt react library has DEBUG=false. use the application build
+        // flag and One's entry instead of Expo's virtual Metro entry.
+        nextConfig.modResults.contents = contents.includes(configured)
+          ? contents
+          : contents.replace(anchor, configured)
+        return nextConfig
+      },
+    ],
+    [
       withMainActivity,
       (nextConfig) => {
         const contents = nativeProjectPatches.addReactNativeScreensFix(
@@ -406,6 +524,7 @@ module.exports = function withVxrn(config, options = {}) {
 
           let podfile = fs.readFileSync(podfilePath, 'utf8')
           podfile = nativeProjectPatches.injectFmtCxx17FixIntoPodfile(podfile)
+          podfile = nativeProjectPatches.injectWebGPUHeaderPathsIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectHermesMinificationPatchIntoPodfile(podfile)
           podfile = nativeProjectPatches.injectReactNativeScreensGammaIntoPodfile(podfile)
           if (nativeProjectPatches.hasNitroWebImage(projectRoot)) {

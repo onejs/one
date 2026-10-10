@@ -4,6 +4,7 @@ import type { ColorValue, ViewProps } from 'react-native'
 import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 import type { IconColorRole } from '../ui/iconRoles'
+import type { SFSymbolName } from './sfSymbolNames'
 import type { NativeState } from '../syncNativeState'
 
 export const glassEffects = ['regular', 'clear', 'identity'] as const
@@ -3569,12 +3570,12 @@ export interface ColorPickerProps extends OneNativeViewProps {
   supportsOpacity?: boolean
 }
 export interface ToggleProps extends OneNativeViewProps {
-  isOn: boolean
+  isOn: boolean | NativeState<boolean>
   onIsOnChange: (value: boolean) => void
   revision?: number
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   toggleStyle?: Styles.ToggleStyle
 }
 export interface SliderProps extends OneNativeViewProps {
@@ -3611,7 +3612,7 @@ export interface TextProps extends OneNativeViewProps {
 export interface LabelProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
 }
 export interface ProgressViewProps extends OneNativeViewProps {
   label?: string
@@ -3632,7 +3633,7 @@ export interface GaugeProps extends OneNativeViewProps {
   gaugeStyle?: Styles.GaugeStyle
 }
 export interface ImageProps extends OneNativeViewProps {
-  systemName?: string
+  systemName?: SFSymbolName | ''
   uri?: string
   renderingMode?: 'original' | 'template'
   symbolRenderingMode?: Styles.SymbolRenderingMode | ''
@@ -3640,11 +3641,12 @@ export interface ImageProps extends OneNativeViewProps {
   imageScale?: Styles.ImageScale | ''
   variableValue?: number
   colorRole?: IconColorRole | ''
+  resizable?: boolean
 }
 export interface ShareLinkProps extends OneNativeViewProps {
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   item?: string
   itemType?: 'text' | 'url'
   subject?: string
@@ -3653,28 +3655,40 @@ export interface ShareLinkProps extends OneNativeViewProps {
 export interface ContentUnavailableViewProps extends OneNativeViewProps {
   onAction?: (id: string) => void
   title?: string
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   description?: string
   actions: readonly DialogAction[]
 }
 export interface CircleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface CapsuleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface RectangleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface RoundedRectangleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
   cornerRadius?: number
 }
 export interface EllipseProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
 }
 export interface UnevenRoundedRectangleProps extends OneNativeViewProps {
   fill?: ColorValue
+  strokeBorder?: ColorValue
+  lineWidth?: number
   topLeadingRadius?: number
   bottomLeadingRadius?: number
   bottomTrailingRadius?: number
@@ -3735,7 +3749,7 @@ export interface PhotosPickerProps extends OneNativeViewProps {
   onPickError?: (message: string) => void
   label?: string
   disabled?: boolean
-  systemImage?: string
+  systemImage?: SFSymbolName | ''
   maxSelectionCount?: number
   selectionBehavior?: Styles.PhotosPickerSelectionBehavior
   filter?:
@@ -3757,8 +3771,23 @@ export interface WebViewProps extends OneNativeViewProps {
   onNavigate?: (url: string) => void
   onTitleChange?: (title: string) => void
   onLoadingChange?: (loading: boolean, progress: number) => void
+  onLoadStart?: () => void
+  onLoadEnd?: () => void
+  onError?: (message: string) => void
+  onHttpError?: (statusCode: number) => void
+  onMessage?: (data: string) => void
+  onHistoryChange?: (canGoBack: boolean, canGoForward: boolean) => void
+  onProcessTerminate?: () => void
   url?: string
   html?: string
+  script?: string
+  command?: 'reload' | 'goBack' | 'goForward' | 'evaluate' | 'postMessage' | ''
+  commandRevision?: number
+  commandValue?: string
+  limitsNavigationsToAppBoundDomains?: boolean
+  inlineMedia?: boolean
+  inspectable?: boolean
+  bounces?: boolean
   backForwardNavigationGestures?: Styles.BackForwardNavigationGesturesBehavior | ''
   magnificationGestures?: Styles.MagnificationGesturesBehavior | ''
   linkPreviews?: Styles.LinkPreviewBehavior | ''

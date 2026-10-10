@@ -1,4 +1,4 @@
-import { Platform } from 'react-native'
+import { validateCallback } from '../validateCallback'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -29,7 +29,6 @@ export type {
 let hybrid: OneAudio | undefined
 
 function native(): OneAudio {
-  if (Platform.OS !== 'ios') throw new Error('Audio requires an iOS native build')
   hybrid ??= NitroModules.createHybridObject<OneAudio>('OneAudio')
   return hybrid
 }
@@ -58,20 +57,20 @@ export const Audio = Object.freeze({
     native().resumeRecording().catch(rethrowNativeError),
   stopRecording: (): Promise<AudioRecordingResult> =>
     native().stopRecording().catch(rethrowNativeError),
-  watchInterruptions: (onEvent: (event: AudioInterruptionEvent) => void): (() => void) => {
-    if (typeof onEvent !== 'function') {
-      throw new TypeError('Audio.watchInterruptions: onEvent must be a function')
-    }
+  watchInterruptions: (
+    onEvent: (event: AudioInterruptionEvent) => void
+  ): (() => void) => {
+    validateCallback(onEvent, 'Audio.watchInterruptions: onEvent must be a function')
     return native().addInterruptionListener(onEvent)
   },
   setNowPlayingInfo: (info: AudioNowPlayingInfo): Promise<void> =>
     native().setNowPlayingInfo(info).catch(rethrowNativeError),
   clearNowPlayingInfo: (): Promise<void> =>
     native().clearNowPlayingInfo().catch(rethrowNativeError),
-  watchRemoteCommands: (onEvent: (event: AudioRemoteCommandEvent) => void): (() => void) => {
-    if (typeof onEvent !== 'function') {
-      throw new TypeError('Audio.watchRemoteCommands: onEvent must be a function')
-    }
+  watchRemoteCommands: (
+    onEvent: (event: AudioRemoteCommandEvent) => void
+  ): (() => void) => {
+    validateCallback(onEvent, 'Audio.watchRemoteCommands: onEvent must be a function')
     return native().addRemoteCommandListener(onEvent)
   },
 })

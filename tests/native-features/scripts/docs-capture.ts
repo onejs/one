@@ -266,15 +266,33 @@ for (let attempt = 0; !rest; attempt++) {
   }
 }
 const scale = density(rest.white)
-if (scene.home) {
-  if (platform === 'ios') run('axe', ['button', 'home', '--udid', device])
-  else run(adb, ['-s', device, 'shell', 'input', 'keyevent', 'KEYCODE_HOME'])
-  await sleep(4000)
-  const frame = await screenshot()
+// screen scenes are found like the others, then present system ui (a long press on the
+// scene, or leaving the app) and capture the screen once it settles.
+if (scene.screen) {
+  if (scene.screen.press) {
+    const box = bounds(rest)
+    const factor = platform === 'ios' ? scale : 1
+    const x = (box.left + box.width / 2) / factor
+    const y = (box.top + box.height / 2) / factor
+    touch('down', x, y)
+    await sleep(1000)
+    touch('up', x, y)
+  }
+  if (scene.screen.home) {
+    if (platform === 'ios') run('axe', ['button', 'home', '--udid', device])
+    else run(adb, ['-s', device, 'shell', 'input', 'keyevent', 'KEYCODE_HOME'])
+  }
+  await sleep(6000)
+  // where the app still shows around the system ui, take it on the white background.
+  let frame = await screenshot()
+  while (background(frame) === 'black') {
+    await sleep(250)
+    frame = await screenshot()
+  }
   // the screen from `top` down, its corners rounded like the device's.
-  const top = Math.round(frame.height * scene.home.top)
+  const top = Math.round(frame.height * scene.screen.top)
   const height = frame.height - top
-  const radius = Math.round(scene.home.cornerRadius * scale)
+  const radius = Math.round(scene.screen.cornerRadius * scale)
   const mask = Buffer.from(
     `<svg width="${frame.width}" height="${height}"><rect width="100%" height="100%" rx="${radius}" ry="${radius}"/></svg>`
   )

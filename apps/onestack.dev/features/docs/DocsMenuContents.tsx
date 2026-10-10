@@ -5,7 +5,7 @@ import { DocsRouteNavItem } from './DocsRouteNavItem'
 import { docsRoutes } from './docsRoutes'
 import { nativeRoutes } from './nativeRoutes'
 import { useDocsMenu } from './useDocsMenu'
-import { ChevronDown } from '@tamagui/lucide-icons-2'
+import { ChevronDown } from '~/components/icons'
 
 type Routes = typeof docsRoutes
 
@@ -71,7 +71,7 @@ const SubSection = ({
   const { currentPath } = useDocsMenu()
 
   const content = (
-    <YStack px="$2" py="$3" mb="$3">
+    <YStack paddingHorizontal="2" paddingVertical="3" marginBottom="3">
       {items.map(({ page }, index) => {
         return (
           <DocsRouteNavItem
@@ -91,43 +91,39 @@ const SubSection = ({
 
   const wrapper = (children) => {
     return (
-      <YStack bbw={0} borderColor={inMenu ? 'transparent' : '$background02'}>
+      <YStack
+        borderBottomWidth={0}
+        borderColor={`${inMenu ? 'transparent' : 'background02'}`}
+      >
         {children}
       </YStack>
     )
   }
 
   if (!section.title) {
-    return wrapper(<YStack mb="$-2">{content}</YStack>)
+    return wrapper(<YStack marginBottom="-2">{content}</YStack>)
   }
 
   return wrapper(
-    <Accordion.Item bw={0} value={section.title || 'base'}>
-      <Accordion.Trigger
-        unstyled
-        bg="transparent"
-        bw={0}
-        hoverStyle={{
-          bg: '$background02',
-        }}
-      >
+    <Accordion.Item borderWidth={0} value={section.title || 'base'}>
+      <Accordion.Trigger backgroundColor="transparent hover:background02" borderWidth={0}>
         {({ open }) => {
           return (
             <XStack
-              fd="row"
-              py="$2"
-              px="$4"
-              jc="space-between"
+              flexDirection="row"
+              paddingVertical="2"
+              paddingHorizontal="4"
+              width="100%"
+              justifyContent="space-between"
               render="span"
-              ai="center"
-              w="100%"
+              alignItems="center"
             >
-              <Paragraph size="$5" fow="600" color="$color12">
+              <Paragraph size="5" color="color12" fontWeight="600">
                 {section.title}
               </Paragraph>
 
               <Square transition="quick" rotate={open ? '180deg' : '0deg'}>
-                <ChevronDown color="$color7" size="$1" />
+                <ChevronDown color="color7" size="1" />
               </Square>
             </XStack>
           )
@@ -136,10 +132,9 @@ const SubSection = ({
 
       <Accordion.HeightAnimator overflow="hidden" transition="quickest">
         <Accordion.Content
-          unstyled
           transition="quickest"
-          bg="transparent"
-          exitStyle={{ opacity: 0 }}
+          backgroundColor="transparent"
+          opacity="exit:0"
         >
           {content}
         </Accordion.Content>

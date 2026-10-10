@@ -40,6 +40,48 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeWebViewLoadingChange({.loading = (bool)loading, .progress = (double)progress, .eventCount = (int)eventCount});
     };
+    _nativeView.onLoadStart = ^(NSInteger eventCount) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeWebViewLoadStart({.eventCount = (int)eventCount});
+    };
+    _nativeView.onLoadEnd = ^(NSInteger eventCount) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeWebViewLoadEnd({.eventCount = (int)eventCount});
+    };
+    _nativeView.onError = ^(NSString *message, NSInteger eventCount) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeWebViewError({.message = std::string(message.UTF8String), .eventCount = (int)eventCount});
+    };
+    _nativeView.onHttpError = ^(double statusCode, NSInteger eventCount) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeWebViewHttpError({.statusCode = (double)statusCode, .eventCount = (int)eventCount});
+    };
+    _nativeView.onMessage = ^(NSString *data, NSInteger eventCount) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeWebViewMessage({.data = std::string(data.UTF8String), .eventCount = (int)eventCount});
+    };
+    _nativeView.onHistoryChange = ^(BOOL canGoBack, BOOL canGoForward, NSInteger eventCount) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeWebViewHistoryChange({.canGoBack = (bool)canGoBack, .canGoForward = (bool)canGoForward, .eventCount = (int)eventCount});
+    };
+    _nativeView.onProcessTerminate = ^(NSInteger eventCount) {
+      OneNativeWebViewComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeWebViewEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeWebViewProcessTerminate({.eventCount = (int)eventCount});
+    };
   }
   return self;
 }
@@ -53,7 +95,7 @@ using namespace facebook::react;
     identifier:RCTNSStringFromString(next.testId)];
   [_nativeView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_nativeView configure:RCTNSStringFromString(next.url)
-    html:RCTNSStringFromString(next.html) backForwardNavigationGestures:RCTNSStringFromString(next.backForwardNavigationGestures) magnificationGestures:RCTNSStringFromString(next.magnificationGestures) linkPreviews:RCTNSStringFromString(next.linkPreviews) elementFullscreen:RCTNSStringFromString(next.elementFullscreen) contentBackground:RCTNSStringFromString(next.contentBackground)];
+    html:RCTNSStringFromString(next.html) script:RCTNSStringFromString(next.script) command:RCTNSStringFromString(next.command) commandRevision:next.commandRevision commandValue:RCTNSStringFromString(next.commandValue) limitsNavigationsToAppBoundDomains:next.limitsNavigationsToAppBoundDomains inlineMedia:next.inlineMedia inspectable:next.inspectable bounces:next.bounces backForwardNavigationGestures:RCTNSStringFromString(next.backForwardNavigationGestures) magnificationGestures:RCTNSStringFromString(next.magnificationGestures) linkPreviews:RCTNSStringFromString(next.linkPreviews) elementFullscreen:RCTNSStringFromString(next.elementFullscreen) contentBackground:RCTNSStringFromString(next.contentBackground)];
 
   [super updateProps:props oldProps:oldProps];
 }

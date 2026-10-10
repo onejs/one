@@ -10,7 +10,7 @@ TypeGPU, or three.js all build on it, and nothing else is needed.
 
 Three.js runs through `three/webgpu` with `WebGPURenderer`, including
 under React Three Fiber. R3F mounts through `createRoot` on the webgpu
-canvas. Do not use `@react-three/fiber/native`, which requires `expo-gl`:
+canvas. Do not use `@react-three/fiber/native`, which renders through a GL view:
 
 ```tsx
 import { Canvas, useCanvasRef } from 'react-native-webgpu'

@@ -1,13 +1,14 @@
 import type { ReactNode } from 'react';
 import type { ViewProps } from 'react-native';
 import type { ZStackAlignment } from './generated/containerTypes';
+import type { SFSymbolName } from './generated/sfSymbolNames';
 import type { ControlGroupStyle } from './generated/swiftui';
 import type { ViewSlotConfiguration } from './generated/viewSlots';
 export declare const swipeActionsEdges: readonly ['leading', 'trailing'];
 export type SwipeActionsEdge = (typeof swipeActionsEdges)[number];
 export interface ControlGroupProps extends ViewProps {
     label?: string;
-    systemImage?: string;
+    systemImage?: SFSymbolName | '';
     controlGroupStyle?: ControlGroupStyle;
     children: ReactNode;
 }

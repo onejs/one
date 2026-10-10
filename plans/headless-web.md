@@ -129,7 +129,7 @@ else.
 
 ### Phase 3: headless web navigators (the real work)
 
-Decision (2026-07-20, from Nate): web navigators render NOTHING. No markup,
+Decision (2026-07-20, from the owner): web navigators render NOTHING. No markup,
 no styles, no style/className props, no HTML chrome, no default tab bar.
 Logic-only functional components plus hooks. The earlier "minimal DOM +
 one-tabs- classes" approach is rejected; it recreates the RNW trap one

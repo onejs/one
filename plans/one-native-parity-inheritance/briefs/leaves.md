@@ -20,7 +20,7 @@ What you must NOT do:
 - Do not boot a simulator and do not run the device conformance suite. I own simulator 36CB8903-C59C-4438-BA29-E7A3C8876C37 and another agent is capturing pixel oracles on it right now. The suite is load-sensitive and a second CoreSimulator client corrupts both runs. I run the device suite at integration.
 - Do not touch the dev server on port 8107.
 - Do not push. Commit to your branch and report the SHA to me.
-- Nothing outside packages/one and its fixture. Not soot, not rnx.
+- Nothing outside packages/one and its fixture. Not contrast, not peach.
 
 If you add UI to tests/native-features/app/ fixtures, know that visual check regions are ABSOLUTE fixture coordinates. The handoff records that adding a seventh category wrapped a button grid to a third row and moved every control below it down 39pt, breaking five visual checks that were not real regressions. If your fixture change shifts layout, say so in your report with the offset. Never re-baseline a visual check to make it green.
 

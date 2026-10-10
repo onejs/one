@@ -1,6 +1,6 @@
 {
   "name": "example-testflight",
-  "version": "2.6.0",
+  "version": "1.27.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -23,10 +23,9 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.12.1",
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
-    "@react-navigation/native-stack": "8.0.0-alpha.52",
-    "@tamagui/config": "2.6.2",
-    "@tamagui/lucide-icons-2": "2.6.2",
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
+    "@tamagui/config": "3.0.0-beta.1670.1",
     "@vxrn/color-scheme": "workspace:*",
     "better-sqlite3": "^11.2.1",
     "dotenv": "^17.2.1",
@@ -42,15 +41,26 @@
     "react-native-svg": "15.15.4",
     "react-native-web": "^0.21.2",
     "react-native-worklets": "~0.12.2",
-    "tamagui": "2.6.2"
+    "tamagui": "3.0.0-beta.1670.1",
+    "@tamagui/helpers-icon": "3.0.0-beta.1670.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.3",
     "@faker-js/faker": "next",
     "@react-native-community/cli": "^20.2.0",
     "@react-native-community/template": "^0.87.1",
-    "@tamagui/vite-plugin": "2.6.2",
+    "@tamagui/vite-plugin": "3.0.0-beta.1670.1",
     "tsx": "^4.20.6",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "typescript": "7.0.2"
+  },
+  "resolutions": {
+    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
+    "@react-navigation/native-stack": "8.0.0-alpha.58",
+    "@react-navigation/drawer": "8.0.0-alpha.57",
+    "@react-navigation/elements": "3.0.0-alpha.54",
+    "@react-navigation/routers": "8.0.0-alpha.20",
+    "@react-navigation/core": "8.0.0-alpha.40"
   }
 }
