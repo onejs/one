@@ -36,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker' | 'launch-screen'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker|launch-screen --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker|launch-screen|adaptive-flat --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1724,6 +1724,100 @@ async function run(config: Config) {
     ])
   }
 
+  const adaptiveFlat = async () => {
+    type Reading = {
+      ready: boolean; initialReady: boolean; layout: { width: number; height: number }
+      size: { horizontal: string; vertical: string }; hinge: unknown
+      regions: unknown[]; allRegions: unknown[]
+      segments: { x: number; y: number; width: number; height: number }[]
+      spanning: boolean
+      reading: { size: { horizontal: string; vertical: string }; hinge: unknown; reads: number } | null
+      listener: { events: number; value?: unknown }; error: string
+    }
+    type Lifecycle = { subscriptions: number; removals: number; events: number; nonNullEvents: number; effectPasses: number }
+    const reading = (nodes: Node[]): Reading | null => {
+      const text = matching(nodes, { id: 'adaptive-reading' })[0]?.text
+      return text ? JSON.parse(text) : null
+    }
+    const lifecycle = (nodes: Node[]): Lifecycle | null => {
+      const text = matching(nodes, { id: 'adaptive-lifecycle' })[0]?.text
+      return text ? JSON.parse(text) : null
+    }
+    const dp = densityScale(config)
+    const flat = (nodes: Node[], width: number, height: number, reads: number) => {
+      const value = reading(nodes)
+      if (!value || !value.reading) return false
+      const viewport = applicationBounds(nodes)
+      const horizontal = (viewport.right - viewport.left) / dp < 600 ? 'compact' : 'regular'
+      const vertical = (viewport.bottom - viewport.top) / dp < 480 ? 'compact' : 'regular'
+      const segment = value.segments[0]
+      // both the native event and onLayout report pixel-rounded dip bounds.
+      const samePixels = (actual: number, expected: number) => Math.round(actual * dp) === Math.round(expected * dp)
+      return diagnose(nodes, [
+        ['native readiness after initially unready render', () => value.ready && value.initialReady === false],
+        ['provider layout matches requested pixels', () => samePixels(value.layout.width, width) && samePixels(value.layout.height, height)],
+        ['flat active and all regions empty', () => value.regions.length === 0 && value.allRegions.length === 0],
+        ['flat hinge hook, getter and initial listener null', () => value.hinge === null && value.reading!.hinge === null && value.listener.events > 0 && value.listener.value === null],
+        ['no spanning or non-null hinge events', () => value.spanning === false && lifecycle(nodes)?.nonNullEvents === 0],
+        ['size hook matches device window', () => value.size.horizontal === horizontal && value.size.vertical === vertical],
+        ['refreshed getters match hooks', () => !value.error && value.reading!.reads === reads && value.reading!.size.horizontal === value.size.horizontal && value.reading!.size.vertical === value.size.vertical],
+        ['one segment follows provider bounds', () => value.segments.length === 1 && segment.x === 0 && segment.y === 0 && samePixels(segment.width, width) && samePixels(segment.height, height)],
+      ])
+    }
+    const mounted = (nodes: Node[], mounts: number, removals: number) => {
+      const value = lifecycle(nodes)
+      return !!value && (value.effectPasses === 1 || value.effectPasses === 2) &&
+        value.subscriptions === mounts * value.effectPasses &&
+        value.removals === removals + mounts * (value.effectPasses - 1)
+    }
+    try {
+      lockRotation(config, '0')
+      await tapNavigation(config, 'nav-one-native-adaptive')
+      const initial = await expect('adaptive-flat-ready-and-getter-hook-agreement', (nodes) =>
+        flat(nodes, 280, 300, 1) && mounted(nodes, 1, 0), 'adaptive-reading')
+      const bounds = validBounds(nodeById(initial.nodes, 'adaptive-provider'), 'Adaptive native provider')
+      await expect('adaptive-flat-native-provider-size', () =>
+        bounds.right - bounds.left === Math.round(280 * dp) && bounds.bottom - bounds.top === Math.round(300 * dp))
+      tapFresh(config, 'Refresh adaptive getters', { id: 'adaptive-refresh' })
+      await expect('adaptive-flat-refreshed-getters', (nodes) => flat(nodes, 280, 300, 2))
+      if (config.negativeControl) tapFresh(config, 'Freeze reported segments', { id: 'adaptive-freeze-segments' })
+      tapFresh(config, 'Resize adaptive provider', { id: 'adaptive-resize' })
+      await expect('adaptive-flat-segment-follows-resize', (nodes) => flat(nodes, 220, 220, 2))
+      for (let mount = 1; mount <= 2; mount++) {
+        tapFresh(config, 'Unmount adaptive provider', { id: 'adaptive-toggle' })
+        await expect(`adaptive-flat-unmount-${mount}-removes-listener`, (nodes) =>
+          matching(nodes, { id: 'adaptive-reading' }).length === 0 &&
+          matching(nodes, { id: 'adaptive-refresh' }).length === 0 && mounted(nodes, mount, mount))
+        tapFresh(config, 'Remount adaptive provider', { id: 'adaptive-toggle' })
+        await expect(`adaptive-flat-remount-${mount}-native-ready`, (nodes) =>
+          flat(nodes, 220, 220, 1) && mounted(nodes, mount + 1, mount))
+      }
+      tapFresh(config, 'Restore adaptive provider size', { id: 'adaptive-resize' })
+      await expect('adaptive-flat-restored-provider-bounds', (nodes) => flat(nodes, 280, 300, 1))
+      lockRotation(config, '1')
+      await expect('adaptive-flat-landscape-hook-matches-window', (nodes) => {
+        const viewport = applicationBounds(nodes)
+        return viewport.right - viewport.left > viewport.bottom - viewport.top &&
+          reading(nodes)?.size.horizontal === 'regular' && reading(nodes)?.size.vertical === 'compact'
+      })
+      tapFresh(config, 'Refresh landscape adaptive getters', { id: 'adaptive-refresh' })
+      await expect('adaptive-flat-landscape-getter-hook-agreement', (nodes) => flat(nodes, 280, 300, 2))
+      lockRotation(config, '0')
+      await expect('adaptive-flat-portrait-window-restored', (nodes) => {
+        const viewport = applicationBounds(nodes)
+        return viewport.right - viewport.left < viewport.bottom - viewport.top
+      })
+      tapFresh(config, 'Refresh restored portrait getters', { id: 'adaptive-refresh' })
+      await expect('adaptive-flat-portrait-native-getter', (nodes) =>
+        reading(nodes)?.reading?.reads === 3 && reading(nodes)?.reading?.size.horizontal === 'compact' &&
+        reading(nodes)?.reading?.size.vertical === 'regular')
+      await expect('adaptive-flat-portrait-getter-hook-agreement', (nodes) => flat(nodes, 280, 300, 3) && mounted(nodes, 3, 2))
+    } finally {
+      lockRotation(config, '0')
+      freeRotation(config)
+    }
+  }
+
   const launchScreen = async () => {
     // the proof setup calls preventAutoHide before react's first render.
     // android exposes that render to accessibility while pre-draw stays held.
@@ -2666,6 +2760,11 @@ async function run(config: Config) {
     }
     if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
       await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : system())
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'adaptive-flat') {
+      await adaptiveFlat()
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }

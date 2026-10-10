@@ -1,5 +1,38 @@
 # One native Android lane
 
+## Flat adaptive receipt, 2026-10-09
+
+TESTED: `w-f48127` passes Android `adaptive-flat`, fifteen checks; freezing
+reported segments makes resize fail; restored source passes fifteen again.
+The flat Pixel 8 proves native readiness after an initially unready render,
+empty active/all regions, a null hinge getter/hook/initial listener, false
+spanning, native provider dimensions, one segment tracking resize, explicit
+listener removals and two fresh native remounts. Portrait and landscape
+window geometry independently agree with current and refreshed size classes.
+Dimensions are compared in physical pixels to account for native DIP rounding.
+Hardware hinge angles, nonempty regions and folding remain unproven.
+
+RAN: `w-7b4925` returns to a portrait hierarchy with a landscape hook.
+`w-ad4886` independently refreshes a portrait native getter while the hook
+remains landscape. INFERRED: configuration delivery can precede the activity's
+updated metrics, and unchanged empty folding info supplies no later event.
+The repair observes decor layout dimensions, retains configuration tracking,
+and removes the decor listener when monitors stop. Start/stop run on the
+main thread. Android documents the committed layout notification in
+[OnLayoutChangeListener](https://developer.android.com/reference/android/view/View.OnLayoutChangeListener.html).
+
+RAN: arm64 `:app:assembleDebug -Pkotlin.incremental=false --no-daemon` compiles
+370 tasks in 1m22s. The first incremental compile failed on unchanged sibling
+EdgeFade internal classes; the full Kotlin target compile passes without
+changing their source. Accepted APK SHA256:
+`13d8d7aaa180f713599c45a2d21d95aa045996a2eb56f0c03a4ecde10b06cc33`.
+Adaptive Kotlin SHA256:
+`b6105afc16d770ada6723d451dd2fb42214d9862312e9220c9e4dcd5b33009b8`.
+Captures, XML and pass/fail/restored logs remain at
+`/tmp/one-android-hooks-m28192/adaptive-accepted-v2/` on air-32, with the
+baseline and native build logs beside them. Rotation restores portrait and
+unlocks; Metro8098 and emulator-5560 stop. CI owner: s23249.
+
 ## LaunchScreen receipt, 2026-10-09
 
 TESTED: `w-ba3cd7` passes Android `launch-screen`, six checks; explicit early

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Platform, Pressable, Text, View } from 'react-native'
 import {
   One,
   getHinge,
@@ -37,7 +37,7 @@ export default function OneNativeAdaptiveFixture() {
       testID="adaptive-fixture"
       style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}
     >
-      <Text>Flat iOS adaptive contract</Text>
+      <Text>Flat device adaptive contract</Text>
       <Text testID="adaptive-lifecycle" style={{ height: 40, lineHeight: 20 }}>
         {JSON.stringify({ ...lifecycle, effectPasses: __DEV__ ? 2 : 1 })}
       </Text>
@@ -88,6 +88,7 @@ function Reading({
   const segments = useWindowSegments()
   const spanning = useSpanning()
   const [initialReady] = useState(ready)
+  const [frozenSegments, setFrozenSegments] = useState<typeof segments | null>(null)
   const [reading, setReading] = useState<{
     size: SizeClass
     hinge: HingeState | null
@@ -128,6 +129,13 @@ function Reading({
   }, [refresh])
   return (
     <View>
+      <Pressable
+        testID="adaptive-refresh"
+        onPress={() => setRefresh(refresh + 1)}
+        style={{ padding: 12 }}
+      >
+        <Text>Refresh getters</Text>
+      </Pressable>
       <Text testID="adaptive-reading" style={{ fontSize: 10, lineHeight: 12 }}>
         {JSON.stringify({
           ready,
@@ -137,20 +145,19 @@ function Reading({
           hinge,
           regions,
           allRegions,
-          segments,
+          segments: frozenSegments ?? segments,
           spanning,
           reading,
           listener,
           error,
         })}
       </Text>
-      <Pressable
-        testID="adaptive-refresh"
-        onPress={() => setRefresh(refresh + 1)}
-        style={{ padding: 12 }}
-      >
-        <Text>Refresh getters</Text>
-      </Pressable>
+      {Platform.OS === 'android' && (
+        <Pressable testID="adaptive-freeze-segments"
+          onPress={() => setFrozenSegments(segments)} style={{ padding: 12 }}>
+          <Text>Freeze reported segments</Text>
+        </Pressable>
+      )}
     </View>
   )
 }

@@ -21,30 +21,32 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
-  'UI.ReservedRegions':
-    'Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven',
-  useSizeClass:
-    'Android suite missing; iOS flat workspace getter/hook agreement proven; live trait changes unproven',
-  getSizeClass:
-    'Android suite missing; iOS flat workspace current and refreshed reads proven; live trait changes unproven',
-  useHinge:
-    'Android suite missing; iOS flat workspace null proven; hardware posture and angles unproven',
-  getHinge:
-    'Android suite missing; iOS flat workspace null reads proven; hardware posture and angles unproven',
-  onHingeChange:
-    'Android suite missing; iOS flat workspace initial null callbacks and cleanup calls proven; hardware events and callback suppression after removal unproven',
-  useReservedRegions:
-    'Android suite missing; iOS flat workspace empty active/all regions proven; nonempty filtering unproven',
-  useReservedRegionsReady:
-    'Android suite missing; iOS flat workspace first native reading and two remounts proven',
-  useWindowSegments:
-    'Android suite missing; iOS flat workspace one segment tracks provider resize; folding segments unproven',
-  useSpanning:
-    'Android suite missing; iOS flat workspace false proven; spanning divisions unproven',
+
 }
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  'UI.ReservedRegions':
+    'iOS and Android flat native readiness, bounds and empty regions proven; folding and nonempty occlusions unproven',
+  useSizeClass:
+    'iOS flat getter/hook agreement and Android live portrait/landscape changes proven; iOS live trait changes unproven',
+  getSizeClass:
+    'iOS flat refreshed reads and Android portrait/landscape reads proven; iOS live trait changes unproven',
+  useHinge:
+    'iOS and Android flat null proven; hardware posture and angles unproven',
+  getHinge:
+    'iOS and Android flat null reads proven; hardware posture and angles unproven',
+  onHingeChange:
+    'iOS and Android initial null callbacks, cleanup calls and two remounts proven; hardware events and callback suppression after removal unproven',
+  useReservedRegions:
+    'iOS and Android flat empty active/all regions proven; nonempty filtering unproven',
+  useReservedRegionsReady:
+    'iOS and Android first native reading and two remounts proven; folding hardware unproven',
+  useWindowSegments:
+    'iOS and Android one segment tracks provider resize; folding segments unproven',
+  useSpanning:
+    'iOS and Android flat false proven; spanning divisions unproven',
+
   'UI.EdgeFade':
     'iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven',
   'UI.Blur':

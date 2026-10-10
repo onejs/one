@@ -212,7 +212,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.Fonts` | fonts | fonts | OneNativeBehavioralLibraryCase |  |
 | `One.UI.SafeArea` | safe-area | safe-area | OneNativeAdaptiveLibraryCase, OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |
 | `One.UI.TextInput` | ui-text-input | ui-text-input | missing |  |
-| `One.UI.ReservedRegions` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace native readiness, bounds and empty regions proven; folding regions unproven |
+| `One.UI.ReservedRegions` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; folding and nonempty occlusions unproven |
 | `One.Notifications` | notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share | OneNativeBehavioralLibraryCase | Android setString and getString proven only through the share suite Copy check; no Android clipboard suite |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
@@ -226,15 +226,15 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
 | `One.Speech` | speech | speech | OneNativeBehavioralLibraryCase |  |
 | `One.Updates` | updates | updates | OneNativeBehavioralLibraryCase |  |
-| `useSizeClass` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace getter/hook agreement proven; live trait changes unproven |
-| `getSizeClass` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace current and refreshed reads proven; live trait changes unproven |
-| `useHinge` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace null proven; hardware posture and angles unproven |
-| `getHinge` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace null reads proven; hardware posture and angles unproven |
-| `onHingeChange` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace initial null callbacks and cleanup calls proven; hardware events and callback suppression after removal unproven |
-| `useReservedRegions` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace empty active/all regions proven; nonempty filtering unproven |
-| `useReservedRegionsReady` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace first native reading and two remounts proven |
-| `useWindowSegments` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace one segment tracks provider resize; folding segments unproven |
-| `useSpanning` | adaptive-flat | missing | OneNativeAdaptiveLibraryCase | Android suite missing; iOS flat workspace false proven; spanning divisions unproven |
+| `useSizeClass` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS flat getter/hook agreement and Android live portrait/landscape changes proven; iOS live trait changes unproven |
+| `getSizeClass` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS flat refreshed reads and Android portrait/landscape reads proven; iOS live trait changes unproven |
+| `useHinge` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat null proven; hardware posture and angles unproven |
+| `getHinge` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat null reads proven; hardware posture and angles unproven |
+| `onHingeChange` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android initial null callbacks, cleanup calls and two remounts proven; hardware events and callback suppression after removal unproven |
+| `useReservedRegions` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat empty active/all regions proven; nonempty filtering unproven |
+| `useReservedRegionsReady` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android first native reading and two remounts proven; folding hardware unproven |
+| `useWindowSegments` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; folding segments unproven |
+| `useSpanning` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; spanning divisions unproven |
 | `useNativeState` | state, ui-text-input | state | missing |  |
 | `useFonts` | fonts | fonts | missing |  |
 | `useNetworkState` | network | network | missing |  |
