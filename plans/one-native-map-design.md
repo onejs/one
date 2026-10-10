@@ -14,7 +14,7 @@ for this document.
 
 ## Why a small wrapper, not react-native-maps
 
-Owner direction (Nate): keep a simple wrapper over the platform-native maps. react-native-maps would add a third-party native view layer on iOS where the SwiftUI Map already backs One.iOS.Map, plus its own Android view and JS API to track, for a surface this design deliberately keeps to markers, one camera, three overlay kinds and three events. A thin One wrapper over MapKit on iOS and Google Maps Compose on Android is smaller to ship, carries no extra native dependency on iOS, and keeps the prop names aligned with expo-maps instead of adding a second mapping layer.
+Owner direction: keep a simple wrapper over the platform-native maps. react-native-maps would add a third-party native view layer on iOS where the SwiftUI Map already backs One.iOS.Map, plus its own Android view and JS API to track, for a surface this design deliberately keeps to markers, one camera, three overlay kinds and three events. A thin One wrapper over MapKit on iOS and Google Maps Compose on Android is smaller to ship, carries no extra native dependency on iOS, and keeps the prop names aligned with expo-maps instead of adding a second mapping layer.
 
 ## Evidence
 

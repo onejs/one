@@ -269,7 +269,7 @@ observed live AVD owner, removing a queue gap before the same atomic lease claim
 The full passing suite follows that ordering without interrupting another run.
 RSI admission defect `t-muyp6nvp-1zpy0` remains separately owned.
 
-Current restart, 2026-10-07: the brief from p67073 resumes this lane on Nate's
+Current restart, 2026-10-07: the brief from p67073 resumes this lane on the owner's
 word: "android like peach SIM support yes and one native yes definitely".
 RAN: cold-start AppIcon acceptance passes on `6e3040d3f` with all eight
 focused checks. Native JavaScript setup requests support before router
@@ -358,13 +358,13 @@ predictive back and insets remain open in this restart.
 
 ## Android restart, 2026-10-07
 
-Nate, quoted by the coordinator: "android like peach SIM support yes and one native yes definitely". Scope resumes One native Android UI parity, followed by Android native API proof. Peach simulation remains with peach-android (m21620), notified at this lane's start. This restart supersedes historical stop and review holds; public API choices remain owner decisions.
+Owner direction: Android Peach simulator support and One native Android both continue.
 
 TESTED: the first unit restores fresh-install Android debug-host startup and passes all 15 existing Compose picker checkpoints on the standard Pixel 8/API37 r06. Rejected and accepted dates, disabled dates, time selection, confirm/cancel, reopen and remount pass. Initial failure `w-38b2` retains the local-network prompt and missing Home marker. READ: RN 0.87.1 defers Metro connection until `ACCESS_LOCAL_NETWORK` resolves. The runner granted it only after data clear. The repair moves that grant into shared debug-host setup, gated at API37; module-under-test permissions remain untouched. Repaired run `w-d72b` uses a cleared synthetic fixture, the unchanged APK, and source-matched local Metro on pro-64.
 
 RAN: 31 Compose contract tests and 127 native documentation tests pass. Beast `w-2748` builds the 14-package One dependency graph from `cf508a1eb` in 3m46.889s. Android prebuild and arm64 `:app:assembleDebug` pass; `w-8e93` executes 370 Gradle tasks in 10m31s. `bun release --into ~/contrast --skip-build` installs 17 local package entries using those restored outputs. Native APK SHA256: `21547ef2b7da9f235d20569c05a70e9226a1574153bb9705ba26a791e275574c`. Runtime runner SHA256: `4b7f38dcf6d2390c1cc3db8de3d5380d91bd356e07b8b6ccfefe3b1ff7d528cb`. Picker fixture SHA256: `1fee3cf6edf6d4bcff696766c2a76f9cfd0c78b5209302f24f35fdc42502b8d4`. The intervening beta widget change is confined to iOS configuration and its own fixture; Android implementation and picker source are unchanged.
 
-Evidence: committed proof. Full build logs, APK, failed startup and all 15 PNG/XML checkpoints remain in primary `tests/native-features/evidence/android-restart-p66065/`. Resource admission expiry and a prohibited SSH forward produced no behavior verdict; the successful proof serves Metro on the emulator's own Mac. Quality-90 WebP captures retain native 1080x2400 pixels and were inspected and shared with Nate. RAN: pro-64 adb lists no devices after cleanup, the owned emulator PID is absent and Metro8097 has no listener. Peach was notified that the AVD is released.
+Evidence: committed proof. Full build logs, APK, failed startup and all 15 PNG/XML checkpoints remain in primary `tests/native-features/evidence/android-restart-p66065/`. Resource admission expiry and a prohibited SSH forward produced no behavior verdict; the successful proof serves Metro on the emulator's own Mac. Quality-90 WebP captures retain native 1080x2400 pixels and were inspected and shared with the owner. RAN: pro-64 adb lists no devices after cleanup, the owned emulator PID is absent and Metro8097 has no listener. Peach was notified that the AVD is released.
 
 Peach integration request: keep source-pinned RN/Expo UI fixtures, native host sizing/lifecycle, IME receiving-window ownership, predictive back and inset semantics explicit. Runnable One entry: `cd tests/native-features && bun run dev --port 8097`, then `adb -s <serial> reverse tcp:8081 tcp:8097` and `bun scripts/one-native-conformance.android.ts --device-id <serial> --package-id dev.vxrn.nativefeatures.tests --metro-port 8097 --suite compose-pickers --artifact-dir <output>`. Build with `bun run prebuild:native --platform android` and `cd android && ./gradlew :app:assembleDebug -PreactNativeArchitectures=arm64-v8a`; install that APK before the runtime command. Oracle: existing `sootsim_pixel_8_android_17_api_37_r06`. This acceptance covers One's picker contract; paired Expo pixel fidelity and the remaining Android API proofs are open.
 
@@ -383,7 +383,7 @@ complete successful Android bundle response before app startup; runner
 timeouts and behavior assertions are unchanged. All full-resolution
 PNG/XML checkpoints remain in primary `runtime-compose-warm-pro128`
 evidence. Native 1080x2400 quality-90 captures and a detail crop were
-inspected and shared with Nate. RAN: adb lists no devices and Metro8097
+inspected and shared with the owner. RAN: adb lists no devices and Metro8097
 has no listener after cleanup.
 
 Next: existing system API acceptance, then media API acceptance and the
@@ -402,7 +402,7 @@ tasks; APK SHA256 is `fc7e029c01282c976d4f882f52b5d4e8ebbd7202f266507f2c37e4c3da
 The Pixel 8/API37 run passes 21 checkpoints through filesystem, Device,
 KeepAwake before/after resume, portrait/landscape orientation locks and
 unlock, and Share completion/cancellation plus error controls. Their
-native-density quality-90 captures were inspected and shared with Nate.
+native-density quality-90 captures were inspected and shared with the owner.
 Full evidence is preserved in primary `runtime-system-pro64` and
 `apk-system` under `tests/native-features/evidence/android-restart-p66065/`.
 
@@ -449,7 +449,7 @@ an activity name, file cancellation and all Share error controls. The saved
 Print checkpoints also pass the focused, rendered PDF precondition and
 cancellation/busy/URI/file/PDF/argument controls. Proof and source receipt
 retain XML, status records and native-density quality-90 WebPs inspected
-and shared with Nate. These fixture and runner repairs are validated;
+and shared with the owner. These fixture and runner repairs are validated;
 native implementations and APK bytes remain unchanged. The outer wait lost
 the peer transcript connection, but the owned execution continued. The
 remaining system sweep and its cleanup receipt are pending. A single
@@ -584,7 +584,7 @@ The synthetic fixture is uninstalled after evidence, the owned emulator and
 Metro are stopped, adb has no devices and the peer tree is clean. This
 unit landed on `v2-beta` as `28097e9d396ac83dc168ba3172d05ccaedad7aed`,
 preserving incoming Crypto work. Four inspected captures were shared with
-Nate. Broad Android API acceptance and Expo
+the owner. Broad Android API acceptance and Expo
 pixel fidelity remain open. Next: resume the existing full system suite on
 the updated beta tree. Delivery CI and canary content verification remain
 with one-ci (s15186).
@@ -1248,7 +1248,7 @@ unchanged JS sources reuse the verified current-beta build outputs.
 Committed proof
 includes the failing callback order, source identities, passing XML/status
 records and quality-90 native-density captures inspected and shared with
-Nate. Native source is restored after the diagnostic probe; the final
+the owner. Native source is restored after the diagnostic probe; the final
 implementation has no probe logs. The owned fixture is removed, emulator
 and Metro stop, and only preserved generated Crypto declarations remain
 in the peer tree. Focused Share acceptance passes; full system/media
@@ -1325,7 +1325,7 @@ stop cleanup, permission-revocation kill record, changed PID and all three
 denied API paths pass. Preserved proof
 contains source/APK identities, every hierarchy/status receipt, service and
 notification dumps, run command and quality-90 native-pixel captures.
-The encoded captures and detail crops were inspected and shared with Nate.
+The encoded captures and detail crops were inspected and shared with the owner.
 
 RAN: `bun release --into ~/contrast --skip-build` installs 17 entries;
 unchanged package sources reuse the verified beast current-beta outputs.
@@ -1362,7 +1362,7 @@ under primary `tests/native-features/evidence/android-restart-p66065/`.
 No native/API work, build or new capability run starts after wind-down.
 Delivery workflows and exact canary artifact verification remain assigned
 to live one-ci (s15186). The remaining media and paired UI scope is parked
-for Nate's revised lane plan, rather than marked complete.
+for the owner's revised lane plan, rather than marked complete.
 
 ## Open API suite, 2026-10-09
 

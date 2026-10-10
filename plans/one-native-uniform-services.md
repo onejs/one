@@ -2,7 +2,7 @@
 
 Owner: s8377 / one-native-android-modules. Assembled review: m19584.
 
-Nate approved moving uniform services to One root, removing their One.iOS aliases.
+The owner approved moving uniform services to One root, removing their One.iOS aliases.
 One.iOS retains existing generated iOS views and framework mappings. No new iOS
 framework wrapper is written to fill a missing mapping.
 

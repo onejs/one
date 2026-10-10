@@ -6,7 +6,7 @@ Date: 2026-10-05.
 
 ## Direction and boundary
 
-Nate, 2026-10-05, as relayed in the assignment: "get One Native to basically launch ready".
+Goal (2026-10-05): get One Native launch ready.
 The services slice covers common Expo packages beyond `@expo/ui`, iOS first and
 Android counterparts second. The broader direction is quoted in
 [One Native coverage](one-native-coverage.md). This is a capability comparison,

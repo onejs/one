@@ -2,7 +2,7 @@
 
 # One native: launch checklist
 
-Nate (2026-10-05, voice, relayed by native-lead p63991): "get One Native to basically launch ready."
+Goal (2026-10-05): get One Native launch ready.
 
 Launch scope is One's own surface: native controls, APIs, the bridge, Android
 support and Peach parity. Third-party libraries a sample app happens to use
@@ -155,12 +155,12 @@ change before they can type on this pool.
 Per `one-native-coverage.md` (export diff against `@expo/ui` 58 canary), every
 `@expo/ui/swift-ui` component and modifier has a One counterpart except:
 
-- [ ] `Chart` with mark children. New public API: waits for Nate on a branch.
-- [ ] `withAnimation` imperative transaction. New public API: waits for Nate.
+- [ ] `Chart` with mark children. New public API: waits for the owner on a branch.
+- [ ] `withAnimation` imperative transaction. New public API: waits for the owner.
 - [ ] `AccessoryWidgetBackground`, `widgetURL`, `widgetAccentedRenderingMode`,
   `activityBackgroundTint`: widget-only, belong with `WidgetUI`.
 
-These are product choices. Launch does not block on them unless Nate says so.
+These are product choices. Launch does not block on them unless the owner says so.
 
 ## 4. Android, web, Peach
 
@@ -216,10 +216,10 @@ production package delivery.
 - [ ] `native-components.mdx` lists every `One.iOS` and `One.UI` family
   (true at 2026-10-05).
 - [ ] `TextInputRef`, `TextInputProps` importable from `one` for typed refs.
-  New root type exports, so it waits for Nate on branch
+  New root type exports, so it waits for the owner on branch
   `tm/one-textinput-ref-types` (`c1076cd6d`).
 
 ## 6. release
 
 - [ ] beta canary content verified by tarball, not version string.
-- [ ] stable `one` 2.0: Nate's word only.
+- [ ] stable `one` 2.0: the owner's word only.

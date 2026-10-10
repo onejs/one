@@ -1,6 +1,6 @@
 # One.UI.Pager proof
 
-Branches: One `one-ui-pager`, Contrast `tm/one-ui-pager`. Nate approved the public API; both land once proven. REVIEW: none, assembled review owns it.
+Branches: One `one-ui-pager`, Contrast `tm/one-ui-pager`. The owner approved the public API; both land once proven. REVIEW: none, assembled review owns it.
 
 RAN: One build and Fabric codegen passed. The generated Android interface
 has distinct `setScrollEnabled` prop and `setScrollEnabledImperatively`

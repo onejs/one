@@ -1,7 +1,7 @@
 # One.UI.Portal and One.UI.Pager
 
 Two uniform components that retire `react-native-teleport` and
-`react-native-pager-view` in One apps. Nate approved this surface on
+`react-native-pager-view` in One apps. The owner approved this surface on
 2026-10-02; they are on v2-beta from 2.0.0-beta.163.1.
 
 With One.Storage (landed, retires `react-native-mmkv`) and `useHeaderHeight`

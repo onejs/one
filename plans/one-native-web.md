@@ -4,7 +4,7 @@ Status: owner approved landing on v2-beta.
 Scope: existing unified browser APIs and the approved Blur/Mask adapters.
 Base: origin/v2-beta. Branch: fix/one-unified-browser-apis.
 
-Nate's scope, 2026-10-04: "We already have enough just making all the native APIs work!!!!!! Plus some unification. Why are you adding now random features?????" and "It's meant to be clean and simple."
+Scope (2026-10-04): make the existing native APIs work plus some unification, kept clean and simple; no new features.
 
 Implement the existing root namespace methods with browser APIs and keep their
 signatures. No npm dependencies or native source changes. Browser effects use
@@ -21,20 +21,20 @@ Evidence: `tests/native-features/evidence/one-native-web/README.md`.
 
 ## Owner correction
 
-2026-10-04, Nate: "I don’t want one native web. That’s literally something I said never should exist. What even is that"
+2026-10-04: the owner does not want a separate One native web product.
 
 The lane stopped while the owner clarified its scope. The worker and branch
 name referred to manager-assigned browser adapters for existing One namespaces.
 No changes were merged into v2-beta or main.
 
-2026-10-04, Nate: "Ok fine then. The unified APIs I guess are fine but only if they aren’t super complex. What is css effects?"
+2026-10-04: the existing unified APIs are acceptable only if they stay simple.
 
 Continue only the existing unified APIs with simple browser implementations.
 No separate browser product or effects system. Review the implementation cost,
 especially converting the existing React-element mask prop into a CSS image.
-The owner subsequently approved landing, as quoted below.
+The owner subsequently approved landing.
 
-2026-10-04, Nate: "Ok fine. These are fine to land then. Just I didn’t want coverage of One.UI but these are ok"
+2026-10-04: these adapters are approved to land; broader One.UI coverage was not wanted.
 
 Land the existing unified APIs and these Blur/Mask adapters on v2-beta. Broader
 One.UI coverage is outside this work. Keep main untouched and keep the current

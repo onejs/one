@@ -7,13 +7,13 @@ Peach's Expo UI coverage belong to other lanes. Work lands on `v2-beta`.
 
 ## gradient direction
 
-Nate's 2026-10-01 decision, recorded in Contrast goals commit `2c8dbf7455`:
+The owner's 2026-10-01 decision, recorded in Contrast goals commit `2c8dbf7455`:
 One's gradient direction is web CSS gradient syntax without gradient-specific
 components. Retire the `one-native-linear-gradient` colors/normalized-points
 proposal. Its branch and native proof are reference material for a web-aligned
 redesign, with no pending approval or landing gate for the old shape. Earlier
 native gradient proof below is historical evidence, not the current API goal.
-Menu-embedded Picker and App Intents remain held for Nate.
+Menu-embedded Picker and App Intents remain held for the owner.
 
 ## Where the gap is
 
@@ -80,7 +80,7 @@ accounts are unavailable).
 
 ## Status
 
-- **RAN, 2026-10-02; API approved by Nate:** branch `menu-picker-land` adds a
+- **RAN, 2026-10-02; API approved by the owner:** branch `menu-picker-land` adds a
   `picker` item to the data-driven `One.iOS.Menu` and `One.iOS.ContextMenu`
   APIs. A focused iPhone 17 Pro/iOS 27.0 run passed 49 checks: in Menu, the
   SwiftUI submenu, checkmarks before and after accepted selection, an ignored
@@ -426,7 +426,7 @@ accounts are unavailable).
   `tests/native-features/build/web-photos-reviewed-proof` directory.
 - **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
   SwiftUI's selected date set, so that API choice stays on a named branch for
-  Nate.
+  the owner.
 - **RAN, 2026-09-26:** the `tab-slot` suite passed on iPhone 17 Pro iOS 27.
   `TabViewSlot` mounted a 50-point interactive bottom accessory above the
   system tab bar; its action reached React before and after switching tabs.

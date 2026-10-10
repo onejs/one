@@ -7,17 +7,15 @@ The governing downstream plan is `plans/contrast/mobile-app/one-native-next.md`.
 The preserved source branch is `tm/mechanical-native`. Its ordinary iOS repair
 already landed on `v2-beta` as `95252a29d`. One main remains held.
 
-Nate, 2026-10-04: use `@sbaiahmed1/react-native-blur` directly for
+The owner, 2026-10-04: use `@sbaiahmed1/react-native-blur` directly for
 "PLATFORM native" effects and "a real iOS progressive blur". Keep the
 existing component and prop surface. "blur should just be behind the composer";
 foreground chrome stays above it by layer order. This direction already lives
 in `packages/one/src/platform/VENDORING.md`.
 
-Nate, 2026-10-05, on the Duo race's top blur: "how come that doesn't look like
-a real IOS progressive blur" and "Shouldn't that be progressive blur? I had
-given a whole library that does it properly with the real iOS API that we were
-supposed to base the One off of." The App Store risk of its private
-`variableBlur` backend went to him the same day as a decision.
+The owner asked, 2026-10-05, for a real iOS progressive blur based on the
+library given for it. The App Store risk of its private `variableBlur` backend
+went to the owner the same day as a decision.
 
 ## ordinary repair delivered
 
@@ -65,7 +63,7 @@ or conceal it with obfuscation. The exact iOS variable-radius requirement
 remains unresolved and preserved. No public route meeting that requirement
 has been established. Do not replace it with another stepped stack, change
 the public API, or delete the existing feature. A final behavior choice belongs
-to Nate. Existing behavior remains until a supported replacement is accepted.
+to the owner. Existing behavior remains until a supported replacement is accepted.
 
 The ordinary upstream `BlurEffectView.swift` uses public UIKit
 `UIVisualEffectView` and `UIViewPropertyAnimator`. Its lifecycle and intensity

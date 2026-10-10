@@ -2,16 +2,15 @@
 
 # One native: launch
 
-Nate's goal: "if you use it with a single package, you basically can build a
-first class amazing app on all the platforms". Web brings its own visuals,
-and the hooks and primitives work there too.
+Goal: with a single package you can build a first class app on every platform.
+Web brings its own visuals, and the hooks and primitives work there too.
 
-Structure (Nate, 2026-10-03): `one-native-manager` (Opus, medium) reviews,
+Structure (the owner, 2026-10-03): `one-native-manager` (Opus, medium) reviews,
 directs and gives feedback. Sol workers build (`codex-sol-high`, or
 `codex-sol-xhigh` for hard work), at most four live. Every change gets a
 cross-model review, assembled per item, never per slice. Visible changes
-reach Nate as before/afters; new public One APIs wait for his OK. One main
-needs Nate's direct word; `v2-beta` takes fixes and betas freely.
+reach the owner as before/afters; new public One APIs wait for his OK. One main
+needs the owner's direct word; `v2-beta` takes fixes and betas freely.
 
 The go/no-go list is `one-native-launch-checklist.md`. Detail lives in the
 existing plans; this file holds the order:
@@ -22,16 +21,16 @@ existing plans; this file holds the order:
 
 ## ranked queue
 
-Ordered by Nate's six axes: works, tested in real apps, speed, coverage,
+Ordered by the owner's six axes: works, tested in real apps, speed, coverage,
 docs, unified primitives.
 
 | rank | item | done means | owner |
 | --- | --- | --- | --- |
-| 1 | Contrast goal 4 | `one-native-next.md` done-means on Contrast main; Widgets hero shared to Nate; Android/browser mount blocker stays with the engine owner | s8153 / contrast-one-native-2 |
+| 1 | Contrast goal 4 | `one-native-next.md` done-means on Contrast main; Widgets hero shared to the owner; Android/browser mount blocker stays with the engine owner | s8153 / contrast-one-native-2 |
 | 2 | real-app matrix | the starter, every `create-one` template and Contrast's mobile template build and run on iOS 27 sim and Android emulator from a clean install of the current beta, each One native API they use exercised once; failures fixed on `v2-beta`; the matrix is a script anyone reruns | s8223 / one-native-realapps |
-| 3 | worklets and Reanimated first class | steps 3 and 4 landed (3b3e99560, reviewed): One's transform owns worklets, Babel fallback removed, faster bundles recorded in `one-native-speed.md`, layout, gesture and runOnUI proven on iOS 27, Android 37 and Chromium. Steps 1, 2 and the step 5 proposal wait for Nate on `feat/native-blessed-packages` (`plans/one-native-worklets-proposal.md`). Open: vxrn engine suite red on HMR timeouts and one source-map assertion, not yet attributed | Nate review |
-| 4 | speed rows | parked by Nate 2026-10-03 ("just leave speed for now"); row states in `one-native-speed.md` (04b32bfe1); unlanded work on `tm/one-native-speed-parked` (5d2a77c49). Android FileSystem, Motion and ImageManipulator (they throw on Android today) move to rank 6 | parked |
-| 5 | unified primitives | background computation (Contrast `packages/contrast-native/src/background`: worklet runtime on native, Web Worker on web) upstreamed as one One primitive on a branch, proven iOS, Android, web with the rally course, shared to Nate; Android OS background tasks recorded as a rank 6 proposal; next candidates from the per-platform survey | s8381 / one-native-background |
+| 3 | worklets and Reanimated first class | steps 3 and 4 landed (3b3e99560, reviewed): One's transform owns worklets, Babel fallback removed, faster bundles recorded in `one-native-speed.md`, layout, gesture and runOnUI proven on iOS 27, Android 37 and Chromium. Steps 1, 2 and the step 5 proposal wait for the owner on `feat/native-blessed-packages` (`plans/one-native-worklets-proposal.md`). Open: vxrn engine suite red on HMR timeouts and one source-map assertion, not yet attributed | The owner review |
+| 4 | speed rows | parked by the owner 2026-10-03; row states in `one-native-speed.md` (04b32bfe1); unlanded work on `tm/one-native-speed-parked` (5d2a77c49). Android FileSystem, Motion and ImageManipulator (they throw on Android today) move to rank 6 | parked |
+| 5 | unified primitives | background computation (Contrast `packages/contrast-native/src/background`: worklet runtime on native, Web Worker on web) upstreamed as one One primitive on a branch, proven iOS, Android, web with the rally course, shared to the owner; Android OS background tasks recorded as a rank 6 proposal; next candidates from the per-platform survey | s8381 / one-native-background |
 | 6 | coverage gaps | Expo UI and Expo modules still imported by our apps or templates, closed by the path the split below assigns | s8377 / one-native-android-modules (Android FileSystem, Motion, ImageManipulator; engine suite attribution); the rest after rank 2 reports |
 | 7 | docs | every shipped One native API has a page with props matching types (drift suite stays green), a hero where the page family has one, and a web behavior note | folded into each item; sweep last |
 
@@ -70,7 +69,7 @@ Manager correction: Contrast needed CPU computation, not OS background schedulin
 still selected executors with `.native.ts` and a hand-written worker entry.
 
 Implementation branches: One `feat/background-computation` off `v2-beta`, Contrast
-`feat/one-background-computation` off `main`. Nate approved the API and migration via share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187 on 2026-10-03. Assembled review: m19584.
+`feat/one-background-computation` off `main`. The owner approved the API and migration via share-file-s8381-044922d32c30da74-1a1045f462d-32c3521720f43187 on 2026-10-03. Assembled review: m19584.
 
 TESTED: real Rally hook on iOS 27, Android 37, Chromium development and production. Contract probes proved worker/worklet runtime identity, latest revision 3, current errors, disposal and hook freshness. SSR creates no worker. Retained outcomes, screenshots, exact scope and repeat commands: `tests/native-features/evidence/background-computation/README.md`.
 
@@ -86,7 +85,7 @@ Shared compiler follow-up: Vite and Contrast use the same portable
 capture globals and Hermes loops before Worklets serialization. m19584 approved
 source `30bcc005b`; compiler `c2a262012` and logical proof commit `6b5302bdc`
 landed on v2-beta. RAN: fresh One/dependency build passed 14 targets and the
-compiler/plugin suite passed 39 tests. Nate directly approved the shared preview
+compiler/plugin suite passed 39 tests. The owner directly approved the shared preview
 item `share-file-s8381-044922d32c30da74-1a104bc4215-cfea721aa21064ad`.
 
 RAN: automatic Release succeeded. Exact npm tarballs
@@ -184,7 +183,7 @@ cost, rather than a package-import count alone.
 | 1 | persistent key/value cache provider | `contrast-mobile/data/zeroKvStore.ts` chooses IndexedDB; `.native.ts` imports Zero's op-sqlite provider. `One.Database` currently throws on web. App restart and cache recovery also split in `data/zeroRecovery*`. | Medium: define persistence, transaction and reset semantics independent of Zero; prove cold reopen and atomic reset on all three platforms. Keep Zero's own protocol in its adapter. |
 | 2 | speech transcription | `contrast-mobile/interface/chat/useComposerSpeech.ts` only provides conformance behavior and an unavailable message; `.native.ts` uses `systemSpeechEngine.native.ts` over `One.Speech`. One's web `Speech.start` throws. | High: browser support and permission policy differ; proposal needs a deliberate unavailable contract and event/session ownership, then real microphone proof. |
 | 3 | app restart | `contrast-mobile/features/ota/appRestart.ts` reloads the page; `.native.ts` chooses One.Updates versus DevSettings. Called by cache/diagnostic/OTA workflows. | Small to medium: one explicit restart operation covering development and staged OTA, with unsaved work semantics. Prove a boot marker changes exactly once without duplicate listeners. |
-| 4 | material blur | `contrast-mobile/interface/effects/BlurView/BlurView.tsx` duplicates intensity/tint CSS mapping; `.native.ts` wraps `One.UI.Blur`. Flights carries the same split. `interface/effects/GradientBlurView.tsx` also branches for Android. | Medium: establish web material rendering and shared prop meanings; compare all three backdrops, then migrate wrappers. Subjective visuals require Nate. |
+| 4 | material blur | `contrast-mobile/interface/effects/BlurView/BlurView.tsx` duplicates intensity/tint CSS mapping; `.native.ts` wraps `One.UI.Blur`. Flights carries the same split. `interface/effects/GradientBlurView.tsx` also branches for Android. | Medium: establish web material rendering and shared prop meanings; compare all three backdrops, then migrate wrappers. Subjective visuals require the owner. |
 | 5 | alpha mask and fade | `templates/app/interface/effects/MaskedFade/MaskedFade.tsx` uses CSS maskImage; `.native.ts` constructs One.UI.Mask with a gradient view. App-empty and flights repeat it. | Medium: shared alpha-mask source and clipping/size contract, with a background-visible negative control. Keep app composition out of One. |
 | 6 | document selection, migration to existing One API | `contrast-mobile/helpers/media/documentPicker.ts` warns and returns null; `.native.ts` uses One.DocumentPicker. One's web implementation already opens a file input and returns blob URLs. | Small: existing API migration, no new primitive needed. Prove cancel and byte reads, and own blob URL lifetime. |
 | 7 | GPU canvas and pointer input | `templates/game/features/scene/SceneCanvas.tsx` uses R3F Canvas; `.native.ts` owns RN WebGPU layout, a canvas shim and PanResponder-to-pointer bridge. Same rendering job, large app-owned adapter. | High: consider a blessed integration before adding public API; prove picking, capture, resize and disposal under real GPU load. |
@@ -214,8 +213,8 @@ cannot provide OS background-launch guarantees.
 
 ## every native API on all three platforms (2026-10-04)
 
-Nate (2026-10-04): "We already have enough just making all the native APIs
-work!!!!!! Plus some unification." Existing signatures only; no API changes.
+Scope (2026-10-04): make the existing native APIs work, plus some unification.
+Existing signatures only; no API changes.
 
 RAN: read every root namespace entry under `packages/one/src/platform`. Of the
 27 root services, Android has Kotlin for FileSystem, ImageManipulator and
@@ -276,16 +275,16 @@ Proposal:
    worklet and `runOnUI` on iOS, Android and web.
 5. One APIs that produce per-frame values hand them to worklets: Pager page
    offset, Motion sensors and keyboard height as shared values, readable on
-   the UI thread with no JS hop. This is new public API and waits for Nate.
+   the UI thread with no JS hop. This is new public API and waits for the owner.
 
-## namespaces (Nate, 2026-10-03)
+## namespaces (the owner, 2026-10-03)
 
 Unified APIs live at the root of `One` (`One.FileSystem`, `One.Motion`, ...),
 never under a platform. `One.iOS` and `One.Android` hold the generated,
 platform-specific API, which is fuller and exact to the platform, never an
 alias of a unified one. s8377 moves the misplaced uniform namespaces up.
 
-## scope (Nate, 2026-10-04)
+## scope (the owner, 2026-10-04)
 
 Done by tomorrow, clean and simple: every native API One ships works on iOS,
 Android and web, plus the unification already decided (unified APIs at the
@@ -382,9 +381,7 @@ Contrast main is on runtime 85 (f41dd86ee3) with One 1791109310273; the root `On
 
 ## beta recovery (2026-10-04)
 
-Nate (2026-10-04): "ok btw last thing can you resume the one-native lanes on one with like a single sol medium manaigng a bunch of muse max? if we didnt do that alrady. same for tamagui was there anything left? getting that green i guess? any other last things to kick off (detched) before we finish"
-
-Nate (2026-10-04): "for tamagui its for v3 beta ofc and one for v2 beta ofc"
+Direction (2026-10-04): resume the One native lanes under one Sol medium manager with Muse Max workers, targeting One v2 beta; Tamagui targets v3 beta.
 
 Delivery manager: p61056 / spring-one-recovery, Sol medium. Target v2-beta. Tamagui has independent manager p61058. No main or stable publication, new look, public API, or unrelated parked work. Operations p60562 owns retained predecessor resources; substantive protected proposal and final gates remain p60786.
 
@@ -404,13 +401,11 @@ Android continuation authors p61888 and p61890 own `~/.worktrees/one-beta-androi
 
 ### staffing clarification (2026-10-04)
 
-Nate: "No you don’t need 5 additional that wasn’t meant for every single lane".
-
-Nate: "Just add as you need but one native could use maybe a few more over time".
+Staffing: no five-worker expansion per lane; add workers as needed, and One native may use a few more over time.
 
 The mandatory five-worker expansion is canceled in `t-muuu1o2d-1ugx0`. No additional model worker was launched for it. Existing Android system and media authors and the public validator continue. Add help only for a concrete remaining bottleneck, with disjoint source ownership and the current review gates. One focused Sol high worker on Pro64 will take the held ProtectedStore design research so the system author can stay on its ten approved services; native implementation remains held until its supported design is approved. ScreenCapture corrected design remains with the system author.
 
-Nate reporting direction relayed by operations: "Please tell managers I do expect some updates via tm share. One per hour is reasonable". Share verified results and remaining acceptance directly from this manager while actively working; do not create hourly polling or wake loops.
+Managers share verified results via tm share, about one per hour, while actively working; do not create hourly polling or wake loops.
 
 ### delivery and required CI (2026-10-05 UTC)
 

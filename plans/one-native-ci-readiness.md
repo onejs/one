@@ -1,7 +1,6 @@
 # Native launch CI and starter readiness
 
-Nate, 2026-10-05, as quoted in the native-lead assignment: "get One Native to
-basically launch ready".
+Goal (2026-10-05): get One Native launch ready.
 
 This lane owns build gates, coverage reporting, and the Basic starter's run
 instructions. Native-lead coordinates delivery. Android Compose coverage and

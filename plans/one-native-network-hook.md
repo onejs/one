@@ -4,7 +4,7 @@ Owner: `p67085 / one-native-ready`. CI and delivery: `p67014`.
 Landing branch: `tm/one-native-network-ready`, based on rewritten v2-beta
 `2611d1957`. Original proof branch: `tm/one-native-network-proof`.
 
-Nate, 2026-10-07: "One native should be its own lane yes ... Just making it ready definitely."
+Direction (2026-10-07): One native is its own lane, focused on making it ready.
 
 RAN controlled React hook runtime before repair: an offline native listener
 event changed the hook to `none/false/false`, then a delayed initial read

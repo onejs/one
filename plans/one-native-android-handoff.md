@@ -1,6 +1,6 @@
 # One Android close-out, 2026-10-07
 
-Stopped at Nate's wind-down request, relayed by coordinator. No new run or
+Stopped at the owner's wind-down request, relayed by coordinator. No new run or
 capability starts. Broad goal remains Android first-class: One native UI
 matches Expo on Android, then Android native APIs. Detailed result and
 source-pinned Pixel 8/API37 entry: [lane plan](one-native-android-lane.md).
@@ -24,7 +24,7 @@ and window capture/delete/unsubscribe/resume. Proofs are in
 RAN: beast builds and 158 Compose/documentation tests pass; changed Android
 targets compile. Local release installs 17 package entries into Contrast,
 native bytes match and immediate downstream manifest/lock bytes remain.
-Quality-90 native-pixel captures and detail crops inspected/shared with Nate.
+Quality-90 native-pixel captures and detail crops inspected/shared with the owner.
 
 Working branch was `tm/one-native-android-location-ready`; all source pushed.
 Auxiliary `tm/one-native-android-build-outputs` at `8172ae63e` preserves
@@ -43,7 +43,7 @@ CI delivery owner: live one-ci (s15186), assigned by coordinator. Required
 Release, Checks and Tests, Android Native Build and exact canary content
 verification remain its delivery work; a canary is not a test verdict.
 
-Remaining work waits for Nate's new plan: post-land contacts/calendar/photo/
+Remaining work waits for the owner's new plan: post-land contacts/calendar/photo/
 audio runtime, remaining focused Compose suites, paired Expo UI pixels and
 host sizing/lifecycle, IME window ownership, predictive back and insets.
 No enrolled-biometric success or actual recording/screenshot-event delivery

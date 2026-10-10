@@ -29,7 +29,7 @@ content-sized layout engine.
 
 ## Expo UI component parity (2026-10-05)
 
-Nate, 2026-10-05: "lets ensure one-native is moving along i imagine theres a lot still to cover for general parity with expo-ui and the msot popular expo packages plus full compose/swiftui coverage, not to mention then the peach conformance for all that".
+Goal (2026-10-05): general parity with Expo UI and the most popular Expo packages, full Compose and SwiftUI coverage, and Peach conformance for all of it.
 
 **RAN** (export diff of `@expo/ui@58.0.0-canary-20260909-ea7a89a` against `One.iOS` and `One.Compose` at v2-beta e5cd3d60a): each Expo UI component and its One counterpart. Peach visual grades for `Swift.*` live in Contrast's `plans/peach/conformance/swiftui-surface-inventory.md`; this table only records whether a counterpart exists.
 

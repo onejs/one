@@ -54,7 +54,7 @@ The exclusive reservation released when the runner exited.
 
 ## parked speed lane
 
-Stopped at Nate's request. Save branch: `tm/one-native-speed-parked`, commit
+Stopped at the owner's request. Save branch: `tm/one-native-speed-parked`, commit
 `5d2a77c495860e458f64a182936ea3aaf39add6a`, based on `fcdfa011a`.
 No native implementation from this lane landed on `v2-beta`. The unchanged
 Database and Pager rows above retain their existing evidence.

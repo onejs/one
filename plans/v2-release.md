@@ -1,7 +1,7 @@
 <!-- plan: status=active owner=m18386 reviewed=2026-10-01 -->
 # One v2 release
 
-State: the documentation run is complete. The approved stable post and prepared One 2.6.0 version are on [PR #795](https://github.com/onejs/one/pull/795), still awaiting Nate's main merge. Publication requires full Checks at the resulting exact main SHA before `release=republish`. The post remains a draft. Successor s9039 / one-tamagui-launch-2 reconciled the launch gates on 2026-10-04; coordinator m18386 owns the remaining owner actions. The original documentation validation below is historical.
+State: the documentation run is complete. The approved stable post and prepared One 2.6.0 version are on [PR #795](https://github.com/onejs/one/pull/795), still awaiting the owner's main merge. Publication requires full Checks at the resulting exact main SHA before `release=republish`. The post remains a draft. Successor s9039 / one-tamagui-launch-2 reconciled the launch gates on 2026-10-04; coordinator m18386 owns the remaining owner actions. The original documentation validation below is historical.
 
 ## Successor reconciliation, 2026-10-04
 
@@ -46,7 +46,7 @@ That branch is superseded. No cherry-pick or portal API work remains.
 
 **RAN:** `tamagui/bento` is still private. The predecessor's handoff records
 the prepared plain-repository branch `tm/launch-plain-repo-main` at `345821a`;
-Nate must choose visibility and landing. No visibility change was made.
+the owner must choose visibility and landing. No visibility change was made.
 
 **RAN:** Railway `whoami` on pro-64 returns
 `Unauthorized. Please run railway login again.` The required owner command,
@@ -61,7 +61,7 @@ HTTP 503 with `DELIVERY NOT CONFIRMED`; it was not repeated. Tool defect
 `t-mutglyo0-3660` records that transport failure.
 
 Remaining owner gates: Railway access and site deployment, consumer branch
-landing, Bento visibility, and Nate's One main merge followed by exact-main CI
+landing, Bento visibility, and the owner's One main merge followed by exact-main CI
 and stable publication. Neither goals row is declared shipped. Coordinator
 m18386 owns release monitoring; the successor task records the documentation
 commit and expected Checks/Release workflows for pull.
@@ -71,7 +71,7 @@ commit and expected Checks/Release workflows for pull.
 - Complete `apps/onestack.dev/data/blog/version-two.mdx` from git history since the v1 beta and the existing plans/docs, in plain prose.
 - Add one coherent One Native documentation section in `apps/onestack.dev/data/docs`, covering setup, shipped components and APIs, and platform notes. Verify samples against exported API. Do not document the pending linear-gradient, menu-picker, or App Intents decisions.
 - Inspect the release pipeline without executing it. Record concrete blockers and distinguish existing evidence from checks still needed.
-- Build onestack.dev and capture the rendered blog and one docs page with headless Playwright. Get one independent review by a different model. Share the rendered post once for Nate to read before publication.
+- Build onestack.dev and capture the rendered blog and one docs page with headless Playwright. Get one independent review by a different model. Share the rendered post once for the owner to read before publication.
 - Commit and push only this lane's work to `v2-beta`; no One main changes, npm publishing, release dispatch, or release tags. Finish once with this plan as the handoff.
 
 ## Previous state and source
@@ -89,7 +89,7 @@ Read `.github/workflows/release.yml`, `.github/workflows/checks.yml`, `scripts/r
 - Publishing installs frozen dependencies, audits security, builds packages, stages workspace versions and repository metadata in temporary package copies, excludes private/skipPublish packages, and publishes using npm 12 trusted publishing with `id-token: write`. It verifies every pending version through the registry, polling for up to 30 minutes. A green process exit alone is insufficient.
 - Existing clean-publish evidence: Release [36858702104](https://github.com/onejs/one/actions/runs/36858702104) succeeded on source `580018fff`; full Checks [36856366021](https://github.com/onejs/one/actions/runs/36856366021) also succeeded. This evidence belongs to that source, not the upcoming documentation commit.
 - The previous source `1379951b4` had failed Checks and Release; `580018fff` repaired the Android test mock and published successfully. Do not reopen that resolved failure.
-- Blockers for the stable launch: Nate's merge of PR #795, successful exact-main Checks, then publication of the prepared version with `release=republish`. The predecessor recorded Nate's approval of the stable 2.6.0 decision and post copy. This does not authorize this agent to merge or push One main. Trusted-publisher configuration and registry acceptance have successful beta/canary evidence; stable publication still needs its own verification.
+- Blockers for the stable launch: the owner's merge of PR #795, successful exact-main Checks, then publication of the prepared version with `release=republish`. The predecessor recorded the owner's approval of the stable 2.6.0 decision and post copy. This does not authorize this agent to merge or push One main. Trusted-publisher configuration and registry acceptance have successful beta/canary evidence; stable publication still needs its own verification.
 - The stable `patch`/`minor`/`major` workflow paths still try to push to protected main, and the script's default bump builds a `1.*` version. They are not a v2 stable path. A stable v2 needs an owner-approved version bump landed through One's protected-main workflow, followed by the documented republish path. Outside this bounded beta-docs run.
 
 ## Validation and review
@@ -102,16 +102,16 @@ Read `.github/workflows/release.yml`, `.github/workflows/checks.yml`, `scripts/r
 - History reviewed includes `origin/v1-rc1..HEAD` (the existing post's v1 RC baseline), the existing v1/v2 posts and their landed audits, and native lane plans. Those plans include proposals and old requirements; shipped source takes precedence.
 - Final site build passed under the studio-64 builder guardian (exit 0, released true), generating 166 pages. Synced incoming sheet controls at `ad49ad3a2`; they change no new sample signature and their updated existing reference remains linked.
 - Playwright used the installed Chromium headless shell 1228 (the site's Playwright dependency expected an absent 1208 binary). All six requested/new routes returned HTTP 200, had their expected title and substantial content, and produced full-page screenshots. There were no page exceptions or document horizontal overflows. Blog and setup also passed at 390x844. Browser closed in `finally`.
-- Captures and rendered PDF: `/Users/n8/Library/Caches/one-v2-docs-evidence/`; `render-checks.json` records every route and result. The rendered PDF preserves the entire post for Nate to read after the server stops. These files were included in the one final share; no test image is committed.
+- Captures and rendered PDF: `/Users/n8/Library/Caches/one-v2-docs-evidence/`; `render-checks.json` records every route and result. The rendered PDF preserves the entire post for the owner to read after the server stops. These files were included in the one final share; no test image is committed.
 - Independent review by GPT-6-astra of named commit `d35767f78` returned one P2 and GO after fixing it: Expo-free existing apps must install the community template before `one prebuild`. `native-setup.mdx` now explicitly installs template 0.87.1 and CLI 20.2.0, matching the native example and prebuild's dependency guard, and links the full peer dependency list. No other blocking finding or important scope omission; all five requested screenshots were reviewed with no visible layout defects. Samples and links passed again after the fix. The site TypeScript check (`bun run typecheck` from onestack.dev) also passed. The prerequisite fix was rebuilt and all six routes recaptured successfully; desktop and mobile setup screenshots include it.
 
 ## Handoff
 
 - Main documentation commit: `d35767f78`; the follow-up commit adds the reviewed setup prerequisites and this completed handoff. Both go to `origin/v2-beta` through `git push origin HEAD:v2-beta`.
-- One rendered-post share: `share-folder-s4827-236309ae3deddb7b-1a0f7c698b9-90fc1e0145b18a09`, titled **One v2: rendered draft for Nate**. Open `one-v2-beta-rendered.pdf` for the full post. One owner alert requested the read-through before publication or release. The post remains `draft: true`.
+- One rendered-post share: `share-folder-s4827-236309ae3deddb7b-1a0f7c698b9-90fc1e0145b18a09`, titled **One v2: rendered draft for the owner**. Open `one-v2-beta-rendered.pdf` for the full post. One owner alert requested the read-through before publication or release. The post remains `draft: true`.
 - The detached worktree at `~/.worktrees/one-v2-docs` is left clean and pushed for handoff. Original `~/one` branch and salvage are preserved. Canonical plan is `plans/v2-release.md` on `origin/v2-beta`, available locally in that worktree. No Contrast changes were made by this lane.
 - Browser closed, builder process groups released, and the production preview server stopped. To reproduce the preview: `cd ~/.worktrees/one-v2-docs/apps/onestack.dev && bun run serve --host 127.0.0.1 --port 3917`, then open `/blog/version-two` or `/docs/native-overview`.
-- This run leaves release execution, Nate's reading/publication decision, and the new exact-SHA full CI gate open. Prior publish evidence is recorded above; it is not a release of the new docs.
+- This run leaves release execution, the owner's reading/publication decision, and the new exact-SHA full CI gate open. Prior publish evidence is recorded above; it is not a release of the new docs.
 
 ## Follow-up opportunities
 
