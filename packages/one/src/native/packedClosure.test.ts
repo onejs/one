@@ -43,6 +43,36 @@ function packToDir(packageDir: string, outDir: string): string {
   return tarball
 }
 
+// packs each package and every workspace package it depends on, so a consumer
+// installs the release closure itself and never an older or missing npm version
+function packWorkspaceClosure(packageDirs: string[], outDir: string) {
+  const workspaces = new Map<string, string>()
+  for (const entry of readdirSync(workspaceRoot, { withFileTypes: true })) {
+    const packageDir = join(workspaceRoot, entry.name)
+    const manifestPath = join(packageDir, 'package.json')
+    if (!entry.isDirectory() || !existsSync(manifestPath)) continue
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+    workspaces.set(manifest.name, packageDir)
+  }
+
+  const tarballs: Record<string, string> = {}
+  const pending = [...packageDirs]
+  for (const packageDir of pending) {
+    const manifest = JSON.parse(readFileSync(join(packageDir, 'package.json'), 'utf8'))
+    if (tarballs[manifest.name]) continue
+    tarballs[manifest.name] = packToDir(packageDir, outDir)
+    for (const name of Object.keys({
+      ...manifest.dependencies,
+      ...manifest.optionalDependencies,
+      ...manifest.peerDependencies,
+    })) {
+      const dependencyDir = workspaces.get(name)
+      if (dependencyDir) pending.push(dependencyDir)
+    }
+  }
+  return tarballs
+}
+
 function unpack(tarball: string, destDir: string): string {
   mkdirSync(destDir, { recursive: true })
   execFileSync('tar', ['-xzf', tarball, '-C', destDir])
@@ -198,10 +228,10 @@ console.log('one/native ok ' + url);
     const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-metro-')))
     const tarballs = join(tmp, 'tarballs')
     mkdirSync(tarballs)
-    const oneTarball = packToDir(oneDir, tarballs)
-    const vxrnTarball = packToDir(vxrnDir, tarballs)
-    const metroPluginTarball = packToDir(vitePluginMetroDir, tarballs)
-    const utilsTarball = packToDir(utilsDir, tarballs)
+    const packedClosure = packWorkspaceClosure(
+      [oneDir, vxrnDir, vitePluginMetroDir, utilsDir],
+      tarballs
+    )
     const appDir = join(tmp, 'app')
     mkdirSync(join(appDir, 'app'), { recursive: true })
     writeFileSync(join(appDir, '.watchmanconfig'), '{}\n')
@@ -213,10 +243,10 @@ console.log('one/native ok ' + url);
           private: true,
           type: 'module',
           dependencies: {
-            one: `file:${oneTarball}`,
-            vxrn: `file:${vxrnTarball}`,
-            '@vxrn/vite-plugin-metro': `file:${metroPluginTarball}`,
-            '@vxrn/utils': `file:${utilsTarball}`,
+            one: `file:${packedClosure.one}`,
+            vxrn: `file:${packedClosure.vxrn}`,
+            '@vxrn/vite-plugin-metro': `file:${packedClosure['@vxrn/vite-plugin-metro']}`,
+            '@vxrn/utils': `file:${packedClosure['@vxrn/utils']}`,
             react: '19.2.3',
             'react-native': '0.87.1',
             'react-native-web': '^0.21.2',
@@ -224,11 +254,12 @@ console.log('one/native ok ' + url);
             metro: '^0.87.0',
             'metro-config': '^0.87.0',
           },
-          overrides: {
-            vxrn: `file:${vxrnTarball}`,
-            '@vxrn/vite-plugin-metro': `file:${metroPluginTarball}`,
-            '@vxrn/utils': `file:${utilsTarball}`,
-          },
+          overrides: Object.fromEntries(
+            Object.entries(packedClosure).map(([name, tarball]) => [
+              name,
+              `file:${tarball}`,
+            ])
+          ),
         },
         null,
         2
@@ -275,6 +306,14 @@ export default function App() {
 
     const installedNames = getInstalledPackageNames(join(appDir, 'node_modules'))
     expect(findForbiddenDependencies(installedNames)).toEqual([])
+    for (const [name, tarball] of Object.entries(packedClosure)) {
+      const installedDir = realpathSync(join(appDir, 'node_modules', name))
+      expect(installedDir.startsWith(`${appDir}/node_modules/`)).toBe(true)
+      const packedDir = unpack(tarball, join(tmp, 'expected', name))
+      expect(
+        JSON.parse(readFileSync(join(installedDir, 'package.json'), 'utf8'))
+      ).toEqual(JSON.parse(readFileSync(join(packedDir, 'package.json'), 'utf8')))
+    }
 
     const resolutionScript = `
 import { createRequire } from 'node:module'
