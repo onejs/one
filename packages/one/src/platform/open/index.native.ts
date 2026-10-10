@@ -5,8 +5,10 @@ export type { OpenShareContent } from './types'
 
 // native entry: react native's own Linking and Share modules, so the os
 // routes the url and presents its share sheet.
-function openURL(url: string): Promise<void> {
-  return Linking.openURL(url)
+// react native resolves openURL, and openSettings on android, with true;
+// these await it so every platform resolves void, as web does
+async function openURL(url: string): Promise<void> {
+  await Linking.openURL(url)
 }
 
 async function openShare({ title, message, url }: OpenShareContent): Promise<void> {
@@ -21,8 +23,8 @@ async function openShare({ title, message, url }: OpenShareContent): Promise<voi
   await Share.share({ title, message: text })
 }
 
-function openSettings(): Promise<void> {
-  return Linking.openSettings()
+async function openSettings(): Promise<void> {
+  await Linking.openSettings()
 }
 
 export const Open = Object.freeze({ openURL, openShare, openSettings })

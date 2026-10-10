@@ -469,10 +469,9 @@ export default function Services() {
           void run(
             'One.openURL',
             async () => {
-              // native Linking resolves true on an accepted handoff; the
-              // destination and return are proven by the runner.
-              const result: unknown = await One.openURL('https://onestack.dev')
-              assert(result === true, 'openURL must resolve true', result)
+              // the destination and return are proven by the runner.
+              const result = await One.openURL('https://onestack.dev')
+              assert(result === undefined, 'openURL must resolve void', result)
               return result
             },
             'observed',
