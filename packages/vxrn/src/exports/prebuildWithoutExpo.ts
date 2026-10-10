@@ -3045,7 +3045,7 @@ async function generateSwiftPackages({ root, dest }: { root: string; dest: strin
       FSExtra.mkdirSync(path.dirname(link), { recursive: true })
       FSExtra.symlinkSync(FSExtra.realpathSync(source), link)
     }
-    if (contracts.some((contract) => contract.modules.length > 0)) {
+    if (artifacts.glue) {
       FSExtra.writeFileSync(
         path.join(podDir, 'Sources', 'OneNativeSource.generated.swift'),
         artifacts.glue

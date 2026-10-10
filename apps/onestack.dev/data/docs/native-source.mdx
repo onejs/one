@@ -73,27 +73,53 @@ dependencies instead.
 
 ## Swift views
 
-The package's `@main` type is the default export of its file when it conforms
-to `PeachPackage`. The element's props arrive as `JSON`:
+A `public struct` that conforms to `View` becomes a named React component. Its
+stored properties are the props, and a closure property is a callback:
 
 ```swift
 // native/Showcase/Level.swift
 import SwiftUI
 
-@main struct Level: PeachPackage {
-  func view(props: JSON) -> some View {
-    Gauge(value: props["value"]?.doubleValue ?? 0) { Text("Level") }
-      .gaugeStyle(.accessoryCircularCapacity)
+public struct Level: View {
+  let value: Double
+  let onChange: (Double) -> Void
+
+  public var body: some View {
+    Slider(value: Binding(get: { value }, set: onChange))
   }
 }
 ```
 
 ```tsx
-import Level from './native/Showcase/Level.swift'
+import { Level } from './native/Showcase/Level.swift'
 
-export function Meter({ value }: { value: number }) {
-  return <Level value={value} />
+<Level value={value} onChange={setValue} />
+```
+
+The view is built through its memberwise initializer, so it has no `init` of
+its own. A property that already has a value, such as `@State private var
+dragging = false`, stays the view's own. A property typed `T?` is an optional
+prop, and a `var` may only default to `nil`. `@Binding` is not a prop; take a
+value and a callback instead. Views that are not `public` stay inside the
+package.
+
+### A package as one view
+
+The package's `@main` type is the default export of its file when it conforms
+to `PeachPackage`. The element's props arrive as untyped `JSON`:
+
+```swift
+@main struct Badge: PeachPackage {
+  func view(props: JSON) -> some View {
+    Text(props["title"]?.stringValue ?? "")
+  }
 }
+```
+
+```tsx
+import Badge from './native/Badge/Badge.swift'
+
+<Badge title="new" />
 ```
 
 A package has at most one `@main` type. A whole SwiftUI app
@@ -158,9 +184,10 @@ These types cross the boundary as JSON:
 | `T?` | `T?` | `T \| null` |
 | `Void` | `Unit` | `void` |
 
-Integer arguments must be whole numbers in range, and `Long` results must fit
-in JavaScript's safe integer range. Overloads, generics, default arguments and
-static methods are rejected with the file and line.
+These types also cross as view props and callback arguments. Integer arguments
+must be whole numbers in range, and `Long` results must fit in JavaScript's
+safe integer range. Overloads, generics, default arguments and static methods
+are rejected with the file and line.
 
 The declaration sits beside the source as `Device.d.swift.ts` or
 `Device.d.kt.ts`. The dev server and `one prebuild` rewrite it whenever they
@@ -175,7 +202,8 @@ web implementation in TypeScript:
 
 ```
 features/native/device.ios.tsx      export { Device } from '../../native/Showcase/Device.swift'
-features/native/device.android.ts   export { Device } from '../../native/Device.kt'
+                                    export { Level } from '../../native/Showcase/Level.swift'
+features/native/device.android.ts   export { Device, Level } from '../../native/Device.kt'
 features/native/device.tsx          export const Device = { ... }  // web
 ```
 

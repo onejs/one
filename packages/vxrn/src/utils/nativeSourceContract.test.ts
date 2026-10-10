@@ -120,6 +120,70 @@ fun helper(x: Int) = x`
     ).toThrow(/must return Unit/)
   })
 
+  it('imports public Swift views as typed components with callbacks', () => {
+    const contract = nativeSourceContract(
+      '/app/native/Level.swift',
+      `import SwiftUI
+public struct Level: View {
+  let value: Double
+  var caption: String? = nil
+  let onChange: (Double) -> Void
+  let onReset: (() -> Void)?
+  @State private var dragging = false
+  @Environment(\\.colorScheme) var scheme
+  private let step = 0.1
+  static let shared = 1
+  var body: some View { Text("level") }
+}
+struct Helper: View {
+  let anything: Int
+  var body: some View { EmptyView() }
+}`
+    )
+    expect(contract.views).toEqual([
+      {
+        name: 'Level',
+        props: [
+          { name: 'value', type: 'number', nativeType: 'Double', optional: false, callback: null },
+          { name: 'caption', type: 'string | null', nativeType: 'String?', optional: true, callback: null },
+          { name: 'onChange', type: '(value0: number) => void', nativeType: '(Double)->Void', optional: false, callback: [{ type: 'number', nativeType: 'Double' }] },
+          { name: 'onReset', type: '(() => void) | null', nativeType: '(()->Void)?', optional: true, callback: [] },
+        ],
+      },
+    ])
+    const glue = renderSwiftSourceGlue('rn_host_app', [contract]).source
+    expect(glue).toContain('@objc(OneNativeSourceViews_rn_host_app) @MainActor public final class OneNativeSourceViews_rn_host_app: NSObject, OneNativeSourceViewDispatch')
+    expect(glue).toContain('value: try decode(props["value"] ?? missing("props.value"), as: Double.self),')
+    expect(glue).toContain('onReset: (props["onReset"] as? Bool) == true ? { () -> Void in emit("onReset", args([])) } : nil')
+
+    const temp = mkdtempSync(join(tmpdir(), 'one-native-source-views-'))
+    writeFileSync(join(temp, 'Level.d.swift.ts'), contract.declaration)
+    writeFileSync(join(temp, 'tsconfig.json'), JSON.stringify({
+      compilerOptions: { strict: true, noEmit: true, allowArbitraryExtensions: true, module: 'esnext', moduleResolution: 'bundler', types: [] },
+      include: ['use.ts'],
+    }))
+    writeFileSync(join(temp, 'react.d.ts'), "declare module 'react' { export interface ReactElement {} }")
+    writeFileSync(join(temp, 'use.ts'), `/// <reference path="./react.d.ts" />
+import { Level } from './Level.swift'
+Level({ value: 1, onChange: (next: number) => void next, onReset: null })
+Level({ value: 'wrong', onChange: () => {} })
+`)
+    // one compilation must accept the valid element and reject only the wrong prop.
+    const badProp = spawnSync(process.execPath, [tsc, '-p', temp], { encoding: 'utf8' })
+    expect(badProp.stdout.match(/error TS\d+:/g)).toEqual(['error TS2322:'])
+
+    for (const [source, message] of [
+      ['public struct Bad: View {\n  @Binding var value: Double\n  var body: some View { EmptyView() }\n}', /Bad\.swift:2:.*@Binding value in view Bad needs a value/],
+      ['public struct Bad: View {\n  private let value: Double\n  var body: some View { EmptyView() }\n}', /Bad\.swift:2:.*private value in view Bad needs a value/],
+      ['public struct Bad: View {\n  var count: Int = 1\n  var body: some View { EmptyView() }\n}', /Bad\.swift:2:.*may only default to nil/],
+      ['public struct Bad: View {\n  let value: Int\n  init(value: Int) { self.value = value }\n  var body: some View { EmptyView() }\n}', /Bad\.swift:3:.*memberwise initializer/],
+      ['public struct Bad<T>: View {\n  var body: some View { EmptyView() }\n}', /Bad\.swift:1:.*generic view Bad/],
+      ['public struct Bad: View {\n  let onTap: () -> Int\n  var body: some View { EmptyView() }\n}', /must return Void/],
+    ] as const) {
+      expect(() => nativeSourceContract('/app/native/Bad.swift', source)).toThrow(message)
+    }
+  })
+
   it('keeps the objc dispatch class off wasi, whose sdk mirrors objectivec', () => {
     const contract = nativeSourceContract(
       '/app/native/Audio.swift',

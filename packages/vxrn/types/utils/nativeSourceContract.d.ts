@@ -43,9 +43,10 @@ export interface SwiftPackageArtifacts {
     hash: string;
     files: Record<string, string[]>;
     modules: Record<string, string[]>;
+    views: Record<string, string[]>;
     defaultViewFiles: string[];
     contracts: NativeSourceContract[];
-    glue: string;
+    glue: string | null;
 }
 export declare function nativeSourceContract(file: string, source: string): NativeSourceContract;
 export declare function kotlinSourceId(root: string, file: string): string;
