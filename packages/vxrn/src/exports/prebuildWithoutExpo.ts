@@ -2964,9 +2964,21 @@ export async function generateKotlinSources({ root, dest }: { root: string; dest
   // breaks :app:compileDebugKotlin when two preserved copies declare one class.
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts', 'evidence'])
   const sources: string[] = []
+  const manifest = FSExtra.existsSync(path.join(root, 'package.json'))
+    ? FSExtra.readJsonSync(path.join(root, 'package.json'))
+    : {}
+  const workspacePatterns: string[] = Array.isArray(manifest.workspaces)
+    ? manifest.workspaces
+    : manifest.workspaces?.packages ?? []
+  const { default: glob } = await import('fast-glob')
+  const workspaceRoots = new Set(glob.sync(workspacePatterns, {
+    cwd: root, absolute: true, onlyDirectories: true,
+    ignore: ['**/node_modules/**', '**/ios/**', '**/android/**'],
+  }).map((directory) => path.resolve(directory)))
   const collect = (dir: string) => {
-    // nested javascript packages own their native sources, including fixtures.
-    if (dir !== root && FSExtra.existsSync(path.join(dir, 'package.json'))) return
+    // declared workspace packages belong to this build; other nested packages
+    // own their sources and fixtures.
+    if (dir !== root && FSExtra.existsSync(path.join(dir, 'package.json')) && !workspaceRoots.has(dir)) return
     for (const entry of FSExtra.readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || skip.has(entry.name)) continue
       const source = path.join(dir, entry.name)
