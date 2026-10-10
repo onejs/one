@@ -1,5 +1,21 @@
 # One native Android lane
 
+## LaunchScreen receipt, 2026-10-09
+
+TESTED: `w-ba3cd7` passes Android `launch-screen`, six checks; explicit early
+release makes the held-pixel assertion fail; restored launch passes six.
+The existing proof setup calls preventAutoHide before render. Accessibility
+proves Home has rendered while the display's central region remains black.
+Explicit hide reveals light app pixels and the fixture; subsequent navigation
+and a second hide remain live. The same pixel region must be at least 99%
+black while held and 99% light after release. No native One repair was needed.
+
+RAN: the existing flat Pixel 8/API37 r06 uses the accepted APK and
+`ONE_NATIVE_LAUNCH_SCREEN_PROOF=1`. PNG/XML/check receipts and pass/fail/restored
+logs remain at `/tmp/one-android-hooks-m28192/launch-accepted/` on air-32;
+the earlier observation captures remain in `launch-probe/`. Metro8098 and the
+owned emulator stop after the run. CI owner: s23249.
+
 ## DocumentPicker receipt, 2026-10-09
 
 TESTED: `w-941983` passes Android `document-picker`, sixteen checks; a seed

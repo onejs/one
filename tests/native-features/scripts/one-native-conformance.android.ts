@@ -36,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker' | 'launch-screen'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker|launch-screen --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -1724,6 +1724,51 @@ async function run(config: Config) {
     ])
   }
 
+  const launchScreen = async () => {
+    // the proof setup calls preventAutoHide before react's first render.
+    // android exposes that render to accessibility while pre-draw stays held.
+    const ready = await expect('launch-screen-content-ready-under-hold', (nodes) =>
+      exactlyOneId(nodes, 'home-screen') && textIncludes(nodes, 'One Native Test Suite'))
+    const viewport = applicationBounds(ready.nodes)
+    const probe = path.join(config.artifactDir, 'launch-screen-current.png')
+    const pixels = (dark: boolean) => {
+      writeFileSync(probe, adbBytes(config, ['exec-out', 'screencap', '-p']))
+      const image = readPng(probe)
+      const left = Math.ceil(viewport.left + (viewport.right - viewport.left) * 0.2)
+      const right = Math.floor(viewport.right - (viewport.right - viewport.left) * 0.2)
+      const top = Math.ceil(viewport.top + (viewport.bottom - viewport.top) * 0.2)
+      const bottom = Math.floor(viewport.bottom - (viewport.bottom - viewport.top) * 0.2)
+      if (left < 0 || top < 0 || right > image.width || bottom > image.height || right <= left || bottom <= top)
+        throw new Error('Launch screen pixel region is outside the display')
+      let matchingPixels = 0
+      for (let y = top; y < bottom; y++) for (let x = left; x < right; x++) {
+        const offset = (y * image.width + x) * 4
+        const channels = [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
+        if (channels.every((value) => dark ? value <= 8 : value >= 200)) matchingPixels++
+      }
+      return matchingPixels / ((right - left) * (bottom - top)) >= 0.99
+    }
+    const hide = () => adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config),
+      '-a', 'android.intent.action.VIEW', '-d',
+      'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide'])
+    if (config.negativeControl) {
+      hide()
+      await expect('launch-screen-premature-release-visible', (nodes) =>
+        textIncludes(nodes, 'Launch screen fixture: visible') && pixels(false))
+    }
+    await expect('launch-screen-prevent-auto-hide-holds-pixels', () => pixels(true))
+    hide()
+    await expect('launch-screen-explicit-hide-reveals-content', (nodes) =>
+      textIncludes(nodes, 'Launch screen fixture: visible') && textIncludes(nodes, 'Hide again: false') && pixels(false))
+    pressBack(config)
+    await expect('launch-screen-home-after-release', (nodes) => exactlyOneId(nodes, 'home-screen'))
+    await tapNavigation(config, 'nav-one-native-launch-screen')
+    await expect('launch-screen-fixture-mounted', (nodes) => textIncludes(nodes, 'Hide again: false'))
+    tapFresh(config, 'Hide launch screen again', { id: 'one-native-launch-screen-hide-again' })
+    await expect('launch-screen-hide-is-idempotent', (nodes) =>
+      textIncludes(nodes, 'Hide again: true') && pixels(false))
+  }
+
   const documentPicker = async () => {
     type Asset = { uri: string; name: string; mimeType: string; size: number; fetched: number }
     const runId = Date.now().toString(36)
@@ -2589,6 +2634,12 @@ async function run(config: Config) {
     requireMetroReverse(config)
     stampDebugHost(config)
     relaunchApp(config)
+
+    if (config.suite === 'launch-screen') {
+      await launchScreen()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
 
     await expect(
       'app-mounted',

@@ -216,7 +216,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Notifications` | notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share | OneNativeBehavioralLibraryCase | Android setString and getString proven only through the share suite Copy check; no Android clipboard suite |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
-| `One.LaunchScreen` | launch-screen | missing | OneNativeLaunchScreenLibraryCase | Android suite missing |
+| `One.LaunchScreen` | launch-screen | launch-screen | OneNativeLaunchScreenLibraryCase |  |
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
