@@ -55,8 +55,6 @@ const partialGaps: Record<string, string> = {
     'bounded iOS cover-sheet scalar/JSX and expanded JSX Island fixture; Android supported rendering, compact/minimal, scalar Island and hardware-lock unproven; root/aggregate unaccepted',
   'iOS.WidgetUI':
     'bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted',
-  Clipboard:
-    'Android setString and getString proven only through the share suite Copy check; no Android clipboard suite',
   BackgroundTasks:
     'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device',
   DeviceAttestation:

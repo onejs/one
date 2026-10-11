@@ -6,8 +6,11 @@ import { One } from 'one'
 // string, read it back, and check presence. results travel as labels
 // because RN Text testIDs vanish from the accessibility snapshot while
 // Pressable IDs survive. the app reads back its own write, so no os paste
-// prompt can appear mid-suite.
+// prompt can appear mid-suite. the second and empty setters exist for the
+// android suite's overwrite and empty legs; the read length label makes an
+// empty read assertable without depending on trailing-space trimming.
 const probe = 'one-native-clipboard-probe'
+const probeSecond = 'one-native-clipboard-probe-2'
 
 export default function OneNativeClipboard() {
   const [written, setWritten] = useState('none')
@@ -17,6 +20,7 @@ export default function OneNativeClipboard() {
     <View style={styles.screen}>
       <Text>{`Written: ${written}`}</Text>
       <Text>{`Read: ${read}`}</Text>
+      <Text>{`Read length: ${read === 'none' ? 'none' : read.length}`}</Text>
       <Text>{`Has: ${has}`}</Text>
       <Pressable
         testID="one-native-clipboard-set"
@@ -24,6 +28,20 @@ export default function OneNativeClipboard() {
         onPress={async () => setWritten(String(await One.Clipboard.setString(probe)))}
       >
         <Text>Set probe string</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-clipboard-set-second"
+        style={styles.chip}
+        onPress={async () => setWritten(String(await One.Clipboard.setString(probeSecond)))}
+      >
+        <Text>Set second string</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-clipboard-set-empty"
+        style={styles.chip}
+        onPress={async () => setWritten(String(await One.Clipboard.setString('')))}
+      >
+        <Text>Set empty string</Text>
       </Pressable>
       <Pressable
         testID="one-native-clipboard-get"
