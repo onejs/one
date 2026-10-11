@@ -3908,6 +3908,21 @@ export interface FileImporterProps extends OneNativeViewProps {
   allowedContentTypes?: readonly string[]
   allowsMultipleSelection?: boolean
 }
+export interface ChartProps extends OneNativeViewProps {
+  data: readonly import('../chartTypes').ChartDataPoint[]
+  type?: import('../chartTypes').ChartType
+  showGrid?: boolean
+  animate?: boolean
+  showLegend?: boolean
+  referenceLines?: readonly import('../chartTypes').ChartDataPoint[]
+  lineStyle?: import('../chartTypes').LineChartStyle
+  pointStyle?: import('../chartTypes').PointChartStyle
+  areaStyle?: import('../chartTypes').AreaChartStyle
+  barStyle?: import('../chartTypes').BarChartStyle
+  pieStyle?: import('../chartTypes').PieChartStyle
+  rectangleStyle?: import('../chartTypes').RectangleChartStyle
+  ruleStyle?: import('../chartTypes').RuleChartStyle
+}
 export interface AsyncImageProps extends OneNativeViewProps {
   url: string
   scale?: number

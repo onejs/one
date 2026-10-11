@@ -465,6 +465,7 @@
         "OneNativeConfirmationDialog": "OneNativeConfirmationDialogComponentView",
         "OneNativeQuickLook": "OneNativeQuickLookComponentView",
         "OneNativeFileImporter": "OneNativeFileImporterComponentView",
+        "OneNativeChart": "OneNativeChartComponentView",
         "OneNativeAsyncImage": "OneNativeAsyncImageComponentView",
         "OneNativeEditButton": "OneNativeEditButtonComponentView",
         "OneNativeEmptyView": "OneNativeEmptyViewComponentView",

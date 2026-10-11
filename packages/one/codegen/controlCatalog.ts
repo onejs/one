@@ -7,6 +7,7 @@ import { shapeControls } from './shapeCatalog'
 import { gradientControls } from './gradientCatalog'
 import { textControls } from './textCatalog'
 import { presentationControls } from './presentationCatalog'
+import { chartControls } from './chartCatalog'
 import type { Control } from './controlTypes'
 export const controls: Control[] = [
   ...pickerControls,
@@ -18,4 +19,5 @@ export const controls: Control[] = [
   ...mapControls,
   ...textControls,
   ...presentationControls,
+  ...chartControls,
 ]

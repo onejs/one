@@ -1276,7 +1276,7 @@ extension View {
       case "clear": self.accentColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.accentColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.accentColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: preconditionFailure("invalid accentColor: \(value)")
+    default: let _ = preconditionFailure("invalid accentColor: \(value)")
     }
   }
 
@@ -1343,7 +1343,7 @@ extension View {
       case "topTrailing": self.accessibilityActivationPoint(SwiftUI.UnitPoint.topTrailing)
       case "bottomLeading": self.accessibilityActivationPoint(SwiftUI.UnitPoint.bottomLeading)
       case "bottomTrailing": self.accessibilityActivationPoint(SwiftUI.UnitPoint.bottomTrailing)
-    default: preconditionFailure("invalid accessibilityActivationPointWithUnitPoint: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityActivationPointWithUnitPoint: \(value)")
     }
   }
 
@@ -1367,7 +1367,7 @@ extension View {
       case "isModal": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityAddTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: preconditionFailure("invalid accessibilityAddTraits: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityAddTraits: \(value)")
     }
   }
 
@@ -1574,7 +1574,7 @@ extension View {
       case "ignore": self.accessibilityElement(children: SwiftUI.AccessibilityChildBehavior.ignore)
       case "contain": self.accessibilityElement(children: SwiftUI.AccessibilityChildBehavior.contain)
       case "combine": self.accessibilityElement(children: SwiftUI.AccessibilityChildBehavior.combine)
-    default: preconditionFailure("invalid accessibilityElement: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityElement: \(value)")
     }
   }
 
@@ -1593,7 +1593,7 @@ extension View {
       case "h4": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h4)
       case "h5": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h5)
       case "h6": self.accessibilityHeading(SwiftUI.AccessibilityHeadingLevel.h6)
-    default: preconditionFailure("invalid accessibilityHeading: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityHeading: \(value)")
     }
   }
 
@@ -1782,7 +1782,7 @@ extension View {
       case "isModal": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibilityRemoveTraits(SwiftUI.AccessibilityTraits.isTabBar)
-    default: preconditionFailure("invalid accessibilityRemoveTraits: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityRemoveTraits: \(value)")
     }
   }
 
@@ -1893,7 +1893,7 @@ extension View {
       case "sourceCode": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.sourceCode)
       case "spreadsheet": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.spreadsheet)
       case "wordProcessing": self.accessibilityTextContentType(SwiftUI.AccessibilityTextContentType.wordProcessing)
-    default: preconditionFailure("invalid accessibilityTextContentType: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityTextContentType: \(value)")
     }
   }
 
@@ -1935,7 +1935,7 @@ extension View {
       case "topTrailing": self.accessibility(activationPoint: SwiftUI.UnitPoint.topTrailing)
       case "bottomLeading": self.accessibility(activationPoint: SwiftUI.UnitPoint.bottomLeading)
       case "bottomTrailing": self.accessibility(activationPoint: SwiftUI.UnitPoint.bottomTrailing)
-    default: preconditionFailure("invalid accessibilityWithActivationPoint: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityWithActivationPoint: \(value)")
     }
   }
 
@@ -1959,7 +1959,7 @@ extension View {
       case "isModal": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(addTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: preconditionFailure("invalid accessibilityWithAddTraits: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityWithAddTraits: \(value)")
     }
   }
 
@@ -2000,7 +2000,7 @@ extension View {
       case "isModal": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isModal)
       case "isToggle": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isToggle)
       case "isTabBar": self.accessibility(removeTraits: SwiftUI.AccessibilityTraits.isTabBar)
-    default: preconditionFailure("invalid accessibilityWithRemoveTraits: \(value)")
+    default: let _ = preconditionFailure("invalid accessibilityWithRemoveTraits: \(value)")
     }
   }
 
@@ -2046,7 +2046,7 @@ extension View {
 
       case "black": self.addPassToWalletButtonStyle(_PassKit_SwiftUI.AddPassToWalletButtonStyle.black)
       case "blackOutline": self.addPassToWalletButtonStyle(_PassKit_SwiftUI.AddPassToWalletButtonStyle.blackOutline)
-    default: preconditionFailure("invalid addPassToWalletButtonStyle: \(value)")
+    default: let _ = preconditionFailure("invalid addPassToWalletButtonStyle: \(value)")
     }
   }
 
@@ -2126,7 +2126,7 @@ extension View {
       case "standard": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.standard as SwiftUI.Image.DynamicRange?)
       case "constrainedHigh": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.constrainedHigh as SwiftUI.Image.DynamicRange?)
       case "high": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.high as SwiftUI.Image.DynamicRange?)
-    default: preconditionFailure("invalid allowedDynamicRange: \(value)")
+    default: let _ = preconditionFailure("invalid allowedDynamicRange: \(value)")
     }
   }
 
@@ -2181,7 +2181,7 @@ extension View {
       case "easeIn": self.animation(SwiftUI.Animation.easeIn as SwiftUI.Animation?)
       case "easeOut": self.animation(SwiftUI.Animation.easeOut as SwiftUI.Animation?)
       case "linear": self.animation(SwiftUI.Animation.linear as SwiftUI.Animation?)
-    default: preconditionFailure("invalid animation: \(value)")
+    default: let _ = preconditionFailure("invalid animation: \(value)")
     }
   }
 
@@ -2313,7 +2313,7 @@ if #available(iOS 27, *) { self.asyncImageURLSession(Foundation.URLSession.share
 self
 #endif
 
-    default: preconditionFailure("invalid asyncImageURLSession: \(value)")
+    default: let _ = preconditionFailure("invalid asyncImageURLSession: \(value)")
     }
   }
 
@@ -2341,7 +2341,7 @@ self
       case "none": self.autocapitalization(UIKit.UITextAutocapitalizationType.none)
       case "sentences": self.autocapitalization(UIKit.UITextAutocapitalizationType.sentences)
       case "words": self.autocapitalization(UIKit.UITextAutocapitalizationType.words)
-    default: preconditionFailure("invalid autocapitalization: \(value)")
+    default: let _ = preconditionFailure("invalid autocapitalization: \(value)")
     }
   }
 
@@ -2399,7 +2399,7 @@ self
       case "background": self.backgroundStyle(.background)
       case "foreground": self.backgroundStyle(.foreground)
       case "tint": self.backgroundStyle(.tint)
-    default: preconditionFailure("invalid backgroundStyle: \(value)")
+    default: let _ = preconditionFailure("invalid backgroundStyle: \(value)")
     }
   }
 
@@ -2409,7 +2409,7 @@ self
       case "decreased": self.badgeProminence(SwiftUI.BadgeProminence.decreased)
       case "standard": self.badgeProminence(SwiftUI.BadgeProminence.standard)
       case "increased": self.badgeProminence(SwiftUI.BadgeProminence.increased)
-    default: preconditionFailure("invalid badgeProminence: \(value)")
+    default: let _ = preconditionFailure("invalid badgeProminence: \(value)")
     }
   }
 
@@ -2455,7 +2455,7 @@ self
       case "destinationOut": self.blendMode(SwiftUI.BlendMode.destinationOut)
       case "plusDarker": self.blendMode(SwiftUI.BlendMode.plusDarker)
       case "plusLighter": self.blendMode(SwiftUI.BlendMode.plusLighter)
-    default: preconditionFailure("invalid blendMode: \(value)")
+    default: let _ = preconditionFailure("invalid blendMode: \(value)")
     }
   }
 
@@ -2497,7 +2497,7 @@ self
       case "capsule": self.buttonBorderShape(SwiftUI.ButtonBorderShape.capsule)
       case "roundedRectangle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.roundedRectangle)
       case "circle": self.buttonBorderShape(SwiftUI.ButtonBorderShape.circle)
-    default: preconditionFailure("invalid buttonBorderShape: \(value)")
+    default: let _ = preconditionFailure("invalid buttonBorderShape: \(value)")
     }
   }
 
@@ -2507,7 +2507,7 @@ self
       case "automatic": self.buttonRepeatBehavior(SwiftUI.ButtonRepeatBehavior.automatic)
       case "enabled": self.buttonRepeatBehavior(SwiftUI.ButtonRepeatBehavior.enabled)
       case "disabled": self.buttonRepeatBehavior(SwiftUI.ButtonRepeatBehavior.disabled)
-    default: preconditionFailure("invalid buttonRepeatBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid buttonRepeatBehavior: \(value)")
     }
   }
 
@@ -2517,7 +2517,7 @@ self
       case "automatic": if #available(iOS 26, *) { self.buttonSizing(SwiftUI.ButtonSizing.automatic) } else { self }
       case "flexible": if #available(iOS 26, *) { self.buttonSizing(SwiftUI.ButtonSizing.flexible) } else { self }
       case "fitted": if #available(iOS 26, *) { self.buttonSizing(SwiftUI.ButtonSizing.fitted) } else { self }
-    default: preconditionFailure("invalid buttonSizing: \(value)")
+    default: let _ = preconditionFailure("invalid buttonSizing: \(value)")
     }
   }
 
@@ -2531,7 +2531,7 @@ self
       case "plain": self.buttonStyle(.plain)
       case "bordered": self.buttonStyle(.bordered)
       case "borderedProminent": self.buttonStyle(.borderedProminent)
-    default: preconditionFailure("invalid buttonStyle: \(value)")
+    default: let _ = preconditionFailure("invalid buttonStyle: \(value)")
     }
   }
 
@@ -2556,7 +2556,7 @@ if #available(iOS 27, *) { self.clipShape(.textInputBorder) } else { self }
 self
 #endif
 
-    default: preconditionFailure("invalid clipShape: \(value)")
+    default: let _ = preconditionFailure("invalid clipShape: \(value)")
     }
   }
 
@@ -2606,7 +2606,7 @@ self
       case "clear": self.colorMultiply(SwiftUI.Color.clear)
       case "primary": self.colorMultiply(SwiftUI.Color.primary)
       case "secondary": self.colorMultiply(SwiftUI.Color.secondary)
-    default: preconditionFailure("invalid colorMultiply: \(value)")
+    default: let _ = preconditionFailure("invalid colorMultiply: \(value)")
     }
   }
 
@@ -2615,7 +2615,7 @@ self
 
       case "light": self.colorScheme(SwiftUI.ColorScheme.light)
       case "dark": self.colorScheme(SwiftUI.ColorScheme.dark)
-    default: preconditionFailure("invalid colorScheme: \(value)")
+    default: let _ = preconditionFailure("invalid colorScheme: \(value)")
     }
   }
 
@@ -2763,7 +2763,7 @@ if #available(iOS 27, *) { self.containerShape(.textInputBorder) } else { self }
 self
 #endif
 
-    default: preconditionFailure("invalid containerShape: \(value)")
+    default: let _ = preconditionFailure("invalid containerShape: \(value)")
     }
   }
 
@@ -2857,7 +2857,7 @@ if #available(iOS 27, *) { self.contentShape(.textInputBorder) } else { self }
 self
 #endif
 
-    default: preconditionFailure("invalid contentShape: \(value)")
+    default: let _ = preconditionFailure("invalid contentShape: \(value)")
     }
   }
 
@@ -2868,7 +2868,7 @@ self
       case "identity": self.contentTransition(SwiftUI.ContentTransition.identity)
       case "opacity": self.contentTransition(SwiftUI.ContentTransition.opacity)
       case "interpolate": self.contentTransition(SwiftUI.ContentTransition.interpolate)
-    default: preconditionFailure("invalid contentTransition: \(value)")
+    default: let _ = preconditionFailure("invalid contentTransition: \(value)")
     }
   }
 
@@ -2886,7 +2886,7 @@ self
       case "navigation": self.controlGroupStyle(.navigation)
       case "menu": self.controlGroupStyle(.menu)
       case "compactMenu": self.controlGroupStyle(.compactMenu)
-    default: preconditionFailure("invalid controlGroupStyle: \(value)")
+    default: let _ = preconditionFailure("invalid controlGroupStyle: \(value)")
     }
   }
 
@@ -2898,7 +2898,7 @@ self
       case "regular": self.controlSize(SwiftUI.ControlSize.regular)
       case "large": self.controlSize(SwiftUI.ControlSize.large)
       case "extraLarge": self.controlSize(SwiftUI.ControlSize.extraLarge)
-    default: preconditionFailure("invalid controlSize: \(value)")
+    default: let _ = preconditionFailure("invalid controlSize: \(value)")
     }
   }
 
@@ -3016,7 +3016,7 @@ self
       case "automatic": self.datePickerStyle(.automatic)
       case "graphical": self.datePickerStyle(.graphical)
       case "compact": self.datePickerStyle(.compact)
-    default: preconditionFailure("invalid datePickerStyle: \(value)")
+    default: let _ = preconditionFailure("invalid datePickerStyle: \(value)")
     }
   }
 
@@ -3026,7 +3026,7 @@ self
       case "automatic": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.automatic) } else { self }
       case "tabBar": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.tabBar) } else { self }
       case "sidebar": if #available(iOS 18, *) { self.defaultAdaptableTabBarPlacement(SwiftUI.AdaptableTabBarPlacement.sidebar) } else { self }
-    default: preconditionFailure("invalid defaultAdaptableTabBarPlacement: \(value)")
+    default: let _ = preconditionFailure("invalid defaultAdaptableTabBarPlacement: \(value)")
     }
   }
 
@@ -3034,7 +3034,7 @@ self
     switch value {
 
       case "standard": self.defaultAppStorage(Foundation.UserDefaults.standard)
-    default: preconditionFailure("invalid defaultAppStorage: \(value)")
+    default: let _ = preconditionFailure("invalid defaultAppStorage: \(value)")
     }
   }
 
@@ -3051,7 +3051,7 @@ self
       case "automatic": self.defaultHoverEffect(SwiftUI.HoverEffect.automatic as SwiftUI.HoverEffect?)
       case "highlight": self.defaultHoverEffect(SwiftUI.HoverEffect.highlight as SwiftUI.HoverEffect?)
       case "lift": self.defaultHoverEffect(SwiftUI.HoverEffect.lift as SwiftUI.HoverEffect?)
-    default: preconditionFailure("invalid defaultHoverEffect: \(value)")
+    default: let _ = preconditionFailure("invalid defaultHoverEffect: \(value)")
     }
   }
 
@@ -3111,7 +3111,7 @@ if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.alignment }
       case "topTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.topTrailing as SwiftUI.UnitPoint?)
       case "bottomLeading": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomLeading as SwiftUI.UnitPoint?)
       case "bottomTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomTrailing as SwiftUI.UnitPoint?)
-    default: preconditionFailure("invalid defaultScrollAnchorWithOptionalUnitPoint: \(value)")
+    default: let _ = preconditionFailure("invalid defaultScrollAnchorWithOptionalUnitPoint: \(value)")
     }
   }
 
@@ -3139,7 +3139,7 @@ if #available(iOS 27, *) { self.defaultTabBarPlacement(SwiftUI.AdaptableTabBarPl
 self
 #endif
 
-    default: preconditionFailure("invalid defaultTabBarPlacement: \(value)")
+    default: let _ = preconditionFailure("invalid defaultTabBarPlacement: \(value)")
     }
   }
 
@@ -3153,7 +3153,7 @@ self
       case "all": self.defersSystemGestures(on: SwiftUI.Edge.Set.all)
       case "horizontal": self.defersSystemGestures(on: SwiftUI.Edge.Set.horizontal)
       case "vertical": self.defersSystemGestures(on: SwiftUI.Edge.Set.vertical)
-    default: preconditionFailure("invalid defersSystemGestures: \(value)")
+    default: let _ = preconditionFailure("invalid defersSystemGestures: \(value)")
     }
   }
 
@@ -3204,7 +3204,7 @@ self
     switch value {
 
       case "automatic": self.disclosureGroupStyle(.automatic)
-    default: preconditionFailure("invalid disclosureGroupStyle: \(value)")
+    default: let _ = preconditionFailure("invalid disclosureGroupStyle: \(value)")
     }
   }
 
@@ -3394,7 +3394,7 @@ self
       case "accessibility3": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility3)
       case "accessibility4": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility4)
       case "accessibility5": self.dynamicTypeSize(SwiftUI.DynamicTypeSize.accessibility5)
-    default: preconditionFailure("invalid dynamicTypeSize: \(value)")
+    default: let _ = preconditionFailure("invalid dynamicTypeSize: \(value)")
     }
   }
 
@@ -3408,7 +3408,7 @@ self
       case "all": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.all)
       case "horizontal": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.horizontal)
       case "vertical": self.edgesIgnoringSafeArea(SwiftUI.Edge.Set.vertical)
-    default: preconditionFailure("invalid edgesIgnoringSafeArea: \(value)")
+    default: let _ = preconditionFailure("invalid edgesIgnoringSafeArea: \(value)")
     }
   }
 
@@ -3445,7 +3445,7 @@ self
       case "standard": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.standard as SwiftUI.Image.DynamicRange?)
       case "constrainedHigh": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.constrainedHigh as SwiftUI.Image.DynamicRange?)
       case "high": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.high as SwiftUI.Image.DynamicRange?)
-    default: preconditionFailure("invalid environmentAllowedDynamicRange: \(value)")
+    default: let _ = preconditionFailure("invalid environmentAllowedDynamicRange: \(value)")
     }
   }
 
@@ -3473,7 +3473,7 @@ self
       case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin as SwiftUI.Material?)
       case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick as SwiftUI.Material?)
       case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar as SwiftUI.Material?)
-    default: preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
+    default: let _ = preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
     }
   }
 
@@ -3482,7 +3482,7 @@ self
 
       case "standard": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.standard)
       case "increased": self.environment(\.backgroundProminence, SwiftUI.BackgroundProminence.increased)
-    default: preconditionFailure("invalid environmentBackgroundProminence: \(value)")
+    default: let _ = preconditionFailure("invalid environmentBackgroundProminence: \(value)")
     }
   }
 
@@ -3492,7 +3492,7 @@ self
       case "decreased": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.decreased)
       case "standard": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.standard)
       case "increased": self.environment(\.badgeProminence, SwiftUI.BadgeProminence.increased)
-    default: preconditionFailure("invalid environmentBadgeProminence: \(value)")
+    default: let _ = preconditionFailure("invalid environmentBadgeProminence: \(value)")
     }
   }
 
@@ -3501,7 +3501,7 @@ self
 
       case "autoupdatingCurrent": self.environment(\.calendar, Foundation.Calendar.autoupdatingCurrent)
       case "current": self.environment(\.calendar, Foundation.Calendar.current)
-    default: preconditionFailure("invalid environmentCalendar: \(value)")
+    default: let _ = preconditionFailure("invalid environmentCalendar: \(value)")
     }
   }
 
@@ -3510,7 +3510,7 @@ self
 
       case "light": self.environment(\.colorScheme, SwiftUI.ColorScheme.light)
       case "dark": self.environment(\.colorScheme, SwiftUI.ColorScheme.dark)
-    default: preconditionFailure("invalid environmentColorScheme: \(value)")
+    default: let _ = preconditionFailure("invalid environmentColorScheme: \(value)")
     }
   }
 
@@ -3521,7 +3521,7 @@ self
       case "identity": self.environment(\.contentTransition, SwiftUI.ContentTransition.identity)
       case "opacity": self.environment(\.contentTransition, SwiftUI.ContentTransition.opacity)
       case "interpolate": self.environment(\.contentTransition, SwiftUI.ContentTransition.interpolate)
-    default: preconditionFailure("invalid environmentContentTransition: \(value)")
+    default: let _ = preconditionFailure("invalid environmentContentTransition: \(value)")
     }
   }
 
@@ -3538,7 +3538,7 @@ self
       case "regular": self.environment(\.controlSize, SwiftUI.ControlSize.regular)
       case "large": self.environment(\.controlSize, SwiftUI.ControlSize.large)
       case "extraLarge": self.environment(\.controlSize, SwiftUI.ControlSize.extraLarge)
-    default: preconditionFailure("invalid environmentControlSize: \(value)")
+    default: let _ = preconditionFailure("invalid environmentControlSize: \(value)")
     }
   }
 
@@ -3579,7 +3579,7 @@ self
       case "accessibility3": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility3)
       case "accessibility4": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility4)
       case "accessibility5": self.environment(\.dynamicTypeSize, SwiftUI.DynamicTypeSize.accessibility5)
-    default: preconditionFailure("invalid environmentDynamicTypeSize: \(value)")
+    default: let _ = preconditionFailure("invalid environmentDynamicTypeSize: \(value)")
     }
   }
 
@@ -3598,7 +3598,7 @@ self
       case "caption": self.environment(\.font, SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.environment(\.font, SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: preconditionFailure("invalid environmentFont: \(value)")
+    default: let _ = preconditionFailure("invalid environmentFont: \(value)")
     }
   }
 
@@ -3607,7 +3607,7 @@ self
 
       case "standard": self.environment(\.headerProminence, SwiftUI.Prominence.standard)
       case "increased": self.environment(\.headerProminence, SwiftUI.Prominence.increased)
-    default: preconditionFailure("invalid environmentHeaderProminence: \(value)")
+    default: let _ = preconditionFailure("invalid environmentHeaderProminence: \(value)")
     }
   }
 
@@ -3617,7 +3617,7 @@ self
       case "automatic": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.automatic)
       case "always": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.always)
       case "basedOnSize": self.environment(\.horizontalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.basedOnSize)
-    default: preconditionFailure("invalid environmentHorizontalScrollBounceBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid environmentHorizontalScrollBounceBehavior: \(value)")
     }
   }
 
@@ -3628,7 +3628,7 @@ self
       case "visible": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.visible)
       case "hidden": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.hidden)
       case "never": self.environment(\.horizontalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.never)
-    default: preconditionFailure("invalid environmentHorizontalScrollIndicatorVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid environmentHorizontalScrollIndicatorVisibility: \(value)")
     }
   }
 
@@ -3637,7 +3637,7 @@ self
       case "null": self.environment(\.horizontalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
       case "compact": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.compact as SwiftUI.UserInterfaceSizeClass?)
       case "regular": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.regular as SwiftUI.UserInterfaceSizeClass?)
-    default: preconditionFailure("invalid environmentHorizontalSizeClass: \(value)")
+    default: let _ = preconditionFailure("invalid environmentHorizontalSizeClass: \(value)")
     }
   }
 
@@ -3647,7 +3647,7 @@ self
       case "small": self.environment(\.imageScale, SwiftUI.Image.Scale.small)
       case "medium": self.environment(\.imageScale, SwiftUI.Image.Scale.medium)
       case "large": self.environment(\.imageScale, SwiftUI.Image.Scale.large)
-    default: preconditionFailure("invalid environmentImageScale: \(value)")
+    default: let _ = preconditionFailure("invalid environmentImageScale: \(value)")
     }
   }
 
@@ -3687,7 +3687,7 @@ self
       case "automatic": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.automatic) } else { self }
       case "visible": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.visible) } else { self }
       case "hidden": if #available(iOS 18, *) { self.environment(\.labelsVisibility, SwiftUI.Visibility.hidden) } else { self }
-    default: preconditionFailure("invalid environmentLabelsVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid environmentLabelsVisibility: \(value)")
     }
   }
 
@@ -3696,7 +3696,7 @@ self
 
       case "leftToRight": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.leftToRight)
       case "rightToLeft": self.environment(\.layoutDirection, SwiftUI.LayoutDirection.rightToLeft)
-    default: preconditionFailure("invalid environmentLayoutDirection: \(value)")
+    default: let _ = preconditionFailure("invalid environmentLayoutDirection: \(value)")
     }
   }
 
@@ -3705,7 +3705,7 @@ self
       case "null": self.environment(\.legibilityWeight, nil as SwiftUI.LegibilityWeight?)
       case "regular": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.regular as SwiftUI.LegibilityWeight?)
       case "bold": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.bold as SwiftUI.LegibilityWeight?)
-    default: preconditionFailure("invalid environmentLegibilityWeight: \(value)")
+    default: let _ = preconditionFailure("invalid environmentLegibilityWeight: \(value)")
     }
   }
 
@@ -3716,7 +3716,7 @@ self
       case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: preconditionFailure("invalid environmentLineHeight: \(value)")
+    default: let _ = preconditionFailure("invalid environmentLineHeight: \(value)")
     }
   }
 
@@ -3737,7 +3737,7 @@ self
 
       case "autoupdatingCurrent": self.environment(\.locale, Foundation.Locale.autoupdatingCurrent)
       case "current": self.environment(\.locale, Foundation.Locale.current)
-    default: preconditionFailure("invalid environmentLocale: \(value)")
+    default: let _ = preconditionFailure("invalid environmentLocale: \(value)")
     }
   }
 
@@ -3747,7 +3747,7 @@ self
       case "automatic": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.automatic) } else { self }
       case "active": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.active) } else { self }
       case "matchWindow": if #available(iOS 18, *) { self.environment(\.materialActiveAppearance, SwiftUI.MaterialActiveAppearance.matchWindow) } else { self }
-    default: preconditionFailure("invalid environmentMaterialActiveAppearance: \(value)")
+    default: let _ = preconditionFailure("invalid environmentMaterialActiveAppearance: \(value)")
     }
   }
 
@@ -3757,7 +3757,7 @@ self
       case "automatic": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.automatic)
       case "visible": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.visible)
       case "hidden": self.environment(\.menuIndicatorVisibility, SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid environmentMenuIndicatorVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid environmentMenuIndicatorVisibility: \(value)")
     }
   }
 
@@ -3767,7 +3767,7 @@ self
       case "automatic": self.environment(\.menuOrder, SwiftUI.MenuOrder.automatic)
       case "priority": self.environment(\.menuOrder, SwiftUI.MenuOrder.priority)
       case "fixed": self.environment(\.menuOrder, SwiftUI.MenuOrder.fixed)
-    default: preconditionFailure("invalid environmentMenuOrder: \(value)")
+    default: let _ = preconditionFailure("invalid environmentMenuOrder: \(value)")
     }
   }
 
@@ -3783,7 +3783,7 @@ self
       case "leading": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.leading)
       case "center": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.center)
       case "trailing": self.environment(\.multilineTextAlignment, SwiftUI.TextAlignment.trailing)
-    default: preconditionFailure("invalid environmentMultilineTextAlignment: \(value)")
+    default: let _ = preconditionFailure("invalid environmentMultilineTextAlignment: \(value)")
     }
   }
 
@@ -3812,7 +3812,7 @@ self
       case "orbit": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.orbit) } else { self }
       case "pan": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.pan) } else { self }
       case "tilt": if #available(iOS 18, *) { self.environment(\.realityViewCameraControls, RealityFoundation.CameraControls.tilt) } else { self }
-    default: preconditionFailure("invalid environmentRealityViewCameraControls: \(value)")
+    default: let _ = preconditionFailure("invalid environmentRealityViewCameraControls: \(value)")
     }
   }
 
@@ -3822,7 +3822,7 @@ self
       case "placeholder": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.placeholder)
       case "privacy": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.privacy)
       case "invalidated": self.environment(\.redactionReasons, SwiftUI.RedactionReasons.invalidated)
-    default: preconditionFailure("invalid environmentRedactionReasons: \(value)")
+    default: let _ = preconditionFailure("invalid environmentRedactionReasons: \(value)")
     }
   }
 
@@ -3832,7 +3832,7 @@ self
       case "background": self.environment(\.scenePhase, SwiftUI.ScenePhase.background)
       case "inactive": self.environment(\.scenePhase, SwiftUI.ScenePhase.inactive)
       case "active": self.environment(\.scenePhase, SwiftUI.ScenePhase.active)
-    default: preconditionFailure("invalid environmentScenePhase: \(value)")
+    default: let _ = preconditionFailure("invalid environmentScenePhase: \(value)")
     }
   }
 
@@ -3843,7 +3843,7 @@ self
       case "immediately": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.immediately)
       case "interactively": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.interactively)
       case "never": self.environment(\.scrollDismissesKeyboardMode, SwiftUI.ScrollDismissesKeyboardMode.never)
-    default: preconditionFailure("invalid environmentScrollDismissesKeyboardMode: \(value)")
+    default: let _ = preconditionFailure("invalid environmentScrollDismissesKeyboardMode: \(value)")
     }
   }
 
@@ -3853,7 +3853,7 @@ self
       case "small": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.small)
       case "medium": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.medium)
       case "large": self.environment(\.sidebarRowSize, SwiftUI.SidebarRowSize.large)
-    default: preconditionFailure("invalid environmentSidebarRowSize: \(value)")
+    default: let _ = preconditionFailure("invalid environmentSidebarRowSize: \(value)")
     }
   }
 
@@ -3872,7 +3872,7 @@ self
       case "accessibilityExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraLarge)
       case "accessibilityExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraLarge)
       case "accessibilityExtraExtraExtraLarge": self.environment(\.sizeCategory, SwiftUI.ContentSizeCategory.accessibilityExtraExtraExtraLarge)
-    default: preconditionFailure("invalid environmentSizeCategory: \(value)")
+    default: let _ = preconditionFailure("invalid environmentSizeCategory: \(value)")
     }
   }
 
@@ -3881,7 +3881,7 @@ self
       case "null": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
       case "flat": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.flat as SwiftUI.SymbolColorRenderingMode?) } else { self }
       case "gradient": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.gradient as SwiftUI.SymbolColorRenderingMode?) } else { self }
-    default: preconditionFailure("invalid environmentSymbolColorRenderingMode: \(value)")
+    default: let _ = preconditionFailure("invalid environmentSymbolColorRenderingMode: \(value)")
     }
   }
 
@@ -3892,7 +3892,7 @@ self
       case "multicolor": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.multicolor as SwiftUI.SymbolRenderingMode?)
       case "hierarchical": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.hierarchical as SwiftUI.SymbolRenderingMode?)
       case "palette": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.palette as SwiftUI.SymbolRenderingMode?)
-    default: preconditionFailure("invalid environmentSymbolRenderingMode: \(value)")
+    default: let _ = preconditionFailure("invalid environmentSymbolRenderingMode: \(value)")
     }
   }
 
@@ -3901,7 +3901,7 @@ self
       case "null": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, nil as SwiftUI.SymbolVariableValueMode?) } else { self }
       case "color": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.color as SwiftUI.SymbolVariableValueMode?) } else { self }
       case "draw": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.draw as SwiftUI.SymbolVariableValueMode?) } else { self }
-    default: preconditionFailure("invalid environmentSymbolVariableValueMode: \(value)")
+    default: let _ = preconditionFailure("invalid environmentSymbolVariableValueMode: \(value)")
     }
   }
 
@@ -3914,7 +3914,7 @@ self
       case "rectangle": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.rectangle)
       case "fill": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.fill)
       case "slash": self.environment(\.symbolVariants, SwiftUI.SymbolVariants.slash)
-    default: preconditionFailure("invalid environmentSymbolVariants: \(value)")
+    default: let _ = preconditionFailure("invalid environmentSymbolVariants: \(value)")
     }
   }
 
@@ -3934,7 +3934,7 @@ self
       case "null": self.environment(\.textCase, nil as SwiftUI.Text.Case?)
       case "uppercase": self.environment(\.textCase, SwiftUI.Text.Case.uppercase as SwiftUI.Text.Case?)
       case "lowercase": self.environment(\.textCase, SwiftUI.Text.Case.lowercase as SwiftUI.Text.Case?)
-    default: preconditionFailure("invalid environmentTextCase: \(value)")
+    default: let _ = preconditionFailure("invalid environmentTextCase: \(value)")
     }
   }
 
@@ -3944,7 +3944,7 @@ self
       case "automatic": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.automatic) } else { self }
       case "upstream": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.upstream) } else { self }
       case "downstream": if #available(iOS 18, *) { self.environment(\.textSelectionAffinity, SwiftUI.TextSelectionAffinity.downstream) } else { self }
-    default: preconditionFailure("invalid environmentTextSelectionAffinity: \(value)")
+    default: let _ = preconditionFailure("invalid environmentTextSelectionAffinity: \(value)")
     }
   }
 
@@ -3954,7 +3954,7 @@ self
       case "autoupdatingCurrent": self.environment(\.timeZone, Foundation.TimeZone.autoupdatingCurrent)
       case "current": self.environment(\.timeZone, Foundation.TimeZone.current)
       case "gmt": self.environment(\.timeZone, Foundation.TimeZone.gmt)
-    default: preconditionFailure("invalid environmentTimeZone: \(value)")
+    default: let _ = preconditionFailure("invalid environmentTimeZone: \(value)")
     }
   }
 
@@ -3964,7 +3964,7 @@ self
       case "head": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.head)
       case "tail": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.tail)
       case "middle": self.environment(\.truncationMode, SwiftUI.Text.TruncationMode.middle)
-    default: preconditionFailure("invalid environmentTruncationMode: \(value)")
+    default: let _ = preconditionFailure("invalid environmentTruncationMode: \(value)")
     }
   }
 
@@ -3974,7 +3974,7 @@ self
       case "automatic": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.automatic)
       case "always": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.always)
       case "basedOnSize": self.environment(\.verticalScrollBounceBehavior, SwiftUI.ScrollBounceBehavior.basedOnSize)
-    default: preconditionFailure("invalid environmentVerticalScrollBounceBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid environmentVerticalScrollBounceBehavior: \(value)")
     }
   }
 
@@ -3985,7 +3985,7 @@ self
       case "visible": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.visible)
       case "hidden": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.hidden)
       case "never": self.environment(\.verticalScrollIndicatorVisibility, SwiftUI.ScrollIndicatorVisibility.never)
-    default: preconditionFailure("invalid environmentVerticalScrollIndicatorVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid environmentVerticalScrollIndicatorVisibility: \(value)")
     }
   }
 
@@ -3994,7 +3994,7 @@ self
       case "null": self.environment(\.verticalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
       case "compact": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.compact as SwiftUI.UserInterfaceSizeClass?)
       case "regular": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.regular as SwiftUI.UserInterfaceSizeClass?)
-    default: preconditionFailure("invalid environmentVerticalSizeClass: \(value)")
+    default: let _ = preconditionFailure("invalid environmentVerticalSizeClass: \(value)")
     }
   }
 
@@ -4010,7 +4010,7 @@ if #available(iOS 13, *) {
       case "enumeratePackages": self.fileDialogBrowserOptions(SwiftUI.FileDialogBrowserOptions.enumeratePackages)
       case "includeHiddenFiles": self.fileDialogBrowserOptions(SwiftUI.FileDialogBrowserOptions.includeHiddenFiles)
       case "displayFileExtensions": self.fileDialogBrowserOptions(SwiftUI.FileDialogBrowserOptions.displayFileExtensions)
-    default: preconditionFailure("invalid fileDialogBrowserOptions: \(value)")
+    default: let _ = preconditionFailure("invalid fileDialogBrowserOptions: \(value)")
     }
   }
 
@@ -4358,7 +4358,7 @@ if #available(iOS 13, *) {
       case "caption": self.font(SwiftUI.Font.caption as SwiftUI.Font?)
       case "caption2": self.font(SwiftUI.Font.caption2 as SwiftUI.Font?)
       case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default as SwiftUI.Font?) } else { self }
-    default: preconditionFailure("invalid font: \(value)")
+    default: let _ = preconditionFailure("invalid font: \(value)")
     }
   }
 
@@ -4369,7 +4369,7 @@ if #available(iOS 13, *) {
       case "serif": self.fontDesign(SwiftUI.Font.Design.serif as SwiftUI.Font.Design?)
       case "rounded": self.fontDesign(SwiftUI.Font.Design.rounded as SwiftUI.Font.Design?)
       case "monospaced": self.fontDesign(SwiftUI.Font.Design.monospaced as SwiftUI.Font.Design?)
-    default: preconditionFailure("invalid fontDesignWithOptionalDesign: \(value)")
+    default: let _ = preconditionFailure("invalid fontDesignWithOptionalDesign: \(value)")
     }
   }
 
@@ -4385,7 +4385,7 @@ if #available(iOS 13, *) {
       case "bold": self.fontWeight(SwiftUI.Font.Weight.bold as SwiftUI.Font.Weight?)
       case "heavy": self.fontWeight(SwiftUI.Font.Weight.heavy as SwiftUI.Font.Weight?)
       case "black": self.fontWeight(SwiftUI.Font.Weight.black as SwiftUI.Font.Weight?)
-    default: preconditionFailure("invalid fontWeightWithOptionalWeight: \(value)")
+    default: let _ = preconditionFailure("invalid fontWeightWithOptionalWeight: \(value)")
     }
   }
 
@@ -4396,7 +4396,7 @@ if #available(iOS 13, *) {
       case "condensed": self.fontWidth(SwiftUI.Font.Width.condensed as SwiftUI.Font.Width?)
       case "standard": self.fontWidth(SwiftUI.Font.Width.standard as SwiftUI.Font.Width?)
       case "expanded": self.fontWidth(SwiftUI.Font.Width.expanded as SwiftUI.Font.Width?)
-    default: preconditionFailure("invalid fontWidth: \(value)")
+    default: let _ = preconditionFailure("invalid fontWidth: \(value)")
     }
   }
 
@@ -4422,7 +4422,7 @@ if #available(iOS 13, *) {
       case "clear": self.foregroundColor(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.foregroundColor(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.foregroundColor(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: preconditionFailure("invalid foregroundColor: \(value)")
+    default: let _ = preconditionFailure("invalid foregroundColor: \(value)")
     }
   }
 
@@ -4432,7 +4432,7 @@ if #available(iOS 13, *) {
       case "columns": self.formStyle(.columns)
       case "grouped": self.formStyle(.grouped)
       case "automatic": self.formStyle(.automatic)
-    default: preconditionFailure("invalid formStyle: \(value)")
+    default: let _ = preconditionFailure("invalid formStyle: \(value)")
     }
   }
 
@@ -4552,7 +4552,7 @@ if #available(iOS 13, *) {
       case "accessoryLinearCapacity": self.gaugeStyle(.accessoryLinearCapacity)
       case "automatic": self.gaugeStyle(.automatic)
       case "accessoryCircular": self.gaugeStyle(.accessoryCircular)
-    default: preconditionFailure("invalid gaugeStyle: \(value)")
+    default: let _ = preconditionFailure("invalid gaugeStyle: \(value)")
     }
   }
 
@@ -4600,7 +4600,7 @@ if #available(iOS 13, *) {
       }))
     case "tap":
       self.gesture(SwiftUI.TapGesture().onEnded({ _ in emit("gesture", "") }))
-    default: preconditionFailure("invalid gesture: \(value)")
+    default: let _ = preconditionFailure("invalid gesture: \(value)")
     }
   }
 
@@ -4630,7 +4630,7 @@ if #available(iOS 13, *) {
       case "matchedGeometry": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUI.GlassEffectTransition.matchedGeometry) } else { self }
       case "materialize": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUI.GlassEffectTransition.materialize) } else { self }
       case "identity": if #available(iOS 26, *) { self.glassEffectTransition(SwiftUI.GlassEffectTransition.identity) } else { self }
-    default: preconditionFailure("invalid glassEffectTransition: \(value)")
+    default: let _ = preconditionFailure("invalid glassEffectTransition: \(value)")
     }
   }
 
@@ -4656,7 +4656,7 @@ if #available(iOS 13, *) {
       case "regular": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.regular) } else { self }
       case "clear": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.clear) } else { self }
       case "identity": if #available(iOS 26, *) { self.glassEffect(SwiftUI.Glass.identity) } else { self }
-    default: preconditionFailure("invalid glassEffectWithGlass: \(value)")
+    default: let _ = preconditionFailure("invalid glassEffectWithGlass: \(value)")
     }
   }
 
@@ -4679,7 +4679,7 @@ if #available(iOS 13, *) {
       case "topTrailing": self.gridCellAnchor(SwiftUI.UnitPoint.topTrailing)
       case "bottomLeading": self.gridCellAnchor(SwiftUI.UnitPoint.bottomLeading)
       case "bottomTrailing": self.gridCellAnchor(SwiftUI.UnitPoint.bottomTrailing)
-    default: preconditionFailure("invalid gridCellAnchor: \(value)")
+    default: let _ = preconditionFailure("invalid gridCellAnchor: \(value)")
     }
   }
 
@@ -4694,7 +4694,7 @@ if #available(iOS 13, *) {
 
       case "horizontal": self.gridCellUnsizedAxes(SwiftUI.Axis.Set.horizontal)
       case "vertical": self.gridCellUnsizedAxes(SwiftUI.Axis.Set.vertical)
-    default: preconditionFailure("invalid gridCellUnsizedAxes: \(value)")
+    default: let _ = preconditionFailure("invalid gridCellUnsizedAxes: \(value)")
     }
   }
 
@@ -4706,7 +4706,7 @@ if #available(iOS 13, *) {
       case "trailing": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.trailing)
       case "listRowSeparatorLeading": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.listRowSeparatorLeading)
       case "listRowSeparatorTrailing": self.gridColumnAlignment(SwiftUI.HorizontalAlignment.listRowSeparatorTrailing)
-    default: preconditionFailure("invalid gridColumnAlignment: \(value)")
+    default: let _ = preconditionFailure("invalid gridColumnAlignment: \(value)")
     }
   }
 
@@ -4714,7 +4714,7 @@ if #available(iOS 13, *) {
     switch value {
 
       case "automatic": self.groupBoxStyle(.automatic)
-    default: preconditionFailure("invalid groupBoxStyle: \(value)")
+    default: let _ = preconditionFailure("invalid groupBoxStyle: \(value)")
     }
   }
 
@@ -4768,7 +4768,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     switch value {
 
       case "gamepad": if #available(iOS 18, *) { self.handlesGameControllerEvents(matching: GameController.GCUIEventTypes.gamepad) } else { self }
-    default: preconditionFailure("invalid handlesGameControllerEvents: \(value)")
+    default: let _ = preconditionFailure("invalid handlesGameControllerEvents: \(value)")
     }
   }
 
@@ -4777,7 +4777,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
 
       case "standard": self.headerProminence(SwiftUI.Prominence.standard)
       case "increased": self.headerProminence(SwiftUI.Prominence.increased)
-    default: preconditionFailure("invalid headerProminence: \(value)")
+    default: let _ = preconditionFailure("invalid headerProminence: \(value)")
     }
   }
 
@@ -4829,7 +4829,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
       }))
     case "tap":
       self.highPriorityGesture(SwiftUI.TapGesture().onEnded({ _ in emit("highPriorityGesture", "") }))
-    default: preconditionFailure("invalid highPriorityGesture: \(value)")
+    default: let _ = preconditionFailure("invalid highPriorityGesture: \(value)")
     }
   }
 
@@ -4844,7 +4844,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
       case "automatic": self.hoverEffect(_:)(SwiftUI.HoverEffect.automatic)
       case "highlight": self.hoverEffect(_:)(SwiftUI.HoverEffect.highlight)
       case "lift": self.hoverEffect(_:)(SwiftUI.HoverEffect.lift)
-    default: preconditionFailure("invalid hoverEffectWithHoverEffect: \(value)")
+    default: let _ = preconditionFailure("invalid hoverEffectWithHoverEffect: \(value)")
     }
   }
 
@@ -4854,7 +4854,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
       case "automatic": self.hoverEffect(_:)(SwiftUI.HoverEffect.automatic)
       case "highlight": self.hoverEffect(_:)(SwiftUI.HoverEffect.highlight)
       case "lift": self.hoverEffect(_:)(SwiftUI.HoverEffect.lift)
-    default: preconditionFailure("invalid hoverEffectWithHoverEffectFromSwiftUICore: \(value)")
+    default: let _ = preconditionFailure("invalid hoverEffectWithHoverEffectFromSwiftUICore: \(value)")
     }
   }
 
@@ -4862,7 +4862,7 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
     switch value {
 
       case "zero": self.hueRotation(SwiftUI.Angle.zero)
-    default: preconditionFailure("invalid hueRotation: \(value)")
+    default: let _ = preconditionFailure("invalid hueRotation: \(value)")
     }
   }
 
@@ -4937,7 +4937,7 @@ self
       case "container": self.ignoresSafeArea(SwiftUI.SafeAreaRegions.container)
       case "keyboard": self.ignoresSafeArea(SwiftUI.SafeAreaRegions.keyboard)
       case "all": self.ignoresSafeArea(SwiftUI.SafeAreaRegions.all)
-    default: preconditionFailure("invalid ignoresSafeAreaWithSafeAreaRegions: \(value)")
+    default: let _ = preconditionFailure("invalid ignoresSafeAreaWithSafeAreaRegions: \(value)")
     }
   }
 
@@ -4947,7 +4947,7 @@ self
       case "small": self.imageScale(SwiftUI.Image.Scale.small)
       case "medium": self.imageScale(SwiftUI.Image.Scale.medium)
       case "large": self.imageScale(SwiftUI.Image.Scale.large)
-    default: preconditionFailure("invalid imageScale: \(value)")
+    default: let _ = preconditionFailure("invalid imageScale: \(value)")
     }
   }
 
@@ -4980,7 +4980,7 @@ self
     switch value {
 
       case "page": self.indexViewStyle(.page)
-    default: preconditionFailure("invalid indexViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid indexViewStyle: \(value)")
     }
   }
 
@@ -5148,7 +5148,7 @@ self
 
       case "defaultAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.defaultAction)
       case "cancelAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.cancelAction)
-    default: preconditionFailure("invalid keyboardShortcutWithKeyboardShortcut: \(value)")
+    default: let _ = preconditionFailure("invalid keyboardShortcutWithKeyboardShortcut: \(value)")
     }
   }
 
@@ -5157,7 +5157,7 @@ self
       case "null": self.keyboardShortcut(nil as SwiftUI.KeyboardShortcut?)
       case "defaultAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.defaultAction as SwiftUI.KeyboardShortcut?)
       case "cancelAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.cancelAction as SwiftUI.KeyboardShortcut?)
-    default: preconditionFailure("invalid keyboardShortcutWithOptionalKeyboardShortcut: \(value)")
+    default: let _ = preconditionFailure("invalid keyboardShortcutWithOptionalKeyboardShortcut: \(value)")
     }
   }
 
@@ -5177,7 +5177,7 @@ self
       case "phonePad": self.keyboardType(UIKit.UIKeyboardType.phonePad)
       case "twitter": self.keyboardType(UIKit.UIKeyboardType.twitter)
       case "webSearch": self.keyboardType(UIKit.UIKeyboardType.webSearch)
-    default: preconditionFailure("invalid keyboardType: \(value)")
+    default: let _ = preconditionFailure("invalid keyboardType: \(value)")
     }
   }
 
@@ -5208,7 +5208,7 @@ self
     switch value {
 
       case "automatic": self.labeledContentStyle(.automatic)
-    default: preconditionFailure("invalid labeledContentStyle: \(value)")
+    default: let _ = preconditionFailure("invalid labeledContentStyle: \(value)")
     }
   }
 
@@ -5236,7 +5236,7 @@ self
       case "iconOnly": self.labelStyle(.iconOnly)
       case "titleAndIcon": self.labelStyle(.titleAndIcon)
       case "titleOnly": self.labelStyle(.titleOnly)
-    default: preconditionFailure("invalid labelStyle: \(value)")
+    default: let _ = preconditionFailure("invalid labelStyle: \(value)")
     }
   }
 
@@ -5246,7 +5246,7 @@ self
       case "automatic": if #available(iOS 18, *) { self.labelsVisibility(SwiftUI.Visibility.automatic) } else { self }
       case "visible": if #available(iOS 18, *) { self.labelsVisibility(SwiftUI.Visibility.visible) } else { self }
       case "hidden": if #available(iOS 18, *) { self.labelsVisibility(SwiftUI.Visibility.hidden) } else { self }
-    default: preconditionFailure("invalid labelsVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid labelsVisibility: \(value)")
     }
   }
 
@@ -5282,7 +5282,7 @@ self
 
       case "fixed": self.layoutDirectionBehavior(SwiftUI.LayoutDirectionBehavior.fixed)
       case "mirrors": self.layoutDirectionBehavior(SwiftUI.LayoutDirectionBehavior.mirrors)
-    default: preconditionFailure("invalid layoutDirectionBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid layoutDirectionBehavior: \(value)")
     }
   }
 
@@ -5312,7 +5312,7 @@ self
       case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
       case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
       case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
-    default: preconditionFailure("invalid lineHeight: \(value)")
+    default: let _ = preconditionFailure("invalid lineHeight: \(value)")
     }
   }
 
@@ -5370,7 +5370,7 @@ self
       case "clear": self.listItemTint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.listItemTint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.listItemTint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: preconditionFailure("invalid listItemTintWithOptionalColor: \(value)")
+    default: let _ = preconditionFailure("invalid listItemTintWithOptionalColor: \(value)")
     }
   }
 
@@ -5378,7 +5378,7 @@ self
     switch value {
       case "null": self.listItemTint(nil as SwiftUI.ListItemTint?)
       case "monochrome": self.listItemTint(SwiftUI.ListItemTint.monochrome as SwiftUI.ListItemTint?)
-    default: preconditionFailure("invalid listItemTintWithOptionalListItemTint: \(value)")
+    default: let _ = preconditionFailure("invalid listItemTintWithOptionalListItemTint: \(value)")
     }
   }
 
@@ -5496,7 +5496,7 @@ self
       case "automatic": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUI.Visibility.automatic) } else { self }
       case "visible": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUI.Visibility.visible) } else { self }
       case "hidden": if #available(iOS 26, *) { self.listSectionIndexVisibility(SwiftUI.Visibility.hidden) } else { self }
-    default: preconditionFailure("invalid listSectionIndexVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid listSectionIndexVisibility: \(value)")
     }
   }
 
@@ -5613,7 +5613,7 @@ self
 
       case "default": self.listSectionSpacing(SwiftUI.ListSectionSpacing.default)
       case "compact": self.listSectionSpacing(SwiftUI.ListSectionSpacing.compact)
-    default: preconditionFailure("invalid listSectionSpacingWithListSectionSpacing: \(value)")
+    default: let _ = preconditionFailure("invalid listSectionSpacingWithListSectionSpacing: \(value)")
     }
   }
 
@@ -5626,7 +5626,7 @@ self
       case "grouped": self.listStyle(.grouped)
       case "insetGrouped": self.listStyle(.insetGrouped)
       case "plain": self.listStyle(.plain)
-    default: preconditionFailure("invalid listStyle: \(value)")
+    default: let _ = preconditionFailure("invalid listStyle: \(value)")
     }
   }
 
@@ -5707,7 +5707,7 @@ self
           }
         }
       }
-    default: preconditionFailure("invalid mapCameraKeyframeAnimator property")
+    default: let _ = preconditionFailure("invalid mapCameraKeyframeAnimator property")
     }
   }
 
@@ -5717,7 +5717,7 @@ self
       case "automatic": self.mapControlVisibility(SwiftUI.Visibility.automatic)
       case "visible": self.mapControlVisibility(SwiftUI.Visibility.visible)
       case "hidden": self.mapControlVisibility(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid mapControlVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid mapControlVisibility: \(value)")
     }
   }
 
@@ -5728,7 +5728,7 @@ self
       case "callout": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.callout as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "sheet": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.sheet as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
       case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
-    default: preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
+    default: let _ = preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
     }
   }
 
@@ -5819,7 +5819,7 @@ self
       case "standard": self.mapStyle(_MapKit_SwiftUI.MapStyle.standard)
       case "imagery": self.mapStyle(_MapKit_SwiftUI.MapStyle.imagery)
       case "hybrid": self.mapStyle(_MapKit_SwiftUI.MapStyle.hybrid)
-    default: preconditionFailure("invalid mapStyle: \(value)")
+    default: let _ = preconditionFailure("invalid mapStyle: \(value)")
     }
   }
 
@@ -5859,7 +5859,7 @@ self
       case "automatic": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUI.MaterialActiveAppearance.automatic) } else { self }
       case "active": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUI.MaterialActiveAppearance.active) } else { self }
       case "matchWindow": if #available(iOS 18, *) { self.materialActiveAppearance(SwiftUI.MaterialActiveAppearance.matchWindow) } else { self }
-    default: preconditionFailure("invalid materialActiveAppearance: \(value)")
+    default: let _ = preconditionFailure("invalid materialActiveAppearance: \(value)")
     }
   }
 
@@ -5869,7 +5869,7 @@ self
       case "automatic": self.menuActionDismissBehavior(SwiftUI.MenuActionDismissBehavior.automatic)
       case "enabled": self.menuActionDismissBehavior(SwiftUI.MenuActionDismissBehavior.enabled)
       case "disabled": self.menuActionDismissBehavior(SwiftUI.MenuActionDismissBehavior.disabled)
-    default: preconditionFailure("invalid menuActionDismissBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid menuActionDismissBehavior: \(value)")
     }
   }
 
@@ -5879,7 +5879,7 @@ self
       case "automatic": self.menuIndicator(SwiftUI.Visibility.automatic)
       case "visible": self.menuIndicator(SwiftUI.Visibility.visible)
       case "hidden": self.menuIndicator(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid menuIndicator: \(value)")
+    default: let _ = preconditionFailure("invalid menuIndicator: \(value)")
     }
   }
 
@@ -5889,7 +5889,7 @@ self
       case "automatic": self.menuOrder(SwiftUI.MenuOrder.automatic)
       case "priority": self.menuOrder(SwiftUI.MenuOrder.priority)
       case "fixed": self.menuOrder(SwiftUI.MenuOrder.fixed)
-    default: preconditionFailure("invalid menuOrder: \(value)")
+    default: let _ = preconditionFailure("invalid menuOrder: \(value)")
     }
   }
 
@@ -5899,7 +5899,7 @@ self
       case "button": self.menuStyle(.button)
       case "automatic": self.menuStyle(.automatic)
       case "borderlessButton": self.menuStyle(.borderlessButton)
-    default: preconditionFailure("invalid menuStyle: \(value)")
+    default: let _ = preconditionFailure("invalid menuStyle: \(value)")
     }
   }
 
@@ -5971,7 +5971,7 @@ self
       case "layoutBased": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUI.Text.AlignmentStrategy.layoutBased) } else { self }
       case "writingDirectionBased": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUI.Text.AlignmentStrategy.writingDirectionBased) } else { self }
       case "default": if #available(iOS 26, *) { self.multilineTextAlignment(strategy: SwiftUI.Text.AlignmentStrategy.default) } else { self }
-    default: preconditionFailure("invalid multilineTextAlignmentWithStrategy: \(value)")
+    default: let _ = preconditionFailure("invalid multilineTextAlignmentWithStrategy: \(value)")
     }
   }
 
@@ -5981,7 +5981,7 @@ self
       case "leading": self.multilineTextAlignment(SwiftUI.TextAlignment.leading)
       case "center": self.multilineTextAlignment(SwiftUI.TextAlignment.center)
       case "trailing": self.multilineTextAlignment(SwiftUI.TextAlignment.trailing)
-    default: preconditionFailure("invalid multilineTextAlignmentWithTextAlignment: \(value)")
+    default: let _ = preconditionFailure("invalid multilineTextAlignmentWithTextAlignment: \(value)")
     }
   }
 
@@ -6066,7 +6066,7 @@ self
       case "automatic": self.navigationBarTitleDisplayMode(SwiftUI.NavigationBarItem.TitleDisplayMode.automatic)
       case "inline": self.navigationBarTitleDisplayMode(SwiftUI.NavigationBarItem.TitleDisplayMode.inline)
       case "large": self.navigationBarTitleDisplayMode(SwiftUI.NavigationBarItem.TitleDisplayMode.large)
-    default: preconditionFailure("invalid navigationBarTitleDisplayMode: \(value)")
+    default: let _ = preconditionFailure("invalid navigationBarTitleDisplayMode: \(value)")
     }
   }
 
@@ -6107,7 +6107,7 @@ self
       case "automatic": self.navigationLinkIndicatorVisibility(SwiftUI.Visibility.automatic)
       case "visible": self.navigationLinkIndicatorVisibility(SwiftUI.Visibility.visible)
       case "hidden": self.navigationLinkIndicatorVisibility(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid navigationLinkIndicatorVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid navigationLinkIndicatorVisibility: \(value)")
     }
   }
 
@@ -6148,7 +6148,7 @@ self
       case "balanced": self.navigationSplitViewStyle(.balanced)
       case "prominentDetail": self.navigationSplitViewStyle(.prominentDetail)
       case "automatic": self.navigationSplitViewStyle(.automatic)
-    default: preconditionFailure("invalid navigationSplitViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid navigationSplitViewStyle: \(value)")
     }
   }
 
@@ -6175,7 +6175,7 @@ if #available(iOS 27, *) { self.navigationTransition(.crossFade) } else { self }
 self
 #endif
 
-    default: preconditionFailure("invalid navigationTransition: \(value)")
+    default: let _ = preconditionFailure("invalid navigationTransition: \(value)")
     }
   }
 
@@ -6185,7 +6185,7 @@ self
       case "columns": self.navigationViewStyle(.columns)
       case "automatic": self.navigationViewStyle(.automatic)
       case "stack": self.navigationViewStyle(.stack)
-    default: preconditionFailure("invalid navigationViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid navigationViewStyle: \(value)")
     }
   }
 
@@ -6664,7 +6664,7 @@ self
       case "all": self.padding(SwiftUI.Edge.Set.all)
       case "horizontal": self.padding(SwiftUI.Edge.Set.horizontal)
       case "vertical": self.padding(SwiftUI.Edge.Set.vertical)
-    default: preconditionFailure("invalid paddingWithSet: \(value)")
+    default: let _ = preconditionFailure("invalid paddingWithSet: \(value)")
     }
   }
 
@@ -6673,7 +6673,7 @@ self
 
       case "automatic": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.automatic)
       case "custom": self.paletteSelectionEffect(SwiftUI.PaletteSelectionEffect.custom)
-    default: preconditionFailure("invalid paletteSelectionEffect: \(value)")
+    default: let _ = preconditionFailure("invalid paletteSelectionEffect: \(value)")
     }
   }
 
@@ -6697,7 +6697,7 @@ self
 
       case "learnMore": self.payLaterViewAction(_PassKit_SwiftUI.PayLaterViewAction.learnMore)
       case "calculator": self.payLaterViewAction(_PassKit_SwiftUI.PayLaterViewAction.calculator)
-    default: preconditionFailure("invalid payLaterViewAction: \(value)")
+    default: let _ = preconditionFailure("invalid payLaterViewAction: \(value)")
     }
   }
 
@@ -6708,7 +6708,7 @@ self
       case "badge": self.payLaterViewDisplayStyle(_PassKit_SwiftUI.PayLaterViewDisplayStyle.badge)
       case "checkout": self.payLaterViewDisplayStyle(_PassKit_SwiftUI.PayLaterViewDisplayStyle.checkout)
       case "price": self.payLaterViewDisplayStyle(_PassKit_SwiftUI.PayLaterViewDisplayStyle.price)
-    default: preconditionFailure("invalid payLaterViewDisplayStyle: \(value)")
+    default: let _ = preconditionFailure("invalid payLaterViewDisplayStyle: \(value)")
     }
   }
 
@@ -6724,7 +6724,7 @@ self
       case "whiteOutline": self.payWithApplePayButtonStyle(_PassKit_SwiftUI.PayWithApplePayButtonStyle.whiteOutline)
       case "black": self.payWithApplePayButtonStyle(_PassKit_SwiftUI.PayWithApplePayButtonStyle.black)
       case "automatic": self.payWithApplePayButtonStyle(_PassKit_SwiftUI.PayWithApplePayButtonStyle.automatic)
-    default: preconditionFailure("invalid payWithApplePayButtonStyle: \(value)")
+    default: let _ = preconditionFailure("invalid payWithApplePayButtonStyle: \(value)")
     }
   }
 
@@ -6734,7 +6734,7 @@ self
       case "automatic": self.persistentSystemOverlays(SwiftUI.Visibility.automatic)
       case "visible": self.persistentSystemOverlays(SwiftUI.Visibility.visible)
       case "hidden": self.persistentSystemOverlays(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid persistentSystemOverlays: \(value)")
+    default: let _ = preconditionFailure("invalid persistentSystemOverlays: \(value)")
     }
   }
 
@@ -6801,7 +6801,7 @@ if #available(iOS 16, *) {
       case "selectionActions": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.selectionActions)
       case "sensitivityAnalysisIntervention": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.sensitivityAnalysisIntervention)
       case "stagingArea": self.photosPickerDisabledCapabilities(PhotosUI.PHPickerCapabilities.stagingArea)
-    default: preconditionFailure("invalid photosPickerDisabledCapabilities: \(value)")
+    default: let _ = preconditionFailure("invalid photosPickerDisabledCapabilities: \(value)")
     }
   }
 
@@ -6822,7 +6822,7 @@ if #available(iOS 27, *) { self.photosPickerMetadataOptions(PhotosUI.PHPickerMet
 self
 #endif
 
-    default: preconditionFailure("invalid photosPickerMetadataOptions: \(value)")
+    default: let _ = preconditionFailure("invalid photosPickerMetadataOptions: \(value)")
     }
   }
 
@@ -6850,7 +6850,7 @@ self
       case "presentation": self.photosPickerStyle(_PhotosUI_SwiftUI.PhotosPickerStyle.presentation)
       case "inline": self.photosPickerStyle(_PhotosUI_SwiftUI.PhotosPickerStyle.inline)
       case "compact": self.photosPickerStyle(_PhotosUI_SwiftUI.PhotosPickerStyle.compact)
-    default: preconditionFailure("invalid photosPickerStyle: \(value)")
+    default: let _ = preconditionFailure("invalid photosPickerStyle: \(value)")
     }
   }
 
@@ -6989,7 +6989,7 @@ self
       case "palette": self.pickerStyle(.palette)
       case "navigationLink": self.pickerStyle(.navigationLink)
       case "menu": self.pickerStyle(.menu)
-    default: preconditionFailure("invalid pickerStyle: \(value)")
+    default: let _ = preconditionFailure("invalid pickerStyle: \(value)")
     }
   }
 
@@ -7039,7 +7039,7 @@ self
       case "null": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: nil as SwiftUI.ColorScheme?)
       case "light": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.light as SwiftUI.ColorScheme?)
       case "dark": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.dark as SwiftUI.ColorScheme?)
-    default: preconditionFailure("invalid preferencePreferredColorScheme: \(value)")
+    default: let _ = preconditionFailure("invalid preferencePreferredColorScheme: \(value)")
     }
   }
 
@@ -7048,7 +7048,7 @@ self
       case "null": self.preferredColorScheme(nil as SwiftUI.ColorScheme?)
       case "light": self.preferredColorScheme(SwiftUI.ColorScheme.light as SwiftUI.ColorScheme?)
       case "dark": self.preferredColorScheme(SwiftUI.ColorScheme.dark as SwiftUI.ColorScheme?)
-    default: preconditionFailure("invalid preferredColorScheme: \(value)")
+    default: let _ = preconditionFailure("invalid preferredColorScheme: \(value)")
     }
   }
 
@@ -7103,7 +7103,7 @@ self
       case "background": self.presentationBackground(.background)
       case "foreground": self.presentationBackground(.foreground)
       case "tint": self.presentationBackground(.tint)
-    default: preconditionFailure("invalid presentationBackground: \(value)")
+    default: let _ = preconditionFailure("invalid presentationBackground: \(value)")
     }
   }
 
@@ -7113,7 +7113,7 @@ self
       case "automatic": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.automatic)
       case "enabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.enabled)
       case "disabled": self.presentationBackgroundInteraction(SwiftUI.PresentationBackgroundInteraction.disabled)
-    default: preconditionFailure("invalid presentationBackgroundInteraction: \(value)")
+    default: let _ = preconditionFailure("invalid presentationBackgroundInteraction: \(value)")
     }
   }
 
@@ -7157,7 +7157,7 @@ self
       case "popover": self.presentationCompactAdaptation(SwiftUI.PresentationAdaptation.popover)
       case "sheet": self.presentationCompactAdaptation(SwiftUI.PresentationAdaptation.sheet)
       case "fullScreenCover": self.presentationCompactAdaptation(SwiftUI.PresentationAdaptation.fullScreenCover)
-    default: preconditionFailure("invalid presentationCompactAdaptationWithPresentationAdaptation: \(value)")
+    default: let _ = preconditionFailure("invalid presentationCompactAdaptationWithPresentationAdaptation: \(value)")
     }
   }
 
@@ -7167,7 +7167,7 @@ self
       case "automatic": self.presentationContentInteraction(SwiftUI.PresentationContentInteraction.automatic)
       case "resizes": self.presentationContentInteraction(SwiftUI.PresentationContentInteraction.resizes)
       case "scrolls": self.presentationContentInteraction(SwiftUI.PresentationContentInteraction.scrolls)
-    default: preconditionFailure("invalid presentationContentInteraction: \(value)")
+    default: let _ = preconditionFailure("invalid presentationContentInteraction: \(value)")
     }
   }
 
@@ -7198,7 +7198,7 @@ self
       case "automatic": self.presentationDragIndicator(SwiftUI.Visibility.automatic)
       case "visible": self.presentationDragIndicator(SwiftUI.Visibility.visible)
       case "hidden": self.presentationDragIndicator(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid presentationDragIndicator: \(value)")
+    default: let _ = preconditionFailure("invalid presentationDragIndicator: \(value)")
     }
   }
 
@@ -7233,7 +7233,7 @@ if #available(iOS 27, *) { self.presentationPlacement(SwiftUI.PresentationPlacem
 self
 #endif
 
-    default: preconditionFailure("invalid presentationPlacement: \(value)")
+    default: let _ = preconditionFailure("invalid presentationPlacement: \(value)")
     }
   }
 
@@ -7244,7 +7244,7 @@ self
       case "page": if #available(iOS 18, *) { self.presentationSizing(.page) } else { self }
       case "fitted": if #available(iOS 18, *) { self.presentationSizing(.fitted) } else { self }
       case "automatic": if #available(iOS 18, *) { self.presentationSizing(.automatic) } else { self }
-    default: preconditionFailure("invalid presentationSizing: \(value)")
+    default: let _ = preconditionFailure("invalid presentationSizing: \(value)")
     }
   }
 
@@ -7297,7 +7297,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "portraitUpsideDown": self.previewInterfaceOrientation(SwiftUI.InterfaceOrientation.portraitUpsideDown)
       case "landscapeLeft": self.previewInterfaceOrientation(SwiftUI.InterfaceOrientation.landscapeLeft)
       case "landscapeRight": self.previewInterfaceOrientation(SwiftUI.InterfaceOrientation.landscapeRight)
-    default: preconditionFailure("invalid previewInterfaceOrientation: \(value)")
+    default: let _ = preconditionFailure("invalid previewInterfaceOrientation: \(value)")
     }
   }
 
@@ -7306,7 +7306,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
 
       case "device": self.previewLayout(DeveloperToolsSupport.PreviewLayout.device)
       case "sizeThatFits": self.previewLayout(DeveloperToolsSupport.PreviewLayout.sizeThatFits)
-    default: preconditionFailure("invalid previewLayout: \(value)")
+    default: let _ = preconditionFailure("invalid previewLayout: \(value)")
     }
   }
 
@@ -7321,7 +7321,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "automatic": self.productDescription(SwiftUI.Visibility.automatic)
       case "visible": self.productDescription(SwiftUI.Visibility.visible)
       case "hidden": self.productDescription(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid productDescription: \(value)")
+    default: let _ = preconditionFailure("invalid productDescription: \(value)")
     }
   }
 
@@ -7337,7 +7337,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "regular": self.productViewStyle(.regular)
       case "large": self.productViewStyle(.large)
       case "compact": self.productViewStyle(.compact)
-    default: preconditionFailure("invalid productViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid productViewStyle: \(value)")
     }
   }
 
@@ -7347,7 +7347,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "linear": self.progressViewStyle(.linear)
       case "circular": self.progressViewStyle(.circular)
       case "automatic": self.progressViewStyle(.automatic)
-    default: preconditionFailure("invalid progressViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid progressViewStyle: \(value)")
     }
   }
 
@@ -7397,7 +7397,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "orbit": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.orbit) } else { self }
       case "pan": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.pan) } else { self }
       case "tilt": if #available(iOS 18, *) { self.realityViewCameraControls(RealityFoundation.CameraControls.tilt) } else { self }
-    default: preconditionFailure("invalid realityViewCameraControls: \(value)")
+    default: let _ = preconditionFailure("invalid realityViewCameraControls: \(value)")
     }
   }
 
@@ -7407,7 +7407,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "flexible": if #available(iOS 26, *) { self.realityViewLayoutBehavior(_RealityKit_SwiftUI.RealityViewLayoutOption.flexible) } else { self }
       case "centered": if #available(iOS 26, *) { self.realityViewLayoutBehavior(_RealityKit_SwiftUI.RealityViewLayoutOption.centered) } else { self }
       case "fixedSize": if #available(iOS 26, *) { self.realityViewLayoutBehavior(_RealityKit_SwiftUI.RealityViewLayoutOption.fixedSize) } else { self }
-    default: preconditionFailure("invalid realityViewLayoutBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid realityViewLayoutBehavior: \(value)")
     }
   }
 
@@ -7417,7 +7417,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "placeholder": self.redacted(reason: SwiftUI.RedactionReasons.placeholder)
       case "privacy": self.redacted(reason: SwiftUI.RedactionReasons.privacy)
       case "invalidated": self.redacted(reason: SwiftUI.RedactionReasons.invalidated)
-    default: preconditionFailure("invalid redacted: \(value)")
+    default: let _ = preconditionFailure("invalid redacted: \(value)")
     }
   }
 
@@ -7566,7 +7566,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "all": self.safeAreaPadding(SwiftUI.Edge.Set.all)
       case "horizontal": self.safeAreaPadding(SwiftUI.Edge.Set.horizontal)
       case "vertical": self.safeAreaPadding(SwiftUI.Edge.Set.vertical)
-    default: preconditionFailure("invalid safeAreaPaddingWithSet: \(value)")
+    default: let _ = preconditionFailure("invalid safeAreaPaddingWithSet: \(value)")
     }
   }
 
@@ -7693,7 +7693,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "all": self.scenePadding(SwiftUI.Edge.Set.all)
       case "horizontal": self.scenePadding(SwiftUI.Edge.Set.horizontal)
       case "vertical": self.scenePadding(SwiftUI.Edge.Set.vertical)
-    default: preconditionFailure("invalid scenePaddingWithSet: \(value)")
+    default: let _ = preconditionFailure("invalid scenePaddingWithSet: \(value)")
     }
   }
 
@@ -7735,7 +7735,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "automatic": self.scrollContentBackground(SwiftUI.Visibility.automatic)
       case "visible": self.scrollContentBackground(SwiftUI.Visibility.visible)
       case "hidden": self.scrollContentBackground(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid scrollContentBackground: \(value)")
+    default: let _ = preconditionFailure("invalid scrollContentBackground: \(value)")
     }
   }
 
@@ -7751,7 +7751,7 @@ if #available(iOS 27, *) { return WidgetKit.WidgetFamily.systemExtraLargePortrai
       case "immediately": self.scrollDismissesKeyboard(SwiftUI.ScrollDismissesKeyboardMode.immediately)
       case "interactively": self.scrollDismissesKeyboard(SwiftUI.ScrollDismissesKeyboardMode.interactively)
       case "never": self.scrollDismissesKeyboard(SwiftUI.ScrollDismissesKeyboardMode.never)
-    default: preconditionFailure("invalid scrollDismissesKeyboard: \(value)")
+    default: let _ = preconditionFailure("invalid scrollDismissesKeyboard: \(value)")
     }
   }
 
@@ -7897,7 +7897,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
 
       case "paging": self.scrollTargetBehavior(.paging)
       case "viewAligned": self.scrollTargetBehavior(.viewAligned)
-    default: preconditionFailure("invalid scrollTargetBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid scrollTargetBehavior: \(value)")
     }
   }
 
@@ -7936,7 +7936,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
     switch value {
 
       case "automatic": self.searchDictationBehavior(SwiftUI.TextInputDictationBehavior.automatic)
-    default: preconditionFailure("invalid searchDictationBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid searchDictationBehavior: \(value)")
     }
   }
 
@@ -7952,7 +7952,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
 
       case "automatic": if #available(iOS 17.1, *) { self.searchPresentationToolbarBehavior(SwiftUI.SearchPresentationToolbarBehavior.automatic) } else { self }
       case "avoidHidingContent": if #available(iOS 17.1, *) { self.searchPresentationToolbarBehavior(SwiftUI.SearchPresentationToolbarBehavior.avoidHidingContent) } else { self }
-    default: preconditionFailure("invalid searchPresentationToolbarBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid searchPresentationToolbarBehavior: \(value)")
     }
   }
 
@@ -8043,7 +8043,7 @@ if #available(iOS 26, *) { return SwiftUI.ScrollEdgeEffectStyle.soft }
 
       case "automatic": if #available(iOS 26, *) { self.searchToolbarBehavior(SwiftUI.SearchToolbarBehavior.automatic) } else { self }
       case "minimize": if #available(iOS 26, *) { self.searchToolbarBehavior(SwiftUI.SearchToolbarBehavior.minimize) } else { self }
-    default: preconditionFailure("invalid searchToolbarBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid searchToolbarBehavior: \(value)")
     }
   }
 
@@ -8151,7 +8151,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "lightOutline": self.shortcutsLinkStyle(_AppIntents_SwiftUI.ShortcutsLinkStyle.lightOutline)
       case "dark": self.shortcutsLinkStyle(_AppIntents_SwiftUI.ShortcutsLinkStyle.dark)
       case "darkOutline": self.shortcutsLinkStyle(_AppIntents_SwiftUI.ShortcutsLinkStyle.darkOutline)
-    default: preconditionFailure("invalid shortcutsLinkStyle: \(value)")
+    default: let _ = preconditionFailure("invalid shortcutsLinkStyle: \(value)")
     }
   }
 
@@ -8161,7 +8161,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "black": self.signInWithAppleButtonStyle(_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style.black)
       case "white": self.signInWithAppleButtonStyle(_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style.white)
       case "whiteOutline": self.signInWithAppleButtonStyle(_AuthenticationServices_SwiftUI.SignInWithAppleButton.Style.whiteOutline)
-    default: preconditionFailure("invalid signInWithAppleButtonStyle: \(value)")
+    default: let _ = preconditionFailure("invalid signInWithAppleButtonStyle: \(value)")
     }
   }
 
@@ -8204,7 +8204,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       }))
     case "tap":
       self.simultaneousGesture(SwiftUI.TapGesture().onEnded({ _ in emit("simultaneousGesture", "") }))
-    default: preconditionFailure("invalid simultaneousGesture: \(value)")
+    default: let _ = preconditionFailure("invalid simultaneousGesture: \(value)")
     }
   }
 
@@ -8214,7 +8214,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "automatic": self.siriTipViewStyle(_AppIntents_SwiftUI.SiriTipViewStyle.automatic)
       case "light": self.siriTipViewStyle(_AppIntents_SwiftUI.SiriTipViewStyle.light)
       case "dark": self.siriTipViewStyle(_AppIntents_SwiftUI.SiriTipViewStyle.dark)
-    default: preconditionFailure("invalid siriTipViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid siriTipViewStyle: \(value)")
     }
   }
 
@@ -8224,7 +8224,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "automatic": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUI.Visibility.automatic) } else { self }
       case "visible": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUI.Visibility.visible) } else { self }
       case "hidden": if #available(iOS 26, *) { self.sliderThumbVisibility(SwiftUI.Visibility.hidden) } else { self }
-    default: preconditionFailure("invalid sliderThumbVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid sliderThumbVisibility: \(value)")
     }
   }
 
@@ -8255,7 +8255,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "automatic": self.springLoadingBehavior(SwiftUI.SpringLoadingBehavior.automatic)
       case "enabled": self.springLoadingBehavior(SwiftUI.SpringLoadingBehavior.enabled)
       case "disabled": self.springLoadingBehavior(SwiftUI.SpringLoadingBehavior.disabled)
-    default: preconditionFailure("invalid springLoadingBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid springLoadingBehavior: \(value)")
     }
   }
 
@@ -8413,7 +8413,7 @@ if #available(iOS 17.5, *) { return SwiftUI.SensoryFeedback.pathComplete }
       case "return": self.submitLabel(SwiftUI.SubmitLabel.return)
       case "next": self.submitLabel(SwiftUI.SubmitLabel.next)
       case "continue": self.submitLabel(SwiftUI.SubmitLabel.continue)
-    default: preconditionFailure("invalid submitLabel: \(value)")
+    default: let _ = preconditionFailure("invalid submitLabel: \(value)")
     }
   }
 
@@ -8474,7 +8474,7 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
 
       case "automatic": if #available(iOS 26, *) { self.subscriptionOfferViewStyle(.automatic) } else { self }
       case "compact": if #available(iOS 26, *) { self.subscriptionOfferViewStyle(.compact) } else { self }
-    default: preconditionFailure("invalid subscriptionOfferViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid subscriptionOfferViewStyle: \(value)")
     }
   }
 
@@ -8530,7 +8530,7 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       case "action": self.subscriptionStoreButtonLabel(_StoreKit_SwiftUI.SubscriptionStoreButtonLabel.action)
       case "displayName": self.subscriptionStoreButtonLabel(_StoreKit_SwiftUI.SubscriptionStoreButtonLabel.displayName)
       case "price": self.subscriptionStoreButtonLabel(_StoreKit_SwiftUI.SubscriptionStoreButtonLabel.price)
-    default: preconditionFailure("invalid subscriptionStoreButtonLabel: \(value)")
+    default: let _ = preconditionFailure("invalid subscriptionStoreButtonLabel: \(value)")
     }
   }
 
@@ -8540,7 +8540,7 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       case "automatic": self.subscriptionStoreControlBackground(_StoreKit_SwiftUI.SubscriptionStoreControlBackground.automatic)
       case "gradientMaterial": self.subscriptionStoreControlBackground(_StoreKit_SwiftUI.SubscriptionStoreControlBackground.gradientMaterial)
       case "gradientMaterialOnScroll": self.subscriptionStoreControlBackground(_StoreKit_SwiftUI.SubscriptionStoreControlBackground.gradientMaterialOnScroll)
-    default: preconditionFailure("invalid subscriptionStoreControlBackground: \(value)")
+    default: let _ = preconditionFailure("invalid subscriptionStoreControlBackground: \(value)")
     }
   }
 
@@ -8554,7 +8554,7 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       case "prominentPicker": self.subscriptionStoreControlStyle(.prominentPicker)
       case "picker": self.subscriptionStoreControlStyle(.picker)
       case "buttons": self.subscriptionStoreControlStyle(.buttons)
-    default: preconditionFailure("invalid subscriptionStoreControlStyle: \(value)")
+    default: let _ = preconditionFailure("invalid subscriptionStoreControlStyle: \(value)")
     }
   }
 
@@ -8564,7 +8564,7 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       case "automatic": if #available(iOS 18, *) { self.subscriptionStoreOptionGroupStyle(.automatic) } else { self }
       case "tabs": if #available(iOS 18, *) { self.subscriptionStoreOptionGroupStyle(.tabs) } else { self }
       case "links": if #available(iOS 18, *) { self.subscriptionStoreOptionGroupStyle(.links) } else { self }
-    default: preconditionFailure("invalid subscriptionStoreOptionGroupStyle: \(value)")
+    default: let _ = preconditionFailure("invalid subscriptionStoreOptionGroupStyle: \(value)")
     }
   }
 
@@ -8607,7 +8607,7 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       case "background": self.subscriptionStorePickerItemBackground(.background)
       case "foreground": self.subscriptionStorePickerItemBackground(.foreground)
       case "tint": self.subscriptionStorePickerItemBackground(.tint)
-    default: preconditionFailure("invalid subscriptionStorePickerItemBackground: \(value)")
+    default: let _ = preconditionFailure("invalid subscriptionStorePickerItemBackground: \(value)")
     }
   }
 
@@ -8673,7 +8673,7 @@ if #available(iOS 26, *) { return _StoreKit_SwiftUI.SubscriptionOfferViewButtonK
       case "background": self.subscriptionStorePolicyForegroundStyle(.background)
       case "foreground": self.subscriptionStorePolicyForegroundStyle(.foreground)
       case "tint": self.subscriptionStorePolicyForegroundStyle(.tint)
-    default: preconditionFailure("invalid subscriptionStorePolicyForegroundStyle: \(value)")
+    default: let _ = preconditionFailure("invalid subscriptionStorePolicyForegroundStyle: \(value)")
     }
   }
 
@@ -8697,7 +8697,7 @@ self
       case "null": if #available(iOS 26, *) { self.symbolColorRenderingMode(nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
       case "flat": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.flat as SwiftUI.SymbolColorRenderingMode?) } else { self }
       case "gradient": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.gradient as SwiftUI.SymbolColorRenderingMode?) } else { self }
-    default: preconditionFailure("invalid symbolColorRenderingMode: \(value)")
+    default: let _ = preconditionFailure("invalid symbolColorRenderingMode: \(value)")
     }
   }
 
@@ -8711,7 +8711,7 @@ self
       case "wiggle": if #available(iOS 18, *) { self.symbolEffect(.wiggle) } else { self }
       case "rotate": if #available(iOS 18, *) { self.symbolEffect(.rotate) } else { self }
       case "breathe": if #available(iOS 18, *) { self.symbolEffect(.breathe) } else { self }
-    default: preconditionFailure("invalid symbolEffect: \(value)")
+    default: let _ = preconditionFailure("invalid symbolEffect: \(value)")
     }
   }
 
@@ -8727,7 +8727,7 @@ self
       case "multicolor": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.multicolor as SwiftUI.SymbolRenderingMode?)
       case "hierarchical": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.hierarchical as SwiftUI.SymbolRenderingMode?)
       case "palette": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.palette as SwiftUI.SymbolRenderingMode?)
-    default: preconditionFailure("invalid symbolRenderingMode: \(value)")
+    default: let _ = preconditionFailure("invalid symbolRenderingMode: \(value)")
     }
   }
 
@@ -8736,7 +8736,7 @@ self
       case "null": if #available(iOS 26, *) { self.symbolVariableValueMode(nil as SwiftUI.SymbolVariableValueMode?) } else { self }
       case "color": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.color as SwiftUI.SymbolVariableValueMode?) } else { self }
       case "draw": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.draw as SwiftUI.SymbolVariableValueMode?) } else { self }
-    default: preconditionFailure("invalid symbolVariableValueMode: \(value)")
+    default: let _ = preconditionFailure("invalid symbolVariableValueMode: \(value)")
     }
   }
 
@@ -8749,7 +8749,7 @@ self
       case "rectangle": self.symbolVariant(SwiftUI.SymbolVariants.rectangle)
       case "fill": self.symbolVariant(SwiftUI.SymbolVariants.fill)
       case "slash": self.symbolVariant(SwiftUI.SymbolVariants.slash)
-    default: preconditionFailure("invalid symbolVariant: \(value)")
+    default: let _ = preconditionFailure("invalid symbolVariant: \(value)")
     }
   }
 
@@ -8760,7 +8760,7 @@ self
       case "onScrollDown": if #available(iOS 26, *) { self.tabBarMinimizeBehavior(SwiftUI.TabBarMinimizeBehavior.onScrollDown) } else { self }
       case "onScrollUp": if #available(iOS 26, *) { self.tabBarMinimizeBehavior(SwiftUI.TabBarMinimizeBehavior.onScrollUp) } else { self }
       case "never": if #available(iOS 26, *) { self.tabBarMinimizeBehavior(SwiftUI.TabBarMinimizeBehavior.never) } else { self }
-    default: preconditionFailure("invalid tabBarMinimizeBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid tabBarMinimizeBehavior: \(value)")
     }
   }
 
@@ -8770,7 +8770,7 @@ self
       case "automatic": self.tableColumnHeaders(SwiftUI.Visibility.automatic)
       case "visible": self.tableColumnHeaders(SwiftUI.Visibility.visible)
       case "hidden": self.tableColumnHeaders(SwiftUI.Visibility.hidden)
-    default: preconditionFailure("invalid tableColumnHeaders: \(value)")
+    default: let _ = preconditionFailure("invalid tableColumnHeaders: \(value)")
     }
   }
 
@@ -8779,7 +8779,7 @@ self
 
       case "inset": self.tableStyle(.inset)
       case "automatic": self.tableStyle(.automatic)
-    default: preconditionFailure("invalid tableStyle: \(value)")
+    default: let _ = preconditionFailure("invalid tableStyle: \(value)")
     }
   }
 
@@ -8807,7 +8807,7 @@ self
 
       case "automatic": if #available(iOS 26, *) { self.tabViewSearchActivation(SwiftUI.TabSearchActivation.automatic) } else { self }
       case "searchTabSelection": if #available(iOS 26, *) { self.tabViewSearchActivation(SwiftUI.TabSearchActivation.searchTabSelection) } else { self }
-    default: preconditionFailure("invalid tabViewSearchActivation: \(value)")
+    default: let _ = preconditionFailure("invalid tabViewSearchActivation: \(value)")
     }
   }
 
@@ -8818,7 +8818,7 @@ self
       case "page": self.tabViewStyle(.page)
       case "tabBarOnly": if #available(iOS 18, *) { self.tabViewStyle(.tabBarOnly) } else { self }
       case "automatic": self.tabViewStyle(.automatic)
-    default: preconditionFailure("invalid tabViewStyle: \(value)")
+    default: let _ = preconditionFailure("invalid tabViewStyle: \(value)")
     }
   }
 
@@ -8835,7 +8835,7 @@ self
       case "null": self.textCase(nil as SwiftUI.Text.Case?)
       case "uppercase": self.textCase(SwiftUI.Text.Case.uppercase as SwiftUI.Text.Case?)
       case "lowercase": self.textCase(SwiftUI.Text.Case.lowercase as SwiftUI.Text.Case?)
-    default: preconditionFailure("invalid textCase: \(value)")
+    default: let _ = preconditionFailure("invalid textCase: \(value)")
     }
   }
 
@@ -8908,7 +8908,7 @@ self
       case "sublocality": self.textContentType(UIKit.UITextContentType.sublocality as UIKit.UITextContentType?)
       case "telephoneNumber": self.textContentType(UIKit.UITextContentType.telephoneNumber as UIKit.UITextContentType?)
       case "username": self.textContentType(UIKit.UITextContentType.username as UIKit.UITextContentType?)
-    default: preconditionFailure("invalid textContentType: \(value)")
+    default: let _ = preconditionFailure("invalid textContentType: \(value)")
     }
   }
 
@@ -8917,7 +8917,7 @@ self
 
       case "automatic": self.textEditorStyle(.automatic)
       case "plain": self.textEditorStyle(.plain)
-    default: preconditionFailure("invalid textEditorStyle: \(value)")
+    default: let _ = preconditionFailure("invalid textEditorStyle: \(value)")
     }
   }
 
@@ -8934,7 +8934,7 @@ self
 #endif
 
       case "plain": self.textFieldStyle(.plain)
-    default: preconditionFailure("invalid textFieldStyle: \(value)")
+    default: let _ = preconditionFailure("invalid textFieldStyle: \(value)")
     }
   }
 
@@ -8945,7 +8945,7 @@ self
       case "words": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.words as SwiftUI.TextInputAutocapitalization?)
       case "sentences": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.sentences as SwiftUI.TextInputAutocapitalization?)
       case "characters": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.characters as SwiftUI.TextInputAutocapitalization?)
-    default: preconditionFailure("invalid textInputAutocapitalization: \(value)")
+    default: let _ = preconditionFailure("invalid textInputAutocapitalization: \(value)")
     }
   }
 
@@ -8973,7 +8973,7 @@ if #available(iOS 27, *) { self.textInputBorderShape(SwiftUI.TextInputBorderShap
 self
 #endif
 
-    default: preconditionFailure("invalid textInputBorderShape: \(value)")
+    default: let _ = preconditionFailure("invalid textInputBorderShape: \(value)")
     }
   }
 
@@ -9061,7 +9061,7 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
 
       case "enabled": self.textSelection(.enabled)
       case "disabled": self.textSelection(.disabled)
-    default: preconditionFailure("invalid textSelection: \(value)")
+    default: let _ = preconditionFailure("invalid textSelection: \(value)")
     }
   }
 
@@ -9071,7 +9071,7 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
       case "automatic": if #available(iOS 18, *) { self.textSelectionAffinity(SwiftUI.TextSelectionAffinity.automatic) } else { self }
       case "upstream": if #available(iOS 18, *) { self.textSelectionAffinity(SwiftUI.TextSelectionAffinity.upstream) } else { self }
       case "downstream": if #available(iOS 18, *) { self.textSelectionAffinity(SwiftUI.TextSelectionAffinity.downstream) } else { self }
-    default: preconditionFailure("invalid textSelectionAffinity: \(value)")
+    default: let _ = preconditionFailure("invalid textSelectionAffinity: \(value)")
     }
   }
 
@@ -9097,7 +9097,7 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
       case "clear": self.tint(SwiftUI.Color.clear as SwiftUI.Color?)
       case "primary": self.tint(SwiftUI.Color.primary as SwiftUI.Color?)
       case "secondary": self.tint(SwiftUI.Color.secondary as SwiftUI.Color?)
-    default: preconditionFailure("invalid tintWithOptionalColor: \(value)")
+    default: let _ = preconditionFailure("invalid tintWithOptionalColor: \(value)")
     }
   }
 
@@ -9107,7 +9107,7 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
       case "button": self.toggleStyle(.button)
       case "automatic": self.toggleStyle(.automatic)
       case "switch": self.toggleStyle(.switch)
-    default: preconditionFailure("invalid toggleStyle: \(value)")
+    default: let _ = preconditionFailure("invalid toggleStyle: \(value)")
     }
   }
 
@@ -9413,7 +9413,7 @@ self
       case "navigationStack": self.toolbarRole(SwiftUI.ToolbarRole.navigationStack)
       case "browser": self.toolbarRole(SwiftUI.ToolbarRole.browser)
       case "editor": self.toolbarRole(SwiftUI.ToolbarRole.editor)
-    default: preconditionFailure("invalid toolbarRole: \(value)")
+    default: let _ = preconditionFailure("invalid toolbarRole: \(value)")
     }
   }
 
@@ -9424,7 +9424,7 @@ self
       case "large": self.toolbarTitleDisplayMode(SwiftUI.ToolbarTitleDisplayMode.large)
       case "inlineLarge": self.toolbarTitleDisplayMode(SwiftUI.ToolbarTitleDisplayMode.inlineLarge)
       case "inline": self.toolbarTitleDisplayMode(SwiftUI.ToolbarTitleDisplayMode.inline)
-    default: preconditionFailure("invalid toolbarTitleDisplayMode: \(value)")
+    default: let _ = preconditionFailure("invalid toolbarTitleDisplayMode: \(value)")
     }
   }
 
@@ -9472,7 +9472,7 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
       case "sidebarToggle": self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.sidebarToggle as SwiftUI.ToolbarDefaultItemKind?)
       case "title": if #available(iOS 18, *) { self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.title as SwiftUI.ToolbarDefaultItemKind?) } else { self }
       case "search": if #available(iOS 26, *) { self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.search as SwiftUI.ToolbarDefaultItemKind?) } else { self }
-    default: preconditionFailure("invalid toolbarWithRemoving: \(value)")
+    default: let _ = preconditionFailure("invalid toolbarWithRemoving: \(value)")
     }
   }
 
@@ -9708,7 +9708,7 @@ self
       case "null": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = nil as SwiftUI.ColorScheme? })
       case "light": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.light as SwiftUI.ColorScheme? })
       case "dark": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.dark as SwiftUI.ColorScheme? })
-    default: preconditionFailure("invalid transformPreferencePreferredColorScheme: \(value)")
+    default: let _ = preconditionFailure("invalid transformPreferencePreferredColorScheme: \(value)")
     }
   }
 
@@ -9719,7 +9719,7 @@ self
       case "slide": self.transition(SwiftUI.AnyTransition.slide)
       case "identity": self.transition(SwiftUI.AnyTransition.identity)
       case "scale": self.transition(SwiftUI.AnyTransition.scale)
-    default: preconditionFailure("invalid transition: \(value)")
+    default: let _ = preconditionFailure("invalid transition: \(value)")
     }
   }
 
@@ -9764,7 +9764,7 @@ self
       case "head": self.truncationMode(SwiftUI.Text.TruncationMode.head)
       case "tail": self.truncationMode(SwiftUI.Text.TruncationMode.tail)
       case "middle": self.truncationMode(SwiftUI.Text.TruncationMode.middle)
-    default: preconditionFailure("invalid truncationMode: \(value)")
+    default: let _ = preconditionFailure("invalid truncationMode: \(value)")
     }
   }
 
@@ -9917,7 +9917,7 @@ self
 
       case "black": self.verifyIdentityWithWalletButtonStyle(_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle.black)
       case "blackOutline": self.verifyIdentityWithWalletButtonStyle(_PassKit_SwiftUI.VerifyIdentityWithWalletButtonStyle.blackOutline)
-    default: preconditionFailure("invalid verifyIdentityWithWalletButtonStyle: \(value)")
+    default: let _ = preconditionFailure("invalid verifyIdentityWithWalletButtonStyle: \(value)")
     }
   }
 
@@ -9945,7 +9945,7 @@ self
       case "automatic": if #available(iOS 26, *) { self.webViewBackForwardNavigationGestures(_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior.automatic) } else { self }
       case "enabled": if #available(iOS 26, *) { self.webViewBackForwardNavigationGestures(_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior.enabled) } else { self }
       case "disabled": if #available(iOS 26, *) { self.webViewBackForwardNavigationGestures(_WebKit_SwiftUI.WebView.BackForwardNavigationGesturesBehavior.disabled) } else { self }
-    default: preconditionFailure("invalid webViewBackForwardNavigationGestures: \(value)")
+    default: let _ = preconditionFailure("invalid webViewBackForwardNavigationGestures: \(value)")
     }
   }
 
@@ -9955,7 +9955,7 @@ self
       case "automatic": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUI.Visibility.automatic) } else { self }
       case "visible": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUI.Visibility.visible) } else { self }
       case "hidden": if #available(iOS 26, *) { self.webViewContentBackground(SwiftUI.Visibility.hidden) } else { self }
-    default: preconditionFailure("invalid webViewContentBackground: \(value)")
+    default: let _ = preconditionFailure("invalid webViewContentBackground: \(value)")
     }
   }
 
@@ -9965,7 +9965,7 @@ self
       case "automatic": if #available(iOS 26, *) { self.webViewElementFullscreenBehavior(_WebKit_SwiftUI.WebView.ElementFullscreenBehavior.automatic) } else { self }
       case "enabled": if #available(iOS 26, *) { self.webViewElementFullscreenBehavior(_WebKit_SwiftUI.WebView.ElementFullscreenBehavior.enabled) } else { self }
       case "disabled": if #available(iOS 26, *) { self.webViewElementFullscreenBehavior(_WebKit_SwiftUI.WebView.ElementFullscreenBehavior.disabled) } else { self }
-    default: preconditionFailure("invalid webViewElementFullscreenBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid webViewElementFullscreenBehavior: \(value)")
     }
   }
 
@@ -9975,7 +9975,7 @@ self
       case "automatic": if #available(iOS 26, *) { self.webViewLinkPreviews(_WebKit_SwiftUI.WebView.LinkPreviewBehavior.automatic) } else { self }
       case "enabled": if #available(iOS 26, *) { self.webViewLinkPreviews(_WebKit_SwiftUI.WebView.LinkPreviewBehavior.enabled) } else { self }
       case "disabled": if #available(iOS 26, *) { self.webViewLinkPreviews(_WebKit_SwiftUI.WebView.LinkPreviewBehavior.disabled) } else { self }
-    default: preconditionFailure("invalid webViewLinkPreviews: \(value)")
+    default: let _ = preconditionFailure("invalid webViewLinkPreviews: \(value)")
     }
   }
 
@@ -9985,7 +9985,7 @@ self
       case "automatic": if #available(iOS 26, *) { self.webViewMagnificationGestures(_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior.automatic) } else { self }
       case "enabled": if #available(iOS 26, *) { self.webViewMagnificationGestures(_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior.enabled) } else { self }
       case "disabled": if #available(iOS 26, *) { self.webViewMagnificationGestures(_WebKit_SwiftUI.WebView.MagnificationGesturesBehavior.disabled) } else { self }
-    default: preconditionFailure("invalid webViewMagnificationGestures: \(value)")
+    default: let _ = preconditionFailure("invalid webViewMagnificationGestures: \(value)")
     }
   }
 
@@ -10043,7 +10043,7 @@ self
 
       case "enabled": if #available(iOS 26, *) { self.webViewTextSelection(.enabled) } else { self }
       case "disabled": if #available(iOS 26, *) { self.webViewTextSelection(.disabled) } else { self }
-    default: preconditionFailure("invalid webViewTextSelection: \(value)")
+    default: let _ = preconditionFailure("invalid webViewTextSelection: \(value)")
     }
   }
 
@@ -10051,7 +10051,7 @@ self
     switch value {
 
       case "automatic": if #available(iOS 18, *) { self.windowToolbarFullScreenVisibility(SwiftUI.WindowToolbarFullScreenVisibility.automatic) } else { self }
-    default: preconditionFailure("invalid windowToolbarFullScreenVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid windowToolbarFullScreenVisibility: \(value)")
     }
   }
 
@@ -10079,7 +10079,7 @@ self
       case "layoutBased": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUI.Text.WritingDirectionStrategy.layoutBased) } else { self }
       case "contentBased": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUI.Text.WritingDirectionStrategy.contentBased) } else { self }
       case "default": if #available(iOS 26, *) { self.writingDirection(strategy: SwiftUI.Text.WritingDirectionStrategy.default) } else { self }
-    default: preconditionFailure("invalid writingDirection: \(value)")
+    default: let _ = preconditionFailure("invalid writingDirection: \(value)")
     }
   }
 
@@ -10089,7 +10089,7 @@ self
       case "automatic": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUI.Visibility.automatic) } else { self }
       case "visible": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUI.Visibility.visible) } else { self }
       case "hidden": if #available(iOS 18.4, *) { self.writingToolsAffordanceVisibility(SwiftUI.Visibility.hidden) } else { self }
-    default: preconditionFailure("invalid writingToolsAffordanceVisibility: \(value)")
+    default: let _ = preconditionFailure("invalid writingToolsAffordanceVisibility: \(value)")
     }
   }
 
@@ -10100,7 +10100,7 @@ self
       case "complete": if #available(iOS 18, *) { self.writingToolsBehavior(SwiftUI.WritingToolsBehavior.complete) } else { self }
       case "limited": if #available(iOS 18, *) { self.writingToolsBehavior(SwiftUI.WritingToolsBehavior.limited) } else { self }
       case "disabled": if #available(iOS 18, *) { self.writingToolsBehavior(SwiftUI.WritingToolsBehavior.disabled) } else { self }
-    default: preconditionFailure("invalid writingToolsBehavior: \(value)")
+    default: let _ = preconditionFailure("invalid writingToolsBehavior: \(value)")
     }
   }
 

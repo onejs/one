@@ -119,6 +119,9 @@ export type Control = {
   layout?: 'fill' | 'presentation'
   // frameworks the generated Swift needs beyond SwiftUI and UIKit, such as AVKit.
   imports?: readonly string[]
+  // import lines the generated adapter needs for helpers its validate or
+  // nativeValue code calls, relative to src/platform/generated.
+  adapterImports?: readonly string[]
 }
 
 export const commonFields = {

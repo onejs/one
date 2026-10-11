@@ -17800,6 +17800,9 @@
         "MapUserLocationButton",
         "Marker"
       ],
+      "Charts": [
+        "Chart"
+      ],
       "_CoreLocationUI_SwiftUI": [
         "LocationButton"
       ],
@@ -19979,6 +19982,18 @@
         }
       ],
       "ios": 14
+    },
+    {
+      "module": "Charts",
+      "type": "Chart",
+      "parameters": [
+        {
+          "label": "content",
+          "name": "content",
+          "type": "() -> Content"
+        }
+      ],
+      "ios": 16
     },
     {
       "module": "SwiftUI",

@@ -225,7 +225,7 @@ ${modifier.cases!.map((field) => `    case ${JSON.stringify(field.name)}:
           }
         }
       }`).join('\n')}
-    default: preconditionFailure("invalid ${modifier.name} property")
+    default: let _ = preconditionFailure("invalid ${modifier.name} property")
     }
   }`
       if (modifier.kind === 'registeredValue')
@@ -497,7 +497,7 @@ ${modifier.gestureOptions!.map((option) => {
           return `    case ${JSON.stringify(option.name)}:
       ${option.ios > 17 ? sdkGuard(option.ios, `if #available(iOS ${option.ios}, *) { ${call} } else { self }`, 'self') : call}`
         }).join('\n')}
-    default: preconditionFailure("invalid ${modifier.name}: \\(value)")
+    default: let _ = preconditionFailure("invalid ${modifier.name}: \\(value)")
     }
   }`
       if (modifier.kind === 'bindingFocusBoolean') {
@@ -1016,6 +1016,9 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
     if value == "null" { ${apply(nil, modifier.ios)} } else { ${parsed} }
   }`
       }
+      // builder defaults use `let _ = preconditionFailure`, a statement: modules
+      // such as Swift Charts conform Never to their own builder protocols, which
+      // makes the expression form too expensive for the result builder to check.
       if (modifier.cases) {
         return `  @ViewBuilder fileprivate func ${helper}(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
@@ -1027,7 +1030,7 @@ ${modifier.cases
     return `      case ${JSON.stringify(item.name)}:${call.startsWith('\n') ? '' : ' '}${call}`
   })
   .join('\n')}
-    default: preconditionFailure("invalid ${modifier.name}: \\(value)")
+    default: let _ = preconditionFailure("invalid ${modifier.name}: \\(value)")
     }
   }`
       }

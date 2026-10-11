@@ -7,6 +7,7 @@ import { assertSwiftUIValue } from './swiftui'
 import { swiftStyleNative, dispatchSDKEvent } from './swiftStyleNative'
 import type * as Types from './controlTypes'
 import { iconColorRoles } from '../ui/iconRoles'
+import { chartPointsNative, chartStyleNative } from '../chartNative'
 import { getSyncStateId, isSyncState } from '../syncStore'
 import { syncHandleOf, useSyncValue } from '../syncNativeState'
 import NativePicker from '../specs/OneNativePickerNativeComponent'
@@ -2042,6 +2043,73 @@ export function FileImporter({
               : { type: 'cancelled' }
         )
       }
+    />
+  )
+}
+import NativeChart from '../specs/OneNativeChartNativeComponent'
+export function Chart({
+  data,
+  type = 'line',
+  showGrid = true,
+  animate = true,
+  showLegend = false,
+  referenceLines = [],
+  lineStyle = undefined,
+  pointStyle = undefined,
+  areaStyle = undefined,
+  barStyle = undefined,
+  pieStyle = undefined,
+  rectangleStyle = undefined,
+  ruleStyle = undefined,
+  swiftStyle,
+  style,
+  ...props
+}: Types.ChartProps) {
+  const chartTypes = ['line', 'point', 'bar', 'area', 'pie', 'rectangle']
+  if (!chartTypes.includes(type))
+    throw new Error('Swift.Chart type must be one of ' + chartTypes.join(', '))
+  for (const [key, flag] of [
+    ['showGrid', showGrid],
+    ['animate', animate],
+    ['showLegend', showLegend],
+  ] as const)
+    if (typeof flag !== 'boolean')
+      throw new Error('Swift.Chart ' + key + ' must be a boolean')
+
+  return (
+    <NativeChart
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      data={chartPointsNative('data', data)}
+      type={type}
+      showGrid={showGrid}
+      animate={animate}
+      showLegend={showLegend}
+      referenceLines={chartPointsNative('referenceLines', referenceLines)}
+      lineStyle={chartStyleNative('lineStyle', lineStyle, [
+        'dashArray',
+        'width',
+        'pointStyle',
+        'pointSize',
+        'color',
+      ])}
+      pointStyle={chartStyleNative('pointStyle', pointStyle, ['pointStyle', 'pointSize'])}
+      areaStyle={chartStyleNative('areaStyle', areaStyle, ['color'])}
+      barStyle={chartStyleNative('barStyle', barStyle, ['cornerRadius', 'width'])}
+      pieStyle={chartStyleNative('pieStyle', pieStyle, ['innerRadius', 'angularInset'])}
+      rectangleStyle={chartStyleNative('rectangleStyle', rectangleStyle, [
+        'color',
+        'cornerRadius',
+      ])}
+      ruleStyle={chartStyleNative('ruleStyle', ruleStyle, [
+        'color',
+        'lineWidth',
+        'dashArray',
+      ])}
     />
   )
 }
