@@ -10,7 +10,7 @@ import { dedupe } from '../../../vxrn/src/config/getBaseViteConfigOnly'
 import {
   buildMetroConfigInputFromViteConfig,
   getMetroConfigFromViteConfig,
-} from './getMetroConfigFromViteConfig'
+} from '../metro-config/getMetroConfigFromViteConfig'
 
 const tmpDirs: string[] = []
 
