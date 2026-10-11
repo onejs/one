@@ -28,6 +28,12 @@ export default function OneNativeDerivedViews() {
       />
       <One.iOS.ShortcutsLink testID="one-native-derived-shortcuts-link" />
       <One.iOS.ProductView id="one.native.features.product" testID="one-native-derived-product" />
+      <One.iOS.StoreView
+        ids={['one.native.features.product']}
+        style={styles.store}
+        testID="one-native-derived-store"
+      />
+      <One.iOS.RenameButton testID="one-native-derived-rename-button" />
       <One.iOS.SubscriptionStoreView
         productIDs={['one.native.features.monthly']}
         style={styles.store}

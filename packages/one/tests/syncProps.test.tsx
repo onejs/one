@@ -61,17 +61,24 @@ describe('sync schema contract', () => {
     expect(component('Toggle').props).toMatchObject({
       syncStateId: { type: 'Int32' },
     })
-    expect(component('Slider').props).not.toHaveProperty('syncStateId')
     expect(component('SecureField').controlled).toMatchObject({
       value: 'value',
       event: 'onNativeSecureFieldValueChange',
       sync: true,
     })
-    expect(component('Slider').controlled).toMatchObject({
+    for (const [name, event] of [
+      ['Slider', 'onNativeSliderValueChange'],
+      ['Stepper', 'onNativeStepperValueChange'],
+    ]) {
+      expect(component(name).controlled).toMatchObject({ value: 'value', event, sync: true })
+      expect(component(name).props).toMatchObject({ syncStateId: { type: 'Int32' } })
+    }
+    expect(component('Picker').props).not.toHaveProperty('syncStateId')
+    expect(component('Picker').controlled).toMatchObject({
       value: 'value',
-      event: 'onNativeSliderValueChange',
+      event: 'onNativePickerValueChange',
     })
-    expect(component('Slider').controlled).not.toHaveProperty('sync')
+    expect(component('Picker').controlled).not.toHaveProperty('sync')
   })
 })
 

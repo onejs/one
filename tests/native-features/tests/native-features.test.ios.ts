@@ -609,6 +609,8 @@ describe('one native integration tests', () => {
         'one-native-derived-location-button',
         'one-native-derived-shortcuts-link',
         'one-native-derived-product',
+        'one-native-derived-store',
+        'one-native-derived-rename-button',
         'one-native-derived-subscription-store',
         'one-native-derived-chart',
       ]) {
