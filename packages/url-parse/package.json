@@ -3,14 +3,14 @@
   "version": "1.27.1",
   "sideEffects": false,
   "type": "module",
-  "types": "./src/index.ts",
+  "types": "./src/index.tsx",
   "main": "dist/cjs",
   "module": "dist/esm",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "react-native": "./dist/esm/index.native.js",
-      "types": "./src/index.ts",
+      "types": "./src/index.tsx",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     }

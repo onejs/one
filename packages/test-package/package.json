@@ -3,9 +3,9 @@
   "version": "1.27.1",
   "sideEffects": false,
   "type": "module",
-  "main": "dist/cjs",
-  "module": "dist/esm",
-  "source": "src/index.ts",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "source": "src/index.js",
   "types": "./types/index.d.ts",
   "files": [
     "src",
@@ -15,7 +15,7 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./src/index.ts",
+      "types": "./types/index.d.ts",
       "import": "./src/index.js"
     }
   },
