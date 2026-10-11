@@ -169,6 +169,11 @@ function split(list: Token[], separator: string): Token[][] {
   return parts
 }
 
+// an optional element is a union, which binds looser than `[]`
+function arrayOf(element: string): string {
+  return element.includes(' | ') ? `(${element})[]` : `${element}[]`
+}
+
 function tsType(file: string, list: Token[], language: 'swift' | 'kotlin'): string {
   if (list.length === 0) fail(file, list[0], 'native export needs an explicit type')
   if (list.at(-1)?.text === '?') return `${tsType(file, list.slice(0, -1), language)} | null`
@@ -180,14 +185,14 @@ function tsType(file: string, list: Token[], language: 'swift' | 'kotlin'): stri
   if (language === 'swift' && list[0].text === '[' && list.at(-1)?.text === ']') {
     const inner = list.slice(1, -1)
     const entries = split(inner, ':')
-    if (entries.length === 1) return `${tsType(file, inner, language)}[]`
+    if (entries.length === 1) return arrayOf(tsType(file, inner, language))
     if (entries.length === 2 && entries[0].map((token) => token.text).join('') === 'String') {
       return `Record<string, ${tsType(file, entries[1], language)}>`
     }
   }
   if (language === 'kotlin' && list[1]?.text === '<' && list.at(-1)?.text === '>') {
     const entries = split(list.slice(2, -1), ',')
-    if (list[0].text === 'List' && entries.length === 1) return `${tsType(file, entries[0], language)}[]`
+    if (list[0].text === 'List' && entries.length === 1) return arrayOf(tsType(file, entries[0], language))
     if (list[0].text === 'Map' && entries.length === 2 && entries[0].map((token) => token.text).join('') === 'String') {
       return `Record<string, ${tsType(file, entries[1], language)}>`
     }

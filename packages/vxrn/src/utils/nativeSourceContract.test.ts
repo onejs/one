@@ -10,6 +10,27 @@ const require = createRequire(import.meta.url)
 const tsc = join(require.resolve('typescript/package.json'), '..', 'bin', 'tsc')
 
 describe('native source contract', () => {
+  it('types optional collection elements as nullable array members', () => {
+    const swift = nativeSourceContract(
+      '/app/native/Echo.swift',
+      `@MainActor final class Echo: PeachModule {
+  init() {}
+  func echo(_ values: [String?]) -> [String?] { values }
+}`
+    )
+    const kotlin = nativeSourceContract(
+      '/app/native/Echo.kt',
+      `object Echo : OneModule {
+  fun echo(values: List<String?>): List<String?> = values
+}`
+    )
+    for (const contract of [swift, kotlin]) {
+      const [method] = contract.modules[0].methods
+      expect(method.parameters[0].type).toBe('(string | null)[]')
+      expect(method.result).toBe('(string | null)[]')
+    }
+  })
+
   it('derives matching typed exports from Swift and Kotlin module sources', () => {
     const swift = nativeSourceContract(
       '/app/native/Audio.swift',
