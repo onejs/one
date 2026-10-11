@@ -474,6 +474,39 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(android.content).toContain('versionName "1.0"')
   })
 
+  it('stamps WRITE_SETTINGS from native.app brightness', () => {
+    const manifest =
+      '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />'
+    const stamped = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content: manifest,
+      platform: 'android',
+      app: {
+        ...app,
+        brightness: true,
+        imagePicker: undefined,
+        speech: undefined,
+        notifications: undefined,
+      },
+    })
+    expect(stamped.content).toContain(
+      '<uses-permission android:name="android.permission.WRITE_SETTINGS" />'
+    )
+    const bare = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content: manifest,
+      platform: 'android',
+      app: {
+        ...app,
+        brightness: undefined,
+        imagePicker: undefined,
+        speech: undefined,
+        notifications: undefined,
+      },
+    })
+    expect(bare.content).not.toContain('android.permission.WRITE_SETTINGS')
+  })
+
   it('omits camera entries when imagePicker.camera is unset', () => {
     const bare = { ...app, imagePicker: undefined, speech: undefined, notifications: undefined }
     const infoPlist = renderPrebuildFile({

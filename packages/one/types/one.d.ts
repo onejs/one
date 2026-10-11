@@ -1,4 +1,4 @@
-import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, KeepAwake, Print, StoreReview, QuickActions, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, Purchases, ImageManipulator, Device, Motion, BackgroundTasks, AppIntents, DeviceAttestation, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Storage, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
+import { Auth, Browser as NativeBrowser, Widgets, LiveActivities, LocalAuthentication, ProtectedStore, KeepAwake, Print, StoreReview, QuickActions, Location, FileSystem, Audio, CameraView, Share, Open, PhotoLibrary, MapServices, AppTracking, AppIcon, ScreenOrientation, ScreenCapture, Purchases, ImageManipulator, Device, Motion, BackgroundTasks, AppIntents, DeviceAttestation, Contacts, Calendar, WidgetUI, Clipboard as NativeClipboard, Battery as NativeBattery, Brightness as NativeBrightness, SpeechSynthesis as NativeSpeechSynthesis, AppInfo, Database, Compose, Fonts, DocumentPicker, Haptics, ImagePicker, LaunchScreen, MenuAction, Menu as NativeMenu, ContextMenu as NativeContextMenu, Notifications, Network as NativeNetwork, SecureStore as NativeSecureStore, Storage, Speech as NativeSpeech, Updates as NativeUpdates, SplitView, Swift, TextInput, ToolbarHost, ToolbarItem, UI as NativeUI, ReservedRegions, ZoomTransitionAlignmentRectDetector, ZoomTransitionEnabler, ZoomTransitionSource, type ColorType } from './platform';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-area-context';
 export type OnePlatform = 'web' | 'ios' | 'android';
 export type OneIOS = typeof Swift & {
@@ -69,6 +69,9 @@ export type OneAPI = {
     readonly UI: Readonly<OneUI>;
     readonly Notifications: Readonly<OneNotifications>;
     readonly Clipboard: typeof NativeClipboard;
+    readonly Battery: typeof NativeBattery;
+    readonly Brightness: typeof NativeBrightness;
+    readonly SpeechSynthesis: typeof NativeSpeechSynthesis;
     readonly Haptics: typeof Haptics;
     readonly LaunchScreen: typeof LaunchScreen;
     readonly Network: typeof NativeNetwork;

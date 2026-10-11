@@ -41,6 +41,8 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneAppTrackingSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAudioSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBackgroundTasksSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneBatterySpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneBrightnessSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCalendarSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
@@ -74,6 +76,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneShareSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneSpeechSynthesisSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneStorageSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneStoreReviewSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp
@@ -83,6 +86,8 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAudioSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneBatterySpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneBrightnessSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneCalendarSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneClipboardSpec.cpp
@@ -113,6 +118,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneShareSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneSpeechSynthesisSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp
 )
 

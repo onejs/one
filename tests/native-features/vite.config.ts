@@ -219,6 +219,8 @@ export default defineConfig({
             recognition: 'NativeFeatureTests verifies dictation.',
             microphone: 'NativeFeatureTests verifies dictation.',
           },
+          // stamps WRITE_SETTINGS so the brightness suite proves system writes
+          brightness: true,
           audio: {
             microphone: 'NativeFeatureTests verifies audio recording.',
             background: true,

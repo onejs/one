@@ -216,6 +216,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.ReservedRegions` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; folding and nonempty occlusions unproven |
 | `One.Notifications` | notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share | OneNativeBehavioralLibraryCase | Android setString and getString proven only through the share suite Copy check; no Android clipboard suite |
+| `One.Battery` | battery | battery, native-modules:unavailable | missing |  |
+| `One.Brightness` | brightness | brightness, native-modules:unavailable | missing |  |
+| `One.SpeechSynthesis` | speech-synthesis | speech-synthesis, native-modules:unavailable | missing |  |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
 | `One.LaunchScreen` | launch-screen | launch-screen | OneNativeLaunchScreenLibraryCase |  |
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
@@ -238,6 +241,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useSpanning` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; spanning divisions unproven |
 | `useNativeState` | state, ui-text-input | state | missing |  |
 | `useFonts` | fonts | fonts | missing |  |
+| `useBatteryLevel` | battery | battery | missing |  |
+| `useBatteryState` | battery | battery | missing |  |
+| `useLowPowerMode` | battery | battery | missing |  |
+| `usePowerState` | battery | battery | missing |  |
 | `useNetworkState` | network | network | missing |  |
 | `useSafeAreaInsets` | safe-area, navigation-split-view | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
 | `useSafeAreaFrame` | safe-area, navigation-split-view | safe-area | OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |

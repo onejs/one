@@ -24,6 +24,9 @@ description: What every native API does on iOS, Android, and web
 | BackgroundTasks | BGTaskScheduler | actions require iOS; `getPending` returns `[]` | validates calls; no scheduling; pending list is `[]` |
 | Widgets, Live Activities | WidgetKit, ActivityKit | actions require iOS; `pushToken` returns `null` | writes, updates, and endings have no effect; starts reject; push token is `null` |
 | Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
+| Battery | UIDevice + ProcessInfo | BatteryManager + PowerManager | Battery Status API, else full/unknown |
+| Brightness | UIScreen (system calls are no-ops) | window override + Settings.System | assume-full reads, inert |
+| Speech Synthesis | AVSpeechSynthesizer | TextToSpeech | speechSynthesis |
 | Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
 | Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
 | Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |

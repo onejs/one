@@ -51,6 +51,7 @@ export interface NativeAppManifest {
         recognition: string;
         microphone: string;
     };
+    brightness?: boolean;
     notifications?: {
         push?: boolean;
         apsEnvironment?: 'development' | 'production';

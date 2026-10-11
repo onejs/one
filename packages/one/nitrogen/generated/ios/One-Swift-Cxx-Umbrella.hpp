@@ -54,6 +54,24 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 namespace margelo::nitro::one { struct BackgroundTaskInvocation; }
 // Forward declaration of `BackgroundTaskKind` to properly resolve imports.
 namespace margelo::nitro::one { enum class BackgroundTaskKind; }
+// Forward declaration of `BatteryLevelEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryLevelEvent; }
+// Forward declaration of `BatteryPowerModeEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryPowerModeEvent; }
+// Forward declaration of `BatteryPowerState` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryPowerState; }
+// Forward declaration of `BatteryStateEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryStateEvent; }
+// Forward declaration of `BatteryState` to properly resolve imports.
+namespace margelo::nitro::one { enum class BatteryState; }
+// Forward declaration of `BrightnessEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BrightnessEvent; }
+// Forward declaration of `BrightnessMode` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrightnessMode; }
+// Forward declaration of `BrightnessPermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct BrightnessPermissionResponse; }
+// Forward declaration of `BrightnessPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrightnessPermissionStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -146,6 +164,10 @@ namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBackgroundTasksSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
+// Forward declaration of `HybridOneBatterySpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBatterySpec; }
+// Forward declaration of `HybridOneBrightnessSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBrightnessSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
@@ -210,6 +232,8 @@ namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSpeechSynthesisSpec; }
 // Forward declaration of `HybridOneStoreReviewSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
@@ -380,6 +404,16 @@ namespace margelo::nitro::one { struct SpeechPermissionResponse; }
 namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
 // Forward declaration of `SpeechStartOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct SpeechStartOptions; }
+// Forward declaration of `SpeechSynthesisEventType` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisEventType; }
+// Forward declaration of `SpeechSynthesisEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisEvent; }
+// Forward declaration of `SpeechSynthesisUtterance` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisUtterance; }
+// Forward declaration of `SpeechSynthesisVoiceQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisVoiceQuality; }
+// Forward declaration of `SpeechSynthesisVoice` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisVoice; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
@@ -407,6 +441,15 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AudioRemoteCommandType.hpp"
 #include "BackgroundTaskInvocation.hpp"
 #include "BackgroundTaskKind.hpp"
+#include "BatteryLevelEvent.hpp"
+#include "BatteryPowerModeEvent.hpp"
+#include "BatteryPowerState.hpp"
+#include "BatteryState.hpp"
+#include "BatteryStateEvent.hpp"
+#include "BrightnessEvent.hpp"
+#include "BrightnessMode.hpp"
+#include "BrightnessPermissionResponse.hpp"
+#include "BrightnessPermissionStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -453,6 +496,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBackgroundTasksSpec.hpp"
+#include "HybridOneBatterySpec.hpp"
+#include "HybridOneBrightnessSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -485,6 +530,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
+#include "HybridOneSpeechSynthesisSpec.hpp"
 #include "HybridOneStoreReviewSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
@@ -570,6 +616,11 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "SpeechPermissionResponse.hpp"
 #include "SpeechPermissionStatus.hpp"
 #include "SpeechStartOptions.hpp"
+#include "SpeechSynthesisEvent.hpp"
+#include "SpeechSynthesisEventType.hpp"
+#include "SpeechSynthesisUtterance.hpp"
+#include "SpeechSynthesisVoice.hpp"
+#include "SpeechSynthesisVoiceQuality.hpp"
 #include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
@@ -608,6 +659,10 @@ namespace One { class HybridOneAppleAuthSpec_cxx; }
 namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBackgroundTasksSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBackgroundTasksSpec_cxx; }
+// Forward declaration of `HybridOneBatterySpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBatterySpec_cxx; }
+// Forward declaration of `HybridOneBrightnessSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBrightnessSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
@@ -672,6 +727,8 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSpeechSynthesisSpec_cxx; }
 // Forward declaration of `HybridOneStoreReviewSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneStoreReviewSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.

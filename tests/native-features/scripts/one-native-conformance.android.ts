@@ -2201,6 +2201,127 @@ async function run(config: Config) {
       'one-native-keep-awake-run'
     )
 
+    // Battery: reads, power-state agreement, listener attach/remove, validation.
+    await freshLeg('battery')
+    await tapNavigation(config, 'nav-one-native-battery')
+    await expect(
+      'system-battery-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-battery-run'
+    )
+    tapFresh(config, 'system-battery-run', {
+      id: 'one-native-battery-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-battery-report',
+      (nodes) => {
+        const text = joined(nodes)
+        const level = /Level: (-?[\d.]+)/.exec(text)
+        const state = /State: (\w+)/.exec(text)
+        const hookLevel = /HookLevel: (-?[\d.]+)/.exec(text)
+        const hookState = /HookState: (\w+)/.exec(text)
+        const hookPower = /HookPower: (-?[\d.]+)\|(\w+)\|(true|false)/.exec(text)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          level !== null &&
+          Number(level[1]) >= 0 &&
+          Number(level[1]) <= 1 &&
+          state !== null &&
+          ['unknown', 'unplugged', 'charging', 'full', 'notCharging'].includes(state[1]) &&
+          text.includes('Agreement: true') &&
+          text.includes('Listeners: attached') &&
+          text.includes('Invalid: Battery.addLevelListener: listener must be a function') &&
+          hookLevel !== null &&
+          Number(hookLevel[1]) >= 0 &&
+          Number(hookLevel[1]) <= 1 &&
+          hookState !== null &&
+          ['unknown', 'unplugged', 'charging', 'full', 'notCharging'].includes(hookState[1]) &&
+          text.includes('HookMode: false') &&
+          hookPower !== null &&
+          Number(hookPower[1]) >= 0 &&
+          Number(hookPower[1]) <= 1 &&
+          ['unknown', 'unplugged', 'charging', 'full', 'notCharging'].includes(hookPower[2])
+        )
+      },
+      'one-native-battery-run'
+    )
+
+    // Brightness: app roundtrip, android never fires brightness events,
+    // system writes with the settings grant, modes, permissions, validation.
+    await freshLeg('brightness')
+    await tapNavigation(config, 'nav-one-native-brightness')
+    await expect(
+      'system-brightness-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-brightness-run'
+    )
+    adbText(config, ['shell', 'appops', 'set', config.packageId, 'WRITE_SETTINGS', 'allow'])
+    tapFresh(config, 'system-brightness-run', {
+      id: 'one-native-brightness-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-brightness-report',
+      (nodes) => {
+        const text = joined(nodes)
+        const sysSet = /SystemSet: (-?[\d.]+)/.exec(text)
+        const mode = /SystemMode: (\w+)/.exec(text)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          text.includes('Roundtrip: true') &&
+          text.includes('Heard04: false') &&
+          text.includes('Permissions: granted|true|false') &&
+          sysSet !== null &&
+          Math.abs(Number(sysSet[1]) - 0.5) < 0.02 &&
+          mode !== null &&
+          ['unknown', 'automatic', 'manual'].includes(mode[1]) &&
+          text.includes('Invalid: Brightness.set: value must be a number between 0 and 1') &&
+          text.includes(
+            'InvalidMode: Brightness.setSystemMode: mode must be one of: manual, automatic.'
+          )
+        )
+      },
+      'one-native-brightness-run'
+    )
+
+    // SpeechSynthesis: input limit, voice shapes, queued utterance speaks to
+    // done, quiet after stop, validation.
+    await freshLeg('speech-synthesis')
+    await tapNavigation(config, 'nav-one-native-speech-synthesis')
+    await expect(
+      'system-speech-synthesis-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-speech-synthesis-run'
+    )
+    tapFresh(config, 'system-speech-synthesis-run', {
+      id: 'one-native-speech-synthesis-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-speech-synthesis-report',
+      (nodes) => {
+        const text = joined(nodes)
+        const max = /MaxInputLength: ([\d.eE+-]+)/.exec(text)
+        return (
+          text.includes('Status: done') &&
+          max !== null &&
+          Number(max[1]) > 0 &&
+          text.includes('MalformedVoices: 0') &&
+          text.includes('Speaking: false') &&
+          text.includes('Events: start,done') &&
+          text.includes('Quiet: false') &&
+          text.includes('Invalid: SpeechSynthesis.speak: text must be a non-empty string')
+        )
+      },
+      'one-native-speech-synthesis-run'
+    )
+
     // Orientation: read, both locks with flipped dimensions, listener
     // events, unlock. The landscapeLeft lock pins the left/right mapping.
     await freshLeg('orientation')

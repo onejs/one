@@ -130,6 +130,9 @@ const suites = [
   'quick-actions',
   'app-intents',
   'clipboard',
+  'battery',
+  'brightness',
+  'speech-synthesis',
   'network',
   'browser',
   'notifications',
@@ -917,6 +920,18 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'quick-actions': quickActionsLoaded,
   'app-intents': appIntentsLoaded,
   clipboard: clipboardLoaded,
+  battery: (nodes: Node[]) =>
+    nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-battery-run')) &&
+    has(nodes, 'Status: '),
+  brightness: (nodes: Node[]) =>
+    nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-brightness-run')) &&
+    has(nodes, 'Status: '),
+  'speech-synthesis': (nodes: Node[]) =>
+    nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-speech-synthesis-run')) &&
+    has(nodes, 'Status: '),
   network: networkLoaded,
   browser: browserLoaded,
   notifications: notificationsLoaded,
@@ -1032,6 +1047,9 @@ const suiteHome: Record<Suite, string> = {
   'quick-actions': 'nav-one-native-quick-actions',
   'app-intents': 'nav-one-native-app-intents',
   clipboard: 'nav-one-native-clipboard',
+  battery: 'nav-one-native-battery',
+  brightness: 'nav-one-native-brightness',
+  'speech-synthesis': 'nav-one-native-speech-synthesis',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
   notifications: 'nav-one-native-notifications',
@@ -10411,6 +10429,133 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       console.log(`PASS keep-awake-${expected.split(':')[0].toLowerCase()}`)
     }
     screenshot('keep-awake-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'battery') {
+    const valueOf = (got: string[], prefix: string) =>
+      got.find((label) => label.startsWith(prefix))?.slice(prefix.length)
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-battery')
+    await wait('battery fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-battery-run' })
+    const state = await wait('battery operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    const level = Number(valueOf(got, 'Level: '))
+    if (!Number.isFinite(level) || level < -1 || level > 1)
+      throw new Error(`battery level out of range: ${valueOf(got, 'Level: ')}`)
+    const union = ['unknown', 'unplugged', 'charging', 'full', 'notCharging']
+    if (!union.includes(valueOf(got, 'State: ') ?? ''))
+      throw new Error(`battery state outside union: ${valueOf(got, 'State: ')}`)
+    const [powerLevel, powerState, powerMode] = (valueOf(got, 'Power: ') ?? '').split('|')
+    if (
+      powerLevel !== valueOf(got, 'Level: ') ||
+      powerState !== valueOf(got, 'State: ') ||
+      powerMode !== valueOf(got, 'LowPower: ')
+    )
+      throw new Error(`battery power state disagrees: ${valueOf(got, 'Power: ')}`)
+    for (const expected of [
+      'Agreement: true',
+      'Listeners: attached',
+      'Invalid: Battery.addLevelListener: listener must be a function',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`battery expected ${expected}`)
+      console.log(`PASS battery-${expected.split(':')[0].toLowerCase()}`)
+    }
+    const hookLevel = Number(valueOf(got, 'HookLevel: '))
+    if (!Number.isFinite(hookLevel) || hookLevel < -1 || hookLevel > 1)
+      throw new Error(`battery hook level out of range: ${valueOf(got, 'HookLevel: ')}`)
+    if (!union.includes(valueOf(got, 'HookState: ') ?? ''))
+      throw new Error(`battery hook state outside union: ${valueOf(got, 'HookState: ')}`)
+    if (!['true', 'false'].includes(valueOf(got, 'HookMode: ') ?? ''))
+      throw new Error(`battery hook mode not boolean: ${valueOf(got, 'HookMode: ')}`)
+    const [hookPowerLevel, hookPowerState, hookPowerMode] = (
+      valueOf(got, 'HookPower: ') ?? ''
+    ).split('|')
+    if (
+      !Number.isFinite(Number(hookPowerLevel)) ||
+      Number(hookPowerLevel) < -1 ||
+      Number(hookPowerLevel) > 1 ||
+      !union.includes(hookPowerState) ||
+      !['true', 'false'].includes(hookPowerMode)
+    )
+      throw new Error(`battery hook power outside shape: ${valueOf(got, 'HookPower: ')}`)
+    console.log('PASS battery-hooks')
+    screenshot('battery-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'brightness') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-brightness')
+    await wait('brightness fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-brightness-run' })
+    const state = await wait('brightness operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    const valueOf = (prefix: string) =>
+      got.find((label) => label.startsWith(prefix))?.slice(prefix.length)
+    const mid = Number(valueOf('Mid: '))
+    if (!Number.isFinite(mid) || Math.abs(mid - 0.5) >= 0.02)
+      throw new Error(`brightness roundtrip missed 0.5: ${valueOf('Mid: ')}`)
+    const restored = Number(valueOf('Restored: '))
+    const initial = Number(valueOf('Initial: '))
+    if (!Number.isFinite(restored) || Math.abs(restored - initial) >= 0.02)
+      throw new Error(`brightness restore missed initial: ${valueOf('Restored: ')}`)
+    // the simulator never posts brightness notifications for programmatic
+    // sets, so no listener event arrives there; the subscription itself still
+    // runs without error. android never fires brightness events at all.
+    for (const expected of [
+      'Roundtrip: true',
+      'Heard04: false',
+      'Permissions: granted|true|false',
+      'Invalid: Brightness.set: value must be a number between 0 and 1',
+      'InvalidMode: Brightness.setSystemMode: mode must be one of: manual, automatic.',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`brightness expected ${expected}`)
+      console.log(`PASS brightness-${expected.split(':')[0].toLowerCase()}`)
+    }
+    const mode = valueOf('SystemMode: ')
+    if (!['unknown', 'automatic', 'manual'].includes(mode ?? ''))
+      throw new Error(`brightness system mode outside union: ${mode}`)
+    screenshot('brightness-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'speech-synthesis') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-speech-synthesis')
+    await wait('speech synthesis fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-speech-synthesis-run' })
+    const state = await wait('speech synthesis operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    const maxInput = Number(
+      got.find((label) => label.startsWith('MaxInputLength: '))?.slice('MaxInputLength: '.length)
+    )
+    if (!Number.isFinite(maxInput) || maxInput <= 0)
+      throw new Error(`speech synthesis input limit invalid: ${maxInput}`)
+    for (const expected of [
+      'MalformedVoices: 0',
+      'Speaking: false',
+      'Events: start,done',
+      'Quiet: false',
+      'Invalid: SpeechSynthesis.speak: text must be a non-empty string',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`speech synthesis expected ${expected}`)
+      console.log(`PASS speech-synthesis-${expected.split(':')[0].toLowerCase()}`)
+    }
+    screenshot('speech-synthesis-readback.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

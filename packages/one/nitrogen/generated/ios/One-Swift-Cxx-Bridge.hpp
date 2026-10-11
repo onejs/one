@@ -52,6 +52,24 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 namespace margelo::nitro::one { struct BackgroundTaskInvocation; }
 // Forward declaration of `BackgroundTaskKind` to properly resolve imports.
 namespace margelo::nitro::one { enum class BackgroundTaskKind; }
+// Forward declaration of `BatteryLevelEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryLevelEvent; }
+// Forward declaration of `BatteryPowerModeEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryPowerModeEvent; }
+// Forward declaration of `BatteryPowerState` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryPowerState; }
+// Forward declaration of `BatteryStateEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryStateEvent; }
+// Forward declaration of `BatteryState` to properly resolve imports.
+namespace margelo::nitro::one { enum class BatteryState; }
+// Forward declaration of `BrightnessEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BrightnessEvent; }
+// Forward declaration of `BrightnessMode` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrightnessMode; }
+// Forward declaration of `BrightnessPermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct BrightnessPermissionResponse; }
+// Forward declaration of `BrightnessPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrightnessPermissionStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -126,6 +144,10 @@ namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBackgroundTasksSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
+// Forward declaration of `HybridOneBatterySpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBatterySpec; }
+// Forward declaration of `HybridOneBrightnessSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBrightnessSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
@@ -190,6 +212,8 @@ namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSpeechSynthesisSpec; }
 // Forward declaration of `HybridOneStoreReviewSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
@@ -330,6 +354,14 @@ namespace margelo::nitro::one { struct SpeechEvent; }
 namespace margelo::nitro::one { struct SpeechPermissionResponse; }
 // Forward declaration of `SpeechPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
+// Forward declaration of `SpeechSynthesisEventType` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisEventType; }
+// Forward declaration of `SpeechSynthesisEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisEvent; }
+// Forward declaration of `SpeechSynthesisVoiceQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisVoiceQuality; }
+// Forward declaration of `SpeechSynthesisVoice` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisVoice; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
@@ -350,6 +382,10 @@ namespace One { class HybridOneAppleAuthSpec_cxx; }
 namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBackgroundTasksSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBackgroundTasksSpec_cxx; }
+// Forward declaration of `HybridOneBatterySpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBatterySpec_cxx; }
+// Forward declaration of `HybridOneBrightnessSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBrightnessSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
@@ -414,6 +450,8 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSpeechSynthesisSpec_cxx; }
 // Forward declaration of `HybridOneStoreReviewSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneStoreReviewSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.
@@ -441,6 +479,15 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "AudioRemoteCommandType.hpp"
 #include "BackgroundTaskInvocation.hpp"
 #include "BackgroundTaskKind.hpp"
+#include "BatteryLevelEvent.hpp"
+#include "BatteryPowerModeEvent.hpp"
+#include "BatteryPowerState.hpp"
+#include "BatteryState.hpp"
+#include "BatteryStateEvent.hpp"
+#include "BrightnessEvent.hpp"
+#include "BrightnessMode.hpp"
+#include "BrightnessPermissionResponse.hpp"
+#include "BrightnessPermissionStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -478,6 +525,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBackgroundTasksSpec.hpp"
+#include "HybridOneBatterySpec.hpp"
+#include "HybridOneBrightnessSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -510,6 +559,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
+#include "HybridOneSpeechSynthesisSpec.hpp"
 #include "HybridOneStoreReviewSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
@@ -580,6 +630,10 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "SpeechEventType.hpp"
 #include "SpeechPermissionResponse.hpp"
 #include "SpeechPermissionStatus.hpp"
+#include "SpeechSynthesisEvent.hpp"
+#include "SpeechSynthesisEventType.hpp"
+#include "SpeechSynthesisVoice.hpp"
+#include "SpeechSynthesisVoiceQuality.hpp"
 #include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
@@ -614,7 +668,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline HingeState get_std__optional_HingeState_(const std::optional<HingeState>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<SizeClass>>
   /**
    * Specialized version of `std::shared_ptr<Promise<SizeClass>>`.
@@ -626,7 +680,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<SizeClass> wrap_std__shared_ptr_Promise_SizeClass__(std::shared_ptr<Promise<SizeClass>> promise) noexcept {
     return PromiseHolder<SizeClass>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const SizeClass& /* result */)>
   /**
    * Specialized version of `std::function<void(const SizeClass&)>`.
@@ -648,7 +702,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_SizeClass_Wrapper wrap_Func_void_SizeClass(Func_void_SizeClass value) noexcept {
     return Func_void_SizeClass_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
   /**
    * Specialized version of `std::function<void(const std::exception_ptr&)>`.
@@ -670,7 +724,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__exception_ptr_Wrapper wrap_Func_void_std__exception_ptr(Func_void_std__exception_ptr value) noexcept {
     return Func_void_std__exception_ptr_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::optional<HingeState>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::optional<HingeState>>>`.
@@ -682,7 +736,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::optional<HingeState>> wrap_std__shared_ptr_Promise_std__optional_HingeState___(std::shared_ptr<Promise<std::optional<HingeState>>> promise) noexcept {
     return PromiseHolder<std::optional<HingeState>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::optional<HingeState>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::optional<HingeState>&)>`.
@@ -704,7 +758,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_HingeState__Wrapper wrap_Func_void_std__optional_HingeState_(Func_void_std__optional_HingeState_ value) noexcept {
     return Func_void_std__optional_HingeState__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void()>
   /**
    * Specialized version of `std::function<void()>`.
@@ -726,7 +780,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_Wrapper wrap_Func_void(Func_void value) noexcept {
     return Func_void_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAdaptiveSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAdaptiveSpec>`.
@@ -734,11 +788,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAdaptiveSpec_ = std::shared_ptr<HybridOneAdaptiveSpec>;
   std::shared_ptr<HybridOneAdaptiveSpec> create_std__shared_ptr_HybridOneAdaptiveSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAdaptiveSpec_(std__shared_ptr_HybridOneAdaptiveSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneAdaptiveSpec>
   using std__weak_ptr_HybridOneAdaptiveSpec_ = std::weak_ptr<HybridOneAdaptiveSpec>;
   inline std__weak_ptr_HybridOneAdaptiveSpec_ weakify_std__shared_ptr_HybridOneAdaptiveSpec_(const std::shared_ptr<HybridOneAdaptiveSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<SizeClass>
   using Result_SizeClass_ = Result<SizeClass>;
   inline Result_SizeClass_ create_Result_SizeClass_(const SizeClass& value) noexcept {
@@ -747,7 +801,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_SizeClass_ create_Result_SizeClass_(const std::exception_ptr& error) noexcept {
     return Result<SizeClass>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::optional<HingeState>>
   using Result_std__optional_HingeState__ = Result<std::optional<HingeState>>;
   inline Result_std__optional_HingeState__ create_Result_std__optional_HingeState__(const std::optional<HingeState>& value) noexcept {
@@ -756,7 +810,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_HingeState__ create_Result_std__optional_HingeState__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<HingeState>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<SizeClass>>>
   using Result_std__shared_ptr_Promise_SizeClass___ = Result<std::shared_ptr<Promise<SizeClass>>>;
   inline Result_std__shared_ptr_Promise_SizeClass___ create_Result_std__shared_ptr_Promise_SizeClass___(const std::shared_ptr<Promise<SizeClass>>& value) noexcept {
@@ -765,7 +819,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_SizeClass___ create_Result_std__shared_ptr_Promise_SizeClass___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<SizeClass>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<HingeState>>>>
   using Result_std__shared_ptr_Promise_std__optional_HingeState____ = Result<std::shared_ptr<Promise<std::optional<HingeState>>>>;
   inline Result_std__shared_ptr_Promise_std__optional_HingeState____ create_Result_std__shared_ptr_Promise_std__optional_HingeState____(const std::shared_ptr<Promise<std::optional<HingeState>>>& value) noexcept {
@@ -774,7 +828,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__optional_HingeState____ create_Result_std__shared_ptr_Promise_std__optional_HingeState____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<HingeState>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::function<void()>>
   using Result_std__function_void____ = Result<std::function<void()>>;
   inline Result_std__function_void____ create_Result_std__function_void____(const std::function<void()>& value) noexcept {
@@ -783,7 +837,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__function_void____ create_Result_std__function_void____(const std::exception_ptr& error) noexcept {
     return Result<std::function<void()>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<bool>>
   /**
    * Specialized version of `std::shared_ptr<Promise<bool>>`.
@@ -795,7 +849,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<bool> wrap_std__shared_ptr_Promise_bool__(std::shared_ptr<Promise<bool>> promise) noexcept {
     return PromiseHolder<bool>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(bool /* result */)>
   /**
    * Specialized version of `std::function<void(bool)>`.
@@ -817,7 +871,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_bool_Wrapper wrap_Func_void_bool(Func_void_bool value) noexcept {
     return Func_void_bool_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::optional<std::string>
   /**
    * Specialized version of `std::optional<std::string>`.
@@ -832,7 +886,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::string get_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::optional<std::string>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::optional<std::string>>>`.
@@ -844,7 +898,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::optional<std::string>> wrap_std__shared_ptr_Promise_std__optional_std__string___(std::shared_ptr<Promise<std::optional<std::string>>> promise) noexcept {
     return PromiseHolder<std::optional<std::string>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::optional<std::string>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::optional<std::string>&)>`.
@@ -866,7 +920,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_std__string__Wrapper wrap_Func_void_std__optional_std__string_(Func_void_std__optional_std__string_ value) noexcept {
     return Func_void_std__optional_std__string__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<void>>
   /**
    * Specialized version of `std::shared_ptr<Promise<void>>`.
@@ -878,7 +932,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<void> wrap_std__shared_ptr_Promise_void__(std::shared_ptr<Promise<void>> promise) noexcept {
     return PromiseHolder<void>(std::move(promise));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppIconSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppIconSpec>`.
@@ -886,11 +940,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppIconSpec_ = std::shared_ptr<HybridOneAppIconSpec>;
   std::shared_ptr<HybridOneAppIconSpec> create_std__shared_ptr_HybridOneAppIconSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppIconSpec_(std__shared_ptr_HybridOneAppIconSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneAppIconSpec>
   using std__weak_ptr_HybridOneAppIconSpec_ = std::weak_ptr<HybridOneAppIconSpec>;
   inline std__weak_ptr_HybridOneAppIconSpec_ weakify_std__shared_ptr_HybridOneAppIconSpec_(const std::shared_ptr<HybridOneAppIconSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<bool>>>
   using Result_std__shared_ptr_Promise_bool___ = Result<std::shared_ptr<Promise<bool>>>;
   inline Result_std__shared_ptr_Promise_bool___ create_Result_std__shared_ptr_Promise_bool___(const std::shared_ptr<Promise<bool>>& value) noexcept {
@@ -899,7 +953,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_bool___ create_Result_std__shared_ptr_Promise_bool___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<bool>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<std::string>>>>
   using Result_std__shared_ptr_Promise_std__optional_std__string____ = Result<std::shared_ptr<Promise<std::optional<std::string>>>>;
   inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::shared_ptr<Promise<std::optional<std::string>>>& value) noexcept {
@@ -908,7 +962,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<void>>>
   using Result_std__shared_ptr_Promise_void___ = Result<std::shared_ptr<Promise<void>>>;
   inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::shared_ptr<Promise<void>>& value) noexcept {
@@ -917,7 +971,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_void___ create_Result_std__shared_ptr_Promise_void___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<void>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppInfoSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppInfoSpec>`.
@@ -925,11 +979,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppInfoSpec_ = std::shared_ptr<HybridOneAppInfoSpec>;
   std::shared_ptr<HybridOneAppInfoSpec> create_std__shared_ptr_HybridOneAppInfoSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppInfoSpec_(std__shared_ptr_HybridOneAppInfoSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneAppInfoSpec>
   using std__weak_ptr_HybridOneAppInfoSpec_ = std::weak_ptr<HybridOneAppInfoSpec>;
   inline std__weak_ptr_HybridOneAppInfoSpec_ weakify_std__shared_ptr_HybridOneAppInfoSpec_(const std::shared_ptr<HybridOneAppInfoSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: std::function<void(const AppIntentInvocation& /* invocation */)>
   /**
    * Specialized version of `std::function<void(const AppIntentInvocation&)>`.
@@ -951,7 +1005,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppIntentInvocation_Wrapper wrap_Func_void_AppIntentInvocation(Func_void_AppIntentInvocation value) noexcept {
     return Func_void_AppIntentInvocation_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<AppIntentInvocation>
   /**
    * Specialized version of `std::vector<AppIntentInvocation>`.
@@ -962,7 +1016,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppIntentsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppIntentsSpec>`.
@@ -970,11 +1024,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppIntentsSpec_ = std::shared_ptr<HybridOneAppIntentsSpec>;
   std::shared_ptr<HybridOneAppIntentsSpec> create_std__shared_ptr_HybridOneAppIntentsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppIntentsSpec_(std__shared_ptr_HybridOneAppIntentsSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneAppIntentsSpec>
   using std__weak_ptr_HybridOneAppIntentsSpec_ = std::weak_ptr<HybridOneAppIntentsSpec>;
   inline std__weak_ptr_HybridOneAppIntentsSpec_ weakify_std__shared_ptr_HybridOneAppIntentsSpec_(const std::shared_ptr<HybridOneAppIntentsSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::vector<AppIntentInvocation>>
   using Result_std__vector_AppIntentInvocation__ = Result<std::vector<AppIntentInvocation>>;
   inline Result_std__vector_AppIntentInvocation__ create_Result_std__vector_AppIntentInvocation__(const std::vector<AppIntentInvocation>& value) noexcept {
@@ -983,7 +1037,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__vector_AppIntentInvocation__ create_Result_std__vector_AppIntentInvocation__(const std::exception_ptr& error) noexcept {
     return Result<std::vector<AppIntentInvocation>>::withError(error);
   }
-
+  
   // pragma MARK: Result<void>
   using Result_void_ = Result<void>;
   inline Result_void_ create_Result_void_() noexcept {
@@ -992,7 +1046,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
     return Result<void>::withError(error);
   }
-
+  
   // pragma MARK: std::optional<AppleAuthFullName>
   /**
    * Specialized version of `std::optional<AppleAuthFullName>`.
@@ -1007,7 +1061,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline AppleAuthFullName get_std__optional_AppleAuthFullName_(const std::optional<AppleAuthFullName>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::optional<AppleAuthCredential>
   /**
    * Specialized version of `std::optional<AppleAuthCredential>`.
@@ -1022,7 +1076,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline AppleAuthCredential get_std__optional_AppleAuthCredential_(const std::optional<AppleAuthCredential>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<AppleAuthResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AppleAuthResult>>`.
@@ -1034,7 +1088,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AppleAuthResult> wrap_std__shared_ptr_Promise_AppleAuthResult__(std::shared_ptr<Promise<AppleAuthResult>> promise) noexcept {
     return PromiseHolder<AppleAuthResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const AppleAuthResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const AppleAuthResult&)>`.
@@ -1056,7 +1110,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppleAuthResult_Wrapper wrap_Func_void_AppleAuthResult(Func_void_AppleAuthResult value) noexcept {
     return Func_void_AppleAuthResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<AppleAuthScope>
   /**
    * Specialized version of `std::vector<AppleAuthScope>`.
@@ -1067,7 +1121,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::optional<std::vector<AppleAuthScope>>
   /**
    * Specialized version of `std::optional<std::vector<AppleAuthScope>>`.
@@ -1082,7 +1136,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<AppleAuthScope> get_std__optional_std__vector_AppleAuthScope__(const std::optional<std::vector<AppleAuthScope>>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<AppleCredentialState>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AppleCredentialState>>`.
@@ -1094,7 +1148,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AppleCredentialState> wrap_std__shared_ptr_Promise_AppleCredentialState__(std::shared_ptr<Promise<AppleCredentialState>> promise) noexcept {
     return PromiseHolder<AppleCredentialState>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(AppleCredentialState /* result */)>
   /**
    * Specialized version of `std::function<void(AppleCredentialState)>`.
@@ -1116,7 +1170,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppleCredentialState_Wrapper wrap_Func_void_AppleCredentialState(Func_void_AppleCredentialState value) noexcept {
     return Func_void_AppleCredentialState_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppleAuthSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppleAuthSpec>`.
@@ -1124,11 +1178,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppleAuthSpec_ = std::shared_ptr<HybridOneAppleAuthSpec>;
   std::shared_ptr<HybridOneAppleAuthSpec> create_std__shared_ptr_HybridOneAppleAuthSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppleAuthSpec_(std__shared_ptr_HybridOneAppleAuthSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneAppleAuthSpec>
   using std__weak_ptr_HybridOneAppleAuthSpec_ = std::weak_ptr<HybridOneAppleAuthSpec>;
   inline std__weak_ptr_HybridOneAppleAuthSpec_ weakify_std__shared_ptr_HybridOneAppleAuthSpec_(const std::shared_ptr<HybridOneAppleAuthSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<bool>
   using Result_bool_ = Result<bool>;
   inline Result_bool_ create_Result_bool_(bool value) noexcept {
@@ -1137,7 +1191,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_bool_ create_Result_bool_(const std::exception_ptr& error) noexcept {
     return Result<bool>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<AppleAuthResult>>>
   using Result_std__shared_ptr_Promise_AppleAuthResult___ = Result<std::shared_ptr<Promise<AppleAuthResult>>>;
   inline Result_std__shared_ptr_Promise_AppleAuthResult___ create_Result_std__shared_ptr_Promise_AppleAuthResult___(const std::shared_ptr<Promise<AppleAuthResult>>& value) noexcept {
@@ -1146,7 +1200,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AppleAuthResult___ create_Result_std__shared_ptr_Promise_AppleAuthResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AppleAuthResult>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<AppleCredentialState>>>
   using Result_std__shared_ptr_Promise_AppleCredentialState___ = Result<std::shared_ptr<Promise<AppleCredentialState>>>;
   inline Result_std__shared_ptr_Promise_AppleCredentialState___ create_Result_std__shared_ptr_Promise_AppleCredentialState___(const std::shared_ptr<Promise<AppleCredentialState>>& value) noexcept {
@@ -1155,7 +1209,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AppleCredentialState___ create_Result_std__shared_ptr_Promise_AppleCredentialState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AppleCredentialState>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<AppTrackingPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AppTrackingPermissionStatus>>`.
@@ -1167,7 +1221,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AppTrackingPermissionStatus> wrap_std__shared_ptr_Promise_AppTrackingPermissionStatus__(std::shared_ptr<Promise<AppTrackingPermissionStatus>> promise) noexcept {
     return PromiseHolder<AppTrackingPermissionStatus>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(AppTrackingPermissionStatus /* result */)>
   /**
    * Specialized version of `std::function<void(AppTrackingPermissionStatus)>`.
@@ -1189,7 +1243,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AppTrackingPermissionStatus_Wrapper wrap_Func_void_AppTrackingPermissionStatus(Func_void_AppTrackingPermissionStatus value) noexcept {
     return Func_void_AppTrackingPermissionStatus_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppTrackingSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAppTrackingSpec>`.
@@ -1197,11 +1251,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAppTrackingSpec_ = std::shared_ptr<HybridOneAppTrackingSpec>;
   std::shared_ptr<HybridOneAppTrackingSpec> create_std__shared_ptr_HybridOneAppTrackingSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAppTrackingSpec_(std__shared_ptr_HybridOneAppTrackingSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneAppTrackingSpec>
   using std__weak_ptr_HybridOneAppTrackingSpec_ = std::weak_ptr<HybridOneAppTrackingSpec>;
   inline std__weak_ptr_HybridOneAppTrackingSpec_ weakify_std__shared_ptr_HybridOneAppTrackingSpec_(const std::shared_ptr<HybridOneAppTrackingSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<AppTrackingPermissionStatus>
   using Result_AppTrackingPermissionStatus_ = Result<AppTrackingPermissionStatus>;
   inline Result_AppTrackingPermissionStatus_ create_Result_AppTrackingPermissionStatus_(AppTrackingPermissionStatus value) noexcept {
@@ -1210,7 +1264,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_AppTrackingPermissionStatus_ create_Result_AppTrackingPermissionStatus_(const std::exception_ptr& error) noexcept {
     return Result<AppTrackingPermissionStatus>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>
   using Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ = Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>;
   inline Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ create_Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___(const std::shared_ptr<Promise<AppTrackingPermissionStatus>>& value) noexcept {
@@ -1219,7 +1273,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___ create_Result_std__shared_ptr_Promise_AppTrackingPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AppTrackingPermissionStatus>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<AudioRecordingPermission>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioRecordingPermission>>`.
@@ -1231,7 +1285,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioRecordingPermission> wrap_std__shared_ptr_Promise_AudioRecordingPermission__(std::shared_ptr<Promise<AudioRecordingPermission>> promise) noexcept {
     return PromiseHolder<AudioRecordingPermission>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(AudioRecordingPermission /* result */)>
   /**
    * Specialized version of `std::function<void(AudioRecordingPermission)>`.
@@ -1253,7 +1307,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRecordingPermission_Wrapper wrap_Func_void_AudioRecordingPermission(Func_void_AudioRecordingPermission value) noexcept {
     return Func_void_AudioRecordingPermission_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::optional<double>
   /**
    * Specialized version of `std::optional<double>`.
@@ -1268,7 +1322,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline double get_std__optional_double_(const std::optional<double>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<AudioPlaybackStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioPlaybackStatus>>`.
@@ -1280,7 +1334,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioPlaybackStatus> wrap_std__shared_ptr_Promise_AudioPlaybackStatus__(std::shared_ptr<Promise<AudioPlaybackStatus>> promise) noexcept {
     return PromiseHolder<AudioPlaybackStatus>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const AudioPlaybackStatus& /* result */)>
   /**
    * Specialized version of `std::function<void(const AudioPlaybackStatus&)>`.
@@ -1302,7 +1356,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioPlaybackStatus_Wrapper wrap_Func_void_AudioPlaybackStatus(Func_void_AudioPlaybackStatus value) noexcept {
     return Func_void_AudioPlaybackStatus_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<AudioRecordingStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioRecordingStatus>>`.
@@ -1314,7 +1368,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioRecordingStatus> wrap_std__shared_ptr_Promise_AudioRecordingStatus__(std::shared_ptr<Promise<AudioRecordingStatus>> promise) noexcept {
     return PromiseHolder<AudioRecordingStatus>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const AudioRecordingStatus& /* result */)>
   /**
    * Specialized version of `std::function<void(const AudioRecordingStatus&)>`.
@@ -1336,7 +1390,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRecordingStatus_Wrapper wrap_Func_void_AudioRecordingStatus(Func_void_AudioRecordingStatus value) noexcept {
     return Func_void_AudioRecordingStatus_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<AudioRecordingResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<AudioRecordingResult>>`.
@@ -1348,7 +1402,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<AudioRecordingResult> wrap_std__shared_ptr_Promise_AudioRecordingResult__(std::shared_ptr<Promise<AudioRecordingResult>> promise) noexcept {
     return PromiseHolder<AudioRecordingResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const AudioRecordingResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const AudioRecordingResult&)>`.
@@ -1370,7 +1424,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRecordingResult_Wrapper wrap_Func_void_AudioRecordingResult(Func_void_AudioRecordingResult value) noexcept {
     return Func_void_AudioRecordingResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const AudioInterruptionEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const AudioInterruptionEvent&)>`.
@@ -1392,7 +1446,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioInterruptionEvent_Wrapper wrap_Func_void_AudioInterruptionEvent(Func_void_AudioInterruptionEvent value) noexcept {
     return Func_void_AudioInterruptionEvent_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const AudioRemoteCommandEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const AudioRemoteCommandEvent&)>`.
@@ -1414,7 +1468,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_AudioRemoteCommandEvent_Wrapper wrap_Func_void_AudioRemoteCommandEvent(Func_void_AudioRemoteCommandEvent value) noexcept {
     return Func_void_AudioRemoteCommandEvent_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAudioSpec>`.
@@ -1422,11 +1476,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneAudioSpec_ = std::shared_ptr<HybridOneAudioSpec>;
   std::shared_ptr<HybridOneAudioSpec> create_std__shared_ptr_HybridOneAudioSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneAudioSpec_(std__shared_ptr_HybridOneAudioSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneAudioSpec>
   using std__weak_ptr_HybridOneAudioSpec_ = std::weak_ptr<HybridOneAudioSpec>;
   inline std__weak_ptr_HybridOneAudioSpec_ weakify_std__shared_ptr_HybridOneAudioSpec_(const std::shared_ptr<HybridOneAudioSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingPermission>>>
   using Result_std__shared_ptr_Promise_AudioRecordingPermission___ = Result<std::shared_ptr<Promise<AudioRecordingPermission>>>;
   inline Result_std__shared_ptr_Promise_AudioRecordingPermission___ create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(const std::shared_ptr<Promise<AudioRecordingPermission>>& value) noexcept {
@@ -1435,7 +1489,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioRecordingPermission___ create_Result_std__shared_ptr_Promise_AudioRecordingPermission___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingPermission>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>
   using Result_std__shared_ptr_Promise_AudioPlaybackStatus___ = Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>;
   inline Result_std__shared_ptr_Promise_AudioPlaybackStatus___ create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(const std::shared_ptr<Promise<AudioPlaybackStatus>>& value) noexcept {
@@ -1444,7 +1498,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioPlaybackStatus___ create_Result_std__shared_ptr_Promise_AudioPlaybackStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioPlaybackStatus>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingStatus>>>
   using Result_std__shared_ptr_Promise_AudioRecordingStatus___ = Result<std::shared_ptr<Promise<AudioRecordingStatus>>>;
   inline Result_std__shared_ptr_Promise_AudioRecordingStatus___ create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(const std::shared_ptr<Promise<AudioRecordingStatus>>& value) noexcept {
@@ -1453,7 +1507,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioRecordingStatus___ create_Result_std__shared_ptr_Promise_AudioRecordingStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingStatus>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<AudioRecordingResult>>>
   using Result_std__shared_ptr_Promise_AudioRecordingResult___ = Result<std::shared_ptr<Promise<AudioRecordingResult>>>;
   inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::shared_ptr<Promise<AudioRecordingResult>>& value) noexcept {
@@ -1462,7 +1516,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
   }
-
+  
   // pragma MARK: std::optional<bool>
   /**
    * Specialized version of `std::optional<bool>`.
@@ -1477,7 +1531,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::vector<PendingBackgroundTask>
   /**
    * Specialized version of `std::vector<PendingBackgroundTask>`.
@@ -1488,7 +1542,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>`.
@@ -1500,7 +1554,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<PendingBackgroundTask>> wrap_std__shared_ptr_Promise_std__vector_PendingBackgroundTask___(std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>> promise) noexcept {
     return PromiseHolder<std::vector<PendingBackgroundTask>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<PendingBackgroundTask>&)>`.
@@ -1522,7 +1576,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_PendingBackgroundTask__Wrapper wrap_Func_void_std__vector_PendingBackgroundTask_(Func_void_std__vector_PendingBackgroundTask_ value) noexcept {
     return Func_void_std__vector_PendingBackgroundTask__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const BackgroundTaskInvocation& /* invocation */)>
   /**
    * Specialized version of `std::function<void(const BackgroundTaskInvocation&)>`.
@@ -1544,7 +1598,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_BackgroundTaskInvocation_Wrapper wrap_Func_void_BackgroundTaskInvocation(Func_void_BackgroundTaskInvocation value) noexcept {
     return Func_void_BackgroundTaskInvocation_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const std::string& /* executionId */)>
   /**
    * Specialized version of `std::function<void(const std::string&)>`.
@@ -1566,7 +1620,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__string_Wrapper wrap_Func_void_std__string(Func_void_std__string value) noexcept {
     return Func_void_std__string_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneBackgroundTasksSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneBackgroundTasksSpec>`.
@@ -1574,11 +1628,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneBackgroundTasksSpec_ = std::shared_ptr<HybridOneBackgroundTasksSpec>;
   std::shared_ptr<HybridOneBackgroundTasksSpec> create_std__shared_ptr_HybridOneBackgroundTasksSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneBackgroundTasksSpec_(std__shared_ptr_HybridOneBackgroundTasksSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneBackgroundTasksSpec>
   using std__weak_ptr_HybridOneBackgroundTasksSpec_ = std::weak_ptr<HybridOneBackgroundTasksSpec>;
   inline std__weak_ptr_HybridOneBackgroundTasksSpec_ weakify_std__shared_ptr_HybridOneBackgroundTasksSpec_(const std::shared_ptr<HybridOneBackgroundTasksSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>
   using Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ = Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>& value) noexcept {
@@ -1587,2019 +1641,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>::withError(error);
   }
-
-  // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<BrowserResult>>`.
-   */
-  using std__shared_ptr_Promise_BrowserResult__ = std::shared_ptr<Promise<BrowserResult>>;
-  inline std::shared_ptr<Promise<BrowserResult>> create_std__shared_ptr_Promise_BrowserResult__() noexcept {
-    return Promise<BrowserResult>::create();
-  }
-  inline PromiseHolder<BrowserResult> wrap_std__shared_ptr_Promise_BrowserResult__(std::shared_ptr<Promise<BrowserResult>> promise) noexcept {
-    return PromiseHolder<BrowserResult>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const BrowserResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const BrowserResult&)>`.
-   */
-  using Func_void_BrowserResult = std::function<void(const BrowserResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const BrowserResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_BrowserResult_Wrapper final {
-  public:
-    explicit Func_void_BrowserResult_Wrapper(std::function<void(const BrowserResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrowserResult& /* result */)>>(std::move(func))) {}
-    inline void call(BrowserResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const BrowserResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_BrowserResult_Wrapper wrap_Func_void_BrowserResult(Func_void_BrowserResult value) noexcept {
-    return Func_void_BrowserResult_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::optional<BrowserPresentationStyle>
-  /**
-   * Specialized version of `std::optional<BrowserPresentationStyle>`.
-   */
-  using std__optional_BrowserPresentationStyle_ = std::optional<BrowserPresentationStyle>;
-  inline std::optional<BrowserPresentationStyle> create_std__optional_BrowserPresentationStyle_(const BrowserPresentationStyle& value) noexcept {
-    return std::optional<BrowserPresentationStyle>(value);
-  }
-  inline bool has_value_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline BrowserPresentationStyle get_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::optional<BrowserColorScheme>
-  /**
-   * Specialized version of `std::optional<BrowserColorScheme>`.
-   */
-  using std__optional_BrowserColorScheme_ = std::optional<BrowserColorScheme>;
-  inline std::optional<BrowserColorScheme> create_std__optional_BrowserColorScheme_(const BrowserColorScheme& value) noexcept {
-    return std::optional<BrowserColorScheme>(value);
-  }
-  inline bool has_value_std__optional_BrowserColorScheme_(const std::optional<BrowserColorScheme>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline BrowserColorScheme get_std__optional_BrowserColorScheme_(const std::optional<BrowserColorScheme>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<BrowserAuthResult>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<BrowserAuthResult>>`.
-   */
-  using std__shared_ptr_Promise_BrowserAuthResult__ = std::shared_ptr<Promise<BrowserAuthResult>>;
-  inline std::shared_ptr<Promise<BrowserAuthResult>> create_std__shared_ptr_Promise_BrowserAuthResult__() noexcept {
-    return Promise<BrowserAuthResult>::create();
-  }
-  inline PromiseHolder<BrowserAuthResult> wrap_std__shared_ptr_Promise_BrowserAuthResult__(std::shared_ptr<Promise<BrowserAuthResult>> promise) noexcept {
-    return PromiseHolder<BrowserAuthResult>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const BrowserAuthResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const BrowserAuthResult&)>`.
-   */
-  using Func_void_BrowserAuthResult = std::function<void(const BrowserAuthResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const BrowserAuthResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_BrowserAuthResult_Wrapper final {
-  public:
-    explicit Func_void_BrowserAuthResult_Wrapper(std::function<void(const BrowserAuthResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrowserAuthResult& /* result */)>>(std::move(func))) {}
-    inline void call(BrowserAuthResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const BrowserAuthResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_BrowserAuthResult create_Func_void_BrowserAuthResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_BrowserAuthResult_Wrapper wrap_Func_void_BrowserAuthResult(Func_void_BrowserAuthResult value) noexcept {
-    return Func_void_BrowserAuthResult_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneBrowserSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneBrowserSpec>`.
-   */
-  using std__shared_ptr_HybridOneBrowserSpec_ = std::shared_ptr<HybridOneBrowserSpec>;
-  std::shared_ptr<HybridOneBrowserSpec> create_std__shared_ptr_HybridOneBrowserSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneBrowserSpec_(std__shared_ptr_HybridOneBrowserSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneBrowserSpec>
-  using std__weak_ptr_HybridOneBrowserSpec_ = std::weak_ptr<HybridOneBrowserSpec>;
-  inline std__weak_ptr_HybridOneBrowserSpec_ weakify_std__shared_ptr_HybridOneBrowserSpec_(const std::shared_ptr<HybridOneBrowserSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<BrowserResult>>>
-  using Result_std__shared_ptr_Promise_BrowserResult___ = Result<std::shared_ptr<Promise<BrowserResult>>>;
-  inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::shared_ptr<Promise<BrowserResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<BrowserResult>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<BrowserResult>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<BrowserAuthResult>>>
-  using Result_std__shared_ptr_Promise_BrowserAuthResult___ = Result<std::shared_ptr<Promise<BrowserAuthResult>>>;
-  inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::shared_ptr<Promise<BrowserAuthResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<CalendarPermissionStatus>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<CalendarPermissionStatus>>`.
-   */
-  using std__shared_ptr_Promise_CalendarPermissionStatus__ = std::shared_ptr<Promise<CalendarPermissionStatus>>;
-  inline std::shared_ptr<Promise<CalendarPermissionStatus>> create_std__shared_ptr_Promise_CalendarPermissionStatus__() noexcept {
-    return Promise<CalendarPermissionStatus>::create();
-  }
-  inline PromiseHolder<CalendarPermissionStatus> wrap_std__shared_ptr_Promise_CalendarPermissionStatus__(std::shared_ptr<Promise<CalendarPermissionStatus>> promise) noexcept {
-    return PromiseHolder<CalendarPermissionStatus>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(CalendarPermissionStatus /* result */)>
-  /**
-   * Specialized version of `std::function<void(CalendarPermissionStatus)>`.
-   */
-  using Func_void_CalendarPermissionStatus = std::function<void(CalendarPermissionStatus /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(CalendarPermissionStatus / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_CalendarPermissionStatus_Wrapper final {
-  public:
-    explicit Func_void_CalendarPermissionStatus_Wrapper(std::function<void(CalendarPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(CalendarPermissionStatus /* result */)>>(std::move(func))) {}
-    inline void call(int result) const noexcept {
-      _function->operator()(static_cast<CalendarPermissionStatus>(result));
-    }
-  private:
-    std::unique_ptr<std::function<void(CalendarPermissionStatus /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_CalendarPermissionStatus create_Func_void_CalendarPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_CalendarPermissionStatus_Wrapper wrap_Func_void_CalendarPermissionStatus(Func_void_CalendarPermissionStatus value) noexcept {
-    return Func_void_CalendarPermissionStatus_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::optional<CalendarRecurrence>
-  /**
-   * Specialized version of `std::optional<CalendarRecurrence>`.
-   */
-  using std__optional_CalendarRecurrence_ = std::optional<CalendarRecurrence>;
-  inline std::optional<CalendarRecurrence> create_std__optional_CalendarRecurrence_(const CalendarRecurrence& value) noexcept {
-    return std::optional<CalendarRecurrence>(value);
-  }
-  inline bool has_value_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline CalendarRecurrence get_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::vector<CalendarEvent>
-  /**
-   * Specialized version of `std::vector<CalendarEvent>`.
-   */
-  using std__vector_CalendarEvent_ = std::vector<CalendarEvent>;
-  inline std::vector<CalendarEvent> create_std__vector_CalendarEvent_(size_t size) noexcept {
-    std::vector<CalendarEvent> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::vector<CalendarEvent>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<CalendarEvent>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_CalendarEvent___ = std::shared_ptr<Promise<std::vector<CalendarEvent>>>;
-  inline std::shared_ptr<Promise<std::vector<CalendarEvent>>> create_std__shared_ptr_Promise_std__vector_CalendarEvent___() noexcept {
-    return Promise<std::vector<CalendarEvent>>::create();
-  }
-  inline PromiseHolder<std::vector<CalendarEvent>> wrap_std__shared_ptr_Promise_std__vector_CalendarEvent___(std::shared_ptr<Promise<std::vector<CalendarEvent>>> promise) noexcept {
-    return PromiseHolder<std::vector<CalendarEvent>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::vector<CalendarEvent>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<CalendarEvent>&)>`.
-   */
-  using Func_void_std__vector_CalendarEvent_ = std::function<void(const std::vector<CalendarEvent>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<CalendarEvent>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_CalendarEvent__Wrapper final {
-  public:
-    explicit Func_void_std__vector_CalendarEvent__Wrapper(std::function<void(const std::vector<CalendarEvent>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<CalendarEvent>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<CalendarEvent> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<CalendarEvent>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_CalendarEvent_ create_Func_void_std__vector_CalendarEvent_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_CalendarEvent__Wrapper wrap_Func_void_std__vector_CalendarEvent_(Func_void_std__vector_CalendarEvent_ value) noexcept {
-    return Func_void_std__vector_CalendarEvent__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::string>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::string>>`.
-   */
-  using std__shared_ptr_Promise_std__string__ = std::shared_ptr<Promise<std::string>>;
-  inline std::shared_ptr<Promise<std::string>> create_std__shared_ptr_Promise_std__string__() noexcept {
-    return Promise<std::string>::create();
-  }
-  inline PromiseHolder<std::string> wrap_std__shared_ptr_Promise_std__string__(std::shared_ptr<Promise<std::string>> promise) noexcept {
-    return PromiseHolder<std::string>(std::move(promise));
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<CalendarEvent>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<CalendarEvent>>`.
-   */
-  using std__shared_ptr_Promise_CalendarEvent__ = std::shared_ptr<Promise<CalendarEvent>>;
-  inline std::shared_ptr<Promise<CalendarEvent>> create_std__shared_ptr_Promise_CalendarEvent__() noexcept {
-    return Promise<CalendarEvent>::create();
-  }
-  inline PromiseHolder<CalendarEvent> wrap_std__shared_ptr_Promise_CalendarEvent__(std::shared_ptr<Promise<CalendarEvent>> promise) noexcept {
-    return PromiseHolder<CalendarEvent>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const CalendarEvent& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const CalendarEvent&)>`.
-   */
-  using Func_void_CalendarEvent = std::function<void(const CalendarEvent& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const CalendarEvent& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_CalendarEvent_Wrapper final {
-  public:
-    explicit Func_void_CalendarEvent_Wrapper(std::function<void(const CalendarEvent& /* result */)>&& func): _function(std::make_unique<std::function<void(const CalendarEvent& /* result */)>>(std::move(func))) {}
-    inline void call(CalendarEvent result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const CalendarEvent& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_CalendarEvent create_Func_void_CalendarEvent(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_CalendarEvent_Wrapper wrap_Func_void_CalendarEvent(Func_void_CalendarEvent value) noexcept {
-    return Func_void_CalendarEvent_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<ReminderInfo>
-  /**
-   * Specialized version of `std::vector<ReminderInfo>`.
-   */
-  using std__vector_ReminderInfo_ = std::vector<ReminderInfo>;
-  inline std::vector<ReminderInfo> create_std__vector_ReminderInfo_(size_t size) noexcept {
-    std::vector<ReminderInfo> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::vector<ReminderInfo>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<ReminderInfo>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_ReminderInfo___ = std::shared_ptr<Promise<std::vector<ReminderInfo>>>;
-  inline std::shared_ptr<Promise<std::vector<ReminderInfo>>> create_std__shared_ptr_Promise_std__vector_ReminderInfo___() noexcept {
-    return Promise<std::vector<ReminderInfo>>::create();
-  }
-  inline PromiseHolder<std::vector<ReminderInfo>> wrap_std__shared_ptr_Promise_std__vector_ReminderInfo___(std::shared_ptr<Promise<std::vector<ReminderInfo>>> promise) noexcept {
-    return PromiseHolder<std::vector<ReminderInfo>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::vector<ReminderInfo>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<ReminderInfo>&)>`.
-   */
-  using Func_void_std__vector_ReminderInfo_ = std::function<void(const std::vector<ReminderInfo>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<ReminderInfo>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_ReminderInfo__Wrapper final {
-  public:
-    explicit Func_void_std__vector_ReminderInfo__Wrapper(std::function<void(const std::vector<ReminderInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<ReminderInfo>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<ReminderInfo> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<ReminderInfo>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_ReminderInfo_ create_Func_void_std__vector_ReminderInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_ReminderInfo__Wrapper wrap_Func_void_std__vector_ReminderInfo_(Func_void_std__vector_ReminderInfo_ value) noexcept {
-    return Func_void_std__vector_ReminderInfo__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneCalendarSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneCalendarSpec>`.
-   */
-  using std__shared_ptr_HybridOneCalendarSpec_ = std::shared_ptr<HybridOneCalendarSpec>;
-  std::shared_ptr<HybridOneCalendarSpec> create_std__shared_ptr_HybridOneCalendarSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneCalendarSpec_(std__shared_ptr_HybridOneCalendarSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneCalendarSpec>
-  using std__weak_ptr_HybridOneCalendarSpec_ = std::weak_ptr<HybridOneCalendarSpec>;
-  inline std__weak_ptr_HybridOneCalendarSpec_ weakify_std__shared_ptr_HybridOneCalendarSpec_(const std::shared_ptr<HybridOneCalendarSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<CalendarPermissionStatus>
-  using Result_CalendarPermissionStatus_ = Result<CalendarPermissionStatus>;
-  inline Result_CalendarPermissionStatus_ create_Result_CalendarPermissionStatus_(CalendarPermissionStatus value) noexcept {
-    return Result<CalendarPermissionStatus>::withValue(std::move(value));
-  }
-  inline Result_CalendarPermissionStatus_ create_Result_CalendarPermissionStatus_(const std::exception_ptr& error) noexcept {
-    return Result<CalendarPermissionStatus>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>
-  using Result_std__shared_ptr_Promise_CalendarPermissionStatus___ = Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>;
-  inline Result_std__shared_ptr_Promise_CalendarPermissionStatus___ create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(const std::shared_ptr<Promise<CalendarPermissionStatus>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_CalendarPermissionStatus___ create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>
-  using Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ = Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ create_Result_std__shared_ptr_Promise_std__vector_CalendarEvent____(const std::shared_ptr<Promise<std::vector<CalendarEvent>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ create_Result_std__shared_ptr_Promise_std__vector_CalendarEvent____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::string>>>
-  using Result_std__shared_ptr_Promise_std__string___ = Result<std::shared_ptr<Promise<std::string>>>;
-  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::shared_ptr<Promise<std::string>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::string>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<CalendarEvent>>>
-  using Result_std__shared_ptr_Promise_CalendarEvent___ = Result<std::shared_ptr<Promise<CalendarEvent>>>;
-  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::shared_ptr<Promise<CalendarEvent>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>
-  using Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ = Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::shared_ptr<Promise<std::vector<ReminderInfo>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneClipboardSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneClipboardSpec>`.
-   */
-  using std__shared_ptr_HybridOneClipboardSpec_ = std::shared_ptr<HybridOneClipboardSpec>;
-  std::shared_ptr<HybridOneClipboardSpec> create_std__shared_ptr_HybridOneClipboardSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneClipboardSpec_(std__shared_ptr_HybridOneClipboardSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneClipboardSpec>
-  using std__weak_ptr_HybridOneClipboardSpec_ = std::weak_ptr<HybridOneClipboardSpec>;
-  inline std__weak_ptr_HybridOneClipboardSpec_ weakify_std__shared_ptr_HybridOneClipboardSpec_(const std::shared_ptr<HybridOneClipboardSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: std::shared_ptr<Promise<ContactsPermissionStatus>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<ContactsPermissionStatus>>`.
-   */
-  using std__shared_ptr_Promise_ContactsPermissionStatus__ = std::shared_ptr<Promise<ContactsPermissionStatus>>;
-  inline std::shared_ptr<Promise<ContactsPermissionStatus>> create_std__shared_ptr_Promise_ContactsPermissionStatus__() noexcept {
-    return Promise<ContactsPermissionStatus>::create();
-  }
-  inline PromiseHolder<ContactsPermissionStatus> wrap_std__shared_ptr_Promise_ContactsPermissionStatus__(std::shared_ptr<Promise<ContactsPermissionStatus>> promise) noexcept {
-    return PromiseHolder<ContactsPermissionStatus>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(ContactsPermissionStatus /* result */)>
-  /**
-   * Specialized version of `std::function<void(ContactsPermissionStatus)>`.
-   */
-  using Func_void_ContactsPermissionStatus = std::function<void(ContactsPermissionStatus /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(ContactsPermissionStatus / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_ContactsPermissionStatus_Wrapper final {
-  public:
-    explicit Func_void_ContactsPermissionStatus_Wrapper(std::function<void(ContactsPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(ContactsPermissionStatus /* result */)>>(std::move(func))) {}
-    inline void call(int result) const noexcept {
-      _function->operator()(static_cast<ContactsPermissionStatus>(result));
-    }
-  private:
-    std::unique_ptr<std::function<void(ContactsPermissionStatus /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_ContactsPermissionStatus create_Func_void_ContactsPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_ContactsPermissionStatus_Wrapper wrap_Func_void_ContactsPermissionStatus(Func_void_ContactsPermissionStatus value) noexcept {
-    return Func_void_ContactsPermissionStatus_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<std::string>
-  /**
-   * Specialized version of `std::vector<std::string>`.
-   */
-  using std__vector_std__string_ = std::vector<std::string>;
-  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
-    std::vector<std::string> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::vector<ContactPostalAddress>
-  /**
-   * Specialized version of `std::vector<ContactPostalAddress>`.
-   */
-  using std__vector_ContactPostalAddress_ = std::vector<ContactPostalAddress>;
-  inline std::vector<ContactPostalAddress> create_std__vector_ContactPostalAddress_(size_t size) noexcept {
-    std::vector<ContactPostalAddress> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::optional<ContactInfo>
-  /**
-   * Specialized version of `std::optional<ContactInfo>`.
-   */
-  using std__optional_ContactInfo_ = std::optional<ContactInfo>;
-  inline std::optional<ContactInfo> create_std__optional_ContactInfo_(const ContactInfo& value) noexcept {
-    return std::optional<ContactInfo>(value);
-  }
-  inline bool has_value_std__optional_ContactInfo_(const std::optional<ContactInfo>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline ContactInfo get_std__optional_ContactInfo_(const std::optional<ContactInfo>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::optional<ContactInfo>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::optional<ContactInfo>>>`.
-   */
-  using std__shared_ptr_Promise_std__optional_ContactInfo___ = std::shared_ptr<Promise<std::optional<ContactInfo>>>;
-  inline std::shared_ptr<Promise<std::optional<ContactInfo>>> create_std__shared_ptr_Promise_std__optional_ContactInfo___() noexcept {
-    return Promise<std::optional<ContactInfo>>::create();
-  }
-  inline PromiseHolder<std::optional<ContactInfo>> wrap_std__shared_ptr_Promise_std__optional_ContactInfo___(std::shared_ptr<Promise<std::optional<ContactInfo>>> promise) noexcept {
-    return PromiseHolder<std::optional<ContactInfo>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::optional<ContactInfo>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::optional<ContactInfo>&)>`.
-   */
-  using Func_void_std__optional_ContactInfo_ = std::function<void(const std::optional<ContactInfo>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::optional<ContactInfo>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__optional_ContactInfo__Wrapper final {
-  public:
-    explicit Func_void_std__optional_ContactInfo__Wrapper(std::function<void(const std::optional<ContactInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<ContactInfo>& /* result */)>>(std::move(func))) {}
-    inline void call(std::optional<ContactInfo> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::optional<ContactInfo>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__optional_ContactInfo_ create_Func_void_std__optional_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__optional_ContactInfo__Wrapper wrap_Func_void_std__optional_ContactInfo_(Func_void_std__optional_ContactInfo_ value) noexcept {
-    return Func_void_std__optional_ContactInfo__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<ContactInfo>
-  /**
-   * Specialized version of `std::vector<ContactInfo>`.
-   */
-  using std__vector_ContactInfo_ = std::vector<ContactInfo>;
-  inline std::vector<ContactInfo> create_std__vector_ContactInfo_(size_t size) noexcept {
-    std::vector<ContactInfo> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::vector<ContactInfo>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<ContactInfo>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_ContactInfo___ = std::shared_ptr<Promise<std::vector<ContactInfo>>>;
-  inline std::shared_ptr<Promise<std::vector<ContactInfo>>> create_std__shared_ptr_Promise_std__vector_ContactInfo___() noexcept {
-    return Promise<std::vector<ContactInfo>>::create();
-  }
-  inline PromiseHolder<std::vector<ContactInfo>> wrap_std__shared_ptr_Promise_std__vector_ContactInfo___(std::shared_ptr<Promise<std::vector<ContactInfo>>> promise) noexcept {
-    return PromiseHolder<std::vector<ContactInfo>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::vector<ContactInfo>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<ContactInfo>&)>`.
-   */
-  using Func_void_std__vector_ContactInfo_ = std::function<void(const std::vector<ContactInfo>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<ContactInfo>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_ContactInfo__Wrapper final {
-  public:
-    explicit Func_void_std__vector_ContactInfo__Wrapper(std::function<void(const std::vector<ContactInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<ContactInfo>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<ContactInfo> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<ContactInfo>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_ContactInfo_ create_Func_void_std__vector_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_ContactInfo__Wrapper wrap_Func_void_std__vector_ContactInfo_(Func_void_std__vector_ContactInfo_ value) noexcept {
-    return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<ContactPostalAddressInput>
-  /**
-   * Specialized version of `std::vector<ContactPostalAddressInput>`.
-   */
-  using std__vector_ContactPostalAddressInput_ = std::vector<ContactPostalAddressInput>;
-  inline std::vector<ContactPostalAddressInput> create_std__vector_ContactPostalAddressInput_(size_t size) noexcept {
-    std::vector<ContactPostalAddressInput> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::optional<std::vector<ContactPostalAddressInput>>
-  /**
-   * Specialized version of `std::optional<std::vector<ContactPostalAddressInput>>`.
-   */
-  using std__optional_std__vector_ContactPostalAddressInput__ = std::optional<std::vector<ContactPostalAddressInput>>;
-  inline std::optional<std::vector<ContactPostalAddressInput>> create_std__optional_std__vector_ContactPostalAddressInput__(const std::vector<ContactPostalAddressInput>& value) noexcept {
-    return std::optional<std::vector<ContactPostalAddressInput>>(value);
-  }
-  inline bool has_value_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::vector<ContactPostalAddressInput> get_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<ContactInfo>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<ContactInfo>>`.
-   */
-  using std__shared_ptr_Promise_ContactInfo__ = std::shared_ptr<Promise<ContactInfo>>;
-  inline std::shared_ptr<Promise<ContactInfo>> create_std__shared_ptr_Promise_ContactInfo__() noexcept {
-    return Promise<ContactInfo>::create();
-  }
-  inline PromiseHolder<ContactInfo> wrap_std__shared_ptr_Promise_ContactInfo__(std::shared_ptr<Promise<ContactInfo>> promise) noexcept {
-    return PromiseHolder<ContactInfo>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const ContactInfo& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const ContactInfo&)>`.
-   */
-  using Func_void_ContactInfo = std::function<void(const ContactInfo& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const ContactInfo& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_ContactInfo_Wrapper final {
-  public:
-    explicit Func_void_ContactInfo_Wrapper(std::function<void(const ContactInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const ContactInfo& /* result */)>>(std::move(func))) {}
-    inline void call(ContactInfo result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const ContactInfo& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_ContactInfo create_Func_void_ContactInfo(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_ContactInfo_Wrapper wrap_Func_void_ContactInfo(Func_void_ContactInfo value) noexcept {
-    return Func_void_ContactInfo_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::optional<std::vector<std::string>>
-  /**
-   * Specialized version of `std::optional<std::vector<std::string>>`.
-   */
-  using std__optional_std__vector_std__string__ = std::optional<std::vector<std::string>>;
-  inline std::optional<std::vector<std::string>> create_std__optional_std__vector_std__string__(const std::vector<std::string>& value) noexcept {
-    return std::optional<std::vector<std::string>>(value);
-  }
-  inline bool has_value_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::vector<std::string> get_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneContactsSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneContactsSpec>`.
-   */
-  using std__shared_ptr_HybridOneContactsSpec_ = std::shared_ptr<HybridOneContactsSpec>;
-  std::shared_ptr<HybridOneContactsSpec> create_std__shared_ptr_HybridOneContactsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneContactsSpec_(std__shared_ptr_HybridOneContactsSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneContactsSpec>
-  using std__weak_ptr_HybridOneContactsSpec_ = std::weak_ptr<HybridOneContactsSpec>;
-  inline std__weak_ptr_HybridOneContactsSpec_ weakify_std__shared_ptr_HybridOneContactsSpec_(const std::shared_ptr<HybridOneContactsSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<ContactsPermissionStatus>
-  using Result_ContactsPermissionStatus_ = Result<ContactsPermissionStatus>;
-  inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(ContactsPermissionStatus value) noexcept {
-    return Result<ContactsPermissionStatus>::withValue(std::move(value));
-  }
-  inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(const std::exception_ptr& error) noexcept {
-    return Result<ContactsPermissionStatus>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>
-  using Result_std__shared_ptr_Promise_ContactsPermissionStatus___ = Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>;
-  inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::shared_ptr<Promise<ContactsPermissionStatus>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>
-  using Result_std__shared_ptr_Promise_std__optional_ContactInfo____ = Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>;
-  inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::shared_ptr<Promise<std::optional<ContactInfo>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>
-  using Result_std__shared_ptr_Promise_std__vector_ContactInfo____ = Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::shared_ptr<Promise<std::vector<ContactInfo>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<ContactInfo>>>
-  using Result_std__shared_ptr_Promise_ContactInfo___ = Result<std::shared_ptr<Promise<ContactInfo>>>;
-  inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::shared_ptr<Promise<ContactInfo>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<ContactInfo>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<ContactInfo>>>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<DeviceInfo>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<DeviceInfo>>`.
-   */
-  using std__shared_ptr_Promise_DeviceInfo__ = std::shared_ptr<Promise<DeviceInfo>>;
-  inline std::shared_ptr<Promise<DeviceInfo>> create_std__shared_ptr_Promise_DeviceInfo__() noexcept {
-    return Promise<DeviceInfo>::create();
-  }
-  inline PromiseHolder<DeviceInfo> wrap_std__shared_ptr_Promise_DeviceInfo__(std::shared_ptr<Promise<DeviceInfo>> promise) noexcept {
-    return PromiseHolder<DeviceInfo>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const DeviceInfo& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const DeviceInfo&)>`.
-   */
-  using Func_void_DeviceInfo = std::function<void(const DeviceInfo& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const DeviceInfo& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_DeviceInfo_Wrapper final {
-  public:
-    explicit Func_void_DeviceInfo_Wrapper(std::function<void(const DeviceInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const DeviceInfo& /* result */)>>(std::move(func))) {}
-    inline void call(DeviceInfo result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const DeviceInfo& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_DeviceInfo create_Func_void_DeviceInfo(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_DeviceInfo_Wrapper wrap_Func_void_DeviceInfo(Func_void_DeviceInfo value) noexcept {
-    return Func_void_DeviceInfo_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<LocalizationInfo>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<LocalizationInfo>>`.
-   */
-  using std__shared_ptr_Promise_LocalizationInfo__ = std::shared_ptr<Promise<LocalizationInfo>>;
-  inline std::shared_ptr<Promise<LocalizationInfo>> create_std__shared_ptr_Promise_LocalizationInfo__() noexcept {
-    return Promise<LocalizationInfo>::create();
-  }
-  inline PromiseHolder<LocalizationInfo> wrap_std__shared_ptr_Promise_LocalizationInfo__(std::shared_ptr<Promise<LocalizationInfo>> promise) noexcept {
-    return PromiseHolder<LocalizationInfo>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const LocalizationInfo& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const LocalizationInfo&)>`.
-   */
-  using Func_void_LocalizationInfo = std::function<void(const LocalizationInfo& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const LocalizationInfo& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_LocalizationInfo_Wrapper final {
-  public:
-    explicit Func_void_LocalizationInfo_Wrapper(std::function<void(const LocalizationInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const LocalizationInfo& /* result */)>>(std::move(func))) {}
-    inline void call(LocalizationInfo result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const LocalizationInfo& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_LocalizationInfo create_Func_void_LocalizationInfo(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_LocalizationInfo_Wrapper wrap_Func_void_LocalizationInfo(Func_void_LocalizationInfo value) noexcept {
-    return Func_void_LocalizationInfo_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneDeviceSpec>`.
-   */
-  using std__shared_ptr_HybridOneDeviceSpec_ = std::shared_ptr<HybridOneDeviceSpec>;
-  std::shared_ptr<HybridOneDeviceSpec> create_std__shared_ptr_HybridOneDeviceSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneDeviceSpec_(std__shared_ptr_HybridOneDeviceSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneDeviceSpec>
-  using std__weak_ptr_HybridOneDeviceSpec_ = std::weak_ptr<HybridOneDeviceSpec>;
-  inline std__weak_ptr_HybridOneDeviceSpec_ weakify_std__shared_ptr_HybridOneDeviceSpec_(const std::shared_ptr<HybridOneDeviceSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<DeviceInfo>>>
-  using Result_std__shared_ptr_Promise_DeviceInfo___ = Result<std::shared_ptr<Promise<DeviceInfo>>>;
-  inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::shared_ptr<Promise<DeviceInfo>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<DeviceInfo>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<DeviceInfo>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<LocalizationInfo>>>
-  using Result_std__shared_ptr_Promise_LocalizationInfo___ = Result<std::shared_ptr<Promise<LocalizationInfo>>>;
-  inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::shared_ptr<Promise<LocalizationInfo>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneDeviceAttestationSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneDeviceAttestationSpec>`.
-   */
-  using std__shared_ptr_HybridOneDeviceAttestationSpec_ = std::shared_ptr<HybridOneDeviceAttestationSpec>;
-  std::shared_ptr<HybridOneDeviceAttestationSpec> create_std__shared_ptr_HybridOneDeviceAttestationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneDeviceAttestationSpec_(std__shared_ptr_HybridOneDeviceAttestationSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneDeviceAttestationSpec>
-  using std__weak_ptr_HybridOneDeviceAttestationSpec_ = std::weak_ptr<HybridOneDeviceAttestationSpec>;
-  inline std__weak_ptr_HybridOneDeviceAttestationSpec_ weakify_std__shared_ptr_HybridOneDeviceAttestationSpec_(const std::shared_ptr<HybridOneDeviceAttestationSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<DeviceAttestationAvailability>
-  using Result_DeviceAttestationAvailability_ = Result<DeviceAttestationAvailability>;
-  inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const DeviceAttestationAvailability& value) noexcept {
-    return Result<DeviceAttestationAvailability>::withValue(value);
-  }
-  inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const std::exception_ptr& error) noexcept {
-    return Result<DeviceAttestationAvailability>::withError(error);
-  }
-
-  // pragma MARK: std::vector<DocumentPickerAsset>
-  /**
-   * Specialized version of `std::vector<DocumentPickerAsset>`.
-   */
-  using std__vector_DocumentPickerAsset_ = std::vector<DocumentPickerAsset>;
-  inline std::vector<DocumentPickerAsset> create_std__vector_DocumentPickerAsset_(size_t size) noexcept {
-    std::vector<DocumentPickerAsset> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::optional<std::vector<DocumentPickerAsset>>
-  /**
-   * Specialized version of `std::optional<std::vector<DocumentPickerAsset>>`.
-   */
-  using std__optional_std__vector_DocumentPickerAsset__ = std::optional<std::vector<DocumentPickerAsset>>;
-  inline std::optional<std::vector<DocumentPickerAsset>> create_std__optional_std__vector_DocumentPickerAsset__(const std::vector<DocumentPickerAsset>& value) noexcept {
-    return std::optional<std::vector<DocumentPickerAsset>>(value);
-  }
-  inline bool has_value_std__optional_std__vector_DocumentPickerAsset__(const std::optional<std::vector<DocumentPickerAsset>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::vector<DocumentPickerAsset> get_std__optional_std__vector_DocumentPickerAsset__(const std::optional<std::vector<DocumentPickerAsset>>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<DocumentPickerNativeResult>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<DocumentPickerNativeResult>>`.
-   */
-  using std__shared_ptr_Promise_DocumentPickerNativeResult__ = std::shared_ptr<Promise<DocumentPickerNativeResult>>;
-  inline std::shared_ptr<Promise<DocumentPickerNativeResult>> create_std__shared_ptr_Promise_DocumentPickerNativeResult__() noexcept {
-    return Promise<DocumentPickerNativeResult>::create();
-  }
-  inline PromiseHolder<DocumentPickerNativeResult> wrap_std__shared_ptr_Promise_DocumentPickerNativeResult__(std::shared_ptr<Promise<DocumentPickerNativeResult>> promise) noexcept {
-    return PromiseHolder<DocumentPickerNativeResult>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const DocumentPickerNativeResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const DocumentPickerNativeResult&)>`.
-   */
-  using Func_void_DocumentPickerNativeResult = std::function<void(const DocumentPickerNativeResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const DocumentPickerNativeResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_DocumentPickerNativeResult_Wrapper final {
-  public:
-    explicit Func_void_DocumentPickerNativeResult_Wrapper(std::function<void(const DocumentPickerNativeResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const DocumentPickerNativeResult& /* result */)>>(std::move(func))) {}
-    inline void call(DocumentPickerNativeResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const DocumentPickerNativeResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_DocumentPickerNativeResult create_Func_void_DocumentPickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_DocumentPickerNativeResult_Wrapper wrap_Func_void_DocumentPickerNativeResult(Func_void_DocumentPickerNativeResult value) noexcept {
-    return Func_void_DocumentPickerNativeResult_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneDocumentPickerSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneDocumentPickerSpec>`.
-   */
-  using std__shared_ptr_HybridOneDocumentPickerSpec_ = std::shared_ptr<HybridOneDocumentPickerSpec>;
-  std::shared_ptr<HybridOneDocumentPickerSpec> create_std__shared_ptr_HybridOneDocumentPickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneDocumentPickerSpec_(std__shared_ptr_HybridOneDocumentPickerSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneDocumentPickerSpec>
-  using std__weak_ptr_HybridOneDocumentPickerSpec_ = std::weak_ptr<HybridOneDocumentPickerSpec>;
-  inline std__weak_ptr_HybridOneDocumentPickerSpec_ weakify_std__shared_ptr_HybridOneDocumentPickerSpec_(const std::shared_ptr<HybridOneDocumentPickerSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>
-  using Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ = Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>;
-  inline Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ create_Result_std__shared_ptr_Promise_DocumentPickerNativeResult___(const std::shared_ptr<Promise<DocumentPickerNativeResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ create_Result_std__shared_ptr_Promise_DocumentPickerNativeResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>::withError(error);
-  }
-
-  // pragma MARK: std::vector<FetchHeader>
-  /**
-   * Specialized version of `std::vector<FetchHeader>`.
-   */
-  using std__vector_FetchHeader_ = std::vector<FetchHeader>;
-  inline std::vector<FetchHeader> create_std__vector_FetchHeader_(size_t size) noexcept {
-    std::vector<FetchHeader> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::optional<std::shared_ptr<ArrayBuffer>>
-  /**
-   * Specialized version of `std::optional<std::shared_ptr<ArrayBuffer>>`.
-   */
-  using std__optional_std__shared_ptr_ArrayBuffer__ = std::optional<std::shared_ptr<ArrayBuffer>>;
-  inline std::optional<std::shared_ptr<ArrayBuffer>> create_std__optional_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
-    return std::optional<std::shared_ptr<ArrayBuffer>>(value);
-  }
-  inline bool has_value_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::shared_ptr<ArrayBuffer> get_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::optional<FetchBlobRef>
-  /**
-   * Specialized version of `std::optional<FetchBlobRef>`.
-   */
-  using std__optional_FetchBlobRef_ = std::optional<FetchBlobRef>;
-  inline std::optional<FetchBlobRef> create_std__optional_FetchBlobRef_(const FetchBlobRef& value) noexcept {
-    return std::optional<FetchBlobRef>(value);
-  }
-  inline bool has_value_std__optional_FetchBlobRef_(const std::optional<FetchBlobRef>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline FetchBlobRef get_std__optional_FetchBlobRef_(const std::optional<FetchBlobRef>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::vector<FetchFormPart>
-  /**
-   * Specialized version of `std::vector<FetchFormPart>`.
-   */
-  using std__vector_FetchFormPart_ = std::vector<FetchFormPart>;
-  inline std::vector<FetchFormPart> create_std__vector_FetchFormPart_(size_t size) noexcept {
-    std::vector<FetchFormPart> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::optional<std::vector<FetchFormPart>>
-  /**
-   * Specialized version of `std::optional<std::vector<FetchFormPart>>`.
-   */
-  using std__optional_std__vector_FetchFormPart__ = std::optional<std::vector<FetchFormPart>>;
-  inline std::optional<std::vector<FetchFormPart>> create_std__optional_std__vector_FetchFormPart__(const std::vector<FetchFormPart>& value) noexcept {
-    return std::optional<std::vector<FetchFormPart>>(value);
-  }
-  inline bool has_value_std__optional_std__vector_FetchFormPart__(const std::optional<std::vector<FetchFormPart>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::vector<FetchFormPart> get_std__optional_std__vector_FetchFormPart__(const std::optional<std::vector<FetchFormPart>>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::function<void(const FetchNativeResponse& /* response */)>
-  /**
-   * Specialized version of `std::function<void(const FetchNativeResponse&)>`.
-   */
-  using Func_void_FetchNativeResponse = std::function<void(const FetchNativeResponse& /* response */)>;
-  /**
-   * Wrapper class for a `std::function<void(const FetchNativeResponse& / * response * /)>`, this can be used from Swift.
-   */
-  class Func_void_FetchNativeResponse_Wrapper final {
-  public:
-    explicit Func_void_FetchNativeResponse_Wrapper(std::function<void(const FetchNativeResponse& /* response */)>&& func): _function(std::make_unique<std::function<void(const FetchNativeResponse& /* response */)>>(std::move(func))) {}
-    inline void call(FetchNativeResponse response) const noexcept {
-      _function->operator()(response);
-    }
-  private:
-    std::unique_ptr<std::function<void(const FetchNativeResponse& /* response */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_FetchNativeResponse create_Func_void_FetchNativeResponse(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_FetchNativeResponse_Wrapper wrap_Func_void_FetchNativeResponse(Func_void_FetchNativeResponse value) noexcept {
-    return Func_void_FetchNativeResponse_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>
-  /**
-   * Specialized version of `std::function<void(const std::shared_ptr<ArrayBuffer>&)>`.
-   */
-  using Func_void_std__shared_ptr_ArrayBuffer_ = std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::shared_ptr<ArrayBuffer>& / * chunk * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__shared_ptr_ArrayBuffer__Wrapper final {
-  public:
-    explicit Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>&& func): _function(std::make_unique<std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>>(std::move(func))) {}
-    inline void call(ArrayBufferHolder chunk) const noexcept {
-      _function->operator()(chunk.getArrayBuffer());
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__shared_ptr_ArrayBuffer_ create_Func_void_std__shared_ptr_ArrayBuffer_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__shared_ptr_ArrayBuffer__Wrapper wrap_Func_void_std__shared_ptr_ArrayBuffer_(Func_void_std__shared_ptr_ArrayBuffer_ value) noexcept {
-    return Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneFetchSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneFetchSpec>`.
-   */
-  using std__shared_ptr_HybridOneFetchSpec_ = std::shared_ptr<HybridOneFetchSpec>;
-  std::shared_ptr<HybridOneFetchSpec> create_std__shared_ptr_HybridOneFetchSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneFetchSpec_(std__shared_ptr_HybridOneFetchSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneFetchSpec>
-  using std__weak_ptr_HybridOneFetchSpec_ = std::weak_ptr<HybridOneFetchSpec>;
-  inline std__weak_ptr_HybridOneFetchSpec_ weakify_std__shared_ptr_HybridOneFetchSpec_(const std::shared_ptr<HybridOneFetchSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::string>
-  using Result_std__string_ = Result<std::string>;
-  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
-    return Result<std::string>::withValue(value);
-  }
-  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
-    return Result<std::string>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<FileInfo>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<FileInfo>>`.
-   */
-  using std__shared_ptr_Promise_FileInfo__ = std::shared_ptr<Promise<FileInfo>>;
-  inline std::shared_ptr<Promise<FileInfo>> create_std__shared_ptr_Promise_FileInfo__() noexcept {
-    return Promise<FileInfo>::create();
-  }
-  inline PromiseHolder<FileInfo> wrap_std__shared_ptr_Promise_FileInfo__(std::shared_ptr<Promise<FileInfo>> promise) noexcept {
-    return PromiseHolder<FileInfo>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const FileInfo& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const FileInfo&)>`.
-   */
-  using Func_void_FileInfo = std::function<void(const FileInfo& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const FileInfo& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_FileInfo_Wrapper final {
-  public:
-    explicit Func_void_FileInfo_Wrapper(std::function<void(const FileInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const FileInfo& /* result */)>>(std::move(func))) {}
-    inline void call(FileInfo result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const FileInfo& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_FileInfo create_Func_void_FileInfo(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_FileInfo_Wrapper wrap_Func_void_FileInfo(Func_void_FileInfo value) noexcept {
-    return Func_void_FileInfo_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<FileEntry>
-  /**
-   * Specialized version of `std::vector<FileEntry>`.
-   */
-  using std__vector_FileEntry_ = std::vector<FileEntry>;
-  inline std::vector<FileEntry> create_std__vector_FileEntry_(size_t size) noexcept {
-    std::vector<FileEntry> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::vector<FileEntry>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<FileEntry>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_FileEntry___ = std::shared_ptr<Promise<std::vector<FileEntry>>>;
-  inline std::shared_ptr<Promise<std::vector<FileEntry>>> create_std__shared_ptr_Promise_std__vector_FileEntry___() noexcept {
-    return Promise<std::vector<FileEntry>>::create();
-  }
-  inline PromiseHolder<std::vector<FileEntry>> wrap_std__shared_ptr_Promise_std__vector_FileEntry___(std::shared_ptr<Promise<std::vector<FileEntry>>> promise) noexcept {
-    return PromiseHolder<std::vector<FileEntry>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::vector<FileEntry>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<FileEntry>&)>`.
-   */
-  using Func_void_std__vector_FileEntry_ = std::function<void(const std::vector<FileEntry>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<FileEntry>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_FileEntry__Wrapper final {
-  public:
-    explicit Func_void_std__vector_FileEntry__Wrapper(std::function<void(const std::vector<FileEntry>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<FileEntry>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<FileEntry> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<FileEntry>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_FileEntry_ create_Func_void_std__vector_FileEntry_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_FileEntry__Wrapper wrap_Func_void_std__vector_FileEntry_(Func_void_std__vector_FileEntry_ value) noexcept {
-    return Func_void_std__vector_FileEntry__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneFileSystemSpec>`.
-   */
-  using std__shared_ptr_HybridOneFileSystemSpec_ = std::shared_ptr<HybridOneFileSystemSpec>;
-  std::shared_ptr<HybridOneFileSystemSpec> create_std__shared_ptr_HybridOneFileSystemSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneFileSystemSpec_(std__shared_ptr_HybridOneFileSystemSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneFileSystemSpec>
-  using std__weak_ptr_HybridOneFileSystemSpec_ = std::weak_ptr<HybridOneFileSystemSpec>;
-  inline std__weak_ptr_HybridOneFileSystemSpec_ weakify_std__shared_ptr_HybridOneFileSystemSpec_(const std::shared_ptr<HybridOneFileSystemSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<FileDirectories>
-  using Result_FileDirectories_ = Result<FileDirectories>;
-  inline Result_FileDirectories_ create_Result_FileDirectories_(const FileDirectories& value) noexcept {
-    return Result<FileDirectories>::withValue(value);
-  }
-  inline Result_FileDirectories_ create_Result_FileDirectories_(const std::exception_ptr& error) noexcept {
-    return Result<FileDirectories>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<FileInfo>>>
-  using Result_std__shared_ptr_Promise_FileInfo___ = Result<std::shared_ptr<Promise<FileInfo>>>;
-  inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::shared_ptr<Promise<FileInfo>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<FileInfo>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<FileInfo>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>
-  using Result_std__shared_ptr_Promise_std__vector_FileEntry____ = Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::shared_ptr<Promise<std::vector<FileEntry>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneFontsSpec>`.
-   */
-  using std__shared_ptr_HybridOneFontsSpec_ = std::shared_ptr<HybridOneFontsSpec>;
-  std::shared_ptr<HybridOneFontsSpec> create_std__shared_ptr_HybridOneFontsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneFontsSpec_(std__shared_ptr_HybridOneFontsSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneFontsSpec>
-  using std__weak_ptr_HybridOneFontsSpec_ = std::weak_ptr<HybridOneFontsSpec>;
-  inline std__weak_ptr_HybridOneFontsSpec_ weakify_std__shared_ptr_HybridOneFontsSpec_(const std::shared_ptr<HybridOneFontsSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: std::shared_ptr<HybridOneHapticsSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneHapticsSpec>`.
-   */
-  using std__shared_ptr_HybridOneHapticsSpec_ = std::shared_ptr<HybridOneHapticsSpec>;
-  std::shared_ptr<HybridOneHapticsSpec> create_std__shared_ptr_HybridOneHapticsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneHapticsSpec_(std__shared_ptr_HybridOneHapticsSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneHapticsSpec>
-  using std__weak_ptr_HybridOneHapticsSpec_ = std::weak_ptr<HybridOneHapticsSpec>;
-  inline std__weak_ptr_HybridOneHapticsSpec_ weakify_std__shared_ptr_HybridOneHapticsSpec_(const std::shared_ptr<HybridOneHapticsSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: std::shared_ptr<Promise<ImageTransformResult>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<ImageTransformResult>>`.
-   */
-  using std__shared_ptr_Promise_ImageTransformResult__ = std::shared_ptr<Promise<ImageTransformResult>>;
-  inline std::shared_ptr<Promise<ImageTransformResult>> create_std__shared_ptr_Promise_ImageTransformResult__() noexcept {
-    return Promise<ImageTransformResult>::create();
-  }
-  inline PromiseHolder<ImageTransformResult> wrap_std__shared_ptr_Promise_ImageTransformResult__(std::shared_ptr<Promise<ImageTransformResult>> promise) noexcept {
-    return PromiseHolder<ImageTransformResult>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const ImageTransformResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const ImageTransformResult&)>`.
-   */
-  using Func_void_ImageTransformResult = std::function<void(const ImageTransformResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const ImageTransformResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_ImageTransformResult_Wrapper final {
-  public:
-    explicit Func_void_ImageTransformResult_Wrapper(std::function<void(const ImageTransformResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ImageTransformResult& /* result */)>>(std::move(func))) {}
-    inline void call(ImageTransformResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const ImageTransformResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_ImageTransformResult create_Func_void_ImageTransformResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_ImageTransformResult_Wrapper wrap_Func_void_ImageTransformResult(Func_void_ImageTransformResult value) noexcept {
-    return Func_void_ImageTransformResult_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::optional<ImageCrop>
-  /**
-   * Specialized version of `std::optional<ImageCrop>`.
-   */
-  using std__optional_ImageCrop_ = std::optional<ImageCrop>;
-  inline std::optional<ImageCrop> create_std__optional_ImageCrop_(const ImageCrop& value) noexcept {
-    return std::optional<ImageCrop>(value);
-  }
-  inline bool has_value_std__optional_ImageCrop_(const std::optional<ImageCrop>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline ImageCrop get_std__optional_ImageCrop_(const std::optional<ImageCrop>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::optional<ImageResize>
-  /**
-   * Specialized version of `std::optional<ImageResize>`.
-   */
-  using std__optional_ImageResize_ = std::optional<ImageResize>;
-  inline std::optional<ImageResize> create_std__optional_ImageResize_(const ImageResize& value) noexcept {
-    return std::optional<ImageResize>(value);
-  }
-  inline bool has_value_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline ImageResize get_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneImageManipulatorSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneImageManipulatorSpec>`.
-   */
-  using std__shared_ptr_HybridOneImageManipulatorSpec_ = std::shared_ptr<HybridOneImageManipulatorSpec>;
-  std::shared_ptr<HybridOneImageManipulatorSpec> create_std__shared_ptr_HybridOneImageManipulatorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneImageManipulatorSpec_(std__shared_ptr_HybridOneImageManipulatorSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneImageManipulatorSpec>
-  using std__weak_ptr_HybridOneImageManipulatorSpec_ = std::weak_ptr<HybridOneImageManipulatorSpec>;
-  inline std__weak_ptr_HybridOneImageManipulatorSpec_ weakify_std__shared_ptr_HybridOneImageManipulatorSpec_(const std::shared_ptr<HybridOneImageManipulatorSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<ImageTransformResult>>>
-  using Result_std__shared_ptr_Promise_ImageTransformResult___ = Result<std::shared_ptr<Promise<ImageTransformResult>>>;
-  inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::shared_ptr<Promise<ImageTransformResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<ImageTransformResult>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<ImageTransformResult>>>::withError(error);
-  }
-
-  // pragma MARK: std::vector<ImagePickerAsset>
-  /**
-   * Specialized version of `std::vector<ImagePickerAsset>`.
-   */
-  using std__vector_ImagePickerAsset_ = std::vector<ImagePickerAsset>;
-  inline std::vector<ImagePickerAsset> create_std__vector_ImagePickerAsset_(size_t size) noexcept {
-    std::vector<ImagePickerAsset> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::optional<std::vector<ImagePickerAsset>>
-  /**
-   * Specialized version of `std::optional<std::vector<ImagePickerAsset>>`.
-   */
-  using std__optional_std__vector_ImagePickerAsset__ = std::optional<std::vector<ImagePickerAsset>>;
-  inline std::optional<std::vector<ImagePickerAsset>> create_std__optional_std__vector_ImagePickerAsset__(const std::vector<ImagePickerAsset>& value) noexcept {
-    return std::optional<std::vector<ImagePickerAsset>>(value);
-  }
-  inline bool has_value_std__optional_std__vector_ImagePickerAsset__(const std::optional<std::vector<ImagePickerAsset>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::vector<ImagePickerAsset> get_std__optional_std__vector_ImagePickerAsset__(const std::optional<std::vector<ImagePickerAsset>>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<ImagePickerNativeResult>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<ImagePickerNativeResult>>`.
-   */
-  using std__shared_ptr_Promise_ImagePickerNativeResult__ = std::shared_ptr<Promise<ImagePickerNativeResult>>;
-  inline std::shared_ptr<Promise<ImagePickerNativeResult>> create_std__shared_ptr_Promise_ImagePickerNativeResult__() noexcept {
-    return Promise<ImagePickerNativeResult>::create();
-  }
-  inline PromiseHolder<ImagePickerNativeResult> wrap_std__shared_ptr_Promise_ImagePickerNativeResult__(std::shared_ptr<Promise<ImagePickerNativeResult>> promise) noexcept {
-    return PromiseHolder<ImagePickerNativeResult>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const ImagePickerNativeResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const ImagePickerNativeResult&)>`.
-   */
-  using Func_void_ImagePickerNativeResult = std::function<void(const ImagePickerNativeResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const ImagePickerNativeResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_ImagePickerNativeResult_Wrapper final {
-  public:
-    explicit Func_void_ImagePickerNativeResult_Wrapper(std::function<void(const ImagePickerNativeResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ImagePickerNativeResult& /* result */)>>(std::move(func))) {}
-    inline void call(ImagePickerNativeResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const ImagePickerNativeResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_ImagePickerNativeResult create_Func_void_ImagePickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_ImagePickerNativeResult_Wrapper wrap_Func_void_ImagePickerNativeResult(Func_void_ImagePickerNativeResult value) noexcept {
-    return Func_void_ImagePickerNativeResult_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<ImagePickerMediaType>
-  /**
-   * Specialized version of `std::vector<ImagePickerMediaType>`.
-   */
-  using std__vector_ImagePickerMediaType_ = std::vector<ImagePickerMediaType>;
-  inline std::vector<ImagePickerMediaType> create_std__vector_ImagePickerMediaType_(size_t size) noexcept {
-    std::vector<ImagePickerMediaType> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<CameraPermissionResponse>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<CameraPermissionResponse>>`.
-   */
-  using std__shared_ptr_Promise_CameraPermissionResponse__ = std::shared_ptr<Promise<CameraPermissionResponse>>;
-  inline std::shared_ptr<Promise<CameraPermissionResponse>> create_std__shared_ptr_Promise_CameraPermissionResponse__() noexcept {
-    return Promise<CameraPermissionResponse>::create();
-  }
-  inline PromiseHolder<CameraPermissionResponse> wrap_std__shared_ptr_Promise_CameraPermissionResponse__(std::shared_ptr<Promise<CameraPermissionResponse>> promise) noexcept {
-    return PromiseHolder<CameraPermissionResponse>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const CameraPermissionResponse& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const CameraPermissionResponse&)>`.
-   */
-  using Func_void_CameraPermissionResponse = std::function<void(const CameraPermissionResponse& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const CameraPermissionResponse& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_CameraPermissionResponse_Wrapper final {
-  public:
-    explicit Func_void_CameraPermissionResponse_Wrapper(std::function<void(const CameraPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const CameraPermissionResponse& /* result */)>>(std::move(func))) {}
-    inline void call(CameraPermissionResponse result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const CameraPermissionResponse& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_CameraPermissionResponse create_Func_void_CameraPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_CameraPermissionResponse_Wrapper wrap_Func_void_CameraPermissionResponse(Func_void_CameraPermissionResponse value) noexcept {
-    return Func_void_CameraPermissionResponse_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneImagePickerSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneImagePickerSpec>`.
-   */
-  using std__shared_ptr_HybridOneImagePickerSpec_ = std::shared_ptr<HybridOneImagePickerSpec>;
-  std::shared_ptr<HybridOneImagePickerSpec> create_std__shared_ptr_HybridOneImagePickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneImagePickerSpec_(std__shared_ptr_HybridOneImagePickerSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneImagePickerSpec>
-  using std__weak_ptr_HybridOneImagePickerSpec_ = std::weak_ptr<HybridOneImagePickerSpec>;
-  inline std__weak_ptr_HybridOneImagePickerSpec_ weakify_std__shared_ptr_HybridOneImagePickerSpec_(const std::shared_ptr<HybridOneImagePickerSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>
-  using Result_std__shared_ptr_Promise_ImagePickerNativeResult___ = Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>;
-  inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::shared_ptr<Promise<ImagePickerNativeResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<CameraPermissionResponse>>>
-  using Result_std__shared_ptr_Promise_CameraPermissionResponse___ = Result<std::shared_ptr<Promise<CameraPermissionResponse>>>;
-  inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::shared_ptr<Promise<CameraPermissionResponse>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneKeepAwakeSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneKeepAwakeSpec>`.
-   */
-  using std__shared_ptr_HybridOneKeepAwakeSpec_ = std::shared_ptr<HybridOneKeepAwakeSpec>;
-  std::shared_ptr<HybridOneKeepAwakeSpec> create_std__shared_ptr_HybridOneKeepAwakeSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneKeepAwakeSpec_(std__shared_ptr_HybridOneKeepAwakeSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneKeepAwakeSpec>
-  using std__weak_ptr_HybridOneKeepAwakeSpec_ = std::weak_ptr<HybridOneKeepAwakeSpec>;
-  inline std__weak_ptr_HybridOneKeepAwakeSpec_ weakify_std__shared_ptr_HybridOneKeepAwakeSpec_(const std::shared_ptr<HybridOneKeepAwakeSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: std::shared_ptr<HybridOneLaunchScreenSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneLaunchScreenSpec>`.
-   */
-  using std__shared_ptr_HybridOneLaunchScreenSpec_ = std::shared_ptr<HybridOneLaunchScreenSpec>;
-  std::shared_ptr<HybridOneLaunchScreenSpec> create_std__shared_ptr_HybridOneLaunchScreenSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneLaunchScreenSpec_(std__shared_ptr_HybridOneLaunchScreenSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneLaunchScreenSpec>
-  using std__weak_ptr_HybridOneLaunchScreenSpec_ = std::weak_ptr<HybridOneLaunchScreenSpec>;
-  inline std__weak_ptr_HybridOneLaunchScreenSpec_ weakify_std__shared_ptr_HybridOneLaunchScreenSpec_(const std::shared_ptr<HybridOneLaunchScreenSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: std::shared_ptr<HybridOneLocalAuthenticationSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneLocalAuthenticationSpec>`.
-   */
-  using std__shared_ptr_HybridOneLocalAuthenticationSpec_ = std::shared_ptr<HybridOneLocalAuthenticationSpec>;
-  std::shared_ptr<HybridOneLocalAuthenticationSpec> create_std__shared_ptr_HybridOneLocalAuthenticationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneLocalAuthenticationSpec_(std__shared_ptr_HybridOneLocalAuthenticationSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneLocalAuthenticationSpec>
-  using std__weak_ptr_HybridOneLocalAuthenticationSpec_ = std::weak_ptr<HybridOneLocalAuthenticationSpec>;
-  inline std__weak_ptr_HybridOneLocalAuthenticationSpec_ weakify_std__shared_ptr_HybridOneLocalAuthenticationSpec_(const std::shared_ptr<HybridOneLocalAuthenticationSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<LocalAuthenticationStatus>
-  using Result_LocalAuthenticationStatus_ = Result<LocalAuthenticationStatus>;
-  inline Result_LocalAuthenticationStatus_ create_Result_LocalAuthenticationStatus_(const LocalAuthenticationStatus& value) noexcept {
-    return Result<LocalAuthenticationStatus>::withValue(value);
-  }
-  inline Result_LocalAuthenticationStatus_ create_Result_LocalAuthenticationStatus_(const std::exception_ptr& error) noexcept {
-    return Result<LocalAuthenticationStatus>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<LocationPermissionStatus>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<LocationPermissionStatus>>`.
-   */
-  using std__shared_ptr_Promise_LocationPermissionStatus__ = std::shared_ptr<Promise<LocationPermissionStatus>>;
-  inline std::shared_ptr<Promise<LocationPermissionStatus>> create_std__shared_ptr_Promise_LocationPermissionStatus__() noexcept {
-    return Promise<LocationPermissionStatus>::create();
-  }
-  inline PromiseHolder<LocationPermissionStatus> wrap_std__shared_ptr_Promise_LocationPermissionStatus__(std::shared_ptr<Promise<LocationPermissionStatus>> promise) noexcept {
-    return PromiseHolder<LocationPermissionStatus>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(LocationPermissionStatus /* result */)>
-  /**
-   * Specialized version of `std::function<void(LocationPermissionStatus)>`.
-   */
-  using Func_void_LocationPermissionStatus = std::function<void(LocationPermissionStatus /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(LocationPermissionStatus / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_LocationPermissionStatus_Wrapper final {
-  public:
-    explicit Func_void_LocationPermissionStatus_Wrapper(std::function<void(LocationPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(LocationPermissionStatus /* result */)>>(std::move(func))) {}
-    inline void call(int result) const noexcept {
-      _function->operator()(static_cast<LocationPermissionStatus>(result));
-    }
-  private:
-    std::unique_ptr<std::function<void(LocationPermissionStatus /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_LocationPermissionStatus create_Func_void_LocationPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_LocationPermissionStatus_Wrapper wrap_Func_void_LocationPermissionStatus(Func_void_LocationPermissionStatus value) noexcept {
-    return Func_void_LocationPermissionStatus_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<LocationPosition>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<LocationPosition>>`.
-   */
-  using std__shared_ptr_Promise_LocationPosition__ = std::shared_ptr<Promise<LocationPosition>>;
-  inline std::shared_ptr<Promise<LocationPosition>> create_std__shared_ptr_Promise_LocationPosition__() noexcept {
-    return Promise<LocationPosition>::create();
-  }
-  inline PromiseHolder<LocationPosition> wrap_std__shared_ptr_Promise_LocationPosition__(std::shared_ptr<Promise<LocationPosition>> promise) noexcept {
-    return PromiseHolder<LocationPosition>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const LocationPosition& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const LocationPosition&)>`.
-   */
-  using Func_void_LocationPosition = std::function<void(const LocationPosition& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const LocationPosition& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_LocationPosition_Wrapper final {
-  public:
-    explicit Func_void_LocationPosition_Wrapper(std::function<void(const LocationPosition& /* result */)>&& func): _function(std::make_unique<std::function<void(const LocationPosition& /* result */)>>(std::move(func))) {}
-    inline void call(LocationPosition result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const LocationPosition& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_LocationPosition create_Func_void_LocationPosition(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_LocationPosition_Wrapper wrap_Func_void_LocationPosition(Func_void_LocationPosition value) noexcept {
-    return Func_void_LocationPosition_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::function<void(const std::string& /* code */, const std::string& /* message */)>
-  /**
-   * Specialized version of `std::function<void(const std::string&, const std::string&)>`.
-   */
-  using Func_void_std__string_std__string = std::function<void(const std::string& /* code */, const std::string& /* message */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::string& / * code * /, const std::string& / * message * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__string_std__string_Wrapper final {
-  public:
-    explicit Func_void_std__string_std__string_Wrapper(std::function<void(const std::string& /* code */, const std::string& /* message */)>&& func): _function(std::make_unique<std::function<void(const std::string& /* code */, const std::string& /* message */)>>(std::move(func))) {}
-    inline void call(std::string code, std::string message) const noexcept {
-      _function->operator()(code, message);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::string& /* code */, const std::string& /* message */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__string_std__string create_Func_void_std__string_std__string(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__string_std__string_Wrapper wrap_Func_void_std__string_std__string(Func_void_std__string_std__string value) noexcept {
-    return Func_void_std__string_std__string_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<LocationPlace>
-  /**
-   * Specialized version of `std::vector<LocationPlace>`.
-   */
-  using std__vector_LocationPlace_ = std::vector<LocationPlace>;
-  inline std::vector<LocationPlace> create_std__vector_LocationPlace_(size_t size) noexcept {
-    std::vector<LocationPlace> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::vector<LocationPlace>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<LocationPlace>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_LocationPlace___ = std::shared_ptr<Promise<std::vector<LocationPlace>>>;
-  inline std::shared_ptr<Promise<std::vector<LocationPlace>>> create_std__shared_ptr_Promise_std__vector_LocationPlace___() noexcept {
-    return Promise<std::vector<LocationPlace>>::create();
-  }
-  inline PromiseHolder<std::vector<LocationPlace>> wrap_std__shared_ptr_Promise_std__vector_LocationPlace___(std::shared_ptr<Promise<std::vector<LocationPlace>>> promise) noexcept {
-    return PromiseHolder<std::vector<LocationPlace>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::vector<LocationPlace>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<LocationPlace>&)>`.
-   */
-  using Func_void_std__vector_LocationPlace_ = std::function<void(const std::vector<LocationPlace>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<LocationPlace>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_LocationPlace__Wrapper final {
-  public:
-    explicit Func_void_std__vector_LocationPlace__Wrapper(std::function<void(const std::vector<LocationPlace>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<LocationPlace>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<LocationPlace> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<LocationPlace>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_LocationPlace_ create_Func_void_std__vector_LocationPlace_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_LocationPlace__Wrapper wrap_Func_void_std__vector_LocationPlace_(Func_void_std__vector_LocationPlace_ value) noexcept {
-    return Func_void_std__vector_LocationPlace__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneLocationSpec>`.
-   */
-  using std__shared_ptr_HybridOneLocationSpec_ = std::shared_ptr<HybridOneLocationSpec>;
-  std::shared_ptr<HybridOneLocationSpec> create_std__shared_ptr_HybridOneLocationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneLocationSpec_(std__shared_ptr_HybridOneLocationSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneLocationSpec>
-  using std__weak_ptr_HybridOneLocationSpec_ = std::weak_ptr<HybridOneLocationSpec>;
-  inline std__weak_ptr_HybridOneLocationSpec_ weakify_std__shared_ptr_HybridOneLocationSpec_(const std::shared_ptr<HybridOneLocationSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<LocationPermissionStatus>
-  using Result_LocationPermissionStatus_ = Result<LocationPermissionStatus>;
-  inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(LocationPermissionStatus value) noexcept {
-    return Result<LocationPermissionStatus>::withValue(std::move(value));
-  }
-  inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(const std::exception_ptr& error) noexcept {
-    return Result<LocationPermissionStatus>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<LocationPermissionStatus>>>
-  using Result_std__shared_ptr_Promise_LocationPermissionStatus___ = Result<std::shared_ptr<Promise<LocationPermissionStatus>>>;
-  inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::shared_ptr<Promise<LocationPermissionStatus>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<LocationPermissionStatus>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<LocationPermissionStatus>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<LocationPosition>>>
-  using Result_std__shared_ptr_Promise_LocationPosition___ = Result<std::shared_ptr<Promise<LocationPosition>>>;
-  inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::shared_ptr<Promise<LocationPosition>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<LocationPosition>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<LocationPosition>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>
-  using Result_std__shared_ptr_Promise_std__vector_LocationPlace____ = Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::shared_ptr<Promise<std::vector<LocationPlace>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withError(error);
-  }
-
-  // pragma MARK: std::vector<MapPlace>
-  /**
-   * Specialized version of `std::vector<MapPlace>`.
-   */
-  using std__vector_MapPlace_ = std::vector<MapPlace>;
-  inline std::vector<MapPlace> create_std__vector_MapPlace_(size_t size) noexcept {
-    std::vector<MapPlace> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::vector<MapPlace>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<MapPlace>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_MapPlace___ = std::shared_ptr<Promise<std::vector<MapPlace>>>;
-  inline std::shared_ptr<Promise<std::vector<MapPlace>>> create_std__shared_ptr_Promise_std__vector_MapPlace___() noexcept {
-    return Promise<std::vector<MapPlace>>::create();
-  }
-  inline PromiseHolder<std::vector<MapPlace>> wrap_std__shared_ptr_Promise_std__vector_MapPlace___(std::shared_ptr<Promise<std::vector<MapPlace>>> promise) noexcept {
-    return PromiseHolder<std::vector<MapPlace>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::vector<MapPlace>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<MapPlace>&)>`.
-   */
-  using Func_void_std__vector_MapPlace_ = std::function<void(const std::vector<MapPlace>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<MapPlace>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_MapPlace__Wrapper final {
-  public:
-    explicit Func_void_std__vector_MapPlace__Wrapper(std::function<void(const std::vector<MapPlace>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<MapPlace>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<MapPlace> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<MapPlace>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_MapPlace_ create_Func_void_std__vector_MapPlace_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_MapPlace__Wrapper wrap_Func_void_std__vector_MapPlace_(Func_void_std__vector_MapPlace_ value) noexcept {
-    return Func_void_std__vector_MapPlace__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<MapSuggestion>
-  /**
-   * Specialized version of `std::vector<MapSuggestion>`.
-   */
-  using std__vector_MapSuggestion_ = std::vector<MapSuggestion>;
-  inline std::vector<MapSuggestion> create_std__vector_MapSuggestion_(size_t size) noexcept {
-    std::vector<MapSuggestion> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<std::vector<MapSuggestion>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<MapSuggestion>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_MapSuggestion___ = std::shared_ptr<Promise<std::vector<MapSuggestion>>>;
-  inline std::shared_ptr<Promise<std::vector<MapSuggestion>>> create_std__shared_ptr_Promise_std__vector_MapSuggestion___() noexcept {
-    return Promise<std::vector<MapSuggestion>>::create();
-  }
-  inline PromiseHolder<std::vector<MapSuggestion>> wrap_std__shared_ptr_Promise_std__vector_MapSuggestion___(std::shared_ptr<Promise<std::vector<MapSuggestion>>> promise) noexcept {
-    return PromiseHolder<std::vector<MapSuggestion>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::vector<MapSuggestion>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<MapSuggestion>&)>`.
-   */
-  using Func_void_std__vector_MapSuggestion_ = std::function<void(const std::vector<MapSuggestion>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<MapSuggestion>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_MapSuggestion__Wrapper final {
-  public:
-    explicit Func_void_std__vector_MapSuggestion__Wrapper(std::function<void(const std::vector<MapSuggestion>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<MapSuggestion>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<MapSuggestion> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<MapSuggestion>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_MapSuggestion_ create_Func_void_std__vector_MapSuggestion_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_MapSuggestion__Wrapper wrap_Func_void_std__vector_MapSuggestion_(Func_void_std__vector_MapSuggestion_ value) noexcept {
-    return Func_void_std__vector_MapSuggestion__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<MapPlace>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<MapPlace>>`.
-   */
-  using std__shared_ptr_Promise_MapPlace__ = std::shared_ptr<Promise<MapPlace>>;
-  inline std::shared_ptr<Promise<MapPlace>> create_std__shared_ptr_Promise_MapPlace__() noexcept {
-    return Promise<MapPlace>::create();
-  }
-  inline PromiseHolder<MapPlace> wrap_std__shared_ptr_Promise_MapPlace__(std::shared_ptr<Promise<MapPlace>> promise) noexcept {
-    return PromiseHolder<MapPlace>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const MapPlace& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const MapPlace&)>`.
-   */
-  using Func_void_MapPlace = std::function<void(const MapPlace& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const MapPlace& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_MapPlace_Wrapper final {
-  public:
-    explicit Func_void_MapPlace_Wrapper(std::function<void(const MapPlace& /* result */)>&& func): _function(std::make_unique<std::function<void(const MapPlace& /* result */)>>(std::move(func))) {}
-    inline void call(MapPlace result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const MapPlace& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_MapPlace create_Func_void_MapPlace(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_MapPlace_Wrapper wrap_Func_void_MapPlace(Func_void_MapPlace value) noexcept {
-    return Func_void_MapPlace_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<MapCoordinate>
-  /**
-   * Specialized version of `std::vector<MapCoordinate>`.
-   */
-  using std__vector_MapCoordinate_ = std::vector<MapCoordinate>;
-  inline std::vector<MapCoordinate> create_std__vector_MapCoordinate_(size_t size) noexcept {
-    std::vector<MapCoordinate> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::vector<MapRouteStep>
-  /**
-   * Specialized version of `std::vector<MapRouteStep>`.
-   */
-  using std__vector_MapRouteStep_ = std::vector<MapRouteStep>;
-  inline std::vector<MapRouteStep> create_std__vector_MapRouteStep_(size_t size) noexcept {
-    std::vector<MapRouteStep> vector;
-    vector.reserve(size);
-    return vector;
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<MapRoute>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<MapRoute>>`.
-   */
-  using std__shared_ptr_Promise_MapRoute__ = std::shared_ptr<Promise<MapRoute>>;
-  inline std::shared_ptr<Promise<MapRoute>> create_std__shared_ptr_Promise_MapRoute__() noexcept {
-    return Promise<MapRoute>::create();
-  }
-  inline PromiseHolder<MapRoute> wrap_std__shared_ptr_Promise_MapRoute__(std::shared_ptr<Promise<MapRoute>> promise) noexcept {
-    return PromiseHolder<MapRoute>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const MapRoute& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const MapRoute&)>`.
-   */
-  using Func_void_MapRoute = std::function<void(const MapRoute& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const MapRoute& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_MapRoute_Wrapper final {
-  public:
-    explicit Func_void_MapRoute_Wrapper(std::function<void(const MapRoute& /* result */)>&& func): _function(std::make_unique<std::function<void(const MapRoute& /* result */)>>(std::move(func))) {}
-    inline void call(MapRoute result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const MapRoute& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_MapRoute create_Func_void_MapRoute(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_MapRoute_Wrapper wrap_Func_void_MapRoute(Func_void_MapRoute value) noexcept {
-    return Func_void_MapRoute_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneMapServicesSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneMapServicesSpec>`.
-   */
-  using std__shared_ptr_HybridOneMapServicesSpec_ = std::shared_ptr<HybridOneMapServicesSpec>;
-  std::shared_ptr<HybridOneMapServicesSpec> create_std__shared_ptr_HybridOneMapServicesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneMapServicesSpec_(std__shared_ptr_HybridOneMapServicesSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneMapServicesSpec>
-  using std__weak_ptr_HybridOneMapServicesSpec_ = std::weak_ptr<HybridOneMapServicesSpec>;
-  inline std__weak_ptr_HybridOneMapServicesSpec_ weakify_std__shared_ptr_HybridOneMapServicesSpec_(const std::shared_ptr<HybridOneMapServicesSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>
-  using Result_std__shared_ptr_Promise_std__vector_MapPlace____ = Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::shared_ptr<Promise<std::vector<MapPlace>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>
-  using Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ = Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::shared_ptr<Promise<std::vector<MapSuggestion>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<MapPlace>>>
-  using Result_std__shared_ptr_Promise_MapPlace___ = Result<std::shared_ptr<Promise<MapPlace>>>;
-  inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::shared_ptr<Promise<MapPlace>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<MapPlace>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<MapPlace>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<MapRoute>>>
-  using Result_std__shared_ptr_Promise_MapRoute___ = Result<std::shared_ptr<Promise<MapRoute>>>;
-  inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::shared_ptr<Promise<MapRoute>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<MapRoute>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<MapRoute>>>::withError(error);
-  }
-
-  // pragma MARK: std::optional<MotionVector>
-  /**
-   * Specialized version of `std::optional<MotionVector>`.
-   */
-  using std__optional_MotionVector_ = std::optional<MotionVector>;
-  inline std::optional<MotionVector> create_std__optional_MotionVector_(const MotionVector& value) noexcept {
-    return std::optional<MotionVector>(value);
-  }
-  inline bool has_value_std__optional_MotionVector_(const std::optional<MotionVector>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline MotionVector get_std__optional_MotionVector_(const std::optional<MotionVector>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::function<void(const MotionReading& /* reading */)>
-  /**
-   * Specialized version of `std::function<void(const MotionReading&)>`.
-   */
-  using Func_void_MotionReading = std::function<void(const MotionReading& /* reading */)>;
-  /**
-   * Wrapper class for a `std::function<void(const MotionReading& / * reading * /)>`, this can be used from Swift.
-   */
-  class Func_void_MotionReading_Wrapper final {
-  public:
-    explicit Func_void_MotionReading_Wrapper(std::function<void(const MotionReading& /* reading */)>&& func): _function(std::make_unique<std::function<void(const MotionReading& /* reading */)>>(std::move(func))) {}
-    inline void call(MotionReading reading) const noexcept {
-      _function->operator()(reading);
-    }
-  private:
-    std::unique_ptr<std::function<void(const MotionReading& /* reading */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_MotionReading create_Func_void_MotionReading(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_MotionReading_Wrapper wrap_Func_void_MotionReading(Func_void_MotionReading value) noexcept {
-    return Func_void_MotionReading_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneMotionSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneMotionSpec>`.
-   */
-  using std__shared_ptr_HybridOneMotionSpec_ = std::shared_ptr<HybridOneMotionSpec>;
-  std::shared_ptr<HybridOneMotionSpec> create_std__shared_ptr_HybridOneMotionSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneMotionSpec_(std__shared_ptr_HybridOneMotionSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneMotionSpec>
-  using std__weak_ptr_HybridOneMotionSpec_ = std::weak_ptr<HybridOneMotionSpec>;
-  inline std__weak_ptr_HybridOneMotionSpec_ weakify_std__shared_ptr_HybridOneMotionSpec_(const std::shared_ptr<HybridOneMotionSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<MotionAvailability>
-  using Result_MotionAvailability_ = Result<MotionAvailability>;
-  inline Result_MotionAvailability_ create_Result_MotionAvailability_(const MotionAvailability& value) noexcept {
-    return Result<MotionAvailability>::withValue(value);
-  }
-  inline Result_MotionAvailability_ create_Result_MotionAvailability_(const std::exception_ptr& error) noexcept {
-    return Result<MotionAvailability>::withError(error);
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneNativeModulesSpec>`.
-   */
-  using std__shared_ptr_HybridOneNativeModulesSpec_ = std::shared_ptr<HybridOneNativeModulesSpec>;
-  std::shared_ptr<HybridOneNativeModulesSpec> create_std__shared_ptr_HybridOneNativeModulesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneNativeModulesSpec_(std__shared_ptr_HybridOneNativeModulesSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneNativeModulesSpec>
-  using std__weak_ptr_HybridOneNativeModulesSpec_ = std::weak_ptr<HybridOneNativeModulesSpec>;
-  inline std__weak_ptr_HybridOneNativeModulesSpec_ weakify_std__shared_ptr_HybridOneNativeModulesSpec_(const std::shared_ptr<HybridOneNativeModulesSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: std::shared_ptr<Promise<NetworkState>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<NetworkState>>`.
-   */
-  using std__shared_ptr_Promise_NetworkState__ = std::shared_ptr<Promise<NetworkState>>;
-  inline std::shared_ptr<Promise<NetworkState>> create_std__shared_ptr_Promise_NetworkState__() noexcept {
-    return Promise<NetworkState>::create();
-  }
-  inline PromiseHolder<NetworkState> wrap_std__shared_ptr_Promise_NetworkState__(std::shared_ptr<Promise<NetworkState>> promise) noexcept {
-    return PromiseHolder<NetworkState>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const NetworkState& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const NetworkState&)>`.
-   */
-  using Func_void_NetworkState = std::function<void(const NetworkState& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const NetworkState& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_NetworkState_Wrapper final {
-  public:
-    explicit Func_void_NetworkState_Wrapper(std::function<void(const NetworkState& /* result */)>&& func): _function(std::make_unique<std::function<void(const NetworkState& /* result */)>>(std::move(func))) {}
-    inline void call(NetworkState result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const NetworkState& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_NetworkState_Wrapper wrap_Func_void_NetworkState(Func_void_NetworkState value) noexcept {
-    return Func_void_NetworkState_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::shared_ptr<HybridOneNetworkSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneNetworkSpec>`.
-   */
-  using std__shared_ptr_HybridOneNetworkSpec_ = std::shared_ptr<HybridOneNetworkSpec>;
-  std::shared_ptr<HybridOneNetworkSpec> create_std__shared_ptr_HybridOneNetworkSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneNetworkSpec_(std__shared_ptr_HybridOneNetworkSpec_ cppType);
-
-  // pragma MARK: std::weak_ptr<HybridOneNetworkSpec>
-  using std__weak_ptr_HybridOneNetworkSpec_ = std::weak_ptr<HybridOneNetworkSpec>;
-  inline std__weak_ptr_HybridOneNetworkSpec_ weakify_std__shared_ptr_HybridOneNetworkSpec_(const std::shared_ptr<HybridOneNetworkSpec>& strong) noexcept { return strong; }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<NetworkState>>>
-  using Result_std__shared_ptr_Promise_NetworkState___ = Result<std::shared_ptr<Promise<NetworkState>>>;
-  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::shared_ptr<Promise<NetworkState>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<NetworkState>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<NetworkState>>>::withError(error);
-  }
-
-  // pragma MARK: std::optional<NativeIosPermission>
-  /**
-   * Specialized version of `std::optional<NativeIosPermission>`.
-   */
-  using std__optional_NativeIosPermission_ = std::optional<NativeIosPermission>;
-  inline std::optional<NativeIosPermission> create_std__optional_NativeIosPermission_(const NativeIosPermission& value) noexcept {
-    return std::optional<NativeIosPermission>(value);
-  }
-  inline bool has_value_std__optional_NativeIosPermission_(const std::optional<NativeIosPermission>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline NativeIosPermission get_std__optional_NativeIosPermission_(const std::optional<NativeIosPermission>& optional) noexcept {
-    return optional.value();
-  }
-
-  // pragma MARK: std::shared_ptr<Promise<NativePermissionResponse>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<NativePermissionResponse>>`.
-   */
-  using std__shared_ptr_Promise_NativePermissionResponse__ = std::shared_ptr<Promise<NativePermissionResponse>>;
-  inline std::shared_ptr<Promise<NativePermissionResponse>> create_std__shared_ptr_Promise_NativePermissionResponse__() noexcept {
-    return Promise<NativePermissionResponse>::create();
-  }
-  inline PromiseHolder<NativePermissionResponse> wrap_std__shared_ptr_Promise_NativePermissionResponse__(std::shared_ptr<Promise<NativePermissionResponse>> promise) noexcept {
-    return PromiseHolder<NativePermissionResponse>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const NativePermissionResponse& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const NativePermissionResponse&)>`.
-   */
-  using Func_void_NativePermissionResponse = std::function<void(const NativePermissionResponse& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const NativePermissionResponse& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_NativePermissionResponse_Wrapper final {
-  public:
-    explicit Func_void_NativePermissionResponse_Wrapper(std::function<void(const NativePermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const NativePermissionResponse& /* result */)>>(std::move(func))) {}
-    inline void call(NativePermissionResponse result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const NativePermissionResponse& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_NativePermissionResponse_Wrapper wrap_Func_void_NativePermissionResponse(Func_void_NativePermissionResponse value) noexcept {
-    return Func_void_NativePermissionResponse_Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::optional<NativeIosPermissionRequest>
-  /**
-   * Specialized version of `std::optional<NativeIosPermissionRequest>`.
-   */
-  using std__optional_NativeIosPermissionRequest_ = std::optional<NativeIosPermissionRequest>;
-  inline std::optional<NativeIosPermissionRequest> create_std__optional_NativeIosPermissionRequest_(const NativeIosPermissionRequest& value) noexcept {
-    return std::optional<NativeIosPermissionRequest>(value);
-  }
-  inline bool has_value_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline NativeIosPermissionRequest get_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
-    return optional.value();
-  }
-
+  
   // pragma MARK: std::shared_ptr<Promise<double>>
   /**
    * Specialized version of `std::shared_ptr<Promise<double>>`.
@@ -3611,7 +1653,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<double> wrap_std__shared_ptr_Promise_double__(std::shared_ptr<Promise<double>> promise) noexcept {
     return PromiseHolder<double>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(double /* result */)>
   /**
    * Specialized version of `std::function<void(double)>`.
@@ -3633,7 +1675,2312 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
     return Func_void_double_Wrapper(std::move(value));
   }
-
+  
+  // pragma MARK: std::shared_ptr<Promise<BatteryState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BatteryState>>`.
+   */
+  using std__shared_ptr_Promise_BatteryState__ = std::shared_ptr<Promise<BatteryState>>;
+  inline std::shared_ptr<Promise<BatteryState>> create_std__shared_ptr_Promise_BatteryState__() noexcept {
+    return Promise<BatteryState>::create();
+  }
+  inline PromiseHolder<BatteryState> wrap_std__shared_ptr_Promise_BatteryState__(std::shared_ptr<Promise<BatteryState>> promise) noexcept {
+    return PromiseHolder<BatteryState>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(BatteryState /* result */)>
+  /**
+   * Specialized version of `std::function<void(BatteryState)>`.
+   */
+  using Func_void_BatteryState = std::function<void(BatteryState /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(BatteryState / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryState_Wrapper final {
+  public:
+    explicit Func_void_BatteryState_Wrapper(std::function<void(BatteryState /* result */)>&& func): _function(std::make_unique<std::function<void(BatteryState /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<BatteryState>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(BatteryState /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryState create_Func_void_BatteryState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryState_Wrapper wrap_Func_void_BatteryState(Func_void_BatteryState value) noexcept {
+    return Func_void_BatteryState_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BatteryPowerState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BatteryPowerState>>`.
+   */
+  using std__shared_ptr_Promise_BatteryPowerState__ = std::shared_ptr<Promise<BatteryPowerState>>;
+  inline std::shared_ptr<Promise<BatteryPowerState>> create_std__shared_ptr_Promise_BatteryPowerState__() noexcept {
+    return Promise<BatteryPowerState>::create();
+  }
+  inline PromiseHolder<BatteryPowerState> wrap_std__shared_ptr_Promise_BatteryPowerState__(std::shared_ptr<Promise<BatteryPowerState>> promise) noexcept {
+    return PromiseHolder<BatteryPowerState>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryPowerState& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryPowerState&)>`.
+   */
+  using Func_void_BatteryPowerState = std::function<void(const BatteryPowerState& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryPowerState& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryPowerState_Wrapper final {
+  public:
+    explicit Func_void_BatteryPowerState_Wrapper(std::function<void(const BatteryPowerState& /* result */)>&& func): _function(std::make_unique<std::function<void(const BatteryPowerState& /* result */)>>(std::move(func))) {}
+    inline void call(BatteryPowerState result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryPowerState& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryPowerState create_Func_void_BatteryPowerState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryPowerState_Wrapper wrap_Func_void_BatteryPowerState(Func_void_BatteryPowerState value) noexcept {
+    return Func_void_BatteryPowerState_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryLevelEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryLevelEvent&)>`.
+   */
+  using Func_void_BatteryLevelEvent = std::function<void(const BatteryLevelEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryLevelEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryLevelEvent_Wrapper final {
+  public:
+    explicit Func_void_BatteryLevelEvent_Wrapper(std::function<void(const BatteryLevelEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BatteryLevelEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BatteryLevelEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryLevelEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryLevelEvent create_Func_void_BatteryLevelEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryLevelEvent_Wrapper wrap_Func_void_BatteryLevelEvent(Func_void_BatteryLevelEvent value) noexcept {
+    return Func_void_BatteryLevelEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryStateEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryStateEvent&)>`.
+   */
+  using Func_void_BatteryStateEvent = std::function<void(const BatteryStateEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryStateEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryStateEvent_Wrapper final {
+  public:
+    explicit Func_void_BatteryStateEvent_Wrapper(std::function<void(const BatteryStateEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BatteryStateEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BatteryStateEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryStateEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryStateEvent create_Func_void_BatteryStateEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryStateEvent_Wrapper wrap_Func_void_BatteryStateEvent(Func_void_BatteryStateEvent value) noexcept {
+    return Func_void_BatteryStateEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryPowerModeEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryPowerModeEvent&)>`.
+   */
+  using Func_void_BatteryPowerModeEvent = std::function<void(const BatteryPowerModeEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryPowerModeEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryPowerModeEvent_Wrapper final {
+  public:
+    explicit Func_void_BatteryPowerModeEvent_Wrapper(std::function<void(const BatteryPowerModeEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BatteryPowerModeEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BatteryPowerModeEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryPowerModeEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryPowerModeEvent create_Func_void_BatteryPowerModeEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryPowerModeEvent_Wrapper wrap_Func_void_BatteryPowerModeEvent(Func_void_BatteryPowerModeEvent value) noexcept {
+    return Func_void_BatteryPowerModeEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBatterySpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBatterySpec>`.
+   */
+  using std__shared_ptr_HybridOneBatterySpec_ = std::shared_ptr<HybridOneBatterySpec>;
+  std::shared_ptr<HybridOneBatterySpec> create_std__shared_ptr_HybridOneBatterySpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBatterySpec_(std__shared_ptr_HybridOneBatterySpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneBatterySpec>
+  using std__weak_ptr_HybridOneBatterySpec_ = std::weak_ptr<HybridOneBatterySpec>;
+  inline std__weak_ptr_HybridOneBatterySpec_ weakify_std__shared_ptr_HybridOneBatterySpec_(const std::shared_ptr<HybridOneBatterySpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<double>>>
+  using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BatteryState>>>
+  using Result_std__shared_ptr_Promise_BatteryState___ = Result<std::shared_ptr<Promise<BatteryState>>>;
+  inline Result_std__shared_ptr_Promise_BatteryState___ create_Result_std__shared_ptr_Promise_BatteryState___(const std::shared_ptr<Promise<BatteryState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BatteryState___ create_Result_std__shared_ptr_Promise_BatteryState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryState>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BatteryPowerState>>>
+  using Result_std__shared_ptr_Promise_BatteryPowerState___ = Result<std::shared_ptr<Promise<BatteryPowerState>>>;
+  inline Result_std__shared_ptr_Promise_BatteryPowerState___ create_Result_std__shared_ptr_Promise_BatteryPowerState___(const std::shared_ptr<Promise<BatteryPowerState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryPowerState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BatteryPowerState___ create_Result_std__shared_ptr_Promise_BatteryPowerState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryPowerState>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BrightnessMode>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrightnessMode>>`.
+   */
+  using std__shared_ptr_Promise_BrightnessMode__ = std::shared_ptr<Promise<BrightnessMode>>;
+  inline std::shared_ptr<Promise<BrightnessMode>> create_std__shared_ptr_Promise_BrightnessMode__() noexcept {
+    return Promise<BrightnessMode>::create();
+  }
+  inline PromiseHolder<BrightnessMode> wrap_std__shared_ptr_Promise_BrightnessMode__(std::shared_ptr<Promise<BrightnessMode>> promise) noexcept {
+    return PromiseHolder<BrightnessMode>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(BrightnessMode /* result */)>
+  /**
+   * Specialized version of `std::function<void(BrightnessMode)>`.
+   */
+  using Func_void_BrightnessMode = std::function<void(BrightnessMode /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(BrightnessMode / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrightnessMode_Wrapper final {
+  public:
+    explicit Func_void_BrightnessMode_Wrapper(std::function<void(BrightnessMode /* result */)>&& func): _function(std::make_unique<std::function<void(BrightnessMode /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<BrightnessMode>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(BrightnessMode /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrightnessMode create_Func_void_BrightnessMode(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrightnessMode_Wrapper wrap_Func_void_BrightnessMode(Func_void_BrightnessMode value) noexcept {
+    return Func_void_BrightnessMode_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BrightnessPermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrightnessPermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_BrightnessPermissionResponse__ = std::shared_ptr<Promise<BrightnessPermissionResponse>>;
+  inline std::shared_ptr<Promise<BrightnessPermissionResponse>> create_std__shared_ptr_Promise_BrightnessPermissionResponse__() noexcept {
+    return Promise<BrightnessPermissionResponse>::create();
+  }
+  inline PromiseHolder<BrightnessPermissionResponse> wrap_std__shared_ptr_Promise_BrightnessPermissionResponse__(std::shared_ptr<Promise<BrightnessPermissionResponse>> promise) noexcept {
+    return PromiseHolder<BrightnessPermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BrightnessPermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BrightnessPermissionResponse&)>`.
+   */
+  using Func_void_BrightnessPermissionResponse = std::function<void(const BrightnessPermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrightnessPermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrightnessPermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_BrightnessPermissionResponse_Wrapper(std::function<void(const BrightnessPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrightnessPermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(BrightnessPermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrightnessPermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrightnessPermissionResponse create_Func_void_BrightnessPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrightnessPermissionResponse_Wrapper wrap_Func_void_BrightnessPermissionResponse(Func_void_BrightnessPermissionResponse value) noexcept {
+    return Func_void_BrightnessPermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BrightnessEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BrightnessEvent&)>`.
+   */
+  using Func_void_BrightnessEvent = std::function<void(const BrightnessEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrightnessEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrightnessEvent_Wrapper final {
+  public:
+    explicit Func_void_BrightnessEvent_Wrapper(std::function<void(const BrightnessEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BrightnessEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BrightnessEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrightnessEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrightnessEvent create_Func_void_BrightnessEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrightnessEvent_Wrapper wrap_Func_void_BrightnessEvent(Func_void_BrightnessEvent value) noexcept {
+    return Func_void_BrightnessEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBrightnessSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBrightnessSpec>`.
+   */
+  using std__shared_ptr_HybridOneBrightnessSpec_ = std::shared_ptr<HybridOneBrightnessSpec>;
+  std::shared_ptr<HybridOneBrightnessSpec> create_std__shared_ptr_HybridOneBrightnessSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBrightnessSpec_(std__shared_ptr_HybridOneBrightnessSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneBrightnessSpec>
+  using std__weak_ptr_HybridOneBrightnessSpec_ = std::weak_ptr<HybridOneBrightnessSpec>;
+  inline std__weak_ptr_HybridOneBrightnessSpec_ weakify_std__shared_ptr_HybridOneBrightnessSpec_(const std::shared_ptr<HybridOneBrightnessSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrightnessMode>>>
+  using Result_std__shared_ptr_Promise_BrightnessMode___ = Result<std::shared_ptr<Promise<BrightnessMode>>>;
+  inline Result_std__shared_ptr_Promise_BrightnessMode___ create_Result_std__shared_ptr_Promise_BrightnessMode___(const std::shared_ptr<Promise<BrightnessMode>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessMode>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrightnessMode___ create_Result_std__shared_ptr_Promise_BrightnessMode___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessMode>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>
+  using Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ = Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>;
+  inline Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ create_Result_std__shared_ptr_Promise_BrightnessPermissionResponse___(const std::shared_ptr<Promise<BrightnessPermissionResponse>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ create_Result_std__shared_ptr_Promise_BrightnessPermissionResponse___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrowserResult>>`.
+   */
+  using std__shared_ptr_Promise_BrowserResult__ = std::shared_ptr<Promise<BrowserResult>>;
+  inline std::shared_ptr<Promise<BrowserResult>> create_std__shared_ptr_Promise_BrowserResult__() noexcept {
+    return Promise<BrowserResult>::create();
+  }
+  inline PromiseHolder<BrowserResult> wrap_std__shared_ptr_Promise_BrowserResult__(std::shared_ptr<Promise<BrowserResult>> promise) noexcept {
+    return PromiseHolder<BrowserResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BrowserResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BrowserResult&)>`.
+   */
+  using Func_void_BrowserResult = std::function<void(const BrowserResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrowserResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrowserResult_Wrapper final {
+  public:
+    explicit Func_void_BrowserResult_Wrapper(std::function<void(const BrowserResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrowserResult& /* result */)>>(std::move(func))) {}
+    inline void call(BrowserResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrowserResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrowserResult_Wrapper wrap_Func_void_BrowserResult(Func_void_BrowserResult value) noexcept {
+    return Func_void_BrowserResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<BrowserPresentationStyle>
+  /**
+   * Specialized version of `std::optional<BrowserPresentationStyle>`.
+   */
+  using std__optional_BrowserPresentationStyle_ = std::optional<BrowserPresentationStyle>;
+  inline std::optional<BrowserPresentationStyle> create_std__optional_BrowserPresentationStyle_(const BrowserPresentationStyle& value) noexcept {
+    return std::optional<BrowserPresentationStyle>(value);
+  }
+  inline bool has_value_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline BrowserPresentationStyle get_std__optional_BrowserPresentationStyle_(const std::optional<BrowserPresentationStyle>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<BrowserColorScheme>
+  /**
+   * Specialized version of `std::optional<BrowserColorScheme>`.
+   */
+  using std__optional_BrowserColorScheme_ = std::optional<BrowserColorScheme>;
+  inline std::optional<BrowserColorScheme> create_std__optional_BrowserColorScheme_(const BrowserColorScheme& value) noexcept {
+    return std::optional<BrowserColorScheme>(value);
+  }
+  inline bool has_value_std__optional_BrowserColorScheme_(const std::optional<BrowserColorScheme>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline BrowserColorScheme get_std__optional_BrowserColorScheme_(const std::optional<BrowserColorScheme>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BrowserAuthResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrowserAuthResult>>`.
+   */
+  using std__shared_ptr_Promise_BrowserAuthResult__ = std::shared_ptr<Promise<BrowserAuthResult>>;
+  inline std::shared_ptr<Promise<BrowserAuthResult>> create_std__shared_ptr_Promise_BrowserAuthResult__() noexcept {
+    return Promise<BrowserAuthResult>::create();
+  }
+  inline PromiseHolder<BrowserAuthResult> wrap_std__shared_ptr_Promise_BrowserAuthResult__(std::shared_ptr<Promise<BrowserAuthResult>> promise) noexcept {
+    return PromiseHolder<BrowserAuthResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BrowserAuthResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BrowserAuthResult&)>`.
+   */
+  using Func_void_BrowserAuthResult = std::function<void(const BrowserAuthResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrowserAuthResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrowserAuthResult_Wrapper final {
+  public:
+    explicit Func_void_BrowserAuthResult_Wrapper(std::function<void(const BrowserAuthResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrowserAuthResult& /* result */)>>(std::move(func))) {}
+    inline void call(BrowserAuthResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrowserAuthResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrowserAuthResult create_Func_void_BrowserAuthResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrowserAuthResult_Wrapper wrap_Func_void_BrowserAuthResult(Func_void_BrowserAuthResult value) noexcept {
+    return Func_void_BrowserAuthResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBrowserSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBrowserSpec>`.
+   */
+  using std__shared_ptr_HybridOneBrowserSpec_ = std::shared_ptr<HybridOneBrowserSpec>;
+  std::shared_ptr<HybridOneBrowserSpec> create_std__shared_ptr_HybridOneBrowserSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBrowserSpec_(std__shared_ptr_HybridOneBrowserSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneBrowserSpec>
+  using std__weak_ptr_HybridOneBrowserSpec_ = std::weak_ptr<HybridOneBrowserSpec>;
+  inline std__weak_ptr_HybridOneBrowserSpec_ weakify_std__shared_ptr_HybridOneBrowserSpec_(const std::shared_ptr<HybridOneBrowserSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrowserResult>>>
+  using Result_std__shared_ptr_Promise_BrowserResult___ = Result<std::shared_ptr<Promise<BrowserResult>>>;
+  inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::shared_ptr<Promise<BrowserResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrowserResult___ create_Result_std__shared_ptr_Promise_BrowserResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrowserAuthResult>>>
+  using Result_std__shared_ptr_Promise_BrowserAuthResult___ = Result<std::shared_ptr<Promise<BrowserAuthResult>>>;
+  inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::shared_ptr<Promise<BrowserAuthResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrowserAuthResult___ create_Result_std__shared_ptr_Promise_BrowserAuthResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<CalendarPermissionStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<CalendarPermissionStatus>>`.
+   */
+  using std__shared_ptr_Promise_CalendarPermissionStatus__ = std::shared_ptr<Promise<CalendarPermissionStatus>>;
+  inline std::shared_ptr<Promise<CalendarPermissionStatus>> create_std__shared_ptr_Promise_CalendarPermissionStatus__() noexcept {
+    return Promise<CalendarPermissionStatus>::create();
+  }
+  inline PromiseHolder<CalendarPermissionStatus> wrap_std__shared_ptr_Promise_CalendarPermissionStatus__(std::shared_ptr<Promise<CalendarPermissionStatus>> promise) noexcept {
+    return PromiseHolder<CalendarPermissionStatus>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(CalendarPermissionStatus /* result */)>
+  /**
+   * Specialized version of `std::function<void(CalendarPermissionStatus)>`.
+   */
+  using Func_void_CalendarPermissionStatus = std::function<void(CalendarPermissionStatus /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(CalendarPermissionStatus / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_CalendarPermissionStatus_Wrapper final {
+  public:
+    explicit Func_void_CalendarPermissionStatus_Wrapper(std::function<void(CalendarPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(CalendarPermissionStatus /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<CalendarPermissionStatus>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(CalendarPermissionStatus /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CalendarPermissionStatus create_Func_void_CalendarPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_CalendarPermissionStatus_Wrapper wrap_Func_void_CalendarPermissionStatus(Func_void_CalendarPermissionStatus value) noexcept {
+    return Func_void_CalendarPermissionStatus_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<CalendarRecurrence>
+  /**
+   * Specialized version of `std::optional<CalendarRecurrence>`.
+   */
+  using std__optional_CalendarRecurrence_ = std::optional<CalendarRecurrence>;
+  inline std::optional<CalendarRecurrence> create_std__optional_CalendarRecurrence_(const CalendarRecurrence& value) noexcept {
+    return std::optional<CalendarRecurrence>(value);
+  }
+  inline bool has_value_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline CalendarRecurrence get_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::vector<CalendarEvent>
+  /**
+   * Specialized version of `std::vector<CalendarEvent>`.
+   */
+  using std__vector_CalendarEvent_ = std::vector<CalendarEvent>;
+  inline std::vector<CalendarEvent> create_std__vector_CalendarEvent_(size_t size) noexcept {
+    std::vector<CalendarEvent> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<CalendarEvent>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<CalendarEvent>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_CalendarEvent___ = std::shared_ptr<Promise<std::vector<CalendarEvent>>>;
+  inline std::shared_ptr<Promise<std::vector<CalendarEvent>>> create_std__shared_ptr_Promise_std__vector_CalendarEvent___() noexcept {
+    return Promise<std::vector<CalendarEvent>>::create();
+  }
+  inline PromiseHolder<std::vector<CalendarEvent>> wrap_std__shared_ptr_Promise_std__vector_CalendarEvent___(std::shared_ptr<Promise<std::vector<CalendarEvent>>> promise) noexcept {
+    return PromiseHolder<std::vector<CalendarEvent>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<CalendarEvent>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<CalendarEvent>&)>`.
+   */
+  using Func_void_std__vector_CalendarEvent_ = std::function<void(const std::vector<CalendarEvent>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<CalendarEvent>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_CalendarEvent__Wrapper final {
+  public:
+    explicit Func_void_std__vector_CalendarEvent__Wrapper(std::function<void(const std::vector<CalendarEvent>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<CalendarEvent>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<CalendarEvent> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<CalendarEvent>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_CalendarEvent_ create_Func_void_std__vector_CalendarEvent_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_CalendarEvent__Wrapper wrap_Func_void_std__vector_CalendarEvent_(Func_void_std__vector_CalendarEvent_ value) noexcept {
+    return Func_void_std__vector_CalendarEvent__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::string>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::string>>`.
+   */
+  using std__shared_ptr_Promise_std__string__ = std::shared_ptr<Promise<std::string>>;
+  inline std::shared_ptr<Promise<std::string>> create_std__shared_ptr_Promise_std__string__() noexcept {
+    return Promise<std::string>::create();
+  }
+  inline PromiseHolder<std::string> wrap_std__shared_ptr_Promise_std__string__(std::shared_ptr<Promise<std::string>> promise) noexcept {
+    return PromiseHolder<std::string>(std::move(promise));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<CalendarEvent>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<CalendarEvent>>`.
+   */
+  using std__shared_ptr_Promise_CalendarEvent__ = std::shared_ptr<Promise<CalendarEvent>>;
+  inline std::shared_ptr<Promise<CalendarEvent>> create_std__shared_ptr_Promise_CalendarEvent__() noexcept {
+    return Promise<CalendarEvent>::create();
+  }
+  inline PromiseHolder<CalendarEvent> wrap_std__shared_ptr_Promise_CalendarEvent__(std::shared_ptr<Promise<CalendarEvent>> promise) noexcept {
+    return PromiseHolder<CalendarEvent>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const CalendarEvent& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const CalendarEvent&)>`.
+   */
+  using Func_void_CalendarEvent = std::function<void(const CalendarEvent& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const CalendarEvent& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_CalendarEvent_Wrapper final {
+  public:
+    explicit Func_void_CalendarEvent_Wrapper(std::function<void(const CalendarEvent& /* result */)>&& func): _function(std::make_unique<std::function<void(const CalendarEvent& /* result */)>>(std::move(func))) {}
+    inline void call(CalendarEvent result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const CalendarEvent& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CalendarEvent create_Func_void_CalendarEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_CalendarEvent_Wrapper wrap_Func_void_CalendarEvent(Func_void_CalendarEvent value) noexcept {
+    return Func_void_CalendarEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<ReminderInfo>
+  /**
+   * Specialized version of `std::vector<ReminderInfo>`.
+   */
+  using std__vector_ReminderInfo_ = std::vector<ReminderInfo>;
+  inline std::vector<ReminderInfo> create_std__vector_ReminderInfo_(size_t size) noexcept {
+    std::vector<ReminderInfo> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<ReminderInfo>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<ReminderInfo>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_ReminderInfo___ = std::shared_ptr<Promise<std::vector<ReminderInfo>>>;
+  inline std::shared_ptr<Promise<std::vector<ReminderInfo>>> create_std__shared_ptr_Promise_std__vector_ReminderInfo___() noexcept {
+    return Promise<std::vector<ReminderInfo>>::create();
+  }
+  inline PromiseHolder<std::vector<ReminderInfo>> wrap_std__shared_ptr_Promise_std__vector_ReminderInfo___(std::shared_ptr<Promise<std::vector<ReminderInfo>>> promise) noexcept {
+    return PromiseHolder<std::vector<ReminderInfo>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<ReminderInfo>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<ReminderInfo>&)>`.
+   */
+  using Func_void_std__vector_ReminderInfo_ = std::function<void(const std::vector<ReminderInfo>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<ReminderInfo>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_ReminderInfo__Wrapper final {
+  public:
+    explicit Func_void_std__vector_ReminderInfo__Wrapper(std::function<void(const std::vector<ReminderInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<ReminderInfo>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<ReminderInfo> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<ReminderInfo>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_ReminderInfo_ create_Func_void_std__vector_ReminderInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_ReminderInfo__Wrapper wrap_Func_void_std__vector_ReminderInfo_(Func_void_std__vector_ReminderInfo_ value) noexcept {
+    return Func_void_std__vector_ReminderInfo__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneCalendarSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneCalendarSpec>`.
+   */
+  using std__shared_ptr_HybridOneCalendarSpec_ = std::shared_ptr<HybridOneCalendarSpec>;
+  std::shared_ptr<HybridOneCalendarSpec> create_std__shared_ptr_HybridOneCalendarSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneCalendarSpec_(std__shared_ptr_HybridOneCalendarSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneCalendarSpec>
+  using std__weak_ptr_HybridOneCalendarSpec_ = std::weak_ptr<HybridOneCalendarSpec>;
+  inline std__weak_ptr_HybridOneCalendarSpec_ weakify_std__shared_ptr_HybridOneCalendarSpec_(const std::shared_ptr<HybridOneCalendarSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<CalendarPermissionStatus>
+  using Result_CalendarPermissionStatus_ = Result<CalendarPermissionStatus>;
+  inline Result_CalendarPermissionStatus_ create_Result_CalendarPermissionStatus_(CalendarPermissionStatus value) noexcept {
+    return Result<CalendarPermissionStatus>::withValue(std::move(value));
+  }
+  inline Result_CalendarPermissionStatus_ create_Result_CalendarPermissionStatus_(const std::exception_ptr& error) noexcept {
+    return Result<CalendarPermissionStatus>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>
+  using Result_std__shared_ptr_Promise_CalendarPermissionStatus___ = Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>;
+  inline Result_std__shared_ptr_Promise_CalendarPermissionStatus___ create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(const std::shared_ptr<Promise<CalendarPermissionStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_CalendarPermissionStatus___ create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>
+  using Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ = Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ create_Result_std__shared_ptr_Promise_std__vector_CalendarEvent____(const std::shared_ptr<Promise<std::vector<CalendarEvent>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ create_Result_std__shared_ptr_Promise_std__vector_CalendarEvent____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::string>>>
+  using Result_std__shared_ptr_Promise_std__string___ = Result<std::shared_ptr<Promise<std::string>>>;
+  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::shared_ptr<Promise<std::string>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::string>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<CalendarEvent>>>
+  using Result_std__shared_ptr_Promise_CalendarEvent___ = Result<std::shared_ptr<Promise<CalendarEvent>>>;
+  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::shared_ptr<Promise<CalendarEvent>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>
+  using Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ = Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::shared_ptr<Promise<std::vector<ReminderInfo>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneClipboardSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneClipboardSpec>`.
+   */
+  using std__shared_ptr_HybridOneClipboardSpec_ = std::shared_ptr<HybridOneClipboardSpec>;
+  std::shared_ptr<HybridOneClipboardSpec> create_std__shared_ptr_HybridOneClipboardSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneClipboardSpec_(std__shared_ptr_HybridOneClipboardSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneClipboardSpec>
+  using std__weak_ptr_HybridOneClipboardSpec_ = std::weak_ptr<HybridOneClipboardSpec>;
+  inline std__weak_ptr_HybridOneClipboardSpec_ weakify_std__shared_ptr_HybridOneClipboardSpec_(const std::shared_ptr<HybridOneClipboardSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: std::shared_ptr<Promise<ContactsPermissionStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ContactsPermissionStatus>>`.
+   */
+  using std__shared_ptr_Promise_ContactsPermissionStatus__ = std::shared_ptr<Promise<ContactsPermissionStatus>>;
+  inline std::shared_ptr<Promise<ContactsPermissionStatus>> create_std__shared_ptr_Promise_ContactsPermissionStatus__() noexcept {
+    return Promise<ContactsPermissionStatus>::create();
+  }
+  inline PromiseHolder<ContactsPermissionStatus> wrap_std__shared_ptr_Promise_ContactsPermissionStatus__(std::shared_ptr<Promise<ContactsPermissionStatus>> promise) noexcept {
+    return PromiseHolder<ContactsPermissionStatus>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(ContactsPermissionStatus /* result */)>
+  /**
+   * Specialized version of `std::function<void(ContactsPermissionStatus)>`.
+   */
+  using Func_void_ContactsPermissionStatus = std::function<void(ContactsPermissionStatus /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(ContactsPermissionStatus / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ContactsPermissionStatus_Wrapper final {
+  public:
+    explicit Func_void_ContactsPermissionStatus_Wrapper(std::function<void(ContactsPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(ContactsPermissionStatus /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<ContactsPermissionStatus>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(ContactsPermissionStatus /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ContactsPermissionStatus create_Func_void_ContactsPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ContactsPermissionStatus_Wrapper wrap_Func_void_ContactsPermissionStatus(Func_void_ContactsPermissionStatus value) noexcept {
+    return Func_void_ContactsPermissionStatus_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<std::string>
+  /**
+   * Specialized version of `std::vector<std::string>`.
+   */
+  using std__vector_std__string_ = std::vector<std::string>;
+  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
+    std::vector<std::string> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::vector<ContactPostalAddress>
+  /**
+   * Specialized version of `std::vector<ContactPostalAddress>`.
+   */
+  using std__vector_ContactPostalAddress_ = std::vector<ContactPostalAddress>;
+  inline std::vector<ContactPostalAddress> create_std__vector_ContactPostalAddress_(size_t size) noexcept {
+    std::vector<ContactPostalAddress> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<ContactInfo>
+  /**
+   * Specialized version of `std::optional<ContactInfo>`.
+   */
+  using std__optional_ContactInfo_ = std::optional<ContactInfo>;
+  inline std::optional<ContactInfo> create_std__optional_ContactInfo_(const ContactInfo& value) noexcept {
+    return std::optional<ContactInfo>(value);
+  }
+  inline bool has_value_std__optional_ContactInfo_(const std::optional<ContactInfo>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ContactInfo get_std__optional_ContactInfo_(const std::optional<ContactInfo>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::optional<ContactInfo>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::optional<ContactInfo>>>`.
+   */
+  using std__shared_ptr_Promise_std__optional_ContactInfo___ = std::shared_ptr<Promise<std::optional<ContactInfo>>>;
+  inline std::shared_ptr<Promise<std::optional<ContactInfo>>> create_std__shared_ptr_Promise_std__optional_ContactInfo___() noexcept {
+    return Promise<std::optional<ContactInfo>>::create();
+  }
+  inline PromiseHolder<std::optional<ContactInfo>> wrap_std__shared_ptr_Promise_std__optional_ContactInfo___(std::shared_ptr<Promise<std::optional<ContactInfo>>> promise) noexcept {
+    return PromiseHolder<std::optional<ContactInfo>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::optional<ContactInfo>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::optional<ContactInfo>&)>`.
+   */
+  using Func_void_std__optional_ContactInfo_ = std::function<void(const std::optional<ContactInfo>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::optional<ContactInfo>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__optional_ContactInfo__Wrapper final {
+  public:
+    explicit Func_void_std__optional_ContactInfo__Wrapper(std::function<void(const std::optional<ContactInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<ContactInfo>& /* result */)>>(std::move(func))) {}
+    inline void call(std::optional<ContactInfo> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::optional<ContactInfo>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__optional_ContactInfo_ create_Func_void_std__optional_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__optional_ContactInfo__Wrapper wrap_Func_void_std__optional_ContactInfo_(Func_void_std__optional_ContactInfo_ value) noexcept {
+    return Func_void_std__optional_ContactInfo__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<ContactInfo>
+  /**
+   * Specialized version of `std::vector<ContactInfo>`.
+   */
+  using std__vector_ContactInfo_ = std::vector<ContactInfo>;
+  inline std::vector<ContactInfo> create_std__vector_ContactInfo_(size_t size) noexcept {
+    std::vector<ContactInfo> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<ContactInfo>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<ContactInfo>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_ContactInfo___ = std::shared_ptr<Promise<std::vector<ContactInfo>>>;
+  inline std::shared_ptr<Promise<std::vector<ContactInfo>>> create_std__shared_ptr_Promise_std__vector_ContactInfo___() noexcept {
+    return Promise<std::vector<ContactInfo>>::create();
+  }
+  inline PromiseHolder<std::vector<ContactInfo>> wrap_std__shared_ptr_Promise_std__vector_ContactInfo___(std::shared_ptr<Promise<std::vector<ContactInfo>>> promise) noexcept {
+    return PromiseHolder<std::vector<ContactInfo>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<ContactInfo>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<ContactInfo>&)>`.
+   */
+  using Func_void_std__vector_ContactInfo_ = std::function<void(const std::vector<ContactInfo>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<ContactInfo>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_ContactInfo__Wrapper final {
+  public:
+    explicit Func_void_std__vector_ContactInfo__Wrapper(std::function<void(const std::vector<ContactInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<ContactInfo>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<ContactInfo> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<ContactInfo>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_ContactInfo_ create_Func_void_std__vector_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_ContactInfo__Wrapper wrap_Func_void_std__vector_ContactInfo_(Func_void_std__vector_ContactInfo_ value) noexcept {
+    return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<ContactPostalAddressInput>
+  /**
+   * Specialized version of `std::vector<ContactPostalAddressInput>`.
+   */
+  using std__vector_ContactPostalAddressInput_ = std::vector<ContactPostalAddressInput>;
+  inline std::vector<ContactPostalAddressInput> create_std__vector_ContactPostalAddressInput_(size_t size) noexcept {
+    std::vector<ContactPostalAddressInput> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<ContactPostalAddressInput>>
+  /**
+   * Specialized version of `std::optional<std::vector<ContactPostalAddressInput>>`.
+   */
+  using std__optional_std__vector_ContactPostalAddressInput__ = std::optional<std::vector<ContactPostalAddressInput>>;
+  inline std::optional<std::vector<ContactPostalAddressInput>> create_std__optional_std__vector_ContactPostalAddressInput__(const std::vector<ContactPostalAddressInput>& value) noexcept {
+    return std::optional<std::vector<ContactPostalAddressInput>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<ContactPostalAddressInput> get_std__optional_std__vector_ContactPostalAddressInput__(const std::optional<std::vector<ContactPostalAddressInput>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<ContactInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ContactInfo>>`.
+   */
+  using std__shared_ptr_Promise_ContactInfo__ = std::shared_ptr<Promise<ContactInfo>>;
+  inline std::shared_ptr<Promise<ContactInfo>> create_std__shared_ptr_Promise_ContactInfo__() noexcept {
+    return Promise<ContactInfo>::create();
+  }
+  inline PromiseHolder<ContactInfo> wrap_std__shared_ptr_Promise_ContactInfo__(std::shared_ptr<Promise<ContactInfo>> promise) noexcept {
+    return PromiseHolder<ContactInfo>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const ContactInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const ContactInfo&)>`.
+   */
+  using Func_void_ContactInfo = std::function<void(const ContactInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const ContactInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ContactInfo_Wrapper final {
+  public:
+    explicit Func_void_ContactInfo_Wrapper(std::function<void(const ContactInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const ContactInfo& /* result */)>>(std::move(func))) {}
+    inline void call(ContactInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const ContactInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ContactInfo create_Func_void_ContactInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ContactInfo_Wrapper wrap_Func_void_ContactInfo(Func_void_ContactInfo value) noexcept {
+    return Func_void_ContactInfo_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<std::vector<std::string>>
+  /**
+   * Specialized version of `std::optional<std::vector<std::string>>`.
+   */
+  using std__optional_std__vector_std__string__ = std::optional<std::vector<std::string>>;
+  inline std::optional<std::vector<std::string>> create_std__optional_std__vector_std__string__(const std::vector<std::string>& value) noexcept {
+    return std::optional<std::vector<std::string>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<std::string> get_std__optional_std__vector_std__string__(const std::optional<std::vector<std::string>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneContactsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneContactsSpec>`.
+   */
+  using std__shared_ptr_HybridOneContactsSpec_ = std::shared_ptr<HybridOneContactsSpec>;
+  std::shared_ptr<HybridOneContactsSpec> create_std__shared_ptr_HybridOneContactsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneContactsSpec_(std__shared_ptr_HybridOneContactsSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneContactsSpec>
+  using std__weak_ptr_HybridOneContactsSpec_ = std::weak_ptr<HybridOneContactsSpec>;
+  inline std__weak_ptr_HybridOneContactsSpec_ weakify_std__shared_ptr_HybridOneContactsSpec_(const std::shared_ptr<HybridOneContactsSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<ContactsPermissionStatus>
+  using Result_ContactsPermissionStatus_ = Result<ContactsPermissionStatus>;
+  inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(ContactsPermissionStatus value) noexcept {
+    return Result<ContactsPermissionStatus>::withValue(std::move(value));
+  }
+  inline Result_ContactsPermissionStatus_ create_Result_ContactsPermissionStatus_(const std::exception_ptr& error) noexcept {
+    return Result<ContactsPermissionStatus>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>
+  using Result_std__shared_ptr_Promise_ContactsPermissionStatus___ = Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>;
+  inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::shared_ptr<Promise<ContactsPermissionStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ContactsPermissionStatus___ create_Result_std__shared_ptr_Promise_ContactsPermissionStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ContactsPermissionStatus>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>
+  using Result_std__shared_ptr_Promise_std__optional_ContactInfo____ = Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>;
+  inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::shared_ptr<Promise<std::optional<ContactInfo>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__optional_ContactInfo____ create_Result_std__shared_ptr_Promise_std__optional_ContactInfo____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<ContactInfo>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>
+  using Result_std__shared_ptr_Promise_std__vector_ContactInfo____ = Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::shared_ptr<Promise<std::vector<ContactInfo>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_ContactInfo____ create_Result_std__shared_ptr_Promise_std__vector_ContactInfo____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<ContactInfo>>>
+  using Result_std__shared_ptr_Promise_ContactInfo___ = Result<std::shared_ptr<Promise<ContactInfo>>>;
+  inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::shared_ptr<Promise<ContactInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ContactInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ContactInfo>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<DeviceInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<DeviceInfo>>`.
+   */
+  using std__shared_ptr_Promise_DeviceInfo__ = std::shared_ptr<Promise<DeviceInfo>>;
+  inline std::shared_ptr<Promise<DeviceInfo>> create_std__shared_ptr_Promise_DeviceInfo__() noexcept {
+    return Promise<DeviceInfo>::create();
+  }
+  inline PromiseHolder<DeviceInfo> wrap_std__shared_ptr_Promise_DeviceInfo__(std::shared_ptr<Promise<DeviceInfo>> promise) noexcept {
+    return PromiseHolder<DeviceInfo>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const DeviceInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const DeviceInfo&)>`.
+   */
+  using Func_void_DeviceInfo = std::function<void(const DeviceInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const DeviceInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_DeviceInfo_Wrapper final {
+  public:
+    explicit Func_void_DeviceInfo_Wrapper(std::function<void(const DeviceInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const DeviceInfo& /* result */)>>(std::move(func))) {}
+    inline void call(DeviceInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const DeviceInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_DeviceInfo create_Func_void_DeviceInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_DeviceInfo_Wrapper wrap_Func_void_DeviceInfo(Func_void_DeviceInfo value) noexcept {
+    return Func_void_DeviceInfo_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<LocalizationInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<LocalizationInfo>>`.
+   */
+  using std__shared_ptr_Promise_LocalizationInfo__ = std::shared_ptr<Promise<LocalizationInfo>>;
+  inline std::shared_ptr<Promise<LocalizationInfo>> create_std__shared_ptr_Promise_LocalizationInfo__() noexcept {
+    return Promise<LocalizationInfo>::create();
+  }
+  inline PromiseHolder<LocalizationInfo> wrap_std__shared_ptr_Promise_LocalizationInfo__(std::shared_ptr<Promise<LocalizationInfo>> promise) noexcept {
+    return PromiseHolder<LocalizationInfo>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const LocalizationInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const LocalizationInfo&)>`.
+   */
+  using Func_void_LocalizationInfo = std::function<void(const LocalizationInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const LocalizationInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_LocalizationInfo_Wrapper final {
+  public:
+    explicit Func_void_LocalizationInfo_Wrapper(std::function<void(const LocalizationInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const LocalizationInfo& /* result */)>>(std::move(func))) {}
+    inline void call(LocalizationInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const LocalizationInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LocalizationInfo create_Func_void_LocalizationInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LocalizationInfo_Wrapper wrap_Func_void_LocalizationInfo(Func_void_LocalizationInfo value) noexcept {
+    return Func_void_LocalizationInfo_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneDeviceSpec>`.
+   */
+  using std__shared_ptr_HybridOneDeviceSpec_ = std::shared_ptr<HybridOneDeviceSpec>;
+  std::shared_ptr<HybridOneDeviceSpec> create_std__shared_ptr_HybridOneDeviceSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneDeviceSpec_(std__shared_ptr_HybridOneDeviceSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneDeviceSpec>
+  using std__weak_ptr_HybridOneDeviceSpec_ = std::weak_ptr<HybridOneDeviceSpec>;
+  inline std__weak_ptr_HybridOneDeviceSpec_ weakify_std__shared_ptr_HybridOneDeviceSpec_(const std::shared_ptr<HybridOneDeviceSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<DeviceInfo>>>
+  using Result_std__shared_ptr_Promise_DeviceInfo___ = Result<std::shared_ptr<Promise<DeviceInfo>>>;
+  inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::shared_ptr<Promise<DeviceInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<DeviceInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_DeviceInfo___ create_Result_std__shared_ptr_Promise_DeviceInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<DeviceInfo>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<LocalizationInfo>>>
+  using Result_std__shared_ptr_Promise_LocalizationInfo___ = Result<std::shared_ptr<Promise<LocalizationInfo>>>;
+  inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::shared_ptr<Promise<LocalizationInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneDeviceAttestationSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneDeviceAttestationSpec>`.
+   */
+  using std__shared_ptr_HybridOneDeviceAttestationSpec_ = std::shared_ptr<HybridOneDeviceAttestationSpec>;
+  std::shared_ptr<HybridOneDeviceAttestationSpec> create_std__shared_ptr_HybridOneDeviceAttestationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneDeviceAttestationSpec_(std__shared_ptr_HybridOneDeviceAttestationSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneDeviceAttestationSpec>
+  using std__weak_ptr_HybridOneDeviceAttestationSpec_ = std::weak_ptr<HybridOneDeviceAttestationSpec>;
+  inline std__weak_ptr_HybridOneDeviceAttestationSpec_ weakify_std__shared_ptr_HybridOneDeviceAttestationSpec_(const std::shared_ptr<HybridOneDeviceAttestationSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<DeviceAttestationAvailability>
+  using Result_DeviceAttestationAvailability_ = Result<DeviceAttestationAvailability>;
+  inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const DeviceAttestationAvailability& value) noexcept {
+    return Result<DeviceAttestationAvailability>::withValue(value);
+  }
+  inline Result_DeviceAttestationAvailability_ create_Result_DeviceAttestationAvailability_(const std::exception_ptr& error) noexcept {
+    return Result<DeviceAttestationAvailability>::withError(error);
+  }
+  
+  // pragma MARK: std::vector<DocumentPickerAsset>
+  /**
+   * Specialized version of `std::vector<DocumentPickerAsset>`.
+   */
+  using std__vector_DocumentPickerAsset_ = std::vector<DocumentPickerAsset>;
+  inline std::vector<DocumentPickerAsset> create_std__vector_DocumentPickerAsset_(size_t size) noexcept {
+    std::vector<DocumentPickerAsset> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<DocumentPickerAsset>>
+  /**
+   * Specialized version of `std::optional<std::vector<DocumentPickerAsset>>`.
+   */
+  using std__optional_std__vector_DocumentPickerAsset__ = std::optional<std::vector<DocumentPickerAsset>>;
+  inline std::optional<std::vector<DocumentPickerAsset>> create_std__optional_std__vector_DocumentPickerAsset__(const std::vector<DocumentPickerAsset>& value) noexcept {
+    return std::optional<std::vector<DocumentPickerAsset>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_DocumentPickerAsset__(const std::optional<std::vector<DocumentPickerAsset>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<DocumentPickerAsset> get_std__optional_std__vector_DocumentPickerAsset__(const std::optional<std::vector<DocumentPickerAsset>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<DocumentPickerNativeResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<DocumentPickerNativeResult>>`.
+   */
+  using std__shared_ptr_Promise_DocumentPickerNativeResult__ = std::shared_ptr<Promise<DocumentPickerNativeResult>>;
+  inline std::shared_ptr<Promise<DocumentPickerNativeResult>> create_std__shared_ptr_Promise_DocumentPickerNativeResult__() noexcept {
+    return Promise<DocumentPickerNativeResult>::create();
+  }
+  inline PromiseHolder<DocumentPickerNativeResult> wrap_std__shared_ptr_Promise_DocumentPickerNativeResult__(std::shared_ptr<Promise<DocumentPickerNativeResult>> promise) noexcept {
+    return PromiseHolder<DocumentPickerNativeResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const DocumentPickerNativeResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const DocumentPickerNativeResult&)>`.
+   */
+  using Func_void_DocumentPickerNativeResult = std::function<void(const DocumentPickerNativeResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const DocumentPickerNativeResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_DocumentPickerNativeResult_Wrapper final {
+  public:
+    explicit Func_void_DocumentPickerNativeResult_Wrapper(std::function<void(const DocumentPickerNativeResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const DocumentPickerNativeResult& /* result */)>>(std::move(func))) {}
+    inline void call(DocumentPickerNativeResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const DocumentPickerNativeResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_DocumentPickerNativeResult create_Func_void_DocumentPickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_DocumentPickerNativeResult_Wrapper wrap_Func_void_DocumentPickerNativeResult(Func_void_DocumentPickerNativeResult value) noexcept {
+    return Func_void_DocumentPickerNativeResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneDocumentPickerSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneDocumentPickerSpec>`.
+   */
+  using std__shared_ptr_HybridOneDocumentPickerSpec_ = std::shared_ptr<HybridOneDocumentPickerSpec>;
+  std::shared_ptr<HybridOneDocumentPickerSpec> create_std__shared_ptr_HybridOneDocumentPickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneDocumentPickerSpec_(std__shared_ptr_HybridOneDocumentPickerSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneDocumentPickerSpec>
+  using std__weak_ptr_HybridOneDocumentPickerSpec_ = std::weak_ptr<HybridOneDocumentPickerSpec>;
+  inline std__weak_ptr_HybridOneDocumentPickerSpec_ weakify_std__shared_ptr_HybridOneDocumentPickerSpec_(const std::shared_ptr<HybridOneDocumentPickerSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>
+  using Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ = Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>;
+  inline Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ create_Result_std__shared_ptr_Promise_DocumentPickerNativeResult___(const std::shared_ptr<Promise<DocumentPickerNativeResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ create_Result_std__shared_ptr_Promise_DocumentPickerNativeResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>::withError(error);
+  }
+  
+  // pragma MARK: std::vector<FetchHeader>
+  /**
+   * Specialized version of `std::vector<FetchHeader>`.
+   */
+  using std__vector_FetchHeader_ = std::vector<FetchHeader>;
+  inline std::vector<FetchHeader> create_std__vector_FetchHeader_(size_t size) noexcept {
+    std::vector<FetchHeader> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::shared_ptr<ArrayBuffer>>
+  /**
+   * Specialized version of `std::optional<std::shared_ptr<ArrayBuffer>>`.
+   */
+  using std__optional_std__shared_ptr_ArrayBuffer__ = std::optional<std::shared_ptr<ArrayBuffer>>;
+  inline std::optional<std::shared_ptr<ArrayBuffer>> create_std__optional_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
+    return std::optional<std::shared_ptr<ArrayBuffer>>(value);
+  }
+  inline bool has_value_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::shared_ptr<ArrayBuffer> get_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<FetchBlobRef>
+  /**
+   * Specialized version of `std::optional<FetchBlobRef>`.
+   */
+  using std__optional_FetchBlobRef_ = std::optional<FetchBlobRef>;
+  inline std::optional<FetchBlobRef> create_std__optional_FetchBlobRef_(const FetchBlobRef& value) noexcept {
+    return std::optional<FetchBlobRef>(value);
+  }
+  inline bool has_value_std__optional_FetchBlobRef_(const std::optional<FetchBlobRef>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline FetchBlobRef get_std__optional_FetchBlobRef_(const std::optional<FetchBlobRef>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::vector<FetchFormPart>
+  /**
+   * Specialized version of `std::vector<FetchFormPart>`.
+   */
+  using std__vector_FetchFormPart_ = std::vector<FetchFormPart>;
+  inline std::vector<FetchFormPart> create_std__vector_FetchFormPart_(size_t size) noexcept {
+    std::vector<FetchFormPart> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<FetchFormPart>>
+  /**
+   * Specialized version of `std::optional<std::vector<FetchFormPart>>`.
+   */
+  using std__optional_std__vector_FetchFormPart__ = std::optional<std::vector<FetchFormPart>>;
+  inline std::optional<std::vector<FetchFormPart>> create_std__optional_std__vector_FetchFormPart__(const std::vector<FetchFormPart>& value) noexcept {
+    return std::optional<std::vector<FetchFormPart>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_FetchFormPart__(const std::optional<std::vector<FetchFormPart>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<FetchFormPart> get_std__optional_std__vector_FetchFormPart__(const std::optional<std::vector<FetchFormPart>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::function<void(const FetchNativeResponse& /* response */)>
+  /**
+   * Specialized version of `std::function<void(const FetchNativeResponse&)>`.
+   */
+  using Func_void_FetchNativeResponse = std::function<void(const FetchNativeResponse& /* response */)>;
+  /**
+   * Wrapper class for a `std::function<void(const FetchNativeResponse& / * response * /)>`, this can be used from Swift.
+   */
+  class Func_void_FetchNativeResponse_Wrapper final {
+  public:
+    explicit Func_void_FetchNativeResponse_Wrapper(std::function<void(const FetchNativeResponse& /* response */)>&& func): _function(std::make_unique<std::function<void(const FetchNativeResponse& /* response */)>>(std::move(func))) {}
+    inline void call(FetchNativeResponse response) const noexcept {
+      _function->operator()(response);
+    }
+  private:
+    std::unique_ptr<std::function<void(const FetchNativeResponse& /* response */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_FetchNativeResponse create_Func_void_FetchNativeResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_FetchNativeResponse_Wrapper wrap_Func_void_FetchNativeResponse(Func_void_FetchNativeResponse value) noexcept {
+    return Func_void_FetchNativeResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>
+  /**
+   * Specialized version of `std::function<void(const std::shared_ptr<ArrayBuffer>&)>`.
+   */
+  using Func_void_std__shared_ptr_ArrayBuffer_ = std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::shared_ptr<ArrayBuffer>& / * chunk * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__shared_ptr_ArrayBuffer__Wrapper final {
+  public:
+    explicit Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>&& func): _function(std::make_unique<std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>>(std::move(func))) {}
+    inline void call(ArrayBufferHolder chunk) const noexcept {
+      _function->operator()(chunk.getArrayBuffer());
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__shared_ptr_ArrayBuffer_ create_Func_void_std__shared_ptr_ArrayBuffer_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__shared_ptr_ArrayBuffer__Wrapper wrap_Func_void_std__shared_ptr_ArrayBuffer_(Func_void_std__shared_ptr_ArrayBuffer_ value) noexcept {
+    return Func_void_std__shared_ptr_ArrayBuffer__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneFetchSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneFetchSpec>`.
+   */
+  using std__shared_ptr_HybridOneFetchSpec_ = std::shared_ptr<HybridOneFetchSpec>;
+  std::shared_ptr<HybridOneFetchSpec> create_std__shared_ptr_HybridOneFetchSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneFetchSpec_(std__shared_ptr_HybridOneFetchSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneFetchSpec>
+  using std__weak_ptr_HybridOneFetchSpec_ = std::weak_ptr<HybridOneFetchSpec>;
+  inline std__weak_ptr_HybridOneFetchSpec_ weakify_std__shared_ptr_HybridOneFetchSpec_(const std::shared_ptr<HybridOneFetchSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::string>
+  using Result_std__string_ = Result<std::string>;
+  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
+    return Result<std::string>::withValue(value);
+  }
+  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
+    return Result<std::string>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<FileInfo>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<FileInfo>>`.
+   */
+  using std__shared_ptr_Promise_FileInfo__ = std::shared_ptr<Promise<FileInfo>>;
+  inline std::shared_ptr<Promise<FileInfo>> create_std__shared_ptr_Promise_FileInfo__() noexcept {
+    return Promise<FileInfo>::create();
+  }
+  inline PromiseHolder<FileInfo> wrap_std__shared_ptr_Promise_FileInfo__(std::shared_ptr<Promise<FileInfo>> promise) noexcept {
+    return PromiseHolder<FileInfo>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const FileInfo& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const FileInfo&)>`.
+   */
+  using Func_void_FileInfo = std::function<void(const FileInfo& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const FileInfo& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_FileInfo_Wrapper final {
+  public:
+    explicit Func_void_FileInfo_Wrapper(std::function<void(const FileInfo& /* result */)>&& func): _function(std::make_unique<std::function<void(const FileInfo& /* result */)>>(std::move(func))) {}
+    inline void call(FileInfo result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const FileInfo& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_FileInfo create_Func_void_FileInfo(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_FileInfo_Wrapper wrap_Func_void_FileInfo(Func_void_FileInfo value) noexcept {
+    return Func_void_FileInfo_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<FileEntry>
+  /**
+   * Specialized version of `std::vector<FileEntry>`.
+   */
+  using std__vector_FileEntry_ = std::vector<FileEntry>;
+  inline std::vector<FileEntry> create_std__vector_FileEntry_(size_t size) noexcept {
+    std::vector<FileEntry> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<FileEntry>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<FileEntry>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_FileEntry___ = std::shared_ptr<Promise<std::vector<FileEntry>>>;
+  inline std::shared_ptr<Promise<std::vector<FileEntry>>> create_std__shared_ptr_Promise_std__vector_FileEntry___() noexcept {
+    return Promise<std::vector<FileEntry>>::create();
+  }
+  inline PromiseHolder<std::vector<FileEntry>> wrap_std__shared_ptr_Promise_std__vector_FileEntry___(std::shared_ptr<Promise<std::vector<FileEntry>>> promise) noexcept {
+    return PromiseHolder<std::vector<FileEntry>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<FileEntry>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<FileEntry>&)>`.
+   */
+  using Func_void_std__vector_FileEntry_ = std::function<void(const std::vector<FileEntry>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<FileEntry>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_FileEntry__Wrapper final {
+  public:
+    explicit Func_void_std__vector_FileEntry__Wrapper(std::function<void(const std::vector<FileEntry>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<FileEntry>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<FileEntry> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<FileEntry>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_FileEntry_ create_Func_void_std__vector_FileEntry_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_FileEntry__Wrapper wrap_Func_void_std__vector_FileEntry_(Func_void_std__vector_FileEntry_ value) noexcept {
+    return Func_void_std__vector_FileEntry__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneFileSystemSpec>`.
+   */
+  using std__shared_ptr_HybridOneFileSystemSpec_ = std::shared_ptr<HybridOneFileSystemSpec>;
+  std::shared_ptr<HybridOneFileSystemSpec> create_std__shared_ptr_HybridOneFileSystemSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneFileSystemSpec_(std__shared_ptr_HybridOneFileSystemSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneFileSystemSpec>
+  using std__weak_ptr_HybridOneFileSystemSpec_ = std::weak_ptr<HybridOneFileSystemSpec>;
+  inline std__weak_ptr_HybridOneFileSystemSpec_ weakify_std__shared_ptr_HybridOneFileSystemSpec_(const std::shared_ptr<HybridOneFileSystemSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<FileDirectories>
+  using Result_FileDirectories_ = Result<FileDirectories>;
+  inline Result_FileDirectories_ create_Result_FileDirectories_(const FileDirectories& value) noexcept {
+    return Result<FileDirectories>::withValue(value);
+  }
+  inline Result_FileDirectories_ create_Result_FileDirectories_(const std::exception_ptr& error) noexcept {
+    return Result<FileDirectories>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<FileInfo>>>
+  using Result_std__shared_ptr_Promise_FileInfo___ = Result<std::shared_ptr<Promise<FileInfo>>>;
+  inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::shared_ptr<Promise<FileInfo>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<FileInfo>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_FileInfo___ create_Result_std__shared_ptr_Promise_FileInfo___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<FileInfo>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>
+  using Result_std__shared_ptr_Promise_std__vector_FileEntry____ = Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::shared_ptr<Promise<std::vector<FileEntry>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneFontsSpec>`.
+   */
+  using std__shared_ptr_HybridOneFontsSpec_ = std::shared_ptr<HybridOneFontsSpec>;
+  std::shared_ptr<HybridOneFontsSpec> create_std__shared_ptr_HybridOneFontsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneFontsSpec_(std__shared_ptr_HybridOneFontsSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneFontsSpec>
+  using std__weak_ptr_HybridOneFontsSpec_ = std::weak_ptr<HybridOneFontsSpec>;
+  inline std__weak_ptr_HybridOneFontsSpec_ weakify_std__shared_ptr_HybridOneFontsSpec_(const std::shared_ptr<HybridOneFontsSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: std::shared_ptr<HybridOneHapticsSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneHapticsSpec>`.
+   */
+  using std__shared_ptr_HybridOneHapticsSpec_ = std::shared_ptr<HybridOneHapticsSpec>;
+  std::shared_ptr<HybridOneHapticsSpec> create_std__shared_ptr_HybridOneHapticsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneHapticsSpec_(std__shared_ptr_HybridOneHapticsSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneHapticsSpec>
+  using std__weak_ptr_HybridOneHapticsSpec_ = std::weak_ptr<HybridOneHapticsSpec>;
+  inline std__weak_ptr_HybridOneHapticsSpec_ weakify_std__shared_ptr_HybridOneHapticsSpec_(const std::shared_ptr<HybridOneHapticsSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: std::shared_ptr<Promise<ImageTransformResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ImageTransformResult>>`.
+   */
+  using std__shared_ptr_Promise_ImageTransformResult__ = std::shared_ptr<Promise<ImageTransformResult>>;
+  inline std::shared_ptr<Promise<ImageTransformResult>> create_std__shared_ptr_Promise_ImageTransformResult__() noexcept {
+    return Promise<ImageTransformResult>::create();
+  }
+  inline PromiseHolder<ImageTransformResult> wrap_std__shared_ptr_Promise_ImageTransformResult__(std::shared_ptr<Promise<ImageTransformResult>> promise) noexcept {
+    return PromiseHolder<ImageTransformResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const ImageTransformResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const ImageTransformResult&)>`.
+   */
+  using Func_void_ImageTransformResult = std::function<void(const ImageTransformResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const ImageTransformResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ImageTransformResult_Wrapper final {
+  public:
+    explicit Func_void_ImageTransformResult_Wrapper(std::function<void(const ImageTransformResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ImageTransformResult& /* result */)>>(std::move(func))) {}
+    inline void call(ImageTransformResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const ImageTransformResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ImageTransformResult create_Func_void_ImageTransformResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ImageTransformResult_Wrapper wrap_Func_void_ImageTransformResult(Func_void_ImageTransformResult value) noexcept {
+    return Func_void_ImageTransformResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<ImageCrop>
+  /**
+   * Specialized version of `std::optional<ImageCrop>`.
+   */
+  using std__optional_ImageCrop_ = std::optional<ImageCrop>;
+  inline std::optional<ImageCrop> create_std__optional_ImageCrop_(const ImageCrop& value) noexcept {
+    return std::optional<ImageCrop>(value);
+  }
+  inline bool has_value_std__optional_ImageCrop_(const std::optional<ImageCrop>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ImageCrop get_std__optional_ImageCrop_(const std::optional<ImageCrop>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<ImageResize>
+  /**
+   * Specialized version of `std::optional<ImageResize>`.
+   */
+  using std__optional_ImageResize_ = std::optional<ImageResize>;
+  inline std::optional<ImageResize> create_std__optional_ImageResize_(const ImageResize& value) noexcept {
+    return std::optional<ImageResize>(value);
+  }
+  inline bool has_value_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline ImageResize get_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneImageManipulatorSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneImageManipulatorSpec>`.
+   */
+  using std__shared_ptr_HybridOneImageManipulatorSpec_ = std::shared_ptr<HybridOneImageManipulatorSpec>;
+  std::shared_ptr<HybridOneImageManipulatorSpec> create_std__shared_ptr_HybridOneImageManipulatorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneImageManipulatorSpec_(std__shared_ptr_HybridOneImageManipulatorSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneImageManipulatorSpec>
+  using std__weak_ptr_HybridOneImageManipulatorSpec_ = std::weak_ptr<HybridOneImageManipulatorSpec>;
+  inline std__weak_ptr_HybridOneImageManipulatorSpec_ weakify_std__shared_ptr_HybridOneImageManipulatorSpec_(const std::shared_ptr<HybridOneImageManipulatorSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<ImageTransformResult>>>
+  using Result_std__shared_ptr_Promise_ImageTransformResult___ = Result<std::shared_ptr<Promise<ImageTransformResult>>>;
+  inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::shared_ptr<Promise<ImageTransformResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ImageTransformResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ImageTransformResult___ create_Result_std__shared_ptr_Promise_ImageTransformResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ImageTransformResult>>>::withError(error);
+  }
+  
+  // pragma MARK: std::vector<ImagePickerAsset>
+  /**
+   * Specialized version of `std::vector<ImagePickerAsset>`.
+   */
+  using std__vector_ImagePickerAsset_ = std::vector<ImagePickerAsset>;
+  inline std::vector<ImagePickerAsset> create_std__vector_ImagePickerAsset_(size_t size) noexcept {
+    std::vector<ImagePickerAsset> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::optional<std::vector<ImagePickerAsset>>
+  /**
+   * Specialized version of `std::optional<std::vector<ImagePickerAsset>>`.
+   */
+  using std__optional_std__vector_ImagePickerAsset__ = std::optional<std::vector<ImagePickerAsset>>;
+  inline std::optional<std::vector<ImagePickerAsset>> create_std__optional_std__vector_ImagePickerAsset__(const std::vector<ImagePickerAsset>& value) noexcept {
+    return std::optional<std::vector<ImagePickerAsset>>(value);
+  }
+  inline bool has_value_std__optional_std__vector_ImagePickerAsset__(const std::optional<std::vector<ImagePickerAsset>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::vector<ImagePickerAsset> get_std__optional_std__vector_ImagePickerAsset__(const std::optional<std::vector<ImagePickerAsset>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<ImagePickerNativeResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<ImagePickerNativeResult>>`.
+   */
+  using std__shared_ptr_Promise_ImagePickerNativeResult__ = std::shared_ptr<Promise<ImagePickerNativeResult>>;
+  inline std::shared_ptr<Promise<ImagePickerNativeResult>> create_std__shared_ptr_Promise_ImagePickerNativeResult__() noexcept {
+    return Promise<ImagePickerNativeResult>::create();
+  }
+  inline PromiseHolder<ImagePickerNativeResult> wrap_std__shared_ptr_Promise_ImagePickerNativeResult__(std::shared_ptr<Promise<ImagePickerNativeResult>> promise) noexcept {
+    return PromiseHolder<ImagePickerNativeResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const ImagePickerNativeResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const ImagePickerNativeResult&)>`.
+   */
+  using Func_void_ImagePickerNativeResult = std::function<void(const ImagePickerNativeResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const ImagePickerNativeResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_ImagePickerNativeResult_Wrapper final {
+  public:
+    explicit Func_void_ImagePickerNativeResult_Wrapper(std::function<void(const ImagePickerNativeResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const ImagePickerNativeResult& /* result */)>>(std::move(func))) {}
+    inline void call(ImagePickerNativeResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const ImagePickerNativeResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_ImagePickerNativeResult create_Func_void_ImagePickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_ImagePickerNativeResult_Wrapper wrap_Func_void_ImagePickerNativeResult(Func_void_ImagePickerNativeResult value) noexcept {
+    return Func_void_ImagePickerNativeResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<ImagePickerMediaType>
+  /**
+   * Specialized version of `std::vector<ImagePickerMediaType>`.
+   */
+  using std__vector_ImagePickerMediaType_ = std::vector<ImagePickerMediaType>;
+  inline std::vector<ImagePickerMediaType> create_std__vector_ImagePickerMediaType_(size_t size) noexcept {
+    std::vector<ImagePickerMediaType> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<CameraPermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<CameraPermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_CameraPermissionResponse__ = std::shared_ptr<Promise<CameraPermissionResponse>>;
+  inline std::shared_ptr<Promise<CameraPermissionResponse>> create_std__shared_ptr_Promise_CameraPermissionResponse__() noexcept {
+    return Promise<CameraPermissionResponse>::create();
+  }
+  inline PromiseHolder<CameraPermissionResponse> wrap_std__shared_ptr_Promise_CameraPermissionResponse__(std::shared_ptr<Promise<CameraPermissionResponse>> promise) noexcept {
+    return PromiseHolder<CameraPermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const CameraPermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const CameraPermissionResponse&)>`.
+   */
+  using Func_void_CameraPermissionResponse = std::function<void(const CameraPermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const CameraPermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_CameraPermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_CameraPermissionResponse_Wrapper(std::function<void(const CameraPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const CameraPermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(CameraPermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const CameraPermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CameraPermissionResponse create_Func_void_CameraPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_CameraPermissionResponse_Wrapper wrap_Func_void_CameraPermissionResponse(Func_void_CameraPermissionResponse value) noexcept {
+    return Func_void_CameraPermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneImagePickerSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneImagePickerSpec>`.
+   */
+  using std__shared_ptr_HybridOneImagePickerSpec_ = std::shared_ptr<HybridOneImagePickerSpec>;
+  std::shared_ptr<HybridOneImagePickerSpec> create_std__shared_ptr_HybridOneImagePickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneImagePickerSpec_(std__shared_ptr_HybridOneImagePickerSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneImagePickerSpec>
+  using std__weak_ptr_HybridOneImagePickerSpec_ = std::weak_ptr<HybridOneImagePickerSpec>;
+  inline std__weak_ptr_HybridOneImagePickerSpec_ weakify_std__shared_ptr_HybridOneImagePickerSpec_(const std::shared_ptr<HybridOneImagePickerSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>
+  using Result_std__shared_ptr_Promise_ImagePickerNativeResult___ = Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>;
+  inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::shared_ptr<Promise<ImagePickerNativeResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_ImagePickerNativeResult___ create_Result_std__shared_ptr_Promise_ImagePickerNativeResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<ImagePickerNativeResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<CameraPermissionResponse>>>
+  using Result_std__shared_ptr_Promise_CameraPermissionResponse___ = Result<std::shared_ptr<Promise<CameraPermissionResponse>>>;
+  inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::shared_ptr<Promise<CameraPermissionResponse>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_CameraPermissionResponse___ create_Result_std__shared_ptr_Promise_CameraPermissionResponse___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<CameraPermissionResponse>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneKeepAwakeSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneKeepAwakeSpec>`.
+   */
+  using std__shared_ptr_HybridOneKeepAwakeSpec_ = std::shared_ptr<HybridOneKeepAwakeSpec>;
+  std::shared_ptr<HybridOneKeepAwakeSpec> create_std__shared_ptr_HybridOneKeepAwakeSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneKeepAwakeSpec_(std__shared_ptr_HybridOneKeepAwakeSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneKeepAwakeSpec>
+  using std__weak_ptr_HybridOneKeepAwakeSpec_ = std::weak_ptr<HybridOneKeepAwakeSpec>;
+  inline std__weak_ptr_HybridOneKeepAwakeSpec_ weakify_std__shared_ptr_HybridOneKeepAwakeSpec_(const std::shared_ptr<HybridOneKeepAwakeSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: std::shared_ptr<HybridOneLaunchScreenSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneLaunchScreenSpec>`.
+   */
+  using std__shared_ptr_HybridOneLaunchScreenSpec_ = std::shared_ptr<HybridOneLaunchScreenSpec>;
+  std::shared_ptr<HybridOneLaunchScreenSpec> create_std__shared_ptr_HybridOneLaunchScreenSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneLaunchScreenSpec_(std__shared_ptr_HybridOneLaunchScreenSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneLaunchScreenSpec>
+  using std__weak_ptr_HybridOneLaunchScreenSpec_ = std::weak_ptr<HybridOneLaunchScreenSpec>;
+  inline std__weak_ptr_HybridOneLaunchScreenSpec_ weakify_std__shared_ptr_HybridOneLaunchScreenSpec_(const std::shared_ptr<HybridOneLaunchScreenSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: std::shared_ptr<HybridOneLocalAuthenticationSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneLocalAuthenticationSpec>`.
+   */
+  using std__shared_ptr_HybridOneLocalAuthenticationSpec_ = std::shared_ptr<HybridOneLocalAuthenticationSpec>;
+  std::shared_ptr<HybridOneLocalAuthenticationSpec> create_std__shared_ptr_HybridOneLocalAuthenticationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneLocalAuthenticationSpec_(std__shared_ptr_HybridOneLocalAuthenticationSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneLocalAuthenticationSpec>
+  using std__weak_ptr_HybridOneLocalAuthenticationSpec_ = std::weak_ptr<HybridOneLocalAuthenticationSpec>;
+  inline std__weak_ptr_HybridOneLocalAuthenticationSpec_ weakify_std__shared_ptr_HybridOneLocalAuthenticationSpec_(const std::shared_ptr<HybridOneLocalAuthenticationSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<LocalAuthenticationStatus>
+  using Result_LocalAuthenticationStatus_ = Result<LocalAuthenticationStatus>;
+  inline Result_LocalAuthenticationStatus_ create_Result_LocalAuthenticationStatus_(const LocalAuthenticationStatus& value) noexcept {
+    return Result<LocalAuthenticationStatus>::withValue(value);
+  }
+  inline Result_LocalAuthenticationStatus_ create_Result_LocalAuthenticationStatus_(const std::exception_ptr& error) noexcept {
+    return Result<LocalAuthenticationStatus>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<LocationPermissionStatus>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<LocationPermissionStatus>>`.
+   */
+  using std__shared_ptr_Promise_LocationPermissionStatus__ = std::shared_ptr<Promise<LocationPermissionStatus>>;
+  inline std::shared_ptr<Promise<LocationPermissionStatus>> create_std__shared_ptr_Promise_LocationPermissionStatus__() noexcept {
+    return Promise<LocationPermissionStatus>::create();
+  }
+  inline PromiseHolder<LocationPermissionStatus> wrap_std__shared_ptr_Promise_LocationPermissionStatus__(std::shared_ptr<Promise<LocationPermissionStatus>> promise) noexcept {
+    return PromiseHolder<LocationPermissionStatus>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(LocationPermissionStatus /* result */)>
+  /**
+   * Specialized version of `std::function<void(LocationPermissionStatus)>`.
+   */
+  using Func_void_LocationPermissionStatus = std::function<void(LocationPermissionStatus /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(LocationPermissionStatus / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_LocationPermissionStatus_Wrapper final {
+  public:
+    explicit Func_void_LocationPermissionStatus_Wrapper(std::function<void(LocationPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(LocationPermissionStatus /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<LocationPermissionStatus>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(LocationPermissionStatus /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LocationPermissionStatus create_Func_void_LocationPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LocationPermissionStatus_Wrapper wrap_Func_void_LocationPermissionStatus(Func_void_LocationPermissionStatus value) noexcept {
+    return Func_void_LocationPermissionStatus_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<LocationPosition>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<LocationPosition>>`.
+   */
+  using std__shared_ptr_Promise_LocationPosition__ = std::shared_ptr<Promise<LocationPosition>>;
+  inline std::shared_ptr<Promise<LocationPosition>> create_std__shared_ptr_Promise_LocationPosition__() noexcept {
+    return Promise<LocationPosition>::create();
+  }
+  inline PromiseHolder<LocationPosition> wrap_std__shared_ptr_Promise_LocationPosition__(std::shared_ptr<Promise<LocationPosition>> promise) noexcept {
+    return PromiseHolder<LocationPosition>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const LocationPosition& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const LocationPosition&)>`.
+   */
+  using Func_void_LocationPosition = std::function<void(const LocationPosition& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const LocationPosition& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_LocationPosition_Wrapper final {
+  public:
+    explicit Func_void_LocationPosition_Wrapper(std::function<void(const LocationPosition& /* result */)>&& func): _function(std::make_unique<std::function<void(const LocationPosition& /* result */)>>(std::move(func))) {}
+    inline void call(LocationPosition result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const LocationPosition& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LocationPosition create_Func_void_LocationPosition(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LocationPosition_Wrapper wrap_Func_void_LocationPosition(Func_void_LocationPosition value) noexcept {
+    return Func_void_LocationPosition_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const std::string& /* code */, const std::string& /* message */)>
+  /**
+   * Specialized version of `std::function<void(const std::string&, const std::string&)>`.
+   */
+  using Func_void_std__string_std__string = std::function<void(const std::string& /* code */, const std::string& /* message */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::string& / * code * /, const std::string& / * message * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__string_std__string_Wrapper final {
+  public:
+    explicit Func_void_std__string_std__string_Wrapper(std::function<void(const std::string& /* code */, const std::string& /* message */)>&& func): _function(std::make_unique<std::function<void(const std::string& /* code */, const std::string& /* message */)>>(std::move(func))) {}
+    inline void call(std::string code, std::string message) const noexcept {
+      _function->operator()(code, message);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::string& /* code */, const std::string& /* message */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__string_std__string create_Func_void_std__string_std__string(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__string_std__string_Wrapper wrap_Func_void_std__string_std__string(Func_void_std__string_std__string value) noexcept {
+    return Func_void_std__string_std__string_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<LocationPlace>
+  /**
+   * Specialized version of `std::vector<LocationPlace>`.
+   */
+  using std__vector_LocationPlace_ = std::vector<LocationPlace>;
+  inline std::vector<LocationPlace> create_std__vector_LocationPlace_(size_t size) noexcept {
+    std::vector<LocationPlace> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<LocationPlace>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<LocationPlace>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_LocationPlace___ = std::shared_ptr<Promise<std::vector<LocationPlace>>>;
+  inline std::shared_ptr<Promise<std::vector<LocationPlace>>> create_std__shared_ptr_Promise_std__vector_LocationPlace___() noexcept {
+    return Promise<std::vector<LocationPlace>>::create();
+  }
+  inline PromiseHolder<std::vector<LocationPlace>> wrap_std__shared_ptr_Promise_std__vector_LocationPlace___(std::shared_ptr<Promise<std::vector<LocationPlace>>> promise) noexcept {
+    return PromiseHolder<std::vector<LocationPlace>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<LocationPlace>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<LocationPlace>&)>`.
+   */
+  using Func_void_std__vector_LocationPlace_ = std::function<void(const std::vector<LocationPlace>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<LocationPlace>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_LocationPlace__Wrapper final {
+  public:
+    explicit Func_void_std__vector_LocationPlace__Wrapper(std::function<void(const std::vector<LocationPlace>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<LocationPlace>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<LocationPlace> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<LocationPlace>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_LocationPlace_ create_Func_void_std__vector_LocationPlace_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_LocationPlace__Wrapper wrap_Func_void_std__vector_LocationPlace_(Func_void_std__vector_LocationPlace_ value) noexcept {
+    return Func_void_std__vector_LocationPlace__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneLocationSpec>`.
+   */
+  using std__shared_ptr_HybridOneLocationSpec_ = std::shared_ptr<HybridOneLocationSpec>;
+  std::shared_ptr<HybridOneLocationSpec> create_std__shared_ptr_HybridOneLocationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneLocationSpec_(std__shared_ptr_HybridOneLocationSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneLocationSpec>
+  using std__weak_ptr_HybridOneLocationSpec_ = std::weak_ptr<HybridOneLocationSpec>;
+  inline std__weak_ptr_HybridOneLocationSpec_ weakify_std__shared_ptr_HybridOneLocationSpec_(const std::shared_ptr<HybridOneLocationSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<LocationPermissionStatus>
+  using Result_LocationPermissionStatus_ = Result<LocationPermissionStatus>;
+  inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(LocationPermissionStatus value) noexcept {
+    return Result<LocationPermissionStatus>::withValue(std::move(value));
+  }
+  inline Result_LocationPermissionStatus_ create_Result_LocationPermissionStatus_(const std::exception_ptr& error) noexcept {
+    return Result<LocationPermissionStatus>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<LocationPermissionStatus>>>
+  using Result_std__shared_ptr_Promise_LocationPermissionStatus___ = Result<std::shared_ptr<Promise<LocationPermissionStatus>>>;
+  inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::shared_ptr<Promise<LocationPermissionStatus>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPermissionStatus>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_LocationPermissionStatus___ create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPermissionStatus>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<LocationPosition>>>
+  using Result_std__shared_ptr_Promise_LocationPosition___ = Result<std::shared_ptr<Promise<LocationPosition>>>;
+  inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::shared_ptr<Promise<LocationPosition>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPosition>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_LocationPosition___ create_Result_std__shared_ptr_Promise_LocationPosition___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<LocationPosition>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>
+  using Result_std__shared_ptr_Promise_std__vector_LocationPlace____ = Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::shared_ptr<Promise<std::vector<LocationPlace>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withError(error);
+  }
+  
+  // pragma MARK: std::vector<MapPlace>
+  /**
+   * Specialized version of `std::vector<MapPlace>`.
+   */
+  using std__vector_MapPlace_ = std::vector<MapPlace>;
+  inline std::vector<MapPlace> create_std__vector_MapPlace_(size_t size) noexcept {
+    std::vector<MapPlace> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<MapPlace>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<MapPlace>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_MapPlace___ = std::shared_ptr<Promise<std::vector<MapPlace>>>;
+  inline std::shared_ptr<Promise<std::vector<MapPlace>>> create_std__shared_ptr_Promise_std__vector_MapPlace___() noexcept {
+    return Promise<std::vector<MapPlace>>::create();
+  }
+  inline PromiseHolder<std::vector<MapPlace>> wrap_std__shared_ptr_Promise_std__vector_MapPlace___(std::shared_ptr<Promise<std::vector<MapPlace>>> promise) noexcept {
+    return PromiseHolder<std::vector<MapPlace>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<MapPlace>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<MapPlace>&)>`.
+   */
+  using Func_void_std__vector_MapPlace_ = std::function<void(const std::vector<MapPlace>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<MapPlace>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_MapPlace__Wrapper final {
+  public:
+    explicit Func_void_std__vector_MapPlace__Wrapper(std::function<void(const std::vector<MapPlace>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<MapPlace>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<MapPlace> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<MapPlace>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_MapPlace_ create_Func_void_std__vector_MapPlace_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_MapPlace__Wrapper wrap_Func_void_std__vector_MapPlace_(Func_void_std__vector_MapPlace_ value) noexcept {
+    return Func_void_std__vector_MapPlace__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<MapSuggestion>
+  /**
+   * Specialized version of `std::vector<MapSuggestion>`.
+   */
+  using std__vector_MapSuggestion_ = std::vector<MapSuggestion>;
+  inline std::vector<MapSuggestion> create_std__vector_MapSuggestion_(size_t size) noexcept {
+    std::vector<MapSuggestion> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<MapSuggestion>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<MapSuggestion>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_MapSuggestion___ = std::shared_ptr<Promise<std::vector<MapSuggestion>>>;
+  inline std::shared_ptr<Promise<std::vector<MapSuggestion>>> create_std__shared_ptr_Promise_std__vector_MapSuggestion___() noexcept {
+    return Promise<std::vector<MapSuggestion>>::create();
+  }
+  inline PromiseHolder<std::vector<MapSuggestion>> wrap_std__shared_ptr_Promise_std__vector_MapSuggestion___(std::shared_ptr<Promise<std::vector<MapSuggestion>>> promise) noexcept {
+    return PromiseHolder<std::vector<MapSuggestion>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<MapSuggestion>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<MapSuggestion>&)>`.
+   */
+  using Func_void_std__vector_MapSuggestion_ = std::function<void(const std::vector<MapSuggestion>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<MapSuggestion>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_MapSuggestion__Wrapper final {
+  public:
+    explicit Func_void_std__vector_MapSuggestion__Wrapper(std::function<void(const std::vector<MapSuggestion>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<MapSuggestion>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<MapSuggestion> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<MapSuggestion>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_MapSuggestion_ create_Func_void_std__vector_MapSuggestion_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_MapSuggestion__Wrapper wrap_Func_void_std__vector_MapSuggestion_(Func_void_std__vector_MapSuggestion_ value) noexcept {
+    return Func_void_std__vector_MapSuggestion__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<MapPlace>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<MapPlace>>`.
+   */
+  using std__shared_ptr_Promise_MapPlace__ = std::shared_ptr<Promise<MapPlace>>;
+  inline std::shared_ptr<Promise<MapPlace>> create_std__shared_ptr_Promise_MapPlace__() noexcept {
+    return Promise<MapPlace>::create();
+  }
+  inline PromiseHolder<MapPlace> wrap_std__shared_ptr_Promise_MapPlace__(std::shared_ptr<Promise<MapPlace>> promise) noexcept {
+    return PromiseHolder<MapPlace>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const MapPlace& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const MapPlace&)>`.
+   */
+  using Func_void_MapPlace = std::function<void(const MapPlace& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const MapPlace& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_MapPlace_Wrapper final {
+  public:
+    explicit Func_void_MapPlace_Wrapper(std::function<void(const MapPlace& /* result */)>&& func): _function(std::make_unique<std::function<void(const MapPlace& /* result */)>>(std::move(func))) {}
+    inline void call(MapPlace result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const MapPlace& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MapPlace create_Func_void_MapPlace(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MapPlace_Wrapper wrap_Func_void_MapPlace(Func_void_MapPlace value) noexcept {
+    return Func_void_MapPlace_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<MapCoordinate>
+  /**
+   * Specialized version of `std::vector<MapCoordinate>`.
+   */
+  using std__vector_MapCoordinate_ = std::vector<MapCoordinate>;
+  inline std::vector<MapCoordinate> create_std__vector_MapCoordinate_(size_t size) noexcept {
+    std::vector<MapCoordinate> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::vector<MapRouteStep>
+  /**
+   * Specialized version of `std::vector<MapRouteStep>`.
+   */
+  using std__vector_MapRouteStep_ = std::vector<MapRouteStep>;
+  inline std::vector<MapRouteStep> create_std__vector_MapRouteStep_(size_t size) noexcept {
+    std::vector<MapRouteStep> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<MapRoute>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<MapRoute>>`.
+   */
+  using std__shared_ptr_Promise_MapRoute__ = std::shared_ptr<Promise<MapRoute>>;
+  inline std::shared_ptr<Promise<MapRoute>> create_std__shared_ptr_Promise_MapRoute__() noexcept {
+    return Promise<MapRoute>::create();
+  }
+  inline PromiseHolder<MapRoute> wrap_std__shared_ptr_Promise_MapRoute__(std::shared_ptr<Promise<MapRoute>> promise) noexcept {
+    return PromiseHolder<MapRoute>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const MapRoute& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const MapRoute&)>`.
+   */
+  using Func_void_MapRoute = std::function<void(const MapRoute& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const MapRoute& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_MapRoute_Wrapper final {
+  public:
+    explicit Func_void_MapRoute_Wrapper(std::function<void(const MapRoute& /* result */)>&& func): _function(std::make_unique<std::function<void(const MapRoute& /* result */)>>(std::move(func))) {}
+    inline void call(MapRoute result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const MapRoute& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MapRoute create_Func_void_MapRoute(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MapRoute_Wrapper wrap_Func_void_MapRoute(Func_void_MapRoute value) noexcept {
+    return Func_void_MapRoute_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneMapServicesSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneMapServicesSpec>`.
+   */
+  using std__shared_ptr_HybridOneMapServicesSpec_ = std::shared_ptr<HybridOneMapServicesSpec>;
+  std::shared_ptr<HybridOneMapServicesSpec> create_std__shared_ptr_HybridOneMapServicesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneMapServicesSpec_(std__shared_ptr_HybridOneMapServicesSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneMapServicesSpec>
+  using std__weak_ptr_HybridOneMapServicesSpec_ = std::weak_ptr<HybridOneMapServicesSpec>;
+  inline std__weak_ptr_HybridOneMapServicesSpec_ weakify_std__shared_ptr_HybridOneMapServicesSpec_(const std::shared_ptr<HybridOneMapServicesSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>
+  using Result_std__shared_ptr_Promise_std__vector_MapPlace____ = Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::shared_ptr<Promise<std::vector<MapPlace>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_MapPlace____ create_Result_std__shared_ptr_Promise_std__vector_MapPlace____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapPlace>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>
+  using Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ = Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::shared_ptr<Promise<std::vector<MapSuggestion>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_MapSuggestion____ create_Result_std__shared_ptr_Promise_std__vector_MapSuggestion____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<MapSuggestion>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<MapPlace>>>
+  using Result_std__shared_ptr_Promise_MapPlace___ = Result<std::shared_ptr<Promise<MapPlace>>>;
+  inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::shared_ptr<Promise<MapPlace>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<MapPlace>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_MapPlace___ create_Result_std__shared_ptr_Promise_MapPlace___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<MapPlace>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<MapRoute>>>
+  using Result_std__shared_ptr_Promise_MapRoute___ = Result<std::shared_ptr<Promise<MapRoute>>>;
+  inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::shared_ptr<Promise<MapRoute>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<MapRoute>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_MapRoute___ create_Result_std__shared_ptr_Promise_MapRoute___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<MapRoute>>>::withError(error);
+  }
+  
+  // pragma MARK: std::optional<MotionVector>
+  /**
+   * Specialized version of `std::optional<MotionVector>`.
+   */
+  using std__optional_MotionVector_ = std::optional<MotionVector>;
+  inline std::optional<MotionVector> create_std__optional_MotionVector_(const MotionVector& value) noexcept {
+    return std::optional<MotionVector>(value);
+  }
+  inline bool has_value_std__optional_MotionVector_(const std::optional<MotionVector>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline MotionVector get_std__optional_MotionVector_(const std::optional<MotionVector>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::function<void(const MotionReading& /* reading */)>
+  /**
+   * Specialized version of `std::function<void(const MotionReading&)>`.
+   */
+  using Func_void_MotionReading = std::function<void(const MotionReading& /* reading */)>;
+  /**
+   * Wrapper class for a `std::function<void(const MotionReading& / * reading * /)>`, this can be used from Swift.
+   */
+  class Func_void_MotionReading_Wrapper final {
+  public:
+    explicit Func_void_MotionReading_Wrapper(std::function<void(const MotionReading& /* reading */)>&& func): _function(std::make_unique<std::function<void(const MotionReading& /* reading */)>>(std::move(func))) {}
+    inline void call(MotionReading reading) const noexcept {
+      _function->operator()(reading);
+    }
+  private:
+    std::unique_ptr<std::function<void(const MotionReading& /* reading */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MotionReading create_Func_void_MotionReading(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MotionReading_Wrapper wrap_Func_void_MotionReading(Func_void_MotionReading value) noexcept {
+    return Func_void_MotionReading_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneMotionSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneMotionSpec>`.
+   */
+  using std__shared_ptr_HybridOneMotionSpec_ = std::shared_ptr<HybridOneMotionSpec>;
+  std::shared_ptr<HybridOneMotionSpec> create_std__shared_ptr_HybridOneMotionSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneMotionSpec_(std__shared_ptr_HybridOneMotionSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneMotionSpec>
+  using std__weak_ptr_HybridOneMotionSpec_ = std::weak_ptr<HybridOneMotionSpec>;
+  inline std__weak_ptr_HybridOneMotionSpec_ weakify_std__shared_ptr_HybridOneMotionSpec_(const std::shared_ptr<HybridOneMotionSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<MotionAvailability>
+  using Result_MotionAvailability_ = Result<MotionAvailability>;
+  inline Result_MotionAvailability_ create_Result_MotionAvailability_(const MotionAvailability& value) noexcept {
+    return Result<MotionAvailability>::withValue(value);
+  }
+  inline Result_MotionAvailability_ create_Result_MotionAvailability_(const std::exception_ptr& error) noexcept {
+    return Result<MotionAvailability>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneNativeModulesSpec>`.
+   */
+  using std__shared_ptr_HybridOneNativeModulesSpec_ = std::shared_ptr<HybridOneNativeModulesSpec>;
+  std::shared_ptr<HybridOneNativeModulesSpec> create_std__shared_ptr_HybridOneNativeModulesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneNativeModulesSpec_(std__shared_ptr_HybridOneNativeModulesSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneNativeModulesSpec>
+  using std__weak_ptr_HybridOneNativeModulesSpec_ = std::weak_ptr<HybridOneNativeModulesSpec>;
+  inline std__weak_ptr_HybridOneNativeModulesSpec_ weakify_std__shared_ptr_HybridOneNativeModulesSpec_(const std::shared_ptr<HybridOneNativeModulesSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: std::shared_ptr<Promise<NetworkState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<NetworkState>>`.
+   */
+  using std__shared_ptr_Promise_NetworkState__ = std::shared_ptr<Promise<NetworkState>>;
+  inline std::shared_ptr<Promise<NetworkState>> create_std__shared_ptr_Promise_NetworkState__() noexcept {
+    return Promise<NetworkState>::create();
+  }
+  inline PromiseHolder<NetworkState> wrap_std__shared_ptr_Promise_NetworkState__(std::shared_ptr<Promise<NetworkState>> promise) noexcept {
+    return PromiseHolder<NetworkState>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const NetworkState& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const NetworkState&)>`.
+   */
+  using Func_void_NetworkState = std::function<void(const NetworkState& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const NetworkState& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_NetworkState_Wrapper final {
+  public:
+    explicit Func_void_NetworkState_Wrapper(std::function<void(const NetworkState& /* result */)>&& func): _function(std::make_unique<std::function<void(const NetworkState& /* result */)>>(std::move(func))) {}
+    inline void call(NetworkState result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const NetworkState& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_NetworkState_Wrapper wrap_Func_void_NetworkState(Func_void_NetworkState value) noexcept {
+    return Func_void_NetworkState_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneNetworkSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneNetworkSpec>`.
+   */
+  using std__shared_ptr_HybridOneNetworkSpec_ = std::shared_ptr<HybridOneNetworkSpec>;
+  std::shared_ptr<HybridOneNetworkSpec> create_std__shared_ptr_HybridOneNetworkSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneNetworkSpec_(std__shared_ptr_HybridOneNetworkSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneNetworkSpec>
+  using std__weak_ptr_HybridOneNetworkSpec_ = std::weak_ptr<HybridOneNetworkSpec>;
+  inline std__weak_ptr_HybridOneNetworkSpec_ weakify_std__shared_ptr_HybridOneNetworkSpec_(const std::shared_ptr<HybridOneNetworkSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<NetworkState>>>
+  using Result_std__shared_ptr_Promise_NetworkState___ = Result<std::shared_ptr<Promise<NetworkState>>>;
+  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::shared_ptr<Promise<NetworkState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<NetworkState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<NetworkState>>>::withError(error);
+  }
+  
+  // pragma MARK: std::optional<NativeIosPermission>
+  /**
+   * Specialized version of `std::optional<NativeIosPermission>`.
+   */
+  using std__optional_NativeIosPermission_ = std::optional<NativeIosPermission>;
+  inline std::optional<NativeIosPermission> create_std__optional_NativeIosPermission_(const NativeIosPermission& value) noexcept {
+    return std::optional<NativeIosPermission>(value);
+  }
+  inline bool has_value_std__optional_NativeIosPermission_(const std::optional<NativeIosPermission>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline NativeIosPermission get_std__optional_NativeIosPermission_(const std::optional<NativeIosPermission>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<NativePermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<NativePermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_NativePermissionResponse__ = std::shared_ptr<Promise<NativePermissionResponse>>;
+  inline std::shared_ptr<Promise<NativePermissionResponse>> create_std__shared_ptr_Promise_NativePermissionResponse__() noexcept {
+    return Promise<NativePermissionResponse>::create();
+  }
+  inline PromiseHolder<NativePermissionResponse> wrap_std__shared_ptr_Promise_NativePermissionResponse__(std::shared_ptr<Promise<NativePermissionResponse>> promise) noexcept {
+    return PromiseHolder<NativePermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const NativePermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const NativePermissionResponse&)>`.
+   */
+  using Func_void_NativePermissionResponse = std::function<void(const NativePermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const NativePermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_NativePermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_NativePermissionResponse_Wrapper(std::function<void(const NativePermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const NativePermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(NativePermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const NativePermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_NativePermissionResponse_Wrapper wrap_Func_void_NativePermissionResponse(Func_void_NativePermissionResponse value) noexcept {
+    return Func_void_NativePermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::optional<NativeIosPermissionRequest>
+  /**
+   * Specialized version of `std::optional<NativeIosPermissionRequest>`.
+   */
+  using std__optional_NativeIosPermissionRequest_ = std::optional<NativeIosPermissionRequest>;
+  inline std::optional<NativeIosPermissionRequest> create_std__optional_NativeIosPermissionRequest_(const NativeIosPermissionRequest& value) noexcept {
+    return std::optional<NativeIosPermissionRequest>(value);
+  }
+  inline bool has_value_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline NativeIosPermissionRequest get_std__optional_NativeIosPermissionRequest_(const std::optional<NativeIosPermissionRequest>& optional) noexcept {
+    return optional.value();
+  }
+  
   // pragma MARK: std::vector<double>
   /**
    * Specialized version of `std::vector<double>`.
@@ -3644,7 +3991,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::optional<std::vector<double>>
   /**
    * Specialized version of `std::optional<std::vector<double>>`.
@@ -3659,7 +4006,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::vector<double> get_std__optional_std__vector_double__(const std::optional<std::vector<double>>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::optional<NativeChannel>
   /**
    * Specialized version of `std::optional<NativeChannel>`.
@@ -3674,7 +4021,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeChannel get_std__optional_NativeChannel_(const std::optional<NativeChannel>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::optional<NativeChannel>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::optional<NativeChannel>>>`.
@@ -3686,7 +4033,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::optional<NativeChannel>> wrap_std__shared_ptr_Promise_std__optional_NativeChannel___(std::shared_ptr<Promise<std::optional<NativeChannel>>> promise) noexcept {
     return PromiseHolder<std::optional<NativeChannel>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::optional<NativeChannel>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::optional<NativeChannel>&)>`.
@@ -3708,7 +4055,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__optional_NativeChannel__Wrapper wrap_Func_void_std__optional_NativeChannel_(Func_void_std__optional_NativeChannel_ value) noexcept {
     return Func_void_std__optional_NativeChannel__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<NativeChannel>
   /**
    * Specialized version of `std::vector<NativeChannel>`.
@@ -3719,7 +4066,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<NativeChannel>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<NativeChannel>>>`.
@@ -3731,7 +4078,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<NativeChannel>> wrap_std__shared_ptr_Promise_std__vector_NativeChannel___(std::shared_ptr<Promise<std::vector<NativeChannel>>> promise) noexcept {
     return PromiseHolder<std::vector<NativeChannel>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<NativeChannel>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<NativeChannel>&)>`.
@@ -3753,7 +4100,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_NativeChannel__Wrapper wrap_Func_void_std__vector_NativeChannel_(Func_void_std__vector_NativeChannel_ value) noexcept {
     return Func_void_std__vector_NativeChannel__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::optional<std::shared_ptr<AnyMap>>
   /**
    * Specialized version of `std::optional<std::shared_ptr<AnyMap>>`.
@@ -3768,7 +4115,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::shared_ptr<AnyMap> get_std__optional_std__shared_ptr_AnyMap__(const std::optional<std::shared_ptr<AnyMap>>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::optional<NativeTriggerInput>
   /**
    * Specialized version of `std::optional<NativeTriggerInput>`.
@@ -3783,7 +4130,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeTriggerInput get_std__optional_NativeTriggerInput_(const std::optional<NativeTriggerInput>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::vector<NativeNotificationRequest>
   /**
    * Specialized version of `std::vector<NativeNotificationRequest>`.
@@ -3794,7 +4141,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>`.
@@ -3806,7 +4153,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<NativeNotificationRequest>> wrap_std__shared_ptr_Promise_std__vector_NativeNotificationRequest___(std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>> promise) noexcept {
     return PromiseHolder<std::vector<NativeNotificationRequest>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<NativeNotificationRequest>&)>`.
@@ -3828,7 +4175,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_NativeNotificationRequest__Wrapper wrap_Func_void_std__vector_NativeNotificationRequest_(Func_void_std__vector_NativeNotificationRequest_ value) noexcept {
     return Func_void_std__vector_NativeNotificationRequest__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<NativeNotification>
   /**
    * Specialized version of `std::vector<NativeNotification>`.
@@ -3839,7 +4186,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<NativeNotification>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<NativeNotification>>>`.
@@ -3851,7 +4198,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<NativeNotification>> wrap_std__shared_ptr_Promise_std__vector_NativeNotification___(std::shared_ptr<Promise<std::vector<NativeNotification>>> promise) noexcept {
     return PromiseHolder<std::vector<NativeNotification>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<NativeNotification>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<NativeNotification>&)>`.
@@ -3873,7 +4220,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_NativeNotification__Wrapper wrap_Func_void_std__vector_NativeNotification_(Func_void_std__vector_NativeNotification_ value) noexcept {
     return Func_void_std__vector_NativeNotification__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<NativePushToken>>
   /**
    * Specialized version of `std::shared_ptr<Promise<NativePushToken>>`.
@@ -3885,7 +4232,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<NativePushToken> wrap_std__shared_ptr_Promise_NativePushToken__(std::shared_ptr<Promise<NativePushToken>> promise) noexcept {
     return PromiseHolder<NativePushToken>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const NativePushToken& /* result */)>
   /**
    * Specialized version of `std::function<void(const NativePushToken&)>`.
@@ -3907,7 +4254,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_NativePushToken_Wrapper wrap_Func_void_NativePushToken(Func_void_NativePushToken value) noexcept {
     return Func_void_NativePushToken_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>
   /**
    * Specialized version of `std::function<void(const std::string&, const NativeNotification&)>`.
@@ -3929,7 +4276,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__string_NativeNotification_Wrapper wrap_Func_void_std__string_NativeNotification(Func_void_std__string_NativeNotification value) noexcept {
     return Func_void_std__string_NativeNotification_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const NativeNotificationResponse& /* response */)>
   /**
    * Specialized version of `std::function<void(const NativeNotificationResponse&)>`.
@@ -3951,7 +4298,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_NativeNotificationResponse_Wrapper wrap_Func_void_NativeNotificationResponse(Func_void_NativeNotificationResponse value) noexcept {
     return Func_void_NativeNotificationResponse_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::optional<NativeNotificationResponse>
   /**
    * Specialized version of `std::optional<NativeNotificationResponse>`.
@@ -3966,7 +4313,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline NativeNotificationResponse get_std__optional_NativeNotificationResponse_(const std::optional<NativeNotificationResponse>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneNotificationsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneNotificationsSpec>`.
@@ -3974,11 +4321,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneNotificationsSpec_ = std::shared_ptr<HybridOneNotificationsSpec>;
   std::shared_ptr<HybridOneNotificationsSpec> create_std__shared_ptr_HybridOneNotificationsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneNotificationsSpec_(std__shared_ptr_HybridOneNotificationsSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneNotificationsSpec>
   using std__weak_ptr_HybridOneNotificationsSpec_ = std::weak_ptr<HybridOneNotificationsSpec>;
   inline std__weak_ptr_HybridOneNotificationsSpec_ weakify_std__shared_ptr_HybridOneNotificationsSpec_(const std::shared_ptr<HybridOneNotificationsSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<NativePermissionResponse>>>
   using Result_std__shared_ptr_Promise_NativePermissionResponse___ = Result<std::shared_ptr<Promise<NativePermissionResponse>>>;
   inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::shared_ptr<Promise<NativePermissionResponse>>& value) noexcept {
@@ -3987,16 +4334,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NativePermissionResponse>>>::withError(error);
   }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<double>>>
-  using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
-  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<double>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<double>>>::withError(error);
-  }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>
   using Result_std__shared_ptr_Promise_std__optional_NativeChannel____ = Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>;
   inline Result_std__shared_ptr_Promise_std__optional_NativeChannel____ create_Result_std__shared_ptr_Promise_std__optional_NativeChannel____(const std::shared_ptr<Promise<std::optional<NativeChannel>>>& value) noexcept {
@@ -4005,7 +4343,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__optional_NativeChannel____ create_Result_std__shared_ptr_Promise_std__optional_NativeChannel____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::optional<NativeChannel>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>
   using Result_std__shared_ptr_Promise_std__vector_NativeChannel____ = Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_NativeChannel____ create_Result_std__shared_ptr_Promise_std__vector_NativeChannel____(const std::shared_ptr<Promise<std::vector<NativeChannel>>>& value) noexcept {
@@ -4014,7 +4352,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_NativeChannel____ create_Result_std__shared_ptr_Promise_std__vector_NativeChannel____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<NativeChannel>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>
   using Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ = Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____(const std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>& value) noexcept {
@@ -4023,7 +4361,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotificationRequest____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<NativeNotificationRequest>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>
   using Result_std__shared_ptr_Promise_std__vector_NativeNotification____ = Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotification____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotification____(const std::shared_ptr<Promise<std::vector<NativeNotification>>>& value) noexcept {
@@ -4032,7 +4370,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_NativeNotification____ create_Result_std__shared_ptr_Promise_std__vector_NativeNotification____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<NativeNotification>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<NativePushToken>>>
   using Result_std__shared_ptr_Promise_NativePushToken___ = Result<std::shared_ptr<Promise<NativePushToken>>>;
   inline Result_std__shared_ptr_Promise_NativePushToken___ create_Result_std__shared_ptr_Promise_NativePushToken___(const std::shared_ptr<Promise<NativePushToken>>& value) noexcept {
@@ -4041,7 +4379,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_NativePushToken___ create_Result_std__shared_ptr_Promise_NativePushToken___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NativePushToken>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::optional<NativeNotificationResponse>>
   using Result_std__optional_NativeNotificationResponse__ = Result<std::optional<NativeNotificationResponse>>;
   inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::optional<NativeNotificationResponse>& value) noexcept {
@@ -4050,7 +4388,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<NativeNotificationResponse>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>`.
@@ -4062,7 +4400,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryPermissionStatus> wrap_std__shared_ptr_Promise_PhotoLibraryPermissionStatus__(std::shared_ptr<Promise<PhotoLibraryPermissionStatus>> promise) noexcept {
     return PromiseHolder<PhotoLibraryPermissionStatus>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(PhotoLibraryPermissionStatus /* result */)>
   /**
    * Specialized version of `std::function<void(PhotoLibraryPermissionStatus)>`.
@@ -4084,7 +4422,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryPermissionStatus_Wrapper wrap_Func_void_PhotoLibraryPermissionStatus(Func_void_PhotoLibraryPermissionStatus value) noexcept {
     return Func_void_PhotoLibraryPermissionStatus_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<std::string>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<std::string>>>`.
@@ -4096,7 +4434,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<std::string>> wrap_std__shared_ptr_Promise_std__vector_std__string___(std::shared_ptr<Promise<std::vector<std::string>>> promise) noexcept {
     return PromiseHolder<std::vector<std::string>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<std::string>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<std::string>&)>`.
@@ -4118,7 +4456,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_std__string__Wrapper wrap_Func_void_std__vector_std__string_(Func_void_std__vector_std__string_ value) noexcept {
     return Func_void_std__vector_std__string__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<PhotoLibraryAsset>
   /**
    * Specialized version of `std::vector<PhotoLibraryAsset>`.
@@ -4129,7 +4467,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAssetPage>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAssetPage>>`.
@@ -4141,7 +4479,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAssetPage> wrap_std__shared_ptr_Promise_PhotoLibraryAssetPage__(std::shared_ptr<Promise<PhotoLibraryAssetPage>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAssetPage>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAssetPage& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAssetPage&)>`.
@@ -4163,7 +4501,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAssetPage_Wrapper wrap_Func_void_PhotoLibraryAssetPage(Func_void_PhotoLibraryAssetPage value) noexcept {
     return Func_void_PhotoLibraryAssetPage_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAsset>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAsset>>`.
@@ -4175,7 +4513,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAsset> wrap_std__shared_ptr_Promise_PhotoLibraryAsset__(std::shared_ptr<Promise<PhotoLibraryAsset>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAsset>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAsset& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAsset&)>`.
@@ -4197,7 +4535,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAsset_Wrapper wrap_Func_void_PhotoLibraryAsset(Func_void_PhotoLibraryAsset value) noexcept {
     return Func_void_PhotoLibraryAsset_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<PhotoLibraryAlbum>
   /**
    * Specialized version of `std::vector<PhotoLibraryAlbum>`.
@@ -4208,7 +4546,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAlbumPage>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAlbumPage>>`.
@@ -4220,7 +4558,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAlbumPage> wrap_std__shared_ptr_Promise_PhotoLibraryAlbumPage__(std::shared_ptr<Promise<PhotoLibraryAlbumPage>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAlbumPage>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAlbumPage& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAlbumPage&)>`.
@@ -4242,7 +4580,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAlbumPage_Wrapper wrap_Func_void_PhotoLibraryAlbumPage(Func_void_PhotoLibraryAlbumPage value) noexcept {
     return Func_void_PhotoLibraryAlbumPage_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryAlbum>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PhotoLibraryAlbum>>`.
@@ -4254,7 +4592,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PhotoLibraryAlbum> wrap_std__shared_ptr_Promise_PhotoLibraryAlbum__(std::shared_ptr<Promise<PhotoLibraryAlbum>> promise) noexcept {
     return PromiseHolder<PhotoLibraryAlbum>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAlbum& /* result */)>
   /**
    * Specialized version of `std::function<void(const PhotoLibraryAlbum&)>`.
@@ -4276,7 +4614,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PhotoLibraryAlbum_Wrapper wrap_Func_void_PhotoLibraryAlbum(Func_void_PhotoLibraryAlbum value) noexcept {
     return Func_void_PhotoLibraryAlbum_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOnePhotoLibrarySpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOnePhotoLibrarySpec>`.
@@ -4284,11 +4622,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOnePhotoLibrarySpec_ = std::shared_ptr<HybridOnePhotoLibrarySpec>;
   std::shared_ptr<HybridOnePhotoLibrarySpec> create_std__shared_ptr_HybridOnePhotoLibrarySpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOnePhotoLibrarySpec_(std__shared_ptr_HybridOnePhotoLibrarySpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOnePhotoLibrarySpec>
   using std__weak_ptr_HybridOnePhotoLibrarySpec_ = std::weak_ptr<HybridOnePhotoLibrarySpec>;
   inline std__weak_ptr_HybridOnePhotoLibrarySpec_ weakify_std__shared_ptr_HybridOnePhotoLibrarySpec_(const std::shared_ptr<HybridOnePhotoLibrarySpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<PhotoLibraryPermissionStatus>
   using Result_PhotoLibraryPermissionStatus_ = Result<PhotoLibraryPermissionStatus>;
   inline Result_PhotoLibraryPermissionStatus_ create_Result_PhotoLibraryPermissionStatus_(PhotoLibraryPermissionStatus value) noexcept {
@@ -4297,7 +4635,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_PhotoLibraryPermissionStatus_ create_Result_PhotoLibraryPermissionStatus_(const std::exception_ptr& error) noexcept {
     return Result<PhotoLibraryPermissionStatus>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ = Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(const std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>& value) noexcept {
@@ -4306,7 +4644,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___ create_Result_std__shared_ptr_Promise_PhotoLibraryPermissionStatus___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<std::string>>>>
   using Result_std__shared_ptr_Promise_std__vector_std__string____ = Result<std::shared_ptr<Promise<std::vector<std::string>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_std__string____ create_Result_std__shared_ptr_Promise_std__vector_std__string____(const std::shared_ptr<Promise<std::vector<std::string>>>& value) noexcept {
@@ -4315,7 +4653,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_std__string____ create_Result_std__shared_ptr_Promise_std__vector_std__string____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<std::string>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAssetPage>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ = Result<std::shared_ptr<Promise<PhotoLibraryAssetPage>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(const std::shared_ptr<Promise<PhotoLibraryAssetPage>>& value) noexcept {
@@ -4324,7 +4662,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAssetPage___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAssetPage>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAsset>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAsset___ = Result<std::shared_ptr<Promise<PhotoLibraryAsset>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAsset___ create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(const std::shared_ptr<Promise<PhotoLibraryAsset>>& value) noexcept {
@@ -4333,7 +4671,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAsset___ create_Result_std__shared_ptr_Promise_PhotoLibraryAsset___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAsset>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ = Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(const std::shared_ptr<Promise<PhotoLibraryAlbumPage>>& value) noexcept {
@@ -4342,7 +4680,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbumPage___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAlbumPage>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>
   using Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ = Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>;
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(const std::shared_ptr<Promise<PhotoLibraryAlbum>>& value) noexcept {
@@ -4351,7 +4689,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PhotoLibraryAlbum___ create_Result_std__shared_ptr_Promise_PhotoLibraryAlbum___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PhotoLibraryAlbum>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<PrintResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PrintResult>>`.
@@ -4363,7 +4701,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PrintResult> wrap_std__shared_ptr_Promise_PrintResult__(std::shared_ptr<Promise<PrintResult>> promise) noexcept {
     return PromiseHolder<PrintResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const PrintResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const PrintResult&)>`.
@@ -4385,7 +4723,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PrintResult_Wrapper wrap_Func_void_PrintResult(Func_void_PrintResult value) noexcept {
     return Func_void_PrintResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOnePrintSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOnePrintSpec>`.
@@ -4393,11 +4731,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOnePrintSpec_ = std::shared_ptr<HybridOnePrintSpec>;
   std::shared_ptr<HybridOnePrintSpec> create_std__shared_ptr_HybridOnePrintSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOnePrintSpec_(std__shared_ptr_HybridOnePrintSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOnePrintSpec>
   using std__weak_ptr_HybridOnePrintSpec_ = std::weak_ptr<HybridOnePrintSpec>;
   inline std__weak_ptr_HybridOnePrintSpec_ weakify_std__shared_ptr_HybridOnePrintSpec_(const std::shared_ptr<HybridOnePrintSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<PrintResult>>>
   using Result_std__shared_ptr_Promise_PrintResult___ = Result<std::shared_ptr<Promise<PrintResult>>>;
   inline Result_std__shared_ptr_Promise_PrintResult___ create_Result_std__shared_ptr_Promise_PrintResult___(const std::shared_ptr<Promise<PrintResult>>& value) noexcept {
@@ -4406,7 +4744,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PrintResult___ create_Result_std__shared_ptr_Promise_PrintResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PrintResult>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneProtectedStoreSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneProtectedStoreSpec>`.
@@ -4414,11 +4752,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneProtectedStoreSpec_ = std::shared_ptr<HybridOneProtectedStoreSpec>;
   std::shared_ptr<HybridOneProtectedStoreSpec> create_std__shared_ptr_HybridOneProtectedStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneProtectedStoreSpec_(std__shared_ptr_HybridOneProtectedStoreSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneProtectedStoreSpec>
   using std__weak_ptr_HybridOneProtectedStoreSpec_ = std::weak_ptr<HybridOneProtectedStoreSpec>;
   inline std__weak_ptr_HybridOneProtectedStoreSpec_ weakify_std__shared_ptr_HybridOneProtectedStoreSpec_(const std::shared_ptr<HybridOneProtectedStoreSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: std::vector<PurchaseProduct>
   /**
    * Specialized version of `std::vector<PurchaseProduct>`.
@@ -4429,7 +4767,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<PurchaseProduct>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<PurchaseProduct>>>`.
@@ -4441,7 +4779,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<PurchaseProduct>> wrap_std__shared_ptr_Promise_std__vector_PurchaseProduct___(std::shared_ptr<Promise<std::vector<PurchaseProduct>>> promise) noexcept {
     return PromiseHolder<std::vector<PurchaseProduct>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<PurchaseProduct>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<PurchaseProduct>&)>`.
@@ -4463,7 +4801,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_PurchaseProduct__Wrapper wrap_Func_void_std__vector_PurchaseProduct_(Func_void_std__vector_PurchaseProduct_ value) noexcept {
     return Func_void_std__vector_PurchaseProduct__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::optional<PurchaseTransaction>
   /**
    * Specialized version of `std::optional<PurchaseTransaction>`.
@@ -4478,7 +4816,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PurchaseTransaction get_std__optional_PurchaseTransaction_(const std::optional<PurchaseTransaction>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<PurchaseResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<PurchaseResult>>`.
@@ -4490,7 +4828,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<PurchaseResult> wrap_std__shared_ptr_Promise_PurchaseResult__(std::shared_ptr<Promise<PurchaseResult>> promise) noexcept {
     return PromiseHolder<PurchaseResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const PurchaseResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const PurchaseResult&)>`.
@@ -4512,7 +4850,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PurchaseResult_Wrapper wrap_Func_void_PurchaseResult(Func_void_PurchaseResult value) noexcept {
     return Func_void_PurchaseResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<PurchaseTransaction>
   /**
    * Specialized version of `std::vector<PurchaseTransaction>`.
@@ -4523,7 +4861,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>`.
@@ -4535,7 +4873,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<PurchaseTransaction>> wrap_std__shared_ptr_Promise_std__vector_PurchaseTransaction___(std::shared_ptr<Promise<std::vector<PurchaseTransaction>>> promise) noexcept {
     return PromiseHolder<std::vector<PurchaseTransaction>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<PurchaseTransaction>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<PurchaseTransaction>&)>`.
@@ -4557,7 +4895,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_PurchaseTransaction__Wrapper wrap_Func_void_std__vector_PurchaseTransaction_(Func_void_std__vector_PurchaseTransaction_ value) noexcept {
     return Func_void_std__vector_PurchaseTransaction__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::function<void(const PurchaseUpdate& /* update */)>
   /**
    * Specialized version of `std::function<void(const PurchaseUpdate&)>`.
@@ -4579,7 +4917,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_PurchaseUpdate_Wrapper wrap_Func_void_PurchaseUpdate(Func_void_PurchaseUpdate value) noexcept {
     return Func_void_PurchaseUpdate_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOnePurchasesSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOnePurchasesSpec>`.
@@ -4587,11 +4925,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOnePurchasesSpec_ = std::shared_ptr<HybridOnePurchasesSpec>;
   std::shared_ptr<HybridOnePurchasesSpec> create_std__shared_ptr_HybridOnePurchasesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOnePurchasesSpec_(std__shared_ptr_HybridOnePurchasesSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOnePurchasesSpec>
   using std__weak_ptr_HybridOnePurchasesSpec_ = std::weak_ptr<HybridOnePurchasesSpec>;
   inline std__weak_ptr_HybridOnePurchasesSpec_ weakify_std__shared_ptr_HybridOnePurchasesSpec_(const std::shared_ptr<HybridOnePurchasesSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>
   using Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ = Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____(const std::shared_ptr<Promise<std::vector<PurchaseProduct>>>& value) noexcept {
@@ -4600,7 +4938,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseProduct____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PurchaseProduct>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<PurchaseResult>>>
   using Result_std__shared_ptr_Promise_PurchaseResult___ = Result<std::shared_ptr<Promise<PurchaseResult>>>;
   inline Result_std__shared_ptr_Promise_PurchaseResult___ create_Result_std__shared_ptr_Promise_PurchaseResult___(const std::shared_ptr<Promise<PurchaseResult>>& value) noexcept {
@@ -4609,7 +4947,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_PurchaseResult___ create_Result_std__shared_ptr_Promise_PurchaseResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<PurchaseResult>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>
   using Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ = Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(const std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>& value) noexcept {
@@ -4618,7 +4956,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____ create_Result_std__shared_ptr_Promise_std__vector_PurchaseTransaction____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PurchaseTransaction>>>>::withError(error);
   }
-
+  
   // pragma MARK: std::vector<QuickActionItem>
   /**
    * Specialized version of `std::vector<QuickActionItem>`.
@@ -4629,7 +4967,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<std::vector<QuickActionItem>>>
   /**
    * Specialized version of `std::shared_ptr<Promise<std::vector<QuickActionItem>>>`.
@@ -4641,7 +4979,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<std::vector<QuickActionItem>> wrap_std__shared_ptr_Promise_std__vector_QuickActionItem___(std::shared_ptr<Promise<std::vector<QuickActionItem>>> promise) noexcept {
     return PromiseHolder<std::vector<QuickActionItem>>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<QuickActionItem>& /* result */)>
   /**
    * Specialized version of `std::function<void(const std::vector<QuickActionItem>&)>`.
@@ -4663,7 +5001,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_std__vector_QuickActionItem__Wrapper wrap_Func_void_std__vector_QuickActionItem_(Func_void_std__vector_QuickActionItem_ value) noexcept {
     return Func_void_std__vector_QuickActionItem__Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneQuickActionsSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneQuickActionsSpec>`.
@@ -4671,11 +5009,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneQuickActionsSpec_ = std::shared_ptr<HybridOneQuickActionsSpec>;
   std::shared_ptr<HybridOneQuickActionsSpec> create_std__shared_ptr_HybridOneQuickActionsSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneQuickActionsSpec_(std__shared_ptr_HybridOneQuickActionsSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneQuickActionsSpec>
   using std__weak_ptr_HybridOneQuickActionsSpec_ = std::weak_ptr<HybridOneQuickActionsSpec>;
   inline std__weak_ptr_HybridOneQuickActionsSpec_ weakify_std__shared_ptr_HybridOneQuickActionsSpec_(const std::shared_ptr<HybridOneQuickActionsSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>
   using Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ = Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>;
   inline Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ create_Result_std__shared_ptr_Promise_std__vector_QuickActionItem____(const std::shared_ptr<Promise<std::vector<QuickActionItem>>>& value) noexcept {
@@ -4684,7 +5022,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_QuickActionItem____ create_Result_std__shared_ptr_Promise_std__vector_QuickActionItem____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<QuickActionItem>>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::optional<std::string>>
   using Result_std__optional_std__string__ = Result<std::optional<std::string>>;
   inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::optional<std::string>& value) noexcept {
@@ -4693,7 +5031,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__optional_std__string__ create_Result_std__optional_std__string__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<std::string>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<ScreenCaptureState>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ScreenCaptureState>>`.
@@ -4705,7 +5043,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ScreenCaptureState> wrap_std__shared_ptr_Promise_ScreenCaptureState__(std::shared_ptr<Promise<ScreenCaptureState>> promise) noexcept {
     return PromiseHolder<ScreenCaptureState>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(ScreenCaptureState /* result */)>
   /**
    * Specialized version of `std::function<void(ScreenCaptureState)>`.
@@ -4727,7 +5065,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ScreenCaptureState_Wrapper wrap_Func_void_ScreenCaptureState(Func_void_ScreenCaptureState value) noexcept {
     return Func_void_ScreenCaptureState_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<ScreenCaptureResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ScreenCaptureResult>>`.
@@ -4739,7 +5077,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ScreenCaptureResult> wrap_std__shared_ptr_Promise_ScreenCaptureResult__(std::shared_ptr<Promise<ScreenCaptureResult>> promise) noexcept {
     return PromiseHolder<ScreenCaptureResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const ScreenCaptureResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const ScreenCaptureResult&)>`.
@@ -4761,7 +5099,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ScreenCaptureResult_Wrapper wrap_Func_void_ScreenCaptureResult(Func_void_ScreenCaptureResult value) noexcept {
     return Func_void_ScreenCaptureResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneScreenCaptureSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneScreenCaptureSpec>`.
@@ -4769,11 +5107,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneScreenCaptureSpec_ = std::shared_ptr<HybridOneScreenCaptureSpec>;
   std::shared_ptr<HybridOneScreenCaptureSpec> create_std__shared_ptr_HybridOneScreenCaptureSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneScreenCaptureSpec_(std__shared_ptr_HybridOneScreenCaptureSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneScreenCaptureSpec>
   using std__weak_ptr_HybridOneScreenCaptureSpec_ = std::weak_ptr<HybridOneScreenCaptureSpec>;
   inline std__weak_ptr_HybridOneScreenCaptureSpec_ weakify_std__shared_ptr_HybridOneScreenCaptureSpec_(const std::shared_ptr<HybridOneScreenCaptureSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<ScreenCaptureState>>>
   using Result_std__shared_ptr_Promise_ScreenCaptureState___ = Result<std::shared_ptr<Promise<ScreenCaptureState>>>;
   inline Result_std__shared_ptr_Promise_ScreenCaptureState___ create_Result_std__shared_ptr_Promise_ScreenCaptureState___(const std::shared_ptr<Promise<ScreenCaptureState>>& value) noexcept {
@@ -4782,7 +5120,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ScreenCaptureState___ create_Result_std__shared_ptr_Promise_ScreenCaptureState___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenCaptureState>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<ScreenCaptureResult>>>
   using Result_std__shared_ptr_Promise_ScreenCaptureResult___ = Result<std::shared_ptr<Promise<ScreenCaptureResult>>>;
   inline Result_std__shared_ptr_Promise_ScreenCaptureResult___ create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(const std::shared_ptr<Promise<ScreenCaptureResult>>& value) noexcept {
@@ -4791,7 +5129,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ScreenCaptureResult___ create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenCaptureResult>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<ScreenOrientationValue>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ScreenOrientationValue>>`.
@@ -4803,7 +5141,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ScreenOrientationValue> wrap_std__shared_ptr_Promise_ScreenOrientationValue__(std::shared_ptr<Promise<ScreenOrientationValue>> promise) noexcept {
     return PromiseHolder<ScreenOrientationValue>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(ScreenOrientationValue /* result */)>
   /**
    * Specialized version of `std::function<void(ScreenOrientationValue)>`.
@@ -4825,7 +5163,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ScreenOrientationValue_Wrapper wrap_Func_void_ScreenOrientationValue(Func_void_ScreenOrientationValue value) noexcept {
     return Func_void_ScreenOrientationValue_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneScreenOrientationSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneScreenOrientationSpec>`.
@@ -4833,11 +5171,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneScreenOrientationSpec_ = std::shared_ptr<HybridOneScreenOrientationSpec>;
   std::shared_ptr<HybridOneScreenOrientationSpec> create_std__shared_ptr_HybridOneScreenOrientationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneScreenOrientationSpec_(std__shared_ptr_HybridOneScreenOrientationSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneScreenOrientationSpec>
   using std__weak_ptr_HybridOneScreenOrientationSpec_ = std::weak_ptr<HybridOneScreenOrientationSpec>;
   inline std__weak_ptr_HybridOneScreenOrientationSpec_ weakify_std__shared_ptr_HybridOneScreenOrientationSpec_(const std::shared_ptr<HybridOneScreenOrientationSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<ScreenOrientationValue>>>
   using Result_std__shared_ptr_Promise_ScreenOrientationValue___ = Result<std::shared_ptr<Promise<ScreenOrientationValue>>>;
   inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::shared_ptr<Promise<ScreenOrientationValue>>& value) noexcept {
@@ -4846,7 +5184,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenOrientationValue>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSecureStoreSpec>`.
@@ -4854,11 +5192,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneSecureStoreSpec_ = std::shared_ptr<HybridOneSecureStoreSpec>;
   std::shared_ptr<HybridOneSecureStoreSpec> create_std__shared_ptr_HybridOneSecureStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneSecureStoreSpec_(std__shared_ptr_HybridOneSecureStoreSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneSecureStoreSpec>
   using std__weak_ptr_HybridOneSecureStoreSpec_ = std::weak_ptr<HybridOneSecureStoreSpec>;
   inline std__weak_ptr_HybridOneSecureStoreSpec_ weakify_std__shared_ptr_HybridOneSecureStoreSpec_(const std::shared_ptr<HybridOneSecureStoreSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: std::shared_ptr<Promise<ShareResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ShareResult>>`.
@@ -4870,7 +5208,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<ShareResult> wrap_std__shared_ptr_Promise_ShareResult__(std::shared_ptr<Promise<ShareResult>> promise) noexcept {
     return PromiseHolder<ShareResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const ShareResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const ShareResult&)>`.
@@ -4892,7 +5230,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_ShareResult_Wrapper wrap_Func_void_ShareResult(Func_void_ShareResult value) noexcept {
     return Func_void_ShareResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::vector<ShareItem>
   /**
    * Specialized version of `std::vector<ShareItem>`.
@@ -4903,7 +5241,7 @@ namespace margelo::nitro::one::bridge::swift {
     vector.reserve(size);
     return vector;
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneShareSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneShareSpec>`.
@@ -4911,11 +5249,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneShareSpec_ = std::shared_ptr<HybridOneShareSpec>;
   std::shared_ptr<HybridOneShareSpec> create_std__shared_ptr_HybridOneShareSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneShareSpec_(std__shared_ptr_HybridOneShareSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneShareSpec>
   using std__weak_ptr_HybridOneShareSpec_ = std::weak_ptr<HybridOneShareSpec>;
   inline std__weak_ptr_HybridOneShareSpec_ weakify_std__shared_ptr_HybridOneShareSpec_(const std::shared_ptr<HybridOneShareSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<ShareResult>>>
   using Result_std__shared_ptr_Promise_ShareResult___ = Result<std::shared_ptr<Promise<ShareResult>>>;
   inline Result_std__shared_ptr_Promise_ShareResult___ create_Result_std__shared_ptr_Promise_ShareResult___(const std::shared_ptr<Promise<ShareResult>>& value) noexcept {
@@ -4924,7 +5262,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_ShareResult___ create_Result_std__shared_ptr_Promise_ShareResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ShareResult>>>::withError(error);
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<SpeechPermissionResponse>>
   /**
    * Specialized version of `std::shared_ptr<Promise<SpeechPermissionResponse>>`.
@@ -4936,7 +5274,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<SpeechPermissionResponse> wrap_std__shared_ptr_Promise_SpeechPermissionResponse__(std::shared_ptr<Promise<SpeechPermissionResponse>> promise) noexcept {
     return PromiseHolder<SpeechPermissionResponse>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const SpeechPermissionResponse& /* result */)>
   /**
    * Specialized version of `std::function<void(const SpeechPermissionResponse&)>`.
@@ -4958,7 +5296,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_SpeechPermissionResponse_Wrapper wrap_Func_void_SpeechPermissionResponse(Func_void_SpeechPermissionResponse value) noexcept {
     return Func_void_SpeechPermissionResponse_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::optional<SpeechErrorCode>
   /**
    * Specialized version of `std::optional<SpeechErrorCode>`.
@@ -4973,7 +5311,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline SpeechErrorCode get_std__optional_SpeechErrorCode_(const std::optional<SpeechErrorCode>& optional) noexcept {
     return optional.value();
   }
-
+  
   // pragma MARK: std::function<void(const SpeechEvent& /* event */)>
   /**
    * Specialized version of `std::function<void(const SpeechEvent&)>`.
@@ -4995,7 +5333,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_SpeechEvent_Wrapper wrap_Func_void_SpeechEvent(Func_void_SpeechEvent value) noexcept {
     return Func_void_SpeechEvent_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneSpeechSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneSpeechSpec>`.
@@ -5003,11 +5341,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneSpeechSpec_ = std::shared_ptr<HybridOneSpeechSpec>;
   std::shared_ptr<HybridOneSpeechSpec> create_std__shared_ptr_HybridOneSpeechSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneSpeechSpec_(std__shared_ptr_HybridOneSpeechSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneSpeechSpec>
   using std__weak_ptr_HybridOneSpeechSpec_ = std::weak_ptr<HybridOneSpeechSpec>;
   inline std__weak_ptr_HybridOneSpeechSpec_ weakify_std__shared_ptr_HybridOneSpeechSpec_(const std::shared_ptr<HybridOneSpeechSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>
   using Result_std__shared_ptr_Promise_SpeechPermissionResponse___ = Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>;
   inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::shared_ptr<Promise<SpeechPermissionResponse>>& value) noexcept {
@@ -5016,7 +5354,95 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>::withError(error);
   }
-
+  
+  // pragma MARK: std::function<void(const SpeechSynthesisEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const SpeechSynthesisEvent&)>`.
+   */
+  using Func_void_SpeechSynthesisEvent = std::function<void(const SpeechSynthesisEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const SpeechSynthesisEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_SpeechSynthesisEvent_Wrapper final {
+  public:
+    explicit Func_void_SpeechSynthesisEvent_Wrapper(std::function<void(const SpeechSynthesisEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const SpeechSynthesisEvent& /* event */)>>(std::move(func))) {}
+    inline void call(SpeechSynthesisEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const SpeechSynthesisEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_SpeechSynthesisEvent create_Func_void_SpeechSynthesisEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_SpeechSynthesisEvent_Wrapper wrap_Func_void_SpeechSynthesisEvent(Func_void_SpeechSynthesisEvent value) noexcept {
+    return Func_void_SpeechSynthesisEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<SpeechSynthesisVoice>
+  /**
+   * Specialized version of `std::vector<SpeechSynthesisVoice>`.
+   */
+  using std__vector_SpeechSynthesisVoice_ = std::vector<SpeechSynthesisVoice>;
+  inline std::vector<SpeechSynthesisVoice> create_std__vector_SpeechSynthesisVoice_(size_t size) noexcept {
+    std::vector<SpeechSynthesisVoice> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice___ = std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>;
+  inline std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>> create_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice___() noexcept {
+    return Promise<std::vector<SpeechSynthesisVoice>>::create();
+  }
+  inline PromiseHolder<std::vector<SpeechSynthesisVoice>> wrap_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice___(std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>> promise) noexcept {
+    return PromiseHolder<std::vector<SpeechSynthesisVoice>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<SpeechSynthesisVoice>&)>`.
+   */
+  using Func_void_std__vector_SpeechSynthesisVoice_ = std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<SpeechSynthesisVoice>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_SpeechSynthesisVoice__Wrapper final {
+  public:
+    explicit Func_void_std__vector_SpeechSynthesisVoice__Wrapper(std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<SpeechSynthesisVoice> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_SpeechSynthesisVoice_ create_Func_void_std__vector_SpeechSynthesisVoice_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_SpeechSynthesisVoice__Wrapper wrap_Func_void_std__vector_SpeechSynthesisVoice_(Func_void_std__vector_SpeechSynthesisVoice_ value) noexcept {
+    return Func_void_std__vector_SpeechSynthesisVoice__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneSpeechSynthesisSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneSpeechSynthesisSpec>`.
+   */
+  using std__shared_ptr_HybridOneSpeechSynthesisSpec_ = std::shared_ptr<HybridOneSpeechSynthesisSpec>;
+  std::shared_ptr<HybridOneSpeechSynthesisSpec> create_std__shared_ptr_HybridOneSpeechSynthesisSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneSpeechSynthesisSpec_(std__shared_ptr_HybridOneSpeechSynthesisSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneSpeechSynthesisSpec>
+  using std__weak_ptr_HybridOneSpeechSynthesisSpec_ = std::weak_ptr<HybridOneSpeechSynthesisSpec>;
+  inline std__weak_ptr_HybridOneSpeechSynthesisSpec_ weakify_std__shared_ptr_HybridOneSpeechSynthesisSpec_(const std::shared_ptr<HybridOneSpeechSynthesisSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>
+  using Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ = Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ create_Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____(const std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ create_Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>::withError(error);
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneStoreReviewSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneStoreReviewSpec>`.
@@ -5024,11 +5450,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneStoreReviewSpec_ = std::shared_ptr<HybridOneStoreReviewSpec>;
   std::shared_ptr<HybridOneStoreReviewSpec> create_std__shared_ptr_HybridOneStoreReviewSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneStoreReviewSpec_(std__shared_ptr_HybridOneStoreReviewSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneStoreReviewSpec>
   using std__weak_ptr_HybridOneStoreReviewSpec_ = std::weak_ptr<HybridOneStoreReviewSpec>;
   inline std__weak_ptr_HybridOneStoreReviewSpec_ weakify_std__shared_ptr_HybridOneStoreReviewSpec_(const std::shared_ptr<HybridOneStoreReviewSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: std::shared_ptr<Promise<OneUpdatesCheckResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<OneUpdatesCheckResult>>`.
@@ -5040,7 +5466,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<OneUpdatesCheckResult> wrap_std__shared_ptr_Promise_OneUpdatesCheckResult__(std::shared_ptr<Promise<OneUpdatesCheckResult>> promise) noexcept {
     return PromiseHolder<OneUpdatesCheckResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const OneUpdatesCheckResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const OneUpdatesCheckResult&)>`.
@@ -5062,7 +5488,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_OneUpdatesCheckResult_Wrapper wrap_Func_void_OneUpdatesCheckResult(Func_void_OneUpdatesCheckResult value) noexcept {
     return Func_void_OneUpdatesCheckResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<Promise<OneUpdatesFetchResult>>
   /**
    * Specialized version of `std::shared_ptr<Promise<OneUpdatesFetchResult>>`.
@@ -5074,7 +5500,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline PromiseHolder<OneUpdatesFetchResult> wrap_std__shared_ptr_Promise_OneUpdatesFetchResult__(std::shared_ptr<Promise<OneUpdatesFetchResult>> promise) noexcept {
     return PromiseHolder<OneUpdatesFetchResult>(std::move(promise));
   }
-
+  
   // pragma MARK: std::function<void(const OneUpdatesFetchResult& /* result */)>
   /**
    * Specialized version of `std::function<void(const OneUpdatesFetchResult&)>`.
@@ -5096,7 +5522,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Func_void_OneUpdatesFetchResult_Wrapper wrap_Func_void_OneUpdatesFetchResult(Func_void_OneUpdatesFetchResult value) noexcept {
     return Func_void_OneUpdatesFetchResult_Wrapper(std::move(value));
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneUpdatesSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneUpdatesSpec>`.
@@ -5104,11 +5530,11 @@ namespace margelo::nitro::one::bridge::swift {
   using std__shared_ptr_HybridOneUpdatesSpec_ = std::shared_ptr<HybridOneUpdatesSpec>;
   std::shared_ptr<HybridOneUpdatesSpec> create_std__shared_ptr_HybridOneUpdatesSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
   void* NON_NULL get_std__shared_ptr_HybridOneUpdatesSpec_(std__shared_ptr_HybridOneUpdatesSpec_ cppType);
-
+  
   // pragma MARK: std::weak_ptr<HybridOneUpdatesSpec>
   using std__weak_ptr_HybridOneUpdatesSpec_ = std::weak_ptr<HybridOneUpdatesSpec>;
   inline std__weak_ptr_HybridOneUpdatesSpec_ weakify_std__shared_ptr_HybridOneUpdatesSpec_(const std::shared_ptr<HybridOneUpdatesSpec>& strong) noexcept { return strong; }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>
   using Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ = Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>;
   inline Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ create_Result_std__shared_ptr_Promise_OneUpdatesCheckResult___(const std::shared_ptr<Promise<OneUpdatesCheckResult>>& value) noexcept {
@@ -5117,7 +5543,7 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_OneUpdatesCheckResult___ create_Result_std__shared_ptr_Promise_OneUpdatesCheckResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<OneUpdatesCheckResult>>>::withError(error);
   }
-
+  
   // pragma MARK: Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>
   using Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ = Result<std::shared_ptr<Promise<OneUpdatesFetchResult>>>;
   inline Result_std__shared_ptr_Promise_OneUpdatesFetchResult___ create_Result_std__shared_ptr_Promise_OneUpdatesFetchResult___(const std::shared_ptr<Promise<OneUpdatesFetchResult>>& value) noexcept {

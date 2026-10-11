@@ -27,6 +27,61 @@ From `expo-clipboard`. See [Clipboard](/native/clipboard).
 | `setStringAsync(text)` | `One.Clipboard.setString(text)` |
 | `hasStringAsync()` | `One.Clipboard.hasString()` |
 
+## Battery
+
+From `expo-battery`. Import the hooks directly from `one`. `isBatteryOptimizationEnabledAsync` has no equivalent. See [Battery](/native/battery).
+
+| expo-battery | One |
+|---|---|
+| `getBatteryLevelAsync()` | `One.Battery.getLevel()` |
+| `getBatteryStateAsync()` | `One.Battery.getState()` |
+| `getPowerStateAsync()` | `One.Battery.getPowerState()` |
+| `isLowPowerModeEnabledAsync()` | `One.Battery.isLowPowerModeEnabled()` |
+| `isAvailableAsync()` | `One.Battery.isAvailable()` (synchronous) |
+| `addBatteryLevelListener(fn)` | `One.Battery.addLevelListener(fn)` |
+| `addBatteryStateListener(fn)` | `One.Battery.addStateListener(fn)` |
+| `addLowPowerModeListener(fn)` | `One.Battery.addLowPowerModeListener(fn)` |
+| `useBatteryLevel()` | `useBatteryLevel()` |
+| `useBatteryState()` | `useBatteryState()` |
+| `useLowPowerMode()` | `useLowPowerMode()` |
+| `usePowerState()` | `usePowerState()` |
+| `BatteryState.CHARGING` | `'charging'` (and likewise for every member) |
+
+## Brightness
+
+From `expo-brightness`. See [Brightness](/native/brightness).
+
+| expo-brightness | One |
+|---|---|
+| `getBrightnessAsync()` | `One.Brightness.get()` |
+| `setBrightnessAsync(value)` | `One.Brightness.set(value)` |
+| `getSystemBrightnessAsync()` | `One.Brightness.getSystem()` |
+| `setSystemBrightnessAsync(value)` | `One.Brightness.setSystem(value)` |
+| `getSystemBrightnessModeAsync()` | `One.Brightness.getSystemMode()` |
+| `setSystemBrightnessModeAsync(mode)` | `One.Brightness.setSystemMode(mode)` |
+| `isUsingSystemBrightnessAsync()` | `One.Brightness.isUsingSystem()` |
+| `restoreSystemBrightnessAsync()` | `One.Brightness.restoreSystem()` |
+| `getPermissionsAsync()` | `One.Brightness.getPermissions()` |
+| `requestPermissionsAsync()` | `One.Brightness.requestPermissions()` |
+| `isAvailableAsync()` | `One.Brightness.isAvailable()` (synchronous) |
+| `addBrightnessListener(fn)` | `One.Brightness.addListener(fn)` |
+| `BrightnessMode.MANUAL` | `'manual'` (and likewise for every member) |
+
+## Speech synthesis
+
+From `expo-speech`. `One.Speech` is microphone dictation; synthesis lives under `One.SpeechSynthesis`. See [Speech Synthesis](/native/speech-synthesis).
+
+| expo-speech | One |
+|---|---|
+| `speak(text, options?)` | `One.SpeechSynthesis.speak(text, options?)` |
+| `stop()` | `One.SpeechSynthesis.stop()` |
+| `pause()` | `One.SpeechSynthesis.pause()` |
+| `resume()` | `One.SpeechSynthesis.resume()` |
+| `isSpeakingAsync()` | `One.SpeechSynthesis.isSpeaking()` |
+| `getAvailableVoicesAsync()` | `One.SpeechSynthesis.getAvailableVoices()` |
+| `maxSpeechInputLength` | `One.SpeechSynthesis.maxInputLength` |
+| `VoiceQuality.Enhanced` | `'enhanced'` (and likewise for every member) |
+
 ## Network
 
 From `expo-network`. Import `useNetworkState` directly from `one`. See [Network](/native/network).

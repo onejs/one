@@ -2119,7 +2119,9 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
-      (app.imagePicker?.camera !== undefined || app.speech !== undefined)
+      (app.imagePicker?.camera !== undefined ||
+        app.speech !== undefined ||
+        app.brightness !== undefined)
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
       if (!rendered.includes(anchor)) {
@@ -2138,6 +2140,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           '    <uses-permission android:name="android.permission.RECORD_AUDIO" />',
           '    <queries>\n      <intent>\n        <action android:name="android.speech.RecognitionService" />\n      </intent>\n    </queries>'
         )
+      }
+      if (app.brightness !== undefined) {
+        // system brightness writes need the write-settings grant, which the
+        // user approves in system settings, never at a runtime prompt
+        stamps.push('    <uses-permission android:name="android.permission.WRITE_SETTINGS" />')
       }
       rendered = rendered.replace(anchor, `${anchor}\n${stamps.join('\n')}`)
     }

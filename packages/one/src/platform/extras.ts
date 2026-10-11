@@ -28,6 +28,37 @@ export type { SplitViewProps, SplitViewColumnProps } from './split-view'
 // uniform device services surfaced top-level on One. each service documents
 // its own methods and supported behavior for migration from expo modules.
 export { Clipboard } from './clipboard'
+export {
+  Battery,
+  useBatteryLevel,
+  useBatteryState,
+  useLowPowerMode,
+  usePowerState,
+} from './battery'
+export type {
+  BatteryLevelEvent,
+  BatteryPowerModeEvent,
+  BatteryPowerState,
+  BatteryState,
+  BatteryStateEvent,
+  BatterySubscription,
+} from './battery'
+export { Brightness } from './brightness'
+export type {
+  BrightnessEvent,
+  BrightnessMode,
+  BrightnessPermissionResponse,
+  BrightnessPermissionStatus,
+  BrightnessSubscription,
+} from './brightness'
+export { SpeechSynthesis } from './speech-synthesis'
+export type {
+  SpeechSynthesisEvent,
+  SpeechSynthesisEventType,
+  SpeechSynthesisOptions,
+  SpeechSynthesisVoice,
+  SpeechSynthesisVoiceQuality,
+} from './speech-synthesis'
 export { Browser } from './browser'
 export type {
   BrowserAuthSessionOptions,
