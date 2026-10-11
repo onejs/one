@@ -99,7 +99,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Slider` | pickers, forms, e2e:one-native-animation | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.PasteButton` | paste-button | n/a | OneSwiftPasteEditLibraryCase |  |
-| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-map-controls | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Label` | leaves, containers | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ProgressView` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Gauge` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
@@ -125,7 +125,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.SignInWithAppleButton` | apple-file, apple-auth | n/a | OneSwiftSignInWithAppleLibraryCase |  |
 | `One.iOS.PayWithApplePayButton` | e2e:one-native-picker-passkit | n/a | missing |  |
 | `One.iOS.AddPassToWalletButton` | e2e:one-native-picker-passkit | n/a | missing |  |
-| `One.iOS.Map` | map | n/a | OneSwiftMapLibraryCase |  |
+| `One.iOS.Map` | map, e2e:one-native-map-controls | n/a | OneSwiftMapLibraryCase |  |
+| `One.iOS.MapCompass` | e2e:one-native-map-controls | n/a | missing |  |
+| `One.iOS.MapPitchToggle` | e2e:one-native-map-controls | n/a | missing |  |
+| `One.iOS.MapUserLocationButton` | e2e:one-native-map-controls | n/a | missing |  |
 | `One.iOS.TextField` | pickers, forms, leaves, state | n/a | OneNativeTextFieldsLibraryCase |  |
 | `One.iOS.SecureField` | leaves | n/a | OneNativeTextFieldsLibraryCase |  |
 | `One.iOS.TextEditor` | editors | n/a | OneSwiftTextEditorLibraryCase |  |
@@ -226,7 +229,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.SafeArea` | safe-area | safe-area | OneNativeAdaptiveLibraryCase, OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |
 | `One.UI.TextInput` | ui-text-input | ui-text-input | OneNativeTextInputLibraryCase |  |
 | `One.UI.ReservedRegions` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven |
-| `One.Notifications` | notifications | notifications | missing |  |
+| `One.Notifications` | notifications, e2e:one-native-notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share, clipboard | OneNativeBehavioralLibraryCase |  |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
 | `One.LaunchScreen` | launch-screen | launch-screen | OneNativeLaunchScreenLibraryCase |  |
