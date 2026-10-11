@@ -485,7 +485,27 @@ async function waitFor(
   const deadline = started + timeoutMs
   lastFailedConjuncts = undefined
   while (Date.now() < deadline) {
-    const current = snapshot(config)
+    let current
+    try {
+      current = snapshot(config)
+    } catch (error) {
+      // a dump can come back empty while the app relaunches or the screen
+      // transitions, and the dump command itself can fail while the system
+      // is busy; neither is a verdict, so keep awaiting the condition until
+      // the deadline like any unmet predicate. every other error, including
+      // redbox detections and non-dump adb failures, still throws
+      // immediately.
+      if (
+        error instanceof Error &&
+        (error.message.includes('contained no nodes') ||
+          (error.message.includes('uiautomator dump') &&
+            error.message.includes('Command failed')))
+      ) {
+        await Bun.sleep(250)
+        continue
+      }
+      throw error
+    }
     if (predicate(current.nodes))
       return { snapshot: current, durationMs: Date.now() - started }
     await Bun.sleep(250)
@@ -647,6 +667,15 @@ function swipeFresh(config: Config, name: string, direction: 'forward' | 'backwa
 }
 
 async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
+  // the home list mounts after its header marker under load; swiping before
+  // the scroller exists throws instead of scrolling, so await it like any
+  // other condition.
+  const awaitHomeScroller = (name: string) =>
+    waitFor(
+      config,
+      `${name} scrollable ready`,
+      (nodes) => nodes.filter((node) => node.scrollable === true).length === 1
+    )
   const initial = snapshot(config)
   const initialTarget = matching(initial.nodes, { id: navId })[0]
   if (!initialTarget?.bounds || !visibleIn(initialTarget.bounds, applicationBounds(initial.nodes))) {
@@ -657,6 +686,7 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
         .filter((node) => node.resourceId.includes('nav-') && node.bounds)
         .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
         .join('|')
+      await awaitHomeScroller('Home navigation scroll first row')
       swipeFresh(config, 'Home navigation scroll view', 'backward')
       await waitFor(config, 'Home navigation scroll position moves toward the first row', (nodes) => {
         const nextPositions = nodes
@@ -713,6 +743,7 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
       .filter((node) => node.resourceId.includes('nav-') && node.bounds)
       .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
       .join('|')
+    await awaitHomeScroller('Home navigation scroll seek')
     swipeFresh(config, 'Home navigation scroll view')
     // a reload can absorb the first swipe while the list is still settling, so a swipe that
     // moves nothing retries instead of blocking for the full timeout.
