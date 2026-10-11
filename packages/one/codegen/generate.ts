@@ -1007,6 +1007,7 @@ for (const dir of new Set([...outputs.keys()].map((path) => dirname(path)))) {
 if (process.argv.includes('--check') && changed.length)
   throw new Error('Generated SwiftUI bindings differ: ' + changed.join(', '))
 // compile the assembled source so SDK provenance and emitted recipes are checked together.
+// react-native bridge integrations live in subdirectories and compile in the consumer target.
 run(swiftc, [
   '-typecheck',
   '-sdk',
