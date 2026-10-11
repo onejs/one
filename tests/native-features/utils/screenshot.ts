@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import sharp from 'sharp'
 import type { Browser } from 'webdriverio'
 
 const SCREENSHOT_DIR = '/tmp/appium-screenshots/native-features'
@@ -22,8 +23,11 @@ export async function captureScreenshot(
     .toLowerCase()
   const fileName = `${sanitized}-${timestamp}`
 
-  const screenshotPath = path.join(SCREENSHOT_DIR, `${fileName}.png`)
-  const base64 = await driver.saveScreenshot(screenshotPath)
+  const screenshotPath = path.join(SCREENSHOT_DIR, `${fileName}.webp`)
+  const encoded = await sharp(Buffer.from(await driver.takeScreenshot(), 'base64'))
+    .webp({ lossless: true })
+    .toBuffer()
+  await fs.promises.writeFile(screenshotPath, encoded)
 
   let sourcePath: string | undefined
   if (opts?.savePageSource) {
@@ -33,7 +37,7 @@ export async function captureScreenshot(
   }
 
   console.info(`[screenshot] saved: ${screenshotPath}`)
-  return { screenshotPath, base64: base64.toString(), sourcePath }
+  return { screenshotPath, base64: encoded.toString('base64'), sourcePath }
 }
 
 /**
