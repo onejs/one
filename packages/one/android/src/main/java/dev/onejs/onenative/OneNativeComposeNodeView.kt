@@ -2105,7 +2105,7 @@ private fun RenderComposeImage(
                 }
                 val hierarchy = view.hierarchy as? GenericDraweeHierarchy
                 hierarchy?.setActualImageScaleType(frescoScaleType(options.contentScale))
-                hierarchy?.setActualImageFocusPoint(frescoFocusPoint(options.alignment))
+                frescoFocusPoint(options.alignment)?.let { hierarchy?.setActualImageFocusPoint(it) }
                 if (view.tag != uri) {
                     view.tag = uri
                     if (uri.isNullOrEmpty()) {
