@@ -580,6 +580,11 @@ const testScreens = [
     testID: 'nav-one-native-adaptive',
   },
   {
+    href: '/one-native-adaptive-fold',
+    label: 'One Native Adaptive Fold',
+    testID: 'nav-one-native-adaptive-fold',
+  },
+  {
     href: '/one-ui-icon',
     label: 'One UI Icon',
     testID: 'nav-one-ui-icon',

@@ -36,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'system-clipboard' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'system-clipboard' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat' | 'adaptive-fold'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|system-clipboard|state|network|document-picker|launch-screen|adaptive-flat --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|system-clipboard|state|network|document-picker|launch-screen|adaptive-flat|adaptive-fold --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat' && value !== 'adaptive-fold') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2046,6 +2046,262 @@ async function run(config: Config) {
     }
   }
 
+  const adaptiveFold = async () => {
+    type Frame = { x: number; y: number; width: number; height: number }
+    type Region = {
+      id: string; kind: string; frame: Frame
+      margins: { top: number; left: number; bottom: number; right: number }
+      isActive: boolean
+    }
+    type Reading = {
+      ready: boolean; initialReady: boolean; layout: { width: number; height: number }
+      size: { horizontal: string; vertical: string }
+      hinge: { status: string; angle: number } | null
+      regions: Region[]; allRegions: Region[]
+      segments: Frame[]
+      spanning: boolean
+      reading: {
+        size: { horizontal: string; vertical: string }
+        hinge: { status: string; angle: number } | null
+        reads: number
+      } | null
+      listener: { events: number; value?: { status: string; angle: number } | null }
+      error: string
+    }
+    type Lifecycle = { subscriptions: number; removals: number; events: number; nonNullEvents: number; effectPasses: number }
+    const reading = (nodes: Node[]): Reading | null => {
+      const text = matching(nodes, { id: 'adaptive-fold-reading' })[0]?.text
+      return text ? JSON.parse(text) : null
+    }
+    const lifecycle = (nodes: Node[]): Lifecycle | null => {
+      const text = matching(nodes, { id: 'adaptive-fold-lifecycle' })[0]?.text
+      return text ? JSON.parse(text) : null
+    }
+    const hingeAngle = (degrees: string) =>
+      adbText(config, ['emu', 'sensor', 'set', 'hinge-angle0', degrees])
+    const deviceState = () =>
+      adbText(config, ['shell', 'cmd', 'device_state', 'print-state']).trim()
+    const mounted = (nodes: Node[], mounts: number, removals: number) => {
+      const value = lifecycle(nodes)
+      return !!value && (value.effectPasses === 1 || value.effectPasses === 2) &&
+        value.subscriptions === mounts * value.effectPasses &&
+        value.removals === removals + mounts * (value.effectPasses - 1)
+    }
+    const postureLog: { angle: string; deviceState: string; at: string }[] = []
+    const setPosture = async (degrees: '180' | '90' | '10') => {
+      const want = degrees === '180' ? '3' : degrees === '90' ? '2' : '1'
+      const response = hingeAngle(degrees)
+      if (!response.includes('OK')) throw new Error(`hinge-angle0 ${degrees} rejected: ${response}`)
+      // the device state trails the sensor write, so the log records the
+      // settled state rather than the read that raced it.
+      const deadline = Date.now() + 10_000
+      let state = ''
+      while (Date.now() < deadline) {
+        state = deviceState()
+        if (state === want) break
+        await Bun.sleep(250)
+      }
+      postureLog.push({ angle: degrees, deviceState: state, at: new Date().toISOString() })
+    }
+    // the 7.6in fold-in hinge is a vertical full-height strip at half width.
+    // the native region frame is unclipped window geometry in view coordinates,
+    // so it must cover the provider vertically and sit strictly inside it
+    // horizontally with its center on the provider's center.
+    const hingeStrip = (value: Reading, region: Region): Array<[string, (nodes: Node[]) => boolean]> => {
+      const { layout } = value
+      const frame = region?.frame
+      const center = frame ? frame.x + frame.width / 2 : NaN
+      return [
+        ['division kind and zero android margins', () =>
+          region.kind === 'division' && region.id.startsWith('division-') &&
+          region.margins.top === 0 && region.margins.left === 0 &&
+          region.margins.bottom === 0 && region.margins.right === 0],
+        ['strip strictly inside provider horizontally', () =>
+          frame.x > 0 && frame.x + frame.width < layout.width],
+        ['strip center on provider center', () =>
+          Math.abs(center - layout.width / 2) < 2],
+        ['strip narrower than five percent of provider', () =>
+          frame.width > 0 && frame.width < layout.width * 0.05],
+        ['strip covers provider vertically', () =>
+          frame.y <= 1 && frame.y + frame.height >= layout.height - 1],
+      ]
+    }
+    // observed 7.6in fold-in regimes (device_state first): flat 180 reports
+    // no folding feature, so the hinge is sensor-only unknown and both region
+    // lists stay empty; 90 reports a separating FLAT feature; 10 a separating
+    // HALF_OPENED feature. an inactive region never appears, so active/all
+    // filtering is pinned in its only observable regimes: both empty when
+    // flat, the same single active division otherwise.
+    // a posture change updates hooks and listeners through native events but
+    // leaves the last one-shot getter read stale, so each posture is asserted
+    // twice: hooks and regions first, then a refresh proves the getters agree.
+    // refreshing only after the hooks settle keeps the one-shot from racing
+    // the native events.
+    const flatPosture = (nodes: Node[], reads: number, checkGetters = true) => {
+      const value = reading(nodes)
+      if (!value || !value.reading) return false
+      return diagnose(nodes, [
+        ['native readiness after initially unready render', () => value.ready && value.initialReady === false],
+        ['full-bleed provider layout', () => value.layout.width > 600 && value.layout.height > 600],
+        ['flat active and all regions empty', () =>
+          value.regions.length === 0 && value.allRegions.length === 0],
+        ['flat hinge hook and listener unknown at pi', () =>
+          value.hinge?.status === 'unknown' && Math.abs(value.hinge.angle - Math.PI) < 0.15 &&
+          (!checkGetters || (value.reading!.hinge?.status === 'unknown' &&
+            Math.abs(value.reading!.hinge.angle - Math.PI) < 0.15)) &&
+          value.listener.events > 0 && value.listener.value?.status === 'unknown'],
+        ['no spanning and hinge events non-null', () =>
+          value.spanning === false && (lifecycle(nodes)?.nonNullEvents ?? 0) > 0],
+        ['unfolded window is regular regular', () =>
+          value.size.horizontal === 'regular' && value.size.vertical === 'regular'],
+        ...(!checkGetters ? [] : [['refreshed getters match hooks', () =>
+          !value.error && value.reading!.reads === reads &&
+          value.reading!.size.horizontal === value.size.horizontal &&
+          value.reading!.size.vertical === value.size.vertical] as [string, (nodes: Node[]) => boolean]]),
+        ['one segment spans provider', () =>
+          value.segments.length === 1 && Math.abs(value.segments[0].width - value.layout.width) < 1 &&
+          Math.abs(value.segments[0].height - value.layout.height) < 1],
+      ])
+    }
+    const foldedPosture = (
+      nodes: Node[], reads: number, status: string, angle: number, posture: string,
+      checkGetters = true
+    ) => {
+      const value = reading(nodes)
+      if (!value || !value.reading) return false
+      const [active] = value.regions
+      const [all] = value.allRegions
+      const [left, right] = value.segments
+      return diagnose(nodes, [
+        ['native readiness after initially unready render', () => value.ready && value.initialReady === false],
+        [`${posture} active and all hold the same division`, () =>
+          value.regions.length === 1 && value.allRegions.length === 1 &&
+          active.isActive === true && all.isActive === true &&
+          JSON.stringify(active) === JSON.stringify(all)],
+        ...hingeStrip(value, active),
+        [`${posture} hinge hook and listener agree`, () =>
+          value.hinge?.status === status && Math.abs(value.hinge.angle - angle) < 0.15 &&
+          (!checkGetters || (value.reading!.hinge?.status === status &&
+            Math.abs(value.reading!.hinge.angle - angle) < 0.15)) &&
+          value.listener.events > 0 && value.listener.value?.status === status],
+        ['two segments split at the hinge', () =>
+          value.segments.length === 2 && value.spanning === true &&
+          Math.abs(left.width - active.frame.x) < 1 &&
+          Math.abs(right.x - (active.frame.x + active.frame.width)) < 1 &&
+          Math.abs(right.width - (value.layout.width - active.frame.x - active.frame.width)) < 1 &&
+          Math.abs(left.height - value.layout.height) < 1 &&
+          Math.abs(right.height - value.layout.height) < 1],
+        ['folded window is regular regular', () =>
+          value.size.horizontal === 'regular' && value.size.vertical === 'regular'],
+        ...(!checkGetters ? [] : [['refreshed getters match hooks', () =>
+          !value.error && value.reading!.reads === reads &&
+          value.reading!.size.horizontal === value.size.horizontal &&
+          value.reading!.size.vertical === value.size.vertical] as [string, (nodes: Node[]) => boolean]]),
+      ])
+    }
+    const halfOpenPosture = (nodes: Node[], reads: number, checkGetters = true) =>
+      foldedPosture(nodes, reads, 'fullyOpen', Math.PI / 2, 'half-open', checkGetters)
+    const nearClosedPosture = (nodes: Node[], reads: number, checkGetters = true) =>
+      foldedPosture(nodes, reads, 'partiallyOpen', (10 * Math.PI) / 180, 'near-closed', checkGetters)
+    const foldDetail = () => ({
+      deviceState: deviceState(),
+      postureLog,
+      reading: reading(snapshot(config).nodes),
+      lifecycle: lifecycle(snapshot(config).nodes),
+    })
+    try {
+      const size = adbText(config, ['shell', 'wm', 'size'])
+      if (!size.includes('1768x2208'))
+        throw new Error(`adaptive-fold needs the unfolded 7.6in fold-in display, wm size: ${size.trim()}`)
+      const sensors = adbText(config, ['emu', 'sensor', 'status'])
+      if (!sensors.includes('hinge-angle0: enabled'))
+        throw new Error(`adaptive-fold needs hinge-angle0, sensor status: ${sensors.trim()}`)
+      await setPosture('180')
+      await expect('adaptive-fold-initial-flat-device-state', () => deviceState() === '3',
+        undefined, () => ({ postureLog }))
+      await tapNavigation(config, 'nav-one-native-adaptive-fold')
+      if (config.negativeControl) {
+        // the half-open conjuncts must fail on a flat posture: a check that
+        // passes here cannot discriminate the hinge region it claims to prove.
+        await expect('adaptive-fold-negative-flat-is-not-half-open', (nodes) =>
+          halfOpenPosture(nodes, 1), 'adaptive-fold-reading')
+        return
+      }
+      // the mount one-shot races subscription-time sensor delivery (a fresh
+      // process at a steady posture can read angle 0 while the hook settles
+      // at pi), so the first asserted posture follows a forced transition and
+      // every asserted angle was forced by one. each transition also changes
+      // the hinge status, so the listener value matching the new posture
+      // proves onHingeChange fired on that change without an event baseline.
+      // the mount gate below matters: the forced transition must land after
+      // the fixture subscribes, or the sensor event is lost unobserved.
+      await expect('adaptive-fold-mounted', (nodes) =>
+        matching(nodes, { id: 'adaptive-fold-reading' }).length === 1 &&
+        mounted(nodes, 1, 0), 'adaptive-fold-reading')
+      await setPosture('90')
+      await expect('adaptive-fold-half-open-device-state', () => deviceState() === '2',
+        undefined, () => ({ postureLog }))
+      await expect('adaptive-fold-half-open-hinge-region', (nodes) =>
+        halfOpenPosture(nodes, 1, false), 'adaptive-fold-reading', foldDetail)
+      tapFresh(config, 'Refresh half-open adaptive fold getters', { id: 'adaptive-fold-refresh' })
+      await expect('adaptive-fold-half-open-refreshed-getters', (nodes) => halfOpenPosture(nodes, 2),
+        undefined, foldDetail)
+      await setPosture('10')
+      await expect('adaptive-fold-near-closed-device-state', () => deviceState() === '1',
+        undefined, () => ({ postureLog }))
+      await expect('adaptive-fold-near-closed-partially-open', (nodes) =>
+        nearClosedPosture(nodes, 2, false), 'adaptive-fold-reading', foldDetail)
+      tapFresh(config, 'Refresh near-closed adaptive fold getters', { id: 'adaptive-fold-refresh' })
+      await expect('adaptive-fold-near-closed-refreshed-getters', (nodes) => nearClosedPosture(nodes, 3),
+        undefined, foldDetail)
+      await setPosture('180')
+      await expect('adaptive-fold-flat-device-state', () => deviceState() === '3',
+        undefined, () => ({ postureLog }))
+      const initial = await expect('adaptive-fold-flat-empty-hooks', (nodes) =>
+        flatPosture(nodes, 3, false) && mounted(nodes, 1, 0), 'adaptive-fold-reading', foldDetail)
+      const bounds = validBounds(nodeById(initial.nodes, 'adaptive-fold-provider'), 'Adaptive fold native provider')
+      await expect('adaptive-fold-native-provider-full-bleed', () => {
+        const viewport = applicationBounds(initial.nodes)
+        return bounds.left <= viewport.left + 2 && bounds.right >= viewport.right - 2 &&
+          bounds.bottom - bounds.top > (viewport.bottom - viewport.top) * 0.5
+      }, undefined, () => ({ bounds, viewport: applicationBounds(initial.nodes) }))
+      tapFresh(config, 'Refresh adaptive fold getters', { id: 'adaptive-fold-refresh' })
+      await expect('adaptive-fold-flat-no-feature', (nodes) =>
+        flatPosture(nodes, 4) && mounted(nodes, 1, 0), 'adaptive-fold-reading', foldDetail)
+      const preUnmountEvents = lifecycle(snapshot(config).nodes)?.events ?? 0
+      tapFresh(config, 'Unmount adaptive fold provider', { id: 'adaptive-fold-toggle' })
+      await expect('adaptive-fold-unmount-removes-listener', (nodes) =>
+        matching(nodes, { id: 'adaptive-fold-reading' }).length === 0 &&
+        matching(nodes, { id: 'adaptive-fold-refresh' }).length === 0 && mounted(nodes, 1, 1))
+      // two posture flips while unmounted: a removed listener must stay silent.
+      await setPosture('10')
+      await expect('adaptive-fold-unmounted-near-closed-device-state', () => deviceState() === '1',
+        undefined, () => ({ postureLog }))
+      await setPosture('180')
+      await expect('adaptive-fold-unmounted-flat-device-state', () => deviceState() === '3',
+        undefined, () => ({ postureLog }))
+      await Bun.sleep(2000)
+      await expect('adaptive-fold-removed-listener-stays-silent', (nodes) =>
+        lifecycle(nodes)?.events === preUnmountEvents)
+      tapFresh(config, 'Remount adaptive fold provider', { id: 'adaptive-fold-toggle' })
+      await expect('adaptive-fold-remount-flat-native-ready', (nodes) =>
+        flatPosture(nodes, 1) && mounted(nodes, 2, 1), 'adaptive-fold-reading', foldDetail)
+      await setPosture('90')
+      await expect('adaptive-fold-restored-half-open-device-state', () => deviceState() === '2',
+        undefined, () => ({ postureLog }))
+      await expect('adaptive-fold-restored-half-open-hooks', (nodes) =>
+        halfOpenPosture(nodes, 1, false) && mounted(nodes, 2, 1),
+        'adaptive-fold-reading', foldDetail)
+      tapFresh(config, 'Refresh restored half-open adaptive fold getters', { id: 'adaptive-fold-refresh' })
+      await expect('adaptive-fold-restored-half-open-region', (nodes) =>
+        halfOpenPosture(nodes, 2) && mounted(nodes, 2, 1), 'adaptive-fold-reading', foldDetail)
+      writeFileSync(path.join(config.artifactDir, 'adaptive-fold-postures.json'),
+        JSON.stringify({ postureLog }, null, 2))
+    } finally {
+      hingeAngle('180')
+    }
+  }
+
   const launchScreen = async () => {
     // the proof setup calls preventAutoHide before react's first render.
     // android exposes that render to accessibility while pre-draw stays held.
@@ -2993,6 +3249,11 @@ async function run(config: Config) {
     }
     if (config.suite === 'adaptive-flat') {
       await adaptiveFlat()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'adaptive-fold') {
+      await adaptiveFold()
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }

@@ -24,6 +24,7 @@ declare module 'one' {
         | `/one-native`
         | `/one-native-accessibility`
         | `/one-native-adaptive`
+        | `/one-native-adaptive-fold`
         | `/one-native-android`
         | `/one-native-android-badges`
         | `/one-native-android-cards`
@@ -44,6 +45,7 @@ declare module 'one' {
         | `/one-native-android-selection`
         | `/one-native-android-surface`
         | `/one-native-angular-gradient`
+        | `/one-native-animation`
         | `/one-native-app-icon`
         | `/one-native-app-info`
         | `/one-native-app-intents`
@@ -69,6 +71,7 @@ declare module 'one' {
         | `/one-native-cover-context`
         | `/one-native-crypto`
         | `/one-native-database`
+        | `/one-native-derived-views`
         | `/one-native-device`
         | `/one-native-device-attestation`
         | `/one-native-dialogs`

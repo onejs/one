@@ -26,25 +26,25 @@ const knownGaps: Record<string, string> = {
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
   'UI.ReservedRegions':
-    'iOS and Android flat native readiness, bounds and empty regions proven; folding and nonempty occlusions unproven',
+    'iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven',
   useSizeClass:
     'iOS flat getter/hook agreement and Android live portrait/landscape changes proven; iOS live trait changes unproven',
   getSizeClass:
     'iOS flat refreshed reads and Android portrait/landscape reads proven; iOS live trait changes unproven',
   useHinge:
-    'iOS and Android flat null proven; hardware posture and angles unproven',
+    'iOS and Android flat null proven; Android folding postures and sensor angles proven on the 7.6in fold-in; iOS hardware unproven',
   getHinge:
-    'iOS and Android flat null reads proven; hardware posture and angles unproven',
+    'iOS and Android flat null reads proven; Android folding posture reads proven on the 7.6in fold-in; iOS hardware unproven',
   onHingeChange:
-    'iOS and Android initial null callbacks, cleanup calls and two remounts proven; hardware events and callback suppression after removal unproven',
+    'iOS and Android initial null callbacks, cleanup calls and two remounts proven; Android folding hardware events and post-removal suppression proven on the 7.6in fold-in; iOS hardware events unproven',
   useReservedRegions:
-    'iOS and Android flat empty active/all regions proven; nonempty filtering unproven',
+    'iOS and Android flat empty active/all regions proven; Android folding nonempty active/all equality proven; inactive filtering unproven (no inactive region on the 7.6in emulator)',
   useReservedRegionsReady:
-    'iOS and Android first native reading and two remounts proven; folding hardware unproven',
+    'iOS and Android first native reading and two remounts proven; Android folding first reading and folded remount proven',
   useWindowSegments:
-    'iOS and Android one segment tracks provider resize; folding segments unproven',
+    'iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in',
   useSpanning:
-    'iOS and Android flat false proven; spanning divisions unproven',
+    'iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in',
   'UI.EdgeFade':
     'iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven',
   'UI.Blur':

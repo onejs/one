@@ -90,11 +90,12 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ToolbarItem` | navigation, navigation-split-view | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarItemGroup` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarSpacer` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
+| `One.iOS.withAnimation` | e2e:one-native-animation | n/a | missing |  |
 | `One.iOS.Picker` | pickers, picker-palette, forms, navigation | n/a | OneNativeFormControlsLibraryCase, OneNativeFormLayoutLibraryCase | palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven |
 | `One.iOS.DatePicker` | pickers, forms | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.ColorPicker` | pickers, forms | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Toggle` | pickers, forms, host, containers, lists, list-row-background, state, accessibility | n/a | OneNativeFormControlsLibraryCase |  |
-| `One.iOS.Slider` | pickers, forms | n/a | OneNativeFormControlsLibraryCase |  |
+| `One.iOS.Slider` | pickers, forms, e2e:one-native-animation | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.PasteButton` | paste-button | n/a | OneSwiftPasteEditLibraryCase |  |
 | `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
@@ -129,8 +130,16 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ConfirmationDialog` | dialogs, dialogs-lifecycle | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.QuickLook` | media | n/a | OneSwiftQuickLookLibraryCase |  |
 | `One.iOS.FileImporter` | apple-file | n/a | OneSwiftFileImporterLibraryCase |  |
+| `One.iOS.Chart` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.AsyncImage` | e2e:one-native-derived-views | n/a | missing |  |
 | `One.iOS.EditButton` | edit-button | n/a | OneSwiftPasteEditLibraryCase | Edit/Done label cycle proven; List edit state unobserved and row actions unavailable |
 | `One.iOS.EmptyView` | tab-slot | n/a | OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.LocationButton` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.ProductView` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.RenameButton` | missing | n/a | missing |  |
+| `One.iOS.ShortcutsLink` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.StoreView` | missing | n/a | missing |  |
+| `One.iOS.SubscriptionStoreView` | e2e:one-native-derived-views | n/a | missing |  |
 | `One.iOS.WidgetUI` | realapps:widgets | n/a | missing | bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted |
 | `One.iOS.CameraView` | camera-preview | n/a | missing |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a | missing |  |
@@ -213,7 +222,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.Fonts` | fonts | fonts | OneNativeBehavioralLibraryCase |  |
 | `One.UI.SafeArea` | safe-area | safe-area | OneNativeAdaptiveLibraryCase, OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |
 | `One.UI.TextInput` | ui-text-input | ui-text-input | OneNativeTextInputLibraryCase |  |
-| `One.UI.ReservedRegions` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; folding and nonempty occlusions unproven |
+| `One.UI.ReservedRegions` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven |
 | `One.Notifications` | notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share, clipboard | OneNativeBehavioralLibraryCase |  |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
@@ -227,16 +236,16 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
 | `One.Speech` | speech | speech | OneNativeBehavioralLibraryCase |  |
 | `One.Updates` | updates | updates | OneNativeBehavioralLibraryCase |  |
-| `useSizeClass` | adaptive-flat, navigation-split-view | adaptive | OneNativeAdaptiveLibraryCase | iOS flat getter/hook agreement and Android live portrait/landscape changes proven; iOS live trait changes unproven |
-| `getSizeClass` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS flat refreshed reads and Android portrait/landscape reads proven; iOS live trait changes unproven |
-| `useHinge` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat null proven; hardware posture and angles unproven |
-| `getHinge` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat null reads proven; hardware posture and angles unproven |
-| `onHingeChange` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android initial null callbacks, cleanup calls and two remounts proven; hardware events and callback suppression after removal unproven |
-| `useReservedRegions` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat empty active/all regions proven; nonempty filtering unproven |
-| `useReservedRegionsReady` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android first native reading and two remounts proven; folding hardware unproven |
-| `useWindowSegments` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; folding segments unproven |
-| `useSpanning` | adaptive-flat | adaptive | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; spanning divisions unproven |
-| `useNativeState` | state, ui-text-input | state | missing |  |
+| `useSizeClass` | adaptive-flat, navigation-split-view | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS flat getter/hook agreement and Android live portrait/landscape changes proven; iOS live trait changes unproven |
+| `getSizeClass` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS flat refreshed reads and Android portrait/landscape reads proven; iOS live trait changes unproven |
+| `useHinge` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat null proven; Android folding postures and sensor angles proven on the 7.6in fold-in; iOS hardware unproven |
+| `getHinge` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat null reads proven; Android folding posture reads proven on the 7.6in fold-in; iOS hardware unproven |
+| `onHingeChange` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android initial null callbacks, cleanup calls and two remounts proven; Android folding hardware events and post-removal suppression proven on the 7.6in fold-in; iOS hardware events unproven |
+| `useReservedRegions` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat empty active/all regions proven; Android folding nonempty active/all equality proven; inactive filtering unproven (no inactive region on the 7.6in emulator) |
+| `useReservedRegionsReady` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android first native reading and two remounts proven; Android folding first reading and folded remount proven |
+| `useWindowSegments` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
+| `useSpanning` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
+| `useNativeState` | state, ui-text-input, e2e:one-native-animation | state | missing |  |
 | `useFonts` | fonts | fonts | missing |  |
 | `useNetworkState` | network | network | missing |  |
 | `useSafeAreaInsets` | safe-area, navigation-split-view | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
