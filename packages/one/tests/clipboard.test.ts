@@ -175,6 +175,22 @@ describe('clipboard native entry', () => {
     expect(nativeModule.clearClipboardListener).toHaveBeenCalledTimes(1)
   })
 
+  it('counts same-callback subscriptions independently', async () => {
+    const nativeModule = {
+      setClipboardListener: vi.fn(() => {}),
+      clearClipboardListener: vi.fn(() => {}),
+    }
+    const { Clipboard: native } = await loadNativeEntry(nativeModule)
+    const deliveries: unknown[] = []
+    const callback = (event: unknown) => deliveries.push(event)
+    const first = native.addListener(callback)
+    native.addListener(callback)
+    first.remove()
+    nativeModule.setClipboardListener.mock.calls[0][0](['image'])
+    expect(deliveries).toEqual([{ contentTypes: ['image'] }])
+    expect(nativeModule.clearClipboardListener).not.toHaveBeenCalled()
+  })
+
   it('throws the same write check as the web entry', async () => {
     const { Clipboard: native } = await loadNativeEntry(null)
     expect(() => native.setString(7 as unknown as string)).toThrow(

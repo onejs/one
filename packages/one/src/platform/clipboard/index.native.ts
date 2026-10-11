@@ -102,8 +102,10 @@ function hasUrl(): Promise<boolean> {
 
 // one native listener slot fanned out to js listeners, mirroring the
 // notifications entry: installed on the first add, cleared on the last
-// remove.
-const listeners = new Set<(event: ClipboardEvent) => void>()
+// remove. one entry per subscription, not per callback: subscribing the
+// same callback twice counts twice, and removing one subscription leaves
+// the other live with native observation intact.
+const listeners = new Set<{ callback: (event: ClipboardEvent) => void }>()
 
 function toContentType(value: string): ClipboardContentType | null {
   if (
@@ -129,13 +131,17 @@ function addListener(
           return mapped ? [mapped] : []
         }),
       }
-      listeners.forEach((entry) => entry(event))
+      listeners.forEach((entry) => entry.callback(event))
     })
   }
-  listeners.add(listener)
+  const subscription = { callback: listener }
+  listeners.add(subscription)
+  let removed = false
   return {
     remove: () => {
-      listeners.delete(listener)
+      if (removed) return
+      removed = true
+      listeners.delete(subscription)
       if (listeners.size === 0) {
         hybrid?.clearClipboardListener()
       }
