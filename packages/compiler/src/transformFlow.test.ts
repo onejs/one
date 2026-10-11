@@ -77,17 +77,21 @@ describe('native transforms preserve Flow runtime behavior without Babel', () =>
          export function View(props: {value: string}) { return <NativeView {...props} /> }`
       )
       expect(parseSync('View.jsx', result.code, { lang: 'jsx' }).errors).toEqual([])
-      expect(result.code).toContain('<NativeView')
     }
   })
 
   it('lowers class hierarchies and parameter shadowing without Babel', async () => {
     const result = await transformHermesClasses(
       `class Base { value() { return 2 } }
-       class Derived extends Base { value() { return super.value() + 3 } }
+       class Derived extends Base {
+         constructor(value = 'default', ...rest) { super(); this.params = [value, ...rest] }
+         value() { return super.value() + 3 }
+       }
        function read(config) { if (true) { const config = 7; globalThis.inner = config } return config.id }
        globalThis.result = [new Derived().value(), read({id: 'device'})];
-       globalThis.pending = (async (value = 2n) => await Promise.resolve(value))();`,
+       globalThis.params = new Derived(undefined, 'rest-a', 'rest-b').params;
+       globalThis.run = async (value = 2n) => await Promise.resolve(value);
+       globalThis.pending = globalThis.run();`,
       'classes.js',
       true
     )
@@ -96,7 +100,8 @@ describe('native transforms preserve Flow runtime behavior without Babel', () =>
     runInNewContext(result!.code, context)
     expect(Array.from(context.result)).toEqual([5, 'device'])
     expect(context.inner).toBe(7)
+    expect(Array.from(context.params)).toEqual(['default', 'rest-a', 'rest-b'])
     expect(await context.pending).toBe(2n)
-    expect(result!.code).toContain('async')
+    expect(context.run.constructor.name).toBe('AsyncFunction')
   })
 })

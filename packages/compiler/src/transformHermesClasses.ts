@@ -20,7 +20,11 @@ export async function transformHermesClasses(
       parser: { syntax: 'ecmascript', jsx: true },
       transform: { react: { runtime: 'preserve' } },
     },
-    env: { include: ['transform-classes', 'transform-block-scoping'] },
+    // class lowering emits strict constructors, so their defaults and rest
+    // parameters must be lowered with them; async lowering belongs to its stage.
+    env: {
+      include: ['transform-classes', 'transform-block-scoping', 'transform-parameters'],
+    },
   })
   if (!result?.code) return
   return {

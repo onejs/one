@@ -7,6 +7,7 @@ import type { PluginOption } from 'vite';
 import type { Options } from './types';
 export * from './configure';
 export * from './transformBabel';
+export * from './transformFlow';
 export * from './transformSWC';
 export * from './transformWorklets';
 export * from './reactNativeCodegen';
