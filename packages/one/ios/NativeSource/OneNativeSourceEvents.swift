@@ -4,6 +4,6 @@ import Foundation
 // the bridge itself is objective-c so the classic module registry sees it.
 @MainActor public enum OneNativeSourceEmitter {
   @MainActor public static func send(_ channel: String, _ argsJson: String) {
-    OneNativeSourceEvents.sendChannel(channel, argsJson: argsJson)
+    OneNativeSourceSendEvent(channel, argsJson)
   }
 }

@@ -113,6 +113,20 @@ describe('one native integration tests', () => {
     )
   })
 
+  describe('Notification categories', () => {
+    test('round-trips options and text actions, and replaces one category', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-notifications')
+      await (await waitForElement(driver, 'one-native-notifications-category-roundtrip')).click()
+      const result = await waitForElement(driver, 'one-native-notifications-category-roundtrip-result')
+      await result.waitUntil(async () => (await result.getText()) !== 'Category round trip: ready', {
+        timeout: 5000,
+        timeoutMsg: 'notification category round trip did not finish',
+      })
+      expect(await result.getText()).toBe('Category round trip: passed')
+      await captureScreenshot(driver, 'one-native-notifications-category-roundtrip')
+    })
+  })
+
   // -- native source --
 
   describe('Native Source', () => {

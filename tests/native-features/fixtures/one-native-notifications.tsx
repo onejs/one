@@ -19,6 +19,7 @@ function lastLabel() {
 }
 
 export default function OneNativeNotifications() {
+  const [roundTrip, setRoundTrip] = useState('Category round trip: ready')
   const [category, setCategory] = useState('Category: unknown')
   const [categories, setCategories] = useState('Categories: unknown')
   const [categoryDeleted, setCategoryDeleted] = useState('CategoryDeleted: unknown')
@@ -53,6 +54,57 @@ export default function OneNativeNotifications() {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
       <Text>One.Notifications: mounted</Text>
+      <Text testID="one-native-notifications-category-roundtrip-result">{roundTrip}</Text>
+      <Pressable
+        accessibilityRole="button"
+        testID="one-native-notifications-category-roundtrip"
+        style={styles.chip}
+        onPress={async () => {
+          const identifier = 'one-category-roundtrip'
+          const sentinel = 'one-category-sentinel'
+          try {
+            await One.Notifications.setCategory(sentinel, [])
+            await One.Notifications.setCategory(identifier, [{
+              identifier: 'reply', buttonTitle: 'Reply',
+              textInput: { placeholder: 'Message', submitButtonTitle: 'Send reply' },
+            }], {
+              customDismissAction: true, showTitle: true, showSubtitle: true,
+              intentIdentifiers: ['one-intent'], previewPlaceholder: 'Hidden message',
+              categorySummaryFormat: '%u messages from %@',
+            })
+            const list = await One.Notifications.getCategories()
+            const stored = list.find((item) => item.identifier === identifier)
+            const options = stored?.options
+            if (!list.some((item) => item.identifier === sentinel)
+              || stored?.actions[0]?.textInput?.placeholder !== 'Message'
+              || stored?.actions[0]?.textInput?.submitButtonTitle !== 'Send reply'
+              || options?.customDismissAction !== true
+              || options?.showTitle !== true || options?.showSubtitle !== true
+              || options?.intentIdentifiers?.[0] !== 'one-intent'
+              || options?.previewPlaceholder !== 'Hidden message'
+              || options?.categorySummaryFormat !== '%u messages from %@') {
+              throw new Error(`category fields changed: ${JSON.stringify(stored)}`)
+            }
+            await One.Notifications.setCategory(identifier, [])
+            const replaced = await One.Notifications.getCategories()
+            const matches = replaced.filter((item) => item.identifier === identifier)
+            if (matches.length !== 1 || matches[0].actions.length !== 0
+              || !replaced.some((item) => item.identifier === sentinel)) {
+              throw new Error('category replacement changed the registered set')
+            }
+            setRoundTrip('Category round trip: passed')
+          } catch (error) {
+            setRoundTrip(`Category round trip: error ${show(error)}`)
+          } finally {
+            await Promise.all([
+              One.Notifications.deleteCategory(identifier),
+              One.Notifications.deleteCategory(sentinel),
+            ]).catch((error) => setRoundTrip(`Category round trip: error ${show(error)}`))
+          }
+        }}
+      >
+        <Text>Check iOS category round trip</Text>
+      </Pressable>
       <Text>{permission}</Text>
       <Pressable
         accessibilityRole="button"

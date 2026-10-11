@@ -1,12 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <React/RCTEventEmitter.h>
 
-// the device event channel for native-source module events. generated glue
-// posts one json array per event; javascript subscribes by channel name.
-@interface OneNativeSourceEvents : RCTEventEmitter
-
-// posts argsJson (a json array string) on channel, registering the channel
-// first so debug builds never warn about an unlisted event.
-+ (void)sendChannel:(NSString *)channel argsJson:(NSString *)argsJson;
-
-@end
+// the public bridge uses foundation types so importing one does not pull react
+// into the clang module before nitrogen's c++ headers are imported.
+FOUNDATION_EXPORT void OneNativeSourceSendEvent(NSString *channel, NSString *argsJson);

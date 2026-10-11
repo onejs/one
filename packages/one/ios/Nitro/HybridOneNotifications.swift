@@ -106,11 +106,12 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
     let placeholder = category.options?.previewPlaceholder
     let stored = UNNotificationCategory(
       identifier: category.identifier, actions: actions, intentIdentifiers: intentIdentifiers,
-      hiddenPreviewsBodyPlaceholder: placeholder, options: options)
+      hiddenPreviewsBodyPlaceholder: placeholder,
+      categorySummaryFormat: category.options?.categorySummaryFormat, options: options)
     let promise = Promise<NativeNotificationCategory>()
     UNUserNotificationCenter.current().getNotificationCategories { existing in
       var next = existing.filter { $0.identifier != category.identifier }
-      next.insert(stored, at: 0)
+      next.insert(stored)
       UNUserNotificationCenter.current().setNotificationCategories(next)
       promise.resolve(withResult: category)
     }
@@ -183,34 +184,20 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
         textInputPlaceholder: text?.textInputPlaceholder,
         textInputSubmitTitle: text?.textInputButtonTitle)
     }
-    var options: NativeNotificationCategoryOptions?
-    var resolved = NativeNotificationCategoryOptions()
-    var empty = true
-    if category.options.contains(.allowInCarPlay) {
-      resolved.allowInCarPlay = true
-      empty = false
-    }
-    if category.options.contains(.customDismissAction) {
-      resolved.customDismissAction = true
-      empty = false
-    }
-    if category.options.contains(.hiddenPreviewsShowTitle) {
-      resolved.showTitle = true
-      empty = false
-    }
-    if category.options.contains(.hiddenPreviewsShowSubtitle) {
-      resolved.showSubtitle = true
-      empty = false
-    }
-    if !category.intentIdentifiers.isEmpty {
-      resolved.intentIdentifiers = category.intentIdentifiers
-      empty = false
-    }
-    if let placeholder = category.hiddenPreviewsBodyPlaceholder {
-      resolved.previewPlaceholder = placeholder
-      empty = false
-    }
-    if !empty { options = resolved }
+    let placeholder = category.hiddenPreviewsBodyPlaceholder
+    let summary = category.categorySummaryFormat
+    let hasOptions = !category.options.isEmpty || !category.intentIdentifiers.isEmpty
+      || !placeholder.isEmpty || !summary.isEmpty
+    let options: NativeNotificationCategoryOptions? = hasOptions
+      ? NativeNotificationCategoryOptions(
+        allowInCarPlay: category.options.contains(.allowInCarPlay) ? true : nil,
+        categorySummaryFormat: summary.isEmpty ? nil : summary,
+        customDismissAction: category.options.contains(.customDismissAction) ? true : nil,
+        intentIdentifiers: category.intentIdentifiers.isEmpty ? nil : category.intentIdentifiers,
+        previewPlaceholder: placeholder.isEmpty ? nil : placeholder,
+        showTitle: category.options.contains(.hiddenPreviewsShowTitle) ? true : nil,
+        showSubtitle: category.options.contains(.hiddenPreviewsShowSubtitle) ? true : nil)
+      : nil
     return NativeNotificationCategory(
       identifier: category.identifier, actions: actions, options: options)
   }

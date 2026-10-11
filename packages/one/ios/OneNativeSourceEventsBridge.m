@@ -1,4 +1,9 @@
 #import "OneNativeSourceEventsBridge.h"
+#import <React/RCTEventEmitter.h>
+
+@interface OneNativeSourceEvents : RCTEventEmitter
++ (void)sendChannel:(NSString *)channel argsJson:(NSString *)argsJson;
+@end
 
 static NSMutableSet<NSString *> *OneNativeSourceEventChannels(void) {
   static NSMutableSet<NSString *> *channels;
@@ -42,3 +47,7 @@ RCT_EXPORT_MODULE(OneNativeSourceEvents)
 }
 
 @end
+
+void OneNativeSourceSendEvent(NSString *channel, NSString *argsJson) {
+  [OneNativeSourceEvents sendChannel:channel argsJson:argsJson];
+}
