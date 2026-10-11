@@ -6,8 +6,11 @@ import { cpus } from 'node:os'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+// the commonjs export launches the same esm worker as the esm export.
+const workerDirectory =
+  typeof __dirname === 'string'
+    ? join(__dirname, '..', '..', 'esm', 'cli')
+    : dirname(fileURLToPath(import.meta.url))
 
 interface PendingTask {
   id: number
@@ -38,7 +41,7 @@ export class BuildWorkerPool {
     })
 
     // use .mjs for proper ESM module resolution in worker threads
-    const workerPath = join(__dirname, 'buildPageWorker.mjs')
+    const workerPath = join(workerDirectory, 'buildPageWorker.mjs')
 
     for (let i = 0; i < size; i++) {
       const worker = new Worker(workerPath)
