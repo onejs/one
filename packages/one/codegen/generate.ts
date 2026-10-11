@@ -16,7 +16,7 @@ import {
   type Declaration,
 } from './inventory'
 import { execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
@@ -991,6 +991,18 @@ for (const [path, source] of outputs) {
     }
   }
   if (!process.argv.includes('--check')) writeFileSync(join(root, path), generated)
+}
+// a control the catalog or SDK no longer yields leaves its files behind; they would
+// still compile and register, so every file carrying the header must be an output.
+for (const dir of new Set([...outputs.keys()].map((path) => dirname(path)))) {
+  for (const entry of readdirSync(join(root, dir), { withFileTypes: true })) {
+    if (!entry.isFile()) continue
+    const path = join(dir, entry.name)
+    if (outputs.has(path) || !readFileSync(join(root, path), 'utf8').startsWith(header)) continue
+    changed.push(path)
+    if (process.argv.includes('--check')) console.error(`stale generated file: ${path}`)
+    else unlinkSync(join(root, path))
+  }
 }
 if (process.argv.includes('--check') && changed.length)
   throw new Error('Generated SwiftUI bindings differ: ' + changed.join(', '))

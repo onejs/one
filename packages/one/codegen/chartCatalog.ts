@@ -1,10 +1,9 @@
 import type { Control, ControlField } from './controlTypes'
 
-const chartTypes = "import('../chartTypes')"
 const style = (name: string, type: string, fields: readonly string[]): ControlField => ({
   type: 'string',
   default: '{}',
-  publicType: `${chartTypes}.${type}`,
+  publicType: type,
   jsDefault: 'undefined',
   nativeValue: `chartStyleNative('${name}', ${name}, ${JSON.stringify(fields)})`,
 })
@@ -19,22 +18,25 @@ export const chartControls: Control[] = [
     layout: 'fill',
     imports: ['Charts'],
     adapterImports: ["import { chartPointsNative, chartStyleNative } from '../chartNative'"],
+    typeImports: [
+      "import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes'",
+    ],
     fields: {
       data: {
         type: 'string',
         default: '[]',
-        publicType: `readonly ${chartTypes}.ChartDataPoint[]`,
+        publicType: 'readonly ChartDataPoint[]',
         required: true,
         nativeValue: "chartPointsNative('data', data)",
       },
-      type: { type: 'string', default: 'line', publicType: `${chartTypes}.ChartType` },
+      type: { type: 'string', default: 'line', publicType: 'ChartType' },
       showGrid: { type: 'boolean', default: true },
       animate: { type: 'boolean', default: true },
       showLegend: { type: 'boolean', default: false },
       referenceLines: {
         type: 'string',
         default: '[]',
-        publicType: `readonly ${chartTypes}.ChartDataPoint[]`,
+        publicType: 'readonly ChartDataPoint[]',
         jsDefault: '[]',
         nativeValue: "chartPointsNative('referenceLines', referenceLines)",
       },

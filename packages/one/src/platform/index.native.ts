@@ -169,6 +169,7 @@ export type {
 } from './universal/TextInput/textInputTypes'
 export type * from './types'
 export type * from './composeTypes'
+export type * from './chartTypes'
 export { Haptics } from './haptics/index.native'
 export { LaunchScreen } from './launchScreen/index.native'
 export { LocalAuthentication } from './local-authentication/index'

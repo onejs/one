@@ -5,6 +5,17 @@ import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 import type { IconColorRole } from '../ui/iconRoles'
 import type { SFSymbolName } from './sfSymbolNames'
+import type {
+  AreaChartStyle,
+  BarChartStyle,
+  ChartDataPoint,
+  ChartType,
+  LineChartStyle,
+  PieChartStyle,
+  PointChartStyle,
+  RectangleChartStyle,
+  RuleChartStyle,
+} from '../chartTypes'
 import type { NativeState } from '../syncNativeState'
 
 export const glassEffects = ['regular', 'clear', 'identity'] as const
@@ -3909,19 +3920,19 @@ export interface FileImporterProps extends OneNativeViewProps {
   allowsMultipleSelection?: boolean
 }
 export interface ChartProps extends OneNativeViewProps {
-  data: readonly import('../chartTypes').ChartDataPoint[]
-  type?: import('../chartTypes').ChartType
+  data: readonly ChartDataPoint[]
+  type?: ChartType
   showGrid?: boolean
   animate?: boolean
   showLegend?: boolean
-  referenceLines?: readonly import('../chartTypes').ChartDataPoint[]
-  lineStyle?: import('../chartTypes').LineChartStyle
-  pointStyle?: import('../chartTypes').PointChartStyle
-  areaStyle?: import('../chartTypes').AreaChartStyle
-  barStyle?: import('../chartTypes').BarChartStyle
-  pieStyle?: import('../chartTypes').PieChartStyle
-  rectangleStyle?: import('../chartTypes').RectangleChartStyle
-  ruleStyle?: import('../chartTypes').RuleChartStyle
+  referenceLines?: readonly ChartDataPoint[]
+  lineStyle?: LineChartStyle
+  pointStyle?: PointChartStyle
+  areaStyle?: AreaChartStyle
+  barStyle?: BarChartStyle
+  pieStyle?: PieChartStyle
+  rectangleStyle?: RectangleChartStyle
+  ruleStyle?: RuleChartStyle
 }
 export interface AsyncImageProps extends OneNativeViewProps {
   url: string
@@ -3939,20 +3950,11 @@ export interface LocationButtonProps extends OneNativeViewProps {
     | 'shareMyCurrentLocation'
     | ''
 }
-export interface MapCompassProps extends OneNativeViewProps {}
-export interface MapPitchToggleProps extends OneNativeViewProps {}
-export interface MapScaleViewProps extends OneNativeViewProps {
-  anchorEdge?: 'leading' | 'trailing'
-}
-export interface MapUserLocationButtonProps extends OneNativeViewProps {}
 export interface ProductViewProps extends OneNativeViewProps {
   id: string
   prefersPromotionalIcon?: boolean
 }
 export interface RenameButtonProps extends OneNativeViewProps {}
-export interface SceneViewProps extends OneNativeViewProps {
-  preferredFramesPerSecond?: number
-}
 export interface ShortcutsLinkProps extends OneNativeViewProps {
   onAction?: () => void
 }

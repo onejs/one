@@ -52,6 +52,7 @@ export type {
   TextInputSelection,
 } from './universal/TextInput/textInputTypes'
 export type * from './composeTypes'
+export type * from './chartTypes'
 export type * from './types'
 export { Haptics } from './haptics/index'
 export { LaunchScreen } from './launchScreen/index'

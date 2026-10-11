@@ -1,6 +1,6 @@
 ---
 title: iOS Buttons and Toggles
-description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, and EditButton under One.iOS
+description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, EditButton, RenameButton, LocationButton, and ShortcutsLink under One.iOS
 ---
 
 <NativeHero
@@ -13,7 +13,8 @@ Pressable and value controls under `One.iOS`, drawn by SwiftUI.
 - `Toggle`, `Slider`, and `Stepper` are controlled: a value, a change
   callback, and a `revision` for external resets.
 - `Button` takes a label and SF Symbol, or React children.
-- `PasteButton`, `ShareLink`, and `SignInWithAppleButton` wrap system flows.
+- `PasteButton`, `ShareLink`, `SignInWithAppleButton`, `LocationButton`, and
+  `ShortcutsLink` wrap system flows.
 - Every control throws on web and Android. Keep them in an iOS branch or an
   `.ios.tsx` file.
 
@@ -123,7 +124,7 @@ prominent Button grew from 28 to 50.33 points when changed from `mini` to
   title="Props"
   source="generated/controlTypes.ts#SliderProps"
   data={[
-    { name: 'value', required: true, type: 'number', description: 'The current value.' },
+    { name: 'value', required: true, type: 'number | NativeState<number>', description: 'The current value, or a native state handle that withAnimation can animate.' },
     { name: 'onValueChange', required: true, type: '(value: number) => void', description: 'A native drag, with the new value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
     { name: 'label', type: 'string', description: 'Read by VoiceOver. A form row does not draw it.' },
@@ -149,7 +150,7 @@ and the step must be above zero, or the slider throws during render.
   title="Props"
   source="generated/controlTypes.ts#StepperProps"
   data={[
-    { name: 'value', required: true, type: 'number', description: 'The current value.' },
+    { name: 'value', required: true, type: 'number | NativeState<number>', description: 'The current value, or a native state handle that withAnimation can animate.' },
     { name: 'onValueChange', required: true, type: '(value: number) => void', description: 'A native step, with the new value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new value to reset it from outside.' },
     { name: 'label', type: 'string', description: 'The text before the buttons.' },
@@ -249,3 +250,45 @@ Put it inside a native `One.iOS.List`. Its label changes from **Edit** to
 
 `List` does not expose SwiftUI row deletion or moves yet, so the button only
 switches its own label.
+
+## RenameButton
+
+`One.iOS.RenameButton` is SwiftUI's rename button, with only the shared props.
+It runs the rename action its view provides: pass a callback as
+`swiftStyle={{ renameAction }}`. Without one it does nothing.
+
+```tsx
+<One.iOS.RenameButton swiftStyle={{ renameAction: () => setEditingTitle(true) }} />
+```
+
+## LocationButton
+
+`One.iOS.LocationButton` is CoreLocation's location button. A tap grants
+one-time location authorization without a permission prompt, then runs
+`onAction`. Read the position with [Location](/native/location) inside
+`onAction`.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#LocationButtonProps"
+  data={[
+    { name: 'onAction', type: '() => void', description: 'Runs after the tap grants authorization.' },
+    {
+      name: 'title',
+      type: '"currentLocation" | "sendCurrentLocation" | "sendMyCurrentLocation" | "shareCurrentLocation" | "shareMyCurrentLocation" | ""',
+      default: '""',
+      description: 'The system label. "" shows only the location arrow.',
+    },
+  ]}
+/>
+
+## ShortcutsLink
+
+`One.iOS.ShortcutsLink` opens this app's page in the Shortcuts app, where
+people find the shortcuts its App Intents provide. `onAction` runs on tap.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ShortcutsLinkProps"
+  data={[{ name: 'onAction', type: '() => void', description: 'Runs on tap.' }]}
+/>

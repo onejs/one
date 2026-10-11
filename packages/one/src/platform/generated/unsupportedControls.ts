@@ -133,26 +133,11 @@ function EmptyView(_props: Types.EmptyViewProps): never {
 function LocationButton(_props: Types.LocationButtonProps): never {
   throw new Error('Swift.LocationButton requires an iOS native build')
 }
-function MapCompass(_props: Types.MapCompassProps): never {
-  throw new Error('Swift.MapCompass requires an iOS native build')
-}
-function MapPitchToggle(_props: Types.MapPitchToggleProps): never {
-  throw new Error('Swift.MapPitchToggle requires an iOS native build')
-}
-function MapScaleView(_props: Types.MapScaleViewProps): never {
-  throw new Error('Swift.MapScaleView requires an iOS native build')
-}
-function MapUserLocationButton(_props: Types.MapUserLocationButtonProps): never {
-  throw new Error('Swift.MapUserLocationButton requires an iOS native build')
-}
 function ProductView(_props: Types.ProductViewProps): never {
   throw new Error('Swift.ProductView requires an iOS native build')
 }
 function RenameButton(_props: Types.RenameButtonProps): never {
   throw new Error('Swift.RenameButton requires an iOS native build')
-}
-function SceneView(_props: Types.SceneViewProps): never {
-  throw new Error('Swift.SceneView requires an iOS native build')
 }
 function ShortcutsLink(_props: Types.ShortcutsLinkProps): never {
   throw new Error('Swift.ShortcutsLink requires an iOS native build')
@@ -208,13 +193,8 @@ export const unsupportedControls = {
   EditButton,
   EmptyView,
   LocationButton,
-  MapCompass,
-  MapPitchToggle,
-  MapScaleView,
-  MapUserLocationButton,
   ProductView,
   RenameButton,
-  SceneView,
   ShortcutsLink,
   StoreView,
   SubscriptionStoreView,

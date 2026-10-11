@@ -3387,94 +3387,6 @@
       "interfaceOnly": true
     },
     {
-      "name": "OneNativeMapCompass",
-      "publicName": "MapCompass",
-      "props": {},
-      "events": {
-        "onNativeSDKEvent": {
-          "name": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "actions": [],
-      "layout": {
-        "kind": "measured"
-      },
-      "slots": [],
-      "interfaceOnly": true
-    },
-    {
-      "name": "OneNativeMapPitchToggle",
-      "publicName": "MapPitchToggle",
-      "props": {},
-      "events": {
-        "onNativeSDKEvent": {
-          "name": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "actions": [],
-      "layout": {
-        "kind": "measured"
-      },
-      "slots": [],
-      "interfaceOnly": true
-    },
-    {
-      "name": "OneNativeMapScaleView",
-      "publicName": "MapScaleView",
-      "props": {
-        "anchorEdge": {
-          "type": "string"
-        }
-      },
-      "events": {
-        "onNativeSDKEvent": {
-          "name": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "actions": [],
-      "layout": {
-        "kind": "measured"
-      },
-      "slots": [],
-      "interfaceOnly": true
-    },
-    {
-      "name": "OneNativeMapUserLocationButton",
-      "publicName": "MapUserLocationButton",
-      "props": {},
-      "events": {
-        "onNativeSDKEvent": {
-          "name": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "actions": [],
-      "layout": {
-        "kind": "measured"
-      },
-      "slots": [],
-      "interfaceOnly": true
-    },
-    {
       "name": "OneNativeProductView",
       "publicName": "ProductView",
       "props": {
@@ -3506,31 +3418,6 @@
       "name": "OneNativeRenameButton",
       "publicName": "RenameButton",
       "props": {},
-      "events": {
-        "onNativeSDKEvent": {
-          "name": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        }
-      },
-      "actions": [],
-      "layout": {
-        "kind": "measured"
-      },
-      "slots": [],
-      "interfaceOnly": true
-    },
-    {
-      "name": "OneNativeSceneView",
-      "publicName": "SceneView",
-      "props": {
-        "preferredFramesPerSecond": {
-          "type": "Double"
-        }
-      },
       "events": {
         "onNativeSDKEvent": {
           "name": {

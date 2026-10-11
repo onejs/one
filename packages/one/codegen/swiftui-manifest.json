@@ -17794,10 +17794,6 @@
       ],
       "_MapKit_SwiftUI": [
         "Map",
-        "MapCompass",
-        "MapPitchToggle",
-        "MapScaleView",
-        "MapUserLocationButton",
         "Marker"
       ],
       "Charts": [
@@ -17810,9 +17806,6 @@
         "ProductView",
         "StoreView",
         "SubscriptionStoreView"
-      ],
-      "_SceneKit_SwiftUI": [
-        "SceneView"
       ],
       "_AppIntents_SwiftUI": [
         "ShortcutsLink"
@@ -20044,64 +20037,6 @@
       "ios": 15
     },
     {
-      "module": "_MapKit_SwiftUI",
-      "type": "MapCompass",
-      "parameters": [
-        {
-          "defaultValue": "nil",
-          "label": "scope",
-          "name": "scope",
-          "type": "SwiftUICore.Namespace.ID?"
-        }
-      ],
-      "ios": 17
-    },
-    {
-      "module": "_MapKit_SwiftUI",
-      "type": "MapPitchToggle",
-      "parameters": [
-        {
-          "defaultValue": "nil",
-          "label": "scope",
-          "name": "scope",
-          "type": "SwiftUICore.Namespace.ID?"
-        }
-      ],
-      "ios": 17
-    },
-    {
-      "module": "_MapKit_SwiftUI",
-      "type": "MapScaleView",
-      "parameters": [
-        {
-          "defaultValue": ".leading",
-          "label": "anchorEdge",
-          "name": "anchorEdge",
-          "type": "SwiftUICore.HorizontalEdge"
-        },
-        {
-          "defaultValue": "nil",
-          "label": "scope",
-          "name": "scope",
-          "type": "SwiftUICore.Namespace.ID?"
-        }
-      ],
-      "ios": 17
-    },
-    {
-      "module": "_MapKit_SwiftUI",
-      "type": "MapUserLocationButton",
-      "parameters": [
-        {
-          "defaultValue": "nil",
-          "label": "scope",
-          "name": "scope",
-          "type": "SwiftUICore.Namespace.ID?"
-        }
-      ],
-      "ios": 17
-    },
-    {
       "module": "_StoreKit_SwiftUI",
       "type": "ProductView",
       "parameters": [
@@ -20124,55 +20059,6 @@
       "type": "RenameButton",
       "parameters": [],
       "ios": 16
-    },
-    {
-      "module": "_SceneKit_SwiftUI",
-      "type": "SceneView",
-      "parameters": [
-        {
-          "defaultValue": "nil",
-          "label": "scene",
-          "name": "scene",
-          "type": "SceneKit.SCNScene?"
-        },
-        {
-          "defaultValue": "nil",
-          "label": "pointOfView",
-          "name": "pointOfView",
-          "type": "SceneKit.SCNNode?"
-        },
-        {
-          "defaultValue": "[]",
-          "label": "options",
-          "name": "options",
-          "type": "_SceneKit_SwiftUI.SceneView.Options"
-        },
-        {
-          "defaultValue": "60",
-          "label": "preferredFramesPerSecond",
-          "name": "preferredFramesPerSecond",
-          "type": "Swift.Int"
-        },
-        {
-          "defaultValue": ".multisampling4X",
-          "label": "antialiasingMode",
-          "name": "antialiasingMode",
-          "type": "SceneKit.SCNAntialiasingMode"
-        },
-        {
-          "defaultValue": "nil",
-          "label": "delegate",
-          "name": "delegate",
-          "type": "(any SceneKit.SCNSceneRendererDelegate)?"
-        },
-        {
-          "defaultValue": "nil",
-          "label": "technique",
-          "name": "technique",
-          "type": "SceneKit.SCNTechnique?"
-        }
-      ],
-      "ios": 14
     },
     {
       "module": "_AppIntents_SwiftUI",

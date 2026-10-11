@@ -33,6 +33,8 @@ export const nativeRoutes = [
       { title: 'Pickers', route: '/native/ios-pickers' },
       { title: 'Progress and Gauges', route: '/native/ios-progress-gauges' },
       { title: 'Media and Empty States', route: '/native/ios-media' },
+      { title: 'Charts', route: '/native/ios-charts' },
+      { title: 'Store Views', route: '/native/ios-store' },
       { title: 'Presentations and Menus', route: '/native/ios-presentations' },
       { title: 'Tabs and Pager', route: '/native/ios-tabs-pager' },
       { title: 'Navigation and Toolbar', route: '/native/ios-navigation' },

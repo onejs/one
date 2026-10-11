@@ -2201,77 +2201,6 @@ export function LocationButton({
     />
   )
 }
-import NativeMapCompass from '../specs/OneNativeMapCompassNativeComponent'
-export function MapCompass({ swiftStyle, style, ...props }: Types.MapCompassProps) {
-  return (
-    <NativeMapCompass
-      {...props}
-      style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) =>
-        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
-      }
-    />
-  )
-}
-import NativeMapPitchToggle from '../specs/OneNativeMapPitchToggleNativeComponent'
-export function MapPitchToggle({
-  swiftStyle,
-  style,
-  ...props
-}: Types.MapPitchToggleProps) {
-  return (
-    <NativeMapPitchToggle
-      {...props}
-      style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) =>
-        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
-      }
-    />
-  )
-}
-import NativeMapScaleView from '../specs/OneNativeMapScaleViewNativeComponent'
-export function MapScaleView({
-  anchorEdge = 'leading',
-  swiftStyle,
-  style,
-  ...props
-}: Types.MapScaleViewProps) {
-  if (typeof anchorEdge !== 'string')
-    throw new Error('MapScaleView anchorEdge must be a string')
-  if (!['leading', 'trailing'].includes(anchorEdge))
-    throw new Error('MapScaleView anchorEdge must be one of leading, trailing')
-
-  return (
-    <NativeMapScaleView
-      {...props}
-      style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) =>
-        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
-      }
-      anchorEdge={anchorEdge}
-    />
-  )
-}
-import NativeMapUserLocationButton from '../specs/OneNativeMapUserLocationButtonNativeComponent'
-export function MapUserLocationButton({
-  swiftStyle,
-  style,
-  ...props
-}: Types.MapUserLocationButtonProps) {
-  return (
-    <NativeMapUserLocationButton
-      {...props}
-      style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) =>
-        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
-      }
-    />
-  )
-}
 import NativeProductView from '../specs/OneNativeProductViewNativeComponent'
 export function ProductView({
   id,
@@ -2308,28 +2237,6 @@ export function RenameButton({ swiftStyle, style, ...props }: Types.RenameButton
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-    />
-  )
-}
-import NativeSceneView from '../specs/OneNativeSceneViewNativeComponent'
-export function SceneView({
-  preferredFramesPerSecond = 60,
-  swiftStyle,
-  style,
-  ...props
-}: Types.SceneViewProps) {
-  if (typeof preferredFramesPerSecond !== 'number')
-    throw new Error('SceneView preferredFramesPerSecond must be a number')
-
-  return (
-    <NativeSceneView
-      {...props}
-      style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) =>
-        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
-      }
-      preferredFramesPerSecond={preferredFramesPerSecond}
     />
   )
 }

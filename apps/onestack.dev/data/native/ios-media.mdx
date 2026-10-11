@@ -1,6 +1,6 @@
 ---
 title: iOS Media and Empty States
-description: Image, shapes, VideoPlayer, LivePhotoView, WebView, PhotosPicker, Map, ContentUnavailableView, and EmptyView under One.iOS
+description: Image, AsyncImage, shapes, VideoPlayer, LivePhotoView, WebView, PhotosPicker, Map, ContentUnavailableView, and EmptyView under One.iOS
 ---
 
 <NativeHero
@@ -63,6 +63,24 @@ smaller than the glyph and neighbors overlap it.
 
 For bundled, remote, and cross-platform images, use
 [One.UI.Image](/native/image) instead.
+
+## AsyncImage
+
+`One.iOS.AsyncImage` is SwiftUI's `AsyncImage`. It shows a placeholder while
+it loads the image at `url`, then draws the image at its own size.
+
+```tsx
+<One.iOS.AsyncImage url="https://reactnative.dev/img/tiny_logo.png" scale={2} />
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#AsyncImageProps"
+  data={[
+    { name: 'url', required: true, type: 'string', description: 'The image URL. "" shows only the placeholder.' },
+    { name: 'scale', type: 'number', default: '1', description: 'Image pixels per point.' },
+  ]}
+/>
 
 ## Shapes
 

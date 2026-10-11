@@ -2025,6 +2025,9 @@ export function deriveViews(
     }
     if (parameter.defaultValue === undefined) return argument
     if (argument?.kind === 'action') return argument
+    // an optional object One cannot pass, such as SceneView's scene or a map control's
+    // scope, is what the view shows or controls; left nil the view does nothing useful.
+    if (!argument && parameter.defaultValue === 'nil') return undefined
     const fallback = argument && literalDefault(argument, parameter.defaultValue)
     return argument && fallback !== undefined ? { ...argument, default: fallback } : 'sdkDefault'
   }

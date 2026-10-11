@@ -276,7 +276,7 @@ import type * as Styles from './swiftui'
 import type { KeyboardType, TextContentType } from '../textTypes'
 import type { IconColorRole } from '../ui/iconRoles'
 import type { SFSymbolName } from './sfSymbolNames'
-${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
+${[...new Set(controls.flatMap((control) => control.typeImports ?? []))].map((line) => `${line}\n`).join('')}${hasSync ? `import type { NativeState } from '../syncNativeState'\n` : ''}
 
 ${publicStyleFields
   .filter((field) => field.values)

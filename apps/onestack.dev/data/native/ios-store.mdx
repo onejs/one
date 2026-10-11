@@ -1,0 +1,71 @@
+---
+title: iOS Store Views
+description: StoreKit's ProductView, StoreView, and SubscriptionStoreView under One.iOS
+---
+
+StoreKit's merchandising views under `One.iOS`. StoreKit loads each product
+from the App Store, draws its name, price, and buy button, and runs the
+purchase sheet when the person taps it.
+
+- Product identifiers come from App Store Connect, or from a StoreKit
+  configuration file while you develop.
+- A product that does not load shows StoreKit's own unavailable state.
+- These views throw on web and Android. Keep them in an iOS branch or an
+  `.ios.tsx` file.
+
+To list products, buy them, and read entitlements from code, use
+[Purchases](/native/purchases).
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.ProductView id="com.example.coins.100" />
+<One.iOS.SubscriptionStoreView groupID="21482456" style={{ height: 420 }} />
+```
+
+## ProductView
+
+One product with its icon, name, description, and buy button.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ProductViewProps"
+  data={[
+    { name: 'id', required: true, type: 'string', description: 'The product identifier.' },
+    { name: 'prefersPromotionalIcon', type: 'boolean', default: 'false', description: 'Uses the promotional image from App Store Connect as the icon.' },
+  ]}
+/>
+
+## StoreView
+
+A list of products, each drawn as a `ProductView`.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#StoreViewProps"
+  data={[
+    { name: 'ids', required: true, type: 'readonly string[]', description: 'The product identifiers, in display order.' },
+    { name: 'prefersPromotionalIcon', type: 'boolean', default: 'false', description: 'Uses each promotional image as its icon.' },
+  ]}
+/>
+
+## SubscriptionStoreView
+
+The subscription store for one group of auto-renewable subscriptions. Pass
+exactly one of `groupID` and `productIDs`; both or neither throws. Give it a
+height, since it fills the box React Native gives it.
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#SubscriptionStoreViewProps"
+  data={[
+    { name: 'groupID', type: 'string', description: 'The subscription group identifier.' },
+    {
+      name: 'visibleRelationships',
+      type: '"current" | "downgrade" | "crossgrade" | "upgrade" | "all"',
+      default: '"all"',
+      description: 'Which plans to show relative to the current one. Only with groupID; it throws with productIDs.',
+    },
+    { name: 'productIDs', type: 'readonly string[]', description: 'The subscription product identifiers to show.' },
+  ]}
+/>

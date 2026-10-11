@@ -122,6 +122,8 @@ export type Control = {
   // import lines the generated adapter needs for helpers its validate or
   // nativeValue code calls, relative to src/platform/generated.
   adapterImports?: readonly string[]
+  // import lines the generated prop types need for publicType names.
+  typeImports?: readonly string[]
 }
 
 export const commonFields = {
