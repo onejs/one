@@ -57,6 +57,7 @@ export function Picker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -118,6 +119,7 @@ export function DatePicker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={selection.getTime()}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -164,6 +166,7 @@ export function ColorPicker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={selection}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -171,6 +174,72 @@ export function ColorPicker({
       disabled={disabled}
       supportsOpacity={supportsOpacity}
       onNativeColorPickerValueChange={({ nativeEvent }) =>
+        controlled.onNativeChange(nativeEvent)
+      }
+    />
+  )
+}
+import NativeMultiDatePicker from '../specs/OneNativeMultiDatePickerNativeComponent'
+export function MultiDatePicker({
+  selection,
+  onSelectionChange,
+  revision = 0,
+  label = '',
+  disabled = false,
+  minimumDate = new Date(-62135769600000),
+  maximumDate = new Date(64092211200000),
+  swiftStyle,
+  style,
+  ...props
+}: Types.MultiDatePickerProps) {
+  if (
+    !Array.isArray(selection) ||
+    selection.some((date) => !(date instanceof Date) || Number.isNaN(date.getTime()))
+  )
+    throw new Error('MultiDatePicker selection must be an array of valid Dates')
+  const minimumTime = minimumDate instanceof Date ? minimumDate.getTime() : NaN
+  const maximumTime = maximumDate instanceof Date ? maximumDate.getTime() : NaN
+  if (![minimumTime, maximumTime].every(Number.isFinite))
+    throw new Error(
+      'MultiDatePicker minimumDate and maximumDate must be valid Date values'
+    )
+  if (minimumTime > maximumTime)
+    throw new Error('MultiDatePicker minimumDate must not be after maximumDate')
+  if (
+    selection.some((date) => date.getTime() < minimumTime || date.getTime() > maximumTime)
+  )
+    throw new Error(
+      'MultiDatePicker selection must be within minimumDate and maximumDate'
+    )
+
+  const controlled = useControlled<{
+    value: string
+    eventCount: number
+    revision: number
+  }>(
+    (event) =>
+      onSelectionChange(JSON.parse(event.value).map((time: number) => new Date(time))),
+    revision
+  )
+  return (
+    <NativeMultiDatePicker
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+
+      value={JSON.stringify(
+        selection.map((date) => date.getTime()).sort((a, b) => a - b)
+      )}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      label={label}
+      disabled={disabled}
+      minimumDate={minimumDate.getTime()}
+      maximumDate={maximumDate.getTime()}
+      onNativeMultiDatePickerValueChange={({ nativeEvent }) =>
         controlled.onNativeChange(nativeEvent)
       }
     />
@@ -219,6 +288,7 @@ export function Toggle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedIsOn}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -282,6 +352,7 @@ export function Slider({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedValue}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -346,6 +417,7 @@ export function Stepper({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedValue}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -377,6 +449,7 @@ export function PasteButton({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       disabled={disabled}
       onNativePasteButtonPaste={({ nativeEvent }) =>
         onPaste?.(JSON.parse(nativeEvent.values) as string[])
@@ -396,6 +469,7 @@ export function Text({ text = '', swiftStyle, style, ...props }: Types.TextProps
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       text={text}
     />
   )
@@ -422,6 +496,7 @@ export function Label({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -458,6 +533,7 @@ export function ProgressView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       value={value ?? 0}
@@ -501,6 +577,7 @@ export function Gauge({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       value={value}
@@ -577,6 +654,7 @@ export function Image({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       systemName={systemName}
       uri={uri}
       renderingMode={renderingMode}
@@ -618,6 +696,7 @@ export function ShareLink({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -664,6 +743,7 @@ export function ContentUnavailableView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       title={title}
       systemImage={systemImage}
       description={description}
@@ -694,6 +774,7 @@ export function Circle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       strokeBorder={strokeBorder}
       lineWidth={lineWidth}
@@ -720,6 +801,7 @@ export function Capsule({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       strokeBorder={strokeBorder}
       lineWidth={lineWidth}
@@ -746,6 +828,7 @@ export function Rectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       strokeBorder={strokeBorder}
       lineWidth={lineWidth}
@@ -775,6 +858,7 @@ export function RoundedRectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       strokeBorder={strokeBorder}
       lineWidth={lineWidth}
@@ -802,6 +886,7 @@ export function Ellipse({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       strokeBorder={strokeBorder}
       lineWidth={lineWidth}
@@ -840,6 +925,7 @@ export function UnevenRoundedRectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
       strokeBorder={strokeBorder}
       lineWidth={lineWidth}
@@ -868,6 +954,7 @@ export function ConcentricRectangle({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       fill={fill}
     />
   )
@@ -906,6 +993,7 @@ export function LinearGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       colors={colors}
       startPoint={JSON.stringify(startPoint)}
       endPoint={JSON.stringify(endPoint)}
@@ -948,6 +1036,7 @@ export function RadialGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       colors={colors}
       center={JSON.stringify(center)}
       startRadius={startRadius}
@@ -991,6 +1080,7 @@ export function EllipticalGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       colors={colors}
       center={JSON.stringify(center)}
       startRadiusFraction={startRadiusFraction}
@@ -1033,6 +1123,7 @@ export function AngularGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       colors={colors}
       center={JSON.stringify(center)}
       angle={JSON.stringify(angle)}
@@ -1108,6 +1199,7 @@ export function MeshGradient({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       meshWidth={meshWidth}
       meshHeight={meshHeight}
       points={JSON.stringify(points)}
@@ -1151,6 +1243,7 @@ export function VideoPlayer({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       url={url}
       autoplay={autoplay}
       command={command}
@@ -1196,6 +1289,7 @@ export function LivePhotoView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       assetIdentifier={assetIdentifier}
       autoplay={autoplay}
       command={command}
@@ -1263,6 +1357,7 @@ export function PhotosPicker({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       label={label}
       disabled={disabled}
       systemImage={systemImage}
@@ -1369,6 +1464,7 @@ export function WebView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       url={url}
       html={html}
       script={script}
@@ -1434,6 +1530,7 @@ export function SignInWithAppleButton({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       requestedScopes={requestedScopes}
       nonce={nonce}
       label={label}
@@ -1454,6 +1551,75 @@ export function SignInWithAppleButton({
               : { type: 'cancelled' }
         )
       }
+    />
+  )
+}
+import NativePayWithApplePayButton from '../specs/OneNativePayWithApplePayButtonNativeComponent'
+export function PayWithApplePayButton({
+  onPress,
+  label = 'plain',
+  payWithApplePayButtonStyle = 'black',
+  disabled = false,
+  swiftStyle,
+  style,
+  ...props
+}: Types.PayWithApplePayButtonProps) {
+  if (typeof label !== 'string')
+    throw new Error('PayWithApplePayButton label must be a string')
+  assertSwiftUIValue(
+    'PayWithApplePayButtonLabel',
+    label,
+    Number.parseFloat(String(Platform.Version))
+  )
+  assertSwiftUIValue(
+    'PayWithApplePayButtonStyle',
+    payWithApplePayButtonStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativePayWithApplePayButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+
+      label={label}
+      payWithApplePayButtonStyle={payWithApplePayButtonStyle}
+      disabled={disabled}
+      onNativePayWithApplePayButtonPress={({ nativeEvent }) => onPress?.()}
+    />
+  )
+}
+import NativeAddPassToWalletButton from '../specs/OneNativeAddPassToWalletButtonNativeComponent'
+export function AddPassToWalletButton({
+  onPress,
+  addPassToWalletButtonStyle = 'black',
+  disabled = false,
+  swiftStyle,
+  style,
+  ...props
+}: Types.AddPassToWalletButtonProps) {
+  if (typeof disabled !== 'boolean')
+    throw new Error('AddPassToWalletButton disabled must be a boolean')
+  assertSwiftUIValue(
+    'AddPassToWalletButtonStyle',
+    addPassToWalletButtonStyle,
+    Number.parseFloat(String(Platform.Version))
+  )
+  return (
+    <NativeAddPassToWalletButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+
+      addPassToWalletButtonStyle={addPassToWalletButtonStyle}
+      disabled={disabled}
+      onNativeAddPassToWalletButtonPress={({ nativeEvent }) => onPress?.()}
     />
   )
 }
@@ -1498,6 +1664,7 @@ export function Map({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       latitude={latitude}
       longitude={longitude}
       distance={distance}
@@ -1591,6 +1758,7 @@ export function TextField({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1699,6 +1867,7 @@ export function SecureField({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1790,6 +1959,7 @@ export function TextEditor({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={syncedText}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1858,6 +2028,7 @@ export function Alert({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1925,6 +2096,7 @@ export function ConfirmationDialog({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -1975,6 +2147,7 @@ export function QuickLook({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -2021,6 +2194,7 @@ export function FileImporter({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       value={isPresented}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
@@ -2084,6 +2258,7 @@ export function Chart({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       data={chartPointsNative('data', data)}
       type={type}
       showGrid={showGrid}
@@ -2133,6 +2308,7 @@ export function AsyncImage({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       url={url}
       scale={scale}
     />
@@ -2196,6 +2372,7 @@ export function LocationButton({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       title={title}
       onNativeLocationButtonAction={({ nativeEvent }) => onAction?.()}
     />
@@ -2222,6 +2399,7 @@ export function ProductView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       id={id}
       prefersPromotionalIcon={prefersPromotionalIcon}
     />
@@ -2255,6 +2433,7 @@ export function ShortcutsLink({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       onNativeShortcutsLinkAction={({ nativeEvent }) => onAction?.()}
     />
   )
@@ -2280,6 +2459,7 @@ export function StoreView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       ids={ids}
       prefersPromotionalIcon={prefersPromotionalIcon}
     />
@@ -2327,6 +2507,7 @@ export function SubscriptionStoreView({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+
       groupID={groupID ?? ''}
       visibleRelationships={visibleRelationships ?? 'all'}
       productIDs={productIDs ?? []}

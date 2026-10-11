@@ -38,6 +38,9 @@ export type ElementFullscreenBehavior = 'automatic' | 'enabled' | 'disabled';
 export type ListStyle = 'automatic' | 'sidebar' | 'inset' | 'grouped' | 'insetGrouped' | 'plain';
 export type ToolbarItemPlacement = 'automatic' | 'principal' | 'navigation' | 'primaryAction' | 'secondaryAction' | 'status' | 'confirmationAction' | 'cancellationAction' | 'destructiveAction' | 'keyboard' | 'topBarLeading' | 'topBarTrailing' | 'topBarPinnedTrailing' | 'navigationBarLeading' | 'navigationBarTrailing' | 'title' | 'largeTitle' | 'bottomBar' | 'subtitle' | 'largeSubtitle';
 export type SpacerSizing = 'flexible' | 'fixed';
+export type PayWithApplePayButtonStyle = 'white' | 'whiteOutline' | 'black' | 'automatic';
+export type AddPassToWalletButtonStyle = 'black' | 'blackOutline';
+export type PayWithApplePayButtonLabel = 'plain' | 'buy' | 'addMoney' | 'book' | 'checkout' | 'continue' | 'contribute' | 'donate' | 'inStore' | 'order' | 'reload' | 'rent' | 'setUp' | 'subscribe' | 'support' | 'tip' | 'topUp';
 export declare const swiftUIValues: {
     readonly MenuOrder: {
         readonly automatic: 16;
@@ -298,6 +301,35 @@ export declare const swiftUIValues: {
     readonly SpacerSizing: {
         readonly flexible: 26;
         readonly fixed: 26;
+    };
+    readonly PayWithApplePayButtonStyle: {
+        readonly white: 16;
+        readonly whiteOutline: 16;
+        readonly black: 16;
+        readonly automatic: 16;
+    };
+    readonly AddPassToWalletButtonStyle: {
+        readonly black: 16;
+        readonly blackOutline: 16;
+    };
+    readonly PayWithApplePayButtonLabel: {
+        readonly plain: 16;
+        readonly buy: 16;
+        readonly addMoney: 16;
+        readonly book: 16;
+        readonly checkout: 16;
+        readonly continue: 16;
+        readonly contribute: 16;
+        readonly donate: 16;
+        readonly inStore: 16;
+        readonly order: 16;
+        readonly reload: 16;
+        readonly rent: 16;
+        readonly setUp: 16;
+        readonly subscribe: 16;
+        readonly support: 16;
+        readonly tip: 16;
+        readonly topUp: 16;
     };
 };
 export declare function assertSwiftUIValue(type: keyof typeof swiftUIValues, value: string, iosVersion: number): void;

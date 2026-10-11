@@ -122,6 +122,26 @@ export type ToolbarItemPlacement =
   | 'subtitle'
   | 'largeSubtitle'
 export type SpacerSizing = 'flexible' | 'fixed'
+export type PayWithApplePayButtonStyle = 'white' | 'whiteOutline' | 'black' | 'automatic'
+export type AddPassToWalletButtonStyle = 'black' | 'blackOutline'
+export type PayWithApplePayButtonLabel =
+  | 'plain'
+  | 'buy'
+  | 'addMoney'
+  | 'book'
+  | 'checkout'
+  | 'continue'
+  | 'contribute'
+  | 'donate'
+  | 'inStore'
+  | 'order'
+  | 'reload'
+  | 'rent'
+  | 'setUp'
+  | 'subscribe'
+  | 'support'
+  | 'tip'
+  | 'topUp'
 export const swiftUIValues = {
   MenuOrder: {
     automatic: 16,
@@ -382,6 +402,35 @@ export const swiftUIValues = {
   SpacerSizing: {
     flexible: 26,
     fixed: 26,
+  },
+  PayWithApplePayButtonStyle: {
+    white: 16,
+    whiteOutline: 16,
+    black: 16,
+    automatic: 16,
+  },
+  AddPassToWalletButtonStyle: {
+    black: 16,
+    blackOutline: 16,
+  },
+  PayWithApplePayButtonLabel: {
+    plain: 16,
+    buy: 16,
+    addMoney: 16,
+    book: 16,
+    checkout: 16,
+    continue: 16,
+    contribute: 16,
+    donate: 16,
+    inStore: 16,
+    order: 16,
+    reload: 16,
+    rent: 16,
+    setUp: 16,
+    subscribe: 16,
+    support: 16,
+    tip: 16,
+    topUp: 16,
   },
 } as const
 export function assertSwiftUIValue(

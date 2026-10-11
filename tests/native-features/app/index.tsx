@@ -369,6 +369,11 @@ const testScreens = [
     testID: 'nav-one-native-derived-views',
   },
   {
+    href: '/one-native-picker-passkit',
+    label: 'One Native Picker PassKit',
+    testID: 'nav-one-native-picker-passkit',
+  },
+  {
     href: '/one-native-safe-area',
     label: 'One Native Safe Area',
     testID: 'nav-one-native-safe-area',

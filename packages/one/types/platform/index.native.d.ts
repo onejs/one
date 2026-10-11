@@ -4,6 +4,7 @@ import { Page, Pager } from './Pager.native';
 import { Popover } from './Popover.native';
 import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
+import { withAnimation } from './withAnimation.native';
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
 import * as UI from './effects';
@@ -26,6 +27,7 @@ export declare const Swift: {
     Picker({ selection, onSelectionChange, revision, label, disabled, options, pickerStyle, swiftStyle, style, ...props }: import("./types").PickerProps): import("react/jsx-runtime").JSX.Element;
     DatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, displayedComponents, datePickerStyle, swiftStyle, style, ...props }: import("./types").DatePickerProps): import("react/jsx-runtime").JSX.Element;
     ColorPicker({ selection, onSelectionChange, revision, label, disabled, supportsOpacity, swiftStyle, style, ...props }: import("./types").ColorPickerProps): import("react/jsx-runtime").JSX.Element;
+    MultiDatePicker({ selection, onSelectionChange, revision, label, disabled, minimumDate, maximumDate, swiftStyle, style, ...props }: import("./types").MultiDatePickerProps): import("react/jsx-runtime").JSX.Element;
     Toggle({ isOn, onIsOnChange, revision, label, disabled, systemImage, toggleStyle, swiftStyle, style, ...props }: import("./types").ToggleProps): import("react/jsx-runtime").JSX.Element;
     Slider({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, minimumValueLabel, maximumValueLabel, minimumValueImage, maximumValueImage, swiftStyle, style, ...props }: import("./types").SliderProps): import("react/jsx-runtime").JSX.Element;
     Stepper({ value, onValueChange, revision, label, disabled, minimumValue, maximumValue, step, swiftStyle, style, ...props }: import("./types").StepperProps): import("react/jsx-runtime").JSX.Element;
@@ -54,6 +56,8 @@ export declare const Swift: {
     PhotosPicker({ onPick, onPickItemIdentifier, onPickError, label, disabled, systemImage, maxSelectionCount, selectionBehavior, filter, preferredItemEncoding, swiftStyle, style, ...props }: import("./types").PhotosPickerProps): import("react/jsx-runtime").JSX.Element;
     WebView({ onNavigate, onTitleChange, onLoadingChange, onLoadStart, onLoadEnd, onError, onHttpError, onMessage, onHistoryChange, onProcessTerminate, url, html, script, command, commandRevision, commandValue, limitsNavigationsToAppBoundDomains, inlineMedia, inspectable, bounces, backForwardNavigationGestures, magnificationGestures, linkPreviews, elementFullscreen, contentBackground, swiftStyle, style, ...props }: import("./types").WebViewProps): import("react/jsx-runtime").JSX.Element;
     SignInWithAppleButton({ onCompletion, requestedScopes, nonce, label, swiftStyle, style, ...props }: import("./types").SignInWithAppleButtonProps): import("react/jsx-runtime").JSX.Element;
+    PayWithApplePayButton({ onPress, label, payWithApplePayButtonStyle, disabled, swiftStyle, style, ...props }: import("./types").PayWithApplePayButtonProps): import("react/jsx-runtime").JSX.Element;
+    AddPassToWalletButton({ onPress, addPassToWalletButtonStyle, disabled, swiftStyle, style, ...props }: import("./types").AddPassToWalletButtonProps): import("react/jsx-runtime").JSX.Element;
     Map({ onRegionChange, latitude, longitude, distance, markers, swiftStyle, style, ...props }: import("./types").MapProps): import("react/jsx-runtime").JSX.Element;
     TextField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, axis, swiftStyle, style, ...props }: import("./types").TextFieldProps): import("react/jsx-runtime").JSX.Element;
     SecureField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").SecureFieldProps): import("react/jsx-runtime").JSX.Element;
@@ -62,8 +66,16 @@ export declare const Swift: {
     ConfirmationDialog({ isPresented, onIsPresentedChange, revision, onAction, title, message, presenting, actions, titleVisibility, swiftStyle, style, ...props }: import("./types").ConfirmationDialogProps): import("react/jsx-runtime").JSX.Element;
     QuickLook({ isPresented, onIsPresentedChange, revision, url, swiftStyle, style, ...props }: import("./types").QuickLookProps): import("react/jsx-runtime").JSX.Element;
     FileImporter({ isPresented, onIsPresentedChange, revision, onCompletion, allowedContentTypes, allowsMultipleSelection, swiftStyle, style, ...props }: import("./types").FileImporterProps): import("react/jsx-runtime").JSX.Element;
+    Chart({ data, type, showGrid, animate, showLegend, referenceLines, lineStyle, pointStyle, areaStyle, barStyle, pieStyle, rectangleStyle, ruleStyle, swiftStyle, style, ...props }: import("./types").ChartProps): import("react/jsx-runtime").JSX.Element;
+    AsyncImage({ url, scale, swiftStyle, style, ...props }: import("./types").AsyncImageProps): import("react/jsx-runtime").JSX.Element;
     EditButton({ swiftStyle, style, ...props }: import("./types").EditButtonProps): import("react/jsx-runtime").JSX.Element;
     EmptyView({ swiftStyle, style, ...props }: import("./types").EmptyViewProps): import("react/jsx-runtime").JSX.Element;
+    LocationButton({ onAction, title, swiftStyle, style, ...props }: import("./types").LocationButtonProps): import("react/jsx-runtime").JSX.Element;
+    ProductView({ id, prefersPromotionalIcon, swiftStyle, style, ...props }: import("./types").ProductViewProps): import("react/jsx-runtime").JSX.Element;
+    RenameButton({ swiftStyle, style, ...props }: import("./types").RenameButtonProps): import("react/jsx-runtime").JSX.Element;
+    ShortcutsLink({ onAction, swiftStyle, style, ...props }: import("./types").ShortcutsLinkProps): import("react/jsx-runtime").JSX.Element;
+    StoreView({ ids, prefersPromotionalIcon, swiftStyle, style, ...props }: import("./types").StoreViewProps): import("react/jsx-runtime").JSX.Element;
+    SubscriptionStoreView({ groupID, visibleRelationships, productIDs, swiftStyle, style, ...props }: import("./types").SubscriptionStoreViewProps): import("react/jsx-runtime").JSX.Element;
     ArrangementView: typeof import("./ArrangementView.native").ArrangementViewComponent & {
         Primary: typeof import("./ArrangementView.native").ArrangementPrimary;
         Secondary: typeof import("./ArrangementView.native").ArrangementSecondary;
@@ -130,6 +142,7 @@ export declare const Swift: {
     ToolbarSpacer: typeof ToolbarSpacer;
     Spacer: typeof Spacer;
     Slot: typeof Slot;
+    withAnimation: typeof withAnimation;
 };
 export { Compose };
 export { Notifications } from './notifications';
@@ -140,6 +153,7 @@ export { TextInput } from './universal/TextInput/index';
 export type { TextInputProps, TextInputRef, TextInputSelection, } from './universal/TextInput/textInputTypes';
 export type * from './types';
 export type * from './composeTypes';
+export type * from './chartTypes';
 export { Haptics } from './haptics/index.native';
 export { LaunchScreen } from './launchScreen/index.native';
 export { LocalAuthentication } from './local-authentication/index';

@@ -44,6 +44,9 @@ import type {
   ListStyle,
   ToolbarItemPlacement,
   SpacerSizing,
+  PayWithApplePayButtonStyle,
+  AddPassToWalletButtonStyle,
+  PayWithApplePayButtonLabel,
 } from './swiftui'
 export type {
   MenuOrder,
@@ -86,6 +89,9 @@ export type {
   ListStyle,
   ToolbarItemPlacement,
   SpacerSizing,
+  PayWithApplePayButtonStyle,
+  AddPassToWalletButtonStyle,
+  PayWithApplePayButtonLabel,
 } from './swiftui'
 export interface SwiftMenuAction {
   type: 'action'

@@ -94,6 +94,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Picker` | pickers, picker-palette, forms, navigation | n/a | OneNativeFormControlsLibraryCase, OneNativeFormLayoutLibraryCase | palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven |
 | `One.iOS.DatePicker` | pickers, forms | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.ColorPicker` | pickers, forms | n/a | OneNativeFormControlsLibraryCase |  |
+| `One.iOS.MultiDatePicker` | e2e:one-native-picker-passkit | n/a | missing |  |
 | `One.iOS.Toggle` | pickers, forms, host, containers, lists, list-row-background, state, accessibility | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Slider` | pickers, forms, e2e:one-native-animation | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a | OneNativeFormControlsLibraryCase |  |
@@ -122,6 +123,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.PhotosPicker` | web-photos | n/a | OneSwiftPhotosPickerLibraryCase |  |
 | `One.iOS.WebView` | web-photos | n/a | OneSwiftWebViewLibraryCase |  |
 | `One.iOS.SignInWithAppleButton` | apple-file, apple-auth | n/a | OneSwiftSignInWithAppleLibraryCase |  |
+| `One.iOS.PayWithApplePayButton` | e2e:one-native-picker-passkit | n/a | missing |  |
+| `One.iOS.AddPassToWalletButton` | e2e:one-native-picker-passkit | n/a | missing |  |
 | `One.iOS.Map` | map | n/a | OneSwiftMapLibraryCase |  |
 | `One.iOS.TextField` | pickers, forms, leaves, state | n/a | OneNativeTextFieldsLibraryCase |  |
 | `One.iOS.SecureField` | leaves | n/a | OneNativeTextFieldsLibraryCase |  |

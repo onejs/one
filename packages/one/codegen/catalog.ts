@@ -5,7 +5,7 @@ import { SF_SYMBOL_PUBLIC_TYPE } from './sfSymbolNames'
 // frameworks whose SwiftUI overlay declares modifiers or enum cases emitted below.
 // importing the framework is what loads its _<Framework>_SwiftUI overlay, the same way a
 // control declares `imports`.
-export const frameworks = ['PhotosUI', 'WebKit'] as const
+export const frameworks = ['PhotosUI', 'WebKit', 'PassKit'] as const
 
 // native hosts with handwritten Fabric specs live outside SDK view generation.
 export const handwrittenComponents = [
@@ -263,6 +263,13 @@ export const enumTypes = [
   // because deprecation lands in newer SDKs first.
   'ToolbarItemPlacement',
   'SpacerSizing',
+  // PassKit button artwork: the style structs and the buy/book/checkout label list.
+  // the style modifiers take these structs as concrete parameters rather than through a
+  // generic Style protocol, so the recipes map cases by hand and only the value types
+  // are listed here.
+  'PayWithApplePayButtonStyle',
+  'AddPassToWalletButtonStyle',
+  'PayWithApplePayButtonLabel',
 ]
 export const fields = {
   id: { type: 'string', default: '' },

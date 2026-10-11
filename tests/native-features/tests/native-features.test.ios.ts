@@ -688,4 +688,63 @@ describe('one native integration tests', () => {
       }
     )
   })
+
+  describe('One Native MultiDatePicker and PassKit buttons', () => {
+    test('picker resets through revisions and buttons report taps', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-picker-passkit')
+      const picker = await waitForElement(driver, 'one-native-picker-passkit-picker', { timeout: 30_000 })
+      expect(await picker.isDisplayed()).toBe(true)
+
+      const status = await waitForElement(driver, 'one-native-picker-passkit-status')
+      expect(await status.getText()).toContain('Selected: 2')
+      expect(await status.getText()).toContain('Observed: none')
+
+      // a tap on each system button reports exactly one press. the calendar fills
+      // the first screen, so scroll down to the buttons first.
+      await driver.execute('mobile: scroll', { direction: 'down' })
+      await driver.execute('mobile: scroll', { direction: 'down' })
+      await (await waitForElement(driver, 'one-native-picker-passkit-pay')).click()
+      const presses = await waitForElement(driver, 'one-native-picker-passkit-presses')
+      await presses.waitUntil(
+        async () => (await presses.getText()).includes('Pay presses: 1'),
+        { timeout: 5000, timeoutMsg: 'PayWithApplePayButton tap did not report onPress' }
+      )
+      await (await waitForElement(driver, 'one-native-picker-passkit-wallet')).click()
+      await presses.waitUntil(
+        async () => (await presses.getText()).includes('Wallet presses: 1'),
+        { timeout: 5000, timeoutMsg: 'AddPassToWalletButton tap did not report onPress' }
+      )
+      expect(await presses.getText()).toContain('Pay presses: 1 · Wallet presses: 1')
+      await captureScreenshot(driver, 'one-native-picker-passkit-buttons')
+
+      // an external reset clears the calendar without fabricating an observation.
+      await (await waitForElement(driver, 'one-native-picker-passkit-clear')).click()
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Selected: 0 · Observed: none'),
+        { timeout: 5000, timeoutMsg: 'revision reset did not clear the picker' }
+      )
+      await (await waitForElement(driver, 'one-native-picker-passkit-pick')).click()
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Selected: 2 · Observed: none'),
+        { timeout: 5000, timeoutMsg: 'revision reset did not restore the picker' }
+      )
+      await captureScreenshot(driver, 'one-native-picker-passkit-calendar')
+    })
+
+    test('invalid picker selection and button label throw', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-picker-passkit')
+      await waitForElement(driver, 'one-native-picker-passkit-picker', { timeout: 30_000 })
+      // the calendar fills the first screen; the controls sit below it.
+      await driver.execute('mobile: scroll', { direction: 'down' })
+      await (await waitForElement(driver, 'one-native-picker-passkit-invalid')).click()
+      const pickerError = await waitForElement(driver, 'one-native-picker-passkit-error')
+      expect(await pickerError.getText()).toContain('must be an array of valid Dates')
+
+      await driver.execute('mobile: scroll', { direction: 'down' })
+      await driver.execute('mobile: scroll', { direction: 'down' })
+      await (await waitForElement(driver, 'one-native-picker-passkit-bad-label')).click()
+      const labelError = await waitForElement(driver, 'one-native-picker-passkit-label-error')
+      expect(await labelError.getText()).toContain('PayWithApplePayButtonLabel')
+    })
+  })
 })

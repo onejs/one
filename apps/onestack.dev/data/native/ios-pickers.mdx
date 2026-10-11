@@ -1,6 +1,6 @@
 ---
 title: iOS Pickers
-description: Picker, DatePicker, ColorPicker, PhotosPicker, and FileImporter under One.iOS
+description: Picker, DatePicker, MultiDatePicker, ColorPicker, PhotosPicker, and FileImporter under One.iOS
 ---
 
 <NativeHero
@@ -10,8 +10,9 @@ description: Picker, DatePicker, ColorPicker, PhotosPicker, and FileImporter und
 
 Value pickers and system choosers under `One.iOS`, drawn by SwiftUI.
 
-- `Picker`, `DatePicker`, and `ColorPicker` are controlled: a `selection`, an
-  `onSelectionChange` callback, and a `revision` for external resets.
+- `Picker`, `DatePicker`, `MultiDatePicker`, and `ColorPicker` are controlled:
+  a `selection`, an `onSelectionChange` callback, and a `revision` for
+  external resets.
 - `PhotosPicker` and `FileImporter` open the system photo library and file
   browser.
 - Invalid values throw during render.
@@ -117,6 +118,41 @@ one.
 
 The selection must lie within the bounds, and `minimumDate` must not be after
 `maximumDate`, or the picker throws.
+
+## MultiDatePicker
+
+`One.iOS.MultiDatePicker` picks any number of days. The selection is
+day-precision in the device calendar: same-day duplicates collapse into one
+date, and the time of day does not survive the round trip.
+
+```tsx
+const [days, setDays] = useState<Date[]>([new Date(2026, 9, 12)])
+
+<One.iOS.MultiDatePicker
+  label="Trip days"
+  selection={days}
+  onSelectionChange={setDays}
+  minimumDate={new Date(2026, 9, 1)}
+  maximumDate={new Date(2026, 9, 31)}
+/>
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#MultiDatePickerProps"
+  data={[
+    { name: 'selection', required: true, type: 'readonly Date[]', description: 'The selected days.' },
+    { name: 'onSelectionChange', required: true, type: '(value: readonly Date[]) => void', description: 'A native pick, with the new days.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
+    { name: 'label', type: 'string', default: '""', description: 'The row title.' },
+    { name: 'minimumDate', type: 'Date', description: 'The earliest date. Unbounded when unset.' },
+    { name: 'maximumDate', type: 'Date', description: 'The latest date. Unbounded when unset.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the picker and ignores taps.' },
+  ]}
+/>
+
+Every date must be valid and lie within the bounds, and `minimumDate` must
+not be after `maximumDate`, or the picker throws.
 
 ## ColorPicker
 

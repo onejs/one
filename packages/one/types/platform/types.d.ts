@@ -82,4 +82,5 @@ export interface TabViewBottomAccessoryProps {
     inline?: ReactNode;
     expanded?: ReactNode;
 }
+export type WithAnimationCompletionCriteria = 'logicallyComplete' | 'removed';
 //# sourceMappingURL=types.d.ts.map

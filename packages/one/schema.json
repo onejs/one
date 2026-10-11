@@ -1185,6 +1185,64 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeMultiDatePicker",
+      "publicName": "MultiDatePicker",
+      "props": {
+        "value": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        },
+        "label": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "minimumDate": {
+          "type": "Double"
+        },
+        "maximumDate": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativeMultiDatePickerValueChange": {
+          "value": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        }
+      },
+      "controlled": {
+        "value": "value",
+        "event": "onNativeMultiDatePickerValueChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeToggle",
       "publicName": "Toggle",
       "props": {
@@ -2565,6 +2623,88 @@
         {
           "publicProp": "onCompletion",
           "event": "onNativeSignInWithAppleButtonCompletion"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePayWithApplePayButton",
+      "publicName": "PayWithApplePayButton",
+      "props": {
+        "label": {
+          "type": "string",
+          "enum": "PayWithApplePayButtonLabel"
+        },
+        "payWithApplePayButtonStyle": {
+          "type": "string",
+          "enum": "PayWithApplePayButtonStyle"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativePayWithApplePayButtonPress": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPress",
+          "event": "onNativePayWithApplePayButtonPress"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeAddPassToWalletButton",
+      "publicName": "AddPassToWalletButton",
+      "props": {
+        "addPassToWalletButtonStyle": {
+          "type": "string",
+          "enum": "AddPassToWalletButtonStyle"
+        },
+        "disabled": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativeAddPassToWalletButtonPress": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onPress",
+          "event": "onNativeAddPassToWalletButtonPress"
         }
       ],
       "layout": {
@@ -4985,6 +5125,35 @@
     "SpacerSizing": {
       "flexible": 26,
       "fixed": 26
+    },
+    "PayWithApplePayButtonStyle": {
+      "white": 16,
+      "whiteOutline": 16,
+      "black": 16,
+      "automatic": 16
+    },
+    "AddPassToWalletButtonStyle": {
+      "black": 16,
+      "blackOutline": 16
+    },
+    "PayWithApplePayButtonLabel": {
+      "plain": 16,
+      "buy": 16,
+      "addMoney": 16,
+      "book": 16,
+      "checkout": 16,
+      "continue": 16,
+      "contribute": 16,
+      "donate": 16,
+      "inStore": 16,
+      "order": 16,
+      "reload": 16,
+      "rent": 16,
+      "setUp": 16,
+      "subscribe": 16,
+      "support": 16,
+      "tip": 16,
+      "topUp": 16
     }
   }
 }

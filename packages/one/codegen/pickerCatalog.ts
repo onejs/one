@@ -169,4 +169,74 @@ private func oneNativeEncodeColor(_ color: Color, supportsOpacity: Bool) -> Stri
 }`,
     validate: `  if (typeof selection !== 'string' || !/^#[0-9A-Fa-f]{6}(?:[0-9A-Fa-f]{2})?$/.test(selection)) throw new Error('ColorPicker selection must be #RRGGBB or #RRGGBBAA')`,
   },
+  {
+    // a set of DateComponents travels as a sorted JSON array of epoch milliseconds:
+    // the controlled protocol only carries scalars, and the adapter sorts so the
+    // native echo matches byte for byte. days follow the device calendar, so a
+    // selection is day-precision and same-day duplicates collapse into one date.
+    name: 'MultiDatePicker',
+    value: {
+      type: 'string',
+      prop: 'selection',
+      event: 'onSelectionChange',
+      initial: '[]',
+      publicType: 'readonly Date[]',
+      nativeValue: 'JSON.stringify(selection.map(date => date.getTime()).sort((a, b) => a - b))',
+      eventValue: 'JSON.parse(event.value).map((time: number) => new Date(time))',
+    },
+    fields: {
+      ...commonFields,
+      minimumDate: {
+        type: 'Double',
+        default: -62135769600000,
+        publicType: 'Date',
+        jsDefault: 'new Date(-62135769600000)',
+        nativeValue: 'minimumDate.getTime()',
+      },
+      maximumDate: {
+        type: 'Double',
+        default: 64092211200000,
+        publicType: 'Date',
+        jsDefault: 'new Date(64092211200000)',
+        nativeValue: 'maximumDate.getTime()',
+      },
+    },
+    constructors: [
+      {
+        type: 'MultiDatePicker',
+        parameters: [
+          { label: '_', type: 'SwiftUICore.LocalizedStringKey' },
+          { label: 'selection', type: 'SwiftUICore.Binding<Swift.Set<Foundation.DateComponents>>' },
+          { label: 'in', type: 'Swift.Range<Foundation.Date>' },
+        ],
+      },
+    ],
+    swift: `MultiDatePicker(LocalizedStringKey(model.label), selection: Binding(
+        get: { oneNativeDecodeDates(model.controlled.value) },
+        set: { value in model.change(oneNativeEncodeDates(value)) }
+      ), in: Date(timeIntervalSince1970: model.minimumDate / 1000)..<Date(timeIntervalSince1970: model.maximumDate / 1000))`,
+    extraSwift: `private func oneNativeDecodeDates(_ json: String) -> Set<DateComponents> {
+  guard let data = json.data(using: .utf8),
+    let times = try? JSONDecoder().decode([Double].self, from: data)
+  else { preconditionFailure("MultiDatePicker selection is not a JSON array of epoch milliseconds") }
+  let calendar = Calendar.current
+  return Set(times.map { calendar.dateComponents([.calendar, .era, .year, .month, .day], from: Date(timeIntervalSince1970: $0 / 1000)) })
+}
+
+private func oneNativeEncodeDates(_ value: Set<DateComponents>) -> String {
+  let calendar = Calendar.current
+  let times = value.compactMap { components -> Double? in
+    guard let date = calendar.date(from: components) else { return nil }
+    return date.timeIntervalSince1970 * 1000
+  }
+  let data = try! JSONEncoder().encode(times.sorted())
+  return String(data: data, encoding: .utf8)!
+}`,
+    validate: `  if (!Array.isArray(selection) || selection.some(date => !(date instanceof Date) || Number.isNaN(date.getTime()))) throw new Error('MultiDatePicker selection must be an array of valid Dates')
+  const minimumTime = minimumDate instanceof Date ? minimumDate.getTime() : NaN
+  const maximumTime = maximumDate instanceof Date ? maximumDate.getTime() : NaN
+  if (![minimumTime, maximumTime].every(Number.isFinite)) throw new Error('MultiDatePicker minimumDate and maximumDate must be valid Date values')
+  if (minimumTime > maximumTime) throw new Error('MultiDatePicker minimumDate must not be after maximumDate')
+  if (selection.some(date => date.getTime() < minimumTime || date.getTime() > maximumTime)) throw new Error('MultiDatePicker selection must be within minimumDate and maximumDate')`,
+  },
 ]

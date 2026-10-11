@@ -1,4 +1,4 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GroupProps, GroupBoxProps, ViewThatFitsProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GroupProps, GroupBoxProps, ViewThatFitsProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -57,6 +57,7 @@ export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
     ColorPicker: (_props: import("./types").ColorPickerProps) => never;
+    MultiDatePicker: (_props: import("./types").MultiDatePickerProps) => never;
     Toggle: (_props: import("./types").ToggleProps) => never;
     Slider: (_props: import("./types").SliderProps) => never;
     Stepper: (_props: import("./types").StepperProps) => never;
@@ -85,6 +86,8 @@ export declare const Swift: {
     PhotosPicker: (_props: import("./types").PhotosPickerProps) => never;
     WebView: (_props: import("./types").WebViewProps) => never;
     SignInWithAppleButton: (_props: import("./types").SignInWithAppleButtonProps) => never;
+    PayWithApplePayButton: (_props: import("./types").PayWithApplePayButtonProps) => never;
+    AddPassToWalletButton: (_props: import("./types").AddPassToWalletButtonProps) => never;
     Map: (_props: import("./types").MapProps) => never;
     TextField: (_props: import("./types").TextFieldProps) => never;
     SecureField: (_props: import("./types").SecureFieldProps) => never;
@@ -93,8 +96,16 @@ export declare const Swift: {
     ConfirmationDialog: (_props: import("./types").ConfirmationDialogProps) => never;
     QuickLook: (_props: import("./types").QuickLookProps) => never;
     FileImporter: (_props: import("./types").FileImporterProps) => never;
+    Chart: (_props: import("./types").ChartProps) => never;
+    AsyncImage: (_props: import("./types").AsyncImageProps) => never;
     EditButton: (_props: import("./types").EditButtonProps) => never;
     EmptyView: (_props: import("./types").EmptyViewProps) => never;
+    LocationButton: (_props: import("./types").LocationButtonProps) => never;
+    ProductView: (_props: import("./types").ProductViewProps) => never;
+    RenameButton: (_props: import("./types").RenameButtonProps) => never;
+    ShortcutsLink: (_props: import("./types").ShortcutsLinkProps) => never;
+    StoreView: (_props: import("./types").StoreViewProps) => never;
+    SubscriptionStoreView: (_props: import("./types").SubscriptionStoreViewProps) => never;
     ArrangementView: typeof import("./ArrangementView").ArrangementViewComponent & {
         Primary: typeof import("./ArrangementView").ArrangementPrimary;
         Secondary: typeof import("./ArrangementView").ArrangementSecondary;
@@ -161,6 +172,7 @@ export declare const Swift: {
     ToolbarItem: typeof ToolbarItem;
     ToolbarItemGroup: typeof ToolbarItemGroup;
     ToolbarSpacer: typeof ToolbarSpacer;
+    withAnimation(_animation: SDKAnimation | null, _body: () => void, _completion?: () => void, _completionCriteria?: WithAnimationCompletionCriteria): never;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map

@@ -3,6 +3,7 @@
 import SwiftUI
 import PhotosUI
 import WebKit
+import PassKit
 
 enum OneNativeGenerated {
   static func menuOrder(_ value: String) -> MenuOrder {
@@ -445,6 +446,45 @@ enum OneNativeGenerated {
     case "fixed":
       return .fixed
     default: preconditionFailure("invalid SpacerSizing: \(value)")
+    }
+  }
+  static func payWithApplePayButtonLabel(_ value: String) -> PayWithApplePayButtonLabel {
+    switch value {
+    case "plain":
+      return .plain
+    case "buy":
+      return .buy
+    case "addMoney":
+      return .addMoney
+    case "book":
+      return .book
+    case "checkout":
+      return .checkout
+    case "continue":
+      return .continue
+    case "contribute":
+      return .contribute
+    case "donate":
+      return .donate
+    case "inStore":
+      return .inStore
+    case "order":
+      return .order
+    case "reload":
+      return .reload
+    case "rent":
+      return .rent
+    case "setUp":
+      return .setUp
+    case "subscribe":
+      return .subscribe
+    case "support":
+      return .support
+    case "tip":
+      return .tip
+    case "topUp":
+      return .topUp
+    default: preconditionFailure("invalid PayWithApplePayButtonLabel: \(value)")
     }
   }
 }

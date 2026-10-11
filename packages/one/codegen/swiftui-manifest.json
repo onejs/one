@@ -266,6 +266,35 @@
     "SpacerSizing": {
       "flexible": 26,
       "fixed": 26
+    },
+    "PayWithApplePayButtonStyle": {
+      "white": 16,
+      "whiteOutline": 16,
+      "black": 16,
+      "automatic": 16
+    },
+    "AddPassToWalletButtonStyle": {
+      "black": 16,
+      "blackOutline": 16
+    },
+    "PayWithApplePayButtonLabel": {
+      "plain": 16,
+      "buy": 16,
+      "addMoney": 16,
+      "book": 16,
+      "checkout": 16,
+      "continue": 16,
+      "contribute": 16,
+      "donate": 16,
+      "inStore": 16,
+      "order": 16,
+      "reload": 16,
+      "rent": 16,
+      "setUp": 16,
+      "subscribe": 16,
+      "support": 16,
+      "tip": 16,
+      "topUp": 16
     }
   },
   "modifiers": [
@@ -17749,6 +17778,7 @@
         "Gauge",
         "Label",
         "Menu",
+        "MultiDatePicker",
         "PasteButton",
         "Picker",
         "ProgressView",
@@ -17791,6 +17821,10 @@
       ],
       "_AuthenticationServices_SwiftUI": [
         "SignInWithAppleButton"
+      ],
+      "_PassKit_SwiftUI": [
+        "AddPassToWalletButton",
+        "PayWithApplePayButton"
       ],
       "_MapKit_SwiftUI": [
         "Map",
@@ -19155,6 +19189,28 @@
     },
     {
       "module": "SwiftUI",
+      "type": "MultiDatePicker",
+      "parameters": [
+        {
+          "label": "_",
+          "name": "titleKey",
+          "type": "SwiftUICore.LocalizedStringKey"
+        },
+        {
+          "label": "selection",
+          "name": "selection",
+          "type": "SwiftUICore.Binding<Swift.Set<Foundation.DateComponents>>"
+        },
+        {
+          "label": "in",
+          "name": "bounds",
+          "type": "Swift.Range<Foundation.Date>"
+        }
+      ],
+      "ios": 16
+    },
+    {
+      "module": "SwiftUI",
       "type": "Toggle",
       "parameters": [
         {
@@ -19860,6 +19916,36 @@
         }
       ],
       "ios": 14
+    },
+    {
+      "module": "_PassKit_SwiftUI",
+      "type": "PayWithApplePayButton",
+      "parameters": [
+        {
+          "defaultValue": ".plain",
+          "label": "_",
+          "name": "label",
+          "type": "_PassKit_SwiftUI.PayWithApplePayButtonLabel"
+        },
+        {
+          "label": "action",
+          "name": "action",
+          "type": "@escaping () -> Swift.Void"
+        }
+      ],
+      "ios": 16
+    },
+    {
+      "module": "_PassKit_SwiftUI",
+      "type": "AddPassToWalletButton",
+      "parameters": [
+        {
+          "label": "action",
+          "name": "action",
+          "type": "@escaping () -> Swift.Void"
+        }
+      ],
+      "ios": 16
     },
     {
       "module": "_MapKit_SwiftUI",

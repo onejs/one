@@ -3580,6 +3580,15 @@ export interface ColorPickerProps extends OneNativeViewProps {
   disabled?: boolean
   supportsOpacity?: boolean
 }
+export interface MultiDatePickerProps extends OneNativeViewProps {
+  selection: readonly Date[]
+  onSelectionChange: (value: readonly Date[]) => void
+  revision?: number
+  label?: string
+  disabled?: boolean
+  minimumDate?: Date
+  maximumDate?: Date
+}
 export interface ToggleProps extends OneNativeViewProps {
   isOn: boolean | NativeState<boolean>
   onIsOnChange: (value: boolean) => void
@@ -3822,6 +3831,17 @@ export interface SignInWithAppleButtonProps extends OneNativeViewProps {
   requestedScopes?: readonly ('fullName' | 'email')[]
   nonce?: string
   label?: 'signIn' | 'continue' | 'signUp'
+}
+export interface PayWithApplePayButtonProps extends OneNativeViewProps {
+  onPress?: () => void
+  label?: Styles.PayWithApplePayButtonLabel
+  payWithApplePayButtonStyle?: Styles.PayWithApplePayButtonStyle
+  disabled?: boolean
+}
+export interface AddPassToWalletButtonProps extends OneNativeViewProps {
+  onPress?: () => void
+  addPassToWalletButtonStyle?: Styles.AddPassToWalletButtonStyle
+  disabled?: boolean
 }
 export interface MapProps extends OneNativeViewProps {
   onRegionChange?: (latitude: number, longitude: number, distance: number) => void

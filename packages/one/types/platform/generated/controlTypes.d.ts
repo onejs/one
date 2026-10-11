@@ -3,6 +3,7 @@ import type * as Styles from './swiftui';
 import type { KeyboardType, TextContentType } from '../textTypes';
 import type { IconColorRole } from '../ui/iconRoles';
 import type { SFSymbolName } from './sfSymbolNames';
+import type { AreaChartStyle, BarChartStyle, ChartDataPoint, ChartType, LineChartStyle, PieChartStyle, PointChartStyle, RectangleChartStyle, RuleChartStyle } from '../chartTypes';
 import type { NativeState } from '../syncNativeState';
 export declare const glassEffects: readonly ['regular', 'clear', 'identity'];
 export type GlassEffect = (typeof glassEffects)[number];
@@ -2495,6 +2496,15 @@ export interface ColorPickerProps extends OneNativeViewProps {
     disabled?: boolean;
     supportsOpacity?: boolean;
 }
+export interface MultiDatePickerProps extends OneNativeViewProps {
+    selection: readonly Date[];
+    onSelectionChange: (value: readonly Date[]) => void;
+    revision?: number;
+    label?: string;
+    disabled?: boolean;
+    minimumDate?: Date;
+    maximumDate?: Date;
+}
 export interface ToggleProps extends OneNativeViewProps {
     isOn: boolean | NativeState<boolean>;
     onIsOnChange: (value: boolean) => void;
@@ -2505,7 +2515,7 @@ export interface ToggleProps extends OneNativeViewProps {
     toggleStyle?: Styles.ToggleStyle;
 }
 export interface SliderProps extends OneNativeViewProps {
-    value: number;
+    value: number | NativeState<number>;
     onValueChange: (value: number) => void;
     revision?: number;
     label?: string;
@@ -2519,7 +2529,7 @@ export interface SliderProps extends OneNativeViewProps {
     maximumValueImage?: string;
 }
 export interface StepperProps extends OneNativeViewProps {
-    value: number;
+    value: number | NativeState<number>;
     onValueChange: (value: number) => void;
     revision?: number;
     label?: string;
@@ -2748,6 +2758,17 @@ export interface SignInWithAppleButtonProps extends OneNativeViewProps {
     nonce?: string;
     label?: 'signIn' | 'continue' | 'signUp';
 }
+export interface PayWithApplePayButtonProps extends OneNativeViewProps {
+    onPress?: () => void;
+    label?: Styles.PayWithApplePayButtonLabel;
+    payWithApplePayButtonStyle?: Styles.PayWithApplePayButtonStyle;
+    disabled?: boolean;
+}
+export interface AddPassToWalletButtonProps extends OneNativeViewProps {
+    onPress?: () => void;
+    addPassToWalletButtonStyle?: Styles.AddPassToWalletButtonStyle;
+    disabled?: boolean;
+}
 export interface MapProps extends OneNativeViewProps {
     onRegionChange?: (latitude: number, longitude: number, distance: number) => void;
     latitude?: number;
@@ -2851,8 +2872,49 @@ export interface FileImporterProps extends OneNativeViewProps {
     allowedContentTypes?: readonly string[];
     allowsMultipleSelection?: boolean;
 }
+export interface ChartProps extends OneNativeViewProps {
+    data: readonly ChartDataPoint[];
+    type?: ChartType;
+    showGrid?: boolean;
+    animate?: boolean;
+    showLegend?: boolean;
+    referenceLines?: readonly ChartDataPoint[];
+    lineStyle?: LineChartStyle;
+    pointStyle?: PointChartStyle;
+    areaStyle?: AreaChartStyle;
+    barStyle?: BarChartStyle;
+    pieStyle?: PieChartStyle;
+    rectangleStyle?: RectangleChartStyle;
+    ruleStyle?: RuleChartStyle;
+}
+export interface AsyncImageProps extends OneNativeViewProps {
+    url: string;
+    scale?: number;
+}
 export interface EditButtonProps extends OneNativeViewProps {
 }
 export interface EmptyViewProps extends OneNativeViewProps {
+}
+export interface LocationButtonProps extends OneNativeViewProps {
+    onAction?: () => void;
+    title?: 'currentLocation' | 'sendCurrentLocation' | 'sendMyCurrentLocation' | 'shareCurrentLocation' | 'shareMyCurrentLocation' | '';
+}
+export interface ProductViewProps extends OneNativeViewProps {
+    id: string;
+    prefersPromotionalIcon?: boolean;
+}
+export interface RenameButtonProps extends OneNativeViewProps {
+}
+export interface ShortcutsLinkProps extends OneNativeViewProps {
+    onAction?: () => void;
+}
+export interface StoreViewProps extends OneNativeViewProps {
+    ids: readonly string[];
+    prefersPromotionalIcon?: boolean;
+}
+export interface SubscriptionStoreViewProps extends OneNativeViewProps {
+    groupID?: string;
+    visibleRelationships?: 'current' | 'downgrade' | 'crossgrade' | 'upgrade' | 'all';
+    productIDs?: readonly string[];
 }
 //# sourceMappingURL=controlTypes.d.ts.map

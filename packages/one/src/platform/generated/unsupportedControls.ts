@@ -10,6 +10,9 @@ function DatePicker(_props: Types.DatePickerProps): never {
 function ColorPicker(_props: Types.ColorPickerProps): never {
   throw new Error('Swift.ColorPicker requires an iOS native build')
 }
+function MultiDatePicker(_props: Types.MultiDatePickerProps): never {
+  throw new Error('Swift.MultiDatePicker requires an iOS native build')
+}
 function Toggle(_props: Types.ToggleProps): never {
   throw new Error('Swift.Toggle requires an iOS native build')
 }
@@ -94,6 +97,12 @@ function WebView(_props: Types.WebViewProps): never {
 function SignInWithAppleButton(_props: Types.SignInWithAppleButtonProps): never {
   throw new Error('Swift.SignInWithAppleButton requires an iOS native build')
 }
+function PayWithApplePayButton(_props: Types.PayWithApplePayButtonProps): never {
+  throw new Error('Swift.PayWithApplePayButton requires an iOS native build')
+}
+function AddPassToWalletButton(_props: Types.AddPassToWalletButtonProps): never {
+  throw new Error('Swift.AddPassToWalletButton requires an iOS native build')
+}
 function Map(_props: Types.MapProps): never {
   throw new Error('Swift.Map requires an iOS native build')
 }
@@ -152,6 +161,7 @@ export const unsupportedControls = {
   Picker,
   DatePicker,
   ColorPicker,
+  MultiDatePicker,
   Toggle,
   Slider,
   Stepper,
@@ -180,6 +190,8 @@ export const unsupportedControls = {
   PhotosPicker,
   WebView,
   SignInWithAppleButton,
+  PayWithApplePayButton,
+  AddPassToWalletButton,
   Map,
   TextField,
   SecureField,

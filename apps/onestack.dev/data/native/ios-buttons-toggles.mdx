@@ -1,6 +1,6 @@
 ---
 title: iOS Buttons and Toggles
-description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, EditButton, RenameButton, LocationButton, and ShortcutsLink under One.iOS
+description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, PayWithApplePayButton, AddPassToWalletButton, EditButton, RenameButton, LocationButton, and ShortcutsLink under One.iOS
 ---
 
 <NativeHero
@@ -231,6 +231,72 @@ receives.
 A completion is `{ type: 'success', user, email, givenName, familyName,
 identityToken, authorizationCode }`, `{ type: 'failed', message }`, or
 `{ type: 'cancelled' }`.
+
+## PayWithApplePayButton
+
+`One.iOS.PayWithApplePayButton` shows the system Apple Pay button and runs
+`onPress` on tap. `label` picks the artwork's verb and
+`payWithApplePayButtonStyle` picks its color. The button only starts the
+tap: presenting the payment sheet for a `PKPaymentRequest` still needs
+native code, because a request object cannot cross the bridge.
+
+```tsx
+<One.iOS.PayWithApplePayButton
+  label="buy"
+  payWithApplePayButtonStyle="black"
+  onPress={startCheckout}
+/>
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#PayWithApplePayButtonProps"
+  data={[
+    { name: 'onPress', type: '() => void', description: 'Runs on tap.' },
+    {
+      name: 'label',
+      type: 'PayWithApplePayButtonLabel',
+      default: '"plain"',
+      description: 'plain, buy, addMoney, book, checkout, continue, contribute, donate, inStore, order, reload, rent, setUp, subscribe, support, tip, or topUp.',
+    },
+    {
+      name: 'payWithApplePayButtonStyle',
+      type: 'PayWithApplePayButtonStyle',
+      default: '"black"',
+      description: 'white, whiteOutline, black, or automatic.',
+    },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
+  ]}
+/>
+
+## AddPassToWalletButton
+
+`One.iOS.AddPassToWalletButton` shows the system add-to-wallet button and
+runs `onPress` on tap. The artwork has no label variant, only the two black
+styles. Adding the pass itself still needs native code, because a `PKPass`
+cannot cross the bridge.
+
+```tsx
+<One.iOS.AddPassToWalletButton
+  addPassToWalletButtonStyle="blackOutline"
+  onPress={addPass}
+/>
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#AddPassToWalletButtonProps"
+  data={[
+    { name: 'onPress', type: '() => void', description: 'Runs on tap.' },
+    {
+      name: 'addPassToWalletButtonStyle',
+      type: 'AddPassToWalletButtonStyle',
+      default: '"black"',
+      description: 'black or blackOutline.',
+    },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
+  ]}
+/>
 
 ## EditButton
 
