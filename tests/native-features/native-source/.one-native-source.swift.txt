@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 @MainActor public enum OneNativeSourceBody_native_source {
-  public static let hash = "9e06fe5fd63521be6abf44242e1f962a214d8f341d5e29a0cf2ec18d7e540c45"
+  public static let hash = "c45c71664c16d0c80a5b3cee7e2a56abc2598b9eb357f347241ce387da82a473"
 #if os(WASI)
   private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
   private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
@@ -40,28 +40,95 @@ import SwiftUI
     return output.withUnsafeMutableBufferPointer { $0.baseAddress }
   }
 #endif
+  private static let EscapeHatchInstance = EscapeHatch()
   private static let AudioMathInstance = AudioMath()
+  private static let isoDate: ISO8601DateFormatter = {
+    let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = [.withInternetDateTime]
+    return formatter
+  }()
+  private static let isoDateFractional: ISO8601DateFormatter = {
+    let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+    return formatter
+  }()
+  private static func decodeDate(_ decoder: Decoder) throws -> Date {
+    let container = try decoder.singleValueContainer()
+    let text = try container.decode(String.self)
+    if let date = isoDateFractional.date(from: text) ?? isoDate.date(from: text) { return date }
+    throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected ISO date")
+  }
   private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {
     let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])
-    return try JSONDecoder().decode(T.self, from: data)
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .custom { try decodeDate($0) }
+    decoder.dataDecodingStrategy = .base64
+    return try decoder.decode(T.self, from: data)
+  }
+  private static func encode(_ value: any Encodable) throws -> String {
+    let encoder = JSONEncoder()
+    encoder.dateEncodingStrategy = .iso8601
+    encoder.dataEncodingStrategy = .base64
+    return String(decoding: try encoder.encode(value), as: UTF8.self)
+  }
+  private static func encodeAny(_ value: any Encodable) -> String {
+    (try? encode(value)) ?? "null"
+  }
+  // native events post over the one event bridge on device; under wasi
+  // there is no javascript runtime to receive them, so emitting traps.
+  private static func postEvent(_ channel: String, _ args: String) {
+    #if os(WASI)
+    fatalError("native events need a device build")
+    #else
+    OneNativeSourceEmitter.send(channel, args)
+    #endif
   }
   static func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String {
     guard let values = try JSONSerialization.jsonObject(with: Data(argsJson.utf8)) as? [Any] else {
       throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "arguments must be a JSON array"])
     }
     switch module {
+    case "native_source.EscapeHatch":
+      switch method {
+      case "pin":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.pin expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Waypoint.self)
+        let result = EscapeHatchInstance.pin(arg0)
+        return try encode(result)
+      case "heading":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.heading expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Compass.self)
+        let result = EscapeHatchInstance.heading(arg0)
+        return try encode(result)
+      case "at":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.at expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Date.self)
+        let result = EscapeHatchInstance.at(arg0)
+        return try encode(result)
+      case "blob":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.blob expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Data.self)
+        let result = EscapeHatchInstance.blob(arg0)
+        return try encode(result)
+      case "onTick":
+        guard values.isEmpty else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.onTick subscribes; it takes no arguments"]) }
+        let channel = "OneNativeSource.native_source.EscapeHatch.onTick"
+        EscapeHatchInstance.onTick({ (a0: Double) in postEvent(channel, args([a0])) })
+        return "null"
+      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
+      }
     case "native_source.AudioMath":
       switch method {
       case "rms":
         guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.rms expects 1 arguments"]) }
         let arg0 = try decode(values[0], as: [Double].self)
         let result = AudioMathInstance.rms(arg0)
-        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+        return try encode(result)
       case "label":
         guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.label expects 1 arguments"]) }
         let arg0 = try decode(values[0], as: String.self)
         let result = try AudioMathInstance.label(name: arg0)
-        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)
+        return try encode(result)
       default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
       }
     default:

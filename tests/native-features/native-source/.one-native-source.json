@@ -1,13 +1,23 @@
 {
   "generatedBy": "one typegen",
   "packageId": "native_source",
-  "hash": "9e06fe5fd63521be6abf44242e1f962a214d8f341d5e29a0cf2ec18d7e540c45",
+  "hash": "c45c71664c16d0c80a5b3cee7e2a56abc2598b9eb357f347241ce387da82a473",
   "files": {
+    "EscapeHatch.swift": [
+      "EscapeHatch"
+    ],
     "Audio.swift": [
       "AudioMath"
     ]
   },
   "modules": {
+    "EscapeHatch": [
+      "pin",
+      "heading",
+      "at",
+      "blob",
+      "onTick"
+    ],
     "AudioMath": [
       "rms",
       "label"

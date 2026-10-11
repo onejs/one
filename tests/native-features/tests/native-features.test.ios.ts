@@ -113,6 +113,69 @@ describe('one native integration tests', () => {
     )
   })
 
+  // -- native source --
+
+  describe('Native Source', () => {
+    test(
+      'imports Swift source and round-trips struct, enum, date and data payloads',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/one-native-source')
+
+        // the module is mounted and callable
+        const run = await waitForElement(driver, 'native-source-run', { timeout: 30_000 })
+        expect(await run.isDisplayed()).toBe(true)
+        await run.click()
+        const result = await waitForElement(driver, 'native-source-result', { timeout: 30_000 })
+        await driver.waitUntil(async () => (await result.getText()) !== 'ready', { timeout: 30_000 })
+        expect(await result.getText()).toContain('swift')
+
+        // struct, enum, date and data payloads cross with their types revived
+        const runPayloads = await waitForElement(driver, 'native-payloads-run', { timeout: 30_000 })
+        await runPayloads.click()
+        const payloads = await waitForElement(driver, 'native-payloads-result', { timeout: 30_000 })
+        await driver.waitUntil(async () => (await payloads.getText()) !== 'ready', { timeout: 30_000 })
+        const payloadText = await payloads.getText()
+        expect(payloadText).toContain('"x":1')
+        expect(payloadText).toContain('"label":null')
+        expect(payloadText).toContain('"heading":"north"')
+        expect(payloadText).toContain('"at":"2026-01-01T00:00:00.000Z"')
+        expect(payloadText).toContain('"blob":[1,2,3]')
+
+        // a mistyped payload throws before the call leaves JavaScript
+        const runInvalid = await waitForElement(driver, 'native-payloads-invalid-run', {
+          timeout: 30_000,
+        })
+        await runInvalid.click()
+        const invalid = await waitForElement(driver, 'native-payloads-invalid-result', {
+          timeout: 30_000,
+        })
+        await driver.waitUntil(async () => (await invalid.getText()) !== 'ready', { timeout: 30_000 })
+        expect(await invalid.getText()).toContain('expected Date')
+
+        // a native event subscription receives the tick, then unsubscribes
+        const runEvents = await waitForElement(driver, 'native-events-run', { timeout: 30_000 })
+        await runEvents.click()
+        const events = await waitForElement(driver, 'native-events-result', { timeout: 30_000 })
+        await driver.waitUntil(async () => (await events.getText()) !== 'ready', { timeout: 30_000 })
+        expect(await events.getText()).toContain('"ticks":[1]')
+
+        // a non-function listener throws before subscribing
+        const runEventsInvalid = await waitForElement(driver, 'native-events-invalid-run', {
+          timeout: 30_000,
+        })
+        await runEventsInvalid.click()
+        const eventsInvalid = await waitForElement(driver, 'native-events-invalid-result', {
+          timeout: 30_000,
+        })
+        await driver.waitUntil(async () => (await eventsInvalid.getText()) !== 'ready', { timeout: 30_000 })
+        expect(await eventsInvalid.getText()).toContain('needs a listener function')
+
+        await captureScreenshot(driver, 'native-source-payloads')
+      }
+    )
+  })
+
   // -- color api --
 
   describe('Color API', () => {

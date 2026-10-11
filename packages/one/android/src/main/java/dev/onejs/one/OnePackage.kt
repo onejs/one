@@ -22,6 +22,7 @@ import dev.onejs.onenative.OneNativeReservedRegionsProviderManager
 import dev.onejs.onenative.OneNativeSafeAreaProviderManager
 import dev.onejs.onenative.OneNativeSyncModule
 import dev.onejs.onenative.OneNativeUiMapManager
+import dev.onejs.one.source.OneNativeSourceEvents
 
 class OnePackage : BaseReactPackage() {
     override fun getModule(name: String, reactContext: ReactApplicationContext): NativeModule? {
@@ -30,6 +31,7 @@ class OnePackage : BaseReactPackage() {
             OneNativeSafeAreaModule.NAME -> OneNativeSafeAreaModule(reactContext)
             OneNativeSyncModule.NAME -> OneNativeSyncModule(reactContext)
             OneNativeMenuPopupModule.NAME -> OneNativeMenuPopupModule(reactContext)
+            OneNativeSourceEvents.NAME -> OneNativeSourceEvents(reactContext)
             else -> null
         }
     }
@@ -63,6 +65,14 @@ class OnePackage : BaseReactPackage() {
             OneNativeMenuPopupModule.NAME to ReactModuleInfo(
                 name = OneNativeMenuPopupModule.NAME,
                 className = OneNativeMenuPopupModule.NAME,
+                canOverrideExistingModule = false,
+                needsEagerInit = false,
+                isCxxModule = false,
+                isTurboModule = false
+            ),
+            OneNativeSourceEvents.NAME to ReactModuleInfo(
+                name = OneNativeSourceEvents.NAME,
+                className = OneNativeSourceEvents.NAME,
                 canOverrideExistingModule = false,
                 needsEagerInit = false,
                 isCxxModule = false,

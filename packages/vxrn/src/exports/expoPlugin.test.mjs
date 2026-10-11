@@ -1,5 +1,7 @@
 import { execFileSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
 import {
+  existsSync,
   mkdtempSync,
   mkdirSync,
   readFileSync,
@@ -264,5 +266,159 @@ describe('vxrn/expo-plugin', () => {
     expect(result).toContain('[vxrn/one] fmt c++17 fix')
     expect(result).toContain('[vxrn/one] minify iOS Hermes Release bundle input')
     expect(result).toContain("ENV['RNS_GAMMA_ENABLED'] ||= '1'")
+  })
+})
+
+function nativeSourceProject() {
+  const projectRoot = expoProject()
+  const packageDir = join(projectRoot, 'native', 'Showcase')
+  mkdirSync(packageDir, { recursive: true })
+  writeFileSync(
+    join(packageDir, 'Package.swift'),
+    '// swift-tools-version: 6.2\nimport PackageDescription\n\nlet package = Package(\n  name: "Showcase",\n  platforms: [.iOS(.v17)],\n  targets: [.executableTarget(name: "Showcase", path: ".", swiftSettings: [.swiftLanguageMode(.v6)])],\n)\n'
+  )
+  writeFileSync(
+    join(packageDir, 'Device.swift'),
+    '@MainActor final class Device: PeachModule {\n  init() {}\n\n  func info() -> [String: String] {\n    ["model": "expo"]\n  }\n}\n'
+  )
+  writeFileSync(
+    join(projectRoot, 'Device.kt'),
+    'object Device : OneModule {\n    fun info(): Map<String, String> = mapOf("model" to "expo")\n}\n'
+  )
+  const iosRoot = join(projectRoot, 'ios')
+  const androidRoot = join(projectRoot, 'android')
+  mkdirSync(iosRoot, { recursive: true })
+  mkdirSync(join(androidRoot, 'app'), { recursive: true })
+  writeFileSync(join(iosRoot, 'Podfile'), podfile)
+  return { projectRoot, iosRoot, androidRoot, packageDir }
+}
+
+function dangerousRequest(platformProjectRoot, projectRoot, platform) {
+  return {
+    platformProjectRoot,
+    projectRoot,
+    platform,
+    modName: 'dangerous',
+    projectName: 'TestApp',
+    introspect: false,
+  }
+}
+
+describe('vxrn/expo-plugin nativeSource', () => {
+  it('rejects a non-boolean nativeSource option', () => {
+    const projectRoot = expoProject()
+    expect(() =>
+      withVxrn(
+        { name: 'TestApp', slug: 'test-app', _internal: { projectRoot } },
+        { nativeSource: 'yes' }
+      )
+    ).toThrow('nativeSource must be a boolean')
+  })
+
+  it('leaves the project alone when nativeSource is off', async () => {
+    const { projectRoot, iosRoot, androidRoot } = nativeSourceProject()
+    const config = withVxrn({
+      name: 'TestApp',
+      slug: 'test-app',
+      _internal: { projectRoot },
+    })
+    await config.mods.ios.dangerous({
+      ...config,
+      modRequest: dangerousRequest(iosRoot, projectRoot, 'ios'),
+      modResults: {},
+    })
+    expect(existsSync(join(iosRoot, 'OneSwiftPackages'))).toBe(false)
+    expect(existsSync(join(androidRoot, 'app/src/main/java/one/source'))).toBe(false)
+    expect(readFileSync(join(iosRoot, 'Podfile'), 'utf8')).not.toContain('OneSwiftPackages')
+  })
+
+  it('generates swift pods and kotlin sources into the expo project', async () => {
+    const { projectRoot, iosRoot, androidRoot } = nativeSourceProject()
+    const config = withVxrn(
+      { name: 'TestApp', slug: 'test-app', _internal: { projectRoot } },
+      { nativeSource: true }
+    )
+    const iosMod = (modResults) =>
+      config.mods.ios.dangerous({
+        ...config,
+        modRequest: dangerousRequest(iosRoot, projectRoot, 'ios'),
+        modResults,
+      })
+    await iosMod({})
+    await config.mods.android.dangerous({
+      ...config,
+      modRequest: dangerousRequest(androidRoot, projectRoot, 'android'),
+      modResults: {},
+    })
+
+    // the pod exists and carries the module
+    const podDir = join(iosRoot, 'OneSwiftPackages', 'Showcase')
+    const podspec = readFileSync(join(podDir, 'Showcase.podspec'), 'utf8')
+    expect(podspec).toContain("s.dependency 'One'")
+    expect(podspec).toContain("s.swift_version = '6.0'")
+    // the sources compile as one pod with the generated glue
+    expect(readFileSync(join(podDir, 'Sources', 'Device.swift'), 'utf8')).toContain(
+      'PeachModule'
+    )
+    const glue = readFileSync(join(podDir, 'Sources', 'OneNativeSource.generated.swift'), 'utf8')
+    expect(glue).toContain('Showcase.Device')
+    expect(glue).toContain('case "info"')
+    // the pod is linked into the app target, idempotently
+    const once = readFileSync(join(iosRoot, 'Podfile'), 'utf8')
+    expect(once).toContain('OneSwiftPackages')
+    await iosMod({})
+    expect(readFileSync(join(iosRoot, 'Podfile'), 'utf8')).toBe(once)
+
+    // the kotlin sources land with their glue
+    const kotlinId = `K_${createHash('sha256').update('Device.kt').digest('hex').slice(0, 16)}`
+    const kotlinDir = join(androidRoot, 'app/src/main/java/one/source', kotlinId)
+    expect(readFileSync(join(kotlinDir, 'Device.kt'), 'utf8')).toContain('OneModule')
+    const kotlinGlue = readFileSync(join(kotlinDir, `OneNativeSource_${kotlinId}.kt`), 'utf8')
+    expect(kotlinGlue).toContain(`${kotlinId}.Device`)
+    expect(kotlinGlue).toContain('"info"')
+    // declarations sit beside the sources for typescript
+    expect(readFileSync(join(projectRoot, 'Device.d.kt.ts'), 'utf8')).toContain('Device')
+    expect(readFileSync(join(projectRoot, 'native/Showcase/Device.d.swift.ts'), 'utf8')).toContain(
+      'Device'
+    )
+  })
+
+  it('wires compose dependencies for kotlin views and fails fast without anchors', async () => {
+    const projectRoot = expoProject()
+    writeFileSync(
+      join(projectRoot, 'Greeting.kt'),
+      'import androidx.compose.material3.Text\nimport androidx.compose.runtime.Composable\n\n@Composable\nfun Greeting(name: String) {\n    Text(name)\n}\n'
+    )
+    const androidRoot = join(projectRoot, 'android')
+    mkdirSync(join(androidRoot, 'app'), { recursive: true })
+    writeFileSync(
+      join(androidRoot, 'build.gradle'),
+      'buildscript {\n    dependencies {\n        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")\n    }\n}\n'
+    )
+    const appGradle = join(androidRoot, 'app/build.gradle')
+    writeFileSync(
+      appGradle,
+      'apply plugin: "com.android.application"\napply plugin: "org.jetbrains.kotlin.android"\nandroid {\n}\ndependencies {\n    implementation("com.facebook.react:react-android")\n}\n'
+    )
+    const config = withVxrn(
+      { name: 'TestApp', slug: 'test-app', _internal: { projectRoot } },
+      { nativeSource: true }
+    )
+    const run = () =>
+      config.mods.android.dangerous({
+        ...config,
+        modRequest: dangerousRequest(androidRoot, projectRoot, 'android'),
+        modResults: {},
+      })
+    await run()
+    const once = readFileSync(appGradle, 'utf8')
+    expect(once).toContain('org.jetbrains.kotlin.plugin.compose')
+    expect(once).toContain('compose true')
+    expect(once).toContain('androidx.compose.ui:ui')
+    await run()
+    expect(readFileSync(appGradle, 'utf8')).toBe(once)
+
+    writeFileSync(appGradle, 'android {\n}\n')
+    await expect(run()).rejects.toThrow('no kotlin android plugin anchor')
   })
 })

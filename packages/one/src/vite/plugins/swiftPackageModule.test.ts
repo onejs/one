@@ -58,14 +58,52 @@ describe('swift package native module', () => {
     expect(module.code).toContain(`export function Level(props) { return createElement(SwiftPackageView, { packageName: "native_source", view: "Level", contractHash: ${JSON.stringify(descriptor.hash)}, props, fill: false }) }`)
   })
 
-  it('rejects Android, Expo prebuild, and Swift outside a package', () => {
+  it('rejects Android and Swift outside a package, and Expo prebuild without generated glue', () => {
     const fixture = swiftFixture()
     expect(() => renderSwiftPackageModule(fixture.source, 'android', fixture.root)).toThrow('Android build')
     const expo = swiftFixture(true)
-    expect(() => renderSwiftPackageModule(expo.source, 'ios', expo.root)).toThrow('Expo prebuild')
+    expect(() => renderSwiftPackageModule(expo.source, 'ios', expo.root)).toThrow('nativeSource')
     const loose = join(fixture.root, 'Loose.swift')
     writeFileSync(loose, 'struct Loose {}\n')
     expect(() => renderSwiftPackageModule(loose, 'ios', fixture.root)).toThrow('no Package.swift')
+  })
+
+  it('bundles Swift in Expo prebuild apps once the plugin generated the pod', () => {
+    const expo = swiftFixture(true)
+    const podDir = join(expo.root, 'ios', 'OneSwiftPackages', 'native_source')
+    mkdirSync(podDir, { recursive: true })
+    writeFileSync(join(podDir, 'native_source.podspec'), "Pod::Spec.new do |s|\nend\n")
+    const module = renderSwiftPackageModule(expo.source, 'ios', expo.root)
+    expect(module.code).toContain('AudioMath')
+    expect(module.code).toContain('callNativeSource')
+  })
+
+  it('wraps wired methods with encode and revive, keeping plain methods untouched', () => {
+    const fixture = swiftFixture()
+    const plain = renderSwiftPackageModule(fixture.source, 'ios', fixture.root)
+    expect(plain.code).not.toContain('encodeNativeSourceArgs')
+    const atlas = join(fixture.root, 'native-source', 'Atlas.swift')
+    writeFileSync(
+      atlas,
+      '@MainActor final class Atlas: PeachModule {\n  init() {}\n  func at(_ when: Date) -> Date { when }\n}\n'
+    )
+    const module = renderSwiftPackageModule(atlas, 'ios', fixture.root)
+    expect(module.code).toContain('encodeNativeSourceArgs')
+    expect(module.code).toContain('decodeNativeSourceResult')
+    expect(module.code).toContain('const nativeSourceStructs = []')
+    expect(module.code).toContain('wire.native.js')
+  })
+
+  it('renders subscriptions as event listeners', () => {
+    const fixture = swiftFixture()
+    const clock = join(fixture.root, 'native-source', 'Clock.swift')
+    writeFileSync(
+      clock,
+      '@MainActor final class Clock: PeachModule {\n  init() {}\n  func onTick(_ callback: @escaping (Double) -> Void) {}\n}\n'
+    )
+    const module = renderSwiftPackageModule(clock, 'ios', fixture.root)
+    expect(module.code).toContain('events.native.js')
+    expect(module.code).toContain('subscribeNativeSourceEvent("native_source.Clock", "onTick"')
   })
 
 })

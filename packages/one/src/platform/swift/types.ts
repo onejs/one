@@ -1,3 +1,5 @@
+import type { NativeSourceViewWires } from '../native-source/wire.native'
+
 export interface SwiftPackageViewProps {
   // the package the bundler named from the imported file's swift package
   packageName: string
@@ -10,4 +12,7 @@ export interface SwiftPackageViewProps {
   props: Record<string, unknown>
   // the imported file's @main is an App: the root fills its parent
   fill: boolean
+  // wire formats for props and callback arguments carrying Date, Data or
+  // struct payloads; absent when every prop crosses as plain json
+  wires?: NativeSourceViewWires
 }

@@ -5,9 +5,13 @@ import { swiftPackageDirectories, swiftPackageId } from './swiftPackageId'
 
 export interface NativeSourceMethod {
   name: string
-  parameters: { name: string; label: string | null; type: string; nativeType: string }[]
+  parameters: { name: string; label: string | null; type: string; nativeType: string; wire?: NativeSourceWire }[]
   result: string
   nativeResult: string
+  resultWire?: NativeSourceWire
+  // a method whose only parameter is a callback subscribes to a native event
+  // instead of answering a call: the payload crosses native-to-js per event.
+  subscription?: { payload: { type: string; nativeType: string; wire?: NativeSourceWire }[] }
   throws: boolean
   async: boolean
 }
@@ -26,7 +30,8 @@ export interface NativeSourceViewProp {
   type: string
   nativeType: string
   optional: boolean
-  callback: { type: string; nativeType: string }[] | null
+  callback: { type: string; nativeType: string; wire?: NativeSourceWire }[] | null
+  wire?: NativeSourceWire
 }
 
 export interface NativeSourceView {
@@ -34,11 +39,48 @@ export interface NativeSourceView {
   props: NativeSourceViewProp[]
 }
 
+// the wire format of one value crossing the boundary. primitives, void and
+// plain json composites record nothing, so contracts without the richer types
+// keep their exact shape. a struct walks its fields from the structs table;
+// an enum crosses as its raw value and needs no walk.
+export type NativeSourceWire =
+  | { kind: 'date' }
+  | { kind: 'data' }
+  | { kind: 'struct'; name: string }
+  | { kind: 'enum'; name: string }
+  | { kind: 'array'; element: NativeSourceWire }
+  | { kind: 'map'; value: NativeSourceWire }
+  | { kind: 'nullable'; inner: NativeSourceWire }
+
+export interface NativeSourceStructField {
+  name: string
+  type: string
+  nativeType: string
+  optional: boolean
+  wire?: NativeSourceWire
+  // a kotlin data-class default, embedded by the generated glue when the key
+  // is missing; swift fills defaults through Codable synthesis
+  fallback?: string
+}
+
+export interface NativeSourceStruct {
+  name: string
+  fields: NativeSourceStructField[]
+}
+
+export interface NativeSourceEnum {
+  name: string
+  backing: 'string' | 'number'
+  cases: { name: string; value: string | number }[]
+}
+
 export interface NativeSourceContract {
   language: 'swift' | 'kotlin'
   packageName?: string
   modules: NativeSourceModule[]
   views: NativeSourceView[]
+  structs: NativeSourceStruct[]
+  enums: NativeSourceEnum[]
   defaultView: boolean
   hash: string
   declaration: string
@@ -174,33 +216,99 @@ function arrayOf(element: string): string {
   return element.includes(' | ') ? `(${element})[]` : `${element}[]`
 }
 
-function tsType(file: string, list: Token[], language: 'swift' | 'kotlin'): string {
+interface NamedTypes {
+  structs: Map<string, { codable: boolean; generic: boolean; problem: string | null }>
+  enums: Map<string, { usable: boolean; problem: string }>
+}
+
+function tsType(
+  file: string,
+  list: Token[],
+  language: 'swift' | 'kotlin',
+  named: NamedTypes
+): { text: string; wire: NativeSourceWire | null } {
   if (list.length === 0) fail(file, list[0], 'native export needs an explicit type')
-  if (list.at(-1)?.text === '?') return `${tsType(file, list.slice(0, -1), language)} | null`
+  if (list.at(-1)?.text === '?') {
+    const inner = tsType(file, list.slice(0, -1), language, named)
+    return {
+      text: `${inner.text} | null`,
+      wire: inner.wire ? { kind: 'nullable', inner: inner.wire } : null,
+    }
+  }
   const value = list.map((token) => token.text).join('')
-  if (value === 'String') return 'string'
-  if (value === 'Bool' || value === 'Boolean') return 'boolean'
-  if (['Double', 'Float', 'Int', 'Long'].includes(value)) return 'number'
-  if (value === 'Void' || value === 'Unit') return 'void'
+  if (value === 'String') return { text: 'string', wire: null }
+  if (value === 'Bool' || value === 'Boolean') return { text: 'boolean', wire: null }
+  if (['Double', 'Float', 'Int', 'Long'].includes(value)) return { text: 'number', wire: null }
+  if (value === 'Void' || value === 'Unit') return { text: 'void', wire: null }
+  // Date crosses as an ISO string revived to a Date; Data and ByteArray cross
+  // as base64 revived to a Uint8Array. the qualified stdlib spellings mean
+  // the same types.
+  const dateTypes = language === 'swift' ? ['Date', 'Foundation.Date'] : ['Date', 'java.util.Date']
+  if (dateTypes.includes(value)) return { text: 'Date', wire: { kind: 'date' } }
+  const dataTypes = language === 'swift' ? ['Data', 'Foundation.Data'] : ['ByteArray']
+  if (dataTypes.includes(value)) {
+    return { text: 'Uint8Array', wire: { kind: 'data' } }
+  }
   if (language === 'swift' && list[0].text === '[' && list.at(-1)?.text === ']') {
     const inner = list.slice(1, -1)
     const entries = split(inner, ':')
-    if (entries.length === 1) return arrayOf(tsType(file, inner, language))
+    if (entries.length === 1) {
+      const element = tsType(file, inner, language, named)
+      return {
+        text: arrayOf(element.text),
+        wire: element.wire ? { kind: 'array', element: element.wire } : null,
+      }
+    }
     if (entries.length === 2 && entries[0].map((token) => token.text).join('') === 'String') {
-      return `Record<string, ${tsType(file, entries[1], language)}>`
+      const element = tsType(file, entries[1], language, named)
+      return {
+        text: `Record<string, ${element.text}>`,
+        wire: element.wire ? { kind: 'map', value: element.wire } : null,
+      }
     }
   }
   if (language === 'kotlin' && list[1]?.text === '<' && list.at(-1)?.text === '>') {
     const entries = split(list.slice(2, -1), ',')
-    if (list[0].text === 'List' && entries.length === 1) return arrayOf(tsType(file, entries[0], language))
+    if (list[0].text === 'List' && entries.length === 1) {
+      const element = tsType(file, entries[0], language, named)
+      return {
+        text: arrayOf(element.text),
+        wire: element.wire ? { kind: 'array', element: element.wire } : null,
+      }
+    }
     if (list[0].text === 'Map' && entries.length === 2 && entries[0].map((token) => token.text).join('') === 'String') {
-      return `Record<string, ${tsType(file, entries[1], language)}>`
+      const element = tsType(file, entries[1], language, named)
+      return {
+        text: `Record<string, ${element.text}>`,
+        wire: element.wire ? { kind: 'map', value: element.wire } : null,
+      }
+    }
+  }
+  // a struct or enum declared in this file crosses as its JSON shape; any
+  // other named type is still rejected below.
+  if (list.length === 1 && /^[A-Z][A-Za-z0-9_]*$/.test(value)) {
+    const struct = named.structs.get(value)
+    if (struct) {
+      if (struct.generic) fail(file, list[0], `generic struct ${value} is unsupported`)
+      if (struct.problem) fail(file, list[0], struct.problem)
+      if (!struct.codable) fail(file, list[0], `struct ${value} must conform to Codable to cross the boundary`)
+      return { text: value, wire: { kind: 'struct', name: value } }
+    }
+    const enumType = named.enums.get(value)
+    if (enumType) {
+      if (!enumType.usable) fail(file, list[0], enumType.problem)
+      return { text: value, wire: { kind: 'enum', name: value } }
     }
   }
   fail(file, list[0], `unsupported native export type ${value}`)
 }
 
-function parameters(file: string, list: Token[], language: 'swift' | 'kotlin'): NativeSourceMethod['parameters'] {
+function parameters(
+  file: string,
+  list: Token[],
+  language: 'swift' | 'kotlin',
+  named: NamedTypes
+): NativeSourceMethod['parameters'] {
   if (list.length === 0) return []
   return split(list, ',').map((part, index) => {
     if (part.some((token) => token.text === '=')) fail(file, part[0], 'default native export arguments are unsupported')
@@ -211,7 +319,14 @@ function parameters(file: string, list: Token[], language: 'swift' | 'kotlin'): 
     if (name === '_') fail(file, part[0], 'native export parameter needs an internal name')
     const label = language === 'swift' ? names[0]?.text ?? name : null
     const sourceType = part.slice(colon + 1)
-    return { name, label, type: tsType(file, sourceType, language), nativeType: sourceType.map((token) => token.text).join('') }
+    const type = tsType(file, sourceType, language, named)
+    return {
+      name,
+      label,
+      type: type.text,
+      nativeType: sourceType.map((token) => token.text).join(''),
+      wire: type.wire ?? undefined,
+    }
   })
 }
 
@@ -242,7 +357,56 @@ function declarationStart(list: Token[], floor: number, keyword: number): number
   return first
 }
 
-function methods(file: string, list: Token[], start: number, end: number, language: 'swift' | 'kotlin'): NativeSourceMethod[] {
+// the payload of a native event subscription: a method whose only parameter
+// is one callback over json types, `func onTick(_ callback: (Double) -> Void)`
+// or `fun onTick(callback: (Double) -> Unit)`. a stored callback must escape,
+// so a leading @escaping is skipped; anything else (nullable, throwing,
+// extra parameters) returns null, and the normal call path rejects it.
+function subscriptionPayload(
+  file: string,
+  typeTokens: Token[],
+  language: 'swift' | 'kotlin',
+  named: NamedTypes
+): { type: string; nativeType: string; wire?: NativeSourceWire }[] | null {
+  try {
+    if (typeTokens.at(-1)?.text === '?') return null
+    let fn = typeTokens
+    if (language === 'swift' && fn[0]?.text === '@' && fn[1]?.text === 'escaping') fn = fn.slice(2)
+    if (fn[0]?.text === '(' && close(file, fn, 0, '(', ')') === fn.length - 1 && fn.some((token) => token.text === '->')) {
+      fn = fn.slice(1, -1)
+    }
+    const arrow = fn.findIndex((token) => token.text === '->')
+    if (arrow <= 0 || fn[0]?.text !== '(' || close(file, fn, 0, '(', ')') !== arrow - 1) return null
+    const result = fn.slice(arrow + 1)
+    const voidResult =
+      (result.length === 1 && (result[0].text === 'Void' || result[0].text === 'Unit')) ||
+      (result.length === 2 && result[0].text === '(' && result[1].text === ')')
+    if (!voidResult) return null
+    const inner = fn.slice(1, arrow - 1)
+    if (inner.length === 0) return []
+    return split(inner, ',').map((arg) => {
+      const colon = arg.findIndex((token) => token.text === ':')
+      const type = colon < 0 ? arg : arg.slice(colon + 1)
+      const resolved = tsType(file, type, language, named)
+      return {
+        type: resolved.text,
+        nativeType: type.map((token) => token.text).join(''),
+        wire: resolved.wire ?? undefined,
+      }
+    })
+  } catch {
+    return null
+  }
+}
+
+function methods(
+  file: string,
+  list: Token[],
+  start: number,
+  end: number,
+  language: 'swift' | 'kotlin',
+  named: NamedTypes
+): NativeSourceMethod[] {
   const result: NativeSourceMethod[] = []
   let i = start + 1
   let previous = i
@@ -262,19 +426,34 @@ function methods(file: string, list: Token[], start: number, end: number, langua
     const open = i + 2
     if (list[open]?.text !== '(') fail(file, list[i], 'native export has no parameter list')
     const closing = close(file, list, open, '(', ')')
-    const args = hidden ? [] : parameters(file, list.slice(open + 1, closing), language)
     let headerEnd = closing + 1
     while (headerEnd < end && !['{', '=', ';'].includes(list[headerEnd].text)) headerEnd++
     const header = list.slice(closing + 1, headerEnd)
     const separator = header.findIndex((token) => token.text === (language === 'swift' ? '->' : ':'))
     const sourceType = hidden || separator < 0 ? [] : header.slice(separator + 1)
-    const type = sourceType.length === 0 ? 'void' : tsType(file, sourceType, language)
+    const type = sourceType.length === 0 ? { text: 'void', wire: null } : tsType(file, sourceType, language, named)
+    // a single-callback void method subscribes to a native event instead of
+    // answering a call. the probe runs before parameters so the callback
+    // never hits call typing, which rejects it.
+    let subscription: NativeSourceMethod['subscription'] | undefined
+    if (!hidden && type.text === 'void') {
+      const parts = split(list.slice(open + 1, closing), ',')
+      if (parts.length === 1 && parts[0].length > 0) {
+        const colon = parts[0].findIndex((token) => token.text === ':')
+        if (colon >= 0) {
+          const payload = subscriptionPayload(file, parts[0].slice(colon + 1), language, named)
+          if (payload) subscription = { payload }
+        }
+      }
+    }
     if (!hidden) {
       result.push({
         name,
-        parameters: args,
-        result: type,
+        parameters: subscription ? [] : parameters(file, list.slice(open + 1, closing), language, named),
+        result: type.text,
         nativeResult: sourceType.length === 0 ? language === 'swift' ? 'Void' : 'Unit' : sourceType.map((token) => token.text).join(''),
+        resultWire: type.wire ?? undefined,
+        subscription,
         throws: language === 'swift' ? header.some((token) => token.text === 'throws') : true,
         async: language === 'swift' ? header.some((token) => token.text === 'async') : modifiers.includes('suspend'),
       })
@@ -297,7 +476,8 @@ function callbackProp(
   name: string,
   typeTokens: Token[],
   optional: boolean,
-  language: 'swift' | 'kotlin'
+  language: 'swift' | 'kotlin',
+  named: NamedTypes
 ): NativeSourceViewProp | null {
   const nullable = typeTokens.at(-1)?.text === '?'
   let fn = nullable ? typeTokens.slice(0, -1) : typeTokens
@@ -316,14 +496,19 @@ function callbackProp(
     // a labeled closure parameter (`_ value: Double`) names only its type
     const colon = arg.findIndex((token) => token.text === ':')
     const type = colon < 0 ? arg : arg.slice(colon + 1)
-    return { type: tsType(file, type, language), nativeType: type.map((token) => token.text).join('') }
+    const resolved = tsType(file, type, language, named)
+    return {
+      type: resolved.text,
+      nativeType: type.map((token) => token.text).join(''),
+      wire: resolved.wire ?? undefined,
+    }
   })
   const signature = `(${callback.map((arg, index) => `value${index}: ${arg.type}`).join(', ')}) => void`
   const nativeType = typeTokens.map((token) => token.text).join('')
   return { name, type: nullable ? `(${signature}) | null` : signature, nativeType, optional, callback }
 }
 
-function viewProp(file: string, part: Token[]): NativeSourceViewProp | null {
+function viewProp(file: string, part: Token[], named: NamedTypes): NativeSourceViewProp | null {
   const colon = part.findIndex((token) => token.text === ':')
   if (colon !== 1 || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(part[0].text)) {
     fail(file, part[0], 'composable parameter needs a name and an explicit type')
@@ -343,19 +528,77 @@ function viewProp(file: string, part: Token[]): NativeSourceViewProp | null {
     fail(file, part[0], `composable parameter ${name} may only default to null`)
   }
   const optional = fallback !== undefined
-  return callbackProp(file, name, typeTokens, optional, 'kotlin')
-    ?? { name, type: tsType(file, typeTokens, 'kotlin'), nativeType, optional, callback: null }
+  const callback = callbackProp(file, name, typeTokens, optional, 'kotlin', named)
+  if (callback) return callback
+  const resolved = tsType(file, typeTokens, 'kotlin', named)
+  return { name, type: resolved.text, nativeType, optional, callback: null, wire: resolved.wire ?? undefined }
 }
 
 // attributes that annotate a stored property without wrapping it
 const PLAIN_ATTRIBUTES = new Set(['MainActor', 'available', 'objc', 'nonobjc', 'preconcurrency'])
+
+// splits one stored `let`/`var` declaration into its span: the property name,
+// its type tokens, whether it carries a value, and the token after it.
+// imported views and data structs share it so both read the same declarations.
+function storedProperty(
+  file: string,
+  list: Token[],
+  i: number,
+  previous: number,
+  end: number,
+  owner: string
+): {
+  at: Token
+  own: string[]
+  propName: string
+  typeTokens: Token[]
+  valued: boolean
+  stop: number
+  computed: boolean
+  resume: number
+} {
+  const at = list[i]
+  const own = list.slice(declarationStart(list, previous, i), i).map((token) => token.text)
+  const propName = list[i + 1]?.text ?? ''
+  if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(propName)) fail(file, list[i], `${owner} has a property without a simple name`)
+  // the declaration runs to its value, its accessor block, or the line's end
+  let stop = i + 2
+  let depth = 0
+  while (stop < end) {
+    const value = list[stop].text
+    if (depth === 0 && (value === '=' || value === '{' || value === ';' || list[stop].line !== list[stop - 1].line)) break
+    if (value === '(' || value === '[' || value === '<') depth++
+    if (value === ')' || value === ']' || value === '>') depth--
+    stop++
+  }
+  const typeTokens = list[i + 2]?.text === ':' ? list.slice(i + 3, stop) : []
+  const valued = list[stop]?.text === '='
+  let next = stop
+  if (valued) {
+    const valueLine = list[stop].line
+    while (next < end && list[next].line === valueLine && list[next].text !== '{') next++
+  }
+  const block = list[next]?.text === '{'
+  // willSet and didSet observe a stored property; any other block computes one
+  const computed = block && !valued && !['willSet', 'didSet'].includes(list[next + 1]?.text)
+  const resume = block ? close(file, list, next, '{', '}') + 1 : next
+  return { at, own, propName, typeTokens, valued, stop, computed, resume }
+}
 
 // a top-level public struct conforming to View, or null for any other struct.
 // its props are the memberwise initializer's parameters: the stored
 // properties without a value of their own, in declaration order. a property
 // with a value (`@State var count = 0`, `let title = "x"`) or a computed one
 // (`var body`) stays the view's own.
-function swiftView(file: string, list: Token[], keyword: number, floor: number, body: number, end: number): NativeSourceView | null {
+function swiftView(
+  file: string,
+  list: Token[],
+  keyword: number,
+  floor: number,
+  body: number,
+  end: number,
+  named: NamedTypes
+): NativeSourceView | null {
   const modifiers = list.slice(declarationStart(list, floor, keyword), keyword).map((token) => token.text)
   if (list[keyword].text !== 'struct' || !modifiers.includes('public')) return null
   if (!list.slice(keyword + 2, body).some((token) => token.text === 'View')) return null
@@ -372,34 +615,12 @@ function swiftView(file: string, list: Token[], keyword: number, floor: number, 
       fail(file, list[i], `view ${name} is imported through its memberwise initializer; remove init(...)`)
     }
     if (text !== 'let' && text !== 'var') { i++; continue }
-    const at = list[i]
-    const own = list.slice(declarationStart(list, previous, i), i).map((token) => token.text)
-    const propName = list[i + 1]?.text ?? ''
-    if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(propName)) fail(file, list[i], `view ${name} has a property without a simple name`)
-    // the declaration runs to its value, its accessor block, or the line's end
-    let stop = i + 2
-    let depth = 0
-    while (stop < end) {
-      const value = list[stop].text
-      if (depth === 0 && (value === '=' || value === '{' || value === ';' || list[stop].line !== list[stop - 1].line)) break
-      if (value === '(' || value === '[' || value === '<') depth++
-      if (value === ')' || value === ']' || value === '>') depth--
-      stop++
-    }
-    const typeTokens = list[i + 2]?.text === ':' ? list.slice(i + 3, stop) : []
-    const valued = list[stop]?.text === '='
-    let next = stop
-    if (valued) {
-      const valueLine = list[stop].line
-      while (next < end && list[next].line === valueLine && list[next].text !== '{') next++
-    }
-    const block = list[next]?.text === '{'
-    // willSet and didSet observe a stored property; any other block computes one
-    const computed = block && !valued && !['willSet', 'didSet'].includes(list[next + 1]?.text)
-    const wrapper = own.findIndex((value, index) => own[index - 1] === '@' && !PLAIN_ATTRIBUTES.has(value))
-    i = block ? close(file, list, next, '{', '}') + 1 : next
+    const property = storedProperty(file, list, i, previous, end, `view ${name}`)
+    const { at, own, propName, typeTokens, valued, stop } = property
+    i = property.resume
     previous = i
-    if (computed || own.includes('static')) continue
+    const wrapper = own.findIndex((value, index) => own[index - 1] === '@' && !PLAIN_ATTRIBUTES.has(value))
+    if (property.computed || own.includes('static')) continue
     if (wrapper >= 0) {
       // a wrapper with arguments (`@Environment(\.dismiss)`) supplies its own value
       if (valued || own[wrapper + 1] === '(') continue
@@ -415,21 +636,494 @@ function swiftView(file: string, list: Token[], keyword: number, floor: number, 
     if (valued && !(nullable && list[stop + 1]?.text === 'nil' && list[stop + 2]?.line !== list[stop + 1].line)) {
       fail(file, list[stop], `view prop ${propName} may only default to nil`)
     }
-    props.push(
-      callbackProp(file, propName, typeTokens, nullable, 'swift') ?? {
+    const callback = callbackProp(file, propName, typeTokens, nullable, 'swift', named)
+    if (callback) {
+      props.push(callback)
+    } else {
+      const resolved = tsType(file, typeTokens, 'swift', named)
+      props.push({
         name: propName,
-        type: tsType(file, typeTokens, 'swift'),
+        type: resolved.text,
         nativeType: typeTokens.map((token) => token.text).join(''),
         optional: nullable,
         callback: null,
-      }
-    )
+        wire: resolved.wire ?? undefined,
+      })
+    }
   }
   return { name, props }
 }
 
+// a struct or enum declaration one method, prop or callback may reference.
+// field and case details parse lazily: files that never use a declaration as
+// data keep parsing exactly as before, callbacks and wrappers included.
+interface CollectedStruct {
+  name: string
+  token: Token
+  generic: boolean
+  codable: boolean
+  problem: string | null
+  body: Token[]
+  // kotlin data-class constructor parameter slices, empty for swift
+  params: Token[][]
+  packageName: string | undefined
+}
+
+interface CollectedEnum {
+  name: string
+  token: Token
+  generic: boolean
+  usable: boolean
+  problem: string
+  backing: 'string' | 'number'
+  cases: { name: string; value: string | number }[]
+}
+
+// a top-level `data class Name(...)` in kotlin. the constructor parameters
+// are the fields; the generated glue calls the constructor by name, so it
+// must stay public and every parameter keeps its slice for finalization.
+function collectDataClass(
+  file: string,
+  list: Token[],
+  keyword: number,
+  name: string,
+  token: Token,
+  generic: boolean,
+  packageName: string | undefined
+): CollectedStruct | null {
+  // the generated glue compiles into the same module, so internal stays
+  // visible; only private hides the class.
+  const modifiers = list.slice(declarationStart(list, 0, keyword - 1), keyword).map((entry) => entry.text)
+  let problem: string | null = null
+  if (modifiers.includes('private')) {
+    problem = `data class ${name} must be public to cross the boundary`
+  }
+  let scan = keyword + 2
+  if (list[scan]?.text === '<') scan = close(file, list, scan, '<', '>') + 1
+  // skip visibility and constructor keywords: `private constructor(...)`
+  while (['private', 'protected', 'public', 'internal', 'constructor'].includes(list[scan]?.text)) scan++
+  const params: Token[][] = []
+  if (list[scan]?.text === '(') {
+    const closing = close(file, list, scan, '(', ')')
+    for (const part of split(list.slice(scan + 1, closing), ',')) {
+      if (part.length > 0) params.push(part)
+    }
+  } else {
+    // not a data-class declaration (`data` was an identifier); skip it
+    return null
+  }
+  // a private constructor hides the class from the generated glue
+  if (list.slice(keyword + 2, scan).some((entry) => entry.text === 'private' || entry.text === 'protected')) {
+    problem = problem ?? `data class ${name} must be public to cross the boundary`
+  }
+  return { name, token, generic, codable: true, problem, body: [], params, packageName }
+}
+
+// a top-level `enum Name: String` / `enum Name: Int` in swift. only implicit
+// raw values cross: the tokenizer drops string contents, so an explicit value
+// has no readable form. associated values never cross.
+function collectSwiftEnum(
+  file: string,
+  body: Token[],
+  name: string,
+  token: Token,
+  generic: boolean,
+  header: Token[]
+): CollectedEnum {
+  const backing = header.some((entry) => entry.text === 'String')
+    ? 'string'
+    : header.some((entry) => entry.text === 'Int')
+      ? 'number'
+      : null
+  if (generic) {
+    return { name, token, generic, usable: false, problem: `generic enum ${name} is unsupported`, backing: 'string', cases: [] }
+  }
+  if (!backing) {
+    return { name, token, generic, usable: false, problem: `enum ${name} needs a String or Int backing to cross the boundary`, backing: 'string', cases: [] }
+  }
+  // the generated glue decodes through Codable, which RawRepresentable enums
+  // only synthesize with a declared conformance
+  const inherits = header.map((entry) => entry.text)
+  if (!inherits.includes('Codable') && !(inherits.includes('Decodable') && inherits.includes('Encodable'))) {
+    return { name, token, generic, usable: false, problem: `enum ${name} must conform to Codable to cross the boundary`, backing, cases: [] }
+  }
+  // words that start a new member: a case list ends before any of them, so
+  // comma-first and multi-line case lists keep working.
+  const memberStarters = new Set([
+    'func', 'var', 'let', 'init', 'deinit', 'subscript', 'static', 'public',
+    'private', 'fileprivate', 'internal', 'open', 'final', 'mutating',
+    'nonmutating', 'override', 'lazy', 'weak', 'unowned', 'required',
+    'convenience', 'dynamic', 'indirect', 'typealias', 'import',
+  ])
+  const cases: { name: string; value: string | number }[] = []
+  let problem: string | null = null
+  let counter = 0
+  let i = 0
+  let depth = 0
+  while (i < body.length) {
+    if (body[i].text === '{') { depth++; i++; continue }
+    if (body[i].text === '}') { depth--; i++; continue }
+    // cases inside a member (a switch in a method) are not enum cases
+    if (depth !== 0 || body[i].text !== 'case') { i++; continue }
+    let stop = i + 1
+    let inner = 0
+    while (stop < body.length) {
+      const value = body[stop].text
+      if (inner === 0 && (value === ';' || value === 'case' || memberStarters.has(value))) break
+      if (value === '(' || value === '[' || value === '<') inner++
+      if (value === ')' || value === ']' || value === '>') inner--
+      stop++
+      if (inner < 0) break
+    }
+    for (const item of split(body.slice(i + 1, stop), ',')) {
+      const itemName = item[0]?.text ?? ''
+      if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(itemName)) continue
+      if (item.some((entry) => entry.text === '(')) {
+        problem = problem ?? `enum ${name} has associated values, which cannot cross the boundary`
+        continue
+      }
+      if (item.some((entry) => entry.text === '=')) {
+        problem = problem ?? `enum ${name} has an explicit raw value, which cannot cross the boundary`
+        continue
+      }
+      cases.push({ name: itemName, value: backing === 'string' ? itemName : counter })
+      counter++
+    }
+    i = stop
+  }
+  return {
+    name,
+    token,
+    generic,
+    usable: problem === null,
+    problem: problem ?? '',
+    backing,
+    cases,
+  }
+}
+
+// a top-level `enum class Name` in kotlin. entries cross by name, so members
+// after the entries never matter; anything but plain entries ends the list.
+function collectKotlinEnum(
+  file: string,
+  body: Token[],
+  name: string,
+  token: Token
+): CollectedEnum {
+  const cases: { name: string; value: string | number }[] = []
+  let i = 0
+  const stopWords = new Set([
+    ';', 'fun', 'val', 'var', 'init', 'companion', 'constructor', 'object',
+    'inner', 'abstract', 'open', 'override', 'lateinit', 'const', 'public',
+    'private', 'protected', 'internal',
+  ])
+  while (i < body.length && !stopWords.has(body[i].text)) {
+    if (body[i].text === ',') { i++; continue }
+    // skip entry annotations: `@SerialName("n") North`
+    if (body[i].text === '@') {
+      i += 2
+      if (body[i]?.text === '(') i = close(file, body, i, '(', ')') + 1
+      continue
+    }
+    const entry = body[i].text
+    if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(entry)) break
+    cases.push({ name: entry, value: entry })
+    i++
+    // skip constructor arguments and per-entry bodies: `North("n") { ... }`
+    while (i < body.length && (body[i].text === '(' || body[i].text === '{')) {
+      i = close(file, body, i, body[i].text, body[i].text === '(' ? ')' : '}') + 1
+    }
+  }
+  return {
+    name,
+    token,
+    generic: false,
+    usable: cases.length > 0,
+    problem: cases.length > 0 ? '' : `enum class ${name} has no entries to cross the boundary`,
+    backing: 'string',
+    cases,
+  }
+}
+
+// words that open a member declaration inside a data struct; the whole
+// member is skipped, so a method body never reads as struct fields.
+const STRUCT_MEMBER_WORDS = new Set([
+  'init', 'deinit', 'func', 'subscript', 'struct', 'enum', 'class',
+  'extension', 'object', 'static',
+])
+
+// the stored properties of a collected swift struct. mirrors the imported
+// view rules, but a data field is optional exactly when it carries a value:
+// Codable fills a defaulted property itself.
+function swiftStructFields(
+  file: string,
+  struct: CollectedStruct,
+  named: NamedTypes
+): NativeSourceStructField[] {
+  const fields: NativeSourceStructField[] = []
+  const body = struct.body
+  const end = body.length
+  let i = 0
+  let previous = 0
+  while (i < end) {
+    const text = body[i].text
+    if (text === '{') { i = close(file, body, i, '{', '}') + 1; previous = i; continue }
+    if (STRUCT_MEMBER_WORDS.has(text)) {
+      let scan = i + 1
+      let angle = 0
+      let round = 0
+      while (scan < end) {
+        const value = body[scan].text
+        if (value === '<') angle++
+        else if (value === '>') angle--
+        else if (value === '(') round++
+        else if (value === ')') round--
+        else if (value === '{' && angle === 0 && round === 0) break
+        else if (value === ';' && angle === 0 && round === 0) break
+        scan++
+      }
+      i = body[scan]?.text === '{' ? close(file, body, scan, '{', '}') + 1 : scan + 1
+      previous = i
+      continue
+    }
+    if (text !== 'let' && text !== 'var') { i++; continue }
+    const property = storedProperty(file, body, i, previous, end, `struct ${struct.name}`)
+    const { at, own, propName, typeTokens, valued } = property
+    i = property.resume
+    previous = i
+    if (property.computed || own.includes('static')) continue
+    const wrapper = own.findIndex((value, index) => own[index - 1] === '@' && !PLAIN_ATTRIBUTES.has(value))
+    if (wrapper >= 0) {
+      fail(file, at, `@${own[wrapper]} ${propName} in struct ${struct.name} is unsupported; cross a plain value instead`)
+    }
+    if (own.includes('private') || own.includes('fileprivate')) {
+      if (valued) continue
+      fail(file, at, `private ${propName} in struct ${struct.name} needs a value, or calls cannot supply it`)
+    }
+    if (typeTokens.length === 0) fail(file, at, `struct ${struct.name} field ${propName} needs an explicit type`)
+    const resolved = tsType(file, typeTokens, 'swift', named)
+    fields.push({
+      name: propName,
+      type: resolved.text,
+      nativeType: typeTokens.map((token) => token.text).join(''),
+      optional: valued,
+      wire: resolved.wire ?? undefined,
+    })
+  }
+  return fields
+}
+
+// the constructor parameters of a collected kotlin data class. a defaulted
+// parameter stays optional: the generated glue embeds the default when the
+// key is missing.
+function kotlinStructFields(
+  file: string,
+  struct: CollectedStruct,
+  named: NamedTypes
+): NativeSourceStructField[] {
+  const fields: NativeSourceStructField[] = []
+  for (const part of struct.params) {
+    const keyword = part.findIndex((token) => token.text === 'val' || token.text === 'var')
+    if (keyword < 0) fail(file, part[0], `data class ${struct.name} field needs val or var`)
+    if (part.some((token) => token.text === 'vararg')) {
+      fail(file, part[0], `data class ${struct.name} field ${part[keyword + 1]?.text ?? ''} is vararg, which cannot cross the boundary`)
+    }
+    const fieldName = part[keyword + 1]?.text ?? ''
+    if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(fieldName)) {
+      fail(file, part[keyword], `data class ${struct.name} has a field without a simple name`)
+    }
+    // the type runs to the default at depth zero: defaults may nest commas
+    // (`listOf(1, 2)`) and annotations may carry colons.
+    let colon = -1
+    let equals = -1
+    let depth = 0
+    for (let t = keyword + 2; t < part.length; t++) {
+      const value = part[t].text
+      if (value === '(' || value === '[' || value === '<') depth++
+      else if (value === ')' || value === ']' || value === '>') depth--
+      else if (depth === 0 && value === ':' && colon < 0) colon = t
+      else if (depth === 0 && value === '=' && equals < 0) equals = t
+    }
+    if (colon < 0) fail(file, part[keyword], `data class ${struct.name} field ${fieldName} needs an explicit type`)
+    const typeTokens = part.slice(colon + 1, equals < 0 ? part.length : equals)
+    const fallback = equals < 0 ? undefined : part.slice(equals + 1).map((token) => token.text).join('')
+    const resolved = tsType(file, typeTokens, 'kotlin', named)
+    fields.push({
+      name: fieldName,
+      type: resolved.text,
+      nativeType: typeTokens.map((token) => token.text).join(''),
+      optional: equals >= 0,
+      wire: resolved.wire ?? undefined,
+      fallback,
+    })
+  }
+  return fields
+}
+
+// walks every wire the contract recorded and parses the fields of each
+// referenced struct. unreferenced declarations are never validated, so a
+// view-only file keeps parsing exactly as before.
+function finalizeNamedTypes(
+  file: string,
+  language: 'swift' | 'kotlin',
+  named: NamedTypes,
+  structs: CollectedStruct[],
+  enums: CollectedEnum[],
+  modules: NativeSourceModule[],
+  views: NativeSourceView[]
+): { structs: NativeSourceStruct[]; enums: NativeSourceEnum[] } {
+  const reached = new Set<string>()
+  const queue: string[] = []
+  const visitWire = (wire: NativeSourceWire | undefined): void => {
+    if (!wire) return
+    if (wire.kind === 'struct' || wire.kind === 'enum') {
+      if (!reached.has(wire.name)) {
+        reached.add(wire.name)
+        if (wire.kind === 'struct') queue.push(wire.name)
+      }
+    } else if (wire.kind === 'array') visitWire(wire.element)
+    else if (wire.kind === 'map') visitWire(wire.value)
+    else if (wire.kind === 'nullable') visitWire(wire.inner)
+  }
+  for (const module of modules) {
+    for (const method of module.methods) {
+      for (const param of method.parameters) visitWire(param.wire)
+      visitWire(method.resultWire)
+      for (const arg of method.subscription?.payload ?? []) visitWire(arg.wire)
+    }
+  }
+  for (const view of views) {
+    for (const prop of view.props) {
+      visitWire(prop.wire)
+      for (const arg of prop.callback ?? []) visitWire(arg.wire)
+    }
+  }
+  const byName = new Map(structs.map((entry) => [entry.name, entry]))
+  const parsed = new Map<string, NativeSourceStructField[]>()
+  while (queue.length > 0) {
+    const name = queue.pop() as string
+    if (parsed.has(name)) continue
+    const decl = byName.get(name)
+    if (!decl) continue
+    const fields = language === 'swift'
+      ? swiftStructFields(file, decl, named)
+      : kotlinStructFields(file, decl, named)
+    parsed.set(name, fields)
+    for (const field of fields) visitWire(field.wire)
+  }
+  return {
+    structs: structs
+      .filter((entry) => reached.has(entry.name))
+      .map((entry) => ({ name: entry.name, fields: parsed.get(entry.name) ?? [] })),
+    enums: enums
+      .filter((entry) => reached.has(entry.name))
+      .map((entry) => ({ name: entry.name, backing: entry.backing, cases: entry.cases })),
+  }
+}
+
+// top-level `struct Name` / `enum Name` in swift, `data class Name` and
+// `enum class Name` in kotlin. nested declarations stay unknown to the
+// contract: only a file-level declaration crosses the boundary.
+function collectNamedTypes(
+  file: string,
+  list: Token[],
+  language: 'swift' | 'kotlin',
+  packageName: string | undefined
+): { structs: CollectedStruct[]; enums: CollectedEnum[]; names: NamedTypes } {
+  const structs: CollectedStruct[] = []
+  const enums: CollectedEnum[] = []
+  let depth = 0
+  let i = 0
+  while (i < list.length) {
+    const text = list[i].text
+    if (text === '{') { depth++; i++; continue }
+    if (text === '}') { depth--; i++; continue }
+    if (depth !== 0) { i++; continue }
+    const isSwiftStruct = language === 'swift' && text === 'struct'
+    const isSwiftEnum = language === 'swift' && text === 'enum'
+    const isDataClass =
+      language === 'kotlin' && text === 'class' && list[i - 1]?.text === 'data'
+    const isKotlinEnum =
+      language === 'kotlin' && text === 'class' && list[i - 1]?.text === 'enum'
+    if (!isSwiftStruct && !isSwiftEnum && !isDataClass && !isKotlinEnum) { i++; continue }
+    const name = list[i + 1]?.text
+    if (!name || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) { i++; continue }
+    const token = list[i + 1]
+    const generic = list[i + 2]?.text === '<'
+    if (isDataClass) {
+      const dataClass = collectDataClass(file, list, i, name, token, generic, packageName)
+      // advance past the constructor parameters; an optional body stays for
+      // the main loop, so only the parameter list is skipped here.
+      let scan = i + 2
+      if (list[scan]?.text === '<') scan = close(file, list, scan, '<', '>') + 1
+      while (['private', 'protected', 'public', 'internal', 'constructor'].includes(list[scan]?.text)) scan++
+      i = list[scan]?.text === '(' ? close(file, list, scan, '(', ')') + 1 : i + 2
+      if (dataClass) structs.push(dataClass)
+      continue
+    }
+    // find the declaration body, skipping generics and inheritance
+    let body = i + 2
+    let angle = 0
+    let round = 0
+    while (body < list.length) {
+      const value = list[body].text
+      if (value === '<') angle++
+      else if (value === '>') angle--
+      else if (value === '(') round++
+      else if (value === ')') round--
+      else if (value === '{' && angle === 0 && round === 0) break
+      body++
+    }
+    if (body >= list.length) { i++; continue }
+    const end = close(file, list, body, '{', '}')
+    const header = list.slice(i + 2, body)
+    if (isSwiftStruct) {
+      const inherits = header.map((entry) => entry.text)
+      // a file-private struct hides from the generated glue in its own module
+      const modifiers = list.slice(declarationStart(list, 0, i), i).map((entry) => entry.text)
+      structs.push({
+        name,
+        token,
+        generic,
+        codable: inherits.includes('Codable') || (inherits.includes('Decodable') && inherits.includes('Encodable')),
+        problem: modifiers.includes('private') || modifiers.includes('fileprivate')
+          ? `struct ${name} is private to its file and cannot cross the boundary`
+          : null,
+        body: list.slice(body + 1, end),
+        params: [],
+        packageName: undefined,
+      })
+    } else {
+      enums.push(
+        language === 'swift'
+          ? collectSwiftEnum(file, list.slice(body + 1, end), name, token, generic, header)
+          : collectKotlinEnum(file, list.slice(body + 1, end), name, token)
+      )
+    }
+    i = end + 1
+  }
+  return {
+    structs,
+    enums,
+    names: {
+      structs: new Map(
+        structs.map((entry) => [entry.name, { codable: entry.codable, generic: entry.generic, problem: entry.problem }])
+      ),
+      enums: new Map(
+        enums.map((entry) => [entry.name, { usable: entry.usable, problem: entry.problem }])
+      ),
+    },
+  }
+}
+
 // a top-level public @Composable fun, or null for any other top-level fun
-function composableView(file: string, list: Token[], keyword: number, floor: number): NativeSourceView | null {
+function composableView(
+  file: string,
+  list: Token[],
+  keyword: number,
+  floor: number,
+  named: NamedTypes
+): NativeSourceView | null {
   const modifiers = list.slice(declarationStart(list, floor, keyword), keyword).map((token) => token.text)
   if (!modifiers.some((value, index) => value === '@' && modifiers[index + 1] === 'Composable')) return null
   if (modifiers.includes('private') || modifiers.includes('internal')) return null
@@ -441,7 +1135,7 @@ function composableView(file: string, list: Token[], keyword: number, floor: num
   const inner = list.slice(keyword + 3, closing)
   const props = inner.length === 0 ? [] : split(inner, ',').flatMap((part) => {
     if (part.length === 0) return []
-    const prop = viewProp(file, part)
+    const prop = viewProp(file, part, named)
     return prop ? [prop] : []
   })
   return { name, props }
@@ -460,6 +1154,8 @@ export function nativeSourceContract(file: string, source: string): NativeSource
   if (packageName && !/^[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)*$/.test(packageName)) {
     fail(file, list[packageToken], `unsupported kotlin package ${packageName}`)
   }
+  const collected = collectNamedTypes(file, list, language, packageName)
+  const named = collected.names
   const modules: NativeSourceModule[] = []
   const views: NativeSourceView[] = []
   let defaultView = false
@@ -469,7 +1165,7 @@ export function nativeSourceContract(file: string, source: string): NativeSource
     const kind = list[i].text
     const declaration = language === 'swift' ? kind === 'class' || kind === 'struct' : kind === 'object'
     if (language === 'kotlin' && kind === 'fun') {
-      const view = composableView(file, list, i, previous)
+      const view = composableView(file, list, i, previous, named)
       if (view) {
         if (views.some((other) => other.name === view.name)) fail(file, list[i], `overloaded composable ${view.name} is unsupported`)
         views.push(view)
@@ -494,22 +1190,33 @@ export function nativeSourceContract(file: string, source: string): NativeSource
     }
     const inherits = list.slice(i + 2, body).map((token) => token.text)
     if (inherits.includes(language === 'swift' ? 'PeachModule' : 'OneModule')) {
-      modules.push({ name, methods: methods(file, list, body, end, language) })
+      modules.push({ name, methods: methods(file, list, body, end, language, named) })
     }
-    const view = language === 'swift' ? swiftView(file, list, i, previous, body, end) : null
+    const view = language === 'swift' ? swiftView(file, list, i, previous, body, end, named) : null
     if (view) views.push(view)
     i = end + 1
     previous = i
   }
-  const canonical = JSON.stringify({ language, packageName, modules, views, defaultView })
+  const finalized = finalizeNamedTypes(file, language, named, collected.structs, collected.enums, modules, views)
+  const structs = finalized.structs
+  const enums = finalized.enums
+  const canonical = JSON.stringify({ language, packageName, modules, views, structs, enums, defaultView })
   const hash = createHash('sha256').update(canonical).digest('hex')
-  const declarations = modules.map((module) => [
+  const declarations = structs.map((struct) =>
+    `export interface ${struct.name} {${struct.fields.map((field) => ` ${field.name}${field.optional ? '?' : ''}: ${field.type};`).join('')} }`
+  )
+  declarations.push(...enums.map((type) =>
+    `export type ${type.name} = ${type.cases.map((entry) => typeof entry.value === 'string' ? JSON.stringify(entry.value) : String(entry.value)).join(' | ')}`
+  ))
+  declarations.push(...modules.map((module) => [
     `export declare const ${module.name}: {`,
     ...module.methods.map((method) =>
-      `  ${method.name}(${method.parameters.map((param) => `${param.name}: ${param.type}`).join(', ')}): Promise<${method.result}>`
+      method.subscription
+        ? `  ${method.name}(listener: (${method.subscription.payload.map((arg, index) => `value${index}: ${arg.type}`).join(', ')}) => void): () => void`
+        : `  ${method.name}(${method.parameters.map((param) => `${param.name}: ${param.type}`).join(', ')}): Promise<${method.result}>`
     ),
     '}',
-  ].join('\n'))
+  ].join('\n')))
   declarations.push(...views.map((view) =>
     `export declare function ${view.name}(props: {${view.props.map((prop) => ` ${prop.name}${prop.optional ? '?' : ''}: ${prop.type}`).join(';')} }): ReactElement`
   ))
@@ -518,7 +1225,7 @@ export function nativeSourceContract(file: string, source: string): NativeSource
   }
   if (defaultView || views.length > 0) declarations.unshift("import type { ReactElement } from 'react'")
   const declaration = `${GENERATED_HEADER}${declarations.join('\n\n')}\n`
-  return { language, packageName, modules, views, defaultView, hash, declaration }
+  return { language, packageName, modules, views, structs, enums, defaultView, hash, declaration }
 }
 
 export function kotlinSourceId(root: string, file: string): string {
@@ -665,6 +1372,20 @@ export function renderSwiftSourceGlue(
   const className = `OneNativeSource_${packageId}`
   const viewsName = `OneNativeSourceViews_${packageId}`
   const renderCase = (method: NativeSourceMethod, module: NativeSourceModule): string[] => {
+    const subscription = method.subscription
+    if (subscription) {
+      const channel = `OneNativeSource.${packageId}.${module.name}.${method.name}`
+      const closureArgs = subscription.payload.map((arg, index) => `a${index}: ${arg.nativeType}`).join(', ')
+      const emitArgs = subscription.payload.map((_, index) => `a${index}`).join(', ')
+      const prefix = `${method.throws ? 'try ' : ''}${method.async ? 'await ' : ''}`
+      return [
+        `      case ${JSON.stringify(method.name)}:`,
+        `        guard values.isEmpty else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "${packageId}.${module.name}.${method.name} subscribes; it takes no arguments"]) }`,
+        `        let channel = ${JSON.stringify(channel)}`,
+        `        ${prefix}${module.name}Instance.${method.name}({ ${closureArgs ? `(${closureArgs}) in ` : ''}postEvent(channel, args([${emitArgs}])) })`,
+        '        return "null"',
+      ]
+    }
     const lines = [
       `      case ${JSON.stringify(method.name)}:`,
       `        guard values.count == ${method.parameters.length} else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "${packageId}.${module.name}.${method.name} expects ${method.parameters.length} arguments"]) }`,
@@ -684,7 +1405,7 @@ export function renderSwiftSourceGlue(
       if (method.nativeResult === 'Int') {
         lines.push('        guard abs(Double(result)) <= 9_007_199_254_740_991 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "result exceeds the JavaScript safe integer range"]) }')
       }
-      lines.push('        return String(decoding: try JSONEncoder().encode(result), as: UTF8.self)')
+      lines.push('        return try encode(result)')
     }
     return lines
   }
@@ -718,7 +1439,7 @@ export function renderSwiftSourceGlue(
     '    throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "\\(path): required"])',
     '  }',
     '  private static func args(_ values: [any Encodable]) -> String {',
-    '    "[" + values.map { String(decoding: (try? JSONEncoder().encode($0)) ?? Data("null".utf8), as: UTF8.self) }.joined(separator: ",") + "]"',
+    '    "[" + values.map { encodeAny($0) }.joined(separator: ",") + "]"',
     '  }',
     '  static func view(_ name: String, _ propsJson: String, _ emit: @escaping (String, String) -> Void) throws -> AnyView {',
     '    guard let props = try JSONSerialization.jsonObject(with: Data(propsJson.utf8)) as? [String: Any] else {',
@@ -790,9 +1511,48 @@ export function renderSwiftSourceGlue(
     '  }',
     '#endif',
     ...modules.map((module) => `  private static let ${module.name}Instance = ${module.name}()`),
+    // dates cross as ISO strings in both directions; the fractional reader
+    // runs first because javascript always writes milliseconds.
+    '  private static let isoDate: ISO8601DateFormatter = {',
+    '    let formatter = ISO8601DateFormatter()',
+    '    formatter.formatOptions = [.withInternetDateTime]',
+    '    return formatter',
+    '  }()',
+    '  private static let isoDateFractional: ISO8601DateFormatter = {',
+    '    let formatter = ISO8601DateFormatter()',
+    '    formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]',
+    '    return formatter',
+    '  }()',
+    '  private static func decodeDate(_ decoder: Decoder) throws -> Date {',
+    '    let container = try decoder.singleValueContainer()',
+    '    let text = try container.decode(String.self)',
+    '    if let date = isoDateFractional.date(from: text) ?? isoDate.date(from: text) { return date }',
+    '    throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected ISO date")',
+    '  }',
     '  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {',
     '    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])',
-    '    return try JSONDecoder().decode(T.self, from: data)',
+    '    let decoder = JSONDecoder()',
+    '    decoder.dateDecodingStrategy = .custom { try decodeDate($0) }',
+    '    decoder.dataDecodingStrategy = .base64',
+    '    return try decoder.decode(T.self, from: data)',
+    '  }',
+    '  private static func encode(_ value: any Encodable) throws -> String {',
+    '    let encoder = JSONEncoder()',
+    '    encoder.dateEncodingStrategy = .iso8601',
+    '    encoder.dataEncodingStrategy = .base64',
+    '    return String(decoding: try encoder.encode(value), as: UTF8.self)',
+    '  }',
+    '  private static func encodeAny(_ value: any Encodable) -> String {',
+    '    (try? encode(value)) ?? "null"',
+    '  }',
+    '  // native events post over the one event bridge on device; under wasi',
+    '  // there is no javascript runtime to receive them, so emitting traps.',
+    '  private static func postEvent(_ channel: String, _ args: String) {',
+    '    #if os(WASI)',
+    '    fatalError("native events need a device build")',
+    '    #else',
+    '    OneNativeSourceEmitter.send(channel, args)',
+    '    #endif',
     '  }',
     ...renderCall(),
     ...(views.length > 0 ? renderViews() : []),
@@ -852,6 +1612,10 @@ export function renderKotlinSourceGlue(
   if (contract.language !== 'kotlin') throw new Error('kotlin glue received a swift contract')
   if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(sourceId)) throw new Error(`invalid kotlin source id ${sourceId}`)
   const hash = createHash('sha256').update(JSON.stringify({ sourceId, contract: contract.hash })).digest('hex')
+  const structsByName = new Map(contract.structs.map((entry) => [entry.name, entry]))
+  const enumsByName = new Map(contract.enums.map((entry) => [entry.name, entry]))
+  const qualified = (name: string) => contract.packageName ? `${contract.packageName}.${name}` : name
+  const isDateType = (type: string) => type === 'Date' || type === 'java.util.Date'
   const value = (type: string, input: string, path: string): string => {
     if (type.endsWith('?')) {
       return `(if (${input} == JSONObject.NULL) null else ${value(type.slice(0, -1), input, path)})`
@@ -862,6 +1626,12 @@ export function renderKotlinSourceGlue(
     if (type === 'Float') return `readDouble(${input}, ${path}).toFloat()`
     if (type === 'Int') return `readInt(${input}, ${path})`
     if (type === 'Long') return `readLong(${input}, ${path})`
+    // dates cross as ISO strings, bytes as base64; structs and enums read
+    // through the generated helpers below.
+    if (isDateType(type)) return `readDate(${input}, ${path})`
+    if (type === 'ByteArray') return `readData(${input}, ${path})`
+    if (structsByName.has(type)) return `read${type}(${input}, ${path})`
+    if (enumsByName.has(type)) return `read${type}(${input}, ${path})`
     if (type.startsWith('List<') && type.endsWith('>')) {
       return `readList(${input}, ${path}) { item, itemPath -> ${value(type.slice(5, -1), 'item', 'itemPath')} }`
     }
@@ -870,10 +1640,57 @@ export function renderKotlinSourceGlue(
     }
     throw new Error(`unsupported kotlin glue type ${type}`)
   }
+  // an encoded value expression for a result or callback argument. primitives
+  // keep the historical JSONObject.wrap shape; every other shape encodes
+  // through its helper. the expression is never a raw null: missing values
+  // encode as JSONObject.NULL so the key survives the round trip.
+  const encode = (type: string, accessor: string): string => {
+    if (type.endsWith('?')) {
+      return `(${accessor}?.let { ${encode(type.slice(0, -1), 'it')} } ?: JSONObject.NULL)`
+    }
+    if (isDateType(type)) return `dateToString(${accessor})`
+    if (type === 'ByteArray') return `android.util.Base64.encodeToString(${accessor}, android.util.Base64.NO_WRAP)`
+    if (structsByName.has(type)) return `encode${type}(${accessor})`
+    if (enumsByName.has(type)) return `${accessor}.name`
+    if (type.startsWith('List<') && type.endsWith('>')) {
+      return `JSONArray().apply { for (item in ${accessor}) put(${encode(type.slice(5, -1), 'item')}) }`
+    }
+    if (type.startsWith('Map<String,') && type.endsWith('>')) {
+      return `JSONObject().apply { for ((key, entry) in ${accessor}) put(key, ${encode(type.slice(11, -1), 'entry')}) }`
+    }
+    return `JSONObject.wrap(${accessor})`
+  }
+  const structHelpers = contract.structs.flatMap((struct) => [
+    `private fun read${struct.name}(value: Any, path: String): ${qualified(struct.name)} {`,
+    '  val obj = value as? JSONObject ?: error("$path: expected object")',
+    `  return ${qualified(struct.name)}(`,
+    ...struct.fields.map((field) => {
+      const fieldPath = `"$path.${field.name}"`
+      const input = field.optional
+        ? `(if (obj.has(${JSON.stringify(field.name)})) obj.get(${JSON.stringify(field.name)}) else ${field.fallback ?? `error(${fieldPath}: required)`})`
+        : `(obj.opt(${JSON.stringify(field.name)}) ?: error(${fieldPath}: required))`
+      return `    ${field.name} = ${value(field.nativeType, input, fieldPath)},`
+    }),
+    '  )',
+    '}',
+    `private fun encode${struct.name}(value: ${qualified(struct.name)}): JSONObject {`,
+    '  return JSONObject()',
+    ...struct.fields.map((field) =>
+      `    .put(${JSON.stringify(field.name)}, ${encode(field.nativeType, `value.${field.name}`)})`
+    ),
+    '}',
+  ])
+  const enumHelpers = contract.enums.flatMap((entry) => [
+    `private fun read${entry.name}(value: Any, path: String): ${qualified(entry.name)} {`,
+    '  val text = readString(value, path)',
+    `  return try { ${qualified(entry.name)}.valueOf(text) } catch (e: IllegalArgumentException) { error("$path: expected one of ${entry.cases.map((item) => item.name).join(', ')}") }`,
+    '}',
+  ])
   const source = [
     'import androidx.annotation.Keep',
     ...(contract.views.length === 0 ? [] : ['import androidx.compose.runtime.Composable', 'import dev.onejs.one.OneNativeSourceViewDispatch']),
     'import dev.onejs.one.OneNativeSourceDispatch',
+    'import dev.onejs.one.source.OneNativeSourceEvents',
     'import org.json.JSONArray',
     'import org.json.JSONObject',
     '',
@@ -902,6 +1719,28 @@ export function renderKotlinSourceGlue(
     '  val objectValue = value as? JSONObject ?: error("$path: expected object")',
     '  return objectValue.keys().asSequence().associateWith { key -> read(objectValue.get(key), "$path.$key") }',
     '}',
+    // the encoder writes ISO with milliseconds and reads with or without
+    // them, so swift, kotlin and javascript dates all parse everywhere.
+    'private fun readDate(value: Any, path: String): java.util.Date {',
+    '  val text = readString(value, path)',
+    '  for (pattern in arrayOf("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", "yyyy-MM-dd\'T\'HH:mm:ss\'Z\'")) {',
+    '    try {',
+    '      return java.text.SimpleDateFormat(pattern, java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC"); isLenient = false }.parse(text) ?: error("$path: expected date")',
+    '    } catch (parseError: java.text.ParseException) { }',
+    '  }',
+    '  error("$path: expected ISO date")',
+    '}',
+    'private fun readData(value: Any, path: String): ByteArray {',
+    '  try {',
+    '    return android.util.Base64.decode(readString(value, path), android.util.Base64.NO_WRAP)',
+    '  } catch (decodeError: IllegalArgumentException) {',
+    '    error("$path: expected base64 data")',
+    '  }',
+    '}',
+    'private fun dateToString(value: java.util.Date): String =',
+    '  java.text.SimpleDateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC") }.format(value)',
+    ...structHelpers,
+    ...enumHelpers,
     '',
     `@Keep class OneNativeSource_${sourceId}: OneNativeSourceDispatch {`,
     `  override val contractHash = ${JSON.stringify(hash)}`,
@@ -911,6 +1750,20 @@ export function renderKotlinSourceGlue(
     ...contract.modules.flatMap((module) => [
       `      ${JSON.stringify(`${sourceId}.${module.name}`)} -> when (method) {`,
       ...module.methods.flatMap((method) => {
+        const subscription = method.subscription
+        if (subscription) {
+          const channel = `OneNativeSource.${sourceId}.${module.name}.${method.name}`
+          const closure = subscription.payload.length === 0
+            ? `{ OneNativeSourceEvents.send(${JSON.stringify(channel)}, JSONArray().toString()) }`
+            : `{ ${subscription.payload.map((_, index) => `a${index}`).join(', ')} -> OneNativeSourceEvents.send(${JSON.stringify(channel)}, JSONArray()${subscription.payload.map((arg, index) => `.put(${encode(arg.nativeType, `a${index}`)})`).join('')}.toString()) }`
+          return [
+            `        ${JSON.stringify(method.name)} -> {`,
+            `          require(args.length() == 0) { "${sourceId}.${module.name}.${method.name} subscribes; it takes no arguments" }`,
+            `          ${qualified(module.name)}.${method.name}(${closure})`,
+            '          "null"',
+            '        }',
+          ]
+        }
         const lines = [
           `        ${JSON.stringify(method.name)} -> {`,
           `          require(args.length() == ${method.parameters.length}) { "${sourceId}.${module.name}.${method.name} expects ${method.parameters.length} arguments" }`,
@@ -918,8 +1771,7 @@ export function renderKotlinSourceGlue(
         method.parameters.forEach((parameter, index) => {
           lines.push(`          val arg${index} = ${value(parameter.nativeType, `args.get(${index})`, JSON.stringify(`args[${index}]`))}`)
         })
-        const qualifier = contract.packageName ? `${contract.packageName}.` : ''
-        const call = `${qualifier}${module.name}.${method.name}(${method.parameters.map((_, index) => `arg${index}`).join(', ')})`
+        const call = `${qualified(module.name)}.${method.name}(${method.parameters.map((_, index) => `arg${index}`).join(', ')})`
         if (method.result === 'void') {
           lines.push(`          ${call}`, '          "null"')
         } else {
@@ -927,7 +1779,7 @@ export function renderKotlinSourceGlue(
           if (method.nativeResult === 'Long') {
             lines.push('          require(result >= -9007199254740991L && result <= 9007199254740991L) { "result exceeds the JavaScript safe integer range" }')
           }
-          lines.push('          JSONArray().put(JSONObject.wrap(result)).toString().drop(1).dropLast(1)')
+          lines.push(`          JSONArray().put(${encode(method.nativeResult, 'result')}).toString().drop(1).dropLast(1)`)
         }
         return [...lines, '        }']
       }),
@@ -939,7 +1791,7 @@ export function renderKotlinSourceGlue(
     '  }',
     '}',
     '',
-    ...(contract.views.length === 0 ? [] : viewGlue(sourceId, contract, hash, value)),
+    ...(contract.views.length === 0 ? [] : viewGlue(sourceId, contract, hash, value, encode)),
   ].join('\n')
   return { hash, source }
 }
@@ -950,7 +1802,8 @@ function viewGlue(
   sourceId: string,
   contract: NativeSourceContract,
   hash: string,
-  value: (type: string, input: string, path: string) => string
+  value: (type: string, input: string, path: string) => string,
+  encode: (type: string, accessor: string) => string
 ): string[] {
   const qualifier = contract.packageName ? `${contract.packageName}.` : ''
   return [
@@ -966,7 +1819,8 @@ function viewGlue(
         const path = JSON.stringify(`props.${prop.name}`)
         if (prop.callback) {
           const args = prop.callback.map((_, index) => `a${index}`)
-          const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg) => `.put(JSONObject.wrap(${arg}))`).join('')}.toString())`
+          const types = prop.callback.map((arg) => arg.nativeType)
+          const body = `emit(${JSON.stringify(prop.name)}, JSONArray()${args.map((arg, index) => `.put(${encode(types[index], arg)})`).join('')}.toString())`
           const lambda = `{ ${args.length > 0 ? `${args.join(', ')} -> ` : ''}${body} }`
           // the host sends true for each callback the element passed
           return `        ${prop.name} = ${prop.nativeType.endsWith('?') ? `if (props.optBoolean(${JSON.stringify(prop.name)})) (${lambda}) else null` : lambda},`

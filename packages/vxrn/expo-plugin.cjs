@@ -24,6 +24,13 @@ const nativeProjectPatches = require('./native-project-patches.cjs')
 // options: { photoLibrary: { addOnly?: string, readWrite?: string } } sets ios photos prompts.
 // options: { contacts: { usage: string } } sets the ios contacts prompt.
 // options: { calendar: { usage?: string, remindersUsage?: string } } sets EventKit prompts.
+// options: { nativeSource: true } generates the One native-source glue into
+// the Expo prebuilt project the way one prebuild does: a local pod per Swift
+// package under ios/OneSwiftPackages (plus the Podfile glob one prebuild
+// writes) and the Kotlin sources plus their glue under
+// android/app/src/main/java/one/source. Swift and Kotlin imports then bundle
+// the same host modules; without this the bundler keeps failing fast with
+// the one-prebuild error.
 module.exports = function withVxrn(config, options = {}) {
   const projectRoot = config?._internal?.projectRoot
   if (!projectRoot) {
@@ -52,6 +59,10 @@ module.exports = function withVxrn(config, options = {}) {
   const photoLibrary = options.photoLibrary
   const contacts = options.contacts
   const calendar = options.calendar
+  const nativeSource = options.nativeSource
+  if (nativeSource !== undefined && typeof nativeSource !== 'boolean') {
+    throw new Error('[vxrn/expo-plugin] nativeSource must be a boolean')
+  }
   if (
     location &&
     (typeof location.whenInUse !== 'string' || !location.whenInUse.trim())
@@ -375,6 +386,274 @@ module.exports = function withVxrn(config, options = {}) {
     ],
   ]
 
+  // the built contract parser; the src twin ships too but node cannot run
+  // typescript, so Expo prebuild reads the same dist build the bundler uses.
+  const loadNativeSourceContract = async () => {
+    try {
+      const [contract, ids] = await Promise.all([
+        import('vxrn/native-source-contract'),
+        import('vxrn/swift-package-id'),
+      ])
+      return { ...contract, ...ids }
+    } catch (error) {
+      throw new Error(
+        `[vxrn/expo-plugin] nativeSource: cannot load the vxrn native-source-contract build: ${error.message}`
+      )
+    }
+  }
+
+  // mirrors one prebuild's generateSwiftPackages, but copies (never symlinks:
+  // eas uploads and expo merges must stay self-contained) into the Expo ios
+  // project. the podspec and Register.m bodies match one prebuild so the same
+  // sources compile to the same pod.
+  const writeExpoSwiftPackages = ({ platformProjectRoot, contract }) => {
+    const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
+    const packages = contract.swiftPackageDirectories(projectRoot)
+    for (const [id, packageDir] of packages) {
+      const manifest = contract.swiftPodManifest(
+        path.join(packageDir, 'Package.swift'),
+        fs.readFileSync(path.join(packageDir, 'Package.swift'), 'utf8')
+      )
+      const podDir = path.join(platformProjectRoot, 'OneSwiftPackages', id)
+      fs.rmSync(podDir, { recursive: true, force: true })
+      const sources = []
+      const collect = (dir) => {
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+          if (entry.name.startsWith('.') || skip.has(entry.name)) continue
+          const full = path.join(dir, entry.name)
+          if (entry.isDirectory()) collect(full)
+          else if (entry.name.endsWith('.swift') && entry.name !== 'Package.swift')
+            sources.push(full)
+        }
+      }
+      collect(packageDir)
+      const artifacts = contract.writeSwiftPackageArtifacts(packageDir)
+      const contracts = artifacts.contracts
+      const hasView = contracts.some((entry) => entry.defaultView)
+      if (contracts.filter((entry) => entry.defaultView).length > 1) {
+        throw new Error(
+          `[vxrn/expo-plugin] nativeSource: swift package ${packageDir} has more than one @main type`
+        )
+      }
+      for (const source of sources) {
+        const target = path.join(podDir, 'Sources', path.relative(packageDir, source))
+        fs.mkdirSync(path.dirname(target), { recursive: true })
+        fs.copyFileSync(source, target)
+      }
+      if (artifacts.glue) {
+        fs.writeFileSync(
+          path.join(podDir, 'Sources', 'OneNativeSource.generated.swift'),
+          artifacts.glue
+        )
+      }
+      fs.writeFileSync(
+        path.join(podDir, `${id}.podspec`),
+        `Pod::Spec.new do |s|
+  s.name = '${id}'
+  s.version = '0.0.0'
+  s.summary = 'swift package ${path.relative(projectRoot, packageDir) || '.'}'
+  s.homepage = 'https://onestack.dev'
+  s.license = 'MIT'
+  s.author = 'one'
+  s.source = { :path => '.' }
+  s.swift_version = '${manifest.languageMode}.0'
+  s.source_files = 'Sources/**/*.swift', 'Register.m'
+  s.dependency 'One'
+  s.pod_target_xcconfig = {
+    'OTHER_SWIFT_FLAGS' => '$(inherited) -cxx-interoperability-mode=default -Xcc -std=c++20 -Xfrontend -import-module -Xfrontend One${manifest.mainActorIsolation ? ' -default-isolation MainActor' : ''}${hasView ? ` -Xfrontend -entry-point-function-name -Xfrontend ${id}_main` : ''}',
+  }
+end
+`
+      )
+      fs.writeFileSync(
+        path.join(podDir, 'Register.m'),
+        hasView ? `#import <Foundation/Foundation.h>
+
+extern int ${id}_main(int argc, char **argv);
+extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **));
+
+@interface OneSwiftPackage_${id} : NSObject
+@end
+
+@implementation OneSwiftPackage_${id}
++ (void)load {
+  OneSwiftRegisterPackage("${id}", ${id}_main);
+}
+@end
+` : '#import <Foundation/Foundation.h>\n'
+      )
+    }
+    return packages.size
+  }
+
+  const insertAfterLine = (haystack, anchor, insertion) => {
+    const anchorIndex = haystack.indexOf(anchor)
+    if (anchorIndex === -1) return haystack
+    const lineEnd = haystack.indexOf('\n', anchorIndex)
+    if (lineEnd === -1) return `${haystack}\n${insertion}`
+    return `${haystack.slice(0, lineEnd + 1)}${insertion}\n${haystack.slice(lineEnd + 1)}`
+  }
+
+  // mirrors one prebuild's enableAppComposeIntegration on the Expo android
+  // project. one prebuild owns its template so its anchors always hit; the
+  // Expo template may differ, so a missed anchor fails fast with the manual
+  // lines instead of leaving views uncompilable.
+  const enableExpoComposeIntegration = (androidRoot) => {
+    const manual =
+      'add the compose gradle plugin, buildFeatures { compose true }, and the androidx.compose dependencies from one prebuild'
+    const rootBuildGradlePath = path.join(androidRoot, 'build.gradle')
+    if (fs.existsSync(rootBuildGradlePath)) {
+      let content = fs.readFileSync(rootBuildGradlePath, 'utf8')
+      const composePluginClasspath =
+        '        classpath("org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:$kotlinVersion")'
+      if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
+        const anchor = content.includes('classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")')
+          ? 'classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")'
+          : 'classpath "org.jetbrains.kotlin:kotlin-gradle-plugin"'
+        if (!content.includes(anchor)) {
+          throw new Error(`[vxrn/expo-plugin] nativeSource: no kotlin classpath anchor in android/build.gradle; ${manual}`)
+        }
+        content = insertAfterLine(content, anchor, composePluginClasspath)
+        fs.writeFileSync(rootBuildGradlePath, content, 'utf8')
+      }
+    }
+    const appBuildGradlePath = path.join(androidRoot, 'app/build.gradle')
+    if (!fs.existsSync(appBuildGradlePath)) {
+      throw new Error(`[vxrn/expo-plugin] nativeSource: expected app/build.gradle; ${manual}`)
+    }
+    let content = fs.readFileSync(appBuildGradlePath, 'utf8')
+    if (!content.includes('org.jetbrains.kotlin.plugin.compose')) {
+      const pluginAnchor = content.includes('apply plugin: "org.jetbrains.kotlin.android"')
+        ? 'apply plugin: "org.jetbrains.kotlin.android"'
+        : "apply plugin: 'org.jetbrains.kotlin.android'"
+      if (!content.includes(pluginAnchor)) {
+        throw new Error(`[vxrn/expo-plugin] nativeSource: no kotlin android plugin anchor in app/build.gradle; ${manual}`)
+      }
+      content = insertAfterLine(
+        content,
+        pluginAnchor,
+        'apply plugin: "org.jetbrains.kotlin.plugin.compose"'
+      )
+    }
+    if (!content.includes('compose true')) {
+      if (!content.includes('android {')) {
+        throw new Error(`[vxrn/expo-plugin] nativeSource: no android block anchor in app/build.gradle; ${manual}`)
+      }
+      content = insertAfterLine(
+        content,
+        'android {',
+        '    buildFeatures {\n        compose true\n    }'
+      )
+    }
+    if (!content.includes('androidx.compose.ui:ui')) {
+      const composeDeps = [
+        '    def composeUiVersion = rootProject.ext.has("composeUiVersion") ? rootProject.ext.get("composeUiVersion") : "1.11.4"',
+        '    def material3Version = rootProject.ext.has("material3Version") ? rootProject.ext.get("material3Version") : "1.5.0-alpha17"',
+        '    implementation "androidx.compose.ui:ui:$composeUiVersion"',
+        '    implementation "androidx.compose.foundation:foundation:$composeUiVersion"',
+        '    implementation "androidx.compose.material3:material3:$material3Version"',
+        '    def navigationComposeVersion = rootProject.ext.has("navigationComposeVersion") ? rootProject.ext.get("navigationComposeVersion") : "2.10.2"',
+        '    implementation "androidx.navigation:navigation-compose:$navigationComposeVersion"',
+      ].join('\n')
+      const depsAnchor = content.includes('implementation("com.facebook.react:react-android")')
+        ? 'implementation("com.facebook.react:react-android")'
+        : 'implementation "com.facebook.react:react-android"'
+      if (!content.includes(depsAnchor)) {
+        throw new Error(`[vxrn/expo-plugin] nativeSource: no react-android dependency anchor in app/build.gradle; ${manual}`)
+      }
+      content = insertAfterLine(content, depsAnchor, composeDeps)
+    }
+    fs.writeFileSync(appBuildGradlePath, content, 'utf8')
+  }
+
+  // mirrors one prebuild's generateKotlinSources collection rule (a Kotlin
+  // file anywhere outside the skipped dirs and non-workspace nested
+  // packages) into the Expo android project. the generator owns
+  // app/src/main/java/one/source and rebuilds it, so a moved or deleted
+  // source cannot leave a stale copy behind.
+  const writeExpoKotlinSources = ({ platformProjectRoot, contract }) => {
+    const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build', 'tests', '__tests__', 'scripts', 'evidence'])
+    const sources = []
+    const manifest = fs.existsSync(path.join(projectRoot, 'package.json'))
+      ? JSON.parse(fs.readFileSync(path.join(projectRoot, 'package.json'), 'utf8'))
+      : {}
+    const workspacePatterns = Array.isArray(manifest.workspaces)
+      ? manifest.workspaces
+      : manifest.workspaces?.packages ?? []
+    const fastGlob = require('fast-glob')
+    const workspaceRoots = new Set(fastGlob.sync(workspacePatterns, {
+      cwd: projectRoot, absolute: true, onlyDirectories: true,
+      ignore: ['**/node_modules/**', '**/ios/**', '**/android/**'],
+    }).map((directory) => path.resolve(directory)))
+    const collect = (dir) => {
+      if (dir !== projectRoot && fs.existsSync(path.join(dir, 'package.json')) && !workspaceRoots.has(path.resolve(dir))) return
+      for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        if (entry.name.startsWith('.') || skip.has(entry.name)) continue
+        const source = path.join(dir, entry.name)
+        if (entry.isDirectory()) collect(source)
+        else if (entry.isFile() && entry.name.endsWith('.kt')) sources.push(source)
+      }
+    }
+    collect(projectRoot)
+    const output = path.join(platformProjectRoot, 'app/src/main/java/one/source')
+    fs.rmSync(output, { recursive: true, force: true })
+    if (sources.length === 0) return { sources: 0, hasViews: false }
+    let hasViews = false
+    for (const source of sources) {
+      const id = contract.kotlinSourceId(projectRoot, source)
+      const target = path.join(output, id)
+      fs.mkdirSync(target, { recursive: true })
+      fs.copyFileSync(source, path.join(target, path.basename(source)))
+      const parsed = contract.writeNativeSourceDeclaration(source)
+      if (parsed.views.length > 0) hasViews = true
+      if (parsed.modules.length > 0 || parsed.views.length > 0) {
+        fs.writeFileSync(
+          path.join(target, `OneNativeSource_${id}.kt`),
+          contract.renderKotlinSourceGlue(id, parsed).source
+        )
+      }
+    }
+    if (hasViews) enableExpoComposeIntegration(platformProjectRoot)
+    return { sources: sources.length, hasViews }
+  }
+
+  const nativeSourcePlugins = !nativeSource
+    ? []
+    : [
+        [
+          withDangerousMod,
+          [
+            'ios',
+            async (nextConfig) => {
+              const { platformProjectRoot } = nextConfig.modRequest
+              const contract = await loadNativeSourceContract()
+              const count = writeExpoSwiftPackages({ platformProjectRoot, contract })
+              if (count > 0) {
+                const podfilePath = path.join(platformProjectRoot, 'Podfile')
+                if (fs.existsSync(podfilePath)) {
+                  let podfile = fs.readFileSync(podfilePath, 'utf8')
+                  podfile = nativeProjectPatches.injectOneSwiftPackagesIntoPodfile(podfile)
+                  fs.writeFileSync(podfilePath, podfile, 'utf8')
+                }
+              }
+              return nextConfig
+            },
+          ],
+        ],
+        [
+          withDangerousMod,
+          [
+            'android',
+            async (nextConfig) => {
+              const { platformProjectRoot } = nextConfig.modRequest
+              const contract = await loadNativeSourceContract()
+              writeExpoKotlinSources({ platformProjectRoot, contract })
+              return nextConfig
+            },
+          ],
+        ],
+      ]
+
   const updates = options.updates
   if (updates && (typeof updates.runtimeVersion !== 'string' || !updates.runtimeVersion)) {
     throw new Error('[vxrn/expo-plugin] updates.runtimeVersion must be a non-empty string')
@@ -446,6 +725,7 @@ module.exports = function withVxrn(config, options = {}) {
     ...notificationPlugins,
     ...updatesPlugins,
     ...launchScreenPlugins,
+    ...nativeSourcePlugins,
     [
       withXcodeProject,
       (nextConfig) => {

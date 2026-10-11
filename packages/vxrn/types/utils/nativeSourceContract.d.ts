@@ -5,9 +5,18 @@ export interface NativeSourceMethod {
         label: string | null;
         type: string;
         nativeType: string;
+        wire?: NativeSourceWire;
     }[];
     result: string;
     nativeResult: string;
+    resultWire?: NativeSourceWire;
+    subscription?: {
+        payload: {
+            type: string;
+            nativeType: string;
+            wire?: NativeSourceWire;
+        }[];
+    };
     throws: boolean;
     async: boolean;
 }
@@ -23,17 +32,61 @@ export interface NativeSourceViewProp {
     callback: {
         type: string;
         nativeType: string;
+        wire?: NativeSourceWire;
     }[] | null;
+    wire?: NativeSourceWire;
 }
 export interface NativeSourceView {
     name: string;
     props: NativeSourceViewProp[];
+}
+export type NativeSourceWire = {
+    kind: 'date';
+} | {
+    kind: 'data';
+} | {
+    kind: 'struct';
+    name: string;
+} | {
+    kind: 'enum';
+    name: string;
+} | {
+    kind: 'array';
+    element: NativeSourceWire;
+} | {
+    kind: 'map';
+    value: NativeSourceWire;
+} | {
+    kind: 'nullable';
+    inner: NativeSourceWire;
+};
+export interface NativeSourceStructField {
+    name: string;
+    type: string;
+    nativeType: string;
+    optional: boolean;
+    wire?: NativeSourceWire;
+    fallback?: string;
+}
+export interface NativeSourceStruct {
+    name: string;
+    fields: NativeSourceStructField[];
+}
+export interface NativeSourceEnum {
+    name: string;
+    backing: 'string' | 'number';
+    cases: {
+        name: string;
+        value: string | number;
+    }[];
 }
 export interface NativeSourceContract {
     language: 'swift' | 'kotlin';
     packageName?: string;
     modules: NativeSourceModule[];
     views: NativeSourceView[];
+    structs: NativeSourceStruct[];
+    enums: NativeSourceEnum[];
     defaultView: boolean;
     hash: string;
     declaration: string;
