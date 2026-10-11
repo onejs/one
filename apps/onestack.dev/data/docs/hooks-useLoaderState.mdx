@@ -270,7 +270,7 @@ function DebugPanel() {
   return (
     <div>
       {timings.map((entry) => (
-        <div key={entry.path}>
+        <div key={`${entry.path}:${entry.startTime}`}>
           <strong>{entry.path}</strong>: {entry.totalTime}ms
           {entry.error && <span> (Error: {entry.error})</span>}
         </div>
