@@ -28,12 +28,8 @@ private final class MapModel: ObservableObject {
 
   public var onRegionChange: ((Double, Double, Double, Int) -> Void)?
   private var model = MapModel()
-  // the map's own controls, composed from the Fabric children into the map's
-  // mapControls so they operate on the owning map. handwritten for the map
-  // only: the emitter owns no control slots, and generalizing them belongs to
-  // the content-slot expansion, so regeneration must carry this block forward.
   private let mapControls = OneNativeChildren()
-  private var mapControlViews: [UIView] = []
+  private var childViews: [UIView] = []
   public var compositionActive: Bool { model.active }
   private var controller: OneNativeHostingController<OneNativeStandalone<MapContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
@@ -58,32 +54,23 @@ private final class MapModel: ObservableObject {
   }
   public func setMarkers(_ items: [[String: Any]]) { model.markers = items.map { OneNativeMapMarker(id: $0["id"] as! String, label: $0["label"] as! String, latitude: $0["latitude"] as! Double, longitude: $0["longitude"] as! Double) } }
 
-  // a map control renders inside the owning map's mapControls instead of owning a
-  // host, so it is published rather than added as a subview. the js adapter
-  // rejects anything else first with a javascript stack; this is the backstop.
   public func insertChild(_ child: UIView, at index: Int) {
+    precondition(child is OneNativeMapCompassView || child is OneNativeMapPitchToggleView || child is OneNativeMapUserLocationButtonView, "One.iOS.Map accepts MapCompass, MapPitchToggle, MapUserLocationButton children")
     guard let composable = child as? OneNativeComposable else {
-      preconditionFailure("One.iOS.Map takes map controls (One.iOS.MapCompass, One.iOS.MapPitchToggle, One.iOS.MapUserLocationButton) as children")
+      preconditionFailure("One Native child must support composition")
     }
-    let at = min(index, mapControlViews.count)
-    mapControlViews.insert(child, at: at)
+    let at = min(index, childViews.count)
+    childViews.insert(child, at: at)
     composable.composeInto(self)
     mapControls.items.insert(
-      OneNativeComposedChild(
-        id: String(describing: ObjectIdentifier(child)),
-        sourceID: ObjectIdentifier(child),
-        content: composable.compositionContent()),
-      at: at)
+      OneNativeComposedChild(id: String(describing: ObjectIdentifier(child)),
+        sourceID: ObjectIdentifier(child), content: composable.compositionContent()), at: at)
   }
   public func removeChild(_ child: UIView) {
-    guard let index = mapControlViews.firstIndex(where: { $0 === child }) else { return }
-    mapControlViews.remove(at: index)
-    guard let composable = child as? OneNativeComposable else {
-      preconditionFailure("One Native map control lost its composition capability")
-    }
-    composable.decompose()
-    let id = ObjectIdentifier(child)
-    mapControls.items.removeAll { $0.sourceID == id }
+    guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
+    childViews.remove(at: index)
+    (child as? OneNativeComposable)?.decompose()
+    mapControls.items.removeAll { $0.sourceID == ObjectIdentifier(child) }
   }
   private weak var compositionParent: OneNativeCompositionParent?
   public func compositionContent() -> AnyView { AnyView(MapContent(model: model, mapControls: mapControls)) }
@@ -98,7 +85,7 @@ private final class MapModel: ObservableObject {
   public func decompose() { compositionParent = nil; propagateActive(false) }
   public func propagateActive(_ active: Bool) {
     model.active = active
-    for child in mapControlViews { (child as? OneNativeComposable)?.propagateActive(active) }
+    for child in childViews { (child as? OneNativeComposable)?.propagateActive(active) }
   }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
@@ -120,8 +107,8 @@ private final class MapModel: ObservableObject {
   }
   public func reset() {
     compositionParent = nil
-    for child in mapControlViews { (child as? OneNativeComposable)?.decompose() }
-    mapControlViews.removeAll()
+    for child in childViews { (child as? OneNativeComposable)?.decompose() }
+    childViews.removeAll()
     mapControls.items = []
     model.active = false; model.onSDKEvent = nil; model.onRegionChange = nil
     controller?.detach(); controller = nil; model = MapModel()

@@ -5,6 +5,7 @@ import { Popover } from './Popover.native';
 import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
 import { withAnimation } from './withAnimation.native';
+import { Map as MapWithControls } from './mapControls.native';
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native';
 import { Compose } from './compose';
 import * as UI from './effects';
@@ -58,7 +59,9 @@ export declare const Swift: {
     SignInWithAppleButton({ onCompletion, requestedScopes, nonce, label, swiftStyle, style, ...props }: import("./types").SignInWithAppleButtonProps): import("react/jsx-runtime").JSX.Element;
     PayWithApplePayButton({ onPress, label, payWithApplePayButtonStyle, disabled, swiftStyle, style, ...props }: import("./types").PayWithApplePayButtonProps): import("react/jsx-runtime").JSX.Element;
     AddPassToWalletButton({ onPress, addPassToWalletButtonStyle, disabled, swiftStyle, style, ...props }: import("./types").AddPassToWalletButtonProps): import("react/jsx-runtime").JSX.Element;
-    Map({ onRegionChange, latitude, longitude, distance, markers, swiftStyle, style, ...props }: import("./types").MapProps): import("react/jsx-runtime").JSX.Element;
+    MapCompass({ swiftStyle, style, ...props }: import("./types").MapCompassProps): import("react/jsx-runtime").JSX.Element;
+    MapPitchToggle({ swiftStyle, style, ...props }: import("./types").MapPitchToggleProps): import("react/jsx-runtime").JSX.Element;
+    MapUserLocationButton({ swiftStyle, style, ...props }: import("./types").MapUserLocationButtonProps): import("react/jsx-runtime").JSX.Element;
     TextField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, axis, swiftStyle, style, ...props }: import("./types").TextFieldProps): import("react/jsx-runtime").JSX.Element;
     SecureField({ text, onTextChange, revision, focused, onFocusChange, focusRevision, onSubmit, label, disabled, prompt, textFieldStyle, submitLabel, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").SecureFieldProps): import("react/jsx-runtime").JSX.Element;
     TextEditor({ text, onTextChange, revision, focused, onFocusChange, focusRevision, disabled, textInputAutocapitalization, autocorrectionDisabled, keyboardType, textContentType, swiftStyle, style, ...props }: import("./types").TextEditorProps): import("react/jsx-runtime").JSX.Element;
@@ -143,6 +146,7 @@ export declare const Swift: {
     Spacer: typeof Spacer;
     Slot: typeof Slot;
     withAnimation: typeof withAnimation;
+    Map: typeof MapWithControls;
 };
 export { Compose };
 export { Notifications } from './notifications';

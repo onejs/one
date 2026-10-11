@@ -34,6 +34,9 @@ declare function SignInWithAppleButton(_props: Types.SignInWithAppleButtonProps)
 declare function PayWithApplePayButton(_props: Types.PayWithApplePayButtonProps): never;
 declare function AddPassToWalletButton(_props: Types.AddPassToWalletButtonProps): never;
 declare function Map(_props: Types.MapProps): never;
+declare function MapCompass(_props: Types.MapCompassProps): never;
+declare function MapPitchToggle(_props: Types.MapPitchToggleProps): never;
+declare function MapUserLocationButton(_props: Types.MapUserLocationButtonProps): never;
 declare function TextField(_props: Types.TextFieldProps): never;
 declare function SecureField(_props: Types.SecureFieldProps): never;
 declare function TextEditor(_props: Types.TextEditorProps): never;
@@ -87,6 +90,9 @@ export declare const unsupportedControls: {
     PayWithApplePayButton: typeof PayWithApplePayButton;
     AddPassToWalletButton: typeof AddPassToWalletButton;
     Map: typeof Map;
+    MapCompass: typeof MapCompass;
+    MapPitchToggle: typeof MapPitchToggle;
+    MapUserLocationButton: typeof MapUserLocationButton;
     TextField: typeof TextField;
     SecureField: typeof SecureField;
     TextEditor: typeof TextEditor;

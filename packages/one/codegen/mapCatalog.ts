@@ -3,6 +3,7 @@ import type { Control } from './controlTypes'
 export const mapControls: Control[] = [
   {
     name: 'Map',
+    contentSlot: { name: 'mapControls', accepts: ['MapCompass', 'MapPitchToggle', 'MapUserLocationButton'] },
     // a map has no ideal height to report, so it takes the box React Native gave it.
     layout: 'fill',
     // importing MapKit alongside SwiftUI is what loads the _MapKit_SwiftUI overlay.

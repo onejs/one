@@ -2776,6 +2776,12 @@ export interface MapProps extends OneNativeViewProps {
     distance?: number;
     markers: readonly MapMarker[];
 }
+export interface MapCompassProps extends OneNativeViewProps {
+}
+export interface MapPitchToggleProps extends OneNativeViewProps {
+}
+export interface MapUserLocationButtonProps extends OneNativeViewProps {
+}
 export interface TextFieldProps extends OneNativeViewProps {
     text: string | NativeState<string>;
     onTextChange: (value: string) => void;

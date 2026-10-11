@@ -61,16 +61,10 @@ using namespace facebook::react;
   self.accessibilityIdentifier = nil;
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; _markersDirty = YES; }
-// a map control renders inside the owning map's mapControls, so it is published
-// rather than added as a subview. handwritten for the map only: the emitter owns
-// no control slots, and generalizing them belongs to the content-slot expansion,
-// so regeneration must carry these methods forward.
 - (UIView *)composableFor:(UIView<RCTComponentViewProtocol> *)child {
   UIView *content = [child isKindOfClass:RCTViewComponentView.class] ? ((RCTViewComponentView *)child).contentView : nil;
   if (content == nil)
-    [NSException raise:@"OneNativeInvalidChild"
-                format:@"%@ is not a One Native map control. One.iOS.Map takes One.iOS.MapCompass, One.iOS.MapPitchToggle, or One.iOS.MapUserLocationButton children.",
-                       NSStringFromClass(child.class)];
+    [NSException raise:@"OneNativeInvalidChild" format:@"One.iOS.Map requires One Native children"];
   return content;
 }
 - (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {

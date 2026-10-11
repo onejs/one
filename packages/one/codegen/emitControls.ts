@@ -325,6 +325,8 @@ export type OneNativeViewProps = Pick<
   for (const control of controls) {
     const { name, fields, value, actions = [] } = control
     const nativeName = 'OneNative' + name
+    const slot = control.contentSlot
+    const contentArguments = `model: model${slot ? `, ${slot.name}: ${slot.name}` : ''}`
     const fieldEntries = Object.entries(fields)
     // derived fields are native-only; object arrays travel through their own setter.
     const publicFields = fieldEntries.filter(([, field]) => !field.derived)
@@ -490,7 +492,7 @@ ${
         event: `onNative${name}${action.event}`,
       })),
       layout: { kind: control.layout ?? 'measured' },
-      slots: [],
+      slots: slot ? [{ name: 'content', content: 'one-native', cardinality: 'many', layout: 'composed' }] : [],
       interfaceOnly: measured,
     })
     const usedPayloads = [
@@ -726,7 +728,7 @@ ${
 `
           })
           .join('')}}
-@objcMembers public final class ${nativeName}View: UIView, OneNativeComposable${control.focus ? ', OneNativeFocusedContent' : ''} {
+@objcMembers public final class ${nativeName}View: UIView, OneNativeComposable${slot ? ', OneNativeCompositionParent' : ''}${control.focus ? ', OneNativeFocusedContent' : ''} {
 ${hasSDKEvents ? '  public var onSDKEvent: ((String, String) -> Void)?\n' : ''}
 ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Void)?\n` : ''}${
           control.focus ? '  public var onFocusChange: ((Bool, Int, Int) -> Void)?\n' : ''
@@ -736,7 +738,10 @@ ${value ? `  public var onChange: ((${swiftScalar(value.type)}, Int, Int) -> Voi
               `  public var on${action.event}: ((${[...Object.values(action.payload ?? {}).map(swiftScalar), 'Int'].join(', ')}) -> Void)?\n`
           )
           .join('')}  private var model = ${name}Model()
-${control.focus ? '  @nonobjc var containsComposedFocus: Bool { model.hasNativeFocus }\n' : ''}${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var controller: OneNativeHostingController<${measured ? 'OneNativeMeasuredStandalone' : 'OneNativeStandalone'}<${name}Content>>?
+${slot ? `  private let ${slot.name} = OneNativeChildren()
+  private var childViews: [UIView] = []
+  public var compositionActive: Bool { model.active }
+` : ''}${control.focus ? '  @nonobjc var containsComposedFocus: Bool { model.hasNativeFocus }\n' : ''}${measured ? '  public var onHeight: ((CGFloat) -> Void)?\n' : ''}  private var controller: OneNativeHostingController<${measured ? 'OneNativeMeasuredStandalone' : 'OneNativeStandalone'}<${name}Content>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
@@ -778,18 +783,39 @@ ${arrayFields
   })
   .join('\n')}
 
-  private weak var compositionParent: OneNativeCompositionParent?
-  public func compositionContent() -> AnyView { AnyView(${name}Content(model: model)) }
+${slot ? `  public func insertChild(_ child: UIView, at index: Int) {
+    precondition(${slot.accepts.map(name => `child is OneNative${name}View`).join(' || ')}, "One.iOS.${name} accepts ${slot.accepts.join(', ')} children")
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure("One Native child must support composition")
+    }
+    let at = min(index, childViews.count)
+    childViews.insert(child, at: at)
+    composable.composeInto(self)
+    ${slot.name}.items.insert(
+      OneNativeComposedChild(id: String(describing: ObjectIdentifier(child)),
+        sourceID: ObjectIdentifier(child), content: composable.compositionContent()), at: at)
+  }
+  public func removeChild(_ child: UIView) {
+    guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
+    childViews.remove(at: index)
+    (child as? OneNativeComposable)?.decompose()
+    ${slot.name}.items.removeAll { $0.sourceID == ObjectIdentifier(child) }
+  }
+` : ''}  private weak var compositionParent: OneNativeCompositionParent?
+  public func compositionContent() -> AnyView { AnyView(${name}Content(${contentArguments})) }
   // composed, activation follows the parent: a subtree mounted before root attachment
   // stays silent until the root attaches.
   public func composeInto(_ parent: OneNativeCompositionParent) {
     controller?.detach(); controller = nil
     compositionParent = parent
     bindCallbacks()
-    model.active = parent.compositionActive
+    ${slot ? 'propagateActive(parent.compositionActive)' : 'model.active = parent.compositionActive'}
   }
-  public func decompose() { compositionParent = nil; model.active = false }
-  public func propagateActive(_ active: Bool) { model.active = active }
+  public func decompose() { compositionParent = nil; ${slot ? 'propagateActive(false)' : 'model.active = false'} }
+${slot ? `  public func propagateActive(_ active: Bool) {
+    model.active = active
+    for child in childViews { (child as? OneNativeComposable)?.propagateActive(active) }
+  }` : '  public func propagateActive(_ active: Bool) { model.active = active }'}
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
@@ -809,24 +835,27 @@ ${value ? '    model.onChange = { [weak self] value, count, revision in self?.on
           .join('')}  }
   private func updateHost() {
     guard compositionParent == nil else { return }
-    model.active = false
+    ${slot ? 'propagateActive(false)' : 'model.active = false'}
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: ${measured ? `OneNativeMeasuredStandalone(content: ${name}Content(model: model), onHeight: { [weak self] height in self?.onHeight?(height) })` : `OneNativeStandalone(content: ${name}Content(model: model))`})
+      controller = OneNativeHostingController(rootView: ${measured ? `OneNativeMeasuredStandalone(content: ${name}Content(${contentArguments}), onHeight: { [weak self] height in self?.onHeight?(height) })` : `OneNativeStandalone(content: ${name}Content(${contentArguments}))`})
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    ${slot ? 'propagateActive(controller?.isAttached == true)' : 'model.active = controller?.isAttached == true'}
   }
   public func reset() {
     compositionParent = nil
-    model.active = false${hasSDKEvents ? '; model.onSDKEvent = nil' : ''}${value ? '; model.onChange = nil' : ''}${control.focus ? '; model.onFocusChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
+${slot ? `    for child in childViews { (child as? OneNativeComposable)?.decompose() }
+    childViews.removeAll()
+    ${slot.name}.items = []
+` : ''}    model.active = false${hasSDKEvents ? '; model.onSDKEvent = nil' : ''}${value ? '; model.onChange = nil' : ''}${control.focus ? '; model.onFocusChange = nil' : ''}${actions.map((action) => `; model.on${action.event} = nil`).join('')}
 ${presentation ? '    controller?.presentedViewController?.dismiss(animated: false)\n' : ''}    controller?.detach(); controller = nil; model = ${name}Model()
   }
 }
 private struct ${name}Content: View {
   @ObservedObject var model: ${name}Model
-${control.focus ? '  @FocusState private var focused: Bool\n' : ''}  var body: some View {
+${slot ? `  @ObservedObject var ${slot.name}: OneNativeChildren\n` : ''}${control.focus ? '  @FocusState private var focused: Bool\n' : ''}  var body: some View {
     ${swiftBody}
 ${
   control.focus
@@ -1054,7 +1083,19 @@ ${value?.sync ? `  _syncStateId = next.syncStateId;\n` : ''}${call.length ? `  [
         };
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset];${measured ? ' [_measured reset];' : ''}${arrayFields.map(([key]) => ` _${key}Dirty = YES;`).join('')} }
-@end
+${slot ? `- (UIView *)composableFor:(UIView<RCTComponentViewProtocol> *)child {
+  UIView *content = [child isKindOfClass:RCTViewComponentView.class] ? ((RCTViewComponentView *)child).contentView : nil;
+  if (content == nil)
+    [NSException raise:@"OneNativeInvalidChild" format:@"One.iOS.${name} requires One Native children"];
+  return content;
+}
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  [_nativeView insertChild:[self composableFor:child] at:index];
+}
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  [_nativeView removeChild:[self composableFor:child]];
+}
+` : ''}@end
 `
     )
   }

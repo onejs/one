@@ -2763,7 +2763,14 @@
       "layout": {
         "kind": "fill"
       },
-      "slots": [],
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
       "interfaceOnly": false
     },
     {

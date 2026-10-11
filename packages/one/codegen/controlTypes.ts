@@ -90,6 +90,8 @@ export type LeafRecipe = {
 }
 export type Control = {
   name: string
+  // a named SwiftUI child collection, hosted by this control instead of UIKit.
+  contentSlot?: { name: string; accepts: readonly string[] }
   // images with no explicit label are decoration; a label turns them into one image element.
   decorativeWhenUnlabeled?: true
   value?: ControlValue

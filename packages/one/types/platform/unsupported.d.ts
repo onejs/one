@@ -53,6 +53,8 @@ declare function ToolbarContent(_props: ToolbarContentProps): never;
 declare function ToolbarItem(_props: ToolbarItemProps): never;
 declare function ToolbarItemGroup(_props: ToolbarItemGroupProps): never;
 declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
+import type { MapWithControlsProps } from './mapControls';
+declare function MapWithControlsStub(_props: MapWithControlsProps): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -88,7 +90,9 @@ export declare const Swift: {
     SignInWithAppleButton: (_props: import("./types").SignInWithAppleButtonProps) => never;
     PayWithApplePayButton: (_props: import("./types").PayWithApplePayButtonProps) => never;
     AddPassToWalletButton: (_props: import("./types").AddPassToWalletButtonProps) => never;
-    Map: (_props: import("./types").MapProps) => never;
+    MapCompass: (_props: import("./types").MapCompassProps) => never;
+    MapPitchToggle: (_props: import("./types").MapPitchToggleProps) => never;
+    MapUserLocationButton: (_props: import("./types").MapUserLocationButtonProps) => never;
     TextField: (_props: import("./types").TextFieldProps) => never;
     SecureField: (_props: import("./types").SecureFieldProps) => never;
     TextEditor: (_props: import("./types").TextEditorProps) => never;
@@ -173,6 +177,7 @@ export declare const Swift: {
     ToolbarItemGroup: typeof ToolbarItemGroup;
     ToolbarSpacer: typeof ToolbarSpacer;
     withAnimation(_animation: SDKAnimation | null, _body: () => void, _completion?: () => void, _completionCriteria?: WithAnimationCompletionCriteria): never;
+    Map: typeof MapWithControlsStub;
 };
 export type * from './types';
 //# sourceMappingURL=unsupported.d.ts.map
