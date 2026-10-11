@@ -288,14 +288,6 @@ export async function transformBabel(
   })
 }
 
-export async function stripFlowTypes(id: string, code: string, sourceMaps = true) {
-  const result = await transformBabel(id, code, { sourceMaps })
-  return {
-    code: result.code!,
-    map: result.map,
-  }
-}
-
 const getBasePlugins = ({ development }: Props) =>
   [
     ['@babel/plugin-transform-destructuring'],

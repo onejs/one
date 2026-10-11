@@ -6,10 +6,10 @@ import { configureVXRNCompilerPlugin } from './configure'
 import {
   findUserBabelConfig,
   getBabelOptions,
-  stripFlowTypes,
   transformBabel,
   transformOxcReactCompiler,
 } from './transformBabel'
+import { stripFlowTypes } from './transformFlow'
 
 afterEach(() => {
   configureVXRNCompilerPlugin({ enableReanimated: false })
