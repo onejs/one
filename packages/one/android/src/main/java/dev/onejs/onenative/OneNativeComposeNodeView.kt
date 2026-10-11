@@ -2215,11 +2215,14 @@ private fun RenderComposeModalBottomSheet(
             confirmValueChange = { target ->
                 when {
                     hideAllowed -> true
-                    target == SheetValue.Hidden -> currentDismissOutside
                     !presented.value -> {
                         presented.value = true
                         true
                     }
+                    // scrim taps and back presses are governed by
+                    // ModalBottomSheetProperties, not by this gate, so a
+                    // scrim-locked sheet still dismisses on back press.
+                    target == SheetValue.Hidden -> true
                     !currentGestures -> false
                     else -> true
                 }
