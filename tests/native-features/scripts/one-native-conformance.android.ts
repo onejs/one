@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
 import { runEffectsSuite } from './one-native-effects-suite'
@@ -36,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'system-clipboard' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker|launch-screen|adaptive-flat --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|system-clipboard|state|network|document-picker|launch-screen|adaptive-flat --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -887,6 +887,98 @@ function stampDebugHost(config: Config) {
   stampAndroidDebugHost(config.packageId, config.metroPort, (args) => adbText(config, args))
 }
 
+function androidSdkRoot() {
+  const candidates = [
+    process.env.ANDROID_HOME,
+    process.env.ANDROID_SDK_ROOT,
+    process.env.HOME ? `${process.env.HOME}/Library/Android/sdk` : undefined,
+    process.env.HOME ? `${process.env.HOME}/Android/Sdk` : undefined,
+  ].filter((root): root is string => Boolean(root))
+  for (const root of candidates) {
+    if (existsSync(path.join(root, 'platform-tools', 'adb'))) return root
+  }
+  throw new Error(
+    'Android preflight: no SDK found. Set ANDROID_HOME to a platform-tools install.'
+  )
+}
+
+function newestFile(parent: string, child: string) {
+  if (!existsSync(parent)) return undefined
+  const found = readdirSync(parent)
+    .sort()
+    .reverse()
+    .map((entry) => path.join(parent, entry, child))
+    .find((file) => existsSync(file))
+  return found
+}
+
+// builds the outside-the-app clipboard setter from the neighboring java
+// source and pushes it to the device. cmd clipboard has no shell
+// implementation and dumpsys clipboard prints nothing on this build, so
+// the suite stages its external write through the binder directly.
+function deviceClipboardTool(config: Config) {
+  mkdirSync(config.artifactDir, { recursive: true })
+  const sdk = androidSdkRoot()
+  const androidJar = newestFile(path.join(sdk, 'platforms'), 'android.jar')
+  if (!androidJar)
+    throw new Error(`Android preflight: no platforms/android-*/android.jar under ${sdk}.`)
+  const d8 = newestFile(path.join(sdk, 'build-tools'), 'd8')
+  if (!d8)
+    throw new Error(`Android preflight: no build-tools/*/d8 under ${sdk}.`)
+  try {
+    execFileSync('javac', ['-version'], { stdio: 'ignore', timeout: 30_000 })
+  } catch {
+    throw new Error('Android preflight: javac is not runnable. Install a JDK and add it to PATH.')
+  }
+  const source = path.join(import.meta.dir, 'SetDeviceClipboard.java')
+  if (!existsSync(source)) throw new Error(`Device clipboard source is missing: ${source}`)
+  const work = path.join(config.artifactDir, 'device-clipboard')
+  const classes = path.join(work, 'classes')
+  const dexDir = path.join(work, 'dex')
+  mkdirSync(classes, { recursive: true })
+  mkdirSync(dexDir, { recursive: true })
+  try {
+    execFileSync('javac', ['-classpath', androidJar, '-d', classes, source], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: 120_000,
+    })
+  } catch (error) {
+    throw commandError('javac', ['-classpath', androidJar, '-d', classes, source], error)
+  }
+  try {
+    execFileSync(d8, ['--min-api', '26', '--output', dexDir, path.join(classes, 'SetDeviceClipboard.class')], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: 120_000,
+    })
+  } catch (error) {
+    throw commandError(d8, ['--min-api', '26', '--output', dexDir, 'SetDeviceClipboard.class'], error)
+  }
+  const remote = '/data/local/tmp/one-native-clipboard-tool.dex'
+  adbText(config, ['push', path.join(dexDir, 'classes.dex'), remote])
+  return remote
+}
+
+function setDeviceClipboard(config: Config, tool: string, text: string) {
+  if (!/^[A-Za-z0-9-]+$/.test(text))
+    throw new Error(`Device clipboard text must be ASCII letters, digits, or dash, got ${JSON.stringify(text)}.`)
+  const output = adbText(config, [
+    'shell',
+    `CLASSPATH=${tool} app_process /system/bin SetDeviceClipboard set '${text}'`,
+  ])
+  if (!output.includes('set ok'))
+    throw new Error(`Device clipboard set failed: ${output.trim()}`)
+}
+
+function readDeviceClipboard(config: Config, tool: string) {
+  const output = adbText(config, [
+    'shell',
+    `CLASSPATH=${tool} app_process /system/bin SetDeviceClipboard get`,
+  ])
+  const line = output.split(/\r?\n/).find((entry) => entry.startsWith('clip:'))
+  if (line === undefined) throw new Error(`Device clipboard read failed: ${output.trim()}`)
+  return line.slice('clip:'.length)
+}
+
 async function run(config: Config) {
   mkdirSync(config.artifactDir, { recursive: true })
   const checks: Check[] = []
@@ -1440,6 +1532,142 @@ async function run(config: Config) {
       'one-native-share-run',
       undefined,
       30_000
+    )
+  }
+
+  const clipboard = async () => {
+    // Clipboard: set reports true, get reads the write back, has sees the
+    // string, a second write overwrites the first, an empty write reads
+    // back empty with has false, a value staged outside the app reads
+    // back, and the clipboard outlives a relaunch.
+    const tool = deviceClipboardTool(config)
+    await freshLeg('clipboard')
+    await tapNavigation(config, 'nav-one-native-clipboard')
+    await expect(
+      'system-clipboard-mounted',
+      (nodes) =>
+        textIncludes(nodes, 'Written: none') &&
+        textIncludes(nodes, 'Read: none') &&
+        textIncludes(nodes, 'Read length: none') &&
+        textIncludes(nodes, 'Has: none'),
+      'one-native-clipboard-set'
+    )
+    tapFresh(config, 'system-clipboard-set', {
+      id: 'one-native-clipboard-set',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-set-true',
+      (nodes) => joined(nodes).includes('Written: true'),
+      'one-native-clipboard-get'
+    )
+    tapFresh(config, 'system-clipboard-get', {
+      id: 'one-native-clipboard-get',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-roundtrip',
+      (nodes) => joined(nodes).includes('Read: one-native-clipboard-probe'),
+      'one-native-clipboard-has'
+    )
+    tapFresh(config, 'system-clipboard-has', {
+      id: 'one-native-clipboard-has',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-has-string',
+      (nodes) => joined(nodes).includes('Has: true'),
+      'one-native-clipboard-set-second'
+    )
+    tapFresh(config, 'system-clipboard-set-second', {
+      id: 'one-native-clipboard-set-second',
+      role: 'button',
+      clickable: true,
+    })
+    tapFresh(config, 'system-clipboard-get-second', {
+      id: 'one-native-clipboard-get',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-overwrite',
+      (nodes) => joined(nodes).includes('Read: one-native-clipboard-probe-2'),
+      'one-native-clipboard-set-empty'
+    )
+    tapFresh(config, 'system-clipboard-set-empty', {
+      id: 'one-native-clipboard-set-empty',
+      role: 'button',
+      clickable: true,
+    })
+    tapFresh(config, 'system-clipboard-get-empty', {
+      id: 'one-native-clipboard-get',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-empty',
+      (nodes) => joined(nodes).includes('Read length: 0'),
+      'one-native-clipboard-has'
+    )
+    tapFresh(config, 'system-clipboard-has-empty', {
+      id: 'one-native-clipboard-has',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-empty-has-false',
+      (nodes) => joined(nodes).includes('Has: false'),
+      'one-native-clipboard-get'
+    )
+    // the staged value is verified outside the app first, so the read
+    // below proves the app sees a write it did not make.
+    const external = 'one-native-clipboard-external'
+    setDeviceClipboard(config, tool, external)
+    const staged = readDeviceClipboard(config, tool)
+    if (staged !== external)
+      throw new Error(
+        `Device clipboard staged ${JSON.stringify(staged)} instead of ${JSON.stringify(external)}.`
+      )
+    tapFresh(config, 'system-clipboard-get-external', {
+      id: 'one-native-clipboard-get',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-external',
+      (nodes) =>
+        joined(nodes).includes(`Read: ${external}`) &&
+        joined(nodes).includes('Read length: 29'),
+      'one-native-clipboard-has',
+      () => ({ staged })
+    )
+    tapFresh(config, 'system-clipboard-has-external', {
+      id: 'one-native-clipboard-has',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-clipboard-external-has-true',
+      (nodes) => joined(nodes).includes('Has: true'),
+      'one-native-clipboard-get'
+    )
+    await freshLeg('clipboard-relaunch')
+    await tapNavigation(config, 'nav-one-native-clipboard')
+    await expect(
+      'system-clipboard-relaunch-mounted',
+      (nodes) => textIncludes(nodes, 'Written: none'),
+      'one-native-clipboard-get'
+    )
+    tapFresh(config, 'system-clipboard-get-relaunch', {
+      id: 'one-native-clipboard-get',
+      role: 'button',
+      clickable: true,
+    })
+    await expect('system-clipboard-relaunch-persisted', (nodes) =>
+      joined(nodes).includes(`Read: ${external}`)
     )
   }
 
@@ -2758,8 +2986,8 @@ async function run(config: Config) {
       await androidMenus()
       return
     }
-    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location') {
-      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : system())
+    if (config.suite === 'portal' || config.suite === 'pager' || config.suite === 'system' || config.suite === 'system-app-icon' || config.suite === 'system-share' || config.suite === 'system-location' || config.suite === 'system-clipboard') {
+      await (config.suite === 'portal' ? portal() : config.suite === 'pager' ? pager() : config.suite === 'system-app-icon' ? appIcon() : config.suite === 'system-share' ? share() : config.suite === 'system-location' ? location() : config.suite === 'system-clipboard' ? clipboard() : system())
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }
