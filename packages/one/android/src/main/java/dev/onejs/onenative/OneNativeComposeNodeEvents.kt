@@ -142,6 +142,74 @@ internal class OneNativeComposeNodeBooleanValueChangeEvent(
         }
 }
 
+internal class OneNativeComposeNodeImageLoadEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val eventCount: Int,
+) : Event<OneNativeComposeNodeImageLoadEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeImageLoad"
+
+    override fun canCoalesce(): Boolean = false
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply {
+            putInt("eventCount", eventCount)
+        }
+}
+
+internal class OneNativeComposeNodeImageErrorEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val message: String,
+    private val eventCount: Int,
+) : Event<OneNativeComposeNodeImageErrorEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeImageError"
+
+    override fun canCoalesce(): Boolean = false
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply {
+            putString("message", message)
+            putInt("eventCount", eventCount)
+        }
+}
+
+internal class OneNativeComposeNodeSnackbarResultEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val requestId: Int,
+    private val result: String,
+    private val eventCount: Int,
+) : Event<OneNativeComposeNodeSnackbarResultEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeSnackbarResult"
+
+    override fun canCoalesce(): Boolean = false
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply {
+            putInt("requestId", requestId)
+            putString("result", result)
+            putInt("eventCount", eventCount)
+        }
+}
+
+internal class OneNativeComposeNodeSheetHiddenEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val requestId: Int,
+    private val eventCount: Int,
+) : Event<OneNativeComposeNodeSheetHiddenEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeSheetHidden"
+
+    override fun canCoalesce(): Boolean = false
+
+    override fun getEventData(): WritableMap =
+        Arguments.createMap().apply {
+            putInt("requestId", requestId)
+            putInt("eventCount", eventCount)
+        }
+}
+
 internal class OneNativeComposeNodeContentSizeChangeEvent(
     surfaceId: Int,
     viewTag: Int,

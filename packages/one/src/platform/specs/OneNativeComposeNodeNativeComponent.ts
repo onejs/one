@@ -283,6 +283,61 @@ interface NativeProps extends ViewProps {
     Readonly<{ eventCount: Int32; value: Double }>
   >
   onNativeComposeNodeDialogDismiss?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
+  lazyContentPadding?: Readonly<{
+    start?: WithDefault<Double, -1>
+    end?: WithDefault<Double, -1>
+    top?: WithDefault<Double, -1>
+    bottom?: WithDefault<Double, -1>
+  }>
+  imageSource?: Readonly<{
+    uri?: string
+  }>
+  imageOptions?: Readonly<{
+    contentScale?: string
+    alignment?: string
+    tint?: ColorValue
+    alpha?: WithDefault<Double, -1>
+  }>
+  snackbarColors?: Readonly<{
+    containerColor?: ColorValue
+    contentColor?: ColorValue
+    actionColor?: ColorValue
+    actionContentColor?: ColorValue
+    dismissActionContentColor?: ColorValue
+    actionOnNewLine?: boolean
+  }>
+  snackbarRequest?: Readonly<{
+    requestId?: Int32
+    message?: string
+    actionLabel?: string
+    withDismissAction?: boolean
+    duration?: string
+    revision?: Int32
+  }>
+  sheetOptions?: Readonly<{
+    skipPartiallyExpanded?: boolean
+    initialFullyExpanded?: boolean
+    showDragHandle?: boolean
+    sheetGesturesEnabled?: boolean
+    scrimColor?: ColorValue
+  }>
+  sheetProperties?: Readonly<{
+    shouldDismissOnClickOutside?: boolean
+  }>
+  sheetCommand?: Readonly<{
+    requestId?: Int32
+    revision?: Int32
+  }>
+  onNativeComposeNodeImageLoad?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
+  onNativeComposeNodeImageError?: DirectEventHandler<
+    Readonly<{ message: string; eventCount: Int32 }>
+  >
+  onNativeComposeNodeSnackbarResult?: DirectEventHandler<
+    Readonly<{ requestId: Int32; result: string; eventCount: Int32 }>
+  >
+  onNativeComposeNodeSheetHidden?: DirectEventHandler<
+    Readonly<{ requestId: Int32; eventCount: Int32 }>
+  >
 }
 
 export default codegenNativeComponent<NativeProps>('OneNativeComposeNode', {

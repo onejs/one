@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeLoadingIndicatorProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostProps, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Spacer(_props: ComposeSpacerProps): never;
@@ -54,6 +54,12 @@ declare function TextField(_props: ComposeTextFieldProps): never;
 declare function Slider(_props: ComposeSliderProps): never;
 declare function AlertDialog(_props: ComposeAlertDialogProps): never;
 declare function Dialog(_props: ComposeDialogProps): never;
+declare function LazyColumn(_props: ComposeLazyColumnProps): never;
+declare function LazyRow(_props: ComposeLazyRowProps): never;
+declare function Image(_props: ComposeImageProps): never;
+declare function Snackbar(_props: ComposeSnackbarProps): never;
+declare function SnackbarHost(_props: ComposeSnackbarHostProps): never;
+declare const ModalBottomSheetRoot: (_props: ComposeModalBottomSheetProps) => never;
 declare function ProgressIndicator(_props: ComposeProgressIndicatorProps): never;
 type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>;
 declare function LinearProgressIndicator(_props: ProgressVariantProps): never;
@@ -164,6 +170,16 @@ export declare const Compose: {
     Slider: typeof Slider;
     AlertDialog: typeof AlertDialog;
     Dialog: typeof Dialog;
+    LazyColumn: typeof LazyColumn;
+    LazyRow: typeof LazyRow;
+    Image: typeof Image;
+    Snackbar: typeof Snackbar;
+    SnackbarHost: typeof SnackbarHost;
+    ModalBottomSheet: typeof ModalBottomSheetRoot & {
+        DragHandle: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
     ProgressIndicator: typeof ProgressIndicator;
     LinearProgressIndicator: typeof LinearProgressIndicator;
     CircularProgressIndicator: typeof CircularProgressIndicator;

@@ -95,6 +95,14 @@ class OneNativeComposeNodeManager :
             mapOf("registrationName" to "onNativeComposeNodeDialogConfirm")
         events["topNativeComposeNodeDialogDismiss"] =
             mapOf("registrationName" to "onNativeComposeNodeDialogDismiss")
+        events["topNativeComposeNodeImageLoad"] =
+            mapOf("registrationName" to "onNativeComposeNodeImageLoad")
+        events["topNativeComposeNodeImageError"] =
+            mapOf("registrationName" to "onNativeComposeNodeImageError")
+        events["topNativeComposeNodeSnackbarResult"] =
+            mapOf("registrationName" to "onNativeComposeNodeSnackbarResult")
+        events["topNativeComposeNodeSheetHidden"] =
+            mapOf("registrationName" to "onNativeComposeNodeSheetHidden")
         events["topNativeComposeNodeContentSizeChange"] =
             mapOf("registrationName" to "onNativeComposeNodeContentSizeChange")
         return events
@@ -390,6 +398,38 @@ class OneNativeComposeNodeManager :
 
     override fun setPickerOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stagePickerOptions(value)
+    }
+
+    override fun setLazyContentPadding(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageLazyContentPadding(value)
+    }
+
+    override fun setImageSource(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageImageSource(value)
+    }
+
+    override fun setImageOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageImageOptions(value)
+    }
+
+    override fun setSnackbarColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSnackbarColors(value)
+    }
+
+    override fun setSnackbarRequest(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSnackbarRequest(value)
+    }
+
+    override fun setSheetOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSheetOptions(value)
+    }
+
+    override fun setSheetProperties(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSheetProperties(value)
+    }
+
+    override fun setSheetCommand(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSheetCommand(value)
     }
 
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {

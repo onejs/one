@@ -36,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'compose-lists' | 'compose-image' | 'compose-snackbar' | 'compose-sheet' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker|launch-screen|adaptive-flat --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|compose-lists|compose-image|compose-snackbar|compose-sheet|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|state|network|document-picker|launch-screen|adaptive-flat --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'compose-lists' && value !== 'compose-image' && value !== 'compose-snackbar' && value !== 'compose-sheet' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -5103,6 +5103,131 @@ async function runCompose(config: Config) {
     tapText('confirm time dialog', button('Use time'))
     await check('compose-pickers-time-dialog-confirmed', status('Date: 2026-10-15 14:37 · Time: 09:37 · Policy: accept · Requests: 3 · Dialog: time 2026-10-05 18:37'))
   }
+  const lists = async () => {
+    const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-lists-status', text)
+    // lazy items outside the visible window leave the tree, so these match
+    // whole texts: 'List item 1' is a prefix of 'List item 10'.
+    const exact = (nodes: Node[], text: string) =>
+      nodes.some((node) => node.text === text || node.contentDescription === text)
+    await tapNavigation(config, 'nav-one-native-android-lists')
+    await check('compose-lists-column-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-lists-screen') &&
+      status('Mode: column · Taps: 0')(nodes) &&
+      exact(nodes, 'List item 1') &&
+      !exact(nodes, 'List item 20')
+    )
+    // one swipe rarely crosses twenty items; drive until the far edge appears.
+    for (let attempt = 0; attempt < 5; attempt++) {
+      swipeFresh(config, 'column scroll')
+      if (exact(snapshot(config).nodes, 'List item 20')) break
+    }
+    await check('compose-lists-column-scrolled', (nodes) =>
+      exact(nodes, 'List item 20') &&
+      !exact(nodes, 'List item 1') &&
+      status('Mode: column · Taps: 0')(nodes)
+    )
+    tapFresh(config, 'list decoy', { id: 'one-native-android-lists-decoy' })
+    await check('compose-lists-decoy-noop', (nodes) =>
+      status('Mode: column · Taps: 0')(nodes) &&
+      exact(nodes, 'List item 20')
+    )
+    tapFresh(config, 'show row list', { id: 'one-native-android-lists-toggle' })
+    await check('compose-lists-row-mounted', (nodes) =>
+      status('Mode: row · Taps: 0')(nodes) &&
+      exact(nodes, 'Row item 1') &&
+      !exact(nodes, 'Row item 20')
+    )
+    for (let attempt = 0; attempt < 5; attempt++) {
+      swipeOnNode(config, 'row scroll', { id: 'one-native-android-lists-row' }, 0.8, 0.2)
+      if (exact(snapshot(config).nodes, 'Row item 20')) break
+    }
+    await check('compose-lists-row-scrolled', (nodes) =>
+      exact(nodes, 'Row item 20') &&
+      status('Mode: row · Taps: 0')(nodes)
+    )
+  }
+  const composeImage = async () => {
+    const treeHas = (nodes: Node[], text: string) =>
+      nodes.some((node) => nodeValues(node).some((value) => value.includes(text)))
+    await tapNavigation(config, 'nav-one-native-android-compose-image')
+    await check('compose-image-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-compose-image-screen') &&
+      exactlyOneId(nodes, 'one-native-android-compose-image-file') &&
+      exactlyOneId(nodes, 'one-native-android-compose-image-broken') &&
+      treeHas(nodes, 'Red square')
+    )
+    await check('compose-image-file-loaded', (nodes) =>
+      idText(nodes, 'one-native-android-compose-image-file-status', 'File: loaded · Loads: 1')
+    )
+    await check('compose-image-broken-error', (nodes) =>
+      idText(nodes, 'one-native-android-compose-image-broken-status', 'Broken: error')
+    )
+  }
+  const snackbar = async () => {
+    const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-snackbar-status', text)
+    const treeHas = (nodes: Node[], text: string) =>
+      nodes.some((node) => nodeValues(node).some((value) => value.includes(text)))
+    await tapNavigation(config, 'nav-one-native-android-snackbar')
+    await check('compose-snackbar-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-snackbar-screen') &&
+      exactlyOneId(nodes, 'one-native-android-snackbar-host') &&
+      status('Result: none')(nodes)
+    )
+    tapFresh(config, 'show action snackbar', { id: 'one-native-android-snackbar-show-action' })
+    await check('compose-snackbar-shown', (nodes) => treeHas(nodes, 'File saved'))
+    tapByText(config, 'snackbar action', 'Undo')
+    await check('compose-snackbar-action', (nodes) => status('Result: actionPerformed')(nodes))
+    tapFresh(config, 'show plain snackbar', { id: 'one-native-android-snackbar-show-plain' })
+    await check('compose-snackbar-plain', (nodes) =>
+      treeHas(nodes, 'Just a note') && !treeHas(nodes, 'Undo')
+    )
+    await check('compose-snackbar-dismissed', (nodes) => status('Result: dismissed')(nodes))
+    tapFresh(config, 'show dismiss snackbar', { id: 'one-native-android-snackbar-show-dismiss' })
+    await check('compose-snackbar-dismiss-shown', (nodes) => treeHas(nodes, 'With close'))
+    await check('compose-snackbar-dismiss-resolved', (nodes) => status('Result: dismissed')(nodes))
+    tapFresh(config, 'snackbar decoy', { id: 'one-native-android-snackbar-decoy' })
+    await check('compose-snackbar-decoy-noop', (nodes) => status('Result: dismissed')(nodes))
+  }
+  const sheet = async () => {
+    const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-sheet-status', text)
+    const treeHas = (nodes: Node[], text: string) =>
+      nodes.some((node) => nodeValues(node).some((value) => value.includes(text)))
+    await tapNavigation(config, 'nav-one-native-android-sheet')
+    await check('compose-sheet-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-sheet-screen') &&
+      status('Sheet: closed')(nodes) &&
+      !treeHas(nodes, 'Sheet body')
+    )
+    tapFresh(config, 'open sheet', { id: 'one-native-android-sheet-open' })
+    await check('compose-sheet-open', (nodes) =>
+      treeHas(nodes, 'Sheet body') && status('Sheet: open')(nodes)
+    )
+    tapFresh(config, 'scrim tap dismisses', { id: 'one-native-android-sheet-status' })
+    await check('compose-sheet-scrim-dismissed', (nodes) =>
+      !treeHas(nodes, 'Sheet body') && status('Sheet: dismissed')(nodes)
+    )
+    tapFresh(config, 'open locked sheet', { id: 'one-native-android-sheet-open-locked' })
+    await check('compose-sheet-locked-open', (nodes) =>
+      treeHas(nodes, 'Sheet body') && status('Sheet: open')(nodes)
+    )
+    tapFresh(config, 'scrim tap keeps locked sheet', { id: 'one-native-android-sheet-status' })
+    // a broken scrim gate dismisses on the tap; wait out the animation so the
+    // kept-open assertion means the tap was ignored, not just early.
+    await Bun.sleep(1500)
+    await check('compose-sheet-locked-kept', (nodes) =>
+      treeHas(nodes, 'Sheet body') && status('Sheet: open')(nodes)
+    )
+    pressBack(config)
+    await check('compose-sheet-back-dismissed', (nodes) =>
+      !treeHas(nodes, 'Sheet body') && status('Sheet: dismissed')(nodes)
+    )
+    tapFresh(config, 'open sheet', { id: 'one-native-android-sheet-open' })
+    await check('compose-sheet-reopened', (nodes) => treeHas(nodes, 'Sheet body'))
+    tapFresh(config, 'hide sheet by ref', { id: 'one-native-android-sheet-hide' })
+    await check('compose-sheet-ref-hidden', (nodes) =>
+      !treeHas(nodes, 'Sheet body') && status('Sheet: hidden')(nodes)
+    )
+  }
   const surface = async () => {
     await tapNavigation(config, 'nav-one-native-android-surface')
     await check('compose-surface-mounted', (nodes) =>
@@ -5742,6 +5867,26 @@ async function runCompose(config: Config) {
     console.log('ALL ONE NATIVE ANDROID PICKER CHECKS PASSED')
     return
   }
+  if (config.suite === 'compose-lists') {
+    await lists()
+    console.log('ALL ONE NATIVE ANDROID LISTS CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-image') {
+    await composeImage()
+    console.log('ALL ONE NATIVE ANDROID COMPOSE IMAGE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-snackbar') {
+    await snackbar()
+    console.log('ALL ONE NATIVE ANDROID SNACKBAR CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'compose-sheet') {
+    await sheet()
+    console.log('ALL ONE NATIVE ANDROID SHEET CHECKS PASSED')
+    return
+  }
   if (config.suite === 'compose-segmented') {
     await segmented()
     console.log('ALL ONE NATIVE ANDROID SEGMENTED CHECKS PASSED')
@@ -6137,7 +6282,7 @@ try {
   const config = parse(process.argv.slice(2))
   await (config.suite === 'updates'
     ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
+    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'compose-lists' || config.suite === 'compose-image' || config.suite === 'compose-snackbar' || config.suite === 'compose-sheet' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
       ? runCompose(config)
       : run(config))
 } catch (error) {

@@ -1,4 +1,4 @@
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeContainedLoadingIndicatorProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps, ComposeSegmentedButtonProps, ComposeDatePickerProps, ComposeTimePickerProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeDialogProps, ComposeDividerProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeContainedLoadingIndicatorProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSliderProps, ComposeSuggestionChipProps, ComposeStyle, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeToggleButtonProps, ComposeSegmentedButtonProps, ComposeDatePickerProps, ComposeTimePickerProps, ComposeImageContentScale, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeModalBottomSheetProps, ComposeSnackbarProps, ComposeSnackbarShowOptions } from './composeTypes';
 export declare const horizontalAlignments: readonly ['start', 'centerHorizontally', 'end'];
 export declare const verticalAlignments: readonly ['top', 'centerVertically', 'bottom'];
 export declare const contentAlignments: readonly ['topStart', 'topCenter', 'topEnd', 'centerStart', 'center', 'centerEnd', 'bottomStart', 'bottomCenter', 'bottomEnd', 'top', 'bottom', 'start', 'end'];
@@ -61,4 +61,14 @@ export declare function validatePickerDialogProps(props: {
     confirmLabel?: unknown;
     dismissLabel?: unknown;
 }, owner: string): void;
+export declare const lazyAlignments: readonly ['start', 'end', 'center'];
+export declare const lazyRowAlignments: readonly ['top', 'bottom', 'center'];
+export declare const imageContentScales: readonly ComposeImageContentScale[];
+export declare const snackbarDurations: readonly ['short', 'long', 'indefinite'];
+export declare function validateLazyColumnProps(props: ComposeLazyColumnProps): void;
+export declare function validateLazyRowProps(props: ComposeLazyRowProps): void;
+export declare function validateImageProps(props: ComposeImageProps): void;
+export declare function validateSnackbarProps(props: ComposeSnackbarProps): void;
+export declare function validateSnackbarShowOptions(options: ComposeSnackbarShowOptions): void;
+export declare function validateModalBottomSheetProps(props: ComposeModalBottomSheetProps): void;
 //# sourceMappingURL=composeValidation.d.ts.map

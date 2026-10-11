@@ -596,3 +596,188 @@ expressive loading shapes, with `progress` and `color`; the contained one adds
     { name: 'color', type: 'ColorValue', description: 'The shape color.' },
   ]}
 />
+
+## LazyColumn, LazyRow
+
+`One.Android.LazyColumn` scrolls children vertically and `One.Android.LazyRow`
+horizontally. Children become lazy items: only the visible window composes, so
+long lists stay cheap. Give the list a bounded height (column) or width (row)
+through `composeStyle`; items size themselves.
+
+```tsx
+<One.Android.LazyColumn
+  style={{ height: 320 }}
+  verticalArrangement={{ spacedBy: 8 }}
+  contentPadding={{ top: 8, bottom: 8 }}
+>
+  {items.map((item) => (
+    <One.Android.Text key={item.id} text={item.title} />
+  ))}
+</One.Android.LazyColumn>
+```
+
+<PropsTable
+  title="LazyColumn"
+  source="composeTypes.ts#ComposeLazyColumnProps"
+  data={[
+    { name: 'verticalArrangement', type: 'ComposeVerticalArrangement | Readonly<{ spacedBy: number }>', description: 'A preset, or { spacedBy } for a gap in dp.' },
+    { name: 'horizontalAlignment', type: "'start' | 'end' | 'center'", default: "'start'", description: 'How items sit across the column.' },
+    { name: 'contentPadding', type: 'ComposeLazyContentPadding', description: 'Inset around the items, in dp.' },
+  ]}
+/>
+
+<PropsTable
+  title="LazyRow"
+  source="composeTypes.ts#ComposeLazyRowProps"
+  data={[
+    { name: 'horizontalArrangement', type: 'ComposeHorizontalArrangement | Readonly<{ spacedBy: number }>', description: 'A preset, or { spacedBy } for a gap in dp.' },
+    { name: 'verticalAlignment', type: "'top' | 'bottom' | 'center'", default: "'top'", description: 'How items sit across the row.' },
+    { name: 'contentPadding', type: 'ComposeLazyContentPadding', description: 'Inset around the items, in dp.' },
+  ]}
+/>
+
+<PropsTable
+  title="LazyContentPadding"
+  source="composeTypes.ts#ComposeLazyContentPadding"
+  data={[
+    { name: 'start', type: 'number', description: 'Leading inset, in dp.' },
+    { name: 'top', type: 'number', description: 'Top inset, in dp.' },
+    { name: 'end', type: 'number', description: 'Trailing inset, in dp.' },
+    { name: 'bottom', type: 'number', description: 'Bottom inset, in dp.' },
+  ]}
+/>
+
+## Image
+
+`One.Android.Image` draws a bundled asset or a URI through Compose. Size it
+with `composeStyle` width and height; the bitmap scales inside those bounds.
+
+```tsx
+<One.Android.Image
+  source={{ uri: fileUri }}
+  contentScale="crop"
+  contentDescription="A mountain at sunset"
+  composeStyle={{ width: 160, height: 100 }}
+  onLoad={() => setLoaded(true)}
+  onError={(error) => setError(error)}
+/>
+```
+
+<PropsTable
+  title="Image"
+  source="composeTypes.ts#ComposeImageProps"
+  data={[
+    { name: 'source', required: true, type: 'ComposeImageSource', description: 'A bundled asset id or { uri }.' },
+    { name: 'contentScale', type: 'ComposeImageContentScale', default: "'fit'", description: 'fit, crop, fillBounds, fillWidth, fillHeight, inside, or none.' },
+    { name: 'alignment', type: 'ComposeContentAlignment', default: "'center'", description: 'Where the image sits inside its bounds.' },
+    { name: 'contentDescription', type: 'string | null', description: 'Spoken to screen readers. Null marks a decorative image.' },
+    { name: 'tint', type: 'ColorValue', description: 'A color applied to every non-transparent pixel.' },
+    { name: 'alpha', type: 'number', description: 'Opacity, from 0 to 1.' },
+    { name: 'onLoad', type: '() => void', description: 'The image decoded and drew.' },
+    { name: 'onError', type: '(message: string) => void', description: 'The image failed to load, with the reason.' },
+  ]}
+/>
+
+## Snackbar
+
+`One.Android.SnackbarHost` shows Material 3 snackbars. Its `ref` exposes
+`showSnackbar`, which resolves `'actionPerformed'` when the user taps the
+action and `'dismissed'` when the snackbar times out or is dismissed. Calls
+queue behind the visible snackbar. A `One.Android.Snackbar` child styles the
+shown snackbars.
+
+```tsx
+const host = useRef<ComposeSnackbarHostRef>(null)
+
+<One.Android.SnackbarHost ref={host}>
+  <One.Android.Snackbar containerColor="#1b1b1f" />
+</One.Android.SnackbarHost>
+
+await host.current?.showSnackbar({ message: 'File saved', actionLabel: 'Undo' })
+```
+
+<PropsTable
+  title="SnackbarHost"
+  source="composeTypes.ts#ComposeSnackbarHostProps"
+  data={[
+    { name: 'children', type: 'ReactNode', description: 'The host content, including one Snackbar that styles the shown snackbars.' },
+    { name: 'accessibilityRole', type: 'ComposeAccessibilityRole', description: 'The accessibility role.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'The outer style. Nested nodes use composeStyle instead.' },
+    { name: 'composeStyle', type: 'ComposeStyle', description: 'Compose layout for this node.' },
+  ]}
+/>
+
+<PropsTable
+  title="Snackbar"
+  source="composeTypes.ts#ComposeSnackbarProps"
+  data={[
+    { name: 'containerColor', type: 'ColorValue', description: 'The snackbar background.' },
+    { name: 'contentColor', type: 'ColorValue', description: 'The message text color.' },
+    { name: 'actionColor', type: 'ColorValue', description: 'The action button container color.' },
+    { name: 'actionContentColor', type: 'ColorValue', description: 'The action button label color.' },
+    { name: 'dismissActionContentColor', type: 'ColorValue', description: 'The dismiss icon color.' },
+    { name: 'actionOnNewLine', type: 'boolean', default: 'false', description: 'Puts a long action label under the message.' },
+  ]}
+/>
+
+<PropsTable
+  title="SnackbarShowOptions"
+  source="composeTypes.ts#ComposeSnackbarShowOptions"
+  data={[
+    { name: 'message', required: true, type: 'string', description: 'The message body.' },
+    { name: 'actionLabel', type: 'string', description: 'The action button label. No button when unset.' },
+    { name: 'withDismissAction', type: 'boolean', default: 'false', description: 'Shows a trailing close button.' },
+    { name: 'duration', type: 'ComposeSnackbarDuration', description: 'short, long, or indefinite. Short without an action, indefinite with one.' },
+  ]}
+/>
+
+## ModalBottomSheet
+
+`One.Android.ModalBottomSheet` presents its children in a Material 3 modal
+sheet. Mounting shows it; `onDismissRequest` fires on a swipe, back press, or
+scrim tap, and the parent unmounts it. The `ref` hides the sheet with an
+animation through `hide`, which resolves when the sheet is hidden.
+
+```tsx
+const [open, setOpen] = useState(false)
+const sheet = useRef<ComposeModalBottomSheetRef>(null)
+
+{open ? (
+  <One.Android.ModalBottomSheet onDismissRequest={() => setOpen(false)}>
+    <One.Android.Text text="Sheet body" />
+  </One.Android.ModalBottomSheet>
+) : null}
+```
+
+<PropsTable
+  title="ModalBottomSheet"
+  source="composeTypes.ts#ComposeModalBottomSheetProps"
+  data={[
+    { name: 'onDismissRequest', required: true, type: '() => void', description: 'A swipe, back press, or scrim tap asked to close it.' },
+    { name: 'skipPartiallyExpanded', type: 'boolean', default: 'false', description: 'Opens the sheet full screen.' },
+    { name: 'initialFullyExpanded', type: 'boolean', default: 'false', description: 'Starts fully expanded. Ignored with skipPartiallyExpanded.' },
+    { name: 'scrimColor', type: 'ColorValue', description: 'The overlay behind the sheet.' },
+    { name: 'showDragHandle', type: 'boolean', default: 'true', description: 'Shows the default handle. Ignored with a DragHandle slot.' },
+    { name: 'sheetGesturesEnabled', type: 'boolean', default: 'true', description: 'Swipe to dismiss and drag gestures.' },
+    { name: 'properties', type: 'ComposeModalBottomSheetProperties', description: 'Back press and scrim dismissal behavior.' },
+  ]}
+/>
+
+<PropsTable
+  title="ModalBottomSheetProperties"
+  source="composeTypes.ts#ComposeModalBottomSheetProperties"
+  data={[
+    { name: 'shouldDismissOnClickOutside', type: 'boolean', default: 'true', description: 'A scrim tap calls onDismissRequest.' },
+  ]}
+/>
+
+A custom drag handle replaces the default one:
+
+```tsx
+<One.Android.ModalBottomSheet onDismissRequest={close}>
+  <One.Android.ModalBottomSheet.DragHandle>
+    <One.Android.Text text="Grabber" />
+  </One.Android.ModalBottomSheet.DragHandle>
+  <One.Android.Text text="Sheet body" />
+</One.Android.ModalBottomSheet>
+```

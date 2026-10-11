@@ -23,7 +23,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.StoreReview` | store-review | native-modules:unavailable | missing |  |
 | `One.QuickActions` | quick-actions | quick-actions, native-modules:unavailable | missing |  |
 | `One.Location` | location | location, native-modules:unavailable | missing |  |
-| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, print, screen-capture, native-modules | OneNativeBehavioralLibraryCase |  |
+| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-background | native-modules:unavailable | missing |  |
 | `One.Share` | share | share, native-modules:unavailable | missing |  |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable | missing |  |
@@ -141,8 +141,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a | missing |  |
 | `One.iOS.ZoomTransitionEnabler` | zoom | n/a | ScreensTransitionLibraryCase |  |
 | `One.iOS.ZoomTransitionSource` | zoom | n/a | ScreensTransitionLibraryCase |  |
-| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | missing |  |
-| `One.Android.Row` | n/a | android, android-inputs, android-progress, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers | missing |  |
+| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | missing |  |
+| `One.Android.Row` | n/a | android, android-inputs, android-progress, android-lists, android-snackbar, android-sheet, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers | missing |  |
 | `One.Android.Spacer` | n/a | android-flow-row | missing |  |
 | `One.Android.FlowRow` | n/a | android-pickers, android-flow-row | missing |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-flow-row | missing |  |
@@ -159,9 +159,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.AssistChip` | n/a | android-chips | OneComposeActionsLibraryCase |  |
 | `One.Android.InputChip` | n/a | android-chips | missing |  |
 | `One.Android.SuggestionChip` | n/a | android-chips | missing |  |
-| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
+| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
 | `One.Android.Icon` | n/a | android, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneNativeIconLibraryCase |  |
-| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip | OneComposeFormLibraryCase |  |
+| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-snackbar, android-sheet, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip | OneComposeFormLibraryCase |  |
 | `One.Android.IconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
@@ -184,6 +184,12 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.Slider` | n/a | android-inputs | OneComposeSelectionLibraryCase |  |
 | `One.Android.AlertDialog` | n/a | android-inputs | OneComposeDialogsLibraryCase |  |
 | `One.Android.Dialog` | n/a | android-inputs | missing |  |
+| `One.Android.LazyColumn` | n/a | android-lists | missing |  |
+| `One.Android.LazyRow` | n/a | android-lists | missing |  |
+| `One.Android.Image` | n/a | android-compose-image | missing |  |
+| `One.Android.Snackbar` | n/a | android-snackbar | missing |  |
+| `One.Android.SnackbarHost` | n/a | android-snackbar | missing |  |
+| `One.Android.ModalBottomSheet` | n/a | android-sheet | missing |  |
 | `One.Android.ProgressIndicator` | n/a | android-inputs | missing |  |
 | `One.Android.LinearProgressIndicator` | n/a | android-progress | OneComposeSelectionLibraryCase |  |
 | `One.Android.CircularProgressIndicator` | n/a | android-progress | OneComposeSelectionLibraryCase |  |

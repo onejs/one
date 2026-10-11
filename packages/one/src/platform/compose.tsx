@@ -23,7 +23,11 @@ import type {
   ComposeIconProps,
   ComposeIconButtonProps,
   ComposeInputChipProps,
+  ComposeImageProps,
+  ComposeLazyColumnProps,
+  ComposeLazyRowProps,
   ComposeLoadingIndicatorProps,
+  ComposeModalBottomSheetProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
@@ -32,6 +36,8 @@ import type {
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
+  ComposeSnackbarHostProps,
+  ComposeSnackbarProps,
   ComposeSuggestionChipProps,
   ComposeSurfaceProps,
   ComposeSwitchProps,
@@ -256,6 +262,33 @@ function Dialog(_props: ComposeDialogProps): never {
   return unsupported('Dialog')
 }
 
+function LazyColumn(_props: ComposeLazyColumnProps): never {
+  return unsupported('LazyColumn')
+}
+
+function LazyRow(_props: ComposeLazyRowProps): never {
+  return unsupported('LazyRow')
+}
+
+function Image(_props: ComposeImageProps): never {
+  return unsupported('Image')
+}
+
+function Snackbar(_props: ComposeSnackbarProps): never {
+  return unsupported('Snackbar')
+}
+
+function SnackbarHost(_props: ComposeSnackbarHostProps): never {
+  return unsupported('SnackbarHost')
+}
+
+const ModalBottomSheetRoot = (_props: ComposeModalBottomSheetProps): never =>
+  unsupported('ModalBottomSheet')
+
+const ModalBottomSheet = Object.assign(ModalBottomSheetRoot, {
+  DragHandle: (_props: { children: ReactNode }): never => unsupported('ModalBottomSheet.DragHandle'),
+})
+
 function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
@@ -346,6 +379,12 @@ export const Compose = {
   Slider,
   AlertDialog,
   Dialog,
+  LazyColumn,
+  LazyRow,
+  Image,
+  Snackbar,
+  SnackbarHost,
+  ModalBottomSheet,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,
