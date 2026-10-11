@@ -51,7 +51,7 @@ export const formControls: Control[] = [
   },
   {
     name: 'Slider',
-    value: { type: 'Double', prop: 'value', event: 'onValueChange', initial: 0 },
+    value: { type: 'Double', prop: 'value', event: 'onValueChange', initial: 0, sync: true },
     fields: {
       ...commonFields,
       minimumValue: { type: 'Double', default: 0 },
@@ -121,7 +121,7 @@ export const formControls: Control[] = [
   },
   {
     name: 'Stepper',
-    value: { type: 'Double', prop: 'value', event: 'onValueChange', initial: 0 },
+    value: { type: 'Double', prop: 'value', event: 'onValueChange', initial: 0, sync: true },
     fields: {
       ...commonFields,
       minimumValue: { type: 'Double', default: 0 },

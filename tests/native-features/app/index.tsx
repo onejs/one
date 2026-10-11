@@ -359,6 +359,11 @@ const testScreens = [
     testID: 'nav-one-native-state',
   },
   {
+    href: '/one-native-animation',
+    label: 'One Native Animation',
+    testID: 'nav-one-native-animation',
+  },
+  {
     href: '/one-native-safe-area',
     label: 'One Native Safe Area',
     testID: 'nav-one-native-safe-area',

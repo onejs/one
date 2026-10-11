@@ -188,17 +188,20 @@ export function Toggle({
   style,
   ...props
 }: Types.ToggleProps) {
-  if (typeof isOn !== 'boolean' && !isSyncState(isOn))
-    throw new Error('Toggle isOn must be a boolean or NativeState handle')
-  if (typeof systemImage !== 'string')
-    throw new Error('Toggle systemImage must be a string')
+  const syncHandle = syncHandleOf<boolean>(isOn)
+  const syncedIsOn = useSyncValue<boolean>(isOn)
+  {
+    const isOn = syncedIsOn
+    if (typeof isOn !== 'boolean' && !isSyncState(isOn))
+      throw new Error('Toggle isOn must be a boolean or NativeState handle')
+    if (typeof systemImage !== 'string')
+      throw new Error('Toggle systemImage must be a string')
+  }
   assertSwiftUIValue(
     'ToggleStyle',
     toggleStyle,
     Number.parseFloat(String(Platform.Version))
   )
-  const syncHandle = syncHandleOf<boolean>(isOn)
-  const syncedIsOn = useSyncValue<boolean>(isOn)
   const controlled = useControlled<{
     value: boolean
     eventCount: number
@@ -247,21 +250,29 @@ export function Slider({
   style,
   ...props
 }: Types.SliderProps) {
-  if (![value, minimumValue, maximumValue, step].every(Number.isFinite))
-    throw new Error(
-      'Slider value, minimumValue, maximumValue, and step must be finite numbers'
-    )
-  if (minimumValue >= maximumValue)
-    throw new Error('Slider minimumValue must be less than maximumValue')
-  if (step <= 0) throw new Error('Slider step must be greater than 0')
-  if (value < minimumValue || value > maximumValue)
-    throw new Error('Slider value must be within minimumValue and maximumValue')
+  const syncHandle = syncHandleOf<number>(value)
+  const syncedValue = useSyncValue<number>(value)
+  {
+    const value = syncedValue
+    if (![value, minimumValue, maximumValue, step].every(Number.isFinite))
+      throw new Error(
+        'Slider value, minimumValue, maximumValue, and step must be finite numbers'
+      )
+    if (minimumValue >= maximumValue)
+      throw new Error('Slider minimumValue must be less than maximumValue')
+    if (step <= 0) throw new Error('Slider step must be greater than 0')
+    if (value < minimumValue || value > maximumValue)
+      throw new Error('Slider value must be within minimumValue and maximumValue')
+  }
 
   const controlled = useControlled<{
     value: number
     eventCount: number
     revision: number
-  }>((event) => onValueChange(event.value), revision)
+  }>((event) => {
+    syncHandle?.set(event.value)
+    onValueChange(event.value)
+  }, revision)
   return (
     <NativeSlider
       {...props}
@@ -270,9 +281,10 @@ export function Slider({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-      value={value}
+      value={syncedValue}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       label={label}
       disabled={disabled}
       minimumValue={minimumValue}
@@ -302,21 +314,29 @@ export function Stepper({
   style,
   ...props
 }: Types.StepperProps) {
-  if (![value, minimumValue, maximumValue, step].every(Number.isFinite))
-    throw new Error(
-      'Stepper value, minimumValue, maximumValue, and step must be finite numbers'
-    )
-  if (minimumValue >= maximumValue)
-    throw new Error('Stepper minimumValue must be less than maximumValue')
-  if (step <= 0) throw new Error('Stepper step must be greater than 0')
-  if (value < minimumValue || value > maximumValue)
-    throw new Error('Stepper value must be within minimumValue and maximumValue')
+  const syncHandle = syncHandleOf<number>(value)
+  const syncedValue = useSyncValue<number>(value)
+  {
+    const value = syncedValue
+    if (![value, minimumValue, maximumValue, step].every(Number.isFinite))
+      throw new Error(
+        'Stepper value, minimumValue, maximumValue, and step must be finite numbers'
+      )
+    if (minimumValue >= maximumValue)
+      throw new Error('Stepper minimumValue must be less than maximumValue')
+    if (step <= 0) throw new Error('Stepper step must be greater than 0')
+    if (value < minimumValue || value > maximumValue)
+      throw new Error('Stepper value must be within minimumValue and maximumValue')
+  }
 
   const controlled = useControlled<{
     value: number
     eventCount: number
     revision: number
-  }>((event) => onValueChange(event.value), revision)
+  }>((event) => {
+    syncHandle?.set(event.value)
+    onValueChange(event.value)
+  }, revision)
   return (
     <NativeStepper
       {...props}
@@ -325,9 +345,10 @@ export function Stepper({
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
-      value={value}
+      value={syncedValue}
       acknowledgedEvent={controlled.acknowledgedEvent}
       revision={revision}
+      syncStateId={syncHandle ? (getSyncStateId(syncHandle) ?? 0) : 0}
       label={label}
       disabled={disabled}
       minimumValue={minimumValue}
@@ -1513,9 +1534,14 @@ export function TextField({
   style,
   ...props
 }: Types.TextFieldProps) {
-  if (typeof text !== 'string' && !isSyncState(text))
-    throw new Error('TextField text must be a string or NativeState handle')
-  assertTextInputOptions('TextField', keyboardType, textContentType)
+  const syncHandle = syncHandleOf<string>(text)
+  const syncedText = useSyncValue<string>(text)
+  {
+    const text = syncedText
+    if (typeof text !== 'string' && !isSyncState(text))
+      throw new Error('TextField text must be a string or NativeState handle')
+    assertTextInputOptions('TextField', keyboardType, textContentType)
+  }
   assertSwiftUIValue(
     'TextFieldStyle',
     textFieldStyle,
@@ -1534,8 +1560,6 @@ export function TextField({
       Number.parseFloat(String(Platform.Version))
     )
   assertSwiftUIValue('Axis', axis, Number.parseFloat(String(Platform.Version)))
-  const syncHandle = syncHandleOf<string>(text)
-  const syncedText = useSyncValue<string>(text)
   const controlled = useControlled<{
     value: string
     eventCount: number
@@ -1619,9 +1643,14 @@ export function SecureField({
   style,
   ...props
 }: Types.SecureFieldProps) {
-  if (typeof text !== 'string' && !isSyncState(text))
-    throw new Error('SecureField text must be a string or NativeState handle')
-  assertTextInputOptions('SecureField', keyboardType, textContentType)
+  const syncHandle = syncHandleOf<string>(text)
+  const syncedText = useSyncValue<string>(text)
+  {
+    const text = syncedText
+    if (typeof text !== 'string' && !isSyncState(text))
+      throw new Error('SecureField text must be a string or NativeState handle')
+    assertTextInputOptions('SecureField', keyboardType, textContentType)
+  }
   assertSwiftUIValue(
     'TextFieldStyle',
     textFieldStyle,
@@ -1639,8 +1668,6 @@ export function SecureField({
       textInputAutocapitalization,
       Number.parseFloat(String(Platform.Version))
     )
-  const syncHandle = syncHandleOf<string>(text)
-  const syncedText = useSyncValue<string>(text)
   const controlled = useControlled<{
     value: string
     eventCount: number
@@ -1718,17 +1745,20 @@ export function TextEditor({
   style,
   ...props
 }: Types.TextEditorProps) {
-  if (typeof text !== 'string' && !isSyncState(text))
-    throw new Error('TextEditor text must be a string or NativeState handle')
-  assertTextInputOptions('TextEditor', keyboardType, textContentType)
+  const syncHandle = syncHandleOf<string>(text)
+  const syncedText = useSyncValue<string>(text)
+  {
+    const text = syncedText
+    if (typeof text !== 'string' && !isSyncState(text))
+      throw new Error('TextEditor text must be a string or NativeState handle')
+    assertTextInputOptions('TextEditor', keyboardType, textContentType)
+  }
   if (textInputAutocapitalization)
     assertSwiftUIValue(
       'TextInputAutocapitalization',
       textInputAutocapitalization,
       Number.parseFloat(String(Platform.Version))
     )
-  const syncHandle = syncHandleOf<string>(text)
-  const syncedText = useSyncValue<string>(text)
   const controlled = useControlled<{
     value: string
     eventCount: number

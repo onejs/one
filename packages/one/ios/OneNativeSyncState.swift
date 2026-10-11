@@ -46,8 +46,59 @@ public final class OneNativeSyncRegistry: NSObject {
     return states[id]?.value
   }
 
+  // writes the batching thread makes between beginBatch and endBatch store
+  // their value at once but notify only when the batch ends, so withAnimation
+  // can apply them all inside one SwiftUI transaction.
+  private static var batchThread: Thread?
+  private static var batched: [Int32] = []
+
+  static func beginBatch() {
+    lock.lock()
+    defer { lock.unlock() }
+    precondition(batchThread == nil, "OneNativeSyncRegistry batches cannot nest")
+    batchThread = Thread.current
+  }
+
+  static func endBatch() -> [Int32] {
+    lock.lock()
+    defer { lock.unlock() }
+    let ids = batched
+    batched = []
+    batchThread = nil
+    return ids
+  }
+
+  // main thread only: notifies every listener of each entry's current value.
+  // listeners are copied under the lock and invoked outside it: a listener may
+  // set or observe reentrantly.
+  static func notify(_ ids: [Int32]) {
+    for id in ids {
+      lock.lock()
+      guard let state = states[id] else {
+        lock.unlock()
+        continue
+      }
+      let value = state.value
+      let listeners = Array(state.listeners.values)
+      lock.unlock()
+      for listener in listeners {
+        listener(value)
+      }
+    }
+  }
+
   @objc(set:value:)
   public static func set(_ id: Int32, value: NSObject) {
+    lock.lock()
+    if batchThread === Thread.current {
+      if let state = states[id] {
+        state.value = value
+        if !batched.contains(id) { batched.append(id) }
+      }
+      lock.unlock()
+      return
+    }
+    lock.unlock()
     // listeners mutate SwiftUI models, so notification always lands on main,
     // synchronously: the writer observes the converged value on return.
     if Thread.isMainThread {
@@ -81,12 +132,7 @@ public final class OneNativeSyncRegistry: NSObject {
       return
     }
     state.value = value
-    // copy under the lock, invoke outside it: a listener may set or
-    // observe reentrantly.
-    let listeners = Array(state.listeners.values)
     lock.unlock()
-    for listener in listeners {
-      listener(value)
-    }
+    notify([id])
   }
 }

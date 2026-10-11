@@ -109,3 +109,6 @@ export interface TabViewBottomAccessoryProps {
   inline?: ReactNode
   expanded?: ReactNode
 }
+
+// when Swift.withAnimation's completion fires, as in SwiftUI's AnimationCompletionCriteria.
+export type WithAnimationCompletionCriteria = 'logicallyComplete' | 'removed'

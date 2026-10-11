@@ -51,6 +51,8 @@ import type {
   ToolbarContentProps,
   ToolbarSpacerProps,
   ZStackProps,
+  SDKAnimation,
+  WithAnimationCompletionCriteria,
 } from './types'
 
 function Tabs(_props: TabsProps): never {
@@ -305,6 +307,14 @@ export const Swift = {
   ToolbarItem,
   ToolbarItemGroup,
   ToolbarSpacer,
+  withAnimation(
+    _animation: SDKAnimation | null,
+    _body: () => void,
+    _completion?: () => void,
+    _completionCriteria?: WithAnimationCompletionCriteria
+  ): never {
+    throw new Error('Swift.withAnimation requires an iOS native build')
+  },
   ...unsupportedControls,
 }
 export type * from './types'

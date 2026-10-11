@@ -1260,6 +1260,9 @@
         "revision": {
           "type": "Int32"
         },
+        "syncStateId": {
+          "type": "Int32"
+        },
         "label": {
           "type": "string"
         },
@@ -1311,7 +1314,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeSliderValueChange"
+        "event": "onNativeSliderValueChange",
+        "sync": true
       },
       "actions": [],
       "layout": {
@@ -1331,6 +1335,9 @@
           "type": "Int32"
         },
         "revision": {
+          "type": "Int32"
+        },
+        "syncStateId": {
           "type": "Int32"
         },
         "label": {
@@ -1372,7 +1379,8 @@
       },
       "controlled": {
         "value": "value",
-        "event": "onNativeStepperValueChange"
+        "event": "onNativeStepperValueChange",
+        "sync": true
       },
       "actions": [],
       "layout": {

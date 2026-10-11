@@ -3579,7 +3579,7 @@ export interface ToggleProps extends OneNativeViewProps {
   toggleStyle?: Styles.ToggleStyle
 }
 export interface SliderProps extends OneNativeViewProps {
-  value: number
+  value: number | NativeState<number>
   onValueChange: (value: number) => void
   revision?: number
   label?: string
@@ -3593,7 +3593,7 @@ export interface SliderProps extends OneNativeViewProps {
   maximumValueImage?: string
 }
 export interface StepperProps extends OneNativeViewProps {
-  value: number
+  value: number | NativeState<number>
   onValueChange: (value: number) => void
   revision?: number
   label?: string

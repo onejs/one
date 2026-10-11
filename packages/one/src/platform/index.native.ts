@@ -46,6 +46,7 @@ import {
 import { NavigationSplitView } from './NavigationSplitView.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import { ArrangementView } from './ArrangementView.native'
+import { withAnimation } from './withAnimation.native'
 import * as Controls from './generated/Controls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
 import { Compose } from './compose'
@@ -151,6 +152,7 @@ export const Swift =
         ToolbarSpacer,
         Spacer,
         Slot,
+        withAnimation,
         ...Controls,
       }
     : UnsupportedSwift

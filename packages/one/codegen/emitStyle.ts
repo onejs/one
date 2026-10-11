@@ -48,6 +48,18 @@ export function emitStyle(
   derived: readonly DerivedModifier[],
   slots: readonly DerivedViewSlot[]
 ) {
+  // withAnimation takes the same SDK Animation values as the animation modifier.
+  const animation = derived.find((modifier) => modifier.name === 'animation' && modifier.kind === 'optionalEnum')
+  if (!animation?.cases) throw new Error('the SDK inventory derived no animation modifier cases')
+  outputs.set('ios/Generated/OneNativeAnimationValues.swift', header + `import SwiftUI
+
+func oneNativeAnimation(named name: String) -> SwiftUI.Animation {
+  switch name {
+${animation.cases.map((item) => `    case ${JSON.stringify(item.name)}:${item.ios > 17 ? `\n${sdkGuard(item.ios, `if #available(iOS ${item.ios}, *) { return SwiftUI.Animation.${item.name} }`, '')}\n      preconditionFailure("unavailable animation: \\(name)")` : ` return SwiftUI.Animation.${item.name}`}`).join('\n')}
+    default: preconditionFailure("invalid animation: \\(name)")
+  }
+}
+`)
   outputs.set('src/platform/generated/viewSlots.ts', header + `import type { SDKEventValueShape } from './swiftStyleNative'
 export const viewSlotAvailability = ${JSON.stringify(Object.fromEntries(slots.map((slot) => [slot.name, slot.ios])))} as const
 export type ViewSlotName = keyof typeof viewSlotAvailability

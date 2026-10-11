@@ -569,13 +569,18 @@ export default codegenNativeComponent<NativeProps>('${nativeName}'${measured ? '
       : 'style={style}'
     adapters += `import Native${name} from '../specs/${nativeName}NativeComponent'
 export function ${name}({ ${parameters.join(', ')} }: Types.${name}Props) {
-${control.validate}
-${enumFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
 ${
   value?.sync
     ? `  const syncHandle = syncHandleOf<${publicValueType}>(${value.prop})\n  const synced${upper(value.prop)} = useSyncValue<${publicValueType}>(${value.prop})\n`
     : ''
 }${
+  // a sync prop may be a NativeState handle; validation reads the value it holds.
+  value?.sync && control.validate.includes(value.prop)
+    ? `  {\n    const ${value.prop} = synced${upper(value.prop)}\n${control.validate}\n  }`
+    : control.validate
+}
+${enumFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
+${
       value
         ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
         : ''

@@ -45,6 +45,7 @@ interface NativeProps extends ViewProps {
   value: Double
   acknowledgedEvent: Int32
   revision: Int32
+  syncStateId: Int32
   label: string
   disabled: boolean
   minimumValue: Double
