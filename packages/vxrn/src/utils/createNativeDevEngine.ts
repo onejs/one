@@ -1248,7 +1248,10 @@ function missingDynamicImportPlugin(): Plugin {
       if (options.kind !== 'dynamic-import') return
       if (source.startsWith('.') || source.startsWith('/') || source.includes(':')) return
       if (source.startsWith('\0')) return
-      const resolved = await this.resolve(source, importer, { skipSelf: true, kind: options.kind })
+      const resolved = await this.resolve(source, importer, {
+        skipSelf: true,
+        kind: options.kind,
+      })
       if (resolved) return resolved
       return { id: `${PREFIX}${source}`, external: false }
     },
@@ -1386,7 +1389,10 @@ function nativeIdentityAliasPlugin(platform: 'ios' | 'android'): Plugin {
 // `react-native` would give native its web build. the browser fallback is for
 // packages without a native target: where a package's exports name both,
 // resolve it as metro does, without `browser`.
-function nativeExportsPrecedencePlugin(root: string, platform: 'ios' | 'android'): Plugin {
+function nativeExportsPrecedencePlugin(
+  root: string,
+  platform: 'ios' | 'android'
+): Plugin {
   const manifests = new Map<string, { name?: string; exports?: unknown } | null>()
   const readManifest = (directory: string) => {
     if (!manifests.has(directory)) {
@@ -1507,7 +1513,12 @@ function nativeAssetRegistryPlugin(root: string): Plugin {
 }
 
 function nativePackageDedupePlugin(root: string): Plugin {
-  const packages = new Set(dedupe)
+  // these packages share one native runtime; nested copies cannot initialize it twice.
+  const packages = new Set([
+    ...dedupe,
+    'react-native-worklets',
+    'react-native-nitro-modules',
+  ])
   return {
     name: 'vxrn:native-package-dedupe',
     async resolveId(source) {

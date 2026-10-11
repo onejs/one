@@ -120,6 +120,79 @@ describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (plat
   )
 })
 
+it.each(['react-native-nitro-modules', 'react-native-worklets'])(
+  'shares the app native singleton for %s across nested installs',
+  async (packageName) => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-singleton-'))
+    const nested = join(root, 'node_modules/transitive')
+    for (const [parent, label] of [
+      [root, 'app'],
+      [nested, 'nested'],
+    ]) {
+      const directory = join(parent, 'node_modules', packageName)
+      await mkdir(directory, { recursive: true })
+      await writeFile(
+        join(directory, 'package.json'),
+        JSON.stringify({
+          name: packageName,
+          type: 'module',
+          exports: {
+            '.': { 'react-native': './native.js', default: './web.js' },
+            './shared': './native.js',
+          },
+        })
+      )
+      await writeFile(
+        join(directory, 'native.js'),
+        `export const singleton = { owner: '${label}' }`
+      )
+      await writeFile(
+        join(directory, 'web.js'),
+        `throw new Error('web export reached native')`
+      )
+    }
+    await writeFile(join(root, 'package.json'), '{}')
+    await writeFile(
+      join(nested, 'package.json'),
+      JSON.stringify({ name: 'transitive', type: 'module', main: 'index.js' })
+    )
+    await writeFile(
+      join(nested, 'index.js'),
+      `export { singleton } from '${packageName}/shared'`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `
+      import { singleton } from '${packageName}'
+      import { singleton as nested } from 'transitive'
+      globalThis.singletonResult = [singleton.owner, singleton === nested]
+    `
+    )
+    let native: Awaited<ReturnType<typeof createNativeDevEngine>> | undefined
+    try {
+      native = await createNativeDevEngine({
+        root,
+        platform: 'ios',
+        port: 0,
+        plugins: [
+          {
+            name: 'singleton-entry',
+            transform(_code, id) {
+              if (id.endsWith('/__virtual-native-entry.tsx')) return "import './entry.js'"
+            },
+          },
+        ],
+      })
+      const context = { console, setTimeout, clearTimeout }
+      runInNewContext((await native.getBundle()).code, context)
+      expect(Reflect.get(context, 'singletonResult')).toEqual(['app', true])
+    } finally {
+      await native?.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  }
+)
+
 const nativeTransformProbe = `
 export const transformProbe = () => {
   'worklet'
@@ -1273,19 +1346,22 @@ describe('getHermesSWCIncludes', () => {
     expect(result.code).not.toContain('async function *')
   })
 
-  it.each([true, false])('lowers complete class hierarchies for Hermes (dev=%s)', async (dev) => {
-    const plugin = hermesCompatSWCPlugin(dev)
-    const result = await Reflect.apply(plugin.transform as Function, undefined, [
-      `class Base { value = 2; getValue() { return this.value } }
+  it.each([true, false])(
+    'lowers complete class hierarchies for Hermes (dev=%s)',
+    async (dev) => {
+      const plugin = hermesCompatSWCPlugin(dev)
+      const result = await Reflect.apply(plugin.transform as Function, undefined, [
+        `class Base { value = 2; getValue() { return this.value } }
        class Derived extends Base { extra = 3; getValue() { return super.getValue() + this.extra } }
        globalThis.__classProbe = new Derived().getValue()`,
-      '/project/classes.ts',
-    ])
-    expect(result.code).not.toMatch(/\bclass\s+(?:Base|Derived|extends)/)
-    const context: any = {}
-    runInNewContext(result.code, context)
-    expect(context.__classProbe).toBe(5)
-  })
+        '/project/classes.ts',
+      ])
+      expect(result.code).not.toMatch(/\bclass\s+(?:Base|Derived|extends)/)
+      const context: any = {}
+      runInNewContext(result.code, context)
+      expect(context.__classProbe).toBe(5)
+    }
+  )
 
   it('lowers constructor block bindings before production name mangling', async () => {
     const plugin = hermesCompatSWCPlugin(false)
@@ -1304,14 +1380,18 @@ describe('getHermesSWCIncludes', () => {
     const context: any = {}
     runInNewContext(result.code, context)
     expect(context.__constructorScope.url).toBe(3)
-    const values = Array.from(context.__constructorScope.callbacks, (callback: any) => callback())
+    const values = Array.from(context.__constructorScope.callbacks, (callback: any) =>
+      callback()
+    )
     expect(values).toEqual([0, 1])
   })
 
-  it.each([true, false])('preserves class-free parameter shadowing for Hermes (dev=%s)', async (dev) => {
-    const plugin = hermesCompatSWCPlugin(dev)
-    const result = await Reflect.apply(plugin.transform as Function, undefined, [
-      `function createStore(config) {
+  it.each([true, false])(
+    'preserves class-free parameter shadowing for Hermes (dev=%s)',
+    async (dev) => {
+      const plugin = hermesCompatSWCPlugin(dev)
+      const result = await Reflect.apply(plugin.transform as Function, undefined, [
+        `function createStore(config) {
          if (!globalThis.factory) {
            const config = { install() { globalThis.factory = value => value.id } }
            config.install()
@@ -1319,18 +1399,21 @@ describe('getHermesSWCIncludes', () => {
          return globalThis.factory(config)
        }
        globalThis.__storeId = createStore({id: 'device'})`,
-      '/project/class-free-storage.js',
-    ])
-    expect(result.code).not.toMatch(/\b(?:let|const)\s/)
-    const context: any = {}
-    runInNewContext(result.code, context)
-    expect(context.__storeId).toBe('device')
-  })
+        '/project/class-free-storage.js',
+      ])
+      expect(result.code).not.toMatch(/\b(?:let|const)\s/)
+      const context: any = {}
+      runInNewContext(result.code, context)
+      expect(context.__storeId).toBe('device')
+    }
+  )
 
   it('lowers classes in large prebuilt modules', async () => {
     const plugin = hermesCompatSWCPlugin(false)
     const result = await Reflect.apply(plugin.transform as Function, undefined, [
-      '/*' + ' '.repeat(500_000) + '*/ class Large { value = 7 } globalThis.__largeClass = new Large().value',
+      '/*' +
+        ' '.repeat(500_000) +
+        '*/ class Large { value = 7 } globalThis.__largeClass = new Large().value',
       '/project/prebuilt.js',
     ])
     expect(result.code).not.toMatch(/\bclass\s+Large/)
@@ -2081,37 +2164,44 @@ globalThis.minifyProbe = describeHeader()`
 })
 
 describe('native production assets', () => {
-  it.each(['ios', 'android'] as const)('preserves CommonJS package main exports on %s', async (platform) => {
-    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-cjs-main-'))
-    try {
-      const directory = join(root, 'node_modules', 'native-punycode')
-      await mkdir(directory, { recursive: true })
-      await writeFile(
-        join(directory, 'package.json'),
-        JSON.stringify({ name: 'native-punycode', main: './cjs.js', module: './esm.mjs' })
-      )
-      await writeFile(
-        join(directory, 'cjs.js'),
-        `module.exports = { ucs2: { decode: value => Array.from(value) } }`
-      )
-      await writeFile(
-        join(directory, 'esm.mjs'),
-        `export default { ucs2: { decode: value => Array.from(value) } }`
-      )
-      await writeFile(
-        join(root, 'entry.js'),
-        `import imported from 'native-punycode'
+  it.each(['ios', 'android'] as const)(
+    'preserves CommonJS package main exports on %s',
+    async (platform) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-native-cjs-main-'))
+      try {
+        const directory = join(root, 'node_modules', 'native-punycode')
+        await mkdir(directory, { recursive: true })
+        await writeFile(
+          join(directory, 'package.json'),
+          JSON.stringify({
+            name: 'native-punycode',
+            main: './cjs.js',
+            module: './esm.mjs',
+          })
+        )
+        await writeFile(
+          join(directory, 'cjs.js'),
+          `module.exports = { ucs2: { decode: value => Array.from(value) } }`
+        )
+        await writeFile(
+          join(directory, 'esm.mjs'),
+          `export default { ucs2: { decode: value => Array.from(value) } }`
+        )
+        await writeFile(
+          join(root, 'entry.js'),
+          `import imported from 'native-punycode'
          const required = require('native-punycode')
          globalThis.decoded = [required.ucs2.decode('ab').join(','), imported.ucs2.decode('cd').join(',')]`
-      )
-      const result = await buildNativeBundle({ root, platform, entryFile: 'entry.js' })
-      const context = { console }
-      runInNewContext(result.code, context)
-      expect(Reflect.get(context, 'decoded')).toEqual(['a,b', 'c,d'])
-    } finally {
-      await rm(root, { recursive: true, force: true })
+        )
+        const result = await buildNativeBundle({ root, platform, entryFile: 'entry.js' })
+        const context = { console }
+        runInNewContext(result.code, context)
+        expect(Reflect.get(context, 'decoded')).toEqual(['a,b', 'c,d'])
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
     }
-  })
+  )
 
   it('uses browser fallbacks and mappings after React Native overrides', async () => {
     const root = await mkdtemp(join(tmpdir(), 'vxrn-native-browser-'))
