@@ -45,6 +45,10 @@ using namespace facebook::react;
     disabled:next.disabled value:next.value total:next.total indeterminate:next.indeterminate progressViewStyle:RCTNSStringFromString(next.progressViewStyle)];
 
   [super updateProps:props oldProps:oldProps];
+  // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test
+  // taps the control and not the centre of its wider host. the host keeps it only while
+  // that element is hidden.
+  self.accessibilityIdentifier = nil;
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
 @end

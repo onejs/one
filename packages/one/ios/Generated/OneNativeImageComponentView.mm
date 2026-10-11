@@ -45,6 +45,10 @@ using namespace facebook::react;
     uri:RCTNSStringFromString(next.uri) renderingMode:RCTNSStringFromString(next.renderingMode) symbolRenderingMode:RCTNSStringFromString(next.symbolRenderingMode) symbolVariant:RCTNSStringFromString(next.symbolVariant) imageScale:RCTNSStringFromString(next.imageScale) variableValue:next.variableValue hasVariableValue:next.hasVariableValue colorRole:RCTNSStringFromString(next.colorRole) resizable:next.resizable];
 
   [super updateProps:props oldProps:oldProps];
+  // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test
+  // taps the control and not the centre of its wider host. the host keeps it only while
+  // that element is hidden.
+  self.accessibilityIdentifier = next.accessibilityLabel.empty() && !next.testId.empty() ? RCTNSStringFromString(next.testId) : nil;
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; [_measured reset]; }
 @end

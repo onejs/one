@@ -56,6 +56,9 @@ using namespace facebook::react;
     buttonStyle:RCTNSStringFromString(next.buttonStyle)
     disclosureIndicator:next.disclosureIndicator];
   [super updateProps:props oldProps:oldProps];
+  // the swiftui button carries testID (OneNativeAccessibility); the host also carrying it gave
+  // tests a second match whose centre misses the button.
+  self.accessibilityIdentifier = nil;
 }
 
 @end

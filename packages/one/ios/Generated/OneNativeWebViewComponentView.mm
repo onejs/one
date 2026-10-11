@@ -98,6 +98,10 @@ using namespace facebook::react;
     html:RCTNSStringFromString(next.html) script:RCTNSStringFromString(next.script) command:RCTNSStringFromString(next.command) commandRevision:next.commandRevision commandValue:RCTNSStringFromString(next.commandValue) limitsNavigationsToAppBoundDomains:next.limitsNavigationsToAppBoundDomains inlineMedia:next.inlineMedia inspectable:next.inspectable bounces:next.bounces backForwardNavigationGestures:RCTNSStringFromString(next.backForwardNavigationGestures) magnificationGestures:RCTNSStringFromString(next.magnificationGestures) linkPreviews:RCTNSStringFromString(next.linkPreviews) elementFullscreen:RCTNSStringFromString(next.elementFullscreen) contentBackground:RCTNSStringFromString(next.contentBackground)];
 
   [super updateProps:props oldProps:oldProps];
+  // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test
+  // taps the control and not the centre of its wider host. the host keeps it only while
+  // that element is hidden.
+  self.accessibilityIdentifier = nil;
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; }
 @end
