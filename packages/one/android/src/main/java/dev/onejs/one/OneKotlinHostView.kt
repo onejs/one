@@ -196,17 +196,22 @@ class OneKotlinHostView(context: Context) : ReactViewGroup(context) {
         if (!composeView.isAttachedToWindow || committedSource.isEmpty() || committedView.isEmpty()) return
         measuringContent = true
         try {
-            // measure content before letting yoga apply the outer constraints.
+            // measure content before letting yoga apply the outer constraints. the
+            // natural pass is bounded by the display: compose fill layouts (scaffold,
+            // top app bar, nav host) take the max constraint, which is infinite when
+            // unspecified and fails compose's size range check.
+            val metrics = resources.displayMetrics
+            val naturalHeightSpec = MeasureSpec.makeMeasureSpec(metrics.heightPixels, MeasureSpec.AT_MOST)
             measureComposeContent(
-                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
-                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                MeasureSpec.makeMeasureSpec(metrics.widthPixels, MeasureSpec.AT_MOST),
+                naturalHeightSpec,
             )
             val naturalWidth = composeView.measuredWidth
             var naturalHeight = composeView.measuredHeight
             if (width > 0 && width != naturalWidth) {
                 measureComposeContent(
                     MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
-                    MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                    naturalHeightSpec,
                 )
                 naturalHeight = composeView.measuredHeight
             }
