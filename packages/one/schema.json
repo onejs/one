@@ -3221,6 +3221,34 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeAsyncImage",
+      "publicName": "AsyncImage",
+      "props": {
+        "url": {
+          "type": "string"
+        },
+        "scale": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeEditButton",
       "publicName": "EditButton",
       "props": {},
@@ -3245,6 +3273,296 @@
       "name": "OneNativeEmptyView",
       "publicName": "EmptyView",
       "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeLocationButton",
+      "publicName": "LocationButton",
+      "props": {
+        "title": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativeLocationButtonAction": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onAction",
+          "event": "onNativeLocationButtonAction"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeMapCompass",
+      "publicName": "MapCompass",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeMapPitchToggle",
+      "publicName": "MapPitchToggle",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeMapScaleView",
+      "publicName": "MapScaleView",
+      "props": {
+        "anchorEdge": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeMapUserLocationButton",
+      "publicName": "MapUserLocationButton",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeProductView",
+      "publicName": "ProductView",
+      "props": {
+        "id": {
+          "type": "string"
+        },
+        "prefersPromotionalIcon": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeRenameButton",
+      "publicName": "RenameButton",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeSceneView",
+      "publicName": "SceneView",
+      "props": {
+        "preferredFramesPerSecond": {
+          "type": "Double"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeShortcutsLink",
+      "publicName": "ShortcutsLink",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "onNativeShortcutsLinkAction": {
+          "eventCount": {
+            "type": "Int32"
+          }
+        }
+      },
+      "actions": [
+        {
+          "publicProp": "onAction",
+          "event": "onNativeShortcutsLinkAction"
+        }
+      ],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeStoreView",
+      "publicName": "StoreView",
+      "props": {
+        "ids": {
+          "type": "ReadonlyArray<string>"
+        },
+        "prefersPromotionalIcon": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeSubscriptionStoreView",
+      "publicName": "SubscriptionStoreView",
+      "props": {
+        "groupID": {
+          "type": "string"
+        },
+        "visibleRelationships": {
+          "type": "string"
+        },
+        "productIDs": {
+          "type": "ReadonlyArray<string>"
+        },
+        "initializer": {
+          "type": "Double"
+        }
+      },
       "events": {
         "onNativeSDKEvent": {
           "name": {

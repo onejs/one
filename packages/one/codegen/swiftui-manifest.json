@@ -17738,6 +17738,7 @@
   "coverage": {
     "views": {
       "SwiftUI": [
+        "AsyncImage",
         "Button",
         "ColorPicker",
         "ContentUnavailableView",
@@ -17751,6 +17752,7 @@
         "PasteButton",
         "Picker",
         "ProgressView",
+        "RenameButton",
         "Section",
         "SecureField",
         "ShareLink",
@@ -17792,7 +17794,25 @@
       ],
       "_MapKit_SwiftUI": [
         "Map",
+        "MapCompass",
+        "MapPitchToggle",
+        "MapScaleView",
+        "MapUserLocationButton",
         "Marker"
+      ],
+      "_CoreLocationUI_SwiftUI": [
+        "LocationButton"
+      ],
+      "_StoreKit_SwiftUI": [
+        "ProductView",
+        "StoreView",
+        "SubscriptionStoreView"
+      ],
+      "_SceneKit_SwiftUI": [
+        "SceneView"
+      ],
+      "_AppIntents_SwiftUI": [
+        "ShortcutsLink"
       ]
     },
     "modifiers": {
@@ -19962,6 +19982,24 @@
     },
     {
       "module": "SwiftUI",
+      "type": "AsyncImage",
+      "parameters": [
+        {
+          "label": "url",
+          "name": "url",
+          "type": "Foundation.URL?"
+        },
+        {
+          "defaultValue": "1",
+          "label": "scale",
+          "name": "scale",
+          "type": "CoreFoundation.CGFloat"
+        }
+      ],
+      "ios": 15
+    },
+    {
+      "module": "SwiftUI",
       "type": "EditButton",
       "parameters": [],
       "ios": 13
@@ -19971,6 +20009,216 @@
       "type": "EmptyView",
       "parameters": [],
       "ios": 13
+    },
+    {
+      "module": "_CoreLocationUI_SwiftUI",
+      "type": "LocationButton",
+      "parameters": [
+        {
+          "defaultValue": ".currentLocation",
+          "label": "_",
+          "name": "title",
+          "type": "_CoreLocationUI_SwiftUI.LocationButton.Title?"
+        },
+        {
+          "label": "action",
+          "name": "action",
+          "type": "@escaping () -> Swift.Void"
+        }
+      ],
+      "ios": 15
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "MapCompass",
+      "parameters": [
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "MapPitchToggle",
+      "parameters": [
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "MapScaleView",
+      "parameters": [
+        {
+          "defaultValue": ".leading",
+          "label": "anchorEdge",
+          "name": "anchorEdge",
+          "type": "SwiftUICore.HorizontalEdge"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "MapUserLocationButton",
+      "parameters": [
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_StoreKit_SwiftUI",
+      "type": "ProductView",
+      "parameters": [
+        {
+          "label": "id",
+          "name": "productID",
+          "type": "StoreKit.Product.ID"
+        },
+        {
+          "defaultValue": "false",
+          "label": "prefersPromotionalIcon",
+          "name": "prefersPromotionalIcon",
+          "type": "Swift.Bool"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "SwiftUI",
+      "type": "RenameButton",
+      "parameters": [],
+      "ios": 16
+    },
+    {
+      "module": "_SceneKit_SwiftUI",
+      "type": "SceneView",
+      "parameters": [
+        {
+          "defaultValue": "nil",
+          "label": "scene",
+          "name": "scene",
+          "type": "SceneKit.SCNScene?"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "pointOfView",
+          "name": "pointOfView",
+          "type": "SceneKit.SCNNode?"
+        },
+        {
+          "defaultValue": "[]",
+          "label": "options",
+          "name": "options",
+          "type": "_SceneKit_SwiftUI.SceneView.Options"
+        },
+        {
+          "defaultValue": "60",
+          "label": "preferredFramesPerSecond",
+          "name": "preferredFramesPerSecond",
+          "type": "Swift.Int"
+        },
+        {
+          "defaultValue": ".multisampling4X",
+          "label": "antialiasingMode",
+          "name": "antialiasingMode",
+          "type": "SceneKit.SCNAntialiasingMode"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "delegate",
+          "name": "delegate",
+          "type": "(any SceneKit.SCNSceneRendererDelegate)?"
+        },
+        {
+          "defaultValue": "nil",
+          "label": "technique",
+          "name": "technique",
+          "type": "SceneKit.SCNTechnique?"
+        }
+      ],
+      "ios": 14
+    },
+    {
+      "module": "_AppIntents_SwiftUI",
+      "type": "ShortcutsLink",
+      "parameters": [
+        {
+          "defaultValue": "{}",
+          "label": "action",
+          "name": "action",
+          "type": "@escaping () -> Swift.Void"
+        }
+      ],
+      "ios": 16
+    },
+    {
+      "module": "_StoreKit_SwiftUI",
+      "type": "StoreView",
+      "parameters": [
+        {
+          "label": "ids",
+          "name": "productIDs",
+          "type": "some Collection<Product.ID>"
+        },
+        {
+          "defaultValue": "false",
+          "label": "prefersPromotionalIcon",
+          "name": "prefersPromotionalIcon",
+          "type": "Swift.Bool"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_StoreKit_SwiftUI",
+      "type": "SubscriptionStoreView",
+      "parameters": [
+        {
+          "label": "groupID",
+          "name": "groupID",
+          "type": "Swift.String"
+        },
+        {
+          "defaultValue": ".all",
+          "label": "visibleRelationships",
+          "name": "visibleRelationships",
+          "type": "StoreKit.Product.SubscriptionRelationship"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_StoreKit_SwiftUI",
+      "type": "SubscriptionStoreView",
+      "parameters": [
+        {
+          "label": "productIDs",
+          "name": "productIDs",
+          "type": "some Collection<Product.ID>"
+        }
+      ],
+      "ios": 17
     },
     {
       "module": "SwiftUICore",

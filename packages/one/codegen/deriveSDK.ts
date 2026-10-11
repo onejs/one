@@ -1,5 +1,6 @@
 import { ios, present, type Declaration } from './inventory'
 import type { Control } from './controlTypes'
+import { sdkGuard } from './sdkGuard'
 
 const emptyEventOrBindingType = /^(?:@escaping )?\(\) -> Swift\.Void\??$|^\(\(\) -> (?:Swift\.Void|\(\))\)\?$|^SwiftUICore\.Binding<(?:Swift\.(?:Bool|String)|Foundation\.URL\?)>$/
 const scalarCallbackType = /^(?:@escaping )?\((?:_ [A-Za-z]\w*: )?(Swift\.(?:Bool|String|Int|Float|Double)|CoreFoundation\.CGFloat|Foundation\.URL)\) -> (?:Swift\.Void|\(\))$/
@@ -1956,13 +1957,85 @@ export function deriveModifiers(
   return result.sort((a, b) => a.name.localeCompare(b.name))
 }
 
-// parameterless public View structs have no binding, closure, conversion, or
-// child-slot contract to invent. the existing leaf emitter supplies their host.
+// a view constructor argument the generated host can supply from a prop.
+type ViewArgument = {
+  label: string
+  field: string
+  type: string
+  kind: 'string' | 'boolean' | 'number' | 'url' | 'strings' | 'enum' | 'action'
+  optional: boolean
+  // the SDK's literal default, as a prop value. undefined means required.
+  default?: string | boolean | number
+  cases?: readonly { name: string; ios: number }[]
+  swiftExpression?: string
+}
+
+const upperFirst = (name: string) => name[0].toUpperCase() + name.slice(1)
+const lowerFirst = (name: string) => name[0].toLowerCase() + name.slice(1)
+
+// public View structs whose constructor arguments all bridge to props: scalars,
+// URLs, SDK enums, string collections and Void actions. a generic view qualifies
+// through a constructor that pins every generic parameter with `==`. a defaulted
+// argument with a literal default becomes an optional prop carrying that default;
+// any other defaulted argument keeps the SDK default. a view with several such
+// constructors takes the union of their props, and the caller picks a constructor
+// by setting exactly one of the arguments only that constructor requires.
 export function deriveViews(
   inventory: readonly Declaration[],
   floor: number,
   existingNames: ReadonlySet<string>
 ): Control[] {
+  const valueOf = bridgeValueOf(inventory, floor)
+  const stringType = (type: string) => {
+    if (type === 'Swift.String') return true
+    const path = type.split('.')
+    return inventory.some((d) => d.kind === 'typealias' && d.type === 'Swift.String' &&
+      d.name === path.at(-1) && (d.owner === path.slice(0, -1).join('.') ||
+        `${d.module}.${d.owner}` === path.slice(0, -1).join('.')) && present(d) && ios(d) <= floor)
+  }
+  const literalDefault = (argument: Omit<ViewArgument, 'default'>, value: string) => {
+    if (argument.kind === 'boolean' && (value === 'true' || value === 'false')) return value === 'true'
+    if (argument.kind === 'number' && /^-?\d+(?:\.\d+)?$/.test(value)) return Number(value)
+    if (argument.kind === 'enum' && argument.cases?.some((item) => `.${item.name}` === value)) return value.slice(1)
+    if ((argument.kind === 'string' || argument.kind === 'url') && argument.optional && value === 'nil') return ''
+    if (argument.kind === 'string' && /^"[^"\\]*"$/.test(value)) return value.slice(1, -1)
+  }
+  const argumentOf = (
+    view: Declaration,
+    parameter: Declaration['parameters'][number]
+  ): ViewArgument | 'sdkDefault' | undefined => {
+    const field = parameter.label === '_'
+      ? lowerFirst(parameter.type.replace(/\?$/, '').split('.').at(-1) ?? '')
+      : parameter.label
+    let argument: Omit<ViewArgument, 'default'> | undefined
+    if (/^(?:@escaping )?\(\) -> Swift\.Void$/.test(parameter.type))
+      argument = { label: parameter.label, field: `on${upperFirst(field)}`, type: parameter.type, kind: 'action', optional: true }
+    const collection = /^some (?:Swift\.)?Collection<(.+)>$/.exec(parameter.type)?.[1]
+    if (collection && stringType(collection.includes('.') && !collection.startsWith('Swift.')
+      ? `${view.module.replace(/^_(\w+)_SwiftUI$/, '$1')}.${collection}` : collection))
+      argument = { label: parameter.label, field, type: parameter.type, kind: 'strings', optional: false }
+    if (!argument) {
+      const value = valueOf(parameter.type)
+      const baseType = parameter.type.replace(/\?$/, '')
+      if (value && (value.kind === 'boolean' || value.kind === 'number' || value.kind === 'url' ||
+        value.kind === 'enum' && value.cases?.length ||
+        value.kind === 'string' && (stringType(baseType) || value.swiftExpression)))
+        argument = { label: parameter.label, field, type: parameter.type, kind: value.kind as ViewArgument['kind'],
+          optional: value.optional, cases: value.cases, swiftExpression: value.swiftExpression }
+    }
+    if (parameter.defaultValue === undefined) return argument
+    if (argument?.kind === 'action') return argument
+    const fallback = argument && literalDefault(argument, parameter.defaultValue)
+    return argument && fallback !== undefined ? { ...argument, default: fallback } : 'sdkDefault'
+  }
+  // every generic parameter the constructor constrains is also pinned to a type.
+  const pinned = (view: Declaration, constructor: Declaration) => {
+    const requirements = constructor.requirements ?? []
+    if (!view.generic) return requirements.length === 0
+    const constrained = requirements.map((requirement) => /^(\w+) : /.exec(requirement)?.[1])
+    return requirements.some((requirement) => requirement.includes(' == ')) &&
+      constrained.every((name) => !name || requirements.some((requirement) => requirement.startsWith(`${name} == `)))
+  }
   return inventory
     .filter(
       (d) =>
@@ -1970,7 +2043,6 @@ export function deriveViews(
         (d.module === 'SwiftUI' || d.module === 'SwiftUICore' ||
           /^_[A-Za-z]+_SwiftUI$/.test(d.module)) &&
         d.owner === '' &&
-        !d.generic &&
         /^[A-Z]/.test(d.name) &&
         !d.name.startsWith('Default') &&
         d.inheritedTypes?.some(
@@ -1981,23 +2053,130 @@ export function deriveViews(
         !existingNames.has(d.name)
     )
     .flatMap((view): Control[] => {
-      const constructors = inventory.filter(
-        (d) =>
-          d.kind === 'init' &&
-          d.module === view.module &&
-          d.owner === view.name &&
-          d.parameters.length === 0 &&
-          present(d) &&
-          ios(d) <= floor
-      )
-      if (constructors.length !== 1) return []
+      const seen = new Set<string>()
+      const constructors = inventory
+        .filter((d) => d.kind === 'init' && d.module === view.module && d.owner === view.name &&
+          !d.failable && present(d) && ios(d) <= floor && pinned(view, d))
+        .flatMap((d) => {
+          const signature = d.parameters.map((parameter) => `${parameter.label}:${parameter.type}`).join(',')
+          if (seen.has(signature)) return []
+          seen.add(signature)
+          const bridged = d.parameters.map((parameter) => ({ parameter, argument: argumentOf(view, parameter) }))
+          if (bridged.some(({ argument }) => !argument)) return []
+          return [{ declaration: d, arguments: bridged.flatMap(({ argument }) =>
+            argument && argument !== 'sdkDefault' ? [argument] : []) }]
+        })
+      if (!constructors.length) return []
+      const required = (argument: ViewArgument) => argument.kind !== 'action' && argument.default === undefined
+      // several constructors need one required argument apiece that no other constructor takes.
+      const discriminators = constructors.map(({ arguments: args }) => args.find((argument) => required(argument) &&
+        constructors.filter((other) => other.arguments.some((item) => item.field === argument.field)).length === 1))
+      if (constructors.length > 1 && discriminators.some((argument) => !argument)) return []
+      const byField = new Map<string, ViewArgument>()
+      for (const { arguments: args } of constructors)
+        for (const argument of args) {
+          const known = byField.get(argument.field)
+          if (known && (known.type !== argument.type || known.default !== argument.default || known.label !== argument.label)) return []
+          byField.set(argument.field, argument)
+        }
+      const shared = (field: string) => constructors.every(({ arguments: args }) => args.some((item) => item.field === field))
+      const choosing = constructors.length > 1
+      const fields: Control['fields'] = {}
+      const actions: NonNullable<Control['actions']> = []
+      const checks: string[] = []
+      const extraSwift: string[] = []
+      const swiftOf = (argument: ViewArgument) => {
+        const value = `model.${argument.field}`
+        if (argument.kind === 'action') return `{ model.${lowerFirst(argument.field.slice(2))}() }`
+        if (argument.swiftExpression) return argument.swiftExpression.replaceAll('$value', value)
+        if (argument.kind === 'number') {
+          const base = argument.type.replace(/\?$/, '')
+          return base === 'Swift.Double' ? value : `${base.split('.').at(-1)}(${value})`
+        }
+        if (argument.kind === 'url')
+          return argument.optional
+            ? `(${value}.isEmpty ? nil : Foundation.URL(string: ${value}))`
+            : `({ () -> Foundation.URL in guard let url = Foundation.URL(string: ${value}) else { preconditionFailure("invalid ${view.name} ${argument.field}") }; return url })()`
+        if (argument.kind === 'enum') return `oneNative${view.name}${upperFirst(argument.field)}(${value})`
+        if (argument.kind === 'string' && argument.optional) return `(${value}.isEmpty ? nil : ${value})`
+        return value
+      }
+      for (const argument of byField.values()) {
+        const optionalProp = !required(argument) || choosing || !shared(argument.field)
+        if (argument.kind === 'action') {
+          actions.push({ prop: argument.field, event: argument.field.slice(2) })
+          continue
+        }
+        const scalar = argument.kind === 'boolean' ? 'boolean' : argument.kind === 'number' ? 'Double'
+          : argument.kind === 'strings' ? 'strings' : 'string'
+        const initial: string | boolean | number | readonly string[] =
+          argument.default ?? (scalar === 'boolean' ? false : scalar === 'Double' ? 0 : scalar === 'strings' ? [] : '')
+        const caseNames = argument.cases?.map((item) => item.name) ?? []
+        const ownedByOne = choosing && !shared(argument.field)
+        fields[argument.field] = {
+          type: scalar,
+          default: initial,
+          ...(argument.kind === 'enum' ? { publicType: [...caseNames, ...(argument.optional ? [''] : [])].map((name) => `'${name}'`).join(' | ') } : {}),
+          ...(required(argument) && !choosing ? { required: true } : {}),
+          ...(ownedByOne ? { jsDefault: 'undefined', nativeValue: `${argument.field} ?? ${JSON.stringify(initial)}` } : {}),
+        }
+        const typeCheck = scalar === 'strings'
+          ? `!Array.isArray(${argument.field}) || ${argument.field}.some((item) => typeof item !== 'string')`
+          : `typeof ${argument.field} !== '${scalar === 'Double' ? 'number' : scalar}'`
+        const typeName = scalar === 'strings' ? 'an array of strings' : scalar === 'Double' ? 'a number' : `a ${scalar}`
+        checks.push(`  if (${ownedByOne ? `${argument.field} !== undefined && ` : ''}(${typeCheck})) throw new Error('${view.name} ${argument.field} must be ${typeName}')`)
+        if (argument.kind === 'enum')
+          checks.push(`  if (${ownedByOne || argument.optional ? `${argument.field} !== undefined && ${argument.optional ? `${argument.field} !== '' && ` : ''}` : ''}!${JSON.stringify(caseNames)}.includes(${argument.field})) throw new Error('${view.name} ${argument.field} must be one of ${caseNames.join(', ')}')`)
+        if (required(argument) && !choosing && scalar === 'string')
+          checks.push(`  if (!${argument.field}) throw new Error('${view.name} ${argument.field} is required')`)
+        if (argument.kind === 'enum') {
+          const baseType = argument.type.replace(/\?$/, '')
+          extraSwift.push(`private func oneNative${view.name}${upperFirst(argument.field)}(_ value: String) -> ${argument.type} {
+  switch value {
+${argument.optional ? '  case "": return nil\n' : ''}${argument.cases!.map((item) => `  case ${JSON.stringify(item.name)}:${item.ios > floor
+  ? `\n${sdkGuard(item.ios, `    if #available(iOS ${item.ios}, *) { return ${baseType}.${item.name} }`, '')}\n    preconditionFailure("${view.name} ${argument.field} ${item.name} requires iOS ${item.ios}")`
+  : ` return ${baseType}.${item.name}`}`).join('\n')}
+  default: preconditionFailure("invalid ${view.name} ${argument.field}: \\(value)")
+  }
+}`)
+        }
+      }
+      const call = ({ declaration, arguments: args }: (typeof constructors)[number]) => {
+        const values = args.map((argument) => {
+          const rendered = swiftOf(argument)
+          return argument.label === '_' ? rendered : `${argument.label}: ${rendered}`
+        })
+        return `${view.name}(${values.join(', ')})`
+      }
+      if (choosing) {
+        fields.initializer = { type: 'Double', default: 0, derived: true,
+          nativeValue: discriminators.map((argument, index) => `${argument!.field} !== undefined ? ${index} : `).join('') + '-1' }
+        const names = discriminators.map((argument) => argument!.field)
+        checks.unshift(`  if ([${names.join(', ')}].filter((value) => value !== undefined).length !== 1) throw new Error('${view.name} takes exactly one of ${names.join(', ')}')`)
+        for (const [index, { arguments: args }] of constructors.entries())
+          for (const argument of byField.values())
+            if (argument.kind !== 'action' && !discriminators.includes(argument) &&
+              !args.some((item) => item.field === argument.field))
+              checks.push(`  if (${discriminators[index]!.field} !== undefined && ${argument.field} !== undefined) throw new Error('${view.name} ${argument.field} does not apply with ${discriminators[index]!.field}')`)
+      }
+      const swift = choosing
+        ? `Group {\n${constructors.map((constructor, index) =>
+            `        ${index === 0 ? 'if' : index === constructors.length - 1 ? '} else' : '} else if'}${index === constructors.length - 1 ? '' : ` model.initializer == ${index}`} {\n          ${call(constructor)}\n`).join('')}        }\n      }`
+        : call(constructors[0])
+      const framework = /^_(\w+)_SwiftUI$/.exec(view.module)?.[1]
       return [
         {
           name: view.name,
-          fields: {},
-          constructors: [{ type: view.name, parameters: [] }],
-          swift: `${view.name}()`,
-          validate: '',
+          fields,
+          ...(actions.length ? { actions } : {}),
+          constructors: constructors.map(({ declaration }) => ({
+            type: view.name,
+            parameters: declaration.parameters.map((parameter) => ({ label: parameter.label, type: parameter.type })),
+          })),
+          swift,
+          ...(extraSwift.length ? { extraSwift: extraSwift.join('\n\n') } : {}),
+          validate: checks.join('\n'),
+          ...(framework ? { imports: [framework] } : {}),
         },
       ]
     })

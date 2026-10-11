@@ -3908,5 +3908,45 @@ export interface FileImporterProps extends OneNativeViewProps {
   allowedContentTypes?: readonly string[]
   allowsMultipleSelection?: boolean
 }
+export interface AsyncImageProps extends OneNativeViewProps {
+  url: string
+  scale?: number
+}
 export interface EditButtonProps extends OneNativeViewProps {}
 export interface EmptyViewProps extends OneNativeViewProps {}
+export interface LocationButtonProps extends OneNativeViewProps {
+  onAction?: () => void
+  title?:
+    | 'currentLocation'
+    | 'sendCurrentLocation'
+    | 'sendMyCurrentLocation'
+    | 'shareCurrentLocation'
+    | 'shareMyCurrentLocation'
+    | ''
+}
+export interface MapCompassProps extends OneNativeViewProps {}
+export interface MapPitchToggleProps extends OneNativeViewProps {}
+export interface MapScaleViewProps extends OneNativeViewProps {
+  anchorEdge?: 'leading' | 'trailing'
+}
+export interface MapUserLocationButtonProps extends OneNativeViewProps {}
+export interface ProductViewProps extends OneNativeViewProps {
+  id: string
+  prefersPromotionalIcon?: boolean
+}
+export interface RenameButtonProps extends OneNativeViewProps {}
+export interface SceneViewProps extends OneNativeViewProps {
+  preferredFramesPerSecond?: number
+}
+export interface ShortcutsLinkProps extends OneNativeViewProps {
+  onAction?: () => void
+}
+export interface StoreViewProps extends OneNativeViewProps {
+  ids: readonly string[]
+  prefersPromotionalIcon?: boolean
+}
+export interface SubscriptionStoreViewProps extends OneNativeViewProps {
+  groupID?: string
+  visibleRelationships?: 'current' | 'downgrade' | 'crossgrade' | 'upgrade' | 'all'
+  productIDs?: readonly string[]
+}

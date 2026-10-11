@@ -2045,6 +2045,31 @@ export function FileImporter({
     />
   )
 }
+import NativeAsyncImage from '../specs/OneNativeAsyncImageNativeComponent'
+export function AsyncImage({
+  url,
+  scale = 1,
+  swiftStyle,
+  style,
+  ...props
+}: Types.AsyncImageProps) {
+  if (typeof url !== 'string') throw new Error('AsyncImage url must be a string')
+  if (!url) throw new Error('AsyncImage url is required')
+  if (typeof scale !== 'number') throw new Error('AsyncImage scale must be a number')
+
+  return (
+    <NativeAsyncImage
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      url={url}
+      scale={scale}
+    />
+  )
+}
 import NativeEditButton from '../specs/OneNativeEditButtonNativeComponent'
 export function EditButton({ swiftStyle, style, ...props }: Types.EditButtonProps) {
   return (
@@ -2068,6 +2093,269 @@ export function EmptyView({ swiftStyle, style, ...props }: Types.EmptyViewProps)
       onNativeSDKEvent={({ nativeEvent }) =>
         dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
       }
+    />
+  )
+}
+import NativeLocationButton from '../specs/OneNativeLocationButtonNativeComponent'
+export function LocationButton({
+  onAction,
+  title = 'currentLocation',
+  swiftStyle,
+  style,
+  ...props
+}: Types.LocationButtonProps) {
+  if (typeof title !== 'string') throw new Error('LocationButton title must be a string')
+  if (
+    title !== undefined &&
+    title !== '' &&
+    ![
+      'currentLocation',
+      'sendCurrentLocation',
+      'sendMyCurrentLocation',
+      'shareCurrentLocation',
+      'shareMyCurrentLocation',
+    ].includes(title)
+  )
+    throw new Error(
+      'LocationButton title must be one of currentLocation, sendCurrentLocation, sendMyCurrentLocation, shareCurrentLocation, shareMyCurrentLocation'
+    )
+
+  return (
+    <NativeLocationButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      title={title}
+      onNativeLocationButtonAction={({ nativeEvent }) => onAction?.()}
+    />
+  )
+}
+import NativeMapCompass from '../specs/OneNativeMapCompassNativeComponent'
+export function MapCompass({ swiftStyle, style, ...props }: Types.MapCompassProps) {
+  return (
+    <NativeMapCompass
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
+  )
+}
+import NativeMapPitchToggle from '../specs/OneNativeMapPitchToggleNativeComponent'
+export function MapPitchToggle({
+  swiftStyle,
+  style,
+  ...props
+}: Types.MapPitchToggleProps) {
+  return (
+    <NativeMapPitchToggle
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
+  )
+}
+import NativeMapScaleView from '../specs/OneNativeMapScaleViewNativeComponent'
+export function MapScaleView({
+  anchorEdge = 'leading',
+  swiftStyle,
+  style,
+  ...props
+}: Types.MapScaleViewProps) {
+  if (typeof anchorEdge !== 'string')
+    throw new Error('MapScaleView anchorEdge must be a string')
+  if (!['leading', 'trailing'].includes(anchorEdge))
+    throw new Error('MapScaleView anchorEdge must be one of leading, trailing')
+
+  return (
+    <NativeMapScaleView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      anchorEdge={anchorEdge}
+    />
+  )
+}
+import NativeMapUserLocationButton from '../specs/OneNativeMapUserLocationButtonNativeComponent'
+export function MapUserLocationButton({
+  swiftStyle,
+  style,
+  ...props
+}: Types.MapUserLocationButtonProps) {
+  return (
+    <NativeMapUserLocationButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
+  )
+}
+import NativeProductView from '../specs/OneNativeProductViewNativeComponent'
+export function ProductView({
+  id,
+  prefersPromotionalIcon = false,
+  swiftStyle,
+  style,
+  ...props
+}: Types.ProductViewProps) {
+  if (typeof id !== 'string') throw new Error('ProductView id must be a string')
+  if (!id) throw new Error('ProductView id is required')
+  if (typeof prefersPromotionalIcon !== 'boolean')
+    throw new Error('ProductView prefersPromotionalIcon must be a boolean')
+
+  return (
+    <NativeProductView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      id={id}
+      prefersPromotionalIcon={prefersPromotionalIcon}
+    />
+  )
+}
+import NativeRenameButton from '../specs/OneNativeRenameButtonNativeComponent'
+export function RenameButton({ swiftStyle, style, ...props }: Types.RenameButtonProps) {
+  return (
+    <NativeRenameButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
+  )
+}
+import NativeSceneView from '../specs/OneNativeSceneViewNativeComponent'
+export function SceneView({
+  preferredFramesPerSecond = 60,
+  swiftStyle,
+  style,
+  ...props
+}: Types.SceneViewProps) {
+  if (typeof preferredFramesPerSecond !== 'number')
+    throw new Error('SceneView preferredFramesPerSecond must be a number')
+
+  return (
+    <NativeSceneView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      preferredFramesPerSecond={preferredFramesPerSecond}
+    />
+  )
+}
+import NativeShortcutsLink from '../specs/OneNativeShortcutsLinkNativeComponent'
+export function ShortcutsLink({
+  onAction,
+  swiftStyle,
+  style,
+  ...props
+}: Types.ShortcutsLinkProps) {
+  return (
+    <NativeShortcutsLink
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      onNativeShortcutsLinkAction={({ nativeEvent }) => onAction?.()}
+    />
+  )
+}
+import NativeStoreView from '../specs/OneNativeStoreViewNativeComponent'
+export function StoreView({
+  ids,
+  prefersPromotionalIcon = false,
+  swiftStyle,
+  style,
+  ...props
+}: Types.StoreViewProps) {
+  if (!Array.isArray(ids) || ids.some((item) => typeof item !== 'string'))
+    throw new Error('StoreView ids must be an array of strings')
+  if (typeof prefersPromotionalIcon !== 'boolean')
+    throw new Error('StoreView prefersPromotionalIcon must be a boolean')
+
+  return (
+    <NativeStoreView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      ids={ids}
+      prefersPromotionalIcon={prefersPromotionalIcon}
+    />
+  )
+}
+import NativeSubscriptionStoreView from '../specs/OneNativeSubscriptionStoreViewNativeComponent'
+export function SubscriptionStoreView({
+  groupID = undefined,
+  visibleRelationships = undefined,
+  productIDs = undefined,
+  swiftStyle,
+  style,
+  ...props
+}: Types.SubscriptionStoreViewProps) {
+  if ([groupID, productIDs].filter((value) => value !== undefined).length !== 1)
+    throw new Error('SubscriptionStoreView takes exactly one of groupID, productIDs')
+  if (groupID !== undefined && typeof groupID !== 'string')
+    throw new Error('SubscriptionStoreView groupID must be a string')
+  if (visibleRelationships !== undefined && typeof visibleRelationships !== 'string')
+    throw new Error('SubscriptionStoreView visibleRelationships must be a string')
+  if (
+    visibleRelationships !== undefined &&
+    !['current', 'downgrade', 'crossgrade', 'upgrade', 'all'].includes(
+      visibleRelationships
+    )
+  )
+    throw new Error(
+      'SubscriptionStoreView visibleRelationships must be one of current, downgrade, crossgrade, upgrade, all'
+    )
+  if (
+    productIDs !== undefined &&
+    (!Array.isArray(productIDs) || productIDs.some((item) => typeof item !== 'string'))
+  )
+    throw new Error('SubscriptionStoreView productIDs must be an array of strings')
+  if (productIDs !== undefined && visibleRelationships !== undefined)
+    throw new Error(
+      'SubscriptionStoreView visibleRelationships does not apply with productIDs'
+    )
+
+  return (
+    <NativeSubscriptionStoreView
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+      groupID={groupID ?? ''}
+      visibleRelationships={visibleRelationships ?? 'all'}
+      productIDs={productIDs ?? []}
+      initializer={groupID !== undefined ? 0 : productIDs !== undefined ? 1 : -1}
     />
   )
 }
