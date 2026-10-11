@@ -485,7 +485,27 @@ async function waitFor(
   const deadline = started + timeoutMs
   lastFailedConjuncts = undefined
   while (Date.now() < deadline) {
-    const current = snapshot(config)
+    let current
+    try {
+      current = snapshot(config)
+    } catch (error) {
+      // a dump can come back empty while the app relaunches or the screen
+      // transitions, and the dump command itself can fail while the system
+      // is busy; neither is a verdict, so keep awaiting the condition until
+      // the deadline like any unmet predicate. every other error, including
+      // redbox detections and non-dump adb failures, still throws
+      // immediately.
+      if (
+        error instanceof Error &&
+        (error.message.includes('contained no nodes') ||
+          (error.message.includes('uiautomator dump') &&
+            error.message.includes('Command failed')))
+      ) {
+        await Bun.sleep(250)
+        continue
+      }
+      throw error
+    }
     if (predicate(current.nodes))
       return { snapshot: current, durationMs: Date.now() - started }
     await Bun.sleep(250)
@@ -647,6 +667,15 @@ function swipeFresh(config: Config, name: string, direction: 'forward' | 'backwa
 }
 
 async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
+  // the home list mounts after its header marker under load; swiping before
+  // the scroller exists throws instead of scrolling, so await it like any
+  // other condition.
+  const awaitHomeScroller = (name: string) =>
+    waitFor(
+      config,
+      `${name} scrollable ready`,
+      (nodes) => nodes.filter((node) => node.scrollable === true).length === 1
+    )
   const initial = snapshot(config)
   const initialTarget = matching(initial.nodes, { id: navId })[0]
   if (!initialTarget?.bounds || !visibleIn(initialTarget.bounds, applicationBounds(initial.nodes))) {
@@ -657,6 +686,7 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
         .filter((node) => node.resourceId.includes('nav-') && node.bounds)
         .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
         .join('|')
+      await awaitHomeScroller('Home navigation scroll first row')
       swipeFresh(config, 'Home navigation scroll view', 'backward')
       await waitFor(config, 'Home navigation scroll position moves toward the first row', (nodes) => {
         const nextPositions = nodes
@@ -713,6 +743,7 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
       .filter((node) => node.resourceId.includes('nav-') && node.bounds)
       .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
       .join('|')
+    await awaitHomeScroller('Home navigation scroll seek')
     swipeFresh(config, 'Home navigation scroll view')
     // a reload can absorb the first swipe while the list is still settling, so a swipe that
     // moves nothing retries instead of blocking for the full timeout.
@@ -2810,6 +2841,94 @@ async function run(config: Config) {
       'system-keep-awake-report-after-resume',
       (nodes) => joined(nodes).includes('Status: done'),
       'one-native-keep-awake-run'
+    )
+
+    // Battery: reads, power-state agreement, listener attach/remove, validation.
+    await freshLeg('battery')
+    await tapNavigation(config, 'nav-one-native-battery')
+    await expect(
+      'system-battery-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-battery-run'
+    )
+    tapFresh(config, 'system-battery-run', {
+      id: 'one-native-battery-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-battery-report',
+      (nodes) => {
+        const text = joined(nodes)
+        const level = /Level: (-?[\d.]+)/.exec(text)
+        const state = /State: (\w+)/.exec(text)
+        const hookLevel = /HookLevel: (-?[\d.]+)/.exec(text)
+        const hookState = /HookState: (\w+)/.exec(text)
+        const hookPower = /HookPower: (-?[\d.]+)\|(\w+)\|(true|false)/.exec(text)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          level !== null &&
+          Number(level[1]) >= 0 &&
+          Number(level[1]) <= 1 &&
+          state !== null &&
+          ['unknown', 'unplugged', 'charging', 'full', 'notCharging'].includes(state[1]) &&
+          text.includes('Agreement: true') &&
+          text.includes('Listeners: attached') &&
+          text.includes('Invalid: Battery.addLevelListener: listener must be a function') &&
+          hookLevel !== null &&
+          Number(hookLevel[1]) >= 0 &&
+          Number(hookLevel[1]) <= 1 &&
+          hookState !== null &&
+          ['unknown', 'unplugged', 'charging', 'full', 'notCharging'].includes(hookState[1]) &&
+          text.includes('HookMode: false') &&
+          hookPower !== null &&
+          Number(hookPower[1]) >= 0 &&
+          Number(hookPower[1]) <= 1 &&
+          ['unknown', 'unplugged', 'charging', 'full', 'notCharging'].includes(hookPower[2])
+        )
+      },
+      'one-native-battery-run'
+    )
+
+    // Brightness: app roundtrip, android never fires brightness events,
+    // system writes with the settings grant, modes, permissions, validation.
+    await freshLeg('brightness')
+    await tapNavigation(config, 'nav-one-native-brightness')
+    await expect(
+      'system-brightness-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-brightness-run'
+    )
+    adbText(config, ['shell', 'appops', 'set', config.packageId, 'WRITE_SETTINGS', 'allow'])
+    tapFresh(config, 'system-brightness-run', {
+      id: 'one-native-brightness-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-brightness-report',
+      (nodes) => {
+        const text = joined(nodes)
+        const sysSet = /SystemSet: (-?[\d.]+)/.exec(text)
+        const mode = /SystemMode: (\w+)/.exec(text)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          text.includes('Roundtrip: true') &&
+          text.includes('Heard04: false') &&
+          text.includes('Permissions: granted|true|false') &&
+          sysSet !== null &&
+          Math.abs(Number(sysSet[1]) - 0.5) < 0.02 &&
+          mode !== null &&
+          ['unknown', 'automatic', 'manual'].includes(mode[1]) &&
+          text.includes('Invalid: Brightness.set: value must be a number between 0 and 1') &&
+          text.includes(
+            'InvalidMode: Brightness.setSystemMode: mode must be one of: manual, automatic.'
+          )
+        )
+      },
+      'one-native-brightness-run'
     )
 
     // Orientation: read, both locks with flipped dimensions, listener

@@ -35,6 +35,8 @@ import {
   Calendar,
   WidgetUI,
   Clipboard as NativeClipboard,
+  Battery as NativeBattery,
+  Brightness as NativeBrightness,
   AppInfo,
   Color,
   Database,
@@ -146,6 +148,8 @@ export type OneAPI = {
   readonly UI: Readonly<OneUI>
   readonly Notifications: Readonly<OneNotifications>
   readonly Clipboard: typeof NativeClipboard
+  readonly Battery: typeof NativeBattery
+  readonly Brightness: typeof NativeBrightness
   readonly Haptics: typeof Haptics
   readonly LaunchScreen: typeof LaunchScreen
   readonly Network: typeof NativeNetwork
@@ -242,6 +246,8 @@ export const One: OneAPI = Object.freeze({
   UI,
   Notifications,
   Clipboard: NativeClipboard,
+  Battery: NativeBattery,
+  Brightness: NativeBrightness,
   Haptics,
   LaunchScreen,
   Network: NativeNetwork,

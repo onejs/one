@@ -13,6 +13,8 @@
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
+#include "HybridOneBatterySpecSwift.hpp"
+#include "HybridOneBrightnessSpecSwift.hpp"
 #include "HybridOneCrypto.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
@@ -82,6 +84,20 @@
     "OneClipboard",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneClipboardSpec> hybridObject = One::OneAutolinking::createOneClipboard();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBattery",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneBatterySpec> hybridObject = One::OneAutolinking::createOneBattery();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBrightness",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneBrightnessSpec> hybridObject = One::OneAutolinking::createOneBrightness();
       return hybridObject;
     }
   );

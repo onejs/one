@@ -98,6 +98,10 @@ export interface NativeAppManifest {
     recognition: string
     microphone: string
   }
+  // system brightness writes for One.Brightness on android. setting it
+  // stamps the WRITE_SETTINGS permission; without it setSystem and
+  // setSystemMode reject with E_BRIGHTNESS_PERMISSIONS.
+  brightness?: boolean
   // present when the app uses local notifications. prebuild stamps the
   // android notification permissions and receiver plus the ios delegate gate.
   // push opts into remote push: the fcm source set and the aps-environment
@@ -504,6 +508,9 @@ export function validateNativeApp(
       manifest.speech.microphone.trim() === '')
   ) {
     fail('speech.recognition and speech.microphone must be non-empty strings')
+  }
+  if (manifest.brightness !== undefined && typeof manifest.brightness !== 'boolean') {
+    fail('brightness must be a boolean')
   }
   if (manifest.notifications !== undefined) {
     if (

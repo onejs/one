@@ -16,6 +16,8 @@
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
 #include "HybridOneBackgroundTasksSpecSwift.hpp"
+#include "HybridOneBatterySpecSwift.hpp"
+#include "HybridOneBrightnessSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
@@ -332,6 +334,110 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneBackgroundTasksSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(double /* result */)>
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_double::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](double result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(BatteryState /* result */)>
+  Func_void_BatteryState create_Func_void_BatteryState(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BatteryState::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](BatteryState result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+  
+  // pragma MARK: std::function<void(const BatteryPowerState& /* result */)>
+  Func_void_BatteryPowerState create_Func_void_BatteryPowerState(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BatteryPowerState::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BatteryPowerState& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const BatteryLevelEvent& /* event */)>
+  Func_void_BatteryLevelEvent create_Func_void_BatteryLevelEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BatteryLevelEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BatteryLevelEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const BatteryStateEvent& /* event */)>
+  Func_void_BatteryStateEvent create_Func_void_BatteryStateEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BatteryStateEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BatteryStateEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const BatteryPowerModeEvent& /* event */)>
+  Func_void_BatteryPowerModeEvent create_Func_void_BatteryPowerModeEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BatteryPowerModeEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BatteryPowerModeEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBatterySpec>
+  std::shared_ptr<HybridOneBatterySpec> create_std__shared_ptr_HybridOneBatterySpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneBatterySpec_cxx swiftPart = One::HybridOneBatterySpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneBatterySpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneBatterySpec_(std__shared_ptr_HybridOneBatterySpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneBatterySpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneBatterySpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneBatterySpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneBatterySpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(BrightnessMode /* result */)>
+  Func_void_BrightnessMode create_Func_void_BrightnessMode(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BrightnessMode::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](BrightnessMode result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+  
+  // pragma MARK: std::function<void(const BrightnessPermissionResponse& /* result */)>
+  Func_void_BrightnessPermissionResponse create_Func_void_BrightnessPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BrightnessPermissionResponse::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BrightnessPermissionResponse& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const BrightnessEvent& /* event */)>
+  Func_void_BrightnessEvent create_Func_void_BrightnessEvent(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BrightnessEvent::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BrightnessEvent& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBrightnessSpec>
+  std::shared_ptr<HybridOneBrightnessSpec> create_std__shared_ptr_HybridOneBrightnessSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneBrightnessSpec_cxx swiftPart = One::HybridOneBrightnessSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneBrightnessSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneBrightnessSpec_(std__shared_ptr_HybridOneBrightnessSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneBrightnessSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneBrightnessSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneBrightnessSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneBrightnessSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   
@@ -931,14 +1037,6 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_NativePermissionResponse::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const NativePermissionResponse& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(double /* result */)>
-  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_double::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](double result) mutable -> void {
       swiftClosure.call(result);
     };
   }

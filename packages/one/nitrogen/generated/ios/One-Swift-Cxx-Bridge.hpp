@@ -52,6 +52,24 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 namespace margelo::nitro::one { struct BackgroundTaskInvocation; }
 // Forward declaration of `BackgroundTaskKind` to properly resolve imports.
 namespace margelo::nitro::one { enum class BackgroundTaskKind; }
+// Forward declaration of `BatteryLevelEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryLevelEvent; }
+// Forward declaration of `BatteryPowerModeEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryPowerModeEvent; }
+// Forward declaration of `BatteryPowerState` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryPowerState; }
+// Forward declaration of `BatteryStateEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BatteryStateEvent; }
+// Forward declaration of `BatteryState` to properly resolve imports.
+namespace margelo::nitro::one { enum class BatteryState; }
+// Forward declaration of `BrightnessEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct BrightnessEvent; }
+// Forward declaration of `BrightnessMode` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrightnessMode; }
+// Forward declaration of `BrightnessPermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct BrightnessPermissionResponse; }
+// Forward declaration of `BrightnessPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class BrightnessPermissionStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -128,6 +146,10 @@ namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBackgroundTasksSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
+// Forward declaration of `HybridOneBatterySpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBatterySpec; }
+// Forward declaration of `HybridOneBrightnessSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBrightnessSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
@@ -362,6 +384,10 @@ namespace One { class HybridOneAppleAuthSpec_cxx; }
 namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBackgroundTasksSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBackgroundTasksSpec_cxx; }
+// Forward declaration of `HybridOneBatterySpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBatterySpec_cxx; }
+// Forward declaration of `HybridOneBrightnessSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBrightnessSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
@@ -453,6 +479,15 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "AudioRemoteCommandType.hpp"
 #include "BackgroundTaskInvocation.hpp"
 #include "BackgroundTaskKind.hpp"
+#include "BatteryLevelEvent.hpp"
+#include "BatteryPowerModeEvent.hpp"
+#include "BatteryPowerState.hpp"
+#include "BatteryState.hpp"
+#include "BatteryStateEvent.hpp"
+#include "BrightnessEvent.hpp"
+#include "BrightnessMode.hpp"
+#include "BrightnessPermissionResponse.hpp"
+#include "BrightnessPermissionStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -491,6 +526,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBackgroundTasksSpec.hpp"
+#include "HybridOneBatterySpec.hpp"
+#include "HybridOneBrightnessSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -1604,6 +1641,333 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<double>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<double>>`.
+   */
+  using std__shared_ptr_Promise_double__ = std::shared_ptr<Promise<double>>;
+  inline std::shared_ptr<Promise<double>> create_std__shared_ptr_Promise_double__() noexcept {
+    return Promise<double>::create();
+  }
+  inline PromiseHolder<double> wrap_std__shared_ptr_Promise_double__(std::shared_ptr<Promise<double>> promise) noexcept {
+    return PromiseHolder<double>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(double /* result */)>
+  /**
+   * Specialized version of `std::function<void(double)>`.
+   */
+  using Func_void_double = std::function<void(double /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(double / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_double_Wrapper final {
+  public:
+    explicit Func_void_double_Wrapper(std::function<void(double /* result */)>&& func): _function(std::make_unique<std::function<void(double /* result */)>>(std::move(func))) {}
+    inline void call(double result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(double /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
+    return Func_void_double_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BatteryState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BatteryState>>`.
+   */
+  using std__shared_ptr_Promise_BatteryState__ = std::shared_ptr<Promise<BatteryState>>;
+  inline std::shared_ptr<Promise<BatteryState>> create_std__shared_ptr_Promise_BatteryState__() noexcept {
+    return Promise<BatteryState>::create();
+  }
+  inline PromiseHolder<BatteryState> wrap_std__shared_ptr_Promise_BatteryState__(std::shared_ptr<Promise<BatteryState>> promise) noexcept {
+    return PromiseHolder<BatteryState>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(BatteryState /* result */)>
+  /**
+   * Specialized version of `std::function<void(BatteryState)>`.
+   */
+  using Func_void_BatteryState = std::function<void(BatteryState /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(BatteryState / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryState_Wrapper final {
+  public:
+    explicit Func_void_BatteryState_Wrapper(std::function<void(BatteryState /* result */)>&& func): _function(std::make_unique<std::function<void(BatteryState /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<BatteryState>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(BatteryState /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryState create_Func_void_BatteryState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryState_Wrapper wrap_Func_void_BatteryState(Func_void_BatteryState value) noexcept {
+    return Func_void_BatteryState_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BatteryPowerState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BatteryPowerState>>`.
+   */
+  using std__shared_ptr_Promise_BatteryPowerState__ = std::shared_ptr<Promise<BatteryPowerState>>;
+  inline std::shared_ptr<Promise<BatteryPowerState>> create_std__shared_ptr_Promise_BatteryPowerState__() noexcept {
+    return Promise<BatteryPowerState>::create();
+  }
+  inline PromiseHolder<BatteryPowerState> wrap_std__shared_ptr_Promise_BatteryPowerState__(std::shared_ptr<Promise<BatteryPowerState>> promise) noexcept {
+    return PromiseHolder<BatteryPowerState>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryPowerState& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryPowerState&)>`.
+   */
+  using Func_void_BatteryPowerState = std::function<void(const BatteryPowerState& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryPowerState& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryPowerState_Wrapper final {
+  public:
+    explicit Func_void_BatteryPowerState_Wrapper(std::function<void(const BatteryPowerState& /* result */)>&& func): _function(std::make_unique<std::function<void(const BatteryPowerState& /* result */)>>(std::move(func))) {}
+    inline void call(BatteryPowerState result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryPowerState& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryPowerState create_Func_void_BatteryPowerState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryPowerState_Wrapper wrap_Func_void_BatteryPowerState(Func_void_BatteryPowerState value) noexcept {
+    return Func_void_BatteryPowerState_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryLevelEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryLevelEvent&)>`.
+   */
+  using Func_void_BatteryLevelEvent = std::function<void(const BatteryLevelEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryLevelEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryLevelEvent_Wrapper final {
+  public:
+    explicit Func_void_BatteryLevelEvent_Wrapper(std::function<void(const BatteryLevelEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BatteryLevelEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BatteryLevelEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryLevelEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryLevelEvent create_Func_void_BatteryLevelEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryLevelEvent_Wrapper wrap_Func_void_BatteryLevelEvent(Func_void_BatteryLevelEvent value) noexcept {
+    return Func_void_BatteryLevelEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryStateEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryStateEvent&)>`.
+   */
+  using Func_void_BatteryStateEvent = std::function<void(const BatteryStateEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryStateEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryStateEvent_Wrapper final {
+  public:
+    explicit Func_void_BatteryStateEvent_Wrapper(std::function<void(const BatteryStateEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BatteryStateEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BatteryStateEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryStateEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryStateEvent create_Func_void_BatteryStateEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryStateEvent_Wrapper wrap_Func_void_BatteryStateEvent(Func_void_BatteryStateEvent value) noexcept {
+    return Func_void_BatteryStateEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BatteryPowerModeEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BatteryPowerModeEvent&)>`.
+   */
+  using Func_void_BatteryPowerModeEvent = std::function<void(const BatteryPowerModeEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BatteryPowerModeEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BatteryPowerModeEvent_Wrapper final {
+  public:
+    explicit Func_void_BatteryPowerModeEvent_Wrapper(std::function<void(const BatteryPowerModeEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BatteryPowerModeEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BatteryPowerModeEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BatteryPowerModeEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BatteryPowerModeEvent create_Func_void_BatteryPowerModeEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BatteryPowerModeEvent_Wrapper wrap_Func_void_BatteryPowerModeEvent(Func_void_BatteryPowerModeEvent value) noexcept {
+    return Func_void_BatteryPowerModeEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBatterySpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBatterySpec>`.
+   */
+  using std__shared_ptr_HybridOneBatterySpec_ = std::shared_ptr<HybridOneBatterySpec>;
+  std::shared_ptr<HybridOneBatterySpec> create_std__shared_ptr_HybridOneBatterySpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBatterySpec_(std__shared_ptr_HybridOneBatterySpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneBatterySpec>
+  using std__weak_ptr_HybridOneBatterySpec_ = std::weak_ptr<HybridOneBatterySpec>;
+  inline std__weak_ptr_HybridOneBatterySpec_ weakify_std__shared_ptr_HybridOneBatterySpec_(const std::shared_ptr<HybridOneBatterySpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<double>>>
+  using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<double>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BatteryState>>>
+  using Result_std__shared_ptr_Promise_BatteryState___ = Result<std::shared_ptr<Promise<BatteryState>>>;
+  inline Result_std__shared_ptr_Promise_BatteryState___ create_Result_std__shared_ptr_Promise_BatteryState___(const std::shared_ptr<Promise<BatteryState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BatteryState___ create_Result_std__shared_ptr_Promise_BatteryState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryState>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BatteryPowerState>>>
+  using Result_std__shared_ptr_Promise_BatteryPowerState___ = Result<std::shared_ptr<Promise<BatteryPowerState>>>;
+  inline Result_std__shared_ptr_Promise_BatteryPowerState___ create_Result_std__shared_ptr_Promise_BatteryPowerState___(const std::shared_ptr<Promise<BatteryPowerState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryPowerState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BatteryPowerState___ create_Result_std__shared_ptr_Promise_BatteryPowerState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BatteryPowerState>>>::withError(error);
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BrightnessMode>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrightnessMode>>`.
+   */
+  using std__shared_ptr_Promise_BrightnessMode__ = std::shared_ptr<Promise<BrightnessMode>>;
+  inline std::shared_ptr<Promise<BrightnessMode>> create_std__shared_ptr_Promise_BrightnessMode__() noexcept {
+    return Promise<BrightnessMode>::create();
+  }
+  inline PromiseHolder<BrightnessMode> wrap_std__shared_ptr_Promise_BrightnessMode__(std::shared_ptr<Promise<BrightnessMode>> promise) noexcept {
+    return PromiseHolder<BrightnessMode>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(BrightnessMode /* result */)>
+  /**
+   * Specialized version of `std::function<void(BrightnessMode)>`.
+   */
+  using Func_void_BrightnessMode = std::function<void(BrightnessMode /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(BrightnessMode / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrightnessMode_Wrapper final {
+  public:
+    explicit Func_void_BrightnessMode_Wrapper(std::function<void(BrightnessMode /* result */)>&& func): _function(std::make_unique<std::function<void(BrightnessMode /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<BrightnessMode>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(BrightnessMode /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrightnessMode create_Func_void_BrightnessMode(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrightnessMode_Wrapper wrap_Func_void_BrightnessMode(Func_void_BrightnessMode value) noexcept {
+    return Func_void_BrightnessMode_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<BrightnessPermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<BrightnessPermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_BrightnessPermissionResponse__ = std::shared_ptr<Promise<BrightnessPermissionResponse>>;
+  inline std::shared_ptr<Promise<BrightnessPermissionResponse>> create_std__shared_ptr_Promise_BrightnessPermissionResponse__() noexcept {
+    return Promise<BrightnessPermissionResponse>::create();
+  }
+  inline PromiseHolder<BrightnessPermissionResponse> wrap_std__shared_ptr_Promise_BrightnessPermissionResponse__(std::shared_ptr<Promise<BrightnessPermissionResponse>> promise) noexcept {
+    return PromiseHolder<BrightnessPermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const BrightnessPermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const BrightnessPermissionResponse&)>`.
+   */
+  using Func_void_BrightnessPermissionResponse = std::function<void(const BrightnessPermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrightnessPermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrightnessPermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_BrightnessPermissionResponse_Wrapper(std::function<void(const BrightnessPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrightnessPermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(BrightnessPermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrightnessPermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrightnessPermissionResponse create_Func_void_BrightnessPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrightnessPermissionResponse_Wrapper wrap_Func_void_BrightnessPermissionResponse(Func_void_BrightnessPermissionResponse value) noexcept {
+    return Func_void_BrightnessPermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const BrightnessEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BrightnessEvent&)>`.
+   */
+  using Func_void_BrightnessEvent = std::function<void(const BrightnessEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BrightnessEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BrightnessEvent_Wrapper final {
+  public:
+    explicit Func_void_BrightnessEvent_Wrapper(std::function<void(const BrightnessEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BrightnessEvent& /* event */)>>(std::move(func))) {}
+    inline void call(BrightnessEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BrightnessEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BrightnessEvent create_Func_void_BrightnessEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BrightnessEvent_Wrapper wrap_Func_void_BrightnessEvent(Func_void_BrightnessEvent value) noexcept {
+    return Func_void_BrightnessEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBrightnessSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBrightnessSpec>`.
+   */
+  using std__shared_ptr_HybridOneBrightnessSpec_ = std::shared_ptr<HybridOneBrightnessSpec>;
+  std::shared_ptr<HybridOneBrightnessSpec> create_std__shared_ptr_HybridOneBrightnessSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBrightnessSpec_(std__shared_ptr_HybridOneBrightnessSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneBrightnessSpec>
+  using std__weak_ptr_HybridOneBrightnessSpec_ = std::weak_ptr<HybridOneBrightnessSpec>;
+  inline std__weak_ptr_HybridOneBrightnessSpec_ weakify_std__shared_ptr_HybridOneBrightnessSpec_(const std::shared_ptr<HybridOneBrightnessSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrightnessMode>>>
+  using Result_std__shared_ptr_Promise_BrightnessMode___ = Result<std::shared_ptr<Promise<BrightnessMode>>>;
+  inline Result_std__shared_ptr_Promise_BrightnessMode___ create_Result_std__shared_ptr_Promise_BrightnessMode___(const std::shared_ptr<Promise<BrightnessMode>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessMode>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrightnessMode___ create_Result_std__shared_ptr_Promise_BrightnessMode___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessMode>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>
+  using Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ = Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>;
+  inline Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ create_Result_std__shared_ptr_Promise_BrightnessPermissionResponse___(const std::shared_ptr<Promise<BrightnessPermissionResponse>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ create_Result_std__shared_ptr_Promise_BrightnessPermissionResponse___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<Promise<BrowserResult>>
@@ -3728,40 +4092,6 @@ namespace margelo::nitro::one::bridge::swift {
     return optional.value();
   }
   
-  // pragma MARK: std::shared_ptr<Promise<double>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<double>>`.
-   */
-  using std__shared_ptr_Promise_double__ = std::shared_ptr<Promise<double>>;
-  inline std::shared_ptr<Promise<double>> create_std__shared_ptr_Promise_double__() noexcept {
-    return Promise<double>::create();
-  }
-  inline PromiseHolder<double> wrap_std__shared_ptr_Promise_double__(std::shared_ptr<Promise<double>> promise) noexcept {
-    return PromiseHolder<double>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(double /* result */)>
-  /**
-   * Specialized version of `std::function<void(double)>`.
-   */
-  using Func_void_double = std::function<void(double /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(double / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_double_Wrapper final {
-  public:
-    explicit Func_void_double_Wrapper(std::function<void(double /* result */)>&& func): _function(std::make_unique<std::function<void(double /* result */)>>(std::move(func))) {}
-    inline void call(double result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(double /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
-    return Func_void_double_Wrapper(std::move(value));
-  }
-  
   // pragma MARK: std::vector<NativeNotificationAction>
   /**
    * Specialized version of `std::vector<NativeNotificationAction>`.
@@ -4219,15 +4549,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_NativePermissionResponse___ create_Result_std__shared_ptr_Promise_NativePermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<NativePermissionResponse>>>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<double>>>
-  using Result_std__shared_ptr_Promise_double___ = Result<std::shared_ptr<Promise<double>>>;
-  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::shared_ptr<Promise<double>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<double>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_double___ create_Result_std__shared_ptr_Promise_double___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<double>>>::withError(error);
   }
   
   // pragma MARK: Result<std::shared_ptr<Promise<NativeNotificationCategory>>>

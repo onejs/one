@@ -85,6 +85,11 @@ describe('native.app manifest', () => {
     )
   })
 
+  test('accepts the brightness system flag', () => {
+    expect(() => validateNativeApp({ ...app, brightness: true })).not.toThrow()
+    expect(() => validateNativeApp({ ...app, brightness: 'yes' as any })).toThrow(/brightness/)
+  })
+
   test('requires an audio recording prompt', () => {
     expect(() => validateNativeApp({ ...app, audio: { microphone: 'Record notes.' } })).not.toThrow()
     expect(() => validateNativeApp({ ...app, audio: { background: true } })).not.toThrow()

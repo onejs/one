@@ -610,6 +610,16 @@ const testScreens = [
     testID: 'nav-one-native-clipboard',
   },
   {
+    href: '/one-native-battery',
+    label: 'One Native Battery',
+    testID: 'nav-one-native-battery',
+  },
+  {
+    href: '/one-native-brightness',
+    label: 'One Native Brightness',
+    testID: 'nav-one-native-brightness',
+  },
+  {
     href: '/one-native-network',
     label: 'One Native Network',
     testID: 'nav-one-native-network',

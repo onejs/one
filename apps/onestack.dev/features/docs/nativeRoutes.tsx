@@ -61,6 +61,8 @@ export const nativeRoutes = [
       { title: 'Database', route: '/native/database' },
       { title: 'Notifications', route: '/native/notifications' },
       { title: 'Clipboard', route: '/native/clipboard' },
+      { title: 'Battery', route: '/native/battery' },
+      { title: 'Brightness', route: '/native/brightness' },
       { title: 'Network', route: '/native/network' },
       { title: 'Browser', route: '/native/browser' },
       { title: 'Open URL and Settings', route: '/native/open-url' },

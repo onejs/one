@@ -1,0 +1,23 @@
+---
+title: Brightness
+description: App and system screen brightness
+---
+
+`One.Brightness` reads and writes the screen brightness on iOS and Android. It has `get()`, `set(value)`, `getSystem()`, `setSystem(value)`, `getSystemMode()`, `setSystemMode(mode)`, `isUsingSystem()`, `restoreSystem()`, `getPermissions()`, `requestPermissions()`, `isAvailable()`, and `addListener(fn)`.
+
+```tsx
+import { One } from 'one'
+
+const initial = await One.Brightness.get()
+await One.Brightness.set(0.5)
+// later
+await One.Brightness.set(initial)
+```
+
+`get()` and `set(value)` take and return a number between `0` and `1`; out-of-range values throw synchronously. On iOS the setting persists until the device locks. On Android it applies to the current activity while the app is in the foreground.
+
+The `getSystem` family is Android only: `getSystem()` reads the global brightness, `setSystem(value)` writes it and switches the mode to manual, `getSystemMode()` resolves `'unknown'`, `'automatic'`, or `'manual'`, `setSystemMode(mode)` switches between `'manual'` and `'automatic'`, `isUsingSystem()` reports whether the activity follows the system value, and `restoreSystem()` drops the app override. On iOS these resolve the app value or the matching empty value (`'unknown'` mode, always using system) and do nothing. `addListener(fn)` receives `{ brightness }` and fires on iOS only; the iOS simulator never posts brightness notifications for programmatic sets, so listeners stay quiet there while `get` still reads back every `set`.
+
+System writes need the Android write-settings grant. `getPermissions()` and `requestPermissions()` resolve `{ status, granted, canAskAgain }`, where `status` is `'granted'`, `'denied'`, or `'undetermined'`. `requestPermissions()` opens system settings; read the grant back when the app resumes. On iOS permissions resolve granted with no prompt.
+
+System writes also need `WRITE_SETTINGS` in the Android manifest, which prebuild does not declare yet. Until it does, grant the access from the system settings screen that `requestPermissions()` opens; on dev builds `adb shell appops set <package> WRITE_SETTINGS allow` grants it directly. Without the declaration and the grant, `setSystem` and `setSystemMode` reject with `E_BRIGHTNESS_PERMISSIONS`. On web, reads resolve `1`, effects resolve without doing anything, permissions resolve denied, and listeners never fire.

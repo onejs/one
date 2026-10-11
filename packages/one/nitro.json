@@ -21,6 +21,14 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneClipboard" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
     },
+    "OneBattery": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneBattery" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneBattery" }
+    },
+    "OneBrightness": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneBrightness" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneBrightness" }
+    },
     "OneCrypto": {
       "all": { "language": "c++", "implementationClassName": "HybridOneCrypto" }
     },

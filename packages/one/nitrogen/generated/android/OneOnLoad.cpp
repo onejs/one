@@ -25,6 +25,12 @@
 #include "JHybridOneAudioSpec.hpp"
 #include "JFunc_void_AudioInterruptionEvent.hpp"
 #include "JFunc_void_AudioRemoteCommandEvent.hpp"
+#include "JHybridOneBatterySpec.hpp"
+#include "JFunc_void_BatteryLevelEvent.hpp"
+#include "JFunc_void_BatteryStateEvent.hpp"
+#include "JFunc_void_BatteryPowerModeEvent.hpp"
+#include "JHybridOneBrightnessSpec.hpp"
+#include "JFunc_void_BrightnessEvent.hpp"
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneCalendarSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
@@ -107,6 +113,22 @@ struct JHybridOneClipboardSpecImpl: public jni::JavaClass<JHybridOneClipboardSpe
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneClipboardSpecImpl::javaobject()>();
     jni::local_ref<JHybridOneClipboardSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOneClipboardSpec();
+  }
+};
+struct JHybridOneBatterySpecImpl: public jni::JavaClass<JHybridOneBatterySpecImpl, JHybridOneBatterySpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneBattery;";
+  static std::shared_ptr<JHybridOneBatterySpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneBatterySpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneBatterySpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneBatterySpec();
+  }
+};
+struct JHybridOneBrightnessSpecImpl: public jni::JavaClass<JHybridOneBrightnessSpecImpl, JHybridOneBrightnessSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneBrightness;";
+  static std::shared_ptr<JHybridOneBrightnessSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneBrightnessSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneBrightnessSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneBrightnessSpec();
   }
 };
 struct JHybridOneNetworkSpecImpl: public jni::JavaClass<JHybridOneNetworkSpecImpl, JHybridOneNetworkSpec::JavaPart> {
@@ -235,14 +257,6 @@ struct JHybridOnePrintSpecImpl: public jni::JavaClass<JHybridOnePrintSpecImpl, J
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOnePrintSpecImpl::javaobject()>();
     jni::local_ref<JHybridOnePrintSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOnePrintSpec();
-  }
-};
-struct JHybridOneStoreReviewSpecImpl: public jni::JavaClass<JHybridOneStoreReviewSpecImpl, JHybridOneStoreReviewSpec::JavaPart> {
-  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneStoreReview;";
-  static std::shared_ptr<JHybridOneStoreReviewSpec> create() {
-    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneStoreReviewSpecImpl::javaobject()>();
-    jni::local_ref<JHybridOneStoreReviewSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
-    return javaPart->getJHybridOneStoreReviewSpec();
   }
 };
 struct JHybridOneQuickActionsSpecImpl: public jni::JavaClass<JHybridOneQuickActionsSpecImpl, JHybridOneQuickActionsSpec::JavaPart> {
@@ -397,6 +411,12 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneAudioSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_AudioInterruptionEvent_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_AudioRemoteCommandEvent_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneBatterySpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_BatteryLevelEvent_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_BatteryStateEvent_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_BatteryPowerModeEvent_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneBrightnessSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_BrightnessEvent_cxx::registerNatives();
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCalendarSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
@@ -463,6 +483,18 @@ void registerAllNatives() {
     "OneClipboard",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneClipboardSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBattery",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneBatterySpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBrightness",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneBrightnessSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
@@ -577,12 +609,6 @@ void registerAllNatives() {
     "OnePrint",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOnePrintSpecImpl::create();
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneStoreReview",
-    []() -> std::shared_ptr<HybridObject> {
-      return JHybridOneStoreReviewSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

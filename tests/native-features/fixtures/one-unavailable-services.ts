@@ -146,6 +146,34 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     'Device.getLocalizationInfo'
   )
   equal(await One.BackgroundTasks.getPending(), [], 'BackgroundTasks.getPending')
+  equal(await One.Battery.getLevel(), 1, 'Battery.getLevel')
+  equal(await One.Battery.getState(), 'unknown', 'Battery.getState')
+  equal(
+    await One.Battery.getPowerState(),
+    { batteryLevel: 1, batteryState: 'unknown', lowPowerMode: false },
+    'Battery.getPowerState'
+  )
+  equal(await One.Battery.isLowPowerModeEnabled(), false, 'Battery.isLowPowerModeEnabled')
+  equal(One.Battery.isAvailable(), false, 'Battery.isAvailable')
+  equal(await One.Brightness.get(), 1, 'Brightness.get')
+  await One.Brightness.set(0.5)
+  equal(await One.Brightness.getSystem(), 1, 'Brightness.getSystem')
+  await One.Brightness.setSystem(0.5)
+  equal(await One.Brightness.getSystemMode(), 'unknown', 'Brightness.getSystemMode')
+  await One.Brightness.setSystemMode('manual')
+  equal(await One.Brightness.isUsingSystem(), true, 'Brightness.isUsingSystem')
+  await One.Brightness.restoreSystem()
+  equal(
+    await One.Brightness.getPermissions(),
+    { status: 'denied', granted: false, canAskAgain: false },
+    'Brightness.getPermissions'
+  )
+  equal(
+    await One.Brightness.requestPermissions(),
+    { status: 'denied', granted: false, canAskAgain: false },
+    'Brightness.requestPermissions'
+  )
+  equal(One.Brightness.isAvailable(), false, 'Brightness.isAvailable')
   equal(
     One.DeviceAttestation.getAvailability(),
     { appAttest: false, deviceCheck: false },
@@ -246,6 +274,16 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     remove()
   }
   checks.push('idempotent-removers')
+  for (const subscription of [
+    One.Battery.addLevelListener(() => {}),
+    One.Battery.addStateListener(() => {}),
+    One.Battery.addLowPowerModeListener(() => {}),
+    One.Brightness.addListener(() => {}),
+  ]) {
+    subscription.remove()
+    subscription.remove()
+  }
+  checks.push('service-listener-removers')
 
   await rejected('LocalAuthentication.evaluatePolicy', () =>
     One.LocalAuthentication.evaluatePolicy('One proof')
