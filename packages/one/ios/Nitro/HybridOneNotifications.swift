@@ -183,34 +183,24 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
         textInputPlaceholder: text?.textInputPlaceholder,
         textInputSubmitTitle: text?.textInputButtonTitle)
     }
-    var options: NativeNotificationCategoryOptions?
-    var resolved = NativeNotificationCategoryOptions()
-    var empty = true
-    if category.options.contains(.allowInCarPlay) {
-      resolved.allowInCarPlay = true
-      empty = false
+    // nitro structs are immutable: read each option, then build the struct
+    // only when one is set. an unset placeholder reads back as "".
+    let set = { (flag: UNNotificationCategoryOptions) -> Bool? in
+      category.options.contains(flag) ? true : nil
     }
-    if category.options.contains(.customDismissAction) {
-      resolved.customDismissAction = true
-      empty = false
-    }
-    if category.options.contains(.hiddenPreviewsShowTitle) {
-      resolved.showTitle = true
-      empty = false
-    }
-    if category.options.contains(.hiddenPreviewsShowSubtitle) {
-      resolved.showSubtitle = true
-      empty = false
-    }
-    if !category.intentIdentifiers.isEmpty {
-      resolved.intentIdentifiers = category.intentIdentifiers
-      empty = false
-    }
-    if let placeholder = category.hiddenPreviewsBodyPlaceholder {
-      resolved.previewPlaceholder = placeholder
-      empty = false
-    }
-    if !empty { options = resolved }
+    let intents = category.intentIdentifiers.isEmpty ? nil : category.intentIdentifiers
+    let placeholder =
+      category.hiddenPreviewsBodyPlaceholder.isEmpty ? nil : category.hiddenPreviewsBodyPlaceholder
+    let carPlay = set(.allowInCarPlay)
+    let dismiss = set(.customDismissAction)
+    let title = set(.hiddenPreviewsShowTitle)
+    let subtitle = set(.hiddenPreviewsShowSubtitle)
+    let empty = [carPlay, dismiss, title, subtitle].allSatisfy { $0 == nil }
+      && intents == nil && placeholder == nil
+    let options = empty ? nil : NativeNotificationCategoryOptions(
+      allowInCarPlay: carPlay, categorySummaryFormat: nil, customDismissAction: dismiss,
+      intentIdentifiers: intents, previewPlaceholder: placeholder, showTitle: title,
+      showSubtitle: subtitle)
     return NativeNotificationCategory(
       identifier: category.identifier, actions: actions, options: options)
   }
