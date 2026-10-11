@@ -118,6 +118,9 @@ function QuickLook(_props: Types.QuickLookProps): never {
 function FileImporter(_props: Types.FileImporterProps): never {
   throw new Error('Swift.FileImporter requires an iOS native build')
 }
+function Chart(_props: Types.ChartProps): never {
+  throw new Error('Swift.Chart requires an iOS native build')
+}
 function AsyncImage(_props: Types.AsyncImageProps): never {
   throw new Error('Swift.AsyncImage requires an iOS native build')
 }
@@ -200,6 +203,7 @@ export const unsupportedControls = {
   ConfirmationDialog,
   QuickLook,
   FileImporter,
+  Chart,
   AsyncImage,
   EditButton,
   EmptyView,

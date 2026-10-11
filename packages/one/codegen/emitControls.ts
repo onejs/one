@@ -313,6 +313,9 @@ export type OneNativeViewProps = Pick<
     header +
     `import { Platform } from 'react-native'\nimport { assertTextInputOptions } from '../textTypes'\nimport { useControlled } from '../controlled'\nimport { assertSwiftUIValue } from './swiftui'\nimport { swiftStyleNative${hasSDKEvents ? ', dispatchSDKEvent' : ''} } from './swiftStyleNative'\nimport type * as Types from './controlTypes'\n` +
     "import { iconColorRoles } from '../ui/iconRoles'\n" +
+    [...new Set(controls.flatMap((control) => control.adapterImports ?? []))]
+      .map((line) => `${line}\n`)
+      .join('') +
     (hasSync
       ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
       : '')
