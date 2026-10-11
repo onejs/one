@@ -39,7 +39,7 @@ Tick a box only with a receipt (SHA, run id or evidence path).
   `~/.team-machine/handoffs/one-swift-bridge-full.md`.
 - [x] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
   Basic, Takeout Free, Contrast mobile on iOS 27 and Android 37 plus web.
-  RAN 2026-10-10/11 (s29251, `t-mv30f95t-sv90`): nine build/runtime/navigation
+  RAN 2026-10-10/11 (s29251, `t-mv30f95t-sv90`): nine build/runtime cells and all six native navigation
   cells pass on tarball-verified `2.0.0-0.canary.1791667902490`, source
   `b6364ccff` containing typed Swift views `bdc4068e5`. Fresh Basic scaffold
   `1c6fbae44` passes native widget/activity/Island surfaces after root namespace
