@@ -213,7 +213,6 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.Color` | n/a | android-color | missing |  |
 | `One.Android.Menu` | n/a | android-menus | missing |  |
 | `One.Android.ContextMenu` | n/a | android-menus | missing |  |
-| `One.Android.CameraView` | n/a | camera | missing |  |
 | `One.UI.sampleCurve` | ui-effects | effects | missing |  |
 | `One.UI.serializeCurve` | ui-effects | effects | missing |  |
 | `One.UI.EdgeFade` | ui-effects | effects | OneNativeVisualLibraryCase | iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
@@ -239,7 +238,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
-| `One.ImagePicker` | image-picker, camera-preview | camera, image-picker | OneNativeBehavioralLibraryCase |  |
+| `One.ImagePicker` | image-picker, camera-preview | image-picker | OneNativeBehavioralLibraryCase |  |
 | `One.DocumentPicker` | apple-file | document-picker | OneNativeDocumentPickerLibraryCase |  |
 | `One.SecureStore` | secure-store | secure-store | OneNativeBehavioralLibraryCase |  |
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
