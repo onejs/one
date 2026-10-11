@@ -2750,6 +2750,9 @@ dependencies {
     expect(updatedApp).toContain('androidx.compose.ui:ui:$composeUiVersion')
     expect(updatedApp).toContain('androidx.compose.foundation:foundation:$composeUiVersion')
     expect(updatedApp).toContain('androidx.compose.material3:material3:$material3Version')
+    expect(updatedApp).toContain(
+      'androidx.navigation:navigation-compose:$navigationComposeVersion'
+    )
   })
 
   it('enables compose only when .kt has views, keeping module-only prebuild unchanged', async () => {

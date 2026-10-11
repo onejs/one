@@ -134,7 +134,8 @@ A Kotlin file can sit anywhere in the app outside `android`, `ios`,
 becomes a named export, and each of its public functions an async function.
 `suspend` functions are awaited. A public `@Composable` function with a
 capitalized name becomes a React component whose props are its parameters;
-function-typed parameters are callbacks.
+function-typed parameters are callbacks. Views compile against Compose UI,
+Foundation, Material 3 and Navigation.
 
 ```kotlin
 // native/Device.kt

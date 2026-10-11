@@ -2947,6 +2947,10 @@ export function enableAppComposeIntegration(dest: string) {
         '    implementation "androidx.compose.ui:ui:$composeUiVersion"',
         '    implementation "androidx.compose.foundation:foundation:$composeUiVersion"',
         '    implementation "androidx.compose.material3:material3:$material3Version"',
+        // swiftui carries navigation; compose ships it as its own artifact, so a
+        // kotlin view importing NavHost needs it on the app classpath.
+        '    def navigationComposeVersion = rootProject.ext.has("navigationComposeVersion") ? rootProject.ext.get("navigationComposeVersion") : "2.10.2"',
+        '    implementation "androidx.navigation:navigation-compose:$navigationComposeVersion"',
       ].join('\n')
       const depsAnchor = content.includes('implementation("com.facebook.react:react-android")')
         ? 'implementation("com.facebook.react:react-android")'
