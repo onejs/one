@@ -19,6 +19,7 @@ on:
       - react-native-82
     paths:
       - '.github/actions/install/**'
+      - '.github/actions/ios-ui-test-setup/**'
       - '.github/workflows/build-ios-test-container-app.yml'
       - '.github/workflows/test-native-ios.yml'
       - 'bun.lock'
@@ -96,7 +97,32 @@ jobs:
         run: >-
           xcodebuild -workspace NativeFeatureTests.xcworkspace -scheme NativeFeatureTests
           -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
-          CODE_SIGNING_ALLOWED=NO build
+          -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+
+      - name: Prepare iOS UI tests
+        id: setup-ios-ui-tests
+        uses: ./.github/actions/ios-ui-test-setup
+        with:
+          simulator_ios_version: ${{ env.simulator_ios_version }}
+          simulator_device_name: ${{ env.simulator_device_name }}
+          appium_version: ${{ env.appium_version }}
+          appium_xcuitest_version: ${{ env.appium_xcuitest_version }}
+
+      - name: Run One Native feature fixtures
+        working-directory: tests/native-features
+        env:
+          SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
+          IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
+        run: bun run test-ios:dev
+
+      - name: Upload One Native runtime evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: one-native-features-ios
+          path: |
+            /tmp/appium.log
+            /tmp/appium-screenshots
 
   build-ios-test-container-dev:
     name: Build iOS RN Test App (Dev)
@@ -210,108 +236,18 @@ jobs:
           [ -x "$HERMESC_PATH" ] || { echo "hermesc not executable at $HERMESC_PATH"; exit 1; }
           echo "hermesc validated: $HERMESC_PATH ($HERMESC_MATCHED_KEY)"
 
-      - name: Get Simulator UDID
-        id: get-simulator-udid
-        env:
-          SIMULATOR_IOS_VERSION: ${{ env.simulator_ios_version }}
-          SIMULATOR_DEVICE_NAME: ${{ env.simulator_device_name }}
-        run: |
-          AVAILABLE_SIMULATORS=$(xcrun simctl list devices available --json | jq -r '[.devices | to_entries[] | select(.key | contains("SimRuntime.iOS")) | .key as $runtime | .value[] | { runtime: $runtime, name: .name, udid: .udid }]')
-          echo "Available simulators: $AVAILABLE_SIMULATORS"
-
-          # runtime ids spell the version with dashes, e.g. iOS 27.0 -> ...SimRuntime.iOS-27-0
-          RUNTIME_ID="com.apple.CoreSimulator.SimRuntime.iOS-${SIMULATOR_IOS_VERSION//./-}"
-          SELECTED_SIMULATOR=$(echo $AVAILABLE_SIMULATORS | jq -r "[.[] | select(.runtime == \"$RUNTIME_ID\") | select(.name == \"$SIMULATOR_DEVICE_NAME\")] | first")
-          if [ -z "$SELECTED_SIMULATOR" ] || [ "$SELECTED_SIMULATOR" = "null" ]; then
-            echo "Error: No simulator found for runtime $RUNTIME_ID and device name $SIMULATOR_DEVICE_NAME"
-            echo "Available devices:"
-            echo "$AVAILABLE_SIMULATORS" | jq -r '.[] | "\(.name) (\(.runtime))"'
-            exit 1
-          fi
-          echo "Selected simulator: $SELECTED_SIMULATOR"
-
-          SIMULATOR_UDID=$(echo $SELECTED_SIMULATOR | jq -r .udid)
-          if [ -z "$SIMULATOR_UDID" ] || [ "$SIMULATOR_UDID" = "null" ]; then
-            echo "Error: Could not get simulator UDID"
-            exit 1
-          fi
-          echo "Simulator UDID: $SIMULATOR_UDID"
-          echo "simulator_udid=$SIMULATOR_UDID" >> $GITHUB_OUTPUT
-
-      - name: Boot Simulator
-        env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-        run: |
-          xcrun simctl boot "$SIMULATOR_UDID"
-          xcrun simctl bootstatus "$SIMULATOR_UDID" -b
-
-      - name: Install Appium
-        env:
-          APPIUM_VERSION: ${{ env.appium_version }}
-          APPIUM_XCUITEST_VERSION: ${{ env.appium_xcuitest_version }}
-        run: |
-          # deliberately not cached: the xcuitest driver resolves `appium` from
-          # its own node_modules under ~/.appium, so a restored tree drifts from
-          # whatever `npm install -g appium` put on this runner. that drift
-          # still lets the server start, then fails every session with
-          # "Could not find a driver for automationName 'XCUITest'". a clean
-          # pinned install takes ~2min and can't drift.
-          npm install -g appium@$APPIUM_VERSION
-          appium driver install xcuitest@$APPIUM_XCUITEST_VERSION
-          appium --version
-          appium driver list --installed
-          # loading the driver is the only thing that proves the install is
-          # usable; `appium --version` and `driver list` both pass on a tree
-          # whose driver can't import appium.
-          cd ~/.appium && node --input-type=module -e 'await import("appium-xcuitest-driver")'
-
-      - name: Start Appium Server
-        run: |
-          # timestamps make the log usable for finding where a slow session went
-          appium --log-timestamp > /tmp/appium.log 2>&1 &
-          # wait for appium to be ready
-          for i in {1..30}; do
-            if curl -s http://localhost:4723/status | grep -q '"ready":true'; then
-              echo "Appium ready after $i seconds"
-              break
-            fi
-            if [ $i -eq 30 ]; then
-              echo "Appium failed to start"
-              cat /tmp/appium.log
-              exit 1
-            fi
-            sleep 1
-          done
-
-      - name: Pre-build WebDriverAgent
-        env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
-        run: |
-          # WDA builds on first session and can take 15+ min on CI.
-          # use appium's xcodebuild to compile WDA ahead of time.
-          APPIUM_XCUITEST_PATH=$(appium driver run xcuitest print-wda-path 2>/dev/null || echo "")
-          # strip ansi codes and whitespace
-          APPIUM_XCUITEST_PATH=$(echo "$APPIUM_XCUITEST_PATH" | sed 's/\x1b\[[0-9;]*m//g' | tr -d '[:space:]')
-          # fallback: search known appium driver install locations
-          if [ -z "$APPIUM_XCUITEST_PATH" ] || [ ! -d "$APPIUM_XCUITEST_PATH" ]; then
-            echo "print-wda-path failed or returned invalid path: '$APPIUM_XCUITEST_PATH'"
-            APPIUM_XCUITEST_PATH=$(find ~/.appium -name "WebDriverAgent.xcodeproj" -print -quit 2>/dev/null | xargs dirname 2>/dev/null || echo "")
-          fi
-          if [ -n "$APPIUM_XCUITEST_PATH" ] && [ -d "$APPIUM_XCUITEST_PATH" ]; then
-            echo "Building WDA from: $APPIUM_XCUITEST_PATH"
-            xcodebuild build-for-testing \
-              -project "$APPIUM_XCUITEST_PATH/WebDriverAgent.xcodeproj" \
-              -scheme WebDriverAgentRunner \
-              -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
-              -derivedDataPath /tmp/wda-build \
-              -quiet || echo "WDA pre-build failed, will build on first session"
-          else
-            echo "Could not find WDA path, will build on first session"
-          fi
+      - name: Prepare iOS UI tests
+        id: setup-ios-ui-tests
+        uses: ./.github/actions/ios-ui-test-setup
+        with:
+          simulator_ios_version: ${{ env.simulator_ios_version }}
+          simulator_device_name: ${{ env.simulator_device_name }}
+          appium_version: ${{ env.appium_version }}
+          appium_xcuitest_version: ${{ env.appium_xcuitest_version }}
 
       - name: Run Tests
         env:
-          SIMULATOR_UDID: ${{ steps.get-simulator-udid.outputs.simulator_udid }}
+          SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ matrix.env == 'dev' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.built-app-path) || '' }}
           IOS_TEST_CONTAINER_PATH_PROD: ${{ matrix.env == 'prod' && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.built-app-path) || '' }}
           HERMESC_PATH: ${{ steps.download-hermesc.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-prod.outputs.hermesc-path) || steps.download-hermesc-dev.outputs.cache-matched-key && format('{0}/{1}', github.workspace, needs.build-ios-test-container-dev.outputs.hermesc-path) || '' }}
