@@ -16,6 +16,38 @@ RAN: Takeout uses Expo 58 and RN 0.87.1 after the compatibility fixes. Its Andro
 
 RAN: final Basic scaffold clean install took 2.6s; the plain production web build took 34.3s and four-route runtime 2.9s. The instrumented build and state-retention probes are separately retained. Contrast clean workspace installs resolved 3,235 packages on Pro64 in 32.9s and 3,233 on Studio64 in 18.6s. Final Contrast `bun check` passed in 65.5s, and its mobile template typecheck reported zero errors.
 
+## 2026-10-10 current-canary rerun
+
+Owner: s29251, task `t-mv30f95t-sv90`. Acceptance remains open.
+RAN: packed published One and vxrn `2.0.0-0.canary.1791667902490`.
+Both manifests bind `releaseSourceCommit` to `b6364ccfffe74ffbd0d529f5fd5e72f906e5de66`;
+`git merge-base --is-ancestor bdc4068e5 <source>` exits 0. The extracted
+One Swift host has typed-view dispatch, and vxrn has typed-view generation
+and `peach_register_views`. Tarballs and extracted packages:
+`/Users/n8/.local/share/one-realapps-s29251/artifacts/`.
+One tarball SHA256: `1c6e2c97a3b7d52e85d447f24d604af49e9ab09b7fdd54e014c3d66882153309`.
+Vxrn tarball SHA256: `8b564490e41401770a3dfae180eaea1aa31f3672f49fa261e2236e9e0ca7de47`.
+
+| app | clean install | production web build/runtime | iOS 27 | Android 37 |
+| --- | --- | --- | --- | --- |
+| Basic | RAN PASS | RAN PASS: four original routes; stack/tabs/drawer state retained; zero page errors | RAN build/install/launch, home and navigation PASS; widget renderer acceptance open | not run |
+| Takeout Free | RAN PASS | RAN PASS: original Login; zero page errors | not run | not run |
+| Contrast mobile | RAN PASS | RAN PASS: onboarding; zero page errors | not run | not run |
+
+RAN: iOS device `48F9EBA8-DD49-44B6-A9FD-92EADFD895CA`, standard
+iPhone 17 Pro 2, iOS 27.0. Basic home and three navigator probes pass.
+Widget calls serialize, but native renderer proof fails `home-jsx-seed`.
+The screenshot shows Maps/Calendar in the inspected Home slot; OneBasic is
+absent from the widget gallery. SpringBoard logs report no descriptor for
+`com.natew.oneexample.widgets` / `OneBasicStatus`, despite the embedded
+extension. The registration cause is unverified; no widget pass is claimed.
+
+Per-cell logs, screenshots, exact source revisions and installed package
+identities: `/Users/n8/.local/share/one-realapps-s29251/run/matrix.json`.
+The web phase exits 1 while native API receipts remain missing, even though
+all three web build/runtime cells pass. Earlier full-pass receipts below are
+historical and do not accept this canary.
+
 ## retained proof and scope
 
 Final receipts (local run output, not committed) contain API result values, exact source locations, package graph negatives/positives, native build output, routing receipts and captured preview hierarchies. [Earlier failures](../tests/native-features/evidence/realapps/diagnostic/negative-history.md) retain the original beta.168.1 matrix and complete failure excerpts. Temporary full build logs and install roots are named in [matrix.json](../tests/native-features/evidence/realapps/final/matrix.json).

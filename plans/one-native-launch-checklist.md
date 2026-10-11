@@ -39,7 +39,13 @@ Tick a box only with a receipt (SHA, run id or evidence path).
   `~/.team-machine/handoffs/one-swift-bridge-full.md`.
 - [ ] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
   Basic, Takeout Free, Contrast mobile on iOS 27 and Android 37 plus web.
-  Last full pass was canary `2.0.0-0.canary.1791082782289`.
+  RAN 2026-10-10 (s29251, `t-mv30f95t-sv90`): tarball-verified canary
+  `2.0.0-0.canary.1791667902490`, source `b6364ccff` containing typed Swift
+  views `bdc4068e5`; all three clean installs and production web build/runtime
+  cells pass. Basic iOS 27 build, home and navigation pass; widget renderer
+  acceptance and remaining native cells open. Per-cell receipts:
+  `/Users/n8/.local/share/one-realapps-s29251/run/matrix.json`.
+  Last full pass remains canary `2.0.0-0.canary.1791082782289`.
 - [x] `bun create one` starters install and run from the published beta, not a
   workspace link. RAN 2026-10-10: Basic and Takeout scaffolded from published
   `create-vxrn@2.0.0-beta.362.1` (the version `one@beta` depends on) in
