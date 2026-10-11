@@ -37,15 +37,16 @@ Tick a box only with a receipt (SHA, run id or evidence path).
   Source: One `1e0721a0f`, Contrast `7748c739e2` and `fe6df240a6`.
   Canary tarball verified by owner. Receipts:
   `~/.team-machine/handoffs/one-swift-bridge-full.md`.
-- [ ] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
+- [x] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
   Basic, Takeout Free, Contrast mobile on iOS 27 and Android 37 plus web.
-  RAN 2026-10-10 (s29251, `t-mv30f95t-sv90`): tarball-verified canary
-  `2.0.0-0.canary.1791667902490`, source `b6364ccff` containing typed Swift
-  views `bdc4068e5`; all three clean installs and production web build/runtime
-  cells pass. Basic iOS 27 build, home and navigation pass; widget renderer
-  acceptance and remaining native cells open. Per-cell receipts:
-  `/Users/n8/.local/share/one-realapps-s29251/run/matrix.json`.
-  Last full pass remains canary `2.0.0-0.canary.1791082782289`.
+  RAN 2026-10-10/11 (s29251, `t-mv30f95t-sv90`): nine build/runtime/navigation
+  cells pass on tarball-verified `2.0.0-0.canary.1791667902490`, source
+  `b6364ccff` containing typed Swift views `bdc4068e5`. Fresh Basic scaffold
+  `1c6fbae44` passes native widget/activity/Island surfaces after root namespace
+  repair. Every imported API has applicable-platform evidence; ArrangementView
+  27.1 rendering remains the existing pool gap, strict 27.0 guard passes.
+  Per-cell RAN receipts: `/Users/n8/.local/share/one-realapps-s29251/final/`.
+  Pin resolved at run start; later canaries are not accepted by these receipts.
 - [x] `bun create one` starters install and run from the published beta, not a
   workspace link. RAN 2026-10-10: Basic and Takeout scaffolded from published
   `create-vxrn@2.0.0-beta.362.1` (the version `one@beta` depends on) in

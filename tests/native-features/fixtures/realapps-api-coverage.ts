@@ -29,6 +29,10 @@ export const iosExternalAcceptanceAPIs = [
 
 export function modeAPIs(mode: string, platform: string): string[] {
   const common: Record<string, string[]> = {
+    platform: [
+      'One.platform',
+      platform === 'ios' ? 'One.iOS.WebView' : 'One.Android.Icon',
+    ],
     services: [
       'One.AppInfo',
       'One.Storage',

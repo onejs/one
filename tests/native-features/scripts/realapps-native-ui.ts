@@ -284,6 +284,18 @@ if (values.mode === 'home') {
     tap('realapps-api-ios-toolbar')
     flow += '- tapOn: "realapps API bar hit"\n- tapOn: "Menu"\n- tapOn: "Menu hit"\n'
   }
+} else if (values.mode === 'platform') {
+  tap('realapps-open-api')
+  tap('realapps-api-section-platform')
+  visible(`Native platform: ${values.platform}`)
+  if (values.platform === 'ios') {
+    visible('WebView bridge probe')
+    flow += '- tapOn: "WebView bridge probe"\n'
+    visible('WebView message passed')
+  } else {
+    visible('Android icon mounted')
+    flow += '- assertVisible:\n    id: realapps-platform-icon\n'
+  }
 } else if (values.mode === 'widgets') {
   if (values.platform !== 'ios') throw new Error('Widgets require iOS')
   tap('realapps-open-api')

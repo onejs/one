@@ -473,7 +473,7 @@ async function web(name: string, app: AppResult) {
   }
 }
 const requiredPlatforms = (api: string) =>
-  api.startsWith('One.iOS.')
+  api.startsWith('One.iOS.') || api === 'One.Widgets' || api === 'One.LiveActivities'
     ? ['ios']
     : api.startsWith('One.Android.')
       ? ['android']
@@ -940,6 +940,7 @@ for (const name of appNames) {
             'services',
             'external',
             'ui',
+            'platform',
             'menus',
             'ios',
             'ios-unavailable',
