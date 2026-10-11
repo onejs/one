@@ -50,6 +50,7 @@ const value = (name: string, fallback = '') => {
 const simulatorId = value('--simulator-id')
 const iphone16SimulatorId = value('--iphone16-simulator-id')
 const iphone17ProSimulatorId = value('--iphone17-pro-simulator-id')
+const iphoneProMaxSimulatorId = value('--iphone-pro-max-simulator-id')
 const bundleId = value('--bundle-id')
 const artifactDir = value('--artifact-dir', '/tmp/one-native-conformance')
 const timeout = value('--timeout', '15000')
@@ -59,14 +60,26 @@ if (device !== 'iphone' && device !== 'ipad' && device !== 'duo')
   throw new Error('--device must be iphone, ipad, or duo')
 const suites: readonly (readonly [string, string])[] =
   device === 'iphone'
-    ? iphoneSuites.map(([suite, calibratedDevice]) => [
-        suite,
-        calibratedDevice === 'iphone16' ? iphone16SimulatorId : iphone17ProSimulatorId,
-      ] as const)
+    ? [
+        ...iphoneSuites.map(
+          ([suite, calibratedDevice]) =>
+            [
+              suite,
+              calibratedDevice === 'iphone16'
+                ? iphone16SimulatorId
+                : iphone17ProSimulatorId,
+            ] as const
+        ),
+        // adaptive-live needs a Pro Max: only it flips horizontal size class on
+        // rotation. omitted unless a Pro Max simulator id is passed.
+        ...(iphoneProMaxSimulatorId
+          ? [['adaptive-live', iphoneProMaxSimulatorId] as const]
+          : []),
+      ]
     : [[device === 'ipad' ? 'tab-sidebar' : 'arrangement', simulatorId] as const]
 if (!bundleId || suites.some(([, id]) => !id)) {
   console.log(
-    'Usage: bun one-native-conformance-all.ts --bundle-id <ID> (--iphone16-simulator-id <UUID> --iphone17-pro-simulator-id <UUID> | --device ipad|duo --simulator-id <UUID>) [--js-location HOST:PORT] [--artifact-dir <PATH>] [--timeout <MS>]'
+    'Usage: bun one-native-conformance-all.ts --bundle-id <ID> (--iphone16-simulator-id <UUID> --iphone17-pro-simulator-id <UUID> [--iphone-pro-max-simulator-id <UUID>] | --device ipad|duo --simulator-id <UUID>) [--js-location HOST:PORT] [--artifact-dir <PATH>] [--timeout <MS>]'
   )
   process.exit(1)
 }

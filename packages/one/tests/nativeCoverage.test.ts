@@ -28,9 +28,9 @@ const partialGaps: Record<string, string> = {
   'UI.ReservedRegions':
     'iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven',
   useSizeClass:
-    'iOS flat getter/hook agreement and Android live portrait/landscape changes proven; iOS live trait changes unproven',
+    'iOS flat getter/hook agreement, iOS live Pro Max portrait/landscape hook re-render both directions and Android live portrait/landscape changes proven; iPad split-view trait changes unproven',
   getSizeClass:
-    'iOS flat refreshed reads and Android portrait/landscape reads proven; iOS live trait changes unproven',
+    'iOS flat refreshed reads, iOS live Pro Max rotation refreshed reads both directions and Android portrait/landscape reads proven; iPad split-view trait changes unproven',
   useHinge:
     'iOS and Android flat null proven; Android folding postures and sensor angles proven on the 7.6in fold-in; iOS hardware unproven',
   getHinge:

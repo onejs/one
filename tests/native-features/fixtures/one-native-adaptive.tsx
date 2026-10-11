@@ -41,6 +41,7 @@ export default function OneNativeAdaptiveFixture() {
       <Text testID="adaptive-lifecycle" style={{ height: 40, lineHeight: 20 }}>
         {JSON.stringify({ ...lifecycle, effectPasses: __DEV__ ? 2 : 1 })}
       </Text>
+      {Platform.OS === 'ios' && <OrientationControls />}
       <Pressable
         testID="adaptive-toggle"
         onPress={() => setMounted(!mounted)}
@@ -69,6 +70,43 @@ export default function OneNativeAdaptiveFixture() {
           <Reading layout={layout} setLifecycle={setLifecycle} />
         </One.UI.ReservedRegions.Provider>
       )}
+    </View>
+  )
+}
+
+// rotates the scene behind the provider so the adaptive-live suite can flip
+// the trait collection: portrait is compact/regular and landscapeLeft is
+// regular/compact on a Pro Max. sits outside the provider so mount toggles
+// never move it.
+function OrientationControls() {
+  const [orientation, setOrientation] = useState('pending')
+  const [status, setStatus] = useState('idle')
+  const lock = async (value: 'landscapeLeft' | 'portrait') => {
+    try {
+      setStatus(`locking-${value}`)
+      setOrientation(String(await One.ScreenOrientation.lock(value)))
+      setStatus(`locked-${value}`)
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : String(error))
+    }
+  }
+  return (
+    <View>
+      <Text testID="adaptive-orientation">{`${orientation}/${status}`}</Text>
+      <Pressable
+        testID="adaptive-orientation-landscape"
+        onPress={() => lock('landscapeLeft')}
+        style={{ padding: 12 }}
+      >
+        <Text>Lock landscape</Text>
+      </Pressable>
+      <Pressable
+        testID="adaptive-orientation-portrait"
+        onPress={() => lock('portrait')}
+        style={{ padding: 12 }}
+      >
+        <Text>Lock portrait</Text>
+      </Pressable>
     </View>
   )
 }

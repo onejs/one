@@ -140,24 +140,53 @@ public final class OneHingeMonitor: NSObject {
   }
 }
 
+// feeds window trait changes to HybridOneAdaptive: a zero-size view pinned to
+// the app window whose traitCollectionDidChange reports rotation, split-view
+// and multitasking trait changes. neither scene trait-change registration
+// nor window-bounds kvo fires on ios 27 (both probed silent across rotation),
+// so the view observes the pipeline uikit itself delivers.
+private final class OneSizeClassObserverView: UIView {
+  var onTraitChange: (() -> Void)?
+
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    isUserInteractionEnabled = false
+    backgroundColor = .clear
+  }
+
+  @available(*, unavailable)
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    super.traitCollectionDidChange(previousTraitCollection)
+    onTraitChange?()
+  }
+}
+
 // window size class and hinge state, the ios half of OneAdaptive. size
-// classes come from the app window scene's trait collection with live
-// trait-change registration; the first listener starts that monitor and the
-// last removal stops it, so the first event can never race the subscription.
+// classes come from the app window scene's trait collection, watched live by
+// a zero-size observer view pinned to the app window; the first listener
+// starts that monitor and the last removal stops it, so the first event can
+// never race the subscription.
 // hinge state comes from OneHingeMonitor (UIHingeInteraction, ios 27.1+).
 final class HybridOneAdaptive: HybridOneAdaptiveSpec {
   private let lock = NSLock()
   private var sizeClassListeners: [Int: (SizeClass) -> Void] = [:]
   private var nextListenerId = 0
-  private var traitRegistration: (any UITraitChangeRegistration)?
-  private weak var observedScene: UIWindowScene?
+  private var observerView: OneSizeClassObserverView?
+  private weak var observedWindow: UIWindow?
+  // main-only: every access hops through emitCurrentSizeClass on the main
+  // thread, so no lock guards it.
+  private var lastEmitted: SizeClass?
   private var notificationsRegistered = false
   private var isObserving = false
 
   @MainActor
   private func currentScene() -> UIWindowScene? {
     let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
-    return oneAppWindow(scene: observedScene, window: nil)?.windowScene ??
+    return oneAppWindow(scene: observedWindow?.windowScene, window: observedWindow)?.windowScene ??
       scenes.first(where: { $0.activationState == .foregroundActive }) ?? scenes.first
   }
 
@@ -249,6 +278,25 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
     }
   }
 
+  // re-reads the scene traits and emits only when they differ from the last
+  // emission, so window-bounds movement without a trait change (a rotation
+  // mid-animation, display zoom) never reaches js.
+  @MainActor
+  private func emitCurrentSizeClass() {
+    let value = readSizeClass()
+    if let lastEmitted,
+      lastEmitted.horizontal == value.horizontal && lastEmitted.vertical == value.vertical {
+      return
+    }
+    lastEmitted = value
+    emitSizeClass(value)
+  }
+
+  private func windowTraitsChanged() {
+    // traitCollectionDidChange always arrives on the main thread.
+    MainActor.assumeIsolated { emitCurrentSizeClass() }
+  }
+
   @MainActor
   private func deliverCurrentSizeClass(to id: Int) {
     lock.lock()
@@ -303,24 +351,19 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
 
   @MainActor
   private func attachListenersIfNeeded() {
-    let scene = currentScene()
-    if observedScene !== scene {
-      if let registration = traitRegistration, let oldScene = observedScene {
-        oldScene.unregisterForTraitChanges(registration)
+    let window = oneAppWindow(scene: observedWindow?.windowScene, window: observedWindow)
+    if observedWindow !== window {
+      observerView?.removeFromSuperview()
+      observerView = nil
+      observedWindow = window
+      lastEmitted = nil
+      if let window {
+        let view = OneSizeClassObserverView()
+        view.onTraitChange = { [weak self] in self?.windowTraitsChanged() }
+        window.addSubview(view)
+        observerView = view
       }
-      traitRegistration = nil
-      observedScene = scene
-      if let scene {
-        traitRegistration = scene.registerForTraitChanges([UITraitHorizontalSizeClass.self, UITraitVerticalSizeClass.self]) { [weak self] (s: UIWindowScene, _) in
-          guard let self = self else { return }
-          let value = SizeClass(
-            horizontal: self.sizeClassValue(s.traitCollection.horizontalSizeClass),
-            vertical: self.sizeClassValue(s.traitCollection.verticalSizeClass)
-          )
-          self.emitSizeClass(value)
-        }
-      }
-      emitSizeClass(readSizeClass())
+      emitCurrentSizeClass()
     }
   }
 
@@ -334,11 +377,10 @@ final class HybridOneAdaptive: HybridOneAdaptiveSpec {
       NotificationCenter.default.removeObserver(self)
       notificationsRegistered = false
     }
-    if let reg = traitRegistration, let scene = observedScene {
-      scene.unregisterForTraitChanges(reg)
-    }
-    traitRegistration = nil
-    observedScene = nil
+    observerView?.removeFromSuperview()
+    observerView = nil
+    observedWindow = nil
+    lastEmitted = nil
   }
 }
 

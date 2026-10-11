@@ -142,6 +142,7 @@ const suites = [
   'ui-image',
   'ui-icon',
   'adaptive-flat',
+  'adaptive-live',
   'ui-effects',
   'zoom',
   'gpu',
@@ -928,6 +929,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'ui-text-input': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-text-input-field')),
   'ui-effects': (nodes: Node[]) => Boolean(id(nodes, 'effects-reading')),
   'adaptive-flat': (nodes: Node[]) => Boolean(id(nodes, 'adaptive-fixture')),
+  'adaptive-live': (nodes: Node[]) => Boolean(id(nodes, 'adaptive-fixture')),
   'ui-icon': (nodes: Node[]) => Boolean(id(nodes, 'one-ui-icon-invalid')),
   'ui-image': (nodes: Node[]) => Boolean(id(nodes, 'one-native-image-switch')),
   gpu: gpuLoaded,
@@ -1044,6 +1046,7 @@ const suiteHome: Record<Suite, string> = {
   'ui-image': 'nav-one-native-image',
   'ui-effects': 'nav-one-native-effects',
   'adaptive-flat': 'nav-one-native-adaptive',
+  'adaptive-live': 'nav-one-native-adaptive',
   'ui-icon': 'nav-one-ui-icon',
   gpu: 'nav-one-native-gpu',
   navigation: 'nav-one-native-navigation',
@@ -7634,6 +7637,84 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       (nodes) => flat(nodes, 280, 300, 1) && mounted(nodes, 3, 2)
     )
     screenshot('adaptive-flat-restored.png', nodes)
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'adaptive-live') {
+    // calibrated for an iPhone Pro Max on iOS 27: rotating the scene flips the
+    // horizontal size class live (portrait compact/regular, landscapeLeft
+    // regular/compact) through the native trait-change registration. standard
+    // iPhones keep a compact width in landscape, so this suite fails there by
+    // design; run that failure as the negative control.
+    type Reading = {
+      size: { horizontal: string; vertical: string }
+      reading: {
+        size: { horizontal: string; vertical: string }
+        reads: number
+      } | null
+      error: string
+    }
+    const reading = (nodes: Node[]): Reading | null => {
+      const label = id(nodes, 'adaptive-reading')?.AXLabel
+      return label ? JSON.parse(label) : null
+    }
+    const locked = (nodes: Node[], orientation: string) =>
+      id(nodes, 'adaptive-orientation')?.AXLabel?.endsWith(`locked-${orientation}`) ??
+      false
+    const hookFlip = (nodes: Node[], horizontal: string, vertical: string) => {
+      const value = reading(nodes)
+      return Boolean(
+        value &&
+          !value.error &&
+          value.size.horizontal === horizontal &&
+          value.size.vertical === vertical
+      )
+    }
+    const agree = (
+      nodes: Node[],
+      horizontal: string,
+      vertical: string,
+      reads: number
+    ) => {
+      const value = reading(nodes)
+      if (!value || value.error || !value.reading || value.reading.reads !== reads)
+        return false
+      return (
+        value.size.horizontal === horizontal &&
+        value.size.vertical === vertical &&
+        value.reading.size.horizontal === horizontal &&
+        value.reading.size.vertical === vertical
+      )
+    }
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-adaptive')
+    await wait('portrait hook reads compact regular', (nodes) =>
+      hookFlip(nodes, 'compact', 'regular')
+    )
+    tap({ id: 'adaptive-refresh' })
+    const portrait = await wait('portrait getter agrees with the hook', (nodes) =>
+      agree(nodes, 'compact', 'regular', 2)
+    )
+    screenshot('adaptive-live-portrait.png', portrait)
+    tap({ id: 'adaptive-orientation-landscape' })
+    await wait('landscape hook re-renders regular compact', (nodes) =>
+      hookFlip(nodes, 'regular', 'compact') && locked(nodes, 'landscapeLeft')
+    )
+    tap({ id: 'adaptive-refresh' })
+    const landscape = await wait('landscape getter agrees with the hook', (nodes) =>
+      agree(nodes, 'regular', 'compact', 3)
+    )
+    screenshot('adaptive-live-landscape.png', landscape)
+    tap({ id: 'adaptive-orientation-portrait' })
+    await wait('portrait hook re-renders compact regular', (nodes) =>
+      hookFlip(nodes, 'compact', 'regular') && locked(nodes, 'portrait')
+    )
+    tap({ id: 'adaptive-refresh' })
+    const restored = await wait('restored getter agrees with the hook', (nodes) =>
+      agree(nodes, 'compact', 'regular', 4)
+    )
+    screenshot('adaptive-live-portrait-restored.png', restored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

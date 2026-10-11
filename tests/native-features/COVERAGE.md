@@ -30,7 +30,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.MapServices` | map-services | map-services, native-modules:unavailable | missing |  |
 | `One.AppTracking` | app-tracking | native-modules:unavailable | missing |  |
 | `One.AppIcon` | app-icon | app-icon, native-modules:unavailable | missing |  |
-| `One.ScreenOrientation` | screen-orientation, navigation-split-view | screen-orientation, native-modules:unavailable | missing |  |
+| `One.ScreenOrientation` | screen-orientation, adaptive-flat, adaptive-live, navigation-split-view | adaptive, screen-orientation, native-modules:unavailable | missing |  |
 | `One.ScreenCapture` | screen-capture, view-snapshot | screen-capture, native-modules:unavailable | missing |  |
 | `One.Purchases` | purchases | native-modules:unavailable | missing |  |
 | `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | native-modules | OneNativeBehavioralLibraryCase |  |
@@ -225,7 +225,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.Fonts` | fonts | fonts | OneNativeBehavioralLibraryCase |  |
 | `One.UI.SafeArea` | safe-area | safe-area | OneNativeAdaptiveLibraryCase, OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |
 | `One.UI.TextInput` | ui-text-input | ui-text-input | OneNativeTextInputLibraryCase |  |
-| `One.UI.ReservedRegions` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven |
+| `One.UI.ReservedRegions` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven |
 | `One.Notifications` | notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share, clipboard | OneNativeBehavioralLibraryCase |  |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
@@ -239,15 +239,15 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
 | `One.Speech` | speech | speech | OneNativeBehavioralLibraryCase |  |
 | `One.Updates` | updates | updates | OneNativeBehavioralLibraryCase |  |
-| `useSizeClass` | adaptive-flat, navigation-split-view | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS flat getter/hook agreement and Android live portrait/landscape changes proven; iOS live trait changes unproven |
-| `getSizeClass` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS flat refreshed reads and Android portrait/landscape reads proven; iOS live trait changes unproven |
-| `useHinge` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat null proven; Android folding postures and sensor angles proven on the 7.6in fold-in; iOS hardware unproven |
-| `getHinge` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat null reads proven; Android folding posture reads proven on the 7.6in fold-in; iOS hardware unproven |
-| `onHingeChange` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android initial null callbacks, cleanup calls and two remounts proven; Android folding hardware events and post-removal suppression proven on the 7.6in fold-in; iOS hardware events unproven |
-| `useReservedRegions` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat empty active/all regions proven; Android folding nonempty active/all equality proven; inactive filtering unproven (no inactive region on the 7.6in emulator) |
-| `useReservedRegionsReady` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android first native reading and two remounts proven; Android folding first reading and folded remount proven |
-| `useWindowSegments` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
-| `useSpanning` | adaptive-flat | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
+| `useSizeClass` | adaptive-flat, adaptive-live, navigation-split-view | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS flat getter/hook agreement, iOS live Pro Max portrait/landscape hook re-render both directions and Android live portrait/landscape changes proven; iPad split-view trait changes unproven |
+| `getSizeClass` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS flat refreshed reads, iOS live Pro Max rotation refreshed reads both directions and Android portrait/landscape reads proven; iPad split-view trait changes unproven |
+| `useHinge` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat null proven; Android folding postures and sensor angles proven on the 7.6in fold-in; iOS hardware unproven |
+| `getHinge` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat null reads proven; Android folding posture reads proven on the 7.6in fold-in; iOS hardware unproven |
+| `onHingeChange` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android initial null callbacks, cleanup calls and two remounts proven; Android folding hardware events and post-removal suppression proven on the 7.6in fold-in; iOS hardware events unproven |
+| `useReservedRegions` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat empty active/all regions proven; Android folding nonempty active/all equality proven; inactive filtering unproven (no inactive region on the 7.6in emulator) |
+| `useReservedRegionsReady` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android first native reading and two remounts proven; Android folding first reading and folded remount proven |
+| `useWindowSegments` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
+| `useSpanning` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
 | `useNativeState` | state, ui-text-input, e2e:one-native-animation | state | missing |  |
 | `useFonts` | fonts | fonts | missing |  |
 | `useNetworkState` | network | network | missing |  |
