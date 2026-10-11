@@ -21,6 +21,7 @@ import type {
   ToolbarItemGroupProps,
   ToolbarItemProps,
   ToolbarProps,
+  ToolbarContentProps,
   ToolbarSpacerProps,
 } from './generated/containerTypes'
 
@@ -33,9 +34,17 @@ const TOOLBAR_CHILDREN =
 
 // the three markers are read by Swift.Toolbar and Swift.NavigationStack and never render
 // where they are written, exactly like Swift.Tab inside Swift.Tabs.
-export function Toolbar(_props: ToolbarProps): never {
-  throw new Error('Swift.Toolbar must be a direct child of Swift.NavigationStack or Swift.Tabs')
+function ToolbarMarker(_props: ToolbarProps): never {
+  throw new Error(
+    'Swift.Toolbar must be a direct child of Swift.NavigationStack or Swift.Tabs, or a NavigationSplitView column'
+  )
 }
+
+export function ToolbarContent(_props: ToolbarContentProps): never {
+  throw new Error('Swift.Toolbar.Content must be a direct child of Swift.Toolbar')
+}
+
+export const Toolbar = Object.assign(ToolbarMarker, { Content: ToolbarContent })
 
 export function ToolbarItem(_props: ToolbarItemProps): never {
   throw new Error('Swift.ToolbarItem must be a direct child of Swift.Toolbar')
@@ -144,7 +153,17 @@ export function ToolbarNode({
   children: ReactNode
   iosVersion: number
 }) {
-  const items = Children.toArray(children).map((child, index) => {
+  let contentCount = 0
+  const toolbarItems = Children.toArray(children).flatMap((child) => {
+    if (!isValidElement(child) || child.type !== ToolbarContent) return [child]
+    contentCount += 1
+    if (contentCount > 1) throw new Error('Swift.Toolbar accepts one Swift.Toolbar.Content')
+    const content = (child as ReactElement<ToolbarContentProps>).props.children
+    if (Children.count(content) === 0)
+      throw new Error('Swift.Toolbar.Content needs children')
+    return Children.toArray(content)
+  })
+  const items = toolbarItems.map((child, index) => {
     if (!isValidElement(child))
       throw new Error(`Swift.Toolbar children must be elements: ${TOOLBAR_CHILDREN}`)
     const element = child as { type: unknown }

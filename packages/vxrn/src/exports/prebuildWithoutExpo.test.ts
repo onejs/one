@@ -2095,6 +2095,28 @@ describe('app kotlin source discovery', () => {
     expect(readFileSync(join(generated, ids[0], 'Counter.kt'), 'utf8')).toBe(source)
   }, 180000)
 
+  it('compiles declared workspace sources with the bundle root source ids', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-workspace-'))
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-workspace-dest-'))
+    const project = join(root, 'project')
+    mkdirSync(join(project, 'native'), { recursive: true })
+    mkdirSync(join(project, 'vendor'), { recursive: true })
+    writeFileSync(join(root, 'package.json'), JSON.stringify({ workspaces: ['project'] }))
+    writeFileSync(join(project, 'package.json'), '{"name":"payload"}')
+    writeFileSync(join(project, 'vendor', 'package.json'), '{"name":"vendor"}')
+    writeFileSync(join(project, 'vendor', 'Fixture.kt'), 'class Fixture')
+    const source = 'import dev.onejs.one.source.OneModule\nobject Counter : OneModule { fun value(): Int = 42 }'
+    const file = join(project, 'native', 'Counter.kt')
+    writeFileSync(file, source)
+    await generateKotlinSources({ root, dest })
+    const { kotlinSourceId } = await import('../utils/nativeSourceContract')
+    const output = join(dest, 'app/src/main/java/one/source')
+    const id = kotlinSourceId(root, file)
+    expect(readdirSync(output)).toEqual([id])
+    expect(readFileSync(join(output, id, 'Counter.kt'), 'utf8')).toBe(source)
+    expect(readFileSync(join(output, id, `OneNativeSource_${id}.kt`), 'utf8')).toContain(`${id}.Counter`)
+  })
+
   it('skips evidence directories holding preserved proof sources', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-evidence-'))
     const dest = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-kotlin-evidence-dest-'))

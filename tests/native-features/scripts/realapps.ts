@@ -473,7 +473,7 @@ async function web(name: string, app: AppResult) {
   }
 }
 const requiredPlatforms = (api: string) =>
-  api.startsWith('One.iOS.')
+  api.startsWith('One.iOS.') || api === 'One.Widgets' || api === 'One.LiveActivities'
     ? ['ios']
     : api.startsWith('One.Android.')
       ? ['android']
@@ -627,26 +627,24 @@ for (const name of appNames) {
   if (!app.cwd) {
     const target = join(runDir, 'apps', name)
     if (name === 'contrast-mobile') {
-      const worktree = join(
-        homedir(),
-        '.worktrees',
-        `contrast-realapps-${basename(runDir)}`
-      )
       command(['git', 'fetch', 'origin'], values.contrast!)
-      command(
-        [
-          'tm',
-          'worktree',
-          'add',
-          `realapps-${basename(runDir)}`,
-          '--project',
-          values.contrast!,
-          '--base',
-          'origin/main',
-          '--detach',
-          '--no-hydrate',
-        ],
-        values.contrast!
+      const { path: worktree } = JSON.parse(
+        command(
+          [
+            'tm',
+            'worktree',
+            'add',
+            `realapps-${basename(runDir)}`,
+            '--project',
+            values.contrast!,
+            '--base',
+            'origin/main',
+            '--detach',
+            '--no-hydrate',
+            '--json',
+          ],
+          values.contrast!
+        )
       )
       Bun.spawn(
         ['bash', join(homedir(), 'team-machine/scripts/check-worktree-staleness.sh')],
@@ -672,7 +670,9 @@ for (const name of appNames) {
         for (const [pkg, version] of Object.entries(json[group] ?? {})) {
           if (
             typeof version === 'string' &&
-            (version.startsWith('workspace:') || pkg === 'vxrn' || pkg.startsWith('@vxrn/'))
+            (version.startsWith('workspace:') ||
+              pkg === 'vxrn' ||
+              pkg.startsWith('@vxrn/'))
           )
             json[group][pkg] = state.version
         }
@@ -940,6 +940,7 @@ for (const name of appNames) {
             'services',
             'external',
             'ui',
+            'platform',
             'menus',
             'ios',
             'ios-unavailable',

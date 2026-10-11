@@ -1,4 +1,4 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GroupProps, GroupBoxProps, ViewThatFitsProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarSpacerProps, ZStackProps } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GroupProps, GroupBoxProps, ViewThatFitsProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -44,7 +44,12 @@ declare function SwipeActionsFn(_props: SwipeActionsProps): never;
 declare function Page(_props: PageProps): never;
 declare function Pager(_props: PagerProps): never;
 declare function NavigationStack(_props: NavigationStackProps): never;
-declare function Toolbar(_props: ToolbarProps): never;
+declare function NavigationSplitViewFn(_props: NavigationSplitViewProps): never;
+declare function NavigationSplitViewSidebar(_props: NavigationSplitViewColumnProps): never;
+declare function NavigationSplitViewContent(_props: NavigationSplitViewColumnProps): never;
+declare function NavigationSplitViewDetail(_props: NavigationSplitViewColumnProps): never;
+declare function ToolbarMarker(_props: ToolbarProps): never;
+declare function ToolbarContent(_props: ToolbarContentProps): never;
 declare function ToolbarItem(_props: ToolbarItemProps): never;
 declare function ToolbarItemGroup(_props: ToolbarItemGroupProps): never;
 declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
@@ -145,7 +150,14 @@ export declare const Swift: {
     Pager: typeof Pager;
     Page: typeof Page;
     NavigationStack: typeof NavigationStack;
-    Toolbar: typeof Toolbar;
+    NavigationSplitView: typeof NavigationSplitViewFn & {
+        Sidebar: typeof NavigationSplitViewSidebar;
+        Content: typeof NavigationSplitViewContent;
+        Detail: typeof NavigationSplitViewDetail;
+    };
+    Toolbar: typeof ToolbarMarker & {
+        Content: typeof ToolbarContent;
+    };
     ToolbarItem: typeof ToolbarItem;
     ToolbarItemGroup: typeof ToolbarItemGroup;
     ToolbarSpacer: typeof ToolbarSpacer;

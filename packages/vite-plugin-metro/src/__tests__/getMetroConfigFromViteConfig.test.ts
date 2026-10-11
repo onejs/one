@@ -6,10 +6,11 @@ import { resolveConfig } from 'vite'
 import type { ResolverConfigT } from 'metro-config'
 import type { MetroPluginOptions } from '../plugins/metroPlugin'
 import { afterAll, describe, expect, it } from 'vitest'
+import { dedupe } from '../../../vxrn/src/config/getBaseViteConfigOnly'
 import {
   buildMetroConfigInputFromViteConfig,
   getMetroConfigFromViteConfig,
-} from './getMetroConfigFromViteConfig'
+} from '../metro-config/getMetroConfigFromViteConfig'
 
 const tmpDirs: string[] = []
 
@@ -88,7 +89,12 @@ module.exports = ${JSON.stringify(name)};
           `@fixture/${name}`,
           `module.exports=[
 require('@fixture/registry'), require('@fixture/registry/platform'), require('@fixture/native/platform'),
-require('@fixture/registry-extra'), require('plain'), require('./local'), require('@fixture/alias')];`
+require('@fixture/registry-extra'), require('plain'), require('./local'), require('@fixture/alias'), require('escape-string-regexp')];`
+        )
+        writePackage(
+          path.join(directory, 'node_modules/escape-string-regexp'),
+          'escape-string-regexp',
+          `module.exports=${JSON.stringify(name + '-utility')};`
         )
         fs.writeFileSync(
           path.join(directory, 'local.js'),
@@ -127,7 +133,7 @@ require('@fixture/registry-extra'), require('plain'), require('./local'), requir
         {
           root: workspaceRoot,
           configFile: false,
-          resolve: { dedupe: ['@fixture/registry', '@fixture/native', 'plain'] },
+          resolve: { dedupe: [...dedupe, '@fixture/registry', '@fixture/native', 'plain'] },
         },
         'build'
       )
@@ -162,8 +168,8 @@ require('@fixture/registry-extra'), require('plain'), require('./local'), requir
         runInNewContext(bundle.code, observed)
         expect(observed.registrations).toBe(1)
         expect(observed.values).toEqual([
-          ['root', 'export-subpath', platform, 'first', 'root', 'first', 'custom'],
-          ['root', 'export-subpath', platform, 'second', 'root', 'second', 'custom'],
+          ['root', 'export-subpath', platform, 'first', 'root', 'first', 'custom', 'first-utility'],
+          ['root', 'export-subpath', platform, 'second', 'root', 'second', 'custom', 'second-utility'],
         ])
       } finally {
         await server.end()

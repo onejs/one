@@ -276,6 +276,34 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeNavigationSplitView',
+    publicName: 'NavigationSplitView',
+    props: {
+      columnVisibility: 'string',
+      columnVisibilityIsControlled: 'boolean',
+      preferredCompactColumn: 'string',
+      preferredCompactColumnIsControlled: 'boolean',
+    },
+    events: {
+      onNativeNavigationSplitViewColumnVisibilityChange: { visibility: 'string' },
+      onNativeNavigationSplitViewPreferredCompactColumnChange: { column: 'string' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'columns',
+        content: 'OneNativeNavigationSplitViewColumn',
+        cardinality: 'many',
+        key: 'column',
+        layout: 'composed',
+      },
+    ],
+    swiftStyle: true,
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeToolbar',
     publicName: 'Toolbar',
     // a marker: its ToolbarItem children publish into the navigation bar of the
@@ -350,6 +378,31 @@ export const contentComponents = [
     ],
     // SwiftUI proposes the root box and the hand-written slot shadow node writes it back.
     interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeNavigationSplitViewColumn',
+    publicName: null,
+    props: { column: 'string' },
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'toolbars',
+        content: 'OneNativeToolbar',
+        cardinality: 'many',
+        layout: 'composed',
+      },
+      {
+        name: 'content',
+        content: 'OneNativeNavigationStackContent',
+        cardinality: 'one',
+        layout: 'swiftui-proposal-to-yoga',
+        origin: 'local',
+      },
+    ],
+    swiftStyle: true,
+    interfaceOnly: false,
   },
 ] as const
 
@@ -487,7 +540,22 @@ export interface SlotProps extends ViewProps {
 export interface NavigationStackProps extends OneNativeViewProps {
   children: ReactNode
 }
+export type NavigationSplitViewVisibility = 'automatic' | 'all' | 'doubleColumn' | 'detailOnly'
+export type NavigationSplitViewColumn = 'sidebar' | 'content' | 'detail'
+export interface NavigationSplitViewProps extends OneNativeViewProps {
+  columnVisibility?: NavigationSplitViewVisibility
+  onColumnVisibilityChange?: (visibility: NavigationSplitViewVisibility) => void
+  preferredCompactColumn?: NavigationSplitViewColumn
+  onPreferredCompactColumnChange?: (column: NavigationSplitViewColumn) => void
+  children: ReactNode
+}
+export interface NavigationSplitViewColumnProps extends OneNativeViewProps {
+  children: ReactNode
+}
 export interface ToolbarProps extends ViewProps {
+  children: ReactNode
+}
+export interface ToolbarContentProps extends ViewProps {
   children: ReactNode
 }
 export interface ToolbarItemProps extends OneNativeViewProps {

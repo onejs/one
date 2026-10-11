@@ -7476,6 +7476,7 @@
           "ios": 13.4
         }
       ],
+      "callReference": true,
       "sdkName": "hoverEffect"
     },
     {
@@ -7498,6 +7499,7 @@
         }
       ],
       "ios": 17,
+      "callReference": true,
       "sdkName": "hoverEffect"
     },
     {

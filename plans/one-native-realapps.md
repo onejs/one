@@ -1,5 +1,63 @@
 # One native real-app matrix
 
+## 2026-10-10 current-canary rerun
+
+RAN: GO for the requested iOS 27.0, Android 37 and web matrix. Basic,
+Takeout Free and Contrast mobile pass clean installation, production web
+build/runtime and both native build/home/navigation cells. All imported
+native APIs have applicable-platform receipts. The existing ArrangementView
+27.1 rendering pool gap remains; its strict 27.0 unavailable guard passes.
+Owner: s29251, task `t-mv30f95t-sv90`.
+
+RAN: the newest published v2-beta canary resolved when the run began at
+2026-10-10 23:14 UTC was `2.0.0-0.canary.1791667902490`. Packed One and
+vxrn manifests both bind `releaseSourceCommit` to
+`b6364ccfffe74ffbd0d529f5fd5e72f906e5de66`.
+`git merge-base --is-ancestor bdc4068e5 <source>` exits 0. Extracted One
+Swift host typed-view dispatch and vxrn typed generation with
+`peach_register_views` were inspected. These receipts accept that frozen
+artifact, not later canaries published during the run.
+
+One tarball SHA256: `1c6e2c97a3b7d52e85d447f24d604af49e9ab09b7fdd54e014c3d66882153309`.
+Vxrn tarball SHA256: `8b564490e41401770a3dfae180eaea1aa31f3672f49fa261e2236e9e0ca7de47`.
+Extracted packages: `/Users/n8/.local/share/one-realapps-s29251/artifacts/`.
+
+| app/source | production web | iOS 27.0 | Android 37 |
+| --- | --- | --- | --- |
+| Basic `1c6fbae44` fresh scaffold | RAN PASS: four original routes, three navigator state probes, zero page errors | RAN PASS: build/home/navigation, scalar/JSX widgets and activities, expanded Island | RAN PASS: build/home/navigation |
+| Takeout Free `548817989` | RAN PASS: original Login, zero page errors | RAN PASS: build/Login/navigation | RAN PASS: build/Login/navigation |
+| Contrast mobile `6139de3f0` | RAN PASS: onboarding, zero page errors | RAN PASS: build/onboarding/navigation, services, external actions, UI and iOS leaves | RAN PASS: build/onboarding/navigation, services, external actions, UI |
+
+[Per-cell RAN receipts](/Users/n8/.local/share/one-realapps-s29251/final/README.md)
+and [complete matrix](/Users/n8/.local/share/one-realapps-s29251/final/matrix.json)
+retain exact steps, revisions and API evidence paths. Native navigators all
+prove 0 → 1 → another screen → 1. Device: standard iPhone 17 Pro 2,
+`48F9EBA8-DD49-44B6-A9FD-92EADFD895CA`, iOS 27.0; Android oracle
+`emulator-5578`, API 37 arm64 image rev 6.
+
+RAN: Basic scaffold `7778424a8` directly failed Write widget and Start
+activity with undefined old `One.iOS.Widgets` / `One.iOS.LiveActivities`.
+Parent s27975 fixed the scaffold at `origin/v2-beta-starter` `1c6fbae44`
+to use root namespaces. A fresh scaffold of that revision passes all three
+platforms. [Widget/Activity native surface receipt](/Users/n8/.local/share/one-realapps-s29251/final/basic-widget-surfaces.json)
+passes scalar/JSX Home writes, cover-sheet start/update/end, expanded Island,
+omitted-state controls and missing/ended activity falsifiers. Original
+failure screenshots remain under the local run root `original-widget-errors/`.
+Default sim claims suppress chronod; native widget validation restored it
+with `SIM_CLAIM_SUPPRESS=0`, placed the widget after app installation and
+rebooted after reinstall to clear the retained Activities renderer.
+
+RAN: focused Contrast coverage closes three previously missing cases:
+[One.platform and WebView](/Users/n8/.local/share/one-realapps-s29251/final/contrast-ios-platform.json)
+prove native platform identity and HTML button tap → native message;
+[Android platform and Icon](/Users/n8/.local/share/one-realapps-s29251/final/contrast-android-platform.json)
+prove platform identity and native Compose icon mount with nonzero layout.
+Icon layout is not a pixel-fidelity claim. Android credential QA p73218 was
+not exercised. All source installations and full logs remain under
+`/Users/n8/.local/share/one-realapps-s29251/`.
+
+## historical full pass before typed Swift views
+
 RAN: Basic, Takeout Free and Contrast mobile pass clean installation, production web build/runtime, iOS 27.0 simulator build/run and Android 37 emulator build/run on the frozen One/vxrn family `2.0.0-0.canary.1791082782289` (`a4c1ed5a561604bdb05fed10540f8576591274ef`). Every imported One native API has a device receipt on its applicable platform. ArrangementView has a strict availability receipt on 27.0; its 27.1 rendering is the open pool gap described below. This is a call/behavior matrix, with each receipt stating its observed scope.
 
 RAN: `create-vxrn/src/templates.ts` includes two cloneable starters: Basic at `origin/v2-beta-starter` and Takeout Free on its external main. Takeout Production is a commercial external link, not an included checkout. Testflight is an optional diagnostic example, outside the three-app launch matrix. The runner archives the actual Basic scaffold branch, rather than taking the changing beta checkout as its source.
@@ -92,7 +150,7 @@ Prerequisites: Bun/Node, Xcode iOS27 SDK, CocoaPods matching the lock, JDK17 and
 
 ```sh
 bun tests/native-features/scripts/realapps.ts \
-  --version 2.0.0-0.canary.1791082782289 \
+  --version 2.0.0-0.canary.1791667902490 \
   --ios-sim <standard-iOS27-UDID> --android <emulator-serial>
 ```
 

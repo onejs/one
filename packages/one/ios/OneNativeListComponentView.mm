@@ -26,6 +26,12 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeListEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
     };
+    _listView.onSelectionChange = ^(NSString *selection) {
+      OneNativeListComponentView *strongSelf = weakSelf;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const OneNativeListEventEmitter>(strongSelf->_eventEmitter);
+      emitter->onNativeListSelectionChange({.selection = std::string(selection.UTF8String)});
+    };
     self.container = _listView;
     self.contentView = _listView;
   }
@@ -35,7 +41,9 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeListProps>(props);
   [_listView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
-  [_listView configureWithListStyle:RCTNSStringFromString(next.listStyle)];
+  [_listView configureWithListStyle:RCTNSStringFromString(next.listStyle)
+    selection:RCTNSStringFromString(next.selection)
+    selectionIsControlled:next.selectionIsControlled];
   [super updateProps:props oldProps:oldProps];
 }
 

@@ -163,7 +163,8 @@ export async function create(args: { template?: string; name?: string }) {
     }
     const found = await detectPackageManager()
 
-    const allFound = Object.keys(found) as PackageManagerName[]
+    // found maps every manager to whether it is installed; count only the installed ones
+    const allFound = (Object.keys(found) as PackageManagerName[]).filter((x) => found[x])
 
     if (allFound.length === 1) {
       return allFound[0]
@@ -173,9 +174,7 @@ export async function create(args: { template?: string; name?: string }) {
       name: 'packageManager',
       type: 'select',
       message: `Package Manager:`,
-      choices: allFound
-        .filter((x) => found[x])
-        .map((name) => ({
+      choices: allFound.map((name) => ({
           title: name,
           value: name,
         })),

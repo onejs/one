@@ -37,11 +37,29 @@ Tick a box only with a receipt (SHA, run id or evidence path).
   Source: One `1e0721a0f`, Contrast `7748c739e2` and `fe6df240a6`.
   Canary tarball verified by owner. Receipts:
   `~/.team-machine/handoffs/one-swift-bridge-full.md`.
-- [ ] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
+- [x] real-app matrix (`one-native-realapps.md`) rerun on the current canary:
   Basic, Takeout Free, Contrast mobile on iOS 27 and Android 37 plus web.
-  Last full pass was canary `2.0.0-0.canary.1791082782289`.
-- [ ] `bun create one` starters install and run from the published beta, not a
-  workspace link.
+  RAN 2026-10-10/11 (s29251, `t-mv30f95t-sv90`): nine build/runtime cells and all six native navigation
+  cells pass on tarball-verified `2.0.0-0.canary.1791667902490`, source
+  `b6364ccff` containing typed Swift views `bdc4068e5`. Fresh Basic scaffold
+  `1c6fbae44` passes native widget/activity/Island surfaces after root namespace
+  repair. Every imported API has applicable-platform evidence; ArrangementView
+  27.1 rendering remains the existing pool gap, strict 27.0 guard passes.
+  Per-cell RAN receipts: `/Users/n8/.local/share/one-realapps-s29251/final/`.
+  Pin resolved at run start; later canaries are not accepted by these receipts.
+- [x] `npx one` starters install and run from the published beta, not a
+  workspace link. RAN 2026-10-10: Basic and Takeout scaffolded from published
+  `create-vxrn@2.0.0-beta.362.1` (the version `one@beta` depends on) in
+  `/tmp/one-starters-beta`, outside every repo. Basic pins `one`
+  `2.0.0-beta.362.1` with zero `workspace:` links (`bun install`, 719
+  packages): dev `HTTP 200`, production `build:web` (6 pages, secrets scan
+  pass), served build `HTTP 200`; headless playwright 0 console/page errors
+  on both, captures in `/tmp/one-starters-beta/basic-{dev,prod}.png`.
+  Takeout pins published `one@2.0.0-0.canary.1791082782289` (its own pin,
+  zero `workspace:` links): dev `HTTP 200` login, production build (8 pages,
+  sitemap, secrets scan pass), served build `HTTP 200` login; only errors are
+  missing-backend noise (Zero `ws :4948` refused, `/api/auth/get-session`
+  404 with no DB). Receipt: tm task `t-mv30fd6x-tl40`.
 
 ## 2. iOS runtime coverage (owner p67085 / one-native-ready)
 
@@ -166,8 +184,43 @@ These are product choices. Launch does not block on them unless the owner says s
 
 - [ ] Android: `one-native-android-lane.md` (owner r60570). Compose gaps
   against Expo UI are listed in `one-native-coverage.md`.
-- [ ] web: every root service works or keeps the documented unavailable
-  contract (`one-native-launch.md`, web lane).
+- [x] web: every root service works or keeps the documented unavailable
+  contract (`one-native-launch.md`, web lane). RAN 2026-10-10 on v2-beta
+  `beba35c2b`: all 47 `One.*` roots probed through the public `One`
+  namespace in a real one-basic web build, dev (`one dev :4391`) and
+  production (`one build` + `one serve :4392`, 8 pages, secrets scan pass),
+  headless playwright chromium 145.0.7632.6 and webkit 26.0. TESTED main
+  suite (FileSystem, ImageManipulator, Device, Location, KeepAwake, Motion,
+  ScreenOrientation, Print, Share, Contacts, Speech, Audio, Blur, Mask,
+  One.UI.Image): dev and prod pass on both engines except KeepAwake (both
+  engines: installed playwright 1.58.2 rejects the `screen-wake-lock`
+  grant, so the page has no lock to request; adapter proven separately
+  with a seeded wakeLock: activate/isEnabled/release/invalid-input) and
+  Audio on chromium only (headless-shell fake mic `getUserMedia` never
+  resolves; raw-gum 8s timeout proves the harness gap before One code
+  runs; webkit records/pauses/resumes/plays/seeks/media-session fully).
+  TESTED phase-2 34/34 pass dev and prod: openURL resolves void, openShare
+  rejects `has no share sheet`, openSettings rejects `has no app settings
+  page`; AppInfo build/applicationId null; Database open/openAsync
+  reject `requires an iOS or Android build`, openKeyValue localStorage
+  roundtrips; Widgets writes no-op, LiveActivities starts reject, pushToken
+  null; LocalAuthentication unavailable, ProtectedStore rejects;
+  QuickActions inert lists; PhotoLibrary denied/empty; MapServices empty;
+  AppTracking denied; AppIcon unsupported; ScreenCapture unspecified state,
+  capture rejects; Purchases empty catalog, purchase rejects;
+  DeviceAttestation unavailable; Calendar denied/empty; Notifications
+  denied/inert, schedule and push-token reject; Clipboard bool/str;
+  Haptics no-op with validation; LaunchScreen no-op; Network
+  unknown/connected; Auth.Apple unavailable; Browser hints false,
+  openAuthSession rejects; ImagePicker/DocumentPicker sync validation;
+  SecureStore rejects (no cleartext fallback); Storage roundtrips; Updates
+  empty reads, check/fetch reject; BackgroundTasks validates, pending [];
+  AppIntents registers; StoreReview resolves; SwiftUI/Compose views throw
+  outside their builds. Zero page/runner errors in all four runs. No
+  service threw, hung or diverged: no product fix, no new test. Receipt:
+  tm task `t-mv31lmf9-xtu0`; evidence `/tmp/web-evidence-dev`,
+  `/tmp/web-evidence-prod`, `/tmp/phase2-dev.json`, `/tmp/phase2-prod.json`
+  (copied next to the handoff).
 - [ ] Peach: every `One.*` iOS API has a Peach seam and an oracle grade.
   Owner native-lead p63991, Contrast
   `plans/contrast/mobile-app/one-native-next.md` track 1 and
@@ -211,8 +264,11 @@ production-server replay do not accept deployed site, native app, Peach or
 production package delivery.
 
 
-- [ ] every shipped native API has a page whose props match its types; the
-  drift suite stays green.
+- [x] every shipped native API has a page whose props match its types; the
+  drift suite stays green. RAN 2026-10-10 on v2-beta `b6364ccff` and again
+  after merging `a63612c1a`: `packages/one` `tests/nativeDocs.test.ts`
+  142/142 pass both times, and a namespace probe finds a docs page for every
+  top-level `One.*` service. Receipt: tm task `t-mv30fd6x-tl40`.
 - [ ] `native-components.mdx` lists every `One.iOS` and `One.UI` family
   (true at 2026-10-05).
 - [ ] `TextInputRef`, `TextInputProps` importable from `one` for typed refs.
@@ -221,5 +277,14 @@ production package delivery.
 
 ## 6. release
 
-- [ ] beta canary content verified by tarball, not version string.
+- [x] beta canary content verified by tarball, not version string.
+  TESTED 2026-10-10: `npm pack one@2.0.0-0.canary.1791674508910` (newest at
+  check time); its `releaseSourceCommit d44ce7d96` matches its content: the
+  three `ios/OneSwift*.swift`/`OneSwiftHostComponentView.mm` sources are
+  byte-identical to that commit (including `bdc4068e5`
+  `OneNativeSourceViewDispatch`), and `contractHash` ships in the CJS and ESM
+  `swiftPackageModule` dist. The matching `vxrn` canary likewise matches
+  `d44ce7d96` and predates `a63612c1a` (no `workspaceRoots` in its dist);
+  the next canary cut from this push covers it. Receipt: tm task
+  `t-mv30fd6x-tl40`.
 - [ ] stable `one` 2.0: the owner's word only.

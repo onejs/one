@@ -6,6 +6,7 @@ import SharedUI from './realapps-api-ui.native'
 import IOSPrimitives from './realapps-api-ios'
 import Widgets from './realapps-api-widgets'
 import Menus from './realapps-api-menus.native'
+import PlatformAPIs from './realapps-api-platform.native'
 import { Action } from './realapps-api-report'
 
 // inject as a sibling route in the app's existing route tree, never as _layout.
@@ -15,7 +16,7 @@ export default function RealAppsAPI() {
   return (
     <View style={{ flex: 1, paddingTop: insets.top }} testID="realapps-api-route">
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
-        {['services', 'ui', 'ios', 'widgets', 'menus'].map((name) => (
+        {['services', 'ui', 'ios', 'widgets', 'menus', 'platform'].map((name) => (
           <Action key={name} id={`section-${name}`} onPress={() => setSection(name)}>
             {name}
           </Action>
@@ -29,6 +30,8 @@ export default function RealAppsAPI() {
         <IOSPrimitives />
       ) : section === 'widgets' ? (
         <Widgets />
+      ) : section === 'platform' ? (
+        <PlatformAPIs />
       ) : (
         <Menus />
       )}

@@ -23,6 +23,8 @@ import type {
   LinkProps,
   ListProps,
   MenuProps,
+  NavigationSplitViewColumnProps,
+  NavigationSplitViewProps,
   NavigationStackProps,
   OverlayContentProps,
   OverlayProps,
@@ -46,6 +48,7 @@ import type {
   ToolbarItemGroupProps,
   ToolbarItemProps,
   ToolbarProps,
+  ToolbarContentProps,
   ToolbarSpacerProps,
   ZStackProps,
 } from './types'
@@ -212,9 +215,30 @@ function NavigationStack(_props: NavigationStackProps): never {
     'Swift.NavigationStack requires an iOS native build'
   )
 }
-function Toolbar(_props: ToolbarProps): never {
+function NavigationSplitViewFn(_props: NavigationSplitViewProps): never {
+  throw new Error('Swift.NavigationSplitView requires an iOS native build')
+}
+function NavigationSplitViewSidebar(_props: NavigationSplitViewColumnProps): never {
+  throw new Error('Swift.NavigationSplitView.Sidebar requires an iOS native build')
+}
+function NavigationSplitViewContent(_props: NavigationSplitViewColumnProps): never {
+  throw new Error('Swift.NavigationSplitView.Content requires an iOS native build')
+}
+function NavigationSplitViewDetail(_props: NavigationSplitViewColumnProps): never {
+  throw new Error('Swift.NavigationSplitView.Detail requires an iOS native build')
+}
+const NavigationSplitView = Object.assign(NavigationSplitViewFn, {
+  Sidebar: NavigationSplitViewSidebar,
+  Content: NavigationSplitViewContent,
+  Detail: NavigationSplitViewDetail,
+})
+function ToolbarMarker(_props: ToolbarProps): never {
   throw new Error('Swift.Toolbar requires an iOS native build')
 }
+function ToolbarContent(_props: ToolbarContentProps): never {
+  throw new Error('Swift.Toolbar.Content requires an iOS native build')
+}
+const Toolbar = Object.assign(ToolbarMarker, { Content: ToolbarContent })
 function ToolbarItem(_props: ToolbarItemProps): never {
   throw new Error(
     'Swift.ToolbarItem requires an iOS native build'
@@ -276,6 +300,7 @@ export const Swift = {
   Pager,
   Page,
   NavigationStack,
+  NavigationSplitView,
   Toolbar,
   ToolbarItem,
   ToolbarItemGroup,

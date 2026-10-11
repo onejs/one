@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "2.6.0",
+  "version": "1.27.1",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
@@ -337,6 +337,7 @@
     "@types/react-dom": "^19.2.2",
     "@types/react-test-renderer": "^19.1.0",
     "@types/xxhashjs": "^0.2.4",
+    "@vxrn/emitter": "workspace:*",
     "depcheck": "^1.4.7",
     "esbuild": "^0.25.12",
     "immer": "^10.1.1",
@@ -482,11 +483,13 @@
         "OneNativeTabs": "OneNativeTabsComponentView",
         "OneNativeContainerSlot": "OneNativeContainerSlotComponentView",
         "OneNativeNavigationStack": "OneNativeNavigationStackComponentView",
+        "OneNativeNavigationSplitView": "OneNativeNavigationSplitViewComponentView",
         "OneNativeToolbar": "OneNativeToolbarComponentView",
         "OneNativeToolbarItem": "OneNativeToolbarItemComponentView",
         "OneNativeToolbarItemGroup": "OneNativeToolbarItemGroupComponentView",
         "OneNativeToolbarSpacer": "OneNativeToolbarSpacerComponentView",
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
+        "OneNativeNavigationSplitViewColumn": "OneNativeNavigationSplitViewColumnComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
         "OneNativePopoverContent": "OneNativePopoverContentComponentView"
       }

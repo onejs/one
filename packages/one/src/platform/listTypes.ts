@@ -22,6 +22,8 @@ export type LazyHStackAlignment = (typeof lazyHStackAlignments)[number]
 
 export interface ListProps extends ViewProps {
   listStyle?: ListStyle
+  selection?: string[]
+  onSelectionChange?: (selection: string[]) => void
   swiftStyle?: OneNativeStyle
   children: ReactNode
 }
