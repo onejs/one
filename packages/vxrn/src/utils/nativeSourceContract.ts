@@ -1618,7 +1618,8 @@ export function renderKotlinSourceGlue(
   const isDateType = (type: string) => type === 'Date' || type === 'java.util.Date'
   const value = (type: string, input: string, path: string): string => {
     if (type.endsWith('?')) {
-      return `(if (${input} == JSONObject.NULL) null else ${value(type.slice(0, -1), input, path)})`
+      // bind the input once so kotlin smart casts it to Any past the null check.
+      return `(${input}).let { raw -> if (raw == null || raw == JSONObject.NULL) null else ${value(type.slice(0, -1), 'raw', path)} }`
     }
     if (type === 'String') return `readString(${input}, ${path})`
     if (type === 'Boolean') return `readBoolean(${input}, ${path})`
@@ -1666,9 +1667,10 @@ export function renderKotlinSourceGlue(
     `  return ${qualified(struct.name)}(`,
     ...struct.fields.map((field) => {
       const fieldPath = `"$path.${field.name}"`
+      const required = `error("$path.${field.name}: required")`
       const input = field.optional
-        ? `(if (obj.has(${JSON.stringify(field.name)})) obj.get(${JSON.stringify(field.name)}) else ${field.fallback ?? `error(${fieldPath}: required)`})`
-        : `(obj.opt(${JSON.stringify(field.name)}) ?: error(${fieldPath}: required))`
+        ? `(if (obj.has(${JSON.stringify(field.name)})) obj.get(${JSON.stringify(field.name)}) else ${field.fallback ?? required})`
+        : `(obj.opt(${JSON.stringify(field.name)}) ?: ${required})`
       return `    ${field.name} = ${value(field.nativeType, input, fieldPath)},`
     }),
     '  )',
