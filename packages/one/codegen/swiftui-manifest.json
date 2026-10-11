@@ -17828,6 +17828,9 @@
       ],
       "_MapKit_SwiftUI": [
         "Map",
+        "MapCompass",
+        "MapPitchToggle",
+        "MapUserLocationButton",
         "Marker"
       ],
       "Charts": [
@@ -19995,6 +19998,45 @@
           "label": "label",
           "name": "label",
           "type": "() -> Label"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "MapCompass",
+      "parameters": [
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "MapPitchToggle",
+      "parameters": [
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
+        }
+      ],
+      "ios": 17
+    },
+    {
+      "module": "_MapKit_SwiftUI",
+      "type": "MapUserLocationButton",
+      "parameters": [
+        {
+          "defaultValue": "nil",
+          "label": "scope",
+          "name": "scope",
+          "type": "SwiftUICore.Namespace.ID?"
         }
       ],
       "ios": 17

@@ -106,6 +106,15 @@ function AddPassToWalletButton(_props: Types.AddPassToWalletButtonProps): never 
 function Map(_props: Types.MapProps): never {
   throw new Error('Swift.Map requires an iOS native build')
 }
+function MapCompass(_props: Types.MapCompassProps): never {
+  throw new Error('Swift.MapCompass requires an iOS native build')
+}
+function MapPitchToggle(_props: Types.MapPitchToggleProps): never {
+  throw new Error('Swift.MapPitchToggle requires an iOS native build')
+}
+function MapUserLocationButton(_props: Types.MapUserLocationButtonProps): never {
+  throw new Error('Swift.MapUserLocationButton requires an iOS native build')
+}
 function TextField(_props: Types.TextFieldProps): never {
   throw new Error('Swift.TextField requires an iOS native build')
 }
@@ -193,6 +202,9 @@ export const unsupportedControls = {
   PayWithApplePayButton,
   AddPassToWalletButton,
   Map,
+  MapCompass,
+  MapPitchToggle,
+  MapUserLocationButton,
   TextField,
   SecureField,
   TextEditor,

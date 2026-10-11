@@ -2767,6 +2767,69 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeMapCompass",
+      "publicName": "MapCompass",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeMapPitchToggle",
+      "publicName": "MapPitchToggle",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeMapUserLocationButton",
+      "publicName": "MapUserLocationButton",
+      "props": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeTextField",
       "publicName": "TextField",
       "props": {

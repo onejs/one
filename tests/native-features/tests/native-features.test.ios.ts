@@ -824,4 +824,46 @@ describe('one native integration tests', () => {
       expect(await labelError.getText()).toContain('PayWithApplePayButtonLabel')
     })
   })
+
+  // -- map controls (WRITTEN, interaction legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Map Controls', () => {
+    test('map mounts with its compass and pitch controls', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-map-controls')
+      const view = await waitForElement(driver, 'one-native-map-controls-view', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+
+      const status = await waitForElement(driver, 'one-native-map-controls-status')
+      expect(await status.getText()).toContain('Controls: compass,pitch')
+      expect(await status.getText()).toContain('Regions: 0')
+
+      await captureScreenshot(driver, 'one-native-map-controls-mounted')
+    })
+
+    test('toggling controls remounts the slot without resetting the map', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-map-controls-toggle-user')).click()
+      const status = await waitForElement(driver, 'one-native-map-controls-status')
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Controls: compass,pitch,user'),
+        { timeout: 5000, timeoutMsg: 'user location control did not mount' }
+      )
+
+      await (await waitForElement(driver, 'one-native-map-controls-toggle-compass')).click()
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Controls: pitch,user'),
+        { timeout: 5000, timeoutMsg: 'compass control did not unmount' }
+      )
+      expect(await status.getText()).toContain('Regions: 0')
+
+      await captureScreenshot(driver, 'one-native-map-controls-toggled')
+    })
+
+    test('a non-control child throws instead of mounting', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-map-controls-invalid')).click()
+      const error = await waitForElement(driver, 'one-native-map-controls-error')
+      expect(await error.getText()).toContain('One.iOS.Map accepts')
+    })
+  })
 })

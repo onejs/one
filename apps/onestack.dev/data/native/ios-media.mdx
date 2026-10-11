@@ -340,6 +340,34 @@ setup rather than repeated calls.
 For a cross-platform map with polylines, polygons, and circles, use
 [One.UI.Map](/native/map) instead.
 
+### Map controls
+
+`One.iOS.MapCompass`, `One.iOS.MapPitchToggle`, and
+`One.iOS.MapUserLocationButton` are the MapKit controls. Nest them under
+`One.iOS.Map` and they render in the map's own controls, operating on the
+owning map. Any other child throws instead of mounting.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Map markers={pins} style={{ flex: 1 }}>
+  <One.iOS.MapCompass />
+  <One.iOS.MapPitchToggle />
+</One.iOS.Map>
+```
+
+<PropsTable
+  title="Map children"
+  source="mapControls.ts#MapControlsSlot"
+  data={[
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'Map controls: MapCompass, MapPitchToggle, MapUserLocationButton.',
+    },
+  ]}
+/>
+
 ## ContentUnavailableView
 
 `One.iOS.ContentUnavailableView` renders an empty state with action

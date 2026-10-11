@@ -1644,6 +1644,53 @@ export function Map({
     />
   )
 }
+import NativeMapCompass from '../specs/OneNativeMapCompassNativeComponent'
+export function MapCompass({ swiftStyle, style, ...props }: Types.MapCompassProps) {
+  return (
+    <NativeMapCompass
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
+  )
+}
+import NativeMapPitchToggle from '../specs/OneNativeMapPitchToggleNativeComponent'
+export function MapPitchToggle({
+  swiftStyle,
+  style,
+  ...props
+}: Types.MapPitchToggleProps) {
+  return (
+    <NativeMapPitchToggle
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
+  )
+}
+import NativeMapUserLocationButton from '../specs/OneNativeMapUserLocationButtonNativeComponent'
+export function MapUserLocationButton({
+  swiftStyle,
+  style,
+  ...props
+}: Types.MapUserLocationButtonProps) {
+  return (
+    <NativeMapUserLocationButton
+      {...props}
+      style={style}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) =>
+        dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)
+      }
+    />
+  )
+}
 import NativeTextField from '../specs/OneNativeTextFieldNativeComponent'
 export function TextField({
   text,

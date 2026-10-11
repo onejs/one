@@ -23,11 +23,18 @@ private final class MapModel: ObservableObject {
     onRegionChange?(latitude, longitude, distance, regionChangeCount)
   }
 }
-@objcMembers public final class OneNativeMapView: UIView, OneNativeComposable {
+@objcMembers public final class OneNativeMapView: UIView, OneNativeComposable, OneNativeCompositionParent {
   public var onSDKEvent: ((String, String) -> Void)?
 
   public var onRegionChange: ((Double, Double, Double, Int) -> Void)?
   private var model = MapModel()
+  // the map's own controls, composed from the Fabric children into the map's
+  // mapControls so they operate on the owning map. handwritten for the map
+  // only: the emitter owns no control slots, and generalizing them belongs to
+  // the content-slot expansion, so regeneration must carry this block forward.
+  private let mapControls = OneNativeChildren()
+  private var mapControlViews: [UIView] = []
+  public var compositionActive: Bool { model.active }
   private var controller: OneNativeHostingController<OneNativeStandalone<MapContent>>?
   public override init(frame: CGRect) { super.init(frame: frame) }
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
@@ -51,18 +58,48 @@ private final class MapModel: ObservableObject {
   }
   public func setMarkers(_ items: [[String: Any]]) { model.markers = items.map { OneNativeMapMarker(id: $0["id"] as! String, label: $0["label"] as! String, latitude: $0["latitude"] as! Double, longitude: $0["longitude"] as! Double) } }
 
+  // a map control renders inside the owning map's mapControls instead of owning a
+  // host, so it is published rather than added as a subview. the js adapter
+  // rejects anything else first with a javascript stack; this is the backstop.
+  public func insertChild(_ child: UIView, at index: Int) {
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure("One.iOS.Map takes map controls (One.iOS.MapCompass, One.iOS.MapPitchToggle, One.iOS.MapUserLocationButton) as children")
+    }
+    let at = min(index, mapControlViews.count)
+    mapControlViews.insert(child, at: at)
+    composable.composeInto(self)
+    mapControls.items.insert(
+      OneNativeComposedChild(
+        id: String(describing: ObjectIdentifier(child)),
+        sourceID: ObjectIdentifier(child),
+        content: composable.compositionContent()),
+      at: at)
+  }
+  public func removeChild(_ child: UIView) {
+    guard let index = mapControlViews.firstIndex(where: { $0 === child }) else { return }
+    mapControlViews.remove(at: index)
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure("One Native map control lost its composition capability")
+    }
+    composable.decompose()
+    let id = ObjectIdentifier(child)
+    mapControls.items.removeAll { $0.sourceID == id }
+  }
   private weak var compositionParent: OneNativeCompositionParent?
-  public func compositionContent() -> AnyView { AnyView(MapContent(model: model)) }
+  public func compositionContent() -> AnyView { AnyView(MapContent(model: model, mapControls: mapControls)) }
   // composed, activation follows the parent: a subtree mounted before root attachment
   // stays silent until the root attaches.
   public func composeInto(_ parent: OneNativeCompositionParent) {
     controller?.detach(); controller = nil
     compositionParent = parent
     bindCallbacks()
-    model.active = parent.compositionActive
+    propagateActive(parent.compositionActive)
   }
-  public func decompose() { compositionParent = nil; model.active = false }
-  public func propagateActive(_ active: Bool) { model.active = active }
+  public func decompose() { compositionParent = nil; propagateActive(false) }
+  public func propagateActive(_ active: Bool) {
+    model.active = active
+    for child in mapControlViews { (child as? OneNativeComposable)?.propagateActive(active) }
+  }
   public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
   public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
   private func bindCallbacks() {
@@ -72,29 +109,34 @@ private final class MapModel: ObservableObject {
   }
   private func updateHost() {
     guard compositionParent == nil else { return }
-    model.active = false
+    propagateActive(false)
     guard window != nil else { controller?.detach(); return }
     if controller == nil {
       bindCallbacks()
-      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: MapContent(model: model)))
+      controller = OneNativeHostingController(rootView: OneNativeStandalone(content: MapContent(model: model, mapControls: mapControls)))
     }
     controller?.attach(to: self)
-    model.active = controller?.isAttached == true
+    propagateActive(controller?.isAttached == true)
   }
   public func reset() {
     compositionParent = nil
+    for child in mapControlViews { (child as? OneNativeComposable)?.decompose() }
+    mapControlViews.removeAll()
+    mapControls.items = []
     model.active = false; model.onSDKEvent = nil; model.onRegionChange = nil
     controller?.detach(); controller = nil; model = MapModel()
   }
 }
 private struct MapContent: View {
   @ObservedObject var model: MapModel
+  @ObservedObject var mapControls: OneNativeChildren
   var body: some View {
     MapSurface(
         latitude: model.latitude,
         longitude: model.longitude,
         distance: model.distance,
         markers: model.markers,
+        mapControls: mapControls,
         onRegionChange: { latitude, longitude, distance in
           model.regionChange(latitude, longitude, distance)
         }
@@ -111,6 +153,9 @@ private struct MapSurface: View {
   let longitude: Double
   let distance: Double
   let markers: [OneNativeMapMarker]
+  // the map's own controls, composed from the Fabric children so they operate on the
+  // owning map. an empty slot renders no controls, which is the map without them.
+  @ObservedObject var mapControls: OneNativeChildren
   let onRegionChange: (Double, Double, Double) -> Void
   @State private var position: MapCameraPosition = .automatic
   @State private var seeded: String?
@@ -126,6 +171,9 @@ private struct MapSurface: View {
           Text(marker.label)
         }
       }
+    }
+    .mapControls {
+      ForEach(mapControls.items) { child in child.content }
     }
     .onMapCameraChange(frequency: .onEnd) { context in
       onRegionChange(

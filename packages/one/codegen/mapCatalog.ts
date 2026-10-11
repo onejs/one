@@ -76,6 +76,7 @@ export const mapControls: Control[] = [
         longitude: model.longitude,
         distance: model.distance,
         markers: model.markers,
+        mapControls: mapControls,
         onRegionChange: { latitude, longitude, distance in
           model.regionChange(latitude, longitude, distance)
         }
@@ -88,6 +89,9 @@ private struct MapSurface: View {
   let longitude: Double
   let distance: Double
   let markers: [OneNativeMapMarker]
+  // the map's own controls, composed from the Fabric children so they operate on the
+  // owning map. an empty slot renders no controls, which is the map without them.
+  @ObservedObject var mapControls: OneNativeChildren
   let onRegionChange: (Double, Double, Double) -> Void
   @State private var position: MapCameraPosition = .automatic
   @State private var seeded: String?
@@ -103,6 +107,9 @@ private struct MapSurface: View {
           Text(marker.label)
         }
       }
+    }
+    .mapControls {
+      ForEach(mapControls.items) { child in child.content }
     }
     .onMapCameraChange(frequency: .onEnd) { context in
       onRegionChange(
@@ -132,5 +139,54 @@ private struct MapSurface: View {
   if (!Number.isFinite(distance) || distance <= 0) throw new Error('Map distance must be a positive number of metres')
   if (!Array.isArray(markers) || markers.some(marker => typeof marker?.id !== 'string' || typeof marker?.label !== 'string' || !Number.isFinite(marker?.latitude) || !Number.isFinite(marker?.longitude))) throw new Error('Map markers must contain string id and label fields and finite latitude and longitude')
   if (new Set(markers.map(marker => marker.id)).size !== markers.length) throw new Error('Map marker ids must be unique')`,
+  },
+  {
+    name: 'MapCompass',
+    // importing MapKit alongside SwiftUI is what loads the _MapKit_SwiftUI overlay.
+    imports: ['MapKit'],
+    // a compass has no props: its scope defaults to nil, so composed under a map it
+    // operates on the owning map. it only renders inside a map's controls.
+    fields: {},
+    constructors: [
+      {
+        type: 'MapCompass',
+        parameters: [{ label: 'scope', type: 'SwiftUICore.Namespace.ID?' }],
+      },
+    ],
+    swift: `MapCompass()`,
+    validate: '',
+  },
+  {
+    name: 'MapPitchToggle',
+    // importing MapKit alongside SwiftUI is what loads the _MapKit_SwiftUI overlay.
+    imports: ['MapKit'],
+    // a pitch toggle has no props: its scope defaults to nil, so composed under a
+    // map it operates on the owning map. it only renders inside a map's controls.
+    fields: {},
+    constructors: [
+      {
+        type: 'MapPitchToggle',
+        parameters: [{ label: 'scope', type: 'SwiftUICore.Namespace.ID?' }],
+      },
+    ],
+    swift: `MapPitchToggle()`,
+    validate: '',
+  },
+  {
+    name: 'MapUserLocationButton',
+    // importing MapKit alongside SwiftUI is what loads the _MapKit_SwiftUI overlay.
+    imports: ['MapKit'],
+    // a user-location button has no props: its scope defaults to nil, so composed
+    // under a map it operates on the owning map. it only renders inside a map's
+    // controls.
+    fields: {},
+    constructors: [
+      {
+        type: 'MapUserLocationButton',
+        parameters: [{ label: 'scope', type: 'SwiftUICore.Namespace.ID?' }],
+      },
+    ],
+    swift: `MapUserLocationButton()`,
+    validate: '',
   },
 ]

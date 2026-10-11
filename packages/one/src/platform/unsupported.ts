@@ -257,6 +257,12 @@ function ToolbarSpacer(_props: ToolbarSpacerProps): never {
   )
 }
 import { ArrangementView } from './ArrangementView'
+import type { MapWithControlsProps } from './mapControls'
+// the map's controls slot is part of its props on every platform; off ios the
+// map itself throws, so children never mount there either.
+function MapWithControlsStub(_props: MapWithControlsProps): never {
+  throw new Error('Swift.Map requires an iOS native build')
+}
 export const Swift = {
   ArrangementView,
   Tabs,
@@ -316,5 +322,6 @@ export const Swift = {
     throw new Error('Swift.withAnimation requires an iOS native build')
   },
   ...unsupportedControls,
+  Map: MapWithControlsStub,
 }
 export type * from './types'

@@ -48,6 +48,7 @@ import { FullScreenCover, Sheet } from './Sheet.native'
 import { ArrangementView } from './ArrangementView.native'
 import { withAnimation } from './withAnimation.native'
 import * as Controls from './generated/Controls.native'
+import { Map as MapWithControls } from './mapControls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
 import { Compose } from './compose'
 import * as UI from './effects'
@@ -154,6 +155,9 @@ export const Swift =
         Slot,
         withAnimation,
         ...Controls,
+        // the generated map takes no children; the wrapper validates and names
+        // the map-controls slot while the native view composes it.
+        Map: MapWithControls,
       }
     : UnsupportedSwift
 export { Compose }
