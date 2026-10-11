@@ -1,3 +1,19 @@
+export interface WireStructField {
+    name: string;
+    optional: boolean;
+    wire?: unknown;
+}
+export interface WireStruct {
+    name: string;
+    fields: WireStructField[];
+}
+export declare function toNativeSourceStructs(structs: WireStruct[]): Record<string, {
+    fields: {
+        name: string;
+        optional: boolean;
+        wire?: unknown;
+    }[];
+}>;
 export interface WireMethodParam {
     wire?: unknown;
 }
@@ -36,5 +52,5 @@ export declare function renderMethodCall(target: string, method: {
     resultWire?: unknown;
     subscription?: unknown;
 }, hash: string): string;
-export declare function renderViewWires(view: WireView, structs: unknown): string;
+export declare function renderViewWires(view: WireView, structs: WireStruct[]): string;
 //# sourceMappingURL=nativeSourceWires.d.ts.map
