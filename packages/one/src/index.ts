@@ -44,6 +44,10 @@ export type {
   WindowSegment,
   ReservedRegionOptions,
   SFSymbolName,
+  ComposeSnackbarHostRef,
+  ComposeSnackbarShowOptions,
+  ComposeSnackbarResult,
+  ComposeModalBottomSheetRef,
 } from './platform'
 export type { OneRouter } from './interfaces/router'
 

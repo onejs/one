@@ -1,5 +1,5 @@
-import { Children, createContext, useContext, useState, type ReactNode } from 'react'
-import { StyleSheet, type ColorValue } from 'react-native'
+import { Children, createContext, forwardRef, useContext, useImperativeHandle, useRef, useState, type ReactNode } from 'react'
+import { Image as ReactNativeImage, StyleSheet, type ColorValue } from 'react-native'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { iconColorRoles } from './ui/iconRoles'
 import { useControlled } from './controlled'
@@ -34,9 +34,16 @@ import type {
   ComposeHorizontalArrangement,
   ComposeIconProps,
   ComposeIconButtonProps,
+  ComposeImageProps,
   ComposeInputChipProps,
+  ComposeLazyColumnProps,
+  ComposeLazyContentPadding,
+  ComposeLazyRowProps,
   ComposeListItemProps,
   ComposeLoadingIndicatorProps,
+  ComposeModalBottomSheetProperties,
+  ComposeModalBottomSheetProps,
+  ComposeModalBottomSheetRef,
   ComposeNodeProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
@@ -47,6 +54,11 @@ import type {
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
+  ComposeSnackbarHostProps,
+  ComposeSnackbarHostRef,
+  ComposeSnackbarProps,
+  ComposeSnackbarResult,
+  ComposeSnackbarShowOptions,
   ComposeSuggestionChipProps,
   ComposeSurfaceProps,
   ComposeSwitchProps,
@@ -86,12 +98,18 @@ import {
   validateChipProps,
   validateIconProps,
   validateIconButtonProps,
+  validateImageProps,
+  validateLazyColumnProps,
+  validateLazyRowProps,
   validateListItemProps,
+  validateModalBottomSheetProps,
   validateLoadingIndicatorProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
   validateRowProps,
   validateSliderProps,
+  validateSnackbarProps,
+  validateSnackbarShowOptions,
   validateSurfaceProps,
   validateSwitchProps,
   validateTextFieldProps,
@@ -146,6 +164,13 @@ type ComposeNodeType =
   | 'slider'
   | 'alertdialog'
   | 'dialog'
+  | 'lazycolumn'
+  | 'lazyrow'
+  | 'image'
+  | 'snackbar'
+  | 'snackbarhost'
+  | 'modalbottomsheet'
+  | 'sheetslot'
   | 'progressindicator'
   | 'datepicker'
   | 'timepicker'
@@ -261,6 +286,52 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     nativeEvent: { value: number; eventCount: number }
   }) => void
   onNativeComposeNodeDialogDismiss?: (event: unknown) => void
+  lazyContentPadding?: ComposeLazyContentPadding
+  imageSource?: Readonly<{ uri?: string }>
+  imageOptions?: Readonly<{
+    contentScale?: string
+    alignment?: string
+    tint?: ColorValue
+    alpha?: number
+  }>
+  snackbarColors?: Readonly<{
+    containerColor?: ColorValue
+    contentColor?: ColorValue
+    actionColor?: ColorValue
+    actionContentColor?: ColorValue
+    dismissActionContentColor?: ColorValue
+    actionOnNewLine?: boolean
+  }>
+  snackbarRequest?: Readonly<{
+    requestId?: number
+    message?: string
+    actionLabel?: string
+    withDismissAction?: boolean
+    duration?: string
+    revision?: number
+  }>
+  sheetOptions?: Readonly<{
+    skipPartiallyExpanded?: boolean
+    initialFullyExpanded?: boolean
+    showDragHandle?: boolean
+    sheetGesturesEnabled?: boolean
+    scrimColor?: ColorValue
+  }>
+  sheetProperties?: ComposeModalBottomSheetProperties
+  sheetCommand?: Readonly<{
+    requestId?: number
+    revision?: number
+  }>
+  onNativeComposeNodeImageLoad?: (event: { nativeEvent: { eventCount: number } }) => void
+  onNativeComposeNodeImageError?: (event: {
+    nativeEvent: { message: string; eventCount: number }
+  }) => void
+  onNativeComposeNodeSnackbarResult?: (event: {
+    nativeEvent: { requestId: number; result: string; eventCount: number }
+  }) => void
+  onNativeComposeNodeSheetHidden?: (event: {
+    nativeEvent: { requestId: number; eventCount: number }
+  }) => void
 }
 
 const ComposeContext = createContext(false)
@@ -273,6 +344,8 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'switch',
   'checkbox',
   'radio',
+  'image',
+  'snackbar',
   'textfield',
   'slider',
   'alertdialog',
@@ -413,6 +486,224 @@ function Box({ children, contentAlignment = 'topStart', ...props }: ComposeBoxPr
     </ComposeNode>
   )
 }
+
+function LazyColumn({
+  children,
+  horizontalAlignment = 'start',
+  verticalArrangement = 'top',
+  contentPadding,
+  ...props
+}: ComposeLazyColumnProps) {
+  validateLazyColumnProps({ horizontalAlignment, verticalArrangement, contentPadding })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="lazycolumn"
+      alignment={horizontalAlignment}
+      arrangement={typeof verticalArrangement === 'string' ? verticalArrangement : 'top'}
+      spacing={typeof verticalArrangement === 'string' ? undefined : verticalArrangement.spacedBy}
+      lazyContentPadding={contentPadding}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function LazyRow({
+  children,
+  verticalAlignment = 'top',
+  horizontalArrangement = 'start',
+  contentPadding,
+  ...props
+}: ComposeLazyRowProps) {
+  validateLazyRowProps({ verticalAlignment, horizontalArrangement, contentPadding })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="lazyrow"
+      alignment={verticalAlignment}
+      arrangement={typeof horizontalArrangement === 'string' ? horizontalArrangement : 'start'}
+      spacing={typeof horizontalArrangement === 'string' ? undefined : horizontalArrangement.spacedBy}
+      lazyContentPadding={contentPadding}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function Image({
+  source,
+  contentScale = 'fit',
+  alignment = 'center',
+  contentDescription,
+  tint,
+  alpha = 1,
+  onLoad,
+  onError,
+  accessibilityLabel,
+  ...props
+}: ComposeImageProps) {
+  validateImageProps({ source, contentScale, alignment, contentDescription, tint, alpha, onLoad, onError })
+  const resolved = typeof source === 'number' ? ReactNativeImage.resolveAssetSource(source) : source
+  const uri = typeof resolved?.uri === 'string' ? resolved.uri : undefined
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="image"
+      accessibilityLabel={accessibilityLabel ?? contentDescription ?? undefined}
+      imageSource={uri === undefined ? undefined : { uri }}
+      imageOptions={{ contentScale, alignment, tint, alpha }}
+      onNativeComposeNodeImageLoad={onLoad ? () => onLoad() : undefined}
+      onNativeComposeNodeImageError={onError ? (event) => onError(event.nativeEvent.message) : undefined}
+    />
+  )
+}
+
+function Snackbar({
+  containerColor,
+  contentColor,
+  actionColor,
+  actionContentColor,
+  dismissActionContentColor,
+  actionOnNewLine,
+  ...props
+}: ComposeSnackbarProps) {
+  validateSnackbarProps({ containerColor, contentColor, actionColor, actionContentColor, dismissActionContentColor, actionOnNewLine })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="snackbar"
+      snackbarColors={{ containerColor, contentColor, actionColor, actionContentColor, dismissActionContentColor, actionOnNewLine }}
+    />
+  )
+}
+
+type SnackbarQueuedRequest = {
+  id: number
+  options: ComposeSnackbarShowOptions
+  resolve: (result: ComposeSnackbarResult) => void
+}
+
+const SnackbarHostRoot = forwardRef<ComposeSnackbarHostRef, ComposeSnackbarHostProps>(
+  function SnackbarHost({ children, ...props }, ref) {
+    const requestId = useRef(0)
+    const revision = useRef(0)
+    const active = useRef<SnackbarQueuedRequest | undefined>(undefined)
+    const queue = useRef<SnackbarQueuedRequest[]>([])
+    const [request, setRequest] = useState<ComposeNativeNodeProps['snackbarRequest']>(undefined)
+    const pump = () => {
+      if (active.current) return
+      const next = queue.current.shift()
+      if (!next) return
+      active.current = next
+      revision.current += 1
+      setRequest({ ...next.options, requestId: next.id, revision: revision.current })
+    }
+    useImperativeHandle(
+      ref,
+      () => ({
+        showSnackbar: (options: ComposeSnackbarShowOptions) =>
+          new Promise<ComposeSnackbarResult>((resolve) => {
+            validateSnackbarShowOptions(options)
+            requestId.current += 1
+            queue.current.push({ id: requestId.current, options, resolve })
+            pump()
+          }),
+      }),
+      []
+    )
+    return (
+      <ComposeNode
+        {...props}
+        nodeType="snackbarhost"
+        snackbarRequest={request}
+        onNativeComposeNodeSnackbarResult={(event) => {
+          if (active.current && active.current.id === event.nativeEvent.requestId) {
+            const resolve = active.current.resolve
+            active.current = undefined
+            resolve(event.nativeEvent.result === 'actionPerformed' ? 'actionPerformed' : 'dismissed')
+          }
+          pump()
+        }}
+      >
+        {children}
+      </ComposeNode>
+    )
+  }
+)
+
+const SnackbarHost = SnackbarHostRoot
+
+const ModalBottomSheetRoot = forwardRef<ComposeModalBottomSheetRef, ComposeModalBottomSheetProps>(
+  function ModalBottomSheet(
+    {
+      children,
+      onDismissRequest,
+      properties,
+      scrimColor,
+      skipPartiallyExpanded = false,
+      initialFullyExpanded = false,
+      showDragHandle = true,
+      sheetGesturesEnabled = true,
+      ...props
+    },
+    ref
+  ) {
+    validateModalBottomSheetProps({
+      onDismissRequest,
+      properties,
+      scrimColor,
+      skipPartiallyExpanded,
+      initialFullyExpanded,
+      showDragHandle,
+      sheetGesturesEnabled,
+    })
+    const commandId = useRef(0)
+    const commandRevision = useRef(0)
+    const waiters = useRef(new Map<number, () => void>())
+    const [hideCommand, setHideCommand] = useState<ComposeNativeNodeProps['sheetCommand']>(undefined)
+    useImperativeHandle(
+      ref,
+      () => ({
+        hide: () =>
+          new Promise<void>((resolve) => {
+            commandId.current += 1
+            waiters.current.set(commandId.current, resolve)
+            commandRevision.current += 1
+            setHideCommand({ requestId: commandId.current, revision: commandRevision.current })
+          }),
+      }),
+      []
+    )
+    return (
+      <ComposeNode
+        {...props}
+        nodeType="modalbottomsheet"
+        sheetOptions={{ skipPartiallyExpanded, initialFullyExpanded, showDragHandle, sheetGesturesEnabled, scrimColor }}
+        sheetProperties={properties}
+        sheetCommand={hideCommand}
+        onNativeComposeNodeDialogDismiss={() => onDismissRequest()}
+        onNativeComposeNodeSheetHidden={(event) => {
+          const resolve = waiters.current.get(event.nativeEvent.requestId)
+          if (resolve) {
+            waiters.current.delete(event.nativeEvent.requestId)
+            resolve()
+          }
+        }}
+      >
+        {children}
+      </ComposeNode>
+    )
+  }
+)
+
+const ModalBottomSheet = Object.assign(ModalBottomSheetRoot, {
+  DragHandle: ({ children }: { children: ReactNode }) => (
+    <ComposeNode nodeType="sheetslot" slotName="dragHandle">
+      {children}
+    </ComposeNode>
+  ),
+})
 
 function Badge({ children, containerColor, contentColor, ...props }: ComposeBadgeProps) {
   validateBadgeProps({ containerColor, contentColor })
@@ -1377,6 +1668,12 @@ export const Compose = {
   Slider,
   AlertDialog,
   Dialog,
+  LazyColumn,
+  LazyRow,
+  Image,
+  Snackbar,
+  SnackbarHost,
+  ModalBottomSheet,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

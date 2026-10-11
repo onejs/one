@@ -30,12 +30,14 @@ declare module 'one' {
         | `/one-native-android-cards`
         | `/one-native-android-chips`
         | `/one-native-android-color`
+        | `/one-native-android-compose-image`
         | `/one-native-android-dividers`
         | `/one-native-android-filter-chip`
         | `/one-native-android-flow-row`
         | `/one-native-android-icon-buttons`
         | `/one-native-android-inputs`
         | `/one-native-android-list-items`
+        | `/one-native-android-lists`
         | `/one-native-android-loading`
         | `/one-native-android-menus`
         | `/one-native-android-picker-reference`
@@ -43,6 +45,8 @@ declare module 'one' {
         | `/one-native-android-progress`
         | `/one-native-android-segmented`
         | `/one-native-android-selection`
+        | `/one-native-android-sheet`
+        | `/one-native-android-snackbar`
         | `/one-native-android-surface`
         | `/one-native-angular-gradient`
         | `/one-native-animation`
@@ -111,6 +115,7 @@ declare module 'one' {
         | `/one-native-local-authentication`
         | `/one-native-location`
         | `/one-native-map`
+        | `/one-native-map-controls`
         | `/one-native-map-services`
         | `/one-native-media`
         | `/one-native-menu-picker`
@@ -125,6 +130,7 @@ declare module 'one' {
         | `/one-native-paste-button`
         | `/one-native-photo-library`
         | `/one-native-picker-palette`
+        | `/one-native-picker-passkit`
         | `/one-native-pip`
         | `/one-native-popover`
         | `/one-native-portal`

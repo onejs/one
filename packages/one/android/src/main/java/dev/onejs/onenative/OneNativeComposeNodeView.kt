@@ -3,6 +3,11 @@ package dev.onejs.onenative
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color as AndroidColor
+import android.graphics.PointF
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.drawable.Animatable
+import android.net.Uri
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +19,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +30,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -79,9 +88,20 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.DragHandle
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LinearWavyProgressIndicator
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.ModalBottomSheetDefaults
+import androidx.compose.material3.ModalBottomSheetProperties
 import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.WavyProgressIndicatorDefaults
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -115,11 +135,13 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -161,6 +183,12 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.drawee.controller.BaseControllerListener
+import com.facebook.drawee.drawable.ScalingUtils
+import com.facebook.drawee.generic.GenericDraweeHierarchy
+import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.image.ImageInfo
 import com.facebook.react.R
 import com.facebook.react.bridge.ColorPropConverter
 import com.facebook.react.bridge.ReadableMap
@@ -573,6 +601,163 @@ internal data class OneNativeComposeStyle(
     }
 }
 
+internal data class OneNativeLazyContentPadding(
+    val start: Double = -1.0,
+    val end: Double = -1.0,
+    val top: Double = -1.0,
+    val bottom: Double = -1.0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeLazyContentPadding {
+            if (map == null) return OneNativeLazyContentPadding()
+            fun number(name: String): Double {
+                if (!map.hasKey(name) || map.isNull(name) || map.getType(name) != ReadableType.Number) {
+                    return -1.0
+                }
+                return map.getDouble(name).takeIf { it.isFinite() } ?: -1.0
+            }
+            return OneNativeLazyContentPadding(
+                start = number("start"),
+                end = number("end"),
+                top = number("top"),
+                bottom = number("bottom"),
+            )
+        }
+    }
+}
+
+internal data class OneNativeImageSource(
+    val uri: String? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeImageSource {
+            if (map == null) return OneNativeImageSource()
+            return OneNativeImageSource(
+                uri = if (map.hasKey("uri") && !map.isNull("uri")) map.getString("uri") else null,
+            )
+        }
+    }
+}
+
+internal data class OneNativeImageOptions(
+    val contentScale: String? = null,
+    val alignment: String? = null,
+    val tint: Int? = null,
+    val alpha: Double = -1.0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeImageOptions {
+            if (map == null) return OneNativeImageOptions()
+            return OneNativeImageOptions(
+                contentScale = if (map.hasKey("contentScale") && !map.isNull("contentScale")) map.getString("contentScale") else null,
+                alignment = if (map.hasKey("alignment") && !map.isNull("alignment")) map.getString("alignment") else null,
+                tint = readComposeColor(map, "tint", context),
+                alpha = if (map.hasKey("alpha") && !map.isNull("alpha") && map.getType("alpha") == ReadableType.Number) map.getDouble("alpha") else -1.0,
+            )
+        }
+    }
+}
+
+internal data class OneNativeSnackbarColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val actionColor: Int? = null,
+    val actionContentColor: Int? = null,
+    val dismissActionContentColor: Int? = null,
+    val actionOnNewLine: Boolean = false,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSnackbarColors =
+            if (map == null) OneNativeSnackbarColors() else OneNativeSnackbarColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                actionColor = readComposeColor(map, "actionColor", context),
+                actionContentColor = readComposeColor(map, "actionContentColor", context),
+                dismissActionContentColor = readComposeColor(map, "dismissActionContentColor", context),
+                actionOnNewLine = map.hasKey("actionOnNewLine") && !map.isNull("actionOnNewLine") && map.getType("actionOnNewLine") == ReadableType.Boolean && map.getBoolean("actionOnNewLine"),
+            )
+    }
+}
+
+internal data class OneNativeSnackbarRequest(
+    val requestId: Int = 0,
+    val message: String? = null,
+    val actionLabel: String? = null,
+    val withDismissAction: Boolean = false,
+    val duration: String? = null,
+    val revision: Int = 0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSnackbarRequest {
+            if (map == null) return OneNativeSnackbarRequest()
+            fun int(name: String): Int =
+                if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Number) map.getInt(name) else 0
+            return OneNativeSnackbarRequest(
+                requestId = int("requestId"),
+                message = if (map.hasKey("message") && !map.isNull("message")) map.getString("message") else null,
+                actionLabel = if (map.hasKey("actionLabel") && !map.isNull("actionLabel")) map.getString("actionLabel") else null,
+                withDismissAction = map.hasKey("withDismissAction") && !map.isNull("withDismissAction") && map.getType("withDismissAction") == ReadableType.Boolean && map.getBoolean("withDismissAction"),
+                duration = if (map.hasKey("duration") && !map.isNull("duration")) map.getString("duration") else null,
+                revision = int("revision"),
+            )
+        }
+    }
+}
+
+internal data class OneNativeSheetOptions(
+    val skipPartiallyExpanded: Boolean = false,
+    val initialFullyExpanded: Boolean = false,
+    val showDragHandle: Boolean = true,
+    val sheetGesturesEnabled: Boolean = true,
+    val scrimColor: Int? = null,
+) {
+    companion object {
+        fun booleanOr(map: ReadableMap, name: String, default: Boolean): Boolean =
+            if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Boolean) map.getBoolean(name) else default
+
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSheetOptions {
+            if (map == null) return OneNativeSheetOptions()
+            return OneNativeSheetOptions(
+                skipPartiallyExpanded = booleanOr(map, "skipPartiallyExpanded", false),
+                initialFullyExpanded = booleanOr(map, "initialFullyExpanded", false),
+                showDragHandle = booleanOr(map, "showDragHandle", true),
+                sheetGesturesEnabled = booleanOr(map, "sheetGesturesEnabled", true),
+                scrimColor = readComposeColor(map, "scrimColor", context),
+            )
+        }
+    }
+}
+
+internal data class OneNativeSheetProperties(
+    val shouldDismissOnClickOutside: Boolean = true,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSheetProperties {
+            if (map == null) return OneNativeSheetProperties()
+            return OneNativeSheetProperties(
+                shouldDismissOnClickOutside =
+                    if (map.hasKey("shouldDismissOnClickOutside") && !map.isNull("shouldDismissOnClickOutside") && map.getType("shouldDismissOnClickOutside") == ReadableType.Boolean)
+                        map.getBoolean("shouldDismissOnClickOutside")
+                    else true,
+            )
+        }
+    }
+}
+
+internal data class OneNativeSheetCommand(
+    val requestId: Int = 0,
+    val revision: Int = 0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSheetCommand {
+            if (map == null) return OneNativeSheetCommand()
+            fun int(name: String): Int =
+                if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Number) map.getInt(name) else 0
+            return OneNativeSheetCommand(requestId = int("requestId"), revision = int("revision"))
+        }
+    }
+}
+
 internal data class OneNativeComposeNodeProps(
     val nodeType: String? = null,
     val text: String? = null,
@@ -646,6 +831,14 @@ internal data class OneNativeComposeNodeProps(
     val progressVariant: String? = null,
     val progressOptions: OneNativeProgressOptions = OneNativeProgressOptions(),
     val pickerOptions: OneNativePickerOptions = OneNativePickerOptions(),
+    val lazyContentPadding: OneNativeLazyContentPadding = OneNativeLazyContentPadding(),
+    val imageSource: OneNativeImageSource = OneNativeImageSource(),
+    val imageOptions: OneNativeImageOptions = OneNativeImageOptions(),
+    val snackbarColors: OneNativeSnackbarColors = OneNativeSnackbarColors(),
+    val snackbarRequest: OneNativeSnackbarRequest = OneNativeSnackbarRequest(),
+    val sheetOptions: OneNativeSheetOptions = OneNativeSheetOptions(),
+    val sheetProperties: OneNativeSheetProperties = OneNativeSheetProperties(),
+    val sheetCommand: OneNativeSheetCommand = OneNativeSheetCommand(),
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -716,6 +909,9 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private var compositionActive = false
     private var pressEventCount = 0
     private var dialogEventCount = 0
+    private var imageEventCount = 0
+    private var snackbarEventCount = 0
+    private var sheetEventCount = 0
     // counts presentations so a reopened picker dialog starts from its props
     internal var dialogPresentation = 0
         private set
@@ -1140,6 +1336,90 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(pickerOptions = OneNativePickerOptions.fromMap(value, context))
     }
 
+    internal fun stageLazyContentPadding(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(lazyContentPadding = OneNativeLazyContentPadding.fromMap(value, context))
+    }
+
+    internal fun stageImageSource(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(imageSource = OneNativeImageSource.fromMap(value, context))
+    }
+
+    internal fun stageImageOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(imageOptions = OneNativeImageOptions.fromMap(value, context))
+    }
+
+    internal fun stageSnackbarColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(snackbarColors = OneNativeSnackbarColors.fromMap(value, context))
+    }
+
+    internal fun stageSnackbarRequest(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(snackbarRequest = OneNativeSnackbarRequest.fromMap(value, context))
+    }
+
+    internal fun stageSheetOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sheetOptions = OneNativeSheetOptions.fromMap(value, context))
+    }
+
+    internal fun stageSheetProperties(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sheetProperties = OneNativeSheetProperties.fromMap(value, context))
+    }
+
+    internal fun stageSheetCommand(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sheetCommand = OneNativeSheetCommand.fromMap(value, context))
+    }
+
+    internal fun handleImageLoad() {
+        if (!compositionActive) return
+        imageEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeImageLoadEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = imageEventCount,
+            )
+        )
+    }
+
+    internal fun handleImageError(message: String) {
+        if (!compositionActive) return
+        imageEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeImageErrorEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                message = message,
+                eventCount = imageEventCount,
+            )
+        )
+    }
+
+    internal fun handleSnackbarResult(requestId: Int, result: String) {
+        if (!compositionActive) return
+        snackbarEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeSnackbarResultEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                requestId = requestId,
+                result = result,
+                eventCount = snackbarEventCount,
+            )
+        )
+    }
+
+    internal fun handleSheetHidden(requestId: Int) {
+        if (!compositionActive) return
+        sheetEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeSheetHiddenEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                requestId = requestId,
+                eventCount = sheetEventCount,
+            )
+        )
+    }
+
     internal fun stageComposeStyle(value: ReadableMap?) {
         pendingProps = pendingProps.copy(composeStyle = OneNativeComposeStyle.fromMap(value, context))
     }
@@ -1348,6 +1628,9 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         dialogEventCount = 0
         dialogPresentation = 0
         submitEventCount = 0
+        imageEventCount = 0
+        snackbarEventCount = 0
+        sheetEventCount = 0
         semanticsVersion = 0
     }
 
@@ -1613,6 +1896,49 @@ private fun RenderComposeNodeBody(
                 }
             }
         "progressindicator" -> RenderComposeProgressIndicator(props, modifier)
+        "lazycolumn" -> {
+            val padding = props.lazyContentPadding
+            LazyColumn(
+                modifier = modifier,
+                contentPadding =
+                    PaddingValues(
+                        start = padding.start.nonNegativeDp(),
+                        top = padding.top.nonNegativeDp(),
+                        end = padding.end.nonNegativeDp(),
+                        bottom = padding.bottom.nonNegativeDp(),
+                    ),
+                verticalArrangement = columnArrangement(props.arrangement, props.spacing),
+                horizontalAlignment = columnAlignment(props.alignment),
+            ) {
+                items(node.renderedChildren, key = { it.id }) { child ->
+                    RenderComposeNode(child, Modifier)
+                }
+            }
+        }
+        "lazyrow" -> {
+            val padding = props.lazyContentPadding
+            LazyRow(
+                modifier = modifier,
+                contentPadding =
+                    PaddingValues(
+                        start = padding.start.nonNegativeDp(),
+                        top = padding.top.nonNegativeDp(),
+                        end = padding.end.nonNegativeDp(),
+                        bottom = padding.bottom.nonNegativeDp(),
+                    ),
+                horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
+                verticalAlignment = rowAlignment(props.alignment),
+            ) {
+                items(node.renderedChildren, key = { it.id }) { child ->
+                    RenderComposeNode(child, Modifier)
+                }
+            }
+        }
+        "image" -> RenderComposeImage(node, props, modifier)
+        "snackbar" -> Unit
+        "snackbarhost" -> RenderComposeSnackbarHost(node, props, modifier)
+        "modalbottomsheet" -> RenderComposeModalBottomSheet(node, props, modifier)
+        "sheetslot" -> Unit
         "datepicker" -> RenderComposeDatePicker(node, props, modifier)
         "timepicker" -> RenderComposeTimePicker(node, props, modifier)
         "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
@@ -1729,6 +2055,205 @@ private fun RenderComposeSurface(
             contentColor = contentColor, tonalElevation = tonalElevation,
             shadowElevation = shadowElevation, border = border, content = content,
         )
+    }
+}
+
+private fun frescoScaleType(value: String?): ScalingUtils.ScaleType =
+    when (value?.trim()?.lowercase()) {
+        "crop" -> ScalingUtils.ScaleType.CENTER_CROP
+        "fillbounds" -> ScalingUtils.ScaleType.FIT_XY
+        "inside" -> ScalingUtils.ScaleType.CENTER_INSIDE
+        "none" -> ScalingUtils.ScaleType.CENTER
+        else -> ScalingUtils.ScaleType.FIT_CENTER
+    }
+
+private fun frescoFocusPoint(value: String?): PointF? =
+    when (value?.trim()?.lowercase()) {
+        "topstart" -> PointF(0f, 0f)
+        "topcenter", "top" -> PointF(0.5f, 0f)
+        "topend" -> PointF(1f, 0f)
+        "centerstart", "start" -> PointF(0f, 0.5f)
+        "center" -> PointF(0.5f, 0.5f)
+        "centerend", "end" -> PointF(1f, 0.5f)
+        "bottomstart" -> PointF(0f, 1f)
+        "bottomcenter", "bottom" -> PointF(0.5f, 1f)
+        "bottomend" -> PointF(1f, 1f)
+        else -> null
+    }
+
+@Composable
+private fun RenderComposeImage(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val options = props.imageOptions
+    val uri = props.imageSource.uri
+    val alpha = options.alpha.takeIf { it in 0.0..1.0 }?.toFloat() ?: 1f
+    Box(
+        modifier = modifier,
+        contentAlignment = boxAlignment(options.alignment),
+    ) {
+        AndroidView(
+            factory = { context ->
+                if (!Fresco.hasBeenInitialized()) Fresco.initialize(context.applicationContext)
+                SimpleDraweeView(context)
+            },
+            update = { view ->
+                if (options.tint != null) {
+                    view.colorFilter = PorterDuffColorFilter(options.tint, PorterDuff.Mode.SRC_IN)
+                } else {
+                    view.colorFilter = null
+                }
+                view.scaleType = frescoScaleType(options.contentScale)
+                (view.hierarchy as? GenericDraweeHierarchy)?.actualImageFocusPoint =
+                    frescoFocusPoint(options.alignment)
+                if (view.tag != uri) {
+                    view.tag = uri
+                    if (uri.isNullOrEmpty()) {
+                        view.setImageURI(null as Uri?, null)
+                    } else {
+                        val listener =
+                            object : BaseControllerListener<ImageInfo>() {
+                                override fun onFinalImageSet(
+                                    id: String?,
+                                    imageInfo: ImageInfo?,
+                                    animatable: Animatable?,
+                                ) {
+                                    node.handleImageLoad()
+                                }
+
+                                override fun onFailure(id: String?, throwable: Throwable?) {
+                                    node.handleImageError(throwable?.message ?: "image load failed")
+                                }
+                            }
+                        view.controller =
+                            Fresco.newDraweeControllerBuilder()
+                                .setUri(uri)
+                                .setOldController(view.controller)
+                                .setControllerListener(listener)
+                                .build()
+                    }
+                }
+            },
+            modifier = Modifier.fillMaxSize().alpha(alpha),
+        )
+    }
+}
+
+private fun snackbarDuration(value: String?): SnackbarDuration =
+    when (value?.trim()?.lowercase()) {
+        "long" -> SnackbarDuration.Long
+        "indefinite" -> SnackbarDuration.Indefinite
+        else -> SnackbarDuration.Short
+    }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeSnackbarHost(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val hostState = remember { SnackbarHostState() }
+    val request = props.snackbarRequest
+    LaunchedEffect(request.revision) {
+        if (request.requestId != 0 && !request.message.isNullOrEmpty()) {
+            val result =
+                hostState.showSnackbar(
+                    message = request.message,
+                    actionLabel = request.actionLabel,
+                    withDismissAction = request.withDismissAction,
+                    duration = snackbarDuration(request.duration),
+                )
+            node.handleSnackbarResult(
+                request.requestId,
+                if (result == SnackbarResult.ActionPerformed) "actionPerformed" else "dismissed",
+            )
+        }
+    }
+    val snackbarChild = node.renderedChildren.firstOrNull { it.renderedNodeKind == "snackbar" }
+    val colors = snackbarChild?.renderedProps?.snackbarColors ?: OneNativeSnackbarColors()
+    SnackbarHost(
+        hostState = hostState,
+        modifier = modifier,
+        snackbar = { data ->
+            Snackbar(
+                snackbarData = data,
+                actionOnNewLine = colors.actionOnNewLine,
+                containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+                contentColor = colors.contentColor?.let(::Color) ?: Color.Unspecified,
+                actionColor = colors.actionColor?.let(::Color) ?: Color.Unspecified,
+                actionContentColor = colors.actionContentColor?.let(::Color) ?: Color.Unspecified,
+                dismissActionContentColor = colors.dismissActionContentColor?.let(::Color) ?: Color.Unspecified,
+            )
+        },
+    ) {
+        node.renderedChildren.forEach { child ->
+            if (child !== snackbarChild) key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeModalBottomSheet(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val options = props.sheetOptions
+    val properties = props.sheetProperties
+    val command = props.sheetCommand
+    val currentGestures by rememberUpdatedState(options.sheetGesturesEnabled)
+    val currentDismissOutside by rememberUpdatedState(properties.shouldDismissOnClickOutside)
+    val presented = remember { mutableStateOf(false) }
+    var hideAllowed by remember { mutableStateOf(false) }
+    val sheetState =
+        rememberModalBottomSheetState(
+            skipPartiallyExpanded = options.skipPartiallyExpanded,
+            confirmValueChange = { target ->
+                when {
+                    hideAllowed -> true
+                    target == SheetValue.Hidden -> currentDismissOutside
+                    !presented.value -> {
+                        presented.value = true
+                        true
+                    }
+                    !currentGestures -> false
+                    else -> true
+                }
+            },
+        )
+    LaunchedEffect(options.initialFullyExpanded) {
+        if (options.initialFullyExpanded) sheetState.expand()
+    }
+    LaunchedEffect(command.revision) {
+        if (command.requestId != 0) {
+            hideAllowed = true
+            try {
+                sheetState.hide()
+            } finally {
+                hideAllowed = false
+            }
+            node.handleSheetHidden(command.requestId)
+        }
+    }
+    val dragSlot = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "dragHandle" }
+    ModalBottomSheet(
+        onDismissRequest = { node.handleDialogDismiss() },
+        sheetState = sheetState,
+        modifier = modifier,
+        scrimColor = options.scrimColor?.let(::Color) ?: ModalBottomSheetDefaults.ScrimColor,
+        dragHandle = {
+            if (dragSlot != null) RenderComposeChildren(dragSlot)
+            else if (options.showDragHandle) DragHandle()
+        },
+        properties = ModalBottomSheetProperties(shouldDismissOnClickOutside = currentDismissOutside),
+    ) {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedProps.slotName != "dragHandle") key(child) { RenderComposeNode(child, Modifier) }
+        }
     }
 }
 
@@ -2594,7 +3119,7 @@ private fun Modifier.applyReactSemantics(
     }
 }
 
-private val composeDialogKinds = setOf("alertdialog", "dialog", "datepickerdialog", "timepickerdialog")
+private val composeDialogKinds = setOf("alertdialog", "dialog", "datepickerdialog", "timepickerdialog", "modalbottomsheet")
 
 private fun composeRole(value: String?): Role? =
     when (value) {

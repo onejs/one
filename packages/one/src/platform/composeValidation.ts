@@ -32,6 +32,13 @@ import type {
   ComposeSegmentedButtonProps,
   ComposeDatePickerProps,
   ComposeTimePickerProps,
+  ComposeImageContentScale,
+  ComposeImageProps,
+  ComposeLazyColumnProps,
+  ComposeLazyRowProps,
+  ComposeModalBottomSheetProps,
+  ComposeSnackbarProps,
+  ComposeSnackbarShowOptions,
 } from './composeTypes'
 import { composeDatePickerColorKeys, composeTimePickerColorKeys } from './composeTypes'
 import { composeIconCodepoints, type ComposeIconName } from './generated/composeIcons'
@@ -826,4 +833,150 @@ export function validatePickerDialogProps(
   assertFunction(props.onDismiss, `${owner} onDismiss`)
   assertOptionalString(props.confirmLabel, `${owner} confirmLabel`)
   assertOptionalString(props.dismissLabel, `${owner} dismissLabel`)
+}
+
+export const lazyAlignments = ['start', 'end', 'center'] as const
+export const lazyRowAlignments = ['top', 'bottom', 'center'] as const
+const lazyContentPaddingKeys = ['start', 'end', 'top', 'bottom'] as const
+export const imageContentScales: readonly ComposeImageContentScale[] = [
+  'fit',
+  'crop',
+  'fillBounds',
+  'fillWidth',
+  'fillHeight',
+  'inside',
+  'none',
+]
+const snackbarColorKeys = new Set([
+  'containerColor',
+  'contentColor',
+  'actionColor',
+  'actionContentColor',
+  'dismissActionContentColor',
+])
+const snackbarPropKeys = new Set([...snackbarColorKeys, 'actionOnNewLine'])
+export const snackbarDurations = ['short', 'long', 'indefinite'] as const
+const sheetPropertyKeys = new Set(['shouldDismissOnClickOutside'])
+
+function assertSpacedBy(value: unknown, owner: string, name: string) {
+  if (value === undefined) return undefined
+  if (typeof value === 'string') {
+    assertOneOf(
+      value,
+      `${owner} ${name}`,
+      name === 'horizontalArrangement' ? horizontalArrangements : verticalArrangements
+    )
+    return value
+  }
+  if (
+    !value ||
+    typeof value !== 'object' ||
+    Array.isArray(value) ||
+    Object.keys(value).length !== 1 ||
+    !('spacedBy' in value)
+  )
+    throw new Error(`Compose ${owner} ${name} must be a preset or { spacedBy }`)
+  const spacedBy = (value as { spacedBy: unknown }).spacedBy
+  if (typeof spacedBy !== 'number' || !Number.isFinite(spacedBy) || spacedBy < 0)
+    throw new Error(`Compose ${owner} ${name} spacedBy must be a nonnegative finite number`)
+  return spacedBy
+}
+
+function assertLazyContentPadding(value: unknown, owner: string) {
+  if (value === undefined) return
+  if (!value || typeof value !== 'object' || Array.isArray(value))
+    throw new Error(`Compose ${owner} contentPadding must be an object`)
+  for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
+    if (!(lazyContentPaddingKeys as readonly string[]).includes(key))
+      throw new Error(`Compose ${owner} contentPadding has unknown key ${key}`)
+    if (
+      entry !== undefined &&
+      (typeof entry !== 'number' || !Number.isFinite(entry) || entry < 0)
+    )
+      throw new Error(`Compose ${owner} contentPadding ${key} must be a nonnegative finite number`)
+  }
+}
+
+export function validateLazyColumnProps(props: ComposeLazyColumnProps) {
+  assertOneOf(props.horizontalAlignment ?? 'start', 'LazyColumn horizontalAlignment', lazyAlignments)
+  assertSpacedBy(props.verticalArrangement ?? 'top', 'LazyColumn', 'verticalArrangement')
+  assertLazyContentPadding(props.contentPadding, 'LazyColumn')
+}
+
+export function validateLazyRowProps(props: ComposeLazyRowProps) {
+  assertOneOf(props.verticalAlignment ?? 'top', 'LazyRow verticalAlignment', lazyRowAlignments)
+  assertSpacedBy(props.horizontalArrangement ?? 'start', 'LazyRow', 'horizontalArrangement')
+  assertLazyContentPadding(props.contentPadding, 'LazyRow')
+}
+
+export function validateImageProps(props: ComposeImageProps) {
+  const source = props.source as unknown
+  const validSource =
+    (typeof source === 'number' && Number.isFinite(source)) ||
+    (source !== null &&
+      typeof source === 'object' &&
+      !Array.isArray(source) &&
+      typeof (source as { uri: unknown }).uri === 'string' &&
+      (source as { uri: string }).uri.length > 0)
+  if (!validSource)
+    throw new Error('Compose Image source must be a { uri } object or a bundled asset id')
+  if (props.contentScale !== undefined)
+    assertOneOf(props.contentScale, 'Image contentScale', imageContentScales)
+  if (props.alignment !== undefined)
+    assertOneOf(props.alignment, 'Image alignment', contentAlignments)
+  if (
+    props.contentDescription !== undefined &&
+    props.contentDescription !== null &&
+    typeof props.contentDescription !== 'string'
+  )
+    throw new Error('Compose Image contentDescription must be a string or null')
+  if (props.tint !== undefined) assertComposeColorValue(props.tint, 'Image tint')
+  if (props.alpha !== undefined && (typeof props.alpha !== 'number' || !(props.alpha >= 0 && props.alpha <= 1)))
+    throw new Error('Compose Image alpha must be a number from 0 to 1')
+  if (props.onLoad !== undefined) assertFunction(props.onLoad, 'Image onLoad')
+  if (props.onError !== undefined) assertFunction(props.onError, 'Image onError')
+}
+
+export function validateSnackbarProps(props: ComposeSnackbarProps) {
+  for (const [key, value] of Object.entries(props)) {
+    if (key === 'children') continue
+    if (!snackbarPropKeys.has(key))
+      throw new Error(`Compose Snackbar colors does not support ${key}`)
+    if (key === 'actionOnNewLine') {
+      if (value !== undefined) assertBoolean(value, 'Snackbar actionOnNewLine')
+    } else if (value !== undefined)
+      assertComposeColorValue(value, `Snackbar ${key}`)
+  }
+}
+
+export function validateSnackbarShowOptions(options: ComposeSnackbarShowOptions) {
+  if (!options || typeof options !== 'object' || Array.isArray(options))
+    throw new Error('Compose SnackbarHost message must be a non-empty string')
+  if (typeof options.message !== 'string' || !options.message.trim())
+    throw new Error('Compose SnackbarHost message must be a non-empty string')
+  if (options.actionLabel !== undefined && typeof options.actionLabel !== 'string')
+    throw new Error('Compose SnackbarHost actionLabel must be a string')
+  if (options.duration !== undefined)
+    assertOneOf(options.duration, 'SnackbarHost duration', snackbarDurations)
+  if (options.withDismissAction !== undefined)
+    assertBoolean(options.withDismissAction, 'SnackbarHost withDismissAction')
+}
+
+export function validateModalBottomSheetProps(props: ComposeModalBottomSheetProps) {
+  assertFunction(props.onDismissRequest, 'ModalBottomSheet onDismissRequest')
+  if (props.properties !== undefined) {
+    if (!props.properties || typeof props.properties !== 'object' || Array.isArray(props.properties))
+      throw new Error('Compose ModalBottomSheet properties must be an object')
+    for (const [key, value] of Object.entries(props.properties)) {
+      if (!sheetPropertyKeys.has(key))
+        throw new Error(`Compose ModalBottomSheet properties has unknown key ${key}`)
+      if (value !== undefined) assertBoolean(value, `ModalBottomSheet properties ${key}`)
+    }
+  }
+  if (props.scrimColor !== undefined)
+    assertComposeColorValue(props.scrimColor, 'ModalBottomSheet scrimColor')
+  assertOptionalBoolean(props.skipPartiallyExpanded, 'ModalBottomSheet skipPartiallyExpanded')
+  assertOptionalBoolean(props.initialFullyExpanded, 'ModalBottomSheet initialFullyExpanded')
+  assertOptionalBoolean(props.showDragHandle, 'ModalBottomSheet showDragHandle')
+  assertOptionalBoolean(props.sheetGesturesEnabled, 'ModalBottomSheet sheetGesturesEnabled')
 }

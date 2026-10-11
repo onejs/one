@@ -9,9 +9,15 @@ import {
   validateColumnProps,
   validateDialogProps,
   validateIconProps,
+  validateImageProps,
+  validateLazyColumnProps,
+  validateLazyRowProps,
+  validateModalBottomSheetProps,
   validateProgressIndicatorProps,
   validateRowProps,
   validateSliderProps,
+  validateSnackbarProps,
+  validateSnackbarShowOptions,
   validateSwitchProps,
   validateTextFieldProps,
   validateTextProps,
@@ -22,7 +28,11 @@ import {
 // assertions read the props that reach it.
 vi.mock('react-native', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-native')>()
-  return { Platform: { OS: 'android' }, StyleSheet: actual.StyleSheet }
+  return {
+    Platform: { OS: 'android' },
+    StyleSheet: actual.StyleSheet,
+    Image: { resolveAssetSource: (source: number) => ({ uri: `asset://${source}` }) },
+  }
 })
 vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', async () => {
   const { createElement } = await import('react')
@@ -172,6 +182,12 @@ describe('compose surface', () => {
       'TimePicker',
       'DatePickerDialog',
       'TimePickerDialog',
+      'LazyColumn',
+      'LazyRow',
+      'Image',
+      'Snackbar',
+      'SnackbarHost',
+      'ModalBottomSheet',
     ])
       expect(
         () => (Unsupported as Record<string, (props: object) => unknown>)[name]({}),
@@ -489,5 +505,193 @@ describe('compose pickers', () => {
     expect(() => render(Compose.TimePickerDialog, { visible: true, selection, onDismiss: () => {} })).toThrow(
       'Compose TimePickerDialog onConfirm must be a function'
     )
+  })
+})
+
+describe('lazy lists', () => {
+  it('renders a lazy column with arrangement, alignment and content padding', () => {
+    expect(
+      render(Compose.LazyColumn, {
+        verticalArrangement: { spacedBy: 8 },
+        horizontalAlignment: 'center',
+        contentPadding: { top: 4, bottom: 4 },
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'lazycolumn',
+        arrangement: 'top',
+        spacing: 8,
+        alignment: 'center',
+        lazyContentPadding: { top: 4, bottom: 4 },
+      },
+    })
+  })
+
+  it('renders a lazy row with a preset arrangement', () => {
+    expect(
+      render(Compose.LazyRow, { horizontalArrangement: 'end', verticalAlignment: 'center' })
+    ).toMatchObject({
+      props: {
+        nodeType: 'lazyrow',
+        arrangement: 'end',
+        alignment: 'center',
+      },
+    })
+  })
+
+  it('accepts defaults and rejects bad alignments, arrangements and padding', () => {
+    expect(() => validateLazyColumnProps({})).not.toThrow()
+    expect(() => validateLazyRowProps({})).not.toThrow()
+    expect(() =>
+      validateLazyColumnProps({ horizontalAlignment: 'middle' as never })
+    ).toThrow('Compose LazyColumn horizontalAlignment must be one of start, end, center')
+    expect(() =>
+      validateLazyRowProps({ verticalAlignment: 'middle' as never })
+    ).toThrow('Compose LazyRow verticalAlignment must be one of top, bottom, center')
+    expect(() =>
+      validateLazyColumnProps({ verticalArrangement: { spacedBy: -1 } })
+    ).toThrow('Compose LazyColumn verticalArrangement spacedBy must be a nonnegative finite number')
+    expect(() =>
+      validateLazyRowProps({ horizontalArrangement: 'diagonal' as never })
+    ).toThrow('Compose LazyRow horizontalArrangement must be one of')
+    expect(() =>
+      validateLazyColumnProps({ contentPadding: { top: -4 } })
+    ).toThrow('Compose LazyColumn contentPadding top must be a nonnegative finite number')
+    expect(() =>
+      validateLazyRowProps({ contentPadding: { left: 4 } as never })
+    ).toThrow('Compose LazyRow contentPadding has unknown key left')
+  })
+})
+
+describe('compose image', () => {
+  it('renders a uri source with scale, alignment and callbacks', () => {
+    expect(
+      render(Compose.Image, {
+        source: { uri: 'file:///cache/red.png' },
+        contentScale: 'crop',
+        alignment: 'center',
+        contentDescription: 'Red square',
+        alpha: 0.5,
+        onLoad: () => {},
+        onError: () => {},
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'image',
+        imageSource: { uri: 'file:///cache/red.png' },
+        imageOptions: {
+          contentScale: 'crop',
+          alignment: 'center',
+          alpha: 0.5,
+        },
+      },
+    })
+  })
+
+  it('resolves a bundled asset id through react native', () => {
+    expect(render(Compose.Image, { source: 7 })).toMatchObject({
+      props: { nodeType: 'image', imageSource: { uri: 'asset://7' } },
+    })
+  })
+
+  it('accepts tint and rejects bad sources, scales and alpha', () => {
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, tint: '#ff0000' })
+    ).not.toThrow()
+    expect(() => validateImageProps({ source: '' as never })).toThrow(
+      'Compose Image source must be a { uri } object or a bundled asset id'
+    )
+    expect(() => validateImageProps({ source: { uri: '' } })).toThrow(
+      'Compose Image source must be a { uri } object or a bundled asset id'
+    )
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, contentScale: 'stretch' as never })
+    ).toThrow('Compose Image contentScale must be one of fit, crop, fillBounds, fillWidth, fillHeight, inside, none')
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, alpha: 2 })
+    ).toThrow('Compose Image alpha must be a number from 0 to 1')
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, contentDescription: 4 as never })
+    ).toThrow('Compose Image contentDescription must be a string or null')
+    expect(() =>
+      render(Compose.Image, { source: { uri: 'file:///cache/red.png' }, onLoad: 'now' as never })
+    ).toThrow('Compose Image onLoad must be a function')
+  })
+})
+
+describe('compose snackbar', () => {
+  it('renders styling colors and a host with children', () => {
+    expect(
+      render(Compose.Snackbar, { containerColor: '#000000', actionOnNewLine: true })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'snackbar',
+        snackbarColors: { containerColor: '#000000', actionOnNewLine: true },
+      },
+    })
+    expect(render(Compose.SnackbarHost, { children: null })).toMatchObject({
+      props: { nodeType: 'snackbarhost' },
+    })
+  })
+
+  it('accepts show options and rejects bad messages and durations', () => {
+    expect(() =>
+      validateSnackbarProps({ contentColor: '#ffffff', dismissActionContentColor: '#eeeeee' })
+    ).not.toThrow()
+    expect(() =>
+      validateSnackbarShowOptions({ message: 'File saved', actionLabel: 'Undo', duration: 'short' })
+    ).not.toThrow()
+    expect(() => validateSnackbarProps({ containerColor: '#000', glow: true } as never)).toThrow(
+      'Compose Snackbar colors does not support glow'
+    )
+    expect(() => validateSnackbarShowOptions({ message: '  ' })).toThrow(
+      'Compose SnackbarHost message must be a non-empty string'
+    )
+    expect(() => validateSnackbarShowOptions({ message: 'Hi', duration: 'forever' as never })).toThrow(
+      'Compose SnackbarHost duration must be one of short, long, indefinite'
+    )
+  })
+})
+
+describe('compose modal bottom sheet', () => {
+  const onDismissRequest = () => {}
+
+  it('renders sheet options with Expo defaults', () => {
+    expect(render(Compose.ModalBottomSheet, { onDismissRequest })).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'modalbottomsheet',
+        sheetOptions: {
+          skipPartiallyExpanded: false,
+          initialFullyExpanded: false,
+          showDragHandle: true,
+          sheetGesturesEnabled: true,
+        },
+      },
+    })
+  })
+
+  it('renders a custom drag handle slot', () => {
+    expect(
+      render(Compose.ModalBottomSheet.DragHandle, { children: null })
+    ).toMatchObject({
+      props: { nodeType: 'sheetslot', slotName: 'dragHandle' },
+    })
+  })
+
+  it('rejects a missing dismiss callback and bad properties', () => {
+    expect(() => validateModalBottomSheetProps({ onDismissRequest })).not.toThrow()
+    expect(() =>
+      validateModalBottomSheetProps({} as never)
+    ).toThrow('Compose ModalBottomSheet onDismissRequest must be a function')
+    expect(() =>
+      validateModalBottomSheetProps({ onDismissRequest, properties: { modal: true } as never })
+    ).toThrow('Compose ModalBottomSheet properties has unknown key modal')
+    expect(() =>
+      render(Compose.ModalBottomSheet, { onDismissRequest, scrimColor: '' })
+    ).toThrow('Compose ModalBottomSheet scrimColor must be a color value')
   })
 })

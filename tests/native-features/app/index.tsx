@@ -540,6 +540,26 @@ const testScreens = [
     testID: 'nav-one-native-android-pickers',
   },
   {
+    href: '/one-native-android-lists',
+    label: 'One Native Android Lists',
+    testID: 'nav-one-native-android-lists',
+  },
+  {
+    href: '/one-native-android-compose-image',
+    label: 'One Native Android Compose Image',
+    testID: 'nav-one-native-android-compose-image',
+  },
+  {
+    href: '/one-native-android-snackbar',
+    label: 'One Native Android Snackbar',
+    testID: 'nav-one-native-android-snackbar',
+  },
+  {
+    href: '/one-native-android-sheet',
+    label: 'One Native Android Sheet',
+    testID: 'nav-one-native-android-sheet',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

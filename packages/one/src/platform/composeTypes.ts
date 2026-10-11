@@ -120,6 +120,91 @@ export interface ComposeFlowRowProps extends ComposeNodeProps {
   verticalArrangement?: ComposeVerticalArrangement | Readonly<{ spacedBy: number }>
 }
 
+export type ComposeLazyContentPadding = Readonly<{
+  start?: number
+  end?: number
+  top?: number
+  bottom?: number
+}>
+
+export interface ComposeLazyColumnProps extends ComposeNodeProps {
+  horizontalAlignment?: 'start' | 'end' | 'center'
+  verticalArrangement?: ComposeVerticalArrangement | Readonly<{ spacedBy: number }>
+  contentPadding?: ComposeLazyContentPadding
+}
+
+export interface ComposeLazyRowProps extends ComposeNodeProps {
+  verticalAlignment?: 'top' | 'bottom' | 'center'
+  horizontalArrangement?: ComposeHorizontalArrangement | Readonly<{ spacedBy: number }>
+  contentPadding?: ComposeLazyContentPadding
+}
+
+export type ComposeImageSource = Readonly<{ uri: string }> | number
+
+export type ComposeImageContentScale =
+  | 'fit'
+  | 'crop'
+  | 'fillBounds'
+  | 'fillWidth'
+  | 'fillHeight'
+  | 'inside'
+  | 'none'
+
+export interface ComposeImageProps extends ComposeLeafProps {
+  source: ComposeImageSource
+  contentScale?: ComposeImageContentScale
+  alignment?: ComposeContentAlignment
+  contentDescription?: string | null
+  tint?: ColorValue
+  alpha?: number
+  onLoad?: () => void
+  onError?: (message: string) => void
+}
+
+export interface ComposeSnackbarProps extends ComposeLeafProps {
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  actionColor?: ColorValue
+  actionContentColor?: ColorValue
+  dismissActionContentColor?: ColorValue
+  actionOnNewLine?: boolean
+}
+
+export type ComposeSnackbarHostProps = ComposeNodeProps
+
+export type ComposeSnackbarDuration = 'short' | 'long' | 'indefinite'
+
+export interface ComposeSnackbarShowOptions {
+  message: string
+  actionLabel?: string
+  duration?: ComposeSnackbarDuration
+  withDismissAction?: boolean
+}
+
+export type ComposeSnackbarResult = 'dismissed' | 'actionPerformed'
+
+export interface ComposeSnackbarHostRef {
+  showSnackbar: (options: ComposeSnackbarShowOptions) => Promise<ComposeSnackbarResult>
+}
+
+export interface ComposeModalBottomSheetProperties {
+  shouldDismissOnClickOutside?: boolean
+}
+
+export interface ComposeModalBottomSheetProps extends ComposeNodeProps {
+  onDismissRequest: () => void
+  properties?: ComposeModalBottomSheetProperties
+  scrimColor?: ColorValue
+  skipPartiallyExpanded?: boolean
+  initialFullyExpanded?: boolean
+  showDragHandle?: boolean
+  sheetGesturesEnabled?: boolean
+}
+
+export interface ComposeModalBottomSheetRef {
+  hide: () => Promise<void>
+}
+
 export interface ComposeBadgeProps extends ComposeNodeProps {
   containerColor?: ColorValue
   contentColor?: ColorValue
