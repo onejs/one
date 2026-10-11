@@ -572,6 +572,57 @@ describe('one native integration tests', () => {
 
   // -- tab view parity --
 
+  describe('One Native withAnimation', () => {
+    test('an animated write completes and a plain write does not', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-animation')
+      const status = await waitForElement(driver, 'one-native-animation-status', { timeout: 30_000 })
+      expect(await status.getText()).toContain('Level: 0 · Completions: 0')
+
+      await (await waitForElement(driver, 'one-native-animation-animate')).click()
+      await status.waitUntil(async () => (await status.getText()).includes('Level: 100 · Completions: 1'), {
+        timeout: 5000,
+        timeoutMsg: 'withAnimation did not apply its write and run its completion',
+      })
+      await captureScreenshot(driver, 'one-native-animation-animated')
+
+      // a write outside withAnimation moves the slider without a completion.
+      await (await waitForElement(driver, 'one-native-animation-jump')).click()
+      await status.waitUntil(async () => (await status.getText()).includes('Level: 0 · Completions: 1'), {
+        timeout: 5000,
+        timeoutMsg: 'the plain write did not apply',
+      })
+
+      await (await waitForElement(driver, 'one-native-animation-nested')).click()
+      const error = await waitForElement(driver, 'one-native-animation-error')
+      await error.waitUntil(async () => (await error.getText()).includes('inside another withAnimation body'), {
+        timeout: 5000,
+        timeoutMsg: 'a nested withAnimation did not throw',
+      })
+    })
+  })
+
+  describe('One Native derived SDK views', () => {
+    test('derived views mount, act, and reject two constructors', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-derived-views')
+      for (const id of [
+        'one-native-derived-async-image',
+        'one-native-derived-location-button',
+        'one-native-derived-shortcuts-link',
+        'one-native-derived-product',
+        'one-native-derived-subscription-store',
+        'one-native-derived-chart',
+      ]) {
+        const view = await waitForElement(driver, id, { timeout: 30_000 })
+        expect(await view.isDisplayed(), id).toBe(true)
+      }
+      await captureScreenshot(driver, 'one-native-derived-views')
+
+      await (await waitForElement(driver, 'one-native-derived-invalid')).click()
+      const error = await waitForElement(driver, 'one-native-derived-error')
+      expect(await error.getText()).toContain('takes exactly one of groupID, productIDs')
+    })
+  })
+
   describe('One Native TabView Parity', () => {
     test(
       'bottom accessory takes touches in expanded and inline modes',
