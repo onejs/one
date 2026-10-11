@@ -26,26 +26,60 @@ fallback on devices without it. `mediaTypes` is `'images'`, `'videos'`, or both,
 to `'images'`. `selectionLimit` is the maximum number of assets, defaulting to `1`; `0` is
 unlimited (the system maximum).
 
-`launchCamera` captures one still photo with the system camera. It needs the camera
-permission declared in `native.app`:
+`launchCamera` captures one asset with the system camera: a still photo, unless
+`mediaTypes` is `'videos'`, which records one video. Mixed requests capture a photo on
+both platforms. It needs the camera permission declared in `native.app`:
 
 ```ts
 one({
   native: {
     app: {
       notifications: {},
-      imagePicker: { camera: 'Take profile photos.' },
+      imagePicker: {
+        camera: 'Take profile photos.',
+        microphone: 'Record video with sound.',
+      },
       // ...
     },
   },
 })
 ```
 
-`one prebuild` writes the string to `NSCameraUsageDescription` on iOS and declares the
-`CAMERA` permission on Android. Without it the call rejects instead of crashing. A denied
-permission, a missing camera, and backing out of either call all resolve
-`{ canceled: true, assets: null }`; check the permission first when the distinction
-matters. Only runtime failures reject, with `E_IMAGE_PICKER_FAILED`.
+`one prebuild` writes the strings to `NSCameraUsageDescription` and
+`NSMicrophoneUsageDescription` on iOS and declares the `CAMERA` permission on Android.
+The microphone string is required for camera video on iOS, since the recording carries
+audio; Android needs nothing extra, because the camera app records. Without the camera
+entry the call rejects instead of crashing. A denied permission, a missing camera, and
+backing out of either call all resolve `{ canceled: true, assets: null }`; check the
+permission first when the distinction matters. Only runtime failures reject, with
+`E_IMAGE_PICKER_FAILED`.
+
+Video requests take two more fields: `videoMaxDuration` in seconds (`0` disables the
+limit) and `videoQuality` (`'high'`, `'medium'`, or `'low'`, defaulting to `'high'`).
+Video assets report `type: 'video'` and `duration` in milliseconds alongside `width`,
+`height`, and the file fields; photos report `type: 'image'` with no `duration`.
+
+## Crop UI
+
+`allowsEditing: true` shows the system crop UI after picking one image: square on iOS,
+and a movable, resizable frame on Android locked to `aspect: [x, y]` when set (`aspect`
+is ignored on iOS). `quality` from 0 to 1 compresses the result to JPEG (defaulting to
+1, which keeps the pixels); PNG and BMP library picks on iOS skip the compression, like
+Expo.
+
+```tsx
+const cropped = await One.ImagePicker.launchLibrary({
+  mediaTypes: 'images',
+  selectionLimit: 1,
+  allowsEditing: true,
+  aspect: [4, 3],
+  quality: 0.8,
+})
+```
+
+Editing needs a single image pick: combining it with multiple selection or video throws
+synchronously before any picker opens. The web file dialog has no crop UI, so
+`allowsEditing` and `aspect` validate but change nothing there.
 
 The camera permission reads without prompting and prompts on request. Neither system
 picker needs a grant, so no media library permission calls exist:

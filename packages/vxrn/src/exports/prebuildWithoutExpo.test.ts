@@ -131,6 +131,12 @@ describe('native.app prebuild validation', () => {
       /imagePicker\.camera/
     )
     expect(() =>
+      validatePrebuildApp({
+        ...app,
+        imagePicker: { camera: 'Capture photos', microphone: '' },
+      })
+    ).toThrow(/imagePicker\.microphone/)
+    expect(() =>
       validatePrebuildApp({ ...app, notifications: { push: 'yes' } } as any)
     ).toThrow(/notifications\.push/)
     // platform-scoped: android-only skips the ios requirement and vice versa
@@ -472,6 +478,35 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     })
     expect(android.content).toContain('versionCode 1')
     expect(android.content).toContain('versionName "1.0"')
+  })
+
+  it('stamps the imagePicker microphone string for camera video', () => {
+    const video = {
+      ...app,
+      speech: undefined,
+      notifications: undefined,
+      imagePicker: { camera: 'Capture photos', microphone: 'Record video & audio' },
+    }
+    const infoPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: video,
+    })
+    expect(infoPlist.content).toContain('<key>NSCameraUsageDescription</key>')
+    expect(infoPlist.content).toContain(
+      '<key>NSMicrophoneUsageDescription</key>\n\t<string>Record video &amp; audio</string>'
+    )
+    // the camera app records: android gains no microphone permission.
+    const androidManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />',
+      platform: 'android',
+      app: video,
+    })
+    expect(androidManifest.content).toContain('android.permission.CAMERA')
+    expect(androidManifest.content).not.toContain('android.permission.RECORD_AUDIO')
   })
 
   it('omits camera entries when imagePicker.camera is unset', () => {

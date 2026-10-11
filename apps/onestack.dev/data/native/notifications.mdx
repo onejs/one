@@ -91,6 +91,64 @@ if (response?.actionIdentifier === One.Notifications.DEFAULT_ACTION_IDENTIFIER) 
 }
 ```
 
+## Interactive categories and actions
+
+Categories add action buttons to a notification. Register one before scheduling onto it;
+registering an identifier replaces it:
+
+```tsx
+await One.Notifications.setCategory(
+  'replycat',
+  [
+    { identifier: 'reply', buttonTitle: 'Reply' },
+    {
+      identifier: 'snooze',
+      buttonTitle: 'Snooze',
+      options: { isDestructive: true, opensAppToForeground: false },
+    },
+    {
+      identifier: 'comment',
+      buttonTitle: 'Comment',
+      textInput: { placeholder: 'Say something' },
+    },
+  ],
+  { customDismissAction: true }
+)
+
+await One.Notifications.schedule({
+  content: { title: 'Hello', categoryIdentifier: 'replycat' },
+  trigger: null,
+})
+```
+
+An action tap arrives on the response listener with the action's `identifier`:
+
+```tsx
+const sub = One.Notifications.addResponseReceivedListener((response) => {
+  if (response.actionIdentifier === 'reply') {
+    // the user tapped Reply
+  }
+  if (response.userText !== undefined) {
+    // the user typed into a text-input action
+  }
+})
+```
+
+Action `options` are `isAuthenticationRequired`, `isDestructive` (an iOS effect; Android
+shows the button the same way), and `opensAppToForeground` (defaulting to `true`).
+`textInput` turns the action into a text field: the typed text arrives as `userText` on
+the response. Category `options` are iOS-only extras (`allowInCarPlay`,
+`customDismissAction`, `showTitle`, `showSubtitle`, `categorySummaryFormat`,
+`intentIdentifiers`, `previewPlaceholder`); `allowAnnouncement` is accepted and ignored,
+like Expo. Identifiers must be non-empty and contain neither `:` nor `-`.
+
+`getCategories` resolves every registered category and `deleteCategory` removes one,
+resolving `true`, or `false` when the identifier was unknown. Scheduling onto an
+unknown category posts without buttons. On Android, taps on a dead process still land:
+the response is recorded and `getLastResponse` answers it on the next launch. On web
+`setCategory` echoes the registered category, `getCategories` resolves `[]`, and
+`deleteCategory` resolves `false`.
+
 Two more triggers schedule into the future: `{ type: 'timeInterval', seconds,
 repeats? }` and `{ type: 'date', date }`, where the date is a timestamp or a
 `Date`. A past date delivers immediately. Both take an Android `channelId`;

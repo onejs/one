@@ -76,11 +76,57 @@ describe('clipboard web', () => {
 
   it('exposes the namespace object', () => {
     expect(Object.keys(Clipboard).sort()).toEqual([
+      'addListener',
+      'getImage',
       'getString',
+      'getUrl',
+      'hasImage',
       'hasString',
+      'hasUrl',
+      'setImage',
       'setString',
+      'setUrl',
     ])
     expect(Object.isFrozen(Clipboard)).toBe(true)
+  })
+
+  it('reads html through the item api when preferred', async () => {
+    const html = '<b>hello</b>'
+    vi.stubGlobal('navigator', {
+      clipboard: {
+        readText: async () => 'hello',
+        read: async () => [
+          {
+            types: ['text/html'],
+            getType: async () => new Blob([html], { type: 'text/html' }),
+          },
+        ],
+      },
+    })
+    expect(await Clipboard.getString({ preferredFormat: 'html' })).toBe(html)
+    expect(await Clipboard.getString()).toBe('hello')
+  })
+
+  it('resolves empty image and url values without item support', async () => {
+    stubClipboard()
+    expect(await Clipboard.getImage({ format: 'png' })).toBeNull()
+    expect(await Clipboard.hasImage()).toBe(false)
+    expect(await Clipboard.getUrl()).toBeNull()
+    expect(await Clipboard.hasUrl()).toBe(false)
+    await expect(Clipboard.setImage('aGVsbG8=')).resolves.toBeUndefined()
+    await expect(Clipboard.setUrl('https://onestack.dev')).resolves.toBeUndefined()
+    expect(() => Clipboard.setImage('')).toThrow(
+      'Clipboard.setImage: base64Image must be a non-empty string'
+    )
+  })
+
+  it('keeps the listener inert on web', () => {
+    stubClipboard()
+    const events: unknown[] = []
+    const sub = Clipboard.addListener((event) => events.push(event))
+    expect(sub.remove).toBeTypeOf('function')
+    expect(() => sub.remove()).not.toThrow()
+    expect(events).toEqual([])
   })
 })
 
@@ -90,12 +136,43 @@ describe('clipboard native entry', () => {
       getString: vi.fn(async () => 'hi'),
       setString: vi.fn(async () => true),
       hasString: vi.fn(async () => true),
+      getImage: vi.fn(async () => undefined),
+      setImage: vi.fn(async () => {}),
+      hasImage: vi.fn(async () => false),
+      getUrl: vi.fn(async () => undefined),
+      setUrl: vi.fn(async () => {}),
+      hasUrl: vi.fn(async () => false),
+      setClipboardListener: vi.fn(() => {}),
+      clearClipboardListener: vi.fn(() => {}),
     }
     const { Clipboard: native } = await loadNativeEntry(nativeModule)
     expect(await native.getString()).toBe('hi')
     expect(await native.setString('hi')).toBe(true)
-    expect(nativeModule.setString).toHaveBeenCalledWith('hi')
+    expect(nativeModule.setString).toHaveBeenCalledWith('hi', {})
     expect(await native.hasString()).toBe(true)
+    expect(await native.getImage({ format: 'png' })).toBeNull()
+    expect(nativeModule.getImage).toHaveBeenCalledWith({ format: 'png' })
+    await native.setImage('aGVsbG8=')
+    expect(nativeModule.setImage).toHaveBeenCalledWith('aGVsbG8=')
+    expect(await native.hasImage()).toBe(false)
+    expect(await native.getUrl()).toBeNull()
+    await native.setUrl('https://onestack.dev')
+    expect(nativeModule.setUrl).toHaveBeenCalledWith('https://onestack.dev')
+    expect(await native.hasUrl()).toBe(false)
+    // the listener fans out through one native slot; unknown content
+    // types never reach js listeners.
+    const first = vi.fn()
+    const second = vi.fn()
+    const firstSub = native.addListener(first)
+    const secondSub = native.addListener(second)
+    expect(nativeModule.setClipboardListener).toHaveBeenCalledTimes(1)
+    nativeModule.setClipboardListener.mock.calls[0][0](['image', 'bogus'])
+    expect(first).toHaveBeenCalledWith({ contentTypes: ['image'] })
+    expect(second).toHaveBeenCalledWith({ contentTypes: ['image'] })
+    firstSub.remove()
+    expect(nativeModule.clearClipboardListener).not.toHaveBeenCalled()
+    secondSub.remove()
+    expect(nativeModule.clearClipboardListener).toHaveBeenCalledTimes(1)
   })
 
   it('throws the same write check as the web entry', async () => {

@@ -23,10 +23,20 @@ describe('resolveImagePickerOptions', () => {
     expect(resolveImagePickerOptions()).toEqual({
       mediaTypes: ['images'],
       selectionLimit: 1,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
     })
     expect(resolveImagePickerOptions({})).toEqual({
       mediaTypes: ['images'],
       selectionLimit: 1,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
     })
   })
 
@@ -34,20 +44,43 @@ describe('resolveImagePickerOptions', () => {
     expect(resolveImagePickerOptions({ mediaTypes: 'videos' })).toEqual({
       mediaTypes: ['videos'],
       selectionLimit: 1,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
     })
     expect(
       resolveImagePickerOptions({ mediaTypes: ['videos', 'images', 'videos'] })
-    ).toEqual({ mediaTypes: ['videos', 'images'], selectionLimit: 1 })
+    ).toEqual({
+      mediaTypes: ['videos', 'images'],
+      selectionLimit: 1,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
+    })
   })
 
   it('passes selection limits through, with 0 meaning unlimited', () => {
     expect(resolveImagePickerOptions({ selectionLimit: 0 })).toEqual({
       mediaTypes: ['images'],
       selectionLimit: 0,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
     })
     expect(resolveImagePickerOptions({ selectionLimit: 5 })).toEqual({
       mediaTypes: ['images'],
       selectionLimit: 5,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
     })
   })
 
@@ -79,19 +112,31 @@ describe('resolveCameraOptions', () => {
     expect(resolveCameraOptions()).toEqual({
       mediaTypes: ['images'],
       selectionLimit: 1,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
     })
     expect(() => resolveCameraOptions({ mediaTypes: 'gifs' as never })).toThrow(
       /mediaTypes/
     )
   })
 
-  it('rejects video capture', () => {
-    expect(() => resolveCameraOptions({ mediaTypes: 'videos' })).toThrow(
-      /launchCamera.*video/
-    )
+  it('captures video for videos-only requests', () => {
+    expect(resolveCameraOptions({ mediaTypes: 'videos' }).mediaTypes).toEqual([
+      'videos',
+    ])
+    expect(
+      resolveCameraOptions({ mediaTypes: 'videos', videoMaxDuration: 30 }).videoMaxDuration
+    ).toBe(30)
+  })
+
+  it('keeps the crop rules on the camera', () => {
+    expect(resolveCameraOptions({ allowsEditing: true }).allowsEditing).toBe(true)
     expect(() =>
-      resolveCameraOptions({ mediaTypes: ['images', 'videos'] })
-    ).toThrow(/launchCamera.*video/)
+      resolveCameraOptions({ mediaTypes: 'videos', allowsEditing: true })
+    ).toThrow(/launchCamera.*allowsEditing/)
   })
 })
 
@@ -120,9 +165,9 @@ describe('ImagePicker without its native module', () => {
     expect(() => ImagePicker.launchLibrary({ selectionLimit: -1 })).toThrow(
       /selectionLimit/
     )
-    expect(() => ImagePicker.launchCamera({ mediaTypes: 'videos' })).toThrow(
-      /launchCamera.*video/
-    )
+    expect(() =>
+      ImagePicker.launchCamera({ mediaTypes: 'videos', allowsEditing: true })
+    ).toThrow(/launchCamera.*allowsEditing/)
   })
 })
 
@@ -134,8 +179,8 @@ describe('ImagePicker with its hybrid object', () => {
     })
     expect(() => ImagePicker.launchLibrary({ mediaTypes: [] })).toThrow(/mediaTypes/)
     expect(() =>
-      ImagePicker.launchCamera({ mediaTypes: ['images', 'videos'] })
-    ).toThrow(/launchCamera.*video/)
+      ImagePicker.launchCamera({ mediaTypes: 'videos', selectionLimit: 2, allowsEditing: true })
+    ).toThrow(/launchCamera.*allowsEditing/)
     expect(NitroModules.createHybridObject).not.toHaveBeenCalled()
   })
 
@@ -153,6 +198,11 @@ describe('ImagePicker with its hybrid object', () => {
     expect(launchLibrary).toHaveBeenNthCalledWith(1, {
       mediaTypes: ['images', 'videos'],
       selectionLimit: 3,
+      allowsEditing: false,
+      aspect: undefined,
+      quality: 1,
+      videoMaxDuration: 0,
+      videoQuality: 'high',
     })
   })
 
@@ -186,9 +236,9 @@ describe('ImagePicker on web', () => {
     expect(() => WebImagePicker.launchLibrary({ selectionLimit: 1.5 })).toThrow(
       /selectionLimit/
     )
-    expect(() => WebImagePicker.launchCamera({ mediaTypes: 'videos' })).toThrow(
-      /launchCamera.*video/
-    )
+    expect(() =>
+      WebImagePicker.launchCamera({ mediaTypes: 'videos', allowsEditing: true })
+    ).toThrow(/launchCamera.*allowsEditing/)
   })
 
   it('reads granted from both permission calls', async () => {

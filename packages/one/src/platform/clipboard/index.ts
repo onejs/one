@@ -27,8 +27,12 @@ function webClipboard(): Clipboard | undefined {
   return navigator.clipboard ?? undefined
 }
 
-async function getString(options?: ClipboardGetStringOptions): Promise<string> {
+function getString(options?: ClipboardGetStringOptions): Promise<string> {
   assertGetStringOptions(options, 'getString')
+  return readString(options)
+}
+
+async function readString(options?: ClipboardGetStringOptions): Promise<string> {
   const clipboard = webClipboard()
   if (!clipboard) return ''
   if (options?.preferredFormat === 'html' && typeof clipboard.read === 'function') {
@@ -154,8 +158,12 @@ async function convertImage(
   }
 }
 
-async function getImage(options: ClipboardGetImageOptions): Promise<ClipboardImage | null> {
+function getImage(options: ClipboardGetImageOptions): Promise<ClipboardImage | null> {
   assertGetImageOptions(options)
+  return readImage(options)
+}
+
+async function readImage(options: ClipboardGetImageOptions): Promise<ClipboardImage | null> {
   const clipboard = webClipboard()
   if (!clipboard || typeof clipboard.read !== 'function') return null
   try {
@@ -174,8 +182,12 @@ async function getImage(options: ClipboardGetImageOptions): Promise<ClipboardIma
   return null
 }
 
-async function setImage(base64Image: string): Promise<void> {
+function setImage(base64Image: string): Promise<void> {
   assertSetImage(base64Image)
+  return writeImage(base64Image)
+}
+
+async function writeImage(base64Image: string): Promise<void> {
   const clipboard = webClipboard()
   if (!clipboard || typeof clipboard.write !== 'function' || typeof ClipboardItem === 'undefined') {
     return
@@ -207,12 +219,13 @@ async function hasImage(): Promise<boolean> {
   return false
 }
 
-async function getUrl(): Promise<string | null> {
-  return null
+function getUrl(): Promise<string | null> {
+  return Promise.resolve(null)
 }
 
-async function setUrl(url: string): Promise<void> {
+function setUrl(url: string): Promise<void> {
   assertSetUrl(url)
+  return Promise.resolve()
 }
 
 async function hasUrl(): Promise<boolean> {

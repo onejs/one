@@ -19,6 +19,9 @@ function lastLabel() {
 }
 
 export default function OneNativeNotifications() {
+  const [category, setCategory] = useState('Category: unknown')
+  const [categories, setCategories] = useState('Categories: unknown')
+  const [categoryDeleted, setCategoryDeleted] = useState('CategoryDeleted: unknown')
   const [permission, setPermission] = useState('Permission: unknown')
   const [badge, setBadge] = useState('Badge: unknown')
   const [channel, setChannel] = useState('Channel: unknown')
@@ -231,7 +234,7 @@ export default function OneNativeNotifications() {
             ),
             One.Notifications.addResponseReceivedListener((event) =>
               setResponse(
-                `Response: ${event.notification.request.identifier}/${event.actionIdentifier}`
+                `Response: ${event.notification.request.identifier}/${event.actionIdentifier}${event.userText === undefined ? '' : `/${event.userText}`}`
               )
             ),
             One.Notifications.addPushTokenListener((token) =>
@@ -259,6 +262,90 @@ export default function OneNativeNotifications() {
         }
       >
         <Text>Get push token</Text>
+      </Pressable>
+      <Text>{category}</Text>
+      <Text>{categories}</Text>
+      <Text>{categoryDeleted}</Text>
+      <Pressable
+        accessibilityRole="button"
+        testID="one-native-notifications-category-set"
+        style={styles.chip}
+        onPress={() =>
+          One.Notifications.setCategory(
+            'replycat',
+            [
+              { identifier: 'reply', buttonTitle: 'Reply' },
+              {
+                identifier: 'snooze',
+                buttonTitle: 'Snooze',
+                options: { isDestructive: true, opensAppToForeground: false },
+              },
+              {
+                identifier: 'comment',
+                buttonTitle: 'Comment',
+                textInput: { placeholder: 'Say something' },
+              },
+            ],
+            { customDismissAction: true }
+          ).then(
+            (created) =>
+              setCategory(`Category: ${created.identifier}/${created.actions.length}`),
+            (error) => setCategory(`Category: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Set reply category</Text>
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        testID="one-native-notifications-category-list"
+        style={styles.chip}
+        onPress={() =>
+          One.Notifications.getCategories().then(
+            (list) =>
+              setCategories(
+                list.length
+                  ? `Categories: ${list
+                      .map((item) => item.identifier)
+                      .sort()
+                      .join(',')}`
+                  : 'Categories: none'
+              ),
+            (error) => setCategories(`Categories: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>List categories</Text>
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        testID="one-native-notifications-category-delete"
+        style={styles.chip}
+        onPress={() =>
+          One.Notifications.deleteCategory('replycat').then(
+            (deleted) => setCategoryDeleted(`CategoryDeleted: ${deleted ? 'yes' : 'no'}`),
+            (error) => setCategoryDeleted(`CategoryDeleted: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Delete reply category</Text>
+      </Pressable>
+      <Pressable
+        accessibilityRole="button"
+        testID="one-native-notifications-schedule-categorized"
+        style={styles.chip}
+        onPress={() =>
+          One.Notifications.schedule({
+            identifier: 'n5-cat',
+            content: { title: 'N5 cat', categoryIdentifier: 'replycat' },
+            trigger: null,
+          }).then(
+            (id) => setScheduled(`Scheduled: ${id}`),
+            (error) => setScheduled(`Scheduled: error ${show(error)}`)
+          )
+        }
+      >
+        <Text>Schedule categorized now</Text>
       </Pressable>
       <Text>{last}</Text>
       <Text>{handler}</Text>

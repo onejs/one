@@ -1669,6 +1669,133 @@ async function run(config: Config) {
     await expect('system-clipboard-relaunch-persisted', (nodes) =>
       joined(nodes).includes(`Read: ${external}`)
     )
+    // extras: image, url (empty on android), html, and the change
+    // listener. the fixture scrolls past this point, so bring each row
+    // into the viewport before tapping.
+    const tapClip = (name: string, testID: string) => {
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const current = snapshot(config)
+        const rows = matching(current.nodes, { id: testID })
+        const viewport = applicationBounds(current.nodes)
+        const bounds = rows.length === 1 ? rows[0].bounds : undefined
+        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
+        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
+        if (
+          bounds &&
+          x > viewport.left &&
+          x < viewport.right &&
+          y > viewport.top &&
+          y < viewport.bottom
+        ) {
+          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+          return
+        }
+        swipeFresh(config, name)
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    const tapClipFresh = (name: string, testID: string) =>
+      tapFresh(config, name, { id: testID, role: 'button', clickable: true })
+    tapClip('clipboard subscribe', 'one-native-clipboard-subscribe')
+    await expect(
+      'system-clipboard-subscribed',
+      (nodes) => joined(nodes).includes('Subscribed: yes'),
+      'one-native-clipboard-get-image'
+    )
+    // negative control first: the relaunched pasteboard holds text only.
+    tapClip('clipboard get image empty', 'one-native-clipboard-get-image')
+    await expect(
+      'system-clipboard-image-null',
+      (nodes) => joined(nodes).includes('Image: null'),
+      'one-native-clipboard-has-image'
+    )
+    tapClip('clipboard has image empty', 'one-native-clipboard-has-image')
+    await expect(
+      'system-clipboard-image-absent',
+      (nodes) => joined(nodes).includes('HasImage: false'),
+      'one-native-clipboard-set-image'
+    )
+    tapClip('clipboard set image', 'one-native-clipboard-set-image')
+    await expect(
+      'system-clipboard-image-set',
+      (nodes) => joined(nodes).includes('Image: set'),
+      'one-native-clipboard-get-image'
+    )
+    tapClip('clipboard get image', 'one-native-clipboard-get-image')
+    await expect(
+      'system-clipboard-image-roundtrip',
+      (nodes) => joined(nodes).includes('Image: data:data:image/png;base64,:1x1'),
+      'one-native-clipboard-has-image'
+    )
+    tapClip('clipboard has image', 'one-native-clipboard-has-image')
+    await expect(
+      'system-clipboard-image-present',
+      (nodes) => joined(nodes).includes('HasImage: true'),
+      'one-native-clipboard-set-url'
+    )
+    await expect(
+      'system-clipboard-image-event',
+      (nodes) =>
+        joined(nodes).includes('Event: fired:image'),
+      'one-native-clipboard-set-url'
+    )
+    // urls are ios-only: set resolves, reads stay empty on android.
+    tapClip('clipboard get url empty', 'one-native-clipboard-get-url')
+    await expect(
+      'system-clipboard-url-null',
+      (nodes) => joined(nodes).includes('Url: null'),
+      'one-native-clipboard-set-url'
+    )
+    tapClip('clipboard set url', 'one-native-clipboard-set-url')
+    await expect(
+      'system-clipboard-url-set-resolves',
+      (nodes) => joined(nodes).includes('Url: set'),
+      'one-native-clipboard-get-url'
+    )
+    tapClipFresh('clipboard get url again', 'one-native-clipboard-get-url')
+    await expect(
+      'system-clipboard-url-stays-null',
+      (nodes) => joined(nodes).includes('Url: null'),
+      'one-native-clipboard-has-url'
+    )
+    tapClip('clipboard has url', 'one-native-clipboard-has-url')
+    await expect(
+      'system-clipboard-url-absent',
+      (nodes) => joined(nodes).includes('HasUrl: false'),
+      'one-native-clipboard-set-html'
+    )
+    tapClip('clipboard set html', 'one-native-clipboard-set-html')
+    await expect(
+      'system-clipboard-html-set',
+      (nodes) => joined(nodes).includes('Html: set'),
+      'one-native-clipboard-get-html'
+    )
+    tapClip('clipboard get html', 'one-native-clipboard-get-html')
+    await expect(
+      'system-clipboard-html-roundtrip',
+      (nodes) => joined(nodes).includes('Html: <b>one-native-clipboard-html</b>'),
+      'one-native-clipboard-subscribe'
+    )
+    await expect(
+      'system-clipboard-html-event',
+      (nodes) => {
+        const text = joined(nodes)
+        return text.includes('Event: fired:') && text.includes('html')
+      },
+      'one-native-clipboard-subscribe'
+    )
+    // an outside write reaches the subscribed listener too.
+    const externalEvent = 'one-native-clipboard-external-event'
+    setDeviceClipboard(config, tool, externalEvent)
+    await expect(
+      'system-clipboard-external-event',
+      (nodes) => {
+        const text = joined(nodes)
+        return text.includes('Event: fired:') && text.includes('plain-text')
+      },
+      'one-native-clipboard-get',
+      () => ({ externalEvent })
+    )
   }
 
   const location = async () => {
@@ -4484,6 +4611,53 @@ async function run(config: Config) {
         ]),
       'one-native-image-picker-library'
     )
+    // crop rejects a multi pick before any picker opens: pure js
+    // validation, no system ui involved.
+    tapFresh(config, 'Image picker crop multi button', {
+      id: 'one-native-image-picker-library-edit-multi',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'image-picker-crop-multi-throws',
+      (nodes) =>
+        diagnose(nodes, [
+          ['error reported', (n) => textIncludes(n, 'Result: error')],
+          [
+            'allowsEditing rule',
+            (n) => textIncludes(n, 'Error: ImagePicker.launchLibrary: allowsEditing'),
+          ],
+        ]),
+      'one-native-image-picker-library-edit'
+    )
+    // crop plumbing: the allowsEditing request reaches the system picker
+    // like a plain pick; back dismisses it and canceled round-trips. the
+    // crop screen itself is proven on ios; selecting a photo to enter it
+    // stays outside this harness's contract, like the camera legs.
+    clearDocumentsUi(config)
+    tapFresh(config, 'Image picker crop button', {
+      id: 'one-native-image-picker-library-edit',
+      role: 'button',
+      clickable: true,
+    })
+    await waitFor(
+      config,
+      'crop system picker foregrounds',
+      (nodes) => !exactlyOneId(nodes, 'one-native-image-picker-library-edit')
+    )
+    pressBack(config)
+    await expect(
+      'image-picker-crop-cancel',
+      (nodes) =>
+        diagnose(nodes, [
+          ['cancel reported', (n) => textIncludes(n, 'Result: canceled')],
+          [
+            'crop button back',
+            (n) => exactlyOneId(n, 'one-native-image-picker-library-edit'),
+          ],
+        ]),
+      'one-native-image-picker-library-edit'
+    )
 
     // speech: clear app data so the microphone permission starts
     // undetermined, prove a session without it fails not-allowed, then grant
@@ -4868,6 +5042,48 @@ async function run(config: Config) {
       'notifications-channel-gone',
       (nodes) => textIncludes(nodes, 'Channel: null'),
       'one-native-notifications-channel-get'
+    )
+    // slice n5: interactive categories. set round-trips three actions,
+    // the categorized schedule presents, and deleting twice answers true
+    // then false.
+    tapNotif('Notifications category set', 'one-native-notifications-category-set')
+    await expect(
+      'notifications-category-set',
+      (nodes) => textIncludes(nodes, 'Category: replycat/3'),
+      'one-native-notifications-category-list'
+    )
+    tapNotif('Notifications category list', 'one-native-notifications-category-list')
+    await expect(
+      'notifications-category-listed',
+      (nodes) => textIncludes(nodes, 'Categories: replycat'),
+      'one-native-notifications-schedule-categorized'
+    )
+    tapNotif(
+      'Notifications schedule categorized',
+      'one-native-notifications-schedule-categorized'
+    )
+    await expect(
+      'notifications-category-scheduled',
+      (nodes) => textIncludes(nodes, 'Scheduled: n5-cat'),
+      'one-native-notifications-presented-list'
+    )
+    tapNotif(
+      'Notifications category delete',
+      'one-native-notifications-category-delete'
+    )
+    await expect(
+      'notifications-category-deleted',
+      (nodes) => textIncludes(nodes, 'CategoryDeleted: yes'),
+      'one-native-notifications-category-delete'
+    )
+    tapNotif(
+      'Notifications category delete again',
+      'one-native-notifications-category-delete'
+    )
+    await expect(
+      'notifications-category-second-delete-false',
+      (nodes) => textIncludes(nodes, 'CategoryDeleted: no'),
+      'one-native-notifications-push-token'
     )
     // the fixture app sets no push flag, so the nopush source set compiled:
     // the token fetch rejects instead of reaching firebase.

@@ -24,6 +24,8 @@ export default function OneNativeImagePicker() {
   const [mime, setMime] = useState('-')
   const [file, setFile] = useState('-')
   const [size, setSize] = useState(0)
+  const [duration, setDuration] = useState('none')
+  const [kind, setKind] = useState('none')
   const [code, setCode] = useState('-')
   const [error, setError] = useState('-')
   const [permStatus, setPermStatus] = useState('-')
@@ -39,6 +41,8 @@ export default function OneNativeImagePicker() {
     setMime('-')
     setFile('-')
     setSize(0)
+    setDuration('none')
+    setKind('none')
     setCode('-')
     setError('-')
   }
@@ -55,6 +59,8 @@ export default function OneNativeImagePicker() {
             mimeType?: string
             fileName?: string
             fileSize?: number
+            duration?: number
+            type?: 'image' | 'video'
           }[]
         }
   ) => {
@@ -71,6 +77,8 @@ export default function OneNativeImagePicker() {
     setMime(first.mimeType ?? '-')
     setFile(first.fileName ?? '-')
     setSize(first.fileSize ?? 0)
+    setDuration(first.duration === undefined ? 'none' : String(first.duration))
+    setKind(first.type ?? 'none')
   }
 
   const fail = (unknown: unknown) => {
@@ -103,6 +111,46 @@ export default function OneNativeImagePicker() {
     }
   }
 
+  const shootVideo = async () => {
+    reset()
+    try {
+      show(await One.ImagePicker.launchCamera({ mediaTypes: 'videos' }))
+    } catch (unknown) {
+      fail(unknown)
+    }
+  }
+
+  const edit = async () => {
+    reset()
+    try {
+      show(
+        await One.ImagePicker.launchLibrary({
+          mediaTypes: 'images',
+          selectionLimit: 1,
+          allowsEditing: true,
+        })
+      )
+    } catch (unknown) {
+      fail(unknown)
+    }
+  }
+
+  // negative control: the crop UI edits one image, so a multi pick with
+  // editing throws synchronously before any picker opens.
+  const editMulti = async () => {
+    try {
+      await One.ImagePicker.launchLibrary({
+        mediaTypes: 'images',
+        selectionLimit: 2,
+        allowsEditing: true,
+      })
+      setResult('error')
+      setError('expected a throw')
+    } catch (unknown) {
+      fail(unknown)
+    }
+  }
+
   const readPermissions = async () => {
     try {
       const response = await One.ImagePicker.getCameraPermissions()
@@ -122,6 +170,8 @@ export default function OneNativeImagePicker() {
     ['Mime', mime],
     ['File', file],
     ['Size', size],
+    ['Duration', duration],
+    ['Kind', kind],
     ['Code', code],
     ['Error', error],
     ['PermStatus', permStatus],
@@ -147,6 +197,30 @@ export default function OneNativeImagePicker() {
           onPress={shoot}
         >
           <Text style={styles.actionText}>Take a photo</Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          style={styles.action}
+          testID="one-native-image-picker-camera-video"
+          onPress={shootVideo}
+        >
+          <Text style={styles.actionText}>Record a video</Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          style={styles.action}
+          testID="one-native-image-picker-library-edit"
+          onPress={edit}
+        >
+          <Text style={styles.actionText}>Pick and crop</Text>
+        </Pressable>
+        <Pressable
+          accessibilityRole="button"
+          style={styles.action}
+          testID="one-native-image-picker-library-edit-multi"
+          onPress={editMulti}
+        >
+          <Text style={styles.actionText}>Crop rejects multi</Text>
         </Pressable>
         <Pressable
           accessibilityRole="button"

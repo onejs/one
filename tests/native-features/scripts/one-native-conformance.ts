@@ -9342,6 +9342,93 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         labels(n).includes('Read: one-native-clipboard-probe')
       )
     }
+    // extras: the fixture scrolls past this point, so bring each row into
+    // view before tapping, like the notifications leg does.
+    const tapClip = async (testID: string) => {
+      for (let attempt = 0; attempt < 10; attempt++) {
+        const nodes = snapshot(config.simulatorId)
+        const app = nodes.find((node) => node.type === 'Application')?.frame
+        const row = id(nodes, testID)?.frame
+        if (!app || !row) {
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        const back = id(nodes, 'BackButton')?.frame
+        const top = back ? back.y + back.height : 0
+        if (row.y >= top && row.y + row.height <= app.height) {
+          return tap({ id: testID })
+        }
+        const [from, to] = row.y < top ? [0.4, 0.6] : [0.75, 0.35]
+        axe(
+          [
+            'swipe',
+            '--start-x',
+            String(Math.round(app.width / 2)),
+            '--start-y',
+            String(Math.round(app.height * from)),
+            '--end-x',
+            String(Math.round(app.width / 2)),
+            '--end-y',
+            String(Math.round(app.height * to)),
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    await tapClip('one-native-clipboard-subscribe')
+    await wait('listener subscribed', (n) => labels(n).includes('Subscribed: yes'))
+    // negative control first: no image is on the pasteboard yet.
+    await tapClip('one-native-clipboard-get-image')
+    await wait('empty image read resolves null', (n) =>
+      labels(n).includes('Image: null')
+    )
+    await tapClip('one-native-clipboard-has-image')
+    await wait('empty image check resolves false', (n) =>
+      labels(n).includes('HasImage: false')
+    )
+    await tapClip('one-native-clipboard-set-image')
+    await wait('image set', (n) => labels(n).includes('Image: set'))
+    await tapClip('one-native-clipboard-get-image')
+    await wait('image round-trips as a 1x1 png data uri', (n) =>
+      labels(n).includes('Image: data:data:image/png;base64,:1x1')
+    )
+    await tapClip('one-native-clipboard-has-image')
+    await wait('image check sees the image', (n) =>
+      labels(n).includes('HasImage: true')
+    )
+    await wait('image write fired the listener', (n) =>
+      labels(n).some(
+        (label) => label.startsWith('Event: fired:') && label.includes('image')
+      )
+    )
+    screenshot('clipboard-image.png')
+    // urls are ios-only: this leg runs on ios, where they round-trip.
+    await tapClip('one-native-clipboard-get-url')
+    await wait('empty url read resolves null', (n) => labels(n).includes('Url: null'))
+    await tapClip('one-native-clipboard-set-url')
+    await wait('url set', (n) => labels(n).includes('Url: set'))
+    await tapClip('one-native-clipboard-get-url')
+    await wait('url round-trips', (n) =>
+      labels(n).includes('Url: https://onestack.dev/clipboard-probe')
+    )
+    await tapClip('one-native-clipboard-has-url')
+    await wait('url check sees the url', (n) => labels(n).includes('HasUrl: true'))
+    await tapClip('one-native-clipboard-set-html')
+    await wait('html set', (n) => labels(n).includes('Html: set'))
+    await tapClip('one-native-clipboard-get-html')
+    await wait('html round-trips', (n) =>
+      labels(n).includes('Html: <b>one-native-clipboard-html</b>')
+    )
+    await wait('html write fired the listener', (n) =>
+      labels(n).some(
+        (label) => label.startsWith('Event: fired:') && label.includes('html')
+      )
+    )
+    screenshot('clipboard-extras.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -11110,6 +11197,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('channel create resolves null on ios', (n) => has(n, 'Channel: null'))
     await tapFixture('one-native-notifications-channel-list')
     await wait('channel list is empty on ios', (n) => has(n, 'Channels: 0'))
+    // slice n5: interactive categories. set round-trips three actions
+    // through the notification center, the categorized schedule presents,
+    // and deleting twice answers true then false.
+    await tapFixture('one-native-notifications-category-set')
+    await wait('category set with three actions', (n) => has(n, 'Category: replycat/3'))
+    await tapFixture('one-native-notifications-category-list')
+    await wait('category listed', (n) => has(n, 'Categories: replycat'))
+    await tapFixture('one-native-notifications-schedule-categorized')
+    await wait('categorized schedule posted', (n) => has(n, 'Scheduled: n5-cat'))
+    await tapFixture('one-native-notifications-presented-list')
+    await wait('categorized notification presented', (n) => has(n, 'Presented: n5-cat'))
+    await tapFixture('one-native-notifications-category-delete')
+    await wait('category deleted', (n) => has(n, 'CategoryDeleted: yes'))
+    await tapFixture('one-native-notifications-category-delete')
+    await wait('second delete resolves false', (n) => has(n, 'CategoryDeleted: no'))
+    screenshot('notifications-categories.png')
     // slice n3: with no listeners mounted, native presents the arrival
     // itself instead of waiting out the 3s backstop.
     await tapFixture('one-native-notifications-schedule-unobserved')
@@ -11453,6 +11556,57 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!status(cameraEnd, 'Result', 'canceled')) {
       tap({ label: 'Don’t Allow' })
       await wait('denied camera resolves canceled', (n) =>
+        status(n, 'Result', 'canceled')
+      )
+    }
+    // camera video takes the same path: without device hardware it settles
+    // the same way, proving the videos request reaches native and back.
+    tap({ id: 'one-native-image-picker-camera-video' })
+    const videoEnd = await wait(
+      'camera video settles to canceled or a permission prompt',
+      (n) => status(n, 'Result', 'canceled') || has(n, 'Don’t Allow')
+    )
+    if (!status(videoEnd, 'Result', 'canceled')) {
+      tap({ label: 'Don’t Allow' })
+      await wait('denied camera video resolves canceled', (n) =>
+        status(n, 'Result', 'canceled')
+      )
+    }
+    screenshot('image-picker-camera-video.png')
+    // negative control: the crop UI edits one image, so a multi pick with
+    // editing throws before any picker opens.
+    tap({ id: 'one-native-image-picker-library-edit-multi' })
+    await wait('crop multi throws synchronously', (n) =>
+      Boolean(
+        status(n, 'Result', 'error') &&
+          labels(n).some((label) =>
+            label.startsWith('Error: ImagePicker.launchLibrary: allowsEditing')
+          )
+      )
+    )
+    // crop UI: the seeded photo is still first in the grid. with editing,
+    // tapping it opens the system crop editor instead of resolving: the
+    // photo tap must not settle the pick. canceling out resolves canceled,
+    // which is the only way a photo tap ends without an asset.
+    tap({ id: 'one-native-image-picker-library-edit' })
+    await wait('crop picker presents', (n) => pickerCovers(n))
+    pickerPoint('seeded photo', 66, 378)
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await wait('crop editor holds the picker open', (n) =>
+      Boolean(pickerCovers(n) && status(n, 'Result', 'picking'))
+    )
+    screenshot('image-picker-crop.png')
+    pickerPoint('crop cancel', 45, 98)
+    const afterCancel = await wait('crop editor backs out', (n) =>
+      Boolean(
+        status(n, 'Result', 'canceled') ||
+          (pickerCovers(n) && status(n, 'Result', 'picking'))
+      )
+    )
+    if (!status(afterCancel, 'Result', 'canceled')) {
+      // the first cancel backed to the grid: cancel once more to dismiss.
+      pickerPoint('crop cancel again', 45, 98)
+      await wait('crop cancel resolves canceled', (n) =>
         status(n, 'Result', 'canceled')
       )
     }

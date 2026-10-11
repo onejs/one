@@ -68,6 +68,9 @@ describe('Notifications boundary mapping', () => {
       dismissAllNotifications: vi.fn(async () => {}),
       presentNotification: vi.fn(() => {}),
       getDevicePushToken: vi.fn(async () => ({ type: 'ios', data: 'cafef00d' })),
+      setNotificationCategory: vi.fn(async (category: unknown) => category),
+      getNotificationCategories: vi.fn(async () => []),
+      deleteNotificationCategory: vi.fn(async () => false),
       setListeners: vi.fn(() => {}),
       getLastNotificationResponse: vi.fn(() => undefined),
       clearLastNotificationResponse: vi.fn(() => {}),
@@ -137,6 +140,7 @@ describe('Notifications boundary mapping', () => {
         data: { k: 1 },
         sound: false,
         badge: null,
+        categoryIdentifier: null,
       },
       trigger: { type: 'timeInterval', seconds: 5, repeats: false },
     },
@@ -171,6 +175,7 @@ describe('Notifications boundary mapping', () => {
           data: {},
           sound: true,
           badge: 2,
+          categoryIdentifier: null,
         },
         trigger: { type: 'date', date: 1790000000000 },
       },
@@ -245,6 +250,9 @@ describe('Notifications boundary mapping', () => {
       getChannel: () => Notifications.getChannel('c'),
       getChannels: () => Notifications.getChannels(),
       deleteChannel: () => Notifications.deleteChannel('c'),
+      setCategory: () => Notifications.setCategory('c', []),
+      getCategories: () => Notifications.getCategories(),
+      deleteCategory: () => Notifications.deleteCategory('c'),
       schedule: () => Notifications.schedule({ content: {}, trigger: null }),
       cancelScheduled: () => Notifications.cancelScheduled('id'),
       cancelAllScheduled: () => Notifications.cancelAllScheduled(),
@@ -319,6 +327,133 @@ describe('Notifications boundary mapping', () => {
       'Notifications.getDevicePushToken needs an iOS or Android build'
     )
     expect(() => web.Notifications.addPushTokenListener(() => {}).remove()).not.toThrow()
+  })
+
+  it('maps category actions with expo option defaults', async () => {
+    const module = fakeModule()
+    const Notifications = await loadNamespace(() => module)
+    const created = await Notifications.setCategory(
+      'replycat',
+      [
+        { identifier: 'reply', buttonTitle: 'Reply' },
+        {
+          identifier: 'comment',
+          buttonTitle: 'Comment',
+          options: { opensAppToForeground: false },
+          textInput: { placeholder: 'Say it', submitButtonTitle: 'Send it' },
+        },
+      ],
+      { customDismissAction: true, allowAnnouncement: true }
+    )
+    expect(module.setNotificationCategory).toHaveBeenCalledWith({
+      identifier: 'replycat',
+      actions: [
+        {
+          identifier: 'reply',
+          buttonTitle: 'Reply',
+          authenticationRequired: false,
+          destructive: false,
+          foreground: true,
+          // allowAnnouncement is accepted and ignored by the platform.
+        },
+        {
+          identifier: 'comment',
+          buttonTitle: 'Comment',
+          authenticationRequired: false,
+          destructive: false,
+          foreground: false,
+          textInputPlaceholder: 'Say it',
+          textInputSubmitTitle: 'Send it',
+        },
+      ],
+      options: { customDismissAction: true },
+    })
+    expect(created).toEqual({
+      identifier: 'replycat',
+      actions: [
+        {
+          identifier: 'reply',
+          buttonTitle: 'Reply',
+          options: {
+            isAuthenticationRequired: false,
+            isDestructive: false,
+            opensAppToForeground: true,
+          },
+        },
+        {
+          identifier: 'comment',
+          buttonTitle: 'Comment',
+          options: {
+            isAuthenticationRequired: false,
+            isDestructive: false,
+            opensAppToForeground: false,
+          },
+          textInput: { placeholder: 'Say it', submitButtonTitle: 'Send it' },
+        },
+      ],
+      options: { customDismissAction: true },
+    })
+  })
+
+  it('lists and deletes categories through the module', async () => {
+    const module = fakeModule({
+      getNotificationCategories: vi.fn(async () => [
+        { identifier: 'a', actions: [] },
+        { identifier: 'b', actions: [] },
+      ]),
+      deleteNotificationCategory: vi.fn(async () => true),
+    })
+    const Notifications = await loadNamespace(() => module)
+    expect(await Notifications.getCategories()).toEqual([
+      { identifier: 'a', actions: [] },
+      { identifier: 'b', actions: [] },
+    ])
+    await expect(Notifications.deleteCategory('a')).resolves.toBe(true)
+    expect(module.deleteNotificationCategory).toHaveBeenCalledWith('a')
+  })
+
+  it('carries userText on text-input responses only', async () => {
+    const Notifications = await loadNamespace(() =>
+      fakeModule({
+        getLastNotificationResponse: vi.fn(() => ({
+          notification: nativeNotification,
+          actionIdentifier: 'comment',
+          userText: 'hello',
+        })),
+      })
+    )
+    expect(Notifications.getLastResponse()).toStrictEqual({
+      notification: publicNotification,
+      actionIdentifier: 'comment',
+      userText: 'hello',
+    })
+  })
+
+  it('throws category misuse synchronously on native and web', async () => {
+    const Notifications = await loadNamespace(() => fakeModule())
+    expect(() => Notifications.setCategory('a:b', [])).toThrow(
+      `Notifications.setCategory: identifier must not contain ':' or '-'`
+    )
+    expect(() => Notifications.setCategory('a', 'nope' as never)).toThrow(
+      'Notifications.setCategory: actions must be an array'
+    )
+    expect(() => Notifications.deleteCategory('')).toThrow(
+      'Notifications.deleteCategory: identifier must be a non-empty string'
+    )
+    const web = await import('../src/platform/notifications/index')
+    expect(() => web.Notifications.setCategory('a-b', [])).toThrow(
+      `Notifications.setCategory: identifier must not contain ':' or '-'`
+    )
+    await expect(
+      web.Notifications.setCategory('web', [
+        { identifier: 'r', buttonTitle: 'R' },
+      ])
+    ).resolves.toEqual({
+      identifier: 'web',
+      actions: [{ identifier: 'r', buttonTitle: 'R' }],
+    })
+    await expect(web.Notifications.getCategories()).resolves.toEqual([])
+    await expect(web.Notifications.deleteCategory('web')).resolves.toBe(false)
   })
 
   it('resolves channel reads empty on ios without touching the module', async () => {
