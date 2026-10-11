@@ -321,6 +321,12 @@ describe('native source events', () => {
     )
     expect(glue).toContain('ClockInstance.onReady({ postEvent(channel, args([])) })')
     expect(glue).toContain('OneNativeSourceEmitter.send(channel, args)')
+    // under wasi there is no javascript runtime, so posted events queue for
+    // the peach host instead of trapping.
+    expect(glue).not.toContain('fatalError("native events need a device build")')
+    expect(glue).toContain('pendingEvents.append(Event(channel: channel, args: args))')
+    expect(glue).toContain('static func pollEvents()')
+    expect(glue).toContain('peach_poll_events')
     // the clock package has no views, so the subscribe cases must still see
     // the args helper: it cannot live only in the view glue.
     expect(glue).toContain('private static func args(_ values: [any Encodable]) -> String')

@@ -48,4 +48,7 @@ Native keeps its own stored closure, so the author owns the native side of
 the lifecycle: emitting after every JavaScript listener unsubscribed posts
 to nobody, and a closure the author never releases stays retained. Under
 the Peach simulator there is no JavaScript runtime to receive an event, so
-emitting there traps instead of posting.
+emitted events queue in the module instead: the simulator host drains them
+with the `peach_poll_events` export, which returns a length-prefixed JSON
+array of `{ channel, args }` pairs using the same framing as
+`peach_call_poll`.

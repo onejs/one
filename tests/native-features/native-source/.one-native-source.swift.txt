@@ -39,6 +39,19 @@ import SwiftUI
     output = [UInt8(count & 0xff), UInt8((count >> 8) & 0xff), UInt8((count >> 16) & 0xff), UInt8(count >> 24)] + Array(bytes)
     return output.withUnsafeMutableBufferPointer { $0.baseAddress }
   }
+  private struct Event: Encodable { let channel: String; let args: String }
+  private static var pendingEvents: [Event] = []
+  // under wasi there is no javascript runtime, so posted events queue
+  // here and the peach host drains them with peach_poll_events, using
+  // the same length-prefixed framing as pollWasm.
+  static func pollEvents() -> UnsafeMutablePointer<UInt8>? {
+    let events = pendingEvents
+    pendingEvents = []
+    let bytes = (try? JSONEncoder().encode(events)) ?? Data("[]".utf8)
+    let count = UInt32(bytes.count)
+    output = [UInt8(count & 0xff), UInt8((count >> 8) & 0xff), UInt8((count >> 16) & 0xff), UInt8(count >> 24)] + Array(bytes)
+    return output.withUnsafeMutableBufferPointer { $0.baseAddress }
+  }
 #endif
   private static let EscapeHatchInstance = EscapeHatch()
   private static let AudioMathInstance = AudioMath()
@@ -80,10 +93,10 @@ import SwiftUI
     "[" + values.map { encodeAny($0) }.joined(separator: ",") + "]"
   }
   // native events post over the one event bridge on device; under wasi
-  // there is no javascript runtime to receive them, so emitting traps.
+  // they queue for the peach host, which drains them with peach_poll_events.
   private static func postEvent(_ channel: String, _ args: String) {
     #if os(WASI)
-    fatalError("native events need a device build")
+    pendingEvents.append(Event(channel: channel, args: args))
     #else
     OneNativeSourceEmitter.send(channel, args)
     #endif
@@ -149,6 +162,11 @@ import SwiftUI
 @_expose(wasm, "peach_call_poll")
 @_cdecl("peach_call_poll")
 @MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.pollWasm(id) }
+  // the host drains queued native events with this export, polling it
+  // after running timers like it polls pending calls.
+@_expose(wasm, "peach_poll_events")
+@_cdecl("peach_poll_events")
+@MainActor public func peach_poll_events() -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.pollEvents() }
 @main struct OneNativeSourceMain_native_source: App {
   var body: some Scene { WindowGroup { EmptyView() } }
 }
