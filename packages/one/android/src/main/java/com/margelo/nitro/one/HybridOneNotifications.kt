@@ -331,11 +331,7 @@ class HybridOneNotifications :
     }
 
     override fun getNotificationCategories(): Promise<Array<NativeNotificationCategory>> =
-        Promise.resolved(
-            categoryPrefs(context).all.mapNotNull { (_, raw) ->
-                (raw as? String)?.let { categoryFromJson(it) }
-            }.toTypedArray()
-        )
+        Promise.resolved(storedCategories(context))
 
     override fun deleteNotificationCategory(identifier: String): Promise<Boolean> {
         val prefs = categoryPrefs(context)
@@ -346,12 +342,6 @@ class HybridOneNotifications :
 
     private fun categoryPrefs(context: Context) =
         context.getSharedPreferences(PREFS_CATEGORIES, Context.MODE_PRIVATE)
-
-    private fun storedCategory(context: Context, identifier: String?): NativeNotificationCategory? {
-        if (identifier == null) return null
-        val raw = categoryPrefs(context).getString(identifier, null) ?: return null
-        return categoryFromJson(raw)
-    }
 
     // installing the listeners is what tells deliverNow that handing an
     // arrival to js reaches anyone.
@@ -871,6 +861,23 @@ class HybridOneNotifications :
                     }
             }
         }
+
+        private fun categoryPrefs(context: Context) =
+            context.getSharedPreferences(PREFS_CATEGORIES, Context.MODE_PRIVATE)
+
+        private fun storedCategory(
+            context: Context,
+            identifier: String?
+        ): NativeNotificationCategory? {
+            if (identifier == null) return null
+            val raw = categoryPrefs(context).getString(identifier, null) ?: return null
+            return categoryFromJson(raw)
+        }
+
+        private fun storedCategories(context: Context): Array<NativeNotificationCategory> =
+            categoryPrefs(context).all.mapNotNull { (_, raw) ->
+                (raw as? String)?.let { categoryFromJson(it) }
+            }.toTypedArray()
 
         private fun categoryToJson(category: NativeNotificationCategory): String {
             val actions = JSONArray()

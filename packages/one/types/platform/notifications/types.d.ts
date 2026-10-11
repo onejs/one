@@ -38,6 +38,39 @@ export interface NotificationChannel {
     showBadge: boolean;
 }
 export declare const DEFAULT_ACTION_IDENTIFIER = "expo.modules.notifications.actions.DEFAULT";
+export interface NotificationActionOptions {
+    isAuthenticationRequired?: boolean;
+    isDestructive?: boolean;
+    opensAppToForeground?: boolean;
+}
+export interface NotificationTextInput {
+    placeholder: string;
+    submitButtonTitle?: string;
+}
+export interface NotificationAction {
+    identifier: string;
+    buttonTitle: string;
+    options?: NotificationActionOptions;
+    textInput?: NotificationTextInput;
+}
+export interface NotificationCategoryOptions {
+    allowInCarPlay?: boolean;
+    allowAnnouncement?: boolean;
+    categorySummaryFormat?: string;
+    customDismissAction?: boolean;
+    intentIdentifiers?: string[];
+    previewPlaceholder?: string;
+    showTitle?: boolean;
+    showSubtitle?: boolean;
+}
+export interface NotificationCategory {
+    identifier: string;
+    actions: NotificationAction[];
+    options?: NotificationCategoryOptions;
+}
+export declare function assertCategoryIdentifier(identifier: unknown, verb: string): asserts identifier is string;
+export declare function assertCategoryActions(actions: unknown, verb: string): asserts actions is NotificationAction[];
+export declare function assertCategoryOptions(options: NotificationCategoryOptions | undefined, verb: string): void;
 export interface NotificationContentInput {
     title?: string;
     subtitle?: string;
@@ -45,6 +78,7 @@ export interface NotificationContentInput {
     data?: Record<string, unknown>;
     sound?: boolean;
     badge?: number;
+    categoryIdentifier?: string;
 }
 export interface NotificationContent {
     title: string | null;
@@ -53,6 +87,7 @@ export interface NotificationContent {
     data: Record<string, unknown>;
     sound: boolean;
     badge: number | null;
+    categoryIdentifier: string | null;
 }
 export type NotificationTriggerInput = null | {
     type: 'timeInterval';
@@ -93,6 +128,7 @@ export interface Notification {
 export interface NotificationResponse {
     notification: Notification;
     actionIdentifier: string;
+    userText?: string;
 }
 export interface ScheduledNotification {
     identifier: string;

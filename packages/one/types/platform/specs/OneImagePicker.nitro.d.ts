@@ -16,7 +16,7 @@ export interface OneImagePicker extends HybridObject<{
     android: 'kotlin';
 }> {
     launchLibrary(options: ResolvedImagePickerOptions): Promise<ImagePickerNativeResult>;
-    launchCamera(): Promise<ImagePickerNativeResult>;
+    launchCamera(options: ResolvedImagePickerOptions): Promise<ImagePickerNativeResult>;
     getCameraPermissions(): Promise<CameraPermissionResponse>;
     requestCameraPermissions(): Promise<CameraPermissionResponse>;
 }

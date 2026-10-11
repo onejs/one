@@ -1,4 +1,6 @@
 export type ImagePickerMediaType = 'images' | 'videos';
+export type ImagePickerAssetType = 'image' | 'video';
+export type ImagePickerVideoQuality = 'high' | 'medium' | 'low';
 export interface ImagePickerAsset {
     uri: string;
     width: number;
@@ -6,6 +8,8 @@ export interface ImagePickerAsset {
     mimeType?: string;
     fileName?: string;
     fileSize?: number;
+    duration?: number;
+    type?: ImagePickerAssetType;
 }
 export interface ImagePickerSuccessResult {
     canceled: false;
@@ -19,6 +23,11 @@ export type ImagePickerResult = ImagePickerSuccessResult | ImagePickerCanceledRe
 export interface ImagePickerOptions {
     mediaTypes?: ImagePickerMediaType | ImagePickerMediaType[];
     selectionLimit?: number;
+    allowsEditing?: boolean;
+    aspect?: [number, number];
+    quality?: number;
+    videoMaxDuration?: number;
+    videoQuality?: ImagePickerVideoQuality;
 }
 export type ImagePickerPermissionResponse = Readonly<{
     status: 'granted' | 'denied' | 'undetermined';

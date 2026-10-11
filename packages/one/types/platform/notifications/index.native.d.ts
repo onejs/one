@@ -1,4 +1,4 @@
-import type { DevicePushToken, Notification, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types';
+import type { DevicePushToken, Notification, NotificationAction, NotificationCategory, NotificationCategoryOptions, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types';
 export type * from './types';
 declare function getPermissions(): Promise<NotificationPermissionResponse>;
 declare function requestPermissions(options?: NotificationPermissionRequest): Promise<NotificationPermissionResponse>;
@@ -8,6 +8,9 @@ declare function setChannel(channelId: string, channel: NotificationChannelInput
 declare function getChannel(channelId: string): Promise<NotificationChannel | null>;
 declare function getChannels(): Promise<NotificationChannel[]>;
 declare function deleteChannel(channelId: string): Promise<void>;
+declare function setCategory(identifier: string, actions: NotificationAction[], options?: NotificationCategoryOptions): Promise<NotificationCategory>;
+declare function getCategories(): Promise<NotificationCategory[]>;
+declare function deleteCategory(identifier: string): Promise<boolean>;
 declare function addReceivedListener(listener: (notification: Notification) => void): NotificationSubscription;
 declare function addResponseReceivedListener(listener: (response: NotificationResponse) => void): NotificationSubscription;
 declare function getDevicePushToken(): Promise<DevicePushToken>;
@@ -27,6 +30,9 @@ export declare const Notifications: Readonly<{
     requestPermissions: typeof requestPermissions;
     getBadgeCount: typeof getBadgeCount;
     setBadgeCount: typeof setBadgeCount;
+    setCategory: typeof setCategory;
+    getCategories: typeof getCategories;
+    deleteCategory: typeof deleteCategory;
     setChannel: typeof setChannel;
     getChannel: typeof getChannel;
     getChannels: typeof getChannels;

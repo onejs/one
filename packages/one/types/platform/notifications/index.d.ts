@@ -1,7 +1,10 @@
-import type { DevicePushToken, Notification, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types';
+import type { DevicePushToken, Notification, NotificationAction, NotificationCategory, NotificationCategoryOptions, NotificationChannel, NotificationChannelInput, NotificationHandlerInput, NotificationPermissionRequest, NotificationPermissionResponse, NotificationResponse, NotificationScheduleInput, NotificationSubscription, ScheduledNotification } from './types';
 export type * from './types';
 declare function getPermissions(): Promise<NotificationPermissionResponse>;
 declare function requestPermissions(_options?: NotificationPermissionRequest): Promise<NotificationPermissionResponse>;
+declare function setCategory(identifier: string, actions: NotificationAction[], options?: NotificationCategoryOptions): Promise<NotificationCategory>;
+declare function getCategories(): Promise<NotificationCategory[]>;
+declare function deleteCategory(identifier: string): Promise<boolean>;
 declare function getBadgeCount(): Promise<number>;
 declare function setBadgeCount(_count: number): Promise<boolean>;
 declare function setChannel(_channelId: string, channel: NotificationChannelInput): Promise<NotificationChannel | null>;
@@ -27,6 +30,9 @@ export declare const Notifications: Readonly<{
     requestPermissions: typeof requestPermissions;
     getBadgeCount: typeof getBadgeCount;
     setBadgeCount: typeof setBadgeCount;
+    setCategory: typeof setCategory;
+    getCategories: typeof getCategories;
+    deleteCategory: typeof deleteCategory;
     setChannel: typeof setChannel;
     getChannel: typeof getChannel;
     getChannels: typeof getChannels;
