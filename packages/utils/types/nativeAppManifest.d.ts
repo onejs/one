@@ -27,6 +27,7 @@ export interface NativeAppManifest {
     fonts?: string[];
     imagePicker?: {
         camera?: string;
+        microphone?: string;
     };
     photoLibrary?: {
         addOnly?: string;
