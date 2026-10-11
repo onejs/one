@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import { swiftPackageDirOf, swiftPackageId } from 'vxrn/swift-package-id'
-import { methodSubscribed, methodWired, renderMethodCall, renderViewWires } from './nativeSourceWires'
+import { methodSubscribed, methodWired, renderMethodCall, renderViewWires, toNativeSourceStructs } from './nativeSourceWires'
 
 // both native bundlers turn a swift source import into the same js host module.
 export function renderSwiftPackageModule(id: string, platform: string, root: string) {
@@ -53,7 +53,7 @@ export function renderSwiftPackageModule(id: string, platform: string, root: str
   const eventsModule = join(oneRoot, 'dist/esm/platform/native-source/events.native.js')
   const needsWire = contract.modules.some((module) => module.methods.some(methodWired))
   const needsEvents = contract.modules.some((module) => module.methods.some(methodSubscribed))
-  const structs = needsWire || needsEvents ? `\nconst nativeSourceStructs = ${JSON.stringify(contract.structs)}` : ''
+  const structs = needsWire || needsEvents ? `\nconst nativeSourceStructs = ${JSON.stringify(toNativeSourceStructs(contract.structs))}` : ''
   const exports = contract.modules
     .map(
       (module) =>

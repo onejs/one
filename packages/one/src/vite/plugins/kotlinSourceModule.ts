@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
-import { methodSubscribed, methodWired, renderMethodCall, renderViewWires } from './nativeSourceWires'
+import { methodSubscribed, methodWired, renderMethodCall, renderViewWires, toNativeSourceStructs } from './nativeSourceWires'
 
 // both native bundlers turn a kotlin source import into the same js module:
 // each OneModule object calls into the prebuilt glue, each public @Composable
@@ -63,7 +63,7 @@ export function renderKotlinSourceModule(id: string, platform: string, root: str
         `import { encodeNativeSourceArgs, decodeNativeSourceResult } from ${JSON.stringify(wireModule)}`,
       needsEvents &&
         `import { subscribeNativeSourceEvent } from ${JSON.stringify(eventsModule)}`,
-      (needsWire || needsEvents) && `const nativeSourceStructs = ${JSON.stringify(contract.structs)}`,
+      (needsWire || needsEvents) && `const nativeSourceStructs = ${JSON.stringify(toNativeSourceStructs(contract.structs))}`,
       views &&
         `import { createElement } from 'react'\nimport { KotlinSourceView } from ${JSON.stringify(viewHost)}`,
       exports,

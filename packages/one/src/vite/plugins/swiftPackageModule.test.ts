@@ -90,7 +90,7 @@ describe('swift package native module', () => {
     const module = renderSwiftPackageModule(atlas, 'ios', fixture.root)
     expect(module.code).toContain('encodeNativeSourceArgs')
     expect(module.code).toContain('decodeNativeSourceResult')
-    expect(module.code).toContain('const nativeSourceStructs = []')
+    expect(module.code).toContain('const nativeSourceStructs = {}')
     expect(module.code).toContain('wire.native.js')
   })
 

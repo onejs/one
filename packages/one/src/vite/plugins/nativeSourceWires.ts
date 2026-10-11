@@ -1,6 +1,37 @@
 // shared by the swift and kotlin source renderers: methods without a wire
 // keep the historical one-liner byte-identical, while wired methods encode
 // arguments and revive results around the same native call.
+//
+// the contract carries structs as an array, while the runtime codec walks a
+// name-keyed record: normalize once here so every emitter (method wrappers,
+// event payloads, view wires) embeds the record shape.
+export interface WireStructField {
+  name: string
+  optional: boolean
+  wire?: unknown
+}
+
+export interface WireStruct {
+  name: string
+  fields: WireStructField[]
+}
+
+export function toNativeSourceStructs(
+  structs: WireStruct[]
+): Record<string, { fields: { name: string; optional: boolean; wire?: unknown }[] }> {
+  const out: Record<string, { fields: { name: string; optional: boolean; wire?: unknown }[] }> = {}
+  for (const struct of structs ?? []) {
+    out[struct.name] = {
+      fields: struct.fields.map((field) =>
+        field.wire === undefined
+          ? { name: field.name, optional: field.optional }
+          : { name: field.name, optional: field.optional, wire: field.wire }
+      ),
+    }
+  }
+  return out
+}
+
 export interface WireMethodParam {
   wire?: unknown
 }
@@ -60,7 +91,7 @@ export function renderMethodCall(
 // structs table walks both. views without a wire render exactly as before.
 export function renderViewWires(
   view: WireView,
-  structs: unknown
+  structs: WireStruct[]
 ): string {
   const props: Record<string, unknown> = {}
   const callbacks: Record<string, unknown> = {}
@@ -71,5 +102,5 @@ export function renderViewWires(
     }
   }
   if (Object.keys(props).length === 0 && Object.keys(callbacks).length === 0) return ''
-  return `, wires: ${JSON.stringify({ props, callbacks, structs })}`
+  return `, wires: ${JSON.stringify({ props, callbacks, structs: toNativeSourceStructs(structs) })}`
 }
