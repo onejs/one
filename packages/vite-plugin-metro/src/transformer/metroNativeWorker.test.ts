@@ -66,20 +66,6 @@ beforeEach(() => {
   babelCalls.parseSync = 0
 })
 
-// flow stripping is the one place the worker runs babel: react-native's flow
-// syntax (readonly properties, enums) is beyond fast-flow-transform, so the
-// hermes-parser pass in @vxrn/compiler strips it in a single transform call
-function assertOnlyFlowStripBabelCall() {
-  expect(babelCalls).toEqual({
-    transform: 1,
-    transformSync: 0,
-    transformAsync: 0,
-    transformFromAstSync: 0,
-    parse: 0,
-    parseSync: 0,
-  })
-}
-
 function assertZeroBabelCalls() {
   expect(babelCalls.transform).toBe(0)
   expect(babelCalls.transformSync).toBe(0)
@@ -429,7 +415,7 @@ describe('metroNativeWorker', () => {
     expect(depNames).toContain('react-native/asset-registry')
   })
 
-  it('strips Flow types with a single hermes-parser Babel pass', async () => {
+  it('strips Flow types without Babel', async () => {
     const flowSource = `
       // @flow
       function add(a: number, b: number): number {
@@ -446,12 +432,12 @@ describe('metroNativeWorker', () => {
       { dev: false, platform: 'ios', type: 'module' }
     )
 
-    assertOnlyFlowStripBabelCall()
+    assertZeroBabelCalls()
     expect(result.output[0].data.code).not.toContain(': number')
     expect(result.output[0].data.code).toContain('function add(a, b)')
   })
 
-  it('lowers React Native Flow enums and readonly properties', async () => {
+  it('lowers React Native Flow enums and readonly properties without Babel', async () => {
     // react-native 0.87 ships VirtualView.js with exported Flow enums, and
     // readonly object properties throughout its type declarations
     const flowSource = `
@@ -475,7 +461,7 @@ describe('metroNativeWorker', () => {
       { dev: false, platform: 'ios', type: 'module' }
     )
 
-    assertOnlyFlowStripBabelCall()
+    assertZeroBabelCalls()
     expect(result.output[0].data.code).not.toContain('enum VirtualViewRenderState')
     expect(result.output[0].data.code).not.toContain('readonly')
     expect(result.dependencies.map((d) => d.name)).toContain('flow-enums-runtime')
