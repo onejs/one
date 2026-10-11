@@ -56,7 +56,7 @@ const partialGaps: Record<string, string> = {
   'iOS.WidgetUI':
     'bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted',
   BackgroundTasks:
-    'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device',
+    'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device',
   DeviceAttestation:
     'iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device',
   Motion:

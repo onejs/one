@@ -2231,7 +2231,8 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       (app.audio !== undefined ||
         app.photoLibrary !== undefined ||
         app.contacts !== undefined ||
-        app.calendar?.usage !== undefined)
+        app.calendar?.usage !== undefined ||
+        app.ios?.backgroundTasks !== undefined)
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
       if (!rendered.includes(anchor)) {
@@ -2294,6 +2295,23 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           '      <meta-data android:name="one.audio.background" android:value="true" />',
           '      <service android:name="com.margelo.nitro.one.OneAudioService" android:exported="false" android:foregroundServiceType="mediaPlayback" />'
         )
+      }
+      // background task identifiers use the shared ios declaration on both
+      // platforms, so the Android WorkManager half accepts the same
+      // identifiers the iOS BGTaskScheduler half does. no new public API.
+      if (app.ios?.backgroundTasks !== undefined) {
+        const refreshTasks = app.ios.backgroundTasks.refresh ?? []
+        const processingTasks = app.ios.backgroundTasks.processing ?? []
+        if (refreshTasks.length) {
+          appStamps.push(
+            `      <meta-data android:name="one.backgroundTasks.refresh" android:value="${escapeXml(refreshTasks.join(','))}" />`
+          )
+        }
+        if (processingTasks.length) {
+          appStamps.push(
+            `      <meta-data android:name="one.backgroundTasks.processing" android:value="${escapeXml(processingTasks.join(','))}" />`
+          )
+        }
       }
       if (appStamps.length) {
         // before the application close, so this composes with the

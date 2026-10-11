@@ -206,13 +206,10 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   equal(await One.ScreenOrientation.lock('portrait'), 'unknown', 'ScreenOrientation.lock')
   equal(await One.ScreenOrientation.unlock(), 'unknown', 'ScreenOrientation.unlock')
   if (One.platform === 'android') {
+    // BackgroundTasks schedules through WorkManager on Android, so it is
+    // not part of the unavailable set there; the Android proof script
+    // covers its schedule and injected-delivery contract on device.
     const actions: [string, () => unknown][] = [
-      ['BackgroundTasks.submit', () => One.BackgroundTasks.submit('one-proof')],
-      [
-        'BackgroundTasks.defineTask',
-        () => One.BackgroundTasks.defineTask('one-proof', () => {}),
-      ],
-      ['BackgroundTasks.cancel', () => One.BackgroundTasks.cancel('one-proof')],
       [
         'Widgets.write',
         () => One.Widgets.write({ title: 'One', value: 'proof', subtitle: 'absent' }),

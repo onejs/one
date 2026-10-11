@@ -25,6 +25,9 @@
 #include "JHybridOneAudioSpec.hpp"
 #include "JFunc_void_AudioInterruptionEvent.hpp"
 #include "JFunc_void_AudioRemoteCommandEvent.hpp"
+#include "JHybridOneBackgroundTasksSpec.hpp"
+#include "JFunc_void_BackgroundTaskInvocation.hpp"
+#include "JFunc_void_std__string.hpp"
 #include "JHybridOneBatterySpec.hpp"
 #include "JFunc_void_BatteryLevelEvent.hpp"
 #include "JFunc_void_BatteryStateEvent.hpp"
@@ -41,7 +44,6 @@
 #include "JHybridOneFetchSpec.hpp"
 #include "JFunc_void_FetchNativeResponse.hpp"
 #include "JFunc_void_std__shared_ptr_ArrayBuffer_.hpp"
-#include "JFunc_void_std__string.hpp"
 #include "JHybridOneFileSystemSpec.hpp"
 #include "JHybridOneFontsSpec.hpp"
 #include "JHybridOneHapticsSpec.hpp"
@@ -339,6 +341,14 @@ struct JHybridOneMotionSpecImpl: public jni::JavaClass<JHybridOneMotionSpecImpl,
     return javaPart->getJHybridOneMotionSpec();
   }
 };
+struct JHybridOneBackgroundTasksSpecImpl: public jni::JavaClass<JHybridOneBackgroundTasksSpecImpl, JHybridOneBackgroundTasksSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneBackgroundTasks;";
+  static std::shared_ptr<JHybridOneBackgroundTasksSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneBackgroundTasksSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneBackgroundTasksSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneBackgroundTasksSpec();
+  }
+};
 struct JHybridOneScreenOrientationSpecImpl: public jni::JavaClass<JHybridOneScreenOrientationSpecImpl, JHybridOneScreenOrientationSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneScreenOrientation;";
   static std::shared_ptr<JHybridOneScreenOrientationSpec> create() {
@@ -411,6 +421,9 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneAudioSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_AudioInterruptionEvent_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_AudioRemoteCommandEvent_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneBackgroundTasksSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_BackgroundTaskInvocation_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_std__string_cxx::registerNatives();
   margelo::nitro::one::JHybridOneBatterySpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_BatteryLevelEvent_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_BatteryStateEvent_cxx::registerNatives();
@@ -427,7 +440,6 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneFetchSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_FetchNativeResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_std__shared_ptr_ArrayBuffer__cxx::registerNatives();
-  margelo::nitro::one::JFunc_void_std__string_cxx::registerNatives();
   margelo::nitro::one::JHybridOneFileSystemSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneFontsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneHapticsSpec::CxxPart::registerNatives();
@@ -669,6 +681,12 @@ void registerAllNatives() {
     "OneMotion",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneMotionSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBackgroundTasks",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneBackgroundTasksSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

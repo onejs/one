@@ -16,7 +16,7 @@ export interface PendingBackgroundTask {
   requiresExternalPower: boolean
 }
 
-export interface OneBackgroundTasks extends HybridObject<{ ios: 'swift' }> {
+export interface OneBackgroundTasks extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   submit(
     identifier: string,
     earliestBeginDateMs?: number,

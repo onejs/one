@@ -1,10 +1,11 @@
 ---
 title: Background tasks
-description: Schedule iOS app refresh and processing work through BGTaskScheduler.
+description: Schedule app refresh and processing work through BGTaskScheduler and WorkManager.
 ---
 
 `One.BackgroundTasks` schedules short refresh jobs and longer processing jobs.
-iOS decides when a submitted job runs. A submitted request is not a timer, and
+iOS runs them through `BGTaskScheduler` and Android through WorkManager; both
+platforms decide when a submitted job runs. A submitted request is not a timer, and
 submitting the same identifier again replaces its pending request. Define every
 handler in the native `setupFile`, which loads when a background launch starts
 JavaScript without opening a window.
@@ -81,4 +82,16 @@ completion and expiration. Apple documents its debugger launch and expiration ho
 [device-only](https://developer.apple.com/documentation/backgroundtasks/starting-and-terminating-tasks-during-development).
 Actual OS cold launch, timing, and expiration still need a physical-device run.
 
-Background scheduling is implemented on iOS. Android reports the iOS-only limit for registration, submission, and cancellation; `getPending` returns an empty list. Web validates registrations and requests, returns an empty pending list, and leaves registration, submission, and cancellation without system effects.
+The same identifiers work on both platforms: declare them once under
+`native.app.ios.backgroundTasks`, and `one prebuild` stamps them into the iOS
+permitted-identifiers list and the Android manifest, where the WorkManager
+half reads them. Unknown identifiers reject with `E_BACKGROUND_TASK_INPUT`
+on both. On Android each identifier schedules uniquely-named one-time work;
+`requiresNetworkConnectivity` becomes a connected-network constraint and
+`requiresExternalPower` a charging constraint, and a refresh job rejects
+processing requirements, exactly like iOS. When scheduled work runs, the
+worker delivers the invocation to the registered JavaScript handler and
+reports its result; a launch with no registered handler fails after a
+startup grace period, and expiration aborts the handler's signal.
+
+Web validates registrations and requests, returns an empty pending list, and leaves registration, submission, and cancellation without system effects.

@@ -34,6 +34,13 @@ appendFileSync(process.env.HOOK_FILE!, JSON.stringify('${hook}') + '\\n')
 `
     )
   }
+  writeFileSync(
+    join(root, 'scripts', 'prepare-android-background-tasks.ts'),
+    `
+import { appendFileSync } from 'node:fs'
+appendFileSync(process.env.HOOK_FILE!, JSON.stringify('android-background-tasks') + '\\n')
+`
+  )
   const one = join(root, 'bin', 'one')
   writeFileSync(
     one,
@@ -79,7 +86,7 @@ test('Android prebuild forwards CLI options and succeeds without an iOS project'
     '--no-install',
   ])
   expect(existsSync(join(root, 'ios'))).toBe(false)
-  expect(existsSync(join(root, 'hooks.jsonl'))).toBe(false)
+  expect(hooks()).toEqual(['android-background-tasks'])
 })
 
 test('iOS prebuild forwards CLI options and installs both simulator hooks', () => {

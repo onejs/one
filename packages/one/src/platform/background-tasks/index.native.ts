@@ -27,8 +27,8 @@ const handlers = new Map<string, BackgroundTaskHandler>()
 const running = new Map<string, AbortController>()
 
 function native(): OneBackgroundTasks {
-  if (Platform.OS !== 'ios')
-    throw new Error('BackgroundTasks requires an iOS native build')
+  if (Platform.OS !== 'ios' && Platform.OS !== 'android')
+    throw new Error('BackgroundTasks requires a native build')
   hybrid ??= NitroModules.createHybridObject<OneBackgroundTasks>('OneBackgroundTasks')
   return hybrid
 }
@@ -110,31 +110,9 @@ function cancel(identifier: string): void {
 
 const nativeBackgroundTasks = Object.freeze({ defineTask, submit, getPending, cancel })
 
-const androidBackgroundTasks = Object.freeze({
-  defineTask(identifier: string, handler: BackgroundTaskHandler): () => void {
-    validateDefinition(identifier, handler)
-    throw new Error('BackgroundTasks.defineTask requires an iOS native build')
-  },
-  submit(
-    identifier: string,
-    options: {
-      earliestBeginDateMs?: number
-      requiresNetworkConnectivity?: boolean
-      requiresExternalPower?: boolean
-    } = {}
-  ): Promise<void> {
-    validateSubmission(identifier, options.earliestBeginDateMs)
-    return Promise.reject(
-      new Error('BackgroundTasks.submit requires an iOS native build')
-    )
-  },
-  getPending: unavailableBackgroundTasks.getPending,
-  cancel(identifier: string): void {
-    validateCancellation(identifier)
-    throw new Error('BackgroundTasks.cancel requires an iOS native build')
-  },
-})
-
-// bgtasks is iOS only; Android actions report that platform limit.
+// iOS schedules through BGTaskScheduler and Android through WorkManager;
+// other platforms keep the unavailable contract.
 export const BackgroundTasks: typeof nativeBackgroundTasks =
-  Platform.OS === 'android' ? androidBackgroundTasks : nativeBackgroundTasks
+  Platform.OS === 'ios' || Platform.OS === 'android'
+    ? nativeBackgroundTasks
+    : unavailableBackgroundTasks

@@ -301,10 +301,9 @@ async function backgroundTasks() {
   // the read button reports what it ran.
   launchUrl('nativefeatures://background-task/refresh')
   await tapTestId('one-native-background-tasks-read')
-  nodes = await waitFor(
-    (current) => findByText(current, 'Callback: refresh:') !== undefined,
-    { timeoutMs: 30_000 }
-  )
+  nodes = await waitFor((current) => screenText(current).includes('Callback: refresh:'), {
+    timeoutMs: 30_000,
+  })
   check('background-tasks-delivered', screenText(nodes), 'Callback: refresh:dev.vxrn.native.tests.refresh')
 
   // expiration: the processing handler waits for the abort signal, and the
@@ -313,10 +312,9 @@ async function backgroundTasks() {
   await sleep(2000)
   launchUrl('nativefeatures://background-task/expire')
   await tapTestId('one-native-background-tasks-read')
-  nodes = await waitFor(
-    (current) => findByText(current, 'Callback: expired:') !== undefined,
-    { timeoutMs: 30_000 }
-  )
+  nodes = await waitFor((current) => screenText(current).includes('Callback: expired:'), {
+    timeoutMs: 30_000,
+  })
   check('background-tasks-expired', screenText(nodes), 'Callback: expired:dev.vxrn.native.tests.processing')
   writeFileSync(resolve(artifacts, 'background-tasks.txt'), screenText(nodes))
 }

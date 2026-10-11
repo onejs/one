@@ -6,7 +6,9 @@ const host = vi.hoisted(() => ({
   background: {
     addTaskListener: vi.fn(() => vi.fn()),
     submit: vi.fn(async () => {}),
+    getPending: vi.fn(async () => []),
     cancel: vi.fn(),
+    complete: vi.fn(),
   },
   widgets: {
     writeWidget: vi.fn(async () => {}),
@@ -42,9 +44,6 @@ test('Android actions report their iOS limit without calling native hosts', asyn
   const { Widgets: widgets, LiveActivities: activities } =
     await import('../src/platform/widgets/index.native')
   const calls: [string, () => unknown][] = [
-    ['BackgroundTasks.defineTask', () => tasks.defineTask('proof', () => {})],
-    ['BackgroundTasks.submit', () => tasks.submit('proof')],
-    ['BackgroundTasks.cancel', () => tasks.cancel('proof')],
     [
       'Widgets.write',
       () => widgets.write({ title: 'proof', value: '1', subtitle: 'limit' }),
@@ -74,7 +73,22 @@ test('Android actions report their iOS limit without calling native hosts', asyn
       `${name} requires an iOS native build`
     )
   }
+  // BackgroundTasks is native on Android through WorkManager: registration,
+  // submission and cancellation delegate to the hybrid with the same shape
+  // as iOS, while input validation still throws before any native call.
+  const remove = tasks.defineTask('proof', () => {})
+  await tasks.submit('proof', {
+    earliestBeginDateMs: 123,
+    requiresNetworkConnectivity: true,
+  })
+  tasks.cancel('proof')
   expect(await tasks.getPending()).toEqual([])
+  remove()
+  expect(host.createHybrid).toHaveBeenCalledWith('OneBackgroundTasks')
+  expect(host.background.submit).toHaveBeenCalledWith('proof', 123, true, undefined)
+  expect(host.background.cancel).toHaveBeenCalledWith('proof')
+  expect(host.background.getPending).toHaveBeenCalled()
+  expect(host.background.addTaskListener).toHaveBeenCalledOnce()
   expect(await activities.pushToken('proof')).toBeNull()
   expect(() => tasks.submit('proof', { earliestBeginDateMs: -1 })).toThrow(RangeError)
   expect(() => tasks.cancel('')).toThrow(TypeError)
@@ -90,7 +104,6 @@ test('Android actions report their iOS limit without calling native hosts', asyn
   })
   expect(proof.passed).toBe(true)
   expect(proof.checks.length).toBeGreaterThan(60)
-  expect(host.createHybrid).not.toHaveBeenCalled()
   expect(host.addListener).not.toHaveBeenCalled()
   for (const call of Object.values(host.widgets)) expect(call).not.toHaveBeenCalled()
 })

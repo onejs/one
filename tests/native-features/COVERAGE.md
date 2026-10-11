@@ -36,7 +36,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Device` | device | device, native-modules:unavailable | missing |  |
 | `One.Motion` | motion, native-modules | native-modules | missing | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
-| `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; OS scheduling and cold launch need a physical device |
+| `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |
 | `One.AppIntents` | app-intents | native-modules:unavailable | missing |  |
 | `One.DeviceAttestation` | device-attestation | native-modules:unavailable | missing | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
 | `One.Contacts` | contacts | native-modules:unavailable | missing |  |
@@ -213,6 +213,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.Color` | n/a | android-color | missing |  |
 | `One.Android.Menu` | n/a | android-menus | missing |  |
 | `One.Android.ContextMenu` | n/a | android-menus | missing |  |
+| `One.Android.CameraView` | n/a | camera | missing |  |
 | `One.UI.sampleCurve` | ui-effects | effects | missing |  |
 | `One.UI.serializeCurve` | ui-effects | effects | missing |  |
 | `One.UI.EdgeFade` | ui-effects | effects | OneNativeVisualLibraryCase | iOS and Android bounded mask/overlay curve and current layered blur pixels proven; exact progressive and live scrolling unproven |
@@ -238,7 +239,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
-| `One.ImagePicker` | image-picker, camera-preview | image-picker | OneNativeBehavioralLibraryCase |  |
+| `One.ImagePicker` | image-picker, camera-preview | camera, image-picker | OneNativeBehavioralLibraryCase |  |
 | `One.DocumentPicker` | apple-file | document-picker | OneNativeDocumentPickerLibraryCase |  |
 | `One.SecureStore` | secure-store | secure-store | OneNativeBehavioralLibraryCase |  |
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |

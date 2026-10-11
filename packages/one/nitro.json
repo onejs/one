@@ -147,7 +147,8 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneMotion" }
     },
     "OneBackgroundTasks": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneBackgroundTasks" }
+      "ios": { "language": "swift", "implementationClassName": "HybridOneBackgroundTasks" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneBackgroundTasks" }
     },
     "OneAppIntents": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppIntents" }

@@ -5,14 +5,17 @@ declare global {
   var __oneBackgroundTaskProof: string | undefined
 }
 
-if (Platform.OS === 'ios')
+console.log('[bg-proof] handlers module evaluating')
+globalThis.__oneBackgroundTaskProof = 'handlers-ready'
+if (Platform.OS === 'ios' || Platform.OS === 'android')
   One.BackgroundTasks.defineTask('dev.vxrn.native.tests.refresh', async (task) => {
+    console.log(`[bg-proof] refresh handler invoked aborted=${task.signal.aborted}`)
     await Promise.resolve()
     if (task.signal.aborted) return
     globalThis.__oneBackgroundTaskProof = `refresh:${task.identifier}`
   })
 
-if (Platform.OS === 'ios')
+if (Platform.OS === 'ios' || Platform.OS === 'android')
   One.BackgroundTasks.defineTask(
     'dev.vxrn.native.tests.processing',
     (task) =>

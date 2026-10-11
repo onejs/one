@@ -85,6 +85,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneAppInfoSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAudioSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneBackgroundTasksSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBatterySpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrightnessSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp

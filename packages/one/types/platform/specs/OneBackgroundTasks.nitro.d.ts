@@ -14,6 +14,7 @@ export interface PendingBackgroundTask {
 }
 export interface OneBackgroundTasks extends HybridObject<{
     ios: 'swift';
+    android: 'kotlin';
 }> {
     submit(identifier: string, earliestBeginDateMs?: number, requiresNetworkConnectivity?: boolean, requiresExternalPower?: boolean): Promise<void>;
     getPending(): Promise<PendingBackgroundTask[]>;

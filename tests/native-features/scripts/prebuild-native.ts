@@ -16,4 +16,6 @@ const { values } = parseArgs({
 if (values.platform !== 'android') {
   await import('./prepare-ios-audio-interruption')
   await import('./prepare-ios-background-tasks')
+} else {
+  await import('./prepare-android-background-tasks')
 }
