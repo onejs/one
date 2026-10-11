@@ -421,6 +421,44 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('pins unary SDK enum calls when a defaulted generic overload can capture them', () => {
+    const effect = { ...method('automatic', 'SwiftUI'), kind: 'static',
+      owner: 'HoverEffect', type: 'SwiftUI.HoverEffect' }
+    const unary = method('hoverEffect', 'SwiftUI', [
+      { label: '_', name: 'effect', type: 'SwiftUI.HoverEffect', defaultValue: '.automatic' },
+    ])
+    const enabled = { label: 'isEnabled', name: 'isEnabled', type: 'Swift.Bool', defaultValue: 'true' }
+    const defaulted = method('hoverEffect', 'SwiftUI', [...unary.parameters, enabled])
+    const generic = method('hoverEffect', 'SwiftUI', [
+      { label: '_', name: 'effect', type: 'some CustomHoverEffect', defaultValue: '.automatic' }, enabled,
+    ])
+    const modifiers = deriveModifiers([unary, defaulted, generic, effect], 27, [])
+    expect(modifiers.map(({ name, type, callReference }) => ({ name, type, callReference }))).toEqual([
+      { name: 'hoverEffectWithHoverEffect', type: 'SwiftUI.HoverEffect', callReference: true },
+      { name: 'hoverEffectWithHoverEffectFromSwiftUI', type: 'SwiftUI.HoverEffect', callReference: true },
+    ])
+    expect(deriveModifiers([defaulted, generic, effect], 27, []).map(({ name, callReference }) =>
+      ({ name, callReference }))).toEqual([{ name: 'hoverEffect', callReference: undefined }])
+    expect(deriveModifiers([unary, defaulted, effect], 27, []).map(({ name, callReference }) =>
+      ({ name, callReference }))).toEqual([
+      { name: 'hoverEffectWithHoverEffect', callReference: undefined },
+      { name: 'hoverEffectWithHoverEffectFromSwiftUI', callReference: undefined },
+    ])
+  })
+
+  it('preserves optional SDK cases when trailing arguments have defaults', () => {
+    expect(deriveModifiers([
+      method('defaultEffect', 'SwiftUI', [
+        { label: '_', name: 'effect', type: 'SwiftUI.HoverEffect?', defaultValue: 'nil' },
+        { label: 'isEnabled', name: 'isEnabled', type: 'Swift.Bool', defaultValue: 'true' },
+      ]),
+      { ...method('automatic', 'SwiftUI'), kind: 'static', owner: 'HoverEffect', type: 'SwiftUI.HoverEffect' },
+    ], 27, [])).toEqual([
+      { name: 'defaultEffect', kind: 'optionalEnum', type: 'SwiftUI.HoverEffect?', ios: 0,
+        cases: [{ name: 'automatic', ios: 0 }] },
+    ])
+  })
+
   it('instantiates a Hashable SDK value with a JavaScript string', () => {
     expect(deriveModifiers([
       { ...method('id', 'SwiftUICore', [{ label: '_', name: 'id', type: 'ID' }]), requirements: ['ID : Swift.Hashable'] },

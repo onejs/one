@@ -1257,25 +1257,25 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAccentColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.accentColor(nil as SwiftUI.Color?)
-      case "accentColor": self.accentColor(SwiftUI.Color.accentColor)
-      case "red": self.accentColor(SwiftUI.Color.red)
-      case "orange": self.accentColor(SwiftUI.Color.orange)
-      case "yellow": self.accentColor(SwiftUI.Color.yellow)
-      case "green": self.accentColor(SwiftUI.Color.green)
-      case "mint": self.accentColor(SwiftUI.Color.mint)
-      case "teal": self.accentColor(SwiftUI.Color.teal)
-      case "cyan": self.accentColor(SwiftUI.Color.cyan)
-      case "blue": self.accentColor(SwiftUI.Color.blue)
-      case "indigo": self.accentColor(SwiftUI.Color.indigo)
-      case "purple": self.accentColor(SwiftUI.Color.purple)
-      case "pink": self.accentColor(SwiftUI.Color.pink)
-      case "brown": self.accentColor(SwiftUI.Color.brown)
-      case "white": self.accentColor(SwiftUI.Color.white)
-      case "gray": self.accentColor(SwiftUI.Color.gray)
-      case "black": self.accentColor(SwiftUI.Color.black)
-      case "clear": self.accentColor(SwiftUI.Color.clear)
-      case "primary": self.accentColor(SwiftUI.Color.primary)
-      case "secondary": self.accentColor(SwiftUI.Color.secondary)
+      case "accentColor": self.accentColor(SwiftUI.Color.accentColor as SwiftUI.Color?)
+      case "red": self.accentColor(SwiftUI.Color.red as SwiftUI.Color?)
+      case "orange": self.accentColor(SwiftUI.Color.orange as SwiftUI.Color?)
+      case "yellow": self.accentColor(SwiftUI.Color.yellow as SwiftUI.Color?)
+      case "green": self.accentColor(SwiftUI.Color.green as SwiftUI.Color?)
+      case "mint": self.accentColor(SwiftUI.Color.mint as SwiftUI.Color?)
+      case "teal": self.accentColor(SwiftUI.Color.teal as SwiftUI.Color?)
+      case "cyan": self.accentColor(SwiftUI.Color.cyan as SwiftUI.Color?)
+      case "blue": self.accentColor(SwiftUI.Color.blue as SwiftUI.Color?)
+      case "indigo": self.accentColor(SwiftUI.Color.indigo as SwiftUI.Color?)
+      case "purple": self.accentColor(SwiftUI.Color.purple as SwiftUI.Color?)
+      case "pink": self.accentColor(SwiftUI.Color.pink as SwiftUI.Color?)
+      case "brown": self.accentColor(SwiftUI.Color.brown as SwiftUI.Color?)
+      case "white": self.accentColor(SwiftUI.Color.white as SwiftUI.Color?)
+      case "gray": self.accentColor(SwiftUI.Color.gray as SwiftUI.Color?)
+      case "black": self.accentColor(SwiftUI.Color.black as SwiftUI.Color?)
+      case "clear": self.accentColor(SwiftUI.Color.clear as SwiftUI.Color?)
+      case "primary": self.accentColor(SwiftUI.Color.primary as SwiftUI.Color?)
+      case "secondary": self.accentColor(SwiftUI.Color.secondary as SwiftUI.Color?)
     default: preconditionFailure("invalid accentColor: \(value)")
     }
   }
@@ -2123,9 +2123,9 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.allowedDynamicRange(nil as SwiftUI.Image.DynamicRange?)
-      case "standard": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.standard)
-      case "constrainedHigh": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.constrainedHigh)
-      case "high": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.high)
+      case "standard": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.standard as SwiftUI.Image.DynamicRange?)
+      case "constrainedHigh": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.constrainedHigh as SwiftUI.Image.DynamicRange?)
+      case "high": self.allowedDynamicRange(SwiftUI.Image.DynamicRange.high as SwiftUI.Image.DynamicRange?)
     default: preconditionFailure("invalid allowedDynamicRange: \(value)")
     }
   }
@@ -2170,17 +2170,17 @@ extension View {
   @ViewBuilder fileprivate func oneNativeSDKAnimation(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.animation(nil as SwiftUI.Animation?)
-      case "default": self.animation(SwiftUI.Animation.default)
-      case "interpolatingSpring": self.animation(SwiftUI.Animation.interpolatingSpring)
-      case "spring": self.animation(SwiftUI.Animation.spring)
-      case "interactiveSpring": self.animation(SwiftUI.Animation.interactiveSpring)
-      case "smooth": self.animation(SwiftUI.Animation.smooth)
-      case "snappy": self.animation(SwiftUI.Animation.snappy)
-      case "bouncy": self.animation(SwiftUI.Animation.bouncy)
-      case "easeInOut": self.animation(SwiftUI.Animation.easeInOut)
-      case "easeIn": self.animation(SwiftUI.Animation.easeIn)
-      case "easeOut": self.animation(SwiftUI.Animation.easeOut)
-      case "linear": self.animation(SwiftUI.Animation.linear)
+      case "default": self.animation(SwiftUI.Animation.default as SwiftUI.Animation?)
+      case "interpolatingSpring": self.animation(SwiftUI.Animation.interpolatingSpring as SwiftUI.Animation?)
+      case "spring": self.animation(SwiftUI.Animation.spring as SwiftUI.Animation?)
+      case "interactiveSpring": self.animation(SwiftUI.Animation.interactiveSpring as SwiftUI.Animation?)
+      case "smooth": self.animation(SwiftUI.Animation.smooth as SwiftUI.Animation?)
+      case "snappy": self.animation(SwiftUI.Animation.snappy as SwiftUI.Animation?)
+      case "bouncy": self.animation(SwiftUI.Animation.bouncy as SwiftUI.Animation?)
+      case "easeInOut": self.animation(SwiftUI.Animation.easeInOut as SwiftUI.Animation?)
+      case "easeIn": self.animation(SwiftUI.Animation.easeIn as SwiftUI.Animation?)
+      case "easeOut": self.animation(SwiftUI.Animation.easeOut as SwiftUI.Animation?)
+      case "linear": self.animation(SwiftUI.Animation.linear as SwiftUI.Animation?)
     default: preconditionFailure("invalid animation: \(value)")
     }
   }
@@ -3048,9 +3048,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKDefaultHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.defaultHoverEffect(nil as SwiftUI.HoverEffect?)
-      case "automatic": self.defaultHoverEffect(SwiftUI.HoverEffect.automatic)
-      case "highlight": self.defaultHoverEffect(SwiftUI.HoverEffect.highlight)
-      case "lift": self.defaultHoverEffect(SwiftUI.HoverEffect.lift)
+      case "automatic": self.defaultHoverEffect(SwiftUI.HoverEffect.automatic as SwiftUI.HoverEffect?)
+      case "highlight": self.defaultHoverEffect(SwiftUI.HoverEffect.highlight as SwiftUI.HoverEffect?)
+      case "lift": self.defaultHoverEffect(SwiftUI.HoverEffect.lift as SwiftUI.HoverEffect?)
     default: preconditionFailure("invalid defaultHoverEffect: \(value)")
     }
   }
@@ -3101,16 +3101,16 @@ if #available(iOS 18, *) { return SwiftUI.ScrollAnchorRole.alignment }
   @ViewBuilder fileprivate func oneNativeSDKDefaultScrollAnchorWithOptionalUnitPoint(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.defaultScrollAnchor(nil as SwiftUI.UnitPoint?)
-      case "zero": self.defaultScrollAnchor(SwiftUI.UnitPoint.zero)
-      case "center": self.defaultScrollAnchor(SwiftUI.UnitPoint.center)
-      case "leading": self.defaultScrollAnchor(SwiftUI.UnitPoint.leading)
-      case "trailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.trailing)
-      case "top": self.defaultScrollAnchor(SwiftUI.UnitPoint.top)
-      case "bottom": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottom)
-      case "topLeading": self.defaultScrollAnchor(SwiftUI.UnitPoint.topLeading)
-      case "topTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.topTrailing)
-      case "bottomLeading": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomLeading)
-      case "bottomTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomTrailing)
+      case "zero": self.defaultScrollAnchor(SwiftUI.UnitPoint.zero as SwiftUI.UnitPoint?)
+      case "center": self.defaultScrollAnchor(SwiftUI.UnitPoint.center as SwiftUI.UnitPoint?)
+      case "leading": self.defaultScrollAnchor(SwiftUI.UnitPoint.leading as SwiftUI.UnitPoint?)
+      case "trailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.trailing as SwiftUI.UnitPoint?)
+      case "top": self.defaultScrollAnchor(SwiftUI.UnitPoint.top as SwiftUI.UnitPoint?)
+      case "bottom": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottom as SwiftUI.UnitPoint?)
+      case "topLeading": self.defaultScrollAnchor(SwiftUI.UnitPoint.topLeading as SwiftUI.UnitPoint?)
+      case "topTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.topTrailing as SwiftUI.UnitPoint?)
+      case "bottomLeading": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomLeading as SwiftUI.UnitPoint?)
+      case "bottomTrailing": self.defaultScrollAnchor(SwiftUI.UnitPoint.bottomTrailing as SwiftUI.UnitPoint?)
     default: preconditionFailure("invalid defaultScrollAnchorWithOptionalUnitPoint: \(value)")
     }
   }
@@ -3442,9 +3442,9 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentAllowedDynamicRange(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.allowedDynamicRange, nil as SwiftUI.Image.DynamicRange?)
-      case "standard": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.standard)
-      case "constrainedHigh": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.constrainedHigh)
-      case "high": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.high)
+      case "standard": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.standard as SwiftUI.Image.DynamicRange?)
+      case "constrainedHigh": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.constrainedHigh as SwiftUI.Image.DynamicRange?)
+      case "high": self.environment(\.allowedDynamicRange, SwiftUI.Image.DynamicRange.high as SwiftUI.Image.DynamicRange?)
     default: preconditionFailure("invalid environmentAllowedDynamicRange: \(value)")
     }
   }
@@ -3467,12 +3467,12 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentBackgroundMaterial(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.backgroundMaterial, nil as SwiftUI.Material?)
-      case "regular": self.environment(\.backgroundMaterial, SwiftUI.Material.regular)
-      case "thick": self.environment(\.backgroundMaterial, SwiftUI.Material.thick)
-      case "thin": self.environment(\.backgroundMaterial, SwiftUI.Material.thin)
-      case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin)
-      case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick)
-      case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar)
+      case "regular": self.environment(\.backgroundMaterial, SwiftUI.Material.regular as SwiftUI.Material?)
+      case "thick": self.environment(\.backgroundMaterial, SwiftUI.Material.thick as SwiftUI.Material?)
+      case "thin": self.environment(\.backgroundMaterial, SwiftUI.Material.thin as SwiftUI.Material?)
+      case "ultraThin": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThin as SwiftUI.Material?)
+      case "ultraThick": self.environment(\.backgroundMaterial, SwiftUI.Material.ultraThick as SwiftUI.Material?)
+      case "bar": self.environment(\.backgroundMaterial, SwiftUI.Material.bar as SwiftUI.Material?)
     default: preconditionFailure("invalid environmentBackgroundMaterial: \(value)")
     }
   }
@@ -3586,18 +3586,18 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.font, nil as SwiftUI.Font?)
-      case "largeTitle": self.environment(\.font, SwiftUI.Font.largeTitle)
-      case "title": self.environment(\.font, SwiftUI.Font.title)
-      case "title2": self.environment(\.font, SwiftUI.Font.title2)
-      case "title3": self.environment(\.font, SwiftUI.Font.title3)
-      case "headline": self.environment(\.font, SwiftUI.Font.headline)
-      case "subheadline": self.environment(\.font, SwiftUI.Font.subheadline)
-      case "body": self.environment(\.font, SwiftUI.Font.body)
-      case "callout": self.environment(\.font, SwiftUI.Font.callout)
-      case "footnote": self.environment(\.font, SwiftUI.Font.footnote)
-      case "caption": self.environment(\.font, SwiftUI.Font.caption)
-      case "caption2": self.environment(\.font, SwiftUI.Font.caption2)
-      case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default) } else { self }
+      case "largeTitle": self.environment(\.font, SwiftUI.Font.largeTitle as SwiftUI.Font?)
+      case "title": self.environment(\.font, SwiftUI.Font.title as SwiftUI.Font?)
+      case "title2": self.environment(\.font, SwiftUI.Font.title2 as SwiftUI.Font?)
+      case "title3": self.environment(\.font, SwiftUI.Font.title3 as SwiftUI.Font?)
+      case "headline": self.environment(\.font, SwiftUI.Font.headline as SwiftUI.Font?)
+      case "subheadline": self.environment(\.font, SwiftUI.Font.subheadline as SwiftUI.Font?)
+      case "body": self.environment(\.font, SwiftUI.Font.body as SwiftUI.Font?)
+      case "callout": self.environment(\.font, SwiftUI.Font.callout as SwiftUI.Font?)
+      case "footnote": self.environment(\.font, SwiftUI.Font.footnote as SwiftUI.Font?)
+      case "caption": self.environment(\.font, SwiftUI.Font.caption as SwiftUI.Font?)
+      case "caption2": self.environment(\.font, SwiftUI.Font.caption2 as SwiftUI.Font?)
+      case "default": if #available(iOS 26, *) { self.environment(\.font, SwiftUI.Font.default as SwiftUI.Font?) } else { self }
     default: preconditionFailure("invalid environmentFont: \(value)")
     }
   }
@@ -3635,8 +3635,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentHorizontalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.horizontalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
-      case "compact": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
-      case "regular": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
+      case "compact": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.compact as SwiftUI.UserInterfaceSizeClass?)
+      case "regular": self.environment(\.horizontalSizeClass, SwiftUI.UserInterfaceSizeClass.regular as SwiftUI.UserInterfaceSizeClass?)
     default: preconditionFailure("invalid environmentHorizontalSizeClass: \(value)")
     }
   }
@@ -3703,8 +3703,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentLegibilityWeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.legibilityWeight, nil as SwiftUI.LegibilityWeight?)
-      case "regular": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.regular)
-      case "bold": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.bold)
+      case "regular": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.regular as SwiftUI.LegibilityWeight?)
+      case "bold": self.environment(\.legibilityWeight, SwiftUI.LegibilityWeight.bold as SwiftUI.LegibilityWeight?)
     default: preconditionFailure("invalid environmentLegibilityWeight: \(value)")
     }
   }
@@ -3712,10 +3712,10 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentLineHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 26, *) { self.environment(\.lineHeight, nil as Foundation.AttributedString.LineHeight?) } else { self }
-      case "variable": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.variable) } else { self }
-      case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal) } else { self }
-      case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight) } else { self }
-      case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose) } else { self }
+      case "variable": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.variable as Foundation.AttributedString.LineHeight?) } else { self }
+      case "normal": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
+      case "tight": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
+      case "loose": if #available(iOS 26, *) { self.environment(\.lineHeight, Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
     default: preconditionFailure("invalid environmentLineHeight: \(value)")
     }
   }
@@ -3879,8 +3879,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
-      case "flat": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.flat) } else { self }
-      case "gradient": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
+      case "flat": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.flat as SwiftUI.SymbolColorRenderingMode?) } else { self }
+      case "gradient": if #available(iOS 26, *) { self.environment(\.symbolColorRenderingMode, SwiftUI.SymbolColorRenderingMode.gradient as SwiftUI.SymbolColorRenderingMode?) } else { self }
     default: preconditionFailure("invalid environmentSymbolColorRenderingMode: \(value)")
     }
   }
@@ -3888,10 +3888,10 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.symbolRenderingMode, nil as SwiftUI.SymbolRenderingMode?)
-      case "monochrome": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.monochrome)
-      case "multicolor": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.multicolor)
-      case "hierarchical": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.hierarchical)
-      case "palette": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.palette)
+      case "monochrome": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.monochrome as SwiftUI.SymbolRenderingMode?)
+      case "multicolor": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.multicolor as SwiftUI.SymbolRenderingMode?)
+      case "hierarchical": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.hierarchical as SwiftUI.SymbolRenderingMode?)
+      case "palette": self.environment(\.symbolRenderingMode, SwiftUI.SymbolRenderingMode.palette as SwiftUI.SymbolRenderingMode?)
     default: preconditionFailure("invalid environmentSymbolRenderingMode: \(value)")
     }
   }
@@ -3899,8 +3899,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentSymbolVariableValueMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, nil as SwiftUI.SymbolVariableValueMode?) } else { self }
-      case "color": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.color) } else { self }
-      case "draw": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.draw) } else { self }
+      case "color": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.color as SwiftUI.SymbolVariableValueMode?) } else { self }
+      case "draw": if #available(iOS 26, *) { self.environment(\.symbolVariableValueMode, SwiftUI.SymbolVariableValueMode.draw as SwiftUI.SymbolVariableValueMode?) } else { self }
     default: preconditionFailure("invalid environmentSymbolVariableValueMode: \(value)")
     }
   }
@@ -3932,8 +3932,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.textCase, nil as SwiftUI.Text.Case?)
-      case "uppercase": self.environment(\.textCase, SwiftUI.Text.Case.uppercase)
-      case "lowercase": self.environment(\.textCase, SwiftUI.Text.Case.lowercase)
+      case "uppercase": self.environment(\.textCase, SwiftUI.Text.Case.uppercase as SwiftUI.Text.Case?)
+      case "lowercase": self.environment(\.textCase, SwiftUI.Text.Case.lowercase as SwiftUI.Text.Case?)
     default: preconditionFailure("invalid environmentTextCase: \(value)")
     }
   }
@@ -3992,8 +3992,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKEnvironmentVerticalSizeClass(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.environment(\.verticalSizeClass, nil as SwiftUI.UserInterfaceSizeClass?)
-      case "compact": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.compact)
-      case "regular": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.regular)
+      case "compact": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.compact as SwiftUI.UserInterfaceSizeClass?)
+      case "regular": self.environment(\.verticalSizeClass, SwiftUI.UserInterfaceSizeClass.regular as SwiftUI.UserInterfaceSizeClass?)
     default: preconditionFailure("invalid environmentVerticalSizeClass: \(value)")
     }
   }
@@ -4346,18 +4346,18 @@ if #available(iOS 13, *) {
   @ViewBuilder fileprivate func oneNativeSDKFont(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.font(nil as SwiftUI.Font?)
-      case "largeTitle": self.font(SwiftUI.Font.largeTitle)
-      case "title": self.font(SwiftUI.Font.title)
-      case "title2": self.font(SwiftUI.Font.title2)
-      case "title3": self.font(SwiftUI.Font.title3)
-      case "headline": self.font(SwiftUI.Font.headline)
-      case "subheadline": self.font(SwiftUI.Font.subheadline)
-      case "body": self.font(SwiftUI.Font.body)
-      case "callout": self.font(SwiftUI.Font.callout)
-      case "footnote": self.font(SwiftUI.Font.footnote)
-      case "caption": self.font(SwiftUI.Font.caption)
-      case "caption2": self.font(SwiftUI.Font.caption2)
-      case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default) } else { self }
+      case "largeTitle": self.font(SwiftUI.Font.largeTitle as SwiftUI.Font?)
+      case "title": self.font(SwiftUI.Font.title as SwiftUI.Font?)
+      case "title2": self.font(SwiftUI.Font.title2 as SwiftUI.Font?)
+      case "title3": self.font(SwiftUI.Font.title3 as SwiftUI.Font?)
+      case "headline": self.font(SwiftUI.Font.headline as SwiftUI.Font?)
+      case "subheadline": self.font(SwiftUI.Font.subheadline as SwiftUI.Font?)
+      case "body": self.font(SwiftUI.Font.body as SwiftUI.Font?)
+      case "callout": self.font(SwiftUI.Font.callout as SwiftUI.Font?)
+      case "footnote": self.font(SwiftUI.Font.footnote as SwiftUI.Font?)
+      case "caption": self.font(SwiftUI.Font.caption as SwiftUI.Font?)
+      case "caption2": self.font(SwiftUI.Font.caption2 as SwiftUI.Font?)
+      case "default": if #available(iOS 26, *) { self.font(SwiftUI.Font.default as SwiftUI.Font?) } else { self }
     default: preconditionFailure("invalid font: \(value)")
     }
   }
@@ -4365,10 +4365,10 @@ if #available(iOS 13, *) {
   @ViewBuilder fileprivate func oneNativeSDKFontDesignWithOptionalDesign(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.fontDesign(nil as SwiftUI.Font.Design?)
-      case "default": self.fontDesign(SwiftUI.Font.Design.default)
-      case "serif": self.fontDesign(SwiftUI.Font.Design.serif)
-      case "rounded": self.fontDesign(SwiftUI.Font.Design.rounded)
-      case "monospaced": self.fontDesign(SwiftUI.Font.Design.monospaced)
+      case "default": self.fontDesign(SwiftUI.Font.Design.default as SwiftUI.Font.Design?)
+      case "serif": self.fontDesign(SwiftUI.Font.Design.serif as SwiftUI.Font.Design?)
+      case "rounded": self.fontDesign(SwiftUI.Font.Design.rounded as SwiftUI.Font.Design?)
+      case "monospaced": self.fontDesign(SwiftUI.Font.Design.monospaced as SwiftUI.Font.Design?)
     default: preconditionFailure("invalid fontDesignWithOptionalDesign: \(value)")
     }
   }
@@ -4376,15 +4376,15 @@ if #available(iOS 13, *) {
   @ViewBuilder fileprivate func oneNativeSDKFontWeightWithOptionalWeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.fontWeight(nil as SwiftUI.Font.Weight?)
-      case "ultraLight": self.fontWeight(SwiftUI.Font.Weight.ultraLight)
-      case "thin": self.fontWeight(SwiftUI.Font.Weight.thin)
-      case "light": self.fontWeight(SwiftUI.Font.Weight.light)
-      case "regular": self.fontWeight(SwiftUI.Font.Weight.regular)
-      case "medium": self.fontWeight(SwiftUI.Font.Weight.medium)
-      case "semibold": self.fontWeight(SwiftUI.Font.Weight.semibold)
-      case "bold": self.fontWeight(SwiftUI.Font.Weight.bold)
-      case "heavy": self.fontWeight(SwiftUI.Font.Weight.heavy)
-      case "black": self.fontWeight(SwiftUI.Font.Weight.black)
+      case "ultraLight": self.fontWeight(SwiftUI.Font.Weight.ultraLight as SwiftUI.Font.Weight?)
+      case "thin": self.fontWeight(SwiftUI.Font.Weight.thin as SwiftUI.Font.Weight?)
+      case "light": self.fontWeight(SwiftUI.Font.Weight.light as SwiftUI.Font.Weight?)
+      case "regular": self.fontWeight(SwiftUI.Font.Weight.regular as SwiftUI.Font.Weight?)
+      case "medium": self.fontWeight(SwiftUI.Font.Weight.medium as SwiftUI.Font.Weight?)
+      case "semibold": self.fontWeight(SwiftUI.Font.Weight.semibold as SwiftUI.Font.Weight?)
+      case "bold": self.fontWeight(SwiftUI.Font.Weight.bold as SwiftUI.Font.Weight?)
+      case "heavy": self.fontWeight(SwiftUI.Font.Weight.heavy as SwiftUI.Font.Weight?)
+      case "black": self.fontWeight(SwiftUI.Font.Weight.black as SwiftUI.Font.Weight?)
     default: preconditionFailure("invalid fontWeightWithOptionalWeight: \(value)")
     }
   }
@@ -4392,10 +4392,10 @@ if #available(iOS 13, *) {
   @ViewBuilder fileprivate func oneNativeSDKFontWidth(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.fontWidth(nil as SwiftUI.Font.Width?)
-      case "compressed": self.fontWidth(SwiftUI.Font.Width.compressed)
-      case "condensed": self.fontWidth(SwiftUI.Font.Width.condensed)
-      case "standard": self.fontWidth(SwiftUI.Font.Width.standard)
-      case "expanded": self.fontWidth(SwiftUI.Font.Width.expanded)
+      case "compressed": self.fontWidth(SwiftUI.Font.Width.compressed as SwiftUI.Font.Width?)
+      case "condensed": self.fontWidth(SwiftUI.Font.Width.condensed as SwiftUI.Font.Width?)
+      case "standard": self.fontWidth(SwiftUI.Font.Width.standard as SwiftUI.Font.Width?)
+      case "expanded": self.fontWidth(SwiftUI.Font.Width.expanded as SwiftUI.Font.Width?)
     default: preconditionFailure("invalid fontWidth: \(value)")
     }
   }
@@ -4403,25 +4403,25 @@ if #available(iOS 13, *) {
   @ViewBuilder fileprivate func oneNativeSDKForegroundColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.foregroundColor(nil as SwiftUI.Color?)
-      case "accentColor": self.foregroundColor(SwiftUI.Color.accentColor)
-      case "red": self.foregroundColor(SwiftUI.Color.red)
-      case "orange": self.foregroundColor(SwiftUI.Color.orange)
-      case "yellow": self.foregroundColor(SwiftUI.Color.yellow)
-      case "green": self.foregroundColor(SwiftUI.Color.green)
-      case "mint": self.foregroundColor(SwiftUI.Color.mint)
-      case "teal": self.foregroundColor(SwiftUI.Color.teal)
-      case "cyan": self.foregroundColor(SwiftUI.Color.cyan)
-      case "blue": self.foregroundColor(SwiftUI.Color.blue)
-      case "indigo": self.foregroundColor(SwiftUI.Color.indigo)
-      case "purple": self.foregroundColor(SwiftUI.Color.purple)
-      case "pink": self.foregroundColor(SwiftUI.Color.pink)
-      case "brown": self.foregroundColor(SwiftUI.Color.brown)
-      case "white": self.foregroundColor(SwiftUI.Color.white)
-      case "gray": self.foregroundColor(SwiftUI.Color.gray)
-      case "black": self.foregroundColor(SwiftUI.Color.black)
-      case "clear": self.foregroundColor(SwiftUI.Color.clear)
-      case "primary": self.foregroundColor(SwiftUI.Color.primary)
-      case "secondary": self.foregroundColor(SwiftUI.Color.secondary)
+      case "accentColor": self.foregroundColor(SwiftUI.Color.accentColor as SwiftUI.Color?)
+      case "red": self.foregroundColor(SwiftUI.Color.red as SwiftUI.Color?)
+      case "orange": self.foregroundColor(SwiftUI.Color.orange as SwiftUI.Color?)
+      case "yellow": self.foregroundColor(SwiftUI.Color.yellow as SwiftUI.Color?)
+      case "green": self.foregroundColor(SwiftUI.Color.green as SwiftUI.Color?)
+      case "mint": self.foregroundColor(SwiftUI.Color.mint as SwiftUI.Color?)
+      case "teal": self.foregroundColor(SwiftUI.Color.teal as SwiftUI.Color?)
+      case "cyan": self.foregroundColor(SwiftUI.Color.cyan as SwiftUI.Color?)
+      case "blue": self.foregroundColor(SwiftUI.Color.blue as SwiftUI.Color?)
+      case "indigo": self.foregroundColor(SwiftUI.Color.indigo as SwiftUI.Color?)
+      case "purple": self.foregroundColor(SwiftUI.Color.purple as SwiftUI.Color?)
+      case "pink": self.foregroundColor(SwiftUI.Color.pink as SwiftUI.Color?)
+      case "brown": self.foregroundColor(SwiftUI.Color.brown as SwiftUI.Color?)
+      case "white": self.foregroundColor(SwiftUI.Color.white as SwiftUI.Color?)
+      case "gray": self.foregroundColor(SwiftUI.Color.gray as SwiftUI.Color?)
+      case "black": self.foregroundColor(SwiftUI.Color.black as SwiftUI.Color?)
+      case "clear": self.foregroundColor(SwiftUI.Color.clear as SwiftUI.Color?)
+      case "primary": self.foregroundColor(SwiftUI.Color.primary as SwiftUI.Color?)
+      case "secondary": self.foregroundColor(SwiftUI.Color.secondary as SwiftUI.Color?)
     default: preconditionFailure("invalid foregroundColor: \(value)")
     }
   }
@@ -4841,9 +4841,9 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
   @ViewBuilder fileprivate func oneNativeSDKHoverEffectWithHoverEffect(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.hoverEffect(SwiftUI.HoverEffect.automatic)
-      case "highlight": self.hoverEffect(SwiftUI.HoverEffect.highlight)
-      case "lift": self.hoverEffect(SwiftUI.HoverEffect.lift)
+      case "automatic": self.hoverEffect(_:)(SwiftUI.HoverEffect.automatic)
+      case "highlight": self.hoverEffect(_:)(SwiftUI.HoverEffect.highlight)
+      case "lift": self.hoverEffect(_:)(SwiftUI.HoverEffect.lift)
     default: preconditionFailure("invalid hoverEffectWithHoverEffect: \(value)")
     }
   }
@@ -4851,9 +4851,9 @@ if #available(iOS 18, *) { return SwiftUI.HandGestureShortcut.primaryAction }
   @ViewBuilder fileprivate func oneNativeSDKHoverEffectWithHoverEffectFromSwiftUICore(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
 
-      case "automatic": self.hoverEffect(SwiftUI.HoverEffect.automatic)
-      case "highlight": self.hoverEffect(SwiftUI.HoverEffect.highlight)
-      case "lift": self.hoverEffect(SwiftUI.HoverEffect.lift)
+      case "automatic": self.hoverEffect(_:)(SwiftUI.HoverEffect.automatic)
+      case "highlight": self.hoverEffect(_:)(SwiftUI.HoverEffect.highlight)
+      case "lift": self.hoverEffect(_:)(SwiftUI.HoverEffect.lift)
     default: preconditionFailure("invalid hoverEffectWithHoverEffectFromSwiftUICore: \(value)")
     }
   }
@@ -5155,8 +5155,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKKeyboardShortcutWithOptionalKeyboardShortcut(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.keyboardShortcut(nil as SwiftUI.KeyboardShortcut?)
-      case "defaultAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.defaultAction)
-      case "cancelAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.cancelAction)
+      case "defaultAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.defaultAction as SwiftUI.KeyboardShortcut?)
+      case "cancelAction": self.keyboardShortcut(SwiftUI.KeyboardShortcut.cancelAction as SwiftUI.KeyboardShortcut?)
     default: preconditionFailure("invalid keyboardShortcutWithOptionalKeyboardShortcut: \(value)")
     }
   }
@@ -5308,10 +5308,10 @@ self
   @ViewBuilder fileprivate func oneNativeSDKLineHeight(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 26, *) { self.lineHeight(nil as Foundation.AttributedString.LineHeight?) } else { self }
-      case "variable": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.variable) } else { self }
-      case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal) } else { self }
-      case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight) } else { self }
-      case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose) } else { self }
+      case "variable": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.variable as Foundation.AttributedString.LineHeight?) } else { self }
+      case "normal": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.normal as Foundation.AttributedString.LineHeight?) } else { self }
+      case "tight": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.tight as Foundation.AttributedString.LineHeight?) } else { self }
+      case "loose": if #available(iOS 26, *) { self.lineHeight(Foundation.AttributedString.LineHeight.loose as Foundation.AttributedString.LineHeight?) } else { self }
     default: preconditionFailure("invalid lineHeight: \(value)")
     }
   }
@@ -5351,25 +5351,25 @@ self
   @ViewBuilder fileprivate func oneNativeSDKListItemTintWithOptionalColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.listItemTint(nil as SwiftUI.Color?)
-      case "accentColor": self.listItemTint(SwiftUI.Color.accentColor)
-      case "red": self.listItemTint(SwiftUI.Color.red)
-      case "orange": self.listItemTint(SwiftUI.Color.orange)
-      case "yellow": self.listItemTint(SwiftUI.Color.yellow)
-      case "green": self.listItemTint(SwiftUI.Color.green)
-      case "mint": self.listItemTint(SwiftUI.Color.mint)
-      case "teal": self.listItemTint(SwiftUI.Color.teal)
-      case "cyan": self.listItemTint(SwiftUI.Color.cyan)
-      case "blue": self.listItemTint(SwiftUI.Color.blue)
-      case "indigo": self.listItemTint(SwiftUI.Color.indigo)
-      case "purple": self.listItemTint(SwiftUI.Color.purple)
-      case "pink": self.listItemTint(SwiftUI.Color.pink)
-      case "brown": self.listItemTint(SwiftUI.Color.brown)
-      case "white": self.listItemTint(SwiftUI.Color.white)
-      case "gray": self.listItemTint(SwiftUI.Color.gray)
-      case "black": self.listItemTint(SwiftUI.Color.black)
-      case "clear": self.listItemTint(SwiftUI.Color.clear)
-      case "primary": self.listItemTint(SwiftUI.Color.primary)
-      case "secondary": self.listItemTint(SwiftUI.Color.secondary)
+      case "accentColor": self.listItemTint(SwiftUI.Color.accentColor as SwiftUI.Color?)
+      case "red": self.listItemTint(SwiftUI.Color.red as SwiftUI.Color?)
+      case "orange": self.listItemTint(SwiftUI.Color.orange as SwiftUI.Color?)
+      case "yellow": self.listItemTint(SwiftUI.Color.yellow as SwiftUI.Color?)
+      case "green": self.listItemTint(SwiftUI.Color.green as SwiftUI.Color?)
+      case "mint": self.listItemTint(SwiftUI.Color.mint as SwiftUI.Color?)
+      case "teal": self.listItemTint(SwiftUI.Color.teal as SwiftUI.Color?)
+      case "cyan": self.listItemTint(SwiftUI.Color.cyan as SwiftUI.Color?)
+      case "blue": self.listItemTint(SwiftUI.Color.blue as SwiftUI.Color?)
+      case "indigo": self.listItemTint(SwiftUI.Color.indigo as SwiftUI.Color?)
+      case "purple": self.listItemTint(SwiftUI.Color.purple as SwiftUI.Color?)
+      case "pink": self.listItemTint(SwiftUI.Color.pink as SwiftUI.Color?)
+      case "brown": self.listItemTint(SwiftUI.Color.brown as SwiftUI.Color?)
+      case "white": self.listItemTint(SwiftUI.Color.white as SwiftUI.Color?)
+      case "gray": self.listItemTint(SwiftUI.Color.gray as SwiftUI.Color?)
+      case "black": self.listItemTint(SwiftUI.Color.black as SwiftUI.Color?)
+      case "clear": self.listItemTint(SwiftUI.Color.clear as SwiftUI.Color?)
+      case "primary": self.listItemTint(SwiftUI.Color.primary as SwiftUI.Color?)
+      case "secondary": self.listItemTint(SwiftUI.Color.secondary as SwiftUI.Color?)
     default: preconditionFailure("invalid listItemTintWithOptionalColor: \(value)")
     }
   }
@@ -5377,7 +5377,7 @@ self
   @ViewBuilder fileprivate func oneNativeSDKListItemTintWithOptionalListItemTint(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.listItemTint(nil as SwiftUI.ListItemTint?)
-      case "monochrome": self.listItemTint(SwiftUI.ListItemTint.monochrome)
+      case "monochrome": self.listItemTint(SwiftUI.ListItemTint.monochrome as SwiftUI.ListItemTint?)
     default: preconditionFailure("invalid listItemTintWithOptionalListItemTint: \(value)")
     }
   }
@@ -5724,10 +5724,10 @@ self
   @ViewBuilder fileprivate func oneNativeSDKMapFeatureSelectionAccessory(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(nil as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
-      case "automatic": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.automatic) } else { self }
-      case "callout": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.callout) } else { self }
-      case "sheet": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.sheet) } else { self }
-      case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption) } else { self }
+      case "automatic": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.automatic as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
+      case "callout": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.callout as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
+      case "sheet": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.sheet as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
+      case "caption": if #available(iOS 18, *) { self.mapFeatureSelectionAccessory(_MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle.caption as _MapKit_SwiftUI.MapItemDetailSelectionAccessoryStyle?) } else { self }
     default: preconditionFailure("invalid mapFeatureSelectionAccessory: \(value)")
     }
   }
@@ -7037,8 +7037,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKPreferencePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: nil as SwiftUI.ColorScheme?)
-      case "light": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.light)
-      case "dark": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.dark)
+      case "light": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.light as SwiftUI.ColorScheme?)
+      case "dark": self.preference(key: SwiftUI.PreferredColorSchemeKey.self, value: SwiftUI.ColorScheme.dark as SwiftUI.ColorScheme?)
     default: preconditionFailure("invalid preferencePreferredColorScheme: \(value)")
     }
   }
@@ -7046,8 +7046,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKPreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.preferredColorScheme(nil as SwiftUI.ColorScheme?)
-      case "light": self.preferredColorScheme(SwiftUI.ColorScheme.light)
-      case "dark": self.preferredColorScheme(SwiftUI.ColorScheme.dark)
+      case "light": self.preferredColorScheme(SwiftUI.ColorScheme.light as SwiftUI.ColorScheme?)
+      case "dark": self.preferredColorScheme(SwiftUI.ColorScheme.dark as SwiftUI.ColorScheme?)
     default: preconditionFailure("invalid preferredColorScheme: \(value)")
     }
   }
@@ -8695,8 +8695,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKSymbolColorRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 26, *) { self.symbolColorRenderingMode(nil as SwiftUI.SymbolColorRenderingMode?) } else { self }
-      case "flat": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.flat) } else { self }
-      case "gradient": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.gradient) } else { self }
+      case "flat": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.flat as SwiftUI.SymbolColorRenderingMode?) } else { self }
+      case "gradient": if #available(iOS 26, *) { self.symbolColorRenderingMode(SwiftUI.SymbolColorRenderingMode.gradient as SwiftUI.SymbolColorRenderingMode?) } else { self }
     default: preconditionFailure("invalid symbolColorRenderingMode: \(value)")
     }
   }
@@ -8723,10 +8723,10 @@ self
   @ViewBuilder fileprivate func oneNativeSDKSymbolRenderingMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.symbolRenderingMode(nil as SwiftUI.SymbolRenderingMode?)
-      case "monochrome": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.monochrome)
-      case "multicolor": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.multicolor)
-      case "hierarchical": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.hierarchical)
-      case "palette": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.palette)
+      case "monochrome": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.monochrome as SwiftUI.SymbolRenderingMode?)
+      case "multicolor": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.multicolor as SwiftUI.SymbolRenderingMode?)
+      case "hierarchical": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.hierarchical as SwiftUI.SymbolRenderingMode?)
+      case "palette": self.symbolRenderingMode(SwiftUI.SymbolRenderingMode.palette as SwiftUI.SymbolRenderingMode?)
     default: preconditionFailure("invalid symbolRenderingMode: \(value)")
     }
   }
@@ -8734,8 +8734,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKSymbolVariableValueMode(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": if #available(iOS 26, *) { self.symbolVariableValueMode(nil as SwiftUI.SymbolVariableValueMode?) } else { self }
-      case "color": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.color) } else { self }
-      case "draw": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.draw) } else { self }
+      case "color": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.color as SwiftUI.SymbolVariableValueMode?) } else { self }
+      case "draw": if #available(iOS 26, *) { self.symbolVariableValueMode(SwiftUI.SymbolVariableValueMode.draw as SwiftUI.SymbolVariableValueMode?) } else { self }
     default: preconditionFailure("invalid symbolVariableValueMode: \(value)")
     }
   }
@@ -8833,8 +8833,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKTextCase(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.textCase(nil as SwiftUI.Text.Case?)
-      case "uppercase": self.textCase(SwiftUI.Text.Case.uppercase)
-      case "lowercase": self.textCase(SwiftUI.Text.Case.lowercase)
+      case "uppercase": self.textCase(SwiftUI.Text.Case.uppercase as SwiftUI.Text.Case?)
+      case "lowercase": self.textCase(SwiftUI.Text.Case.lowercase as SwiftUI.Text.Case?)
     default: preconditionFailure("invalid textCase: \(value)")
     }
   }
@@ -8842,72 +8842,72 @@ self
   @ViewBuilder fileprivate func oneNativeSDKTextContentType(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.textContentType(nil as UIKit.UITextContentType?)
-      case "URL": self.textContentType(UIKit.UITextContentType.URL)
-      case "addressCity": self.textContentType(UIKit.UITextContentType.addressCity)
-      case "addressCityAndState": self.textContentType(UIKit.UITextContentType.addressCityAndState)
-      case "addressState": self.textContentType(UIKit.UITextContentType.addressState)
-      case "birthdate": self.textContentType(UIKit.UITextContentType.birthdate)
-      case "birthdateDay": self.textContentType(UIKit.UITextContentType.birthdateDay)
-      case "birthdateMonth": self.textContentType(UIKit.UITextContentType.birthdateMonth)
-      case "birthdateYear": self.textContentType(UIKit.UITextContentType.birthdateYear)
-      case "cellularEID": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularEID) } else { self }
-      case "cellularIMEI": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI) } else { self }
+      case "URL": self.textContentType(UIKit.UITextContentType.URL as UIKit.UITextContentType?)
+      case "addressCity": self.textContentType(UIKit.UITextContentType.addressCity as UIKit.UITextContentType?)
+      case "addressCityAndState": self.textContentType(UIKit.UITextContentType.addressCityAndState as UIKit.UITextContentType?)
+      case "addressState": self.textContentType(UIKit.UITextContentType.addressState as UIKit.UITextContentType?)
+      case "birthdate": self.textContentType(UIKit.UITextContentType.birthdate as UIKit.UITextContentType?)
+      case "birthdateDay": self.textContentType(UIKit.UITextContentType.birthdateDay as UIKit.UITextContentType?)
+      case "birthdateMonth": self.textContentType(UIKit.UITextContentType.birthdateMonth as UIKit.UITextContentType?)
+      case "birthdateYear": self.textContentType(UIKit.UITextContentType.birthdateYear as UIKit.UITextContentType?)
+      case "cellularEID": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularEID as UIKit.UITextContentType?) } else { self }
+      case "cellularIMEI": if #available(iOS 17.4, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI as UIKit.UITextContentType?) } else { self }
       case "cellularIMEI1":
 #if ONE_IOS_27_SDK
-if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1) } else { self }
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI1 as UIKit.UITextContentType?) } else { self }
 #else
 self
 #endif
 
       case "cellularIMEI2":
 #if ONE_IOS_27_SDK
-if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2) } else { self }
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularIMEI2 as UIKit.UITextContentType?) } else { self }
 #else
 self
 #endif
 
       case "cellularNAL":
 #if ONE_IOS_27_SDK
-if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL) } else { self }
+if #available(iOS 27, *) { self.textContentType(UIKit.UITextContentType.cellularNAL as UIKit.UITextContentType?) } else { self }
 #else
 self
 #endif
 
-      case "countryName": self.textContentType(UIKit.UITextContentType.countryName)
-      case "creditCardExpiration": self.textContentType(UIKit.UITextContentType.creditCardExpiration)
-      case "creditCardExpirationMonth": self.textContentType(UIKit.UITextContentType.creditCardExpirationMonth)
-      case "creditCardExpirationYear": self.textContentType(UIKit.UITextContentType.creditCardExpirationYear)
-      case "creditCardFamilyName": self.textContentType(UIKit.UITextContentType.creditCardFamilyName)
-      case "creditCardGivenName": self.textContentType(UIKit.UITextContentType.creditCardGivenName)
-      case "creditCardMiddleName": self.textContentType(UIKit.UITextContentType.creditCardMiddleName)
-      case "creditCardName": self.textContentType(UIKit.UITextContentType.creditCardName)
-      case "creditCardNumber": self.textContentType(UIKit.UITextContentType.creditCardNumber)
-      case "creditCardSecurityCode": self.textContentType(UIKit.UITextContentType.creditCardSecurityCode)
-      case "creditCardType": self.textContentType(UIKit.UITextContentType.creditCardType)
-      case "dateTime": self.textContentType(UIKit.UITextContentType.dateTime)
-      case "emailAddress": self.textContentType(UIKit.UITextContentType.emailAddress)
-      case "familyName": self.textContentType(UIKit.UITextContentType.familyName)
-      case "flightNumber": self.textContentType(UIKit.UITextContentType.flightNumber)
-      case "fullStreetAddress": self.textContentType(UIKit.UITextContentType.fullStreetAddress)
-      case "givenName": self.textContentType(UIKit.UITextContentType.givenName)
-      case "jobTitle": self.textContentType(UIKit.UITextContentType.jobTitle)
-      case "location": self.textContentType(UIKit.UITextContentType.location)
-      case "middleName": self.textContentType(UIKit.UITextContentType.middleName)
-      case "name": self.textContentType(UIKit.UITextContentType.name)
-      case "namePrefix": self.textContentType(UIKit.UITextContentType.namePrefix)
-      case "nameSuffix": self.textContentType(UIKit.UITextContentType.nameSuffix)
-      case "newPassword": self.textContentType(UIKit.UITextContentType.newPassword)
-      case "nickname": self.textContentType(UIKit.UITextContentType.nickname)
-      case "oneTimeCode": self.textContentType(UIKit.UITextContentType.oneTimeCode)
-      case "organizationName": self.textContentType(UIKit.UITextContentType.organizationName)
-      case "password": self.textContentType(UIKit.UITextContentType.password)
-      case "postalCode": self.textContentType(UIKit.UITextContentType.postalCode)
-      case "shipmentTrackingNumber": self.textContentType(UIKit.UITextContentType.shipmentTrackingNumber)
-      case "streetAddressLine1": self.textContentType(UIKit.UITextContentType.streetAddressLine1)
-      case "streetAddressLine2": self.textContentType(UIKit.UITextContentType.streetAddressLine2)
-      case "sublocality": self.textContentType(UIKit.UITextContentType.sublocality)
-      case "telephoneNumber": self.textContentType(UIKit.UITextContentType.telephoneNumber)
-      case "username": self.textContentType(UIKit.UITextContentType.username)
+      case "countryName": self.textContentType(UIKit.UITextContentType.countryName as UIKit.UITextContentType?)
+      case "creditCardExpiration": self.textContentType(UIKit.UITextContentType.creditCardExpiration as UIKit.UITextContentType?)
+      case "creditCardExpirationMonth": self.textContentType(UIKit.UITextContentType.creditCardExpirationMonth as UIKit.UITextContentType?)
+      case "creditCardExpirationYear": self.textContentType(UIKit.UITextContentType.creditCardExpirationYear as UIKit.UITextContentType?)
+      case "creditCardFamilyName": self.textContentType(UIKit.UITextContentType.creditCardFamilyName as UIKit.UITextContentType?)
+      case "creditCardGivenName": self.textContentType(UIKit.UITextContentType.creditCardGivenName as UIKit.UITextContentType?)
+      case "creditCardMiddleName": self.textContentType(UIKit.UITextContentType.creditCardMiddleName as UIKit.UITextContentType?)
+      case "creditCardName": self.textContentType(UIKit.UITextContentType.creditCardName as UIKit.UITextContentType?)
+      case "creditCardNumber": self.textContentType(UIKit.UITextContentType.creditCardNumber as UIKit.UITextContentType?)
+      case "creditCardSecurityCode": self.textContentType(UIKit.UITextContentType.creditCardSecurityCode as UIKit.UITextContentType?)
+      case "creditCardType": self.textContentType(UIKit.UITextContentType.creditCardType as UIKit.UITextContentType?)
+      case "dateTime": self.textContentType(UIKit.UITextContentType.dateTime as UIKit.UITextContentType?)
+      case "emailAddress": self.textContentType(UIKit.UITextContentType.emailAddress as UIKit.UITextContentType?)
+      case "familyName": self.textContentType(UIKit.UITextContentType.familyName as UIKit.UITextContentType?)
+      case "flightNumber": self.textContentType(UIKit.UITextContentType.flightNumber as UIKit.UITextContentType?)
+      case "fullStreetAddress": self.textContentType(UIKit.UITextContentType.fullStreetAddress as UIKit.UITextContentType?)
+      case "givenName": self.textContentType(UIKit.UITextContentType.givenName as UIKit.UITextContentType?)
+      case "jobTitle": self.textContentType(UIKit.UITextContentType.jobTitle as UIKit.UITextContentType?)
+      case "location": self.textContentType(UIKit.UITextContentType.location as UIKit.UITextContentType?)
+      case "middleName": self.textContentType(UIKit.UITextContentType.middleName as UIKit.UITextContentType?)
+      case "name": self.textContentType(UIKit.UITextContentType.name as UIKit.UITextContentType?)
+      case "namePrefix": self.textContentType(UIKit.UITextContentType.namePrefix as UIKit.UITextContentType?)
+      case "nameSuffix": self.textContentType(UIKit.UITextContentType.nameSuffix as UIKit.UITextContentType?)
+      case "newPassword": self.textContentType(UIKit.UITextContentType.newPassword as UIKit.UITextContentType?)
+      case "nickname": self.textContentType(UIKit.UITextContentType.nickname as UIKit.UITextContentType?)
+      case "oneTimeCode": self.textContentType(UIKit.UITextContentType.oneTimeCode as UIKit.UITextContentType?)
+      case "organizationName": self.textContentType(UIKit.UITextContentType.organizationName as UIKit.UITextContentType?)
+      case "password": self.textContentType(UIKit.UITextContentType.password as UIKit.UITextContentType?)
+      case "postalCode": self.textContentType(UIKit.UITextContentType.postalCode as UIKit.UITextContentType?)
+      case "shipmentTrackingNumber": self.textContentType(UIKit.UITextContentType.shipmentTrackingNumber as UIKit.UITextContentType?)
+      case "streetAddressLine1": self.textContentType(UIKit.UITextContentType.streetAddressLine1 as UIKit.UITextContentType?)
+      case "streetAddressLine2": self.textContentType(UIKit.UITextContentType.streetAddressLine2 as UIKit.UITextContentType?)
+      case "sublocality": self.textContentType(UIKit.UITextContentType.sublocality as UIKit.UITextContentType?)
+      case "telephoneNumber": self.textContentType(UIKit.UITextContentType.telephoneNumber as UIKit.UITextContentType?)
+      case "username": self.textContentType(UIKit.UITextContentType.username as UIKit.UITextContentType?)
     default: preconditionFailure("invalid textContentType: \(value)")
     }
   }
@@ -8941,10 +8941,10 @@ self
   @ViewBuilder fileprivate func oneNativeSDKTextInputAutocapitalization(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.textInputAutocapitalization(nil as SwiftUI.TextInputAutocapitalization?)
-      case "never": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.never)
-      case "words": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.words)
-      case "sentences": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.sentences)
-      case "characters": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.characters)
+      case "never": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.never as SwiftUI.TextInputAutocapitalization?)
+      case "words": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.words as SwiftUI.TextInputAutocapitalization?)
+      case "sentences": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.sentences as SwiftUI.TextInputAutocapitalization?)
+      case "characters": self.textInputAutocapitalization(SwiftUI.TextInputAutocapitalization.characters as SwiftUI.TextInputAutocapitalization?)
     default: preconditionFailure("invalid textInputAutocapitalization: \(value)")
     }
   }
@@ -9078,25 +9078,25 @@ if #available(iOS 26, *) { return SwiftUI.TextInputFormattingControlPlacement.Se
   @ViewBuilder fileprivate func oneNativeSDKTintWithOptionalColor(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.tint(nil as SwiftUI.Color?)
-      case "accentColor": self.tint(SwiftUI.Color.accentColor)
-      case "red": self.tint(SwiftUI.Color.red)
-      case "orange": self.tint(SwiftUI.Color.orange)
-      case "yellow": self.tint(SwiftUI.Color.yellow)
-      case "green": self.tint(SwiftUI.Color.green)
-      case "mint": self.tint(SwiftUI.Color.mint)
-      case "teal": self.tint(SwiftUI.Color.teal)
-      case "cyan": self.tint(SwiftUI.Color.cyan)
-      case "blue": self.tint(SwiftUI.Color.blue)
-      case "indigo": self.tint(SwiftUI.Color.indigo)
-      case "purple": self.tint(SwiftUI.Color.purple)
-      case "pink": self.tint(SwiftUI.Color.pink)
-      case "brown": self.tint(SwiftUI.Color.brown)
-      case "white": self.tint(SwiftUI.Color.white)
-      case "gray": self.tint(SwiftUI.Color.gray)
-      case "black": self.tint(SwiftUI.Color.black)
-      case "clear": self.tint(SwiftUI.Color.clear)
-      case "primary": self.tint(SwiftUI.Color.primary)
-      case "secondary": self.tint(SwiftUI.Color.secondary)
+      case "accentColor": self.tint(SwiftUI.Color.accentColor as SwiftUI.Color?)
+      case "red": self.tint(SwiftUI.Color.red as SwiftUI.Color?)
+      case "orange": self.tint(SwiftUI.Color.orange as SwiftUI.Color?)
+      case "yellow": self.tint(SwiftUI.Color.yellow as SwiftUI.Color?)
+      case "green": self.tint(SwiftUI.Color.green as SwiftUI.Color?)
+      case "mint": self.tint(SwiftUI.Color.mint as SwiftUI.Color?)
+      case "teal": self.tint(SwiftUI.Color.teal as SwiftUI.Color?)
+      case "cyan": self.tint(SwiftUI.Color.cyan as SwiftUI.Color?)
+      case "blue": self.tint(SwiftUI.Color.blue as SwiftUI.Color?)
+      case "indigo": self.tint(SwiftUI.Color.indigo as SwiftUI.Color?)
+      case "purple": self.tint(SwiftUI.Color.purple as SwiftUI.Color?)
+      case "pink": self.tint(SwiftUI.Color.pink as SwiftUI.Color?)
+      case "brown": self.tint(SwiftUI.Color.brown as SwiftUI.Color?)
+      case "white": self.tint(SwiftUI.Color.white as SwiftUI.Color?)
+      case "gray": self.tint(SwiftUI.Color.gray as SwiftUI.Color?)
+      case "black": self.tint(SwiftUI.Color.black as SwiftUI.Color?)
+      case "clear": self.tint(SwiftUI.Color.clear as SwiftUI.Color?)
+      case "primary": self.tint(SwiftUI.Color.primary as SwiftUI.Color?)
+      case "secondary": self.tint(SwiftUI.Color.secondary as SwiftUI.Color?)
     default: preconditionFailure("invalid tintWithOptionalColor: \(value)")
     }
   }
@@ -9469,9 +9469,9 @@ if #available(iOS 27, *) { return SwiftUI.ToolbarPlacement.statusBar }
   @ViewBuilder fileprivate func oneNativeSDKToolbarWithRemoving(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.toolbar(removing: nil as SwiftUI.ToolbarDefaultItemKind?)
-      case "sidebarToggle": self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.sidebarToggle)
-      case "title": if #available(iOS 18, *) { self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.title) } else { self }
-      case "search": if #available(iOS 26, *) { self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.search) } else { self }
+      case "sidebarToggle": self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.sidebarToggle as SwiftUI.ToolbarDefaultItemKind?)
+      case "title": if #available(iOS 18, *) { self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.title as SwiftUI.ToolbarDefaultItemKind?) } else { self }
+      case "search": if #available(iOS 26, *) { self.toolbar(removing: SwiftUI.ToolbarDefaultItemKind.search as SwiftUI.ToolbarDefaultItemKind?) } else { self }
     default: preconditionFailure("invalid toolbarWithRemoving: \(value)")
     }
   }
@@ -9706,8 +9706,8 @@ self
   @ViewBuilder fileprivate func oneNativeSDKTransformPreferencePreferredColorScheme(_ value: String, emit: @escaping (String, String) -> Void) -> some View {
     switch value {
       case "null": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = nil as SwiftUI.ColorScheme? })
-      case "light": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.light })
-      case "dark": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.dark })
+      case "light": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.light as SwiftUI.ColorScheme? })
+      case "dark": self.transformPreference(SwiftUI.PreferredColorSchemeKey.self, { current in current = SwiftUI.ColorScheme.dark as SwiftUI.ColorScheme? })
     default: preconditionFailure("invalid transformPreferencePreferredColorScheme: \(value)")
     }
   }

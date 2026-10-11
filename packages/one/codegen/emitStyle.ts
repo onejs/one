@@ -141,9 +141,10 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
               ? `${modifier.preferenceKey}.self, { current in current = ${value} }`
               : `${modifier.preferenceKey}.self, perform: ${value}` :
           !fullArguments && modifier.label && modifier.label !== '_' ? `${modifier.label}: ${value}` : value
+        const method = `${modifier.sdkName ?? modifier.name}${modifier.callReference ? `(${modifier.label ?? '_'}:)` : ''}`
         return version > 17
-          ? sdkGuard(version, `if #available(iOS ${version}, *) { self.${modifier.sdkName ?? modifier.name}(${argument}) } else { self }`, 'self')
-          : `self.${modifier.sdkName ?? modifier.name}(${argument})`
+          ? sdkGuard(version, `if #available(iOS ${version}, *) { self.${method}(${modifier.callReference ? value : argument}) } else { self }`, 'self')
+          : `self.${method}(${modifier.callReference ? value : argument})`
       }
       const construct = (value: string, constructor = modifier.scalarConstructor, type = modifier.type) => {
         if (!constructor) return value
@@ -1009,7 +1010,8 @@ ${validation}    ${apply(argumentsFromSDK ?? bridge, modifier.ios, argumentsFrom
 ${modifier.kind === 'optionalEnum' ? `      case "null": ${apply(`nil as ${modifier.type}`, modifier.ios)}` : ''}
 ${modifier.cases
   .map((item) => {
-    const call = apply(modifier.kind === 'style' ? `.${item.name}` : `${modifier.type.replace(/\?$/, '')}.${item.name}`, Math.max(modifier.ios, item.ios))
+    const value = modifier.kind === 'style' ? `.${item.name}` : `${modifier.type.replace(/\?$/, '')}.${item.name}`
+    const call = apply(modifier.kind === 'optionalEnum' ? `${value} as ${modifier.type}` : value, Math.max(modifier.ios, item.ios))
     return `      case ${JSON.stringify(item.name)}:${call.startsWith('\n') ? '' : ' '}${call}`
   })
   .join('\n')}

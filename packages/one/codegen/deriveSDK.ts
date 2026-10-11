@@ -77,6 +77,7 @@ export type DerivedModifier = {
   preferenceKey?: string
   preferenceOperation?: 'set' | 'transform' | 'observe'
   zeroArgument?: true
+  callReference?: true
   framework?: string
   label?: string
   callbackLabel?: string
@@ -1590,7 +1591,7 @@ export function deriveModifiers(
         method.parameters.every((parameter) => parameter.defaultValue !== undefined) &&
         valueOf(method.parameters[0].type)
       if (defaultedCase?.kind === 'enum' && defaultedCase.cases)
-        return [{ name, module: method.module, kind: 'string',
+        return [{ name, module: method.module, kind: defaultedCase.optional ? 'optionalEnum' : 'string',
           type: method.parameters[0].type, cases: defaultedCase.cases, ios: ios(method),
           ...(method.parameters[0].label === '_' ? {} : { label: method.parameters[0].label }),
           ...framework }]
@@ -1862,6 +1863,20 @@ export function deriveModifiers(
         ...(value.swiftExpression ? { swiftExpression: value.swiftExpression } : {}),
         ...(value.cases ? { cases: value.cases } : {}), ...(label === '_' ? {} : { label }) }]
     })
+    for (const candidate of candidates) {
+      if (candidate.kind !== 'string' || !candidate.cases) continue
+      const label = candidate.label ?? '_'
+      const unary = overloads.find((method) => method.parameters.length === 1 &&
+        !method.requirements?.length && method.parameters[0].type === candidate.type &&
+        method.parameters[0].label === label)
+      const generic = overloads.some((method) => method.parameters.length > 1 &&
+        method.parameters[0].label === label &&
+        (method.parameters[0].type.startsWith('some ') || method.requirements?.length) &&
+        method.parameters.slice(1).every((parameter) => parameter.defaultValue !== undefined))
+      // a compound reference excludes higher-arity overloads with default arguments.
+      // both scalar aliases already emit the unary call, so bind its SDK declaration.
+      if (unary && ios(unary) <= candidate.ios && generic) candidate.callReference = true
+    }
     if (candidates.some((candidate) => candidate.transformMember)) {
       result.push(...candidates.filter((candidate) => candidate.transformMember))
       continue
