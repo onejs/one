@@ -567,7 +567,6 @@ export async function createNativeDevEngine(
   let bundleReject: ((error: Error) => void) | null = null
   let bundlePromise: Promise<NativeDevBundle> | null = null
 
-  const resolvedHost = host === '0.0.0.0' ? 'localhost' : host
   const virtualEntry = nativeVirtualEntryPlugin(root, {
     dev: true,
     platform,
@@ -640,11 +639,15 @@ export async function createNativeDevEngine(
     // only polyfilled once InitializeCore has run) and hand it to the runtime,
     // which owns every message it carries. handed over immediately rather than
     // from an open handler: a host that does not honor `socket.onopen = fn`
-    // would otherwise silently never get Fast Refresh.
+    // would otherwise silently never get Fast Refresh. the socket goes to the
+    // origin the device loaded this bundle from (RN's getDevServer), never the
+    // server's own host:port: an emulator behind `adb reverse tcp:8081 tcp:<port>`
+    // or a phone on the LAN cannot reach the server's localhost:<port>.
     outro: `
 try {
   var __WS = (init_WebSocket(), __toCommonJS(WebSocket_exports)).default;
-  var __hmrUrl = 'ws://${resolvedHost}:${port}/hot?platform=${platform}&clientId=' + encodeURIComponent(__rolldown_runtime__.clientId);
+  var __devServer = (init_getDevServer(), __toCommonJS(getDevServer_exports)).default();
+  var __hmrUrl = __devServer.url.replace(/^http/, 'ws') + 'hot?platform=${platform}&clientId=' + encodeURIComponent(__rolldown_runtime__.clientId);
   __rolldown_runtime__.setup(new __WS(__hmrUrl));
 } catch(e) {
   // a swallowed failure here leaves the app permanently without Fast Refresh and

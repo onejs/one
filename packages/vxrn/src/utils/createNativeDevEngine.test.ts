@@ -672,6 +672,56 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
 })
 
 describe('native Rolldown HMR runtime', () => {
+  it('opens the HMR socket on the origin the device loaded the bundle from', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-origin-'))
+    // an emulator behind `adb reverse tcp:8081 tcp:<port>` loads the bundle from
+    // localhost:8081, where the server's own port is unreachable
+    await writeFile(
+      join(root, 'WebSocket.js'),
+      `export default class WebSocket {
+  constructor(url) { globalThis.hmrSocketUrl = url }
+  addEventListener() {}
+}`
+    )
+    await writeFile(
+      join(root, 'getDevServer.js'),
+      `export default function getDevServer() {
+  return { url: 'http://localhost:8081/', bundleLoadedFromServer: true }
+}`
+    )
+    await writeFile(
+      join(root, 'entry.mjs'),
+      `import WebSocket from './WebSocket.js'
+import getDevServer from './getDevServer.js'
+globalThis.hostModules = [WebSocket, getDevServer]`
+    )
+    const native = await createNativeDevEngine({
+      root,
+      port: 52278,
+      platform: 'android',
+      plugins: [
+        {
+          name: 'native-hmr-origin-entry',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.mjs'`
+          },
+        },
+      ],
+    })
+    try {
+      const context: any = { console, setTimeout, clearTimeout }
+      runInNewContext((await native.getBundle()).code, context)
+      expect(context.hmrSocketUrl).toBe(
+        `ws://localhost:8081/hot?platform=android&clientId=${encodeURIComponent(
+          context.__rolldown_runtime__.clientId
+        )}`
+      )
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
+
   it.each([true, false])(
     'keeps CommonJS default components callable through the native HMR wire path (Babel=%s)',
     async (babel) => {
