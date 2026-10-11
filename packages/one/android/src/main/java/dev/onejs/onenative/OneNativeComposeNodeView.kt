@@ -184,7 +184,7 @@ import androidx.compose.ui.window.Dialog
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.controller.BaseControllerListener
 import com.facebook.drawee.drawable.ScalingUtils
-import com.facebook.drawee.interfaces.SettableDraweeHierarchy
+import com.facebook.drawee.generic.GenericDraweeHierarchy
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.image.ImageInfo
 import com.facebook.react.R
@@ -2103,10 +2103,9 @@ private fun RenderComposeImage(
                 } else {
                     view.colorFilter = null
                 }
-                view.setScaleType(frescoScaleType(options.contentScale))
-                (view.hierarchy as? SettableDraweeHierarchy)?.setActualImageFocusPoint(
-                    frescoFocusPoint(options.alignment)
-                )
+                val hierarchy = view.hierarchy as? GenericDraweeHierarchy
+                hierarchy?.setActualImageScaleType(frescoScaleType(options.contentScale))
+                hierarchy?.setActualImageFocusPoint(frescoFocusPoint(options.alignment))
                 if (view.tag != uri) {
                     view.tag = uri
                     if (uri.isNullOrEmpty()) {
