@@ -1,34 +1,30 @@
-// Hermes before V1 cannot parse ES6 classes. Oxc lowers fields but has an
-// ES2015 target floor, so classes and lexical bindings need Babel afterward.
+// hermes before v1 cannot parse classes. swc lowers the complete hierarchy
+// together with lexical bindings after oxc's field and syntax transforms.
 export async function transformHermesClasses(
   code: string,
   filename: string,
   sourceMaps = false
 ): Promise<{ code: string; map?: any } | undefined> {
   if (!/\b(?:class(?:\s|\{)|(?:let|const)\s)/.test(code)) return
-  const [
-    { transformAsync },
-    { default: transformClasses },
-    { default: transformBlockScoping },
-  ] = await Promise.all([
-    import('@babel/core'),
-    import('@babel/plugin-transform-classes'),
-    import('@babel/plugin-transform-block-scoping'),
-  ])
-  const result = await transformAsync(code, {
+  const { transform } = await import('@swc/core')
+  const result = await transform(code, {
     filename,
-    babelrc: false,
+    swcrc: false,
     configFile: false,
     sourceMaps,
     // the caller composes stage maps itself; a file's own sourceMappingURL
     // composed here would give the stage map several sources
-    // @ts-expect-error @types/babel__core omits false, which babel accepts
     inputSourceMap: false,
-    parserOpts: { plugins: ['jsx'] },
-    // Legacy Hermes hoists lexical names, including in class-free functions.
-    // Lower block scope so minification cannot shadow parameters or constructors.
-    plugins: [transformClasses, transformBlockScoping],
+    isModule: 'unknown',
+    jsc: {
+      parser: { syntax: 'ecmascript', jsx: true },
+      transform: { react: { runtime: 'preserve' } },
+    },
+    env: { include: ['transform-classes', 'transform-block-scoping'] },
   })
   if (!result?.code) return
-  return { code: result.code, map: result.map }
+  return {
+    code: result.code,
+    map: result.map ? JSON.parse(result.map) : undefined,
+  }
 }

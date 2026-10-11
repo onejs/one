@@ -1,7 +1,39 @@
 import { describe, expect, it } from 'vitest'
 import { runInNewContext } from 'node:vm'
 import { rolldown } from 'rolldown'
-import { transformOxc, transformSWC, transformSWCStripJSX } from './transformSWC'
+import {
+  shouldStripFlow,
+  transformOxc,
+  transformSWC,
+  transformSWCStripJSX,
+} from './transformSWC'
+
+describe('Flow stripping keeps generated JavaScript on the native parser path', () => {
+  it.each([
+    [
+      '/app/node_modules/react-native/Libraries/Renderer/generated.js',
+      'module.exports = { value: 42 }',
+    ],
+    [
+      '/app/node_modules/react-devtools-core/backend.js',
+      'const label = "function value(x: string)"; module.exports = label',
+    ],
+    [
+      '/app/NativeView.js',
+      '/* @flow */ export function View() { return <NativeView /> }',
+    ],
+  ])('preserves JavaScript accepted by the native parser: %s', (id, code) => {
+    expect(shouldStripFlow(id!, code!)).toBe(false)
+  })
+
+  it.each([
+    'export function value(x: number): number { return x + 1 }',
+    'export type Value = { value: number }; export const value: Value = { value: 1 }',
+    'enum Status { Ready, Waiting }; export const ready = Status.Ready',
+  ])('retains stripping for actual Flow syntax: %s', (code) => {
+    expect(shouldStripFlow('/app/node_modules/react-native/Flow.js', code)).toBe(true)
+  })
+})
 
 describe('transformSWC / transformOxc with oxc-transform for Hermes lowering', () => {
   it('preserves unbraced for-await bodies and early returns', async () => {

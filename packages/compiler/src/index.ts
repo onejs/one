@@ -30,6 +30,7 @@ import { getCachedTransform, logCacheStats, setCachedTransform } from './cache'
 
 export * from './configure'
 export * from './transformBabel'
+export * from './transformFlow'
 export * from './transformSWC'
 export * from './transformWorklets'
 export * from './reactNativeCodegen'

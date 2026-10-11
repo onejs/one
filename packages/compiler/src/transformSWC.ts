@@ -1,4 +1,5 @@
 import { extname } from 'node:path'
+import { parseSync } from 'oxc-parser'
 import { normalizePath } from 'vite'
 import { configuration } from './configure'
 import { asyncGeneratorRegex, debug, runtimePublicPath } from './constants'
@@ -15,14 +16,12 @@ const ignoreId = /node_modules\/(\.vite|vite)\//
 export function shouldStripFlow(id: string, code: string): boolean {
   const filename = id.split('?')[0]
   if (!/\.jsx?$/.test(filename)) return false
-  if (/node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/.test(filename)) {
-    return true
-  }
   // scan the complete comment preamble, including license blocks before @flow.
   const header =
     code.match(/^(?:#![^\r\n]*(?:\r?\n|$))?(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*)*/)?.[0] ||
     ''
-  return (
+  const candidate =
+    /node_modules[\\/](?:react-native|@react-native)[\\/].*\.js$/.test(filename) ||
     /@flow\b/.test(header) ||
     /\b(?:import|export)\s+type\b/.test(code) ||
     // Some published Flow sources omit the pragma and use ordinary imports.
@@ -33,7 +32,7 @@ export function shouldStripFlow(id: string, code: string): boolean {
       code
     ) ||
     /\b(?:opaque\s+)?type\s+[\w$]+(?:\s*<[^;{}]*>)?\s*=/.test(code)
-  )
+  return candidate && parseSync(filename, code, { lang: 'jsx' }).errors.length > 0
 }
 
 export async function transformSWC(
