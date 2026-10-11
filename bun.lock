@@ -411,6 +411,7 @@
         "@types/react-dom": "^19.2.2",
         "@types/react-test-renderer": "^19.1.0",
         "@types/xxhashjs": "^0.2.4",
+        "@vxrn/emitter": "workspace:*",
         "depcheck": "^1.4.7",
         "esbuild": "^0.25.12",
         "immer": "^10.1.1",
