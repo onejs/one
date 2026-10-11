@@ -88,11 +88,9 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.material3.DragHandle
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LinearWavyProgressIndicator
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.ModalBottomSheetDefaults
 import androidx.compose.material3.ModalBottomSheetProperties
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.SheetValue
@@ -186,7 +184,7 @@ import androidx.compose.ui.window.Dialog
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.drawee.controller.BaseControllerListener
 import com.facebook.drawee.drawable.ScalingUtils
-import com.facebook.drawee.generic.GenericDraweeHierarchy
+import com.facebook.drawee.interfaces.SettableDraweeHierarchy
 import com.facebook.drawee.view.SimpleDraweeView
 import com.facebook.imagepipeline.image.ImageInfo
 import com.facebook.react.R
@@ -2105,9 +2103,10 @@ private fun RenderComposeImage(
                 } else {
                     view.colorFilter = null
                 }
-                view.scaleType = frescoScaleType(options.contentScale)
-                (view.hierarchy as? GenericDraweeHierarchy)?.actualImageFocusPoint =
+                view.setScaleType(frescoScaleType(options.contentScale))
+                (view.hierarchy as? SettableDraweeHierarchy)?.setActualImageFocusPoint(
                     frescoFocusPoint(options.alignment)
+                )
                 if (view.tag != uri) {
                     view.tag = uri
                     if (uri.isNullOrEmpty()) {
@@ -2174,25 +2173,36 @@ private fun RenderComposeSnackbarHost(
     }
     val snackbarChild = node.renderedChildren.firstOrNull { it.renderedNodeKind == "snackbar" }
     val colors = snackbarChild?.renderedProps?.snackbarColors ?: OneNativeSnackbarColors()
-    SnackbarHost(
-        hostState = hostState,
-        modifier = modifier,
-        snackbar = { data ->
-            Snackbar(
-                snackbarData = data,
-                actionOnNewLine = colors.actionOnNewLine,
-                containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
-                contentColor = colors.contentColor?.let(::Color) ?: Color.Unspecified,
-                actionColor = colors.actionColor?.let(::Color) ?: Color.Unspecified,
-                actionContentColor = colors.actionContentColor?.let(::Color) ?: Color.Unspecified,
-                dismissActionContentColor = colors.dismissActionContentColor?.let(::Color) ?: Color.Unspecified,
-            )
-        },
-    ) {
+    Box(modifier = modifier) {
         node.renderedChildren.forEach { child ->
             if (child !== snackbarChild) key(child) { RenderComposeNode(child, Modifier) }
         }
+        SnackbarHost(
+            hostState = hostState,
+            snackbar = { data ->
+                Snackbar(
+                    snackbarData = data,
+                    actionOnNewLine = colors.actionOnNewLine,
+                    containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+                    contentColor = colors.contentColor?.let(::Color) ?: Color.Unspecified,
+                    actionColor = colors.actionColor?.let(::Color) ?: Color.Unspecified,
+                    actionContentColor = colors.actionContentColor?.let(::Color) ?: Color.Unspecified,
+                    dismissActionContentColor = colors.dismissActionContentColor?.let(::Color) ?: Color.Unspecified,
+                )
+            },
+        )
     }
+}
+
+@Composable
+private fun OneDefaultSheetDragHandle() {
+    Box(
+        modifier =
+            Modifier.padding(top = 8.dp)
+                .size(width = 32.dp, height = 4.dp)
+                .clip(RoundedCornerShape(2.dp))
+                .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)),
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -2247,10 +2257,10 @@ private fun RenderComposeModalBottomSheet(
         onDismissRequest = { node.handleDialogDismiss() },
         sheetState = sheetState,
         modifier = modifier,
-        scrimColor = options.scrimColor?.let(::Color) ?: ModalBottomSheetDefaults.ScrimColor,
+        scrimColor = options.scrimColor?.let(::Color) ?: Color.Black.copy(alpha = 0.32f),
         dragHandle = {
             if (dragSlot != null) RenderComposeChildren(dragSlot)
-            else if (options.showDragHandle) DragHandle()
+            else if (options.showDragHandle) OneDefaultSheetDragHandle()
         },
         properties = ModalBottomSheetProperties(shouldDismissOnClickOutside = currentDismissOutside),
     ) {
