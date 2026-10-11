@@ -11,6 +11,8 @@
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
+// Forward declaration of `ImagePickerAssetType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ImagePickerAssetType; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
@@ -19,6 +21,8 @@ namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
+// Forward declaration of `ImagePickerCropAspect` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerCropAspect; }
 
 #include "ImagePickerNativeResult.hpp"
 #include <NitroModules/Promise.hpp>
@@ -29,6 +33,8 @@ namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 #include <optional>
 #include "JImagePickerAsset.hpp"
 #include <string>
+#include "ImagePickerAssetType.hpp"
+#include "JImagePickerAssetType.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "JCameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
@@ -37,6 +43,8 @@ namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 #include "JResolvedImagePickerOptions.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "JImagePickerMediaType.hpp"
+#include "ImagePickerCropAspect.hpp"
+#include "JImagePickerCropAspect.hpp"
 
 namespace margelo::nitro::one {
 
@@ -87,9 +95,9 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<ImagePickerNativeResult>> JHybridOneImagePickerSpec::launchCamera() {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("launchCamera");
-    auto __result = method(_javaPart);
+  std::shared_ptr<Promise<ImagePickerNativeResult>> JHybridOneImagePickerSpec::launchCamera(const ResolvedImagePickerOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JResolvedImagePickerOptions> /* options */)>("launchCamera");
+    auto __result = method(_javaPart, JResolvedImagePickerOptions::fromCpp(options));
     return [&]() {
       auto __promise = Promise<ImagePickerNativeResult>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {

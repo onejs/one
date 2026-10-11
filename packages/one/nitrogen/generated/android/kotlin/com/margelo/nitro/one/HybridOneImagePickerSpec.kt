@@ -36,7 +36,7 @@ abstract class HybridOneImagePickerSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
-  abstract fun launchCamera(): Promise<ImagePickerNativeResult>
+  abstract fun launchCamera(options: ResolvedImagePickerOptions): Promise<ImagePickerNativeResult>
   
   @DoNotStrip
   @Keep

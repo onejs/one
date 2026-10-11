@@ -48,6 +48,18 @@ abstract class HybridOneNotificationsSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
+  abstract fun setNotificationCategory(category: NativeNotificationCategory): Promise<NativeNotificationCategory>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getNotificationCategories(): Promise<Array<NativeNotificationCategory>>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun deleteNotificationCategory(identifier: String): Promise<Boolean>
+  
+  @DoNotStrip
+  @Keep
   abstract fun setNotificationChannel(channelId: String, channel: NativeChannelInput): Promise<NativeChannel?>
   
   @DoNotStrip

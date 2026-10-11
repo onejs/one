@@ -54,9 +54,17 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    std::shared_ptr<Promise<std::string>> getString() override;
-    std::shared_ptr<Promise<bool>> setString(const std::string& text) override;
+    std::shared_ptr<Promise<std::string>> getString(const ClipboardGetStringOptions& options) override;
+    std::shared_ptr<Promise<bool>> setString(const std::string& text, const ClipboardSetStringOptions& options) override;
     std::shared_ptr<Promise<bool>> hasString() override;
+    std::shared_ptr<Promise<std::optional<ClipboardImageResult>>> getImage(const ClipboardGetImageOptions& options) override;
+    std::shared_ptr<Promise<void>> setImage(const std::string& base64Image) override;
+    std::shared_ptr<Promise<bool>> hasImage() override;
+    std::shared_ptr<Promise<std::optional<std::string>>> getUrl() override;
+    std::shared_ptr<Promise<void>> setUrl(const std::string& url) override;
+    std::shared_ptr<Promise<bool>> hasUrl() override;
+    void setClipboardListener(const std::function<void(const std::vector<std::string>& /* contentTypes */)>& listener) override;
+    void clearClipboardListener() override;
 
   private:
     jni::global_ref<JHybridOneClipboardSpec::JavaPart> _javaPart;

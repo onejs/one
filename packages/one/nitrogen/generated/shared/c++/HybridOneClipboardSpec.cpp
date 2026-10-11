@@ -17,6 +17,14 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("getString", &HybridOneClipboardSpec::getString);
       prototype.registerHybridMethod("setString", &HybridOneClipboardSpec::setString);
       prototype.registerHybridMethod("hasString", &HybridOneClipboardSpec::hasString);
+      prototype.registerHybridMethod("getImage", &HybridOneClipboardSpec::getImage);
+      prototype.registerHybridMethod("setImage", &HybridOneClipboardSpec::setImage);
+      prototype.registerHybridMethod("hasImage", &HybridOneClipboardSpec::hasImage);
+      prototype.registerHybridMethod("getUrl", &HybridOneClipboardSpec::getUrl);
+      prototype.registerHybridMethod("setUrl", &HybridOneClipboardSpec::setUrl);
+      prototype.registerHybridMethod("hasUrl", &HybridOneClipboardSpec::hasUrl);
+      prototype.registerHybridMethod("setClipboardListener", &HybridOneClipboardSpec::setClipboardListener);
+      prototype.registerHybridMethod("clearClipboardListener", &HybridOneClipboardSpec::clearClipboardListener);
     });
   }
 

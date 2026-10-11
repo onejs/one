@@ -2562,6 +2562,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       if (app.imagePicker?.camera !== undefined) {
         usage.set('NSCameraUsageDescription', app.imagePicker.camera)
       }
+      if (app.imagePicker?.microphone !== undefined) {
+        usage.set('NSMicrophoneUsageDescription', app.imagePicker.microphone)
+      }
       if (app.photoLibrary !== undefined) {
         if (app.photoLibrary.addOnly !== undefined) {
           usage.set('NSPhotoLibraryAddUsageDescription', app.photoLibrary.addOnly)

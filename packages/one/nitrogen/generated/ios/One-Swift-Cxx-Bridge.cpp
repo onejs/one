@@ -62,7 +62,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::exception_ptr& /* error */)>
   Func_void_std__exception_ptr create_Func_void_std__exception_ptr(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__exception_ptr::fromUnsafe(swiftClosureWrapper);
@@ -70,7 +70,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(error);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::optional<HingeState>& /* result */)>
   Func_void_std__optional_HingeState_ create_Func_void_std__optional_HingeState_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__optional_HingeState_::fromUnsafe(swiftClosureWrapper);
@@ -78,7 +78,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void()>
   Func_void create_Func_void(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void::fromUnsafe(swiftClosureWrapper);
@@ -86,7 +86,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call();
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAdaptiveSpec>
   std::shared_ptr<HybridOneAdaptiveSpec> create_std__shared_ptr_HybridOneAdaptiveSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAdaptiveSpec_cxx swiftPart = One::HybridOneAdaptiveSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -102,7 +102,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneAdaptiveSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(bool /* result */)>
   Func_void_bool create_Func_void_bool(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_bool::fromUnsafe(swiftClosureWrapper);
@@ -110,7 +110,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::optional<std::string>& /* result */)>
   Func_void_std__optional_std__string_ create_Func_void_std__optional_std__string_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__optional_std__string_::fromUnsafe(swiftClosureWrapper);
@@ -118,7 +118,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppIconSpec>
   std::shared_ptr<HybridOneAppIconSpec> create_std__shared_ptr_HybridOneAppIconSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAppIconSpec_cxx swiftPart = One::HybridOneAppIconSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -134,7 +134,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneAppIconSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppInfoSpec>
   std::shared_ptr<HybridOneAppInfoSpec> create_std__shared_ptr_HybridOneAppInfoSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAppInfoSpec_cxx swiftPart = One::HybridOneAppInfoSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -150,7 +150,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneAppInfoSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const AppIntentInvocation& /* invocation */)>
   Func_void_AppIntentInvocation create_Func_void_AppIntentInvocation(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AppIntentInvocation::fromUnsafe(swiftClosureWrapper);
@@ -158,7 +158,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(invocation);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppIntentsSpec>
   std::shared_ptr<HybridOneAppIntentsSpec> create_std__shared_ptr_HybridOneAppIntentsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAppIntentsSpec_cxx swiftPart = One::HybridOneAppIntentsSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -174,7 +174,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneAppIntentsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const AppleAuthResult& /* result */)>
   Func_void_AppleAuthResult create_Func_void_AppleAuthResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AppleAuthResult::fromUnsafe(swiftClosureWrapper);
@@ -182,7 +182,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(AppleCredentialState /* result */)>
   Func_void_AppleCredentialState create_Func_void_AppleCredentialState(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AppleCredentialState::fromUnsafe(swiftClosureWrapper);
@@ -190,7 +190,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppleAuthSpec>
   std::shared_ptr<HybridOneAppleAuthSpec> create_std__shared_ptr_HybridOneAppleAuthSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAppleAuthSpec_cxx swiftPart = One::HybridOneAppleAuthSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -206,7 +206,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneAppleAuthSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(AppTrackingPermissionStatus /* result */)>
   Func_void_AppTrackingPermissionStatus create_Func_void_AppTrackingPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AppTrackingPermissionStatus::fromUnsafe(swiftClosureWrapper);
@@ -214,7 +214,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAppTrackingSpec>
   std::shared_ptr<HybridOneAppTrackingSpec> create_std__shared_ptr_HybridOneAppTrackingSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAppTrackingSpec_cxx swiftPart = One::HybridOneAppTrackingSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -230,7 +230,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneAppTrackingSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(AudioRecordingPermission /* result */)>
   Func_void_AudioRecordingPermission create_Func_void_AudioRecordingPermission(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AudioRecordingPermission::fromUnsafe(swiftClosureWrapper);
@@ -238,7 +238,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::function<void(const AudioPlaybackStatus& /* result */)>
   Func_void_AudioPlaybackStatus create_Func_void_AudioPlaybackStatus(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AudioPlaybackStatus::fromUnsafe(swiftClosureWrapper);
@@ -246,7 +246,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const AudioRecordingStatus& /* result */)>
   Func_void_AudioRecordingStatus create_Func_void_AudioRecordingStatus(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AudioRecordingStatus::fromUnsafe(swiftClosureWrapper);
@@ -254,7 +254,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const AudioRecordingResult& /* result */)>
   Func_void_AudioRecordingResult create_Func_void_AudioRecordingResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AudioRecordingResult::fromUnsafe(swiftClosureWrapper);
@@ -262,7 +262,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const AudioInterruptionEvent& /* event */)>
   Func_void_AudioInterruptionEvent create_Func_void_AudioInterruptionEvent(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AudioInterruptionEvent::fromUnsafe(swiftClosureWrapper);
@@ -270,7 +270,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(event);
     };
   }
-
+  
   // pragma MARK: std::function<void(const AudioRemoteCommandEvent& /* event */)>
   Func_void_AudioRemoteCommandEvent create_Func_void_AudioRemoteCommandEvent(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_AudioRemoteCommandEvent::fromUnsafe(swiftClosureWrapper);
@@ -278,7 +278,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(event);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
   std::shared_ptr<HybridOneAudioSpec> create_std__shared_ptr_HybridOneAudioSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneAudioSpec_cxx swiftPart = One::HybridOneAudioSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -294,7 +294,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneAudioSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<PendingBackgroundTask>& /* result */)>
   Func_void_std__vector_PendingBackgroundTask_ create_Func_void_std__vector_PendingBackgroundTask_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_PendingBackgroundTask_::fromUnsafe(swiftClosureWrapper);
@@ -302,7 +302,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const BackgroundTaskInvocation& /* invocation */)>
   Func_void_BackgroundTaskInvocation create_Func_void_BackgroundTaskInvocation(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_BackgroundTaskInvocation::fromUnsafe(swiftClosureWrapper);
@@ -310,7 +310,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(invocation);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::string& /* executionId */)>
   Func_void_std__string create_Func_void_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__string::fromUnsafe(swiftClosureWrapper);
@@ -318,7 +318,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(executionId);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneBackgroundTasksSpec>
   std::shared_ptr<HybridOneBackgroundTasksSpec> create_std__shared_ptr_HybridOneBackgroundTasksSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneBackgroundTasksSpec_cxx swiftPart = One::HybridOneBackgroundTasksSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -334,7 +334,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneBackgroundTasksSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const BrowserResult& /* result */)>
   Func_void_BrowserResult create_Func_void_BrowserResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_BrowserResult::fromUnsafe(swiftClosureWrapper);
@@ -342,7 +342,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const BrowserAuthResult& /* result */)>
   Func_void_BrowserAuthResult create_Func_void_BrowserAuthResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_BrowserAuthResult::fromUnsafe(swiftClosureWrapper);
@@ -350,7 +350,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneBrowserSpec>
   std::shared_ptr<HybridOneBrowserSpec> create_std__shared_ptr_HybridOneBrowserSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneBrowserSpec_cxx swiftPart = One::HybridOneBrowserSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -366,7 +366,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneBrowserSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(CalendarPermissionStatus /* result */)>
   Func_void_CalendarPermissionStatus create_Func_void_CalendarPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_CalendarPermissionStatus::fromUnsafe(swiftClosureWrapper);
@@ -374,7 +374,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<CalendarEvent>& /* result */)>
   Func_void_std__vector_CalendarEvent_ create_Func_void_std__vector_CalendarEvent_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_CalendarEvent_::fromUnsafe(swiftClosureWrapper);
@@ -382,7 +382,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const CalendarEvent& /* result */)>
   Func_void_CalendarEvent create_Func_void_CalendarEvent(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_CalendarEvent::fromUnsafe(swiftClosureWrapper);
@@ -390,7 +390,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<ReminderInfo>& /* result */)>
   Func_void_std__vector_ReminderInfo_ create_Func_void_std__vector_ReminderInfo_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_ReminderInfo_::fromUnsafe(swiftClosureWrapper);
@@ -398,7 +398,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneCalendarSpec>
   std::shared_ptr<HybridOneCalendarSpec> create_std__shared_ptr_HybridOneCalendarSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneCalendarSpec_cxx swiftPart = One::HybridOneCalendarSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -414,7 +414,23 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneCalendarSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
+  // pragma MARK: std::function<void(const std::optional<ClipboardImageResult>& /* result */)>
+  Func_void_std__optional_ClipboardImageResult_ create_Func_void_std__optional_ClipboardImageResult_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__optional_ClipboardImageResult_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::optional<ClipboardImageResult>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<std::string>& /* contentTypes */)>
+  Func_void_std__vector_std__string_ create_Func_void_std__vector_std__string_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_std__string_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<std::string>& contentTypes) mutable -> void {
+      swiftClosure.call(contentTypes);
+    };
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneClipboardSpec>
   std::shared_ptr<HybridOneClipboardSpec> create_std__shared_ptr_HybridOneClipboardSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneClipboardSpec_cxx swiftPart = One::HybridOneClipboardSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -430,7 +446,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneClipboardSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(ContactsPermissionStatus /* result */)>
   Func_void_ContactsPermissionStatus create_Func_void_ContactsPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ContactsPermissionStatus::fromUnsafe(swiftClosureWrapper);
@@ -438,7 +454,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::optional<ContactInfo>& /* result */)>
   Func_void_std__optional_ContactInfo_ create_Func_void_std__optional_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__optional_ContactInfo_::fromUnsafe(swiftClosureWrapper);
@@ -446,7 +462,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<ContactInfo>& /* result */)>
   Func_void_std__vector_ContactInfo_ create_Func_void_std__vector_ContactInfo_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_ContactInfo_::fromUnsafe(swiftClosureWrapper);
@@ -454,7 +470,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const ContactInfo& /* result */)>
   Func_void_ContactInfo create_Func_void_ContactInfo(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ContactInfo::fromUnsafe(swiftClosureWrapper);
@@ -462,7 +478,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneContactsSpec>
   std::shared_ptr<HybridOneContactsSpec> create_std__shared_ptr_HybridOneContactsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneContactsSpec_cxx swiftPart = One::HybridOneContactsSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -478,7 +494,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneContactsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const DeviceInfo& /* result */)>
   Func_void_DeviceInfo create_Func_void_DeviceInfo(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_DeviceInfo::fromUnsafe(swiftClosureWrapper);
@@ -486,7 +502,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const LocalizationInfo& /* result */)>
   Func_void_LocalizationInfo create_Func_void_LocalizationInfo(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_LocalizationInfo::fromUnsafe(swiftClosureWrapper);
@@ -494,7 +510,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
   std::shared_ptr<HybridOneDeviceSpec> create_std__shared_ptr_HybridOneDeviceSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneDeviceSpec_cxx swiftPart = One::HybridOneDeviceSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -510,7 +526,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneDeviceSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneDeviceAttestationSpec>
   std::shared_ptr<HybridOneDeviceAttestationSpec> create_std__shared_ptr_HybridOneDeviceAttestationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneDeviceAttestationSpec_cxx swiftPart = One::HybridOneDeviceAttestationSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -526,7 +542,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneDeviceAttestationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const DocumentPickerNativeResult& /* result */)>
   Func_void_DocumentPickerNativeResult create_Func_void_DocumentPickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_DocumentPickerNativeResult::fromUnsafe(swiftClosureWrapper);
@@ -534,7 +550,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneDocumentPickerSpec>
   std::shared_ptr<HybridOneDocumentPickerSpec> create_std__shared_ptr_HybridOneDocumentPickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneDocumentPickerSpec_cxx swiftPart = One::HybridOneDocumentPickerSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -550,7 +566,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneDocumentPickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const FetchNativeResponse& /* response */)>
   Func_void_FetchNativeResponse create_Func_void_FetchNativeResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_FetchNativeResponse::fromUnsafe(swiftClosureWrapper);
@@ -558,7 +574,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(response);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::shared_ptr<ArrayBuffer>& /* chunk */)>
   Func_void_std__shared_ptr_ArrayBuffer_ create_Func_void_std__shared_ptr_ArrayBuffer_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__shared_ptr_ArrayBuffer_::fromUnsafe(swiftClosureWrapper);
@@ -566,7 +582,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(ArrayBufferHolder(chunk));
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneFetchSpec>
   std::shared_ptr<HybridOneFetchSpec> create_std__shared_ptr_HybridOneFetchSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneFetchSpec_cxx swiftPart = One::HybridOneFetchSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -582,7 +598,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneFetchSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const FileInfo& /* result */)>
   Func_void_FileInfo create_Func_void_FileInfo(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_FileInfo::fromUnsafe(swiftClosureWrapper);
@@ -590,7 +606,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<FileEntry>& /* result */)>
   Func_void_std__vector_FileEntry_ create_Func_void_std__vector_FileEntry_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_FileEntry_::fromUnsafe(swiftClosureWrapper);
@@ -598,7 +614,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
   std::shared_ptr<HybridOneFileSystemSpec> create_std__shared_ptr_HybridOneFileSystemSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneFileSystemSpec_cxx swiftPart = One::HybridOneFileSystemSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -614,7 +630,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneFileSystemSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneFontsSpec>
   std::shared_ptr<HybridOneFontsSpec> create_std__shared_ptr_HybridOneFontsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneFontsSpec_cxx swiftPart = One::HybridOneFontsSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -630,7 +646,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneFontsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneHapticsSpec>
   std::shared_ptr<HybridOneHapticsSpec> create_std__shared_ptr_HybridOneHapticsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneHapticsSpec_cxx swiftPart = One::HybridOneHapticsSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -646,7 +662,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneHapticsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const ImageTransformResult& /* result */)>
   Func_void_ImageTransformResult create_Func_void_ImageTransformResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ImageTransformResult::fromUnsafe(swiftClosureWrapper);
@@ -654,7 +670,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneImageManipulatorSpec>
   std::shared_ptr<HybridOneImageManipulatorSpec> create_std__shared_ptr_HybridOneImageManipulatorSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneImageManipulatorSpec_cxx swiftPart = One::HybridOneImageManipulatorSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -670,7 +686,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneImageManipulatorSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const ImagePickerNativeResult& /* result */)>
   Func_void_ImagePickerNativeResult create_Func_void_ImagePickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ImagePickerNativeResult::fromUnsafe(swiftClosureWrapper);
@@ -678,7 +694,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const CameraPermissionResponse& /* result */)>
   Func_void_CameraPermissionResponse create_Func_void_CameraPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_CameraPermissionResponse::fromUnsafe(swiftClosureWrapper);
@@ -686,7 +702,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneImagePickerSpec>
   std::shared_ptr<HybridOneImagePickerSpec> create_std__shared_ptr_HybridOneImagePickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneImagePickerSpec_cxx swiftPart = One::HybridOneImagePickerSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -702,7 +718,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneImagePickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneKeepAwakeSpec>
   std::shared_ptr<HybridOneKeepAwakeSpec> create_std__shared_ptr_HybridOneKeepAwakeSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneKeepAwakeSpec_cxx swiftPart = One::HybridOneKeepAwakeSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -718,7 +734,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneKeepAwakeSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneLaunchScreenSpec>
   std::shared_ptr<HybridOneLaunchScreenSpec> create_std__shared_ptr_HybridOneLaunchScreenSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneLaunchScreenSpec_cxx swiftPart = One::HybridOneLaunchScreenSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -734,7 +750,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneLaunchScreenSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneLocalAuthenticationSpec>
   std::shared_ptr<HybridOneLocalAuthenticationSpec> create_std__shared_ptr_HybridOneLocalAuthenticationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneLocalAuthenticationSpec_cxx swiftPart = One::HybridOneLocalAuthenticationSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -750,7 +766,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneLocalAuthenticationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(LocationPermissionStatus /* result */)>
   Func_void_LocationPermissionStatus create_Func_void_LocationPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_LocationPermissionStatus::fromUnsafe(swiftClosureWrapper);
@@ -758,7 +774,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::function<void(const LocationPosition& /* result */)>
   Func_void_LocationPosition create_Func_void_LocationPosition(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_LocationPosition::fromUnsafe(swiftClosureWrapper);
@@ -766,7 +782,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::string& /* code */, const std::string& /* message */)>
   Func_void_std__string_std__string create_Func_void_std__string_std__string(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__string_std__string::fromUnsafe(swiftClosureWrapper);
@@ -774,7 +790,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(code, message);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<LocationPlace>& /* result */)>
   Func_void_std__vector_LocationPlace_ create_Func_void_std__vector_LocationPlace_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_LocationPlace_::fromUnsafe(swiftClosureWrapper);
@@ -782,7 +798,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
   std::shared_ptr<HybridOneLocationSpec> create_std__shared_ptr_HybridOneLocationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneLocationSpec_cxx swiftPart = One::HybridOneLocationSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -798,7 +814,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneLocationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<MapPlace>& /* result */)>
   Func_void_std__vector_MapPlace_ create_Func_void_std__vector_MapPlace_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_MapPlace_::fromUnsafe(swiftClosureWrapper);
@@ -806,7 +822,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<MapSuggestion>& /* result */)>
   Func_void_std__vector_MapSuggestion_ create_Func_void_std__vector_MapSuggestion_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_MapSuggestion_::fromUnsafe(swiftClosureWrapper);
@@ -814,7 +830,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const MapPlace& /* result */)>
   Func_void_MapPlace create_Func_void_MapPlace(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_MapPlace::fromUnsafe(swiftClosureWrapper);
@@ -822,7 +838,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const MapRoute& /* result */)>
   Func_void_MapRoute create_Func_void_MapRoute(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_MapRoute::fromUnsafe(swiftClosureWrapper);
@@ -830,7 +846,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneMapServicesSpec>
   std::shared_ptr<HybridOneMapServicesSpec> create_std__shared_ptr_HybridOneMapServicesSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneMapServicesSpec_cxx swiftPart = One::HybridOneMapServicesSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -846,7 +862,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneMapServicesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const MotionReading& /* reading */)>
   Func_void_MotionReading create_Func_void_MotionReading(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_MotionReading::fromUnsafe(swiftClosureWrapper);
@@ -854,7 +870,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(reading);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneMotionSpec>
   std::shared_ptr<HybridOneMotionSpec> create_std__shared_ptr_HybridOneMotionSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneMotionSpec_cxx swiftPart = One::HybridOneMotionSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -870,7 +886,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneMotionSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneNativeModulesSpec>
   std::shared_ptr<HybridOneNativeModulesSpec> create_std__shared_ptr_HybridOneNativeModulesSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneNativeModulesSpec_cxx swiftPart = One::HybridOneNativeModulesSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -886,7 +902,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneNativeModulesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const NetworkState& /* result */)>
   Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_NetworkState::fromUnsafe(swiftClosureWrapper);
@@ -894,7 +910,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneNetworkSpec>
   std::shared_ptr<HybridOneNetworkSpec> create_std__shared_ptr_HybridOneNetworkSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneNetworkSpec_cxx swiftPart = One::HybridOneNetworkSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -910,7 +926,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneNetworkSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const NativePermissionResponse& /* result */)>
   Func_void_NativePermissionResponse create_Func_void_NativePermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_NativePermissionResponse::fromUnsafe(swiftClosureWrapper);
@@ -918,7 +934,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(double /* result */)>
   Func_void_double create_Func_void_double(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_double::fromUnsafe(swiftClosureWrapper);
@@ -926,7 +942,23 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
+  // pragma MARK: std::function<void(const NativeNotificationCategory& /* result */)>
+  Func_void_NativeNotificationCategory create_Func_void_NativeNotificationCategory(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_NativeNotificationCategory::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const NativeNotificationCategory& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<NativeNotificationCategory>& /* result */)>
+  Func_void_std__vector_NativeNotificationCategory_ create_Func_void_std__vector_NativeNotificationCategory_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__vector_NativeNotificationCategory_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::vector<NativeNotificationCategory>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
   // pragma MARK: std::function<void(const std::optional<NativeChannel>& /* result */)>
   Func_void_std__optional_NativeChannel_ create_Func_void_std__optional_NativeChannel_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__optional_NativeChannel_::fromUnsafe(swiftClosureWrapper);
@@ -934,7 +966,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<NativeChannel>& /* result */)>
   Func_void_std__vector_NativeChannel_ create_Func_void_std__vector_NativeChannel_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_NativeChannel_::fromUnsafe(swiftClosureWrapper);
@@ -942,7 +974,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<NativeNotificationRequest>& /* result */)>
   Func_void_std__vector_NativeNotificationRequest_ create_Func_void_std__vector_NativeNotificationRequest_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_NativeNotificationRequest_::fromUnsafe(swiftClosureWrapper);
@@ -950,7 +982,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<NativeNotification>& /* result */)>
   Func_void_std__vector_NativeNotification_ create_Func_void_std__vector_NativeNotification_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_NativeNotification_::fromUnsafe(swiftClosureWrapper);
@@ -958,7 +990,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const NativePushToken& /* result */)>
   Func_void_NativePushToken create_Func_void_NativePushToken(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_NativePushToken::fromUnsafe(swiftClosureWrapper);
@@ -966,7 +998,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::string& /* requestId */, const NativeNotification& /* notification */)>
   Func_void_std__string_NativeNotification create_Func_void_std__string_NativeNotification(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__string_NativeNotification::fromUnsafe(swiftClosureWrapper);
@@ -974,7 +1006,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(requestId, notification);
     };
   }
-
+  
   // pragma MARK: std::function<void(const NativeNotificationResponse& /* response */)>
   Func_void_NativeNotificationResponse create_Func_void_NativeNotificationResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_NativeNotificationResponse::fromUnsafe(swiftClosureWrapper);
@@ -982,7 +1014,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(response);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneNotificationsSpec>
   std::shared_ptr<HybridOneNotificationsSpec> create_std__shared_ptr_HybridOneNotificationsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneNotificationsSpec_cxx swiftPart = One::HybridOneNotificationsSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -998,7 +1030,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneNotificationsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(PhotoLibraryPermissionStatus /* result */)>
   Func_void_PhotoLibraryPermissionStatus create_Func_void_PhotoLibraryPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PhotoLibraryPermissionStatus::fromUnsafe(swiftClosureWrapper);
@@ -1006,15 +1038,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
-  // pragma MARK: std::function<void(const std::vector<std::string>& /* result */)>
-  Func_void_std__vector_std__string_ create_Func_void_std__vector_std__string_(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_std__vector_std__string_::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::vector<std::string>& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAssetPage& /* result */)>
   Func_void_PhotoLibraryAssetPage create_Func_void_PhotoLibraryAssetPage(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PhotoLibraryAssetPage::fromUnsafe(swiftClosureWrapper);
@@ -1022,7 +1046,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAsset& /* result */)>
   Func_void_PhotoLibraryAsset create_Func_void_PhotoLibraryAsset(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PhotoLibraryAsset::fromUnsafe(swiftClosureWrapper);
@@ -1030,7 +1054,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAlbumPage& /* result */)>
   Func_void_PhotoLibraryAlbumPage create_Func_void_PhotoLibraryAlbumPage(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PhotoLibraryAlbumPage::fromUnsafe(swiftClosureWrapper);
@@ -1038,7 +1062,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const PhotoLibraryAlbum& /* result */)>
   Func_void_PhotoLibraryAlbum create_Func_void_PhotoLibraryAlbum(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PhotoLibraryAlbum::fromUnsafe(swiftClosureWrapper);
@@ -1046,7 +1070,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOnePhotoLibrarySpec>
   std::shared_ptr<HybridOnePhotoLibrarySpec> create_std__shared_ptr_HybridOnePhotoLibrarySpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOnePhotoLibrarySpec_cxx swiftPart = One::HybridOnePhotoLibrarySpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1062,7 +1086,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOnePhotoLibrarySpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const PrintResult& /* result */)>
   Func_void_PrintResult create_Func_void_PrintResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PrintResult::fromUnsafe(swiftClosureWrapper);
@@ -1070,7 +1094,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOnePrintSpec>
   std::shared_ptr<HybridOnePrintSpec> create_std__shared_ptr_HybridOnePrintSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOnePrintSpec_cxx swiftPart = One::HybridOnePrintSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1086,7 +1110,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOnePrintSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneProtectedStoreSpec>
   std::shared_ptr<HybridOneProtectedStoreSpec> create_std__shared_ptr_HybridOneProtectedStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneProtectedStoreSpec_cxx swiftPart = One::HybridOneProtectedStoreSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1102,7 +1126,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneProtectedStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<PurchaseProduct>& /* result */)>
   Func_void_std__vector_PurchaseProduct_ create_Func_void_std__vector_PurchaseProduct_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_PurchaseProduct_::fromUnsafe(swiftClosureWrapper);
@@ -1110,7 +1134,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const PurchaseResult& /* result */)>
   Func_void_PurchaseResult create_Func_void_PurchaseResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PurchaseResult::fromUnsafe(swiftClosureWrapper);
@@ -1118,7 +1142,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<PurchaseTransaction>& /* result */)>
   Func_void_std__vector_PurchaseTransaction_ create_Func_void_std__vector_PurchaseTransaction_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_PurchaseTransaction_::fromUnsafe(swiftClosureWrapper);
@@ -1126,7 +1150,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const PurchaseUpdate& /* update */)>
   Func_void_PurchaseUpdate create_Func_void_PurchaseUpdate(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_PurchaseUpdate::fromUnsafe(swiftClosureWrapper);
@@ -1134,7 +1158,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(update);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOnePurchasesSpec>
   std::shared_ptr<HybridOnePurchasesSpec> create_std__shared_ptr_HybridOnePurchasesSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOnePurchasesSpec_cxx swiftPart = One::HybridOnePurchasesSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1150,7 +1174,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOnePurchasesSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const std::vector<QuickActionItem>& /* result */)>
   Func_void_std__vector_QuickActionItem_ create_Func_void_std__vector_QuickActionItem_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__vector_QuickActionItem_::fromUnsafe(swiftClosureWrapper);
@@ -1158,7 +1182,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneQuickActionsSpec>
   std::shared_ptr<HybridOneQuickActionsSpec> create_std__shared_ptr_HybridOneQuickActionsSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneQuickActionsSpec_cxx swiftPart = One::HybridOneQuickActionsSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1174,7 +1198,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneQuickActionsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(ScreenCaptureState /* result */)>
   Func_void_ScreenCaptureState create_Func_void_ScreenCaptureState(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ScreenCaptureState::fromUnsafe(swiftClosureWrapper);
@@ -1182,7 +1206,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::function<void(const ScreenCaptureResult& /* result */)>
   Func_void_ScreenCaptureResult create_Func_void_ScreenCaptureResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ScreenCaptureResult::fromUnsafe(swiftClosureWrapper);
@@ -1190,7 +1214,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneScreenCaptureSpec>
   std::shared_ptr<HybridOneScreenCaptureSpec> create_std__shared_ptr_HybridOneScreenCaptureSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneScreenCaptureSpec_cxx swiftPart = One::HybridOneScreenCaptureSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1206,7 +1230,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneScreenCaptureSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(ScreenOrientationValue /* result */)>
   Func_void_ScreenOrientationValue create_Func_void_ScreenOrientationValue(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ScreenOrientationValue::fromUnsafe(swiftClosureWrapper);
@@ -1214,7 +1238,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(static_cast<int>(result));
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneScreenOrientationSpec>
   std::shared_ptr<HybridOneScreenOrientationSpec> create_std__shared_ptr_HybridOneScreenOrientationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneScreenOrientationSpec_cxx swiftPart = One::HybridOneScreenOrientationSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1230,7 +1254,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneScreenOrientationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>
   std::shared_ptr<HybridOneSecureStoreSpec> create_std__shared_ptr_HybridOneSecureStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneSecureStoreSpec_cxx swiftPart = One::HybridOneSecureStoreSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1246,7 +1270,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneSecureStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const ShareResult& /* result */)>
   Func_void_ShareResult create_Func_void_ShareResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_ShareResult::fromUnsafe(swiftClosureWrapper);
@@ -1254,7 +1278,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneShareSpec>
   std::shared_ptr<HybridOneShareSpec> create_std__shared_ptr_HybridOneShareSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneShareSpec_cxx swiftPart = One::HybridOneShareSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1270,7 +1294,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneShareSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const SpeechPermissionResponse& /* result */)>
   Func_void_SpeechPermissionResponse create_Func_void_SpeechPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_SpeechPermissionResponse::fromUnsafe(swiftClosureWrapper);
@@ -1278,7 +1302,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const SpeechEvent& /* event */)>
   Func_void_SpeechEvent create_Func_void_SpeechEvent(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_SpeechEvent::fromUnsafe(swiftClosureWrapper);
@@ -1286,7 +1310,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(event);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneSpeechSpec>
   std::shared_ptr<HybridOneSpeechSpec> create_std__shared_ptr_HybridOneSpeechSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneSpeechSpec_cxx swiftPart = One::HybridOneSpeechSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1302,7 +1326,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneSpeechSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneStoreReviewSpec>
   std::shared_ptr<HybridOneStoreReviewSpec> create_std__shared_ptr_HybridOneStoreReviewSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneStoreReviewSpec_cxx swiftPart = One::HybridOneStoreReviewSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1318,7 +1342,7 @@ namespace margelo::nitro::one::bridge::swift {
     One::HybridOneStoreReviewSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
-
+  
   // pragma MARK: std::function<void(const OneUpdatesCheckResult& /* result */)>
   Func_void_OneUpdatesCheckResult create_Func_void_OneUpdatesCheckResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_OneUpdatesCheckResult::fromUnsafe(swiftClosureWrapper);
@@ -1326,7 +1350,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::function<void(const OneUpdatesFetchResult& /* result */)>
   Func_void_OneUpdatesFetchResult create_Func_void_OneUpdatesFetchResult(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_OneUpdatesFetchResult::fromUnsafe(swiftClosureWrapper);
@@ -1334,7 +1358,7 @@ namespace margelo::nitro::one::bridge::swift {
       swiftClosure.call(result);
     };
   }
-
+  
   // pragma MARK: std::shared_ptr<HybridOneUpdatesSpec>
   std::shared_ptr<HybridOneUpdatesSpec> create_std__shared_ptr_HybridOneUpdatesSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneUpdatesSpec_cxx swiftPart = One::HybridOneUpdatesSpec_cxx::fromUnsafe(swiftUnsafePointer);

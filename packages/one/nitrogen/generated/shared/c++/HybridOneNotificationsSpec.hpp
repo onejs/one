@@ -17,6 +17,8 @@
 namespace margelo::nitro::one { struct NativePermissionResponse; }
 // Forward declaration of `NativePermissionRequest` to properly resolve imports.
 namespace margelo::nitro::one { struct NativePermissionRequest; }
+// Forward declaration of `NativeNotificationCategory` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationCategory; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannel; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
@@ -37,11 +39,12 @@ namespace margelo::nitro::one { struct NotificationBehavior; }
 #include "NativePermissionResponse.hpp"
 #include <NitroModules/Promise.hpp>
 #include "NativePermissionRequest.hpp"
+#include "NativeNotificationCategory.hpp"
+#include <vector>
+#include <string>
 #include "NativeChannel.hpp"
 #include <optional>
-#include <string>
 #include "NativeChannelInput.hpp"
-#include <vector>
 #include "NativeScheduleInput.hpp"
 #include "NativeNotificationRequest.hpp"
 #include "NativeNotification.hpp"
@@ -85,6 +88,9 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<NativePermissionResponse>> requestPermissions(const NativePermissionRequest& options) = 0;
       virtual std::shared_ptr<Promise<double>> getBadgeCount() = 0;
       virtual std::shared_ptr<Promise<bool>> setBadgeCount(double count) = 0;
+      virtual std::shared_ptr<Promise<NativeNotificationCategory>> setNotificationCategory(const NativeNotificationCategory& category) = 0;
+      virtual std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>> getNotificationCategories() = 0;
+      virtual std::shared_ptr<Promise<bool>> deleteNotificationCategory(const std::string& identifier) = 0;
       virtual std::shared_ptr<Promise<std::optional<NativeChannel>>> setNotificationChannel(const std::string& channelId, const NativeChannelInput& channel) = 0;
       virtual std::shared_ptr<Promise<std::optional<NativeChannel>>> getNotificationChannel(const std::string& channelId) = 0;
       virtual std::shared_ptr<Promise<std::vector<NativeChannel>>> getNotificationChannels() = 0;

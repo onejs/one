@@ -13,6 +13,12 @@ namespace margelo::nitro::one { struct NativePermissionResponse; }
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 // Forward declaration of `NativeIosPermission` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeIosPermission; }
+// Forward declaration of `NativeNotificationCategory` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationCategory; }
+// Forward declaration of `NativeNotificationAction` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationAction; }
+// Forward declaration of `NativeNotificationCategoryOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationCategoryOptions; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannel; }
 // Forward declaration of `NativeNotificationRequest` to properly resolve imports.
@@ -53,10 +59,16 @@ namespace margelo::nitro::one { struct NotificationBehavior; }
 #include "NativeIosPermission.hpp"
 #include <optional>
 #include "JNativeIosPermission.hpp"
+#include "NativeNotificationCategory.hpp"
+#include "JNativeNotificationCategory.hpp"
+#include <string>
+#include "NativeNotificationAction.hpp"
+#include <vector>
+#include "JNativeNotificationAction.hpp"
+#include "NativeNotificationCategoryOptions.hpp"
+#include "JNativeNotificationCategoryOptions.hpp"
 #include "NativeChannel.hpp"
 #include "JNativeChannel.hpp"
-#include <string>
-#include <vector>
 #include <NitroModules/JUnit.hpp>
 #include "NativeNotificationRequest.hpp"
 #include "JNativeNotificationRequest.hpp"
@@ -178,6 +190,63 @@ namespace margelo::nitro::one {
   std::shared_ptr<Promise<bool>> JHybridOneNotificationsSpec::setBadgeCount(double count) {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(double /* count */)>("setBadgeCount");
     auto __result = method(_javaPart, count);
+    return [&]() {
+      auto __promise = Promise<bool>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<jni::JBoolean>(__boxedResult);
+        __promise->resolve(static_cast<bool>(__result->value()));
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<NativeNotificationCategory>> JHybridOneNotificationsSpec::setNotificationCategory(const NativeNotificationCategory& category) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JNativeNotificationCategory> /* category */)>("setNotificationCategory");
+    auto __result = method(_javaPart, JNativeNotificationCategory::fromCpp(category));
+    return [&]() {
+      auto __promise = Promise<NativeNotificationCategory>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<JNativeNotificationCategory>(__boxedResult);
+        __promise->resolve(__result->toCpp());
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>> JHybridOneNotificationsSpec::getNotificationCategories() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("getNotificationCategories");
+    auto __result = method(_javaPart);
+    return [&]() {
+      auto __promise = Promise<std::vector<NativeNotificationCategory>>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<jni::JArrayClass<JNativeNotificationCategory>>(__boxedResult);
+        __promise->resolve([&](auto&& __input) {
+          size_t __size = __input->size();
+          std::vector<NativeNotificationCategory> __vector;
+          __vector.reserve(__size);
+          for (size_t __i = 0; __i < __size; __i++) {
+            auto __element = __input->getElement(__i);
+            __vector.push_back(__element->toCpp());
+          }
+          return __vector;
+        }(__result));
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<bool>> JHybridOneNotificationsSpec::deleteNotificationCategory(const std::string& identifier) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* identifier */)>("deleteNotificationCategory");
+    auto __result = method(_javaPart, jni::make_jstring(identifier));
     return [&]() {
       auto __promise = Promise<bool>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {

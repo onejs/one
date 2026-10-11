@@ -36,6 +36,7 @@ export interface NativeContent {
   data: AnyMap
   sound: boolean
   badge?: number
+  categoryIdentifier?: string
 }
 
 export interface NativeContentInput {
@@ -45,6 +46,33 @@ export interface NativeContentInput {
   data?: AnyMap
   sound?: boolean
   badge?: number
+  categoryIdentifier?: string
+}
+
+export interface NativeNotificationAction {
+  identifier: string
+  buttonTitle: string
+  authenticationRequired: boolean
+  destructive: boolean
+  foreground: boolean
+  textInputPlaceholder?: string
+  textInputSubmitTitle?: string
+}
+
+export interface NativeNotificationCategoryOptions {
+  allowInCarPlay?: boolean
+  categorySummaryFormat?: string
+  customDismissAction?: boolean
+  intentIdentifiers?: string[]
+  previewPlaceholder?: string
+  showTitle?: boolean
+  showSubtitle?: boolean
+}
+
+export interface NativeNotificationCategory {
+  identifier: string
+  actions: NativeNotificationAction[]
+  options?: NativeNotificationCategoryOptions
 }
 
 export interface NativeScheduleInput {
@@ -67,6 +95,7 @@ export interface NativeNotification {
 export interface NativeNotificationResponse {
   notification: NativeNotification
   actionIdentifier: string
+  userText?: string
 }
 
 export interface NativeIosPermission {
@@ -123,6 +152,11 @@ export interface OneNotifications
   requestPermissions(options: NativePermissionRequest): Promise<NativePermissionResponse>
   getBadgeCount(): Promise<number>
   setBadgeCount(count: number): Promise<boolean>
+  setNotificationCategory(
+    category: NativeNotificationCategory
+  ): Promise<NativeNotificationCategory>
+  getNotificationCategories(): Promise<NativeNotificationCategory[]>
+  deleteNotificationCategory(identifier: string): Promise<boolean>
   setNotificationChannel(
     channelId: string,
     channel: NativeChannelInput

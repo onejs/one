@@ -13,9 +13,17 @@ public protocol HybridOneClipboardSpec_protocol: HybridObject {
   
 
   // Methods
-  func getString() throws -> Promise<String>
-  func setString(text: String) throws -> Promise<Bool>
+  func getString(options: ClipboardGetStringOptions) throws -> Promise<String>
+  func setString(text: String, options: ClipboardSetStringOptions) throws -> Promise<Bool>
   func hasString() throws -> Promise<Bool>
+  func getImage(options: ClipboardGetImageOptions) throws -> Promise<ClipboardImageResult?>
+  func setImage(base64Image: String) throws -> Promise<Void>
+  func hasImage() throws -> Promise<Bool>
+  func getUrl() throws -> Promise<String?>
+  func setUrl(url: String) throws -> Promise<Void>
+  func hasUrl() throws -> Promise<Bool>
+  func setClipboardListener(listener: @escaping (_ contentTypes: [String]) -> Void) throws -> Void
+  func clearClipboardListener() throws -> Void
 }
 
 public extension HybridOneClipboardSpec_protocol {

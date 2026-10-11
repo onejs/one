@@ -183,9 +183,11 @@ async function setImage(base64Image: string): Promise<void> {
   const bytes = decodeBase64(base64Image)
   if (!bytes) return
   const mime = sniffMimeType(bytes)
+  const copy = new Uint8Array(bytes.length)
+  copy.set(bytes)
   try {
     await clipboard.write([
-      new ClipboardItem({ [mime]: new Blob([bytes], { type: mime }) }),
+      new ClipboardItem({ [mime]: new Blob([copy.buffer as ArrayBuffer], { type: mime }) }),
     ])
   } catch {
     // denying the clipboard write is an ordinary outcome on web

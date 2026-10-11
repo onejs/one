@@ -58,6 +58,9 @@ namespace margelo::nitro::one {
     std::shared_ptr<Promise<NativePermissionResponse>> requestPermissions(const NativePermissionRequest& options) override;
     std::shared_ptr<Promise<double>> getBadgeCount() override;
     std::shared_ptr<Promise<bool>> setBadgeCount(double count) override;
+    std::shared_ptr<Promise<NativeNotificationCategory>> setNotificationCategory(const NativeNotificationCategory& category) override;
+    std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>> getNotificationCategories() override;
+    std::shared_ptr<Promise<bool>> deleteNotificationCategory(const std::string& identifier) override;
     std::shared_ptr<Promise<std::optional<NativeChannel>>> setNotificationChannel(const std::string& channelId, const NativeChannelInput& channel) override;
     std::shared_ptr<Promise<std::optional<NativeChannel>>> getNotificationChannel(const std::string& channelId) override;
     std::shared_ptr<Promise<std::vector<NativeChannel>>> getNotificationChannels() override;

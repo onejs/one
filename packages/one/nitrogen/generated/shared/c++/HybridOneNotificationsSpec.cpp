@@ -18,6 +18,9 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("requestPermissions", &HybridOneNotificationsSpec::requestPermissions);
       prototype.registerHybridMethod("getBadgeCount", &HybridOneNotificationsSpec::getBadgeCount);
       prototype.registerHybridMethod("setBadgeCount", &HybridOneNotificationsSpec::setBadgeCount);
+      prototype.registerHybridMethod("setNotificationCategory", &HybridOneNotificationsSpec::setNotificationCategory);
+      prototype.registerHybridMethod("getNotificationCategories", &HybridOneNotificationsSpec::getNotificationCategories);
+      prototype.registerHybridMethod("deleteNotificationCategory", &HybridOneNotificationsSpec::deleteNotificationCategory);
       prototype.registerHybridMethod("setNotificationChannel", &HybridOneNotificationsSpec::setNotificationChannel);
       prototype.registerHybridMethod("getNotificationChannel", &HybridOneNotificationsSpec::getNotificationChannel);
       prototype.registerHybridMethod("getNotificationChannels", &HybridOneNotificationsSpec::getNotificationChannels);

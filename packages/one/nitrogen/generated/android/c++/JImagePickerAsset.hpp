@@ -10,6 +10,8 @@
 #include <fbjni/fbjni.h>
 #include "ImagePickerAsset.hpp"
 
+#include "ImagePickerAssetType.hpp"
+#include "JImagePickerAssetType.hpp"
 #include <optional>
 #include <string>
 
@@ -44,13 +46,19 @@ namespace margelo::nitro::one {
       jni::local_ref<jni::JString> fileName = this->getFieldValue(fieldFileName);
       static const auto fieldFileSize = clazz->getField<jni::JDouble>("fileSize");
       jni::local_ref<jni::JDouble> fileSize = this->getFieldValue(fieldFileSize);
+      static const auto fieldDuration = clazz->getField<jni::JDouble>("duration");
+      jni::local_ref<jni::JDouble> duration = this->getFieldValue(fieldDuration);
+      static const auto fieldType = clazz->getField<JImagePickerAssetType>("type");
+      jni::local_ref<JImagePickerAssetType> type = this->getFieldValue(fieldType);
       return ImagePickerAsset(
         uri->toStdString(),
         width,
         height,
         mimeType != nullptr ? std::make_optional(mimeType->toStdString()) : std::nullopt,
         fileName != nullptr ? std::make_optional(fileName->toStdString()) : std::nullopt,
-        fileSize != nullptr ? std::make_optional(fileSize->value()) : std::nullopt
+        fileSize != nullptr ? std::make_optional(fileSize->value()) : std::nullopt,
+        duration != nullptr ? std::make_optional(duration->value()) : std::nullopt,
+        type != nullptr ? std::make_optional(type->toCpp()) : std::nullopt
       );
     }
 
@@ -60,7 +68,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JImagePickerAsset::javaobject> fromCpp(const ImagePickerAsset& value) {
-      using JSignature = JImagePickerAsset(jni::alias_ref<jni::JString>, double, double, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JImagePickerAsset(jni::alias_ref<jni::JString>, double, double, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JImagePickerAssetType>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -70,7 +78,9 @@ namespace margelo::nitro::one {
         value.height,
         value.mimeType.has_value() ? jni::make_jstring(value.mimeType.value()) : nullptr,
         value.fileName.has_value() ? jni::make_jstring(value.fileName.value()) : nullptr,
-        value.fileSize.has_value() ? jni::JDouble::valueOf(value.fileSize.value()) : nullptr
+        value.fileSize.has_value() ? jni::JDouble::valueOf(value.fileSize.value()) : nullptr,
+        value.duration.has_value() ? jni::JDouble::valueOf(value.duration.value()) : nullptr,
+        value.type.has_value() ? JImagePickerAssetType::fromCpp(value.type.value()) : nullptr
       );
     }
   };

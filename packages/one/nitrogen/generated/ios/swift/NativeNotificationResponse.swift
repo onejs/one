@@ -18,8 +18,14 @@ public extension NativeNotificationResponse {
   /**
    * Create a new instance of `NativeNotificationResponse`.
    */
-  init(notification: NativeNotification, actionIdentifier: String) {
-    self.init(notification, std.string(actionIdentifier))
+  init(notification: NativeNotification, actionIdentifier: String, userText: String?) {
+    self.init(notification, std.string(actionIdentifier), { () -> bridge.std__optional_std__string_ in
+      if let __unwrappedValue = userText {
+        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+      } else {
+        return .init()
+      }
+    }())
   }
 
   @inline(__always)
@@ -30,5 +36,17 @@ public extension NativeNotificationResponse {
   @inline(__always)
   var actionIdentifier: String {
     return String(self.__actionIdentifier)
+  }
+  
+  @inline(__always)
+  var userText: String? {
+    return { () -> String? in
+      if bridge.has_value_std__optional_std__string_(self.__userText) {
+        let __unwrapped = bridge.get_std__optional_std__string_(self.__userText)
+        return String(__unwrapped)
+      } else {
+        return nil
+      }
+    }()
   }
 }

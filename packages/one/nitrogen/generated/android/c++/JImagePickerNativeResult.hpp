@@ -11,7 +11,9 @@
 #include "ImagePickerNativeResult.hpp"
 
 #include "ImagePickerAsset.hpp"
+#include "ImagePickerAssetType.hpp"
 #include "JImagePickerAsset.hpp"
+#include "JImagePickerAssetType.hpp"
 #include <optional>
 #include <string>
 #include <vector>

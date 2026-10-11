@@ -125,9 +125,9 @@ open class HybridOneClipboardSpec_cxx {
 
   // Methods
   @inline(__always)
-  public final func getString() -> bridge.Result_std__shared_ptr_Promise_std__string___ {
+  public final func getString(options: ClipboardGetStringOptions) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
     do {
-      let __result = try self.__implementation.getString()
+      let __result = try self.__implementation.getString(options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__string__ in
         let __promise = bridge.create_std__shared_ptr_Promise_std__string__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__string__(__promise)
@@ -144,9 +144,9 @@ open class HybridOneClipboardSpec_cxx {
   }
   
   @inline(__always)
-  public final func setString(text: std.string) -> bridge.Result_std__shared_ptr_Promise_bool___ {
+  public final func setString(text: std.string, options: ClipboardSetStringOptions) -> bridge.Result_std__shared_ptr_Promise_bool___ {
     do {
-      let __result = try self.__implementation.setString(text: String(text))
+      let __result = try self.__implementation.setString(text: String(text), options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_bool__ in
         let __promise = bridge.create_std__shared_ptr_Promise_bool__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_bool__(__promise)
@@ -178,6 +178,165 @@ open class HybridOneClipboardSpec_cxx {
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
       return bridge.create_Result_std__shared_ptr_Promise_bool___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func getImage(options: ClipboardGetImageOptions) -> bridge.Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____ {
+    do {
+      let __result = try self.__implementation.getImage(options: options)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__optional_ClipboardImageResult___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__optional_ClipboardImageResult___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__optional_ClipboardImageResult___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__optional_ClipboardImageResult_ in
+              if let __unwrappedValue = __result {
+                return bridge.create_std__optional_ClipboardImageResult_(__unwrappedValue)
+              } else {
+                return .init()
+              }
+            }()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func setImage(base64Image: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.setImage(base64Image: String(base64Image))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func hasImage() -> bridge.Result_std__shared_ptr_Promise_bool___ {
+    do {
+      let __result = try self.__implementation.hasImage()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_bool__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_bool__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_bool__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_bool___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_bool___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func getUrl() -> bridge.Result_std__shared_ptr_Promise_std__optional_std__string____ {
+    do {
+      let __result = try self.__implementation.getUrl()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__optional_std__string___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__optional_std__string___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__optional_std__string___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__optional_std__string_ in
+              if let __unwrappedValue = __result {
+                return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
+              } else {
+                return .init()
+              }
+            }()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__optional_std__string____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__optional_std__string____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func setUrl(url: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.setUrl(url: String(url))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func hasUrl() -> bridge.Result_std__shared_ptr_Promise_bool___ {
+    do {
+      let __result = try self.__implementation.hasUrl()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_bool__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_bool__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_bool__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_bool___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_bool___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func setClipboardListener(listener: bridge.Func_void_std__vector_std__string_) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.setClipboardListener(listener: { () -> ([String]) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_std__vector_std__string_(listener)
+        return { (__contentTypes: [String]) -> Void in
+          __wrappedFunction.call({ () -> bridge.std__vector_std__string_ in
+            var __vector = bridge.create_std__vector_std__string_(__contentTypes.count)
+            for __item in __contentTypes {
+              __vector.push_back(std.string(__item))
+            }
+            return __vector
+          }())
+        }
+      }())
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func clearClipboardListener() -> bridge.Result_void_ {
+    do {
+      try self.__implementation.clearClipboardListener()
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
     }
   }
 }

@@ -17,6 +17,9 @@ public protocol HybridOneNotificationsSpec_protocol: HybridObject {
   func requestPermissions(options: NativePermissionRequest) throws -> Promise<NativePermissionResponse>
   func getBadgeCount() throws -> Promise<Double>
   func setBadgeCount(count: Double) throws -> Promise<Bool>
+  func setNotificationCategory(category: NativeNotificationCategory) throws -> Promise<NativeNotificationCategory>
+  func getNotificationCategories() throws -> Promise<[NativeNotificationCategory]>
+  func deleteNotificationCategory(identifier: String) throws -> Promise<Bool>
   func setNotificationChannel(channelId: String, channel: NativeChannelInput) throws -> Promise<NativeChannel?>
   func getNotificationChannel(channelId: String) throws -> Promise<NativeChannel?>
   func getNotificationChannels() throws -> Promise<[NativeChannel]>

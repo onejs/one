@@ -16,10 +16,14 @@ namespace One { class HybridOneImagePickerSpec_cxx; }
 namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
+// Forward declaration of `ImagePickerAssetType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ImagePickerAssetType; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
+// Forward declaration of `ImagePickerCropAspect` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerCropAspect; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
@@ -31,8 +35,10 @@ namespace margelo::nitro::one { enum class CameraPermissionStatus; }
 #include <vector>
 #include <optional>
 #include <string>
+#include "ImagePickerAssetType.hpp"
 #include "ResolvedImagePickerOptions.hpp"
 #include "ImagePickerMediaType.hpp"
+#include "ImagePickerCropAspect.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 
@@ -94,8 +100,8 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<ImagePickerNativeResult>> launchCamera() override {
-      auto __result = _swiftPart.launchCamera();
+    inline std::shared_ptr<Promise<ImagePickerNativeResult>> launchCamera(const ResolvedImagePickerOptions& options) override {
+      auto __result = _swiftPart.launchCamera(std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

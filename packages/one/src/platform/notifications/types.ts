@@ -118,9 +118,161 @@ export interface NotificationChannel {
   showBadge: boolean
 }
 
-// the tap action, matching expo's default action identifier. categories and
-// custom actions are out of scope, so every response carries this.
+// the tap action, matching expo's default action identifier. a tap on the
+// notification body reports this; taps on category actions report their
+// own identifiers.
 export const DEFAULT_ACTION_IDENTIFIER = 'expo.modules.notifications.actions.DEFAULT'
+
+export interface NotificationActionOptions {
+  // require device authentication before firing. defaults to false.
+  isAuthenticationRequired?: boolean
+  // mark the action destructive. defaults to false.
+  isDestructive?: boolean
+  // bring the app to the foreground when the action fires. defaults to
+  // true, like expo.
+  opensAppToForeground?: boolean
+}
+
+export interface NotificationTextInput {
+  // placeholder of the text field the action opens.
+  placeholder: string
+  // title of the submit button. the platform default when unset.
+  submitButtonTitle?: string
+}
+
+export interface NotificationAction {
+  // unique within the category. arrives as actionIdentifier on the response.
+  identifier: string
+  // the button title in the system notification UI.
+  buttonTitle: string
+  options?: NotificationActionOptions
+  // when set, the action opens a text field and the typed text arrives as
+  // userText on the response.
+  textInput?: NotificationTextInput
+}
+
+export interface NotificationCategoryOptions {
+  // ios-only extras, all optional. allowAnnouncement is accepted and
+  // ignored by the platform, like expo.
+  allowInCarPlay?: boolean
+  allowAnnouncement?: boolean
+  categorySummaryFormat?: string
+  customDismissAction?: boolean
+  intentIdentifiers?: string[]
+  previewPlaceholder?: string
+  showTitle?: boolean
+  showSubtitle?: boolean
+}
+
+export interface NotificationCategory {
+  identifier: string
+  actions: NotificationAction[]
+  options?: NotificationCategoryOptions
+}
+
+// shared argument checks for categories: identical checks and messages on
+// web and native. each names the offending field, so the caller can fix it
+// without guessing.
+export function assertCategoryIdentifier(identifier: unknown, verb: string): asserts identifier is string {
+  if (typeof identifier !== 'string' || identifier.length === 0) {
+    throw new Error(`Notifications.${verb}: identifier must be a non-empty string`)
+  }
+  if (identifier.includes(':') || identifier.includes('-')) {
+    throw new Error(
+      `Notifications.${verb}: identifier must not contain ':' or '-'`
+    )
+  }
+}
+
+function assertBooleans(
+  verb: string,
+  what: string,
+  value: Record<string, unknown> | undefined,
+  fields: string[]
+): void {
+  if (value === undefined) return
+  for (const field of fields) {
+    const entry = value[field]
+    if (entry !== undefined && typeof entry !== 'boolean') {
+      throw new Error(`Notifications.${verb}: ${what}.${field} must be a boolean`)
+    }
+  }
+}
+
+export function assertCategoryActions(actions: unknown, verb: string): asserts actions is NotificationAction[] {
+  if (!Array.isArray(actions)) {
+    throw new Error(`Notifications.${verb}: actions must be an array`)
+  }
+  for (const action of actions) {
+    if (!action || typeof action !== 'object') {
+      throw new Error(`Notifications.${verb}: each action must be an object`)
+    }
+    const { identifier, buttonTitle, options, textInput } = action as Record<string, unknown>
+    if (typeof identifier !== 'string' || identifier.length === 0) {
+      throw new Error(`Notifications.${verb}: each action needs a non-empty identifier`)
+    }
+    if (typeof buttonTitle !== 'string' || buttonTitle.length === 0) {
+      throw new Error(`Notifications.${verb}: each action needs a non-empty buttonTitle`)
+    }
+    if (options !== undefined && (typeof options !== 'object' || options === null)) {
+      throw new Error(`Notifications.${verb}: action options must be an object`)
+    }
+    assertBooleans(verb, 'action options', options as Record<string, unknown> | undefined, [
+      'isAuthenticationRequired',
+      'isDestructive',
+      'opensAppToForeground',
+    ])
+    if (textInput !== undefined) {
+      if (typeof textInput !== 'object' || textInput === null) {
+        throw new Error(`Notifications.${verb}: action textInput must be an object`)
+      }
+      const { placeholder, submitButtonTitle } = textInput as Record<string, unknown>
+      if (typeof placeholder !== 'string' || placeholder.length === 0) {
+        throw new Error(`Notifications.${verb}: action textInput needs a non-empty placeholder`)
+      }
+      if (submitButtonTitle !== undefined && typeof submitButtonTitle !== 'string') {
+        throw new Error(`Notifications.${verb}: action textInput.submitButtonTitle must be a string`)
+      }
+    }
+  }
+}
+
+export function assertCategoryOptions(
+  options: NotificationCategoryOptions | undefined,
+  verb: string
+): void {
+  if (options === undefined) return
+  if (!options || typeof options !== 'object') {
+    throw new Error(`Notifications.${verb}: options must be an object`)
+  }
+  assertBooleans(verb, 'options', options as unknown as Record<string, unknown>, [
+    'allowInCarPlay',
+    'allowAnnouncement',
+    'customDismissAction',
+    'showTitle',
+    'showSubtitle',
+  ])
+  if (
+    options.categorySummaryFormat !== undefined &&
+    typeof options.categorySummaryFormat !== 'string'
+  ) {
+    throw new Error(`Notifications.${verb}: options.categorySummaryFormat must be a string`)
+  }
+  if (
+    options.previewPlaceholder !== undefined &&
+    typeof options.previewPlaceholder !== 'string'
+  ) {
+    throw new Error(`Notifications.${verb}: options.previewPlaceholder must be a string`)
+  }
+  if (options.intentIdentifiers !== undefined) {
+    if (
+      !Array.isArray(options.intentIdentifiers) ||
+      options.intentIdentifiers.some((entry) => typeof entry !== 'string')
+    ) {
+      throw new Error(`Notifications.${verb}: options.intentIdentifiers must be string[]`)
+    }
+  }
+}
 
 export interface NotificationContentInput {
   title?: string
@@ -129,6 +281,8 @@ export interface NotificationContentInput {
   data?: Record<string, unknown>
   sound?: boolean
   badge?: number
+  // interactive category identifier, registered with setCategory first.
+  categoryIdentifier?: string
 }
 
 export interface NotificationContent {
@@ -138,6 +292,7 @@ export interface NotificationContent {
   data: Record<string, unknown>
   sound: boolean
   badge: number | null
+  categoryIdentifier: string | null
 }
 
 export type NotificationTriggerInput =
@@ -171,6 +326,8 @@ export interface Notification {
 export interface NotificationResponse {
   notification: Notification
   actionIdentifier: string
+  // the typed text for a text-input action. absent otherwise.
+  userText?: string
 }
 
 export interface ScheduledNotification {

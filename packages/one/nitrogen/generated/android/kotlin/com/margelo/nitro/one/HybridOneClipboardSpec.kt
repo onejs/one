@@ -32,15 +32,52 @@ abstract class HybridOneClipboardSpec: HybridObject() {
   // Methods
   @DoNotStrip
   @Keep
-  abstract fun getString(): Promise<String>
+  abstract fun getString(options: ClipboardGetStringOptions): Promise<String>
   
   @DoNotStrip
   @Keep
-  abstract fun setString(text: String): Promise<Boolean>
+  abstract fun setString(text: String, options: ClipboardSetStringOptions): Promise<Boolean>
   
   @DoNotStrip
   @Keep
   abstract fun hasString(): Promise<Boolean>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getImage(options: ClipboardGetImageOptions): Promise<ClipboardImageResult?>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setImage(base64Image: String): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun hasImage(): Promise<Boolean>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getUrl(): Promise<String?>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setUrl(url: String): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun hasUrl(): Promise<Boolean>
+  
+  abstract fun setClipboardListener(listener: (contentTypes: Array<String>) -> Unit): Unit
+  
+  @DoNotStrip
+  @Keep
+  private fun setClipboardListener_cxx(listener: Func_void_std__vector_std__string_): Unit {
+    val __result = setClipboardListener(listener)
+    return __result
+  }
+  
+  @DoNotStrip
+  @Keep
+  abstract fun clearClipboardListener(): Unit
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

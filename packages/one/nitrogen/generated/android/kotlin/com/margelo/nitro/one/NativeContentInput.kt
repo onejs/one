@@ -35,7 +35,10 @@ data class NativeContentInput(
   val sound: Boolean?,
   @DoNotStrip
   @Keep
-  val badge: Double?
+  val badge: Double?,
+  @DoNotStrip
+  @Keep
+  val categoryIdentifier: String?
 ) {
   /* primary constructor */
 
@@ -48,6 +51,7 @@ data class NativeContentInput(
       && Objects.deepEquals(this.data, other.data)
       && Objects.deepEquals(this.sound, other.sound)
       && Objects.deepEquals(this.badge, other.badge)
+      && Objects.deepEquals(this.categoryIdentifier, other.categoryIdentifier)
   }
 
   override fun hashCode(): Int {
@@ -57,7 +61,8 @@ data class NativeContentInput(
       body,
       data,
       sound,
-      badge
+      badge,
+      categoryIdentifier
     ).contentDeepHashCode()
   }
 
@@ -69,8 +74,8 @@ data class NativeContentInput(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(title: String?, subtitle: String?, body: String?, data: AnyMap?, sound: Boolean?, badge: Double?): NativeContentInput {
-      return NativeContentInput(title, subtitle, body, data, sound, badge)
+    private fun fromCpp(title: String?, subtitle: String?, body: String?, data: AnyMap?, sound: Boolean?, badge: Double?, categoryIdentifier: String?): NativeContentInput {
+      return NativeContentInput(title, subtitle, body, data, sound, badge, categoryIdentifier)
     }
   }
 }

@@ -18,7 +18,7 @@ public extension NativeContentInput {
   /**
    * Create a new instance of `NativeContentInput`.
    */
-  init(title: String?, subtitle: String?, body: String?, data: AnyMap?, sound: Bool?, badge: Double?) {
+  init(title: String?, subtitle: String?, body: String?, data: AnyMap?, sound: Bool?, badge: Double?, categoryIdentifier: String?) {
     self.init({ () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = title {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -52,6 +52,12 @@ public extension NativeContentInput {
     }(), { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = badge {
         return bridge.create_std__optional_double_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_std__string_ in
+      if let __unwrappedValue = categoryIdentifier {
+        return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
       } else {
         return .init()
       }
@@ -124,6 +130,18 @@ public extension NativeContentInput {
       if bridge.has_value_std__optional_double_(self.__badge) {
         let __unwrapped = bridge.get_std__optional_double_(self.__badge)
         return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var categoryIdentifier: String? {
+    return { () -> String? in
+      if bridge.has_value_std__optional_std__string_(self.__categoryIdentifier) {
+        let __unwrapped = bridge.get_std__optional_std__string_(self.__categoryIdentifier)
+        return String(__unwrapped)
       } else {
         return nil
       }

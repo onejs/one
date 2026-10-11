@@ -55,7 +55,7 @@ namespace margelo::nitro::one {
   public:
     // Methods
     std::shared_ptr<Promise<ImagePickerNativeResult>> launchLibrary(const ResolvedImagePickerOptions& options) override;
-    std::shared_ptr<Promise<ImagePickerNativeResult>> launchCamera() override;
+    std::shared_ptr<Promise<ImagePickerNativeResult>> launchCamera(const ResolvedImagePickerOptions& options) override;
     std::shared_ptr<Promise<CameraPermissionResponse>> getCameraPermissions() override;
     std::shared_ptr<Promise<CameraPermissionResponse>> requestCameraPermissions() override;
 

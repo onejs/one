@@ -28,6 +28,7 @@
 #include "JHybridOneBrowserSpec.hpp"
 #include "JHybridOneCalendarSpec.hpp"
 #include "JHybridOneClipboardSpec.hpp"
+#include "JFunc_void_std__vector_std__string_.hpp"
 #include "JHybridOneContactsSpec.hpp"
 #include "JHybridOneDeviceSpec.hpp"
 #include "JHybridOneDocumentPickerSpec.hpp"
@@ -390,6 +391,7 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneBrowserSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneCalendarSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneClipboardSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_std__vector_std__string__cxx::registerNatives();
   margelo::nitro::one::JHybridOneContactsSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneDeviceSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneDocumentPickerSpec::CxxPart::registerNatives();

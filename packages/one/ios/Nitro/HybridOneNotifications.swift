@@ -91,6 +91,130 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
     return promise
   }
 
+  func setNotificationCategory(category: NativeNotificationCategory) throws
+    -> Promise<NativeNotificationCategory>
+  {
+    guard !category.identifier.isEmpty else {
+      return Promise.rejected(
+        withError: oneNativeError(
+          "E_NOTIFICATIONS_CATEGORY", "Notifications.setCategory: identifier must be a non-empty string"))
+    }
+    let actions = category.actions.map(Self.notificationAction)
+    let options = Self.categoryOptions(category.options)
+    let intentIdentifiers =
+      category.options?.intentIdentifiers ?? []
+    let placeholder = category.options?.previewPlaceholder
+    let stored = UNNotificationCategory(
+      identifier: category.identifier, actions: actions, intentIdentifiers: intentIdentifiers,
+      hiddenPreviewsBodyPlaceholder: placeholder, options: options)
+    let promise = Promise<NativeNotificationCategory>()
+    UNUserNotificationCenter.current().getNotificationCategories { existing in
+      var next = existing.filter { $0.identifier != category.identifier }
+      next.insert(stored, at: 0)
+      UNUserNotificationCenter.current().setNotificationCategories(next)
+      promise.resolve(withResult: category)
+    }
+    return promise
+  }
+
+  func getNotificationCategories() throws -> Promise<[NativeNotificationCategory]> {
+    let promise = Promise<[NativeNotificationCategory]>()
+    UNUserNotificationCenter.current().getNotificationCategories { categories in
+      promise.resolve(withResult: categories.map(Self.notificationCategory))
+    }
+    return promise
+  }
+
+  func deleteNotificationCategory(identifier: String) throws -> Promise<Bool> {
+    let promise = Promise<Bool>()
+    UNUserNotificationCenter.current().getNotificationCategories { existing in
+      guard existing.contains(where: { $0.identifier == identifier }) else {
+        promise.resolve(withResult: false)
+        return
+      }
+      UNUserNotificationCenter.current().setNotificationCategories(
+        existing.filter { $0.identifier != identifier })
+      promise.resolve(withResult: true)
+    }
+    return promise
+  }
+
+  // expo action options: authentication and destructive map directly, and
+  // the app stays foregrounded unless the caller opts out. a placeholder
+  // makes it a text-input action whose typed text arrives as userText.
+  private static func notificationAction(_ action: NativeNotificationAction)
+    -> UNNotificationAction
+  {
+    var options: UNNotificationActionOptions = []
+    if action.authenticationRequired { options.insert(.authenticationRequired) }
+    if action.destructive { options.insert(.destructive) }
+    if action.foreground { options.insert(.foreground) }
+    if let placeholder = action.textInputPlaceholder {
+      return UNTextInputNotificationAction(
+        identifier: action.identifier, title: action.buttonTitle, options: options,
+        textInputButtonTitle: action.textInputSubmitTitle ?? "Send",
+        textInputPlaceholder: placeholder)
+    }
+    return UNNotificationAction(
+      identifier: action.identifier, title: action.buttonTitle, options: options)
+  }
+
+  private static func categoryOptions(_ options: NativeNotificationCategoryOptions?)
+    -> UNNotificationCategoryOptions
+  {
+    var resolved: UNNotificationCategoryOptions = []
+    if options?.allowInCarPlay == true { resolved.insert(.allowInCarPlay) }
+    if options?.customDismissAction == true { resolved.insert(.customDismissAction) }
+    if options?.showTitle == true { resolved.insert(.hiddenPreviewsShowTitle) }
+    if options?.showSubtitle == true { resolved.insert(.hiddenPreviewsShowSubtitle) }
+    return resolved
+  }
+
+  private static func notificationCategory(_ category: UNNotificationCategory)
+    -> NativeNotificationCategory
+  {
+    let actions = category.actions.map { action -> NativeNotificationAction in
+      let text = action as? UNTextInputNotificationAction
+      return NativeNotificationAction(
+        identifier: action.identifier, buttonTitle: action.title,
+        authenticationRequired: action.options.contains(.authenticationRequired),
+        destructive: action.options.contains(.destructive),
+        foreground: action.options.contains(.foreground),
+        textInputPlaceholder: text?.textInputPlaceholder,
+        textInputSubmitTitle: text?.textInputButtonTitle)
+    }
+    var options: NativeNotificationCategoryOptions?
+    var resolved = NativeNotificationCategoryOptions()
+    var empty = true
+    if category.options.contains(.allowInCarPlay) {
+      resolved.allowInCarPlay = true
+      empty = false
+    }
+    if category.options.contains(.customDismissAction) {
+      resolved.customDismissAction = true
+      empty = false
+    }
+    if category.options.contains(.hiddenPreviewsShowTitle) {
+      resolved.showTitle = true
+      empty = false
+    }
+    if category.options.contains(.hiddenPreviewsShowSubtitle) {
+      resolved.showSubtitle = true
+      empty = false
+    }
+    if !category.intentIdentifiers.isEmpty {
+      resolved.intentIdentifiers = category.intentIdentifiers
+      empty = false
+    }
+    if let placeholder = category.hiddenPreviewsBodyPlaceholder {
+      resolved.previewPlaceholder = placeholder
+      empty = false
+    }
+    if !empty { options = resolved }
+    return NativeNotificationCategory(
+      identifier: category.identifier, actions: actions, options: options)
+  }
+
   func setNotificationChannel(channelId: String, channel: NativeChannelInput) throws -> Promise<NativeChannel?> {
     return Promise.resolved(withResult: nil)
   }
@@ -118,6 +242,9 @@ final class HybridOneNotifications: HybridOneNotificationsSpec {
     }
     if content.sound == true { nativeContent.sound = .default }
     if let badge = content.badge { nativeContent.badge = NSNumber(value: badge) }
+    if let categoryIdentifier = content.categoryIdentifier {
+      nativeContent.categoryIdentifier = categoryIdentifier
+    }
     let identifier = request.identifier ?? UUID().uuidString
     var nativeTrigger: UNNotificationTrigger?
     if let trigger = request.trigger {
@@ -392,8 +519,10 @@ public final class OneNotificationsCenter: NSObject, UNUserNotificationCenterDel
       let action =
         response.actionIdentifier == UNNotificationDefaultActionIdentifier
         ? Self.defaultAction : response.actionIdentifier
+      let userText = (response as? UNTextInputNotificationResponse)?.userText
       let payload = NativeNotificationResponse(
-        notification: Self.notification(response.notification), actionIdentifier: action)
+        notification: Self.notification(response.notification), actionIdentifier: action,
+        userText: userText)
       // a cold-start tap lands before js listens; getLastNotificationResponse
       // reads it then.
       self.lastResponse = payload
@@ -428,7 +557,8 @@ public final class OneNotificationsCenter: NSObject, UNUserNotificationCenterDel
       body: content.body,
       data: anyMap(content.userInfo),
       sound: content.sound != nil,
-      badge: content.badge?.doubleValue)
+      badge: content.badge?.doubleValue,
+      categoryIdentifier: content.categoryIdentifier.isEmpty ? nil : content.categoryIdentifier)
   }
 
   static func request(_ request: UNNotificationRequest) -> NativeNotificationRequest {

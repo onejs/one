@@ -13,10 +13,24 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `ClipboardGetStringOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardGetStringOptions; }
+// Forward declaration of `ClipboardSetStringOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardSetStringOptions; }
+// Forward declaration of `ClipboardImageResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardImageResult; }
+// Forward declaration of `ClipboardGetImageOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardGetImageOptions; }
 
 #include <string>
 #include <NitroModules/Promise.hpp>
+#include "ClipboardGetStringOptions.hpp"
+#include "ClipboardSetStringOptions.hpp"
+#include "ClipboardImageResult.hpp"
+#include <optional>
+#include "ClipboardGetImageOptions.hpp"
+#include <vector>
+#include <functional>
 
 namespace margelo::nitro::one {
 
@@ -49,9 +63,17 @@ namespace margelo::nitro::one {
 
     public:
       // Methods
-      virtual std::shared_ptr<Promise<std::string>> getString() = 0;
-      virtual std::shared_ptr<Promise<bool>> setString(const std::string& text) = 0;
+      virtual std::shared_ptr<Promise<std::string>> getString(const ClipboardGetStringOptions& options) = 0;
+      virtual std::shared_ptr<Promise<bool>> setString(const std::string& text, const ClipboardSetStringOptions& options) = 0;
       virtual std::shared_ptr<Promise<bool>> hasString() = 0;
+      virtual std::shared_ptr<Promise<std::optional<ClipboardImageResult>>> getImage(const ClipboardGetImageOptions& options) = 0;
+      virtual std::shared_ptr<Promise<void>> setImage(const std::string& base64Image) = 0;
+      virtual std::shared_ptr<Promise<bool>> hasImage() = 0;
+      virtual std::shared_ptr<Promise<std::optional<std::string>>> getUrl() = 0;
+      virtual std::shared_ptr<Promise<void>> setUrl(const std::string& url) = 0;
+      virtual std::shared_ptr<Promise<bool>> hasUrl() = 0;
+      virtual void setClipboardListener(const std::function<void(const std::vector<std::string>& /* contentTypes */)>& listener) = 0;
+      virtual void clearClipboardListener() = 0;
 
     protected:
       // Hybrid Setup

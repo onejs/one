@@ -14,7 +14,7 @@ public protocol HybridOneImagePickerSpec_protocol: HybridObject {
 
   // Methods
   func launchLibrary(options: ResolvedImagePickerOptions) throws -> Promise<ImagePickerNativeResult>
-  func launchCamera() throws -> Promise<ImagePickerNativeResult>
+  func launchCamera(options: ResolvedImagePickerOptions) throws -> Promise<ImagePickerNativeResult>
   func getCameraPermissions() throws -> Promise<CameraPermissionResponse>
   func requestCameraPermissions() throws -> Promise<CameraPermissionResponse>
 }

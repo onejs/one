@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.MediaMetadataRetriever
 import android.net.Uri
@@ -24,6 +25,7 @@ import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
+import dev.onejs.onenative.OneNativeCropActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.util.UUID
@@ -46,6 +48,13 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
     private var pendingMultiple: PickMultipleVisualMedia? = null
     private var pendingUsedPicker: Boolean = false
     private var pendingCameraFile: File? = null
+    private var pendingCameraVideo: Boolean = false
+    private var pendingEdit: Boolean = false
+    private var pendingAspectX: Int = 0
+    private var pendingAspectY: Int = 0
+    private var pendingQuality: Int = 100
+    private var pendingVideoMaxDuration: Long = 0
+    private var pendingVideoHighQuality: Boolean = true
 
     private val context: ReactApplicationContext
         get() = NitroModules.applicationContext
@@ -95,6 +104,22 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         // zero is unlimited on both sides, so the value passes through.
         val selectionLimit = options.selectionLimit.toInt()
         pendingLimit = selectionLimit
+        // the crop UI edits one image: js rejects anything else first, so a
+        // direct caller reaching here with more settles rather than hangs.
+        if (options.allowsEditing) {
+            val singleImage =
+                options.mediaTypes.contains(ImagePickerMediaType.IMAGES) &&
+                    !options.mediaTypes.contains(ImagePickerMediaType.VIDEOS) &&
+                    selectionLimit == 1
+            if (!singleImage) {
+                rejectPickerPending("launchLibrary", "allowsEditing only supports one image")
+                return promise
+            }
+            pendingEdit = true
+            pendingAspectX = options.aspect?.x?.toInt() ?: 0
+            pendingAspectY = options.aspect?.y?.toInt() ?: 0
+        }
+        pendingQuality = ((options.quality) * 100).toInt().coerceIn(0, 100)
         val mediaType =
             when {
                 allowsImages && allowsVideos -> PickVisualMedia.ImageAndVideo
@@ -150,7 +175,7 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         return promise
     }
 
-    override fun launchCamera(): Promise<ImagePickerNativeResult> {
+    override fun launchCamera(options: ResolvedImagePickerOptions): Promise<ImagePickerNativeResult> {
         val promise = Promise<ImagePickerNativeResult>()
         if (!takePickerPending("launchCamera", promise)) return promise
         val context = context
@@ -159,6 +184,23 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
             rejectPickerPending("launchCamera", "found no activity to present from")
             return promise
         }
+        // a photo unless mediaTypes is videos-only, which records one video;
+        // mixed requests capture a photo on both platforms.
+        val wantsVideo =
+            options.mediaTypes.contains(ImagePickerMediaType.VIDEOS) &&
+                !options.mediaTypes.contains(ImagePickerMediaType.IMAGES)
+        if (options.allowsEditing && wantsVideo) {
+            // unreachable from the js entries, which validate first.
+            rejectPickerPending("launchCamera", "allowsEditing only supports images")
+            return promise
+        }
+        pendingCameraVideo = wantsVideo
+        pendingEdit = options.allowsEditing
+        pendingAspectX = options.aspect?.x?.toInt() ?: 0
+        pendingAspectY = options.aspect?.y?.toInt() ?: 0
+        pendingQuality = (options.quality * 100).toInt().coerceIn(0, 100)
+        pendingVideoMaxDuration = options.videoMaxDuration.toLong()
+        pendingVideoHighQuality = options.videoQuality == "high"
         // refusing and missing hardware are ordinary outcomes: both resolve
         // canceled, like backing out of the picker.
         if (!context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
@@ -177,7 +219,7 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) ==
                 PackageManager.PERMISSION_GRANTED
         ) {
-            startCamera(activity)
+            startCapture(activity)
             return promise
         }
         if (cameraRationale(activity) || cameraAskedBefore(activity)) {
@@ -273,7 +315,7 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
             if (activity == null) {
                 rejectPickerPending("launchCamera", "found no activity to present from")
             } else {
-                startCamera(activity)
+                startCapture(activity)
             }
         } else {
             resolvePickerCanceled()
@@ -290,7 +332,9 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         if (requestCode == REQUEST_LIBRARY) {
             handleLibraryResult(resultCode, data)
         } else if (requestCode == REQUEST_CAMERA) {
-            handleCameraResult(resultCode)
+            handleCameraResult(activity, resultCode)
+        } else if (requestCode == REQUEST_CROP) {
+            handleCropResult(resultCode, data)
         }
     }
 
@@ -367,6 +411,14 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         return info.requestedPermissions?.contains(Manifest.permission.CAMERA) == true
     }
 
+    private fun startCapture(activity: Activity) {
+        if (pendingCameraVideo) {
+            startVideoCapture(activity)
+        } else {
+            startCamera(activity)
+        }
+    }
+
     @Suppress("DEPRECATION")
     private fun startCamera(activity: Activity) {
         val context = context
@@ -405,6 +457,67 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         }
     }
 
+    @Suppress("DEPRECATION")
+    private fun startVideoCapture(activity: Activity) {
+        val context = context
+        try {
+            val file = cacheFile("VID", "mp4")
+            val uri =
+                FileProvider.getUriForFile(
+                    context,
+                    "${context.packageName}.one-native.fileprovider",
+                    file
+                )
+            val intent =
+                Intent(MediaStore.ACTION_VIDEO_CAPTURE).apply {
+                    putExtra(MediaStore.EXTRA_OUTPUT, uri)
+                    addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                    if (pendingVideoMaxDuration > 0) {
+                        putExtra(MediaStore.EXTRA_DURATION_LIMIT, pendingVideoMaxDuration.toInt())
+                    }
+                    putExtra(
+                        MediaStore.EXTRA_VIDEO_QUALITY,
+                        if (pendingVideoHighQuality) 1 else 0
+                    )
+                }
+            for (resolved in
+                context.packageManager.queryIntentActivities(
+                    intent,
+                    PackageManager.MATCH_DEFAULT_ONLY
+                )) {
+                context.grantUriPermission(
+                    resolved.activityInfo.packageName,
+                    uri,
+                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                )
+            }
+            pendingCameraFile = file
+            activity.startActivityForResult(intent, REQUEST_CAMERA, null)
+        } catch (e: ActivityNotFoundException) {
+            pendingCameraFile = null
+            resolvePickerCanceled()
+        } catch (e: Exception) {
+            pendingCameraFile = null
+            rejectPickerPending("launchCamera", e.message ?: "could not open the camera")
+        }
+    }
+
+    private fun startCrop(activity: Activity, file: File) {
+        try {
+            val intent =
+                Intent(context, OneNativeCropActivity::class.java).apply {
+                    putExtra(OneNativeCropActivity.EXTRA_INPUT_PATH, file.absolutePath)
+                    putExtra(OneNativeCropActivity.EXTRA_ASPECT_X, pendingAspectX)
+                    putExtra(OneNativeCropActivity.EXTRA_ASPECT_Y, pendingAspectY)
+                    putExtra(OneNativeCropActivity.EXTRA_QUALITY, pendingQuality)
+                }
+            activity.startActivityForResult(intent, REQUEST_CROP, null)
+        } catch (e: Exception) {
+            val verb = synchronized(lock) { pendingPickerVerb }
+            rejectPickerPending(verb, e.message ?: "could not open the crop editor")
+        }
+    }
+
     private fun handleLibraryResult(resultCode: Int, data: Intent?) {
         val single = pendingSingle
         val multiple = pendingMultiple
@@ -422,6 +535,18 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         val limited =
             if (pendingLimit > 0) sourceUris.take(pendingLimit) else sourceUris
         try {
+            if (pendingEdit) {
+                // single image, guaranteed by the launch checks: the crop
+                // screen owns the pending promise from here.
+                val activity = context.currentActivity
+                if (activity == null) {
+                    rejectPickerPending("launchLibrary", "found no activity to present from")
+                    return
+                }
+                val (_, file) = copyUriToCache(limited.first())
+                startCrop(activity, file)
+                return
+            }
             resolvePickerPending(limited.map { copyToCache(it) }.toTypedArray())
         } catch (e: Exception) {
             rejectPickerPending("launchLibrary", e.message ?: "could not copy a picked item")
@@ -441,12 +566,72 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         return data.data?.let { listOf(it) } ?: emptyList()
     }
 
-    private fun handleCameraResult(resultCode: Int) {
+    private fun handleCameraResult(activity: Activity, resultCode: Int) {
         val file = pendingCameraFile
         pendingCameraFile = null
         if (resultCode != Activity.RESULT_OK || file == null || !file.exists() || file.length() == 0L) {
             file?.delete()
             resolvePickerCanceled()
+            return
+        }
+        try {
+            if (pendingCameraVideo) {
+                val size = videoSize(file)
+                val duration = videoDurationMs(file)
+                resolvePickerPending(
+                    arrayOf(
+                        ImagePickerAsset(
+                            Uri.fromFile(file).toString(),
+                            size.first.toDouble(),
+                            size.second.toDouble(),
+                            "video/mp4",
+                            file.name,
+                            file.length().toDouble(),
+                            duration?.toDouble(),
+                            ImagePickerAssetType.VIDEO
+                        )
+                    )
+                )
+                return
+            }
+            if (pendingEdit) {
+                // the crop screen owns the pending promise from here.
+                startCrop(activity, file)
+                return
+            }
+            val sized = applyQuality(file)
+            val size = imageSize(sized)
+            resolvePickerPending(
+                arrayOf(
+                    ImagePickerAsset(
+                        Uri.fromFile(sized).toString(),
+                        size.first.toDouble(),
+                        size.second.toDouble(),
+                        "image/jpeg",
+                        sized.name,
+                        sized.length().toDouble(),
+                        null,
+                        ImagePickerAssetType.IMAGE
+                    )
+                )
+            )
+        } catch (e: Exception) {
+            file.delete()
+            rejectPickerPending("launchCamera", e.message ?: "could not read the capture")
+        }
+    }
+
+    private fun handleCropResult(resultCode: Int, data: Intent?) {
+        val verb = synchronized(lock) { pendingPickerVerb }
+        if (resultCode != Activity.RESULT_OK) {
+            resolvePickerCanceled()
+            return
+        }
+        val path = data?.getStringExtra(OneNativeCropActivity.EXTRA_OUTPUT_PATH)
+        val file = if (path != null) File(path) else null
+        if (file == null || !file.exists() || file.length() == 0L) {
+            file?.delete()
+            rejectPickerPending(verb, "the crop returned no image")
             return
         }
         try {
@@ -459,17 +644,23 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
                         size.second.toDouble(),
                         "image/jpeg",
                         file.name,
-                        file.length().toDouble()
+                        file.length().toDouble(),
+                        null,
+                        ImagePickerAssetType.IMAGE
                     )
                 )
             )
         } catch (e: Exception) {
             file.delete()
-            rejectPickerPending("launchCamera", e.message ?: "could not read the photo")
+            rejectPickerPending(verb, e.message ?: "could not read the crop")
         }
     }
 
     private fun copyToCache(source: Uri): ImagePickerAsset {
+        return copyUriToCache(source).first
+    }
+
+    private fun copyUriToCache(source: Uri): Pair<ImagePickerAsset, File> {
         val resolver = context.contentResolver
         val mimeType = resolver.getType(source)
         val isVideo = mimeType?.startsWith("video/") == true
@@ -480,19 +671,51 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
                     it.isNotEmpty() && it.length <= 5 && !it.contains('/')
                 }
                 ?: "dat"
-        val dest = cacheFile(if (isVideo) "VID" else "IMG", extension)
+        var dest = cacheFile(if (isVideo) "VID" else "IMG", extension)
         (resolver.openInputStream(source) ?: throw IllegalStateException("cannot open $source")).use { input ->
             FileOutputStream(dest).use { output -> input.copyTo(output) }
         }
+        if (!isVideo) {
+            dest = applyQuality(dest)
+        }
         val size = if (isVideo) videoSize(dest) else imageSize(dest)
-        return ImagePickerAsset(
-            Uri.fromFile(dest).toString(),
-            size.first.toDouble(),
-            size.second.toDouble(),
-            mimeType,
-            displayName ?: dest.name,
-            dest.length().toDouble()
-        )
+        val duration = if (isVideo) videoDurationMs(dest) else null
+        val asset =
+            ImagePickerAsset(
+                Uri.fromFile(dest).toString(),
+                size.first.toDouble(),
+                size.second.toDouble(),
+                mimeType,
+                displayName ?: dest.name,
+                dest.length().toDouble(),
+                duration?.toDouble(),
+                if (isVideo) ImagePickerAssetType.VIDEO else ImagePickerAssetType.IMAGE
+            )
+        return Pair(asset, dest)
+    }
+
+    // recompress an image file to jpeg at the pending quality. returns the
+    // file to read: the original when quality is full or the image did not
+    // decode.
+    private fun applyQuality(file: File): File {
+        if (pendingQuality >= 100) return file
+        val options = BitmapFactory.Options().apply { inJustDecodeBounds = false }
+        val bitmap =
+            file.inputStream().use { BitmapFactory.decodeStream(it, null, options) } ?: return file
+        val dest = cacheFile("IMG", "jpg")
+        try {
+            FileOutputStream(dest).use { output ->
+                if (!bitmap.compress(Bitmap.CompressFormat.JPEG, pendingQuality, output)) {
+                    return file
+                }
+            }
+        } catch (e: Exception) {
+            return file
+        } finally {
+            bitmap.recycle()
+        }
+        file.delete()
+        return dest
     }
 
     private fun queryDisplayName(source: Uri): String? {
@@ -532,6 +755,22 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
             return Pair(width, height)
         } catch (e: Exception) {
             return Pair(0, 0)
+        } finally {
+            try {
+                retriever.release()
+            } catch (ignored: Exception) {
+            }
+        }
+    }
+
+    private fun videoDurationMs(file: File): Long? {
+        val retriever = MediaMetadataRetriever()
+        try {
+            retriever.setDataSource(file.absolutePath)
+            return retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+                ?.toLongOrNull()
+        } catch (e: Exception) {
+            return null
         } finally {
             try {
                 retriever.release()
@@ -618,6 +857,13 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         pendingMultiple = null
         pendingUsedPicker = false
         pendingCameraFile = null
+        pendingCameraVideo = false
+        pendingEdit = false
+        pendingAspectX = 0
+        pendingAspectY = 0
+        pendingQuality = 100
+        pendingVideoMaxDuration = 0
+        pendingVideoHighQuality = true
     }
 
     companion object {
@@ -626,5 +872,6 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         private const val REQUEST_CAMERA = 0x1A02
         private const val REQUEST_CAMERA_PERMISSION = 0x1A03
         private const val REQUEST_PERMISSION_CALL = 0x1A04
+        private const val REQUEST_CROP = 0x1A05
     }
 }

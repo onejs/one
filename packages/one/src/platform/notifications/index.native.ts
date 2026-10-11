@@ -6,6 +6,8 @@ import type {
   NativeChannel,
   NativeContent,
   NativeNotification,
+  NativeNotificationAction,
+  NativeNotificationCategory,
   NativeNotificationRequest,
   NativeNotificationResponse,
   NativePermissionResponse,
@@ -16,6 +18,9 @@ import { ForegroundHandler } from './handlerState'
 import type {
   DevicePushToken,
   Notification,
+  NotificationAction,
+  NotificationCategory,
+  NotificationCategoryOptions,
   NotificationChannel,
   NotificationChannelInput,
   NotificationContent,
@@ -31,6 +36,9 @@ import type {
 } from './types'
 import {
   DEFAULT_ACTION_IDENTIFIER,
+  assertCategoryActions,
+  assertCategoryIdentifier,
+  assertCategoryOptions,
   fromNativeAuthorizationStatus,
   fromNativeImportance,
   toNativeImportance,
@@ -158,6 +166,7 @@ function mapContent(content: NativeContent): NotificationContent {
     data: content.data,
     sound: content.sound,
     badge: content.badge ?? null,
+    categoryIdentifier: content.categoryIdentifier ?? null,
   }
 }
 
@@ -174,10 +183,123 @@ function mapNotification(notification: NativeNotification): Notification {
 }
 
 function mapResponse(response: NativeNotificationResponse): NotificationResponse {
-  return {
+  const mapped: NotificationResponse = {
     notification: mapNotification(response.notification),
     actionIdentifier: response.actionIdentifier,
   }
+  if (response.userText !== undefined) {
+    mapped.userText = response.userText
+  }
+  return mapped
+}
+
+// expo names are setNotificationCategoryAsync and friends: the fixed rule
+// drops Async and the namespace noun, so these are setCategory,
+// getCategories and deleteCategory.
+function toNativeAction(action: NotificationAction): NativeNotificationAction {
+  const native: NativeNotificationAction = {
+    identifier: action.identifier,
+    buttonTitle: action.buttonTitle,
+    authenticationRequired: action.options?.isAuthenticationRequired ?? false,
+    destructive: action.options?.isDestructive ?? false,
+    foreground: action.options?.opensAppToForeground ?? true,
+  }
+  if (action.textInput !== undefined) {
+    native.textInputPlaceholder = action.textInput.placeholder
+    if (action.textInput.submitButtonTitle !== undefined) {
+      native.textInputSubmitTitle = action.textInput.submitButtonTitle
+    }
+  }
+  return native
+}
+
+function fromNativeAction(action: NativeNotificationAction): NotificationAction {
+  const mapped: NotificationAction = {
+    identifier: action.identifier,
+    buttonTitle: action.buttonTitle,
+    options: {
+      isAuthenticationRequired: action.authenticationRequired,
+      isDestructive: action.destructive,
+      opensAppToForeground: action.foreground,
+    },
+  }
+  if (action.textInputPlaceholder !== undefined) {
+    mapped.textInput = { placeholder: action.textInputPlaceholder }
+    if (action.textInputSubmitTitle !== undefined) {
+      mapped.textInput.submitButtonTitle = action.textInputSubmitTitle
+    }
+  }
+  return mapped
+}
+
+function mapCategory(category: NativeNotificationCategory): NotificationCategory {
+  const mapped: NotificationCategory = {
+    identifier: category.identifier,
+    actions: category.actions.map(fromNativeAction),
+  }
+  if (category.options !== undefined) {
+    const options: NotificationCategoryOptions = {}
+    if (category.options.allowInCarPlay !== undefined) {
+      options.allowInCarPlay = category.options.allowInCarPlay
+    }
+    if (category.options.categorySummaryFormat !== undefined) {
+      options.categorySummaryFormat = category.options.categorySummaryFormat
+    }
+    if (category.options.customDismissAction !== undefined) {
+      options.customDismissAction = category.options.customDismissAction
+    }
+    if (category.options.intentIdentifiers !== undefined) {
+      options.intentIdentifiers = [...category.options.intentIdentifiers]
+    }
+    if (category.options.previewPlaceholder !== undefined) {
+      options.previewPlaceholder = category.options.previewPlaceholder
+    }
+    if (category.options.showTitle !== undefined) {
+      options.showTitle = category.options.showTitle
+    }
+    if (category.options.showSubtitle !== undefined) {
+      options.showSubtitle = category.options.showSubtitle
+    }
+    mapped.options = options
+  }
+  return mapped
+}
+
+// plain, not async, so bad input throws synchronously like the picker
+// entries; registering replaces the identifier, like expo.
+function setCategory(
+  identifier: string,
+  actions: NotificationAction[],
+  options?: NotificationCategoryOptions
+): Promise<NotificationCategory> {
+  assertCategoryIdentifier(identifier, 'setCategory')
+  assertCategoryActions(actions, 'setCategory')
+  assertCategoryOptions(options, 'setCategory')
+  const category: NativeNotificationCategory = {
+    identifier,
+    actions: actions.map(toNativeAction),
+  }
+  if (options !== undefined) {
+    // allowAnnouncement is accepted and ignored by the platform, like expo.
+    const { allowAnnouncement: _ignored, ...nativeOptions } = options
+    category.options = { ...nativeOptions }
+  }
+  return native()
+    .setNotificationCategory(category)
+    .catch(rethrowNativeError)
+    .then(mapCategory)
+}
+
+function getCategories(): Promise<NotificationCategory[]> {
+  return native()
+    .getNotificationCategories()
+    .catch(rethrowNativeError)
+    .then((categories) => categories.map(mapCategory))
+}
+
+function deleteCategory(identifier: string): Promise<boolean> {
+  assertCategoryIdentifier(identifier, 'deleteCategory')
+  return native().deleteNotificationCategory(identifier).catch(rethrowNativeError)
 }
 
 // content data crosses nitro as an AnyMap: json values only. undefined and
@@ -364,6 +486,9 @@ export const Notifications = Object.freeze({
   requestPermissions,
   getBadgeCount,
   setBadgeCount,
+  setCategory,
+  getCategories,
+  deleteCategory,
   setChannel,
   getChannel,
   getChannels,

@@ -46,13 +46,16 @@ namespace margelo::nitro::one {
       jboolean sound = this->getFieldValue(fieldSound);
       static const auto fieldBadge = clazz->getField<jni::JDouble>("badge");
       jni::local_ref<jni::JDouble> badge = this->getFieldValue(fieldBadge);
+      static const auto fieldCategoryIdentifier = clazz->getField<jni::JString>("categoryIdentifier");
+      jni::local_ref<jni::JString> categoryIdentifier = this->getFieldValue(fieldCategoryIdentifier);
       return NativeContent(
         title != nullptr ? std::make_optional(title->toStdString()) : std::nullopt,
         subtitle != nullptr ? std::make_optional(subtitle->toStdString()) : std::nullopt,
         body != nullptr ? std::make_optional(body->toStdString()) : std::nullopt,
         data->cthis()->getMap(),
         static_cast<bool>(sound),
-        badge != nullptr ? std::make_optional(badge->value()) : std::nullopt
+        badge != nullptr ? std::make_optional(badge->value()) : std::nullopt,
+        categoryIdentifier != nullptr ? std::make_optional(categoryIdentifier->toStdString()) : std::nullopt
       );
     }
 
@@ -62,7 +65,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JNativeContent::javaobject> fromCpp(const NativeContent& value) {
-      using JSignature = JNativeContent(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAnyMap::javaobject>, jboolean, jni::alias_ref<jni::JDouble>);
+      using JSignature = JNativeContent(jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>, jni::alias_ref<JAnyMap::javaobject>, jboolean, jni::alias_ref<jni::JDouble>, jni::alias_ref<jni::JString>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -72,7 +75,8 @@ namespace margelo::nitro::one {
         value.body.has_value() ? jni::make_jstring(value.body.value()) : nullptr,
         JAnyMap::create(value.data),
         value.sound,
-        value.badge.has_value() ? jni::JDouble::valueOf(value.badge.value()) : nullptr
+        value.badge.has_value() ? jni::JDouble::valueOf(value.badge.value()) : nullptr,
+        value.categoryIdentifier.has_value() ? jni::make_jstring(value.categoryIdentifier.value()) : nullptr
       );
     }
   };

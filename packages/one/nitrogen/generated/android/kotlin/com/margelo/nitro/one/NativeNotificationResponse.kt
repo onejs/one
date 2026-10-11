@@ -23,7 +23,10 @@ data class NativeNotificationResponse(
   val notification: NativeNotification,
   @DoNotStrip
   @Keep
-  val actionIdentifier: String
+  val actionIdentifier: String,
+  @DoNotStrip
+  @Keep
+  val userText: String?
 ) {
   /* primary constructor */
 
@@ -32,12 +35,14 @@ data class NativeNotificationResponse(
     if (other !is NativeNotificationResponse) return false
     return Objects.deepEquals(this.notification, other.notification)
       && Objects.deepEquals(this.actionIdentifier, other.actionIdentifier)
+      && Objects.deepEquals(this.userText, other.userText)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
       notification,
-      actionIdentifier
+      actionIdentifier,
+      userText
     ).contentDeepHashCode()
   }
 
@@ -49,8 +54,8 @@ data class NativeNotificationResponse(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(notification: NativeNotification, actionIdentifier: String): NativeNotificationResponse {
-      return NativeNotificationResponse(notification, actionIdentifier)
+    private fun fromCpp(notification: NativeNotification, actionIdentifier: String, userText: String?): NativeNotificationResponse {
+      return NativeNotificationResponse(notification, actionIdentifier, userText)
     }
   }
 }

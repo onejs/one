@@ -84,6 +84,14 @@ namespace margelo::nitro::one { struct CalendarRecurrence; }
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
+// Forward declaration of `ClipboardGetImageOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardGetImageOptions; }
+// Forward declaration of `ClipboardGetStringOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardGetStringOptions; }
+// Forward declaration of `ClipboardImageResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardImageResult; }
+// Forward declaration of `ClipboardSetStringOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardSetStringOptions; }
 // Forward declaration of `ContactChanges` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactChanges; }
 // Forward declaration of `ContactInfo` to properly resolve imports.
@@ -216,8 +224,12 @@ namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 namespace margelo::nitro::one { class HybridOneUpdatesSpec; }
 // Forward declaration of `ImageCrop` to properly resolve imports.
 namespace margelo::nitro::one { struct ImageCrop; }
+// Forward declaration of `ImagePickerAssetType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ImagePickerAssetType; }
 // Forward declaration of `ImagePickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct ImagePickerAsset; }
+// Forward declaration of `ImagePickerCropAspect` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerCropAspect; }
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
 // Forward declaration of `ImagePickerNativeResult` to properly resolve imports.
@@ -272,6 +284,12 @@ namespace margelo::nitro::one { struct NativeContent; }
 namespace margelo::nitro::one { struct NativeIosPermissionRequest; }
 // Forward declaration of `NativeIosPermission` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeIosPermission; }
+// Forward declaration of `NativeNotificationAction` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationAction; }
+// Forward declaration of `NativeNotificationCategoryOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationCategoryOptions; }
+// Forward declaration of `NativeNotificationCategory` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationCategory; }
 // Forward declaration of `NativeNotificationRequest` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeNotificationRequest; }
 // Forward declaration of `NativeNotificationResponse` to properly resolve imports.
@@ -422,6 +440,10 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "CalendarRecurrenceFrequency.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
+#include "ClipboardGetImageOptions.hpp"
+#include "ClipboardGetStringOptions.hpp"
+#include "ClipboardImageResult.hpp"
+#include "ClipboardSetStringOptions.hpp"
 #include "ContactChanges.hpp"
 #include "ContactInfo.hpp"
 #include "ContactInput.hpp"
@@ -489,6 +511,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
 #include "ImagePickerAsset.hpp"
+#include "ImagePickerAssetType.hpp"
+#include "ImagePickerCropAspect.hpp"
 #include "ImagePickerMediaType.hpp"
 #include "ImagePickerNativeResult.hpp"
 #include "ImageResize.hpp"
@@ -517,6 +541,9 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NativeIosPermission.hpp"
 #include "NativeIosPermissionRequest.hpp"
 #include "NativeNotification.hpp"
+#include "NativeNotificationAction.hpp"
+#include "NativeNotificationCategory.hpp"
+#include "NativeNotificationCategoryOptions.hpp"
 #include "NativeNotificationRequest.hpp"
 #include "NativeNotificationResponse.hpp"
 #include "NativePermissionRequest.hpp"

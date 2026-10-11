@@ -48,9 +48,12 @@ namespace margelo::nitro::one {
       jni::local_ref<JNativeNotification> notification = this->getFieldValue(fieldNotification);
       static const auto fieldActionIdentifier = clazz->getField<jni::JString>("actionIdentifier");
       jni::local_ref<jni::JString> actionIdentifier = this->getFieldValue(fieldActionIdentifier);
+      static const auto fieldUserText = clazz->getField<jni::JString>("userText");
+      jni::local_ref<jni::JString> userText = this->getFieldValue(fieldUserText);
       return NativeNotificationResponse(
         notification->toCpp(),
-        actionIdentifier->toStdString()
+        actionIdentifier->toStdString(),
+        userText != nullptr ? std::make_optional(userText->toStdString()) : std::nullopt
       );
     }
 
@@ -60,13 +63,14 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JNativeNotificationResponse::javaobject> fromCpp(const NativeNotificationResponse& value) {
-      using JSignature = JNativeNotificationResponse(jni::alias_ref<JNativeNotification>, jni::alias_ref<jni::JString>);
+      using JSignature = JNativeNotificationResponse(jni::alias_ref<JNativeNotification>, jni::alias_ref<jni::JString>, jni::alias_ref<jni::JString>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
         clazz,
         JNativeNotification::fromCpp(value.notification),
-        jni::make_jstring(value.actionIdentifier)
+        jni::make_jstring(value.actionIdentifier),
+        value.userText.has_value() ? jni::make_jstring(value.userText.value()) : nullptr
       );
     }
   };

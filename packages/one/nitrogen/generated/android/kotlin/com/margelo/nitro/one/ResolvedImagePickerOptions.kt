@@ -23,7 +23,22 @@ data class ResolvedImagePickerOptions(
   val mediaTypes: Array<ImagePickerMediaType>,
   @DoNotStrip
   @Keep
-  val selectionLimit: Double
+  val selectionLimit: Double,
+  @DoNotStrip
+  @Keep
+  val allowsEditing: Boolean,
+  @DoNotStrip
+  @Keep
+  val aspect: ImagePickerCropAspect?,
+  @DoNotStrip
+  @Keep
+  val quality: Double,
+  @DoNotStrip
+  @Keep
+  val videoMaxDuration: Double,
+  @DoNotStrip
+  @Keep
+  val videoQuality: String
 ) {
   /* primary constructor */
 
@@ -32,12 +47,22 @@ data class ResolvedImagePickerOptions(
     if (other !is ResolvedImagePickerOptions) return false
     return Objects.deepEquals(this.mediaTypes, other.mediaTypes)
       && Objects.deepEquals(this.selectionLimit, other.selectionLimit)
+      && Objects.deepEquals(this.allowsEditing, other.allowsEditing)
+      && Objects.deepEquals(this.aspect, other.aspect)
+      && Objects.deepEquals(this.quality, other.quality)
+      && Objects.deepEquals(this.videoMaxDuration, other.videoMaxDuration)
+      && Objects.deepEquals(this.videoQuality, other.videoQuality)
   }
 
   override fun hashCode(): Int {
     return arrayOf<Any?>(
       mediaTypes,
-      selectionLimit
+      selectionLimit,
+      allowsEditing,
+      aspect,
+      quality,
+      videoMaxDuration,
+      videoQuality
     ).contentDeepHashCode()
   }
 
@@ -49,8 +74,8 @@ data class ResolvedImagePickerOptions(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(mediaTypes: Array<ImagePickerMediaType>, selectionLimit: Double): ResolvedImagePickerOptions {
-      return ResolvedImagePickerOptions(mediaTypes, selectionLimit)
+    private fun fromCpp(mediaTypes: Array<ImagePickerMediaType>, selectionLimit: Double, allowsEditing: Boolean, aspect: ImagePickerCropAspect?, quality: Double, videoMaxDuration: Double, videoQuality: String): ResolvedImagePickerOptions {
+      return ResolvedImagePickerOptions(mediaTypes, selectionLimit, allowsEditing, aspect, quality, videoMaxDuration, videoQuality)
     }
   }
 }

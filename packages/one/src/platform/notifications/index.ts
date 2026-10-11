@@ -1,6 +1,9 @@
 import type {
   DevicePushToken,
   Notification,
+  NotificationAction,
+  NotificationCategory,
+  NotificationCategoryOptions,
   NotificationChannel,
   NotificationChannelInput,
   NotificationHandlerInput,
@@ -11,7 +14,13 @@ import type {
   NotificationSubscription,
   ScheduledNotification,
 } from './types'
-import { DEFAULT_ACTION_IDENTIFIER, toNativeImportance } from './types'
+import {
+  DEFAULT_ACTION_IDENTIFIER,
+  assertCategoryActions,
+  assertCategoryIdentifier,
+  assertCategoryOptions,
+  toNativeImportance,
+} from './types'
 
 export type * from './types'
 
@@ -31,6 +40,36 @@ async function requestPermissions(
   _options: NotificationPermissionRequest = {}
 ): Promise<NotificationPermissionResponse> {
   return { ...denied }
+}
+
+// interactive categories: validated like native, then resolved without a
+// native runtime. set echoes the registered category, the list stays
+// empty, and deletes resolve false.
+function setCategory(
+  identifier: string,
+  actions: NotificationAction[],
+  options?: NotificationCategoryOptions
+): Promise<NotificationCategory> {
+  assertCategoryIdentifier(identifier, 'setCategory')
+  assertCategoryActions(actions, 'setCategory')
+  assertCategoryOptions(options, 'setCategory')
+  const category: NotificationCategory = {
+    identifier,
+    actions: actions.map((action) => ({ ...action })),
+  }
+  if (options !== undefined) {
+    category.options = { ...options }
+  }
+  return Promise.resolve(category)
+}
+
+async function getCategories(): Promise<NotificationCategory[]> {
+  return []
+}
+
+async function deleteCategory(identifier: string): Promise<boolean> {
+  assertCategoryIdentifier(identifier, 'deleteCategory')
+  return false
 }
 
 async function getBadgeCount(): Promise<number> {
@@ -116,6 +155,9 @@ export const Notifications = Object.freeze({
   requestPermissions,
   getBadgeCount,
   setBadgeCount,
+  setCategory,
+  getCategories,
+  deleteCategory,
   setChannel,
   getChannel,
   getChannels,

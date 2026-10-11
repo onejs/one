@@ -28,10 +28,12 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `ImagePickerAssetType` to properly resolve imports.
+namespace margelo::nitro::one { enum class ImagePickerAssetType; }
 
 #include <string>
 #include <optional>
+#include "ImagePickerAssetType.hpp"
 
 namespace margelo::nitro::one {
 
@@ -46,10 +48,12 @@ namespace margelo::nitro::one {
     std::optional<std::string> mimeType     SWIFT_PRIVATE;
     std::optional<std::string> fileName     SWIFT_PRIVATE;
     std::optional<double> fileSize     SWIFT_PRIVATE;
+    std::optional<double> duration     SWIFT_PRIVATE;
+    std::optional<ImagePickerAssetType> type     SWIFT_PRIVATE;
 
   public:
     ImagePickerAsset() = default;
-    explicit ImagePickerAsset(std::string uri, double width, double height, std::optional<std::string> mimeType, std::optional<std::string> fileName, std::optional<double> fileSize): uri(uri), width(width), height(height), mimeType(mimeType), fileName(fileName), fileSize(fileSize) {}
+    explicit ImagePickerAsset(std::string uri, double width, double height, std::optional<std::string> mimeType, std::optional<std::string> fileName, std::optional<double> fileSize, std::optional<double> duration, std::optional<ImagePickerAssetType> type): uri(uri), width(width), height(height), mimeType(mimeType), fileName(fileName), fileSize(fileSize), duration(duration), type(type) {}
 
   public:
     friend bool operator==(const ImagePickerAsset& lhs, const ImagePickerAsset& rhs) = default;
@@ -70,7 +74,9 @@ namespace margelo::nitro {
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "height"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "mimeType"))),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "fileName"))),
-        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "fileSize")))
+        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "fileSize"))),
+        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "duration"))),
+        JSIConverter<std::optional<margelo::nitro::one::ImagePickerAssetType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "type")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::ImagePickerAsset& arg) {
@@ -81,6 +87,8 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "mimeType"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.mimeType));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "fileName"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.fileName));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "fileSize"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.fileSize));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "duration"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.duration));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "type"), JSIConverter<std::optional<margelo::nitro::one::ImagePickerAssetType>>::toJSI(runtime, arg.type));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -97,6 +105,8 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "mimeType")))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "fileName")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "fileSize")))) return false;
+      if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "duration")))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::one::ImagePickerAssetType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "type")))) return false;
       return true;
     }
   };

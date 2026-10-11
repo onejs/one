@@ -12,10 +12,24 @@
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneClipboardSpec_cxx; }
 
-
+// Forward declaration of `ClipboardGetStringOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardGetStringOptions; }
+// Forward declaration of `ClipboardSetStringOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardSetStringOptions; }
+// Forward declaration of `ClipboardImageResult` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardImageResult; }
+// Forward declaration of `ClipboardGetImageOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct ClipboardGetImageOptions; }
 
 #include <string>
 #include <NitroModules/Promise.hpp>
+#include "ClipboardGetStringOptions.hpp"
+#include <optional>
+#include "ClipboardSetStringOptions.hpp"
+#include "ClipboardImageResult.hpp"
+#include "ClipboardGetImageOptions.hpp"
+#include <vector>
+#include <functional>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -67,16 +81,16 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    inline std::shared_ptr<Promise<std::string>> getString() override {
-      auto __result = _swiftPart.getString();
+    inline std::shared_ptr<Promise<std::string>> getString(const ClipboardGetStringOptions& options) override {
+      auto __result = _swiftPart.getString(std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<bool>> setString(const std::string& text) override {
-      auto __result = _swiftPart.setString(text);
+    inline std::shared_ptr<Promise<bool>> setString(const std::string& text, const ClipboardSetStringOptions& options) override {
+      auto __result = _swiftPart.setString(text, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
@@ -90,6 +104,66 @@ namespace margelo::nitro::one {
       }
       auto __value = std::move(__result.value());
       return __value;
+    }
+    inline std::shared_ptr<Promise<std::optional<ClipboardImageResult>>> getImage(const ClipboardGetImageOptions& options) override {
+      auto __result = _swiftPart.getImage(std::forward<decltype(options)>(options));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> setImage(const std::string& base64Image) override {
+      auto __result = _swiftPart.setImage(base64Image);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<bool>> hasImage() override {
+      auto __result = _swiftPart.hasImage();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::optional<std::string>>> getUrl() override {
+      auto __result = _swiftPart.getUrl();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> setUrl(const std::string& url) override {
+      auto __result = _swiftPart.setUrl(url);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<bool>> hasUrl() override {
+      auto __result = _swiftPart.hasUrl();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void setClipboardListener(const std::function<void(const std::vector<std::string>& /* contentTypes */)>& listener) override {
+      auto __result = _swiftPart.setClipboardListener(listener);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void clearClipboardListener() override {
+      auto __result = _swiftPart.clearClipboardListener();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
     }
 
   private:

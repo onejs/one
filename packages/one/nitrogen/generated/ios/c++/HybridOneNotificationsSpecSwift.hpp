@@ -22,6 +22,12 @@ namespace margelo::nitro::one { struct NativeIosPermission; }
 namespace margelo::nitro::one { struct NativePermissionRequest; }
 // Forward declaration of `NativeIosPermissionRequest` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeIosPermissionRequest; }
+// Forward declaration of `NativeNotificationCategory` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationCategory; }
+// Forward declaration of `NativeNotificationAction` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationAction; }
+// Forward declaration of `NativeNotificationCategoryOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct NativeNotificationCategoryOptions; }
 // Forward declaration of `NativeChannel` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeChannel; }
 // Forward declaration of `NativeChannelInput` to properly resolve imports.
@@ -56,9 +62,12 @@ namespace margelo::nitro::one { struct NotificationBehavior; }
 #include <optional>
 #include "NativePermissionRequest.hpp"
 #include "NativeIosPermissionRequest.hpp"
-#include "NativeChannel.hpp"
+#include "NativeNotificationCategory.hpp"
 #include <string>
+#include "NativeNotificationAction.hpp"
 #include <vector>
+#include "NativeNotificationCategoryOptions.hpp"
+#include "NativeChannel.hpp"
 #include "NativeChannelInput.hpp"
 #include "NativeScheduleInput.hpp"
 #include "NativeContentInput.hpp"
@@ -150,6 +159,30 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<bool>> setBadgeCount(double count) override {
       auto __result = _swiftPart.setBadgeCount(std::forward<decltype(count)>(count));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<NativeNotificationCategory>> setNotificationCategory(const NativeNotificationCategory& category) override {
+      auto __result = _swiftPart.setNotificationCategory(std::forward<decltype(category)>(category));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::vector<NativeNotificationCategory>>> getNotificationCategories() override {
+      auto __result = _swiftPart.getNotificationCategories();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<bool>> deleteNotificationCategory(const std::string& identifier) override {
+      auto __result = _swiftPart.deleteNotificationCategory(identifier);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

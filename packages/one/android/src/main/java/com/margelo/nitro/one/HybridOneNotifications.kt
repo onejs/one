@@ -40,7 +40,6 @@ class HybridOneNotifications :
     LifecycleEventListener,
     PermissionListener {
     private var permissionPromise: Promise<NativePermissionResponse>? = null
-    @Volatile private var lastResponse: TapResponse? = null
     private val pending = mutableMapOf<String, PendingDelivery>()
     private var listeners: Listeners? = null
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -65,7 +64,10 @@ class HybridOneNotifications :
         val sound: Boolean,
         val badge: Int?,
         val triggerJson: String,
-        val dateMs: Long
+        val dateMs: Long,
+        val actionIdentifier: String = DEFAULT_ACTION_IDENTIFIER,
+        val userText: String? = null,
+        val categoryIdentifier: String? = null
     )
 
     private val context: ReactApplicationContext
@@ -310,6 +312,47 @@ class HybridOneNotifications :
         return Promise.resolved(Unit)
     }
 
+    // interactive categories live in shared preferences as json, so action
+    // taps resolve them even when the process started for the tap. unknown
+    // schedule category ids post without actions, like expo.
+    override fun setNotificationCategory(
+        category: NativeNotificationCategory
+    ): Promise<NativeNotificationCategory> {
+        if (category.identifier.isEmpty()) {
+            return Promise.rejected(
+                OneNativeError(
+                    E_CATEGORY,
+                    "Notifications.setCategory: identifier must be a non-empty string"
+                )
+            )
+        }
+        categoryPrefs(context).edit().putString(category.identifier, categoryToJson(category)).apply()
+        return Promise.resolved(category)
+    }
+
+    override fun getNotificationCategories(): Promise<Array<NativeNotificationCategory>> =
+        Promise.resolved(
+            categoryPrefs(context).all.mapNotNull { (_, raw) ->
+                (raw as? String)?.let { categoryFromJson(it) }
+            }.toTypedArray()
+        )
+
+    override fun deleteNotificationCategory(identifier: String): Promise<Boolean> {
+        val prefs = categoryPrefs(context)
+        if (!prefs.contains(identifier)) return Promise.resolved(false)
+        prefs.edit().remove(identifier).apply()
+        return Promise.resolved(true)
+    }
+
+    private fun categoryPrefs(context: Context) =
+        context.getSharedPreferences(PREFS_CATEGORIES, Context.MODE_PRIVATE)
+
+    private fun storedCategory(context: Context, identifier: String?): NativeNotificationCategory? {
+        if (identifier == null) return null
+        val raw = categoryPrefs(context).getString(identifier, null) ?: return null
+        return categoryFromJson(raw)
+    }
+
     // installing the listeners is what tells deliverNow that handing an
     // arrival to js reaches anyone.
     override fun setListeners(
@@ -384,6 +427,7 @@ class HybridOneNotifications :
         val dataJson = content.data?.let { JSONObject(it.toHashMap()).toString() } ?: "{}"
         val badge = content.badge?.toInt()
         val sound = content.sound == true
+        val categoryIdentifier = content.categoryIdentifier
         val now = System.currentTimeMillis()
         if (trigger == null) {
             val delivery =
@@ -400,7 +444,8 @@ class HybridOneNotifications :
                     "immediate",
                     0.0,
                     false,
-                    now
+                    now,
+                    categoryIdentifier
                 )
             try {
                 deliverNow(delivery, now)
@@ -469,7 +514,8 @@ class HybridOneNotifications :
                 kind,
                 seconds,
                 repeats,
-                fireAtMs
+                fireAtMs,
+                categoryIdentifier
             )
         // a past date delivers immediately, like ios.
         if (fireAtMs <= now) {
@@ -517,7 +563,8 @@ class HybridOneNotifications :
                             schedule.body,
                             schedule.dataJson,
                             schedule.sound,
-                            schedule.badge
+                            schedule.badge,
+                            schedule.categoryIdentifier
                         ),
                         trigger(schedule.triggerJson)
                     )
@@ -542,7 +589,8 @@ class HybridOneNotifications :
                         extras.getBoolean(EXTRA_SOUND, false),
                         if (extras.containsKey(EXTRA_BADGE)) extras.getInt(EXTRA_BADGE) else null,
                         extras.getString(EXTRA_TRIGGER),
-                        exposed.postTime
+                        exposed.postTime,
+                        extras.getString(EXTRA_CATEGORY)
                     )
                 }
                 .toTypedArray()
@@ -573,10 +621,43 @@ class HybridOneNotifications :
                 intent.getBooleanExtra(EXTRA_SOUND, false),
                 if (intent.hasExtra(EXTRA_BADGE)) intent.getIntExtra(EXTRA_BADGE, 0) else null,
                 intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
-                System.currentTimeMillis()
+                System.currentTimeMillis(),
+                intent.getStringExtra(EXTRA_ACTION) ?: DEFAULT_ACTION_IDENTIFIER,
+                intent.getStringExtra(EXTRA_USER_TEXT),
+                intent.getStringExtra(EXTRA_CATEGORY)
             )
         lastResponse = response
         currentListeners()?.onResponse?.invoke(responsePayload(response))
+    }
+
+    // an action-button tap from the receiver: records the response with its
+    // action identifier (and typed text for text-input actions), emits to
+    // live listeners, and foregrounds the app when the action asks for it.
+    fun handleAction(context: Context, intent: Intent) {
+        val results = androidx.core.app.RemoteInput.getResultsFromIntent(intent)
+        val response =
+            TapResponse(
+                intent.getStringExtra(EXTRA_IDENTIFIER) ?: return,
+                intent.getStringExtra(EXTRA_TITLE),
+                intent.getStringExtra(EXTRA_SUBTITLE),
+                intent.getStringExtra(EXTRA_BODY),
+                intent.getStringExtra(EXTRA_DATA) ?: "{}",
+                intent.getBooleanExtra(EXTRA_SOUND, false),
+                if (intent.hasExtra(EXTRA_BADGE)) intent.getIntExtra(EXTRA_BADGE, 0) else null,
+                intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
+                System.currentTimeMillis(),
+                intent.getStringExtra(EXTRA_ACTION) ?: DEFAULT_ACTION_IDENTIFIER,
+                results?.getCharSequence(EXTRA_USER_TEXT)?.toString()
+                    ?: intent.getStringExtra(EXTRA_USER_TEXT),
+                intent.getStringExtra(EXTRA_CATEGORY)
+            )
+        lastResponse = response
+        currentListeners()?.onResponse?.invoke(responsePayload(response))
+        if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
+            foregroundWithResponse(context, response, null)
+        }
+        NotificationManagerCompat.from(context)
+            .cancel(response.identifier, 0)
     }
 
     private fun responsePayload(response: TapResponse): NativeNotificationResponse =
@@ -590,9 +671,11 @@ class HybridOneNotifications :
                 response.sound,
                 response.badge,
                 response.triggerJson,
-                response.dateMs
+                response.dateMs,
+                response.categoryIdentifier
             ),
-            DEFAULT_ACTION_IDENTIFIER
+            response.actionIdentifier,
+            response.userText
         )
 
     override fun getLastNotificationResponse(): NativeNotificationResponse? {
@@ -607,20 +690,32 @@ class HybridOneNotifications :
 
     companion object {
         const val ACTION_ALARM = "dev.onejs.onenative.NOTIFICATION_ALARM"
+        const val ACTION_RESPONSE = "dev.onejs.onenative.NOTIFICATION_RESPONSE"
         const val EXTRA_IDENTIFIER = "dev.onejs.onenative.EXTRA_IDENTIFIER"
+        const val EXTRA_ACTION = "dev.onejs.onenative.EXTRA_ACTION"
+        const val EXTRA_USER_TEXT = "dev.onejs.onenative.EXTRA_USER_TEXT"
+        const val EXTRA_FOREGROUND = "dev.onejs.onenative.EXTRA_FOREGROUND"
 
         // the live hybrid object, for the alarm receiver and the push
         // service, which the os starts outside any js call.
         @Volatile
         private var instance: HybridOneNotifications? = null
+
+        // the last response lives on the companion, so an action tap that
+        // starts the process still answers getLastNotificationResponse once
+        // js creates the hybrid.
+        @Volatile
+        private var lastResponse: TapResponse? = null
         private const val PREFS = "one_native_notifications"
         private const val PREFS_SCHEDULES = "one_native_notifications_schedules"
+        private const val PREFS_CATEGORIES = "one_native_notification_categories"
         private const val KEY_ASKED = "permission_asked"
         private const val PERMISSION_REQUEST_CODE = 7401
         private const val E_PERMISSIONS = "E_NOTIFICATIONS_PERMISSION"
         private const val E_TRIGGER = "E_NOTIFICATIONS_TRIGGER"
         private const val E_SCHEDULE = "E_NOTIFICATIONS_SCHEDULE"
         private const val E_PUSH_TOKEN = "E_NOTIFICATIONS_PUSH_TOKEN"
+        private const val E_CATEGORY = "E_NOTIFICATIONS_CATEGORY"
         private const val DEFAULT_CHANNEL_ID = "default"
         private const val DEFAULT_ACTION_IDENTIFIER = "expo.modules.notifications.actions.DEFAULT"
         private const val ACTION_TAP = "dev.onejs.onenative.NOTIFICATION_TAP"
@@ -632,6 +727,7 @@ class HybridOneNotifications :
         private const val EXTRA_SOUND = "dev.onejs.onenative.EXTRA_SOUND"
         private const val EXTRA_BADGE = "dev.onejs.onenative.EXTRA_BADGE"
         private const val EXTRA_TRIGGER = "dev.onejs.onenative.EXTRA_TRIGGER"
+        private const val EXTRA_CATEGORY = "dev.onejs.onenative.EXTRA_CATEGORY"
         private const val PRESENT_TIMEOUT_MS = 3000L
         private const val IMMEDIATE_TRIGGER_JSON =
             "{\"type\":\"timeInterval\",\"seconds\":0,\"repeats\":false}"
@@ -642,7 +738,8 @@ class HybridOneNotifications :
             body: String?,
             dataJson: String,
             sound: Boolean,
-            badge: Int?
+            badge: Int?,
+            categoryIdentifier: String? = null
         ): NativeContent =
             NativeContent(
                 title,
@@ -650,7 +747,8 @@ class HybridOneNotifications :
                 body,
                 AnyMap.fromMap(plainObject(JSONObject(dataJson)), true),
                 sound,
-                badge?.toDouble()
+                badge?.toDouble(),
+                categoryIdentifier
             )
 
         // stored triggers are the json the schedule was written with; a
@@ -682,12 +780,13 @@ class HybridOneNotifications :
             sound: Boolean,
             badge: Int?,
             triggerJson: String?,
-            dateMs: Long
+            dateMs: Long,
+            categoryIdentifier: String? = null
         ): NativeNotification =
             NativeNotification(
                 NativeNotificationRequest(
                     identifier,
-                    content(title, subtitle, body, dataJson, sound, badge),
+                    content(title, subtitle, body, dataJson, sound, badge, categoryIdentifier),
                     trigger(triggerJson)
                 ),
                 dateMs.toDouble()
@@ -720,7 +819,8 @@ class HybridOneNotifications :
             val kind: String,
             val seconds: Double,
             val repeats: Boolean,
-            val fireAtMs: Long
+            val fireAtMs: Long,
+            val categoryIdentifier: String? = null
         ) {
             fun toJson(): String =
                 JSONObject()
@@ -737,6 +837,7 @@ class HybridOneNotifications :
                     .put("seconds", seconds)
                     .put("repeats", repeats)
                     .put("fireAtMs", fireAtMs)
+                    .put("categoryIdentifier", categoryIdentifier ?: JSONObject.NULL)
                     .toString()
 
             companion object {
@@ -756,11 +857,140 @@ class HybridOneNotifications :
                             json.getString("kind"),
                             json.getDouble("seconds"),
                             json.getBoolean("repeats"),
-                            json.getLong("fireAtMs")
+                            json.getLong("fireAtMs"),
+                            // written before categories existed: those
+                            // schedules carry no category.
+                            if (!json.has("categoryIdentifier") || json.isNull("categoryIdentifier")) {
+                                null
+                            } else {
+                                json.getString("categoryIdentifier")
+                            }
                         )
                     } catch (error: Exception) {
                         null
                     }
+            }
+        }
+
+        private fun categoryToJson(category: NativeNotificationCategory): String {
+            val actions = JSONArray()
+            for (action in category.actions) {
+                actions.put(
+                    JSONObject()
+                        .put("identifier", action.identifier)
+                        .put("buttonTitle", action.buttonTitle)
+                        .put("authenticationRequired", action.authenticationRequired)
+                        .put("destructive", action.destructive)
+                        .put("foreground", action.foreground)
+                        .put("textInputPlaceholder", action.textInputPlaceholder ?: JSONObject.NULL)
+                        .put("textInputSubmitTitle", action.textInputSubmitTitle ?: JSONObject.NULL)
+                )
+            }
+            val options = category.options
+            return JSONObject()
+                .put("identifier", category.identifier)
+                .put("actions", actions)
+                .put(
+                    "options",
+                    if (options == null) {
+                        JSONObject.NULL
+                    } else {
+                        JSONObject()
+                            .put("allowInCarPlay", options.allowInCarPlay)
+                            .put("categorySummaryFormat", options.categorySummaryFormat)
+                            .put("customDismissAction", options.customDismissAction)
+                            .put(
+                                "intentIdentifiers",
+                                if (options.intentIdentifiers == null) {
+                                    JSONObject.NULL
+                                } else {
+                                    JSONArray(options.intentIdentifiers)
+                                }
+                            )
+                            .put("previewPlaceholder", options.previewPlaceholder)
+                            .put("showTitle", options.showTitle)
+                            .put("showSubtitle", options.showSubtitle)
+                    }
+                )
+                .toString()
+        }
+
+        private fun categoryFromJson(raw: String): NativeNotificationCategory? {
+            return try {
+                val json = JSONObject(raw)
+                val actions = mutableListOf<NativeNotificationAction>()
+                val stored = json.getJSONArray("actions")
+                for (index in 0 until stored.length()) {
+                    val item = stored.getJSONObject(index)
+                    actions.add(
+                        NativeNotificationAction(
+                            item.getString("identifier"),
+                            item.getString("buttonTitle"),
+                            item.optBoolean("authenticationRequired", false),
+                            item.optBoolean("destructive", false),
+                            item.optBoolean("foreground", true),
+                            if (item.isNull("textInputPlaceholder")) {
+                                null
+                            } else {
+                                item.getString("textInputPlaceholder")
+                            },
+                            if (item.isNull("textInputSubmitTitle")) {
+                                null
+                            } else {
+                                item.getString("textInputSubmitTitle")
+                            }
+                        )
+                    )
+                }
+                val options =
+                    if (json.isNull("options")) {
+                        null
+                    } else {
+                        val storedOptions = json.getJSONObject("options")
+                        val intents =
+                            if (storedOptions.isNull("intentIdentifiers")) {
+                                null
+                            } else {
+                                val array = storedOptions.getJSONArray("intentIdentifiers")
+                                Array(array.length()) { index -> array.getString(index) }
+                            }
+                        NativeNotificationCategoryOptions(
+                            if (storedOptions.isNull("allowInCarPlay")) {
+                                null
+                            } else {
+                                storedOptions.getBoolean("allowInCarPlay")
+                            },
+                            if (storedOptions.isNull("categorySummaryFormat")) {
+                                null
+                            } else {
+                                storedOptions.getString("categorySummaryFormat")
+                            },
+                            if (storedOptions.isNull("customDismissAction")) {
+                                null
+                            } else {
+                                storedOptions.getBoolean("customDismissAction")
+                            },
+                            intents,
+                            if (storedOptions.isNull("previewPlaceholder")) {
+                                null
+                            } else {
+                                storedOptions.getString("previewPlaceholder")
+                            },
+                            if (storedOptions.isNull("showTitle")) {
+                                null
+                            } else {
+                                storedOptions.getBoolean("showTitle")
+                            },
+                            if (storedOptions.isNull("showSubtitle")) {
+                                null
+                            } else {
+                                storedOptions.getBoolean("showSubtitle")
+                            }
+                        )
+                    }
+                NativeNotificationCategory(json.getString("identifier"), actions.toTypedArray(), options)
+            } catch (error: Exception) {
+                null
             }
         }
 
@@ -875,6 +1105,9 @@ class HybridOneNotifications :
                 target.putExtra(EXTRA_SOUND, schedule.sound)
                 if (schedule.badge != null) target.putExtra(EXTRA_BADGE, schedule.badge)
                 target.putExtra(EXTRA_TRIGGER, schedule.triggerJson)
+                if (schedule.categoryIdentifier != null) {
+                    target.putExtra(EXTRA_CATEGORY, schedule.categoryIdentifier)
+                }
                 builder.setContentIntent(
                     PendingIntent.getActivity(
                         context,
@@ -884,15 +1117,155 @@ class HybridOneNotifications :
                     )
                 )
             }
+            // interactive actions for the schedule's category, if one is
+            // registered. each fires the receiver, which records the
+            // response and foregrounds the app when asked.
+            val category = storedCategory(context, schedule.categoryIdentifier)
+            if (category != null) {
+                for (action in category.actions) {
+                    builder.addAction(buildAction(context, schedule, action))
+                }
+            }
             val extras = android.os.Bundle()
             extras.putString(EXTRA_IDENTIFIER, schedule.identifier)
             extras.putString(EXTRA_DATA, schedule.dataJson)
             extras.putBoolean(EXTRA_SOUND, schedule.sound)
             if (schedule.badge != null) extras.putInt(EXTRA_BADGE, schedule.badge)
             extras.putString(EXTRA_TRIGGER, schedule.triggerJson)
+            if (schedule.categoryIdentifier != null) {
+                extras.putString(EXTRA_CATEGORY, schedule.categoryIdentifier)
+            }
             builder.addExtras(extras)
             NotificationManagerCompat.from(context)
                 .notify(schedule.identifier, 0, builder.build())
+        }
+
+        // one action button for a category action. destructive has no
+        // android mapping and stays an ios effect; authentication maps on
+        // api 31+, and a placeholder adds a text-input row.
+        private fun buildAction(
+            context: Context,
+            schedule: StoredSchedule,
+            action: NativeNotificationAction
+        ): androidx.core.app.NotificationCompat.Action {
+            val target =
+                Intent(context, OneNativeNotificationsReceiver::class.java).apply {
+                    setAction(ACTION_RESPONSE)
+                    putExtra(EXTRA_IDENTIFIER, schedule.identifier)
+                    putExtra(EXTRA_TITLE, schedule.title)
+                    putExtra(EXTRA_SUBTITLE, schedule.subtitle)
+                    putExtra(EXTRA_BODY, schedule.body)
+                    putExtra(EXTRA_DATA, schedule.dataJson)
+                    putExtra(EXTRA_SOUND, schedule.sound)
+                    if (schedule.badge != null) putExtra(EXTRA_BADGE, schedule.badge)
+                    putExtra(EXTRA_TRIGGER, schedule.triggerJson)
+                    if (schedule.categoryIdentifier != null) {
+                        putExtra(EXTRA_CATEGORY, schedule.categoryIdentifier)
+                    }
+                    putExtra(EXTRA_ACTION, action.identifier)
+                    putExtra(EXTRA_FOREGROUND, action.foreground)
+                }
+            val pending =
+                PendingIntent.getBroadcast(
+                    context,
+                    (schedule.identifier + ":" + action.identifier).hashCode(),
+                    target,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                )
+            val builder =
+                androidx.core.app.NotificationCompat.Action.Builder(0, action.buttonTitle, pending)
+            if (Build.VERSION.SDK_INT >= 31 && action.authenticationRequired) {
+                builder.setAuthenticationRequired(true)
+            }
+            if (action.textInputPlaceholder != null) {
+                val remoteInput =
+                    androidx.core.app.RemoteInput.Builder(EXTRA_USER_TEXT)
+                        .setLabel(action.textInputPlaceholder)
+                        .build()
+                builder.addRemoteInput(remoteInput)
+            }
+            return builder.build()
+        }
+
+        // action-tap entry: through the live hybrid when js is up, or
+        // recorded statically with a response-carrying launch when the
+        // process started for this broadcast. the activity harvest reads
+        // the same extras on resume, so both paths converge.
+        fun instanceAction(context: Context, intent: Intent) {
+            val live = instance
+            if (live != null) {
+                live.handleAction(context, intent)
+                return
+            }
+            val results = androidx.core.app.RemoteInput.getResultsFromIntent(intent)
+            val response =
+                TapResponse(
+                    intent.getStringExtra(EXTRA_IDENTIFIER) ?: return,
+                    intent.getStringExtra(EXTRA_TITLE),
+                    intent.getStringExtra(EXTRA_SUBTITLE),
+                    intent.getStringExtra(EXTRA_BODY),
+                    intent.getStringExtra(EXTRA_DATA) ?: "{}",
+                    intent.getBooleanExtra(EXTRA_SOUND, false),
+                    if (intent.hasExtra(EXTRA_BADGE)) {
+                        intent.getIntExtra(EXTRA_BADGE, 0)
+                    } else {
+                        null
+                    },
+                    intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
+                    System.currentTimeMillis(),
+                    intent.getStringExtra(EXTRA_ACTION) ?: DEFAULT_ACTION_IDENTIFIER,
+                    results?.getCharSequence(EXTRA_USER_TEXT)?.toString(),
+                    intent.getStringExtra(EXTRA_CATEGORY)
+                )
+            lastResponse = response
+            if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
+                foregroundWithResponse(context, response, results)
+            }
+            NotificationManagerCompat.from(context)
+                .cancel(response.identifier, 0)
+        }
+
+        // foregrounds the app carrying the response on the launch intent, so
+        // the activity harvest records it even when js was never running.
+        private fun foregroundWithResponse(
+            context: Context,
+            response: TapResponse,
+            results: android.os.Bundle?
+        ) {
+            try {
+                val launch = context.packageManager.getLaunchIntentForPackage(context.packageName)
+                    ?: return
+                launch.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK or
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP
+                )
+                launch.putExtra(EXTRA_TAP, true)
+                launch.putExtra(EXTRA_IDENTIFIER, response.identifier)
+                launch.putExtra(EXTRA_TITLE, response.title)
+                launch.putExtra(EXTRA_SUBTITLE, response.subtitle)
+                launch.putExtra(EXTRA_BODY, response.body)
+                launch.putExtra(EXTRA_DATA, response.dataJson)
+                launch.putExtra(EXTRA_SOUND, response.sound)
+                if (response.badge != null) launch.putExtra(EXTRA_BADGE, response.badge)
+                launch.putExtra(EXTRA_TRIGGER, response.triggerJson)
+                launch.putExtra(EXTRA_ACTION, response.actionIdentifier)
+                if (response.userText != null) launch.putExtra(EXTRA_USER_TEXT, response.userText)
+                if (response.categoryIdentifier != null) {
+                    launch.putExtra(EXTRA_CATEGORY, response.categoryIdentifier)
+                }
+                if (results != null) {
+                    androidx.core.app.RemoteInput.addResultsToIntent(
+                        arrayOf(
+                            androidx.core.app.RemoteInput.Builder(EXTRA_USER_TEXT).build()
+                        ),
+                        launch,
+                        results
+                    )
+                }
+                context.startActivity(launch)
+            } catch (error: Exception) {
+            }
         }
 
         // alarm entry: re-arms a repeat, drops a fired one-shot, then

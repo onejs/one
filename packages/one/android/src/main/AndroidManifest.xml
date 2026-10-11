@@ -39,5 +39,13 @@
             android:name="dev.onejs.onenative.OneLocationService"
             android:foregroundServiceType="location"
             android:exported="false" />
+        <!-- crop editor for ImagePicker allowsEditing; the manifest merger
+        carries it into the app. it is never exported: only the app's own
+        picker launches it. -->
+        <activity
+            android:name="dev.onejs.onenative.OneNativeCropActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 </manifest>

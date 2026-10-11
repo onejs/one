@@ -18,7 +18,7 @@ public extension ImagePickerAsset {
   /**
    * Create a new instance of `ImagePickerAsset`.
    */
-  init(uri: String, width: Double, height: Double, mimeType: String?, fileName: String?, fileSize: Double?) {
+  init(uri: String, width: Double, height: Double, mimeType: String?, fileName: String?, fileSize: Double?, duration: Double?, type: ImagePickerAssetType?) {
     self.init(std.string(uri), width, height, { () -> bridge.std__optional_std__string_ in
       if let __unwrappedValue = mimeType {
         return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -34,6 +34,18 @@ public extension ImagePickerAsset {
     }(), { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = fileSize {
         return bridge.create_std__optional_double_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_double_ in
+      if let __unwrappedValue = duration {
+        return bridge.create_std__optional_double_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_ImagePickerAssetType_ in
+      if let __unwrappedValue = type {
+        return bridge.create_std__optional_ImagePickerAssetType_(__unwrappedValue)
       } else {
         return .init()
       }
@@ -89,5 +101,22 @@ public extension ImagePickerAsset {
         return nil
       }
     }()
+  }
+  
+  @inline(__always)
+  var duration: Double? {
+    return { () -> Double? in
+      if bridge.has_value_std__optional_double_(self.__duration) {
+        let __unwrapped = bridge.get_std__optional_double_(self.__duration)
+        return __unwrapped
+      } else {
+        return nil
+      }
+    }()
+  }
+  
+  @inline(__always)
+  var type: ImagePickerAssetType? {
+    return self.__type.value
   }
 }

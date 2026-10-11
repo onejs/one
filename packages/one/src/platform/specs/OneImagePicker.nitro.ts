@@ -6,7 +6,9 @@ import type { ImagePickerAsset } from '../image-picker/types'
 // expo-image-picker subset in ../image-picker/types. a launch settles one flat
 // result whose assets are set only when not canceled, which the js entry
 // narrows to the public union. one launch is in flight at a time; permission
-// reads never take that slot.
+// reads never take that slot. the camera captures one asset: a photo unless
+// mediaTypes is videos-only, and honors the crop, quality and video fields
+// of the resolved options.
 export interface ImagePickerNativeResult {
   canceled: boolean
   assets?: ImagePickerAsset[]
@@ -22,7 +24,7 @@ export interface CameraPermissionResponse {
 
 export interface OneImagePicker extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   launchLibrary(options: ResolvedImagePickerOptions): Promise<ImagePickerNativeResult>
-  launchCamera(): Promise<ImagePickerNativeResult>
+  launchCamera(options: ResolvedImagePickerOptions): Promise<ImagePickerNativeResult>
   getCameraPermissions(): Promise<CameraPermissionResponse>
   requestCameraPermissions(): Promise<CameraPermissionResponse>
 }

@@ -54,6 +54,10 @@ export interface NativeAppManifest {
     // also declares the android camera permission; both are required for
     // One.ImagePicker.launchCamera.
     camera?: string
+    // ios microphone usage description for camera video, whose recording
+    // carries audio. required for launchCamera with videos on ios; android
+    // needs nothing, since the camera app records.
+    microphone?: string
   }
   // photos permissions for saving and browsing. ios prompts come from
   // these strings; android stamps the media read permissions from
@@ -389,6 +393,13 @@ export function validateNativeApp(
       manifest.imagePicker.camera.trim() === '')
   ) {
     fail('imagePicker.camera must be a non-empty string')
+  }
+  if (
+    manifest.imagePicker?.microphone !== undefined &&
+    (typeof manifest.imagePicker.microphone !== 'string' ||
+      manifest.imagePicker.microphone.trim() === '')
+  ) {
+    fail('imagePicker.microphone must be a non-empty string')
   }
   if (
     manifest.photoLibrary !== undefined &&

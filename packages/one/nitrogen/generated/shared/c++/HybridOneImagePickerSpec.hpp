@@ -57,7 +57,7 @@ namespace margelo::nitro::one {
     public:
       // Methods
       virtual std::shared_ptr<Promise<ImagePickerNativeResult>> launchLibrary(const ResolvedImagePickerOptions& options) = 0;
-      virtual std::shared_ptr<Promise<ImagePickerNativeResult>> launchCamera() = 0;
+      virtual std::shared_ptr<Promise<ImagePickerNativeResult>> launchCamera(const ResolvedImagePickerOptions& options) = 0;
       virtual std::shared_ptr<Promise<CameraPermissionResponse>> getCameraPermissions() = 0;
       virtual std::shared_ptr<Promise<CameraPermissionResponse>> requestCameraPermissions() = 0;
 

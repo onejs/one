@@ -7,11 +7,11 @@ import UIKit
 import UniformTypeIdentifiers
 
 // imperative image picker: PHPickerViewController for the library, which
-// needs no permission, and UIImagePickerController for a camera photo.
-// picked assets are copied into the app cache and returned as file uris.
-// backing out, a denied permission, and a missing camera all resolve
-// canceled; only runtime failures reject. all state is touched on the main
-// queue only.
+// needs no permission, UIImagePickerController for the crop UI and the
+// camera, which captures a photo unless mediaTypes is videos-only. picked
+// assets are copied into the app cache and returned as file uris. backing
+// out, a denied permission, and a missing camera all resolve canceled; only
+// runtime failures reject. all state is touched on the main queue only.
 final class HybridOneImagePicker: HybridOneImagePickerSpec {
   private static let failed = "E_IMAGE_PICKER_FAILED"
   private let delegate = HybridOneImagePickerDelegate()
@@ -19,6 +19,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
   // set on launch, read by the picker delegate; one request is in flight at a time.
   private var allowsImages = false
   private var allowsVideos = false
+  private var quality = 1.0
 
   override init() {
     super.init()
@@ -38,6 +39,16 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
         // unreachable from the js entries, which validate first; settle
         // rather than hang a direct caller.
         self.rejectPending("launchLibrary", "mediaTypes must list at least one media type")
+        return
+      }
+      self.quality = options.quality
+      if options.allowsEditing {
+        // the crop UI edits one image: js rejects anything else first.
+        guard allowsImages && !allowsVideos else {
+          self.rejectPending("launchLibrary", "allowsEditing only supports images")
+          return
+        }
+        self.presentLibraryEditor()
         return
       }
       guard let presenter = Self.topViewController(), presenter.presentedViewController == nil
@@ -72,7 +83,8 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
     return promise
   }
 
-  func launchCamera() throws -> Promise<ImagePickerNativeResult> {
+  func launchCamera(options: ResolvedImagePickerOptions) throws -> Promise<ImagePickerNativeResult>
+  {
     let promise = Promise<ImagePickerNativeResult>()
     DispatchQueue.main.async {
       guard self.takePending("launchCamera", promise) else { return }
@@ -91,6 +103,23 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
         )
         return
       }
+      // a photo unless mediaTypes is videos-only; mixed requests capture a
+      // photo on both platforms, so shared code stays predictable.
+      let wantsVideo =
+        options.mediaTypes.contains(.videos) && !options.mediaTypes.contains(.images)
+      if options.allowsEditing && wantsVideo {
+        // unreachable from the js entries, which validate first.
+        self.rejectPending("launchCamera", "allowsEditing only supports images")
+        return
+      }
+      if wantsVideo && !Self.microphoneDeclared {
+        self.rejectPending(
+          "launchCamera",
+          "camera video needs NSMicrophoneUsageDescription: set native.app imagePicker.microphone and rerun one prebuild"
+        )
+        return
+      }
+      self.quality = options.quality
       switch AVCaptureDevice.authorizationStatus(for: .video) {
       case .denied, .restricted:
         self.resolvePendingCanceled()
@@ -98,14 +127,18 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
         AVCaptureDevice.requestAccess(for: .video) { granted in
           DispatchQueue.main.async {
             if granted {
-              self.presentCamera()
+              self.presentCamera(
+                wantsVideo: wantsVideo, allowsEditing: options.allowsEditing,
+                videoMaxDuration: options.videoMaxDuration, videoQuality: options.videoQuality)
             } else {
               self.resolvePendingCanceled()
             }
           }
         }
       default:
-        self.presentCamera()
+        self.presentCamera(
+          wantsVideo: wantsVideo, allowsEditing: options.allowsEditing,
+          videoMaxDuration: options.videoMaxDuration, videoQuality: options.videoQuality)
       }
     }
     return promise
@@ -140,6 +173,10 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
     return Bundle.main.object(forInfoDictionaryKey: "NSCameraUsageDescription") != nil
   }
 
+  private static var microphoneDeclared: Bool {
+    return Bundle.main.object(forInfoDictionaryKey: "NSMicrophoneUsageDescription") != nil
+  }
+
   private static func cameraPermissionResponse() -> CameraPermissionResponse {
     switch AVCaptureDevice.authorizationStatus(for: .video) {
     case .authorized:
@@ -153,7 +190,9 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
 
   // MARK: camera
 
-  private func presentCamera() {
+  private func presentCamera(
+    wantsVideo: Bool, allowsEditing: Bool, videoMaxDuration: Double, videoQuality: String
+  ) {
     guard let presenter = Self.topViewController(), presenter.presentedViewController == nil
     else {
       rejectPending("launchCamera", "found no view controller to present from")
@@ -161,53 +200,160 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
     }
     let picker = UIImagePickerController()
     picker.sourceType = .camera
-    picker.mediaTypes = [UTType.image.identifier]
+    if wantsVideo {
+      picker.mediaTypes = [UTType.movie.identifier]
+      if videoMaxDuration > 0 {
+        picker.videoMaximumDuration = videoMaxDuration
+      }
+      picker.videoQuality = Self.captureQuality(videoQuality)
+    } else {
+      picker.mediaTypes = [UTType.image.identifier]
+      picker.allowsEditing = allowsEditing
+    }
     picker.delegate = delegate
     picker.presentationController?.delegate = delegate
     presenter.present(picker, animated: true)
   }
 
-  fileprivate func cameraDidFinish(_ picker: UIImagePickerController, image: UIImage?) {
-    picker.dismiss(animated: true) {
-      guard let image, let cgImage = image.cgImage else {
-        self.rejectPending("launchCamera", "the camera returned no image")
-        return
-      }
-      guard let data = image.jpegData(compressionQuality: 0.9) else {
-        self.rejectPending("launchCamera", "could not encode the photo")
-        return
-      }
-      guard let destination = Self.cacheURL(prefix: "IMG", extension: "jpg") else {
-        self.rejectPending("launchCamera", "could not save the photo")
-        return
-      }
-      do {
-        try data.write(to: destination, options: .atomic)
-      } catch {
-        self.rejectPending("launchCamera", error.localizedDescription)
-        return
-      }
-      var width = Double(cgImage.width)
-      var height = Double(cgImage.height)
-      // left and right orientations (exif 5 to 8) store the pixels transposed
-      // to the display axes, so the reported size swaps to match what renders.
-      switch image.imageOrientation {
-      case .left, .leftMirrored, .right, .rightMirrored:
-        swap(&width, &height)
-      default:
-        break
-      }
-      self.resolvePending([
-        ImagePickerAsset(
-          uri: destination.absoluteString, width: width, height: height, mimeType: "image/jpeg",
-          fileName: destination.lastPathComponent, fileSize: Double(data.count))
-      ])
+  private static func captureQuality(_ videoQuality: String) -> UIImagePickerController.QualityType {
+    switch videoQuality {
+    case "medium": return .typeMedium
+    case "low": return .typeLow
+    default: return .typeHigh
     }
   }
 
-  fileprivate func cameraDidCancel(_ picker: UIImagePickerController) {
+  // MARK: library crop UI
+
+  // the legacy picker with editing shows the system crop UI (always
+  // square on ios) for one library image.
+  private func presentLibraryEditor() {
+    guard let presenter = Self.topViewController(), presenter.presentedViewController == nil
+    else {
+      rejectPending("launchLibrary", "found no view controller to present from")
+      return
+    }
+    let picker = UIImagePickerController()
+    picker.sourceType = .photoLibrary
+    picker.mediaTypes = [UTType.image.identifier]
+    picker.allowsEditing = true
+    picker.delegate = delegate
+    picker.presentationController?.delegate = delegate
+    presenter.present(picker, animated: true)
+  }
+
+  fileprivate func pickerDidFinish(
+    _ picker: UIImagePickerController, info: [UIImagePickerController.InfoKey: Any]
+  ) {
+    let mediaType = info[.mediaType] as? String
+    if mediaType == UTType.movie.identifier {
+      picker.dismiss(animated: true) {
+        guard let url = info[.mediaURL] as? URL else {
+          self.rejectPending("launchCamera", "the camera returned no video")
+          return
+        }
+        self.finishVideo(source: url, verb: "launchCamera", removeSource: false)
+      }
+      return
+    }
+    // a photo: the crop UI result when editing, the original otherwise.
+    let image = (info[.editedImage] ?? info[.originalImage]) as? UIImage
+    picker.dismiss(animated: true) {
+      guard let image else {
+        self.rejectPending(self.pendingVerb(), "the picker returned no image")
+        return
+      }
+      self.finishPhoto(image: image, verb: self.pendingVerb())
+    }
+  }
+
+  private func pendingVerb() -> String {
+    return pending?.verb ?? "launchCamera"
+  }
+
+  fileprivate func pickerDidCancel(_ picker: UIImagePickerController) {
     picker.dismiss(animated: true) {
       self.resolvePendingCanceled()
+    }
+  }
+
+  private func finishPhoto(image: UIImage, verb: String) {
+    guard let cgImage = image.cgImage else {
+      rejectPending(verb, "the picker returned no image")
+      return
+    }
+    // the capture encodes to jpeg at the requested quality.
+    let mimeType = "image/jpeg"
+    let fileExtension = "jpg"
+    guard let data = image.jpegData(compressionQuality: quality) else {
+      rejectPending(verb, "could not encode the photo")
+      return
+    }
+    guard let destination = Self.cacheURL(prefix: "IMG", extension: fileExtension) else {
+      rejectPending(verb, "could not save the photo")
+      return
+    }
+    do {
+      try data.write(to: destination, options: .atomic)
+    } catch {
+      rejectPending(verb, error.localizedDescription)
+      return
+    }
+    var width = Double(cgImage.width)
+    var height = Double(cgImage.height)
+    // left and right orientations (exif 5 to 8) store the pixels transposed
+    // to the display axes, so the reported size swaps to match what renders.
+    switch image.imageOrientation {
+    case .left, .leftMirrored, .right, .rightMirrored:
+      swap(&width, &height)
+    default:
+      break
+    }
+    self.resolvePending([
+      ImagePickerAsset(
+        uri: destination.absoluteString, width: width, height: height, mimeType: mimeType,
+        fileName: destination.lastPathComponent, fileSize: Double(data.count),
+        duration: nil, type: .image)
+    ])
+  }
+
+  private func finishVideo(source: URL, verb: String, removeSource: Bool) {
+    let scoped = source.startAccessingSecurityScopedResource()
+    defer { if scoped { source.stopAccessingSecurityScopedResource() } }
+    guard let destination = Self.cacheURL(prefix: "VID", extension: "mov") else {
+      rejectPending(verb, "could not save the video")
+      return
+    }
+    do {
+      if FileManager.default.fileExists(atPath: destination.path) {
+        try FileManager.default.removeItem(at: destination)
+      }
+      try FileManager.default.copyItem(at: source, to: destination)
+      if removeSource, source != destination {
+        try? FileManager.default.removeItem(at: source)
+      }
+    } catch {
+      rejectPending(verb, error.localizedDescription)
+      return
+    }
+    let asset = AVURLAsset(url: destination)
+    let durationMs = CMTimeGetSeconds(asset.duration).isFinite
+      ? CMTimeGetSeconds(asset.duration) * 1000 : 0
+    let fileSize = (try? FileManager.default.attributesOfItem(atPath: destination.path))?[
+      .size] as? NSNumber
+    asset.loadTracks(withMediaType: .video) { tracks, _ in
+      // naturalSize is the encoded size; rotation handling stays out of
+      // this small api.
+      let size = tracks?.first?.naturalSize ?? .zero
+      DispatchQueue.main.async {
+        self.resolvePending([
+          ImagePickerAsset(
+            uri: destination.absoluteString, width: Double(size.width),
+            height: Double(size.height), mimeType: "video/quicktime",
+            fileName: destination.lastPathComponent, fileSize: fileSize?.doubleValue,
+            duration: durationMs, type: .video)
+        ])
+      }
     }
   }
 
@@ -216,6 +362,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
   fileprivate func libraryDidFinish(_ picker: PHPickerViewController, results: [PHPickerResult]) {
     let allowsImages = self.allowsImages
     let allowsVideos = self.allowsVideos
+    let quality = self.quality
     // dismiss first: loading file representations can take a while and the
     // picker staying up meanwhile reads as a hang.
     picker.dismiss(animated: true) {
@@ -223,14 +370,16 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
         self.resolvePendingCanceled()
         return
       }
-      self.load(results, allowsImages: allowsImages, allowsVideos: allowsVideos)
+      self.load(results, allowsImages: allowsImages, allowsVideos: allowsVideos, quality: quality)
     }
   }
 
   // one group entry per item; a video item leaves from its track callback.
   // the assets array is indexed, so ordered selection order survives the
   // out-of-order completions. the first failure rejects the whole call.
-  private func load(_ results: [PHPickerResult], allowsImages: Bool, allowsVideos: Bool) {
+  private func load(
+    _ results: [PHPickerResult], allowsImages: Bool, allowsVideos: Bool, quality: Double
+  ) {
     let lock = NSLock()
     // written from completion queues under the lock, read on notify.
     var assets = [ImagePickerAsset?](repeating: nil, count: results.count)
@@ -251,7 +400,9 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
       }
       group.enter()
       result.itemProvider.loadFileRepresentation(forTypeIdentifier: chosen) { url, error in
-        Self.finishItem(url: url, error: error, chosen: chosen, fail: fail) { asset in
+        Self.finishItem(
+          url: url, error: error, chosen: chosen, quality: quality, fail: fail
+        ) { asset in
           lock.lock()
           assets[index] = asset
           lock.unlock()
@@ -286,7 +437,7 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
   // the provider deletes its file when this callback returns, so the copy
   // happens here, synchronously.
   private static func finishItem(
-    url: URL?, error: Error?, chosen: String, fail: (String) -> Void,
+    url: URL?, error: Error?, chosen: String, quality: Double, fail: (String) -> Void,
     done: @escaping (ImagePickerAsset) -> Void, failed: () -> Void
   ) {
     guard let url else {
@@ -314,25 +465,63 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
       failed()
       return
     }
-    let mimeType = type?.preferredMIMEType
     let fileSize = (try? FileManager.default.attributesOfItem(atPath: destination.path))?[
       .size] as? NSNumber
-    let asset = { (width: Double, height: Double) in
-      ImagePickerAsset(
-        uri: destination.absoluteString, width: width, height: height, mimeType: mimeType,
-        fileName: destination.lastPathComponent, fileSize: fileSize?.doubleValue)
-    }
     if !isVideo {
+      // quality below 1 recompresses jpeg-family captures; png and bmp
+      // keep their pixels, like expo.
+      let lower = ext.lowercased()
+      if quality < 1 && lower != "png" && lower != "bmp" {
+        if let compressed = compressImage(destination, quality: quality) {
+          done(compressed)
+          return
+        }
+      }
       let size = imageSize(destination)
-      done(asset(size.width, size.height))
+      done(
+        ImagePickerAsset(
+          uri: destination.absoluteString, width: size.width, height: size.height,
+          mimeType: type?.preferredMIMEType, fileName: destination.lastPathComponent,
+          fileSize: fileSize?.doubleValue, duration: nil, type: .image))
       return
     }
+    let mimeType = type?.preferredMIMEType
     AVURLAsset(url: destination).loadTracks(withMediaType: .video) { tracks, _ in
       // naturalSize is the encoded size; rotation handling stays out of
       // this small api.
       let size = tracks?.first?.naturalSize ?? .zero
-      done(asset(Double(size.width), Double(size.height)))
+      let durationMs = CMTimeGetSeconds(AVURLAsset(url: destination).duration)
+      done(
+        ImagePickerAsset(
+          uri: destination.absoluteString, width: Double(size.width),
+          height: Double(size.height), mimeType: mimeType,
+          fileName: destination.lastPathComponent, fileSize: fileSize?.doubleValue,
+          duration: durationMs.isFinite ? durationMs * 1000 : nil, type: .video))
     }
+  }
+
+  // recompress a copied image to jpeg at the requested quality, replacing
+  // the file. null when the image did not decode.
+  private static func compressImage(_ url: URL, quality: Double) -> ImagePickerAsset? {
+    guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+      let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil)
+    else {
+      return nil
+    }
+    let image = UIImage(cgImage: cgImage)
+    guard let data = image.jpegData(compressionQuality: quality) else { return nil }
+    let destination = url.deletingPathExtension().appendingPathExtension("jpg")
+    do {
+      try data.write(to: destination, options: .atomic)
+      if destination != url { try? FileManager.default.removeItem(at: url) }
+    } catch {
+      return nil
+    }
+    let size = imageSize(destination)
+    return ImagePickerAsset(
+      uri: destination.absoluteString, width: size.width, height: size.height,
+      mimeType: "image/jpeg", fileName: destination.lastPathComponent,
+      fileSize: Double(data.count), duration: nil, type: .image)
   }
 
   // MARK: interactive dismiss
@@ -436,11 +625,11 @@ final class HybridOneImagePickerDelegate: NSObject, PHPickerViewControllerDelega
     _ picker: UIImagePickerController,
     didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
   ) {
-    owner?.cameraDidFinish(picker, image: info[.originalImage] as? UIImage)
+    owner?.pickerDidFinish(picker, info: info)
   }
 
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    owner?.cameraDidCancel(picker)
+    owner?.pickerDidCancel(picker)
   }
 
   func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {

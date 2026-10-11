@@ -35,7 +35,13 @@ data class ImagePickerAsset(
   val fileName: String?,
   @DoNotStrip
   @Keep
-  val fileSize: Double?
+  val fileSize: Double?,
+  @DoNotStrip
+  @Keep
+  val duration: Double?,
+  @DoNotStrip
+  @Keep
+  val type: ImagePickerAssetType?
 ) {
   /* primary constructor */
 
@@ -48,6 +54,8 @@ data class ImagePickerAsset(
       && Objects.deepEquals(this.mimeType, other.mimeType)
       && Objects.deepEquals(this.fileName, other.fileName)
       && Objects.deepEquals(this.fileSize, other.fileSize)
+      && Objects.deepEquals(this.duration, other.duration)
+      && Objects.deepEquals(this.type, other.type)
   }
 
   override fun hashCode(): Int {
@@ -57,7 +65,9 @@ data class ImagePickerAsset(
       height,
       mimeType,
       fileName,
-      fileSize
+      fileSize,
+      duration,
+      type
     ).contentDeepHashCode()
   }
 
@@ -69,8 +79,8 @@ data class ImagePickerAsset(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(uri: String, width: Double, height: Double, mimeType: String?, fileName: String?, fileSize: Double?): ImagePickerAsset {
-      return ImagePickerAsset(uri, width, height, mimeType, fileName, fileSize)
+    private fun fromCpp(uri: String, width: Double, height: Double, mimeType: String?, fileName: String?, fileSize: Double?, duration: Double?, type: ImagePickerAssetType?): ImagePickerAsset {
+      return ImagePickerAsset(uri, width, height, mimeType, fileName, fileSize, duration, type)
     }
   }
 }

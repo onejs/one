@@ -10,8 +10,12 @@
 #include <fbjni/fbjni.h>
 #include "ResolvedImagePickerOptions.hpp"
 
+#include "ImagePickerCropAspect.hpp"
 #include "ImagePickerMediaType.hpp"
+#include "JImagePickerCropAspect.hpp"
 #include "JImagePickerMediaType.hpp"
+#include <optional>
+#include <string>
 #include <vector>
 
 namespace margelo::nitro::one {
@@ -37,6 +41,16 @@ namespace margelo::nitro::one {
       jni::local_ref<jni::JArrayClass<JImagePickerMediaType>> mediaTypes = this->getFieldValue(fieldMediaTypes);
       static const auto fieldSelectionLimit = clazz->getField<double>("selectionLimit");
       double selectionLimit = this->getFieldValue(fieldSelectionLimit);
+      static const auto fieldAllowsEditing = clazz->getField<jboolean>("allowsEditing");
+      jboolean allowsEditing = this->getFieldValue(fieldAllowsEditing);
+      static const auto fieldAspect = clazz->getField<JImagePickerCropAspect>("aspect");
+      jni::local_ref<JImagePickerCropAspect> aspect = this->getFieldValue(fieldAspect);
+      static const auto fieldQuality = clazz->getField<double>("quality");
+      double quality = this->getFieldValue(fieldQuality);
+      static const auto fieldVideoMaxDuration = clazz->getField<double>("videoMaxDuration");
+      double videoMaxDuration = this->getFieldValue(fieldVideoMaxDuration);
+      static const auto fieldVideoQuality = clazz->getField<jni::JString>("videoQuality");
+      jni::local_ref<jni::JString> videoQuality = this->getFieldValue(fieldVideoQuality);
       return ResolvedImagePickerOptions(
         [&](auto&& __input) {
           size_t __size = __input->size();
@@ -48,7 +62,12 @@ namespace margelo::nitro::one {
           }
           return __vector;
         }(mediaTypes),
-        selectionLimit
+        selectionLimit,
+        static_cast<bool>(allowsEditing),
+        aspect != nullptr ? std::make_optional(aspect->toCpp()) : std::nullopt,
+        quality,
+        videoMaxDuration,
+        videoQuality->toStdString()
       );
     }
 
@@ -58,7 +77,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JResolvedImagePickerOptions::javaobject> fromCpp(const ResolvedImagePickerOptions& value) {
-      using JSignature = JResolvedImagePickerOptions(jni::alias_ref<jni::JArrayClass<JImagePickerMediaType>>, double);
+      using JSignature = JResolvedImagePickerOptions(jni::alias_ref<jni::JArrayClass<JImagePickerMediaType>>, double, jboolean, jni::alias_ref<JImagePickerCropAspect>, double, double, jni::alias_ref<jni::JString>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -73,7 +92,12 @@ namespace margelo::nitro::one {
           }
           return __array;
         }(value.mediaTypes),
-        value.selectionLimit
+        value.selectionLimit,
+        value.allowsEditing,
+        value.aspect.has_value() ? JImagePickerCropAspect::fromCpp(value.aspect.value()) : nullptr,
+        value.quality,
+        value.videoMaxDuration,
+        jni::make_jstring(value.videoQuality)
       );
     }
   };

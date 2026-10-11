@@ -30,9 +30,14 @@
 
 // Forward declaration of `ImagePickerMediaType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ImagePickerMediaType; }
+// Forward declaration of `ImagePickerCropAspect` to properly resolve imports.
+namespace margelo::nitro::one { struct ImagePickerCropAspect; }
 
 #include "ImagePickerMediaType.hpp"
 #include <vector>
+#include "ImagePickerCropAspect.hpp"
+#include <optional>
+#include <string>
 
 namespace margelo::nitro::one {
 
@@ -43,10 +48,15 @@ namespace margelo::nitro::one {
   public:
     std::vector<ImagePickerMediaType> mediaTypes     SWIFT_PRIVATE;
     double selectionLimit     SWIFT_PRIVATE;
+    bool allowsEditing     SWIFT_PRIVATE;
+    std::optional<ImagePickerCropAspect> aspect     SWIFT_PRIVATE;
+    double quality     SWIFT_PRIVATE;
+    double videoMaxDuration     SWIFT_PRIVATE;
+    std::string videoQuality     SWIFT_PRIVATE;
 
   public:
     ResolvedImagePickerOptions() = default;
-    explicit ResolvedImagePickerOptions(std::vector<ImagePickerMediaType> mediaTypes, double selectionLimit): mediaTypes(mediaTypes), selectionLimit(selectionLimit) {}
+    explicit ResolvedImagePickerOptions(std::vector<ImagePickerMediaType> mediaTypes, double selectionLimit, bool allowsEditing, std::optional<ImagePickerCropAspect> aspect, double quality, double videoMaxDuration, std::string videoQuality): mediaTypes(mediaTypes), selectionLimit(selectionLimit), allowsEditing(allowsEditing), aspect(aspect), quality(quality), videoMaxDuration(videoMaxDuration), videoQuality(videoQuality) {}
 
   public:
     friend bool operator==(const ResolvedImagePickerOptions& lhs, const ResolvedImagePickerOptions& rhs) = default;
@@ -63,13 +73,23 @@ namespace margelo::nitro {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::one::ResolvedImagePickerOptions(
         JSIConverter<std::vector<margelo::nitro::one::ImagePickerMediaType>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "mediaTypes"))),
-        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "selectionLimit")))
+        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "selectionLimit"))),
+        JSIConverter<bool>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "allowsEditing"))),
+        JSIConverter<std::optional<margelo::nitro::one::ImagePickerCropAspect>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "aspect"))),
+        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "quality"))),
+        JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "videoMaxDuration"))),
+        JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "videoQuality")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::ResolvedImagePickerOptions& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "mediaTypes"), JSIConverter<std::vector<margelo::nitro::one::ImagePickerMediaType>>::toJSI(runtime, arg.mediaTypes));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "selectionLimit"), JSIConverter<double>::toJSI(runtime, arg.selectionLimit));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "allowsEditing"), JSIConverter<bool>::toJSI(runtime, arg.allowsEditing));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "aspect"), JSIConverter<std::optional<margelo::nitro::one::ImagePickerCropAspect>>::toJSI(runtime, arg.aspect));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "quality"), JSIConverter<double>::toJSI(runtime, arg.quality));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "videoMaxDuration"), JSIConverter<double>::toJSI(runtime, arg.videoMaxDuration));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "videoQuality"), JSIConverter<std::string>::toJSI(runtime, arg.videoQuality));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -82,6 +102,11 @@ namespace margelo::nitro {
       }
       if (!JSIConverter<std::vector<margelo::nitro::one::ImagePickerMediaType>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "mediaTypes")))) return false;
       if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "selectionLimit")))) return false;
+      if (!JSIConverter<bool>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "allowsEditing")))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::one::ImagePickerCropAspect>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "aspect")))) return false;
+      if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "quality")))) return false;
+      if (!JSIConverter<double>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "videoMaxDuration")))) return false;
+      if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "videoQuality")))) return false;
       return true;
     }
   };

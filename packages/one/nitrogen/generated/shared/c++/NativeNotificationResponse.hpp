@@ -33,6 +33,7 @@ namespace margelo::nitro::one { struct NativeNotification; }
 
 #include "NativeNotification.hpp"
 #include <string>
+#include <optional>
 
 namespace margelo::nitro::one {
 
@@ -43,10 +44,11 @@ namespace margelo::nitro::one {
   public:
     NativeNotification notification     SWIFT_PRIVATE;
     std::string actionIdentifier     SWIFT_PRIVATE;
+    std::optional<std::string> userText     SWIFT_PRIVATE;
 
   public:
     NativeNotificationResponse() = default;
-    explicit NativeNotificationResponse(NativeNotification notification, std::string actionIdentifier): notification(notification), actionIdentifier(actionIdentifier) {}
+    explicit NativeNotificationResponse(NativeNotification notification, std::string actionIdentifier, std::optional<std::string> userText): notification(notification), actionIdentifier(actionIdentifier), userText(userText) {}
 
   public:
     friend bool operator==(const NativeNotificationResponse& lhs, const NativeNotificationResponse& rhs) = default;
@@ -63,13 +65,15 @@ namespace margelo::nitro {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::one::NativeNotificationResponse(
         JSIConverter<margelo::nitro::one::NativeNotification>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "notification"))),
-        JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "actionIdentifier")))
+        JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "actionIdentifier"))),
+        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "userText")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::NativeNotificationResponse& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "notification"), JSIConverter<margelo::nitro::one::NativeNotification>::toJSI(runtime, arg.notification));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "actionIdentifier"), JSIConverter<std::string>::toJSI(runtime, arg.actionIdentifier));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "userText"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.userText));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -82,6 +86,7 @@ namespace margelo::nitro {
       }
       if (!JSIConverter<margelo::nitro::one::NativeNotification>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "notification")))) return false;
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "actionIdentifier")))) return false;
+      if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "userText")))) return false;
       return true;
     }
   };

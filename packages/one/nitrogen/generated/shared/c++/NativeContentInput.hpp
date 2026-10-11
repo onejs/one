@@ -47,10 +47,11 @@ namespace margelo::nitro::one {
     std::optional<std::shared_ptr<AnyMap>> data     SWIFT_PRIVATE;
     std::optional<bool> sound     SWIFT_PRIVATE;
     std::optional<double> badge     SWIFT_PRIVATE;
+    std::optional<std::string> categoryIdentifier     SWIFT_PRIVATE;
 
   public:
     NativeContentInput() = default;
-    explicit NativeContentInput(std::optional<std::string> title, std::optional<std::string> subtitle, std::optional<std::string> body, std::optional<std::shared_ptr<AnyMap>> data, std::optional<bool> sound, std::optional<double> badge): title(title), subtitle(subtitle), body(body), data(data), sound(sound), badge(badge) {}
+    explicit NativeContentInput(std::optional<std::string> title, std::optional<std::string> subtitle, std::optional<std::string> body, std::optional<std::shared_ptr<AnyMap>> data, std::optional<bool> sound, std::optional<double> badge, std::optional<std::string> categoryIdentifier): title(title), subtitle(subtitle), body(body), data(data), sound(sound), badge(badge), categoryIdentifier(categoryIdentifier) {}
 
   public:
     friend bool operator==(const NativeContentInput& lhs, const NativeContentInput& rhs) = default;
@@ -71,7 +72,8 @@ namespace margelo::nitro {
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "body"))),
         JSIConverter<std::optional<std::shared_ptr<AnyMap>>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "data"))),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "sound"))),
-        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "badge")))
+        JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "badge"))),
+        JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "categoryIdentifier")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::NativeContentInput& arg) {
@@ -82,6 +84,7 @@ namespace margelo::nitro {
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "data"), JSIConverter<std::optional<std::shared_ptr<AnyMap>>>::toJSI(runtime, arg.data));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "sound"), JSIConverter<std::optional<bool>>::toJSI(runtime, arg.sound));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "badge"), JSIConverter<std::optional<double>>::toJSI(runtime, arg.badge));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "categoryIdentifier"), JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.categoryIdentifier));
       return obj;
     }
     static inline bool canConvert(jsi::Runtime& runtime, const jsi::Value& value) {
@@ -98,6 +101,7 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<std::shared_ptr<AnyMap>>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "data")))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "sound")))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "badge")))) return false;
+      if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "categoryIdentifier")))) return false;
       return true;
     }
   };

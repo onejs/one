@@ -51,16 +51,19 @@ function launchLibrary(
   return native('launchLibrary').launchLibrary(resolved).then(toResult, rethrowNativeError)
 }
 
-// capture one still photo with the system camera. a denied permission, a
-// missing camera, and backing out all resolve { canceled: true, assets:
-// null }; check getCameraPermissions first when the distinction matters.
-// needs the camera permission declared through native.app imagePicker and
-// rerun through one prebuild; without it the call rejects.
+// capture one asset with the system camera: a still photo unless mediaTypes
+// is videos-only, which records one video. a denied permission, a missing
+// camera, and backing out all resolve { canceled: true, assets: null };
+// check getCameraPermissions first when the distinction matters. needs the
+// camera permission declared through native.app imagePicker and rerun
+// through one prebuild; without it the call rejects. camera video on ios
+// also needs the microphone string (native.app imagePicker.microphone),
+// since the recording carries audio.
 function launchCamera(
   options: ImagePickerOptions = {}
 ): Promise<ImagePickerResult> {
-  resolveCameraOptions(options)
-  return native('launchCamera').launchCamera().then(toResult, rethrowNativeError)
+  const resolved = resolveCameraOptions(options)
+  return native('launchCamera').launchCamera(resolved).then(toResult, rethrowNativeError)
 }
 
 // read the camera permission without prompting. outside the native pending

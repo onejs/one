@@ -18,14 +18,20 @@ public extension ResolvedImagePickerOptions {
   /**
    * Create a new instance of `ResolvedImagePickerOptions`.
    */
-  init(mediaTypes: [ImagePickerMediaType], selectionLimit: Double) {
+  init(mediaTypes: [ImagePickerMediaType], selectionLimit: Double, allowsEditing: Bool, aspect: ImagePickerCropAspect?, quality: Double, videoMaxDuration: Double, videoQuality: String) {
     self.init({ () -> bridge.std__vector_ImagePickerMediaType_ in
       var __vector = bridge.create_std__vector_ImagePickerMediaType_(mediaTypes.count)
       for __item in mediaTypes {
         __vector.push_back(__item)
       }
       return __vector
-    }(), selectionLimit)
+    }(), selectionLimit, allowsEditing, { () -> bridge.std__optional_ImagePickerCropAspect_ in
+      if let __unwrappedValue = aspect {
+        return bridge.create_std__optional_ImagePickerCropAspect_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), quality, videoMaxDuration, std.string(videoQuality))
   }
 
   @inline(__always)
@@ -36,5 +42,30 @@ public extension ResolvedImagePickerOptions {
   @inline(__always)
   var selectionLimit: Double {
     return self.__selectionLimit
+  }
+  
+  @inline(__always)
+  var allowsEditing: Bool {
+    return self.__allowsEditing
+  }
+  
+  @inline(__always)
+  var aspect: ImagePickerCropAspect? {
+    return self.__aspect.value
+  }
+  
+  @inline(__always)
+  var quality: Double {
+    return self.__quality
+  }
+  
+  @inline(__always)
+  var videoMaxDuration: Double {
+    return self.__videoMaxDuration
+  }
+  
+  @inline(__always)
+  var videoQuality: String {
+    return String(self.__videoQuality)
   }
 }
