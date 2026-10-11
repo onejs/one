@@ -47,7 +47,7 @@ Tick a box only with a receipt (SHA, run id or evidence path).
   27.1 rendering remains the existing pool gap, strict 27.0 guard passes.
   Per-cell RAN receipts: `/Users/n8/.local/share/one-realapps-s29251/final/`.
   Pin resolved at run start; later canaries are not accepted by these receipts.
-- [x] `bun create one` starters install and run from the published beta, not a
+- [x] `npx one` starters install and run from the published beta, not a
   workspace link. RAN 2026-10-10: Basic and Takeout scaffolded from published
   `create-vxrn@2.0.0-beta.362.1` (the version `one@beta` depends on) in
   `/tmp/one-starters-beta`, outside every repo. Basic pins `one`
