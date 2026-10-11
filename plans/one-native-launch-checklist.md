@@ -183,8 +183,43 @@ These are product choices. Launch does not block on them unless the owner says s
 
 - [ ] Android: `one-native-android-lane.md` (owner r60570). Compose gaps
   against Expo UI are listed in `one-native-coverage.md`.
-- [ ] web: every root service works or keeps the documented unavailable
-  contract (`one-native-launch.md`, web lane).
+- [x] web: every root service works or keeps the documented unavailable
+  contract (`one-native-launch.md`, web lane). RAN 2026-10-10 on v2-beta
+  `beba35c2b`: all 47 `One.*` roots probed through the public `One`
+  namespace in a real one-basic web build, dev (`one dev :4391`) and
+  production (`one build` + `one serve :4392`, 8 pages, secrets scan pass),
+  headless playwright chromium 145.0.7632.6 and webkit 26.0. TESTED main
+  suite (FileSystem, ImageManipulator, Device, Location, KeepAwake, Motion,
+  ScreenOrientation, Print, Share, Contacts, Speech, Audio, Blur, Mask,
+  One.UI.Image): dev and prod pass on both engines except KeepAwake (both
+  engines: installed playwright 1.58.2 rejects the `screen-wake-lock`
+  grant, so the page has no lock to request; adapter proven separately
+  with a seeded wakeLock: activate/isEnabled/release/invalid-input) and
+  Audio on chromium only (headless-shell fake mic `getUserMedia` never
+  resolves; raw-gum 8s timeout proves the harness gap before One code
+  runs; webkit records/pauses/resumes/plays/seeks/media-session fully).
+  TESTED phase-2 34/34 pass dev and prod: openURL resolves void, openShare
+  rejects `has no share sheet`, openSettings rejects `has no app settings
+  page`; AppInfo build/applicationId null; Database open/openAsync
+  reject `requires an iOS or Android build`, openKeyValue localStorage
+  roundtrips; Widgets writes no-op, LiveActivities starts reject, pushToken
+  null; LocalAuthentication unavailable, ProtectedStore rejects;
+  QuickActions inert lists; PhotoLibrary denied/empty; MapServices empty;
+  AppTracking denied; AppIcon unsupported; ScreenCapture unspecified state,
+  capture rejects; Purchases empty catalog, purchase rejects;
+  DeviceAttestation unavailable; Calendar denied/empty; Notifications
+  denied/inert, schedule and push-token reject; Clipboard bool/str;
+  Haptics no-op with validation; LaunchScreen no-op; Network
+  unknown/connected; Auth.Apple unavailable; Browser hints false,
+  openAuthSession rejects; ImagePicker/DocumentPicker sync validation;
+  SecureStore rejects (no cleartext fallback); Storage roundtrips; Updates
+  empty reads, check/fetch reject; BackgroundTasks validates, pending [];
+  AppIntents registers; StoreReview resolves; SwiftUI/Compose views throw
+  outside their builds. Zero page/runner errors in all four runs. No
+  service threw, hung or diverged: no product fix, no new test. Receipt:
+  tm task `t-mv31lmf9-xtu0`; evidence `/tmp/web-evidence-dev`,
+  `/tmp/web-evidence-prod`, `/tmp/phase2-dev.json`, `/tmp/phase2-prod.json`
+  (copied next to the handoff).
 - [ ] Peach: every `One.*` iOS API has a Peach seam and an oracle grade.
   Owner native-lead p63991, Contrast
   `plans/contrast/mobile-app/one-native-next.md` track 1 and
