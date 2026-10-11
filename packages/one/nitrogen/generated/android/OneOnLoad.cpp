@@ -70,6 +70,7 @@
 #include "JHybridOneShareSpec.hpp"
 #include "JHybridOneSpeechSpec.hpp"
 #include "JFunc_void_SpeechEvent.hpp"
+#include "JHybridOneStoreReviewSpec.hpp"
 #include "JHybridOneUpdatesSpec.hpp"
 #include "JFunc_void_std__optional_std__string_.hpp"
 #include <NitroModules/DefaultConstructableObject.hpp>
@@ -234,6 +235,14 @@ struct JHybridOnePrintSpecImpl: public jni::JavaClass<JHybridOnePrintSpecImpl, J
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOnePrintSpecImpl::javaobject()>();
     jni::local_ref<JHybridOnePrintSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOnePrintSpec();
+  }
+};
+struct JHybridOneStoreReviewSpecImpl: public jni::JavaClass<JHybridOneStoreReviewSpecImpl, JHybridOneStoreReviewSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneStoreReview;";
+  static std::shared_ptr<JHybridOneStoreReviewSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneStoreReviewSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneStoreReviewSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneStoreReviewSpec();
   }
 };
 struct JHybridOneQuickActionsSpecImpl: public jni::JavaClass<JHybridOneQuickActionsSpecImpl, JHybridOneQuickActionsSpec::JavaPart> {
@@ -433,6 +442,7 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneShareSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneSpeechSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_SpeechEvent_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneStoreReviewSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneUpdatesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_std__optional_std__string__cxx::registerNatives();
 
@@ -567,6 +577,12 @@ void registerAllNatives() {
     "OnePrint",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOnePrintSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneStoreReview",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneStoreReviewSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

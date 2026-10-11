@@ -113,6 +113,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneShareSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneStoreReviewSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp
 )
 
