@@ -321,6 +321,9 @@ describe('native source events', () => {
     )
     expect(glue).toContain('ClockInstance.onReady({ postEvent(channel, args([])) })')
     expect(glue).toContain('OneNativeSourceEmitter.send(channel, args)')
+    // the clock package has no views, so the subscribe cases must still see
+    // the args helper: it cannot live only in the view glue.
+    expect(glue).toContain('private static func args(_ values: [any Encodable]) -> String')
 
     const kotlin = nativeSourceContract('/app/native/Clock.kt', kotlinEvents)
     const kotlinGlue = renderKotlinSourceGlue('K_clock', kotlin).source

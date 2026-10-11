@@ -74,6 +74,11 @@ import SwiftUI
   private static func encodeAny(_ value: any Encodable) -> String {
     (try? encode(value)) ?? "null"
   }
+  // subscribe cases and view callbacks both encode callback arguments
+  // as a json array, so this helper stays outside the view-only glue.
+  private static func args(_ values: [any Encodable]) -> String {
+    "[" + values.map { encodeAny($0) }.joined(separator: ",") + "]"
+  }
   // native events post over the one event bridge on device; under wasi
   // there is no javascript runtime to receive them, so emitting traps.
   private static func postEvent(_ channel: String, _ args: String) {

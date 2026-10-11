@@ -104,6 +104,9 @@ describe('swift package native module', () => {
     const module = renderSwiftPackageModule(clock, 'ios', fixture.root)
     expect(module.code).toContain('events.native.js')
     expect(module.code).toContain('subscribeNativeSourceEvent("native_source.Clock", "onTick"')
+    // the clock package has no views: the subscribe glue it writes must
+    // still define the args helper the subscribe cases call.
+    expect(readFileSync(join(fixture.packageDir, '.one-native-source.swift.txt'), 'utf8')).toContain('private static func args(_ values: [any Encodable]) -> String')
   })
 
 })
