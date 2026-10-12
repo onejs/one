@@ -7,10 +7,31 @@ settingsEvaluated { settings ->
     if (one != null) one.projectDir = new File(sourceRoot, 'packages/one/android')
 }
 gradle.beforeProject { project ->
+    if (project.rootProject.findProject(':one') == null || project.rootProject.findProject(':app') == null) return
+    if (project.path == ':') {
+        // settings resolved installed dependencies in the generated consumer.
+        // relocate One's autolinking input together with its Gradle project.
+        def installed = project.layout.buildDirectory.file('generated/autolinking/autolinking.json').get().asFile
+        def config = new groovy.json.JsonSlurper().parse(installed)
+        def oneRoot = new File(sourceRoot, 'packages/one')
+        def one = config.dependencies.one
+        one.root = oneRoot.absolutePath
+        one.platforms.android.sourceDir = new File(oneRoot, 'android').absolutePath
+        one.platforms.android.cmakeListsPath = new File(oneRoot, 'android/portal/CMakeLists.txt').absolutePath
+        def schema = new groovy.json.JsonSlurper().parse(new File(oneRoot, 'schema.json'))
+        one.platforms.android.componentDescriptors = schema.components.findAll { !it.interfaceOnly }
+            .collect { "${it.name}ComponentDescriptor" } + ['OnePortalComponentDescriptor']
+        project.layout.buildDirectory.set(new File(proofRoot, 'root-build'))
+        def destination = project.layout.buildDirectory.file('generated/autolinking/autolinking.json').get().asFile
+        destination.parentFile.mkdirs()
+        destination.text = groovy.json.JsonOutput.toJson(config)
+        return
+    }
     if (project.path != ':app') return
     project.afterEvaluate {
         project.dependencies.add('implementation', 'androidx.work:work-runtime-ktx:2.9.0')
         project.layout.buildDirectory.set(new File(proofRoot, 'build'))
+        project.android.externalNativeBuild.cmake.buildStagingDirectory = new File(proofRoot, '.cxx')
         project.android.defaultConfig.applicationId = 'dev.onejs.backgroundproof'
         project.android.sourceSets.main.java.setSrcDirs([new File(proofRoot, 'src')])
         project.android.sourceSets.main.manifest.srcFile(new File(proofRoot, 'AndroidManifest.xml'))

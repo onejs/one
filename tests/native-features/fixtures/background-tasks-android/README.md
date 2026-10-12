@@ -20,11 +20,14 @@ heavy`. Build a generated native-features Android consumer with Gradle 9.4.1,
 `-I <this-directory>/proof.init.gradle`,
 `-Done.services.sourceRoot=<checkout>`, `-PreactNativeArchitectures=arm64-v8a`
 and `:app:assembleDebug`, also under a heavy window. The init script redirects
-One to this checkout and replaces only the proof app's manifest, sources and
-output directory. Metro explicitly indexes both the checkout root and
+One and its autolinking/codegen paths to this checkout and replaces only the
+proof app's manifest, sources and output directories. The CMake staging
+directory and relocated autolinking input also stay inside this fixture.
+Metro explicitly indexes both the checkout root and
 external installed dependencies; the programmatic bundle API does not add
 the project root to its crawl roots. The evidence captures the source commit
-and both bundle and APK SHA-256 digests. It leaves the generated consumer's sources untouched.
+and both bundle and APK SHA-256 digests. It leaves the generated consumer's
+sources untouched.
 
 On a claimed, idle API 37 device, unplug the emulated battery before launching.
 The mounted fixture schedules one delayed refresh and three charging-gated
