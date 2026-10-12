@@ -144,6 +144,7 @@ jobs:
         with:
           name: one-native-features-ios
           path: |
+            tests/native-features/node_modules/.test/*-server.log
             /tmp/appium.log
             /tmp/appium-screenshots
             /tmp/one-native-zoom-e2e/*.json*
