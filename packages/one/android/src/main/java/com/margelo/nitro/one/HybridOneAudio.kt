@@ -18,6 +18,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.facebook.react.bridge.ReactApplicationContext
@@ -27,6 +28,7 @@ import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
 import java.io.File
 import java.util.UUID
+import java.util.concurrent.CountDownLatch
 
 // audio playback and recording over MediaPlayer, MediaRecorder,
 // AudioManager and MediaSession. everything runs on the main thread
@@ -84,6 +86,9 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         permission?.reject(OneNativeError(E_PERMISSION, "Audio.requestRecordingPermission: torn down mid-request"))
         main.post {
             clearPlayer()
+            val managed = managedPlayers.values.toList()
+            managedPlayers.clear()
+            managed.forEach { releaseManagedPlayer(it) }
             teardownRecorder(deleteFile = true)
             abandonFocus()
         }
@@ -568,6 +573,358 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         }
     }
 
+    override fun createPlayer(sourceUri: String?, headers: Map<String, String>?): String =
+        mainSync("createPlayer") {
+            val managed = ManagedAudioPlayer()
+            if (sourceUri != null) attachPlayerSource(managed, sourceUri, headers)
+            val id = UUID.randomUUID().toString()
+            managed.debugId = id.take(8)
+            managedPlayers[id] = managed
+            Log.d("OneAudioDebug", "create ${managed.debugId} map=${managedPlayers.size}")
+            id
+        }
+
+    override fun playerPlay(playerId: String) {
+        mainSync("playerPlay") {
+            val managed = managedPlayer(playerId)
+            Log.d("OneAudioDebug", "play ${managed.debugId} paused=${managed.paused} prepared=${managed.prepared}")
+            requestFocus()
+            val current = managed.player
+            if (managed.ended && current != null && managed.prepared) {
+                try { current.seekTo(0) } catch (e: Exception) { }
+                managed.ended = false
+            }
+            managed.paused = false
+            if (current != null && managed.prepared) {
+                applyPlayerRate(managed, current)
+                try { current.start() } catch (e: Exception) {
+                    throw OneNativeError(E_STATE, "Audio.playerPlay: the audio operation is not ready")
+                }
+            }
+        }
+    }
+
+    override fun playerPause(playerId: String) {
+        mainSync("playerPause") {
+            val managed = managedPlayer(playerId)
+            try {
+                if (managed.player?.isPlaying == true) managed.player?.pause()
+            } catch (e: Exception) {
+            }
+            managed.paused = true
+        }
+    }
+
+    override fun playerSeek(
+        playerId: String,
+        seconds: Double,
+        toleranceBeforeMs: Double?,
+        toleranceAfterMs: Double?
+    ): Promise<Unit> {
+        val promise = Promise<Unit>()
+        main.post {
+            val managed = try {
+                managedPlayer(playerId)
+            } catch (e: OneNativeError) {
+                promise.reject(e)
+                return@post
+            }
+            if (!seconds.isFinite() || seconds < 0) {
+                promise.reject(OneNativeError(E_POSITION, "Audio.playerSeek: the seek position must be finite and nonnegative"))
+                return@post
+            }
+            val current = managed.player
+            if (current == null || !managed.prepared) {
+                promise.reject(OneNativeError(E_STATE, "Audio.playerSeek: the audio operation is not ready"))
+                return@post
+            }
+            val generation = ++managed.seekGeneration
+            try {
+                current.setOnSeekCompleteListener { mp ->
+                    if (generation != managed.seekGeneration || managed.player !== mp) return@setOnSeekCompleteListener
+                    managed.ended = false
+                    promise.resolve(Unit)
+                }
+                val ms = (seconds * 1000).toLong().coerceAtLeast(0L)
+                if (Build.VERSION.SDK_INT >= 26) {
+                    current.seekTo(ms, MediaPlayer.SEEK_CLOSEST_SYNC)
+                } else {
+                    current.seekTo(ms.coerceAtMost(Int.MAX_VALUE.toLong()).toInt())
+                }
+            } catch (e: Exception) {
+                promise.reject(OneNativeError(E_STATE, "Audio.playerSeek: the audio operation is not ready"))
+            }
+        }
+        return promise
+    }
+
+    override fun playerReplace(playerId: String, sourceUri: String?, headers: Map<String, String>?) {
+        mainSync("playerReplace") {
+            val managed = managedPlayer(playerId)
+            releaseManagedPlayer(managed)
+            if (sourceUri != null) attachPlayerSource(managed, sourceUri, headers)
+            managed.paused = true
+            managed.ended = false
+        }
+    }
+
+    override fun removePlayer(playerId: String) {
+        // TEMP-AUDIODEBUG: removal visibility. REVERT.
+        Log.d("OneAudioDebug", "remove ${playerId.take(8)}")
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            managedPlayers.remove(playerId)?.let { releaseManagedPlayer(it) }
+            return
+        }
+        val latch = CountDownLatch(1)
+        main.post {
+            managedPlayers.remove(playerId)?.let { releaseManagedPlayer(it) }
+            latch.countDown()
+        }
+        latch.await()
+    }
+
+    override fun getPlayerStatus(playerId: String): AudioPlayerStatus =
+        mainSync("getPlayerStatus") { playerStatus(managedPlayer(playerId)) }
+
+    override fun setPlayerRate(playerId: String, rate: Double, pitchQuality: PitchCorrectionQuality?) {
+        mainSync("setPlayerRate") {
+            val managed = managedPlayer(playerId)
+            if (!rate.isFinite() || rate < 0.1 || rate > 2) {
+                throw OneNativeError(E_RATE, "Audio.setPlayerRate: the playback rate must be within 0.1 to 2")
+            }
+            managed.rate = rate
+            if (pitchQuality != null) managed.pitchQuality = pitchQuality
+            val current = managed.player
+            if (current != null && managed.prepared && !managed.paused) applyPlayerRate(managed, current)
+        }
+    }
+
+    override fun setPlayerVolume(playerId: String, volume: Double) {
+        mainSync("setPlayerVolume") {
+            val managed = managedPlayer(playerId)
+            managed.volume = volume.coerceIn(0.0, 1.0)
+            applyPlayerVolume(managed)
+        }
+    }
+
+    override fun setPlayerMuted(playerId: String, muted: Boolean) {
+        mainSync("setPlayerMuted") {
+            val managed = managedPlayer(playerId)
+            managed.muted = muted
+            applyPlayerVolume(managed)
+        }
+    }
+
+    override fun setPlayerLoop(playerId: String, loop: Boolean) {
+        mainSync("setPlayerLoop") {
+            val managed = managedPlayer(playerId)
+            managed.loop = loop
+            try { managed.player?.isLooping = loop } catch (e: Exception) { }
+        }
+    }
+
+    override fun setPlayerPitchCorrection(playerId: String, enabled: Boolean) {
+        mainSync("setPlayerPitchCorrection") {
+            val managed = managedPlayer(playerId)
+            managed.pitchCorrection = enabled
+            val current = managed.player
+            if (current != null && managed.prepared) applyPlayerRate(managed, current)
+        }
+    }
+
+    private class ManagedAudioPlayer {
+        // TEMP-AUDIODEBUG: short id for logcat correlation. REVERT.
+        var debugId: String = "?"
+        var anomalyLogged: Boolean = false
+        var player: MediaPlayer? = null
+        var prepared = false
+        var paused = true
+        var ended = false
+        var loop = false
+        var muted = false
+        var volume = 1.0
+        var rate = 1.0
+        var pitchCorrection = true
+        var pitchQuality: PitchCorrectionQuality = PitchCorrectionQuality.MEDIUM
+        var error: String? = null
+        var seekGeneration = 0
+    }
+
+    private val managedPlayers = mutableMapOf<String, ManagedAudioPlayer>()
+
+    private fun <T> mainSync(verb: String, work: () -> T): T {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            try {
+                return work()
+            } catch (error: OneNativeError) {
+                throw error
+            } catch (error: Exception) {
+                throw OneNativeError(E_FAILED, "Audio.$verb: ${error.message ?: "the audio operation failed"}")
+            }
+        }
+        var result: Any? = null
+        var failure: Exception? = null
+        val latch = CountDownLatch(1)
+        main.post {
+            try {
+                result = work()
+            } catch (error: OneNativeError) {
+                failure = error
+            } catch (error: Exception) {
+                failure = OneNativeError(E_FAILED, "Audio.$verb: ${error.message ?: "the audio operation failed"}")
+            } finally {
+                latch.countDown()
+            }
+        }
+        latch.await()
+        failure?.let { throw it }
+        @Suppress("UNCHECKED_CAST")
+        return result as T
+    }
+
+    private fun managedPlayer(playerId: String): ManagedAudioPlayer =
+        managedPlayers[playerId]
+            ?: throw OneNativeError(E_STATE, "Audio: the audio player id is not active")
+
+    private fun attachPlayerSource(
+        managed: ManagedAudioPlayer,
+        sourceUri: String,
+        headers: Map<String, String>?
+    ) {
+        val parsed = try {
+            Uri.parse(sourceUri)
+        } catch (e: Exception) {
+            null
+        }
+        if (parsed == null || (parsed.scheme != "file" && parsed.scheme != "https") ||
+            parsed.path.isNullOrEmpty() ||
+            (parsed.scheme == "file" && (!parsed.query.isNullOrEmpty() || !parsed.fragment.isNullOrEmpty()))
+        ) {
+            throw OneNativeError(E_URI, "Audio.createPlayer: the audio URI must use file:// or https://")
+        }
+        if (parsed.scheme == "file" && !File(parsed.path!!).exists()) {
+            throw OneNativeError(E_FILE, "Audio.createPlayer: the audio file does not exist")
+        }
+        try {
+            val fresh = MediaPlayer()
+            fresh.setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+            )
+            if (parsed.scheme == "file") {
+                fresh.setDataSource(parsed.path!!)
+            } else if (headers.isNullOrEmpty()) {
+                fresh.setDataSource(context, parsed)
+            } else {
+                fresh.setDataSource(context, parsed, headers)
+            }
+            fresh.isLooping = managed.loop
+            applyPlayerVolume(managed, fresh)
+            fresh.setOnPreparedListener { mp ->
+                if (managed.player !== mp) {
+                    Log.d("OneAudioDebug", "prepared-stale ${managed.debugId}")
+                    return@setOnPreparedListener
+                }
+                managed.prepared = true
+                managed.error = null
+                applyPlayerRate(managed, mp)
+                Log.d("OneAudioDebug", "prepared ${managed.debugId} paused=${managed.paused} ended=${managed.ended}")
+                if (!managed.paused && !managed.ended) {
+                    try { mp.start() } catch (e: Exception) { }
+                }
+            }
+            fresh.setOnCompletionListener { mp ->
+                if (managed.player !== mp) return@setOnCompletionListener
+                managed.ended = true
+                // TEMP-AUDIODEBUG: completion visibility. REVERT.
+                Log.d("OneAudioDebug", "complete ${managed.debugId}")
+            }
+            fresh.setOnErrorListener { mp, what, extra ->
+                if (managed.player !== mp) return@setOnErrorListener true
+                managed.error = "playback failed ($what/$extra)"
+                true
+            }
+            managed.player = fresh
+            managed.prepared = false
+            managed.error = null
+            fresh.prepareAsync()
+        } catch (e: OneNativeError) {
+            throw e
+        } catch (e: Exception) {
+            releaseManagedPlayer(managed)
+            throw OneNativeError(E_FAILED, "Audio.createPlayer: ${e.message ?: "playback could not start"}")
+        }
+    }
+
+    private fun releaseManagedPlayer(managed: ManagedAudioPlayer) {
+        managed.seekGeneration += 1
+        val current = managed.player
+        managed.player = null
+        managed.prepared = false
+        try {
+            current?.reset()
+            current?.release()
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun playerStatus(managed: ManagedAudioPlayer): AudioPlayerStatus {
+        val current = managed.player
+        val playing = try {
+            current?.isPlaying == true
+        } catch (e: Exception) {
+            false
+        }
+        val position = if (managed.prepared && current != null) {
+            try { current.currentPosition / 1000.0 } catch (e: Exception) { 0.0 }
+        } else 0.0
+        // TEMP-AUDIODEBUG: log only the anomaly (mp claims playing while paused). REVERT.
+        if (playing && managed.paused && !managed.anomalyLogged) {
+            managed.anomalyLogged = true
+            val duration = try { current?.duration ?: -1 } catch (e: Exception) { -2 }
+            Log.d("OneAudioDebug", "ANOMALY ${managed.debugId} pos=$position dur=$duration prepared=${managed.prepared} ended=${managed.ended} loop=${managed.loop} err=${managed.error}")
+        }
+        val duration = if (managed.prepared && current != null) {
+            try {
+                val ms = current.duration
+                if (ms > 0) ms / 1000.0 else 0.0
+            } catch (e: Exception) { 0.0 }
+        } else 0.0
+        return AudioPlayerStatus(
+            currentTime = position.coerceAtLeast(0.0),
+            duration = duration,
+            playing = playing,
+            paused = managed.paused,
+            isLoaded = managed.prepared && current != null,
+            isBuffering = current != null && !managed.prepared,
+            loop = managed.loop,
+            muted = managed.muted,
+            volume = managed.volume,
+            playbackRate = managed.rate,
+            shouldCorrectPitch = managed.pitchCorrection,
+            error = managed.error,
+            didJustFinish = managed.ended
+        )
+    }
+
+    private fun applyPlayerRate(managed: ManagedAudioPlayer, current: MediaPlayer) {
+        if (Build.VERSION.SDK_INT < 23) return
+        try {
+            val params = current.playbackParams
+            params.speed = managed.rate.toFloat()
+            params.pitch = if (managed.pitchCorrection) 1.0f else managed.rate.toFloat()
+            current.playbackParams = params
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun applyPlayerVolume(managed: ManagedAudioPlayer, current: MediaPlayer? = managed.player) {
+        val effective = if (managed.muted) 0.0f else managed.volume.toFloat()
+        try { current?.setVolume(effective, effective) } catch (e: Exception) { }
+    }
+
     private fun handleFocusChange(change: Int) {
         main.post {
             when (change) {
@@ -580,6 +937,13 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
                     } catch (e: Exception) {
                     }
                     if (player != null) playbackPaused = true
+                    for (managed in managedPlayers.values) {
+                        try {
+                            if (managed.player?.isPlaying == true) managed.player?.pause()
+                        } catch (e: Exception) {
+                        }
+                        managed.paused = true
+                    }
                     if (Build.VERSION.SDK_INT >= 24 && recorder != null && !recordPaused) {
                         try {
                             recorder?.pause()
@@ -957,6 +1321,7 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
         private const val E_POSITION = "E_AUDIO_POSITION"
         private const val E_METADATA = "E_AUDIO_METADATA"
         private const val E_ARTWORK = "E_AUDIO_ARTWORK"
+        private const val E_RATE = "E_AUDIO_RATE"
         private const val E_FAILED = "E_AUDIO_FAILED"
         private const val REQUEST_PERMISSION = 0x2F01
     }

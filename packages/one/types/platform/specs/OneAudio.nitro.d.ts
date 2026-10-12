@@ -30,6 +30,22 @@ export interface AudioNowPlayingInfo {
     albumTitle?: string;
     artworkUri?: string;
 }
+export type PitchCorrectionQuality = 'low' | 'medium' | 'high';
+export interface AudioPlayerStatus {
+    currentTime: number;
+    duration: number;
+    playing: boolean;
+    paused: boolean;
+    isLoaded: boolean;
+    isBuffering: boolean;
+    loop: boolean;
+    muted: boolean;
+    volume: number;
+    playbackRate: number;
+    shouldCorrectPitch: boolean;
+    error?: string;
+    didJustFinish: boolean;
+}
 export type AudioRemoteCommandType = 'play' | 'pause' | 'seek';
 export interface AudioRemoteCommandEvent {
     type: AudioRemoteCommandType;
@@ -56,5 +72,17 @@ export interface OneAudio extends HybridObject<{
     setNowPlayingInfo(info: AudioNowPlayingInfo): Promise<void>;
     clearNowPlayingInfo(): Promise<void>;
     addRemoteCommandListener(onEvent: (event: AudioRemoteCommandEvent) => void): () => void;
+    createPlayer(sourceUri?: string, headers?: Record<string, string>): string;
+    playerPlay(playerId: string): void;
+    playerPause(playerId: string): void;
+    playerSeek(playerId: string, seconds: number, toleranceBeforeMs?: number, toleranceAfterMs?: number): Promise<void>;
+    playerReplace(playerId: string, sourceUri?: string, headers?: Record<string, string>): void;
+    removePlayer(playerId: string): void;
+    getPlayerStatus(playerId: string): AudioPlayerStatus;
+    setPlayerRate(playerId: string, rate: number, pitchQuality?: PitchCorrectionQuality): void;
+    setPlayerVolume(playerId: string, volume: number): void;
+    setPlayerMuted(playerId: string, muted: boolean): void;
+    setPlayerLoop(playerId: string, loop: boolean): void;
+    setPlayerPitchCorrection(playerId: string, enabled: boolean): void;
 }
 //# sourceMappingURL=OneAudio.nitro.d.ts.map

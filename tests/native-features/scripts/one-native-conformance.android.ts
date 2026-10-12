@@ -2873,6 +2873,65 @@ async function run(config: Config) {
       'one-native-file-system-run'
     )
 
+    // audio players: independent instances with rate, loop and finish.
+    await freshLeg('audio-players')
+    await tapNavigation(config, 'nav-one-native-audio')
+    await expect(
+      'system-audio-players-mounted',
+      (nodes) => textIncludes(nodes, 'Players: idle'),
+      'one-native-audio-players-run'
+    )
+    tapFresh(config, 'system-audio-players-run', {
+      id: 'one-native-audio-players-run',
+      clickable: true,
+    })
+    await expect(
+      'system-audio-players-lifecycle',
+      (nodes) =>
+        textIncludes(
+          nodes,
+          'Players: playing:true,paused:true,rate:1.5,pos:true,duration:60,' +
+            'listener:true,looped:true,finish:true,errors:E_AUDIO_RATE'
+        ),
+      'one-native-audio-players-run'
+    )
+    // the hooks rows sit below the fold: bring each into the viewport
+    // before tapping, like the clipboard extras above.
+    const tapHook = (name: string, testID: string) => {
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const current = snapshot(config)
+        const rows = matching(current.nodes, { id: testID })
+        const viewport = applicationBounds(current.nodes)
+        const bounds = rows.length === 1 ? rows[0].bounds : undefined
+        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
+        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
+        if (
+          bounds &&
+          x > viewport.left &&
+          x < viewport.right &&
+          y > viewport.top &&
+          y < viewport.bottom
+        ) {
+          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+          return
+        }
+        swipeFresh(config, name)
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    tapHook('system-audio-hooks-prepare', 'one-native-audio-hooks-prepare')
+    await expect(
+      'system-audio-hooks-mounted',
+      (nodes) => textIncludes(nodes, 'Hooks: loaded:true playing:false run:idle'),
+      'one-native-audio-hooks-prepare'
+    )
+    tapHook('system-audio-hooks-run', 'one-native-audio-hooks-run')
+    await expect(
+      'system-audio-hooks-lifecycle',
+      (nodes) => textIncludes(nodes, 'Hooks: loaded:true playing:true run:played'),
+      'one-native-audio-hooks-run'
+    )
+
     // Device: full snapshot from Build/Locale, emulator flagged.
     await freshLeg('device')
     await tapNavigation(config, 'nav-one-native-device')

@@ -112,9 +112,74 @@ the native bridge. Control Center and Lock Screen stayed empty; the cause is
 unconfirmed. Confirm the visible controls, tile removal, and remote callbacks
 on a device before relying on them in production.
 
+## Player instances
+
+`One.Audio.createPlayer()` returns an independent `AudioPlayer` for each
+track, mirroring `expo-audio`. Players are independent of each other and of
+the singleton `play()` above; each holds its own position, volume, and rate.
+
+```tsx
+import { One, useAudioPlayer, useAudioPlayerStatus } from 'one'
+
+const player = One.Audio.createPlayer('https://example.com/episode.m4a')
+player.setPlaybackRate(1.5)
+player.play()
+
+function Track() {
+  const player = useAudioPlayer('https://example.com/episode.m4a')
+  const status = useAudioPlayerStatus(player)
+  return <>{status.playing ? 'playing' : 'paused'}</>
+}
+```
+
+The source is a URI string, `{ uri, headers, name }`, or `null` for a player
+with no media yet. Numeric asset ids throw: bundle audio as a file and pass
+its URI. Options are `{ updateInterval, crossOrigin }`: the status polling
+interval in milliseconds (default 500, driving `addListener` and
+`useAudioPlayerStatus`) and the web-only CORS mode. `useAudioPlayer(source,
+options)` creates one player, replaces its source when the source value
+changes, and removes it on unmount. `useAudioPlayerStatus(player)` returns
+the current status and re-renders on every update.
+
+Time reads in seconds: `currentTime` and `duration` (`0` while unknown),
+`playing`, `paused`, `isLoaded`, and `isBuffering`. `loop`, `muted`,
+`volume` (0 to 1), and `shouldCorrectPitch` (default `true`) read and write;
+`playbackRate` reads the current rate. `isAudioSamplingSupported` is
+`false`. `play()` starts playback, loading first when needed, and restarts a
+naturally ended track from the beginning; `pause()` pauses.
+`seekTo(seconds, toleranceMillisBefore?, toleranceMillisAfter?)` returns a
+promise that resolves when the seek lands (tolerances are iOS only).
+`replace(source)` swaps the media, clearing any error, and `remove()`
+releases the player idempotently. Calling any other method after `remove()`
+throws.
+
+`getStatus()` reads the current status synchronously (Expo apps use the
+status hook instead): `{ currentTime, didJustFinish, duration, error, id,
+isBuffering, isLoaded, loop, mute, playbackRate, playing, shouldCorrectPitch
+}`. `mute` mirrors the `muted` property under Expo's status field name.
+`didJustFinish` is set when a track ends naturally and cleared by `play()`,
+`seekTo()`, or `replace()`. `error` carries a load or playback failure and
+clears on `replace()` or successful playback. `addListener('playbackStatusUpdate',
+listener)` emits the status on the update interval plus one initial emit;
+`removeAllListeners()` stops the polling.
+
+`setPlaybackRate(rate, pitchCorrectionQuality?)` sets the speed without
+reloading. The range is 0 to 2 on iOS and web and 0.1 to 2 on Android;
+outside it the call throws `E_AUDIO_RATE`. Pitch quality is `'low'`,
+`'medium'`, or `'high'` (iOS only, default `'medium'`) and applies while
+pitch correction is on.
+
+Instance playback activates the shared playback category like the singleton
+API and never deactivates it on `remove()`. Not covered: per-player lock
+screen methods, audio sampling, the status live-stream and playback-state
+fields, and the `downloadFirst`, `keepAudioSessionActive`, and
+`preferredForwardBufferDuration` options. Source headers apply on iOS and
+Android and are ignored on web.
+
 Errors expose `error.code`: `E_AUDIO_URI`, `E_AUDIO_FILE`,
 `E_AUDIO_MANIFEST`, `E_AUDIO_PERMISSION`, `E_AUDIO_BUSY`, `E_AUDIO_STATE`,
-`E_AUDIO_POSITION`, `E_AUDIO_METADATA`, `E_AUDIO_ARTWORK`, or `E_AUDIO_FAILED`.
+`E_AUDIO_POSITION`, `E_AUDIO_METADATA`, `E_AUDIO_ARTWORK`, `E_AUDIO_RATE`, or
+`E_AUDIO_FAILED`.
 This API is iOS only. Playback and
 recording use the app's shared audio session. Playback switches its category
 to playback and can replace another feature's audio session configuration,

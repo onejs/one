@@ -107,6 +107,54 @@ abstract class HybridOneAudioSpec: HybridObject() {
     val __result = addRemoteCommandListener(onEvent)
     return Func_void_java(__result)
   }
+  
+  @DoNotStrip
+  @Keep
+  abstract fun createPlayer(sourceUri: String?, headers: Map<String, String>?): String
+  
+  @DoNotStrip
+  @Keep
+  abstract fun playerPlay(playerId: String): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun playerPause(playerId: String): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun playerSeek(playerId: String, seconds: Double, toleranceBeforeMs: Double?, toleranceAfterMs: Double?): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun playerReplace(playerId: String, sourceUri: String?, headers: Map<String, String>?): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun removePlayer(playerId: String): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getPlayerStatus(playerId: String): AudioPlayerStatus
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setPlayerRate(playerId: String, rate: Double, pitchQuality: PitchCorrectionQuality?): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setPlayerVolume(playerId: String, volume: Double): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setPlayerMuted(playerId: String, muted: Boolean): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setPlayerLoop(playerId: String, loop: Boolean): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun setPlayerPitchCorrection(playerId: String, enabled: Boolean): Unit
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

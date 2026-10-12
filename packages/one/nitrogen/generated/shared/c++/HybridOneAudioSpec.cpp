@@ -31,6 +31,18 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("setNowPlayingInfo", &HybridOneAudioSpec::setNowPlayingInfo);
       prototype.registerHybridMethod("clearNowPlayingInfo", &HybridOneAudioSpec::clearNowPlayingInfo);
       prototype.registerHybridMethod("addRemoteCommandListener", &HybridOneAudioSpec::addRemoteCommandListener);
+      prototype.registerHybridMethod("createPlayer", &HybridOneAudioSpec::createPlayer);
+      prototype.registerHybridMethod("playerPlay", &HybridOneAudioSpec::playerPlay);
+      prototype.registerHybridMethod("playerPause", &HybridOneAudioSpec::playerPause);
+      prototype.registerHybridMethod("playerSeek", &HybridOneAudioSpec::playerSeek);
+      prototype.registerHybridMethod("playerReplace", &HybridOneAudioSpec::playerReplace);
+      prototype.registerHybridMethod("removePlayer", &HybridOneAudioSpec::removePlayer);
+      prototype.registerHybridMethod("getPlayerStatus", &HybridOneAudioSpec::getPlayerStatus);
+      prototype.registerHybridMethod("setPlayerRate", &HybridOneAudioSpec::setPlayerRate);
+      prototype.registerHybridMethod("setPlayerVolume", &HybridOneAudioSpec::setPlayerVolume);
+      prototype.registerHybridMethod("setPlayerMuted", &HybridOneAudioSpec::setPlayerMuted);
+      prototype.registerHybridMethod("setPlayerLoop", &HybridOneAudioSpec::setPlayerLoop);
+      prototype.registerHybridMethod("setPlayerPitchCorrection", &HybridOneAudioSpec::setPlayerPitchCorrection);
     });
   }
 

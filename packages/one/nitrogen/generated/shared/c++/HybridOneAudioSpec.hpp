@@ -27,6 +27,10 @@ namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
 // Forward declaration of `AudioRemoteCommandEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
+// Forward declaration of `AudioPlayerStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayerStatus; }
+// Forward declaration of `PitchCorrectionQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 
 #include "AudioRecordingPermission.hpp"
 #include <NitroModules/Promise.hpp>
@@ -38,6 +42,10 @@ namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
 #include "AudioInterruptionEvent.hpp"
 #include "AudioNowPlayingInfo.hpp"
 #include "AudioRemoteCommandEvent.hpp"
+#include <optional>
+#include <unordered_map>
+#include "AudioPlayerStatus.hpp"
+#include "PitchCorrectionQuality.hpp"
 
 namespace margelo::nitro::one {
 
@@ -66,7 +74,7 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-
+      
 
     public:
       // Methods
@@ -87,6 +95,18 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<void>> setNowPlayingInfo(const AudioNowPlayingInfo& info) = 0;
       virtual std::shared_ptr<Promise<void>> clearNowPlayingInfo() = 0;
       virtual std::function<void()> addRemoteCommandListener(const std::function<void(const AudioRemoteCommandEvent& /* event */)>& onEvent) = 0;
+      virtual std::string createPlayer(const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) = 0;
+      virtual void playerPlay(const std::string& playerId) = 0;
+      virtual void playerPause(const std::string& playerId) = 0;
+      virtual std::shared_ptr<Promise<void>> playerSeek(const std::string& playerId, double seconds, std::optional<double> toleranceBeforeMs, std::optional<double> toleranceAfterMs) = 0;
+      virtual void playerReplace(const std::string& playerId, const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) = 0;
+      virtual void removePlayer(const std::string& playerId) = 0;
+      virtual AudioPlayerStatus getPlayerStatus(const std::string& playerId) = 0;
+      virtual void setPlayerRate(const std::string& playerId, double rate, std::optional<PitchCorrectionQuality> pitchQuality) = 0;
+      virtual void setPlayerVolume(const std::string& playerId, double volume) = 0;
+      virtual void setPlayerMuted(const std::string& playerId, bool muted) = 0;
+      virtual void setPlayerLoop(const std::string& playerId, bool loop) = 0;
+      virtual void setPlayerPitchCorrection(const std::string& playerId, bool enabled) = 0;
 
     protected:
       // Hybrid Setup

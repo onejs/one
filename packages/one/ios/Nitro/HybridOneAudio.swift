@@ -16,6 +16,8 @@ final class HybridOneAudio: HybridOneAudioSpec {
     case recordingFailed
     case metadata
     case artwork
+    case unknownPlayer
+    case rate
 
     var errorDescription: String? {
       switch self {
@@ -29,6 +31,8 @@ final class HybridOneAudio: HybridOneAudioSpec {
       case .recordingFailed: return "recording could not start or produced an empty file"
       case .metadata: return "now playing title must not be empty"
       case .artwork: return "now playing artwork must be an existing image file"
+      case .unknownPlayer: return "the audio player id is not active"
+      case .rate: return "the playback rate must be within 0 to 2"
       }
     }
   }
@@ -49,6 +53,26 @@ final class HybridOneAudio: HybridOneAudioSpec {
   private var remoteTargets: [(MPRemoteCommand, Any)] = []
   private var remoteCommandListeners: [UUID: (AudioRemoteCommandEvent) -> Void] = [:]
 
+  private final class ManagedAudioPlayer {
+    let player: AVPlayer
+    var item: AVPlayerItem?
+    var paused = true
+    var ended = false
+    var loop = false
+    var muted = false
+    var volume = 1.0
+    var rate = 1.0
+    var pitchCorrection = true
+    var pitchQuality: PitchCorrectionQuality = .medium
+    var endObserver: NSObjectProtocol?
+
+    init(player: AVPlayer) {
+      self.player = player
+    }
+  }
+
+  private var managedPlayers: [String: ManagedAudioPlayer] = [:]
+
   override init() {
     super.init()
     interruptionObserver = NotificationCenter.default.addObserver(
@@ -60,6 +84,12 @@ final class HybridOneAudio: HybridOneAudioSpec {
 
   deinit {
     if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
+    for managed in managedPlayers.values {
+      if let observer = managed.endObserver {
+        NotificationCenter.default.removeObserver(observer)
+      }
+      managed.player.pause()
+    }
     if let interruptionObserver { NotificationCenter.default.removeObserver(interruptionObserver) }
     playerStatusObservation?.invalidate()
     itemStatusObservation?.invalidate()
@@ -334,6 +364,251 @@ final class HybridOneAudio: HybridOneAudioSpec {
     }
   }
 
+  func createPlayer(sourceUri: String?, headers: Dictionary<String, String>?) throws -> String {
+    try mainSync("createPlayer") {
+      let managed = ManagedAudioPlayer(player: AVPlayer())
+      if let sourceUri {
+        managed.item = try Self.playerItem(uri: sourceUri, headers: headers)
+        managed.player.replaceCurrentItem(with: managed.item)
+        Self.applyPitch(managed)
+      }
+      let id = UUID().uuidString
+      self.installPlayerEndObserver(id: id, managed: managed)
+      self.managedPlayers[id] = managed
+      return id
+    }
+  }
+
+  func playerPlay(playerId: String) throws -> Void {
+    try mainSync("playerPlay") {
+      let managed = try self.managedPlayer(playerId)
+      let session = AVAudioSession.sharedInstance()
+      try session.setCategory(.playback, mode: .default)
+      try session.setActive(true)
+      if managed.ended {
+        managed.player.seek(to: .zero)
+        managed.ended = false
+      }
+      managed.paused = false
+      managed.player.rate = Float(managed.rate)
+    }
+  }
+
+  func playerPause(playerId: String) throws -> Void {
+    try mainSync("playerPause") {
+      let managed = try self.managedPlayer(playerId)
+      managed.player.pause()
+      managed.paused = true
+    }
+  }
+
+  func playerSeek(
+    playerId: String, seconds: Double, toleranceBeforeMs: Double?, toleranceAfterMs: Double?
+  ) throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      do {
+        let managed = try self.managedPlayer(playerId)
+        guard seconds.isFinite && seconds >= 0 else { throw Problem.position }
+        let player = managed.player
+        guard player.currentItem?.status == .readyToPlay else { throw Problem.state }
+        let before = toleranceBeforeMs.map { CMTime(seconds: $0 / 1000, preferredTimescale: 600) }
+          ?? .zero
+        let after = toleranceAfterMs.map { CMTime(seconds: $0 / 1000, preferredTimescale: 600) }
+          ?? .zero
+        player.seek(
+          to: CMTime(seconds: seconds, preferredTimescale: 600),
+          toleranceBefore: before, toleranceAfter: after
+        ) { finished in
+          DispatchQueue.main.async {
+            guard finished, self.managedPlayers[playerId] === managed else {
+              promise.reject(withError: Self.failure("playerSeek", Problem.state))
+              return
+            }
+            managed.ended = false
+            promise.resolve()
+          }
+        }
+      } catch {
+        promise.reject(withError: Self.failure("playerSeek", error))
+      }
+    }
+    return promise
+  }
+
+  func playerReplace(playerId: String, sourceUri: String?, headers: Dictionary<String, String>?) throws -> Void {
+    try mainSync("playerReplace") {
+      let managed = try self.managedPlayer(playerId)
+      self.clearPlayerEndObserver(managed)
+      if let sourceUri {
+        managed.item = try Self.playerItem(uri: sourceUri, headers: headers)
+        Self.applyPitch(managed)
+      } else {
+        managed.item = nil
+      }
+      managed.player.replaceCurrentItem(with: managed.item)
+      managed.paused = true
+      managed.ended = false
+      self.installPlayerEndObserver(id: playerId, managed: managed)
+    }
+  }
+
+  func removePlayer(playerId: String) throws -> Void {
+    if !Thread.isMainThread {
+      try DispatchQueue.main.sync { try self.removePlayer(playerId: playerId) }
+      return
+    }
+    guard let managed = managedPlayers.removeValue(forKey: playerId) else { return }
+    clearPlayerEndObserver(managed)
+    managed.player.pause()
+    managed.player.replaceCurrentItem(with: nil)
+  }
+
+  func getPlayerStatus(playerId: String) throws -> AudioPlayerStatus {
+    try mainSync("getPlayerStatus") {
+      let managed = try self.managedPlayer(playerId)
+      return self.playerStatus(managed)
+    }
+  }
+
+  func setPlayerRate(playerId: String, rate: Double, pitchQuality: PitchCorrectionQuality?) throws -> Void {
+    try mainSync("setPlayerRate") {
+      let managed = try self.managedPlayer(playerId)
+      guard rate.isFinite && rate >= 0 && rate <= 2 else { throw Problem.rate }
+      managed.rate = rate
+      if let pitchQuality {
+        managed.pitchQuality = pitchQuality
+        Self.applyPitch(managed)
+      }
+      if !managed.paused && !managed.ended {
+        managed.player.rate = Float(rate)
+      }
+    }
+  }
+
+  func setPlayerVolume(playerId: String, volume: Double) throws -> Void {
+    try mainSync("setPlayerVolume") {
+      let managed = try self.managedPlayer(playerId)
+      let clamped = min(1, max(0, volume))
+      managed.volume = clamped
+      managed.player.volume = Float(clamped)
+    }
+  }
+
+  func setPlayerMuted(playerId: String, muted: Bool) throws -> Void {
+    try mainSync("setPlayerMuted") {
+      let managed = try self.managedPlayer(playerId)
+      managed.muted = muted
+      managed.player.isMuted = muted
+    }
+  }
+
+  func setPlayerLoop(playerId: String, loop: Bool) throws -> Void {
+    try mainSync("setPlayerLoop") {
+      let managed = try self.managedPlayer(playerId)
+      managed.loop = loop
+    }
+  }
+
+  func setPlayerPitchCorrection(playerId: String, enabled: Bool) throws -> Void {
+    try mainSync("setPlayerPitchCorrection") {
+      let managed = try self.managedPlayer(playerId)
+      managed.pitchCorrection = enabled
+      Self.applyPitch(managed)
+    }
+  }
+
+  private func managedPlayer(_ id: String) throws -> ManagedAudioPlayer {
+    guard let managed = managedPlayers[id] else { throw Problem.unknownPlayer }
+    return managed
+  }
+
+  private func playerStatus(_ managed: ManagedAudioPlayer) -> AudioPlayerStatus {
+    let player = managed.player
+    let item = managed.item
+    let position = player.currentTime().seconds
+    let duration = item?.duration.seconds ?? .nan
+    let playing = player.timeControlStatus == .playing
+    return AudioPlayerStatus(
+      currentTime: position.isFinite ? max(0, position) : 0,
+      duration: duration.isFinite && duration >= 0 ? duration : 0,
+      playing: playing,
+      paused: managed.paused,
+      isLoaded: item?.status == .readyToPlay,
+      isBuffering: player.timeControlStatus == .waitingToPlayAtSpecifiedRate,
+      loop: managed.loop,
+      muted: managed.muted,
+      volume: managed.volume,
+      playbackRate: managed.rate,
+      shouldCorrectPitch: managed.pitchCorrection,
+      error: item?.error?.localizedDescription,
+      didJustFinish: managed.ended)
+  }
+
+  private static func playerItem(
+    uri: String, headers: Dictionary<String, String>?
+  ) throws -> AVPlayerItem {
+    let url = try Self.audioURL(uri)
+    if url.isFileURL && !FileManager.default.fileExists(atPath: url.path) {
+      throw Problem.missingFile
+    }
+    if url.isFileURL || headers?.isEmpty ?? true {
+      return AVPlayerItem(url: url)
+    }
+    let asset = AVURLAsset(url: url, options: ["AVURLAssetHTTPHeaderFieldsKey": headers!])
+    return AVPlayerItem(asset: asset)
+  }
+
+  private static func applyPitch(_ managed: ManagedAudioPlayer) {
+    guard let item = managed.item else { return }
+    if !managed.pitchCorrection {
+      item.audioTimePitchAlgorithm = .varispeed
+      return
+    }
+    switch managed.pitchQuality {
+    case .low: item.audioTimePitchAlgorithm = .lowQualityZeroLatency
+    case .medium: item.audioTimePitchAlgorithm = .timeDomain
+    case .high: item.audioTimePitchAlgorithm = .spectral
+    }
+  }
+
+  private func installPlayerEndObserver(id: String, managed: ManagedAudioPlayer) {
+    guard let item = managed.item else { return }
+    managed.endObserver = NotificationCenter.default.addObserver(
+      forName: AVPlayerItem.didPlayToEndTimeNotification, object: item, queue: .main
+    ) { [weak self, weak managed] _ in
+      guard let self, let managed, self.managedPlayers[id] === managed else { return }
+      if managed.loop {
+        managed.player.seek(to: .zero) { _ in
+          DispatchQueue.main.async { [weak managed] in
+            guard let managed, !managed.paused else { return }
+            managed.player.rate = Float(managed.rate)
+          }
+        }
+      } else {
+        managed.ended = true
+      }
+    }
+  }
+
+  private func clearPlayerEndObserver(_ managed: ManagedAudioPlayer) {
+    if let endObserver = managed.endObserver {
+      NotificationCenter.default.removeObserver(endObserver)
+    }
+    managed.endObserver = nil
+  }
+
+  private func mainSync<T>(_ verb: String, _ work: () throws -> T) throws -> T {
+    if Thread.isMainThread {
+      do { return try work() }
+      catch { throw Self.failure(verb, error) }
+    }
+    return try DispatchQueue.main.sync {
+      do { return try work() }
+      catch { throw Self.failure(verb, error) }
+    }
+  }
+
   private func handleInterruption(_ note: Notification) {
     guard let raw = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt,
       let kind = AVAudioSession.InterruptionType(rawValue: raw)
@@ -342,6 +617,10 @@ final class HybridOneAudio: HybridOneAudioSpec {
       player?.pause()
       if player != nil { playbackPaused = true }
       recorder?.pause()
+      for managed in managedPlayers.values {
+        managed.player.pause()
+        managed.paused = true
+      }
       syncNowPlaying()
     }
     let options = AVAudioSession.InterruptionOptions(
@@ -537,6 +816,8 @@ final class HybridOneAudio: HybridOneAudioSpec {
     case Problem.position: code = "E_AUDIO_POSITION"
     case Problem.metadata: code = "E_AUDIO_METADATA"
     case Problem.artwork: code = "E_AUDIO_ARTWORK"
+    case Problem.unknownPlayer: code = "E_AUDIO_STATE"
+    case Problem.rate: code = "E_AUDIO_RATE"
     default: code = "E_AUDIO_FAILED"
     }
     return oneNativeError(code, "Audio.\(verb): \(error.localizedDescription)")
