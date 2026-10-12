@@ -1,12 +1,12 @@
-You are leading a conformance campaign in `~/soot`. Nate asked for this directly and called it important work. Push validated work to soot main on your own initiative, as the repo contract allows.
+You are leading a conformance campaign in `~/contrast`. Push validated work to contrast main on your own initiative, as the repo contract allows.
 
 ## Goal
 
-A pixel-diff conformance suite for the SwiftUI-backed surface of rnx, with full light AND dark coverage. Today's coverage is partial and uneven. The end state is a suite that actually fails when rendering regresses, across the whole surface, not a handful of screens.
+A pixel-diff conformance suite for the SwiftUI-backed surface of Peach, with full light AND dark coverage. Today's coverage is partial and uneven. The end state is a suite that actually fails when rendering regresses, across the whole surface, not a handful of screens.
 
 ## First, calibrate scope (do this before building anything)
 
-Read `~/.claude/skills/rnx-visual/SKILL.md`, `rnx-test`, `rnx-setup`, `rnx-debug`. They describe the existing `rnx screenshot` capture and `rnx debug snapshot`/`diff` primitives. Then inventory what conformance exists today and what it covers.
+Read `~/.claude/skills/peach-visual/SKILL.md`, `peach-test`, `peach-setup`, `peach-debug`. They describe the existing `peach screenshot` capture and `peach debug snapshot`/`diff` primitives. Then inventory what conformance exists today and what it covers.
 
 Produce, before writing suite code, a ranked worklist in `plans/` split into three tiers:
 1. **Popular and completely uncovered.** Things real apps use constantly that have zero pixel coverage. This tier goes first.
@@ -15,7 +15,7 @@ Produce, before writing suite code, a ranked worklist in `plans/` split into thr
 
 Report that worklist to me before you start wave one, as one compact message. I want to see the ranking, not approve every item.
 
-If my framing of "the SwiftUI-backed surface of rnx" does not match how the repo is actually organized, say so in that message and propose the right carving. Do not silently build against my guess.
+If my framing of "the SwiftUI-backed surface of Peach" does not match how the repo is actually organized, say so in that message and propose the right carving. Do not silently build against my guess.
 
 ## How to run it
 
