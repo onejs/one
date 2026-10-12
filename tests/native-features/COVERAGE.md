@@ -240,6 +240,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Clipboard` | paste-button, share, clipboard | share, clipboard | OneNativeBehavioralLibraryCase |  |
 | `One.Battery` | battery | battery, native-modules:unavailable | missing |  |
 | `One.Brightness` | brightness | brightness, native-modules:unavailable | missing |  |
+| `One.SpeechSynthesis` | speech-synthesis | speech-synthesis, native-modules:unavailable | missing |  |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
 | `One.LaunchScreen` | launch-screen | launch-screen | OneNativeLaunchScreenLibraryCase |  |
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |

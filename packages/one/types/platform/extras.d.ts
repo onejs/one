@@ -14,6 +14,8 @@ export { Battery, useBatteryLevel, useBatteryState, useLowPowerMode, usePowerSta
 export type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent, BatterySubscription, } from './battery';
 export { Brightness } from './brightness';
 export type { BrightnessEvent, BrightnessMode, BrightnessPermissionResponse, BrightnessPermissionStatus, BrightnessSubscription, } from './brightness';
+export { SpeechSynthesis } from './speech-synthesis';
+export type { SpeechSynthesisEvent, SpeechSynthesisEventType, SpeechSynthesisOptions, SpeechSynthesisVoice, SpeechSynthesisVoiceQuality, } from './speech-synthesis';
 export { Browser } from './browser';
 export type { BrowserAuthSessionOptions, BrowserAuthSessionResult, BrowserOpenOptions, BrowserPresentationStyle, BrowserRedirectResult, BrowserResult, BrowserResultType, } from './browser';
 export { Updates } from './updates';

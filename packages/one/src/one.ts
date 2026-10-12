@@ -37,6 +37,7 @@ import {
   Clipboard as NativeClipboard,
   Battery as NativeBattery,
   Brightness as NativeBrightness,
+  SpeechSynthesis as NativeSpeechSynthesis,
   AppInfo,
   Color,
   Database,
@@ -151,6 +152,7 @@ export type OneAPI = {
   readonly Clipboard: typeof NativeClipboard
   readonly Battery: typeof NativeBattery
   readonly Brightness: typeof NativeBrightness
+  readonly SpeechSynthesis: typeof NativeSpeechSynthesis
   readonly Haptics: typeof Haptics
   readonly LaunchScreen: typeof LaunchScreen
   readonly Network: typeof NativeNetwork
@@ -250,6 +252,7 @@ export const One: OneAPI = Object.freeze({
   Clipboard: NativeClipboard,
   Battery: NativeBattery,
   Brightness: NativeBrightness,
+  SpeechSynthesis: NativeSpeechSynthesis,
   Haptics,
   LaunchScreen,
   Network: NativeNetwork,

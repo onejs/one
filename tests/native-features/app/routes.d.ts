@@ -150,6 +150,7 @@ declare module 'one' {
         | `/one-native-sheet`
         | `/one-native-source`
         | `/one-native-speech`
+        | `/one-native-speech-synthesis`
         | `/one-native-state`
         | `/one-native-storage`
         | `/one-native-store-review`

@@ -78,6 +78,8 @@
 #include "JHybridOneShareSpec.hpp"
 #include "JHybridOneSpeechSpec.hpp"
 #include "JFunc_void_SpeechEvent.hpp"
+#include "JHybridOneSpeechSynthesisSpec.hpp"
+#include "JFunc_void_SpeechSynthesisEvent.hpp"
 #include "JHybridOneStoreReviewSpec.hpp"
 #include "JHybridOneUpdatesSpec.hpp"
 #include "JFunc_void_std__optional_std__string_.hpp"
@@ -131,6 +133,14 @@ struct JHybridOneBrightnessSpecImpl: public jni::JavaClass<JHybridOneBrightnessS
     static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneBrightnessSpecImpl::javaobject()>();
     jni::local_ref<JHybridOneBrightnessSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
     return javaPart->getJHybridOneBrightnessSpec();
+  }
+};
+struct JHybridOneSpeechSynthesisSpecImpl: public jni::JavaClass<JHybridOneSpeechSynthesisSpecImpl, JHybridOneSpeechSynthesisSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneSpeechSynthesis;";
+  static std::shared_ptr<JHybridOneSpeechSynthesisSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneSpeechSynthesisSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneSpeechSynthesisSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneSpeechSynthesisSpec();
   }
 };
 struct JHybridOneNetworkSpecImpl: public jni::JavaClass<JHybridOneNetworkSpecImpl, JHybridOneNetworkSpec::JavaPart> {
@@ -474,6 +484,8 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneShareSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneSpeechSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_SpeechEvent_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneSpeechSynthesisSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_SpeechSynthesisEvent_cxx::registerNatives();
   margelo::nitro::one::JHybridOneStoreReviewSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneUpdatesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_std__optional_std__string__cxx::registerNatives();
@@ -507,6 +519,12 @@ void registerAllNatives() {
     "OneBrightness",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneBrightnessSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneSpeechSynthesis",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneSpeechSynthesisSpecImpl::create();
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

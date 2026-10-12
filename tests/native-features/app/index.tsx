@@ -640,6 +640,11 @@ const testScreens = [
     testID: 'nav-one-native-brightness',
   },
   {
+    href: '/one-native-speech-synthesis',
+    label: 'One Native Speech Synthesis',
+    testID: 'nav-one-native-speech-synthesis',
+  },
+  {
     href: '/one-native-network',
     label: 'One Native Network',
     testID: 'nav-one-native-network',

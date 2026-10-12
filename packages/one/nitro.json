@@ -29,6 +29,10 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOneBrightness" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneBrightness" }
     },
+    "OneSpeechSynthesis": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneSpeechSynthesis" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneSpeechSynthesis" }
+    },
     "OneCrypto": {
       "all": { "language": "c++", "implementationClassName": "HybridOneCrypto" }
     },

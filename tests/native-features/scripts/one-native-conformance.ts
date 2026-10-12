@@ -132,6 +132,7 @@ const suites = [
   'clipboard',
   'battery',
   'brightness',
+  'speech-synthesis',
   'network',
   'browser',
   'notifications',
@@ -928,6 +929,10 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
     nodes.some((n) => n.type === 'Application') &&
     Boolean(id(nodes, 'one-native-brightness-run')) &&
     has(nodes, 'Status: '),
+  'speech-synthesis': (nodes: Node[]) =>
+    nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-speech-synthesis-run')) &&
+    has(nodes, 'Status: '),
   network: networkLoaded,
   browser: browserLoaded,
   notifications: notificationsLoaded,
@@ -1046,6 +1051,7 @@ const suiteHome: Record<Suite, string> = {
   clipboard: 'nav-one-native-clipboard',
   battery: 'nav-one-native-battery',
   brightness: 'nav-one-native-brightness',
+  'speech-synthesis': 'nav-one-native-speech-synthesis',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
   notifications: 'nav-one-native-notifications',
@@ -10688,6 +10694,36 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!['unknown', 'automatic', 'manual'].includes(mode ?? ''))
       throw new Error(`brightness system mode outside union: ${mode}`)
     screenshot('brightness-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'speech-synthesis') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-speech-synthesis')
+    await wait('speech synthesis fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-speech-synthesis-run' })
+    const state = await wait('speech synthesis operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    const maxInput = Number(
+      got.find((label) => label.startsWith('MaxInputLength: '))?.slice('MaxInputLength: '.length)
+    )
+    if (!Number.isFinite(maxInput) || maxInput <= 0)
+      throw new Error(`speech synthesis input limit invalid: ${maxInput}`)
+    for (const expected of [
+      'MalformedVoices: 0',
+      'Speaking: false',
+      'Events: start,done',
+      'Quiet: false',
+      'Invalid: SpeechSynthesis.speak: text must be a non-empty string',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`speech synthesis expected ${expected}`)
+      console.log(`PASS speech-synthesis-${expected.split(':')[0].toLowerCase()}`)
+    }
+    screenshot('speech-synthesis-readback.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -76,6 +76,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneShareSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneSpeechSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneSpeechSynthesisSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneStorageSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneStoreReviewSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneUpdatesSpec.cpp
@@ -118,6 +119,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneSecureStoreSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneShareSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneSpeechSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneSpeechSynthesisSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneStoreReviewSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneUpdatesSpec.cpp
 )

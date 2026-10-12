@@ -240,6 +240,8 @@ namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSpeechSynthesisSpec; }
 // Forward declaration of `HybridOneStoreReviewSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
@@ -420,6 +422,16 @@ namespace margelo::nitro::one { struct SpeechPermissionResponse; }
 namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
 // Forward declaration of `SpeechStartOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct SpeechStartOptions; }
+// Forward declaration of `SpeechSynthesisEventType` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisEventType; }
+// Forward declaration of `SpeechSynthesisEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisEvent; }
+// Forward declaration of `SpeechSynthesisUtterance` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisUtterance; }
+// Forward declaration of `SpeechSynthesisVoiceQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisVoiceQuality; }
+// Forward declaration of `SpeechSynthesisVoice` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisVoice; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
@@ -540,6 +552,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
+#include "HybridOneSpeechSynthesisSpec.hpp"
 #include "HybridOneStoreReviewSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
@@ -630,6 +643,11 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "SpeechPermissionResponse.hpp"
 #include "SpeechPermissionStatus.hpp"
 #include "SpeechStartOptions.hpp"
+#include "SpeechSynthesisEvent.hpp"
+#include "SpeechSynthesisEventType.hpp"
+#include "SpeechSynthesisUtterance.hpp"
+#include "SpeechSynthesisVoice.hpp"
+#include "SpeechSynthesisVoiceQuality.hpp"
 #include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
@@ -736,6 +754,8 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSpeechSynthesisSpec_cxx; }
 // Forward declaration of `HybridOneStoreReviewSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneStoreReviewSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.

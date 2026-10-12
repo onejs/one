@@ -51,6 +51,14 @@ export type {
   BrightnessPermissionStatus,
   BrightnessSubscription,
 } from './brightness'
+export { SpeechSynthesis } from './speech-synthesis'
+export type {
+  SpeechSynthesisEvent,
+  SpeechSynthesisEventType,
+  SpeechSynthesisOptions,
+  SpeechSynthesisVoice,
+  SpeechSynthesisVoiceQuality,
+} from './speech-synthesis'
 export { Browser } from './browser'
 export type {
   BrowserAuthSessionOptions,

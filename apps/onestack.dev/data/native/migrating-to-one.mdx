@@ -67,6 +67,21 @@ From `expo-brightness`. See [Brightness](/native/brightness).
 | `addBrightnessListener(fn)` | `One.Brightness.addListener(fn)` |
 | `BrightnessMode.MANUAL` | `'manual'` (and likewise for every member) |
 
+## Speech synthesis
+
+From `expo-speech`. `One.Speech` is microphone dictation; synthesis lives under `One.SpeechSynthesis`. See [Speech Synthesis](/native/speech-synthesis).
+
+| expo-speech | One |
+|---|---|
+| `speak(text, options?)` | `One.SpeechSynthesis.speak(text, options?)` |
+| `stop()` | `One.SpeechSynthesis.stop()` |
+| `pause()` | `One.SpeechSynthesis.pause()` |
+| `resume()` | `One.SpeechSynthesis.resume()` |
+| `isSpeakingAsync()` | `One.SpeechSynthesis.isSpeaking()` |
+| `getAvailableVoicesAsync()` | `One.SpeechSynthesis.getAvailableVoices()` |
+| `maxSpeechInputLength` | `One.SpeechSynthesis.maxInputLength` |
+| `VoiceQuality.Enhanced` | `'enhanced'` (and likewise for every member) |
+
 ## Network
 
 From `expo-network`. Import `useNetworkState` directly from `one`. See [Network](/native/network).

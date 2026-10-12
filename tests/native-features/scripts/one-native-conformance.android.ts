@@ -2978,6 +2978,39 @@ async function run(config: Config) {
       'one-native-brightness-run'
     )
 
+    // SpeechSynthesis: input limit, voice shapes, queued utterance speaks to
+    // done, quiet after stop, validation.
+    await freshLeg('speech-synthesis')
+    await tapNavigation(config, 'nav-one-native-speech-synthesis')
+    await expect(
+      'system-speech-synthesis-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-speech-synthesis-run'
+    )
+    tapFresh(config, 'system-speech-synthesis-run', {
+      id: 'one-native-speech-synthesis-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-speech-synthesis-report',
+      (nodes) => {
+        const text = joined(nodes)
+        const max = /MaxInputLength: ([\d.eE+-]+)/.exec(text)
+        return (
+          text.includes('Status: done') &&
+          max !== null &&
+          Number(max[1]) > 0 &&
+          text.includes('MalformedVoices: 0') &&
+          text.includes('Speaking: false') &&
+          text.includes('Events: start,done') &&
+          text.includes('Quiet: false') &&
+          text.includes('Invalid: SpeechSynthesis.speak: text must be a non-empty string')
+        )
+      },
+      'one-native-speech-synthesis-run'
+    )
+
     // Orientation: read, both locks with flipped dimensions, listener
     // events, unlock. The landscapeLeft lock pins the left/right mapping.
     await freshLeg('orientation')

@@ -214,6 +214,8 @@ namespace margelo::nitro::one { class HybridOneSecureStoreSpec; }
 namespace margelo::nitro::one { class HybridOneShareSpec; }
 // Forward declaration of `HybridOneSpeechSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSpeechSpec; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSpeechSynthesisSpec; }
 // Forward declaration of `HybridOneStoreReviewSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneStoreReviewSpec; }
 // Forward declaration of `HybridOneUpdatesSpec` to properly resolve imports.
@@ -364,6 +366,14 @@ namespace margelo::nitro::one { struct SpeechEvent; }
 namespace margelo::nitro::one { struct SpeechPermissionResponse; }
 // Forward declaration of `SpeechPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class SpeechPermissionStatus; }
+// Forward declaration of `SpeechSynthesisEventType` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisEventType; }
+// Forward declaration of `SpeechSynthesisEvent` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisEvent; }
+// Forward declaration of `SpeechSynthesisVoiceQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class SpeechSynthesisVoiceQuality; }
+// Forward declaration of `SpeechSynthesisVoice` to properly resolve imports.
+namespace margelo::nitro::one { struct SpeechSynthesisVoice; }
 // Forward declaration of `UserInterfaceSizeClass` to properly resolve imports.
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
@@ -452,6 +462,8 @@ namespace One { class HybridOneSecureStoreSpec_cxx; }
 namespace One { class HybridOneShareSpec_cxx; }
 // Forward declaration of `HybridOneSpeechSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSpeechSpec_cxx; }
+// Forward declaration of `HybridOneSpeechSynthesisSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSpeechSynthesisSpec_cxx; }
 // Forward declaration of `HybridOneStoreReviewSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneStoreReviewSpec_cxx; }
 // Forward declaration of `HybridOneUpdatesSpec_cxx` to properly resolve imports.
@@ -560,6 +572,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneSecureStoreSpec.hpp"
 #include "HybridOneShareSpec.hpp"
 #include "HybridOneSpeechSpec.hpp"
+#include "HybridOneSpeechSynthesisSpec.hpp"
 #include "HybridOneStoreReviewSpec.hpp"
 #include "HybridOneUpdatesSpec.hpp"
 #include "ImageCrop.hpp"
@@ -635,6 +648,10 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "SpeechEventType.hpp"
 #include "SpeechPermissionResponse.hpp"
 #include "SpeechPermissionStatus.hpp"
+#include "SpeechSynthesisEvent.hpp"
+#include "SpeechSynthesisEventType.hpp"
+#include "SpeechSynthesisVoice.hpp"
+#include "SpeechSynthesisVoiceQuality.hpp"
 #include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
@@ -5565,6 +5582,94 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_SpeechPermissionResponse___ create_Result_std__shared_ptr_Promise_SpeechPermissionResponse___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<SpeechPermissionResponse>>>::withError(error);
+  }
+  
+  // pragma MARK: std::function<void(const SpeechSynthesisEvent& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const SpeechSynthesisEvent&)>`.
+   */
+  using Func_void_SpeechSynthesisEvent = std::function<void(const SpeechSynthesisEvent& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const SpeechSynthesisEvent& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_SpeechSynthesisEvent_Wrapper final {
+  public:
+    explicit Func_void_SpeechSynthesisEvent_Wrapper(std::function<void(const SpeechSynthesisEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const SpeechSynthesisEvent& /* event */)>>(std::move(func))) {}
+    inline void call(SpeechSynthesisEvent event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const SpeechSynthesisEvent& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_SpeechSynthesisEvent create_Func_void_SpeechSynthesisEvent(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_SpeechSynthesisEvent_Wrapper wrap_Func_void_SpeechSynthesisEvent(Func_void_SpeechSynthesisEvent value) noexcept {
+    return Func_void_SpeechSynthesisEvent_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::vector<SpeechSynthesisVoice>
+  /**
+   * Specialized version of `std::vector<SpeechSynthesisVoice>`.
+   */
+  using std__vector_SpeechSynthesisVoice_ = std::vector<SpeechSynthesisVoice>;
+  inline std::vector<SpeechSynthesisVoice> create_std__vector_SpeechSynthesisVoice_(size_t size) noexcept {
+    std::vector<SpeechSynthesisVoice> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>`.
+   */
+  using std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice___ = std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>;
+  inline std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>> create_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice___() noexcept {
+    return Promise<std::vector<SpeechSynthesisVoice>>::create();
+  }
+  inline PromiseHolder<std::vector<SpeechSynthesisVoice>> wrap_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice___(std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>> promise) noexcept {
+    return PromiseHolder<std::vector<SpeechSynthesisVoice>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<SpeechSynthesisVoice>&)>`.
+   */
+  using Func_void_std__vector_SpeechSynthesisVoice_ = std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<SpeechSynthesisVoice>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_SpeechSynthesisVoice__Wrapper final {
+  public:
+    explicit Func_void_std__vector_SpeechSynthesisVoice__Wrapper(std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<SpeechSynthesisVoice> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<SpeechSynthesisVoice>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_SpeechSynthesisVoice_ create_Func_void_std__vector_SpeechSynthesisVoice_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_SpeechSynthesisVoice__Wrapper wrap_Func_void_std__vector_SpeechSynthesisVoice_(Func_void_std__vector_SpeechSynthesisVoice_ value) noexcept {
+    return Func_void_std__vector_SpeechSynthesisVoice__Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneSpeechSynthesisSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneSpeechSynthesisSpec>`.
+   */
+  using std__shared_ptr_HybridOneSpeechSynthesisSpec_ = std::shared_ptr<HybridOneSpeechSynthesisSpec>;
+  std::shared_ptr<HybridOneSpeechSynthesisSpec> create_std__shared_ptr_HybridOneSpeechSynthesisSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneSpeechSynthesisSpec_(std__shared_ptr_HybridOneSpeechSynthesisSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneSpeechSynthesisSpec>
+  using std__weak_ptr_HybridOneSpeechSynthesisSpec_ = std::weak_ptr<HybridOneSpeechSynthesisSpec>;
+  inline std__weak_ptr_HybridOneSpeechSynthesisSpec_ weakify_std__shared_ptr_HybridOneSpeechSynthesisSpec_(const std::shared_ptr<HybridOneSpeechSynthesisSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>
+  using Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ = Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>;
+  inline Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ create_Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____(const std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____ create_Result_std__shared_ptr_Promise_std__vector_SpeechSynthesisVoice____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::vector<SpeechSynthesisVoice>>>>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<HybridOneStoreReviewSpec>

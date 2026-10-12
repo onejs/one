@@ -63,6 +63,7 @@ export const nativeRoutes = [
       { title: 'Clipboard', route: '/native/clipboard' },
       { title: 'Battery', route: '/native/battery' },
       { title: 'Brightness', route: '/native/brightness' },
+      { title: 'Speech Synthesis', route: '/native/speech-synthesis' },
       { title: 'Network', route: '/native/network' },
       { title: 'Browser', route: '/native/browser' },
       { title: 'Open URL and Settings', route: '/native/open-url' },

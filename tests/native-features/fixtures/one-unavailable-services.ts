@@ -174,6 +174,13 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     'Brightness.requestPermissions'
   )
   equal(One.Brightness.isAvailable(), false, 'Brightness.isAvailable')
+  equal(One.SpeechSynthesis.maxInputLength, 0, 'SpeechSynthesis.maxInputLength')
+  One.SpeechSynthesis.speak('one proof')
+  await One.SpeechSynthesis.stop()
+  await One.SpeechSynthesis.pause()
+  await One.SpeechSynthesis.resume()
+  equal(await One.SpeechSynthesis.isSpeaking(), false, 'SpeechSynthesis.isSpeaking')
+  equal(await One.SpeechSynthesis.getAvailableVoices(), [], 'SpeechSynthesis.getAvailableVoices')
   equal(
     One.DeviceAttestation.getAvailability(),
     { appAttest: false, deviceCheck: false },
