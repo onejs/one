@@ -54,7 +54,7 @@ namespace margelo::nitro::one {
 
     public:
       // Methods
-      virtual std::string getName(ContactUINameKey key) = 0;
+      virtual std::string getContactName(ContactUINameKey key) = 0;
       virtual bool isKeyAvailable(const std::string& key) = 0;
       virtual std::shared_ptr<HybridNativeCNContactSpec> mutableCopy() = 0;
       virtual void setName(ContactUINameKey key, const std::string& value) = 0;

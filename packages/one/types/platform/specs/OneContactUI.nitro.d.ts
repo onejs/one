@@ -5,7 +5,7 @@ export interface NativeCNContact extends HybridObject<{
     ios: 'swift';
 }> {
     readonly identifier: string;
-    getName(key: ContactUINameKey): string;
+    getContactName(key: ContactUINameKey): string;
     isKeyAvailable(key: string): boolean;
     mutableCopy(): NativeCNContact;
     setName(key: ContactUINameKey, value: string): void;

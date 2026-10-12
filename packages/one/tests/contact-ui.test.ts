@@ -11,7 +11,7 @@ function contact(initial: Record<string, string> = {}) {
   const names = { ...initial }
   return {
     identifier: initial.identifier ?? 'id',
-    getName: vi.fn((key) => names[key] ?? ''),
+    getContactName: vi.fn((key) => names[key] ?? ''),
     setName: vi.fn((key, value) => {
       names[key] = value
     }),

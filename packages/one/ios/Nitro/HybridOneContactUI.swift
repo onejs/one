@@ -8,7 +8,7 @@ final class HybridNativeCNContact: HybridNativeCNContactSpec {
   init(_ value: CNContact = CNMutableContact()) { self.value = value; super.init() }
   var identifier: String { oneUIKitOnMain { value.identifier } }
   func isKeyAvailable(key: String) throws -> Bool { oneUIKitOnMain { value.isKeyAvailable(key) } }
-  func getName(key: ContactUINameKey) throws -> String {
+  func getContactName(key: ContactUINameKey) throws -> String {
     try oneUIKitOnMain {
       let name = Self.nameKey(key)
       guard value.isKeyAvailable(name) else { throw oneNativeError("E_CONTACT_UI_KEY", "Contact property was not fetched: \(name)") }

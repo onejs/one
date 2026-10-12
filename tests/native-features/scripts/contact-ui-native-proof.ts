@@ -92,13 +92,13 @@ final class Scene: UIResponder, UIWindowSceneDelegate {
     try! mutable.setName(key: .familyname, value: "Stored proof")
     let copy = try! mutable.mutableCopy()
     try! copy.setName(key: .givenname, value: "Copy")
-    precondition(try! mutable.getName(key: .givenname) == "UIKit")
+    precondition(try! mutable.getContactName(key: .givenname) == "UIKit")
     let seed = mutable.value as! CNMutableContact
     let request = CNSaveRequest(); request.add(seed, toContainerWithIdentifier: nil); try! store.value.execute(request)
     ownedIDs.append(seed.identifier)
     try! store.unifiedContact(withIdentifier: seed.identifier, keys: [CNContactIdentifierKey], descriptors: []).then { partial in
       precondition(try! !partial.isKeyAvailable(key: CNContactPhoneNumbersKey))
-      do { _ = try partial.getName(key: .jobtitle); fatalError("unfetched property read") }
+      do { _ = try partial.getContactName(key: .jobtitle); fatalError("unfetched property read") }
       catch { precondition((error as NSError).domain == "E_CONTACT_UI_KEY") }
       for mode: ContactUIMode in [.contact, .unknowncontact, .newcontact] {
         let invalid = HybridOneContactUI()
@@ -138,7 +138,7 @@ final class Scene: UIResponder, UIWindowSceneDelegate {
       if save {
         guard let result else { fatalError("save returned nil") }
         self.saved += 1; self.ownedIDs.append(result.identifier)
-        precondition(try! result.getName(key: .familyname) == "Save proof")
+        precondition(try! result.getContactName(key: .familyname) == "Save proof")
       } else { precondition(result == nil); self.canceled += 1 }
       controller.finish(nil)
       precondition(self.canceled == 1 && self.saved == (save ? 1 : 0))

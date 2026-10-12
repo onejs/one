@@ -13,7 +13,7 @@ public protocol HybridNativeCNContactSpec_protocol: HybridObject {
   var identifier: String { get }
 
   // Methods
-  func getName(key: ContactUINameKey) throws -> String
+  func getContactName(key: ContactUINameKey) throws -> String
   func isKeyAvailable(key: String) throws -> Bool
   func mutableCopy() throws -> (any HybridNativeCNContactSpec)
   func setName(key: ContactUINameKey, value: String) throws -> Void

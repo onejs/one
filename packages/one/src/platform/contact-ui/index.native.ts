@@ -43,28 +43,28 @@ class CNContact implements CNContactValue {
     return this.native.identifier
   }
   get namePrefix() {
-    return this.native.getName('namePrefix')
+    return this.native.getContactName('namePrefix')
   }
   get givenName() {
-    return this.native.getName('givenName')
+    return this.native.getContactName('givenName')
   }
   get middleName() {
-    return this.native.getName('middleName')
+    return this.native.getContactName('middleName')
   }
   get familyName() {
-    return this.native.getName('familyName')
+    return this.native.getContactName('familyName')
   }
   get nameSuffix() {
-    return this.native.getName('nameSuffix')
+    return this.native.getContactName('nameSuffix')
   }
   get nickname() {
-    return this.native.getName('nickname')
+    return this.native.getContactName('nickname')
   }
   get organizationName() {
-    return this.native.getName('organizationName')
+    return this.native.getContactName('organizationName')
   }
   get jobTitle() {
-    return this.native.getName('jobTitle')
+    return this.native.getContactName('jobTitle')
   }
   isKeyAvailable(key: string) {
     return this.native.isKeyAvailable(key)

@@ -130,9 +130,9 @@ open class HybridNativeCNContactSpec_cxx {
 
   // Methods
   @inline(__always)
-  public final func getName(key: Int32) -> bridge.Result_std__string_ {
+  public final func getContactName(key: Int32) -> bridge.Result_std__string_ {
     do {
-      let __result = try self.__implementation.getName(key: margelo.nitro.one.ContactUINameKey(rawValue: key)!)
+      let __result = try self.__implementation.getContactName(key: margelo.nitro.one.ContactUINameKey(rawValue: key)!)
       let __resultCpp = std.string(__result)
       return bridge.create_Result_std__string_(__resultCpp)
     } catch (let __error) {

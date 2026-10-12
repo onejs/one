@@ -75,8 +75,8 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    inline std::string getName(ContactUINameKey key) override {
-      auto __result = _swiftPart.getName(static_cast<int>(key));
+    inline std::string getContactName(ContactUINameKey key) override {
+      auto __result = _swiftPart.getContactName(static_cast<int>(key));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

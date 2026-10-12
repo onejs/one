@@ -15,7 +15,7 @@ namespace margelo::nitro::one {
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridGetter("identifier", &HybridNativeCNContactSpec::getIdentifier);
-      prototype.registerHybridMethod("getName", &HybridNativeCNContactSpec::getName);
+      prototype.registerHybridMethod("getContactName", &HybridNativeCNContactSpec::getContactName);
       prototype.registerHybridMethod("isKeyAvailable", &HybridNativeCNContactSpec::isKeyAvailable);
       prototype.registerHybridMethod("mutableCopy", &HybridNativeCNContactSpec::mutableCopy);
       prototype.registerHybridMethod("setName", &HybridNativeCNContactSpec::setName);
