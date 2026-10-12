@@ -2926,6 +2926,36 @@ export const generateForPlatform = async (
   if (platform === 'android') await generateKotlinSources({ root, dest })
 }
 
+// an imported kotlin source can reach past the base ui/foundation/material3
+// closure: each import prefix below names the gradle artifact that supplies
+// it, so the source compiles without the app declaring the dependency.
+const KOTLIN_IMPORT_ARTIFACTS = [
+  {
+    importPrefix: 'androidx.compose.material.icons',
+    artifact: 'androidx.compose.material:material-icons-core',
+    versionKey: 'materialIconsVersion',
+    version: '1.7.6',
+  },
+]
+
+function kotlinSourceImports(dir: string): Set<string> {
+  const imports = new Set<string>()
+  if (!FSExtra.existsSync(dir)) return imports
+  const visit = (entry: string) => {
+    if (FSExtra.statSync(entry).isDirectory()) {
+      for (const child of FSExtra.readdirSync(entry)) visit(path.join(entry, child))
+      return
+    }
+    if (!entry.endsWith('.kt')) return
+    for (const line of FSExtra.readFileSync(entry, 'utf8').split('\n')) {
+      const match = /^\s*import\s+([A-Za-z0-9_.]+)/.exec(line)
+      if (match) imports.add(match[1])
+    }
+  }
+  visit(dir)
+  return imports
+}
+
 export function enableAppComposeIntegration(dest: string) {
   const rootBuildGradlePath = path.join(dest, 'build.gradle')
   if (FSExtra.existsSync(rootBuildGradlePath)) {
@@ -2977,6 +3007,29 @@ export function enableAppComposeIntegration(dest: string) {
         ? 'implementation("com.facebook.react:react-android")'
         : 'implementation "com.facebook.react:react-android"'
       content = insertAfterLine(content, depsAnchor, composeDeps)
+    }
+    // each import rule carries its own guard, so a re-prebuild adds a newly
+    // needed artifact without touching the rest of the file.
+    const imports = kotlinSourceImports(path.join(dest, 'app/src/main/java/one/source'))
+    for (const rule of KOTLIN_IMPORT_ARTIFACTS) {
+      const needed = [...imports].some(
+        (name) => name === rule.importPrefix || name.startsWith(`${rule.importPrefix}.`)
+      )
+      if (!needed || content.includes(rule.artifact)) continue
+      const reactAnchor = content.includes('implementation("com.facebook.react:react-android")')
+        ? 'implementation("com.facebook.react:react-android")'
+        : 'implementation "com.facebook.react:react-android"'
+      const anchor = content.includes('androidx.compose.material3:material3')
+        ? 'androidx.compose.material3:material3'
+        : reactAnchor
+      content = insertAfterLine(
+        content,
+        anchor,
+        [
+          `    def ${rule.versionKey} = rootProject.ext.has("${rule.versionKey}") ? rootProject.ext.get("${rule.versionKey}") : "${rule.version}"`,
+          `    implementation "${rule.artifact}:$${rule.versionKey}"`,
+        ].join('\n')
+      )
     }
     FSExtra.writeFileSync(appBuildGradlePath, content, 'utf8')
   }

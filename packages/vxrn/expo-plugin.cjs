@@ -494,6 +494,36 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
     return `${haystack.slice(0, lineEnd + 1)}${insertion}\n${haystack.slice(lineEnd + 1)}`
   }
 
+  // mirrors one prebuild's kotlin import artifact rules: each import prefix
+  // names the gradle artifact that supplies it, so an imported source
+  // compiles without the app declaring the dependency.
+  const kotlinImportArtifacts = [
+    {
+      importPrefix: 'androidx.compose.material.icons',
+      artifact: 'androidx.compose.material:material-icons-core',
+      versionKey: 'materialIconsVersion',
+      version: '1.7.6',
+    },
+  ]
+
+  const kotlinSourceImports = (dir) => {
+    const imports = new Set()
+    if (!fs.existsSync(dir)) return imports
+    const visit = (entry) => {
+      if (fs.statSync(entry).isDirectory()) {
+        for (const child of fs.readdirSync(entry)) visit(path.join(entry, child))
+        return
+      }
+      if (!entry.endsWith('.kt')) return
+      for (const line of fs.readFileSync(entry, 'utf8').split('\n')) {
+        const match = /^\s*import\s+([A-Za-z0-9_.]+)/.exec(line)
+        if (match) imports.add(match[1])
+      }
+    }
+    visit(dir)
+    return imports
+  }
+
   // mirrors one prebuild's enableAppComposeIntegration on the Expo android
   // project. one prebuild owns its template so its anchors always hit; the
   // Expo template may differ, so a missed anchor fails fast with the manual
@@ -562,6 +592,32 @@ extern void OneSwiftRegisterPackage(const char *name, int (*entry)(int, char **)
         throw new Error(`[vxrn/expo-plugin] nativeSource: no react-android dependency anchor in app/build.gradle; ${manual}`)
       }
       content = insertAfterLine(content, depsAnchor, composeDeps)
+    }
+    // each import rule carries its own guard, so a re-prebuild adds a newly
+    // needed artifact without touching the rest of the file.
+    const imports = kotlinSourceImports(path.join(androidRoot, 'app/src/main/java/one/source'))
+    for (const rule of kotlinImportArtifacts) {
+      const needed = [...imports].some(
+        (name) => name === rule.importPrefix || name.startsWith(`${rule.importPrefix}.`)
+      )
+      if (!needed || content.includes(rule.artifact)) continue
+      const reactAnchor = content.includes('implementation("com.facebook.react:react-android")')
+        ? 'implementation("com.facebook.react:react-android")'
+        : 'implementation "com.facebook.react:react-android"'
+      const anchor = content.includes('androidx.compose.material3:material3')
+        ? 'androidx.compose.material3:material3'
+        : reactAnchor
+      if (!content.includes(anchor)) {
+        throw new Error(`[vxrn/expo-plugin] nativeSource: no dependency anchor for ${rule.artifact} in app/build.gradle; ${manual}`)
+      }
+      content = insertAfterLine(
+        content,
+        anchor,
+        [
+          `    def ${rule.versionKey} = rootProject.ext.has("${rule.versionKey}") ? rootProject.ext.get("${rule.versionKey}") : "${rule.version}"`,
+          `    implementation "${rule.artifact}:$${rule.versionKey}"`,
+        ].join('\n')
+      )
     }
     fs.writeFileSync(appBuildGradlePath, content, 'utf8')
   }

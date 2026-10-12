@@ -2851,4 +2851,47 @@ fun Counter(label: String, onIncrement: () -> Unit) {
     expect(updatedApp).toContain('compose true')
     expect(updatedApp).toContain('androidx.compose.ui:ui')
   })
+
+  it('adds material-icons-core only when a kotlin source imports material icons', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-compose-icons-root-'))
+    const dest = mkdtempSync(join(tmpdir(), 'vxrn-compose-icons-dest-'))
+    const appDir = join(dest, 'app')
+    const appGradle = join(appDir, 'build.gradle')
+    mkdirSync(appDir, { recursive: true })
+
+    const initialAppGradle = `apply plugin: "org.jetbrains.kotlin.android"
+android {
+    namespace "com.example"
+}
+dependencies {
+    implementation("com.facebook.react:react-android")
+}
+`
+    writeFileSync(appGradle, initialAppGradle)
+    writeFileSync(
+      join(root, 'Counter.kt'),
+      `package com.example\nimport androidx.compose.runtime.Composable\n\n@Composable\nfun Counter(label: String) {\n}\n`
+    )
+
+    await generateKotlinSources({ root, dest })
+
+    expect(readFileSync(appGradle, 'utf8')).not.toContain('material-icons-core')
+
+    writeFileSync(
+      join(root, 'Resources.kt'),
+      `package com.example\nimport androidx.compose.material.icons.Icons\nimport androidx.compose.material.icons.filled.Add\nimport androidx.compose.runtime.Composable\n\n@Composable\nfun Resources() {\n}\n`
+    )
+
+    await generateKotlinSources({ root, dest })
+
+    const updated = readFileSync(appGradle, 'utf8')
+    expect(updated).toContain('androidx.compose.material:material-icons-core:$materialIconsVersion')
+    expect(updated).toContain('materialIconsVersion')
+    // the base block still lands once on a re-prebuild
+    expect(updated.split('androidx.compose.ui:ui').length - 1).toBe(1)
+
+    await generateKotlinSources({ root, dest })
+
+    expect(readFileSync(appGradle, 'utf8')).toBe(updated)
+  })
 })

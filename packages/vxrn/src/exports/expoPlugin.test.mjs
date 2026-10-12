@@ -421,4 +421,38 @@ describe('vxrn/expo-plugin nativeSource', () => {
     writeFileSync(appGradle, 'android {\n}\n')
     await expect(run()).rejects.toThrow('no kotlin android plugin anchor')
   })
+
+  it('adds material-icons-core only when a kotlin source imports material icons', async () => {
+    const projectRoot = expoProject()
+    writeFileSync(
+      join(projectRoot, 'Greeting.kt'),
+      'import androidx.compose.material.icons.Icons\nimport androidx.compose.material.icons.filled.Add\nimport androidx.compose.runtime.Composable\n\n@Composable\nfun Greeting(name: String) {\n}\n'
+    )
+    const androidRoot = join(projectRoot, 'android')
+    mkdirSync(join(androidRoot, 'app'), { recursive: true })
+    writeFileSync(
+      join(androidRoot, 'build.gradle'),
+      'buildscript {\n    dependencies {\n        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")\n    }\n}\n'
+    )
+    const appGradle = join(androidRoot, 'app/build.gradle')
+    writeFileSync(
+      appGradle,
+      'apply plugin: "com.android.application"\napply plugin: "org.jetbrains.kotlin.android"\nandroid {\n}\ndependencies {\n    implementation("com.facebook.react:react-android")\n}\n'
+    )
+    const config = withVxrn(
+      { name: 'TestApp', slug: 'test-app', _internal: { projectRoot } },
+      { nativeSource: true }
+    )
+    const run = () =>
+      config.mods.android.dangerous({
+        ...config,
+        modRequest: dangerousRequest(androidRoot, projectRoot, 'android'),
+        modResults: {},
+      })
+    await run()
+    const once = readFileSync(appGradle, 'utf8')
+    expect(once).toContain('androidx.compose.material:material-icons-core:$materialIconsVersion')
+    await run()
+    expect(readFileSync(appGradle, 'utf8')).toBe(once)
+  })
 })
