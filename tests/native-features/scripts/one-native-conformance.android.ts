@@ -26,9 +26,9 @@ type Node = {
   bounds?: Bounds
 }
 
-type Snapshot = { xml: string; nodes: Node[] }
+export type Snapshot = { xml: string; nodes: Node[] }
 
-type Config = {
+export type Config = {
   deviceId: string
   packageId: string
   artifactDir: string
@@ -41,7 +41,7 @@ type Config = {
   negativeControl: boolean
 }
 
-type Selector = {
+export type Selector = {
   id?: string
   role?: string
   clickable?: boolean
@@ -308,27 +308,24 @@ function dumpNodes(config: Config): Snapshot {
   return { xml, nodes: parseXml(xml) }
 }
 
-function snapshot(config: Config): Snapshot {
+export function snapshot(config: Config): Snapshot {
+  const current = dumpNodes(config)
+  assertNoRedBox(current.nodes)
+  if (!current.nodes.length)
+    throw new Error('Android accessibility XML contained no nodes.')
+  return current
+}
+
+export async function awaitSnapshot(
+  config: Config,
+  name: string,
+  timeoutMs = config.timeout
+): Promise<Snapshot> {
   // direct snapshots outside waitFor see the same transient dump failures
-  // waitFor already tolerates; retry that exact signature a bounded number
-  // of times instead of failing the suite on one busy-system dump. redbox
-  // and empty-tree verdicts still throw on the first attempt.
-  for (let attempt = 0; ; attempt++) {
-    try {
-      const current = dumpNodes(config)
-      assertNoRedBox(current.nodes)
-      if (!current.nodes.length)
-        throw new Error('Android accessibility XML contained no nodes.')
-      return current
-    } catch (error) {
-      const transient =
-        error instanceof Error &&
-        error.message.includes('uiautomator dump') &&
-        error.message.includes('Command failed')
-      if (!transient || attempt >= 4) throw error
-      Bun.sleepSync(250)
-    }
-  }
+  // waitFor already tolerates; await a valid dump as a condition with a
+  // deadline instead of retrying it. redbox still throws immediately, and an
+  // empty tree waits for content like any unmet predicate.
+  return (await waitFor(config, name, () => true, undefined, timeoutMs)).snapshot
 }
 
 function nodeValues(node: Node) {
@@ -489,7 +486,7 @@ function diagnose(
   return failed.length === 0
 }
 
-async function waitFor(
+export async function waitFor(
   config: Config,
   name: string,
   predicate: (nodes: Node[]) => boolean,
@@ -536,7 +533,33 @@ function tapFresh(
   selector: Selector,
   check?: (node: Node) => void
 ) {
-  const current = snapshot(config)
+  tapResolved(config, snapshot(config), name, selector, check)
+}
+
+export async function tapAwaited(
+  config: Config,
+  name: string,
+  selector: Selector,
+  check?: (node: Node) => void
+) {
+  // the navigation path meets the same transient dump failures waitFor
+  // already tolerates; await the tap target as a condition instead of
+  // retrying the dump.
+  const { snapshot: current } = await waitFor(
+    config,
+    name,
+    (nodes) => matching(nodes, selector).length === 1
+  )
+  tapResolved(config, current, name, selector, check)
+}
+
+function tapResolved(
+  config: Config,
+  current: Snapshot,
+  name: string,
+  selector: Selector,
+  check?: (node: Node) => void
+) {
   const node = uniqueNode(current.nodes, selector, name)
   check?.(node)
   const bounds = validBounds(node, name)
@@ -658,7 +681,20 @@ function requireKeyboardShown(config: Config) {
 }
 
 function swipeFresh(config: Config, name: string, direction: 'forward' | 'backward' = 'forward') {
-  const current = snapshot(config)
+  swipeResolved(config, snapshot(config), name, direction)
+}
+
+export async function swipeAwaited(config: Config, name: string, direction: 'forward' | 'backward' = 'forward') {
+  // same transient dumps as tapAwaited: await the scroller as a condition.
+  const { snapshot: current } = await waitFor(
+    config,
+    name,
+    (nodes) => nodes.filter((node) => node.scrollable === true).length === 1
+  )
+  swipeResolved(config, current, name, direction)
+}
+
+function swipeResolved(config: Config, current: Snapshot, name: string, direction: 'forward' | 'backward') {
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
   if (scrollables.length !== 1)
     throw new Error(
@@ -691,18 +727,18 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
       `${name} scrollable ready`,
       (nodes) => nodes.filter((node) => node.scrollable === true).length === 1
     )
-  const initial = snapshot(config)
+  const initial = await awaitSnapshot(config, 'navigation start')
   const initialTarget = matching(initial.nodes, { id: navId })[0]
   if (!initialTarget?.bounds || !visibleIn(initialTarget.bounds, applicationBounds(initial.nodes))) {
     for (let attempt = 0; attempt < 40; attempt++) {
-      const current = snapshot(config)
+      const current = await awaitSnapshot(config, 'navigation first row')
       if (matching(current.nodes, { id: 'nav-color-test' }).length === 1) break
       const previousPositions = current.nodes
         .filter((node) => node.resourceId.includes('nav-') && node.bounds)
         .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
         .join('|')
       await awaitHomeScroller('Home navigation scroll first row')
-      swipeFresh(config, 'Home navigation scroll view', 'backward')
+      await swipeAwaited(config, 'Home navigation scroll view', 'backward')
       await waitFor(config, 'Home navigation scroll position moves toward the first row', (nodes) => {
         const nextPositions = nodes
           .filter((node) => node.resourceId.includes('nav-') && node.bounds)
@@ -713,7 +749,7 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
     }
   }
   for (let attempt = 0; attempt < 40; attempt++) {
-    const current = snapshot(config)
+    const current = await awaitSnapshot(config, 'navigation row seek')
     const rows = matching(current.nodes, {
       id: navId,
       role: 'button',
@@ -741,7 +777,7 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
           settled[0].bounds.bottom === candidateBounds.bottom
         )
       })
-      tapFresh(config, 'Android proof navigation row', {
+      await tapAwaited(config, 'Android proof navigation row', {
         id: navId,
         role: 'button',
         clickable: true,
@@ -759,7 +795,7 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
       .map((node) => `${node.resourceId}:${node.bounds!.top}:${node.bounds!.bottom}`)
       .join('|')
     await awaitHomeScroller('Home navigation scroll seek')
-    swipeFresh(config, 'Home navigation scroll view')
+    await swipeAwaited(config, 'Home navigation scroll view')
     // a reload can absorb the first swipe while the list is still settling, so a swipe that
     // moves nothing retries instead of blocking for the full timeout.
     const advanced = await waitFor(
@@ -7330,15 +7366,17 @@ async function runUpdates(config: Config) {
   console.log('ALL ONE NATIVE ANDROID UPDATES CHECKS PASSED')
 }
 
-try {
-  const config = parse(process.argv.slice(2))
-  await (config.suite === 'updates'
-    ? runUpdates(config)
-    : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'compose-lists' || config.suite === 'compose-image' || config.suite === 'compose-snackbar' || config.suite === 'compose-sheet' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
-      ? runCompose(config)
-      : run(config))
-} catch (error) {
-  const message = error instanceof Error ? error.message : String(error)
-  console.error(`FAIL one-native-android: ${message}`)
-  process.exitCode = 1
+if (import.meta.main) {
+  try {
+    const config = parse(process.argv.slice(2))
+    await (config.suite === 'updates'
+      ? runUpdates(config)
+      : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'compose-lists' || config.suite === 'compose-image' || config.suite === 'compose-snackbar' || config.suite === 'compose-sheet' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
+        ? runCompose(config)
+        : run(config))
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    console.error(`FAIL one-native-android: ${message}`)
+    process.exitCode = 1
+  }
 }
