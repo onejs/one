@@ -60,8 +60,8 @@ export default function OneNativeNotifications() {
         testID="one-native-notifications-category-roundtrip"
         style={styles.chip}
         onPress={async () => {
-          const identifier = 'one-category-roundtrip'
-          const sentinel = 'one-category-sentinel'
+          const identifier = 'one_category_roundtrip'
+          const sentinel = 'one_category_sentinel'
           try {
             await One.Notifications.setCategory(sentinel, [])
             await One.Notifications.setCategory(identifier, [{

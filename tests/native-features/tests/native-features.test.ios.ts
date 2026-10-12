@@ -152,6 +152,7 @@ describe('one native integration tests', () => {
         const payloadText = await payloads.getText()
         expect(payloadText).toContain('"x":1')
         expect(payloadText).toContain('"label":null')
+        expect(JSON.parse(payloadText).labeled).toEqual({ x: 3, y: 4, label: 'Named waypoint' })
         expect(payloadText).toContain('"heading":"north"')
         expect(payloadText).toContain('"at":"2026-01-01T00:00:00.000Z"')
         expect(payloadText).toContain('"blob":[1,2,3]')
