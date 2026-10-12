@@ -87,16 +87,17 @@ final class HybridOnePedometer: HybridOnePedometerSpec {
         return
       }
       // CoreMotion has no explicit request call: starting updates shows
-      // the prompt. probe only while no watch runs, so the probe never
-      // stops a live watch.
-      let probing = !self.observing
-      if probing {
-        self.pedometer.startUpdates(from: Date()) { [weak self] _, _ in
-          self?.pedometer.stopUpdates()
+      // the prompt. probe on an isolated pedometer, so stopping the probe
+      // can never stop a live watch on the shared one, even when the probe
+      // callback lands after the watch starts.
+      let probe: CMPedometer? = self.observing ? nil : CMPedometer()
+      if let probe {
+        probe.startUpdates(from: Date()) { [weak probe] _, _ in
+          probe?.stopUpdates()
         }
       }
       self.awaitDetermined(
-        promise: promise, probing: probing, deadline: Date().addingTimeInterval(60))
+        promise: promise, probe: probe, deadline: Date().addingTimeInterval(60))
     }
     return promise
   }
@@ -104,18 +105,16 @@ final class HybridOnePedometer: HybridOnePedometerSpec {
   // main thread only. resolves once the user answers the prompt, or with
   // the current status after the deadline.
   private func awaitDetermined(
-    promise: Promise<PedometerPermissionResponse>, probing: Bool, deadline: Date
+    promise: Promise<PedometerPermissionResponse>, probe: CMPedometer?, deadline: Date
   ) {
     let status = CMPedometer.authorizationStatus()
     guard status == .notDetermined, Date() < deadline else {
-      if probing, !observing {
-        pedometer.stopUpdates()
-      }
+      probe?.stopUpdates()
       promise.resolve(withResult: Self.response(for: status))
       return
     }
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-      self?.awaitDetermined(promise: promise, probing: probing, deadline: deadline)
+      self?.awaitDetermined(promise: promise, probe: probe, deadline: deadline)
     }
   }
 
