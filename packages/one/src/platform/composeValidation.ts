@@ -23,6 +23,7 @@ import type {
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
+  ComposeSearchBarProps,
   ComposeSliderProps,
   ComposeSuggestionChipProps,
   ComposeStyle,
@@ -999,6 +1000,18 @@ export function validateNavigationBarItemProps(props: ComposeNavigationBarItemPr
   assertOptionalBoolean(props.alwaysShowLabel, 'NavigationBarItem alwaysShowLabel')
   if (props.colors !== undefined)
     assertComposeColors(props.colors, navigationBarItemColorKeys, 'NavigationBarItem')
+}
+
+export function validateSearchBarProps(props: ComposeSearchBarProps, owner = 'SearchBar') {
+  assertString(props.query, `${owner} query`)
+  assertFunction(props.onQueryChange, `${owner} onQueryChange`)
+  assertBoolean(props.expanded, `${owner} expanded`)
+  assertFunction(props.onExpandedChange, `${owner} onExpandedChange`)
+  assertOptionalString(props.placeholder, `${owner} placeholder`)
+  assertOptionalBoolean(props.enabled, `${owner} enabled`)
+  if (props.onSearch !== undefined) assertFunction(props.onSearch, `${owner} onSearch`)
+  if (props.containerColor !== undefined)
+    assertComposeColorValue(props.containerColor, `${owner} containerColor`)
 }
 
 export function validateModalBottomSheetProps(props: ComposeModalBottomSheetProps) {

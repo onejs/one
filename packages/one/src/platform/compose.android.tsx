@@ -53,6 +53,7 @@ import type {
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSpacerProps,
+  ComposeSearchBarProps,
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
@@ -111,6 +112,7 @@ import {
   validateProgressIndicatorProps,
   validateRadioButtonProps,
   validateRowProps,
+  validateSearchBarProps,
   validateSliderProps,
   validateSnackbarProps,
   validateSnackbarShowOptions,
@@ -177,6 +179,9 @@ type ComposeNodeType =
   | 'sheetslot'
   | 'navigationbar'
   | 'navigationbaritem'
+  | 'searchbar'
+  | 'dockedsearchbar'
+  | 'searchbarslot'
   | 'progressindicator'
   | 'datepicker'
   | 'timepicker'
@@ -331,6 +336,10 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   navigationBarColors?: Pick<ComposeNavigationBarProps, 'containerColor' | 'contentColor'>
   navigationBarItemColors?: ComposeNavigationBarItemProps['colors']
   alwaysShowLabel?: boolean
+  expandedValue?: boolean
+  expandedRevision?: number
+  acknowledgedExpandedEvent?: number
+  searchBarColors?: Pick<ComposeSearchBarProps, 'containerColor'>
   onNativeComposeNodeImageLoad?: (event: { nativeEvent: { eventCount: number } }) => void
   onNativeComposeNodeImageError?: (event: {
     nativeEvent: { message: string; eventCount: number }
@@ -748,6 +757,108 @@ function NavigationBar({
     </ComposeNode>
   )
 }
+
+function SearchBarNode({
+  nodeType,
+  owner,
+  children,
+  query,
+  onQueryChange,
+  revision = 0,
+  expanded,
+  onExpandedChange,
+  expandedRevision = 0,
+  placeholder,
+  enabled = true,
+  onSearch,
+  containerColor,
+  ...props
+}: ComposeSearchBarProps & {
+  nodeType: 'searchbar' | 'dockedsearchbar'
+  owner: 'SearchBar' | 'DockedSearchBar'
+}) {
+  validateSearchBarProps(
+    {
+      query,
+      onQueryChange,
+      revision,
+      expanded,
+      onExpandedChange,
+      expandedRevision,
+      placeholder,
+      enabled,
+      onSearch,
+      containerColor,
+    },
+    owner
+  )
+  const controlled = useControlled<{
+    text: string
+    eventCount: number
+    revision: number
+  }>((event) => onQueryChange(event.text), revision)
+  const controlledExpanded = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onExpandedChange(event.value), expandedRevision)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType={nodeType}
+      textValue={query}
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      expandedValue={expanded}
+      expandedRevision={expandedRevision}
+      acknowledgedExpandedEvent={controlledExpanded.acknowledgedEvent}
+      placeholder={placeholder}
+      disabled={!enabled}
+      searchBarColors={{ containerColor }}
+      onNativeComposeNodeTextValueChange={(event) =>
+        controlled.onNativeChange(event.nativeEvent)
+      }
+      onNativeComposeNodeBooleanValueChange={(event) =>
+        controlledExpanded.onNativeChange(event.nativeEvent)
+      }
+      onNativeComposeNodeTextFieldSubmit={onSearch ? () => onSearch(query) : undefined}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function SearchBarRoot(props: ComposeSearchBarProps) {
+  return <SearchBarNode {...props} nodeType="searchbar" owner="SearchBar" />
+}
+
+function DockedSearchBarRoot(props: ComposeSearchBarProps) {
+  return <SearchBarNode {...props} nodeType="dockedsearchbar" owner="DockedSearchBar" />
+}
+
+function SearchBarSlot({ children, name }: { children: ReactNode; name: string }) {
+  return (
+    <ComposeNode nodeType="searchbarslot" slotName={name}>
+      {children}
+    </ComposeNode>
+  )
+}
+
+const SearchBarLeadingIcon = ({ children }: { children: ReactNode }) => (
+  <SearchBarSlot name="leadingIcon">{children}</SearchBarSlot>
+)
+const SearchBarTrailingIcon = ({ children }: { children: ReactNode }) => (
+  <SearchBarSlot name="trailingIcon">{children}</SearchBarSlot>
+)
+
+const SearchBar = Object.assign(SearchBarRoot, {
+  LeadingIcon: SearchBarLeadingIcon,
+  TrailingIcon: SearchBarTrailingIcon,
+})
+const DockedSearchBar = Object.assign(DockedSearchBarRoot, {
+  LeadingIcon: SearchBarLeadingIcon,
+  TrailingIcon: SearchBarTrailingIcon,
+})
 
 function NavigationBarItem({
   selected,
@@ -1757,6 +1868,8 @@ export const Compose = {
   ModalBottomSheet,
   NavigationBar,
   NavigationBarItem,
+  SearchBar,
+  DockedSearchBar,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

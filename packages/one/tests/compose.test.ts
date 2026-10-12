@@ -18,6 +18,7 @@ import {
   validateNavigationBarProps,
   validateProgressIndicatorProps,
   validateRowProps,
+  validateSearchBarProps,
   validateSliderProps,
   validateSnackbarProps,
   validateSnackbarShowOptions,
@@ -737,6 +738,73 @@ describe('compose navigation bar', () => {
     expect(() =>
       Unsupported.NavigationBarItem({ selected: false, onClick: () => {}, icon: 'home' })
     ).toThrow('Compose.NavigationBarItem requires an Android native build')
+  })
+})
+
+describe('compose search bar', () => {
+  const bar = {
+    query: 'ap',
+    onQueryChange: () => {},
+    expanded: true,
+    onExpandedChange: () => {},
+  }
+
+  it('renders a controlled query with expansion state', () => {
+    expect(
+      render(Compose.SearchBar, { ...bar, placeholder: 'Search items', onSearch: () => {} })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'searchbar',
+        textValue: 'ap',
+        expandedValue: true,
+        placeholder: 'Search items',
+        disabled: false,
+      },
+    })
+    expect(render(Compose.DockedSearchBar, { ...bar, expanded: false })).toMatchObject({
+      props: { nodeType: 'dockedsearchbar', expandedValue: false },
+    })
+  })
+
+  it('renders leading and trailing icon slots', () => {
+    expect(render(Compose.SearchBar.LeadingIcon, { children: null })).toMatchObject({
+      props: { nodeType: 'searchbarslot', slotName: 'leadingIcon' },
+    })
+    expect(render(Compose.DockedSearchBar.TrailingIcon, { children: null })).toMatchObject({
+      props: { nodeType: 'searchbarslot', slotName: 'trailingIcon' },
+    })
+  })
+
+  it('accepts defaults and rejects bad queries and callbacks', () => {
+    expect(() => validateSearchBarProps(bar)).not.toThrow()
+    expect(() => validateSearchBarProps({ ...bar, query: 4 as never })).toThrow(
+      'Compose SearchBar query must be string'
+    )
+    expect(() => validateSearchBarProps({ ...bar, onQueryChange: undefined as never })).toThrow(
+      'Compose SearchBar onQueryChange must be a function'
+    )
+    expect(() => validateSearchBarProps({} as never)).toThrow(
+      'Compose SearchBar query must be string'
+    )
+    expect(() =>
+      validateSearchBarProps({ ...bar, expanded: 'yes' as never }, 'DockedSearchBar')
+    ).toThrow('Compose DockedSearchBar expanded must be a boolean')
+    expect(() => validateSearchBarProps({ ...bar, onSearch: 'go' as never })).toThrow(
+      'Compose SearchBar onSearch must be a function'
+    )
+    expect(() => validateSearchBarProps({ ...bar, containerColor: '' })).toThrow(
+      'Compose SearchBar containerColor must be a color value'
+    )
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.SearchBar(bar)).toThrow(
+      'Compose.SearchBar requires an Android native build'
+    )
+    expect(() => Unsupported.DockedSearchBar(bar)).toThrow(
+      'Compose.DockedSearchBar requires an Android native build'
+    )
   })
 })
 

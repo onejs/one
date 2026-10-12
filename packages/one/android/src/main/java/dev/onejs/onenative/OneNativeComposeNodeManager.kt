@@ -444,6 +444,22 @@ class OneNativeComposeNodeManager :
         view.stageAlwaysShowLabel(value)
     }
 
+    override fun setExpandedValue(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageExpandedValue(value)
+    }
+
+    override fun setExpandedRevision(view: OneNativeComposeNodeView, value: Int) {
+        view.stageExpandedRevision(value)
+    }
+
+    override fun setAcknowledgedExpandedEvent(view: OneNativeComposeNodeView, value: Int) {
+        view.stageAcknowledgedExpandedEvent(value)
+    }
+
+    override fun setSearchBarColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageSearchBarColors(value)
+    }
+
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageComposeStyle(value)
     }

@@ -846,3 +846,50 @@ const [tab, setTab] = useState('home')
     { name: 'disabledTextColor', type: 'ColorValue', description: 'The disabled label color.' },
   ]}
 />
+
+## SearchBar, DockedSearchBar
+
+`One.Android.SearchBar` is the Material 3 search field. `query` is controlled
+text, `expanded` opens the results list, and children render as the expanded
+content. `onSearch` fires when the user submits the query. Leading and
+trailing icons go in slots; the M3 pattern swaps the leading search icon for a
+back arrow while expanded. `One.Android.DockedSearchBar` shares the same
+props, and its results anchor under the field instead of taking the screen.
+
+```tsx
+const [query, setQuery] = useState('')
+const [expanded, setExpanded] = useState(false)
+
+<One.Android.SearchBar
+  query={query}
+  onQueryChange={setQuery}
+  expanded={expanded}
+  onExpandedChange={setExpanded}
+  placeholder="Search items"
+  onSearch={(submitted) => runSearch(submitted)}
+>
+  <One.Android.SearchBar.LeadingIcon>
+    <One.Android.Icon name="search" />
+  </One.Android.SearchBar.LeadingIcon>
+  {results.map((result) => (
+    <One.Android.Text key={result.id} text={result.title} />
+  ))}
+</One.Android.SearchBar>
+```
+
+<PropsTable
+  title="SearchBar, DockedSearchBar"
+  source="composeTypes.ts#ComposeSearchBarProps"
+  data={[
+    { name: 'query', required: true, type: 'string', description: 'The controlled search text.' },
+    { name: 'onQueryChange', required: true, type: '(value: string) => void', description: 'The text changed.' },
+    { name: 'revision', type: 'number', description: 'Bump to force the native text to the query.' },
+    { name: 'expanded', required: true, type: 'boolean', description: 'The results list is open.' },
+    { name: 'onExpandedChange', required: true, type: '(expanded: boolean) => void', description: 'A tap or back press asked to expand or collapse.' },
+    { name: 'expandedRevision', type: 'number', description: 'Bump to force native expansion to expanded.' },
+    { name: 'placeholder', type: 'string', description: 'The hint shown when the query is empty.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled bar ignores input.' },
+    { name: 'onSearch', type: '(query: string) => void', description: 'The user submitted the query.' },
+    { name: 'containerColor', type: 'ColorValue', description: 'The bar background.' },
+  ]}
+/>

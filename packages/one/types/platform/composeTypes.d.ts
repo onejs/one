@@ -150,6 +150,18 @@ export interface ComposeNavigationBarItemProps extends ComposeLeafProps {
     alwaysShowLabel?: boolean;
     colors?: ComposeNavigationBarItemColors;
 }
+export interface ComposeSearchBarProps extends ComposeNodeProps {
+    query: string;
+    onQueryChange: (value: string) => void;
+    revision?: number;
+    expanded: boolean;
+    onExpandedChange: (expanded: boolean) => void;
+    expandedRevision?: number;
+    placeholder?: string;
+    enabled?: boolean;
+    onSearch?: (query: string) => void;
+    containerColor?: ColorValue;
+}
 export interface ComposeBadgeProps extends ComposeNodeProps {
     containerColor?: ColorValue;
     contentColor?: ColorValue;

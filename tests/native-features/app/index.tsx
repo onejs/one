@@ -570,6 +570,11 @@ const testScreens = [
     testID: 'nav-one-native-android-navigation-bar',
   },
   {
+    href: '/one-native-android-search-bar',
+    label: 'One Native Android Search Bar',
+    testID: 'nav-one-native-android-search-bar',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

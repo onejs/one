@@ -35,6 +35,7 @@ import type {
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSpacerProps,
+  ComposeSearchBarProps,
   ComposeSegmentedButtonProps,
   ComposeSegmentedButtonRowProps,
   ComposeSliderProps,
@@ -299,6 +300,22 @@ function NavigationBarItem(_props: ComposeNavigationBarItemProps): never {
   return unsupported('NavigationBarItem')
 }
 
+const SearchBarRoot = (_props: ComposeSearchBarProps): never =>
+  unsupported('SearchBar')
+
+const SearchBar = Object.assign(SearchBarRoot, {
+  LeadingIcon: (_props: { children: ReactNode }): never => unsupported('SearchBar.LeadingIcon'),
+  TrailingIcon: (_props: { children: ReactNode }): never => unsupported('SearchBar.TrailingIcon'),
+})
+
+const DockedSearchBarRoot = (_props: ComposeSearchBarProps): never =>
+  unsupported('DockedSearchBar')
+
+const DockedSearchBar = Object.assign(DockedSearchBarRoot, {
+  LeadingIcon: (_props: { children: ReactNode }): never => unsupported('DockedSearchBar.LeadingIcon'),
+  TrailingIcon: (_props: { children: ReactNode }): never => unsupported('DockedSearchBar.TrailingIcon'),
+})
+
 function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
@@ -397,6 +414,8 @@ export const Compose = {
   ModalBottomSheet,
   NavigationBar,
   NavigationBarItem,
+  SearchBar,
+  DockedSearchBar,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

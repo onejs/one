@@ -351,6 +351,12 @@ interface NativeProps extends ViewProps {
         disabledTextColor?: ColorValue;
     }>;
     alwaysShowLabel?: boolean;
+    expandedValue?: boolean;
+    expandedRevision?: Int32;
+    acknowledgedExpandedEvent?: Int32;
+    searchBarColors?: Readonly<{
+        containerColor?: ColorValue;
+    }>;
     onNativeComposeNodeImageLoad?: DirectEventHandler<Readonly<{
         eventCount: Int32;
     }>>;

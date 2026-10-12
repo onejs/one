@@ -116,8 +116,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.DockedSearchBar
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
@@ -869,6 +872,10 @@ internal data class OneNativeComposeNodeProps(
     val navigationBarColors: OneNativeCardColors = OneNativeCardColors(),
     val navigationBarItemColors: OneNativeNavigationBarItemColors = OneNativeNavigationBarItemColors(),
     val alwaysShowLabel: Boolean = false,
+    val expandedValue: Boolean = false,
+    val expandedRevision: Int = 0,
+    val acknowledgedExpandedEvent: Int = 0,
+    val searchBarColors: OneNativeCardColors = OneNativeCardColors(),
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -931,6 +938,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private val controlledText = OneNativeControlledValue("")
     private val controlledFocus = OneNativeControlledValue(false)
     private val controlledNumber = OneNativeControlledValue(0.0)
+    private val controlledExpanded = OneNativeControlledValue(false)
     private var boundSyncText: MutableState<Any>? = null
     private var boundSyncId: Int = 0
     private var pendingProps = OneNativeComposeNodeProps()
@@ -999,6 +1007,9 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     internal val renderedNumberValue: Double
         get() = controlledNumber.value
 
+    internal val renderedExpandedValue: Boolean
+        get() = controlledExpanded.value
+
     internal val renderedNodeKind: String
         get() = committedProps.nodeType
             ?.trim()
@@ -1058,6 +1069,11 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
             suppliedValue = next.numberValue.takeIf { it.isFinite() } ?: 0.0,
             acknowledgedEvent = next.acknowledgedEvent,
             suppliedRevision = next.revision,
+        )
+        controlledExpanded.applyProps(
+            suppliedValue = next.expandedValue,
+            acknowledgedEvent = next.acknowledgedExpandedEvent,
+            suppliedRevision = next.expandedRevision,
         )
         bindSyncText(next.syncStateId)
     }
@@ -1410,6 +1426,36 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(alwaysShowLabel = value)
     }
 
+    internal fun stageExpandedValue(value: Boolean) {
+        pendingProps = pendingProps.copy(expandedValue = value)
+    }
+
+    internal fun stageExpandedRevision(value: Int) {
+        pendingProps = pendingProps.copy(expandedRevision = value)
+    }
+
+    internal fun stageAcknowledgedExpandedEvent(value: Int) {
+        pendingProps = pendingProps.copy(acknowledgedExpandedEvent = value)
+    }
+
+    internal fun stageSearchBarColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(searchBarColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun handleExpandedChanged(nextValue: Boolean) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledExpanded.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeBooleanValueChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                value = nextValue,
+                eventCount = eventCount,
+                revision = controlledExpanded.revision,
+            )
+        )
+    }
+
     internal fun handleImageLoad() {
         if (!compositionActive) return
         imageEventCount += 1
@@ -1666,6 +1712,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         controlledText.reset("")
         controlledFocus.reset(false)
         controlledNumber.reset(0.0)
+        controlledExpanded.reset(false)
         pressEventCount = 0
         dialogEventCount = 0
         dialogPresentation = 0
@@ -1983,6 +2030,8 @@ private fun RenderComposeNodeBody(
         "sheetslot" -> Unit
         "navigationbar" -> RenderComposeNavigationBar(node, props, modifier)
         "navigationbaritem" -> Unit
+        "searchbar" -> RenderComposeSearchBar(node, props, modifier, docked = false)
+        "dockedsearchbar" -> RenderComposeSearchBar(node, props, modifier, docked = true)
         "datepicker" -> RenderComposeDatePicker(node, props, modifier)
         "timepicker" -> RenderComposeTimePicker(node, props, modifier)
         "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
@@ -2362,6 +2411,60 @@ private fun RenderComposeNavigationBar(
                 )
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeSearchBar(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+    docked: Boolean,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val expanded = node.renderedExpandedValue
+    val leading = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "leadingIcon" }
+    val trailing = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "trailingIcon" }
+    val inputField: @Composable () -> Unit = {
+        SearchBarDefaults.InputField(
+            query = node.renderedTextValue,
+            onQueryChange = node::handleTextChanged,
+            onSearch = { node.handleSubmit() },
+            expanded = expanded,
+            onExpandedChange = node::handleExpandedChanged,
+            enabled = enabled,
+            placeholder = props.placeholder?.let { text -> { Text(text) } },
+            leadingIcon = leading?.let { slot -> { RenderComposeChildren(slot) } },
+            trailingIcon = trailing?.let { slot -> { RenderComposeChildren(slot) } },
+        )
+    }
+    val colors = SearchBarDefaults.colors(
+        containerColor = props.searchBarColors.containerColor?.let(::Color) ?: Color.Unspecified,
+    )
+    val content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit = {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedProps.slotName == null) key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+    if (docked) {
+        DockedSearchBar(
+            inputField = inputField,
+            expanded = expanded,
+            onExpandedChange = node::handleExpandedChanged,
+            modifier = modifier,
+            colors = colors,
+            content = content,
+        )
+    } else {
+        SearchBar(
+            expanded = expanded,
+            onExpandedChange = node::handleExpandedChanged,
+            inputField = inputField,
+            modifier = modifier,
+            colors = colors,
+            content = content,
+        )
     }
 }
 
