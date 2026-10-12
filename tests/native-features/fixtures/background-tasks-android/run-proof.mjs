@@ -46,15 +46,26 @@ const log = spawn(adb, [
   '*:S',
 ])
 let logText = ''
+let runtimeFailure
 const records = []
 const waiting = new Set()
 const lines = createInterface({ input: log.stdout })
 lines.on('line', (line) => {
   logText += `${line}\n`
+  if (line.includes(`Process: ${app},`)) {
+    runtimeFailure = new Error(`proof application crashed: ${line}`)
+    for (const check of waiting) check()
+  }
   const start = line.indexOf('{')
   if (start < 0 || !line.includes('BackgroundProof')) return
   try {
-    records.push(JSON.parse(line.slice(start)))
+    const record = JSON.parse(line.slice(start))
+    records.push(record)
+    if (
+      record.event === 'javascript' &&
+      JSON.parse(record.detail).event === 'schedule-error'
+    )
+      runtimeFailure = new Error(`proof scheduling failed: ${record.detail}`)
     for (const check of waiting) check()
   } catch {
     /* unrelated platform log line */
@@ -67,6 +78,12 @@ function until(predicate, description) {
       reject(new Error(`timed out: ${description}`))
     }, 180_000)
     function check() {
+      if (runtimeFailure) {
+        clearTimeout(timeout)
+        waiting.delete(check)
+        reject(runtimeFailure)
+        return
+      }
       if (!predicate()) return
       clearTimeout(timeout)
       waiting.delete(check)
