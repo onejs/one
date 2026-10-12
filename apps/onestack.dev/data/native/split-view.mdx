@@ -44,6 +44,10 @@ function Layout() {
 }
 ```
 
+Place SplitView in a root layout. It can render through `Slot`, but cannot be
+nested inside Stack, Tabs, Drawer or another SplitView. One rejects that
+placement before mounting the native split controller.
+
 On iPhone, SplitView collapses to a single column automatically.
 `SplitView.Inspector` marks an inspector column the same way `SplitView.Column`
 marks a sidebar column.

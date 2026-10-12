@@ -1,6 +1,7 @@
 // adapted from expo-router (MIT license) - https://github.com/expo/expo
 import React, { createContext, isValidElement, useContext, type ReactNode } from 'react'
 import { Platform, View } from 'react-native'
+import { IsWithinNativeNavigator } from '../../layouts/NativeNavigatorContext'
 
 const IsWithinSplitViewContext = createContext(false)
 
@@ -24,8 +25,13 @@ export interface SplitViewProps {
 }
 
 function SplitViewNavigator({ children, slot: Slot, ...rest }: SplitViewProps) {
+  const isWithinNativeNavigator = useContext(IsWithinNativeNavigator)
   if (useContext(IsWithinSplitViewContext)) {
     throw new Error('There can only be one SplitView in the navigation hierarchy.')
+  }
+
+  if (Platform.OS === 'ios' && isWithinNativeNavigator) {
+    throw new Error('SplitView cannot be used inside another navigator, except for Slot.')
   }
 
   if (Platform.OS !== 'ios') {

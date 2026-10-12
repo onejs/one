@@ -17,6 +17,7 @@ import { withStaticProperties } from '../utils/withStaticProperties'
 import { isProtectedElement } from '../views/Protected'
 import { Screen } from '../views/Screen'
 import { StackScreen } from './stack-utils/StackScreen'
+import { IsWithinNativeNavigator } from './NativeNavigatorContext'
 
 export function useFilterScreenChildren(
   children: React.ReactNode,
@@ -213,9 +214,11 @@ export function withLayoutContext<
         }
 
         return (
-          <Nav {...options?.props} {...props} ref={ref}>
-            {sorted}
-          </Nav>
+          <IsWithinNativeNavigator.Provider value={true}>
+            <Nav {...options?.props} {...props} ref={ref}>
+              {sorted}
+            </Nav>
+          </IsWithinNativeNavigator.Provider>
         )
       }
     ),
