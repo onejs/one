@@ -6421,8 +6421,9 @@ async function runCompose(config: Config) {
       !treeHas(nodes, 'Small')
     )
     tapFresh(config, 'open menu', { id: 'one-native-android-dropdown-menu-open' })
+    // the open popup eclipses the background tree, so open legs assert the
+    // items and read status back only once the menu shuts.
     await check('compose-dropdown-menu-open', (nodes) =>
-      status('Menu: open')(nodes) &&
       exactlyOneId(nodes, 'one-native-android-dropdown-menu-edit') &&
       exactlyOneId(nodes, 'one-native-android-dropdown-menu-share') &&
       matching(nodes, { id: 'one-native-android-dropdown-menu-delete' }).some((node) => node.enabled === false)
@@ -6433,11 +6434,11 @@ async function runCompose(config: Config) {
     )
     tapFresh(config, 'reopen menu', { id: 'one-native-android-dropdown-menu-open' })
     await check('compose-dropdown-menu-reopened', (nodes) =>
-      status('Menu: open')(nodes) && treeHas(nodes, 'Delete')
+      treeHas(nodes, 'Delete')
     )
     tapFresh(config, 'disabled delete item', { id: 'one-native-android-dropdown-menu-delete' })
     await check('compose-dropdown-menu-disabled-noop', (nodes) =>
-      status('Menu: open · Picked: share')(nodes) && treeHas(nodes, 'Delete')
+      treeHas(nodes, 'Delete')
     )
     pressBack(config)
     await check('compose-dropdown-menu-back-dismissed', (nodes) =>
@@ -6449,7 +6450,6 @@ async function runCompose(config: Config) {
     )
     tapFresh(config, 'open exposed box', { id: 'one-native-android-dropdown-menu-box' })
     await check('compose-dropdown-menu-box-open', (nodes) =>
-      boxStatus('Box: [Medium] · open')(nodes) &&
       exactlyOneId(nodes, 'one-native-android-dropdown-menu-size-small') &&
       exactlyOneId(nodes, 'one-native-android-dropdown-menu-size-large')
     )
