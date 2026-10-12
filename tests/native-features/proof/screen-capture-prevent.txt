@@ -1,0 +1,33 @@
+one-native-screen-capture
+Capture state: inactive
+State events: none
+Screenshot count: 0
+Screenshot timestamp valid: false
+Listening: true
+Status: idle
+Window capture: idle
+Window file: none
+Window dimensions: none
+Window bytes: 0
+Capture app window
+Capture app window
+Delete captured file
+Delete captured file
+Stop screenshot listener
+Stop screenshot listener
+Refresh capture state
+Refresh capture state
+Prevention: done
+Prevent initial: false
+Prevent active: true
+Prevent kept: true
+Prevent released: false
+Prevent invalid: ScreenCapture.prevent requires a non-empty string key
+Prevent restored: false
+Run prevent checks
+Run prevent checks
+Prevention hold: released false
+Hold prevention
+Hold prevention
+Release prevention
+Release prevention
