@@ -122,6 +122,10 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     'ScreenOrientation.getOrientation'
   )
   equal(await One.ScreenCapture.getState(), 'unspecified', 'ScreenCapture.getState')
+  equal(await One.ScreenCapture.isPrevented(), false, 'ScreenCapture.isPrevented')
+  await One.ScreenCapture.prevent()
+  await One.ScreenCapture.allow()
+  equal(await One.ScreenCapture.isPrevented(), false, 'ScreenCapture.isPrevented-after-web')
   equal(await One.Purchases.getProducts(['one-proof']), [], 'Purchases.getProducts')
   equal(
     await One.Device.getInfo(),

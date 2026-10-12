@@ -59,6 +59,18 @@ abstract class HybridOneScreenCaptureSpec: HybridObject() {
     val __result = addScreenshotListener(onScreenshot)
     return Func_void_java(__result)
   }
+  
+  @DoNotStrip
+  @Keep
+  abstract fun prevent(): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun allow(): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun isPrevented(): Promise<Boolean>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

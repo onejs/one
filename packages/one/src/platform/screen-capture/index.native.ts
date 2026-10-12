@@ -1,4 +1,5 @@
-import { validateViewTag } from './validate'
+import { useEffect } from 'react'
+import { assertPreventKey, preventDefaultKey, validateViewTag } from './validate'
 import { validateCallback } from '../validateCallback'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
@@ -46,10 +47,56 @@ function addScreenshotListener(onScreenshot: (timestampMs: number) => void): () 
   return native().addScreenshotListener(onScreenshot)
 }
 
+// keys held by prevent(), mirroring expo-screen-capture's activeTags: the
+// native side arms once on the first key and releases on the last allow,
+// so overlapping screens never conflict with each other.
+const activeKeys = new Set<string>()
+
+function prevent(key: string = preventDefaultKey): Promise<void> {
+  assertPreventKey(key, 'prevent')
+  if (activeKeys.has(key)) return Promise.resolve()
+  activeKeys.add(key)
+  if (activeKeys.size > 1) return Promise.resolve()
+  return native()
+    .prevent()
+    .catch((error: unknown) => {
+      activeKeys.delete(key)
+      throw rethrowNativeError(error)
+    })
+}
+
+function allow(key: string = preventDefaultKey): Promise<void> {
+  assertPreventKey(key, 'allow')
+  activeKeys.delete(key)
+  if (activeKeys.size > 0) return Promise.resolve()
+  return native().allow().catch(rethrowNativeError)
+}
+
+function isPrevented(): Promise<boolean> {
+  return native().isPrevented().catch(rethrowNativeError)
+}
+
+function usePreventScreenCapture(key: string = preventDefaultKey): void {
+  assertPreventKey(key, 'prevent')
+  useEffect(() => {
+    prevent(key).catch((error: unknown) => {
+      console.error(`Failed to prevent screen capture: ${String(error)}`)
+    })
+    return () => {
+      allow(key).catch(() => {})
+    }
+  }, [key])
+}
+
 export const ScreenCapture = Object.freeze({
   getState,
   captureWindow,
   captureView,
   addStateListener,
   addScreenshotListener,
+  prevent,
+  allow,
+  isPrevented,
 })
+
+export { usePreventScreenCapture }

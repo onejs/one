@@ -248,7 +248,7 @@ export type {
   ScreenOrientationLock,
   ScreenOrientationValue,
 } from './screen-orientation/index'
-export { ScreenCapture } from './screen-capture/index'
+export { ScreenCapture, usePreventScreenCapture } from './screen-capture/index'
 export type { ScreenCaptureResult, ScreenCaptureState } from './screen-capture/index'
 export { Purchases } from './purchases/index'
 export type {

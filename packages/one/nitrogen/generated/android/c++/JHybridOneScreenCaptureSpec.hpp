@@ -59,6 +59,9 @@ namespace margelo::nitro::one {
     std::shared_ptr<Promise<ScreenCaptureResult>> captureView(double viewTag) override;
     std::function<void()> addStateListener(const std::function<void(ScreenCaptureState /* state */)>& onChange) override;
     std::function<void()> addScreenshotListener(const std::function<void(double /* timestampMs */)>& onScreenshot) override;
+    std::shared_ptr<Promise<void>> prevent() override;
+    std::shared_ptr<Promise<void>> allow() override;
+    std::shared_ptr<Promise<bool>> isPrevented() override;
 
   private:
     jni::global_ref<JHybridOneScreenCaptureSpec::JavaPart> _javaPart;

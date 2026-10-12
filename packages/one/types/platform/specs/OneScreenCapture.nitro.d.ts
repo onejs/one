@@ -15,5 +15,8 @@ export interface OneScreenCapture extends HybridObject<{
     captureView(viewTag: number): Promise<ScreenCaptureResult>;
     addStateListener(onChange: (state: ScreenCaptureState) => void): () => void;
     addScreenshotListener(onScreenshot: (timestampMs: number) => void): () => void;
+    prevent(): Promise<void>;
+    allow(): Promise<void>;
+    isPrevented(): Promise<boolean>;
 }
 //# sourceMappingURL=OneScreenCapture.nitro.d.ts.map
