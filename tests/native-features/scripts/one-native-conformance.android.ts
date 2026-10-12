@@ -7799,3 +7799,4 @@ if (import.meta.main) {
     console.error(`FAIL one-native-android: ${message}`)
     process.exitCode = 1
   }
+}
