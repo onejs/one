@@ -1,4 +1,6 @@
-import { Children, createContext, forwardRef, useContext, useImperativeHandle, useRef, useState, type ReactNode } from 'react'
+import { runOnUISync, isWorkletFunction } from 'react-native-worklets'
+import { composeRangeDay, validateComposeFamily } from './composeFamilyValidation'
+import { Children, createContext, forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState, type ReactNode } from 'react'
 import { Image as ReactNativeImage, StyleSheet, type ColorValue } from 'react-native'
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { iconColorRoles } from './ui/iconRoles'
@@ -6,6 +8,17 @@ import { useControlled } from './controlled'
 import { getSyncStateId } from './syncStore'
 import { syncHandleOf, useSyncValue } from './syncNativeState'
 import type {
+  ComposeBasicAlertDialogProps,
+  ComposeHorizontalCenteredHeroCarouselProps,
+  ComposeHorizontalMultiBrowseCarouselProps,
+  ComposeHorizontalUncontainedCarouselProps,
+  ComposeDateRangePickerProps,
+  ComposeDateRangePickerDialogProps,
+  ComposeHorizontalFloatingToolbarProps,
+  ComposeToolbarFabProps,
+  ComposeShapeProps,
+  ComposeShapeType,
+  ComposeSyncSwitchProps,
   ComposeAlertDialogProps,
   ComposeAnimatedVisibilityProps,
   ComposeAssistChipProps,
@@ -137,6 +150,7 @@ import {
 } from './composeValidation'
 
 type ComposeNodeType =
+  | 'basicalertdialog' | 'centeredherocarousel' | 'multibrowsecarousel' | 'uncontainedcarousel' | 'daterangepicker' | 'daterangepickerdialog' | 'horizontalfloatingtoolbar' | 'toolbarfabslot' | 'shape'
   | 'column'
   | 'row'
   | 'spacer'
@@ -367,6 +381,10 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     trailingIcon?: string
     filled?: boolean
   }>
+  familyOptions?: import('./specs/OneNativeComposeNodeNativeComponent').NativeProps['familyOptions']
+  onNativeComposeNodeDateRangeSelected?: (event: {
+    nativeEvent: { start: number; end: number; hasStart: boolean; hasEnd: boolean }
+  }) => void
   isRefreshing?: boolean
   enterTransition?: string
   exitTransition?: string
@@ -385,6 +403,9 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
 const ComposeContext = createContext(false)
 
 const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
+  'shape',
+  'daterangepicker',
+  'daterangepickerdialog',
   'text',
   'spacer',
   'icon',
@@ -2017,7 +2038,270 @@ function TimePickerDialog({
   )
 }
 
+function BasicAlertDialog({
+  children,
+  onDismissRequest,
+  properties,
+  ...props
+}: ComposeBasicAlertDialogProps) {
+  validateComposeFamily('dialog', { properties, onDismissRequest })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="basicalertdialog"
+      familyOptions={properties}
+      onNativeComposeNodeDialogDismiss={() => onDismissRequest?.()}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function carousel(
+  nodeType: 'centeredherocarousel' | 'multibrowsecarousel' | 'uncontainedcarousel'
+) {
+  return ({
+    children,
+    contentPadding,
+    itemSpacing,
+    flingBehavior,
+    userScrollEnabled,
+    maxItemWidth,
+    minSmallItemWidth,
+    maxSmallItemWidth,
+    preferredItemWidth,
+    itemWidth,
+    ...props
+  }: ComposeHorizontalCenteredHeroCarouselProps & {
+    preferredItemWidth?: number
+    itemWidth?: number
+  }) => {
+    const options = {
+      itemSpacing,
+      flingBehavior,
+      userScrollEnabled,
+      maxItemWidth,
+      minSmallItemWidth,
+      maxSmallItemWidth,
+      preferredItemWidth,
+      itemWidth,
+    }
+    validateComposeFamily(nodeType, { ...options, contentPadding })
+    const padding =
+      typeof contentPadding === 'number'
+        ? {
+            start: contentPadding,
+            end: contentPadding,
+            top: contentPadding,
+            bottom: contentPadding,
+          }
+        : contentPadding
+    return (
+      <ComposeNode
+        {...props}
+        nodeType={nodeType}
+        familyOptions={options}
+        lazyContentPadding={padding}
+      >
+        {children}
+      </ComposeNode>
+    )
+  }
+}
+const HorizontalCenteredHeroCarousel = carousel('centeredherocarousel') as (
+  props: ComposeHorizontalCenteredHeroCarouselProps
+) => ReactNode
+const HorizontalMultiBrowseCarousel = carousel('multibrowsecarousel') as (
+  props: ComposeHorizontalMultiBrowseCarouselProps
+) => ReactNode
+const HorizontalUncontainedCarousel = carousel('uncontainedcarousel') as (
+  props: ComposeHorizontalUncontainedCarouselProps
+) => ReactNode
+
+function dateRangeNode(
+  props: ComposeDateRangePickerProps | ComposeDateRangePickerDialogProps,
+  dialog: boolean
+) {
+  validateComposeFamily('range', props)
+  const {
+    initialStartDate,
+    initialEndDate,
+    onDateRangeSelected,
+    variant,
+    showVariantToggle,
+    showTitle,
+    showHeadline,
+    color,
+    elementColors,
+    selectableDates,
+    ...rest
+  } = props
+  const { onDismissRequest, confirmButtonLabel, dismissButtonLabel, ...nodeProps } =
+    rest as typeof rest & Partial<ComposeDateRangePickerDialogProps>
+  return (
+    <ComposeNode
+      {...nodeProps}
+      nodeType={dialog ? 'daterangepickerdialog' : 'daterangepicker'}
+      variant={variant}
+      confirmLabel={confirmButtonLabel}
+      dismissLabel={dismissButtonLabel}
+      familyOptions={{
+        initialStart:
+          initialStartDate == null
+            ? undefined
+            : composeRangeDay(new Date(initialStartDate)),
+        initialEnd:
+          initialEndDate == null ? undefined : composeRangeDay(new Date(initialEndDate)),
+        showTitle,
+        showHeadline,
+      }}
+      pickerOptions={{
+        minimumDay: selectableDates?.start && composeRangeDay(selectableDates.start),
+        maximumDay: selectableDates?.end && composeRangeDay(selectableDates.end),
+        showModeToggle: showVariantToggle,
+        color,
+        colors: elementColors,
+      }}
+      onNativeComposeNodeDateRangeSelected={({
+        nativeEvent: { start, end, hasStart, hasEnd },
+      }) =>
+        onDateRangeSelected?.({
+          start: hasStart ? new Date(start) : null,
+          end: hasEnd ? new Date(end) : null,
+        })
+      }
+      onNativeComposeNodeDialogDismiss={() => onDismissRequest?.()}
+    />
+  )
+}
+function DateRangePicker(props: ComposeDateRangePickerProps) {
+  return dateRangeNode(props, false)
+}
+function DateRangePickerDialog(props: ComposeDateRangePickerDialogProps) {
+  assertFunction(props.onDismissRequest, 'DateRangePickerDialog onDismissRequest')
+  return dateRangeNode(props, true)
+}
+function ToolbarRoot({
+  children,
+  variant,
+  colors,
+  ...props
+}: ComposeHorizontalFloatingToolbarProps) {
+  validateComposeFamily('toolbar', { variant, colors })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="horizontalfloatingtoolbar"
+      text={variant}
+      familyOptions={colors}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+function ToolbarFab({ children, onPress, ...props }: ComposeToolbarFabProps) {
+  if (onPress !== undefined) assertFunction(onPress, 'Toolbar FAB onPress')
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="toolbarfabslot"
+      slotName="floatingActionButton"
+      onNativeComposeNodeButtonPress={onPress}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+const HorizontalFloatingToolbar = Object.assign(ToolbarRoot, {
+  FloatingActionButton: ToolbarFab,
+})
+function shape(type: ComposeShapeType) {
+  return ({
+    cornerRadii,
+    color,
+    cornerRounding,
+    smoothing,
+    verticesCount,
+    innerRadius,
+    radius,
+    ...props
+  }: ComposeShapeProps) => {
+    const options = {
+      shapeType: type,
+      color,
+      cornerRounding,
+      smoothing,
+      verticesCount,
+      innerRadius,
+      radius,
+      ...cornerRadii,
+    }
+    validateComposeFamily('shape', options)
+    return <ComposeNode {...props} nodeType="shape" familyOptions={options} />
+  }
+}
+const Shape = {
+  Star: shape('star'),
+  PillStar: shape('pillStar'),
+  Pill: shape('pill'),
+  Circle: shape('circle'),
+  Rectangle: shape('rectangle'),
+  Polygon: shape('polygon'),
+  RoundedCorner: shape('roundedCorner'),
+}
+let nextSyncCallback = 1
+function SyncSwitch({
+  isOn,
+  enabled = true,
+  onCheckedChangeSync,
+  ...props
+}: ComposeSyncSwitchProps) {
+  validateComposeFamily('syncswitch', { isOn, enabled })
+  if (onCheckedChangeSync !== undefined && !isWorkletFunction(onCheckedChangeSync))
+    throw new Error('SyncSwitch onCheckedChangeSync must be a worklet')
+  const [callbackId] = useState(() => nextSyncCallback++)
+  useEffect(() => {
+    runOnUISync(() => {
+      'worklet'
+      const globals = globalThis as unknown as {
+        __OneComposeCallbacks?: Record<number, ((value: boolean) => void) | undefined>
+      }
+      const callbacks = (globals.__OneComposeCallbacks ??= {})
+      callbacks[callbackId] = onCheckedChangeSync
+    })
+    return () =>
+      runOnUISync(() => {
+        'worklet'
+        delete (
+          globalThis as unknown as { __OneComposeCallbacks?: Record<number, unknown> }
+        ).__OneComposeCallbacks?.[callbackId]
+      })
+  }, [callbackId, onCheckedChangeSync])
+  const value = useSyncValue(isOn)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="switch"
+      value={value}
+      syncStateId={getSyncStateId(isOn)}
+      disabled={!enabled}
+      familyOptions={{ syncCallbackId: callbackId }}
+      onNativeComposeNodeBooleanValueChange={() => isOn.set(isOn.value)}
+    />
+  )
+}
+
 export const Compose = {
+  BasicAlertDialog,
+  HorizontalCenteredHeroCarousel,
+  HorizontalMultiBrowseCarousel,
+  HorizontalUncontainedCarousel,
+  DateRangePicker,
+  DateRangePickerDialog,
+  HorizontalFloatingToolbar,
+  Shape,
+  SyncSwitch,
+
   Column,
   Row,
   Spacer,

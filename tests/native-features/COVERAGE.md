@@ -161,11 +161,20 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a | missing |  |
 | `One.iOS.ZoomTransitionEnabler` | zoom | n/a | ScreensTransitionLibraryCase |  |
 | `One.iOS.ZoomTransitionSource` | zoom | n/a | ScreensTransitionLibraryCase |  |
-| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | missing |  |
+| `One.Android.BasicAlertDialog` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalCenteredHeroCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalMultiBrowseCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalUncontainedCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.DateRangePicker` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.DateRangePickerDialog` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalFloatingToolbar` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.Shape` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.SyncSwitch` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-compose-family | missing |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-progress, android-lists, android-snackbar, android-sheet, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-animated-visibility, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers | missing |  |
 | `One.Android.Spacer` | n/a | android-flow-row | missing |  |
 | `One.Android.FlowRow` | n/a | android-pickers, android-flow-row | missing |  |
-| `One.Android.Box` | n/a | android, android-inputs, android-dropdown-menu, android-flow-row | missing |  |
+| `One.Android.Box` | n/a | android, android-inputs, android-dropdown-menu, android-flow-row, android-compose-family | missing |  |
 | `One.Android.Badge` | n/a | android-badges | OneComposeActionsLibraryCase |  |
 | `One.Android.BadgedBox` | n/a | android-badges | OneComposeActionsLibraryCase |  |
 | `One.Android.ListItem` | n/a | android-list-items | OneComposeActionsLibraryCase |  |
@@ -179,10 +188,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.AssistChip` | n/a | android-chips | OneComposeActionsLibraryCase |  |
 | `One.Android.InputChip` | n/a | android-chips | missing |  |
 | `One.Android.SuggestionChip` | n/a | android-chips | missing |  |
-| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
-| `One.Android.Icon` | n/a | android, android-search-bar, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneNativeIconLibraryCase |  |
-| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip | OneComposeFormLibraryCase |  |
-| `One.Android.IconButton` | n/a | android-search-bar, android-icon-buttons | OneComposeActionsLibraryCase |  |
+| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-compose-family | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
+| `One.Android.Icon` | n/a | android, android-search-bar, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips, android-compose-family | OneComposeActionsLibraryCase, OneNativeIconLibraryCase |  |
+| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip, android-compose-family | OneComposeFormLibraryCase |  |
+| `One.Android.IconButton` | n/a | android-search-bar, android-icon-buttons, android-compose-family | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.OutlinedIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
@@ -279,7 +288,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useReservedRegionsReady` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android first native reading and two remounts proven; Android folding first reading and folded remount proven |
 | `useWindowSegments` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
 | `useSpanning` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
-| `useNativeState` | state, ui-text-input, e2e:one-native-animation | state | missing |  |
+| `useNativeState` | state, ui-text-input, e2e:one-native-animation | state, android-compose-family | missing |  |
 | `usePreventScreenCapture` | missing | missing | missing | hook wrapper has no suite; ScreenCapture prevent/allow proven via screen-capture suites |
 | `useFonts` | fonts | fonts | missing |  |
 | `useBatteryLevel` | battery | battery | missing |  |

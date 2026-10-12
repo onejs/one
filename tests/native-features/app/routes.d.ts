@@ -31,6 +31,7 @@ declare module 'one' {
         | `/one-native-android-cards`
         | `/one-native-android-chips`
         | `/one-native-android-color`
+        | `/one-native-android-compose-family`
         | `/one-native-android-compose-image`
         | `/one-native-android-dividers`
         | `/one-native-android-dropdown-menu`

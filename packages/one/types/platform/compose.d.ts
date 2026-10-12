@@ -1,3 +1,4 @@
+import type * as Family from './composeTypes';
 import type { ReactNode } from 'react';
 import type { ComposeAlertDialogProps, ComposeAnimatedVisibilityProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeDropdownMenuItemProps, ComposeDropdownMenuProps, ComposeElevatedCardProps, ComposeExposedDropdownMenuBoxProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposePullToRefreshBoxProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSearchBarProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostProps, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps, ComposeTooltipBoxProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
@@ -82,7 +83,25 @@ declare function DatePicker(_props: ComposeDatePickerProps): never;
 declare function TimePicker(_props: ComposeTimePickerProps): never;
 declare function DatePickerDialog(_props: ComposeDatePickerDialogProps): never;
 declare function TimePickerDialog(_props: ComposeTimePickerDialogProps): never;
+declare function BasicAlertDialog(_props: Family.ComposeBasicAlertDialogProps): never;
+declare function HorizontalCenteredHeroCarousel(_props: Family.ComposeHorizontalCenteredHeroCarouselProps): never;
+declare function HorizontalMultiBrowseCarousel(_props: Family.ComposeHorizontalMultiBrowseCarouselProps): never;
+declare function HorizontalUncontainedCarousel(_props: Family.ComposeHorizontalUncontainedCarouselProps): never;
+declare function DateRangePicker(_props: Family.ComposeDateRangePickerProps): never;
+declare function DateRangePickerDialog(_props: Family.ComposeDateRangePickerDialogProps): never;
+declare function SyncSwitch(_props: Family.ComposeSyncSwitchProps): never;
 export declare const Compose: {
+    BasicAlertDialog: typeof BasicAlertDialog;
+    HorizontalCenteredHeroCarousel: typeof HorizontalCenteredHeroCarousel;
+    HorizontalMultiBrowseCarousel: typeof HorizontalMultiBrowseCarousel;
+    HorizontalUncontainedCarousel: typeof HorizontalUncontainedCarousel;
+    DateRangePicker: typeof DateRangePicker;
+    DateRangePickerDialog: typeof DateRangePickerDialog;
+    HorizontalFloatingToolbar: ((_props: Family.ComposeHorizontalFloatingToolbarProps) => never) & {
+        FloatingActionButton: (_props: Family.ComposeToolbarFabProps) => never;
+    };
+    Shape: Record<"Circle" | "Pill" | "PillStar" | "Polygon" | "Rectangle" | "RoundedCorner" | "Star", (props: Family.ComposeShapeProps) => never>;
+    SyncSwitch: typeof SyncSwitch;
     Column: typeof Column;
     Row: typeof Row;
     Spacer: typeof Spacer;
@@ -227,4 +246,3 @@ export declare const Compose: {
     TimePickerDialog: typeof TimePickerDialog;
 };
 export {};
-//# sourceMappingURL=compose.d.ts.map

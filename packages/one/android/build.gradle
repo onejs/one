@@ -156,6 +156,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "androidx.compose.ui:ui:$composeUiVersion"
     implementation "androidx.compose.foundation:foundation:$composeUiVersion"
+    implementation "androidx.graphics:graphics-shapes:1.1.0"
     implementation "androidx.compose.material3:material3:$material3Version"
     // maps sdk only when the app opted in via the manifest key; without the
     // flag nothing here references it, which is what keeps it out of the apk.

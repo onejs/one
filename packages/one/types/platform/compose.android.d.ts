@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAnimatedVisibilityProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeDropdownMenuItemProps, ComposeDropdownMenuProps, ComposeElevatedCardProps, ComposeExposedDropdownMenuBoxProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeImageProps, ComposeInputChipProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeModalBottomSheetRef, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeNodeProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposePullToRefreshBoxProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSearchBarProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostRef, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTooltipBoxProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeBasicAlertDialogProps, ComposeHorizontalCenteredHeroCarouselProps, ComposeHorizontalMultiBrowseCarouselProps, ComposeHorizontalUncontainedCarouselProps, ComposeDateRangePickerProps, ComposeDateRangePickerDialogProps, ComposeHorizontalFloatingToolbarProps, ComposeToolbarFabProps, ComposeShapeProps, ComposeSyncSwitchProps, ComposeAlertDialogProps, ComposeAnimatedVisibilityProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeDropdownMenuItemProps, ComposeDropdownMenuProps, ComposeElevatedCardProps, ComposeExposedDropdownMenuBoxProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeImageProps, ComposeInputChipProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeModalBottomSheetRef, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeNodeProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposePullToRefreshBoxProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSearchBarProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostRef, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTooltipBoxProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function Spacer(props: ComposeSpacerProps): import("react/jsx-runtime").JSX.Element;
@@ -87,7 +87,32 @@ declare function DatePicker({ selection, onSelectionChange, revision, minimumDat
 declare function TimePicker({ selection, onSelectionChange, revision, is24Hour, variant, color, colors, ...props }: ComposeTimePickerProps): import("react/jsx-runtime").JSX.Element;
 declare function DatePickerDialog({ visible, selection, onConfirm, onDismiss, confirmLabel, dismissLabel, minimumDate, maximumDate, variant, showModeToggle, color, colors, ...props }: ComposeDatePickerDialogProps): import("react/jsx-runtime").JSX.Element;
 declare function TimePickerDialog({ visible, selection, onConfirm, onDismiss, confirmLabel, dismissLabel, is24Hour, variant, color, colors, ...props }: ComposeTimePickerDialogProps): import("react/jsx-runtime").JSX.Element;
+declare function BasicAlertDialog({ children, onDismissRequest, properties, ...props }: ComposeBasicAlertDialogProps): import("react/jsx-runtime").JSX.Element;
+declare function DateRangePicker(props: ComposeDateRangePickerProps): import("react/jsx-runtime").JSX.Element;
+declare function DateRangePickerDialog(props: ComposeDateRangePickerDialogProps): import("react/jsx-runtime").JSX.Element;
+declare function ToolbarRoot({ children, variant, colors, ...props }: ComposeHorizontalFloatingToolbarProps): import("react/jsx-runtime").JSX.Element;
+declare function ToolbarFab({ children, onPress, ...props }: ComposeToolbarFabProps): import("react/jsx-runtime").JSX.Element;
+declare function SyncSwitch({ isOn, enabled, onCheckedChangeSync, ...props }: ComposeSyncSwitchProps): import("react/jsx-runtime").JSX.Element;
 export declare const Compose: {
+    BasicAlertDialog: typeof BasicAlertDialog;
+    HorizontalCenteredHeroCarousel: (props: ComposeHorizontalCenteredHeroCarouselProps) => ReactNode;
+    HorizontalMultiBrowseCarousel: (props: ComposeHorizontalMultiBrowseCarouselProps) => ReactNode;
+    HorizontalUncontainedCarousel: (props: ComposeHorizontalUncontainedCarouselProps) => ReactNode;
+    DateRangePicker: typeof DateRangePicker;
+    DateRangePickerDialog: typeof DateRangePickerDialog;
+    HorizontalFloatingToolbar: typeof ToolbarRoot & {
+        FloatingActionButton: typeof ToolbarFab;
+    };
+    Shape: {
+        Star: ({ cornerRadii, color, cornerRounding, smoothing, verticesCount, innerRadius, radius, ...props }: ComposeShapeProps) => import("react/jsx-runtime").JSX.Element;
+        PillStar: ({ cornerRadii, color, cornerRounding, smoothing, verticesCount, innerRadius, radius, ...props }: ComposeShapeProps) => import("react/jsx-runtime").JSX.Element;
+        Pill: ({ cornerRadii, color, cornerRounding, smoothing, verticesCount, innerRadius, radius, ...props }: ComposeShapeProps) => import("react/jsx-runtime").JSX.Element;
+        Circle: ({ cornerRadii, color, cornerRounding, smoothing, verticesCount, innerRadius, radius, ...props }: ComposeShapeProps) => import("react/jsx-runtime").JSX.Element;
+        Rectangle: ({ cornerRadii, color, cornerRounding, smoothing, verticesCount, innerRadius, radius, ...props }: ComposeShapeProps) => import("react/jsx-runtime").JSX.Element;
+        Polygon: ({ cornerRadii, color, cornerRounding, smoothing, verticesCount, innerRadius, radius, ...props }: ComposeShapeProps) => import("react/jsx-runtime").JSX.Element;
+        RoundedCorner: ({ cornerRadii, color, cornerRounding, smoothing, verticesCount, innerRadius, radius, ...props }: ComposeShapeProps) => import("react/jsx-runtime").JSX.Element;
+    };
+    SyncSwitch: typeof SyncSwitch;
     Column: typeof Column;
     Row: typeof Row;
     Spacer: typeof Spacer;
@@ -224,4 +249,3 @@ export declare const Compose: {
     TimePickerDialog: typeof TimePickerDialog;
 };
 export {};
-//# sourceMappingURL=compose.android.d.ts.map

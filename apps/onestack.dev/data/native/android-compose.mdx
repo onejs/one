@@ -1060,3 +1060,173 @@ both use the Material fade with a vertical resize.
     { name: 'exit', type: 'ComposeAnimatedVisibilityTransition', description: 'fade, scale, slideVertically, or expandVertically. The slide and expand forms shrink on exit.' },
   ]}
 />
+
+## Custom dialog content
+
+`One.Android.BasicAlertDialog` mounts a Material 3 dialog while it is in the
+React tree. Its optional `onDismissRequest` reports back or outside taps;
+remove the component to close it. `children` supplies the content. The
+`properties` object accepts `dismissOnBackPress`, `dismissOnClickOutside`,
+`usePlatformDefaultWidth`, and `decorFitsSystemWindows`, all defaulting to
+`true`. Unlike the existing `Dialog`, this SDK surface has no `visible` prop.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function CustomDialog() {
+  const [open, setOpen] = useState(true)
+  return open && (
+  <One.Android.BasicAlertDialog onDismissRequest={() => setOpen(false)}>
+    <One.Android.Column composeStyle={{ padding: 24, backgroundColor: '#ffffff' }}>
+      <One.Android.Text text="Custom dialog content" />
+      <One.Android.Button label="Close" onPress={() => setOpen(false)} />
+    </One.Android.Column>
+  </One.Android.BasicAlertDialog>
+  )
+}
+```
+
+## Material carousels
+
+Carousel is a family of three components, matching the [Expo Compose
+exports](https://docs.expo.dev/versions/latest/sdk/ui/jetpack-compose/carousel/):
+
+| Component | Size inputs |
+| --- | --- |
+| `HorizontalCenteredHeroCarousel` | Optional `maxItemWidth`, `minSmallItemWidth`, `maxSmallItemWidth` |
+| `HorizontalMultiBrowseCarousel` | Required `preferredItemWidth`; optional `minSmallItemWidth`, `maxSmallItemWidth` |
+| `HorizontalUncontainedCarousel` | Required `itemWidth` |
+
+Each direct Compose child is an item. All three accept `itemSpacing` (dp,
+zero by default), `contentPadding` (dp or `{ start, top, end, bottom }`),
+`flingBehavior` (`singleAdvance` or `noSnap`), and `userScrollEnabled`
+(default `true`). Hero and multi-browse default to single-item snapping;
+uncontained defaults to free scrolling. Widths must be positive, and spacing
+and padding must be nonnegative. Use a finite height for the carousel.
+
+```tsx
+import { One } from 'one'
+
+const items = [{ id: 'first', title: 'First item' }, { id: 'second', title: 'Second item' }]
+
+const example = (
+<One.Android.HorizontalUncontainedCarousel itemWidth={180} itemSpacing={8} style={{ height: 120 }}>
+  {items.map(item => (
+    <One.Android.Box key={item.id} composeStyle={{ height: 120, fillMaxWidth: true }}>
+      <One.Android.Text text={item.title} />
+    </One.Android.Box>
+  ))}
+</One.Android.HorizontalUncontainedCarousel>
+)
+```
+
+## Date ranges
+
+`DateRangePicker` and `DateRangePickerDialog` accept optional
+`initialStartDate` and `initialEndDate` ISO strings. Omit both for an empty
+selection, or omit the end for a partial range. An end requires a start and
+must fall on or after it. Dates are calendar days represented at UTC midnight.
+`selectableDates={{ start, end }}` accepts optional `Date` bounds. Initial
+selections must fall within these bounds.
+
+Both accept `variant` (`picker` or `input`), `showVariantToggle`, `showTitle`,
+`showHeadline` (all three booleans default to `true`), `color`, and
+`elementColors` with the existing DatePicker color keys.
+`onDateRangeSelected({ start, end })` receives `Date | null` for each endpoint.
+The inline picker reports its initial range and each selection change. The
+dialog reports only a confirmed complete range. The dialog requires
+`onDismissRequest` and accepts `confirmButtonLabel` and `dismissButtonLabel`,
+which default to system labels. Mount and unmount the dialog to present and
+close it; an incomplete selection disables confirmation.
+
+```tsx
+import { One } from 'one'
+
+const setRange = (range: { start: Date | null; end: Date | null }) => console.log(range)
+
+const example = (
+<One.Android.DateRangePicker
+  initialStartDate="2026-10-12"
+  initialEndDate="2026-10-14"
+  onDateRangeSelected={setRange}
+  style={{ height: 500 }}
+/>
+)
+```
+
+## Floating toolbar
+
+`HorizontalFloatingToolbar` lays out Compose children in a Material toolbar.
+`variant` is `standard` (default) or `vibrant`. Its optional `colors` object
+accepts `toolbarContainerColor`, `toolbarContentColor`, `fabContainerColor`,
+and `fabContentColor`. Unset fields use the variant's defaults. Put the
+optional FAB content inside `HorizontalFloatingToolbar.FloatingActionButton`,
+whose optional `onPress` receives its native click.
+
+```tsx
+import { One } from 'one'
+
+const edit = () => console.log('edit')
+const add = () => console.log('add')
+
+const example = (
+<One.Android.HorizontalFloatingToolbar variant="vibrant">
+  <One.Android.IconButton onClick={edit}><One.Android.Icon name="edit" /></One.Android.IconButton>
+  <One.Android.HorizontalFloatingToolbar.FloatingActionButton onPress={add}>
+    <One.Android.Icon name="add" />
+  </One.Android.HorizontalFloatingToolbar.FloatingActionButton>
+</One.Android.HorizontalFloatingToolbar>
+)
+```
+
+## Shapes
+
+`One.Android.Shape` provides `Star`, `PillStar`, `Pill`, `Circle`, `Rectangle`,
+`Polygon`, and `RoundedCorner`. Shapes are leaves; give them explicit size
+through `style` at the root or `composeStyle` inside a Compose tree. `color`
+defaults to transparent. `cornerRounding`, `smoothing`, `innerRadius`, and
+`radius` are fractions from zero to one. `verticesCount` is an integer of at
+least three (default six). `cornerRounding` and `smoothing` default to zero;
+`radius` and `innerRadius` default to zero, matching the Expo native shape record. Set `radius={1}` for a full-size circle or star. Stars use the two radii; polygons
+use the vertex count. Pill uses smoothing, Circle uses radius and vertex
+count, and Rectangle uses corner rounding and smoothing. RoundedCorner
+uses `cornerRadii={{ topStart, topEnd, bottomStart, bottomEnd }}` in dp,
+with omitted corners zero. Logical corners follow layout direction.
+
+```tsx
+import { One } from 'one'
+
+const example = (
+<One.Android.Shape.Polygon color="#d24c30" verticesCount={5} cornerRounding={0.1} style={{ width: 80, height: 80 }} />
+)
+```
+
+## Synchronous switches
+
+`SyncSwitch` accepts `isOn={state}` from `useNativeState(false)`, optional
+`enabled` (default `true`), and optional `onCheckedChangeSync`. The callback
+must contain the `'worklet'` directive. Native Compose reads and writes the
+shared boolean directly; all bound switches observe the same entry. The
+callback runs synchronously on the worklets UI runtime after a native change.
+Programmatic writes and disabled switches do not invoke it. The existing
+`Switch` remains the scalar `isOn`/`onIsOnChange` control.
+
+```tsx
+import { One, useNativeState } from 'one'
+import { useSharedValue } from 'react-native-reanimated'
+
+function NotificationsSwitch() {
+  const isOn = useNativeState(false)
+  const lastChange = useSharedValue(false)
+  return <One.Android.SyncSwitch isOn={isOn} onCheckedChangeSync={value => {
+    'worklet'
+    lastChange.value = value
+  }} />
+}
+```
+
+These APIs are Android-only and use One's existing `style` and `composeStyle`
+props. Their SDK/Expo behavioral contracts are preserved; Expo's `modifiers`
+array is not an input to One's Compose tree. Native feature acceptance is
+tracked separately from adapter validation.

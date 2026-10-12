@@ -18,7 +18,7 @@ type ComposeStyleNative = Readonly<{
     borderColor?: ColorValue;
     borderWidth?: WithDefault<Double, -1>;
 }>;
-interface NativeProps extends ViewProps {
+export interface NativeProps extends ViewProps {
     nodeType: string;
     intrinsicHeight?: boolean;
     onNativeComposeNodeContentSizeChange?: DirectEventHandler<Readonly<{
@@ -374,6 +374,46 @@ interface NativeProps extends ViewProps {
         trailingIcon?: string;
         filled?: boolean;
     }>;
+    familyOptions?: Readonly<{
+        dismissOnBackPress?: boolean;
+        dismissOnClickOutside?: boolean;
+        usePlatformDefaultWidth?: boolean;
+        decorFitsSystemWindows?: boolean;
+        maxItemWidth?: Double;
+        preferredItemWidth?: Double;
+        itemWidth?: Double;
+        minSmallItemWidth?: Double;
+        maxSmallItemWidth?: Double;
+        itemSpacing?: Double;
+        flingBehavior?: string;
+        userScrollEnabled?: boolean;
+        initialStart?: Double;
+        initialEnd?: Double;
+        showTitle?: boolean;
+        showHeadline?: boolean;
+        shapeType?: string;
+        cornerRounding?: Double;
+        smoothing?: Double;
+        verticesCount?: Int32;
+        innerRadius?: Double;
+        radius?: Double;
+        topStart?: Double;
+        topEnd?: Double;
+        bottomStart?: Double;
+        bottomEnd?: Double;
+        color?: ColorValue;
+        toolbarContainerColor?: ColorValue;
+        toolbarContentColor?: ColorValue;
+        fabContainerColor?: ColorValue;
+        fabContentColor?: ColorValue;
+        syncCallbackId?: Int32;
+    }>;
+    onNativeComposeNodeDateRangeSelected?: DirectEventHandler<Readonly<{
+        start: Double;
+        end: Double;
+        hasStart: boolean;
+        hasEnd: boolean;
+    }>>;
     isRefreshing?: boolean;
     enterTransition?: string;
     exitTransition?: string;
@@ -396,4 +436,3 @@ interface NativeProps extends ViewProps {
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;
-//# sourceMappingURL=OneNativeComposeNodeNativeComponent.d.ts.map

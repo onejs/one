@@ -27,6 +27,24 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  'Android.BasicAlertDialog':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalCenteredHeroCarousel':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalMultiBrowseCarousel':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalUncontainedCarousel':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.DateRangePicker':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.DateRangePickerDialog':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalFloatingToolbar':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.Shape':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.SyncSwitch':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
   'UI.ReservedRegions':
     'iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven',
   useSizeClass:
@@ -157,6 +175,11 @@ function androidSuites() {
   )) {
     navIds.add(navId)
   }
+  // the family flow is a standalone Maestro suite with a direct router link.
+  const familyFlow = read('maestro/one-native-android-compose-family.yaml')
+  const familyRoute = familyFlow.match(/link: nativefeatures:\/\/app\/([a-z-]+)/)?.[1]
+  if (!familyRoute) throw new Error('Compose family Maestro route not found')
+  navIds.add(`nav-${familyRoute}`)
   return [...navIds].map((navId) => ({
     suite: navId.replace(/^nav-one-(?:native-)?/, '') || 'android',
     route: navId.replace(/^nav-/, ''),

@@ -565,6 +565,11 @@ const testScreens = [
     testID: 'nav-one-native-android-lists',
   },
   {
+    href: '/one-native-android-compose-family',
+    label: 'One Native Android Compose Family',
+    testID: 'nav-one-native-android-compose-family',
+  },
+  {
     href: '/one-native-android-compose-image',
     label: 'One Native Android Compose Image',
     testID: 'nav-one-native-android-compose-image',

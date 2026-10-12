@@ -112,7 +112,7 @@ private fun OneNativePickerOptions.colorOf(key: String): Color? = colors[key]?.l
 
 private fun utcYear(day: Long): Int = Instant.ofEpochMilli(day).atZone(ZoneOffset.UTC).year
 
-private class OneNativeSelectableDates(
+internal class OneNativeSelectableDates(
     private val minimumDay: Long?,
     private val maximumDay: Long?,
 ) : SelectableDates {
@@ -171,7 +171,7 @@ private fun rememberOneTimePickerState(options: OneNativePickerOptions, minutes:
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun datePickerColors(options: OneNativePickerOptions): DatePickerColors {
+internal fun datePickerColors(options: OneNativePickerOptions): DatePickerColors {
     val defaults = DatePickerDefaults.colors()
     val tint = options.color?.let(::Color)
     fun pick(key: String, fallback: Color, tinted: Boolean = false) =
