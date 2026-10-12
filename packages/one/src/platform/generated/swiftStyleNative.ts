@@ -6,6 +6,7 @@ import {
   type ColorValue,
   type ProcessedColorValue,
 } from 'react-native'
+import { animatorStyleNative, animatorStyleOf } from '../animatorStyle'
 import type { OneNativeStyle } from './controlTypes'
 
 export type OneNativeStyleNative = Readonly<{
@@ -2317,6 +2318,10 @@ export function swiftStyleNative(
   style: OneNativeStyle | undefined
 ): OneNativeStyleNative | undefined {
   if (!style) return undefined
+  // a PhaseAnimator or KeyframeAnimator child carries every evaluation of its
+  // content closure; native resolves the current one from its animator.
+  const animator = animatorStyleOf(style)
+  if (animator) return animatorStyleNative(animator, swiftStyleNative)
   const native: Record<string, unknown> = {}
   const sdkModifiers: [string, string][] = []
   for (const [name, value] of Object.entries(style)) {

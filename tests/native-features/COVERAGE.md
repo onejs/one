@@ -92,6 +92,13 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ToolbarItem` | navigation, navigation-split-view | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarItemGroup` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarSpacer` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
+| `One.iOS.PhaseAnimator` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.KeyframeAnimator` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.KeyframeTrack` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.LinearKeyframe` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.SpringKeyframe` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.CubicKeyframe` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.MoveKeyframe` | e2e:one-native-animators | n/a | missing |  |
 | `One.iOS.withAnimation` | e2e:one-native-animation | n/a | missing |  |
 | `One.iOS.Picker` | pickers, picker-palette, forms, navigation | n/a | OneNativeFormControlsLibraryCase, OneNativeFormLayoutLibraryCase | palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven |
 | `One.iOS.DatePicker` | pickers, forms | n/a | OneNativeFormControlsLibraryCase |  |
@@ -101,7 +108,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Slider` | pickers, forms, e2e:one-native-animation | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.PasteButton` | paste-button | n/a | OneSwiftPasteEditLibraryCase |  |
-| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-map-controls, e2e:one-native-geometry-reader, e2e:one-native-scroll-reader | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-map-controls, e2e:one-native-geometry-reader, e2e:one-native-scroll-reader, e2e:one-native-animators | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Label` | leaves, containers | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ProgressView` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Gauge` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
@@ -110,7 +117,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ContentUnavailableView` | share-empty | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Circle` | leaves, view-slot | n/a | OneSwiftGlassLibraryCase, OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.Capsule` | leaves | n/a | OneSwiftListsLibraryCase, OneSwiftShapesGradientsLibraryCase |  |
-| `One.iOS.Rectangle` | leaves, lists, list-row-background, editors, building-blocks, view-slot | n/a | OneSwiftShapesGradientsLibraryCase |  |
+| `One.iOS.Rectangle` | leaves, lists, list-row-background, editors, building-blocks, view-slot, e2e:one-native-animators | n/a | OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.RoundedRectangle` | leaves | n/a | OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.Ellipse` | leaves | n/a | OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a | OneSwiftShapesGradientsLibraryCase |  |

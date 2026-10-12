@@ -49,6 +49,8 @@ import { NavigationSplitView } from './NavigationSplitView.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import { ArrangementView } from './ArrangementView.native'
 import { withAnimation } from './withAnimation.native'
+import { KeyframeAnimator, PhaseAnimator } from './Animators.native'
+import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import * as Controls from './generated/Controls.native'
 import { Map as MapWithControls } from './mapControls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
@@ -158,6 +160,13 @@ export const Swift =
         Spacer,
         Slot,
         withAnimation,
+        PhaseAnimator,
+        KeyframeAnimator,
+        KeyframeTrack,
+        LinearKeyframe,
+        SpringKeyframe,
+        CubicKeyframe,
+        MoveKeyframe,
         ...Controls,
         // the generated map takes no children; the wrapper validates and names
         // the map-controls slot while the native view composes it.

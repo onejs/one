@@ -55,8 +55,12 @@ declare function ToolbarContent(_props: ToolbarContentProps): never;
 declare function ToolbarItem(_props: ToolbarItemProps): never;
 declare function ToolbarItemGroup(_props: ToolbarItemGroupProps): never;
 declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
+import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes';
+import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes';
 import type { MapWithControlsProps } from './mapControls';
 declare function MapWithControlsStub(_props: MapWithControlsProps): never;
+declare function PhaseAnimator<Phase>(_props: PhaseAnimatorProps<Phase>): never;
+declare function KeyframeAnimator<Value extends KeyframeValue>(_props: KeyframeAnimatorProps<Value>): never;
 export declare const Swift: {
     Picker: (_props: import("./types").PickerProps) => never;
     DatePicker: (_props: import("./types").DatePickerProps) => never;
@@ -180,6 +184,13 @@ export declare const Swift: {
     ToolbarItem: typeof ToolbarItem;
     ToolbarItemGroup: typeof ToolbarItemGroup;
     ToolbarSpacer: typeof ToolbarSpacer;
+    PhaseAnimator: typeof PhaseAnimator;
+    KeyframeAnimator: typeof KeyframeAnimator;
+    KeyframeTrack: typeof KeyframeTrack;
+    LinearKeyframe: typeof LinearKeyframe;
+    SpringKeyframe: typeof SpringKeyframe;
+    CubicKeyframe: typeof CubicKeyframe;
+    MoveKeyframe: typeof MoveKeyframe;
     withAnimation(_animation: SDKAnimation | null, _body: () => void, _completion?: () => void, _completionCriteria?: WithAnimationCompletionCriteria): never;
     Map: typeof MapWithControlsStub;
 };

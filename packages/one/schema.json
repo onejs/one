@@ -4796,6 +4796,76 @@
         }
       ],
       "interfaceOnly": true
+    },
+    {
+      "name": "OneNativePhaseAnimator",
+      "publicName": "PhaseAnimator",
+      "props": {
+        "animatorId": {
+          "type": "Int32"
+        },
+        "animations": {
+          "type": "string"
+        },
+        "hasTrigger": {
+          "type": "boolean"
+        },
+        "trigger": {
+          "type": "Int32"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeKeyframeAnimator",
+      "publicName": "KeyframeAnimator",
+      "props": {
+        "animatorId": {
+          "type": "Int32"
+        },
+        "initialValue": {
+          "type": "string"
+        },
+        "tracks": {
+          "type": "string"
+        },
+        "repeating": {
+          "type": "boolean"
+        },
+        "hasTrigger": {
+          "type": "boolean"
+        },
+        "trigger": {
+          "type": "Int32"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
     }
   ],
   "payloads": {

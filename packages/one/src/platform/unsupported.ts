@@ -267,11 +267,19 @@ function ToolbarSpacer(_props: ToolbarSpacerProps): never {
   )
 }
 import { ArrangementView } from './ArrangementView'
+import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes'
+import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import type { MapWithControlsProps } from './mapControls'
 // the map's controls slot is part of its props on every platform; off ios the
 // map itself throws, so children never mount there either.
 function MapWithControlsStub(_props: MapWithControlsProps): never {
   throw new Error('Swift.Map requires an iOS native build')
+}
+function PhaseAnimator<Phase>(_props: PhaseAnimatorProps<Phase>): never {
+  throw new Error('Swift.PhaseAnimator requires an iOS native build')
+}
+function KeyframeAnimator<Value extends KeyframeValue>(_props: KeyframeAnimatorProps<Value>): never {
+  throw new Error('Swift.KeyframeAnimator requires an iOS native build')
 }
 export const Swift = {
   ArrangementView,
@@ -325,6 +333,13 @@ export const Swift = {
   ToolbarItem,
   ToolbarItemGroup,
   ToolbarSpacer,
+  PhaseAnimator,
+  KeyframeAnimator,
+  KeyframeTrack,
+  LinearKeyframe,
+  SpringKeyframe,
+  CubicKeyframe,
+  MoveKeyframe,
   withAnimation(
     _animation: SDKAnimation | null,
     _body: () => void,

@@ -380,6 +380,7 @@ public struct OneNativeStyle: Equatable {
   public var glassEffectShape: String?
   public var material: String?
   public var sdkModifiers: [[String]] = []
+  public var animator: OneNativeAnimatorStyle?
 
   public init() {}
 
@@ -419,13 +420,30 @@ public struct OneNativeStyle: Equatable {
         pairs.allSatisfy({ $0.count == 2 }) else {
         preconditionFailure("invalid sdk modifiers")
       }
-      sdkModifiers = pairs
+      // a PhaseAnimator or KeyframeAnimator child's styles ride one private pair.
+      if let index = pairs.firstIndex(where: { $0[0] == "oneNativeAnimator" }) {
+        var rest = pairs
+        let payload = rest.remove(at: index)[1]
+        var base = dictionary
+        if rest.isEmpty {
+          base.removeValue(forKey: "sdkModifiers")
+        } else {
+          base["sdkModifiers"] = String(decoding: try! JSONEncoder().encode(rest), as: UTF8.self)
+        }
+        animator = OneNativeAnimatorStyle(json: payload, base: base)
+        sdkModifiers = rest
+      } else {
+        sdkModifiers = pairs
+      }
     }
   }
 }
 
 extension View {
   public func oneNativeStyle(_ style: OneNativeStyle, emit: @escaping (String, String) -> Void = { _, _ in }) -> some View {
+    if let animator = style.animator {
+      return AnyView(OneNativeAnimatedStyle(content: AnyView(self), animator: animator, emit: emit))
+    }
     var view = AnyView(self
       .oneNativeFont(style)
       .oneNativeForegroundStyle(style.foregroundStyle)

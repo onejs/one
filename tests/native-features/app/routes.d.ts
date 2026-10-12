@@ -57,6 +57,7 @@ declare module 'one' {
         | `/one-native-android-tooltip`
         | `/one-native-angular-gradient`
         | `/one-native-animation`
+        | `/one-native-animators`
         | `/one-native-app-icon`
         | `/one-native-app-info`
         | `/one-native-app-intents`

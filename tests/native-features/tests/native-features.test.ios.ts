@@ -2,6 +2,7 @@ import { execFileSync } from 'node:child_process'
 import { describe, test, expect, beforeAll, afterAll } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 import { createSession, navigateTo } from '@vxrn/test/utils/appium'
+import sharp from 'sharp'
 import { captureScreenshot, waitForElement } from '../utils/screenshot'
 import type { Browser } from 'webdriverio'
 
@@ -1086,6 +1087,117 @@ describe('one native integration tests', () => {
       const error = await waitForElement(driver, 'one-native-scroll-reader-building-error')
       expect(await error.getText()).toContain('cannot run while Swift.ScrollViewReader builds')
     })
+  })
+
+  // -- phase and keyframe animators: SwiftUI runs the timing and interpolation --
+
+  describe('One Native Animators', () => {
+    const logOf = async (testID: string) => (await waitForElement(driver, testID)).getText()
+
+    // magenta columns on the cycling box's center row, in points.
+    async function cycleWidth() {
+      const box = await waitForElement(driver, 'one-native-animators-cycle')
+      const [{ x, y }, { width, height }, window] = await Promise.all([
+        box.getLocation(),
+        box.getSize(),
+        driver.getWindowSize(),
+      ])
+      const { data, info } = await sharp(Buffer.from(await driver.takeScreenshot(), 'base64'))
+        .raw()
+        .toBuffer({ resolveWithObject: true })
+      const scale = info.width / window.width
+      const row = Math.round((y + height / 2) * scale)
+      let columns = 0
+      for (let column = Math.round(x * scale); column < Math.round((x + width) * scale); column++) {
+        const offset = (row * info.width + column) * info.channels
+        if (data[offset] > 230 && data[offset + 1] < 40 && data[offset + 2] > 230) columns++
+      }
+      return columns / scale
+    }
+
+    test('phase animator mounts at its first phase', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-animators')
+      const phase = await waitForElement(driver, 'one-native-animators-phase', { timeout: 30_000 })
+      expect(await phase.isDisplayed()).toBe(true)
+      const log = await waitForElement(driver, 'one-native-animators-phase-log')
+      await log.waitUntil(async () => (await log.getText()) === 'Phases: 60', {
+        timeout: 10_000,
+        timeoutMsg: 'phase animator did not lay out its first phase',
+      })
+      await captureScreenshot(driver, 'one-native-animators-mounted')
+    })
+
+    test('a trigger runs every phase once and returns to the first', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-animators-run-phases')).click()
+      const log = await waitForElement(driver, 'one-native-animators-phase-log')
+      await log.waitUntil(async () => (await log.getText()) === 'Phases: 60 140 100 60', {
+        timeout: 10_000,
+        timeoutMsg: 'phases did not run in order once',
+      })
+    })
+
+    test('a trigger during a run interrupts it and settles at the first phase', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-animators-interrupt-phases')).click()
+      const log = await waitForElement(driver, 'one-native-animators-phase-log')
+      await log.waitUntil(
+        async () => {
+          const widths = (await log.getText()).replace('Phases: ', '').split(' ')
+          return widths.length > 4 && widths.at(-1) === '60' && widths.slice(4).includes('140')
+        },
+        { timeout: 10_000, timeoutMsg: 'interrupted phases did not settle at the first phase' }
+      )
+      await captureScreenshot(driver, 'one-native-animators-phases-interrupted')
+    })
+
+    test('SwiftUI interpolates between phases instead of jumping', sharedTestOptions, async () => {
+      const widths: number[] = []
+      for (let sample = 0; sample < 6; sample++) widths.push(await cycleWidth())
+      // a snap would only ever show the 40 and 240 point phases.
+      const between = widths.filter((width) => width > 44 && width < 236)
+      expect(new Set(between.map(Math.round)).size, `widths ${widths.join(', ')}`).toBeGreaterThanOrEqual(2)
+      await captureScreenshot(driver, 'one-native-animators-cycling')
+    })
+
+    test('keyframes render intermediate values and return to the start', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-animators-run-keyframes')).click()
+      const log = await waitForElement(driver, 'one-native-animators-keyframe-log')
+      await log.waitUntil(async () => /max 220, last 60$/.test(await log.getText()), {
+        timeout: 10_000,
+        timeoutMsg: 'keyframes did not reach 220 and return to 60',
+      })
+      // a JS-sampled or snapping timeline would report only a few widths.
+      const frames = Number(/Keyframes: (\d+) frames/.exec(await logOf('one-native-animators-keyframe-log'))![1])
+      expect(frames).toBeGreaterThan(20)
+    })
+
+    test('a keyframe trigger during a run restarts from the current value', sharedTestOptions, async () => {
+      const before = Number(/Keyframes: (\d+) frames/.exec(await logOf('one-native-animators-keyframe-log'))![1])
+      await (await waitForElement(driver, 'one-native-animators-interrupt-keyframes')).click()
+      const log = await waitForElement(driver, 'one-native-animators-keyframe-log')
+      await log.waitUntil(
+        async () => {
+          const text = await log.getText()
+          return Number(/Keyframes: (\d+) frames/.exec(text)![1]) > before + 20 && text.endsWith('last 60')
+        },
+        { timeout: 10_000, timeoutMsg: 'interrupted keyframes did not run again and settle at 60' }
+      )
+      await captureScreenshot(driver, 'one-native-animators-keyframes-interrupted')
+    })
+
+    for (const [testID, message] of [
+      ['one-native-animators-invalid-empty', 'Swift.PhaseAnimator phases must not be empty'],
+      ['one-native-animators-invalid-static', 'Swift.PhaseAnimator takes a content function of its phase'],
+      ['one-native-animators-invalid-prop', 'content can vary only swiftStyle by phase'],
+      ['one-native-animators-invalid-curve', 'must map its value linearly to swiftStyle numbers; width does not'],
+      ['one-native-animators-invalid-keyframes', 'keyframes must not depend on their value argument'],
+    ])
+      test(`${testID.replace('one-native-animators-invalid-', '')} content throws instead of mounting`, sharedTestOptions, async () => {
+        await navigateTo(driver, '/one-native-animators')
+        await (await waitForElement(driver, testID, { timeout: 30_000 })).click()
+        await dismissExpectedRenderError(driver, message)
+        const error = await waitForElement(driver, 'one-native-animators-error')
+        expect(await error.getText()).toContain(message)
+      })
   })
 })
 

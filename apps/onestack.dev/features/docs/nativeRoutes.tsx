@@ -28,6 +28,7 @@ export const nativeRoutes = [
       { title: 'Stacks', route: '/native/ios-stacks' },
       { title: 'Lists and Forms', route: '/native/ios-lists' },
       { title: 'Groups', route: '/native/ios-groups' },
+      { title: 'Animators', route: '/native/ios-animators' },
       { title: 'Text and Fields', route: '/native/ios-text-fields' },
       { title: 'Buttons and Toggles', route: '/native/ios-buttons-toggles' },
       { title: 'Pickers', route: '/native/ios-pickers' },

@@ -507,7 +507,9 @@
         "OneNativeNavigationStackContent": "OneNativeNavigationStackContentComponentView",
         "OneNativeNavigationSplitViewColumn": "OneNativeNavigationSplitViewColumnComponentView",
         "OneNativePopover": "OneNativePopoverComponentView",
-        "OneNativePopoverContent": "OneNativePopoverContentComponentView"
+        "OneNativePopoverContent": "OneNativePopoverContentComponentView",
+        "OneNativePhaseAnimator": "OneNativePhaseAnimatorComponentView",
+        "OneNativeKeyframeAnimator": "OneNativeKeyframeAnimatorComponentView"
       }
     }
   }
