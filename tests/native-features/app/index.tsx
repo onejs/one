@@ -44,6 +44,11 @@ const testScreens = [
     testID: 'nav-one-native-picker-palette',
   },
   {
+    href: '/one-native-button',
+    label: 'One Native Button',
+    testID: 'nav-one-native-button',
+  },
+  {
     href: '/one-native-edit-button',
     label: 'One Native Edit Button',
     testID: 'nav-one-native-edit-button',

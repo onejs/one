@@ -66,6 +66,7 @@ declare module 'one' {
         | `/one-native-brightness`
         | `/one-native-browser`
         | `/one-native-building-blocks`
+        | `/one-native-button`
         | `/one-native-calendar`
         | `/one-native-camera`
         | `/one-native-clipboard`

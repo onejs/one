@@ -766,6 +766,31 @@ describe('one native integration tests', () => {
     )
   })
 
+  describe('One Native standalone Button', () => {
+    test('a tap on each standalone button reports one press', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-button')
+      const state = await waitForElement(driver, 'one-native-button-state', { timeout: 30_000 })
+      expect(await state.getText()).toBe('button:idle count:0')
+
+      await (await waitForElement(driver, 'one-native-button-automatic')).click()
+      await state.waitUntil(async () => (await state.getText()) === 'button:automatic count:1', {
+        timeout: 5000,
+        timeoutMsg: 'standalone Button tap did not report onPress',
+      })
+      await (await waitForElement(driver, 'one-native-button-bordered')).click()
+      await state.waitUntil(async () => (await state.getText()) === 'button:bordered count:2', {
+        timeout: 5000,
+        timeoutMsg: 'standalone bordered Button tap did not report onPress',
+      })
+      await (await waitForElement(driver, 'one-native-button-gesture-root')).click()
+      await state.waitUntil(async () => (await state.getText()) === 'button:gesture-root count:3', {
+        timeout: 5000,
+        timeoutMsg: 'Button under a GestureHandlerRootView did not report onPress',
+      })
+      await captureScreenshot(driver, 'one-native-button-pressed')
+    })
+  })
+
   describe('One Native MultiDatePicker and PassKit buttons', () => {
     test('picker resets through revisions and buttons report taps', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-picker-passkit')
