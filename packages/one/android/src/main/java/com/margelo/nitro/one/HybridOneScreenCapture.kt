@@ -35,6 +35,7 @@ import java.util.function.Consumer
 // unsupported-platform message, never a new error code.
 class HybridOneScreenCapture : HybridOneScreenCaptureSpec(), LifecycleEventListener {
     @Volatile private var active = false
+    @Volatile private var secureArmed = false
     private val mainHandler = Handler(Looper.getMainLooper())
     private val stateListeners = mutableMapOf<UUID, (ScreenCaptureState) -> Unit>()
     private val screenshotListeners = mutableMapOf<UUID, (Double) -> Unit>()
@@ -49,7 +50,9 @@ class HybridOneScreenCapture : HybridOneScreenCaptureSpec(), LifecycleEventListe
 
     override fun dispose() {
         NitroModules.applicationContext?.removeLifecycleEventListener(this)
+        secureArmed = false
         mainHandler.post {
+            currentActivity()?.window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
             unregisterRecording()
             unregisterScreenshot()
             stateListeners.clear()
@@ -63,7 +66,10 @@ class HybridOneScreenCapture : HybridOneScreenCaptureSpec(), LifecycleEventListe
         // the screenshot callback is owned by the live activity, following
         // the guide's onStart/onStop shape; re-register on whatever activity
         // is current after pause, dialogs, or recreation.
-        mainHandler.post { ensureScreenshot() }
+        mainHandler.post {
+            ensureScreenshot()
+            ensureSecure()
+        }
     }
 
     override fun onHostPause() {
@@ -206,6 +212,42 @@ class HybridOneScreenCapture : HybridOneScreenCaptureSpec(), LifecycleEventListe
         }
     }
 
+    override fun prevent(): Promise<Unit> {
+        val promise = Promise<Unit>()
+        mainHandler.post {
+            val window = currentActivity()?.window
+            if (window == null) {
+                promise.reject(
+                    OneNativeError(
+                        "E_SCREEN_CAPTURE_SCENE",
+                        "ScreenCapture.prevent: no active app window"
+                    )
+                )
+                return@post
+            }
+            window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+            secureArmed = true
+            promise.resolve(Unit)
+        }
+        return promise
+    }
+
+    override fun allow(): Promise<Unit> {
+        val promise = Promise<Unit>()
+        mainHandler.post {
+            secureArmed = false
+            currentActivity()?.window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+            promise.resolve(Unit)
+        }
+        return promise
+    }
+
+    override fun isPrevented(): Promise<Boolean> {
+        val promise = Promise<Boolean>()
+        mainHandler.post { promise.resolve(secureArmed) }
+        return promise
+    }
+
     override fun addScreenshotListener(onScreenshot: (timestampMs: Double) -> Unit): () -> Unit {
         val id = UUID.randomUUID()
         mainHandler.post {
@@ -218,6 +260,11 @@ class HybridOneScreenCapture : HybridOneScreenCaptureSpec(), LifecycleEventListe
                 if (screenshotListeners.isEmpty()) unregisterScreenshot()
             }
         }
+    }
+
+    private fun ensureSecure() {
+        if (!secureArmed) return
+        currentActivity()?.window?.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
 
     private fun ensureRecording() {

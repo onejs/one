@@ -6,6 +6,7 @@ export {
   useFonts,
   useNativeState,
   useNetworkState,
+  usePreventScreenCapture,
   useAudioPlayer,
   useAudioPlayerStatus,
   useBatteryLevel,

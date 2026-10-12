@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneScreenCaptureSpec``
 public protocol HybridOneScreenCaptureSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getState() throws -> Promise<ScreenCaptureState>
@@ -18,6 +18,9 @@ public protocol HybridOneScreenCaptureSpec_protocol: HybridObject {
   func captureView(viewTag: Double) throws -> Promise<ScreenCaptureResult>
   func addStateListener(onChange: @escaping (_ state: ScreenCaptureState) -> Void) throws -> () -> Void
   func addScreenshotListener(onScreenshot: @escaping (_ timestampMs: Double) -> Void) throws -> () -> Void
+  func prevent() throws -> Promise<Void>
+  func allow() throws -> Promise<Void>
+  func isPrevented() throws -> Promise<Bool>
 }
 
 public extension HybridOneScreenCaptureSpec_protocol {

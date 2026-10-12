@@ -19,6 +19,9 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("captureView", &HybridOneScreenCaptureSpec::captureView);
       prototype.registerHybridMethod("addStateListener", &HybridOneScreenCaptureSpec::addStateListener);
       prototype.registerHybridMethod("addScreenshotListener", &HybridOneScreenCaptureSpec::addScreenshotListener);
+      prototype.registerHybridMethod("prevent", &HybridOneScreenCaptureSpec::prevent);
+      prototype.registerHybridMethod("allow", &HybridOneScreenCaptureSpec::allow);
+      prototype.registerHybridMethod("isPrevented", &HybridOneScreenCaptureSpec::isPrevented);
     });
   }
 

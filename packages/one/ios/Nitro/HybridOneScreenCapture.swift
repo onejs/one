@@ -10,6 +10,17 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
   private var lastState: ScreenCaptureState?
   private var activationObserver: NSObjectProtocol?
   private var screenshotObserver: NSObjectProtocol?
+  // screenshot and recording prevention, mirroring expo-screen-capture:
+  // screenshots hide behind a secure-entry text field canvas layer, and
+  // recordings hide behind a black block view while the scene is captured.
+  private var preventionActive = false
+  private var secureField: UITextField?
+  private var secureOriginalParent: CALayer?
+  private weak var secureWindow: UIWindow?
+  private var blockView: UIView?
+  private weak var blockWindow: UIWindow?
+  private var capturedObserver: NSObjectProtocol?
+  private var keyWindowObserver: NSObjectProtocol?
 
   override init() {
     super.init()
@@ -32,6 +43,22 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
   deinit {
     if let activationObserver { NotificationCenter.default.removeObserver(activationObserver) }
     if let screenshotObserver { NotificationCenter.default.removeObserver(screenshotObserver) }
+    if let capturedObserver { NotificationCenter.default.removeObserver(capturedObserver) }
+    if let keyWindowObserver { NotificationCenter.default.removeObserver(keyWindowObserver) }
+    // prevention re-parents the window layer, so restore it even when the
+    // hybrid dies while armed; capture values instead of self.
+    let field = secureField
+    let window = secureWindow
+    let parent = secureOriginalParent
+    let overlay = blockView
+    DispatchQueue.main.async {
+      if let window {
+        window.layer.removeFromSuperlayer()
+        if let parent { parent.addSublayer(window.layer) }
+      }
+      field?.layer.removeFromSuperlayer()
+      overlay?.removeFromSuperview()
+    }
     if let observedScene, let captureRegistration {
       DispatchQueue.main.async {
         observedScene.unregisterForTraitChanges(captureRegistration)
@@ -150,6 +177,164 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
     }
   }
 
+  func prevent() throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      guard let window = self.currentWindow(), window.windowScene != nil else {
+        promise.reject(withError: oneNativeError(
+          "E_SCREEN_CAPTURE_SCENE", "ScreenCapture.prevent: no active app window"))
+        return
+      }
+      do {
+        try self.attachSecureCanvas(to: window)
+      } catch {
+        promise.reject(withError: error)
+        return
+      }
+      self.preventionActive = true
+      self.observeCurrentScene()
+      self.ensureCapturedObserver()
+      self.ensureKeyWindowObserver()
+      self.updateBlockView()
+      promise.resolve(withResult: ())
+    }
+    return promise
+  }
+
+  func allow() throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      self.preventionActive = false
+      self.detachSecureCanvas()
+      self.removeBlockView()
+      self.removePreventionObservers()
+      promise.resolve(withResult: ())
+    }
+    return promise
+  }
+
+  func isPrevented() throws -> Promise<Bool> {
+    let promise = Promise<Bool>()
+    DispatchQueue.main.async {
+      promise.resolve(withResult: self.preventionActive)
+    }
+    return promise
+  }
+
+  // screenshots render the window layer blank once it lives under a
+  // secure-entry text field canvas layer. the attach either fully moves the
+  // layer or throws without mutating the hierarchy. main thread only.
+  @MainActor private func attachSecureCanvas(to window: UIWindow) throws {
+    if let secureWindow, secureWindow === window, secureField?.layer.superlayer != nil {
+      return
+    }
+    detachSecureCanvas()
+    guard let originalParent = window.layer.superlayer else {
+      throw oneNativeError(
+        "E_SCREEN_CAPTURE_SCENE", "ScreenCapture.prevent: app window cannot be protected")
+    }
+    let field = UITextField()
+    field.isSecureTextEntry = true
+    field.isUserInteractionEnabled = false
+    field.backgroundColor = .clear
+    field.frame = window.bounds
+    originalParent.addSublayer(field.layer)
+    guard let canvasLayer = field.layer.sublayers?.first else {
+      field.layer.removeFromSuperlayer()
+      throw oneNativeError(
+        "E_SCREEN_CAPTURE_RENDER", "ScreenCapture.prevent: secure layer is unavailable")
+    }
+    window.layer.removeFromSuperlayer()
+    canvasLayer.addSublayer(window.layer)
+    secureField = field
+    secureOriginalParent = originalParent
+    secureWindow = window
+  }
+
+  @MainActor private func detachSecureCanvas() {
+    defer {
+      secureField?.layer.removeFromSuperlayer()
+      secureField = nil
+      secureOriginalParent = nil
+      secureWindow = nil
+    }
+    guard let window = secureWindow else { return }
+    window.layer.removeFromSuperlayer()
+    if let originalParent = secureOriginalParent {
+      originalParent.addSublayer(window.layer)
+    }
+  }
+
+  @MainActor private func ensureCapturedObserver() {
+    guard capturedObserver == nil else { return }
+    capturedObserver = NotificationCenter.default.addObserver(
+      forName: UIScreen.capturedDidChangeNotification, object: nil, queue: .main
+    ) { [weak self] _ in
+      DispatchQueue.main.async { self?.updateBlockView() }
+    }
+  }
+
+  @MainActor private func ensureKeyWindowObserver() {
+    guard keyWindowObserver == nil else { return }
+    keyWindowObserver = NotificationCenter.default.addObserver(
+      forName: UIWindow.didBecomeKeyNotification, object: nil, queue: .main
+    ) { [weak self] notification in
+      DispatchQueue.main.async {
+        guard let self, self.preventionActive else { return }
+        let window = (notification.object as? UIWindow) ?? self.currentWindow()
+        guard let window, window.windowScene != nil else { return }
+        try? self.attachSecureCanvas(to: window)
+        self.observeCurrentScene()
+        self.updateBlockView()
+      }
+    }
+  }
+
+  @MainActor private func removePreventionObservers() {
+    if let capturedObserver {
+      NotificationCenter.default.removeObserver(capturedObserver)
+      self.capturedObserver = nil
+    }
+    if let keyWindowObserver {
+      NotificationCenter.default.removeObserver(keyWindowObserver)
+      self.keyWindowObserver = nil
+    }
+  }
+
+  // recordings and mirroring hide behind a black overlay on the protected
+  // window while the scene reports captured. idempotent: repeated trait and
+  // captured notifications converge on the same overlay. main thread only.
+  @MainActor private func updateBlockView() {
+    guard preventionActive, isSceneCaptured(), let window = secureWindow ?? currentWindow() else {
+      removeBlockView()
+      return
+    }
+    if let blockView, blockView.superview != nil, blockWindow === window {
+      blockView.frame = window.bounds
+      return
+    }
+    removeBlockView()
+    let overlay = UIView(frame: window.bounds)
+    overlay.backgroundColor = .black
+    overlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    overlay.isUserInteractionEnabled = false
+    window.addSubview(overlay)
+    window.bringSubviewToFront(overlay)
+    blockView = overlay
+    blockWindow = window
+  }
+
+  @MainActor private func removeBlockView() {
+    blockView?.removeFromSuperview()
+    blockView = nil
+    blockWindow = nil
+  }
+
+  @MainActor private func isSceneCaptured() -> Bool {
+    guard let scene = secureWindow?.windowScene ?? currentScene() else { return false }
+    return scene.traitCollection.sceneCaptureState == .active
+  }
+
   @MainActor private func observeCurrentScene() {
     guard let scene = currentScene() else { return }
     observe(scene)
@@ -172,6 +357,7 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
   @MainActor private func deliver(_ scene: UIWindowScene) {
     guard observedScene === scene else { return }
     let state = Self.state(scene.traitCollection.sceneCaptureState)
+    if preventionActive { updateBlockView() }
     guard state.stringValue != lastState?.stringValue else { return }
     lastState = state
     for listener in stateListeners.values { listener(state) }

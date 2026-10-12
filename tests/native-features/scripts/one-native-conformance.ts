@@ -4032,6 +4032,51 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Status: refreshed') && labels(n).includes('Screenshot count: 1') &&
       labels(n).includes('Capture state: inactive')
     )
+    tap({ id: 'one-native-screen-capture-prevent-run' })
+    await wait('prevention arms, refcounts and releases', (n) =>
+      labels(n).includes('Prevention: done') &&
+      labels(n).includes('Prevent initial: false') &&
+      labels(n).includes('Prevent active: true') &&
+      labels(n).includes('Prevent kept: true') &&
+      labels(n).includes('Prevent released: false') &&
+      labels(n).includes('Prevent invalid: ScreenCapture.prevent requires a non-empty string key') &&
+      labels(n).includes('Prevent restored: false')
+    )
+    tap({ id: 'one-native-screen-capture-prevent-hold' })
+    await wait('prevention hold arms the secure canvas', (n) =>
+      labels(n).includes('Prevention hold: held true')
+    )
+    runInApp('capture-trait-prevented.log', captureTrait(1))
+    tap({ id: 'one-native-screen-capture-window' })
+    const prevented = await wait('captured scene hides behind the block view', (n) =>
+      labels(n).includes('Window capture: captured') &&
+      labels(n).some((label) => /^Window file: [A-F0-9-]+\.png$/.test(label))
+    )
+    const preventedName = labels(prevented).find((label) => label.startsWith('Window file: '))?.slice('Window file: '.length)
+    if (!preventedName) throw new Error('ScreenCapture: missing prevented PNG file label')
+    const preventedFile = path.join(container, 'Library/Caches/OneScreenCapture', preventedName)
+    if (!fs.existsSync(preventedFile)) throw new Error(`ScreenCapture: prevented PNG is missing: ${preventedFile}`)
+    const preventedImage = readPng(preventedFile)
+    const center = (image: ReturnType<typeof readPng>) => {
+      const x = Math.floor(image.width / 2)
+      const y = Math.floor(image.height / 2)
+      const offset = (y * image.width + x) * 4
+      return Array.from(image.data.slice(offset, offset + 3), Number)
+    }
+    const [pr, pg, pb] = center(preventedImage)
+    if (pr > 40 || pg > 40 || pb > 40)
+      throw new Error(`ScreenCapture: prevented PNG center is not black: ${JSON.stringify({ pr, pg, pb })}`)
+    fs.copyFileSync(preventedFile, path.join(config.artifactDir, 'screen-capture-prevented.png'))
+    console.log(`PASS prevented window PNG is black at center: ${JSON.stringify({ pr, pg, pb })}`)
+    runInApp('capture-trait-unprevented.log', captureTrait(0))
+    tap({ id: 'one-native-screen-capture-delete' })
+    await wait('prevented PNG can be removed', (n) =>
+      labels(n).includes('Window capture: deleted') && labels(n).includes('Window file: none')
+    )
+    tap({ id: 'one-native-screen-capture-prevent-release' })
+    await wait('prevention hold releases the secure canvas', (n) =>
+      labels(n).includes('Prevention hold: released false')
+    )
     screenshot('screen-capture-event.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

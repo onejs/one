@@ -2,6 +2,36 @@ import { useEffect, useRef, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
+function message(error: unknown): string {
+  return error instanceof Error ? error.message : String(error)
+}
+
+async function runPreventChecks(report: (name: string, value: string) => void) {
+  const capture = One.ScreenCapture
+  const initial = await capture.isPrevented()
+  report('Prevent initial', String(initial))
+  try {
+    await capture.prevent('proof')
+    report('Prevent active', String(await capture.isPrevented()))
+    await capture.prevent('proof-second')
+    await capture.allow()
+    report('Prevent kept', String(await capture.isPrevented()))
+    await capture.allow('proof')
+    await capture.allow('proof-second')
+    report('Prevent released', String(await capture.isPrevented()))
+    try {
+      await capture.prevent(0 as never)
+      report('Prevent invalid', 'accepted')
+    } catch (error) {
+      report('Prevent invalid', message(error))
+    }
+  } finally {
+    await capture.allow('proof')
+    await capture.allow('proof-second')
+    report('Prevent restored', String(await capture.isPrevented()))
+  }
+}
+
 export default function OneNativeScreenCapture() {
   const [state, setState] = useState('pending')
   const [events, setEvents] = useState<string[]>([])
@@ -13,6 +43,9 @@ export default function OneNativeScreenCapture() {
   const [captureUri, setCaptureUri] = useState('')
   const [captureDimensions, setCaptureDimensions] = useState('none')
   const [captureSize, setCaptureSize] = useState(0)
+  const [preventResults, setPreventResults] = useState<[string, string][]>([])
+  const [preventStatus, setPreventStatus] = useState('idle')
+  const [holdStatus, setHoldStatus] = useState('idle')
   const removeScreenshotRef = useRef<() => void>(() => {})
 
   useEffect(() => {
@@ -89,6 +122,48 @@ export default function OneNativeScreenCapture() {
       </Pressable>
       <Pressable testID="one-native-screen-capture-refresh" onPress={refresh}>
         <Text>Refresh capture state</Text>
+      </Pressable>
+      <Text>Prevention: {preventStatus}</Text>
+      {preventResults.map(([name, value]) => (
+        <Text key={name}>{`${name}: ${value}`}</Text>
+      ))}
+      <Pressable
+        testID="one-native-screen-capture-prevent-run"
+        onPress={() => {
+          setPreventResults([])
+          setPreventStatus('running')
+          runPreventChecks((name, value) =>
+            setPreventResults((current) => [...current, [name, value]])
+          ).then(
+            () => setPreventStatus('done'),
+            (error: unknown) => setPreventStatus(`failed ${message(error)}`)
+          )
+        }}
+      >
+        <Text>Run prevent checks</Text>
+      </Pressable>
+      <Text>Prevention hold: {holdStatus}</Text>
+      <Pressable
+        testID="one-native-screen-capture-prevent-hold"
+        onPress={async () => {
+          try {
+            await One.ScreenCapture.prevent('hold')
+            setHoldStatus(`held ${await One.ScreenCapture.isPrevented()}`)
+          } catch (error) {
+            setHoldStatus(`failed ${message(error)}`)
+          }
+        }}
+      >
+        <Text>Hold prevention</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-screen-capture-prevent-release"
+        onPress={async () => {
+          await One.ScreenCapture.allow('hold')
+          setHoldStatus(`released ${await One.ScreenCapture.isPrevented()}`)
+        }}
+      >
+        <Text>Release prevention</Text>
       </Pressable>
       <View testID="one-native-screen-capture-red" style={styles.red} />
       <View testID="one-native-screen-capture-blue" style={styles.blue} />

@@ -87,6 +87,53 @@ notification comes from the API 34 activity callback and is activity-scoped:
 ADB and instrumentation captures do not trigger it, and below API 34 the
 listener stays silent.
 
+To block screenshots and screen recordings, call `prevent()`, matching
+`expo-screen-capture`. It resolves once the platform hides your content: on
+iOS the app window moves behind a secure layer so screenshots come out blank,
+and a black overlay covers the window while the scene is recorded or mirrored;
+on Android the window gains `FLAG_SECURE`, which also blanks the app switcher
+preview. Call `allow()` to show content again, and read `isPrevented()` to
+check the current state.
+
+```tsx
+import { One } from 'one'
+
+await One.ScreenCapture.prevent()
+try {
+  // sensitive content stays hidden from screenshots and recordings
+} finally {
+  await One.ScreenCapture.allow()
+}
+```
+
+`prevent()` and `allow()` take an optional key (default `'default'`) that
+keeps overlapping screens from conflicting: prevention arms on the first held
+key and releases when the last key is allowed. Allowing a key that was never
+prevented does nothing.
+
+```tsx
+await One.ScreenCapture.prevent('receipt')
+await One.ScreenCapture.allow('other') // no-op: 'receipt' is still held
+const hidden = await One.ScreenCapture.isPrevented() // true
+await One.ScreenCapture.allow('receipt')
+```
+
+While a component is mounted, prefer the `usePreventScreenCapture` hook,
+which prevents on mount and allows on unmount:
+
+```tsx
+import { usePreventScreenCapture } from 'one'
+
+function Receipt() {
+  usePreventScreenCapture('receipt')
+  return null
+}
+```
+
+`prevent()` rejects with `E_SCREEN_CAPTURE_SCENE` when there is no active app
+window. Both verbs throw a `TypeError` for an empty or non-string key, and
+`usePreventScreenCapture` throws for one during render.
+
 `getState()` rejects with `E_SCREEN_CAPTURE_SCENE` if there is no active window
 scene. `captureWindow()` uses that scene and rejects with
 `E_SCREEN_CAPTURE_SCENE` when there is no app window,
@@ -108,5 +155,7 @@ behavior on a physical device: simulator command-line capture reads the host
 framebuffer without exercising in-app notifications or scene state.
 
 Screen capture is implemented on iOS and Android. On web, `getState()`
-resolves `unspecified`, listeners return a remover that does nothing, and
-capture calls reject with `ScreenCapture.<verb> needs an iOS or Android build`.
+resolves `unspecified`, listeners return a remover that does nothing,
+`prevent()` and `allow()` resolve without effect, `isPrevented()` resolves
+`false`, and capture calls reject with
+`ScreenCapture.<verb> needs an iOS or Android build`.
