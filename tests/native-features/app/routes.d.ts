@@ -26,12 +26,14 @@ declare module 'one' {
         | `/one-native-adaptive`
         | `/one-native-adaptive-fold`
         | `/one-native-android`
+        | `/one-native-android-animated-visibility`
         | `/one-native-android-badges`
         | `/one-native-android-cards`
         | `/one-native-android-chips`
         | `/one-native-android-color`
         | `/one-native-android-compose-image`
         | `/one-native-android-dividers`
+        | `/one-native-android-dropdown-menu`
         | `/one-native-android-filter-chip`
         | `/one-native-android-flow-row`
         | `/one-native-android-icon-buttons`
@@ -41,19 +43,17 @@ declare module 'one' {
         | `/one-native-android-loading`
         | `/one-native-android-menus`
         | `/one-native-android-navigation-bar`
-        | `/one-native-android-search-bar`
-        | `/one-native-android-dropdown-menu`
-        | `/one-native-android-pull-to-refresh`
-        | `/one-native-android-tooltip`
-        | `/one-native-android-animated-visibility`
         | `/one-native-android-picker-reference`
         | `/one-native-android-pickers`
         | `/one-native-android-progress`
+        | `/one-native-android-pull-to-refresh`
+        | `/one-native-android-search-bar`
         | `/one-native-android-segmented`
         | `/one-native-android-selection`
         | `/one-native-android-sheet`
         | `/one-native-android-snackbar`
         | `/one-native-android-surface`
+        | `/one-native-android-tooltip`
         | `/one-native-angular-gradient`
         | `/one-native-animation`
         | `/one-native-app-icon`
