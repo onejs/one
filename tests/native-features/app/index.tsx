@@ -580,6 +580,11 @@ const testScreens = [
     testID: 'nav-one-native-android-dropdown-menu',
   },
   {
+    href: '/one-native-android-pull-to-refresh',
+    label: 'One Native Android Pull To Refresh',
+    testID: 'nav-one-native-android-pull-to-refresh',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

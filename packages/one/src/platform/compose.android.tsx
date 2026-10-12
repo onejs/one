@@ -53,6 +53,7 @@ import type {
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeProgressVariant,
+  ComposePullToRefreshBoxProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSpacerProps,
@@ -116,6 +117,7 @@ import {
   validateNavigationBarProps,
   validateLoadingIndicatorProps,
   validateProgressIndicatorProps,
+  validatePullToRefreshBoxProps,
   validateRadioButtonProps,
   validateRowProps,
   validateSearchBarProps,
@@ -191,6 +193,7 @@ type ComposeNodeType =
   | 'dropdownmenu'
   | 'dropdownmenuitem'
   | 'exposeddropdownmenubox'
+  | 'pulltorefreshbox'
   | 'progressindicator'
   | 'datepicker'
   | 'timepicker'
@@ -356,6 +359,7 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     trailingIcon?: string
     filled?: boolean
   }>
+  isRefreshing?: boolean
   onNativeComposeNodeImageLoad?: (event: { nativeEvent: { eventCount: number } }) => void
   onNativeComposeNodeImageError?: (event: {
     nativeEvent: { message: string; eventCount: number }
@@ -854,6 +858,27 @@ function ExposedDropdownMenuBox({
       onNativeComposeNodeBooleanValueChange={(event) =>
         controlledExpanded.onNativeChange(event.nativeEvent)
       }
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function PullToRefreshBox({
+  children,
+  isRefreshing,
+  onRefresh,
+  enabled = true,
+  ...props
+}: ComposePullToRefreshBoxProps) {
+  validatePullToRefreshBoxProps({ isRefreshing, onRefresh, enabled })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="pulltorefreshbox"
+      isRefreshing={isRefreshing}
+      disabled={!enabled}
+      onNativeComposeNodeButtonPress={() => onRefresh()}
     >
       {children}
     </ComposeNode>
@@ -1995,6 +2020,7 @@ export const Compose = {
   DropdownMenu,
   DropdownMenuItem,
   ExposedDropdownMenuBox,
+  PullToRefreshBox,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

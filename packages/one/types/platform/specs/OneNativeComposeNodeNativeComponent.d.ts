@@ -373,6 +373,7 @@ interface NativeProps extends ViewProps {
         trailingIcon?: string;
         filled?: boolean;
     }>;
+    isRefreshing?: boolean;
     onNativeComposeNodeImageLoad?: DirectEventHandler<Readonly<{
         eventCount: Int32;
     }>>;

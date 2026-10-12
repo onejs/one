@@ -20,6 +20,7 @@ import {
   validateNavigationBarItemProps,
   validateNavigationBarProps,
   validateProgressIndicatorProps,
+  validatePullToRefreshBoxProps,
   validateRowProps,
   validateSearchBarProps,
   validateSliderProps,
@@ -918,6 +919,43 @@ describe('compose dropdown menu', () => {
     expect(() =>
       Unsupported.ExposedDropdownMenuBox({ expanded: false, onExpandedChange: () => {}, value: '' })
     ).toThrow('Compose.ExposedDropdownMenuBox requires an Android native build')
+  })
+})
+
+describe('compose pull to refresh box', () => {
+  it('renders a box with refreshing state', () => {
+    expect(
+      render(Compose.PullToRefreshBox, { isRefreshing: true, onRefresh: () => {} })
+    ).toMatchObject({
+      type: 'div',
+      props: { nodeType: 'pulltorefreshbox', isRefreshing: true, disabled: false },
+    })
+    expect(
+      render(Compose.PullToRefreshBox, { isRefreshing: false, onRefresh: () => {}, enabled: false })
+    ).toMatchObject({
+      props: { nodeType: 'pulltorefreshbox', isRefreshing: false, disabled: true },
+    })
+  })
+
+  it('accepts defaults and rejects bad state and callbacks', () => {
+    expect(() =>
+      validatePullToRefreshBoxProps({ isRefreshing: false, onRefresh: () => {} })
+    ).not.toThrow()
+    expect(() => validatePullToRefreshBoxProps({} as never)).toThrow(
+      'Compose PullToRefreshBox isRefreshing must be a boolean'
+    )
+    expect(() =>
+      validatePullToRefreshBoxProps({ isRefreshing: false, onRefresh: undefined as never })
+    ).toThrow('Compose PullToRefreshBox onRefresh must be a function')
+    expect(() =>
+      validatePullToRefreshBoxProps({ isRefreshing: false, onRefresh: () => {}, enabled: 'yes' as never })
+    ).toThrow('Compose PullToRefreshBox enabled must be a boolean')
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.PullToRefreshBox({ isRefreshing: false, onRefresh: () => {} })).toThrow(
+      'Compose.PullToRefreshBox requires an Android native build'
+    )
   })
 })
 

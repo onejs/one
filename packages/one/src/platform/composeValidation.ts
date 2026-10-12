@@ -24,6 +24,7 @@ import type {
   ComposeLoadingIndicatorProps,
   ComposeContainedLoadingIndicatorProps,
   ComposeProgressIndicatorProps,
+  ComposePullToRefreshBoxProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSearchBarProps,
@@ -1056,6 +1057,12 @@ export function validateExposedDropdownMenuBoxProps(props: ComposeExposedDropdow
   assertString(props.value, 'ExposedDropdownMenuBox value')
   assertOptionalString(props.placeholder, 'ExposedDropdownMenuBox placeholder')
   assertOptionalBoolean(props.enabled, 'ExposedDropdownMenuBox enabled')
+}
+
+export function validatePullToRefreshBoxProps(props: ComposePullToRefreshBoxProps) {
+  assertBoolean(props.isRefreshing, 'PullToRefreshBox isRefreshing')
+  assertFunction(props.onRefresh, 'PullToRefreshBox onRefresh')
+  assertOptionalBoolean(props.enabled, 'PullToRefreshBox enabled')
 }
 
 export function validateModalBottomSheetProps(props: ComposeModalBottomSheetProps) {

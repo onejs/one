@@ -35,6 +35,7 @@ import type {
   ComposeNavigationBarProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
+  ComposePullToRefreshBoxProps,
   ComposeRadioButtonProps,
   ComposeRowProps,
   ComposeSpacerProps,
@@ -331,6 +332,10 @@ function ExposedDropdownMenuBox(_props: ComposeExposedDropdownMenuBoxProps): nev
   return unsupported('ExposedDropdownMenuBox')
 }
 
+function PullToRefreshBox(_props: ComposePullToRefreshBoxProps): never {
+  return unsupported('PullToRefreshBox')
+}
+
 function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
@@ -434,6 +439,7 @@ export const Compose = {
   DropdownMenu,
   DropdownMenuItem,
   ExposedDropdownMenuBox,
+  PullToRefreshBox,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

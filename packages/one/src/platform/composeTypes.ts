@@ -279,6 +279,12 @@ export interface ComposeExposedDropdownMenuBoxProps extends ComposeNodeProps {
   enabled?: boolean
 }
 
+export interface ComposePullToRefreshBoxProps extends ComposeNodeProps {
+  isRefreshing: boolean
+  onRefresh: () => void
+  enabled?: boolean
+}
+
 export interface ComposeBadgeProps extends ComposeNodeProps {
   containerColor?: ColorValue
   contentColor?: ColorValue

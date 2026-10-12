@@ -103,6 +103,8 @@ import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.material3.PullToRefreshBox
+import androidx.compose.material3.rememberPullToRefreshState
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarDuration
@@ -925,6 +927,7 @@ internal data class OneNativeComposeNodeProps(
     val dropdownMenuColors: OneNativeCardColors = OneNativeCardColors(),
     val dropdownMenuItemColors: OneNativeDropdownMenuItemColors = OneNativeDropdownMenuItemColors(),
     val dropdownMenuItemOptions: OneNativeDropdownMenuItemOptions = OneNativeDropdownMenuItemOptions(),
+    val isRefreshing: Boolean = false,
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -1501,6 +1504,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageDropdownMenuItemOptions(value: ReadableMap?) {
         pendingProps = pendingProps.copy(dropdownMenuItemOptions = OneNativeDropdownMenuItemOptions.fromMap(value, context))
+    }
+
+    internal fun stageIsRefreshing(value: Boolean) {
+        pendingProps = pendingProps.copy(isRefreshing = value)
     }
 
     internal fun handleExpandedChanged(nextValue: Boolean) {
@@ -2096,6 +2103,7 @@ private fun RenderComposeNodeBody(
         "dropdownmenu" -> RenderComposeDropdownMenu(node, props, modifier)
         "dropdownmenuitem" -> Unit
         "exposeddropdownmenubox" -> RenderComposeExposedDropdownMenuBox(node, props, modifier)
+        "pulltorefreshbox" -> RenderComposePullToRefreshBox(node, props, modifier)
         "datepicker" -> RenderComposeDatePicker(node, props, modifier)
         "timepicker" -> RenderComposeTimePicker(node, props, modifier)
         "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
@@ -2617,6 +2625,26 @@ private fun RenderComposeExposedDropdownMenuBox(
                 if (child.renderedNodeKind != "dropdownmenuitem") return@forEach
                 key(child) { RenderComposeDropdownMenuItem(child) }
             }
+        }
+    }
+}
+
+@Composable
+private fun RenderComposePullToRefreshBox(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val state = rememberPullToRefreshState()
+    PullToRefreshBox(
+        isRefreshing = props.isRefreshing,
+        onRefresh = node::handlePress,
+        modifier = modifier,
+        state = state,
+        enabled = !props.disabled && node.isEnabled,
+    ) {
+        node.renderedChildren.forEach { child ->
+            key(child) { RenderComposeNode(child, Modifier) }
         }
     }
 }

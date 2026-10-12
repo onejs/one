@@ -472,6 +472,10 @@ class OneNativeComposeNodeManager :
         view.stageDropdownMenuItemOptions(value)
     }
 
+    override fun setIsRefreshing(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageIsRefreshing(value)
+    }
+
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageComposeStyle(value)
     }

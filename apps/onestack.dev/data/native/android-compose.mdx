@@ -982,3 +982,36 @@ const [open, setOpen] = useState(false)
     { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled box ignores taps.' },
   ]}
 />
+
+## PullToRefreshBox
+
+`One.Android.PullToRefreshBox` wraps scrollable children with the Material 3
+pull gesture and indicator. A pull past the threshold calls `onRefresh`; the
+parent keeps `isRefreshing` true until its reload finishes. Give the box a
+bounded height so its list can scroll.
+
+```tsx
+const [refreshing, setRefreshing] = useState(false)
+
+<One.Android.PullToRefreshBox
+  isRefreshing={refreshing}
+  onRefresh={() => void reload().finally(() => setRefreshing(false))}
+  composeStyle={{ height: 320, fillMaxWidth: true }}
+>
+  <One.Android.LazyColumn>
+    {items.map((item) => (
+      <One.Android.Text key={item.id} text={item.title} />
+    ))}
+  </One.Android.LazyColumn>
+</One.Android.PullToRefreshBox>
+```
+
+<PropsTable
+  title="PullToRefreshBox"
+  source="composeTypes.ts#ComposePullToRefreshBoxProps"
+  data={[
+    { name: 'isRefreshing', required: true, type: 'boolean', description: 'A reload is running; the indicator spins.' },
+    { name: 'onRefresh', required: true, type: '() => void', description: 'A pull past the threshold asked for a reload.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled box ignores pulls.' },
+  ]}
+/>
