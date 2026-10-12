@@ -1,26 +1,26 @@
 {
   "generatedBy": "one typegen",
   "packageId": "native_source",
-  "hash": "c45c71664c16d0c80a5b3cee7e2a56abc2598b9eb357f347241ce387da82a473",
+  "hash": "3625b03653228126da650c149f15b53ff7089662bd7a1dae91da3e52050a32a8",
   "files": {
-    "EscapeHatch.swift": [
-      "EscapeHatch"
-    ],
     "Audio.swift": [
       "AudioMath"
+    ],
+    "EscapeHatch.swift": [
+      "EscapeHatch"
     ]
   },
   "modules": {
+    "AudioMath": [
+      "rms",
+      "label"
+    ],
     "EscapeHatch": [
       "pin",
       "heading",
       "at",
       "blob",
       "onTick"
-    ],
-    "AudioMath": [
-      "rms",
-      "label"
     ]
   },
   "views": {},

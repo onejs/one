@@ -1315,7 +1315,9 @@ export function writeSwiftPackageArtifacts(packageDir: string): SwiftPackageArti
   const views: Record<string, string[]> = {}
   const defaultViewFiles: string[] = []
   const visit = (dir: string) => {
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const entries = readdirSync(dir, { withFileTypes: true })
+      .sort((a, b) => a.name < b.name ? -1 : a.name > b.name ? 1 : 0)
+    for (const entry of entries) {
       if (entry.name.startsWith('.') || SKIP_SOURCE_DIRS.has(entry.name)) continue
       const file = join(dir, entry.name)
       if (entry.isDirectory()) visit(file)

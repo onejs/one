@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 @MainActor public enum OneNativeSourceBody_native_source {
-  public static let hash = "c45c71664c16d0c80a5b3cee7e2a56abc2598b9eb357f347241ce387da82a473"
+  public static let hash = "3625b03653228126da650c149f15b53ff7089662bd7a1dae91da3e52050a32a8"
 #if os(WASI)
   private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
   private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
@@ -53,8 +53,8 @@ import SwiftUI
     return output.withUnsafeMutableBufferPointer { $0.baseAddress }
   }
 #endif
-  private static let EscapeHatchInstance = EscapeHatch()
   private static let AudioMathInstance = AudioMath()
+  private static let EscapeHatchInstance = EscapeHatch()
   private nonisolated static let isoDate = Date.ISO8601FormatStyle()
   private nonisolated static let isoDateFractional = Date.ISO8601FormatStyle(includingFractionalSeconds: true)
   private nonisolated static func decodeDate(_ decoder: Decoder) throws -> Date {
@@ -98,6 +98,20 @@ import SwiftUI
       throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "arguments must be a JSON array"])
     }
     switch module {
+    case "native_source.AudioMath":
+      switch method {
+      case "rms":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.rms expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: [Double].self)
+        let result = AudioMathInstance.rms(arg0)
+        return try encode(result)
+      case "label":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.label expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: String.self)
+        let result = try AudioMathInstance.label(name: arg0)
+        return try encode(result)
+      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
+      }
     case "native_source.EscapeHatch":
       switch method {
       case "pin":
@@ -125,20 +139,6 @@ import SwiftUI
         let channel = "OneNativeSource.native_source.EscapeHatch.onTick"
         EscapeHatchInstance.onTick({ (a0: Double) in postEvent(channel, args([a0])) })
         return "null"
-      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
-      }
-    case "native_source.AudioMath":
-      switch method {
-      case "rms":
-        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.rms expects 1 arguments"]) }
-        let arg0 = try decode(values[0], as: [Double].self)
-        let result = AudioMathInstance.rms(arg0)
-        return try encode(result)
-      case "label":
-        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.label expects 1 arguments"]) }
-        let arg0 = try decode(values[0], as: String.self)
-        let result = try AudioMathInstance.label(name: arg0)
-        return try encode(result)
       default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
       }
     default:
