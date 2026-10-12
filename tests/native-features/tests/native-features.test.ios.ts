@@ -760,6 +760,21 @@ describe('one native integration tests', () => {
     })
   })
 
+  async function enterFreshDerivedExample() {
+    await navigateTo(driver, '/one-native-derived-behavior')
+    const keyboard = driver.$('XCUIElementTypeKeyboard')
+    if (await keyboard.isDisplayed()) await (await waitForElement(driver, 'Return')).click()
+    await driver.waitUntil(async () => !(await keyboard.isDisplayed()), {
+      timeout: 5000, timeoutMsg: 'navigation keyboard still covers derived controls',
+    })
+    await (await waitForElement(driver, 'derived-reset')).click()
+    await driver.waitUntil(async () =>
+      (await (await waitForElement(driver, 'derived-location-actions')).getText()) === 'Location actions: 0' &&
+      (await (await waitForElement(driver, 'derived-shortcut-actions')).getText()) === 'Shortcuts actions: 0',
+      { timeout: 5000, timeoutMsg: 'derived fixture did not reset its action counts' }
+    )
+  }
+
   describe('One Native AsyncImage behavior', () => {
     async function imageRedWidth() {
       const image = await waitForElement(driver, 'derived-image')
@@ -788,10 +803,10 @@ describe('one native integration tests', () => {
     }
 
     test(
-      'loads image pixels, applies SDK scale and clears to the nil placeholder',
+      'matches SDK scale and nil URL behavior across view identities',
       sharedTestOptions,
       async () => {
-        await navigateTo(driver, '/one-native-derived-behavior')
+        await enterFreshDerivedExample()
         await waitForElement(driver, 'derived-behavior-screen')
         expect(await imageRedWidth()).toBe(0)
         await (await waitForElement(driver, 'derived-image-load')).click()
@@ -801,15 +816,43 @@ describe('one native integration tests', () => {
         })
         await captureScreenshot(driver, 'derived-async-image-loaded')
         await (await waitForElement(driver, 'derived-image-scale')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-scale-value')).getText()) === 'Image scale: 2',
+          { timeout: 5000, timeoutMsg: 'scale control did not update the fixture input' }
+        )
+        await (await waitForElement(driver, 'derived-checkpoint')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-checkpoints')).getText()) === 'Checkpoints: 1',
+          { timeout: 5000, timeoutMsg: 'the app did not process the action after changing scale' }
+        )
+        // the SDK retains its loaded image when only scale changes under the same identity.
+        expect(await imageRedWidth()).toBe(96)
+        await captureScreenshot(driver, 'derived-async-image-cached-scale')
+        await (await waitForElement(driver, 'derived-image-recreate')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-identity')).getText()) === 'Image identity: 1',
+          { timeout: 5000, timeoutMsg: 'image identity control did not remount the view' }
+        )
         await driver.waitUntil(async () => (await imageRedWidth()) === 48, {
           timeout: 10_000,
           timeoutMsg: 'AsyncImage scale 2 did not halve image width',
         })
         await captureScreenshot(driver, 'derived-async-image-scaled')
         await (await waitForElement(driver, 'derived-image-clear')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-url')).getText()) === 'Image URL: nil',
+          { timeout: 5000, timeoutMsg: 'clear control did not set the nil URL input' }
+        )
+        // the SDK retains its loaded image when the URL becomes nil under the same identity.
+        expect(await imageRedWidth()).toBe(48)
+        await (await waitForElement(driver, 'derived-image-recreate')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-identity')).getText()) === 'Image identity: 2',
+          { timeout: 5000, timeoutMsg: 'nil image identity control did not remount the view' }
+        )
         await driver.waitUntil(async () => (await imageRedWidth()) === 0, {
           timeout: 10_000,
-          timeoutMsg: 'AsyncImage retained image pixels after receiving a nil URL',
+          timeoutMsg: 'AsyncImage nil URL did not draw its placeholder after recreation',
         })
         await captureScreenshot(driver, 'derived-async-image-nil')
       }
@@ -821,13 +864,21 @@ describe('one native integration tests', () => {
       'delivers an SDK tap and prevents actions while disabled',
       sharedTestOptions,
       async () => {
-        await navigateTo(driver, '/one-native-derived-behavior')
+        await enterFreshDerivedExample()
         await (await waitForElement(driver, 'derived-example-location')).click()
         const actions = await waitForElement(driver, 'derived-location-actions')
         const shortcuts = await waitForElement(driver, 'derived-shortcut-actions')
         expect(await actions.getText()).toBe('Location actions: 0')
-        const location = await waitForElement(driver, 'derived-location')
+        const location = driver.$(
+          '-ios predicate string:name == "derived-location" AND label == "Share Current Location"'
+        )
+        await location.waitForDisplayed({ timeout: 30_000 })
         await location.click()
+        const alerts = await driver.$$('XCUIElementTypeAlert')
+        if ((await alerts.length) > 0) {
+          expect(await driver.getAlertText()).toContain('can only access your location when you choose to share it')
+          await driver.acceptAlert()
+        }
         await actions.waitUntil(
           async () => (await actions.getText()) === 'Location actions: 1',
           {
@@ -837,10 +888,10 @@ describe('one native integration tests', () => {
         )
         expect(await shortcuts.getText()).toBe('Shortcuts actions: 0')
         await (await waitForElement(driver, 'derived-location-disable')).click()
-        await location.waitUntil(async () => !(await location.isEnabled()), {
-          timeout: 5000,
-          timeoutMsg: 'LocationButton did not become disabled',
-        })
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-location-disabled')).getText()) === 'Location disabled: true',
+          { timeout: 5000, timeoutMsg: 'disable control did not set the SwiftUI disabled input' }
+        )
         const { x, y } = await location.getLocation()
         const { width, height } = await location.getSize()
         await driver.execute('mobile: tap', { x: x + width / 2, y: y + height / 2 })
@@ -861,7 +912,7 @@ describe('one native integration tests', () => {
       'opens Shortcuts and delivers its SDK action after returning to the app',
       sharedTestOptions,
       async () => {
-        await navigateTo(driver, '/one-native-derived-behavior')
+        await enterFreshDerivedExample()
         await (await waitForElement(driver, 'derived-example-shortcuts')).click()
         expect(
           await (await waitForElement(driver, 'derived-shortcut-actions')).getText()

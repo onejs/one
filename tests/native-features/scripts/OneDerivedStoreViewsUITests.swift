@@ -9,6 +9,10 @@ final class OneDerivedStoreViewsUITests: XCTestCase {
     let app = XCUIApplication()
     app.launch()
     defer { app.terminate() }
+    guard app.descendants(matching: .any)["home-screen"].waitForExistence(timeout: 30) else {
+      XCTFail(app.debugDescription)
+      return
+    }
     app.open(URL(string: "nativefeatures:///one-native-derived-behavior")!)
     XCTAssertTrue(app.descendants(matching: .any)["derived-behavior-screen"].waitForExistence(timeout: 30), app.debugDescription)
     body(app)
@@ -17,6 +21,10 @@ final class OneDerivedStoreViewsUITests: XCTestCase {
 
   private func catalogText(_ app: XCUIApplication, _ text: String) -> XCUIElement {
     app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", text)).firstMatch
+  }
+
+  private func subscriptionOption(_ app: XCUIApplication, _ title: String) -> XCUIElement {
+    app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", title)).firstMatch
   }
 
   func testProductViewLoadsCatalogAndRejectsMissingProduct() throws {
@@ -47,9 +55,9 @@ final class OneDerivedStoreViewsUITests: XCTestCase {
     try withCatalog { app in
       app.descendants(matching: .any)["derived-example-subscriptions"].tap()
       XCTAssertTrue(app.staticTexts["Constructor: productIDs"].waitForExistence(timeout: 30), app.debugDescription)
-      let title = catalogText(app, "Native Derived Monthly")
+      let title = subscriptionOption(app, "Native Derived Monthly")
       XCTAssertTrue(title.waitForExistence(timeout: 30), app.debugDescription)
-      let yearly = catalogText(app, "Native Derived Yearly")
+      let yearly = subscriptionOption(app, "Native Derived Yearly")
       XCTAssertFalse(yearly.exists, app.debugDescription)
       app.descendants(matching: .any)["derived-subscriptions-group"].tap()
       XCTAssertTrue(app.staticTexts["Constructor: groupID"].waitForExistence(timeout: 30), app.debugDescription)

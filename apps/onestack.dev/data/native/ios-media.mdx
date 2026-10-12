@@ -83,6 +83,10 @@ to use the SDK nil URL and keep its default placeholder.
   ]}
 />
 
+On iOS 27, changing only `scale` or setting `url` to nil retains the loaded
+image under its current identity, matching SwiftUI. Change the React `key` to
+recreate the image with a new scale or show the nil URL placeholder.
+
 This binding exposes `init(url:scale:)`. The SDK also has image-content,
 placeholder and `AsyncImagePhase` builders, and iOS 27 request initializers.
 Those overloads are not bound: their callbacks return generic SwiftUI view
