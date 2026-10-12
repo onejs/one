@@ -335,14 +335,14 @@ function Video() {
           >
             <div className="video-background">
               <EnsureFlexed />
-              <iframe
-                src="https://www.youtube.com/embed/ZJH4bKkwo90?si=tIVSYmbpEY_0c4-8&amp;autoplay=1&amp;vq=hd1080p;hd=1&amp;modestbranding=1&amp;autohide=1&amp;showinfo=0&amp;rel=0"
-                title="One Demo Video"
-                style={{ maxWidth: '95%' }}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
+              <video
+                src="/one-v2.mp4"
+                title="One v2"
+                autoPlay
+                controls
+                playsInline
+                // the overlay closes on press; clicks on the player stay with it
+                onClick={(e) => e.stopPropagation()}
               />
             </div>
             <Button
