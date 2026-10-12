@@ -126,6 +126,30 @@ export interface ComposeModalBottomSheetProps extends ComposeNodeProps {
 export interface ComposeModalBottomSheetRef {
     hide: () => Promise<void>;
 }
+export interface ComposeNavigationBarProps extends ComposeNodeProps {
+    containerColor?: ColorValue;
+    contentColor?: ColorValue;
+    tonalElevation?: number;
+}
+export type ComposeNavigationBarItemColors = Readonly<{
+    selectedIconColor?: ColorValue;
+    selectedTextColor?: ColorValue;
+    indicatorColor?: ColorValue;
+    unselectedIconColor?: ColorValue;
+    unselectedTextColor?: ColorValue;
+    disabledIconColor?: ColorValue;
+    disabledTextColor?: ColorValue;
+}>;
+export interface ComposeNavigationBarItemProps extends ComposeLeafProps {
+    selected: boolean;
+    onClick: () => void;
+    label?: string;
+    icon: ComposeIconName;
+    iconFilled?: boolean;
+    enabled?: boolean;
+    alwaysShowLabel?: boolean;
+    colors?: ComposeNavigationBarItemColors;
+}
 export interface ComposeBadgeProps extends ComposeNodeProps {
     containerColor?: ColorValue;
     contentColor?: ColorValue;

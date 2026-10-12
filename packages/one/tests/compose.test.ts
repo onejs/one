@@ -14,6 +14,8 @@ import {
   validateLazyColumnProps,
   validateLazyRowProps,
   validateModalBottomSheetProps,
+  validateNavigationBarItemProps,
+  validateNavigationBarProps,
   validateProgressIndicatorProps,
   validateRowProps,
   validateSliderProps,
@@ -654,6 +656,87 @@ describe('compose snackbar', () => {
     expect(() => validateSnackbarShowOptions({ message: 'Hi', duration: 'forever' as never })).toThrow(
       'Compose SnackbarHost duration must be one of short, long, indefinite'
     )
+  })
+})
+
+describe('compose navigation bar', () => {
+  it('renders a bar with colors and elevation', () => {
+    expect(
+      render(Compose.NavigationBar, {
+        containerColor: '#1b1b1f',
+        contentColor: '#ffffff',
+        tonalElevation: 3,
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'navigationbar',
+        navigationBarColors: { containerColor: '#1b1b1f', contentColor: '#ffffff' },
+        tonalElevation: 3,
+      },
+    })
+  })
+
+  it('renders an item with a glyph, label and selection', () => {
+    expect(
+      render(Compose.NavigationBarItem, {
+        selected: true,
+        onClick: () => {},
+        label: 'Home',
+        icon: 'home',
+        alwaysShowLabel: true,
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'navigationbaritem',
+        selected: true,
+        label: 'Home',
+        icon: glyph('home'),
+        iconFilled: false,
+        disabled: false,
+        alwaysShowLabel: true,
+      },
+    })
+  })
+
+  it('accepts defaults and rejects bad props and colors', () => {
+    expect(() => validateNavigationBarProps({})).not.toThrow()
+    expect(() =>
+      validateNavigationBarProps({ containerColor: '#000000', tonalElevation: 0 })
+    ).not.toThrow()
+    expect(() => validateNavigationBarProps({ tonalElevation: -1 })).toThrow(
+      'Compose NavigationBar tonalElevation must be nonnegative'
+    )
+    expect(() =>
+      validateNavigationBarProps({ containerColor: '' })
+    ).toThrow('Compose NavigationBar containerColor must be a color value')
+    const item = { selected: false, onClick: () => {}, icon: 'home' }
+    expect(() => validateNavigationBarItemProps(item)).not.toThrow()
+    expect(() => validateNavigationBarItemProps({} as never)).toThrow(
+      'Compose NavigationBarItem selected must be a boolean'
+    )
+    expect(() =>
+      validateNavigationBarItemProps({ ...item, onClick: undefined as never })
+    ).toThrow('Compose NavigationBarItem onClick must be a function')
+    expect(() => validateNavigationBarItemProps({ ...item, icon: 'not-an-icon' })).toThrow(
+      'Compose NavigationBarItem icon must be a Material Symbols name, got "not-an-icon"'
+    )
+    expect(() =>
+      validateNavigationBarItemProps({ ...item, colors: { containerColor: '#000' } as never })
+    ).toThrow('Compose NavigationBarItem colors does not support containerColor')
+    expect(() =>
+      render(Compose.NavigationBarItem, { ...item, children: createElement('div') })
+    ).toThrow('Compose navigationbaritem does not accept children')
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.NavigationBar({})).toThrow(
+      'Compose.NavigationBar requires an Android native build'
+    )
+    expect(() =>
+      Unsupported.NavigationBarItem({ selected: false, onClick: () => {}, icon: 'home' })
+    ).toThrow('Compose.NavigationBarItem requires an Android native build')
   })
 })
 

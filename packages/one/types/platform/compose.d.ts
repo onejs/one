@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostProps, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostProps, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Spacer(_props: ComposeSpacerProps): never;
@@ -60,6 +60,8 @@ declare function Image(_props: ComposeImageProps): never;
 declare function Snackbar(_props: ComposeSnackbarProps): never;
 declare function SnackbarHost(_props: ComposeSnackbarHostProps): never;
 declare const ModalBottomSheetRoot: (_props: ComposeModalBottomSheetProps) => never;
+declare function NavigationBar(_props: ComposeNavigationBarProps): never;
+declare function NavigationBarItem(_props: ComposeNavigationBarItemProps): never;
 declare function ProgressIndicator(_props: ComposeProgressIndicatorProps): never;
 type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>;
 declare function LinearProgressIndicator(_props: ProgressVariantProps): never;
@@ -180,6 +182,8 @@ export declare const Compose: {
             children: ReactNode;
         }) => never;
     };
+    NavigationBar: typeof NavigationBar;
+    NavigationBarItem: typeof NavigationBarItem;
     ProgressIndicator: typeof ProgressIndicator;
     LinearProgressIndicator: typeof LinearProgressIndicator;
     CircularProgressIndicator: typeof CircularProgressIndicator;

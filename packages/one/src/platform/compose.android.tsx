@@ -44,6 +44,8 @@ import type {
   ComposeModalBottomSheetProperties,
   ComposeModalBottomSheetProps,
   ComposeModalBottomSheetRef,
+  ComposeNavigationBarItemProps,
+  ComposeNavigationBarProps,
   ComposeNodeProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
@@ -103,6 +105,8 @@ import {
   validateLazyRowProps,
   validateListItemProps,
   validateModalBottomSheetProps,
+  validateNavigationBarItemProps,
+  validateNavigationBarProps,
   validateLoadingIndicatorProps,
   validateProgressIndicatorProps,
   validateRadioButtonProps,
@@ -171,6 +175,8 @@ type ComposeNodeType =
   | 'snackbarhost'
   | 'modalbottomsheet'
   | 'sheetslot'
+  | 'navigationbar'
+  | 'navigationbaritem'
   | 'progressindicator'
   | 'datepicker'
   | 'timepicker'
@@ -322,6 +328,9 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     requestId?: number
     revision?: number
   }>
+  navigationBarColors?: Pick<ComposeNavigationBarProps, 'containerColor' | 'contentColor'>
+  navigationBarItemColors?: ComposeNavigationBarItemProps['colors']
+  alwaysShowLabel?: boolean
   onNativeComposeNodeImageLoad?: (event: { nativeEvent: { eventCount: number } }) => void
   onNativeComposeNodeImageError?: (event: {
     nativeEvent: { message: string; eventCount: number }
@@ -346,6 +355,7 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'radio',
   'image',
   'snackbar',
+  'navigationbaritem',
   'textfield',
   'slider',
   'alertdialog',
@@ -718,6 +728,63 @@ const ModalBottomSheet = Object.assign(ModalBottomSheetRoot, {
     </ComposeNode>
   ),
 })
+
+function NavigationBar({
+  children,
+  containerColor,
+  contentColor,
+  tonalElevation,
+  ...props
+}: ComposeNavigationBarProps) {
+  validateNavigationBarProps({ containerColor, contentColor, tonalElevation })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="navigationbar"
+      navigationBarColors={{ containerColor, contentColor }}
+      tonalElevation={tonalElevation}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function NavigationBarItem({
+  selected,
+  onClick,
+  label,
+  icon,
+  iconFilled = false,
+  enabled = true,
+  alwaysShowLabel = true,
+  colors,
+  ...props
+}: ComposeNavigationBarItemProps) {
+  validateNavigationBarItemProps({
+    selected,
+    onClick,
+    label,
+    icon,
+    iconFilled,
+    enabled,
+    alwaysShowLabel,
+    colors,
+  })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="navigationbaritem"
+      selected={selected}
+      label={label}
+      icon={composeIconGlyph('NavigationBarItem icon', icon)}
+      iconFilled={iconFilled}
+      disabled={!enabled}
+      alwaysShowLabel={alwaysShowLabel}
+      navigationBarItemColors={colors}
+      onNativeComposeNodeButtonPress={() => onClick()}
+    />
+  )
+}
 
 function Badge({ children, containerColor, contentColor, ...props }: ComposeBadgeProps) {
   validateBadgeProps({ containerColor, contentColor })
@@ -1688,6 +1755,8 @@ export const Compose = {
   Snackbar,
   SnackbarHost,
   ModalBottomSheet,
+  NavigationBar,
+  NavigationBarItem,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

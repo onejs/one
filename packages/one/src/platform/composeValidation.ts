@@ -16,6 +16,8 @@ import type {
   ComposeIconButtonProps,
   ComposeInputChipProps,
   ComposeListItemProps,
+  ComposeNavigationBarItemProps,
+  ComposeNavigationBarProps,
   ComposeLoadingIndicatorProps,
   ComposeContainedLoadingIndicatorProps,
   ComposeProgressIndicatorProps,
@@ -960,6 +962,43 @@ export function validateSnackbarShowOptions(options: ComposeSnackbarShowOptions)
     assertOneOf(options.duration, 'SnackbarHost duration', snackbarDurations)
   if (options.withDismissAction !== undefined)
     assertBoolean(options.withDismissAction, 'SnackbarHost withDismissAction')
+}
+
+const navigationBarItemColorKeys = new Set([
+  'selectedIconColor',
+  'selectedTextColor',
+  'indicatorColor',
+  'unselectedIconColor',
+  'unselectedTextColor',
+  'disabledIconColor',
+  'disabledTextColor',
+])
+
+export function validateNavigationBarProps(
+  props: Pick<ComposeNavigationBarProps, 'containerColor' | 'contentColor' | 'tonalElevation'>
+) {
+  if (props.containerColor !== undefined)
+    assertComposeColorValue(props.containerColor, 'NavigationBar containerColor')
+  if (props.contentColor !== undefined)
+    assertComposeColorValue(props.contentColor, 'NavigationBar contentColor')
+  if (props.tonalElevation !== undefined) {
+    assertFiniteNumber(props.tonalElevation, 'NavigationBar tonalElevation')
+    if (props.tonalElevation < 0)
+      throw new Error('Compose NavigationBar tonalElevation must be nonnegative')
+  }
+}
+
+export function validateNavigationBarItemProps(props: ComposeNavigationBarItemProps) {
+  assertBoolean(props.selected, 'NavigationBarItem selected')
+  assertFunction(props.onClick, 'NavigationBarItem onClick')
+  assertOptionalString(props.label, 'NavigationBarItem label')
+  assertString(props.icon, 'NavigationBarItem icon', true)
+  composeIconGlyph('NavigationBarItem icon', props.icon)
+  assertOptionalBoolean(props.iconFilled, 'NavigationBarItem iconFilled')
+  assertOptionalBoolean(props.enabled, 'NavigationBarItem enabled')
+  assertOptionalBoolean(props.alwaysShowLabel, 'NavigationBarItem alwaysShowLabel')
+  if (props.colors !== undefined)
+    assertComposeColors(props.colors, navigationBarItemColorKeys, 'NavigationBarItem')
 }
 
 export function validateModalBottomSheetProps(props: ComposeModalBottomSheetProps) {

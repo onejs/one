@@ -432,6 +432,18 @@ class OneNativeComposeNodeManager :
         view.stageSheetCommand(value)
     }
 
+    override fun setNavigationBarColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageNavigationBarColors(value)
+    }
+
+    override fun setNavigationBarItemColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageNavigationBarItemColors(value)
+    }
+
+    override fun setAlwaysShowLabel(view: OneNativeComposeNodeView, value: Boolean) {
+        view.stageAlwaysShowLabel(value)
+    }
+
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageComposeStyle(value)
     }

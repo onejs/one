@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeImageProps, ComposeInputChipProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeModalBottomSheetRef, ComposeNodeProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostRef, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeElevatedCardProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeImageProps, ComposeInputChipProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeListItemProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeModalBottomSheetRef, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeNodeProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostRef, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
 declare function Column({ children, horizontalAlignment, verticalArrangement, spacing, ...props }: ComposeColumnProps): import("react/jsx-runtime").JSX.Element;
 declare function Row({ children, verticalAlignment, horizontalArrangement, spacing, ...props }: ComposeRowProps): import("react/jsx-runtime").JSX.Element;
 declare function Spacer(props: ComposeSpacerProps): import("react/jsx-runtime").JSX.Element;
@@ -9,6 +9,8 @@ declare function LazyColumn({ children, horizontalAlignment, verticalArrangement
 declare function LazyRow({ children, verticalAlignment, horizontalArrangement, contentPadding, ...props }: ComposeLazyRowProps): import("react/jsx-runtime").JSX.Element;
 declare function Image({ source, contentScale, alignment, contentDescription, tint, alpha, onLoad, onError, accessibilityLabel, ...props }: ComposeImageProps): import("react/jsx-runtime").JSX.Element;
 declare function Snackbar({ containerColor, contentColor, actionColor, actionContentColor, dismissActionContentColor, actionOnNewLine, ...props }: ComposeSnackbarProps): import("react/jsx-runtime").JSX.Element;
+declare function NavigationBar({ children, containerColor, contentColor, tonalElevation, ...props }: ComposeNavigationBarProps): import("react/jsx-runtime").JSX.Element;
+declare function NavigationBarItem({ selected, onClick, label, icon, iconFilled, enabled, alwaysShowLabel, colors, ...props }: ComposeNavigationBarItemProps): import("react/jsx-runtime").JSX.Element;
 declare function Badge({ children, containerColor, contentColor, ...props }: ComposeBadgeProps): import("react/jsx-runtime").JSX.Element;
 declare function BadgedBoxRoot({ children, ...props }: ComposeBadgedBoxProps): import("react/jsx-runtime").JSX.Element;
 declare function ListItemRoot({ children, colors, tonalElevation, shadowElevation, ...props }: ComposeListItemProps): import("react/jsx-runtime").JSX.Element;
@@ -179,6 +181,8 @@ export declare const Compose: {
             children: ReactNode;
         }) => import("react/jsx-runtime").JSX.Element;
     };
+    NavigationBar: typeof NavigationBar;
+    NavigationBarItem: typeof NavigationBarItem;
     ProgressIndicator: typeof ProgressIndicator;
     LinearProgressIndicator: typeof LinearProgressIndicator;
     CircularProgressIndicator: typeof CircularProgressIndicator;

@@ -781,3 +781,68 @@ A custom drag handle replaces the default one:
   <One.Android.Text text="Sheet body" />
 </One.Android.ModalBottomSheet>
 ```
+
+## NavigationBar
+
+`One.Android.NavigationBar` is the Material 3 bottom bar. Its children are
+`One.Android.NavigationBarItem` destinations, which spread evenly across the
+bar. The parent owns selection: each item reports `selected`, and `onClick`
+moves it.
+
+```tsx
+const [tab, setTab] = useState('home')
+
+<One.Android.NavigationBar>
+  <One.Android.NavigationBarItem
+    selected={tab === 'home'}
+    onClick={() => setTab('home')}
+    label="Home"
+    icon="home"
+  />
+  <One.Android.NavigationBarItem
+    selected={tab === 'search'}
+    onClick={() => setTab('search')}
+    label="Search"
+    icon="search"
+  />
+</One.Android.NavigationBar>
+```
+
+<PropsTable
+  title="NavigationBar"
+  source="composeTypes.ts#ComposeNavigationBarProps"
+  data={[
+    { name: 'containerColor', type: 'ColorValue', description: 'The bar background.' },
+    { name: 'contentColor', type: 'ColorValue', description: 'The default icon and label color.' },
+    { name: 'tonalElevation', type: 'number', description: 'The tonal elevation, in dp.' },
+  ]}
+/>
+
+<PropsTable
+  title="NavigationBarItem"
+  source="composeTypes.ts#ComposeNavigationBarItemProps"
+  data={[
+    { name: 'selected', required: true, type: 'boolean', description: 'This destination is the current one.' },
+    { name: 'onClick', required: true, type: '() => void', description: 'The item was tapped.' },
+    { name: 'label', type: 'string', description: 'The text under the icon.' },
+    { name: 'icon', required: true, type: 'ComposeIconName', description: 'A Material Symbols icon name.' },
+    { name: 'iconFilled', type: 'boolean', default: 'false', description: 'Uses the filled icon font.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled item ignores taps.' },
+    { name: 'alwaysShowLabel', type: 'boolean', default: 'true', description: 'Shows the label when unselected.' },
+    { name: 'colors', type: 'ComposeNavigationBarItemColors', description: 'Icon, label and indicator colors.' },
+  ]}
+/>
+
+<PropsTable
+  title="NavigationBarItemColors"
+  source="composeTypes.ts#ComposeNavigationBarItemColors"
+  data={[
+    { name: 'selectedIconColor', type: 'ColorValue', description: 'The selected icon color.' },
+    { name: 'selectedTextColor', type: 'ColorValue', description: 'The selected label color.' },
+    { name: 'indicatorColor', type: 'ColorValue', description: 'The selection pill color.' },
+    { name: 'unselectedIconColor', type: 'ColorValue', description: 'The unselected icon color.' },
+    { name: 'unselectedTextColor', type: 'ColorValue', description: 'The unselected label color.' },
+    { name: 'disabledIconColor', type: 'ColorValue', description: 'The disabled icon color.' },
+    { name: 'disabledTextColor', type: 'ColorValue', description: 'The disabled label color.' },
+  ]}
+/>

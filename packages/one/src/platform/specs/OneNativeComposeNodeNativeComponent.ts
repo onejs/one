@@ -328,6 +328,20 @@ interface NativeProps extends ViewProps {
     requestId?: Int32
     revision?: Int32
   }>
+  navigationBarColors?: Readonly<{
+    containerColor?: ColorValue
+    contentColor?: ColorValue
+  }>
+  navigationBarItemColors?: Readonly<{
+    selectedIconColor?: ColorValue
+    selectedTextColor?: ColorValue
+    indicatorColor?: ColorValue
+    unselectedIconColor?: ColorValue
+    unselectedTextColor?: ColorValue
+    disabledIconColor?: ColorValue
+    disabledTextColor?: ColorValue
+  }>
+  alwaysShowLabel?: boolean
   onNativeComposeNodeImageLoad?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
   onNativeComposeNodeImageError?: DirectEventHandler<
     Readonly<{ message: string; eventCount: Int32 }>

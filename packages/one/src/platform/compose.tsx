@@ -28,6 +28,8 @@ import type {
   ComposeLazyRowProps,
   ComposeLoadingIndicatorProps,
   ComposeModalBottomSheetProps,
+  ComposeNavigationBarItemProps,
+  ComposeNavigationBarProps,
   ComposeOutlinedCardProps,
   ComposeProgressIndicatorProps,
   ComposeRadioButtonProps,
@@ -289,6 +291,14 @@ const ModalBottomSheet = Object.assign(ModalBottomSheetRoot, {
   DragHandle: (_props: { children: ReactNode }): never => unsupported('ModalBottomSheet.DragHandle'),
 })
 
+function NavigationBar(_props: ComposeNavigationBarProps): never {
+  return unsupported('NavigationBar')
+}
+
+function NavigationBarItem(_props: ComposeNavigationBarItemProps): never {
+  return unsupported('NavigationBarItem')
+}
+
 function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
@@ -385,6 +395,8 @@ export const Compose = {
   Snackbar,
   SnackbarHost,
   ModalBottomSheet,
+  NavigationBar,
+  NavigationBarItem,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

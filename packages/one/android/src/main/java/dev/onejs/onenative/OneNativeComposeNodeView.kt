@@ -92,6 +92,10 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LinearWavyProgressIndicator
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.ModalBottomSheetProperties
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Snackbar
@@ -756,6 +760,31 @@ internal data class OneNativeSheetCommand(
     }
 }
 
+internal data class OneNativeNavigationBarItemColors(
+    val selectedIconColor: Int? = null,
+    val selectedTextColor: Int? = null,
+    val indicatorColor: Int? = null,
+    val unselectedIconColor: Int? = null,
+    val unselectedTextColor: Int? = null,
+    val disabledIconColor: Int? = null,
+    val disabledTextColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeNavigationBarItemColors {
+            if (map == null) return OneNativeNavigationBarItemColors()
+            return OneNativeNavigationBarItemColors(
+                selectedIconColor = readComposeColor(map, "selectedIconColor", context),
+                selectedTextColor = readComposeColor(map, "selectedTextColor", context),
+                indicatorColor = readComposeColor(map, "indicatorColor", context),
+                unselectedIconColor = readComposeColor(map, "unselectedIconColor", context),
+                unselectedTextColor = readComposeColor(map, "unselectedTextColor", context),
+                disabledIconColor = readComposeColor(map, "disabledIconColor", context),
+                disabledTextColor = readComposeColor(map, "disabledTextColor", context),
+            )
+        }
+    }
+}
+
 internal data class OneNativeComposeNodeProps(
     val nodeType: String? = null,
     val text: String? = null,
@@ -837,6 +866,9 @@ internal data class OneNativeComposeNodeProps(
     val sheetOptions: OneNativeSheetOptions = OneNativeSheetOptions(),
     val sheetProperties: OneNativeSheetProperties = OneNativeSheetProperties(),
     val sheetCommand: OneNativeSheetCommand = OneNativeSheetCommand(),
+    val navigationBarColors: OneNativeCardColors = OneNativeCardColors(),
+    val navigationBarItemColors: OneNativeNavigationBarItemColors = OneNativeNavigationBarItemColors(),
+    val alwaysShowLabel: Boolean = false,
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -1364,6 +1396,18 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageSheetCommand(value: ReadableMap?) {
         pendingProps = pendingProps.copy(sheetCommand = OneNativeSheetCommand.fromMap(value, context))
+    }
+
+    internal fun stageNavigationBarColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(navigationBarColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageNavigationBarItemColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(navigationBarItemColors = OneNativeNavigationBarItemColors.fromMap(value, context))
+    }
+
+    internal fun stageAlwaysShowLabel(value: Boolean) {
+        pendingProps = pendingProps.copy(alwaysShowLabel = value)
     }
 
     internal fun handleImageLoad() {
@@ -1937,6 +1981,8 @@ private fun RenderComposeNodeBody(
         "snackbarhost" -> RenderComposeSnackbarHost(node, props, modifier)
         "modalbottomsheet" -> RenderComposeModalBottomSheet(node, props, modifier)
         "sheetslot" -> Unit
+        "navigationbar" -> RenderComposeNavigationBar(node, props, modifier)
+        "navigationbaritem" -> Unit
         "datepicker" -> RenderComposeDatePicker(node, props, modifier)
         "timepicker" -> RenderComposeTimePicker(node, props, modifier)
         "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
@@ -2266,6 +2312,55 @@ private fun RenderComposeModalBottomSheet(
     ) {
         node.renderedChildren.forEach { child ->
             if (child.renderedProps.slotName != "dragHandle") key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+}
+
+@Composable
+private fun RenderComposeNavigationBar(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val barColors = props.navigationBarColors
+    val container = barColors.containerColor?.let(::Color) ?: NavigationBarDefaults.containerColor
+    NavigationBar(
+        modifier = modifier,
+        containerColor = container,
+        contentColor = barColors.contentColor?.let(::Color) ?: contentColorFor(container),
+        tonalElevation = props.tonalElevation.takeIf { it >= 0 }?.dp ?: NavigationBarDefaults.Elevation,
+    ) {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedNodeKind != "navigationbaritem") return@forEach
+            val item = child.renderedProps
+            val custom = item.navigationBarItemColors
+            val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+            key(child) {
+                NavigationBarItem(
+                    selected = item.selected,
+                    onClick = { if (item.nativeClickable) child.handlePress() },
+                    icon = {
+                        Text(
+                            text = item.icon.orEmpty(),
+                            fontFamily = materialSymbolsFontFamily(item.iconFilled),
+                            fontSize = 24.0.composeIconTextUnit(fontScale),
+                        )
+                    },
+                    modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+                    enabled = !item.disabled && child.isEnabled,
+                    label = item.label?.let { text -> { Text(text) } },
+                    alwaysShowLabel = item.alwaysShowLabel,
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = custom.selectedIconColor?.let(::Color) ?: Color.Unspecified,
+                        selectedTextColor = custom.selectedTextColor?.let(::Color) ?: Color.Unspecified,
+                        indicatorColor = custom.indicatorColor?.let(::Color) ?: Color.Unspecified,
+                        unselectedIconColor = custom.unselectedIconColor?.let(::Color) ?: Color.Unspecified,
+                        unselectedTextColor = custom.unselectedTextColor?.let(::Color) ?: Color.Unspecified,
+                        disabledIconColor = custom.disabledIconColor?.let(::Color) ?: Color.Unspecified,
+                        disabledTextColor = custom.disabledTextColor?.let(::Color) ?: Color.Unspecified,
+                    ),
+                )
+            }
         }
     }
 }
