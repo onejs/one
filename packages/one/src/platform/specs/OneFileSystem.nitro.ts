@@ -23,6 +23,44 @@ export interface FileEntry {
   isDirectory: boolean
 }
 
+// native backing for the File, Directory, Paths and FileHandle classes,
+// mirroring expo-file-system. sync methods block the calling thread like
+// their expo counterparts (textSync, writeSync, list, open); the Async
+// twins run on the module queue. the js entry validates arguments first,
+// so native trusts shapes but still guards.
+
+export interface DiskSpace {
+  available: number
+  total: number
+}
+
+export interface PathStat {
+  exists: boolean
+  isDirectory?: boolean
+}
+
+export interface ListedEntry {
+  name: string
+  uri: string
+  isDirectory: boolean
+}
+
+export interface DetailedFileInfo {
+  exists: boolean
+  size: number
+  modificationTime?: number
+  creationTime?: number
+  mimeType: string
+}
+
+export interface DetailedDirectoryInfo {
+  exists: boolean
+  size?: number
+  modificationTime?: number
+  creationTime?: number
+  files?: string[]
+}
+
 export interface OneFileSystem extends HybridObject<{ ios: 'swift'; android: 'kotlin' }> {
   getDirectories(): FileDirectories
   getInfo(uri: string): Promise<FileInfo>
@@ -32,4 +70,50 @@ export interface OneFileSystem extends HybridObject<{ ios: 'swift'; android: 'ko
   copy(fromUri: string, toUri: string): Promise<void>
   move(fromUri: string, toUri: string): Promise<void>
   remove(uri: string): Promise<void>
+  getBundleDirectory(): string
+  getDiskSpace(): DiskSpace
+  pathInfo(uri: string): PathStat
+  readText(uri: string): string
+  readTextAsync(uri: string): Promise<string>
+  readData(uri: string): ArrayBuffer
+  readDataAsync(uri: string): Promise<ArrayBuffer>
+  readBase64(uri: string): string
+  readBase64Async(uri: string): Promise<string>
+  writeText(uri: string, contents: string, encoding: FileEncoding, append: boolean): void
+  writeTextAsync(
+    uri: string,
+    contents: string,
+    encoding: FileEncoding,
+    append: boolean
+  ): Promise<void>
+  writeData(uri: string, bytes: ArrayBuffer, append: boolean): void
+  writeDataAsync(uri: string, bytes: ArrayBuffer, append: boolean): Promise<void>
+  fileDigest(uri: string, algorithm: string): Promise<string>
+  createFileEntry(uri: string, intermediates: boolean, overwrite: boolean): void
+  createDirectoryEntry(
+    uri: string,
+    intermediates: boolean,
+    overwrite: boolean,
+    idempotent: boolean
+  ): void
+  createFileInDirectory(dirUri: string, name: string): string
+  createSubdirectory(dirUri: string, name: string): string
+  deleteEntry(uri: string): void
+  renameEntry(uri: string, newName: string): string
+  copyEntry(fromUri: string, toUri: string, overwrite: boolean): void
+  copyEntryAsync(fromUri: string, toUri: string, overwrite: boolean): Promise<void>
+  moveEntry(fromUri: string, toUri: string, overwrite: boolean): void
+  moveEntryAsync(fromUri: string, toUri: string, overwrite: boolean): Promise<void>
+  listEntries(uri: string): ListedEntry[]
+  fileDetails(uri: string): DetailedFileInfo
+  directoryDetails(uri: string): DetailedDirectoryInfo
+  openFile(uri: string, mode: string): number
+  closeFile(handle: number): void
+  readHandle(handle: number, length: number): ArrayBuffer
+  readHandleAsync(handle: number, length: number): Promise<ArrayBuffer>
+  writeHandle(handle: number, bytes: ArrayBuffer): void
+  writeHandleAsync(handle: number, bytes: ArrayBuffer): Promise<void>
+  getHandleOffset(handle: number): number
+  setHandleOffset(handle: number, offset: number): void
+  getHandleSize(handle: number): number
 }

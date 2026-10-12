@@ -35,6 +35,7 @@ export {
   useLowPowerMode,
   usePowerState,
 } from './battery'
+export { useAudioPlayer, useAudioPlayerStatus } from './audio/hooks'
 export type {
   BatteryLevelEvent,
   BatteryPowerModeEvent,

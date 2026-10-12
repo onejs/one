@@ -38,6 +38,8 @@ namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioPlaybackStatus; }
+// Forward declaration of `AudioPlayerStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayerStatus; }
 // Forward declaration of `AudioRecordingPermission` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioRecordingPermission; }
 // Forward declaration of `AudioRecordingResult` to properly resolve imports.
@@ -122,10 +124,16 @@ namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DetailedDirectoryInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedDirectoryInfo; }
+// Forward declaration of `DetailedFileInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedFileInfo; }
 // Forward declaration of `DeviceAttestationAvailability` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceAttestationAvailability; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
+// Forward declaration of `DiskSpace` to properly resolve imports.
+namespace margelo::nitro::one { struct DiskSpace; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -264,6 +272,8 @@ namespace margelo::nitro::one { struct ImageResize; }
 namespace margelo::nitro::one { struct ImageTransformOptions; }
 // Forward declaration of `ImageTransformResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImageTransformResult; }
+// Forward declaration of `ListedEntry` to properly resolve imports.
+namespace margelo::nitro::one { struct ListedEntry; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalBiometryType` to properly resolve imports.
@@ -352,6 +362,8 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PathStat` to properly resolve imports.
+namespace margelo::nitro::one { struct PathStat; }
 // Forward declaration of `PendingBackgroundTask` to properly resolve imports.
 namespace margelo::nitro::one { struct PendingBackgroundTask; }
 // Forward declaration of `PhotoLibraryAlbumPage` to properly resolve imports.
@@ -366,6 +378,8 @@ namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `PitchCorrectionQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 // Forward declaration of `PrintResult` to properly resolve imports.
 namespace margelo::nitro::one { struct PrintResult; }
 // Forward declaration of `ProtectedStorePolicy` to properly resolve imports.
@@ -451,6 +465,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AudioNowPlayingInfo.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
+#include "AudioPlayerStatus.hpp"
 #include "AudioRecordingPermission.hpp"
 #include "AudioRecordingResult.hpp"
 #include "AudioRecordingState.hpp"
@@ -493,8 +508,11 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
+#include "DetailedDirectoryInfo.hpp"
+#include "DetailedFileInfo.hpp"
 #include "DeviceAttestationAvailability.hpp"
 #include "DeviceInfo.hpp"
+#include "DiskSpace.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -564,6 +582,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ImageResize.hpp"
 #include "ImageTransformOptions.hpp"
 #include "ImageTransformResult.hpp"
+#include "ListedEntry.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalBiometryType.hpp"
 #include "LocalizationInfo.hpp"
@@ -608,6 +627,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PathStat.hpp"
 #include "PendingBackgroundTask.hpp"
 #include "PhotoLibraryAlbum.hpp"
 #include "PhotoLibraryAlbumPage.hpp"
@@ -615,6 +635,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
+#include "PitchCorrectionQuality.hpp"
 #include "PrintResult.hpp"
 #include "ProtectedStorePolicy.hpp"
 #include "PurchaseProduct.hpp"
@@ -658,6 +679,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include <memory>
 #include <optional>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 // C++ helpers for Swift

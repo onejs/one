@@ -50,7 +50,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-
+    
 
   public:
     // Methods
@@ -62,6 +62,42 @@ namespace margelo::nitro::one {
     std::shared_ptr<Promise<void>> copy(const std::string& fromUri, const std::string& toUri) override;
     std::shared_ptr<Promise<void>> move(const std::string& fromUri, const std::string& toUri) override;
     std::shared_ptr<Promise<void>> remove(const std::string& uri) override;
+    std::string getBundleDirectory() override;
+    DiskSpace getDiskSpace() override;
+    PathStat pathInfo(const std::string& uri) override;
+    std::string readText(const std::string& uri) override;
+    std::shared_ptr<Promise<std::string>> readTextAsync(const std::string& uri) override;
+    std::shared_ptr<ArrayBuffer> readData(const std::string& uri) override;
+    std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> readDataAsync(const std::string& uri) override;
+    std::string readBase64(const std::string& uri) override;
+    std::shared_ptr<Promise<std::string>> readBase64Async(const std::string& uri) override;
+    void writeText(const std::string& uri, const std::string& contents, FileEncoding encoding, bool append) override;
+    std::shared_ptr<Promise<void>> writeTextAsync(const std::string& uri, const std::string& contents, FileEncoding encoding, bool append) override;
+    void writeData(const std::string& uri, const std::shared_ptr<ArrayBuffer>& bytes, bool append) override;
+    std::shared_ptr<Promise<void>> writeDataAsync(const std::string& uri, const std::shared_ptr<ArrayBuffer>& bytes, bool append) override;
+    std::shared_ptr<Promise<std::string>> fileDigest(const std::string& uri, const std::string& algorithm) override;
+    void createFileEntry(const std::string& uri, bool intermediates, bool overwrite) override;
+    void createDirectoryEntry(const std::string& uri, bool intermediates, bool overwrite, bool idempotent) override;
+    std::string createFileInDirectory(const std::string& dirUri, const std::string& name) override;
+    std::string createSubdirectory(const std::string& dirUri, const std::string& name) override;
+    void deleteEntry(const std::string& uri) override;
+    std::string renameEntry(const std::string& uri, const std::string& newName) override;
+    void copyEntry(const std::string& fromUri, const std::string& toUri, bool overwrite) override;
+    std::shared_ptr<Promise<void>> copyEntryAsync(const std::string& fromUri, const std::string& toUri, bool overwrite) override;
+    void moveEntry(const std::string& fromUri, const std::string& toUri, bool overwrite) override;
+    std::shared_ptr<Promise<void>> moveEntryAsync(const std::string& fromUri, const std::string& toUri, bool overwrite) override;
+    std::vector<ListedEntry> listEntries(const std::string& uri) override;
+    DetailedFileInfo fileDetails(const std::string& uri) override;
+    DetailedDirectoryInfo directoryDetails(const std::string& uri) override;
+    double openFile(const std::string& uri, const std::string& mode) override;
+    void closeFile(double handle) override;
+    std::shared_ptr<ArrayBuffer> readHandle(double handle, double length) override;
+    std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> readHandleAsync(double handle, double length) override;
+    void writeHandle(double handle, const std::shared_ptr<ArrayBuffer>& bytes) override;
+    std::shared_ptr<Promise<void>> writeHandleAsync(double handle, const std::shared_ptr<ArrayBuffer>& bytes) override;
+    double getHandleOffset(double handle) override;
+    void setHandleOffset(double handle, double offset) override;
+    double getHandleSize(double handle) override;
 
   private:
     jni::global_ref<JHybridOneFileSystemSpec::JavaPart> _javaPart;

@@ -21,6 +21,42 @@ public protocol HybridOneFileSystemSpec_protocol: HybridObject {
   func copy(fromUri: String, toUri: String) throws -> Promise<Void>
   func move(fromUri: String, toUri: String) throws -> Promise<Void>
   func remove(uri: String) throws -> Promise<Void>
+  func getBundleDirectory() throws -> String
+  func getDiskSpace() throws -> DiskSpace
+  func pathInfo(uri: String) throws -> PathStat
+  func readText(uri: String) throws -> String
+  func readTextAsync(uri: String) throws -> Promise<String>
+  func readData(uri: String) throws -> ArrayBuffer
+  func readDataAsync(uri: String) throws -> Promise<ArrayBuffer>
+  func readBase64(uri: String) throws -> String
+  func readBase64Async(uri: String) throws -> Promise<String>
+  func writeText(uri: String, contents: String, encoding: FileEncoding, append: Bool) throws -> Void
+  func writeTextAsync(uri: String, contents: String, encoding: FileEncoding, append: Bool) throws -> Promise<Void>
+  func writeData(uri: String, bytes: ArrayBuffer, append: Bool) throws -> Void
+  func writeDataAsync(uri: String, bytes: ArrayBuffer, append: Bool) throws -> Promise<Void>
+  func fileDigest(uri: String, algorithm: String) throws -> Promise<String>
+  func createFileEntry(uri: String, intermediates: Bool, overwrite: Bool) throws -> Void
+  func createDirectoryEntry(uri: String, intermediates: Bool, overwrite: Bool, idempotent: Bool) throws -> Void
+  func createFileInDirectory(dirUri: String, name: String) throws -> String
+  func createSubdirectory(dirUri: String, name: String) throws -> String
+  func deleteEntry(uri: String) throws -> Void
+  func renameEntry(uri: String, newName: String) throws -> String
+  func copyEntry(fromUri: String, toUri: String, overwrite: Bool) throws -> Void
+  func copyEntryAsync(fromUri: String, toUri: String, overwrite: Bool) throws -> Promise<Void>
+  func moveEntry(fromUri: String, toUri: String, overwrite: Bool) throws -> Void
+  func moveEntryAsync(fromUri: String, toUri: String, overwrite: Bool) throws -> Promise<Void>
+  func listEntries(uri: String) throws -> [ListedEntry]
+  func fileDetails(uri: String) throws -> DetailedFileInfo
+  func directoryDetails(uri: String) throws -> DetailedDirectoryInfo
+  func openFile(uri: String, mode: String) throws -> Double
+  func closeFile(handle: Double) throws -> Void
+  func readHandle(handle: Double, length: Double) throws -> ArrayBuffer
+  func readHandleAsync(handle: Double, length: Double) throws -> Promise<ArrayBuffer>
+  func writeHandle(handle: Double, bytes: ArrayBuffer) throws -> Void
+  func writeHandleAsync(handle: Double, bytes: ArrayBuffer) throws -> Promise<Void>
+  func getHandleOffset(handle: Double) throws -> Double
+  func setHandleOffset(handle: Double, offset: Double) throws -> Void
+  func getHandleSize(handle: Double) throws -> Double
 }
 
 public extension HybridOneFileSystemSpec_protocol {

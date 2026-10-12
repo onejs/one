@@ -23,8 +23,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.StoreReview` | store-review | native-modules:unavailable | missing |  |
 | `One.QuickActions` | quick-actions | quick-actions, native-modules:unavailable | missing |  |
 | `One.Location` | location | location, native-modules:unavailable | missing |  |
-| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
-| `One.Audio` | audio, audio-interruption, audio-remote, audio-background | native-modules:unavailable | missing |  |
+| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, audio, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
+| `One.Audio` | audio, audio-interruption, audio-remote, audio-background | audio, native-modules:unavailable | missing |  |
 | `One.Share` | share | share, native-modules:unavailable | missing |  |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable | missing |  |
 | `One.MapServices` | map-services | map-services, native-modules:unavailable | missing |  |
@@ -267,6 +267,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useBatteryState` | battery | battery | missing |  |
 | `useLowPowerMode` | battery | battery | missing |  |
 | `usePowerState` | battery | battery | missing |  |
+| `useAudioPlayer` | audio, audio-interruption, audio-remote, audio-background | audio | missing |  |
+| `useAudioPlayerStatus` | audio, audio-interruption, audio-remote, audio-background | audio | missing |  |
 | `useNetworkState` | network | network | missing |  |
 | `useSafeAreaInsets` | safe-area, navigation-split-view | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
 | `useSafeAreaFrame` | safe-area, navigation-split-view | safe-area | OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |

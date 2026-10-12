@@ -8,6 +8,9 @@ import type {
   AudioNowPlayingInfo,
   AudioRemoteCommandEvent,
 } from '../specs/OneAudio.nitro'
+import { AudioPlayer, createPlayer } from './player'
+export type { PitchCorrectionQuality } from '../specs/OneAudio.nitro'
+export type * from './types'
 export type * from './unavailable'
 let player: HTMLAudioElement | undefined
 let playbackError: string | undefined
@@ -433,4 +436,6 @@ export const Audio = Object.freeze({
 
     }
   },
+  AudioPlayer,
+  createPlayer,
 })

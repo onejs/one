@@ -11,6 +11,7 @@ export { SplitView } from './split-view';
 export type { SplitViewProps, SplitViewColumnProps } from './split-view';
 export { Clipboard } from './clipboard';
 export { Battery, useBatteryLevel, useBatteryState, useLowPowerMode, usePowerState, } from './battery';
+export { useAudioPlayer, useAudioPlayerStatus } from './audio/hooks';
 export type { BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent, BatterySubscription, } from './battery';
 export { Brightness } from './brightness';
 export type { BrightnessEvent, BrightnessMode, BrightnessPermissionResponse, BrightnessPermissionStatus, BrightnessSubscription, } from './brightness';

@@ -1,21 +1,15 @@
-import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
   FileDirectories,
   FileEncoding,
   FileEntry,
   FileInfo,
-  OneFileSystem,
 } from '../specs/OneFileSystem.nitro'
+import { Directory, File, FileHandle, FileMode, Paths } from './classes.native'
+import { fileSystemNative as native } from './hybrid.native'
 
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo }
-
-let hybrid: OneFileSystem | undefined
-
-function native(): OneFileSystem {
-  hybrid ??= NitroModules.createHybridObject<OneFileSystem>('OneFileSystem')
-  return hybrid
-}
+export type * from './types'
 
 function getDirectories(): FileDirectories {
   try {
@@ -66,4 +60,9 @@ export const FileSystem = Object.freeze({
   copy,
   move,
   delete: deleteFile,
+  File,
+  Directory,
+  Paths,
+  FileHandle,
+  FileMode,
 })

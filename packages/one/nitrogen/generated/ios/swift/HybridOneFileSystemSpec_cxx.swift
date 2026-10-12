@@ -274,4 +274,502 @@ open class HybridOneFileSystemSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
     }
   }
+  
+  @inline(__always)
+  public final func getBundleDirectory() -> bridge.Result_std__string_ {
+    do {
+      let __result = try self.__implementation.getBundleDirectory()
+      let __resultCpp = std.string(__result)
+      return bridge.create_Result_std__string_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__string_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func getDiskSpace() -> bridge.Result_DiskSpace_ {
+    do {
+      let __result = try self.__implementation.getDiskSpace()
+      let __resultCpp = __result
+      return bridge.create_Result_DiskSpace_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_DiskSpace_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func pathInfo(uri: std.string) -> bridge.Result_PathStat_ {
+    do {
+      let __result = try self.__implementation.pathInfo(uri: String(uri))
+      let __resultCpp = __result
+      return bridge.create_Result_PathStat_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_PathStat_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readText(uri: std.string) -> bridge.Result_std__string_ {
+    do {
+      let __result = try self.__implementation.readText(uri: String(uri))
+      let __resultCpp = std.string(__result)
+      return bridge.create_Result_std__string_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__string_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readTextAsync(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
+    do {
+      let __result = try self.__implementation.readTextAsync(uri: String(uri))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__string__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__string__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__string__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(std.string(__result)) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readData(uri: std.string) -> bridge.Result_std__shared_ptr_ArrayBuffer__ {
+    do {
+      let __result = try self.__implementation.readData(uri: String(uri))
+      let __resultCpp = __result.getArrayBuffer()
+      return bridge.create_Result_std__shared_ptr_ArrayBuffer__(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_ArrayBuffer__(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readDataAsync(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ {
+    do {
+      let __result = try self.__implementation.readDataAsync(uri: String(uri))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result.getArrayBuffer()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readBase64(uri: std.string) -> bridge.Result_std__string_ {
+    do {
+      let __result = try self.__implementation.readBase64(uri: String(uri))
+      let __resultCpp = std.string(__result)
+      return bridge.create_Result_std__string_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__string_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readBase64Async(uri: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
+    do {
+      let __result = try self.__implementation.readBase64Async(uri: String(uri))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__string__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__string__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__string__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(std.string(__result)) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func writeText(uri: std.string, contents: std.string, encoding: Int32, append: Bool) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.writeText(uri: String(uri), contents: String(contents), encoding: margelo.nitro.one.FileEncoding(rawValue: encoding)!, append: append)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func writeTextAsync(uri: std.string, contents: std.string, encoding: Int32, append: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.writeTextAsync(uri: String(uri), contents: String(contents), encoding: margelo.nitro.one.FileEncoding(rawValue: encoding)!, append: append)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func writeData(uri: std.string, bytes: ArrayBuffer, append: Bool) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.writeData(uri: String(uri), bytes: bytes, append: append)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func writeDataAsync(uri: std.string, bytes: ArrayBuffer, append: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.writeDataAsync(uri: String(uri), bytes: bytes, append: append)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func fileDigest(uri: std.string, algorithm: std.string) -> bridge.Result_std__shared_ptr_Promise_std__string___ {
+    do {
+      let __result = try self.__implementation.fileDigest(uri: String(uri), algorithm: String(algorithm))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__string__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__string__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__string__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(std.string(__result)) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__string___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func createFileEntry(uri: std.string, intermediates: Bool, overwrite: Bool) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.createFileEntry(uri: String(uri), intermediates: intermediates, overwrite: overwrite)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func createDirectoryEntry(uri: std.string, intermediates: Bool, overwrite: Bool, idempotent: Bool) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.createDirectoryEntry(uri: String(uri), intermediates: intermediates, overwrite: overwrite, idempotent: idempotent)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func createFileInDirectory(dirUri: std.string, name: std.string) -> bridge.Result_std__string_ {
+    do {
+      let __result = try self.__implementation.createFileInDirectory(dirUri: String(dirUri), name: String(name))
+      let __resultCpp = std.string(__result)
+      return bridge.create_Result_std__string_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__string_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func createSubdirectory(dirUri: std.string, name: std.string) -> bridge.Result_std__string_ {
+    do {
+      let __result = try self.__implementation.createSubdirectory(dirUri: String(dirUri), name: String(name))
+      let __resultCpp = std.string(__result)
+      return bridge.create_Result_std__string_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__string_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func deleteEntry(uri: std.string) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.deleteEntry(uri: String(uri))
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func renameEntry(uri: std.string, newName: std.string) -> bridge.Result_std__string_ {
+    do {
+      let __result = try self.__implementation.renameEntry(uri: String(uri), newName: String(newName))
+      let __resultCpp = std.string(__result)
+      return bridge.create_Result_std__string_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__string_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func copyEntry(fromUri: std.string, toUri: std.string, overwrite: Bool) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.copyEntry(fromUri: String(fromUri), toUri: String(toUri), overwrite: overwrite)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func copyEntryAsync(fromUri: std.string, toUri: std.string, overwrite: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.copyEntryAsync(fromUri: String(fromUri), toUri: String(toUri), overwrite: overwrite)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func moveEntry(fromUri: std.string, toUri: std.string, overwrite: Bool) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.moveEntry(fromUri: String(fromUri), toUri: String(toUri), overwrite: overwrite)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func moveEntryAsync(fromUri: std.string, toUri: std.string, overwrite: Bool) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.moveEntryAsync(fromUri: String(fromUri), toUri: String(toUri), overwrite: overwrite)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func listEntries(uri: std.string) -> bridge.Result_std__vector_ListedEntry__ {
+    do {
+      let __result = try self.__implementation.listEntries(uri: String(uri))
+      let __resultCpp = { () -> bridge.std__vector_ListedEntry_ in
+        var __vector = bridge.create_std__vector_ListedEntry_(__result.count)
+        for __item in __result {
+          __vector.push_back(__item)
+        }
+        return __vector
+      }()
+      return bridge.create_Result_std__vector_ListedEntry__(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__vector_ListedEntry__(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func fileDetails(uri: std.string) -> bridge.Result_DetailedFileInfo_ {
+    do {
+      let __result = try self.__implementation.fileDetails(uri: String(uri))
+      let __resultCpp = __result
+      return bridge.create_Result_DetailedFileInfo_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_DetailedFileInfo_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func directoryDetails(uri: std.string) -> bridge.Result_DetailedDirectoryInfo_ {
+    do {
+      let __result = try self.__implementation.directoryDetails(uri: String(uri))
+      let __resultCpp = __result
+      return bridge.create_Result_DetailedDirectoryInfo_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_DetailedDirectoryInfo_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func openFile(uri: std.string, mode: std.string) -> bridge.Result_double_ {
+    do {
+      let __result = try self.__implementation.openFile(uri: String(uri), mode: String(mode))
+      let __resultCpp = __result
+      return bridge.create_Result_double_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_double_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func closeFile(handle: Double) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.closeFile(handle: handle)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readHandle(handle: Double, length: Double) -> bridge.Result_std__shared_ptr_ArrayBuffer__ {
+    do {
+      let __result = try self.__implementation.readHandle(handle: handle, length: length)
+      let __resultCpp = __result.getArrayBuffer()
+      return bridge.create_Result_std__shared_ptr_ArrayBuffer__(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_ArrayBuffer__(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func readHandleAsync(handle: Double, length: Double) -> bridge.Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ {
+    do {
+      let __result = try self.__implementation.readHandleAsync(handle: handle, length: length)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result.getArrayBuffer()) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func writeHandle(handle: Double, bytes: ArrayBuffer) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.writeHandle(handle: handle, bytes: bytes)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func writeHandleAsync(handle: Double, bytes: ArrayBuffer) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.writeHandleAsync(handle: handle, bytes: bytes)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func getHandleOffset(handle: Double) -> bridge.Result_double_ {
+    do {
+      let __result = try self.__implementation.getHandleOffset(handle: handle)
+      let __resultCpp = __result
+      return bridge.create_Result_double_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_double_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func setHandleOffset(handle: Double, offset: Double) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.setHandleOffset(handle: handle, offset: offset)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func getHandleSize(handle: Double) -> bridge.Result_double_ {
+    do {
+      let __result = try self.__implementation.getHandleSize(handle: handle)
+      let __resultCpp = __result
+      return bridge.create_Result_double_(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_double_(__exceptionPtr)
+    }
+  }
 }

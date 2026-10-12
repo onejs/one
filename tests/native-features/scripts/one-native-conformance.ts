@@ -214,6 +214,11 @@ function parse(args: string[]): Config {
 // xcodebuildmcp 2.6 and later only act on element refs from their own
 // snapshot, and its earlier releases bundle an axe that cannot load xcode 27.
 function axe(args: string[], simulatorId: string) {
+  // ONE_NATIVE_IDB=1 reroutes gestures through idb while axe input is broken
+  // (axe 1.8.0 exits 0 with no effect on xcode 27; idb-companion 1.6.8 lands).
+  // reads stay on axe describe-ui; the companion must already serve the sim.
+  if (process.env.ONE_NATIVE_IDB === '1' && args[0] !== 'describe-ui')
+    return idbGesture(args, simulatorId)
   try {
     return execFileSync('axe', [...args, '--udid', simulatorId], {
       encoding: 'utf8',
@@ -228,6 +233,61 @@ function axe(args: string[], simulatorId: string) {
     }
     throw new Error(
       `axe ${args.join(' ')} failed: ${result.stderr?.toString() || result.stdout?.toString() || result.message}`
+    )
+  }
+}
+
+function idbGesture(args: string[], simulatorId: string): string {
+  const flag = (name: string): string | undefined => {
+    const at = args.indexOf(name)
+    return at >= 0 ? args[at + 1] : undefined
+  }
+  let translated: string[]
+  switch (args[0]) {
+    case 'touch': {
+      const x = flag('-x') ?? flag('--x')
+      const y = flag('-y') ?? flag('--y')
+      if (x === undefined || y === undefined)
+        throw new Error(`idb cannot translate axe touch ${args.join(' ')}`)
+      translated = ['ui', 'tap', x, y]
+      break
+    }
+    case 'swipe': {
+      const x1 = flag('--start-x')
+      const y1 = flag('--start-y')
+      const x2 = flag('--end-x')
+      const y2 = flag('--end-y')
+      if (x1 === undefined || y1 === undefined || x2 === undefined || y2 === undefined)
+        throw new Error(`idb cannot translate axe swipe ${args.join(' ')}`)
+      const duration = flag('--duration')
+      translated = ['ui', 'swipe', x1, y1, x2, y2]
+      if (duration !== undefined) translated.push('--duration', duration)
+      break
+    }
+    case 'type':
+      translated = ['ui', 'text', ...args.slice(1)]
+      break
+    case 'key':
+    case 'key-sequence':
+      translated = ['ui', args[0], ...args.slice(1)]
+      break
+    default:
+      throw new Error(`idb has no translation for axe ${args.join(' ')}`)
+  }
+  try {
+    return execFileSync('idb', [...translated, '--udid', simulatorId], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: 60_000,
+    })
+  } catch (error) {
+    const result = error as {
+      stderr?: Buffer | string
+      stdout?: Buffer | string
+      message: string
+    }
+    throw new Error(
+      `idb ${translated.join(' ')} failed: ${result.stderr?.toString() || result.stdout?.toString() || result.message}`
     )
   }
 }
@@ -9861,7 +9921,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes(
         'Result: text=Hello One; bytes=0,1,2,3; entries=binary.dat,moved.txt,note.txt; ' +
           'moved=true; recursive=true; missing=false; ' +
-          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION'
+          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION; ' +
+          'classes=size:13,b64:SGVsbG8gQ2xhc3Nlcw==,' +
+          'digest:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad,' +
+          'listed:digest.txt,made.txt,note.txt,sub,disk:ok,info:ok; ' +
+          'handle=offset:0,size:4,first:10,20,after:10,7,30,40,closed:ok; ' +
+          'streams=5,6,7; classErrors=E_FILE_ENCODING,E_FILE_NOT_FOUND,E_FILE_EXISTS'
       )
     )
     screenshot('file-system-lifecycle.png')
@@ -9888,6 +9953,60 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('audio-record-and-play.png')
+    // the players and hooks rows sit below the fold: bring each into the
+    // viewport before tapping, like the clipboard extras do.
+    const tapAudio = async (testID: string) => {
+      for (let attempt = 0; attempt < 10; attempt++) {
+        const nodes = snapshot(config.simulatorId)
+        const app = nodes.find((node) => node.type === 'Application')?.frame
+        const row = id(nodes, testID)?.frame
+        if (!app || !row) {
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        const back = id(nodes, 'BackButton')?.frame
+        const top = back ? back.y + back.height : 0
+        if (row.y >= top && row.y + row.height <= app.height) {
+          return tap({ id: testID })
+        }
+        const [from, to] = row.y < top ? [0.4, 0.6] : [0.75, 0.35]
+        axe(
+          [
+            'swipe',
+            '--start-x',
+            String(Math.round(app.width / 2)),
+            '--start-y',
+            String(Math.round(app.height * from)),
+            '--end-x',
+            String(Math.round(app.width / 2)),
+            '--end-y',
+            String(Math.round(app.height * to)),
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    await tapAudio('one-native-audio-players-run')
+    await wait('player instances play independently with rate', (n) =>
+      labels(n).includes(
+        'Players: playing:true,paused:true,rate:1.5,pos:true,duration:60,' +
+          'listener:true,looped:true,finish:true,errors:E_AUDIO_RATE'
+      )
+    )
+    screenshot('audio-player-instances.png')
+    await tapAudio('one-native-audio-hooks-prepare')
+    await wait('hook probe loads through hooks', (n) =>
+      labels(n).includes('Hooks: loaded:true playing:false run:idle')
+    )
+    await tapAudio('one-native-audio-hooks-run')
+    await wait('hook player plays through hooks', (n) =>
+      labels(n).includes('Hooks: loaded:true playing:true run:played')
+    )
+    screenshot('audio-hooks.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
