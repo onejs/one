@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -2539,9 +2540,11 @@ private fun RenderComposeSearchBar(
             trailingIcon = trailing?.let { slot -> { RenderComposeChildren(slot) } },
         )
     }
-    val colors = SearchBarDefaults.colors(
-        containerColor = props.searchBarColors.containerColor?.let(::Color) ?: Color.Unspecified,
-    )
+    // SearchBarColors keeps whatever it is given (no Unspecified fallback), so only
+    // override the container when the bridge supplies one.
+    val colors = props.searchBarColors.containerColor?.let { container ->
+        SearchBarDefaults.colors(containerColor = Color(container))
+    } ?: SearchBarDefaults.colors()
     val content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit = {
         node.renderedChildren.forEach { child ->
             if (child.renderedProps.slotName == null) key(child) { RenderComposeNode(child, Modifier) }
@@ -2563,6 +2566,9 @@ private fun RenderComposeSearchBar(
             inputField = inputField,
             modifier = modifier,
             colors = colors,
+            // the host owns inset handling; the default status-bar padding would
+            // double-apply it and inflate a nested bar.
+            windowInsets = WindowInsets(0, 0, 0, 0),
             content = content,
         )
     }
