@@ -368,7 +368,9 @@ class HybridOneLocation :
         val promise = Promise<Unit>()
         mainHandler.post {
             if (monitoredRegions.remove(identifier) != null) {
-                if (watches.isEmpty() && positionPromises.isEmpty() && monitoring) stopMonitoringUpdates()
+                if (monitoredRegions.isEmpty() && watches.isEmpty() && positionPromises.isEmpty() && monitoring) {
+                    stopMonitoringUpdates()
+                }
                 val context = NitroModules.applicationContext
                 if (context == null || !shouldRunGeofenceService(context)) stopLocationService()
             }
