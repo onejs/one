@@ -25,8 +25,20 @@ passed. ActivityManager killed PID 3776 at 10:56:01.509 and started PID 3913
 for OneCalendarReminderReceiver at 10:56:14.959. The notification dump contains
 only the active task's identifier and title, `Cold reminder proof`; completed
 and deleted controls did not post. A subsequent permission revoke produced
-`E_REMINDERS_PERMISSION` when listing. This is native emulator proof, with
-full Nitro/React and physical-device acceptance remaining under the lane owner.
+`E_REMINDERS_PERMISSION` when listing. This establishes native alarm and
+notification delivery on the emulator.
+
+RAN full React/Nitro adapter proof on API 37, 2026-10-12, using the embedded
+`tests/native-features/fixtures/background-tasks-android` consumer. At source
+`5826934cb`, `:app:assembleDebug` passed with the actual One Kotlin, generated
+Nitro C++ and React Native package. PID 4497 created three reminders, completed
+one and deleted one. Listing returned only the active reminder by default and
+both active/completed reminders with `includeCompleted`. Blank titles rejected
+with `E_REMINDERS_INPUT`; deleting the removed identifier rejected with
+`E_REMINDERS_NOT_FOUND`. The consumer's verifier asserted these native results.
+Exact receipts, artifact digests and build logs are retained outside the tree
+under `/tmp/one-android-services-v2-evidence/background-runtime9`. Physical
+device acceptance remains separate under the manager.
 
 Android has no standalone reminder-list provider corresponding to EventKit.
 These are app-private tasks. Each incomplete dated task has one inexact OS

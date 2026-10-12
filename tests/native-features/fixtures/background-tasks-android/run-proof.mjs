@@ -39,6 +39,12 @@ const log = spawn(adb, [
   '-s',
   serial,
   'logcat',
+  '-b',
+  'main',
+  '-b',
+  'crash',
+  '-b',
+  'events',
   '-T',
   '1',
   '-v',
@@ -48,15 +54,27 @@ const log = spawn(adb, [
   'ReactNative:E',
   'ReactNativeJS:E',
   'AndroidRuntime:E',
+  'wm_on_stop_called:I',
+  'am_kill:I',
+  'am_proc_died:I',
   '*:S',
 ])
 let logText = ''
 let runtimeFailure
 const records = []
+const lifecycle = []
 const waiting = new Set()
 const lines = createInterface({ input: log.stdout })
 lines.on('line', (line) => {
   logText += `${line}\n`
+  if (
+    line.includes('wm_on_stop_called') ||
+    line.includes('am_kill') ||
+    line.includes('am_proc_died')
+  ) {
+    lifecycle.push(line)
+    for (const check of waiting) check()
+  }
   if (line.includes(`Process: ${app},`)) {
     runtimeFailure = new Error(`proof application crashed: ${line}`)
     for (const check of waiting) check()
@@ -119,7 +137,25 @@ try {
   const warmPid = (await command('shell', 'pidof', app)).stdout.trim()
   await writeFile(path.join(evidence, 'pid-before-kill.txt'), warmPid)
   await command('shell', 'input', 'keyevent', 'KEYCODE_HOME')
+  await until(
+    () =>
+      lifecycle.some(
+        (line) =>
+          line.includes('wm_on_stop_called') &&
+          line.includes('dev.vxrn.nativefeatures.tests.BackgroundProofActivity')
+      ),
+    'Activity stopped after HOME'
+  )
   await command('shell', 'am', 'kill', app)
+  await until(
+    () =>
+      lifecycle.some(
+        (line) =>
+          line.includes('am_kill') &&
+          line.replaceAll(' ', '').includes(`,${warmPid},${app},`)
+      ),
+    'ActivityManager issued the background-process kill'
+  )
   // pidof exits 1 when the process is absent. preserve output for verification.
   let afterKill
   try {
