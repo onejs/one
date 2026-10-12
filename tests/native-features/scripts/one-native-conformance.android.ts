@@ -36,7 +36,7 @@ type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'system-clipboard' | 'state' | 'network' | 'document-picker' | 'launch-screen' | 'adaptive-flat' | 'adaptive-fold'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'system-clipboard' | 'state' | 'network' | 'document-picker' | 'camera' | 'launch-screen' | 'adaptive-flat' | 'adaptive-fold'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|system-clipboard|state|network|document-picker|launch-screen|adaptive-flat|adaptive-fold --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|system-clipboard|state|network|document-picker|camera|launch-screen|adaptive-flat|adaptive-fold --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'launch-screen' && value !== 'adaptive-flat' && value !== 'adaptive-fold') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'camera' && value !== 'launch-screen' && value !== 'adaptive-flat' && value !== 'adaptive-fold') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -2600,6 +2600,53 @@ async function run(config: Config) {
     }
   }
 
+  const camera = async () => {
+    // the grant path attempts a live preview bind. the permission gate, the
+    // grant path, the facing switch and the revoke path each assert a
+    // distinct native state; the bind itself needs camera-capable hardware
+    // (the API 37 emulator image used here exposes no bindable camera).
+    adbText(config, ['shell', 'pm', 'revoke', config.packageId, 'android.permission.CAMERA'])
+    await tapNavigation(config, 'nav-one-native-camera')
+    await expect(
+      'camera-mounted',
+      (nodes) =>
+        textIncludes(nodes, 'Camera active: false') &&
+        textIncludes(nodes, 'Camera state: waiting'),
+      'one-native-camera-toggle'
+    )
+    tapFresh(config, 'Activate camera without permission', { id: 'one-native-camera-toggle' })
+    await expect(
+      'camera-permission-required',
+      (nodes) => textIncludes(nodes, 'Camera state: permission-required')
+    )
+    adbText(config, ['shell', 'pm', 'grant', config.packageId, 'android.permission.CAMERA'])
+    tapFresh(config, 'Deactivate camera', { id: 'one-native-camera-toggle' })
+    await expect(
+      'camera-inactive',
+      (nodes) => textIncludes(nodes, 'Camera state: inactive')
+    )
+    tapFresh(config, 'Reactivate granted camera', { id: 'one-native-camera-toggle' })
+    await expect(
+      'camera-ready',
+      (nodes) => textIncludes(nodes, 'Camera state: ready')
+    )
+    tapFresh(config, 'Switch to front camera', { id: 'one-native-camera-facing' })
+    await expect(
+      'camera-facing-front',
+      (nodes) =>
+        textIncludes(nodes, 'Camera facing: front') &&
+        /Camera state: (ready|unavailable)/.test(joined(nodes))
+    )
+    adbText(config, ['shell', 'pm', 'revoke', config.packageId, 'android.permission.CAMERA'])
+    tapFresh(config, 'Switch back to denied back camera', { id: 'one-native-camera-facing' })
+    await expect(
+      'camera-revoked-gate',
+      (nodes) =>
+        textIncludes(nodes, 'Camera facing: back') &&
+        textIncludes(nodes, 'Camera state: permission-required')
+    )
+  }
+
   const network = async () => {
     await tapNavigation(config, 'nav-one-native-network')
     const events = (nodes: Node[]) => Number(joined(nodes).match(/Events: (\d+)/)?.[1])
@@ -3505,6 +3552,11 @@ async function run(config: Config) {
     }
     if (config.suite === 'document-picker') {
       await documentPicker()
+      console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
+      return
+    }
+    if (config.suite === 'camera') {
+      await camera()
       console.log(`PASS one-native-android ${config.suite} ${checks.length} checks`)
       return
     }

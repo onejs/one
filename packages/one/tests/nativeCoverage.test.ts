@@ -57,6 +57,8 @@ const partialGaps: Record<string, string> = {
     'bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted',
   BackgroundTasks:
     'iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device',
+  'Android.CameraView':
+    'Android 37 emulator permission gate, activation/inactive transitions, facing state and revoke gate proven; preview bind and barcode events need camera-capable hardware (this emulator image exposes no bindable camera to CameraX)',
   DeviceAttestation:
     'iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device',
   Motion:

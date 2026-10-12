@@ -10,6 +10,7 @@ import com.margelo.nitro.one.OneOnLoad
 import dev.onejs.onenative.OneNativePortalViewManager
 import dev.onejs.onenative.OneNativePortalHostViewManager
 import dev.onejs.onenative.OneNativeBlurManager
+import dev.onejs.onenative.OneNativeCameraManager
 import dev.onejs.onenative.OneNativeComposeNodeManager
 import dev.onejs.onenative.OneNativeEdgeFadeManager
 import dev.onejs.onenative.OneNativePagerManager
@@ -86,6 +87,7 @@ class OnePackage : BaseReactPackage() {
     ): List<ViewManager<*, *>> =
         listOf(
             OneNativeComposeNodeManager(),
+            OneNativeCameraManager(),
             OneNativeMenuTriggerManager(),
             OneNativeSafeAreaProviderManager(),
             OneNativeReservedRegionsProviderManager(),

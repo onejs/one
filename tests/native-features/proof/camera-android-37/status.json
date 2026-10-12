@@ -1,0 +1,55 @@
+{
+  "suite": "one-native-android",
+  "result": "failed",
+  "deviceId": "emulator-5556",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "error": "camera-ready timed out after 15000ms",
+  "checks": [
+    {
+      "name": "app-mounted",
+      "result": "passed",
+      "durationMs": 4693,
+      "artifacts": {
+        "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/01-app-mounted.png",
+        "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/01-app-mounted.xml",
+        "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/01-app-mounted.status.json"
+      }
+    },
+    {
+      "name": "camera-mounted",
+      "result": "passed",
+      "durationMs": 2491,
+      "artifacts": {
+        "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/02-camera-mounted.png",
+        "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/02-camera-mounted.xml",
+        "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/02-camera-mounted.status.json"
+      }
+    },
+    {
+      "name": "camera-permission-required",
+      "result": "passed",
+      "durationMs": 2050,
+      "artifacts": {
+        "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/03-camera-permission-required.png",
+        "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/03-camera-permission-required.xml",
+        "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/03-camera-permission-required.status.json"
+      }
+    },
+    {
+      "name": "camera-inactive",
+      "result": "passed",
+      "durationMs": 1975,
+      "artifacts": {
+        "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/04-camera-inactive.png",
+        "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/04-camera-inactive.xml",
+        "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/04-camera-inactive.status.json"
+      }
+    }
+  ],
+  "failureArtifacts": {
+    "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/05-failure.png",
+    "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/05-failure.xml",
+    "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/05-failure.status.json"
+  },
+  "completedAt": "2026-10-11T22:54:25.309Z"
+}

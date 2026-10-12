@@ -1,0 +1,17 @@
+one-android CameraView proof — emulator-5556 (API 37, sootsim r06), Metro :8082
+APK: app-debug.apk post camera-silence fix (BUILD SUCCESSFUL incremental)
+Suite legs (one-native-conformance.android.ts --suite camera):
+  PASS app-mounted
+  PASS camera-mounted (Camera active: false + Camera state: waiting)
+  PASS camera-permission-required (activate without grant)
+  PASS camera-inactive (deactivate after grant)
+  FAIL camera-ready: CameraX init cannot select any camera on this image
+    (CameraValidator drops sole emulated camera id=1, null facing read;
+     CameraIdListIncorrectException; identical on 2 fresh processes + post-reboot)
+Manual legs (adb taps, same device/APK):
+  deactivate -> Camera state: inactive (Camera facing: back)
+  revoke + front + activate -> permission-required, active true, facing front
+  revoke + back + active -> permission-required (revoke gate)
+NOT proven here: preview bind (ready) + onCodeScanned barcode — need camera-capable
+hardware; this image's HAL reports no LENS_FACING, which defeats CameraX stock
+selectors in ANY CameraX app (Expo included). Physical-device follow-up outstanding.

@@ -17,6 +17,7 @@ export type OneAndroid = typeof Compose & {
     readonly Color: ColorType['android'];
     readonly Menu: typeof NativeMenu;
     readonly ContextMenu: typeof NativeContextMenu;
+    readonly CameraView: typeof CameraView;
 };
 export type OneSafeArea = {
     readonly Provider: typeof SafeAreaProvider;

@@ -49,7 +49,8 @@ export function CameraView({
   onCodeScanned,
   ...viewProps
 }: CameraViewProps) {
-  if (Platform.OS !== 'ios') throw new Error('CameraView requires an iOS native build')
+  if (Platform.OS !== 'ios' && Platform.OS !== 'android')
+    throw new Error('CameraView requires a native build')
   if (typeof active !== 'boolean') throw new TypeError('CameraView.active must be a boolean')
   if (facing !== 'back' && facing !== 'front') {
     throw new TypeError('CameraView.facing must be back or front')

@@ -1,0 +1,14 @@
+{
+  "suite": "one-native-android",
+  "name": "camera-inactive",
+  "result": "passed",
+  "deviceId": "emulator-5556",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 36,
+  "capturedAt": "2026-10-11T22:54:05.047Z",
+  "artifacts": {
+    "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/04-camera-inactive.png",
+    "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/04-camera-inactive.xml",
+    "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/04-camera-inactive.status.json"
+  }
+}

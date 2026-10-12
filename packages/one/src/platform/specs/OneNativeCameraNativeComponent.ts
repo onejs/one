@@ -10,6 +10,4 @@ interface NativeProps extends ViewProps {
   onNativeCameraCode?: DirectEventHandler<Readonly<{ type: string; data: string }>>
 }
 
-export default codegenNativeComponent<NativeProps>('OneNativeCamera', {
-  excludedPlatforms: ['android'],
-})
+export default codegenNativeComponent<NativeProps>('OneNativeCamera')

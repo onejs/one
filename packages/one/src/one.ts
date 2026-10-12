@@ -90,6 +90,7 @@ export type OneAndroid = typeof Compose & {
   readonly Color: ColorType['android']
   readonly Menu: typeof NativeMenu
   readonly ContextMenu: typeof NativeContextMenu
+  readonly CameraView: typeof CameraView
 }
 
 export type OneSafeArea = {
@@ -189,6 +190,7 @@ const Android: Readonly<OneAndroid> = Object.freeze({
   Color: Color.android,
   Menu: NativeMenu,
   ContextMenu: NativeContextMenu,
+  CameraView,
 })
 
 const SafeArea: Readonly<OneSafeArea> = Object.freeze({

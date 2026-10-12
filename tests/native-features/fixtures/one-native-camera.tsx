@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { One } from 'one'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
+
+const AnyCameraView = Platform.OS === 'android' ? One.Android.CameraView : One.iOS.CameraView
 
 export default function OneNativeCamera() {
   const [active, setActive] = useState(false)
@@ -34,7 +36,7 @@ export default function OneNativeCamera() {
       <Text>Camera active: {String(active)}</Text>
       <Text>Camera facing: {facing}</Text>
       <Text>Camera code: {code}</Text>
-      <One.iOS.CameraView
+      <AnyCameraView
         testID="one-native-camera-preview"
         accessibilityLabel="Camera preview"
         style={styles.preview}
