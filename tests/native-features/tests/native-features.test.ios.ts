@@ -760,6 +760,144 @@ describe('one native integration tests', () => {
     })
   })
 
+  describe('One Native AsyncImage behavior', () => {
+    async function imageRedWidth() {
+      const image = await waitForElement(driver, 'derived-image')
+      const [{ x, y }, { width, height }, window] = await Promise.all([
+        image.getLocation(),
+        image.getSize(),
+        driver.getWindowSize(),
+      ])
+      const { data, info } = await sharp(
+        Buffer.from(await driver.takeScreenshot(), 'base64')
+      )
+        .raw()
+        .toBuffer({ resolveWithObject: true })
+      const scale = info.width / window.width
+      const row = Math.round((y + height / 2) * scale)
+      let red = 0
+      for (
+        let column = Math.round(x * scale);
+        column < Math.round((x + width) * scale);
+        column++
+      ) {
+        const offset = (row * info.width + column) * info.channels
+        if (data[offset] > 220 && data[offset + 1] < 45 && data[offset + 2] < 55) red++
+      }
+      return red / scale
+    }
+
+    test(
+      'loads image pixels, applies SDK scale and clears to the nil placeholder',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/one-native-derived-behavior')
+        await waitForElement(driver, 'derived-behavior-screen')
+        expect(await imageRedWidth()).toBe(0)
+        await (await waitForElement(driver, 'derived-image-load')).click()
+        await driver.waitUntil(async () => (await imageRedWidth()) === 96, {
+          timeout: 10_000,
+          timeoutMsg: 'AsyncImage did not draw the 96-point image',
+        })
+        await captureScreenshot(driver, 'derived-async-image-loaded')
+        await (await waitForElement(driver, 'derived-image-scale')).click()
+        await driver.waitUntil(async () => (await imageRedWidth()) === 48, {
+          timeout: 10_000,
+          timeoutMsg: 'AsyncImage scale 2 did not halve image width',
+        })
+        await captureScreenshot(driver, 'derived-async-image-scaled')
+        await (await waitForElement(driver, 'derived-image-clear')).click()
+        await driver.waitUntil(async () => (await imageRedWidth()) === 0, {
+          timeout: 10_000,
+          timeoutMsg: 'AsyncImage retained image pixels after receiving a nil URL',
+        })
+        await captureScreenshot(driver, 'derived-async-image-nil')
+      }
+    )
+  })
+
+  describe('One Native LocationButton behavior', () => {
+    test(
+      'delivers an SDK tap and prevents actions while disabled',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/one-native-derived-behavior')
+        await (await waitForElement(driver, 'derived-example-location')).click()
+        const actions = await waitForElement(driver, 'derived-location-actions')
+        const shortcuts = await waitForElement(driver, 'derived-shortcut-actions')
+        expect(await actions.getText()).toBe('Location actions: 0')
+        const location = await waitForElement(driver, 'derived-location')
+        await location.click()
+        await actions.waitUntil(
+          async () => (await actions.getText()) === 'Location actions: 1',
+          {
+            timeout: 10_000,
+            timeoutMsg: 'LocationButton did not deliver its SDK action',
+          }
+        )
+        expect(await shortcuts.getText()).toBe('Shortcuts actions: 0')
+        await (await waitForElement(driver, 'derived-location-disable')).click()
+        await location.waitUntil(async () => !(await location.isEnabled()), {
+          timeout: 5000,
+          timeoutMsg: 'LocationButton did not become disabled',
+        })
+        const { x, y } = await location.getLocation()
+        const { width, height } = await location.getSize()
+        await driver.execute('mobile: tap', { x: x + width / 2, y: y + height / 2 })
+        await (await waitForElement(driver, 'derived-checkpoint')).click()
+        const checkpoint = await waitForElement(driver, 'derived-checkpoints')
+        await checkpoint.waitUntil(async () => (await checkpoint.getText()) === 'Checkpoints: 1', {
+          timeout: 5000,
+          timeoutMsg: 'the app did not process the action following the disabled tap',
+        })
+        expect(await actions.getText()).toBe('Location actions: 1')
+        await captureScreenshot(driver, 'derived-location-disabled')
+      }
+    )
+  })
+
+  describe('One Native ShortcutsLink behavior', () => {
+    test(
+      'opens Shortcuts and delivers its SDK action after returning to the app',
+      sharedTestOptions,
+      async () => {
+        await navigateTo(driver, '/one-native-derived-behavior')
+        await (await waitForElement(driver, 'derived-example-shortcuts')).click()
+        expect(
+          await (await waitForElement(driver, 'derived-shortcut-actions')).getText()
+        ).toBe('Shortcuts actions: 0')
+        expect(
+          await (await waitForElement(driver, 'derived-location-actions')).getText()
+        ).toBe('Location actions: 0')
+        await (await waitForElement(driver, 'derived-shortcuts')).click()
+        await driver.waitUntil(
+          async () =>
+            (await driver.execute('mobile: queryAppState', {
+              bundleId: 'com.apple.shortcuts',
+            })) === 4,
+          {
+            timeout: 10_000,
+            timeoutMsg: 'ShortcutsLink did not foreground the Shortcuts app',
+          }
+        )
+        await captureScreenshot(driver, 'derived-shortcuts-destination')
+        await driver.execute('mobile: activateApp', { bundleId: 'dev.vxrn.native.tests' })
+        const actions = await waitForElement(driver, 'derived-shortcut-actions')
+        await actions.waitUntil(
+          async () => (await actions.getText()) === 'Shortcuts actions: 1',
+          {
+            timeout: 10_000,
+            timeoutMsg: 'ShortcutsLink did not deliver its SDK action',
+          }
+        )
+        expect(
+          await (await waitForElement(driver, 'derived-location-actions')).getText()
+        ).toBe('Location actions: 0')
+        await captureScreenshot(driver, 'derived-shortcuts-action')
+      }
+    )
+  })
+
   describe('One Native TabView Parity', () => {
     test(
       'bottom accessory takes touches in expanded and inline modes',
