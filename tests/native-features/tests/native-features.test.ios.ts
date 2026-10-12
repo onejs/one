@@ -920,18 +920,18 @@ describe('one native integration tests', () => {
       await captureScreenshot(driver, 'one-native-geometry-reader-resized')
     })
 
-    test('render functions throw instead of mounting', sharedTestOptions, async () => {
+    test('static children throw instead of mounting', sharedTestOptions, async () => {
       const invalid = await waitForElement(
         driver,
-        'one-native-geometry-reader-invalid-function'
+        'one-native-geometry-reader-invalid-static'
       )
       await invalid.click()
-      await dismissExpectedRenderError(driver, 'not a render function')
+      await dismissExpectedRenderError(driver, 'takes a render function')
       const error = await waitForElement(
         driver,
-        'one-native-geometry-reader-function-error'
+        'one-native-geometry-reader-static-error'
       )
-      expect(await error.getText()).toContain('not a render function')
+      expect(await error.getText()).toContain('takes a render function')
     })
 
     test('React Native children throw instead of mounting', sharedTestOptions, async () => {

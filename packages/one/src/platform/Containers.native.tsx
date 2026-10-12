@@ -2,6 +2,8 @@ import {
   Children,
   isValidElement,
   useContext,
+  useRef,
+  useState,
   type ReactNode,
 } from 'react'
 import { Platform } from 'react-native'
@@ -62,7 +64,7 @@ import {
   type ViewThatFitsProps,
   viewThatFitsAxes,
   type GlassEffectContainerProps,
-  type GeometryReaderFrame,
+  type GeometryProxySnapshot,
   type GeometryReaderProps,
   type LinkProps,
   type OverlayContentProps,
@@ -658,52 +660,84 @@ export function GlassEffectContainer({ spacing, children, style, ...props }: Gla
   )
 }
 
-// a reader takes the box React Native gave it and reports the frame SwiftUI laid
-// it out in. children are static native composition: a render function cannot
-// cross into the native ViewBuilder, so one fails here with a javascript stack
-// instead of mounting nothing.
-export function GeometryReader({
-  onGeometryChange,
-  children,
-  style,
-  ...props
-}: GeometryReaderProps) {
-  if (onGeometryChange !== undefined && typeof onGeometryChange !== 'function')
-    throw new Error('Swift.GeometryReader onGeometryChange must be a function')
-  // Children.toArray drops function children, so a render function would slip
-  // through to native and mount nothing. check the prop itself first.
-  const direct = Array.isArray(children) ? children : [children]
-  if (direct.some((child) => typeof child === 'function'))
+// a reader takes the box React Native gave it and runs its content closure with
+// the geometry SwiftUI proposes, like SwiftUI's trailing closure: the function
+// runs in JavaScript with a native snapshot and what it returns composes
+// natively. the snapshot starts at zero and updates when native reports, so
+// first paint uses placeholder geometry. size content from the snapshot, never
+// the reader's own box from it: the reader fills what it is offered.
+const zeroGeometry: GeometryProxySnapshot = {
+  size: { width: 0, height: 0 },
+  safeAreaInsets: { top: 0, leading: 0, bottom: 0, trailing: 0 },
+  frame: { x: 0, y: 0, width: 0, height: 0 },
+}
+
+function geometryNumber(value: unknown): number | undefined {
+  return typeof value === 'number' && Number.isFinite(value) ? value : undefined
+}
+
+function sameGeometry(a: GeometryProxySnapshot, b: GeometryProxySnapshot): boolean {
+  return (
+    a.frame.x === b.frame.x &&
+    a.frame.y === b.frame.y &&
+    a.frame.width === b.frame.width &&
+    a.frame.height === b.frame.height &&
+    a.safeAreaInsets.top === b.safeAreaInsets.top &&
+    a.safeAreaInsets.leading === b.safeAreaInsets.leading &&
+    a.safeAreaInsets.bottom === b.safeAreaInsets.bottom &&
+    a.safeAreaInsets.trailing === b.safeAreaInsets.trailing
+  )
+}
+
+export function GeometryReader({ children, style, ...props }: GeometryReaderProps) {
+  const [geometry, setGeometry] = useState<GeometryProxySnapshot>(zeroGeometry)
+  // the last snapshot handed to state, so a duplicate native report never
+  // reaches setState: the reader does not re-run its closure for one.
+  const latest = useRef(geometry)
+  if (typeof children !== 'function')
     throw new Error(
-      'Swift.GeometryReader takes SwiftUI children, not a render function; compose the content directly and read its frame from onGeometryChange'
+      'Swift.GeometryReader takes a render function of its geometry; pass (geometry) => content and read size, safeAreaInsets, or frame from it'
     )
-  assertOneNativeChildren(children, 'Swift.GeometryReader')
+  const content = (
+    children as (geometry: GeometryProxySnapshot) => ReactNode
+  )(geometry)
+  assertOneNativeChildren(content, 'Swift.GeometryReader')
   return (
     <NativeGeometryReader
       {...props}
       style={[{ alignSelf: 'stretch' }, style]}
       onNativeGeometryReaderChange={({ nativeEvent }) => {
-        const frame = nativeEvent as Partial<GeometryReaderFrame> | null | undefined
-        if (
-          !frame ||
-          !Number.isFinite(frame.x) ||
-          !Number.isFinite(frame.y) ||
-          !Number.isFinite(frame.width) ||
-          !Number.isFinite(frame.height)
-        )
-          throw new Error('Swift.GeometryReader emitted an invalid geometry')
-        const { x, y, width, height } = frame
+        const event = nativeEvent as Record<string, unknown> | null | undefined
+        const x = geometryNumber(event?.x)
+        const y = geometryNumber(event?.y)
+        const width = geometryNumber(event?.width)
+        const height = geometryNumber(event?.height)
+        const top = geometryNumber(event?.safeAreaTop)
+        const leading = geometryNumber(event?.safeAreaLeading)
+        const bottom = geometryNumber(event?.safeAreaBottom)
+        const trailing = geometryNumber(event?.safeAreaTrailing)
         if (
           x === undefined ||
           y === undefined ||
           width === undefined ||
-          height === undefined
+          height === undefined ||
+          top === undefined ||
+          leading === undefined ||
+          bottom === undefined ||
+          trailing === undefined
         )
           throw new Error('Swift.GeometryReader emitted an invalid geometry')
-        onGeometryChange?.({ x, y, width, height })
+        const next: GeometryProxySnapshot = {
+          size: { width, height },
+          safeAreaInsets: { top, leading, bottom, trailing },
+          frame: { x, y, width, height },
+        }
+        if (sameGeometry(latest.current, next)) return
+        latest.current = next
+        setGeometry(next)
       }}
     >
-      <InsideContainer value={true}>{children}</InsideContainer>
+      <InsideContainer value={true}>{content}</InsideContainer>
     </NativeGeometryReader>
   )
 }

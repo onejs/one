@@ -6,6 +6,10 @@ interface NativeProps extends ViewProps {
         y: Double;
         width: Double;
         height: Double;
+        safeAreaTop: Double;
+        safeAreaLeading: Double;
+        safeAreaBottom: Double;
+        safeAreaTrailing: Double;
     }>>;
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;

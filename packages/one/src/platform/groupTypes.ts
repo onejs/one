@@ -56,18 +56,41 @@ export interface GlassEffectContainerProps extends ViewProps {
   children: ReactNode
 }
 
-// the frame SwiftUI laid a GeometryReader out in, in global coordinates. width
-// and height are the reader's size; x and y are its global origin.
-export interface GeometryReaderFrame {
+// the geometry SwiftUI proposes to a GeometryReader's content, in points. it
+// mirrors GeometryProxy's bridgeable members: size is the reader's size,
+// frame is its frame in global coordinates, and safeAreaInsets are its
+// safe-area insets. frame(in:) with a local or named space, anchors,
+// bounds(of:), and the iOS 26 and later corner, margin, and reserved-region
+// APIs have no synchronous bridge path and are not represented here.
+export interface GeometryProxySize {
+  width: number
+  height: number
+}
+
+export interface GeometryProxySafeAreaInsets {
+  top: number
+  leading: number
+  bottom: number
+  trailing: number
+}
+
+export interface GeometryProxyFrame {
   x: number
   y: number
   width: number
   height: number
 }
 
-export interface GeometryReaderProps extends ViewProps {
-  onGeometryChange?: (frame: GeometryReaderFrame) => void
-  children: ReactNode
+export interface GeometryProxySnapshot {
+  readonly size: GeometryProxySize
+  readonly safeAreaInsets: GeometryProxySafeAreaInsets
+  readonly frame: GeometryProxyFrame
+}
+
+// ViewProps.children is ReactNode, which cannot hold the content closure, so
+// the reader omits it and declares the closure instead.
+export interface GeometryReaderProps extends Omit<ViewProps, 'children'> {
+  children: (geometry: GeometryProxySnapshot) => ReactNode
 }
 
 export interface OverlayProps extends ViewProps {

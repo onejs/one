@@ -1,18 +1,50 @@
-import { Component, useState, type ReactNode } from 'react'
+import { Component, useCallback, useEffect, useState, type ReactNode } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
-// the reader takes its React Native box and reports the frame SwiftUI laid it
-// out in. the width toggle drives the geometry-change leg: the status line
-// shows the latest frame and how many frames native reported. children are
-// static native composition, so the render-function and React Native legs stay
-// unmounted until their pressables run.
+// the reader runs its content closure with a native GeometryProxy snapshot:
+// size and the global frame plus the safe-area insets. the closure's content
+// composes natively. the status reporter observes through an effect, which is
+// how an app reads geometry without setting state during render. the width
+// toggle drives the geometry-change leg: the status line shows the latest
+// frame and how many frames native reported. the static and React Native legs
+// stay unmounted until their pressables run.
+type GeometrySnapshot = {
+  size: { width: number; height: number }
+  safeAreaInsets: { top: number; leading: number; bottom: number; trailing: number }
+  frame: { x: number; y: number; width: number; height: number }
+}
+
+function GeometryStatus({
+  geometry,
+  onFrame,
+}: {
+  geometry: GeometrySnapshot
+  onFrame: (geometry: GeometrySnapshot) => void
+}) {
+  useEffect(() => {
+    onFrame(geometry)
+  }, [geometry, onFrame])
+  return (
+    <One.iOS.Text
+      text={`content ${Math.round(geometry.size.width)}x${Math.round(geometry.size.height)}`}
+    />
+  )
+}
+
 export default function OneNativeGeometryReader() {
   const [width, setWidth] = useState(200)
   const [frames, setFrames] = useState(0)
   const [frame, setFrame] = useState('none')
-  const [renderFunction, setRenderFunction] = useState(false)
+  const [staticChild, setStaticChild] = useState(false)
   const [nativeChild, setNativeChild] = useState(false)
+
+  const onFrame = useCallback((geometry: GeometrySnapshot) => {
+    setFrames((count) => count + 1)
+    setFrame(
+      `${Math.round(geometry.frame.width)}x${Math.round(geometry.frame.height)} @ ${Math.round(geometry.frame.x)},${Math.round(geometry.frame.y)}`
+    )
+  }, [])
 
   return (
     <View style={styles.screen} testID="one-native-geometry-reader-screen">
@@ -28,10 +60,10 @@ export default function OneNativeGeometryReader() {
         <Pressable
           accessibilityRole="button"
           style={styles.action}
-          testID="one-native-geometry-reader-invalid-function"
-          onPress={() => setRenderFunction(true)}
+          testID="one-native-geometry-reader-invalid-static"
+          onPress={() => setStaticChild(true)}
         >
-          <Text style={styles.actionText}>Render function</Text>
+          <Text style={styles.actionText}>Static child</Text>
         </Pressable>
         <Pressable
           accessibilityRole="button"
@@ -48,26 +80,20 @@ export default function OneNativeGeometryReader() {
       <One.iOS.GeometryReader
         style={{ width, height: 100 }}
         testID="one-native-geometry-reader-view"
-        onGeometryChange={(next) => {
-          setFrames((count) => count + 1)
-          setFrame(
-            `${Math.round(next.width)}x${Math.round(next.height)} @ ${Math.round(next.x)},${Math.round(next.y)}`
-          )
-        }}
       >
-        <One.iOS.Text text="sized" />
+        {(geometry) => <GeometryStatus geometry={geometry} onFrame={onFrame} />}
       </One.iOS.GeometryReader>
-      {renderFunction ? (
-        <Boundary testID="one-native-geometry-reader-function-error">
+      {staticChild ? (
+        <Boundary testID="one-native-geometry-reader-static-error">
           <One.iOS.GeometryReader>
-            {(() => null) as unknown as ReactNode}
+            {(<One.iOS.Text text="static" /> as unknown as () => ReactNode)}
           </One.iOS.GeometryReader>
         </Boundary>
       ) : null}
       {nativeChild ? (
         <Boundary testID="one-native-geometry-reader-native-error">
           <One.iOS.GeometryReader>
-            <View />
+            {(() => <View />) as unknown as () => ReactNode}
           </One.iOS.GeometryReader>
         </Boundary>
       ) : null}

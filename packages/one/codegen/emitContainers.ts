@@ -128,9 +128,11 @@ export const containerComponents = [
   {
     name: 'OneNativeGeometryReader',
     publicName: 'GeometryReader',
-    // a reader takes the box React Native gave it and reports the frame SwiftUI
-    // laid it out in; the frame's size is the reader's size. children compose
-    // natively: no JavaScript closure crosses into the native ViewBuilder.
+    // a reader takes the box React Native gave it and runs its content closure
+    // with a native GeometryProxy snapshot: the frame SwiftUI laid it out in
+    // (global coordinates; its size is the reader's size) and its safe-area
+    // insets. the event below is private transport for that snapshot, not a
+    // public observer contract.
     props: {},
     events: {
       onNativeGeometryReaderChange: {
@@ -138,6 +140,10 @@ export const containerComponents = [
         y: 'Double',
         width: 'Double',
         height: 'Double',
+        safeAreaTop: 'Double',
+        safeAreaLeading: 'Double',
+        safeAreaBottom: 'Double',
+        safeAreaTrailing: 'Double',
       },
     },
     enumProps: {},

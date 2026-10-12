@@ -4136,6 +4136,18 @@
           },
           "height": {
             "type": "Double"
+          },
+          "safeAreaTop": {
+            "type": "Double"
+          },
+          "safeAreaLeading": {
+            "type": "Double"
+          },
+          "safeAreaBottom": {
+            "type": "Double"
+          },
+          "safeAreaTrailing": {
+            "type": "Double"
           }
         }
       },

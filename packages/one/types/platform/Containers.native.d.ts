@@ -25,7 +25,7 @@ export declare function ViewThatFits({ axes, children, style, ...props }: ViewTh
 export declare function Button({ onPress, label, disabled, subtitle, systemImage, buttonRole, buttonStyle, disclosureIndicator, children, swiftStyle, style, ...props }: ButtonProps): import("react/jsx-runtime").JSX.Element;
 export declare function Glass({ material, glassEffect, interactive, shape, cornerRadius, tint, colorScheme, children, style, ...props }: GlassProps): import("react/jsx-runtime").JSX.Element;
 export declare function GlassEffectContainer({ spacing, children, style, ...props }: GlassEffectContainerProps): import("react/jsx-runtime").JSX.Element;
-export declare function GeometryReader({ onGeometryChange, children, style, ...props }: GeometryReaderProps): import("react/jsx-runtime").JSX.Element;
+export declare function GeometryReader({ children, style, ...props }: GeometryReaderProps): import("react/jsx-runtime").JSX.Element;
 export declare function ControlGroup({ label, systemImage, controlGroupStyle, children, style, ...props }: ControlGroupProps): import("react/jsx-runtime").JSX.Element;
 export declare function DisclosureGroup({ label, isExpanded, onIsExpandedChange, revision, children, style, ...props }: DisclosureGroupProps): import("react/jsx-runtime").JSX.Element;
 export declare function Divider({ children, style, ...props }: DividerProps): import("react/jsx-runtime").JSX.Element;

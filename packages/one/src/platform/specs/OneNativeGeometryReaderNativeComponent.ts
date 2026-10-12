@@ -9,7 +9,16 @@ import type {
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
 interface NativeProps extends ViewProps {
   onNativeGeometryReaderChange?: DirectEventHandler<
-    Readonly<{ x: Double; y: Double; width: Double; height: Double }>
+    Readonly<{
+      x: Double
+      y: Double
+      width: Double
+      height: Double
+      safeAreaTop: Double
+      safeAreaLeading: Double
+      safeAreaBottom: Double
+      safeAreaTrailing: Double
+    }>
   >
 }
 export default codegenNativeComponent<NativeProps>('OneNativeGeometryReader')
