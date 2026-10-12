@@ -165,8 +165,8 @@ export default function OneNativeScreenCapture() {
       >
         <Text>Release prevention</Text>
       </Pressable>
-      <View testID="one-native-screen-capture-red" style={styles.red} />
-      <View testID="one-native-screen-capture-blue" style={styles.blue} />
+      <View testID="one-native-screen-capture-red" pointerEvents="none" style={styles.red} />
+      <View testID="one-native-screen-capture-blue" pointerEvents="none" style={styles.blue} />
     </View>
   )
 }
