@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
@@ -59,6 +59,26 @@ async function runChecks(report: (name: string, value: string) => void) {
 export default function OneNativeSpeechSynthesis() {
   const [results, setResults] = useState<[string, string][]>([])
   const [status, setStatus] = useState('idle')
+  // TTS pre-warm experiment (bounded, fixture-side only): one voices call at
+  // mount starts the android engine seconds before the run tap, so the
+  // press-time read below measures a warmed engine instead of racing init.
+  useEffect(() => {
+    const started = Date.now()
+    One.SpeechSynthesis.getAvailableVoices().then(
+      (voices) => {
+        setResults((current) =>
+          current.some(([name]) => name === 'WarmVoices')
+            ? current
+            : [
+                ...current,
+                ['WarmVoices', String(voices.length)],
+                ['WarmMs', String(Date.now() - started)],
+              ]
+        )
+      },
+      () => {}
+    )
+  }, [])
 
   return (
     <View style={styles.screen}>

@@ -2134,6 +2134,10 @@ async function run(config: Config) {
       90_000
     )
 
+    // TEMPORARY local-only speech scoping for the bounded TTS pre-warm
+    // experiment; restored before any commit.
+    const speechOnly = Bun.env.SPEECH_ONLY === '1'
+    if (!speechOnly) {
     // filesystem: valid binary writes and rejected writes preserve both destinations.
     await freshLeg('file-system')
     await tapNavigation(config, 'nav-one-native-file-system')
@@ -2320,6 +2324,8 @@ async function run(config: Config) {
       'one-native-brightness-run'
     )
 
+    }
+
     // SpeechSynthesis: input limit, voice shapes, queued utterance speaks to
     // done, quiet after stop, validation.
     await freshLeg('speech-synthesis')
@@ -2352,6 +2358,7 @@ async function run(config: Config) {
       },
       'one-native-speech-synthesis-run'
     )
+    if (speechOnly) return
 
     // Orientation: read, both locks with flipped dimensions, listener
     // events, unlock. The landscapeLeft lock pins the left/right mapping.
