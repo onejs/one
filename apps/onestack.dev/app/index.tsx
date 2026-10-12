@@ -336,14 +336,19 @@ function Video() {
             <div className="video-background">
               <EnsureFlexed />
               <video
-                src="/one-v2.mp4"
                 title="One v2"
+                poster="/one-v2-poster.webp"
+                preload="auto"
                 autoPlay
                 controls
                 playsInline
                 // the overlay closes on press; clicks on the player stay with it
                 onClick={(e) => e.stopPropagation()}
-              />
+              >
+                {/* av1 webm where the browser decodes it, h.264 everywhere else */}
+                <source src="/one-v2.webm" type='video/webm; codecs="av01.0.09M.08, opus"' />
+                <source src="/one-v2.mp4" type="video/mp4" />
+              </video>
             </div>
             <Button
               position="absolute"
