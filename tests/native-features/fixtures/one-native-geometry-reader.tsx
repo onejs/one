@@ -3,12 +3,12 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 // the reader runs its content closure with a native GeometryProxy snapshot:
-// size and the global frame plus the safe-area insets. the closure's content
-// composes natively. the status reporter observes through an effect, which is
-// how an app reads geometry without setting state during render. the width
-// toggle drives the geometry-change leg: the status line shows the latest
-// frame and how many frames native reported. the static and React Native legs
-// stay unmounted until their pressables run.
+// size, the global and local frames, and the safe-area insets. the closure's
+// content composes natively. the status reporter observes through an effect,
+// which is how an app reads geometry without setting state during render. the
+// width toggle drives the geometry-change leg: the status line shows the latest
+// proxy values and how many frames native reported. the static and React
+// Native legs stay unmounted until their pressables run.
 type GeometrySnapshot = {
   size: { width: number; height: number }
   safeAreaInsets: { top: number; leading: number; bottom: number; trailing: number }
@@ -40,10 +40,14 @@ export default function OneNativeGeometryReader() {
   const [nativeChild, setNativeChild] = useState(false)
 
   const onFrame = useCallback((geometry: GeometrySnapshot) => {
-    const frame = geometry.frame('global')
+    const rect = (frame: ReturnType<GeometrySnapshot['frame']>) =>
+      `${Math.round(frame.width)}x${Math.round(frame.height)} @ ${Math.round(frame.x)},${Math.round(frame.y)}`
+    const { top, leading, bottom, trailing } = geometry.safeAreaInsets
     setFrames((count) => count + 1)
     setFrame(
-      `${Math.round(frame.width)}x${Math.round(frame.height)} @ ${Math.round(frame.x)},${Math.round(frame.y)}`
+      `${rect(geometry.frame('global'))} · Local: ${rect(geometry.frame('local'))}` +
+        ` · Size: ${Math.round(geometry.size.width)}x${Math.round(geometry.size.height)}` +
+        ` · Insets: ${[top, leading, bottom, trailing].map(Math.round).join(',')}`
     )
   }, [])
 
