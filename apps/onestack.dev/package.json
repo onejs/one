@@ -7,7 +7,7 @@
   "files": [],
   "scripts": {
     "generate:og": "bun scripts/generate-og-images.tsx",
-    "build:web": "bun scripts/generate-og-images.tsx && one build",
+    "build:web": "bun scripts/prune-stale-sheet.ts && bun scripts/generate-og-images.tsx && one build",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
     "serve": "one serve",
