@@ -1977,12 +1977,9 @@ async function run(config: Config) {
       undefined,
       45_000
     )
-    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
-    await expect(
-      'system-geofencing-back-home',
-      (nodes) => matching(nodes, { id: 'nav-color-test' }).length === 1,
-      'nav-one-native-geofencing'
-    )
+    // BACK proved unreliable across activities (deep-linked roots, permission
+    // dialogs); a relaunch lands on home deterministically and keeps grants.
+    relaunchApp(config)
     await tapNavigation(config, 'nav-one-native-geofencing')
     await expect(
       'system-geofencing-mounted',
@@ -2067,12 +2064,8 @@ async function run(config: Config) {
         joined(nodes).includes('Monitored: none'),
       'nav-one-native-location'
     )
-    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
-    await expect(
-      'system-location-back-home',
-      (nodes) => matching(nodes, { id: 'nav-color-test' }).length === 1,
-      'nav-one-native-location'
-    )
+    // same deterministic return-home as above.
+    relaunchApp(config)
     await tapNavigation(config, 'nav-one-native-location')
     const serviceDump = () =>
       adbText(config, ['shell', 'dumpsys', 'activity', 'services', config.packageId])
