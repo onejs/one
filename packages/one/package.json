@@ -492,6 +492,7 @@
         "OneNativeGroupBox": "OneNativeGroupBoxComponentView",
         "OneNativeViewThatFits": "OneNativeViewThatFitsComponentView",
         "OneNativeGeometryReader": "OneNativeGeometryReaderComponentView",
+        "OneNativeScrollViewReader": "OneNativeScrollViewReaderComponentView",
         "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",

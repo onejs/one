@@ -158,6 +158,23 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeScrollViewReader',
+    publicName: 'ScrollViewReader',
+    // a reader runs its content closure with a ScrollViewProxy and composes what it
+    // returns inside SwiftUI's ScrollViewReader. the command below is private
+    // transport for proxy.scrollTo(id, anchor:), run on the proxy SwiftUI handed
+    // the native builder. hasAnchor false is the SDK's nil anchor.
+    props: {},
+    events: {},
+    commands: {
+      scrollTo: { scrollID: 'string', hasAnchor: 'boolean', anchorX: 'Double', anchorY: 'Double' },
+    },
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },
@@ -470,8 +487,15 @@ export function emitContainers(
     const eventTypes = eventEntries
       .flatMap(([, fields]) => Object.values(fields as Record<string, string>))
       .join(' ')
+    const commandEntries = Object.entries(
+      'commands' in component ? (component.commands as Record<string, Record<string, string>>) : {}
+    )
+    const commandTypes = commandEntries
+      .flatMap(([, args]) => Object.values(args))
+      .join(' ')
     const reactNativeTypes = [
       ...(props.some(({ type }) => type === 'ColorValue') ? ['ColorValue'] : []),
+      ...(commandEntries.length ? ['HostComponent'] : []),
       ...(styled ? ['ProcessedColorValue'] : []),
       'ViewProps',
     ]
@@ -480,7 +504,8 @@ export function emitContainers(
         ...(eventEntries.length ? ['DirectEventHandler', 'Int32'] : []),
         ...(props.some(({ type }) => type === 'Double') ||
         styled ||
-        /\bDouble\b/.test(eventTypes)
+        /\bDouble\b/.test(eventTypes) ||
+        /\bDouble\b/.test(commandTypes)
           ? ['Double']
           : []),
         ...(styled ? ['WithDefault'] : []),
@@ -491,11 +516,11 @@ export function emitContainers(
       header +
         `import type { ${reactNativeTypes.join(', ')} } from 'react-native'
 ${codegenTypes.length ? `import type { ${codegenTypes.join(', ')} } from 'react-native/Libraries/Types/CodegenTypes'\n` : ''}import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
-${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`).join('\n')}\n  sdkModifiers?: string\n}>\n` : ''}interface NativeProps extends ViewProps {
+${commandEntries.length ? `import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands'\nimport type * as React from 'react'\n` : ''}${styled ? `type OneNativeStyleNative = Readonly<{\n${styleFields.map((field) => `  ${field.name}?: ${field.kind === 'number' ? 'WithDefault<Double, -1>' : field.kind === 'boolean' ? 'boolean' : field.kind === 'color' ? 'ProcessedColorValue' : 'string'}`).join('\n')}\n  sdkModifiers?: string\n}>\n` : ''}interface NativeProps extends ViewProps {
 ${props.map(({ key, optional, type }) => `  ${key}${optional ? '?' : ''}: ${type}`).join('\n')}
 ${styled ? '  swiftStyle?: OneNativeStyleNative\n' : ''}${eventEntries.map(([name, fields]) => `  ${name}?: DirectEventHandler<\n    Readonly<{ ${Object.entries(fields as Record<string, string>).map(([field, type]) => `${field}: ${type}`).join('; ')} }>\n  >`).join('\n')}
 }
-export default codegenNativeComponent<NativeProps>('${component.name}'${component.interfaceOnly ? ', { interfaceOnly: true }' : ''})
+${commandEntries.length ? `interface NativeCommands {\n${commandEntries.map(([name, args]) => `  ${name}(viewRef: React.ElementRef<HostComponent<NativeProps>>, ${Object.entries(args).map(([arg, type]) => `${arg}: ${type}`).join(', ')}): void`).join('\n')}\n}\nexport const Commands = codegenNativeCommands<NativeCommands>({\n  supportedCommands: [${commandEntries.map(([name]) => `'${name}'`).join(', ')}],\n})\n` : ''}export default codegenNativeComponent<NativeProps>('${component.name}'${component.interfaceOnly ? ', { interfaceOnly: true }' : ''})
 `
     )
   }

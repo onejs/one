@@ -1,6 +1,6 @@
 ---
 title: iOS Lists and Forms
-description: Form, Section, List, ScrollView, lazy stacks, and grids under One.iOS
+description: Form, Section, List, ScrollView, ScrollViewReader, lazy stacks, and grids under One.iOS
 ---
 
 <NativeHero
@@ -12,6 +12,7 @@ Lists, forms, and scrolling containers under `One.iOS`, drawn by SwiftUI.
 
 - `Form` and `List` give native grouped rows, section headers, and footers.
 - `ScrollView`, lazy stacks, and grids lay out long or two-dimensional content.
+- `ScrollViewReader` scrolls a scroll view to a view by its ID.
 - Row modifiers, swipe actions, pull to refresh, and search come through
   `swiftStyle`.
 - Every view here throws on web and Android.
@@ -239,6 +240,58 @@ search text is controlled by React state, as in the List example above.
 An iOS 27 simulator proof covered two successive callback invocations,
 external query changes, and typing in the native field. It did not measure
 the refresh indicator's duration or exercise horizontal and both-axis scrolls.
+
+## ScrollViewReader
+
+`One.iOS.ScrollViewReader` adapts SwiftUI's `ScrollViewReader` content builder
+to a JavaScript function receiving a `ScrollViewProxy`. Its returned content
+composes natively. Give a view a `swiftStyle.id` (SwiftUI's `.id(_:)`), then
+call `proxy.scrollTo(id, anchor)` to scroll the scroll view inside the reader
+that contains it. The call runs on the proxy SwiftUI gave the native reader.
+
+`anchor` is a SwiftUI `UnitPoint`: one of `'zero'`, `'center'`, `'leading'`,
+`'trailing'`, `'top'`, `'bottom'`, `'topLeading'`, `'topTrailing'`,
+`'bottomLeading'`, `'bottomTrailing'`, or `{ x, y }` in unit coordinates.
+Omitted or `null` is SwiftUI's `nil` anchor, which scrolls the least distance
+that reveals the view. As in SwiftUI, an ID no view carries scrolls nothing.
+
+Call `scrollTo` from an event handler or an effect. Calling it while the reader
+builds its content throws, as SwiftUI forbids using the proxy during its
+builder. A call made before SwiftUI first shows the reader, such as from a
+mount effect, runs when it appears. A call after the reader unmounts, an ID
+that is not a string, or an invalid anchor throws. The reader fills its box like
+`ScrollView`; a non-function child throws.
+
+```tsx
+<One.iOS.ScrollViewReader>
+  {(proxy) => (
+    <>
+      <One.iOS.Button label="Latest" onPress={() => proxy.scrollTo('row-29', 'bottom')} />
+      <One.iOS.ScrollView>
+        {rows.map((row) => (
+          <One.iOS.Text key={row} text={`Row ${row}`} swiftStyle={{ id: `row-${row}` }} />
+        ))}
+      </One.iOS.ScrollView>
+    </>
+  )}
+</One.iOS.ScrollViewReader>
+```
+
+<PropsTable
+  title="Props"
+  source="listTypes.ts#ScrollViewReaderProps"
+  data={[
+    { name: 'children', required: true, type: '(proxy: ScrollViewProxy) => ReactNode', description: 'The content closure, run with the native reader proxy.' },
+  ]}
+/>
+
+<PropsTable
+  title="ScrollViewProxy"
+  source="listTypes.ts#ScrollViewProxy"
+  data={[
+    { name: 'scrollTo', type: '(id: string, anchor?: UnitPoint | null) => void', description: 'SwiftUI scrollTo(_:anchor:): scrolls to the view whose swiftStyle.id is id.' },
+  ]}
+/>
 
 ## LazyVStack, LazyHStack
 

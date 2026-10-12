@@ -31,4 +31,57 @@ export interface LazyHStackProps extends ViewProps {
     spacing?: number;
     children: ReactNode;
 }
+export declare const unitPoints: {
+    readonly zero: {
+        readonly x: 0;
+        readonly y: 0;
+    };
+    readonly center: {
+        readonly x: 0.5;
+        readonly y: 0.5;
+    };
+    readonly leading: {
+        readonly x: 0;
+        readonly y: 0.5;
+    };
+    readonly trailing: {
+        readonly x: 1;
+        readonly y: 0.5;
+    };
+    readonly top: {
+        readonly x: 0.5;
+        readonly y: 0;
+    };
+    readonly bottom: {
+        readonly x: 0.5;
+        readonly y: 1;
+    };
+    readonly topLeading: {
+        readonly x: 0;
+        readonly y: 0;
+    };
+    readonly topTrailing: {
+        readonly x: 1;
+        readonly y: 0;
+    };
+    readonly bottomLeading: {
+        readonly x: 0;
+        readonly y: 1;
+    };
+    readonly bottomTrailing: {
+        readonly x: 1;
+        readonly y: 1;
+    };
+};
+export type UnitPointName = keyof typeof unitPoints;
+export type UnitPoint = UnitPointName | {
+    x: number;
+    y: number;
+};
+export interface ScrollViewProxy {
+    scrollTo(id: string, anchor?: UnitPoint | null): void;
+}
+export interface ScrollViewReaderProps extends Omit<ViewProps, 'children'> {
+    children: (proxy: ScrollViewProxy) => ReactNode;
+}
 //# sourceMappingURL=listTypes.d.ts.map

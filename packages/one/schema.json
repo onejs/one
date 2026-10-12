@@ -4184,6 +4184,41 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeScrollViewReader",
+      "publicName": "ScrollViewReader",
+      "props": {},
+      "events": {},
+      "commands": {
+        "scrollTo": {
+          "scrollID": {
+            "type": "string"
+          },
+          "hasAnchor": {
+            "type": "boolean"
+          },
+          "anchorX": {
+            "type": "Double"
+          },
+          "anchorY": {
+            "type": "Double"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {

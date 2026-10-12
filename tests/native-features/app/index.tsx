@@ -119,6 +119,11 @@ const testScreens = [
     testID: 'nav-one-native-view-that-fits',
   },
   {
+    href: '/one-native-scroll-reader',
+    label: 'One Native Scroll Reader',
+    testID: 'nav-one-native-scroll-reader',
+  },
+  {
     href: '/one-native-view-slot',
     label: 'One Native ViewSlot',
     testID: 'nav-one-native-view-slot',
