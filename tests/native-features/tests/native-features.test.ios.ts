@@ -1028,7 +1028,10 @@ describe('one native integration tests', () => {
         'one-native-geometry-reader-invalid-static'
       )
       await invalid.click()
-      await dismissExpectedRenderError(driver, 'takes a render function')
+      await dismissExpectedRenderError(
+        driver,
+        'Swift.GeometryReader takes a render function'
+      )
       const error = await waitForElement(
         driver,
         'one-native-geometry-reader-static-error'
@@ -1042,7 +1045,7 @@ describe('one native integration tests', () => {
         'one-native-geometry-reader-invalid-native'
       )
       await invalid.click()
-      await dismissExpectedRenderError(driver, 'takes SwiftUI children')
+      await dismissExpectedRenderError(driver, 'Swift.GeometryReader takes SwiftUI children')
       const error = await waitForElement(
         driver,
         'one-native-geometry-reader-native-error'
