@@ -20,6 +20,18 @@ namespace margelo::nitro::one { struct FileInfo; }
 namespace margelo::nitro::one { struct FileEntry; }
 // Forward declaration of `FileEncoding` to properly resolve imports.
 namespace margelo::nitro::one { enum class FileEncoding; }
+// Forward declaration of `DiskSpace` to properly resolve imports.
+namespace margelo::nitro::one { struct DiskSpace; }
+// Forward declaration of `PathStat` to properly resolve imports.
+namespace margelo::nitro::one { struct PathStat; }
+// Forward declaration of `ArrayBufferHolder` to properly resolve imports.
+namespace NitroModules { class ArrayBufferHolder; }
+// Forward declaration of `ListedEntry` to properly resolve imports.
+namespace margelo::nitro::one { struct ListedEntry; }
+// Forward declaration of `DetailedFileInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedFileInfo; }
+// Forward declaration of `DetailedDirectoryInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedDirectoryInfo; }
 
 #include "FileDirectories.hpp"
 #include <string>
@@ -29,6 +41,13 @@ namespace margelo::nitro::one { enum class FileEncoding; }
 #include "FileEntry.hpp"
 #include <vector>
 #include "FileEncoding.hpp"
+#include "DiskSpace.hpp"
+#include "PathStat.hpp"
+#include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/ArrayBufferHolder.hpp>
+#include "ListedEntry.hpp"
+#include "DetailedFileInfo.hpp"
+#include "DetailedDirectoryInfo.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -138,6 +157,274 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<void>> remove(const std::string& uri) override {
       auto __result = _swiftPart.remove(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::string getBundleDirectory() override {
+      auto __result = _swiftPart.getBundleDirectory();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline DiskSpace getDiskSpace() override {
+      auto __result = _swiftPart.getDiskSpace();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline PathStat pathInfo(const std::string& uri) override {
+      auto __result = _swiftPart.pathInfo(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::string readText(const std::string& uri) override {
+      auto __result = _swiftPart.readText(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::string>> readTextAsync(const std::string& uri) override {
+      auto __result = _swiftPart.readTextAsync(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<ArrayBuffer> readData(const std::string& uri) override {
+      auto __result = _swiftPart.readData(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> readDataAsync(const std::string& uri) override {
+      auto __result = _swiftPart.readDataAsync(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::string readBase64(const std::string& uri) override {
+      auto __result = _swiftPart.readBase64(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::string>> readBase64Async(const std::string& uri) override {
+      auto __result = _swiftPart.readBase64Async(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void writeText(const std::string& uri, const std::string& contents, FileEncoding encoding, bool append) override {
+      auto __result = _swiftPart.writeText(uri, contents, static_cast<int>(encoding), std::forward<decltype(append)>(append));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::shared_ptr<Promise<void>> writeTextAsync(const std::string& uri, const std::string& contents, FileEncoding encoding, bool append) override {
+      auto __result = _swiftPart.writeTextAsync(uri, contents, static_cast<int>(encoding), std::forward<decltype(append)>(append));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void writeData(const std::string& uri, const std::shared_ptr<ArrayBuffer>& bytes, bool append) override {
+      auto __result = _swiftPart.writeData(uri, ArrayBufferHolder(bytes), std::forward<decltype(append)>(append));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::shared_ptr<Promise<void>> writeDataAsync(const std::string& uri, const std::shared_ptr<ArrayBuffer>& bytes, bool append) override {
+      auto __result = _swiftPart.writeDataAsync(uri, ArrayBufferHolder(bytes), std::forward<decltype(append)>(append));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::string>> fileDigest(const std::string& uri, const std::string& algorithm) override {
+      auto __result = _swiftPart.fileDigest(uri, algorithm);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void createFileEntry(const std::string& uri, bool intermediates, bool overwrite) override {
+      auto __result = _swiftPart.createFileEntry(uri, std::forward<decltype(intermediates)>(intermediates), std::forward<decltype(overwrite)>(overwrite));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void createDirectoryEntry(const std::string& uri, bool intermediates, bool overwrite, bool idempotent) override {
+      auto __result = _swiftPart.createDirectoryEntry(uri, std::forward<decltype(intermediates)>(intermediates), std::forward<decltype(overwrite)>(overwrite), std::forward<decltype(idempotent)>(idempotent));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::string createFileInDirectory(const std::string& dirUri, const std::string& name) override {
+      auto __result = _swiftPart.createFileInDirectory(dirUri, name);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::string createSubdirectory(const std::string& dirUri, const std::string& name) override {
+      auto __result = _swiftPart.createSubdirectory(dirUri, name);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void deleteEntry(const std::string& uri) override {
+      auto __result = _swiftPart.deleteEntry(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::string renameEntry(const std::string& uri, const std::string& newName) override {
+      auto __result = _swiftPart.renameEntry(uri, newName);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void copyEntry(const std::string& fromUri, const std::string& toUri, bool overwrite) override {
+      auto __result = _swiftPart.copyEntry(fromUri, toUri, std::forward<decltype(overwrite)>(overwrite));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::shared_ptr<Promise<void>> copyEntryAsync(const std::string& fromUri, const std::string& toUri, bool overwrite) override {
+      auto __result = _swiftPart.copyEntryAsync(fromUri, toUri, std::forward<decltype(overwrite)>(overwrite));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void moveEntry(const std::string& fromUri, const std::string& toUri, bool overwrite) override {
+      auto __result = _swiftPart.moveEntry(fromUri, toUri, std::forward<decltype(overwrite)>(overwrite));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::shared_ptr<Promise<void>> moveEntryAsync(const std::string& fromUri, const std::string& toUri, bool overwrite) override {
+      auto __result = _swiftPart.moveEntryAsync(fromUri, toUri, std::forward<decltype(overwrite)>(overwrite));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::vector<ListedEntry> listEntries(const std::string& uri) override {
+      auto __result = _swiftPart.listEntries(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline DetailedFileInfo fileDetails(const std::string& uri) override {
+      auto __result = _swiftPart.fileDetails(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline DetailedDirectoryInfo directoryDetails(const std::string& uri) override {
+      auto __result = _swiftPart.directoryDetails(uri);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline double openFile(const std::string& uri, const std::string& mode) override {
+      auto __result = _swiftPart.openFile(uri, mode);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void closeFile(double handle) override {
+      auto __result = _swiftPart.closeFile(std::forward<decltype(handle)>(handle));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::shared_ptr<ArrayBuffer> readHandle(double handle, double length) override {
+      auto __result = _swiftPart.readHandle(std::forward<decltype(handle)>(handle), std::forward<decltype(length)>(length));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> readHandleAsync(double handle, double length) override {
+      auto __result = _swiftPart.readHandleAsync(std::forward<decltype(handle)>(handle), std::forward<decltype(length)>(length));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void writeHandle(double handle, const std::shared_ptr<ArrayBuffer>& bytes) override {
+      auto __result = _swiftPart.writeHandle(std::forward<decltype(handle)>(handle), ArrayBufferHolder(bytes));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::shared_ptr<Promise<void>> writeHandleAsync(double handle, const std::shared_ptr<ArrayBuffer>& bytes) override {
+      auto __result = _swiftPart.writeHandleAsync(std::forward<decltype(handle)>(handle), ArrayBufferHolder(bytes));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline double getHandleOffset(double handle) override {
+      auto __result = _swiftPart.getHandleOffset(std::forward<decltype(handle)>(handle));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void setHandleOffset(double handle, double offset) override {
+      auto __result = _swiftPart.setHandleOffset(std::forward<decltype(handle)>(handle), std::forward<decltype(offset)>(offset));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline double getHandleSize(double handle) override {
+      auto __result = _swiftPart.getHandleSize(std::forward<decltype(handle)>(handle));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

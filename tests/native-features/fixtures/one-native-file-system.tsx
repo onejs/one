@@ -144,10 +144,171 @@ export default function OneNativeFileSystem() {
           missingError = String(error.code)
       }
 
+      stage = 'classes'
+      const classesDir = new fs.Directory(
+        fs.Paths.cache,
+        `one-native-file-classes-${Date.now()}`
+      )
+      classesDir.create()
+      const classNote = new fs.File(classesDir, 'note.txt')
+      await classNote.write('Hello Classes')
+      const classText = await classNote.text()
+      const classTextSync = classNote.textSync()
+      const classBytes = Array.from(classNote.bytesSync()).join(',')
+      const classB64 = classNote.base64Sync()
+      const classInfo = classNote.info()
+      if (
+        classText !== 'Hello Classes' ||
+        classTextSync !== 'Hello Classes' ||
+        classBytes !== '72,101,108,108,111,32,67,108,97,115,115,101,115' ||
+        classB64 !== 'SGVsbG8gQ2xhc3Nlcw==' ||
+        classNote.size !== 13 ||
+        classInfo.size !== 13 ||
+        !classNote.exists ||
+        !classInfo.exists ||
+        classNote.type !== 'text/plain' ||
+        !classNote.lastModified
+      ) {
+        throw new Error('class read or info did not match')
+      }
+
+      stage = 'class digest and paths'
+      const digestFile = new fs.File(classesDir, 'digest.txt')
+      await digestFile.write('abc')
+      const digest = await digestFile.digest('SHA-256')
+      if (
+        digest !== 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad'
+      ) {
+        throw new Error('class digest did not match')
+      }
+      if (fs.Paths.totalDiskSpace <= 0 || fs.Paths.availableDiskSpace <= 0) {
+        throw new Error('disk space did not match')
+      }
+      if (fs.Paths.document.uri !== directories.documents) {
+        throw new Error('paths document did not match')
+      }
+      const pathFile = fs.Paths.info(classNote.uri)
+      const pathMissing = fs.Paths.info(new fs.File(classesDir, 'missing.txt').uri)
+      if (
+        !pathFile.exists ||
+        pathFile.isDirectory !== false ||
+        pathMissing.exists ||
+        pathMissing.isDirectory !== null
+      ) {
+        throw new Error('path info did not match')
+      }
+
+      stage = 'class directory'
+      const made = classesDir.createFile('made.txt', 'text/plain')
+      made.writeSync('made')
+      const sub = classesDir.createDirectory('sub')
+      if (!sub.exists) throw new Error('created entries did not match')
+      const listed = classesDir
+        .list()
+        .map((entry) => entry.name)
+        .join(',')
+      if (listed !== 'digest.txt,made.txt,note.txt,sub') {
+        throw new Error('class list did not match')
+      }
+
+      stage = 'class handle'
+      const bin = new fs.File(classesDir, 'handle.bin')
+      bin.writeSync(new Uint8Array([10, 20, 30, 40]))
+      const handle = bin.open(fs.FileMode.ReadWrite)
+      const hOffset = handle.offset
+      const hSize = handle.size
+      const hFirst = Array.from(handle.readBytesSync(2)).join(',')
+      handle.offset = 1
+      await handle.writeBytes(new Uint8Array([7]))
+      const hAfter = Array.from(bin.bytesSync()).join(',')
+      handle.close()
+      let closedMessage = ''
+      try {
+        handle.readBytesSync(1)
+      } catch (error) {
+        closedMessage = error instanceof Error ? error.message : ''
+      }
+      if (
+        hOffset !== 0 ||
+        hSize !== 4 ||
+        hFirst !== '10,20' ||
+        hAfter !== '10,7,30,40' ||
+        !closedMessage.includes('closed')
+      ) {
+        throw new Error('class handle did not match')
+      }
+
+      stage = 'class streams'
+      const streamFile = new fs.File(classesDir, 'stream.bin')
+      const streamWriter = streamFile.writableStream().getWriter()
+      await streamWriter.write(new Uint8Array([5, 6]))
+      await streamWriter.write(new Uint8Array([7]))
+      await streamWriter.close()
+      const streamReader = streamFile.readableStream().getReader()
+      const streamChunks: number[] = []
+      for (;;) {
+        const { done, value } = await streamReader.read()
+        if (done) break
+        streamChunks.push(...value)
+      }
+      const streamed = streamChunks.join(',')
+      if (streamed !== '5,6,7') throw new Error('class streams did not match')
+
+      stage = 'class errors'
+      let syncEncoding = ''
+      try {
+        classNote.writeSync('!?', { encoding: 'base64' })
+      } catch (error) {
+        if (error && typeof error === 'object' && 'code' in error)
+          syncEncoding = String(error.code)
+      }
+      let syncMissing = ''
+      try {
+        new fs.File(classesDir, 'nope.txt').textSync()
+      } catch (error) {
+        if (error && typeof error === 'object' && 'code' in error)
+          syncMissing = String(error.code)
+      }
+      let syncExists = ''
+      try {
+        classNote.create()
+      } catch (error) {
+        if (error && typeof error === 'object' && 'code' in error)
+          syncExists = String(error.code)
+      }
+      let modeMessage = ''
+      try {
+        classNote.open('xx' as never)
+      } catch (error) {
+        modeMessage = error instanceof Error ? error.message : ''
+      }
+      if (!modeMessage.includes('FileMode')) throw new Error('class mode did not match')
+
+      stage = 'class relocate'
+      const classSize = classNote.size
+      classNote.rename('renamed.txt')
+      if (!classNote.uri.endsWith('/renamed.txt')) {
+        throw new Error('class rename did not match')
+      }
+      classNote.copySync(sub)
+      if (!new fs.File(sub, 'renamed.txt').exists) {
+        throw new Error('class copy did not match')
+      }
+      await classNote.move(new fs.File(classesDir, 'moved-note.txt'))
+      if (!classNote.uri.endsWith('/moved-note.txt')) {
+        throw new Error('class move did not match')
+      }
+      classesDir.delete()
+      if (classesDir.exists) throw new Error('class cleanup did not match')
+
       setResult(
         `text=${text}; bytes=${bytes}; entries=${entries}; moved=${movedInfo.exists}; ` +
           `recursive=${recursive}; missing=${missing.exists}; ` +
-          `errors=${invalidURI},${missingError},${existingError},${encodingError},${rootError}`
+          `errors=${invalidURI},${missingError},${existingError},${encodingError},${rootError}; ` +
+          `classes=size:${classSize},b64:${classB64},digest:${digest},listed:${listed},disk:ok,info:ok; ` +
+          `handle=offset:${hOffset},size:${hSize},first:${hFirst},after:${hAfter},closed:ok; ` +
+          `streams=${streamed}; ` +
+          `classErrors=${syncEncoding},${syncMissing},${syncExists}`
       )
       setStatus('passed')
     } catch (error) {

@@ -106,10 +106,16 @@ namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DetailedDirectoryInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedDirectoryInfo; }
+// Forward declaration of `DetailedFileInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedFileInfo; }
 // Forward declaration of `DeviceAttestationAvailability` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceAttestationAvailability; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
+// Forward declaration of `DiskSpace` to properly resolve imports.
+namespace margelo::nitro::one { struct DiskSpace; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -246,6 +252,8 @@ namespace margelo::nitro::one { struct ImageResize; }
 namespace margelo::nitro::one { struct ImageTransformResult; }
 // Forward declaration of `LightSensorMeasurement` to properly resolve imports.
 namespace margelo::nitro::one { struct LightSensorMeasurement; }
+// Forward declaration of `ListedEntry` to properly resolve imports.
+namespace margelo::nitro::one { struct ListedEntry; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
@@ -318,6 +326,8 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PathStat` to properly resolve imports.
+namespace margelo::nitro::one { struct PathStat; }
 // Forward declaration of `PedometerPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct PedometerPermissionResponse; }
 // Forward declaration of `PedometerPermissionStatus` to properly resolve imports.
@@ -540,8 +550,11 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
+#include "DetailedDirectoryInfo.hpp"
+#include "DetailedFileInfo.hpp"
 #include "DeviceAttestationAvailability.hpp"
 #include "DeviceInfo.hpp"
+#include "DiskSpace.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -610,6 +623,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ImageResize.hpp"
 #include "ImageTransformResult.hpp"
 #include "LightSensorMeasurement.hpp"
+#include "ListedEntry.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
@@ -646,6 +660,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PathStat.hpp"
 #include "PedometerPermissionResponse.hpp"
 #include "PedometerPermissionStatus.hpp"
 #include "PedometerResult.hpp"
@@ -3215,6 +3230,29 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__vector_FileEntry__Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>`.
+   */
+  using std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___ = std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>;
+  inline std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> create_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___() noexcept {
+    return Promise<std::shared_ptr<ArrayBuffer>>::create();
+  }
+  inline PromiseHolder<std::shared_ptr<ArrayBuffer>> wrap_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer___(std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> promise) noexcept {
+    return PromiseHolder<std::shared_ptr<ArrayBuffer>>(std::move(promise));
+  }
+  
+  // pragma MARK: std::vector<ListedEntry>
+  /**
+   * Specialized version of `std::vector<ListedEntry>`.
+   */
+  using std__vector_ListedEntry_ = std::vector<ListedEntry>;
+  inline std::vector<ListedEntry> create_std__vector_ListedEntry_(size_t size) noexcept {
+    std::vector<ListedEntry> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneFileSystemSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneFileSystemSpec>`.
@@ -3252,6 +3290,78 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_FileEntry____ create_Result_std__shared_ptr_Promise_std__vector_FileEntry____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<FileEntry>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<DiskSpace>
+  using Result_DiskSpace_ = Result<DiskSpace>;
+  inline Result_DiskSpace_ create_Result_DiskSpace_(const DiskSpace& value) noexcept {
+    return Result<DiskSpace>::withValue(value);
+  }
+  inline Result_DiskSpace_ create_Result_DiskSpace_(const std::exception_ptr& error) noexcept {
+    return Result<DiskSpace>::withError(error);
+  }
+  
+  // pragma MARK: Result<PathStat>
+  using Result_PathStat_ = Result<PathStat>;
+  inline Result_PathStat_ create_Result_PathStat_(const PathStat& value) noexcept {
+    return Result<PathStat>::withValue(value);
+  }
+  inline Result_PathStat_ create_Result_PathStat_(const std::exception_ptr& error) noexcept {
+    return Result<PathStat>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<ArrayBuffer>>
+  using Result_std__shared_ptr_ArrayBuffer__ = Result<std::shared_ptr<ArrayBuffer>>;
+  inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
+    return Result<std::shared_ptr<ArrayBuffer>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_ArrayBuffer__ create_Result_std__shared_ptr_ArrayBuffer__(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<ArrayBuffer>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>
+  using Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ = Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>;
+  inline Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(const std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____ create_Result_std__shared_ptr_Promise_std__shared_ptr_ArrayBuffer____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::vector<ListedEntry>>
+  using Result_std__vector_ListedEntry__ = Result<std::vector<ListedEntry>>;
+  inline Result_std__vector_ListedEntry__ create_Result_std__vector_ListedEntry__(const std::vector<ListedEntry>& value) noexcept {
+    return Result<std::vector<ListedEntry>>::withValue(value);
+  }
+  inline Result_std__vector_ListedEntry__ create_Result_std__vector_ListedEntry__(const std::exception_ptr& error) noexcept {
+    return Result<std::vector<ListedEntry>>::withError(error);
+  }
+  
+  // pragma MARK: Result<DetailedFileInfo>
+  using Result_DetailedFileInfo_ = Result<DetailedFileInfo>;
+  inline Result_DetailedFileInfo_ create_Result_DetailedFileInfo_(const DetailedFileInfo& value) noexcept {
+    return Result<DetailedFileInfo>::withValue(value);
+  }
+  inline Result_DetailedFileInfo_ create_Result_DetailedFileInfo_(const std::exception_ptr& error) noexcept {
+    return Result<DetailedFileInfo>::withError(error);
+  }
+  
+  // pragma MARK: Result<DetailedDirectoryInfo>
+  using Result_DetailedDirectoryInfo_ = Result<DetailedDirectoryInfo>;
+  inline Result_DetailedDirectoryInfo_ create_Result_DetailedDirectoryInfo_(const DetailedDirectoryInfo& value) noexcept {
+    return Result<DetailedDirectoryInfo>::withValue(value);
+  }
+  inline Result_DetailedDirectoryInfo_ create_Result_DetailedDirectoryInfo_(const std::exception_ptr& error) noexcept {
+    return Result<DetailedDirectoryInfo>::withError(error);
+  }
+  
+  // pragma MARK: Result<double>
+  using Result_double_ = Result<double>;
+  inline Result_double_ create_Result_double_(double value) noexcept {
+    return Result<double>::withValue(std::move(value));
+  }
+  inline Result_double_ create_Result_double_(const std::exception_ptr& error) noexcept {
+    return Result<double>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<HybridOneFontsSpec>

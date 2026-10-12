@@ -124,10 +124,16 @@ namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DetailedDirectoryInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedDirectoryInfo; }
+// Forward declaration of `DetailedFileInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct DetailedFileInfo; }
 // Forward declaration of `DeviceAttestationAvailability` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceAttestationAvailability; }
 // Forward declaration of `DeviceInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DeviceInfo; }
+// Forward declaration of `DiskSpace` to properly resolve imports.
+namespace margelo::nitro::one { struct DiskSpace; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -274,6 +280,8 @@ namespace margelo::nitro::one { struct ImageTransformOptions; }
 namespace margelo::nitro::one { struct ImageTransformResult; }
 // Forward declaration of `LightSensorMeasurement` to properly resolve imports.
 namespace margelo::nitro::one { struct LightSensorMeasurement; }
+// Forward declaration of `ListedEntry` to properly resolve imports.
+namespace margelo::nitro::one { struct ListedEntry; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalBiometryType` to properly resolve imports.
@@ -362,6 +370,8 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PathStat` to properly resolve imports.
+namespace margelo::nitro::one { struct PathStat; }
 // Forward declaration of `PedometerPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct PedometerPermissionResponse; }
 // Forward declaration of `PedometerPermissionStatus` to properly resolve imports.
@@ -510,8 +520,11 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
+#include "DetailedDirectoryInfo.hpp"
+#include "DetailedFileInfo.hpp"
 #include "DeviceAttestationAvailability.hpp"
 #include "DeviceInfo.hpp"
+#include "DiskSpace.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -585,6 +598,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ImageTransformOptions.hpp"
 #include "ImageTransformResult.hpp"
 #include "LightSensorMeasurement.hpp"
+#include "ListedEntry.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalBiometryType.hpp"
 #include "LocalizationInfo.hpp"
@@ -629,6 +643,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PathStat.hpp"
 #include "PedometerPermissionResponse.hpp"
 #include "PedometerPermissionStatus.hpp"
 #include "PedometerResult.hpp"

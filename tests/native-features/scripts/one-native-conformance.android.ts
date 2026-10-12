@@ -2863,7 +2863,12 @@ async function run(config: Config) {
           nodes,
           'Result: text=Hello One; bytes=0,1,2,3; entries=binary.dat,moved.txt,note.txt; ' +
           'moved=true; recursive=true; missing=false; ' +
-          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION'
+          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION; ' +
+          'classes=size:13,b64:SGVsbG8gQ2xhc3Nlcw==,' +
+          'digest:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad,' +
+          'listed:digest.txt,made.txt,note.txt,sub,disk:ok,info:ok; ' +
+          'handle=offset:0,size:4,first:10,20,after:10,7,30,40,closed:ok; ' +
+          'streams=5,6,7; classErrors=E_FILE_ENCODING,E_FILE_NOT_FOUND,E_FILE_EXISTS'
         ),
       'one-native-file-system-run'
     )
