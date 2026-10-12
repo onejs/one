@@ -1,4 +1,4 @@
-import type { BarometerSubscription } from './types'
+import type { BarometerMeasurement, BarometerSubscription } from './types'
 import { assertBarometerListener, assertUpdateInterval } from './validate'
 
 export type { BarometerMeasurement, BarometerSubscription } from './types'
@@ -16,7 +16,7 @@ function setUpdateInterval(intervalMs: number): void {
 }
 
 function addListener(
-  listener: (event: { pressure: number; timestamp: number }) => void
+  listener: (event: BarometerMeasurement) => void
 ): BarometerSubscription {
   assertBarometerListener(listener)
   return { remove: () => {} }
