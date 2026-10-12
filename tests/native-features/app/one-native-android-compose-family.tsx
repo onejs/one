@@ -1,12 +1,16 @@
 import { useState } from 'react'
-import { Button, ScrollView, Text, View } from 'react-native'
+import { Button, ScrollView, Text, TextInput, View } from 'react-native'
 import { One, useNativeState } from 'one'
+import Animated, { useAnimatedProps, useSharedValue } from 'react-native-reanimated'
 import { scheduleOnRN } from 'react-native-worklets'
+
+const AnimatedTextInput = Animated.createAnimatedComponent(TextInput)
 
 export default function ComposeFamilyFixture() {
   const [family, setFamily] = useState('switch')
   const [dialog, setDialog] = useState(false)
   const [dismissals, setDismissals] = useState(0)
+  const [dismissable, setDismissable] = useState(false)
   const [fabPresses, setFabPresses] = useState(0)
   const [range, setRange] = useState('pending')
   const [rangeDialog, setRangeDialog] = useState(false)
@@ -14,8 +18,17 @@ export default function ComposeFamilyFixture() {
   const [carouselKind, setCarouselKind] = useState('uncontained')
   const checked = useNativeState(false)
   const [callbackValue, setCallbackValue] = useState(false)
+  const [blocked, setBlocked] = useState('idle')
+  // written by the callback on the UI runtime and rendered without React, so
+  // it updates while the JS thread is blocked
+  const uiCallback = useSharedValue('none')
+  const uiCallbackProps = useAnimatedProps(() => ({
+    text: `UI callback: ${uiCallback.value}`,
+    defaultValue: `UI callback: ${uiCallback.value}`,
+  }))
   const onCheckedChangeSync = (value: boolean) => {
     'worklet'
+    uiCallback.value = `${value} worklet: ${globalThis._WORKLET === true}`
     scheduleOnRN(setCallbackValue, value)
   }
   const [externalRevision, setExternalRevision] = useState(0)
@@ -53,6 +66,24 @@ export default function ComposeFamilyFixture() {
       </View>
       {family === 'switch' && (
         <>
+          <AnimatedTextInput
+            testID="compose-family-switch-ui-callback"
+            editable={false}
+            animatedProps={uiCallbackProps}
+          />
+          <Button
+            title="Block JS thread"
+            testID="compose-family-block-js"
+            onPress={() => {
+              // the JS thread spins until the UI runtime writes the marker; a
+              // callback that needed this thread could only end on the cap
+              const end = Date.now() + 60000
+              let seen = uiCallback.value
+              while (seen === 'none' && Date.now() < end) seen = uiCallback.value
+              setBlocked(seen === 'none' ? 'timed out' : `released by ${seen}`)
+            }}
+          />
+          <Text testID="compose-family-block-status">{`Blocked JS: ${blocked}`}</Text>
           <Text testID="compose-family-switch-status">{`State: ${checked.value} Callback: ${callbackValue} Revision: ${externalRevision}`}</Text>
           <One.Android.SyncSwitch
             testID="compose-family-switch"
@@ -70,6 +101,7 @@ export default function ComposeFamilyFixture() {
             testID="compose-family-switch-reset"
             onPress={() => {
               checked.value = false
+              uiCallback.value = 'none'
               setCallbackValue(false)
               setExternalRevision((value) => value + 1)
             }}
@@ -84,11 +116,20 @@ export default function ComposeFamilyFixture() {
             testID="compose-family-dialog-open"
             onPress={() => setDialog(true)}
           />
+          <Button
+            title="Open dismissable dialog"
+            testID="compose-family-dialog-open-dismissable"
+            onPress={() => {
+              setDismissable(true)
+              setDialog(true)
+            }}
+          />
           {dialog && (
             <One.Android.BasicAlertDialog
-              properties={{ dismissOnBackPress: false, dismissOnClickOutside: false }}
+              properties={{ dismissOnBackPress: dismissable, dismissOnClickOutside: dismissable }}
               onDismissRequest={() => {
                 setDismissals((value) => value + 1)
+                setDismissable(false)
                 setDialog(false)
               }}
             >
@@ -100,7 +141,10 @@ export default function ComposeFamilyFixture() {
                 <One.Android.Button
                   testID="compose-family-dialog-close"
                   label="Close custom dialog"
-                  onPress={() => setDialog(false)}
+                  onPress={() => {
+                    setDismissable(false)
+                    setDialog(false)
+                  }}
                 />
               </One.Android.Column>
             </One.Android.BasicAlertDialog>

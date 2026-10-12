@@ -1,0 +1,41 @@
+2026-10-12 runtime proof, pro-128 emulator-5554 (sootsim pixel 8, API 37)
+source: v2-beta 23ef514744 plus the floating toolbar fix in this commit
+APK: clean prebuild --platform android + gradlew clean assembleDebug (arm64-v8a),
+  real One Kotlin/Compose/JNI; nothing stubbed. The primary app build needed the
+  generated one/source copies of fixtures/background-tasks-android (bb549511ca)
+  dropped from android/: they need androidx.work, which the primary app lacks.
+  That fixture's owner was notified; it is not part of this proof.
+server: tests/native-features one dev --port 8083, Android bundle HTTP 200 before launch
+
+RAN commands:
+maestro --device emulator-5554 test maestro/one-native-android-compose-family.yaml
+ADB=<sdk>/platform-tools/adb bun tests/native-features/scripts/one-native-android-compose-shapes-proof.ts --device-id emulator-5554
+
+Maestro exit 0, 85 steps completed, original timeouts unchanged:
+PASS SyncSwitch: JS thread spins until it reads the UI-runtime marker; released by
+  "true worklet: true" (callback ran on the UI runtime while JS was busy)
+PASS SyncSwitch negative: callback-less copy flips shared state, spin ends on its 60s cap
+PASS SyncSwitch copy/disabled/external reset converge on the shared state
+PASS BasicAlertDialog: non-dismissable ignores back and outside, closes from content
+PASS BasicAlertDialog: dismissable closes on back (Dismissals 1) and outside (Dismissals 2)
+PASS Carousel: uncontained scrolls past item 0; scroll disabled keeps item 0; hero and multi mount
+PASS DateRangePicker inline initial range 2026-10-12/2026-10-14
+PASS DateRangePickerDialog: confirm disabled without end, cancel keeps range,
+  October 20 + confirm gives 2026-10-12/2026-10-20
+PASS HorizontalFloatingToolbar: renders, FAB press counted (crashed before this fix:
+  maxWidth must be >= minWidth in HorizontalFloatingToolbarWithFabLayout)
+PASS Shape: all seven mounted
+
+Shape geometry (red fill fraction / extent vs analytic, tolerance 0.04):
+Star       0.355 / 0.798x0.833  expect 0.367 / 0.791x0.831
+PillStar   0.355 / 0.798x0.833  expect 0.367 / 0.791x0.831 (square pill star = star, Expo recipe)
+Pill       0.782 / 1.000x1.000  expect 0.785 / 1x1
+Circle     0.780 / 0.992x1.000  expect 0.785 / 1x1
+Rectangle  0.998 / 1.000x1.000  expect 0.998 / 1x1
+Polygon    0.588 / 0.886x0.931  expect 0.594 / 0.883x0.929
+RoundedCorner 0.975, cut corners topStart+bottomEnd only
+PASS one-native-android-compose-shapes 7 shapes
+
+Raw Maestro output, UI dumps and captures: pro-128 /tmp/one-compose-family-android37/final
+Limits: hero and multi-browse carousels are mount checks only; a cold-start deep
+link sent while the dev bundle was still loading was dropped (warm app routes fine).

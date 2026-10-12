@@ -7,8 +7,18 @@ appId: dev.vxrn.nativefeatures.tests
       id: compose-family-screen
     timeout: 15000
 - assertVisible: 'State: false Callback: false Revision: 0'
+- assertVisible: 'UI callback: none'
+- assertVisible: 'Blocked JS: idle'
+# the JS thread spins until it reads the marker the worklet writes, so the
+# callback must run on the UI runtime while JS is busy; the spin caps at 60s
+- tapOn:
+    id: compose-family-block-js
 - tapOn:
     id: compose-family-switch
+- assertVisible: 'UI callback: true worklet: true'
+- extendedWaitUntil:
+    visible: 'Blocked JS: released by true worklet: true'
+    timeout: 60000
 - extendedWaitUntil:
     visible: 'State: true Callback: true Revision: 0'
     timeout: 5000
@@ -17,12 +27,26 @@ appId: dev.vxrn.nativefeatures.tests
 - extendedWaitUntil:
     visible: 'State: false Callback: true Revision: 0'
     timeout: 5000
+- assertVisible: 'UI callback: true worklet: true'
 - tapOn:
     id: compose-family-switch-disabled
 - assertVisible: 'State: false Callback: true Revision: 0'
+- assertVisible: 'UI callback: true worklet: true'
 - tapOn:
     id: compose-family-switch-reset
 - assertVisible: 'State: false Callback: false Revision: 1'
+- assertVisible: 'UI callback: none'
+# negative control: the copy switch has no callback, so the shared state flips
+# but nothing writes the marker and the spin can only end on its cap
+- tapOn:
+    id: compose-family-block-js
+- tapOn:
+    id: compose-family-switch-copy
+- extendedWaitUntil:
+    visible: 'Blocked JS: timed out'
+    timeout: 90000
+- assertVisible: 'UI callback: none'
+- assertVisible: 'State: true Callback: false Revision: 1'
 
 - tapOn:
     id: compose-family-select-dialog
@@ -37,10 +61,29 @@ appId: dev.vxrn.nativefeatures.tests
 - tapOn: Close custom dialog
 - assertNotVisible: Custom dialog content
 - assertVisible: 'Dismissals: 0'
+- tapOn:
+    id: compose-family-dialog-open-dismissable
+- assertVisible: Custom dialog content
+- back
+- assertNotVisible: Custom dialog content
+- assertVisible: 'Dismissals: 1'
+- tapOn:
+    id: compose-family-dialog-open-dismissable
+- assertVisible: Custom dialog content
+- tapOn:
+    point: '5%,10%'
+- assertNotVisible: Custom dialog content
+- assertVisible: 'Dismissals: 2'
 
 - tapOn:
     id: compose-family-select-carousel
 - assertVisible: Carousel item 0
+# a centre swipe scrolls about 320px; item 0 is 180dp wide, so two swipes clear it
+- swipe:
+    from:
+      id: compose-family-carousel
+    direction: LEFT
+    duration: 500
 - swipe:
     from:
       id: compose-family-carousel
@@ -51,6 +94,12 @@ appId: dev.vxrn.nativefeatures.tests
     id: compose-family-scroll-toggle
 - assertVisible: 'Scroll: false'
 - assertVisible: Carousel item 0
+# a centre swipe scrolls about 320px; item 0 is 180dp wide, so two swipes clear it
+- swipe:
+    from:
+      id: compose-family-carousel
+    direction: LEFT
+    duration: 500
 - swipe:
     from:
       id: compose-family-carousel
@@ -79,9 +128,8 @@ appId: dev.vxrn.nativefeatures.tests
 - assertVisible: '2026-10-12/2026-10-14'
 - tapOn:
     id: compose-family-range-open
-- tapOn:
-    text: '20'
-    index: 0
+# material3 labels each day cell with its full date
+- tapOn: 'Tuesday, October 20, 2026'
 - tapOn: Confirm range
 - extendedWaitUntil:
     visible: '2026-10-12/2026-10-20'

@@ -5,6 +5,7 @@ package dev.onejs.onenative
 import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material3.carousel.*
@@ -114,8 +115,11 @@ private fun RenderFloatingToolbar(node: OneNativeComposeNodeView, props: OneNati
     val content: @Composable () -> Unit = {
         node.renderedChildren.filter { it !== fab }.forEach { child -> key(child) { RenderComposeNode(child) } }
     }
-    if (fab == null) HorizontalFloatingToolbar(expanded = true, modifier = modifier, colors = colors) { content() }
-    else HorizontalFloatingToolbar(expanded = true, modifier = modifier, colors = colors, floatingActionButton = {
+    // the toolbar sizes to its content; the host's exact size would reach its
+    // fab layout as a tight minWidth above the width left beside the fab
+    val toolbarModifier = modifier.wrapContentSize()
+    if (fab == null) HorizontalFloatingToolbar(expanded = true, modifier = toolbarModifier, colors = colors) { content() }
+    else HorizontalFloatingToolbar(expanded = true, modifier = toolbarModifier, colors = colors, floatingActionButton = {
         if (vibrant) FloatingToolbarDefaults.VibrantFloatingActionButton(onClick = fab::handlePress, modifier = Modifier.applyReactSemantics(fab, fab.renderedProps), containerColor = colors.fabContainerColor, contentColor = colors.fabContentColor) {
             fab.renderedChildren.forEach { RenderComposeNode(it) }
         } else FloatingToolbarDefaults.StandardFloatingActionButton(onClick = fab::handlePress, modifier = Modifier.applyReactSemantics(fab, fab.renderedProps), containerColor = colors.fabContainerColor, contentColor = colors.fabContentColor) {
