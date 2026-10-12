@@ -307,7 +307,9 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   onNativeComposeNodeTextFieldFocusChange?: (event: {
     nativeEvent: { value: boolean; eventCount: number; revision: number }
   }) => void
-  onNativeComposeNodeTextFieldSubmit?: (event: unknown) => void
+  onNativeComposeNodeTextFieldSubmit?: (event: {
+    nativeEvent: { text: string; eventCount: number }
+  }) => void
   onNativeComposeNodeNumberValueChange?: (event: {
     nativeEvent: { value: number; eventCount: number; revision: number }
   }) => void
@@ -1018,7 +1020,9 @@ function SearchBarNode({
       onNativeComposeNodeBooleanValueChange={(event) =>
         controlledExpanded.onNativeChange(event.nativeEvent)
       }
-      onNativeComposeNodeTextFieldSubmit={onSearch ? () => onSearch(query) : undefined}
+      onNativeComposeNodeTextFieldSubmit={
+        onSearch ? (event) => onSearch(event.nativeEvent.text) : undefined
+      }
     >
       {children}
     </ComposeNode>

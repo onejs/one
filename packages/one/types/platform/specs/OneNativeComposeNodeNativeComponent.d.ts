@@ -278,6 +278,7 @@ interface NativeProps extends ViewProps {
         revision: Int32;
     }>>;
     onNativeComposeNodeTextFieldSubmit?: DirectEventHandler<Readonly<{
+        text: string;
         eventCount: Int32;
     }>>;
     onNativeComposeNodeNumberValueChange?: DirectEventHandler<Readonly<{

@@ -275,7 +275,9 @@ interface NativeProps extends ViewProps {
   onNativeComposeNodeTextFieldFocusChange?: DirectEventHandler<
     Readonly<{ value: boolean; eventCount: Int32; revision: Int32 }>
   >
-  onNativeComposeNodeTextFieldSubmit?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
+  onNativeComposeNodeTextFieldSubmit?: DirectEventHandler<
+    Readonly<{ text: string; eventCount: Int32 }>
+  >
   onNativeComposeNodeNumberValueChange?: DirectEventHandler<
     Readonly<{ value: Double; eventCount: Int32; revision: Int32 }>
   >

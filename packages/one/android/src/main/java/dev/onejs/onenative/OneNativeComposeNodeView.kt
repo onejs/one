@@ -1665,13 +1665,14 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         )
     }
 
-    internal fun handleSubmit() {
+    internal fun handleSubmit(submittedQuery: String) {
         if (!compositionActive || committedProps.disabled || !isEnabled) return
         submitEventCount += 1
         UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
             OneNativeComposeNodeTextFieldSubmitEvent(
                 surfaceId = UIManagerHelper.getSurfaceId(this),
                 viewTag = id,
+                text = submittedQuery,
                 eventCount = submitEventCount,
             )
         )
@@ -2531,7 +2532,7 @@ private fun RenderComposeSearchBar(
         SearchBarDefaults.InputField(
             query = node.renderedTextValue,
             onQueryChange = node::handleTextChanged,
-            onSearch = { node.handleSubmit() },
+            onSearch = { submitted -> node.handleSubmit(submitted) },
             expanded = expanded,
             onExpandedChange = node::handleExpandedChanged,
             enabled = enabled,
@@ -3251,10 +3252,10 @@ private fun RenderComposeTextField(
         )
     val keyboardActions =
         KeyboardActions(
-            onDone = { node.handleSubmit() },
-            onGo = { node.handleSubmit() },
-            onSearch = { node.handleSubmit() },
-            onSend = { node.handleSubmit() },
+            onDone = { node.handleSubmit(node.renderedTextValue) },
+            onGo = { node.handleSubmit(node.renderedTextValue) },
+            onSearch = { node.handleSubmit(node.renderedTextValue) },
+            onSend = { node.handleSubmit(node.renderedTextValue) },
         )
     val visualTransformation =
         if (props.secureText || props.keyboardType.equals("password", ignoreCase = true)) {

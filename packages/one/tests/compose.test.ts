@@ -773,6 +773,51 @@ describe('compose search bar', () => {
     })
   })
 
+  it('submits the latest query when a change and submit batch together', () => {
+    for (const component of [Compose.SearchBar, Compose.DockedSearchBar]) {
+      const onSearch = vi.fn()
+      const native = mount(component, { ...bar, onSearch })
+      const stale = native()
+      act(() => {
+        stale.onNativeComposeNodeTextValueChange({
+          nativeEvent: { text: 'latest', eventCount: 1, revision: 0 },
+        })
+        stale.onNativeComposeNodeTextFieldSubmit({
+          nativeEvent: { text: 'latest', eventCount: 1 },
+        })
+      })
+      expect(onSearch).toHaveBeenCalledTimes(1)
+      expect(onSearch.mock.calls[0][0]).toBe('latest')
+    }
+  })
+
+  it('submits the re-rendered query when change and submit land separately', () => {
+    const onSearch = vi.fn()
+    const props = { ...bar, onSearch }
+    let renderer: TestRenderer.ReactTestRenderer | undefined
+    act(() => {
+      renderer = TestRenderer.create(createElement(Compose.SearchBar as never, props as never))
+    })
+    const native = () => renderer!.root.findByType('div' as never).props
+    act(() => {
+      native().onNativeComposeNodeTextValueChange({
+        nativeEvent: { text: 'latest', eventCount: 1, revision: 0 },
+      })
+    })
+    act(() => {
+      renderer!.update(
+        createElement(Compose.SearchBar as never, { ...props, query: 'latest' } as never)
+      )
+    })
+    act(() => {
+      native().onNativeComposeNodeTextFieldSubmit({
+        nativeEvent: { text: 'latest', eventCount: 2 },
+      })
+    })
+    expect(onSearch).toHaveBeenCalledTimes(1)
+    expect(onSearch.mock.calls[0][0]).toBe('latest')
+  })
+
   it('renders leading and trailing icon slots', () => {
     expect(render(Compose.SearchBar.LeadingIcon, { children: null })).toMatchObject({
       props: { nodeType: 'searchbarslot', slotName: 'leadingIcon' },

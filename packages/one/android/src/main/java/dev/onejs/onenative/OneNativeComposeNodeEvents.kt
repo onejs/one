@@ -41,6 +41,7 @@ internal class OneNativeComposeNodeTextFieldFocusChangeEvent(
 internal class OneNativeComposeNodeTextFieldSubmitEvent(
     surfaceId: Int,
     viewTag: Int,
+    private val text: String,
     private val eventCount: Int,
 ) : Event<OneNativeComposeNodeTextFieldSubmitEvent>(surfaceId, viewTag) {
     override fun getEventName(): String = "topNativeComposeNodeTextFieldSubmit"
@@ -49,6 +50,7 @@ internal class OneNativeComposeNodeTextFieldSubmitEvent(
 
     override fun getEventData(): WritableMap =
         Arguments.createMap().apply {
+            putString("text", text)
             putInt("eventCount", eventCount)
         }
 }
