@@ -12,6 +12,7 @@
 //     --device-id emulator-5554 --apk tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk \
 //     [--suite store-review|screen-capture-prevent|all] [--artifact-dir DIR] [--metro-port PORT] [--install-only] [--no-install]
 import { execFileSync } from 'node:child_process'
+import { androidXmlAttributes } from './android-ui-xml'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
@@ -113,10 +114,8 @@ function parseXml(xml: string): XmlNode[] {
   const pattern = /<node\b([\s\S]*?)\/?>/g
   for (const match of xml.matchAll(pattern)) {
     const raw = match[1]
-    const attr = (name: string): string => {
-      const found = raw.match(new RegExp(`${name}="([^"]*)"`))
-      return found ? found[1] : ''
-    }
+    const attrs = androidXmlAttributes(raw)
+    const attr = (name: string): string => attrs[name] ?? ''
     nodes.push({
       text: attr('text'),
       contentDesc: attr('content-desc'),
