@@ -19,6 +19,10 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationPlace` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPlace; }
+// Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
+// Forward declaration of `RegionState` to properly resolve imports.
+namespace margelo::nitro::one { enum class RegionState; }
 
 #include "LocationPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -27,6 +31,8 @@ namespace margelo::nitro::one { struct LocationPlace; }
 #include <string>
 #include "LocationPlace.hpp"
 #include <vector>
+#include "LocationRegion.hpp"
+#include "RegionState.hpp"
 
 namespace margelo::nitro::one {
 
@@ -61,10 +67,17 @@ namespace margelo::nitro::one {
       // Methods
       virtual LocationPermissionStatus getPermissionStatus() = 0;
       virtual std::shared_ptr<Promise<LocationPermissionStatus>> requestWhenInUsePermission() = 0;
+      virtual std::shared_ptr<Promise<LocationPermissionStatus>> requestAlwaysAuthorization() = 0;
       virtual std::shared_ptr<Promise<LocationPosition>> getCurrentPosition() = 0;
       virtual std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError, bool background) = 0;
       virtual std::shared_ptr<Promise<std::vector<LocationPlace>>> geocodeAddress(const std::string& address) = 0;
       virtual std::shared_ptr<Promise<std::vector<LocationPlace>>> reverseGeocode(double latitude, double longitude) = 0;
+      virtual std::shared_ptr<Promise<void>> startMonitoring(const LocationRegion& region) = 0;
+      virtual std::shared_ptr<Promise<void>> stopMonitoring(const std::string& identifier) = 0;
+      virtual std::vector<LocationRegion> monitoredRegions() = 0;
+      virtual std::shared_ptr<Promise<RegionState>> requestState(const std::string& identifier) = 0;
+      virtual std::function<void()> addDidEnterRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) = 0;
+      virtual std::function<void()> addDidExitRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) = 0;
 
     protected:
       // Hybrid Setup

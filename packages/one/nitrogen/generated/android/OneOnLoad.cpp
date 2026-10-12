@@ -59,6 +59,7 @@
 #include "JHybridOneLocationSpec.hpp"
 #include "JFunc_void_LocationPosition.hpp"
 #include "JFunc_void_std__string_std__string.hpp"
+#include "JFunc_void_LocationRegion.hpp"
 #include "JHybridOneMapServicesSpec.hpp"
 #include "JHybridOneMotionSpec.hpp"
 #include "JFunc_void_MotionReading.hpp"
@@ -503,6 +504,7 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneLocationSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_LocationPosition_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_std__string_std__string_cxx::registerNatives();
+  margelo::nitro::one::JFunc_void_LocationRegion_cxx::registerNatives();
   margelo::nitro::one::JHybridOneMapServicesSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneMotionSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_MotionReading_cxx::registerNatives();

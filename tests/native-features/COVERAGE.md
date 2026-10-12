@@ -22,7 +22,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Print` | print | print, native-modules:unavailable | missing |  |
 | `One.StoreReview` | store-review | native-modules:unavailable | missing |  |
 | `One.QuickActions` | quick-actions | quick-actions, native-modules:unavailable | missing |  |
-| `One.Location` | location | location, native-modules:unavailable | missing |  |
+| `One.Location` | location, geofencing | location, geofencing, native-modules:unavailable | missing |  |
 | `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, audio, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-background | audio, native-modules:unavailable | missing |  |
 | `One.Share` | share | share, native-modules:unavailable | missing |  |

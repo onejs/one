@@ -156,6 +156,25 @@ open class HybridOneLocationSpec_cxx {
   }
   
   @inline(__always)
+  public final func requestAlwaysAuthorization() -> bridge.Result_std__shared_ptr_Promise_LocationPermissionStatus___ {
+    do {
+      let __result = try self.__implementation.requestAlwaysAuthorization()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_LocationPermissionStatus__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_LocationPermissionStatus__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_LocationPermissionStatus__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_LocationPermissionStatus___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
   public final func getCurrentPosition() -> bridge.Result_std__shared_ptr_Promise_LocationPosition___ {
     do {
       let __result = try self.__implementation.getCurrentPosition()
@@ -246,6 +265,121 @@ open class HybridOneLocationSpec_cxx {
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
       return bridge.create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func startMonitoring(region: LocationRegion) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.startMonitoring(region: region)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func stopMonitoring(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.stopMonitoring(identifier: String(identifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func monitoredRegions() -> bridge.Result_std__vector_LocationRegion__ {
+    do {
+      let __result = try self.__implementation.monitoredRegions()
+      let __resultCpp = { () -> bridge.std__vector_LocationRegion_ in
+        var __vector = bridge.create_std__vector_LocationRegion_(__result.count)
+        for __item in __result {
+          __vector.push_back(__item)
+        }
+        return __vector
+      }()
+      return bridge.create_Result_std__vector_LocationRegion__(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__vector_LocationRegion__(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func requestState(identifier: std.string) -> bridge.Result_std__shared_ptr_Promise_RegionState___ {
+    do {
+      let __result = try self.__implementation.requestState(identifier: String(identifier))
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_RegionState__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_RegionState__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_RegionState__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_RegionState___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_RegionState___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func addDidEnterRegionListener(listener: bridge.Func_void_LocationRegion) -> bridge.Result_std__function_void____ {
+    do {
+      let __result = try self.__implementation.addDidEnterRegionListener(listener: { () -> (LocationRegion) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_LocationRegion(listener)
+        return { (__region: LocationRegion) -> Void in
+          __wrappedFunction.call(__region)
+        }
+      }())
+      let __resultCpp = { () -> bridge.Func_void in
+        let __closureWrapper = Func_void(__result)
+        return bridge.create_Func_void(__closureWrapper.toUnsafe())
+      }()
+      return bridge.create_Result_std__function_void____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__function_void____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func addDidExitRegionListener(listener: bridge.Func_void_LocationRegion) -> bridge.Result_std__function_void____ {
+    do {
+      let __result = try self.__implementation.addDidExitRegionListener(listener: { () -> (LocationRegion) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_LocationRegion(listener)
+        return { (__region: LocationRegion) -> Void in
+          __wrappedFunction.call(__region)
+        }
+      }())
+      let __resultCpp = { () -> bridge.Func_void in
+        let __closureWrapper = Func_void(__result)
+        return bridge.create_Func_void(__closureWrapper.toUnsafe())
+      }()
+      return bridge.create_Result_std__function_void____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
 }

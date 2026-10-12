@@ -297,6 +297,23 @@ ${APP_DELEGATE_PBXPROJ}`,
     })
     expect(noLocationPlist.content).not.toContain('NSLocationWhenInUseUsageDescription')
 
+    const alwaysLocationPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: {
+        ...app,
+        location: { whenInUse: 'Find nearby cafés & parks', alwaysAndWhenInUse: 'Monitor regions' },
+      },
+    })
+    if (alwaysLocationPlist.content === null) throw new Error('always location plist was not rendered')
+    expect(
+      alwaysLocationPlist.content.match(/<key>NSLocationAlwaysAndWhenInUseUsageDescription<\/key>/g)
+    ).toHaveLength(1)
+    expect(alwaysLocationPlist.content).toContain(
+      '<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>\n\t<string>Monitor regions</string>'
+    )
+
     const backgroundLocationPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
       content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',

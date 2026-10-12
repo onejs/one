@@ -16,10 +16,17 @@ namespace margelo::nitro::one {
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("getPermissionStatus", &HybridOneLocationSpec::getPermissionStatus);
       prototype.registerHybridMethod("requestWhenInUsePermission", &HybridOneLocationSpec::requestWhenInUsePermission);
+      prototype.registerHybridMethod("requestAlwaysAuthorization", &HybridOneLocationSpec::requestAlwaysAuthorization);
       prototype.registerHybridMethod("getCurrentPosition", &HybridOneLocationSpec::getCurrentPosition);
       prototype.registerHybridMethod("addPositionListener", &HybridOneLocationSpec::addPositionListener);
       prototype.registerHybridMethod("geocodeAddress", &HybridOneLocationSpec::geocodeAddress);
       prototype.registerHybridMethod("reverseGeocode", &HybridOneLocationSpec::reverseGeocode);
+      prototype.registerHybridMethod("startMonitoring", &HybridOneLocationSpec::startMonitoring);
+      prototype.registerHybridMethod("stopMonitoring", &HybridOneLocationSpec::stopMonitoring);
+      prototype.registerHybridMethod("monitoredRegions", &HybridOneLocationSpec::monitoredRegions);
+      prototype.registerHybridMethod("requestState", &HybridOneLocationSpec::requestState);
+      prototype.registerHybridMethod("addDidEnterRegionListener", &HybridOneLocationSpec::addDidEnterRegionListener);
+      prototype.registerHybridMethod("addDidExitRegionListener", &HybridOneLocationSpec::addDidExitRegionListener);
     });
   }
 

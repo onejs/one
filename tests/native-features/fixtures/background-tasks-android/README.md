@@ -36,8 +36,9 @@ is involved.
 On a claimed, idle API 37 device, unplug the emulated battery before launching.
 The mounted fixture schedules one delayed refresh and three charging-gated
 processing requests, cancels one, and rejects an unconfigured identifier.
-Capture the `scheduled` receipt, background the Activity, run `am kill`, and
-assert `pidof` is empty. Enable charging and allow JobScheduler to dispatch
+Capture the `scheduled` receipt, background the Activity, await Android's
+`wm_on_stop_called`, run `am kill`, await its matching `am_kill`, and assert
+`pidof` is empty. Enable charging and allow JobScheduler to dispatch
 normally. Do not use `cmd jobscheduler run`, the debug deep link, force-stop,
 or an Activity relaunch to manufacture delivery.
 
@@ -54,5 +55,34 @@ in a new process with no Activity or React surface, earliest-time and power
 constraints, cancellation, unknown-ID rejection, successful completion, and
 failed-handler propagation into actual WorkSpec states.
 
-An emulator result establishes Android runtime behavior on that emulator.
-Physical-device and Play-enrolled review-dialog acceptance stay separate.
+## Recorded acceptance
+
+TESTED on API 37, 2026-10-12: the current-beta native build at `5826934cb`
+passed (`:app:assembleDebug`, 370 tasks). The runner's lifecycle correction is
+recorded with the build as `runner-diff.patch` and `runner-sha256.txt`.
+Android stopped the Activity and killed PID 4497 with reason `kill background`.
+`pidof` was empty before power was enabled. OS scheduling started PID 4585,
+which loaded the embedded JavaScript and ran exactly three distinct handlers
+without creating an Activity or mounting a React surface.
+
+The processing success and intentional failure ran only after charging was
+enabled. Refresh ran after its earliest timestamp. The cancelled request had
+no handler. The native WorkManager database independently recorded refresh
+and processing success (state 2), cancellation (state 5), and handler failure
+(state 3). Unknown submission rejected with `E_BACKGROUND_TASK_INPUT`.
+The same run passed Calendar CRUD/filtering and invalid/missing-ID assertions
+through the real React/Nitro adapter. Wrong PIDs, extra handlers, early delivery,
+mounted cold surfaces, incorrect errors or wrong database states fail the
+verifier. Event waits retain their original 180-second budget.
+
+Evidence lives outside the managed tree in
+`/tmp/one-android-services-v2-evidence/background-runtime9`: native build log,
+receipt JSONL, lifecycle logcat, battery/job dumps, WorkManager database/WAL,
+and `verification.txt`. Bundle SHA-256:
+`8e665db6e0c3614dbf74b676536c34f3e5c2870468473e430cdd7a4ca1bcf806`.
+APK SHA-256:
+`b6cbd7e77ff1e138adc9c96d22a02b413d74653fbb4b65add17f379d4f567865`.
+
+This establishes runtime behavior on this emulator. Physical proof remains
+separate. This fixture does not exercise Play review UI. CI and final release
+acceptance remain separate from this focused proof.

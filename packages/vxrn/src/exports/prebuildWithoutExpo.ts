@@ -2633,6 +2633,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       }
       if (app.location !== undefined) {
         usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
+        if (app.location.alwaysAndWhenInUse !== undefined) {
+          usage.set(
+            'NSLocationAlwaysAndWhenInUseUsageDescription',
+            app.location.alwaysAndWhenInUse
+          )
+        }
       }
       if (app.pedometer !== undefined) {
         usage.set('NSMotionUsageDescription', app.pedometer.usage)
@@ -3302,9 +3308,11 @@ export function installNativeDependencies(args: {
   if (!platform || platform === 'ios') {
     // cocoapods reads podfiles and native module config as the locale's
     // encoding; a shell without a utf-8 locale fails on any non-ascii byte.
+    // one owns this pod install, so react native's notice pointing users at
+    // expo or the community cli does not apply.
     execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
       stdio: 'inherit',
-      env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
+      env: { ...process.env, LC_ALL: 'en_US.UTF-8', RCT_IGNORE_PODS_DEPRECATION: '1' },
     })
   }
 }

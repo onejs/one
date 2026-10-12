@@ -1,0 +1,55 @@
+---
+title: Geofencing
+description: Monitor circular regions for enter and exit events on iOS and Android
+---
+
+> Beta: region monitoring is proven on iOS. The Android device proof is still running, so treat Android enter/exit delivery as unproven for now.
+
+`One.Location` monitors circular regions on iOS and Android with the names, inputs, and composition of Core Location's `CLRegion` and `CLLocationManager`. It adds `requestAlwaysAuthorization()`, `startMonitoring(region)`, `stopMonitoring(identifier)`, `monitoredRegions()`, `requestState(identifier)`, `addDidEnterRegionListener(fn)`, and `addDidExitRegionListener(fn)`.
+
+```tsx
+import { One } from 'one'
+
+const permission = await One.Location.requestAlwaysAuthorization()
+if (permission === 'always' || permission === 'whenInUse') {
+  await One.Location.startMonitoring({
+    identifier: 'office',
+    center: { latitude: 37.7749, longitude: -122.4194 },
+    radius: 100,
+  })
+  const entered = One.Location.addDidEnterRegionListener((region) => {
+    console.log('entered', region.identifier)
+  })
+  const exited = One.Location.addDidExitRegionListener((region) => {
+    console.log('exited', region.identifier)
+  })
+  // call entered.remove() and exited.remove() when the screen no longer
+  // needs events. call stopMonitoring(identifier) to stop one region.
+}
+```
+
+A region carries `identifier`, `center` with `latitude` and `longitude`, `radius` in meters, `notifyOnEntry`, and `notifyOnExit`, matching `CLCircularRegion`'s `identifier`, `center`, `radius`, `notifyOnEntry`, and `notifyOnExit`. `identifier` is required and non-empty. `notifyOnEntry` and `notifyOnExit` default to `true`. Monitored regions report `state`: `'unknown'` before the first determination, then `'inside'` or `'outside'`, matching `CLRegionState`. Like `startMonitoring(for:)`, each call adds one region; monitoring up to 20 regions on iOS and 100 on Android, beyond which `startMonitoring` rejects with `E_LOCATION_GEOFENCING`. Starting an unchanged region resolves without restarting it. Stopping an identifier that is not monitored resolves without effect, like `stopMonitoring(for:)` with an unmonitored region. Invalid regions throw a `TypeError` at the JS boundary before reaching native; native still guards and rejects them with `E_LOCATION_REGION`.
+
+The two listeners stand in for the location manager delegate: `addDidEnterRegionListener` fires like `locationManager(_:didEnterRegion:)` and `addDidExitRegionListener` like `locationManager(_:didExitRegion:)`, each receiving the region only. This callback pair is the one JS adaptation; everything else keeps the SDK names. Each listener returns `{ remove() }`. No event fires for the initial determination; call `requestState(identifier)`, which determines state like `requestState(for:)` and resolves with it. Regions with `notifyOnEntry: false` never emit enter events and regions with `notifyOnExit: false` never emit exit events, but their `state` still tracks. Starting monitoring without location permission rejects with `E_LOCATION_PERMISSION`. Region monitoring unavailable on the device rejects with `E_LOCATION_UNAVAILABLE`. `requestState` for an identifier that is not monitored rejects with `E_LOCATION_REGION`.
+
+Request the always grant while the app is active, usually after a tap. `requestAlwaysAuthorization()` resolves with the resulting status: `notDetermined`, `restricted`, `denied`, `whenInUse`, or `always`. If the user already decided, it returns that status without another prompt. On Android the background grant is requested second on Android 11 and newer; without `location.background` in the manifest the status resolves to `whenInUse` at best. The request rejects with `E_LOCATION_MANIFEST` when the usage text is missing and `E_LOCATION_BACKGROUND` when the app is inactive.
+
+Add both prompt strings to the native app manifest for background delivery:
+
+```ts
+native: {
+  app: {
+    location: {
+      whenInUse: 'Show places near you.',
+      alwaysAndWhenInUse: 'Alert when you arrive or leave saved places.',
+      background: true,
+    },
+  },
+}
+```
+
+`whenInUse` stamps `NSLocationWhenInUseUsageDescription` and the foreground Android permissions. `alwaysAndWhenInUse` stamps `NSLocationAlwaysAndWhenInUseUsageDescription`, which `requestAlwaysAuthorization()` requires on iOS. `background: true` adds `location` to `UIBackgroundModes` and stamps `ACCESS_BACKGROUND_LOCATION` on Android; background watches and region monitoring run under a location-type foreground service with a persistent notification while registered. Monitoring keeps location hardware active, so call `stopMonitoring()` for regions promptly when tracking ends to limit battery use. On iOS the system can wake a terminated app on a new region event; on Android a terminated app does not restart for region events, so start monitoring again after a fresh launch. The iOS simulator has no region-monitoring hardware, so `startMonitoring` rejects with `E_LOCATION_UNAVAILABLE` there; enter and exit delivery needs a device.
+
+On the Android side the same calls drive software regions over the platform location providers with the same inside/outside tracking: the request identifier maps to the geofence request id and the entry/exit flags map to the transition types, with no Play Services dependency. At most 100 regions can be monitored.
+
+On web and the server there is no region monitoring: `startMonitoring` and `stopMonitoring` resolve without effect, `monitoredRegions()` returns `[]`, `requestState()` resolves `'unknown'`, listeners never fire, and `requestAlwaysAuthorization()` resolves `'denied'`.

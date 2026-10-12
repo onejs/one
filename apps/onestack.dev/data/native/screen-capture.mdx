@@ -87,8 +87,7 @@ notification comes from the API 34 activity callback and is activity-scoped:
 ADB and instrumentation captures do not trigger it, and below API 34 the
 listener stays silent.
 
-To block screenshots and screen recordings, call `prevent()`, matching
-`expo-screen-capture`. It resolves once the platform hides your content: on
+To block screenshots and screen recordings, call `prevent()`. It resolves once the platform hides your content: on
 iOS the app window moves behind a secure layer so screenshots come out blank,
 and a black overlay covers the window while the screen reports captured
 (`UIScreen.isCaptured`) or the scene reports capture state; on Android the

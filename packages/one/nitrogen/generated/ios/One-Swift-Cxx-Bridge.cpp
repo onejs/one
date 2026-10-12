@@ -1167,6 +1167,22 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
   
+  // pragma MARK: std::function<void(RegionState /* result */)>
+  Func_void_RegionState create_Func_void_RegionState(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_RegionState::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](RegionState result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+  
+  // pragma MARK: std::function<void(const LocationRegion& /* region */)>
+  Func_void_LocationRegion create_Func_void_LocationRegion(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_LocationRegion::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const LocationRegion& region) mutable -> void {
+      swiftClosure.call(region);
+    };
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
   std::shared_ptr<HybridOneLocationSpec> create_std__shared_ptr_HybridOneLocationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneLocationSpec_cxx swiftPart = One::HybridOneLocationSpec_cxx::fromUnsafe(swiftUnsafePointer);

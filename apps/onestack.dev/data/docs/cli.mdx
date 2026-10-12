@@ -101,7 +101,7 @@ type ServeOptions = {
 
 ## one prebuild
 
-Generate the native Xcode/Android project for Expo-free apps. Requires `native.app` in your Vite config with the app name, iOS bundle ID, and Android application ID. See the [Build or Run the Native iOS App](/docs/guides-ios-native) guide.
+Generate the native Xcode and Android projects. Requires `native.app` in your Vite config with the app name, iOS bundle ID, and Android application ID. See the [Build or Run the Native iOS App](/docs/guides-ios-native) guide.
 
 ```bash
 one prebuild [options]
@@ -110,7 +110,7 @@ one prebuild [options]
 --no-install             # skip installing native dependencies
 ```
 
-Apps with `expo` in their dependencies cannot use this command. Run Expo prebuild with `vxrn/expo-plugin` in the Expo config instead.
+Apps with `expo` in their dependencies use Expo prebuild instead; see [Coming from Expo](/native/migrating-to-one#keeping-expo-prebuild).
 
 ## one run:ios
 

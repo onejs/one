@@ -1089,8 +1089,7 @@ function CustomDialog() {
 
 ## Material carousels
 
-Carousel is a family of three components, matching the [Expo Compose
-exports](https://docs.expo.dev/versions/latest/sdk/ui/jetpack-compose/carousel/):
+Carousel is a family of three components:
 
 | Component | Size inputs |
 | --- | --- |
@@ -1188,7 +1187,7 @@ through `style` at the root or `composeStyle` inside a Compose tree. `color`
 defaults to transparent. `cornerRounding`, `smoothing`, `innerRadius`, and
 `radius` are fractions from zero to one. `verticesCount` is an integer of at
 least three (default six). `cornerRounding` and `smoothing` default to zero;
-`radius` and `innerRadius` default to zero, matching the Expo native shape record. Set `radius={1}` for a full-size circle or star. Stars use the two radii; polygons
+`radius` and `innerRadius` default to zero. Set `radius={1}` for a full-size circle or star. Stars use the two radii; polygons
 use the vertex count. Pill uses smoothing, Circle uses radius and vertex
 count, and Rectangle uses corner rounding and smoothing. RoundedCorner
 uses `cornerRadii={{ topStart, topEnd, bottomStart, bottomEnd }}` in dp,
@@ -1227,6 +1226,6 @@ function NotificationsSwitch() {
 ```
 
 These APIs are Android-only and use One's existing `style` and `composeStyle`
-props. Their SDK/Expo behavioral contracts are preserved; Expo's `modifiers`
-array is not an input to One's Compose tree. Native feature acceptance is
+props. Their SDK behavioral contracts are preserved; a `modifiers` array is
+not an input to One's Compose tree. Native feature acceptance is
 tracked separately from adapter validation.

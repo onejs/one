@@ -304,8 +304,10 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
+// Forward declaration of `LocationRegion` to properly resolve imports.
 // Forward declaration of `MailComposeResult` to properly resolve imports.
 namespace margelo::nitro::one { enum class MailComposeResult; }
+namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
 // Forward declaration of `MapPlace` to properly resolve imports.
@@ -414,6 +416,10 @@ namespace margelo::nitro::one { enum class PurchaseUpdateStatus; }
 namespace margelo::nitro::one { struct PurchaseUpdate; }
 // Forward declaration of `QuickActionItem` to properly resolve imports.
 namespace margelo::nitro::one { struct QuickActionItem; }
+// Forward declaration of `RegionCenter` to properly resolve imports.
+namespace margelo::nitro::one { struct RegionCenter; }
+// Forward declaration of `RegionState` to properly resolve imports.
+namespace margelo::nitro::one { enum class RegionState; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ScreenCaptureResult` to properly resolve imports.
@@ -717,6 +723,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
+#include "LocationRegion.hpp"
 #include "MailComposeResult.hpp"
 #include "MapCoordinate.hpp"
 #include "MapPlace.hpp"
@@ -772,6 +779,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PurchaseUpdate.hpp"
 #include "PurchaseUpdateStatus.hpp"
 #include "QuickActionItem.hpp"
+#include "RegionCenter.hpp"
+#include "RegionState.hpp"
 #include "ReminderInfo.hpp"
 #include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
@@ -1728,6 +1737,15 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
   }
 
+  // pragma MARK: Result<std::string>
+  using Result_std__string_ = Result<std::string>;
+  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
+    return Result<std::string>::withValue(value);
+  }
+  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
+    return Result<std::string>::withError(error);
+  }
+  
   // pragma MARK: Result<std::string>
   using Result_std__string_ = Result<std::string>;
   inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
@@ -4483,6 +4501,88 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__vector_LocationPlace__Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::optional<RegionState>
+  /**
+   * Specialized version of `std::optional<RegionState>`.
+   */
+  using std__optional_RegionState_ = std::optional<RegionState>;
+  inline std::optional<RegionState> create_std__optional_RegionState_(const RegionState& value) noexcept {
+    return std::optional<RegionState>(value);
+  }
+  inline bool has_value_std__optional_RegionState_(const std::optional<RegionState>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline RegionState get_std__optional_RegionState_(const std::optional<RegionState>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::vector<LocationRegion>
+  /**
+   * Specialized version of `std::vector<LocationRegion>`.
+   */
+  using std__vector_LocationRegion_ = std::vector<LocationRegion>;
+  inline std::vector<LocationRegion> create_std__vector_LocationRegion_(size_t size) noexcept {
+    std::vector<LocationRegion> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<RegionState>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<RegionState>>`.
+   */
+  using std__shared_ptr_Promise_RegionState__ = std::shared_ptr<Promise<RegionState>>;
+  inline std::shared_ptr<Promise<RegionState>> create_std__shared_ptr_Promise_RegionState__() noexcept {
+    return Promise<RegionState>::create();
+  }
+  inline PromiseHolder<RegionState> wrap_std__shared_ptr_Promise_RegionState__(std::shared_ptr<Promise<RegionState>> promise) noexcept {
+    return PromiseHolder<RegionState>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(RegionState /* result */)>
+  /**
+   * Specialized version of `std::function<void(RegionState)>`.
+   */
+  using Func_void_RegionState = std::function<void(RegionState /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(RegionState / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_RegionState_Wrapper final {
+  public:
+    explicit Func_void_RegionState_Wrapper(std::function<void(RegionState /* result */)>&& func): _function(std::make_unique<std::function<void(RegionState /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<RegionState>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(RegionState /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_RegionState create_Func_void_RegionState(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_RegionState_Wrapper wrap_Func_void_RegionState(Func_void_RegionState value) noexcept {
+    return Func_void_RegionState_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::function<void(const LocationRegion& /* region */)>
+  /**
+   * Specialized version of `std::function<void(const LocationRegion&)>`.
+   */
+  using Func_void_LocationRegion = std::function<void(const LocationRegion& /* region */)>;
+  /**
+   * Wrapper class for a `std::function<void(const LocationRegion& / * region * /)>`, this can be used from Swift.
+   */
+  class Func_void_LocationRegion_Wrapper final {
+  public:
+    explicit Func_void_LocationRegion_Wrapper(std::function<void(const LocationRegion& /* region */)>&& func): _function(std::make_unique<std::function<void(const LocationRegion& /* region */)>>(std::move(func))) {}
+    inline void call(LocationRegion region) const noexcept {
+      _function->operator()(region);
+    }
+  private:
+    std::unique_ptr<std::function<void(const LocationRegion& /* region */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LocationRegion create_Func_void_LocationRegion(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LocationRegion_Wrapper wrap_Func_void_LocationRegion(Func_void_LocationRegion value) noexcept {
+    return Func_void_LocationRegion_Wrapper(std::move(value));
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneLocationSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneLocationSpec>`.
@@ -4529,6 +4629,24 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_std__vector_LocationPlace____ create_Result_std__shared_ptr_Promise_std__vector_LocationPlace____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<LocationPlace>>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::vector<LocationRegion>>
+  using Result_std__vector_LocationRegion__ = Result<std::vector<LocationRegion>>;
+  inline Result_std__vector_LocationRegion__ create_Result_std__vector_LocationRegion__(const std::vector<LocationRegion>& value) noexcept {
+    return Result<std::vector<LocationRegion>>::withValue(value);
+  }
+  inline Result_std__vector_LocationRegion__ create_Result_std__vector_LocationRegion__(const std::exception_ptr& error) noexcept {
+    return Result<std::vector<LocationRegion>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<RegionState>>>
+  using Result_std__shared_ptr_Promise_RegionState___ = Result<std::shared_ptr<Promise<RegionState>>>;
+  inline Result_std__shared_ptr_Promise_RegionState___ create_Result_std__shared_ptr_Promise_RegionState___(const std::shared_ptr<Promise<RegionState>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<RegionState>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_RegionState___ create_Result_std__shared_ptr_Promise_RegionState___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<RegionState>>>::withError(error);
   }
   
   // pragma MARK: std::vector<MapPlace>

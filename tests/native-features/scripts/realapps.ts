@@ -580,11 +580,11 @@ for (const name of appNames) {
   if (!appSources[name]) throw new Error(`Unknown app ${name}`)
   const source = appSources[name]
   if (name === 'one-basic' && !existsSync(source)) {
-    command(['git', 'fetch', 'origin', 'v2-beta-starter'])
+    command(['git', 'fetch', 'origin', 'main'])
     mkdirSync(source, { recursive: true })
     const archive = spawnSync(
       'git',
-      ['archive', 'origin/v2-beta-starter:examples/one-basic'],
+      ['archive', 'origin/main:examples/one-basic'],
       { cwd: repo, maxBuffer: 64 * 1024 * 1024 }
     )
     if (archive.status !== 0) throw new Error(String(archive.stderr))
@@ -594,7 +594,7 @@ for (const name of appNames) {
     if (extracted.status !== 0) throw new Error(String(extracted.stderr))
     writeFileSync(
       join(source, '.realapps-source-revision'),
-      command(['git', 'rev-parse', 'origin/v2-beta-starter']) + '\n'
+      command(['git', 'rev-parse', 'origin/main']) + '\n'
     )
   }
   if (name === 'takeout-free' && !existsSync(source)) {

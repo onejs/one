@@ -42,11 +42,25 @@ class HybridOneLocation :
         val background: Boolean
     )
 
+    private data class MonitoredRegion(
+        val latitude: Double,
+        val longitude: Double,
+        val radius: Double,
+        val notifyOnEntry: Boolean,
+        val notifyOnExit: Boolean,
+        var state: RegionState
+    )
+
     private val mainHandler = Handler(Looper.getMainLooper())
     private val geocoderPool = Executors.newCachedThreadPool()
     private val permissionPromises = mutableListOf<Promise<LocationPermissionStatus>>()
+    private val alwaysPermissionPromises = mutableListOf<Promise<LocationPermissionStatus>>()
+    private var alwaysBackgroundAsked = false
     private val positionPromises = mutableListOf<Promise<LocationPosition>>()
     private val watches = mutableMapOf<UUID, Watch>()
+    private val monitoredRegions = mutableMapOf<String, MonitoredRegion>()
+    private val didEnterListeners = mutableMapOf<UUID, (LocationRegion) -> Unit>()
+    private val didExitListeners = mutableMapOf<UUID, (LocationRegion) -> Unit>()
     private var monitoring = false
     private val fixTimeoutRunnable = Runnable { fixTimeout() }
     private var lastGranted: Boolean? = null
@@ -73,7 +87,7 @@ class HybridOneLocation :
 
     override fun dispose() {
         NitroModules.applicationContext?.removeLifecycleEventListener(this)
-        stopMonitoring()
+        stopMonitoringUpdates()
         stopLocationService()
         geocoderPool.shutdownNow()
         super.dispose()
@@ -114,15 +128,34 @@ class HybridOneLocation :
         permissions: Array<String>,
         grantResults: IntArray
     ): Boolean {
-        if (requestCode != LOCATION_REQUEST_CODE) return false
+        if (requestCode != LOCATION_REQUEST_CODE && requestCode != ALWAYS_REQUEST_CODE) return false
         mainHandler.post {
             markAsked()
             val status = status()
             lastGranted = status == LocationPermissionStatus.WHENINUSE ||
                 status == LocationPermissionStatus.ALWAYS
-            val pending = permissionPromises.toList()
-            permissionPromises.clear()
-            for (promise in pending) promise.resolve(status)
+            if (requestCode == ALWAYS_REQUEST_CODE) {
+                // android 11+ ignores a background grant bundled with the
+                // foreground request: ask it second, keeping the promise.
+                if (!alwaysBackgroundAsked && hasForegroundGrant() && !hasBackgroundGrant() &&
+                    Build.VERSION.SDK_INT >= 29
+                ) {
+                    val context = NitroModules.applicationContext
+                    val activity = currentActivity()
+                    if (context != null && activity != null && declaresBackground(context)) {
+                        alwaysBackgroundAsked = true
+                        requestBackground(activity)
+                        return@post
+                    }
+                }
+                val pending = alwaysPermissionPromises.toList()
+                alwaysPermissionPromises.clear()
+                for (promise in pending) promise.resolve(status)
+            } else {
+                val pending = permissionPromises.toList()
+                permissionPromises.clear()
+                for (promise in pending) promise.resolve(status)
+            }
         }
         return true
     }
@@ -179,6 +212,283 @@ class HybridOneLocation :
         return promise
     }
 
+    override fun requestAlwaysAuthorization(): Promise<LocationPermissionStatus> {
+        val promise = Promise<LocationPermissionStatus>()
+        mainHandler.post {
+            val context = NitroModules.applicationContext
+            if (context == null || !declaresForeground(context)) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_MANIFEST",
+                        "Location.requestAlwaysAuthorization: set native.app.location.whenInUse"
+                    )
+                )
+                return@post
+            }
+            val current = status()
+            if (current != LocationPermissionStatus.NOTDETERMINED) {
+                promise.resolve(current)
+                return@post
+            }
+            if (alwaysPermissionPromises.isNotEmpty()) {
+                alwaysPermissionPromises.add(promise)
+                return@post
+            }
+            val activity = currentActivity()
+            if (activity == null) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_BACKGROUND",
+                        "Location.requestAlwaysAuthorization: app must be active"
+                    )
+                )
+                return@post
+            }
+            alwaysBackgroundAsked = false
+            alwaysPermissionPromises.add(promise)
+            requestForeground(activity)
+        }
+        return promise
+    }
+
+    private fun requestForeground(activity: Activity) {
+        val aware = activity as? PermissionAwareActivity
+        if (aware != null) {
+            aware.requestPermissions(
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                ALWAYS_REQUEST_CODE, this
+            )
+        } else {
+            androidx.core.app.ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                ALWAYS_REQUEST_CODE
+            )
+        }
+    }
+
+    private fun requestBackground(activity: Activity) {
+        val aware = activity as? PermissionAwareActivity
+        if (aware != null) {
+            aware.requestPermissions(
+                arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                ALWAYS_REQUEST_CODE, this
+            )
+        } else {
+            androidx.core.app.ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
+                ALWAYS_REQUEST_CODE
+            )
+        }
+    }
+
+    override fun startMonitoring(region: LocationRegion): Promise<Unit> {
+        val promise = Promise<Unit>()
+        mainHandler.post {
+            val context = NitroModules.applicationContext
+            val manager = locationManager()
+            if (context == null || manager == null || !hasForegroundGrant()) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_PERMISSION",
+                        "Location.startMonitoring: location permission is required"
+                    )
+                )
+                return@post
+            }
+            val identifier = region.identifier.trim()
+            if (identifier.isEmpty()) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_REGION",
+                        "Location.startMonitoring: region identifier is required"
+                    )
+                )
+                return@post
+            }
+            val center = region.center
+            if (!center.latitude.isFinite() ||
+                kotlin.math.abs(center.latitude) > 90 ||
+                !center.longitude.isFinite() || kotlin.math.abs(center.longitude) > 180
+            ) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_REGION",
+                        "Location.startMonitoring: region has an invalid coordinate"
+                    )
+                )
+                return@post
+            }
+            if (!region.radius.isFinite() || region.radius <= 0) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_REGION",
+                        "Location.startMonitoring: region radius must be greater than 0"
+                    )
+                )
+                return@post
+            }
+            if (!monitoredRegions.containsKey(identifier) && monitoredRegions.size >= 100) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_GEOFENCING",
+                        "Location.startMonitoring: at most 100 regions can be monitored"
+                    )
+                )
+                return@post
+            }
+            val notifyOnEntry = region.notifyOnEntry ?: true
+            val notifyOnExit = region.notifyOnExit ?: true
+            val kept = monitoredRegions[identifier]
+            val unchanged = kept != null &&
+                kept.latitude == center.latitude &&
+                kept.longitude == center.longitude &&
+                kept.radius == region.radius &&
+                kept.notifyOnEntry == notifyOnEntry &&
+                kept.notifyOnExit == notifyOnExit
+            if (!unchanged) {
+                monitoredRegions[identifier] = MonitoredRegion(
+                    latitude = center.latitude,
+                    longitude = center.longitude,
+                    radius = region.radius,
+                    notifyOnEntry = notifyOnEntry,
+                    notifyOnExit = notifyOnExit,
+                    state = RegionState.UNKNOWN
+                )
+            }
+            if (!monitoring) startMonitoringUpdates(manager)
+            if (shouldRunGeofenceService(context)) startLocationService(context)
+            promise.resolve(Unit)
+        }
+        return promise
+    }
+
+    override fun stopMonitoring(identifier: String): Promise<Unit> {
+        val promise = Promise<Unit>()
+        mainHandler.post {
+            if (monitoredRegions.remove(identifier) != null) {
+                if (watches.isEmpty() && positionPromises.isEmpty() && monitoring) stopMonitoringUpdates()
+                val context = NitroModules.applicationContext
+                if (context == null || !shouldRunGeofenceService(context)) stopLocationService()
+            }
+            promise.resolve(Unit)
+        }
+        return promise
+    }
+
+    override fun monitoredRegions(): Array<LocationRegion> = monitoredSnapshot()
+
+    override fun requestState(identifier: String): Promise<RegionState> {
+        val promise = Promise<RegionState>()
+        mainHandler.post {
+            val monitored = monitoredRegions[identifier]
+            if (monitored == null) {
+                promise.reject(
+                    OneNativeError(
+                        "E_LOCATION_REGION",
+                        "Location.requestState: no monitored region with that identifier"
+                    )
+                )
+                return@post
+            }
+            if (monitored.state == RegionState.UNKNOWN) {
+                // seed from the recent fix, like the ios requestState
+                // determination, instead of reporting unknown forever.
+                val manager = locationManager()
+                if (manager != null) {
+                    recentPosition(manager)?.let {
+                        evaluateGeofences(it.latitude, it.longitude, silent = true)
+                    }
+                }
+            }
+            promise.resolve(monitored.state)
+        }
+        return promise
+    }
+
+    override fun addDidEnterRegionListener(listener: (region: LocationRegion) -> Unit): () -> Unit {
+        val id = UUID.randomUUID()
+        mainHandler.post { didEnterListeners[id] = listener }
+        return {
+            mainHandler.post { didEnterListeners.remove(id) }
+        }
+    }
+
+    override fun addDidExitRegionListener(listener: (region: LocationRegion) -> Unit): () -> Unit {
+        val id = UUID.randomUUID()
+        mainHandler.post { didExitListeners[id] = listener }
+        return {
+            mainHandler.post { didExitListeners.remove(id) }
+        }
+    }
+
+    private fun monitoredSnapshot(): Array<LocationRegion> {
+        return monitoredRegions.entries.sortedBy { it.key }.map { (identifier, monitored) ->
+            LocationRegion(
+                identifier = identifier,
+                center = RegionCenter(latitude = monitored.latitude, longitude = monitored.longitude),
+                radius = monitored.radius,
+                notifyOnEntry = monitored.notifyOnEntry,
+                notifyOnExit = monitored.notifyOnExit,
+                state = monitored.state
+            )
+        }.toTypedArray()
+    }
+
+    private fun snapshot(identifier: String, monitored: MonitoredRegion): LocationRegion {
+        return LocationRegion(
+            identifier = identifier,
+            center = RegionCenter(latitude = monitored.latitude, longitude = monitored.longitude),
+            radius = monitored.radius,
+            notifyOnEntry = monitored.notifyOnEntry,
+            notifyOnExit = monitored.notifyOnExit,
+            state = monitored.state
+        )
+    }
+
+    private fun evaluateGeofences(latitude: Double, longitude: Double, silent: Boolean) {
+        // states track even with no listener so requestState and a
+        // later listener see the current inside/outside truth.
+        val results = FloatArray(1)
+        for ((identifier, monitored) in monitoredRegions) {
+            try {
+                android.location.Location.distanceBetween(
+                    latitude, longitude, monitored.latitude, monitored.longitude, results
+                )
+            } catch (_: Exception) {
+                continue
+            }
+            val inside = results[0] <= monitored.radius
+            val next = if (inside) RegionState.INSIDE else RegionState.OUTSIDE
+            if (monitored.state == RegionState.UNKNOWN) {
+                monitored.state = next
+                continue
+            }
+            if (monitored.state == next) continue
+            monitored.state = next
+            if (silent) continue
+            val listeners = if (next == RegionState.INSIDE) {
+                if (!monitored.notifyOnEntry) continue
+                didEnterListeners
+            } else {
+                if (!monitored.notifyOnExit) continue
+                didExitListeners
+            }
+            val event = snapshot(identifier, monitored)
+            for (listener in listeners.values.toList()) {
+                try {
+                    listener(event)
+                } catch (_: Exception) {
+                }
+            }
+        }
+    }
+
+    private fun shouldRunGeofenceService(context: Context): Boolean {
+        return monitoredRegions.isNotEmpty() && hasBackgroundGrant() && declaresBackground(context)
+    }
+
     override fun getCurrentPosition(): Promise<LocationPosition> {
         val promise = Promise<LocationPosition>()
         mainHandler.post {
@@ -207,7 +517,7 @@ class HybridOneLocation :
             }
             positionPromises.add(promise)
             if (positionPromises.size == 1 && !monitoring) {
-                startMonitoring(manager)
+                startMonitoringUpdates(manager)
             }
             mainHandler.removeCallbacks(fixTimeoutRunnable)
             mainHandler.postDelayed(fixTimeoutRunnable, 30_000)
@@ -241,19 +551,22 @@ class HybridOneLocation :
             if (background) startLocationService(context)
             recentPosition(manager)?.let { onPosition(it) }
             if (positionPromises.isEmpty() && !monitoring) {
-                startMonitoring(manager)
+                startMonitoringUpdates(manager)
             }
         }
         return {
             mainHandler.post {
                 val removed = watches.remove(id)
-                if (removed != null && removed.background && watches.values.none { it.background }) {
+                val context = NitroModules.applicationContext
+                if (removed != null && removed.background && watches.values.none { it.background } &&
+                    (context == null || !shouldRunGeofenceService(context))
+                ) {
                     stopLocationService()
                 }
-                if (watches.isEmpty() && monitoring) {
-                    stopMonitoring()
+                if (watches.isEmpty() && monitoredRegions.isEmpty() && monitoring) {
+                    stopMonitoringUpdates()
                     if (positionPromises.isNotEmpty()) {
-                        locationManager()?.let { startMonitoring(it) }
+                        locationManager()?.let { startMonitoringUpdates(it) }
                     }
                 }
             }
@@ -414,7 +727,7 @@ class HybridOneLocation :
         }
     }
 
-    private fun startMonitoring(manager: LocationManager) {
+    private fun startMonitoringUpdates(manager: LocationManager) {
         try {
             manager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER, 1000L, 0f, listener, Looper.getMainLooper()
@@ -430,7 +743,7 @@ class HybridOneLocation :
         monitoring = true
     }
 
-    private fun stopMonitoring() {
+    private fun stopMonitoringUpdates() {
         try {
             locationManager()?.removeUpdates(listener)
         } catch (_: Exception) {
@@ -450,7 +763,7 @@ class HybridOneLocation :
                 )
             )
         }
-        if (watches.isEmpty() && monitoring) stopMonitoring()
+        if (watches.isEmpty() && monitoredRegions.isEmpty() && monitoring) stopMonitoringUpdates()
     }
 
     private fun didUpdate(location: Location) {
@@ -465,13 +778,14 @@ class HybridOneLocation :
             } catch (_: Exception) {
             }
         }
-        if (watches.isEmpty() && monitoring) stopMonitoring()
+        evaluateGeofences(position.latitude, position.longitude, silent = false)
+        if (watches.isEmpty() && monitoredRegions.isEmpty() && monitoring) stopMonitoringUpdates()
     }
 
     private fun didProviderChange() {
         val manager = locationManager() ?: return
         if (serviceEnabled(manager)) return
-        if (watches.isEmpty() && positionPromises.isEmpty()) return
+        if (watches.isEmpty() && positionPromises.isEmpty() && monitoredRegions.isEmpty()) return
         // services off notifies but keeps the watches: updates resume when
         // a provider returns, like the ios locationUnknown path.
         for (watch in watches.values.toList()) {
@@ -494,9 +808,10 @@ class HybridOneLocation :
     }
 
     private fun failAll(code: String, message: String) {
-        if (monitoring) stopMonitoring()
+        if (monitoring) stopMonitoringUpdates()
         val current = watches.values.toList()
         watches.clear()
+        monitoredRegions.clear()
         stopLocationService()
         for (watch in current) {
             try {
@@ -561,6 +876,7 @@ class HybridOneLocation :
 
     companion object {
         private const val LOCATION_REQUEST_CODE = 4301
+        private const val ALWAYS_REQUEST_CODE = 4302
         private const val PREFS = "One.Location"
         private const val KEY_ASKED = "asked"
     }

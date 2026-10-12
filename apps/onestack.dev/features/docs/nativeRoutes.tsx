@@ -107,6 +107,7 @@ export const nativeRoutes = [
       { title: 'App Tracking Permission', route: '/native/app-tracking' },
       { title: 'Local Authentication', route: '/native/local-authentication' },
       { title: 'Location', route: '/native/location' },
+      { title: 'Geofencing', route: '/native/geofencing' },
       { title: 'FileSystem', route: '/native/file-system' },
       { title: 'Audio', route: '/native/audio' },
       { title: 'Speech', route: '/native/speech' },
@@ -119,7 +120,7 @@ export const nativeRoutes = [
   {
     title: 'Resources',
     pages: [
-      { title: 'Migrating to One Native', route: '/native/migrating-to-one' },
+      { title: 'Coming from Expo', route: '/native/migrating-to-one' },
       { title: 'Platform Support', route: '/native/platform-support' },
     ],
   },

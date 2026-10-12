@@ -56,10 +56,17 @@ namespace margelo::nitro::one {
     // Methods
     LocationPermissionStatus getPermissionStatus() override;
     std::shared_ptr<Promise<LocationPermissionStatus>> requestWhenInUsePermission() override;
+    std::shared_ptr<Promise<LocationPermissionStatus>> requestAlwaysAuthorization() override;
     std::shared_ptr<Promise<LocationPosition>> getCurrentPosition() override;
     std::function<void()> addPositionListener(const std::function<void(const LocationPosition& /* position */)>& onPosition, const std::function<void(const std::string& /* code */, const std::string& /* message */)>& onError, bool background) override;
     std::shared_ptr<Promise<std::vector<LocationPlace>>> geocodeAddress(const std::string& address) override;
     std::shared_ptr<Promise<std::vector<LocationPlace>>> reverseGeocode(double latitude, double longitude) override;
+    std::shared_ptr<Promise<void>> startMonitoring(const LocationRegion& region) override;
+    std::shared_ptr<Promise<void>> stopMonitoring(const std::string& identifier) override;
+    std::vector<LocationRegion> monitoredRegions() override;
+    std::shared_ptr<Promise<RegionState>> requestState(const std::string& identifier) override;
+    std::function<void()> addDidEnterRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) override;
+    std::function<void()> addDidExitRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) override;
 
   private:
     jni::global_ref<JHybridOneLocationSpec::JavaPart> _javaPart;

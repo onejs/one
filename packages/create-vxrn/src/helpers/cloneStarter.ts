@@ -12,13 +12,12 @@ export const cloneStarter = async (
   template: CloneableTemplate,
   resolvedProjectPath: string
 ) => {
+  const branch = template.repo.branch
+
   const dir = await setupVxrnDotDir(
     template,
-    join(
-      vxrnDir,
-      'vxrn',
-      `${template.repo.url.split('/').at(-1)!}-${template.repo.branch}`
-    )
+    branch,
+    join(vxrnDir, 'vxrn', `${template.repo.url.split('/').at(-1)!}-${branch}`)
   )
 
   if (!(await pathExists(dir))) {
@@ -40,11 +39,10 @@ export const cloneStarter = async (
 
 async function setupVxrnDotDir(
   template: CloneableTemplate,
+  branch: string,
   targetGitDir: string,
   isRetry = false
 ) {
-  const branch = template.repo.branch
-
   await ensureDir(vxrnDir)
 
   const isInSubDir = template.repo.dir.length > 0
@@ -117,7 +115,7 @@ async function setupVxrnDotDir(
       process.exit(1)
     }
     await rimraf(targetGitDir)
-    return await setupVxrnDotDir(template, targetGitDir, true)
+    return await setupVxrnDotDir(template, branch, targetGitDir, true)
   }
 }
 

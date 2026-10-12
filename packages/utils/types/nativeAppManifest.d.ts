@@ -42,6 +42,7 @@ export interface NativeAppManifest {
     };
     location?: {
         whenInUse: string;
+        alwaysAndWhenInUse?: string;
         background?: boolean;
     };
     audio?: {

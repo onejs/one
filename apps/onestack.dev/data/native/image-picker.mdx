@@ -64,8 +64,7 @@ Video assets report `type: 'video'` and `duration` in milliseconds alongside `wi
 `allowsEditing: true` shows the system crop UI after picking one image: square on iOS,
 and a movable, resizable frame on Android locked to `aspect: [x, y]` when set (`aspect`
 is ignored on iOS). `quality` from 0 to 1 compresses the result to JPEG (defaulting to
-1, which keeps the pixels); PNG and BMP library picks on iOS skip the compression, like
-Expo.
+1, which keeps the pixels); PNG and BMP library picks on iOS skip the compression.
 
 ```tsx
 const cropped = await One.ImagePicker.launchLibrary({

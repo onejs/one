@@ -79,6 +79,7 @@ declare module 'one' {
         | `/one-native-calendar`
         | `/one-native-camera`
         | `/one-native-clipboard`
+        | `/one-native-contact-ui`
         | `/one-native-contacts`
         | `/one-native-containers`
         | `/one-native-control-group`
@@ -86,12 +87,14 @@ declare module 'one' {
         | `/one-native-controls`
         | `/one-native-cover-context`
         | `/one-native-crypto`
+        | `/one-native-data-scanner`
         | `/one-native-database`
         | `/one-native-derived-views`
         | `/one-native-device`
         | `/one-native-device-attestation`
         | `/one-native-dialogs`
         | `/one-native-disclosure-group`
+        | `/one-native-document-camera`
         | `/one-native-document-picker`
         | `/one-native-edit-button`
         | `/one-native-editors`
@@ -100,6 +103,7 @@ declare module 'one' {
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
+        | `/one-native-geofencing`
         | `/one-native-geometry-reader`
         | `/one-native-gestures`
         | `/one-native-glass-container`
@@ -133,6 +137,7 @@ declare module 'one' {
         | `/one-native-menu-picker`
         | `/one-native-menu-primary-action`
         | `/one-native-mesh-gradient`
+        | `/one-native-message-ui`
         | `/one-native-motion`
         | `/one-native-navigation`
         | `/one-native-navigation-split-view`

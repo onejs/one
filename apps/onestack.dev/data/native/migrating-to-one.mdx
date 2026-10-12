@@ -1,7 +1,11 @@
 ---
-title: Migrating to One Native
-description: Moving an app from Expo and community native packages onto One's native modules
+title: Coming from Expo
+description: Move an app from Expo packages onto One's native modules, or keep Expo prebuild while adopting One
 ---
+
+One does not need Expo. This page maps Expo and community packages onto One's
+native modules, and [Keeping Expo prebuild](#keeping-expo-prebuild) covers apps
+that stay on Expo prebuild, EAS Build, or EAS Update while adopting One.
 
 Most of One's native modules keep the API shape of the package they
 replace, so migrating is usually an import change plus the renames below.
@@ -183,6 +187,20 @@ From `expo-notifications`. See [Notifications](/native/notifications).
 Payload, permission, and push token shapes are the same. Platform enums
 become string unions, and channel importance still accepts the numbers 0 to 5.
 
+## Geofencing
+
+From `expo-location` region monitoring. See [Geofencing](/native/geofencing). The calls keep Core Location's names instead of the task names: one region per `startMonitoring` call, one identifier per `stopMonitoring` call, and the delegate becomes two listeners whose `{ remove() }` replaces the task unregistration. `state` values become lowercase strings.
+
+| expo-location | One |
+|---|---|
+| `startGeofencingAsync(taskName, regions)` | `One.Location.startMonitoring(region)` (one region per call) |
+| `stopGeofencingAsync(taskName)` | `One.Location.stopMonitoring(identifier)` |
+| `hasStartedGeofencingAsync(taskName)` | `One.Location.monitoredRegions()` (empty means not started) |
+| `TaskManager.defineTask(name, ({ data: { eventType, region } }) => ...)` | `One.Location.addDidEnterRegionListener((region) => ...)` and `One.Location.addDidExitRegionListener((region) => ...)` |
+| region `{ identifier?, latitude, longitude, radius, notifyOnEnter?, notifyOnExit? }` | region `{ identifier, center: { latitude, longitude }, radius, notifyOnEntry?, notifyOnExit? }` |
+| `GeofencingEventType.Enter` / `.Exit` | the enter listener / the exit listener |
+| `GeofencingRegionState.Inside` | `'inside'` (and likewise for every member) |
+
 ## Maps
 
 From `react-native-maps`. See [Map](/native/map).
@@ -203,8 +221,144 @@ the first content, call `One.LaunchScreen.preventAutoHide()` while modules
 evaluate, then `One.LaunchScreen.hide()` when the app is ready. See
 [Launch screen](/native/launch-screen).
 
-## Build tooling
+## Keeping Expo prebuild
 
-Expo apps keep Expo prebuild with the `vxrn/expo-plugin` adapter. Apps
-without Expo use `one prebuild` from `native.app`. See
-[Build or Run iOS](/docs/guides-ios-native) and [Ship with EAS](/docs/guides-eas).
+An app that keeps `expo` in its dependencies generates its native projects with
+Expo prebuild instead of `one prebuild`. Add One's adapter to the Expo config
+alongside the app's other plugins:
+
+```json
+{
+  "expo": {
+    "plugins": ["vxrn/expo-plugin"]
+  }
+}
+```
+
+```bash
+npx expo prebuild
+```
+
+Expo modules and config plugins keep working on this path. The adapter links
+the generated host to One and takes the service options that `native.app`
+takes under `one prebuild`:
+
+```json
+{
+  "expo": {
+    "plugins": [
+      ["vxrn/expo-plugin", { "location": { "whenInUse": "Show places near you." } }]
+    ]
+  }
+}
+```
+
+| Option | Matches |
+|---|---|
+| `audio`, `calendar`, `contacts`, `location`, `photoLibrary` | the `native.app` option of the same name |
+| `notifications` | `native.app.notifications`; `mode` sets the iOS `aps-environment` |
+| `updates` | `native.app.updates` on iOS; Android apps use `one prebuild` |
+| `holdLaunchScreen: true` | keeps the launch screen up until first content, as `one prebuild` does |
+| `nativeSource: true` | imports the app's Swift and Kotlin files, as `one prebuild` does |
+
+Other Info.plist keys, such as `NSUserTrackingUsageDescription` for App
+Tracking, go in the Expo config's `ios.infoPlist`. Alternate app icons need
+their icon sets in the Xcode asset catalog and the Alternate App Icon Sets
+build setting. One Native needs a custom native build; Expo Go cannot load
+native code that is absent from its binary. `one run:ios` and
+`one run:android` launch the generated project either way.
+
+### Swift and Kotlin source
+
+With `nativeSource: true`, Expo prebuild generates the same native glue
+`one prebuild` generates: one local pod per Swift package under
+`ios/OneSwiftPackages` (plus the Podfile entry that links them), and the
+Kotlin sources plus their generated dispatch under
+`android/app/src/main/java/one/source`. Imports and contract rules follow
+[Swift and Kotlin](/docs/native-source). A Kotlin view also gains the
+Compose gradle pieces; if the app's gradle files lack the anchors the plugin
+expects, prebuild fails with the exact lines to add by hand. Without the
+option, `.swift` and `.kt` imports fail at bundle time with an error that
+names it.
+
+### EAS Build
+
+EAS Build builds One apps as existing React Native projects, with or without
+the `expo` package. Configure distribution identifiers under `native.app` (or
+the Expo config), add a `postinstall` script that runs `one patch` so
+dependency patches exist on the build worker, then run `eas build:configure`
+and `eas build`. EAS defaults to an old Node.js; pin a current one in
+`eas.json`:
+
+```json
+{
+  "build": {
+    "production": { "node": "20.15.0" }
+  }
+}
+```
+
+### EAS Update
+
+One ships its own OTA client, [One.Updates](/native/updates). Apps that stay
+on EAS Update install `expo-updates`, then add the EAS project url and runtime
+policy to the Expo config:
+
+```json
+{
+  "expo": {
+    "updates": { "url": "https://u.expo.dev/<your-eas-project-id>" },
+    "runtimeVersion": { "policy": "appVersion" }
+  }
+}
+```
+
+`appVersion` is the supported policy. Set `"main": "one/metro-entry"` in
+`package.json` so `expo export` (which `eas update` runs) finds One's router
+entry, then publish with `eas update --channel production`. From your own
+machine, run `CI=1 npx one patch` first to generate the Metro shims that EAS
+workers generate during install.
+
+In a pnpm or yarn workspace, project-local `require()`'d images can drop from
+the production bundle and render blank unless Metro and Expo agree on the app
+directory. Set `EXPO_NO_METRO_WORKSPACE_ROOT=1` in the EAS production env, and
+pin Metro to the app for production builds:
+
+```ts fileName=vite.config.ts
+import { resolve } from 'node:path'
+import { one } from 'one/vite'
+
+const projectRoot = resolve(__dirname)
+const isProdLike =
+  process.env.NODE_ENV === 'production' || process.env.EAS_BUILD === 'true'
+
+export default {
+  root: projectRoot,
+  plugins: [
+    one({
+      native: {
+        bundler: 'metro',
+        bundlerOptions: {
+          argv: { projectRoot, cwd: projectRoot },
+          defaultConfigOverrides: (config) => ({
+            ...config,
+            projectRoot,
+            ...(isProdLike && {
+              server: { ...config?.server, unstable_serverRoot: projectRoot },
+            }),
+          }),
+        },
+      },
+    }),
+  ],
+}
+```
+
+With both in place, One's Podfile patch generates an
+`EXUpdates.bundle/app.manifest` whose asset entries match the `.app`.
+
+### Environment
+
+`EXPO_PUBLIC_` variables stay accepted next to `ONE_PUBLIC_`, and a
+`ONE_PUBLIC_` variable is also exposed under the matching `EXPO_PUBLIC_` name
+when that one is absent. Expo packages receive `EXPO_OS` in native builds.

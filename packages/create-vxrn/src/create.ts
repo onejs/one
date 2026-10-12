@@ -99,23 +99,6 @@ export async function create(args: { template?: string; name?: string }) {
     },
   }).start()
 
-  await FSExtra.mkdir(resolvedProjectPath)
-
-  try {
-    await cloneStarter(template as any, resolvedProjectPath)
-    process.chdir(resolvedProjectPath)
-  } catch (e) {
-    console.error(`[vxrn] Failed to copy example into ${resolvedProjectPath}\n\n`, e)
-    process.exit(1)
-  }
-
-  spinner.stop()
-  console.info()
-  console.info()
-  console.info(ansis.green(`${projectName} created!`))
-  console.info()
-  console.info()
-
   const packageJson = await (async () => {
     const errorMessages: string[] = []
 
@@ -149,6 +132,23 @@ export async function create(args: { template?: string; name?: string }) {
       throw e
     }
   })()
+
+  await FSExtra.mkdir(resolvedProjectPath)
+
+  try {
+    await cloneStarter(template as any, resolvedProjectPath)
+    process.chdir(resolvedProjectPath)
+  } catch (e) {
+    console.error(`[vxrn] Failed to copy example into ${resolvedProjectPath}\n\n`, e)
+    process.exit(1)
+  }
+
+  spinner.stop()
+  console.info()
+  console.info()
+  console.info(ansis.green(`${projectName} created!`))
+  console.info()
+  console.info()
 
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)

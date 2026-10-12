@@ -122,6 +122,7 @@ export async function findDepsToOptimize({
     'yarn.lock',
     'package-lock.json',
     'pnpm-lock.yaml',
+    'bun.lock',
     'bun.lockb',
   ])
 

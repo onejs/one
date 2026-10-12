@@ -45,6 +45,13 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   equal(await One.Location.geocodeAddress('Honolulu'), [], 'Location.geocodeAddress')
   equal(await One.Location.reverseGeocode(21.3, -157.8), [], 'Location.reverseGeocode')
   equal(
+    await One.Location.requestAlwaysAuthorization(),
+    'denied',
+    'Location.requestAlwaysAuthorization'
+  )
+  equal(await One.Location.requestState('office'), 'unknown', 'Location.requestState')
+  equal(One.Location.monitoredRegions(), [], 'Location.monitoredRegions')
+  equal(
     await One.Audio.getRecordingPermissionStatus(),
     'denied',
     'Audio.getRecordingPermissionStatus'
@@ -305,11 +312,20 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     One.Brightness.addListener(() => {}),
     One.LightSensor.addListener(() => {}),
     One.Pedometer.watchStepCount(() => {}),
+    One.Location.addDidEnterRegionListener(() => {}),
+    One.Location.addDidExitRegionListener(() => {}),
   ]) {
     subscription.remove()
     subscription.remove()
   }
   checks.push('service-listener-removers')
+  await One.Location.startMonitoring({
+    identifier: 'one-proof',
+    center: { latitude: 21.3, longitude: -157.8 },
+    radius: 100,
+  })
+  await One.Location.stopMonitoring('one-proof')
+  checks.push('region-monitoring-noop')
 
   await rejected('LocalAuthentication.evaluatePolicy', () =>
     One.LocalAuthentication.evaluatePolicy('One proof')

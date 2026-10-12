@@ -80,7 +80,7 @@ For token storage, use a cross-platform storage library. Popular options:
 
 - **[react-native-mmkv](https://github.com/mrousavy/react-native-mmkv)** - Fast key-value storage (~30x faster than AsyncStorage), works on web and native
 - **[Zustand](https://github.com/pmndrs/zustand) with persist middleware** - State management with built-in storage abstraction
-- **[expo-secure-store](https://docs.expo.dev/versions/latest/sdk/securestore/)** - Encrypted storage for sensitive tokens (native only)
+- **[One.SecureStore](/native/secure-store)** - Keychain and Keystore storage for sensitive tokens (native only)
 
 Create a platform-specific abstraction using One's file extensions:
 
@@ -88,7 +88,7 @@ Create a platform-specific abstraction using One's file extensions:
 features/auth/
 ├── storage.ts        # Shared interface
 ├── storage.web.ts    # localStorage or MMKV for web
-└── storage.native.ts # MMKV or expo-secure-store for native
+└── storage.native.ts # MMKV or One.SecureStore for native
 ```
 
 This keeps your auth context clean while each platform uses appropriate secure storage.

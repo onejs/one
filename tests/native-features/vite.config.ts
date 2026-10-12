@@ -206,6 +206,7 @@ export default defineConfig({
           },
           location: {
             whenInUse: 'NativeFeatureTests verifies current location.',
+            alwaysAndWhenInUse: 'NativeFeatureTests verifies region monitoring.',
             background: true,
           },
           // updates builds point at the suite's static server, set at

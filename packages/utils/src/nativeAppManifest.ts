@@ -82,6 +82,10 @@ export interface NativeAppManifest {
   // core location prompt and opt-in background updates for one.ios.location.
   location?: {
     whenInUse: string
+    // ios always prompt for region monitoring and background delivery
+    // through One.Location.requestAlwaysPermission. without it the
+    // always request rejects with E_LOCATION_MANIFEST.
+    alwaysAndWhenInUse?: string
     background?: boolean
   }
   // microphone prompt and background playback for One.Audio. android
@@ -478,6 +482,13 @@ export function validateNativeApp(
     typeof manifest.location.background !== 'boolean'
   ) {
     fail('location.background must be a boolean')
+  }
+  if (
+    manifest.location?.alwaysAndWhenInUse !== undefined &&
+    (typeof manifest.location.alwaysAndWhenInUse !== 'string' ||
+      manifest.location.alwaysAndWhenInUse.trim() === '')
+  ) {
+    fail('location.alwaysAndWhenInUse must be a non-empty string')
   }
   if (manifest.audio !== undefined) {
     if (!manifest.audio || typeof manifest.audio !== 'object') {

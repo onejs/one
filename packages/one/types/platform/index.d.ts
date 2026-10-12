@@ -31,7 +31,7 @@ export { QuickActions } from './quick-actions/index';
 export type { QuickActionItem } from './quick-actions/index';
 export type { PrintResult } from './print/index';
 export { Location } from './location/index';
-export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError, } from './location/index';
+export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, LocationWatchError, RegionCenter, RegionState, RegionSubscription, } from './location/index';
 export { FileSystem } from './file-system/index';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo, } from './file-system/index';
 export { Audio } from './audio/index';
