@@ -73,6 +73,8 @@ jobs:
       - uses: ./.github/actions/install
         with:
           install-playwright: 'false'
+      - name: Compile and exercise generated source glue
+        run: bun tests/native-features/scripts/native-source-swift-proof.ts
       - name: Verify SDK generation, Swift compilation, and contracts
         working-directory: packages/one
         run: |

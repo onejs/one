@@ -55,20 +55,12 @@ import SwiftUI
 #endif
   private static let EscapeHatchInstance = EscapeHatch()
   private static let AudioMathInstance = AudioMath()
-  private static let isoDate: ISO8601DateFormatter = {
-    let formatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withInternetDateTime]
-    return formatter
-  }()
-  private static let isoDateFractional: ISO8601DateFormatter = {
-    let formatter = ISO8601DateFormatter()
-    formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-    return formatter
-  }()
-  private static func decodeDate(_ decoder: Decoder) throws -> Date {
+  private nonisolated static let isoDate = Date.ISO8601FormatStyle()
+  private nonisolated static let isoDateFractional = Date.ISO8601FormatStyle(includingFractionalSeconds: true)
+  private nonisolated static func decodeDate(_ decoder: Decoder) throws -> Date {
     let container = try decoder.singleValueContainer()
     let text = try container.decode(String.self)
-    if let date = isoDateFractional.date(from: text) ?? isoDate.date(from: text) { return date }
+    if let date = (try? isoDateFractional.parse(text)) ?? (try? isoDate.parse(text)) { return date }
     throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected ISO date")
   }
   private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {
