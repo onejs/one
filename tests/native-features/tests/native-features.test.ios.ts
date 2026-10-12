@@ -72,6 +72,19 @@ describe('one native integration tests', () => {
     }
   })
 
+  describe('VisionKit document camera', () => {
+    test('reports actual simulator unavailability and rejects without pages', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-document-camera')
+      await waitForElement(driver, 'document-camera-screen')
+      expect(await (await waitForElement(driver, 'document-camera-supported')).getText()).toBe('Supported: false')
+      await (await waitForElement(driver, 'document-camera-present')).click()
+      await waitForElement(driver, 'State: rejected')
+      expect(await (await waitForElement(driver, 'document-camera-error')).getText()).toBe('Error: E_DOCUMENT_CAMERA_UNSUPPORTED')
+      expect(await (await waitForElement(driver, 'document-camera-pages')).getText()).toBe('Pages: 0')
+      await captureScreenshot(driver, 'document-camera-unavailable')
+    })
+  })
+
   // -- home screen --
 
   describe('Home Screen', () => {

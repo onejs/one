@@ -8,6 +8,8 @@
 #include "One-Swift-Cxx-Bridge.hpp"
 
 // Include C++ implementation defined types
+#include "HybridDocumentCameraImageSpecSwift.hpp"
+#include "HybridDocumentCameraScanSpecSwift.hpp"
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneAppIconSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
@@ -25,6 +27,7 @@
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneDeviceAttestationSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
+#include "HybridOneDocumentCameraSpecSwift.hpp"
 #include "HybridOneDocumentPickerSpecSwift.hpp"
 #include "HybridOneFetchSpecSwift.hpp"
 #include "HybridOneFileSystemSpecSwift.hpp"
@@ -674,6 +677,70 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneDeviceAttestationSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridDocumentCameraImageSpec>
+  std::shared_ptr<HybridDocumentCameraImageSpec> create_std__shared_ptr_HybridDocumentCameraImageSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridDocumentCameraImageSpec_cxx swiftPart = One::HybridDocumentCameraImageSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridDocumentCameraImageSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridDocumentCameraImageSpec_(std__shared_ptr_HybridDocumentCameraImageSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridDocumentCameraImageSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridDocumentCameraImageSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridDocumentCameraImageSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridDocumentCameraImageSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridDocumentCameraScanSpec>
+  std::shared_ptr<HybridDocumentCameraScanSpec> create_std__shared_ptr_HybridDocumentCameraScanSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridDocumentCameraScanSpec_cxx swiftPart = One::HybridDocumentCameraScanSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridDocumentCameraScanSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridDocumentCameraScanSpec_(std__shared_ptr_HybridDocumentCameraScanSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridDocumentCameraScanSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridDocumentCameraScanSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridDocumentCameraScanSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridDocumentCameraScanSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& /* scan */)>
+  Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_ create_Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::shared_ptr<HybridDocumentCameraScanSpec>& scan) mutable -> void {
+      swiftClosure.call(scan);
+    };
+  }
+
+  // pragma MARK: std::function<void(const DocumentCameraError& /* error */)>
+  Func_void_DocumentCameraError create_Func_void_DocumentCameraError(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_DocumentCameraError::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const DocumentCameraError& error) mutable -> void {
+      swiftClosure.call(error);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneDocumentCameraSpec>
+  std::shared_ptr<HybridOneDocumentCameraSpec> create_std__shared_ptr_HybridOneDocumentCameraSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneDocumentCameraSpec_cxx swiftPart = One::HybridOneDocumentCameraSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneDocumentCameraSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneDocumentCameraSpec_(std__shared_ptr_HybridOneDocumentCameraSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneDocumentCameraSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneDocumentCameraSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneDocumentCameraSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneDocumentCameraSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

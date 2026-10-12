@@ -10,6 +10,7 @@
 #import "One-Swift-Cxx-Umbrella.hpp"
 #import <type_traits>
 
+#include "HybridOneDocumentCameraSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
@@ -70,6 +71,13 @@
   using namespace margelo::nitro;
   using namespace margelo::nitro::one;
 
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDocumentCamera",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneDocumentCameraSpec> hybridObject = One::OneAutolinking::createOneDocumentCamera();
+      return hybridObject;
+    }
+  );
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneHaptics",
     []() -> std::shared_ptr<HybridObject> {

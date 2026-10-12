@@ -118,6 +118,8 @@ namespace margelo::nitro::one { struct DeviceAttestationAvailability; }
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DiskSpace` to properly resolve imports.
 namespace margelo::nitro::one { struct DiskSpace; }
+// Forward declaration of `DocumentCameraError` to properly resolve imports.
+namespace margelo::nitro::one { struct DocumentCameraError; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -140,6 +142,10 @@ namespace margelo::nitro::one { struct FileInfo; }
 namespace margelo::nitro::one { struct HingeState; }
 // Forward declaration of `HingeStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class HingeStatus; }
+// Forward declaration of `HybridDocumentCameraImageSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridDocumentCameraImageSpec; }
+// Forward declaration of `HybridDocumentCameraScanSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridDocumentCameraScanSpec; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppIconSpec` to properly resolve imports.
@@ -174,6 +180,8 @@ namespace margelo::nitro::one { class HybridOneContactsSpec; }
 namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceSpec; }
+// Forward declaration of `HybridOneDocumentCameraSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDocumentCameraSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
@@ -408,6 +416,10 @@ namespace margelo::nitro::one { struct SpeechSynthesisVoice; }
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridDocumentCameraImageSpec_cxx` to properly resolve imports.
+namespace One { class HybridDocumentCameraImageSpec_cxx; }
+// Forward declaration of `HybridDocumentCameraScanSpec_cxx` to properly resolve imports.
+namespace One { class HybridDocumentCameraScanSpec_cxx; }
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppIconSpec_cxx` to properly resolve imports.
@@ -442,6 +454,8 @@ namespace One { class HybridOneContactsSpec_cxx; }
 namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceSpec_cxx; }
+// Forward declaration of `HybridOneDocumentCameraSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDocumentCameraSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
@@ -560,6 +574,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "DeviceAttestationAvailability.hpp"
 #include "DeviceInfo.hpp"
 #include "DiskSpace.hpp"
+#include "DocumentCameraError.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -571,6 +586,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "FileInfo.hpp"
 #include "HingeState.hpp"
 #include "HingeStatus.hpp"
+#include "HybridDocumentCameraImageSpec.hpp"
+#include "HybridDocumentCameraScanSpec.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppIconSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
@@ -588,6 +605,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
+#include "HybridOneDocumentCameraSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
 #include "HybridOneFileSystemSpec.hpp"
@@ -1640,6 +1658,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::string>
+  using Result_std__string_ = Result<std::string>;
+  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
+    return Result<std::string>::withValue(value);
+  }
+  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
+    return Result<std::string>::withError(error);
   }
   
   // pragma MARK: Result<AudioPlayerStatus>
@@ -3009,6 +3036,119 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<DeviceAttestationAvailability>::withError(error);
   }
   
+  // pragma MARK: std::optional<std::shared_ptr<ArrayBuffer>>
+  /**
+   * Specialized version of `std::optional<std::shared_ptr<ArrayBuffer>>`.
+   */
+  using std__optional_std__shared_ptr_ArrayBuffer__ = std::optional<std::shared_ptr<ArrayBuffer>>;
+  inline std::optional<std::shared_ptr<ArrayBuffer>> create_std__optional_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
+    return std::optional<std::shared_ptr<ArrayBuffer>>(value);
+  }
+  inline bool has_value_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::shared_ptr<ArrayBuffer> get_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridDocumentCameraImageSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridDocumentCameraImageSpec>`.
+   */
+  using std__shared_ptr_HybridDocumentCameraImageSpec_ = std::shared_ptr<HybridDocumentCameraImageSpec>;
+  std::shared_ptr<HybridDocumentCameraImageSpec> create_std__shared_ptr_HybridDocumentCameraImageSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridDocumentCameraImageSpec_(std__shared_ptr_HybridDocumentCameraImageSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridDocumentCameraImageSpec>
+  using std__weak_ptr_HybridDocumentCameraImageSpec_ = std::weak_ptr<HybridDocumentCameraImageSpec>;
+  inline std__weak_ptr_HybridDocumentCameraImageSpec_ weakify_std__shared_ptr_HybridDocumentCameraImageSpec_(const std::shared_ptr<HybridDocumentCameraImageSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::optional<std::shared_ptr<ArrayBuffer>>>
+  using Result_std__optional_std__shared_ptr_ArrayBuffer___ = Result<std::optional<std::shared_ptr<ArrayBuffer>>>;
+  inline Result_std__optional_std__shared_ptr_ArrayBuffer___ create_Result_std__optional_std__shared_ptr_ArrayBuffer___(const std::optional<std::shared_ptr<ArrayBuffer>>& value) noexcept {
+    return Result<std::optional<std::shared_ptr<ArrayBuffer>>>::withValue(value);
+  }
+  inline Result_std__optional_std__shared_ptr_ArrayBuffer___ create_Result_std__optional_std__shared_ptr_ArrayBuffer___(const std::exception_ptr& error) noexcept {
+    return Result<std::optional<std::shared_ptr<ArrayBuffer>>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<HybridDocumentCameraScanSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridDocumentCameraScanSpec>`.
+   */
+  using std__shared_ptr_HybridDocumentCameraScanSpec_ = std::shared_ptr<HybridDocumentCameraScanSpec>;
+  std::shared_ptr<HybridDocumentCameraScanSpec> create_std__shared_ptr_HybridDocumentCameraScanSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridDocumentCameraScanSpec_(std__shared_ptr_HybridDocumentCameraScanSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridDocumentCameraScanSpec>
+  using std__weak_ptr_HybridDocumentCameraScanSpec_ = std::weak_ptr<HybridDocumentCameraScanSpec>;
+  inline std__weak_ptr_HybridDocumentCameraScanSpec_ weakify_std__shared_ptr_HybridDocumentCameraScanSpec_(const std::shared_ptr<HybridDocumentCameraScanSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<HybridDocumentCameraImageSpec>>
+  using Result_std__shared_ptr_HybridDocumentCameraImageSpec__ = Result<std::shared_ptr<HybridDocumentCameraImageSpec>>;
+  inline Result_std__shared_ptr_HybridDocumentCameraImageSpec__ create_Result_std__shared_ptr_HybridDocumentCameraImageSpec__(const std::shared_ptr<HybridDocumentCameraImageSpec>& value) noexcept {
+    return Result<std::shared_ptr<HybridDocumentCameraImageSpec>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_HybridDocumentCameraImageSpec__ create_Result_std__shared_ptr_HybridDocumentCameraImageSpec__(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<HybridDocumentCameraImageSpec>>::withError(error);
+  }
+
+  // pragma MARK: std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& /* scan */)>
+  /**
+   * Specialized version of `std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>&)>`.
+   */
+  using Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_ = std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& /* scan */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& / * scan * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__shared_ptr_HybridDocumentCameraScanSpec__Wrapper final {
+  public:
+    explicit Func_void_std__shared_ptr_HybridDocumentCameraScanSpec__Wrapper(std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& /* scan */)>&& func): _function(std::make_unique<std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& /* scan */)>>(std::move(func))) {}
+    inline void call(std::shared_ptr<HybridDocumentCameraScanSpec> scan) const noexcept {
+      _function->operator()(scan);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::shared_ptr<HybridDocumentCameraScanSpec>& /* scan */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_ create_Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__shared_ptr_HybridDocumentCameraScanSpec__Wrapper wrap_Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_(Func_void_std__shared_ptr_HybridDocumentCameraScanSpec_ value) noexcept {
+    return Func_void_std__shared_ptr_HybridDocumentCameraScanSpec__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::function<void(const DocumentCameraError& /* error */)>
+  /**
+   * Specialized version of `std::function<void(const DocumentCameraError&)>`.
+   */
+  using Func_void_DocumentCameraError = std::function<void(const DocumentCameraError& /* error */)>;
+  /**
+   * Wrapper class for a `std::function<void(const DocumentCameraError& / * error * /)>`, this can be used from Swift.
+   */
+  class Func_void_DocumentCameraError_Wrapper final {
+  public:
+    explicit Func_void_DocumentCameraError_Wrapper(std::function<void(const DocumentCameraError& /* error */)>&& func): _function(std::make_unique<std::function<void(const DocumentCameraError& /* error */)>>(std::move(func))) {}
+    inline void call(DocumentCameraError error) const noexcept {
+      _function->operator()(error);
+    }
+  private:
+    std::unique_ptr<std::function<void(const DocumentCameraError& /* error */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_DocumentCameraError create_Func_void_DocumentCameraError(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_DocumentCameraError_Wrapper wrap_Func_void_DocumentCameraError(Func_void_DocumentCameraError value) noexcept {
+    return Func_void_DocumentCameraError_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneDocumentCameraSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneDocumentCameraSpec>`.
+   */
+  using std__shared_ptr_HybridOneDocumentCameraSpec_ = std::shared_ptr<HybridOneDocumentCameraSpec>;
+  std::shared_ptr<HybridOneDocumentCameraSpec> create_std__shared_ptr_HybridOneDocumentCameraSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneDocumentCameraSpec_(std__shared_ptr_HybridOneDocumentCameraSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneDocumentCameraSpec>
+  using std__weak_ptr_HybridOneDocumentCameraSpec_ = std::weak_ptr<HybridOneDocumentCameraSpec>;
+  inline std__weak_ptr_HybridOneDocumentCameraSpec_ weakify_std__shared_ptr_HybridOneDocumentCameraSpec_(const std::shared_ptr<HybridOneDocumentCameraSpec>& strong) noexcept { return strong; }
+
   // pragma MARK: std::vector<DocumentPickerAsset>
   /**
    * Specialized version of `std::vector<DocumentPickerAsset>`.
@@ -3099,21 +3239,6 @@ namespace margelo::nitro::one::bridge::swift {
     std::vector<FetchHeader> vector;
     vector.reserve(size);
     return vector;
-  }
-  
-  // pragma MARK: std::optional<std::shared_ptr<ArrayBuffer>>
-  /**
-   * Specialized version of `std::optional<std::shared_ptr<ArrayBuffer>>`.
-   */
-  using std__optional_std__shared_ptr_ArrayBuffer__ = std::optional<std::shared_ptr<ArrayBuffer>>;
-  inline std::optional<std::shared_ptr<ArrayBuffer>> create_std__optional_std__shared_ptr_ArrayBuffer__(const std::shared_ptr<ArrayBuffer>& value) noexcept {
-    return std::optional<std::shared_ptr<ArrayBuffer>>(value);
-  }
-  inline bool has_value_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::shared_ptr<ArrayBuffer> get_std__optional_std__shared_ptr_ArrayBuffer__(const std::optional<std::shared_ptr<ArrayBuffer>>& optional) noexcept {
-    return optional.value();
   }
   
   // pragma MARK: std::optional<FetchBlobRef>
@@ -3212,15 +3337,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneFetchSpec>
   using std__weak_ptr_HybridOneFetchSpec_ = std::weak_ptr<HybridOneFetchSpec>;
   inline std__weak_ptr_HybridOneFetchSpec_ weakify_std__shared_ptr_HybridOneFetchSpec_(const std::shared_ptr<HybridOneFetchSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<std::string>
-  using Result_std__string_ = Result<std::string>;
-  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
-    return Result<std::string>::withValue(value);
-  }
-  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
-    return Result<std::string>::withError(error);
-  }
   
   // pragma MARK: std::shared_ptr<Promise<FileInfo>>
   /**

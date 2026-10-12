@@ -55,6 +55,8 @@ const partialGaps: Record<string, string> = {
     'bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted',
   LiveActivities:
     'bounded iOS cover-sheet scalar/JSX and expanded JSX Island fixture; Android supported rendering, compact/minimal, scalar Island and hardware-lock unproven; root/aggregate unaccepted',
+  'iOS.VNDocumentCameraViewController':
+    'production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven',
   'iOS.WidgetUI':
     'bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted',
   BackgroundTasks:

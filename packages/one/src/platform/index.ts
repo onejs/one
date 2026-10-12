@@ -223,3 +223,6 @@ export { UI }
 
 export type { PortalProps, PortalHostProps } from './ui/portalTypes'
 export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './ui/pagerTypes'
+
+export { VNDocumentCameraViewController } from './vision-kit/index'
+export type { VNDocumentCameraScan, VNDocumentCameraError, VNDocumentCameraViewControllerDelegate } from './vision-kit/index'

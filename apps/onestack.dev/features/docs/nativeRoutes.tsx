@@ -92,6 +92,7 @@ export const nativeRoutes = [
       { title: 'Camera preview', route: '/native/camera' },
       { title: 'Image Manipulator', route: '/native/image-manipulator' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
+      { title: 'Document camera', route: '/native/document-camera' },
       { title: 'SecureStore', route: '/native/secure-store' },
       { title: 'Storage', route: '/native/storage' },
       { title: 'Keep Awake', route: '/native/keep-awake' },

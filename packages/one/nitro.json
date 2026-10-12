@@ -9,6 +9,9 @@
     "androidCxxLibName": "One"
   },
   "autolinking": {
+    "OneDocumentCamera": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneDocumentCamera" }
+    },
     "OneHaptics": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneHaptics" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneHaptics" }

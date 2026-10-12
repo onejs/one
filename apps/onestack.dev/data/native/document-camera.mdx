@@ -1,0 +1,111 @@
+---
+title: VNDocumentCameraViewController
+description: Scan multipage documents with the iOS system camera
+---
+
+`One.iOS.VNDocumentCameraViewController` presents VisionKit's document camera,
+including its multipage capture, crop and review UI. It requires an iOS build,
+a supported physical device and `ios.infoPlist.NSCameraUsageDescription`.
+`isSupported` is the SDK capability check, not a camera permission grant.
+Simulators cannot scan documents.
+
+```tsx
+import { One } from 'one'
+
+if (One.iOS.VNDocumentCameraViewController.isSupported) {
+  const camera = new One.iOS.VNDocumentCameraViewController()
+  camera.delegate = {
+    documentCameraViewController: async (controller, result) => {
+      try {
+        if ('didFinishWith' in result) {
+          const scan = result.didFinishWith
+          for (let at = 0; at < scan.pageCount; at++) {
+            const image = scan.imageOfPage(at)
+            const bytes = image.pngData()
+            // consume the encoded page bytes here.
+          }
+        } else {
+          const error = result.didFailWith
+          console.error(error.domain, error.code, error.localizedDescription)
+        }
+      } finally {
+        await controller.dismiss()
+      }
+    },
+    documentCameraViewControllerDidCancel: (controller) => {
+      void controller.dismiss()
+    },
+  }
+  await camera.present()
+}
+```
+
+The delegate owns dismissal, as in VisionKit. Retain the controller while using
+it. Each controller has its own delegate and presentation state. A concurrent
+presentation on the same controller rejects; cancellation never fabricates a
+scan. Delegate errors preserve the native NSError domain, code and localized
+description. Presentation errors reject the promise before a delegate result.
+
+<PropsTable
+  title="Class availability"
+  source="vision-kit/types.ts#VNDocumentCameraAvailability"
+  data={[{ name: 'isSupported', type: 'boolean', description: 'Static SDK device support check. False on web; native getter requires an iOS build.' }]}
+/>
+
+<PropsTable
+  title="Controller"
+  source="vision-kit/types.ts#VNDocumentCameraViewControllerInstance"
+  data={[
+    { name: 'delegate', type: 'VNDocumentCameraViewControllerDelegate<VNDocumentCameraViewControllerInstance> | null', description: 'Receives completion, cancellation or failure. Defaults to null.' },
+    { name: 'present', type: '(animated?: boolean) => Promise<void>', description: 'Presents from the current app controller. Resolves after presentation; animated defaults to true.' },
+    { name: 'dismiss', type: '(animated?: boolean) => Promise<void>', description: 'Dismisses the camera. Resolves after dismissal; animated defaults to true.' },
+  ]}
+/>
+
+`VNDocumentCameraViewControllerDelegate.documentCameraViewController(controller,
+result)` receives `{ didFinishWith: scan }` or `{ didFailWith: error }`.
+`documentCameraViewControllerDidCancel(controller)` receives cancellation.
+These adapt Swift's labeled delegate overloads to JavaScript. `present` and
+`dismiss` adapt UIViewController presentation to the current app presenter;
+the native camera content is unchanged.
+
+`VNDocumentCameraScan` retains the native scan. `title` is a string, `pageCount`
+is a number, and `imageOfPage(at)` returns the native page image. Indices must
+be integers within `0..<pageCount`. The returned UIImage subset exposes
+`size: { width, height }` in points, `scale`, `pngData()` and
+`jpegData(compressionQuality)`. Encoding returns an `ArrayBuffer`, or undefined
+if UIKit cannot encode the image. JPEG quality must be finite within `0...1`.
+Pages are encoded only when requested; scan results are never replaced by
+synthetic images or cached file lists.
+
+Presentation rejects with `E_DOCUMENT_CAMERA_UNSUPPORTED`,
+`E_DOCUMENT_CAMERA_MANIFEST`, `E_DOCUMENT_CAMERA_PRESENTER`, or
+`E_DOCUMENT_CAMERA_PRESENTED`. Overlapping transitions reject with
+`E_DOCUMENT_CAMERA_TRANSITION`. Invalid page indices throw
+`E_DOCUMENT_CAMERA_PAGE`; invalid encoding quality throws
+`E_DOCUMENT_CAMERA_QUALITY`.
+
+The native fixture checks simulator unavailability and rejection with zero
+pages. Successful physical scanning, crop/review, cancellation and device
+permission failures remain required device acceptance gates.
+
+<PropsTable
+  title="Scan"
+  source="specs/OneDocumentCamera.nitro.ts#DocumentCameraScan"
+  data={[
+    { name: 'title', type: 'string', description: 'Native scan title.' },
+    { name: 'pageCount', type: 'number', description: 'Number of captured pages.' },
+    { name: 'imageOfPage', type: '(at: number) => DocumentCameraImage', description: 'Native page image at a valid zero-based index.' },
+  ]}
+/>
+
+<PropsTable
+  title="Page image"
+  source="specs/OneDocumentCamera.nitro.ts#DocumentCameraImage"
+  data={[
+    { name: 'size', type: 'DocumentCameraImageSize', description: 'Width and height in points.' },
+    { name: 'scale', type: 'number', description: 'Pixels per point.' },
+    { name: 'pngData', type: '() => ArrayBuffer | undefined', description: 'Encodes the page as PNG.' },
+    { name: 'jpegData', type: '(compressionQuality: number) => ArrayBuffer | undefined', description: 'Encodes the page as JPEG.' },
+  ]}
+/>

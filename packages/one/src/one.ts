@@ -34,6 +34,7 @@ import {
   Contacts,
   Calendar,
   WidgetUI,
+  VNDocumentCameraViewController,
   Clipboard as NativeClipboard,
   Barometer as NativeBarometer,
   LightSensor as NativeLightSensor,
@@ -76,6 +77,7 @@ import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-are
 export type OnePlatform = 'web' | 'ios' | 'android'
 
 export type OneIOS = typeof Swift & {
+  readonly VNDocumentCameraViewController: typeof VNDocumentCameraViewController
   readonly WidgetUI: typeof WidgetUI
   readonly CameraView: typeof CameraView
   readonly Color: ColorType['ios']
@@ -181,6 +183,7 @@ function currentPlatform(): OnePlatform {
 
 const iOS: Readonly<OneIOS> = Object.freeze({
   ...Swift,
+  VNDocumentCameraViewController,
   WidgetUI,
   CameraView,
   Color: Color.ios,
