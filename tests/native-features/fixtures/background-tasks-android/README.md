@@ -29,6 +29,10 @@ the project root to its crawl roots. The evidence captures the source commit
 and both bundle and APK SHA-256 digests. It leaves the generated consumer's
 sources untouched.
 
+The runner grants notification access and ReactActivity's debug-only API 37
+local-network permission before starting the embedded bundle. No Metro server
+is involved.
+
 On a claimed, idle API 37 device, unplug the emulated battery before launching.
 The mounted fixture schedules one delayed refresh and three charging-gated
 processing requests, cancels one, and rejects an unconfigured identifier.

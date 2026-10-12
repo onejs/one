@@ -22,6 +22,9 @@ await command('install', '-r', apk)
 // clear only this uniquely named proof app; never touch another installed proof.
 await command('shell', 'pm', 'clear', app)
 await command('shell', 'pm', 'grant', app, 'android.permission.POST_NOTIFICATIONS')
+// ReactActivity's API 37 debug gate waits for this permission even with an
+// embedded bundle and dev support disabled. grant before starting the fixture.
+await command('shell', 'pm', 'grant', app, 'android.permission.ACCESS_LOCAL_NETWORK')
 await command('shell', 'dumpsys', 'battery', 'unplug')
 await command('shell', 'dumpsys', 'battery', 'set', 'status', '3')
 const battery = await saveCommand('battery-before.txt', 'shell', 'dumpsys', 'battery')
@@ -42,6 +45,8 @@ const log = spawn(adb, [
   'brief',
   'BackgroundProof:I',
   'OneBackgroundTasks:E',
+  'ReactNative:E',
+  'ReactNativeJS:E',
   'AndroidRuntime:E',
   '*:S',
 ])
