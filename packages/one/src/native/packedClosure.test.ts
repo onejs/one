@@ -431,8 +431,8 @@ if (!config.dependencies['react-native-nitro-modules']) {
       expect(rolldown.oneOptions.native).toMatchObject({
         app: {
           name: 'OneBasic',
-          ios: { bundleId: 'com.natew.oneexample' },
-          android: { applicationId: 'com.natew.oneexample' },
+          ios: { bundleId: 'dev.onestack.starter' },
+          android: { applicationId: 'dev.onestack.starter' },
         },
       })
       expect(rolldown.oneOptions.native).not.toHaveProperty('bundler')
