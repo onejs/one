@@ -761,7 +761,8 @@ describe('one native integration tests', () => {
   })
 
   async function enterFreshDerivedExample() {
-    await navigateTo(driver, '/one-native-derived-behavior')
+    openSimulatorUrl(driver, 'nativefeatures:///one-native-derived-behavior')
+    await waitForElement(driver, 'derived-behavior-screen')
     const keyboard = driver.$('XCUIElementTypeKeyboard')
     if (await keyboard.isDisplayed()) await (await waitForElement(driver, 'Return')).click()
     await driver.waitUntil(async () => !(await keyboard.isDisplayed()), {
