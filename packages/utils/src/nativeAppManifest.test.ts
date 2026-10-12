@@ -90,6 +90,15 @@ describe('native.app manifest', () => {
     expect(() => validateNativeApp({ ...app, brightness: 'yes' as any })).toThrow(/brightness/)
   })
 
+  test('requires a pedometer motion prompt', () => {
+    expect(() =>
+      validateNativeApp({ ...app, pedometer: { usage: 'Count your steps.' } })
+    ).not.toThrow()
+    expect(() => validateNativeApp({ ...app, pedometer: { usage: ' ' } })).toThrow(
+      /pedometer\.usage/
+    )
+  })
+
   test('requires an audio recording prompt', () => {
     expect(() => validateNativeApp({ ...app, audio: { microphone: 'Record notes.' } })).not.toThrow()
     expect(() => validateNativeApp({ ...app, audio: { background: true } })).not.toThrow()

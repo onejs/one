@@ -426,6 +426,48 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(androidSettings.content).not.toContain('../node_modules')
   })
 
+  it('stamps the pedometer motion permission from native.app', () => {
+    const pedometerPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { ...app, pedometer: { usage: 'Count steps & distance' } },
+    })
+    expect(pedometerPlist.content?.match(/<key>NSMotionUsageDescription<\/key>/g))
+      .toHaveLength(1)
+    expect(pedometerPlist.content).toContain(
+      '<key>NSMotionUsageDescription</key>\n\t<string>Count steps &amp; distance</string>'
+    )
+
+    const noPedometerPlist = renderPrebuildFile({
+      relativePath: 'HelloWorld/Info.plist',
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app,
+    })
+    expect(noPedometerPlist.content).not.toContain('NSMotionUsageDescription')
+
+    const pedometerManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app: { ...app, pedometer: { usage: 'Count your steps.' } },
+    })
+    expect(pedometerManifest.content).toContain(
+      '<uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />'
+    )
+
+    const noPedometerManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content:
+        '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>',
+      platform: 'android',
+      app,
+    })
+    expect(noPedometerManifest.content).not.toContain('ACTIVITY_RECOGNITION')
+  })
+
   it('stamps marketing and build versions from the manifest', () => {
     const stamped = {
       ...app,

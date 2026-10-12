@@ -16,6 +16,7 @@
 #include "HybridOneAppleAuthSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
 #include "HybridOneBackgroundTasksSpecSwift.hpp"
+#include "HybridOneBarometerSpecSwift.hpp"
 #include "HybridOneBatterySpecSwift.hpp"
 #include "HybridOneBrightnessSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
@@ -33,6 +34,7 @@
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
+#include "HybridOneLightSensorSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneMapServicesSpecSwift.hpp"
@@ -40,6 +42,7 @@
 #include "HybridOneNativeModulesSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneNotificationsSpecSwift.hpp"
+#include "HybridOnePedometerSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOnePrintSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
@@ -335,6 +338,30 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneBackgroundTasksSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const BarometerMeasurement& /* event */)>
+  Func_void_BarometerMeasurement create_Func_void_BarometerMeasurement(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_BarometerMeasurement::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const BarometerMeasurement& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBarometerSpec>
+  std::shared_ptr<HybridOneBarometerSpec> create_std__shared_ptr_HybridOneBarometerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneBarometerSpec_cxx swiftPart = One::HybridOneBarometerSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneBarometerSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneBarometerSpec_(std__shared_ptr_HybridOneBarometerSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneBarometerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneBarometerSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneBarometerSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneBarometerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   
@@ -858,6 +885,30 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
+  // pragma MARK: std::function<void(const LightSensorMeasurement& /* event */)>
+  Func_void_LightSensorMeasurement create_Func_void_LightSensorMeasurement(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_LightSensorMeasurement::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const LightSensorMeasurement& event) mutable -> void {
+      swiftClosure.call(event);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneLightSensorSpec>
+  std::shared_ptr<HybridOneLightSensorSpec> create_std__shared_ptr_HybridOneLightSensorSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneLightSensorSpec_cxx swiftPart = One::HybridOneLightSensorSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneLightSensorSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneLightSensorSpec_(std__shared_ptr_HybridOneLightSensorSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneLightSensorSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneLightSensorSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneLightSensorSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneLightSensorSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneLocalAuthenticationSpec>
   std::shared_ptr<HybridOneLocalAuthenticationSpec> create_std__shared_ptr_HybridOneLocalAuthenticationSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneLocalAuthenticationSpec_cxx swiftPart = One::HybridOneLocalAuthenticationSpec_cxx::fromUnsafe(swiftUnsafePointer);
@@ -1127,6 +1178,38 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneNotificationsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+  
+  // pragma MARK: std::function<void(const PedometerResult& /* result */)>
+  Func_void_PedometerResult create_Func_void_PedometerResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_PedometerResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const PedometerResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::function<void(const PedometerPermissionResponse& /* result */)>
+  Func_void_PedometerPermissionResponse create_Func_void_PedometerPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_PedometerPermissionResponse::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const PedometerPermissionResponse& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOnePedometerSpec>
+  std::shared_ptr<HybridOnePedometerSpec> create_std__shared_ptr_HybridOnePedometerSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOnePedometerSpec_cxx swiftPart = One::HybridOnePedometerSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOnePedometerSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOnePedometerSpec_(std__shared_ptr_HybridOnePedometerSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOnePedometerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOnePedometerSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOnePedometerSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOnePedometerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

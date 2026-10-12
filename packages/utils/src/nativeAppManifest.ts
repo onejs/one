@@ -102,6 +102,13 @@ export interface NativeAppManifest {
   // stamps the WRITE_SETTINGS permission; without it setSystem and
   // setSystemMode reject with E_BRIGHTNESS_PERMISSIONS.
   brightness?: boolean
+  // motion prompt for One.Pedometer step counting. ios stamps
+  // NSMotionUsageDescription from usage (the barometer reads it too);
+  // android stamps the activity-recognition permission. without it
+  // requestPermissions rejects with E_PEDOMETER_MANIFEST.
+  pedometer?: {
+    usage: string
+  }
   // present when the app uses local notifications. prebuild stamps the
   // android notification permissions and receiver plus the ios delegate gate.
   // push opts into remote push: the fcm source set and the aps-environment
@@ -511,6 +518,13 @@ export function validateNativeApp(
   }
   if (manifest.brightness !== undefined && typeof manifest.brightness !== 'boolean') {
     fail('brightness must be a boolean')
+  }
+  if (
+    manifest.pedometer !== undefined &&
+    (typeof manifest.pedometer?.usage !== 'string' ||
+      manifest.pedometer.usage.trim() === '')
+  ) {
+    fail('pedometer.usage must be a non-empty string')
   }
   if (manifest.notifications !== undefined) {
     if (

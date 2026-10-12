@@ -1,0 +1,26 @@
+---
+title: Pedometer
+description: Live step count and step history from the device pedometer
+---
+
+`One.Pedometer` counts steps on iOS and Android. It has `isAvailable()`, `watchStepCount(fn)`, `getStepCount(start, end)`, `getPermissions()`, and `requestPermissions()`.
+
+```tsx
+import { One } from 'one'
+
+if (One.Pedometer.isAvailable()) {
+  const subscription = One.Pedometer.watchStepCount(({ steps }) => {
+    console.log(steps)
+  })
+  // later: subscription.remove()
+}
+
+const week = await One.Pedometer.getStepCount(
+  new Date(Date.now() - 7 * 86400_000),
+  new Date()
+)
+```
+
+`isAvailable()` is synchronous. `watchStepCount` reports `{ steps }` since the watch started; the first event anchors the watch at `0`. `getStepCount` queries the iOS seven-day history and resolves `{ steps }`; on Android step history is unavailable and it rejects with `E_PEDOMETER_STEP_COUNT`, matching Expo. Permissions resolve `{ status, granted, canAskAgain }` with `status` of `'granted'`, `'denied'`, or `'undetermined'`.
+
+Step counting needs the motion permission: set `native.app.pedometer.usage`, which stamps the iOS motion usage description and the Android activity-recognition permission. The iOS usage description also gates the [Barometer](/native/barometer). On web, browsers expose no pedometer API, so the sensor reads unavailable, watches never fire, history rejects, and permissions read denied.

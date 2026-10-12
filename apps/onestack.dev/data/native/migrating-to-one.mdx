@@ -27,6 +27,16 @@ From `expo-clipboard`. See [Clipboard](/native/clipboard).
 | `setStringAsync(text)` | `One.Clipboard.setString(text)` |
 | `hasStringAsync()` | `One.Clipboard.hasString()` |
 
+## Barometer
+
+From `expo-sensors`. `removeAllListeners`, `removeSubscription`, `hasListeners`, and `getListenerCount` have no equivalent; the subscription's `remove()` replaces them. See [Barometer](/native/barometer).
+
+| expo-sensors Barometer | One |
+|---|---|
+| `isAvailableAsync()` | `One.Barometer.isAvailable()` (synchronous) |
+| `setUpdateInterval(intervalMs)` | `One.Barometer.setUpdateInterval(intervalMs)` |
+| `addListener(fn)` | `One.Barometer.addListener(fn)` |
+
 ## Battery
 
 From `expo-battery`. Import the hooks directly from `one`. `isBatteryOptimizationEnabledAsync` has no equivalent. See [Battery](/native/battery).
@@ -46,6 +56,28 @@ From `expo-battery`. Import the hooks directly from `one`. `isBatteryOptimizatio
 | `useLowPowerMode()` | `useLowPowerMode()` |
 | `usePowerState()` | `usePowerState()` |
 | `BatteryState.CHARGING` | `'charging'` (and likewise for every member) |
+
+## Light Sensor
+
+From `expo-sensors`. `removeAllListeners`, `removeSubscription`, `hasListeners`, and `getListenerCount` have no equivalent; the subscription's `remove()` replaces them. See [Light Sensor](/native/light-sensor).
+
+| expo-sensors LightSensor | One |
+|---|---|
+| `isAvailableAsync()` | `One.LightSensor.isAvailable()` (synchronous) |
+| `setUpdateInterval(intervalMs)` | `One.LightSensor.setUpdateInterval(intervalMs)` |
+| `addListener(fn)` | `One.LightSensor.addListener(fn)` |
+
+## Pedometer
+
+From `expo-sensors`. The first watch event anchors the count at `0`; Expo reports `1`. `getStepCount` rejects with `E_PEDOMETER_STEP_COUNT` on Android, where Expo throws its own not-supported error. Set `native.app.pedometer.usage` for the motion permission. See [Pedometer](/native/pedometer).
+
+| expo-sensors Pedometer | One |
+|---|---|
+| `isAvailableAsync()` | `One.Pedometer.isAvailable()` (synchronous) |
+| `watchStepCount(fn)` | `One.Pedometer.watchStepCount(fn)` |
+| `getStepCountAsync(start, end)` | `One.Pedometer.getStepCount(start, end)` |
+| `getPermissionsAsync()` | `One.Pedometer.getPermissions()` |
+| `requestPermissionsAsync()` | `One.Pedometer.requestPermissions()` |
 
 ## Brightness
 

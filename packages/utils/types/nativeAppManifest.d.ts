@@ -53,6 +53,9 @@ export interface NativeAppManifest {
         microphone: string;
     };
     brightness?: boolean;
+    pedometer?: {
+        usage: string;
+    };
     notifications?: {
         push?: boolean;
         apsEnvironment?: 'development' | 'production';

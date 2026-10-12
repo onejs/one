@@ -130,8 +130,11 @@ const suites = [
   'quick-actions',
   'app-intents',
   'clipboard',
+  'barometer',
   'battery',
   'brightness',
+  'light-sensor',
+  'pedometer',
   'speech-synthesis',
   'network',
   'browser',
@@ -921,6 +924,10 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'quick-actions': quickActionsLoaded,
   'app-intents': appIntentsLoaded,
   clipboard: clipboardLoaded,
+  barometer: (nodes: Node[]) =>
+    nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-barometer-run')) &&
+    has(nodes, 'Status: '),
   battery: (nodes: Node[]) =>
     nodes.some((n) => n.type === 'Application') &&
     Boolean(id(nodes, 'one-native-battery-run')) &&
@@ -928,6 +935,14 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   brightness: (nodes: Node[]) =>
     nodes.some((n) => n.type === 'Application') &&
     Boolean(id(nodes, 'one-native-brightness-run')) &&
+    has(nodes, 'Status: '),
+  'light-sensor': (nodes: Node[]) =>
+    nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-light-sensor-run')) &&
+    has(nodes, 'Status: '),
+  pedometer: (nodes: Node[]) =>
+    nodes.some((n) => n.type === 'Application') &&
+    Boolean(id(nodes, 'one-native-pedometer-run')) &&
     has(nodes, 'Status: '),
   'speech-synthesis': (nodes: Node[]) =>
     nodes.some((n) => n.type === 'Application') &&
@@ -1049,8 +1064,11 @@ const suiteHome: Record<Suite, string> = {
   'quick-actions': 'nav-one-native-quick-actions',
   'app-intents': 'nav-one-native-app-intents',
   clipboard: 'nav-one-native-clipboard',
+  barometer: 'nav-one-native-barometer',
   battery: 'nav-one-native-battery',
   brightness: 'nav-one-native-brightness',
+  'light-sensor': 'nav-one-native-light-sensor',
+  pedometer: 'nav-one-native-pedometer',
   'speech-synthesis': 'nav-one-native-speech-synthesis',
   network: 'nav-one-native-network',
   browser: 'nav-one-native-browser',
@@ -10600,6 +10618,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
+  if (config.suite === 'barometer') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-barometer')
+    await wait('barometer fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-barometer-run' })
+    const state = await wait('barometer operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    // the simulator has no altimeter, so the unavailable path is the
+    // behavior under test: no availability, no events, clean attach.
+    for (const expected of [
+      'Available: false',
+      'Interval: set',
+      'Events: none',
+      'Invalid: Barometer.addListener: listener must be a function',
+      'InvalidInterval: Barometer.setUpdateInterval: interval must be a finite number at least 0',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`barometer expected ${expected}`)
+      console.log(`PASS barometer-${expected.split(':')[0].toLowerCase()}`)
+    }
+    screenshot('barometer-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
   if (config.suite === 'battery') {
     const valueOf = (got: string[], prefix: string) =>
       got.find((label) => label.startsWith(prefix))?.slice(prefix.length)
@@ -10694,6 +10739,98 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!['unknown', 'automatic', 'manual'].includes(mode ?? ''))
       throw new Error(`brightness system mode outside union: ${mode}`)
     screenshot('brightness-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'light-sensor') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-light-sensor')
+    await wait('light sensor fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-light-sensor-run' })
+    const state = await wait('light sensor operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    // ios exposes no ambient light api, so the unavailable path is the
+    // behavior under test on every ios device: no availability, no events,
+    // clean attach. android proves live lux.
+    for (const expected of [
+      'Available: false',
+      'Interval: set',
+      'Events: none',
+      'Invalid: LightSensor.addListener: listener must be a function',
+      'InvalidInterval: LightSensor.setUpdateInterval: interval must be a finite number at least 0',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`light-sensor expected ${expected}`)
+      console.log(`PASS light-sensor-${expected.split(':')[0].toLowerCase()}`)
+    }
+    screenshot('light-sensor-readback.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'pedometer') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-pedometer')
+    await wait('pedometer fixture mounted', (n) => has(n, 'Status: idle'))
+    tap({ id: 'one-native-pedometer-run' })
+    // fresh sims present the motion authorization prompt during the watch or
+    // history step and the fixture cannot finish until it is answered; decided
+    // sims go straight to done.
+    const motionPromptDeadline = Date.now() + config.timeout
+    let sawMotionPrompt = false
+    while (Date.now() < motionPromptDeadline) {
+      const probed = snapshot(config.simulatorId)
+      if (has(probed, 'Status: done') || has(probed, 'Status: failed')) break
+      if (
+        has(probed, 'Allow') &&
+        labels(probed).some((label) => label.includes('verifies step counting'))
+      ) {
+        sawMotionPrompt = true
+        break
+      }
+      await new Promise((resolve) => setTimeout(resolve, 250))
+    }
+    if (sawMotionPrompt) {
+      screenshot('pedometer-permission-prompt.png')
+      tap({ label: 'Allow' })
+      console.log('PASS pedometer-permission-prompt')
+    }
+    const state = await wait('pedometer operations complete', (n) =>
+      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const got = labels(state)
+    const failure = got.find((label) => label.startsWith('Status: failed'))
+    if (failure) throw new Error(failure)
+    const valueOf = (prefix: string) =>
+      got.find((label) => label.startsWith(prefix))?.slice(prefix.length)
+    // the simulator has no step counting, so the unavailable path is the
+    // behavior under test: no availability, no watch events, and the
+    // history query rejects with its stable code.
+    for (const expected of [
+      'Available: false',
+      'Watch: none',
+      'Invalid: Pedometer.watchStepCount: listener must be a function',
+      'InvalidRange: Pedometer.getStepCount: start and end must be Dates',
+      'InvalidOrder: Pedometer.getStepCount: start must precede end',
+    ]) {
+      if (!got.includes(expected)) throw new Error(`pedometer expected ${expected}`)
+      console.log(`PASS pedometer-${expected.split(':')[0].toLowerCase()}`)
+    }
+    const history = valueOf('History: ') ?? ''
+    if (!history.startsWith('E_PEDOMETER_STEP_COUNT:Pedometer.getStepCount: '))
+      throw new Error(`pedometer history missed its code: ${history}`)
+    console.log('PASS pedometer-history')
+    const permissions = valueOf('Permissions: ') ?? ''
+    if (
+      !['granted|true|false', 'denied|false|false', 'undetermined|false|true'].includes(
+        permissions
+      )
+    )
+      throw new Error(`pedometer permissions outside shape: ${permissions}`)
+    console.log('PASS pedometer-permissions')
+    screenshot('pedometer-readback.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

@@ -35,6 +35,9 @@ import {
   Calendar,
   WidgetUI,
   Clipboard as NativeClipboard,
+  Barometer as NativeBarometer,
+  LightSensor as NativeLightSensor,
+  Pedometer as NativePedometer,
   Battery as NativeBattery,
   Brightness as NativeBrightness,
   SpeechSynthesis as NativeSpeechSynthesis,
@@ -150,6 +153,9 @@ export type OneAPI = {
   readonly UI: Readonly<OneUI>
   readonly Notifications: Readonly<OneNotifications>
   readonly Clipboard: typeof NativeClipboard
+  readonly Barometer: typeof NativeBarometer
+  readonly LightSensor: typeof NativeLightSensor
+  readonly Pedometer: typeof NativePedometer
   readonly Battery: typeof NativeBattery
   readonly Brightness: typeof NativeBrightness
   readonly SpeechSynthesis: typeof NativeSpeechSynthesis
@@ -250,6 +256,9 @@ export const One: OneAPI = Object.freeze({
   UI,
   Notifications,
   Clipboard: NativeClipboard,
+  Barometer: NativeBarometer,
+  LightSensor: NativeLightSensor,
+  Pedometer: NativePedometer,
   Battery: NativeBattery,
   Brightness: NativeBrightness,
   SpeechSynthesis: NativeSpeechSynthesis,

@@ -52,6 +52,8 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 namespace margelo::nitro::one { struct BackgroundTaskInvocation; }
 // Forward declaration of `BackgroundTaskKind` to properly resolve imports.
 namespace margelo::nitro::one { enum class BackgroundTaskKind; }
+// Forward declaration of `BarometerMeasurement` to properly resolve imports.
+namespace margelo::nitro::one { struct BarometerMeasurement; }
 // Forward declaration of `BatteryLevelEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct BatteryLevelEvent; }
 // Forward declaration of `BatteryPowerModeEvent` to properly resolve imports.
@@ -146,6 +148,8 @@ namespace margelo::nitro::one { class HybridOneAppleAuthSpec; }
 namespace margelo::nitro::one { class HybridOneAudioSpec; }
 // Forward declaration of `HybridOneBackgroundTasksSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
+// Forward declaration of `HybridOneBarometerSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneBarometerSpec; }
 // Forward declaration of `HybridOneBatterySpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBatterySpec; }
 // Forward declaration of `HybridOneBrightnessSpec` to properly resolve imports.
@@ -180,6 +184,8 @@ namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 namespace margelo::nitro::one { class HybridOneKeepAwakeSpec; }
 // Forward declaration of `HybridOneLaunchScreenSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
+// Forward declaration of `HybridOneLightSensorSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneLightSensorSpec; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
@@ -194,6 +200,8 @@ namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
 namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
+// Forward declaration of `HybridOnePedometerSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOnePedometerSpec; }
 // Forward declaration of `HybridOnePhotoLibrarySpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
 // Forward declaration of `HybridOnePrintSpec` to properly resolve imports.
@@ -236,6 +244,8 @@ namespace margelo::nitro::one { struct ImagePickerNativeResult; }
 namespace margelo::nitro::one { struct ImageResize; }
 // Forward declaration of `ImageTransformResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ImageTransformResult; }
+// Forward declaration of `LightSensorMeasurement` to properly resolve imports.
+namespace margelo::nitro::one { struct LightSensorMeasurement; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
@@ -308,6 +318,12 @@ namespace margelo::nitro::one { enum class OneUpdatesCheckType; }
 namespace margelo::nitro::one { struct OneUpdatesFetchResult; }
 // Forward declaration of `OneUpdatesFetchType` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneUpdatesFetchType; }
+// Forward declaration of `PedometerPermissionResponse` to properly resolve imports.
+namespace margelo::nitro::one { struct PedometerPermissionResponse; }
+// Forward declaration of `PedometerPermissionStatus` to properly resolve imports.
+namespace margelo::nitro::one { enum class PedometerPermissionStatus; }
+// Forward declaration of `PedometerResult` to properly resolve imports.
+namespace margelo::nitro::one { struct PedometerResult; }
 // Forward declaration of `PendingBackgroundTask` to properly resolve imports.
 namespace margelo::nitro::one { struct PendingBackgroundTask; }
 // Forward declaration of `PhotoLibraryAlbumPage` to properly resolve imports.
@@ -394,6 +410,8 @@ namespace One { class HybridOneAppleAuthSpec_cxx; }
 namespace One { class HybridOneAudioSpec_cxx; }
 // Forward declaration of `HybridOneBackgroundTasksSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBackgroundTasksSpec_cxx; }
+// Forward declaration of `HybridOneBarometerSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneBarometerSpec_cxx; }
 // Forward declaration of `HybridOneBatterySpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBatterySpec_cxx; }
 // Forward declaration of `HybridOneBrightnessSpec_cxx` to properly resolve imports.
@@ -428,6 +446,8 @@ namespace One { class HybridOneImagePickerSpec_cxx; }
 namespace One { class HybridOneKeepAwakeSpec_cxx; }
 // Forward declaration of `HybridOneLaunchScreenSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLaunchScreenSpec_cxx; }
+// Forward declaration of `HybridOneLightSensorSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneLightSensorSpec_cxx; }
 // Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
@@ -442,6 +462,8 @@ namespace One { class HybridOneNativeModulesSpec_cxx; }
 namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNotificationsSpec_cxx; }
+// Forward declaration of `HybridOnePedometerSpec_cxx` to properly resolve imports.
+namespace One { class HybridOnePedometerSpec_cxx; }
 // Forward declaration of `HybridOnePhotoLibrarySpec_cxx` to properly resolve imports.
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
 // Forward declaration of `HybridOnePrintSpec_cxx` to properly resolve imports.
@@ -491,6 +513,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "AudioRemoteCommandType.hpp"
 #include "BackgroundTaskInvocation.hpp"
 #include "BackgroundTaskKind.hpp"
+#include "BarometerMeasurement.hpp"
 #include "BatteryLevelEvent.hpp"
 #include "BatteryPowerModeEvent.hpp"
 #include "BatteryPowerState.hpp"
@@ -538,6 +561,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneAppleAuthSpec.hpp"
 #include "HybridOneAudioSpec.hpp"
 #include "HybridOneBackgroundTasksSpec.hpp"
+#include "HybridOneBarometerSpec.hpp"
 #include "HybridOneBatterySpec.hpp"
 #include "HybridOneBrightnessSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
@@ -555,6 +579,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneKeepAwakeSpec.hpp"
 #include "HybridOneLaunchScreenSpec.hpp"
+#include "HybridOneLightSensorSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
 #include "HybridOneMapServicesSpec.hpp"
@@ -562,6 +587,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
+#include "HybridOnePedometerSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
 #include "HybridOnePrintSpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
@@ -583,6 +609,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ImagePickerNativeResult.hpp"
 #include "ImageResize.hpp"
 #include "ImageTransformResult.hpp"
+#include "LightSensorMeasurement.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
@@ -619,6 +646,9 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
 #include "OneUpdatesFetchType.hpp"
+#include "PedometerPermissionResponse.hpp"
+#include "PedometerPermissionStatus.hpp"
+#include "PedometerResult.hpp"
 #include "PendingBackgroundTask.hpp"
 #include "PhotoLibraryAlbum.hpp"
 #include "PhotoLibraryAlbumPage.hpp"
@@ -1659,6 +1689,40 @@ namespace margelo::nitro::one::bridge::swift {
   inline Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____ create_Result_std__shared_ptr_Promise_std__vector_PendingBackgroundTask____(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<std::vector<PendingBackgroundTask>>>>::withError(error);
   }
+  
+  // pragma MARK: std::function<void(const BarometerMeasurement& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const BarometerMeasurement&)>`.
+   */
+  using Func_void_BarometerMeasurement = std::function<void(const BarometerMeasurement& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const BarometerMeasurement& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_BarometerMeasurement_Wrapper final {
+  public:
+    explicit Func_void_BarometerMeasurement_Wrapper(std::function<void(const BarometerMeasurement& /* event */)>&& func): _function(std::make_unique<std::function<void(const BarometerMeasurement& /* event */)>>(std::move(func))) {}
+    inline void call(BarometerMeasurement event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const BarometerMeasurement& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_BarometerMeasurement create_Func_void_BarometerMeasurement(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_BarometerMeasurement_Wrapper wrap_Func_void_BarometerMeasurement(Func_void_BarometerMeasurement value) noexcept {
+    return Func_void_BarometerMeasurement_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneBarometerSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneBarometerSpec>`.
+   */
+  using std__shared_ptr_HybridOneBarometerSpec_ = std::shared_ptr<HybridOneBarometerSpec>;
+  std::shared_ptr<HybridOneBarometerSpec> create_std__shared_ptr_HybridOneBarometerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneBarometerSpec_(std__shared_ptr_HybridOneBarometerSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneBarometerSpec>
+  using std__weak_ptr_HybridOneBarometerSpec_ = std::weak_ptr<HybridOneBarometerSpec>;
+  inline std__weak_ptr_HybridOneBarometerSpec_ weakify_std__shared_ptr_HybridOneBarometerSpec_(const std::shared_ptr<HybridOneBarometerSpec>& strong) noexcept { return strong; }
   
   // pragma MARK: std::shared_ptr<Promise<double>>
   /**
@@ -3488,6 +3552,40 @@ namespace margelo::nitro::one::bridge::swift {
   using std__weak_ptr_HybridOneLaunchScreenSpec_ = std::weak_ptr<HybridOneLaunchScreenSpec>;
   inline std__weak_ptr_HybridOneLaunchScreenSpec_ weakify_std__shared_ptr_HybridOneLaunchScreenSpec_(const std::shared_ptr<HybridOneLaunchScreenSpec>& strong) noexcept { return strong; }
   
+  // pragma MARK: std::function<void(const LightSensorMeasurement& /* event */)>
+  /**
+   * Specialized version of `std::function<void(const LightSensorMeasurement&)>`.
+   */
+  using Func_void_LightSensorMeasurement = std::function<void(const LightSensorMeasurement& /* event */)>;
+  /**
+   * Wrapper class for a `std::function<void(const LightSensorMeasurement& / * event * /)>`, this can be used from Swift.
+   */
+  class Func_void_LightSensorMeasurement_Wrapper final {
+  public:
+    explicit Func_void_LightSensorMeasurement_Wrapper(std::function<void(const LightSensorMeasurement& /* event */)>&& func): _function(std::make_unique<std::function<void(const LightSensorMeasurement& /* event */)>>(std::move(func))) {}
+    inline void call(LightSensorMeasurement event) const noexcept {
+      _function->operator()(event);
+    }
+  private:
+    std::unique_ptr<std::function<void(const LightSensorMeasurement& /* event */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_LightSensorMeasurement create_Func_void_LightSensorMeasurement(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_LightSensorMeasurement_Wrapper wrap_Func_void_LightSensorMeasurement(Func_void_LightSensorMeasurement value) noexcept {
+    return Func_void_LightSensorMeasurement_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOneLightSensorSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneLightSensorSpec>`.
+   */
+  using std__shared_ptr_HybridOneLightSensorSpec_ = std::shared_ptr<HybridOneLightSensorSpec>;
+  std::shared_ptr<HybridOneLightSensorSpec> create_std__shared_ptr_HybridOneLightSensorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneLightSensorSpec_(std__shared_ptr_HybridOneLightSensorSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOneLightSensorSpec>
+  using std__weak_ptr_HybridOneLightSensorSpec_ = std::weak_ptr<HybridOneLightSensorSpec>;
+  inline std__weak_ptr_HybridOneLightSensorSpec_ weakify_std__shared_ptr_HybridOneLightSensorSpec_(const std::shared_ptr<HybridOneLightSensorSpec>& strong) noexcept { return strong; }
+  
   // pragma MARK: std::shared_ptr<HybridOneLocalAuthenticationSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneLocalAuthenticationSpec>`.
@@ -4638,6 +4736,104 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__optional_NativeNotificationResponse__ create_Result_std__optional_NativeNotificationResponse__(const std::exception_ptr& error) noexcept {
     return Result<std::optional<NativeNotificationResponse>>::withError(error);
+  }
+  
+  // pragma MARK: std::function<void(const PedometerResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const PedometerResult&)>`.
+   */
+  using Func_void_PedometerResult = std::function<void(const PedometerResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const PedometerResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_PedometerResult_Wrapper final {
+  public:
+    explicit Func_void_PedometerResult_Wrapper(std::function<void(const PedometerResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const PedometerResult& /* result */)>>(std::move(func))) {}
+    inline void call(PedometerResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const PedometerResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PedometerResult create_Func_void_PedometerResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PedometerResult_Wrapper wrap_Func_void_PedometerResult(Func_void_PedometerResult value) noexcept {
+    return Func_void_PedometerResult_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<PedometerResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<PedometerResult>>`.
+   */
+  using std__shared_ptr_Promise_PedometerResult__ = std::shared_ptr<Promise<PedometerResult>>;
+  inline std::shared_ptr<Promise<PedometerResult>> create_std__shared_ptr_Promise_PedometerResult__() noexcept {
+    return Promise<PedometerResult>::create();
+  }
+  inline PromiseHolder<PedometerResult> wrap_std__shared_ptr_Promise_PedometerResult__(std::shared_ptr<Promise<PedometerResult>> promise) noexcept {
+    return PromiseHolder<PedometerResult>(std::move(promise));
+  }
+  
+  // pragma MARK: std::shared_ptr<Promise<PedometerPermissionResponse>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<PedometerPermissionResponse>>`.
+   */
+  using std__shared_ptr_Promise_PedometerPermissionResponse__ = std::shared_ptr<Promise<PedometerPermissionResponse>>;
+  inline std::shared_ptr<Promise<PedometerPermissionResponse>> create_std__shared_ptr_Promise_PedometerPermissionResponse__() noexcept {
+    return Promise<PedometerPermissionResponse>::create();
+  }
+  inline PromiseHolder<PedometerPermissionResponse> wrap_std__shared_ptr_Promise_PedometerPermissionResponse__(std::shared_ptr<Promise<PedometerPermissionResponse>> promise) noexcept {
+    return PromiseHolder<PedometerPermissionResponse>(std::move(promise));
+  }
+  
+  // pragma MARK: std::function<void(const PedometerPermissionResponse& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const PedometerPermissionResponse&)>`.
+   */
+  using Func_void_PedometerPermissionResponse = std::function<void(const PedometerPermissionResponse& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const PedometerPermissionResponse& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_PedometerPermissionResponse_Wrapper final {
+  public:
+    explicit Func_void_PedometerPermissionResponse_Wrapper(std::function<void(const PedometerPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const PedometerPermissionResponse& /* result */)>>(std::move(func))) {}
+    inline void call(PedometerPermissionResponse result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const PedometerPermissionResponse& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_PedometerPermissionResponse create_Func_void_PedometerPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_PedometerPermissionResponse_Wrapper wrap_Func_void_PedometerPermissionResponse(Func_void_PedometerPermissionResponse value) noexcept {
+    return Func_void_PedometerPermissionResponse_Wrapper(std::move(value));
+  }
+  
+  // pragma MARK: std::shared_ptr<HybridOnePedometerSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOnePedometerSpec>`.
+   */
+  using std__shared_ptr_HybridOnePedometerSpec_ = std::shared_ptr<HybridOnePedometerSpec>;
+  std::shared_ptr<HybridOnePedometerSpec> create_std__shared_ptr_HybridOnePedometerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOnePedometerSpec_(std__shared_ptr_HybridOnePedometerSpec_ cppType);
+  
+  // pragma MARK: std::weak_ptr<HybridOnePedometerSpec>
+  using std__weak_ptr_HybridOnePedometerSpec_ = std::weak_ptr<HybridOnePedometerSpec>;
+  inline std__weak_ptr_HybridOnePedometerSpec_ weakify_std__shared_ptr_HybridOnePedometerSpec_(const std::shared_ptr<HybridOnePedometerSpec>& strong) noexcept { return strong; }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<PedometerResult>>>
+  using Result_std__shared_ptr_Promise_PedometerResult___ = Result<std::shared_ptr<Promise<PedometerResult>>>;
+  inline Result_std__shared_ptr_Promise_PedometerResult___ create_Result_std__shared_ptr_Promise_PedometerResult___(const std::shared_ptr<Promise<PedometerResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<PedometerResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_PedometerResult___ create_Result_std__shared_ptr_Promise_PedometerResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<PedometerResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::shared_ptr<Promise<PedometerPermissionResponse>>>
+  using Result_std__shared_ptr_Promise_PedometerPermissionResponse___ = Result<std::shared_ptr<Promise<PedometerPermissionResponse>>>;
+  inline Result_std__shared_ptr_Promise_PedometerPermissionResponse___ create_Result_std__shared_ptr_Promise_PedometerPermissionResponse___(const std::shared_ptr<Promise<PedometerPermissionResponse>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<PedometerPermissionResponse>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_PedometerPermissionResponse___ create_Result_std__shared_ptr_Promise_PedometerPermissionResponse___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<PedometerPermissionResponse>>>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<Promise<PhotoLibraryPermissionStatus>>

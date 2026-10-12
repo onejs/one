@@ -43,6 +43,17 @@ export type {
   BatteryStateEvent,
   BatterySubscription,
 } from './battery'
+export { Barometer } from './barometer'
+export type { BarometerMeasurement, BarometerSubscription } from './barometer'
+export { Pedometer } from './pedometer'
+export type {
+  PedometerPermissionResponse,
+  PedometerPermissionStatus,
+  PedometerResult,
+  PedometerSubscription,
+} from './pedometer'
+export { LightSensor } from './light-sensor'
+export type { LightSensorMeasurement, LightSensorSubscription } from './light-sensor'
 export { Brightness } from './brightness'
 export type {
   BrightnessEvent,

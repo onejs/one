@@ -190,6 +190,18 @@
     "OneNativeModules": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneNativeModules" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneNativeModules" }
+    },
+    "OneBarometer": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneBarometer" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneBarometer" }
+    },
+    "OneLightSensor": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOneLightSensor" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOneLightSensor" }
+    },
+    "OnePedometer": {
+      "ios": { "language": "swift", "implementationClassName": "HybridOnePedometer" },
+      "android": { "language": "kotlin", "implementationClassName": "HybridOnePedometer" }
     }
   },
   "ignorePaths": ["**/node_modules", "dist", "types"]

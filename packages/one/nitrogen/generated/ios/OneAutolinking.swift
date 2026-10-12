@@ -551,4 +551,40 @@ public final class OneAutolinking {
   public static func isOneNativeModulesRecyclable() -> Bool {
     return HybridOneNativeModules.self is any RecyclableView.Type
   }
+  
+  public static func createOneBarometer() -> bridge.std__shared_ptr_HybridOneBarometerSpec_ {
+    let hybridObject = HybridOneBarometer()
+    return { () -> bridge.std__shared_ptr_HybridOneBarometerSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneBarometerRecyclable() -> Bool {
+    return HybridOneBarometer.self is any RecyclableView.Type
+  }
+  
+  public static func createOneLightSensor() -> bridge.std__shared_ptr_HybridOneLightSensorSpec_ {
+    let hybridObject = HybridOneLightSensor()
+    return { () -> bridge.std__shared_ptr_HybridOneLightSensorSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOneLightSensorRecyclable() -> Bool {
+    return HybridOneLightSensor.self is any RecyclableView.Type
+  }
+  
+  public static func createOnePedometer() -> bridge.std__shared_ptr_HybridOnePedometerSpec_ {
+    let hybridObject = HybridOnePedometer()
+    return { () -> bridge.std__shared_ptr_HybridOnePedometerSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+  
+  public static func isOnePedometerRecyclable() -> Bool {
+    return HybridOnePedometer.self is any RecyclableView.Type
+  }
 }

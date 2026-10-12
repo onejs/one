@@ -146,6 +146,8 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     'Device.getLocalizationInfo'
   )
   equal(await One.BackgroundTasks.getPending(), [], 'BackgroundTasks.getPending')
+  equal(One.Barometer.isAvailable(), false, 'Barometer.isAvailable')
+  One.Barometer.setUpdateInterval(100)
   equal(await One.Battery.getLevel(), 1, 'Battery.getLevel')
   equal(await One.Battery.getState(), 'unknown', 'Battery.getState')
   equal(
@@ -174,6 +176,19 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
     'Brightness.requestPermissions'
   )
   equal(One.Brightness.isAvailable(), false, 'Brightness.isAvailable')
+  equal(One.LightSensor.isAvailable(), false, 'LightSensor.isAvailable')
+  One.LightSensor.setUpdateInterval(100)
+  equal(One.Pedometer.isAvailable(), false, 'Pedometer.isAvailable')
+  equal(
+    await One.Pedometer.getPermissions(),
+    { status: 'denied', granted: false, canAskAgain: false },
+    'Pedometer.getPermissions'
+  )
+  equal(
+    await One.Pedometer.requestPermissions(),
+    { status: 'denied', granted: false, canAskAgain: false },
+    'Pedometer.requestPermissions'
+  )
   equal(One.SpeechSynthesis.maxInputLength, 0, 'SpeechSynthesis.maxInputLength')
   One.SpeechSynthesis.speak('one proof')
   await One.SpeechSynthesis.stop()
@@ -279,10 +294,13 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   }
   checks.push('idempotent-removers')
   for (const subscription of [
+    One.Barometer.addListener(() => {}),
     One.Battery.addLevelListener(() => {}),
     One.Battery.addStateListener(() => {}),
     One.Battery.addLowPowerModeListener(() => {}),
     One.Brightness.addListener(() => {}),
+    One.LightSensor.addListener(() => {}),
+    One.Pedometer.watchStepCount(() => {}),
   ]) {
     subscription.remove()
     subscription.remove()
@@ -312,6 +330,9 @@ export async function proveUnavailableServices(One: typeof OneAPI) {
   )
   await rejected('ScreenCapture.captureWindow', () => One.ScreenCapture.captureWindow())
   await rejected('Purchases.purchase', () => One.Purchases.purchase('one-proof'))
+  await rejected('Pedometer.getStepCount', () =>
+    One.Pedometer.getStepCount(new Date(0), new Date(1000))
+  )
   await rejected('Purchases.getCurrentEntitlements', () =>
     One.Purchases.getCurrentEntitlements()
   )

@@ -222,6 +222,11 @@ export default defineConfig({
           },
           // stamps WRITE_SETTINGS so the brightness suite proves system writes
           brightness: true,
+          // stamps the motion usage and activity recognition so the
+          // pedometer suite proves the permission states
+          pedometer: {
+            usage: 'NativeFeatureTests verifies step counting.',
+          },
           audio: {
             microphone: 'NativeFeatureTests verifies audio recording.',
             background: true,

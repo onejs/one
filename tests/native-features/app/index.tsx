@@ -635,6 +635,11 @@ const testScreens = [
     testID: 'nav-one-native-clipboard',
   },
   {
+    href: '/one-native-barometer',
+    label: 'One Native Barometer',
+    testID: 'nav-one-native-barometer',
+  },
+  {
     href: '/one-native-battery',
     label: 'One Native Battery',
     testID: 'nav-one-native-battery',
@@ -643,6 +648,16 @@ const testScreens = [
     href: '/one-native-brightness',
     label: 'One Native Brightness',
     testID: 'nav-one-native-brightness',
+  },
+  {
+    href: '/one-native-light-sensor',
+    label: 'One Native Light Sensor',
+    testID: 'nav-one-native-light-sensor',
+  },
+  {
+    href: '/one-native-pedometer',
+    label: 'One Native Pedometer',
+    testID: 'nav-one-native-pedometer',
   },
   {
     href: '/one-native-speech-synthesis',

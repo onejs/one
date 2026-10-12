@@ -28,6 +28,8 @@
 #include "JHybridOneBackgroundTasksSpec.hpp"
 #include "JFunc_void_BackgroundTaskInvocation.hpp"
 #include "JFunc_void_std__string.hpp"
+#include "JHybridOneBarometerSpec.hpp"
+#include "JFunc_void_BarometerMeasurement.hpp"
 #include "JHybridOneBatterySpec.hpp"
 #include "JFunc_void_BatteryLevelEvent.hpp"
 #include "JFunc_void_BatteryStateEvent.hpp"
@@ -51,6 +53,8 @@
 #include "JHybridOneImagePickerSpec.hpp"
 #include "JHybridOneKeepAwakeSpec.hpp"
 #include "JHybridOneLaunchScreenSpec.hpp"
+#include "JHybridOneLightSensorSpec.hpp"
+#include "JFunc_void_LightSensorMeasurement.hpp"
 #include "JHybridOneLocalAuthenticationSpec.hpp"
 #include "JHybridOneLocationSpec.hpp"
 #include "JFunc_void_LocationPosition.hpp"
@@ -65,6 +69,8 @@
 #include "JFunc_void_std__string_NativeNotification.hpp"
 #include "JFunc_void_NativeNotificationResponse.hpp"
 #include "JFunc_void_NativePushToken.hpp"
+#include "JHybridOnePedometerSpec.hpp"
+#include "JFunc_void_PedometerResult.hpp"
 #include "JHybridOnePhotoLibrarySpec.hpp"
 #include "JHybridOnePrintSpec.hpp"
 #include "JHybridOneProtectedStoreSpec.hpp"
@@ -271,6 +277,14 @@ struct JHybridOnePrintSpecImpl: public jni::JavaClass<JHybridOnePrintSpecImpl, J
     return javaPart->getJHybridOnePrintSpec();
   }
 };
+struct JHybridOneStoreReviewSpecImpl: public jni::JavaClass<JHybridOneStoreReviewSpecImpl, JHybridOneStoreReviewSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneStoreReview;";
+  static std::shared_ptr<JHybridOneStoreReviewSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneStoreReviewSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneStoreReviewSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneStoreReviewSpec();
+  }
+};
 struct JHybridOneQuickActionsSpecImpl: public jni::JavaClass<JHybridOneQuickActionsSpecImpl, JHybridOneQuickActionsSpec::JavaPart> {
   static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneQuickActions;";
   static std::shared_ptr<JHybridOneQuickActionsSpec> create() {
@@ -415,6 +429,30 @@ struct JHybridOneNativeModulesSpecImpl: public jni::JavaClass<JHybridOneNativeMo
     return javaPart->getJHybridOneNativeModulesSpec();
   }
 };
+struct JHybridOneBarometerSpecImpl: public jni::JavaClass<JHybridOneBarometerSpecImpl, JHybridOneBarometerSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneBarometer;";
+  static std::shared_ptr<JHybridOneBarometerSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneBarometerSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneBarometerSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneBarometerSpec();
+  }
+};
+struct JHybridOneLightSensorSpecImpl: public jni::JavaClass<JHybridOneLightSensorSpecImpl, JHybridOneLightSensorSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOneLightSensor;";
+  static std::shared_ptr<JHybridOneLightSensorSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOneLightSensorSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOneLightSensorSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOneLightSensorSpec();
+  }
+};
+struct JHybridOnePedometerSpecImpl: public jni::JavaClass<JHybridOnePedometerSpecImpl, JHybridOnePedometerSpec::JavaPart> {
+  static constexpr auto kJavaDescriptor = "Lcom/margelo/nitro/one/HybridOnePedometer;";
+  static std::shared_ptr<JHybridOnePedometerSpec> create() {
+    static const auto constructorFn = javaClassStatic()->getConstructor<JHybridOnePedometerSpecImpl::javaobject()>();
+    jni::local_ref<JHybridOnePedometerSpec::JavaPart> javaPart = javaClassStatic()->newObject(constructorFn);
+    return javaPart->getJHybridOnePedometerSpec();
+  }
+};
 
 void registerAllNatives() {
   using namespace margelo::nitro;
@@ -434,6 +472,8 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneBackgroundTasksSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_BackgroundTaskInvocation_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_std__string_cxx::registerNatives();
+  margelo::nitro::one::JHybridOneBarometerSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_BarometerMeasurement_cxx::registerNatives();
   margelo::nitro::one::JHybridOneBatterySpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_BatteryLevelEvent_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_BatteryStateEvent_cxx::registerNatives();
@@ -457,6 +497,8 @@ void registerAllNatives() {
   margelo::nitro::one::JHybridOneImagePickerSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneKeepAwakeSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneLaunchScreenSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JHybridOneLightSensorSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_LightSensorMeasurement_cxx::registerNatives();
   margelo::nitro::one::JHybridOneLocalAuthenticationSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneLocationSpec::CxxPart::registerNatives();
   margelo::nitro::one::JFunc_void_LocationPosition_cxx::registerNatives();
@@ -471,6 +513,8 @@ void registerAllNatives() {
   margelo::nitro::one::JFunc_void_std__string_NativeNotification_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativeNotificationResponse_cxx::registerNatives();
   margelo::nitro::one::JFunc_void_NativePushToken_cxx::registerNatives();
+  margelo::nitro::one::JHybridOnePedometerSpec::CxxPart::registerNatives();
+  margelo::nitro::one::JFunc_void_PedometerResult_cxx::registerNatives();
   margelo::nitro::one::JHybridOnePhotoLibrarySpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOnePrintSpec::CxxPart::registerNatives();
   margelo::nitro::one::JHybridOneProtectedStoreSpec::CxxPart::registerNatives();
@@ -642,6 +686,12 @@ void registerAllNatives() {
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneStoreReview",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneStoreReviewSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneQuickActions",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneQuickActionsSpecImpl::create();
@@ -747,6 +797,24 @@ void registerAllNatives() {
     "OneNativeModules",
     []() -> std::shared_ptr<HybridObject> {
       return JHybridOneNativeModulesSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBarometer",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneBarometerSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneLightSensor",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOneLightSensorSpecImpl::create();
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OnePedometer",
+    []() -> std::shared_ptr<HybridObject> {
+      return JHybridOnePedometerSpecImpl::create();
     }
   );
 }

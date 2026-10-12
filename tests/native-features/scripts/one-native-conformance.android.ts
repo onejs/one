@@ -2890,6 +2890,108 @@ async function run(config: Config) {
       'one-native-keep-awake-run'
     )
 
+    // Barometer: availability, a driven pressure event at expo shape,
+    // listener attach/remove, validation.
+    await freshLeg('barometer')
+    await tapNavigation(config, 'nav-one-native-barometer')
+    await expect(
+      'system-barometer-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-barometer-run'
+    )
+    adbText(config, ['emu', 'sensor', 'set', 'pressure', '1005.5'])
+    tapFresh(config, 'system-barometer-run', {
+      id: 'one-native-barometer-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-barometer-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          text.includes('Interval: set') &&
+          text.includes('1005.5|none|true') &&
+          text.includes('Invalid: Barometer.addListener: listener must be a function') &&
+          text.includes(
+            'InvalidInterval: Barometer.setUpdateInterval: interval must be a finite number at least 0'
+          )
+        )
+      },
+      'one-native-barometer-run'
+    )
+
+    // LightSensor: availability, a driven lux event at expo shape,
+    // listener attach/remove, validation.
+    await freshLeg('light-sensor')
+    await tapNavigation(config, 'nav-one-native-light-sensor')
+    await expect(
+      'system-light-sensor-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-light-sensor-run'
+    )
+    adbText(config, ['emu', 'sensor', 'set', 'light', '421.5'])
+    tapFresh(config, 'system-light-sensor-run', {
+      id: 'one-native-light-sensor-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-light-sensor-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: true') &&
+          text.includes('Interval: set') &&
+          text.includes('421.5|true') &&
+          text.includes('Invalid: LightSensor.addListener: listener must be a function') &&
+          text.includes(
+            'InvalidInterval: LightSensor.setUpdateInterval: interval must be a finite number at least 0'
+          )
+        )
+      },
+      'one-native-light-sensor-run'
+    )
+
+    // Pedometer: no step counter on the emulator, so the unavailable
+    // path is under test: no availability, no watch events, the history
+    // query rejects with its stable code, permissions read undetermined,
+    // validation.
+    await freshLeg('pedometer')
+    await tapNavigation(config, 'nav-one-native-pedometer')
+    await expect(
+      'system-pedometer-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-pedometer-run'
+    )
+    tapFresh(config, 'system-pedometer-run', {
+      id: 'one-native-pedometer-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-pedometer-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: done') &&
+          text.includes('Available: false') &&
+          text.includes('Watch: none') &&
+          text.includes(
+            'History: E_PEDOMETER_STEP_COUNT:Pedometer.getStepCount: step history is not available on Android'
+          ) &&
+          text.includes('Permissions: undetermined|false|true') &&
+          text.includes('Invalid: Pedometer.watchStepCount: listener must be a function') &&
+          text.includes('InvalidRange: Pedometer.getStepCount: start and end must be Dates') &&
+          text.includes('InvalidOrder: Pedometer.getStepCount: start must precede end')
+        )
+      },
+      'one-native-pedometer-run'
+    )
+
     // Battery: reads, power-state agreement, listener attach/remove, validation.
     await freshLeg('battery')
     await tapNavigation(config, 'nav-one-native-battery')

@@ -1,0 +1,22 @@
+---
+title: Barometer
+description: Air pressure and relative altitude from the device barometer
+---
+
+`One.Barometer` reports air pressure on iOS and Android, with live updates. It has `isAvailable()`, `setUpdateInterval(intervalMs)`, and `addListener(fn)`.
+
+```tsx
+import { One } from 'one'
+
+if (One.Barometer.isAvailable()) {
+  One.Barometer.setUpdateInterval(1000)
+  const subscription = One.Barometer.addListener(({ pressure, relativeAltitude }) => {
+    console.log(pressure, relativeAltitude)
+  })
+  // later: subscription.remove()
+}
+```
+
+`isAvailable()` is synchronous. Each event is `{ pressure, relativeAltitude, timestamp }`: `pressure` in hectopascals (hPa), `relativeAltitude` in meters above the first reading on iOS only, and `timestamp` in seconds since boot, matching Expo on both platforms. `setUpdateInterval` paces delivery on Android; on iOS the altimeter delivers at its own rate and the call is accepted and ignored, matching Expo.
+
+On iOS, physical devices need the motion usage description before the altimeter delivers; set `native.app.pedometer.usage` (see [Pedometer](/native/pedometer)). On web, browsers expose no barometer API, so the sensor reads unavailable and listeners never fire.

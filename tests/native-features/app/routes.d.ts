@@ -61,6 +61,7 @@ declare module 'one' {
         | `/one-native-audio`
         | `/one-native-autogen`
         | `/one-native-background-tasks`
+        | `/one-native-barometer`
         | `/one-native-battery`
         | `/one-native-blur-proof`
         | `/one-native-brightness`
@@ -107,6 +108,7 @@ declare module 'one' {
         | `/one-native-keep-awake`
         | `/one-native-launch-screen`
         | `/one-native-leaves`
+        | `/one-native-light-sensor`
         | `/one-native-linear-gradient`
         | `/one-native-list-row-modifiers`
         | `/one-native-list-search-refresh`
@@ -129,6 +131,7 @@ declare module 'one' {
         | `/one-native-notifications`
         | `/one-native-open`
         | `/one-native-paste-button`
+        | `/one-native-pedometer`
         | `/one-native-photo-library`
         | `/one-native-picker-palette`
         | `/one-native-picker-passkit`

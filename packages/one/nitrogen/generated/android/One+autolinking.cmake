@@ -41,6 +41,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneAppTrackingSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneAudioSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBackgroundTasksSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneBarometerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBatterySpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBrightnessSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneBrowserSpec.cpp
@@ -59,6 +60,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneImagePickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneKeepAwakeSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLaunchScreenSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneLightSensorSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneMapServicesSpec.cpp
@@ -66,6 +68,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNotificationsSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOnePedometerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOnePhotoLibrarySpec.cpp
   ../nitrogen/generated/shared/c++/HybridOnePrintSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneProtectedStoreSpec.cpp
@@ -87,6 +90,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneAppleAuthSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneAudioSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBackgroundTasksSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneBarometerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBatterySpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrightnessSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneBrowserSpec.cpp
@@ -103,6 +107,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneImagePickerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneKeepAwakeSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLaunchScreenSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOneLightSensorSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLocalAuthenticationSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneLocationSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneMapServicesSpec.cpp
@@ -110,6 +115,7 @@ target_sources(
   ../nitrogen/generated/android/c++/JHybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNetworkSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneNotificationsSpec.cpp
+  ../nitrogen/generated/android/c++/JHybridOnePedometerSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOnePhotoLibrarySpec.cpp
   ../nitrogen/generated/android/c++/JHybridOnePrintSpec.cpp
   ../nitrogen/generated/android/c++/JHybridOneProtectedStoreSpec.cpp

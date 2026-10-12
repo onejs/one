@@ -57,6 +57,9 @@
 #include "HybridOneMapServicesSpecSwift.hpp"
 #include "HybridOneUpdatesSpecSwift.hpp"
 #include "HybridOneNativeModulesSpecSwift.hpp"
+#include "HybridOneBarometerSpecSwift.hpp"
+#include "HybridOneLightSensorSpecSwift.hpp"
+#include "HybridOnePedometerSpecSwift.hpp"
 
 @interface OneAutolinking : NSObject
 @end
@@ -397,6 +400,27 @@
     "OneNativeModules",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneNativeModulesSpec> hybridObject = One::OneAutolinking::createOneNativeModules();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneBarometer",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneBarometerSpec> hybridObject = One::OneAutolinking::createOneBarometer();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneLightSensor",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneLightSensorSpec> hybridObject = One::OneAutolinking::createOneLightSensor();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OnePedometer",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOnePedometerSpec> hybridObject = One::OneAutolinking::createOnePedometer();
       return hybridObject;
     }
   );

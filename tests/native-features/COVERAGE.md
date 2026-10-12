@@ -238,6 +238,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.UI.ReservedRegions` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven |
 | `One.Notifications` | notifications, e2e:one-native-notifications | notifications | missing |  |
 | `One.Clipboard` | paste-button, share, clipboard | share, clipboard | OneNativeBehavioralLibraryCase |  |
+| `One.Barometer` | barometer | barometer, native-modules:unavailable | missing |  |
+| `One.LightSensor` | light-sensor | light-sensor, native-modules:unavailable | missing |  |
+| `One.Pedometer` | pedometer | pedometer, native-modules:unavailable | missing |  |
 | `One.Battery` | battery | battery, native-modules:unavailable | missing |  |
 | `One.Brightness` | brightness | brightness, native-modules:unavailable | missing |  |
 | `One.SpeechSynthesis` | speech-synthesis | speech-synthesis, native-modules:unavailable | missing |  |

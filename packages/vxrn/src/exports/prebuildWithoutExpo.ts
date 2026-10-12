@@ -2166,6 +2166,22 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.pedometer !== undefined
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp the pedometer permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      rendered = rendered.replace(
+        anchor,
+        `${anchor}\n    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />`
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       app.notifications !== undefined
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
@@ -2604,6 +2620,9 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       }
       if (app.location !== undefined) {
         usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
+      }
+      if (app.pedometer !== undefined) {
+        usage.set('NSMotionUsageDescription', app.pedometer.usage)
       }
       if (app.ios?.faceIdUsageDescription !== undefined) {
         usage.set('NSFaceIDUsageDescription', app.ios.faceIdUsageDescription)
