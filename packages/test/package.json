@@ -12,6 +12,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
+    "test": "bun test src",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
