@@ -132,7 +132,9 @@ function Receipt() {
 ```
 
 `prevent()` rejects with `E_SCREEN_CAPTURE_SCENE` when there is no active app
-window. Both verbs throw a `TypeError` for an empty or non-string key, and
+window. Every key prevented while that first arm is pending shares its result:
+each call resolves only once content is hidden, or rejects with the same error
+and leaves its key unheld so a later `prevent()` arms again. Both verbs throw a `TypeError` for an empty or non-string key, and
 `usePreventScreenCapture` throws for one during render.
 
 `getState()` rejects with `E_SCREEN_CAPTURE_SCENE` if there is no active window
