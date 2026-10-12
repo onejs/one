@@ -305,7 +305,7 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
   // window while the scene reports captured. idempotent: repeated trait and
   // captured notifications converge on the same overlay. main thread only.
   @MainActor private func updateBlockView() {
-    guard preventionActive, isSceneCaptured(), let window = secureWindow ?? currentWindow() else {
+    guard preventionActive, isCaptureActive(), let window = secureWindow ?? currentWindow() else {
       removeBlockView()
       return
     }
@@ -330,9 +330,14 @@ final class HybridOneScreenCapture: HybridOneScreenCaptureSpec {
     blockWindow = nil
   }
 
-  @MainActor private func isSceneCaptured() -> Bool {
-    guard let scene = secureWindow?.windowScene ?? currentScene() else { return false }
-    return scene.traitCollection.sceneCaptureState == .active
+  // the overlay covers the window while the platform reports capture: the
+  // screen's own captured flag (UIScreen.isCaptured, mirrored from the sdk)
+  // or the scene's capture trait, the same signal getState() reports. either
+  // genuine capture signal hides content; neither is invented.
+  @MainActor private func isCaptureActive() -> Bool {
+    let scene = secureWindow?.windowScene ?? currentScene()
+    if scene?.screen.isCaptured == true { return true }
+    return scene?.traitCollection.sceneCaptureState == .active
   }
 
   @MainActor private func observeCurrentScene() {
