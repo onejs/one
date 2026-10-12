@@ -1,0 +1,150 @@
+---
+title: CNContactViewController
+description: View, create and edit contacts using the system Contacts UI.
+---
+
+`One.iOS.CNContactViewController` presents ContactsUI's native contact card or
+editor inside a navigation controller. Set
+`ios.infoPlist.NSContactsUsageDescription`. The bound initializer forms are
+`new CNContactViewController({ forContact })`, `{ forUnknownContact }`, and
+`{ forNewContact }`. Pass undefined for an empty new contact.
+
+```tsx
+import { One } from 'one'
+
+const draft = new One.iOS.CNMutableContact()
+draft.givenName = 'Ada'
+draft.familyName = 'Lovelace'
+const controller = new One.iOS.CNContactViewController({ forNewContact: draft })
+controller.contactStore = new One.iOS.CNContactStore()
+controller.delegate = {
+  contactViewController: async (sender, { didCompleteWith }) => {
+    // undefined means Cancel; otherwise this is the native saved CNContact.
+    await sender.dismiss()
+  },
+}
+await controller.present()
+```
+
+The delegate owns dismissal, as in ContactsUI. `present()` resolves after
+presentation, before Save or Cancel. Completion adapts the SDK's labeled
+`contactViewController(_:didCompleteWith:)` method to a JavaScript result
+object. A nil contact becomes undefined. No saved contact is fabricated for
+cancellation, and completion is delivered at most once per presentation.
+Interactive sheet dismissal ends presentation ownership without synthesizing a
+Save or Cancel delegate result.
+
+To display an existing contact, fetch the SDK's required keys. The existing
+shared Contacts service can request permission or find identifiers; its plain
+records are not native CNContact objects.
+
+```tsx
+await One.Contacts.requestPermission()
+const store = new One.iOS.CNContactStore()
+const contact = await store.unifiedContact({
+  withIdentifier: identifier,
+  keysToFetch: [One.iOS.CNContactViewController.descriptorForRequiredKeys()],
+})
+const viewer = new One.iOS.CNContactViewController({ forContact: contact })
+viewer.contactStore = store
+viewer.allowsEditing = false
+await viewer.present()
+```
+
+`CNContactStore.unifiedContact` adapts Swift's throwing fetch to a promise and
+labeled arguments to an options object. `keysToFetch` accepts SDK string keys
+and native key descriptors. The contact initializers reject incomplete
+fetches before ContactsUI can raise a missing-property exception. Store fetching
+uses native authorization, including limited contacts access. Use the existing
+`One.Contacts.requestPermission()` to request access.
+
+`CNContact` results retain native contacts. The bound subset includes identifier,
+name and organization fields, `isKeyAvailable`, and `mutableCopy`. A mutable
+copy is independent and retains the SDK contact identifier. CNMutableContact
+uses SDK empty-string defaults. Reading or changing a field that was not fetched
+throws; changing an immutable contact requires `mutableCopy()` first.
+Phone numbers, addresses, images, dates and other contact properties are
+editable in the native UI but are not exposed by this CNContact subset.
+
+The card preserves SDK defaults for its initializer mode. Use
+`displayedPropertyKeys`, `alternateName`, `message`, `allowsEditing`,
+`allowsActions`, `shouldShowLinkedContacts`, and `highlightProperty` to configure
+it. `contactStore = undefined` clears the SDK store. Parent groups and containers
+are not bound. The synchronous `shouldPerformDefaultActionFor` delegate method
+is not bound because JavaScript callbacks execute on a different thread from
+UIKit. Its native default remains in effect; `allowsActions` can disable actions.
+
+<PropsTable
+  title="Contact values"
+  source="contact-ui/types.ts#CNContactValue"
+  data={[
+    { name: 'identifier', type: 'string', description: 'Native contact identifier.' },
+    { name: 'namePrefix', type: 'string', description: 'Name prefix.' },
+    { name: 'givenName', type: 'string', description: 'Given name.' },
+    { name: 'middleName', type: 'string', description: 'Middle name.' },
+    { name: 'familyName', type: 'string', description: 'Family name.' },
+    { name: 'nameSuffix', type: 'string', description: 'Name suffix.' },
+    { name: 'nickname', type: 'string', description: 'Nickname.' },
+    { name: 'organizationName', type: 'string', description: 'Organization name.' },
+    { name: 'jobTitle', type: 'string', description: 'Job title.' },
+    { name: 'isKeyAvailable', type: '(key: string) => boolean', description: 'Whether the SDK fetched the property.' },
+    { name: 'mutableCopy', type: '() => CNMutableContactValue', description: 'Independent native mutable copy.' },
+  ]}
+/>
+
+<PropsTable
+  title="Mutable contact fields"
+  source="contact-ui/types.ts#CNMutableContactValue"
+  data={[
+    { name: 'namePrefix', type: 'string', description: 'Mutable name prefix.' },
+    { name: 'givenName', type: 'string', description: 'Mutable given name.' },
+    { name: 'middleName', type: 'string', description: 'Mutable middle name.' },
+    { name: 'familyName', type: 'string', description: 'Mutable family name.' },
+    { name: 'nameSuffix', type: 'string', description: 'Mutable name suffix.' },
+    { name: 'nickname', type: 'string', description: 'Mutable nickname.' },
+    { name: 'organizationName', type: 'string', description: 'Mutable organization name.' },
+    { name: 'jobTitle', type: 'string', description: 'Mutable job title.' },
+  ]}
+/>
+
+<PropsTable
+  title="Store"
+  source="contact-ui/types.ts#CNContactStoreValue"
+  data={[
+    { name: 'unifiedContact', type: '(options: CNContactFetchOptions) => Promise<CNContactValue>', description: 'Fetches a native contact with the requested keys.' },
+  ]}
+/>
+
+<PropsTable
+  title="Fetch arguments"
+  source="contact-ui/types.ts#CNContactFetchOptions"
+  data={[
+    { name: 'withIdentifier', type: 'string', description: 'Stored contact identifier.' },
+    { name: 'keysToFetch', type: '(string | CNKeyDescriptor)[]', description: 'SDK string keys and required-key descriptors.' },
+  ]}
+/>
+
+<PropsTable
+  title="Controller"
+  source="contact-ui/types.ts#CNContactController"
+  data={[
+    { name: 'contact', type: 'CNContactValue', description: 'Native displayed contact, readonly.' },
+    { name: 'delegate', type: 'CNContactViewControllerDelegate | null', description: 'Receives saved contact or cancellation.' },
+    { name: 'contactStore', type: 'CNContactStoreValue | undefined', description: 'SDK store used for edits and additions.' },
+    { name: 'displayedPropertyKeys', type: 'string[] | undefined', description: 'Visible SDK property keys; undefined shows all.' },
+    { name: 'alternateName', type: 'string | undefined', description: 'Display name when no contact name exists.' },
+    { name: 'message', type: 'string | undefined', description: 'Message displayed under the name.' },
+    { name: 'allowsEditing', type: 'boolean', description: 'SDK editing permission for the card.' },
+    { name: 'allowsActions', type: 'boolean', description: 'Whether native contact actions appear.' },
+    { name: 'shouldShowLinkedContacts', type: 'boolean', description: 'Whether linked contacts appear.' },
+    { name: 'highlightProperty', type: '(withKey: string, identifier?: string) => void', description: 'Highlights a property or labeled-value identifier.' },
+    { name: 'present', type: '(animated?: boolean) => Promise<void>', description: 'Presents native navigation and contact UI; animated defaults to true.' },
+    { name: 'dismiss', type: '(animated?: boolean) => Promise<void>', description: 'Dismisses the native UI; animated defaults to true.' },
+  ]}
+/>
+
+Sources: [CNContactViewController](https://developer.apple.com/documentation/contactsui/cncontactviewcontroller),
+[CNContactViewControllerDelegate](https://developer.apple.com/documentation/contactsui/cncontactviewcontrollerdelegate).
+Generated Nitro ABI and the React Native fixture remain native CI acceptance
+gates. Permission denial, limited access, and known-contact editing require
+additional runtime acceptance; a transport-shim SDK probe does not satisfy them.

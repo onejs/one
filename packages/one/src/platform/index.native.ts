@@ -8,6 +8,7 @@ import {
   Form,
   Glass,
   GlassEffectContainer,
+  GeometryReader,
   Group,
   GroupBox,
   ViewThatFits,
@@ -25,6 +26,7 @@ import {
   Overlay,
   ViewSlot,
   ScrollView,
+  ScrollViewReader,
   Section,
   Slot,
   Spacer,
@@ -47,6 +49,8 @@ import { NavigationSplitView } from './NavigationSplitView.native'
 import { FullScreenCover, Sheet } from './Sheet.native'
 import { ArrangementView } from './ArrangementView.native'
 import { withAnimation } from './withAnimation.native'
+import { KeyframeAnimator, PhaseAnimator } from './Animators.native'
+import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import * as Controls from './generated/Controls.native'
 import { Map as MapWithControls } from './mapControls.native'
 import { Tab, Tabs, TabSection, TabViewBottomAccessory, TabViewSlot } from './Tabs.native'
@@ -123,10 +127,12 @@ export const Swift =
         Section,
         Glass,
         GlassEffectContainer,
+        GeometryReader,
         LabeledContent,
         Button,
         List,
         ScrollView,
+        ScrollViewReader,
         LazyVStack,
         LazyHStack,
         LazyVGrid,
@@ -154,6 +160,13 @@ export const Swift =
         Spacer,
         Slot,
         withAnimation,
+        PhaseAnimator,
+        KeyframeAnimator,
+        KeyframeTrack,
+        LinearKeyframe,
+        SpringKeyframe,
+        CubicKeyframe,
+        MoveKeyframe,
         ...Controls,
         // the generated map takes no children; the wrapper validates and names
         // the map-controls slot while the native view composes it.
@@ -250,7 +263,7 @@ export type {
   ScreenOrientationLock,
   ScreenOrientationValue,
 } from './screen-orientation/index'
-export { ScreenCapture } from './screen-capture/index'
+export { ScreenCapture, usePreventScreenCapture } from './screen-capture/index'
 export type { ScreenCaptureResult, ScreenCaptureState } from './screen-capture/index'
 export { Purchases } from './purchases/index'
 export type {
@@ -349,3 +362,14 @@ export type {
   PagerSelectedEvent,
   PagerScrollStateEvent,
 } from './ui/pagerTypes'
+
+export { VNDocumentCameraViewController } from './vision-kit/index'
+export type { VNDocumentCameraScan, VNDocumentCameraError, VNDocumentCameraViewControllerDelegate } from './vision-kit/index'
+
+export { MFMailComposeViewController, MFMessageComposeViewController } from './message-ui/index'
+
+export { DataScannerViewController } from './data-scanner/index'
+export type { DataScannerOptions, DataScannerViewControllerDelegate, RecognizedItem } from './data-scanner/index'
+
+export { CNContactViewController, CNMutableContact, CNContactStore } from './contact-ui/index'
+export type { CNContact, CNKeyDescriptor, CNContactViewControllerOptions, CNContactViewControllerDelegate } from './contact-ui/index'

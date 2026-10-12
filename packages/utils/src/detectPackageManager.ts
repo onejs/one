@@ -24,14 +24,15 @@ async function hasGlobal(pm: PackageManagerName): Promise<boolean> {
 }
 
 async function getFromLockfile(cwd = '.') {
-  const [yarn, npm, pnpm, bun] = await Promise.all([
+  const [yarn, npm, pnpm, bun, bunBinary] = await Promise.all([
     pathExists(resolve(cwd, 'yarn.lock')),
     pathExists(resolve(cwd, 'package-lock.json')),
     pathExists(resolve(cwd, 'pnpm-lock.yaml')),
+    pathExists(resolve(cwd, 'bun.lock')),
     pathExists(resolve(cwd, 'bun.lockb')),
   ])
 
-  return { bun, yarn, pnpm, npm }
+  return { bun: bun || bunBinary, yarn, pnpm, npm }
 }
 
 async function getFromPackage(cwd = '.') {

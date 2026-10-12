@@ -1,6 +1,6 @@
 ---
 title: iOS Groups
-description: Group, GroupBox, ViewThatFits, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
+description: Group, GroupBox, ViewThatFits, GeometryReader, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
 ---
 
 <NativeHero
@@ -13,6 +13,7 @@ Grouping, disclosure, glass, and modifier slot views under `One.iOS`.
 - `GroupBox`, `DisclosureGroup`, and `ControlGroup` group related rows and
   controls.
 - `ViewThatFits` picks the first child that fits.
+- `GeometryReader` runs its content closure with the frame SwiftUI lays it out in.
 - `Glass` and `GlassEffectContainer` apply Liquid Glass on iOS 26 and later.
 - `Overlay`, `ViewSlot`, and `SwipeActions` attach native content to a view.
 - Every view here throws on web and Android.
@@ -77,6 +78,49 @@ proposal is unbounded.
   <One.iOS.Button label="Action" onPress={run} />
 </One.iOS.ViewThatFits>
 ```
+
+## GeometryReader
+
+`One.iOS.GeometryReader` adapts SwiftUI's content builder to a JavaScript
+function receiving a `GeometryProxy`. The native reader mounts first; the
+builder runs after SwiftUI reports real geometry and runs again when that
+geometry changes. No placeholder geometry is delivered. Its returned content
+composes natively. Give the reader an explicit size or `flex: 1`, because it
+fills the box it is offered. A non-function child throws.
+
+`size` and `safeAreaInsets` come from the native geometry proxy.
+`frame('global')` and `frame('local')` adapt SwiftUI's `frame(in:)` method;
+frames and size are reported separately, so a transformed global frame does
+not replace the reader's layout size. Named coordinate spaces, anchor
+resolution, `bounds(of:)`, and the later corner, margin and reserved-region
+APIs remain unbound. A named-space request throws instead of returning an
+unrelated frame. A reader in a scroll view can update while scrolling; keep
+the content builder cheap and observe it from an effect when updating React
+state outside its native content.
+
+```tsx
+<One.iOS.GeometryReader style={{ height: 100 }}>
+  {(geometry) => <One.iOS.Text text={`wide ${Math.round(geometry.size.width)}`} />}
+</One.iOS.GeometryReader>
+```
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#GeometryReaderProps"
+  data={[
+    { name: 'children', required: true, type: '(geometry: GeometryProxy) => ReactNode', description: 'The content closure, run with the native geometry snapshot.' },
+  ]}
+/>
+
+<PropsTable
+  title="GeometryProxy"
+  source="groupTypes.ts#GeometryProxy"
+  data={[
+    { name: 'size', type: 'GeometryProxySize', description: 'The reader size: { width, height }.' },
+    { name: 'safeAreaInsets', type: 'GeometryProxySafeAreaInsets', description: 'The safe-area insets: { top, leading, bottom, trailing }.' },
+    { name: 'frame', type: "(coordinateSpace: 'global' | 'local') => GeometryProxyFrame", description: 'SwiftUI frame(in:), using a global or local coordinate-space argument.' },
+  ]}
+/>
 
 ## ControlGroup
 

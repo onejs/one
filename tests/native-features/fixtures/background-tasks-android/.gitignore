@@ -1,0 +1,5 @@
+/assets/
+/build/
+__pycache__/
+/root-build/
+/.cxx/

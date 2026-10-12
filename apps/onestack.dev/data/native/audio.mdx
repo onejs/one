@@ -115,7 +115,7 @@ on a device before relying on them in production.
 ## Player instances
 
 `One.Audio.createPlayer()` returns an independent `AudioPlayer` for each
-track, mirroring `expo-audio`. Players are independent of each other and of
+track. Players are independent of each other and of
 the singleton `play()` above; each holds its own position, volume, and rate.
 
 ```tsx
@@ -153,10 +153,9 @@ promise that resolves when the seek lands (tolerances are iOS only).
 releases the player idempotently. Calling any other method after `remove()`
 throws.
 
-`getStatus()` reads the current status synchronously (Expo apps use the
-status hook instead): `{ currentTime, didJustFinish, duration, error, id,
+`getStatus()` reads the current status synchronously: `{ currentTime, didJustFinish, duration, error, id,
 isBuffering, isLoaded, loop, mute, playbackRate, playing, shouldCorrectPitch
-}`. `mute` mirrors the `muted` property under Expo's status field name.
+}`. `mute` mirrors the `muted` property.
 `didJustFinish` is set when a track ends naturally and cleared by `play()`,
 `seekTo()`, or `replace()`. `error` carries a load or playback failure and
 clears on `replace()` or successful playback. `addListener('playbackStatusUpdate',

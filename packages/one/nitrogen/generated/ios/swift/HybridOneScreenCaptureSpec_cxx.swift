@@ -84,7 +84,7 @@ open class HybridOneScreenCaptureSpec_cxx {
     }
   }
 
-
+  
 
   /**
    * Get the memory size of the Swift class (plus size of any other allocations)
@@ -121,7 +121,7 @@ open class HybridOneScreenCaptureSpec_cxx {
   }
 
   // Properties
-
+  
 
   // Methods
   @inline(__always)
@@ -142,7 +142,7 @@ open class HybridOneScreenCaptureSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_ScreenCaptureState___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func captureWindow() -> bridge.Result_std__shared_ptr_Promise_ScreenCaptureResult___ {
     do {
@@ -161,7 +161,7 @@ open class HybridOneScreenCaptureSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func captureView(viewTag: Double) -> bridge.Result_std__shared_ptr_Promise_ScreenCaptureResult___ {
     do {
@@ -180,7 +180,7 @@ open class HybridOneScreenCaptureSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_ScreenCaptureResult___(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func addStateListener(onChange: bridge.Func_void_ScreenCaptureState) -> bridge.Result_std__function_void____ {
     do {
@@ -200,7 +200,7 @@ open class HybridOneScreenCaptureSpec_cxx {
       return bridge.create_Result_std__function_void____(__exceptionPtr)
     }
   }
-
+  
   @inline(__always)
   public final func addScreenshotListener(onScreenshot: bridge.Func_void_double) -> bridge.Result_std__function_void____ {
     do {
@@ -218,6 +218,63 @@ open class HybridOneScreenCaptureSpec_cxx {
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
       return bridge.create_Result_std__function_void____(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func prevent() -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.prevent()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func allow() -> bridge.Result_std__shared_ptr_Promise_void___ {
+    do {
+      let __result = try self.__implementation.allow()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_void__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve() })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_void___(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func isPrevented() -> bridge.Result_std__shared_ptr_Promise_bool___ {
+    do {
+      let __result = try self.__implementation.isPrevented()
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_bool__ in
+        let __promise = bridge.create_std__shared_ptr_Promise_bool__()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_bool__(__promise)
+        __result
+          .then({ __result in __promiseHolder.resolve(__result) })
+          .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
+        return __promise
+      }()
+      return bridge.create_Result_std__shared_ptr_Promise_bool___(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__shared_ptr_Promise_bool___(__exceptionPtr)
     }
   }
 }

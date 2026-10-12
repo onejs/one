@@ -4048,6 +4048,84 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Status: refreshed') && labels(n).includes('Screenshot count: 1') &&
       labels(n).includes('Capture state: inactive')
     )
+    tap({ id: 'one-native-screen-capture-prevent-run' })
+    await wait('prevention arms, refcounts and releases', (n) =>
+      labels(n).includes('Prevention: done') &&
+      labels(n).includes('Prevent initial: false') &&
+      labels(n).includes('Prevent active: true') &&
+      labels(n).includes('Prevent kept: true') &&
+      labels(n).includes('Prevent released: false') &&
+      labels(n).includes('Prevent invalid: ScreenCapture.prevent requires a non-empty string key') &&
+      labels(n).includes('Prevent restored: false')
+    )
+    // simctl io reads the host framebuffer below the render-server secure
+    // filter, so it cannot observe canvas blanking (measured: the held shot
+    // renders normally while lldb shows the window under _UITextLayoutCanvasView).
+    // hold/release proves API state; structural attachment was checked separately.
+    // physical-device screenshot blanking remains unproven. pixels below check
+    // only the captured-scene overlay.
+    tap({ id: 'one-native-screen-capture-prevent-hold' })
+    await wait('prevention hold arms the secure canvas', (n) =>
+      labels(n).includes('Prevention hold: held true')
+    )
+    runInApp('capture-trait-prevented.log', captureTrait(1))
+    tap({ id: 'one-native-screen-capture-window' })
+    const prevented = await wait('captured scene hides behind the block view', (n) =>
+      labels(n).includes('Window capture: captured') &&
+      labels(n).some((label) => /^Window file: [A-F0-9-]+\.png$/.test(label))
+    )
+    const preventedName = labels(prevented).find((label) => label.startsWith('Window file: '))?.slice('Window file: '.length)
+    if (!preventedName) throw new Error('ScreenCapture: missing prevented PNG file label')
+    const preventedFile = path.join(container, 'Library/Caches/OneScreenCapture', preventedName)
+    if (!fs.existsSync(preventedFile)) throw new Error(`ScreenCapture: prevented PNG is missing: ${preventedFile}`)
+    const preventedImage = readPng(preventedFile)
+    const center = (image: ReturnType<typeof readPng>) => {
+      const x = Math.floor(image.width / 2)
+      const y = Math.floor(image.height / 2)
+      const offset = (y * image.width + x) * 4
+      return Array.from(image.data.slice(offset, offset + 3), Number)
+    }
+    const [pr, pg, pb] = center(preventedImage)
+    if (pr > 40 || pg > 40 || pb > 40)
+      throw new Error(`ScreenCapture: prevented PNG center is not black: ${JSON.stringify({ pr, pg, pb })}`)
+    fs.copyFileSync(preventedFile, path.join(config.artifactDir, 'screen-capture-prevented.png'))
+    console.log(`PASS prevented window PNG is black at center: ${JSON.stringify({ pr, pg, pb })}`)
+    runInApp('capture-trait-unprevented.log', captureTrait(0))
+    tap({ id: 'one-native-screen-capture-delete' })
+    await wait('prevented PNG can be removed', (n) =>
+      labels(n).includes('Window capture: deleted') && labels(n).includes('Window file: none')
+    )
+    tap({ id: 'one-native-screen-capture-prevent-release' })
+    await wait('prevention hold releases the secure canvas', (n) =>
+      labels(n).includes('Prevention hold: released false')
+    )
+    // usePreventScreenCapture holds while mounted, releases on unmount, and
+    // a manual hold keeps prevention after the guard unmounts. toggling
+    // resets the guard label to idle so each check reads a fresh value.
+    const toggleGuard = async () => {
+      tap({ id: 'one-native-screen-capture-guard-toggle' })
+      await wait('guard toggles', (n) => labels(n).includes('Guard check: idle'))
+    }
+    const checkGuard = async (name: string, expected: string) => {
+      tap({ id: 'one-native-screen-capture-guard-check' })
+      await wait(name, (n) => labels(n).includes(`Guard check: ${expected}`))
+    }
+    await toggleGuard()
+    await checkGuard('mounted guard prevents capture', 'mounted true')
+    await toggleGuard()
+    await checkGuard('unmounted guard allows capture', 'unmounted false')
+    await toggleGuard()
+    tap({ id: 'one-native-screen-capture-prevent-hold' })
+    await wait('manual hold joins the mounted guard', (n) =>
+      labels(n).includes('Prevention hold: held true')
+    )
+    await toggleGuard()
+    await checkGuard('manual hold outlives the unmounted guard', 'unmounted true')
+    tap({ id: 'one-native-screen-capture-prevent-release' })
+    await wait('releasing the last hold allows capture', (n) =>
+      labels(n).includes('Prevention hold: released false')
+    )
+    await checkGuard('guard and manual hold both released', 'unmounted false')
     screenshot('screen-capture-event.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return

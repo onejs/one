@@ -26,6 +26,12 @@
     <!-- camera captures write into the app cache through this provider; the
     manifest merger carries it into the app, with the app's own id. -->
     <application>
+        <receiver android:name="com.margelo.nitro.one.OneCalendarReminderReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
         <provider
             android:name="dev.onejs.onenative.OneNativeFileProvider"
             android:authorities="${applicationId}.one-native.fileprovider"

@@ -48,9 +48,17 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneCalendarSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneContactsSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridNativeCNContactSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridNativeCNKeyDescriptorSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridNativeCNContactStoreSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneContactUISpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneDataScannerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDeviceSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDeviceAttestationSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDocumentCameraImageSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridDocumentCameraScanSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneDocumentCameraSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDocumentPickerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFetchSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneFileSystemSpec.cpp
@@ -64,6 +72,8 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneLocalAuthenticationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneLocationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneMapServicesSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneMailComposeSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneMessageComposeSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneMotionSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNativeModulesSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneNetworkSpec.cpp

@@ -1,3 +1,4 @@
+import type * as Family from './composeTypes'
 import type { ReactNode } from 'react'
 import type {
   ComposeAlertDialogProps,
@@ -392,7 +393,64 @@ function TimePickerDialog(_props: ComposeTimePickerDialogProps): never {
   return unsupported('TimePickerDialog')
 }
 
+function BasicAlertDialog(_props: Family.ComposeBasicAlertDialogProps): never {
+  return unsupported('BasicAlertDialog')
+}
+function HorizontalCenteredHeroCarousel(
+  _props: Family.ComposeHorizontalCenteredHeroCarouselProps
+): never {
+  return unsupported('HorizontalCenteredHeroCarousel')
+}
+function HorizontalMultiBrowseCarousel(
+  _props: Family.ComposeHorizontalMultiBrowseCarouselProps
+): never {
+  return unsupported('HorizontalMultiBrowseCarousel')
+}
+function HorizontalUncontainedCarousel(
+  _props: Family.ComposeHorizontalUncontainedCarouselProps
+): never {
+  return unsupported('HorizontalUncontainedCarousel')
+}
+function DateRangePicker(_props: Family.ComposeDateRangePickerProps): never {
+  return unsupported('DateRangePicker')
+}
+function DateRangePickerDialog(_props: Family.ComposeDateRangePickerDialogProps): never {
+  return unsupported('DateRangePickerDialog')
+}
+function SyncSwitch(_props: Family.ComposeSyncSwitchProps): never {
+  return unsupported('SyncSwitch')
+}
+const HorizontalFloatingToolbar = Object.assign(
+  (_props: Family.ComposeHorizontalFloatingToolbarProps): never =>
+    unsupported('HorizontalFloatingToolbar'),
+  {
+    FloatingActionButton: (_props: Family.ComposeToolbarFabProps): never =>
+      unsupported('HorizontalFloatingToolbar.FloatingActionButton'),
+  }
+)
+const Shape = Object.fromEntries(
+  ['Star', 'PillStar', 'Pill', 'Circle', 'Rectangle', 'Polygon', 'RoundedCorner'].map(
+    (name) => [
+      name,
+      (_props: Family.ComposeShapeProps): never => unsupported(`Shape.${name}`),
+    ]
+  )
+) as Record<
+  'Star' | 'PillStar' | 'Pill' | 'Circle' | 'Rectangle' | 'Polygon' | 'RoundedCorner',
+  (props: Family.ComposeShapeProps) => never
+>
+
 export const Compose = {
+  BasicAlertDialog,
+  HorizontalCenteredHeroCarousel,
+  HorizontalMultiBrowseCarousel,
+  HorizontalUncontainedCarousel,
+  DateRangePicker,
+  DateRangePickerDialog,
+  HorizontalFloatingToolbar,
+  Shape,
+  SyncSwitch,
+
   Column,
   Row,
   Spacer,

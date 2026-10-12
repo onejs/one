@@ -1,5 +1,6 @@
 import { containerComponents, contentComponents, emitContainers, environmentMethods } from './emitContainers'
 import { emitPopover, popoverComponents, popoverMethods } from './emitPopover'
+import { animatorComponents, emitAnimators } from './emitAnimators'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
@@ -185,6 +186,7 @@ const controls = [
       ...contentComponents.map((component) => component.publicName),
       ...sheetComponents.map((component) => component.publicName),
       ...popoverComponents.map((component) => component.publicName),
+      ...animatorComponents.map((component) => component.publicName),
     ])
   ),
 ]
@@ -453,6 +455,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 emitSheet(header, outputs)
 emitContainers(header, outputs, styleFields)
 emitPopover(header, outputs)
+emitAnimators(header, outputs)
 emitStyle(header, outputs, styleFields, derivedModifiers, derivedViewSlots)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from
 // src/specs alongside the view specs. emitted here so --check guards the JSI
@@ -661,6 +664,7 @@ outputs.set(
         ...containerComponents,
         ...contentComponents,
         ...popoverComponents,
+        ...animatorComponents,
       ].map((component) => {
         const enumProps: Record<string, string> =
           'enumProps' in component ? component.enumProps : {}
@@ -685,6 +689,19 @@ outputs.set(
             ])
           ),
           controlled: 'controlled' in component ? component.controlled : undefined,
+          commands:
+            'commands' in component
+              ? Object.fromEntries(
+                  Object.entries(component.commands as Record<string, Record<string, string>>).map(
+                    ([name, args]) => [
+                      name,
+                      Object.fromEntries(
+                        Object.entries(args).map(([arg, type]) => [arg, { type }])
+                      ),
+                    ]
+                  )
+                )
+              : undefined,
           actions: 'actions' in component ? component.actions : [],
           layout: 'layout' in component ? component.layout : undefined,
           slots: component.slots,
@@ -928,6 +945,7 @@ packageMetadata.codegenConfig.ios.componentProvider = Object.fromEntries(
     ...containerComponents,
     ...contentComponents,
     ...popoverComponents,
+    ...animatorComponents,
   ].map((component) => [component.name, component.name + 'ComponentView'])
 )
 outputs.set('package.json', JSON.stringify(packageMetadata, null, 2) + '\n')

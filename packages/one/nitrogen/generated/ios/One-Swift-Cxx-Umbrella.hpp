@@ -124,8 +124,32 @@ namespace margelo::nitro::one { struct ContactInput; }
 namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 // Forward declaration of `ContactPostalAddress` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactPostalAddress; }
+// Forward declaration of `ContactUIMode` to properly resolve imports.
+namespace margelo::nitro::one { enum class ContactUIMode; }
+// Forward declaration of `ContactUINameKey` to properly resolve imports.
+namespace margelo::nitro::one { enum class ContactUINameKey; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DataScannerBounds` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerBounds; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerConfiguration; }
+// Forward declaration of `DataScannerItemType` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerItemType; }
+// Forward declaration of `DataScannerPoint` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerPoint; }
+// Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerQualityLevel; }
+// Forward declaration of `DataScannerRecognizedDataType` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerRecognizedDataType; }
+// Forward declaration of `DataScannerRecognizedItem` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerRecognizedItem; }
+// Forward declaration of `DataScannerRect` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerRect; }
+// Forward declaration of `DataScannerScanningUnavailable` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerScanningUnavailable; }
+// Forward declaration of `DataScannerTextContentType` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerTextContentType; }
 // Forward declaration of `DetailedDirectoryInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DetailedDirectoryInfo; }
 // Forward declaration of `DetailedFileInfo` to properly resolve imports.
@@ -136,6 +160,10 @@ namespace margelo::nitro::one { struct DeviceAttestationAvailability; }
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `DiskSpace` to properly resolve imports.
 namespace margelo::nitro::one { struct DiskSpace; }
+// Forward declaration of `DocumentCameraError` to properly resolve imports.
+namespace margelo::nitro::one { struct DocumentCameraError; }
+// Forward declaration of `DocumentCameraImageSize` to properly resolve imports.
+namespace margelo::nitro::one { struct DocumentCameraImageSize; }
 // Forward declaration of `DocumentPickerAsset` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentPickerAsset; }
 // Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
@@ -166,6 +194,16 @@ namespace margelo::nitro::one { enum class HapticNotification; }
 namespace margelo::nitro::one { struct HingeState; }
 // Forward declaration of `HingeStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class HingeStatus; }
+// Forward declaration of `HybridDocumentCameraImageSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridDocumentCameraImageSpec; }
+// Forward declaration of `HybridDocumentCameraScanSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridDocumentCameraScanSpec; }
+// Forward declaration of `HybridNativeCNContactSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNContactSpec; }
+// Forward declaration of `HybridNativeCNContactStoreSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNContactStoreSpec; }
+// Forward declaration of `HybridNativeCNKeyDescriptorSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNKeyDescriptorSpec; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppIconSpec` to properly resolve imports.
@@ -194,12 +232,18 @@ namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
+// Forward declaration of `HybridOneContactUISpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneContactUISpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
+// Forward declaration of `HybridOneDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDataScannerSpec; }
 // Forward declaration of `HybridOneDeviceAttestationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceSpec; }
+// Forward declaration of `HybridOneDocumentCameraSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDocumentCameraSpec; }
 // Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
@@ -224,8 +268,12 @@ namespace margelo::nitro::one { class HybridOneLightSensorSpec; }
 namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
+// Forward declaration of `HybridOneMailComposeSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMailComposeSpec; }
 // Forward declaration of `HybridOneMapServicesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneMapServicesSpec; }
+// Forward declaration of `HybridOneMessageComposeSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMessageComposeSpec; }
 // Forward declaration of `HybridOneMotionSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneMotionSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
@@ -297,6 +345,8 @@ namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationRegion` to properly resolve imports.
+// Forward declaration of `MailComposeResult` to properly resolve imports.
+namespace margelo::nitro::one { enum class MailComposeResult; }
 namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
@@ -310,6 +360,10 @@ namespace margelo::nitro::one { struct MapRoute; }
 namespace margelo::nitro::one { struct MapSuggestion; }
 // Forward declaration of `MapTransport` to properly resolve imports.
 namespace margelo::nitro::one { enum class MapTransport; }
+// Forward declaration of `MessageAttachment` to properly resolve imports.
+namespace margelo::nitro::one { struct MessageAttachment; }
+// Forward declaration of `MessageComposeResult` to properly resolve imports.
+namespace margelo::nitro::one { enum class MessageComposeResult; }
 // Forward declaration of `MotionAvailability` to properly resolve imports.
 namespace margelo::nitro::one { struct MotionAvailability; }
 // Forward declaration of `MotionReading` to properly resolve imports.
@@ -530,12 +584,26 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactInput.hpp"
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
+#include "ContactUIMode.hpp"
+#include "ContactUINameKey.hpp"
 #include "ContactsPermissionStatus.hpp"
+#include "DataScannerBounds.hpp"
+#include "DataScannerConfiguration.hpp"
+#include "DataScannerItemType.hpp"
+#include "DataScannerPoint.hpp"
+#include "DataScannerQualityLevel.hpp"
+#include "DataScannerRecognizedDataType.hpp"
+#include "DataScannerRecognizedItem.hpp"
+#include "DataScannerRect.hpp"
+#include "DataScannerScanningUnavailable.hpp"
+#include "DataScannerTextContentType.hpp"
 #include "DetailedDirectoryInfo.hpp"
 #include "DetailedFileInfo.hpp"
 #include "DeviceAttestationAvailability.hpp"
 #include "DeviceInfo.hpp"
 #include "DiskSpace.hpp"
+#include "DocumentCameraError.hpp"
+#include "DocumentCameraImageSize.hpp"
 #include "DocumentPickerAsset.hpp"
 #include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
@@ -551,6 +619,11 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HapticNotification.hpp"
 #include "HingeState.hpp"
 #include "HingeStatus.hpp"
+#include "HybridDocumentCameraImageSpec.hpp"
+#include "HybridDocumentCameraScanSpec.hpp"
+#include "HybridNativeCNContactSpec.hpp"
+#include "HybridNativeCNContactStoreSpec.hpp"
+#include "HybridNativeCNKeyDescriptorSpec.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppIconSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
@@ -565,9 +638,12 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
+#include "HybridOneContactUISpec.hpp"
 #include "HybridOneContactsSpec.hpp"
+#include "HybridOneDataScannerSpec.hpp"
 #include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
+#include "HybridOneDocumentCameraSpec.hpp"
 #include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
 #include "HybridOneFileSystemSpec.hpp"
@@ -580,7 +656,9 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneLightSensorSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
+#include "HybridOneMailComposeSpec.hpp"
 #include "HybridOneMapServicesSpec.hpp"
+#include "HybridOneMessageComposeSpec.hpp"
 #include "HybridOneMotionSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
@@ -617,12 +695,15 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
 #include "LocationRegion.hpp"
+#include "MailComposeResult.hpp"
 #include "MapCoordinate.hpp"
 #include "MapPlace.hpp"
 #include "MapRoute.hpp"
 #include "MapRouteStep.hpp"
 #include "MapSuggestion.hpp"
 #include "MapTransport.hpp"
+#include "MessageAttachment.hpp"
+#include "MessageComposeResult.hpp"
 #include "MotionAvailability.hpp"
 #include "MotionReading.hpp"
 #include "MotionSensor.hpp"
@@ -725,6 +806,16 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include <NitroModules/DateToChronoDate.hpp>
 
 // Forward declarations of Swift defined types
+// Forward declaration of `HybridDocumentCameraImageSpec_cxx` to properly resolve imports.
+namespace One { class HybridDocumentCameraImageSpec_cxx; }
+// Forward declaration of `HybridDocumentCameraScanSpec_cxx` to properly resolve imports.
+namespace One { class HybridDocumentCameraScanSpec_cxx; }
+// Forward declaration of `HybridNativeCNContactSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNContactSpec_cxx; }
+// Forward declaration of `HybridNativeCNContactStoreSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNContactStoreSpec_cxx; }
+// Forward declaration of `HybridNativeCNKeyDescriptorSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNKeyDescriptorSpec_cxx; }
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppIconSpec_cxx` to properly resolve imports.
@@ -753,12 +844,18 @@ namespace One { class HybridOneBrowserSpec_cxx; }
 namespace One { class HybridOneCalendarSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneClipboardSpec_cxx; }
+// Forward declaration of `HybridOneContactUISpec_cxx` to properly resolve imports.
+namespace One { class HybridOneContactUISpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactsSpec_cxx; }
+// Forward declaration of `HybridOneDataScannerSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDataScannerSpec_cxx; }
 // Forward declaration of `HybridOneDeviceAttestationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceSpec_cxx; }
+// Forward declaration of `HybridOneDocumentCameraSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDocumentCameraSpec_cxx; }
 // Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
@@ -783,8 +880,12 @@ namespace One { class HybridOneLightSensorSpec_cxx; }
 namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocationSpec_cxx; }
+// Forward declaration of `HybridOneMailComposeSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMailComposeSpec_cxx; }
 // Forward declaration of `HybridOneMapServicesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneMapServicesSpec_cxx; }
+// Forward declaration of `HybridOneMessageComposeSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMessageComposeSpec_cxx; }
 // Forward declaration of `HybridOneMotionSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneMotionSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.

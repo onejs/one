@@ -342,7 +342,7 @@ one-time location authorization without a permission prompt, then runs
     {
       name: 'title',
       type: '"currentLocation" | "sendCurrentLocation" | "sendMyCurrentLocation" | "shareCurrentLocation" | "shareMyCurrentLocation" | ""',
-      default: '""',
+      default: '"currentLocation"',
       description: 'The system label. "" shows only the location arrow.',
     },
   ]}
@@ -351,10 +351,13 @@ one-time location authorization without a permission prompt, then runs
 ## ShortcutsLink
 
 `One.iOS.ShortcutsLink` opens this app's page in the Shortcuts app, where
-people find the shortcuts its App Intents provide. `onAction` runs on tap.
+people find the shortcuts its App Intents provide. `onAction` follows the SDK
+action, after it launches Shortcuts. Mounting the link does not run it. The
+Shortcuts app and this app's App Shortcuts registration are needed for the
+external destination; a callback alone does not prove a registered shortcut.
 
 <PropsTable
   title="Props"
   source="generated/controlTypes.ts#ShortcutsLinkProps"
-  data={[{ name: 'onAction', type: '() => void', description: 'Runs on tap.' }]}
+  data={[{ name: 'onAction', type: '() => void', description: 'Runs after the SDK launches Shortcuts.' }]}
 />

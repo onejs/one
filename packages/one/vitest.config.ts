@@ -106,6 +106,10 @@ export default defineConfig({
             // a nested react copy breaks hooks rendered through react-test-renderer
             { find: /^react$/, replacement: react },
             { find: /^react-native$/, replacement: reactNativeWeb },
+            {
+              find: /^react-native\/Libraries\/Utilities\/codegenNativeCommands$/,
+              replacement: resolve(__dirname, 'src/__mocks__/codegenNativeCommands.ts'),
+            },
           ],
         },
       },

@@ -1,0 +1,22 @@
+2026-10-12 manager runtime proof, air-32 emulator-5554 Android API37
+source: 1d3a7bd84 (original wait budgets restored in a9b5c682d)
+APK: existing s35577 installed debug APK; no install/rebuild in this run
+server: manager worktree, port 8082, package build passed
+precondition: Android bundle HTTP success, 15857840 bytes, before test launch
+
+RAN command:
+ADB=/Users/n8/Library/Android/sdk/platform-tools/adb bun tests/native-features/scripts/one-native-android-services-proof.ts --device-id emulator-5554 --suite screen-capture-prevent --no-install --metro-port 8082 --artifact-dir /tmp/one-screen-capture-original-budgets-ready
+
+RAN exit 0 under original 60s mount/called and 30s hold/release budgets.
+Both idle and unheld mounted preconditions passed.
+Initial false, active true, retained after first allow, released after last allow.
+Invalid empty key rejected; state restored false.
+Baseline dark fraction: 0.02234660033167496
+Held dark fraction: 1
+Released dark fraction: 0.02234660033167496
+PASS FLAG_SECURE blanks and restores.
+PASS one-native-android-services screen-capture-prevent
+
+Raw UI dumps and pixel captures: /tmp/one-screen-capture-original-budgets-ready
+Raw command log: /tmp/one-screen-capture-original-budgets-ready.log
+This proves Android simulator behavior. Physical iOS screenshot blanking remains open.

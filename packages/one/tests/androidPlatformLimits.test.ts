@@ -22,6 +22,7 @@ const host = vi.hoisted(() => ({
 vi.mock('react-native', async (importOriginal) => ({
   ...(await importOriginal<typeof import('react-native')>()),
   Platform: host.platform,
+  AppRegistry: { registerHeadlessTask: vi.fn() },
   NativeModules: { OneWidgetsBridge: host.widgets },
   NativeEventEmitter: class {
     addListener = host.addListener

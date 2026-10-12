@@ -36,6 +36,11 @@ import {
 // the compose leaves read the spec through codegenNativeComponent and a context, so the test
 // renders them: the mock turns the native node into an element the renderer can mount, and the
 // assertions read the props that reach it.
+vi.mock('react-native-worklets', () => ({
+  runOnUISync: (fn: () => void) => fn(),
+  isWorkletFunction: (fn: any) => !!fn.__workletHash,
+}))
+
 vi.mock('react-native', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-native')>()
   return {
@@ -1149,5 +1154,186 @@ describe('compose modal bottom sheet', () => {
       native().onNativeComposeNodeSheetHidden({ nativeEvent: { requestId: 2, eventCount: 2 } })
     })
     expect(secondResolved).toBe(true)
+  })
+})
+
+describe('remaining Compose family', () => {
+  it('mounts custom dialog children and forwards dismissal without inventing visibility', () => {
+    const dismiss = vi.fn()
+    const node = render(Compose.BasicAlertDialog, {
+      onDismissRequest: dismiss,
+      properties: { dismissOnBackPress: false },
+      children: createElement(Compose.Text, { text: 'content' }),
+    })
+    expect(node.props.familyOptions.dismissOnBackPress).toBe(false)
+    expect(node.children[0].props.text).toBe('content')
+    node.props.onNativeComposeNodeDialogDismiss()
+    expect(dismiss).toHaveBeenCalledTimes(1)
+    expect(() =>
+      render(Compose.BasicAlertDialog, { properties: { dismissOnClickOutside: 'yes' } })
+    ).toThrow('dismissOnClickOutside')
+  })
+
+  it('preserves carousel geometry, items and scroll control and rejects missing widths', () => {
+    const node = render(Compose.HorizontalUncontainedCarousel, {
+      itemWidth: 160,
+      userScrollEnabled: false,
+      contentPadding: 12,
+      children: createElement(Compose.Text, { text: 'item' }),
+    })
+    expect(node.props.familyOptions).toMatchObject({
+      itemWidth: 160,
+      userScrollEnabled: false,
+    })
+    expect(node.props.lazyContentPadding).toEqual({
+      start: 12,
+      end: 12,
+      top: 12,
+      bottom: 12,
+    })
+    expect(node.children[0].props.text).toBe('item')
+    expect(() =>
+      render(Compose.HorizontalMultiBrowseCarousel, { children: null })
+    ).toThrow('preferredItemWidth')
+    expect(() =>
+      render(Compose.HorizontalCenteredHeroCarousel, { maxItemWidth: -1, children: null })
+    ).toThrow('maxItemWidth')
+    expect(() =>
+      render(Compose.HorizontalUncontainedCarousel, { itemWidth: 0, children: null })
+    ).toThrow('itemWidth')
+  })
+
+  it('decodes partial and complete ranges and rejects reversed or out of bounds ranges', () => {
+    const selected = vi.fn()
+    const node = render(Compose.DateRangePicker, {
+      initialStartDate: '2026-10-12',
+      onDateRangeSelected: selected,
+    })
+    node.props.onNativeComposeNodeDateRangeSelected({
+      nativeEvent: {
+        start: Date.UTC(2026, 9, 12),
+        end: 0,
+        hasStart: true,
+        hasEnd: false,
+      },
+    })
+    expect(selected).toHaveBeenLastCalledWith({
+      start: new Date('2026-10-12'),
+      end: null,
+    })
+    node.props.onNativeComposeNodeDateRangeSelected({
+      nativeEvent: {
+        start: Date.UTC(2026, 9, 12),
+        end: Date.UTC(2026, 9, 14),
+        hasStart: true,
+        hasEnd: true,
+      },
+    })
+    expect(selected).toHaveBeenLastCalledWith({
+      start: new Date('2026-10-12'),
+      end: new Date('2026-10-14'),
+    })
+    expect(() =>
+      render(Compose.DateRangePicker, {
+        initialStartDate: '2026-10-14',
+        initialEndDate: '2026-10-12',
+      })
+    ).toThrow('initialEndDate')
+    expect(() =>
+      render(Compose.DateRangePicker, {
+        initialStartDate: '2026-10-12',
+        selectableDates: { start: new Date('2026-10-14') },
+      })
+    ).toThrow()
+    expect(() => render(Compose.DateRangePickerDialog, {})).toThrow('onDismissRequest')
+  })
+
+  it('routes toolbar FAB presses once and retains vibrant colors', () => {
+    const press = vi.fn()
+    const node = render(Compose.HorizontalFloatingToolbar, {
+      variant: 'vibrant',
+      colors: { fabContainerColor: '#ff0000' },
+      children: createElement(
+        Compose.HorizontalFloatingToolbar.FloatingActionButton,
+        { onPress: press },
+        createElement(Compose.Text, { text: 'save' })
+      ),
+    })
+    expect(node.props.familyOptions.fabContainerColor).toBe('#ff0000')
+    node.children[0].props.onNativeComposeNodeButtonPress()
+    expect(press).toHaveBeenCalledTimes(1)
+    expect(() =>
+      render(Compose.HorizontalFloatingToolbar, { variant: 'unknown' })
+    ).toThrow('variant')
+  })
+
+  it('carries rounded geometry to each native shape and rejects invalid polygons', () => {
+    for (const component of Object.values(Compose.Shape)) {
+      const node = render(component, {
+        color: '#ff0000',
+        verticesCount: 5,
+        cornerRounding: 0.1,
+        cornerRadii: { topStart: 12 },
+      })
+      expect(node.props.nodeType).toBe('shape')
+      expect(node.props.familyOptions).toMatchObject({
+        color: '#ff0000',
+        verticesCount: 5,
+        cornerRounding: 0.1,
+        topStart: 12,
+      })
+    }
+    expect(() => render(Compose.Shape.Polygon, { verticesCount: 2 })).toThrow(
+      'verticesCount'
+    )
+    expect(() => render(Compose.Shape.Star, { smoothing: NaN })).toThrow('smoothing')
+  })
+
+  it('binds switches to native state and removes synchronous callbacks on unmount', () => {
+    const state = createSyncState(false)
+    const callback = Object.assign(vi.fn(), { __workletHash: 1 })
+    let renderer: TestRenderer.ReactTestRenderer
+    act(() => {
+      renderer = TestRenderer.create(
+        createElement(Compose.SyncSwitch, { isOn: state, onCheckedChangeSync: callback })
+      )
+    })
+    const node = renderer!.toJSON() as any
+    expect(node.props.syncStateId).toBeDefined()
+    const id = node.props.familyOptions.syncCallbackId
+    ;(globalThis as any).__OneComposeCallbacks[id](true)
+    expect(callback).toHaveBeenCalledWith(true)
+    act(() => {
+      state.value = true
+      node.props.onNativeComposeNodeBooleanValueChange({ nativeEvent: { value: true } })
+    })
+    expect(state.value).toBe(true)
+    expect((renderer!.toJSON() as any).props.value).toBe(true)
+    act(() => renderer!.unmount())
+    expect((globalThis as any).__OneComposeCallbacks[id]).toBeUndefined()
+    expect(() => render(Compose.SyncSwitch, { isOn: false })).toThrow(
+      'NativeState<boolean>'
+    )
+    expect(() =>
+      render(Compose.SyncSwitch, { isOn: state, onCheckedChangeSync: () => {} })
+    ).toThrow('must be a worklet')
+    state.release()
+  })
+})
+
+describe('date range UTC contract', () => {
+  it('keeps ISO days and bounds at UTC midnight and accepts an empty past range', () => {
+    const node = render(Compose.DateRangePicker, {
+      initialStartDate: '2026-10-12',
+      selectableDates: { start: new Date('2026-10-01'), end: new Date('2026-10-31') },
+    })
+    expect(node.props.familyOptions.initialStart).toBe(Date.UTC(2026, 9, 12))
+    expect(node.props.pickerOptions.minimumDay).toBe(Date.UTC(2026, 9, 1))
+    expect(node.props.pickerOptions.maximumDay).toBe(Date.UTC(2026, 9, 31))
+    expect(() =>
+      render(Compose.DateRangePicker, {
+        selectableDates: { end: new Date('2000-01-01') },
+      })
+    ).not.toThrow()
   })
 })

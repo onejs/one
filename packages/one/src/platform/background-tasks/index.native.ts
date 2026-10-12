@@ -1,5 +1,5 @@
 import { validateDefinition, validateSubmission, validateCancellation } from './validate'
-import { Platform } from 'react-native'
+import { AppRegistry, Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -33,30 +33,37 @@ function native(): OneBackgroundTasks {
   return hybrid
 }
 
+async function runInvocation(invocation: BackgroundTaskInvocation): Promise<void> {
+  const controller = new AbortController()
+  running.set(invocation.executionId, controller)
+  try {
+    const handler = handlers.get(invocation.identifier)
+    if (!handler) {
+      native().complete(invocation.executionId, false)
+      return
+    }
+    try {
+      await handler({ ...invocation, signal: controller.signal })
+      native().complete(invocation.executionId, true)
+    } catch {
+      native().complete(invocation.executionId, false)
+    }
+  } finally {
+    running.delete(invocation.executionId)
+  }
+}
+
+// workmanager starts ReactHost without mounting a surface, then invokes this
+// registered headless task. the setupFile must define handlers at module scope.
+if (Platform.OS === 'android') {
+  AppRegistry.registerHeadlessTask('OneBackgroundTasks', () => runInvocation)
+}
+
 function addNativeListener(): void {
   if (removeNativeListener) return
-  removeNativeListener = native().addTaskListener(
-    (invocation) => {
-      const controller = new AbortController()
-      running.set(invocation.executionId, controller)
-      const handler = handlers.get(invocation.identifier)
-      if (!handler) {
-        running.delete(invocation.executionId)
-        native().complete(invocation.executionId, false)
-        return
-      }
-      Promise.resolve()
-        .then(() => handler({ ...invocation, signal: controller.signal }))
-        .then(
-          () => native().complete(invocation.executionId, true),
-          () => native().complete(invocation.executionId, false)
-        )
-        .finally(() => running.delete(invocation.executionId))
-    },
-    (executionId) => {
-      running.get(executionId)?.abort()
-    }
-  )
+  removeNativeListener = native().addTaskListener(runInvocation, (executionId) => {
+    running.get(executionId)?.abort()
+  })
 }
 
 function defineTask(identifier: string, handler: BackgroundTaskHandler): () => void {

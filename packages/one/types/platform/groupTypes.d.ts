@@ -42,6 +42,30 @@ export interface GlassEffectContainerProps extends ViewProps {
     spacing?: number;
     children: ReactNode;
 }
+export interface GeometryProxySize {
+    width: number;
+    height: number;
+}
+export interface GeometryProxySafeAreaInsets {
+    top: number;
+    leading: number;
+    bottom: number;
+    trailing: number;
+}
+export interface GeometryProxyFrame {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+}
+export interface GeometryProxy {
+    readonly size: GeometryProxySize;
+    readonly safeAreaInsets: GeometryProxySafeAreaInsets;
+    frame(coordinateSpace: 'global' | 'local'): GeometryProxyFrame;
+}
+export interface GeometryReaderProps extends Omit<ViewProps, 'children'> {
+    children: (geometry: GeometryProxy) => ReactNode;
+}
 export interface OverlayProps extends ViewProps {
     alignment?: ZStackAlignment;
     children: ReactNode;

@@ -2247,7 +2247,7 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       (app.audio !== undefined ||
         app.photoLibrary !== undefined ||
         app.contacts !== undefined ||
-        app.calendar?.usage !== undefined ||
+        app.calendar !== undefined ||
         app.ios?.backgroundTasks !== undefined)
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
@@ -2289,6 +2289,14 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
           '    <uses-permission android:name="android.permission.WRITE_CALENDAR" />'
         )
       }
+      if (app.calendar?.remindersUsage !== undefined) {
+        if (!rendered.includes('android.permission.POST_NOTIFICATIONS')) {
+          stamps.push('    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />')
+        }
+        if (!rendered.includes('android.permission.RECEIVE_BOOT_COMPLETED')) {
+          stamps.push('    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />')
+        }
+      }
       if (app.audio?.background === true) {
         stamps.push(
           '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />',
@@ -2301,6 +2309,11 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
       // config markers the Kotlin manifest checks read: add-only has no
       // permission past 28, and background playback gates the service.
       const appStamps: string[] = []
+      if (app.calendar?.remindersUsage !== undefined) {
+        appStamps.push(
+          '      <meta-data android:name="one.calendar.reminders" android:value="true" />'
+        )
+      }
       if (app.photoLibrary?.addOnly !== undefined) {
         appStamps.push(
           '      <meta-data android:name="one.photoLibrary.addOnly" android:value="true" />'
@@ -3295,9 +3308,11 @@ export function installNativeDependencies(args: {
   if (!platform || platform === 'ios') {
     // cocoapods reads podfiles and native module config as the locale's
     // encoding; a shell without a utf-8 locale fails on any non-ascii byte.
+    // one owns this pod install, so react native's notice pointing users at
+    // expo or the community cli does not apply.
     execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
       stdio: 'inherit',
-      env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
+      env: { ...process.env, LC_ALL: 'en_US.UTF-8', RCT_IGNORE_PODS_DEPRECATION: '1' },
     })
   }
 }

@@ -31,6 +31,7 @@ declare module 'one' {
         | `/one-native-android-cards`
         | `/one-native-android-chips`
         | `/one-native-android-color`
+        | `/one-native-android-compose-family`
         | `/one-native-android-compose-image`
         | `/one-native-android-dividers`
         | `/one-native-android-dropdown-menu`
@@ -56,6 +57,7 @@ declare module 'one' {
         | `/one-native-android-tooltip`
         | `/one-native-angular-gradient`
         | `/one-native-animation`
+        | `/one-native-animators`
         | `/one-native-app-icon`
         | `/one-native-app-info`
         | `/one-native-app-intents`
@@ -77,6 +79,7 @@ declare module 'one' {
         | `/one-native-calendar`
         | `/one-native-camera`
         | `/one-native-clipboard`
+        | `/one-native-contact-ui`
         | `/one-native-contacts`
         | `/one-native-containers`
         | `/one-native-control-group`
@@ -84,12 +87,14 @@ declare module 'one' {
         | `/one-native-controls`
         | `/one-native-cover-context`
         | `/one-native-crypto`
+        | `/one-native-data-scanner`
         | `/one-native-database`
         | `/one-native-derived-views`
         | `/one-native-device`
         | `/one-native-device-attestation`
         | `/one-native-dialogs`
         | `/one-native-disclosure-group`
+        | `/one-native-document-camera`
         | `/one-native-document-picker`
         | `/one-native-edit-button`
         | `/one-native-editors`
@@ -99,6 +104,7 @@ declare module 'one' {
         | `/one-native-file-system`
         | `/one-native-fonts`
         | `/one-native-geofencing`
+        | `/one-native-geometry-reader`
         | `/one-native-gestures`
         | `/one-native-glass-container`
         | `/one-native-gpu`
@@ -131,6 +137,7 @@ declare module 'one' {
         | `/one-native-menu-picker`
         | `/one-native-menu-primary-action`
         | `/one-native-mesh-gradient`
+        | `/one-native-message-ui`
         | `/one-native-motion`
         | `/one-native-navigation`
         | `/one-native-navigation-split-view`
@@ -154,6 +161,7 @@ declare module 'one' {
         | `/one-native-safe-area-bar`
         | `/one-native-screen-capture`
         | `/one-native-screen-orientation`
+        | `/one-native-scroll-reader`
         | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`
         | `/one-native-share`

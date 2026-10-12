@@ -3,7 +3,7 @@ title: Clipboard
 description: Strings, images, urls and html plus a change listener
 ---
 
-Clipboard through `One.Clipboard`, matching `expo-clipboard`. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+Clipboard through `One.Clipboard`. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
 
 ```tsx
 import { One } from 'one'
@@ -48,7 +48,7 @@ const url = await One.Clipboard.getUrl()
 const has = await One.Clipboard.hasUrl()
 ```
 
-Urls are iOS-only in Expo: on Android `setUrl` resolves without writing, `getUrl` resolves `null`, and `hasUrl` resolves `false`, so shared code needs no platform check. On web they resolve the same empty values.
+Urls are iOS-only: on Android `setUrl` resolves without writing, `getUrl` resolves `null`, and `hasUrl` resolves `false`, so shared code needs no platform check. On web they resolve the same empty values.
 
 ## Change listener
 
@@ -61,4 +61,4 @@ const sub = One.Clipboard.addListener(({ contentTypes }) => {
 sub.remove()
 ```
 
-The listener fires with `{ contentTypes }`, an array of `'plain-text'`, `'image'`, `'url'`, and `'html'` describing what is on the pasteboard. It fires for writes from any app, including your own. On web it is inert, like Expo: subscribing resolves a subscription whose `remove` does nothing.
+The listener fires with `{ contentTypes }`, an array of `'plain-text'`, `'image'`, `'url'`, and `'html'` describing what is on the pasteboard. It fires for writes from any app, including your own. On web it is inert: subscribing resolves a subscription whose `remove` does nothing.

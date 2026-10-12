@@ -53,7 +53,7 @@ description: What every native API does on iOS, Android, and web
 | Geofencing | CLCircularRegion monitoring via CLLocationManager names | software regions over LocationManager; request id and transition types mirror the flags; no Play dependency | unavailable |
 | MapServices | MapKit search, autocomplete, directions | Geocoder search only; rest unavailable | unavailable |
 | LocalAuthentication | LAContext biometrics | BiometricManager + BiometricPrompt | unavailable |
-| ScreenCapture | scene capture state + screenshot notifications | activity screenshot callback (34+) + window-manager recording state (35+); PixelCopy PNG capture (26+) | unavailable |
+| ScreenCapture | scene capture state + screenshot notifications + secure-layer and block-view prevention | activity screenshot callback (34+) + window-manager recording state (35+); PixelCopy PNG capture (26+); FLAG_SECURE prevention | `prevent`/`allow` no-op, `isPrevented` false |
 
 `One.iOS.ToolbarHost`, `One.iOS.MenuAction`, and the `ZoomTransition*`
 components return `null` on other platforms, so they are safe to keep in

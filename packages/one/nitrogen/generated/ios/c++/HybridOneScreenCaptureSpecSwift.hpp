@@ -69,7 +69,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-
+    
 
   public:
     // Methods
@@ -107,6 +107,30 @@ namespace margelo::nitro::one {
     }
     inline std::function<void()> addScreenshotListener(const std::function<void(double /* timestampMs */)>& onScreenshot) override {
       auto __result = _swiftPart.addScreenshotListener(onScreenshot);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> prevent() override {
+      auto __result = _swiftPart.prevent();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> allow() override {
+      auto __result = _swiftPart.allow();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<bool>> isPrevented() override {
+      auto __result = _swiftPart.isPrevented();
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

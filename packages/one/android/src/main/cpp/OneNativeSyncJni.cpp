@@ -4,6 +4,7 @@
 
 #include <ReactCommon/CallInvokerHolder.h>
 #include <worklets/Compat/StableApi.h>
+#include <worklets/WorkletRuntime/WorkletRuntime.h>
 
 #include "OneNativeSyncHost.h"
 #include "OneOnLoad.hpp"
@@ -14,6 +15,7 @@ using namespace facebook;
 namespace {
 
 // cached registry refs, bound at install on the calling (JS queue) thread.
+std::weak_ptr<worklets::WorkletRuntime> g_composeUIRuntime;
 JavaVM *g_vm = nullptr;
 jclass g_registryClass = nullptr;
 jmethodID g_create = nullptr;
@@ -165,6 +167,7 @@ jni::local_ref<OneNativeSyncJni::jhybriddata> OneNativeSyncJni::initHybrid(
   auto uiRuntime = worklets::getWorkletRuntimeFromHolder(
       rnRuntime, holder.asObject(rnRuntime));
   installOneNativeSyncState(rnRuntime, uiRuntime, jsCallInvoker);
+  g_composeUIRuntime = uiRuntime;
 
   JNIEnv *env = jni::Environment::current();
   env->GetJavaVM(&g_vm);
@@ -193,6 +196,21 @@ Java_dev_onejs_onenative_OneNativeSyncJni_nativeDidSetExternally(
     jclass,
     jint stateId) {
   OneNativeSyncDidSetExternally((int32_t)stateId);
+}
+
+extern "C" JNIEXPORT void JNICALL
+Java_dev_onejs_onenative_OneNativeSyncJni_invokeComposeBooleanCallback(
+    JNIEnv *, jclass, jint callbackId, jboolean value) {
+  if (auto runtime = g_composeUIRuntime.lock()) {
+    runtime->runSync([callbackId, value](jsi::Runtime &rt) {
+      auto callbacks = rt.global().getProperty(rt, "__OneComposeCallbacks");
+      if (!callbacks.isObject()) return;
+      auto callback = callbacks.asObject(rt).getProperty(rt, std::to_string(callbackId).c_str());
+      if (callback.isObject() && callback.asObject(rt).isFunction(rt)) {
+        callback.asObject(rt).asFunction(rt).call(rt, jsi::Value((bool)value));
+      }
+    });
+  }
 }
 
 jint JNI_OnLoad(JavaVM *vm, void *) {

@@ -1,9 +1,9 @@
 ---
 title: Calendar
-description: Read and write iOS calendar events and reminders
+description: Read and write native calendar events and reminders
 ---
 
-`One.Calendar` reads and writes events through EventKit. Give the app a
+`One.Calendar` reads and writes events through EventKit on iOS and CalendarContract on Android. Give the app a
 purpose string before prebuild:
 
 ```ts
@@ -126,7 +126,37 @@ Missing purpose text rejects with `E_CALENDAR_MANIFEST`; missing full access
 with `E_CALENDAR_PERMISSION`; invalid input with `E_CALENDAR_INPUT`.
 An absent writable calendar gives `E_CALENDAR_UNAVAILABLE`. Store failures
 use `E_CALENDAR_SAVE` or `E_CALENDAR_DELETE`; editing or deleting an unknown
-occurrence gives `E_CALENDAR_NOT_FOUND`. Calendar events are implemented on iOS and Android. On Android, events run over CalendarContract with `native.app.calendar.usage`; single-occurrence edits become exceptions that keep sibling occurrences. Reminders stay unavailable on Android and web: denied reminder permissions and empty lists. Calls that create or update a reminder reject with `Calendar.<verb> needs an iOS or Android build`; reminder completion and deletion do nothing.
+occurrence gives `E_CALENDAR_NOT_FOUND`.
+
+Calendar events are implemented on iOS and Android. Android uses
+`native.app.calendar.usage` and CalendarContract. Single-occurrence edits keep
+sibling occurrences.
+
+Android reminders are private to this app. Android has no system task-list
+provider equivalent to EventKit reminders; these tasks do not appear in Google
+Tasks or another app's lists. Configure `calendar.remindersUsage` independently
+of event access. Prebuild declares notification and boot permissions and an
+opt-in marker. `requestRemindersPermission()` requests notification permission
+on Android 13 and later; `fullAccess` means app notifications and the reminders
+channel are enabled. Denial, including disabling the channel in Settings,
+rejects reminder operations with `E_REMINDERS_PERMISSION`.
+
+Dated reminders schedule an inexact `AlarmManager.setAndAllowWhileIdle` alarm.
+The native receiver posts a notification even when the app process has exited;
+Android may delay delivery for power management. There is no exact-alarm
+permission or precise-time guarantee. Undated reminders have no alarm.
+Completing or deleting a reminder cancels its alarm and notification. Completing
+a recurring reminder creates the next incomplete occurrence with a new
+identifier, respecting the interval and count or date bound. Repeated completion
+of the same occurrence does not create duplicates. Reopening it does not remove
+the already-created next occurrence. Boot and app updates reschedule undelivered
+reminders. Force-stopping the app disables delivery until the app is opened again.
+App data removal or uninstall deletes these app-owned reminders.
+[Android's alarm guide](https://developer.android.com/develop/background-work/services/alarms)
+explains delivery policy.
+
+Web reminders keep the unavailable contract: denied permission, empty lists,
+creation rejection, and completion/deletion without effects.
 
 See [Apple's EventKit access guide](https://developer.apple.com/documentation/eventkit/accessing-the-event-store)
 for the full and write-only permission modes.

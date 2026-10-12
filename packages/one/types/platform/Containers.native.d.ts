@@ -1,5 +1,5 @@
-import { type LazyHStackProps, type LazyVStackProps, type ListProps, type ScrollViewProps } from './listTypes';
-import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type GroupBoxProps, type ViewThatFitsProps, type GlassEffectContainerProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
+import { type LazyHStackProps, type LazyVStackProps, type ListProps, type ScrollViewProps, type ScrollViewReaderProps } from './listTypes';
+import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type GroupBoxProps, type ViewThatFitsProps, type GlassEffectContainerProps, type GeometryReaderProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
 import { type ButtonProps, type FormProps, type GlassProps, type HostProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type StackProps, type ZStackProps } from './generated/containerTypes';
 import { InsideContainer, assertOneNativeChildren } from './containerChildren';
 import { type GridProps, type GridRowProps, type LazyHGridProps, type LazyVGridProps } from './gridTypes';
@@ -13,6 +13,7 @@ export declare function Form({ children, style, sizing, colorScheme, dynamicType
 export declare function Section({ title, footer, children, swiftStyle, style, ...props }: SectionProps): import("react/jsx-runtime").JSX.Element;
 export declare function List({ listStyle, children, selection, onSelectionChange, swiftStyle, style, ...props }: ListProps): import("react/jsx-runtime").JSX.Element;
 export declare function ScrollView({ axes, showsIndicators, children, swiftStyle, style, ...props }: ScrollViewProps): import("react/jsx-runtime").JSX.Element;
+export declare function ScrollViewReader({ children, style, ...props }: ScrollViewReaderProps): import("react/jsx-runtime").JSX.Element;
 export declare function LazyVStack({ alignment, spacing, children, style, ...props }: LazyVStackProps): import("react/jsx-runtime").JSX.Element;
 export declare function LazyHStack({ alignment, spacing, children, style, ...props }: LazyHStackProps): import("react/jsx-runtime").JSX.Element;
 export declare function LazyVGrid({ columns, alignment, spacing, children, style, ...props }: LazyVGridProps): import("react/jsx-runtime").JSX.Element;
@@ -25,6 +26,7 @@ export declare function ViewThatFits({ axes, children, style, ...props }: ViewTh
 export declare function Button({ onPress, label, disabled, subtitle, systemImage, buttonRole, buttonStyle, disclosureIndicator, children, swiftStyle, style, ...props }: ButtonProps): import("react/jsx-runtime").JSX.Element;
 export declare function Glass({ material, glassEffect, interactive, shape, cornerRadius, tint, colorScheme, children, style, ...props }: GlassProps): import("react/jsx-runtime").JSX.Element;
 export declare function GlassEffectContainer({ spacing, children, style, ...props }: GlassEffectContainerProps): import("react/jsx-runtime").JSX.Element;
+export declare function GeometryReader({ children, style, ...props }: GeometryReaderProps): import("react/jsx-runtime").JSX.Element;
 export declare function ControlGroup({ label, systemImage, controlGroupStyle, children, style, ...props }: ControlGroupProps): import("react/jsx-runtime").JSX.Element;
 export declare function DisclosureGroup({ label, isExpanded, onIsExpandedChange, revision, children, style, ...props }: DisclosureGroupProps): import("react/jsx-runtime").JSX.Element;
 export declare function Divider({ children, style, ...props }: DividerProps): import("react/jsx-runtime").JSX.Element;

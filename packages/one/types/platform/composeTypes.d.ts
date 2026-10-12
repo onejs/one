@@ -552,4 +552,89 @@ type ComposePickerDialogProps = {
 };
 export type ComposeDatePickerDialogProps = Omit<ComposeDatePickerProps, 'onSelectionChange' | 'revision'> & ComposePickerDialogProps;
 export type ComposeTimePickerDialogProps = Omit<ComposeTimePickerProps, 'onSelectionChange' | 'revision'> & ComposePickerDialogProps;
+export interface ComposeBasicAlertDialogProps extends ComposeNodeProps {
+    onDismissRequest?: () => void;
+    properties?: Readonly<{
+        dismissOnBackPress?: boolean;
+        dismissOnClickOutside?: boolean;
+        usePlatformDefaultWidth?: boolean;
+        decorFitsSystemWindows?: boolean;
+    }>;
+}
+export interface ComposeCarouselCommonProps extends ComposeNodeProps {
+    children: ReactNode;
+    itemSpacing?: number;
+    contentPadding?: number | ComposeLazyContentPadding;
+    flingBehavior?: 'singleAdvance' | 'noSnap';
+    userScrollEnabled?: boolean;
+}
+export interface ComposeHorizontalCenteredHeroCarouselProps extends ComposeCarouselCommonProps {
+    maxItemWidth?: number;
+    minSmallItemWidth?: number;
+    maxSmallItemWidth?: number;
+}
+export interface ComposeHorizontalMultiBrowseCarouselProps extends Omit<ComposeHorizontalCenteredHeroCarouselProps, 'maxItemWidth'> {
+    preferredItemWidth: number;
+}
+export interface ComposeHorizontalUncontainedCarouselProps extends ComposeCarouselCommonProps {
+    itemWidth: number;
+}
+export type ComposeDateRangeSelection = {
+    start: Date | null;
+    end: Date | null;
+};
+export interface ComposeDateRangePickerProps extends Omit<ComposeNodeProps, 'children'> {
+    initialStartDate?: string | null;
+    initialEndDate?: string | null;
+    onDateRangeSelected?: (range: ComposeDateRangeSelection) => void;
+    variant?: 'picker' | 'input';
+    showVariantToggle?: boolean;
+    showTitle?: boolean;
+    showHeadline?: boolean;
+    color?: ColorValue;
+    elementColors?: ComposeDatePickerColors;
+    selectableDates?: {
+        start?: Date;
+        end?: Date;
+    };
+}
+export interface ComposeDateRangePickerDialogProps extends ComposeDateRangePickerProps {
+    confirmButtonLabel?: string;
+    dismissButtonLabel?: string;
+    onDismissRequest: () => void;
+}
+export interface ComposeHorizontalFloatingToolbarProps extends ComposeNodeProps {
+    children: ReactNode;
+    variant?: 'standard' | 'vibrant';
+    colors?: Readonly<{
+        toolbarContainerColor?: ColorValue;
+        toolbarContentColor?: ColorValue;
+        fabContainerColor?: ColorValue;
+        fabContentColor?: ColorValue;
+    }>;
+}
+export interface ComposeToolbarFabProps extends ComposeNodeProps {
+    children: ReactNode;
+    onPress?: () => void;
+}
+export interface ComposeShapeProps extends Omit<ComposeNodeProps, 'children'> {
+    cornerRounding?: number;
+    smoothing?: number;
+    verticesCount?: number;
+    innerRadius?: number;
+    radius?: number;
+    cornerRadii?: Readonly<{
+        topStart?: number;
+        topEnd?: number;
+        bottomStart?: number;
+        bottomEnd?: number;
+    }>;
+    color?: ColorValue;
+}
+export type ComposeShapeType = 'star' | 'pillStar' | 'pill' | 'circle' | 'rectangle' | 'polygon' | 'roundedCorner';
+export interface ComposeSyncSwitchProps extends Omit<ComposeNodeProps, 'children'> {
+    isOn: NativeState<boolean>;
+    enabled?: boolean;
+    onCheckedChangeSync?: (checked: boolean) => void;
+}
 //# sourceMappingURL=composeTypes.d.ts.map

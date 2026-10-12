@@ -1,4 +1,3 @@
-import { Platform } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
@@ -12,9 +11,16 @@ import type {
   ReminderInfo,
   ReminderInput,
 } from '../specs/OneCalendar.nitro'
-import { Calendar as unavailableCalendar } from './unavailable'
 
-export type { CalendarEvent, CalendarEventChanges, CalendarPermissionStatus, CalendarRecurrence, CalendarRecurrenceFrequency, ReminderInfo, ReminderInput }
+export type {
+  CalendarEvent,
+  CalendarEventChanges,
+  CalendarPermissionStatus,
+  CalendarRecurrence,
+  CalendarRecurrenceFrequency,
+  ReminderInfo,
+  ReminderInput,
+}
 export type CalendarEventInput = Omit<NativeCalendarEventInput, 'allDay'> & {
   allDay?: boolean
 }
@@ -43,7 +49,9 @@ function list(startMs: number, endMs: number, limit = 100): Promise<CalendarEven
 }
 
 function create(input: CalendarEventInput): Promise<string> {
-  return native().create({ ...input, allDay: input.allDay ?? false }).catch(rethrowNativeError)
+  return native()
+    .create({ ...input, allDay: input.allDay ?? false })
+    .catch(rethrowNativeError)
 }
 
 function update(
@@ -101,18 +109,4 @@ const nativeCalendar = Object.freeze({
   deleteReminder,
 })
 
-// Android implements the 6 event methods over CalendarContract. No
-// Android reminders provider exists, so the 6 reminder methods keep the
-// exact unavailable contract.
-const androidCalendar = Object.freeze({
-  ...nativeCalendar,
-  getRemindersPermissionStatus: unavailableCalendar.getRemindersPermissionStatus,
-  requestRemindersPermission: unavailableCalendar.requestRemindersPermission,
-  listReminders: unavailableCalendar.listReminders,
-  createReminder: unavailableCalendar.createReminder,
-  setReminderCompleted: unavailableCalendar.setReminderCompleted,
-  deleteReminder: unavailableCalendar.deleteReminder,
-})
-
-export const Calendar: typeof nativeCalendar =
-  Platform.OS === 'android' ? androidCalendar : nativeCalendar
+export const Calendar: typeof nativeCalendar = nativeCalendar

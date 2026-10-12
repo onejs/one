@@ -1122,16 +1122,18 @@ ${routeHmr}
       routes.files = files
       if (!useDynamicRouteRegistry) return
 
+      mkdirSync(dirname(registryPath), { recursive: true })
+      // rolldown resolves the registry through symlinked node_modules before its imports.
+      const registryDir = realpathSync(dirname(registryPath))
       const source = `export const routes = {\n${[...files]
         .sort()
         .map((file) => {
           const routeKey = `/${normalizePath(relative(root, file))}`
-          let importPath = normalizePath(relative(dirname(registryPath), file))
+          let importPath = normalizePath(relative(registryDir, file))
           if (!importPath.startsWith('.')) importPath = `./${importPath}`
           return `  ${JSON.stringify(routeKey)}: () => import(${JSON.stringify(importPath)})`
         })
         .join(',\n')}\n}\n`
-      mkdirSync(dirname(registryPath), { recursive: true })
       if (!existsSync(registryPath) || readFileSync(registryPath, 'utf8') !== source) {
         writeFileSync(registryPath, source)
       }

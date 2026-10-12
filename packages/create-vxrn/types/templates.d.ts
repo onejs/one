@@ -3,14 +3,15 @@ export declare const templates: readonly [{
     readonly preInstall: import("./steps/types").ExtraSteps;
     readonly title: `Basic`;
     readonly value: 'Basic';
-    readonly description: 'The simplest starting point, vanilla Rreact Native';
+    readonly description: 'The simplest starting point, vanilla React Native';
     readonly type: 'included-in-monorepo';
     readonly hidden: false;
     readonly repo: {
         readonly url: `https://github.com/onejs/one.git`;
         readonly sshFallback: `git@github.com:onejs/one.git`;
         readonly dir: readonly [`examples`, `one-basic`];
-        readonly branch: 'v2-beta-starter';
+        readonly branch: 'main';
+        readonly prereleaseBranch: 'v2-beta';
     };
 }, {
     readonly extraSteps: import("./steps/types").ExtraSteps;

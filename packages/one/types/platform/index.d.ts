@@ -51,7 +51,7 @@ export { AppIcon } from './app-icon/index';
 export type { AppTrackingPermissionStatus } from './app-tracking/index';
 export { ScreenOrientation } from './screen-orientation/index';
 export type { ScreenOrientationLock, ScreenOrientationValue, } from './screen-orientation/index';
-export { ScreenCapture } from './screen-capture/index';
+export { ScreenCapture, usePreventScreenCapture } from './screen-capture/index';
 export type { ScreenCaptureResult, ScreenCaptureState } from './screen-capture/index';
 export { Purchases } from './purchases/index';
 export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from './purchases/index';
@@ -84,4 +84,11 @@ export type { DocumentPickerAsset, DocumentPickerCanceledResult, DocumentPickerO
 export { UI };
 export type { PortalProps, PortalHostProps } from './ui/portalTypes';
 export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerScrollStateEvent } from './ui/pagerTypes';
+export { VNDocumentCameraViewController } from './vision-kit/index';
+export type { VNDocumentCameraScan, VNDocumentCameraError, VNDocumentCameraViewControllerDelegate } from './vision-kit/index';
+export { MFMailComposeViewController, MFMessageComposeViewController } from './message-ui/index';
+export { DataScannerViewController } from './data-scanner/index';
+export type { DataScannerOptions, DataScannerViewControllerDelegate, RecognizedItem } from './data-scanner/index';
+export { CNContactViewController, CNMutableContact, CNContactStore } from './contact-ui/index';
+export type { CNContact, CNKeyDescriptor, CNContactViewControllerOptions, CNContactViewControllerDelegate } from './contact-ui/index';
 //# sourceMappingURL=index.d.ts.map

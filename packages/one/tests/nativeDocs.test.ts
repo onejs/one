@@ -74,12 +74,20 @@ function members(body: string) {
 // aliases it joins with & or |. members typed never only exclude a union branch.
 function resolve(text: string, name: string): Map<string, string> | undefined {
   const match = text.match(
-    new RegExp(`(?:type ${name}\\b[^=]*=|interface ${name}\\b[^{]*)`)
+    new RegExp(`(?:type ${name}\\b[^=]*=|interface ${name}\\b)`)
   )
   if (!match) return
   const start = match.index! + match[0].length
-  if (match[0].startsWith('interface'))
-    return members(block(text, text.indexOf('{', start)))
+  if (match[0].startsWith('interface')) {
+    // skip object type arguments in extends clauses before reading the body.
+    let genericDepth = 0
+    for (let index = start; index < text.length; index++) {
+      if (text[index] === '<') genericDepth++
+      if (text[index] === '>') genericDepth--
+      if (text[index] === '{' && genericDepth === 0) return members(block(text, index))
+    }
+    throw new Error(`interface ${name} has no body`)
+  }
   const result = new Map<string, string>()
   const merge = (from: Map<string, string>) => {
     for (const [key, type] of from) if (type !== 'never') result.set(key, type)

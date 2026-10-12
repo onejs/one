@@ -1,0 +1,103 @@
+---
+title: MessageUI composers
+description: Compose mail and messages with the iOS system UI
+---
+
+`One.iOS.MFMailComposeViewController` and
+`One.iOS.MFMessageComposeViewController` present Apple's mail and message
+composers. Check `canSendMail()` or `canSendText()` first. Simulators and devices
+without configured services can report false. These are capability checks;
+One does not replace an unavailable composer with another mail or SMS app.
+
+```tsx
+import { One } from 'one'
+
+if (One.iOS.MFMailComposeViewController.canSendMail()) {
+  const composer = new One.iOS.MFMailComposeViewController()
+  composer.setToRecipients(['hello@example.com'])
+  composer.setSubject('Hello')
+  composer.setMessageBody('A message from the app', false)
+  composer.mailComposeDelegate = {
+    mailComposeController: (controller, result) => {
+      // result.didFinishWith: cancelled, saved, sent or failed.
+      // result.error preserves NSError domain, code and localizedDescription.
+      void controller.dismiss()
+    },
+  }
+  await composer.present()
+}
+
+if (One.iOS.MFMessageComposeViewController.canSendText()) {
+  const composer = new One.iOS.MFMessageComposeViewController()
+  composer.recipients = ['+15555550100']
+  composer.body = 'Hello'
+  composer.messageComposeDelegate = {
+    messageComposeViewController: (controller, result) => {
+      // result.didFinishWith: cancelled, sent or failed.
+      void controller.dismiss()
+    },
+  }
+  await composer.present()
+}
+```
+
+The native controller remains owned by its delegate until the app dismisses it.
+`present(animated = true)` adapts UIViewController presentation to the current
+app presenter and resolves after presentation. Delegate callbacks report the
+composition result separately. `dismiss(animated = true)` resolves after
+closing the controller. Swift delegate argument labels become a JavaScript
+object after the controller argument.
+
+Mail's static `canSendMail()` returns the SDK capability. Message's static
+`canSendText()`, `canSendAttachments()` and `canSendSubject()` return SDK
+capabilities; `isSupportedAttachmentUTI(uti)` checks an attachment type.
+Attachments use `ArrayBuffer` for native `Data` and file URL strings for native
+`URL`. Message attachment results preserve SDK success/failure booleans.
+`attachments` exposes native attachment URL and alternate filename dictionaries
+as `{ attachmentURL, attachmentAlternateFilename? }` records.
+
+<PropsTable
+  title="Mail controller"
+  source="message-ui/types.ts#MFMailComposeController"
+  data={[
+    { name: 'mailComposeDelegate', type: 'MFMailComposeViewControllerDelegate<MFMailComposeController> | null', description: 'Receives result and optional NSError fields.' },
+    { name: 'setSubject', type: '(subject: string) => void', description: 'Sets the mail subject.' },
+    { name: 'setToRecipients', type: '(recipients: string[]) => void', description: 'Sets primary recipients.' },
+    { name: 'setCcRecipients', type: '(recipients: string[]) => void', description: 'Sets copied recipients.' },
+    { name: 'setBccRecipients', type: '(recipients: string[]) => void', description: 'Sets blind copied recipients.' },
+    { name: 'setMessageBody', type: '(body: string, isHTML: boolean) => void', description: 'Sets plain text or HTML body.' },
+    { name: 'setPreferredSendingEmailAddress', type: '(emailAddress: string) => void', description: 'Selects a preferred sending account.' },
+    { name: 'addAttachmentData', type: '(attachment: ArrayBuffer, mimeType: string, fileName: string) => void', description: 'Adds native bytes with MIME type and filename.' },
+    { name: 'present', type: '(animated?: boolean) => Promise<void>', description: 'Presents the configured system composer.' },
+    { name: 'dismiss', type: '(animated?: boolean) => Promise<void>', description: 'Dismisses the system composer.' },
+  ]}
+/>
+
+<PropsTable
+  title="Message controller"
+  source="message-ui/types.ts#MFMessageComposeController"
+  data={[
+    { name: 'messageComposeDelegate', type: 'MFMessageComposeViewControllerDelegate<MFMessageComposeController> | null', description: 'Receives completion or cancellation.' },
+    { name: 'recipients', type: 'string[] | undefined', description: 'Recipient addresses; undefined clears them.' },
+    { name: 'body', type: 'string | undefined', description: 'Message body; undefined clears it.' },
+    { name: 'subject', type: 'string | undefined', description: 'Subject when supported; undefined clears it.' },
+    { name: 'attachments', type: 'MessageAttachment[]', description: 'Native attachment URLs and alternate filenames.' },
+    { name: 'disableUserAttachments', type: '() => void', description: 'Disables attachment insertion by the user.' },
+    { name: 'addAttachmentData', type: '( attachment: ArrayBuffer, typeIdentifier: string, filename: string ) => boolean', description: 'Adds native bytes with a type identifier and filename.' },
+    { name: 'addAttachmentURL', type: '(attachmentURL: string, withAlternateFilename?: string) => boolean', description: 'Adds a file URL with an optional display filename.' },
+    { name: 'present', type: '(animated?: boolean) => Promise<void>', description: 'Presents the configured system composer.' },
+    { name: 'dismiss', type: '(animated?: boolean) => Promise<void>', description: 'Dismisses the system composer.' },
+  ]}
+/>
+
+Mail configuration requires a device on which mail can be sent. Unsupported
+mail and message presentation reject with `E_MAIL_COMPOSE_UNAVAILABLE` and
+`E_MESSAGE_COMPOSE_UNAVAILABLE`. Presentation without an active presenter
+rejects with `E_UIKIT_PRESENTER`; duplicate presentation and overlapping
+transitions reject with `E_UIKIT_PRESENTED` and `E_UIKIT_TRANSITION`.
+
+The simulator fixture checks real capability results and unsupported
+presentation without a success callback. Actual supported composer content,
+attachment acceptance, sending, saving and user cancellation require device
+acceptance. A delegate callback injected by a probe proves callback routing
+only.

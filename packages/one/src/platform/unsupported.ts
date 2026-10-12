@@ -9,6 +9,7 @@ import type {
   FullScreenCoverProps,
   GlassProps,
   GlassEffectContainerProps,
+  GeometryReaderProps,
   GroupProps,
   GroupBoxProps,
   ViewThatFitsProps,
@@ -33,6 +34,7 @@ import type {
   PagerProps,
   PopoverProps,
   ScrollViewProps,
+  ScrollViewReaderProps,
   SectionProps,
   SheetProps,
   SlotProps,
@@ -130,11 +132,19 @@ function Glass(_props: GlassProps): never {
 function GlassEffectContainer(_props: GlassEffectContainerProps): never {
   throw new Error('Swift.GlassEffectContainer requires an iOS native build')
 }
+function GeometryReader(_props: GeometryReaderProps): never {
+  throw new Error(
+    'Swift.GeometryReader requires an iOS native build'
+  )
+}
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
 }
 function List(_props: ListProps): never {
   throw new Error('Swift.List requires an iOS native build')
+}
+function ScrollViewReader(_props: ScrollViewReaderProps): never {
+  throw new Error('Swift.ScrollViewReader requires an iOS native build')
 }
 function ScrollView(_props: ScrollViewProps): never {
   throw new Error(
@@ -257,11 +267,19 @@ function ToolbarSpacer(_props: ToolbarSpacerProps): never {
   )
 }
 import { ArrangementView } from './ArrangementView'
+import type { KeyframeAnimatorProps, KeyframeValue, PhaseAnimatorProps } from './animatorTypes'
+import { CubicKeyframe, KeyframeTrack, LinearKeyframe, MoveKeyframe, SpringKeyframe } from './keyframes'
 import type { MapWithControlsProps } from './mapControls'
 // the map's controls slot is part of its props on every platform; off ios the
 // map itself throws, so children never mount there either.
 function MapWithControlsStub(_props: MapWithControlsProps): never {
   throw new Error('Swift.Map requires an iOS native build')
+}
+function PhaseAnimator<Phase>(_props: PhaseAnimatorProps<Phase>): never {
+  throw new Error('Swift.PhaseAnimator requires an iOS native build')
+}
+function KeyframeAnimator<Value extends KeyframeValue>(_props: KeyframeAnimatorProps<Value>): never {
+  throw new Error('Swift.KeyframeAnimator requires an iOS native build')
 }
 export const Swift = {
   ArrangementView,
@@ -283,12 +301,14 @@ export const Swift = {
   Section,
   Glass,
   GlassEffectContainer,
+  GeometryReader,
   LabeledContent,
   Button,
   Spacer,
   Slot,
   List,
   ScrollView,
+  ScrollViewReader,
   LazyVStack,
   LazyHStack,
   LazyVGrid,
@@ -313,6 +333,13 @@ export const Swift = {
   ToolbarItem,
   ToolbarItemGroup,
   ToolbarSpacer,
+  PhaseAnimator,
+  KeyframeAnimator,
+  KeyframeTrack,
+  LinearKeyframe,
+  SpringKeyframe,
+  CubicKeyframe,
+  MoveKeyframe,
   withAnimation(
     _animation: SDKAnimation | null,
     _body: () => void,

@@ -39,7 +39,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |
 | `One.AppIntents` | app-intents | native-modules:unavailable | missing |  |
 | `One.DeviceAttestation` | device-attestation | native-modules:unavailable | missing | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
-| `One.Contacts` | contacts | native-modules:unavailable | missing |  |
+| `One.Contacts` | contacts, e2e:one-native-contact-ui | native-modules:unavailable | missing |  |
 | `One.Calendar` | calendar | native-modules:unavailable | missing |  |
 | `One.iOS.ArrangementView` | arrangement | n/a | OneSwiftArrangementLibraryCase | closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved |
 | `One.iOS.Tabs` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
@@ -54,18 +54,20 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Popover` | popover | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, control-size, containers, disclosure-group, control-group, view-that-fits, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase |  |
 | `One.iOS.HStack` | glass-container, building-blocks, tab-slot, e2e:one-native-tabview | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftListsLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase |  |
-| `One.iOS.VStack` | groups | n/a | OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftSignInWithAppleLibraryCase |  |
+| `One.iOS.VStack` | groups, e2e:one-native-scroll-reader | n/a | OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftSignInWithAppleLibraryCase |  |
 | `One.iOS.ZStack` | building-blocks, disclosure-group | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftTextEditorLibraryCase |  |
 | `One.iOS.Section` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, groups, swipe-actions, edit-button, popover, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftListsLibraryCase, OneSwiftTextEditorLibraryCase | spacing, margins, and header prominence proven in insetGrouped List on iPhone; other section modifiers and Form behavior unproven |
 | `One.iOS.Glass` | building-blocks | n/a | OneSwiftGlassLibraryCase |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a | OneSwiftGlassLibraryCase |  |
+| `One.iOS.GeometryReader` | e2e:one-native-geometry-reader | n/a | missing |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a | OneNativeFormLayoutLibraryCase |  |
 | `One.iOS.Button` | leaves, host, control-size, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, navigation-split-view, e2e:one-native-tabview, e2e:one-native-button | n/a | OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPresentationsLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Spacer` | building-blocks | n/a | OneNativeFormLayoutLibraryCase, OneSwiftListsLibraryCase |  |
 | `One.iOS.Slot` | containers | n/a | OneSwiftGlassLibraryCase |  |
 | `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button, navigation-split-view | n/a | OneSwiftListsLibraryCase | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
-| `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids | n/a | OneSwiftLazyStacksLibraryCase, OneSwiftScrollViewportLibraryCase | vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven |
+| `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids, e2e:one-native-scroll-reader | n/a | OneSwiftLazyStacksLibraryCase, OneSwiftScrollViewportLibraryCase | vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven |
+| `One.iOS.ScrollViewReader` | e2e:one-native-scroll-reader | n/a | missing |  |
 | `One.iOS.LazyVStack` | lists, list-row-background, scroll-search-refresh | n/a | OneSwiftLazyStacksLibraryCase |  |
 | `One.iOS.LazyHStack` | lists, list-row-background | n/a | OneSwiftLazyStacksLibraryCase |  |
 | `One.iOS.LazyVGrid` | grids | n/a | OneSwiftListsLibraryCase |  |
@@ -90,6 +92,13 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ToolbarItem` | navigation, navigation-split-view | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarItemGroup` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
 | `One.iOS.ToolbarSpacer` | navigation | n/a | OneSwiftNavigationStackLibraryCase |  |
+| `One.iOS.PhaseAnimator` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.KeyframeAnimator` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.KeyframeTrack` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.LinearKeyframe` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.SpringKeyframe` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.CubicKeyframe` | e2e:one-native-animators | n/a | missing |  |
+| `One.iOS.MoveKeyframe` | e2e:one-native-animators | n/a | missing |  |
 | `One.iOS.withAnimation` | e2e:one-native-animation | n/a | missing |  |
 | `One.iOS.Picker` | pickers, picker-palette, forms, navigation | n/a | OneNativeFormControlsLibraryCase, OneNativeFormLayoutLibraryCase | palette outside Menu renders segmented on iOS 27 iPhone with native tap and external selection; earlier iOS, palette inside Menu, and navigationLink context unproven |
 | `One.iOS.DatePicker` | pickers, forms | n/a | OneNativeFormControlsLibraryCase |  |
@@ -99,7 +108,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Slider` | pickers, forms, e2e:one-native-animation | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.PasteButton` | paste-button | n/a | OneSwiftPasteEditLibraryCase |  |
-| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-map-controls | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-map-controls, e2e:one-native-geometry-reader, e2e:one-native-scroll-reader, e2e:one-native-animators | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Label` | leaves, containers | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ProgressView` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Gauge` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
@@ -108,7 +117,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ContentUnavailableView` | share-empty | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Circle` | leaves, view-slot | n/a | OneSwiftGlassLibraryCase, OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.Capsule` | leaves | n/a | OneSwiftListsLibraryCase, OneSwiftShapesGradientsLibraryCase |  |
-| `One.iOS.Rectangle` | leaves, lists, list-row-background, editors, building-blocks, view-slot | n/a | OneSwiftShapesGradientsLibraryCase |  |
+| `One.iOS.Rectangle` | leaves, lists, list-row-background, editors, building-blocks, view-slot, e2e:one-native-animators | n/a | OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.RoundedRectangle` | leaves | n/a | OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.Ellipse` | leaves | n/a | OneSwiftShapesGradientsLibraryCase |  |
 | `One.iOS.UnevenRoundedRectangle` | editors | n/a | OneSwiftShapesGradientsLibraryCase |  |
@@ -146,6 +155,13 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ShortcutsLink` | e2e:one-native-derived-views | n/a | missing |  |
 | `One.iOS.StoreView` | e2e:one-native-derived-views | n/a | missing |  |
 | `One.iOS.SubscriptionStoreView` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.VNDocumentCameraViewController` | e2e:one-native-document-camera | n/a | missing | production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven |
+| `One.iOS.DataScannerViewController` | e2e:one-native-data-scanner | n/a | missing | production Swift simulator unsupported checks with transport shims; generated ABI and physical recognition, tracking, zoom, capture and permission gates unproven |
+| `One.iOS.CNContactViewController` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |
+| `One.iOS.CNMutableContact` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |
+| `One.iOS.CNContactStore` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |
+| `One.iOS.MFMailComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven |
+| `One.iOS.MFMessageComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven |
 | `One.iOS.WidgetUI` | realapps:widgets | n/a | missing | bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted |
 | `One.iOS.CameraView` | camera-preview | n/a | missing |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a | missing |  |
@@ -156,11 +172,20 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a | missing |  |
 | `One.iOS.ZoomTransitionEnabler` | zoom | n/a | ScreensTransitionLibraryCase |  |
 | `One.iOS.ZoomTransitionSource` | zoom | n/a | ScreensTransitionLibraryCase |  |
-| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | missing |  |
+| `One.Android.BasicAlertDialog` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalCenteredHeroCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalMultiBrowseCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalUncontainedCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.DateRangePicker` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.DateRangePickerDialog` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.HorizontalFloatingToolbar` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.Shape` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.SyncSwitch` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
+| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-compose-family | missing |  |
 | `One.Android.Row` | n/a | android, android-inputs, android-progress, android-lists, android-snackbar, android-sheet, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-animated-visibility, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers | missing |  |
 | `One.Android.Spacer` | n/a | android-flow-row | missing |  |
 | `One.Android.FlowRow` | n/a | android-pickers, android-flow-row | missing |  |
-| `One.Android.Box` | n/a | android, android-inputs, android-dropdown-menu, android-flow-row | missing |  |
+| `One.Android.Box` | n/a | android, android-inputs, android-dropdown-menu, android-flow-row, android-compose-family | missing |  |
 | `One.Android.Badge` | n/a | android-badges | OneComposeActionsLibraryCase |  |
 | `One.Android.BadgedBox` | n/a | android-badges | OneComposeActionsLibraryCase |  |
 | `One.Android.ListItem` | n/a | android-list-items | OneComposeActionsLibraryCase |  |
@@ -174,10 +199,10 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.AssistChip` | n/a | android-chips | OneComposeActionsLibraryCase |  |
 | `One.Android.InputChip` | n/a | android-chips | missing |  |
 | `One.Android.SuggestionChip` | n/a | android-chips | missing |  |
-| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
-| `One.Android.Icon` | n/a | android, android-search-bar, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneNativeIconLibraryCase |  |
-| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip | OneComposeFormLibraryCase |  |
-| `One.Android.IconButton` | n/a | android-search-bar, android-icon-buttons | OneComposeActionsLibraryCase |  |
+| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips, android-compose-family | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
+| `One.Android.Icon` | n/a | android, android-search-bar, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips, android-compose-family | OneComposeActionsLibraryCase, OneNativeIconLibraryCase |  |
+| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip, android-compose-family | OneComposeFormLibraryCase |  |
+| `One.Android.IconButton` | n/a | android-search-bar, android-icon-buttons, android-compose-family | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.OutlinedIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
@@ -274,7 +299,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useReservedRegionsReady` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android first native reading and two remounts proven; Android folding first reading and folded remount proven |
 | `useWindowSegments` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
 | `useSpanning` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
-| `useNativeState` | state, ui-text-input, e2e:one-native-animation | state | missing |  |
+| `useNativeState` | state, ui-text-input, e2e:one-native-animation | state, android-compose-family | missing |  |
+| `usePreventScreenCapture` | screen-capture | screen-capture | missing | Android 37 emulator mount/unmount and manual-hold overlap proven with FLAG_SECURE pixels; iOS suite steps unrun |
 | `useFonts` | fonts | fonts | missing |  |
 | `useBatteryLevel` | battery | battery | missing |  |
 | `useBatteryState` | battery | battery | missing |  |

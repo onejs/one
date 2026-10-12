@@ -1,44 +1,8 @@
 ---
 title: Swift and Kotlin in Expo prebuild apps
-description: Import Swift and Kotlin source files in an app that uses Expo prebuild instead of one prebuild
+description: Import Swift and Kotlin source files in an app that uses Expo prebuild
 ---
 
-An app that uses Expo prebuild can import its own Swift and Kotlin files the
-same way a `one prebuild` app does. Enable the option in the vxrn config
-plugin, then run `expo prebuild` as usual:
-
-```js
-// app.config.js
-const { withVxrn } = require('vxrn/expo-plugin')
-
-module.exports = withVxrn(config, {
-  nativeSource: true,
-})
-```
-
-With the option on, Expo prebuild generates the same native glue `one
-prebuild` generates: one local pod per Swift package under
-`ios/OneSwiftPackages` (plus the Podfile entry that links them), and the
-Kotlin sources plus their generated dispatch under
-`android/app/src/main/java/one/source`. Swift sources are copied, never
-symlinked, so uploads and merges stay self-contained.
-
-```tsx
-import { Device } from './native/Showcase/Device.swift'
-import { Level } from './native/Showcase/Level.swift'
-import { Device as AndroidDevice } from './native/Device.kt'
-
-const hash = await Device.sha256('hello')
-```
-
-The same contract rules apply: methods become async functions, Swift structs
-conforming to `View` and public `@Composable` functions become components,
-and a stale binary rejects calls until it is rebuilt. A Kotlin view also
-gains the Compose gradle pieces; if the app's gradle files do not have the
-anchors the plugin expects, prebuild fails with the exact lines to add by
-hand instead of leaving the view uncompilable.
-
-Without the option, `.swift` and `.kt` imports keep failing fast at bundle
-time with the one-prebuild error. After generating `ios` and `android` once,
-the bundler accepts the imports; if the generated glue is missing (a fresh
-checkout, or prebuild without the option), the error names the option.
+Apps on Expo prebuild import Swift and Kotlin with the `nativeSource` option
+of `vxrn/expo-plugin`. See
+[Coming from Expo](/native/migrating-to-one#swift-and-kotlin-source).

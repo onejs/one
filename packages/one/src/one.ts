@@ -34,6 +34,13 @@ import {
   Contacts,
   Calendar,
   WidgetUI,
+  VNDocumentCameraViewController,
+  DataScannerViewController,
+  CNContactViewController,
+  CNMutableContact,
+  CNContactStore,
+  MFMailComposeViewController,
+  MFMessageComposeViewController,
   Clipboard as NativeClipboard,
   Barometer as NativeBarometer,
   LightSensor as NativeLightSensor,
@@ -76,6 +83,13 @@ import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from './safe-are
 export type OnePlatform = 'web' | 'ios' | 'android'
 
 export type OneIOS = typeof Swift & {
+  readonly MFMailComposeViewController: typeof MFMailComposeViewController
+  readonly MFMessageComposeViewController: typeof MFMessageComposeViewController
+  readonly CNContactViewController: typeof CNContactViewController
+  readonly CNMutableContact: typeof CNMutableContact
+  readonly CNContactStore: typeof CNContactStore
+  readonly DataScannerViewController: typeof DataScannerViewController
+  readonly VNDocumentCameraViewController: typeof VNDocumentCameraViewController
   readonly WidgetUI: typeof WidgetUI
   readonly CameraView: typeof CameraView
   readonly Color: ColorType['ios']
@@ -181,6 +195,13 @@ function currentPlatform(): OnePlatform {
 
 const iOS: Readonly<OneIOS> = Object.freeze({
   ...Swift,
+  VNDocumentCameraViewController,
+  DataScannerViewController,
+  CNContactViewController,
+  CNMutableContact,
+  CNContactStore,
+  MFMailComposeViewController,
+  MFMessageComposeViewController,
   WidgetUI,
   CameraView,
   Color: Color.ios,

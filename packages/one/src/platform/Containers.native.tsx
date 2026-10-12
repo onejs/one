@@ -2,6 +2,9 @@ import {
   Children,
   isValidElement,
   useContext,
+  useRef,
+  useState,
+  type ElementRef,
   type ReactNode,
 } from 'react'
 import { Platform } from 'react-native'
@@ -15,6 +18,7 @@ import NativeDivider from './specs/OneNativeDividerNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeGlassEffectContainer from './specs/OneNativeGlassEffectContainerNativeComponent'
+import NativeGeometryReader from './specs/OneNativeGeometryReaderNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
@@ -31,6 +35,9 @@ import NativeList from './specs/OneNativeListNativeComponent'
 import NativeOverlay from './specs/OneNativeOverlayNativeComponent'
 import NativeOverlayContent from './specs/OneNativeOverlayContentNativeComponent'
 import NativeScrollView from './specs/OneNativeScrollViewNativeComponent'
+import NativeScrollViewReader, {
+  Commands as ScrollViewReaderCommands,
+} from './specs/OneNativeScrollViewReaderNativeComponent'
 import NativeSwipeActions from './specs/OneNativeSwipeActionsNativeComponent'
 import NativeSwipeActionsActions from './specs/OneNativeSwipeActionsActionsNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
@@ -46,10 +53,14 @@ import {
   lazyHStackAlignments,
   lazyVStackAlignments,
   scrollViewAxes,
+  unitPoints,
   type LazyHStackProps,
   type LazyVStackProps,
   type ListProps,
   type ScrollViewProps,
+  type ScrollViewProxy,
+  type ScrollViewReaderProps,
+  type UnitPoint,
 } from './listTypes'
 import {
   swipeActionsEdges,
@@ -61,6 +72,8 @@ import {
   type ViewThatFitsProps,
   viewThatFitsAxes,
   type GlassEffectContainerProps,
+  type GeometryProxy,
+  type GeometryReaderProps,
   type LinkProps,
   type OverlayContentProps,
   type OverlayProps,
@@ -377,6 +390,68 @@ export function ScrollView({
   )
 }
 
+function unitPoint(anchor: UnitPoint): { x: number; y: number } {
+  if (typeof anchor === 'string') {
+    if (!Object.hasOwn(unitPoints, anchor))
+      throw new Error(
+        `Swift.ScrollViewProxy.scrollTo anchor must be a UnitPoint: one of ${Object.keys(unitPoints).join(', ')}, or { x, y }`
+      )
+    return unitPoints[anchor]
+  }
+  if (
+    typeof anchor !== 'object' ||
+    !Number.isFinite(anchor.x) ||
+    !Number.isFinite(anchor.y)
+  )
+    throw new Error('Swift.ScrollViewProxy.scrollTo anchor { x, y } must be finite numbers')
+  return anchor
+}
+
+// the content builder runs with a proxy whose scrollTo reaches the ScrollViewProxy
+// SwiftUI gave the native reader. as in SwiftUI, using it while the builder runs is
+// an error; call it from an event handler or an effect.
+export function ScrollViewReader({ children, style, ...props }: ScrollViewReaderProps) {
+  const host = useRef<ElementRef<typeof NativeScrollViewReader> | null>(null)
+  const building = useRef(false)
+  const [proxy] = useState<ScrollViewProxy>(() => ({
+    scrollTo(id, anchor) {
+      if (building.current)
+        throw new Error(
+          'Swift.ScrollViewProxy.scrollTo cannot run while Swift.ScrollViewReader builds its content; call it from an event handler or effect'
+        )
+      if (typeof id !== 'string')
+        throw new Error('Swift.ScrollViewProxy.scrollTo id must be a string matching a swiftStyle.id')
+      const point = anchor == null ? null : unitPoint(anchor)
+      if (!host.current)
+        throw new Error('Swift.ScrollViewProxy.scrollTo needs its Swift.ScrollViewReader mounted')
+      ScrollViewReaderCommands.scrollTo(
+        host.current,
+        id,
+        point !== null,
+        point?.x ?? 0,
+        point?.y ?? 0
+      )
+    },
+  }))
+  if (typeof children !== 'function')
+    throw new Error(
+      'Swift.ScrollViewReader takes a render function of its proxy; pass (proxy) => content'
+    )
+  building.current = true
+  let content: ReactNode
+  try {
+    content = children(proxy)
+  } finally {
+    building.current = false
+  }
+  assertOneNativeChildren(content, 'Swift.ScrollViewReader')
+  return (
+    <NativeScrollViewReader {...props} ref={host} style={viewportStyle(style)}>
+      <InsideContainer value={true}>{content}</InsideContainer>
+    </NativeScrollViewReader>
+  )
+}
+
 export function LazyVStack({
   alignment = 'center',
   spacing,
@@ -652,6 +727,79 @@ export function GlassEffectContainer({ spacing, children, style, ...props }: Gla
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGlassEffectContainer>
+  )
+}
+
+// the content builder runs only after SwiftUI supplies real geometry. native
+// transport keeps frames as data; the public proxy preserves the SDK method.
+type GeometrySnapshot = {
+  size: GeometryProxy['size']
+  safeAreaInsets: GeometryProxy['safeAreaInsets']
+  globalFrame: ReturnType<GeometryProxy['frame']>
+  localFrame: ReturnType<GeometryProxy['frame']>
+}
+
+function geometryNumber(value: unknown): number | undefined {
+  return typeof value === 'number' && Number.isFinite(value) ? value : undefined
+}
+
+function sameGeometry(a: GeometrySnapshot | null, b: GeometrySnapshot): boolean {
+  if (!a) return false
+  return (
+    a.size.width === b.size.width && a.size.height === b.size.height &&
+    a.globalFrame.x === b.globalFrame.x && a.globalFrame.y === b.globalFrame.y &&
+    a.globalFrame.width === b.globalFrame.width && a.globalFrame.height === b.globalFrame.height &&
+    a.localFrame.x === b.localFrame.x && a.localFrame.y === b.localFrame.y &&
+    a.localFrame.width === b.localFrame.width && a.localFrame.height === b.localFrame.height &&
+    a.safeAreaInsets.top === b.safeAreaInsets.top &&
+    a.safeAreaInsets.leading === b.safeAreaInsets.leading &&
+    a.safeAreaInsets.bottom === b.safeAreaInsets.bottom &&
+    a.safeAreaInsets.trailing === b.safeAreaInsets.trailing
+  )
+}
+
+export function GeometryReader({ children, style, ...props }: GeometryReaderProps) {
+  const [geometry, setGeometry] = useState<GeometryProxy | null>(null)
+  const latest = useRef<GeometrySnapshot | null>(null)
+  if (typeof children !== 'function')
+    throw new Error('Swift.GeometryReader takes a render function of its geometry; pass (geometry) => content')
+  const content = geometry === null ? null : children(geometry)
+  assertOneNativeChildren(content, 'Swift.GeometryReader')
+  return (
+    <NativeGeometryReader
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      onNativeGeometryReaderChange={({ nativeEvent }) => {
+        const event = nativeEvent as Record<string, unknown> | null | undefined
+        const fields = ['x', 'y', 'width', 'height', 'localX', 'localY', 'localWidth', 'localHeight',
+          'sizeWidth', 'sizeHeight', 'safeAreaTop', 'safeAreaLeading', 'safeAreaBottom', 'safeAreaTrailing'] as const
+        for (const field of fields) {
+          if (geometryNumber(event?.[field]) === undefined)
+            throw new Error('Swift.GeometryReader emitted an invalid geometry')
+        }
+        const values = event as Record<(typeof fields)[number], number>
+        const next: GeometrySnapshot = {
+          size: { width: values.sizeWidth, height: values.sizeHeight },
+          safeAreaInsets: { top: values.safeAreaTop, leading: values.safeAreaLeading,
+            bottom: values.safeAreaBottom, trailing: values.safeAreaTrailing },
+          globalFrame: { x: values.x, y: values.y, width: values.width, height: values.height },
+          localFrame: { x: values.localX, y: values.localY, width: values.localWidth, height: values.localHeight },
+        }
+        if (sameGeometry(latest.current, next)) return
+        latest.current = next
+        setGeometry({
+          size: next.size,
+          safeAreaInsets: next.safeAreaInsets,
+          frame(coordinateSpace) {
+            if (coordinateSpace === 'global') return { ...next.globalFrame }
+            if (coordinateSpace === 'local') return { ...next.localFrame }
+            throw new Error('Swift.GeometryProxy.frame supports global and local coordinate spaces; named spaces are not yet bound')
+          },
+        })
+      }}
+    >
+      <InsideContainer value={true}>{content}</InsideContainer>
+    </NativeGeometryReader>
   )
 }
 

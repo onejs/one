@@ -69,3 +69,20 @@ height, since it fills the box React Native gives it.
     { name: 'productIDs', type: 'readonly string[]', description: 'The subscription product identifiers to show.' },
   ]}
 />
+
+## Bound initializers
+
+The binding uses `ProductView(id:prefersPromotionalIcon:)`,
+`StoreView(ids:prefersPromotionalIcon:)`, and the `SubscriptionStoreView`
+`groupID:visibleRelationships:` or `productIDs:` initializers. The SDK
+specializes these overloads to its default icon and marketing views.
+
+Overloads accepting `StoreKit.Product` objects, icon builders or marketing
+content are not bound. Their arguments include native product values and
+callbacks returning generic SwiftUI views, which this generated constructor
+bridge cannot carry. Pass catalog identifiers to the bound overloads.
+
+Xcode's local StoreKit configuration can exercise catalog rendering on the
+simulator without an account or real payment. That test catalog does not
+establish App Store catalog availability, purchases, subscription eligibility
+or entitlements for a signed app and account.

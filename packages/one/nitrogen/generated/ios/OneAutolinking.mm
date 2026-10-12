@@ -10,6 +10,13 @@
 #import "One-Swift-Cxx-Umbrella.hpp"
 #import <type_traits>
 
+#include "HybridOneContactUISpecSwift.hpp"
+#include "HybridNativeCNContactSpecSwift.hpp"
+#include "HybridNativeCNContactStoreSpecSwift.hpp"
+#include "HybridOneDataScannerSpecSwift.hpp"
+#include "HybridOneMailComposeSpecSwift.hpp"
+#include "HybridOneMessageComposeSpecSwift.hpp"
+#include "HybridOneDocumentCameraSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
@@ -70,6 +77,55 @@
   using namespace margelo::nitro;
   using namespace margelo::nitro::one;
 
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneContactUI",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneContactUISpec> hybridObject = One::OneAutolinking::createOneContactUI();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "NativeCNContact",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridNativeCNContactSpec> hybridObject = One::OneAutolinking::createNativeCNContact();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "NativeCNContactStore",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridNativeCNContactStoreSpec> hybridObject = One::OneAutolinking::createNativeCNContactStore();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDataScanner",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneDataScannerSpec> hybridObject = One::OneAutolinking::createOneDataScanner();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneMailCompose",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneMailComposeSpec> hybridObject = One::OneAutolinking::createOneMailCompose();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneMessageCompose",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneMessageComposeSpec> hybridObject = One::OneAutolinking::createOneMessageCompose();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDocumentCamera",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneDocumentCameraSpec> hybridObject = One::OneAutolinking::createOneDocumentCamera();
+      return hybridObject;
+    }
+  );
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneHaptics",
     []() -> std::shared_ptr<HybridObject> {

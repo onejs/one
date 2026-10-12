@@ -119,6 +119,11 @@ const testScreens = [
     testID: 'nav-one-native-view-that-fits',
   },
   {
+    href: '/one-native-scroll-reader',
+    label: 'One Native Scroll Reader',
+    testID: 'nav-one-native-scroll-reader',
+  },
+  {
     href: '/one-native-view-slot',
     label: 'One Native ViewSlot',
     testID: 'nav-one-native-view-slot',
@@ -242,6 +247,26 @@ const testScreens = [
     href: '/one-native-camera',
     label: 'One Native Camera',
     testID: 'nav-one-native-camera',
+  },
+  {
+    href: '/one-native-contact-ui',
+    label: 'System contact viewer',
+    testID: 'nav-one-native-contact-ui',
+  },
+  {
+    href: '/one-native-data-scanner',
+    label: 'Live data scanner',
+    testID: 'nav-one-native-data-scanner',
+  },
+  {
+    href: '/one-native-message-ui',
+    label: 'One Native MessageUI',
+    testID: 'nav-one-native-message-ui',
+  },
+  {
+    href: '/one-native-document-camera',
+    label: 'One Native Document Camera',
+    testID: 'nav-one-native-document-camera',
   },
   {
     href: '/one-native-document-picker',
@@ -548,6 +573,11 @@ const testScreens = [
     href: '/one-native-android-lists',
     label: 'One Native Android Lists',
     testID: 'nav-one-native-android-lists',
+  },
+  {
+    href: '/one-native-android-compose-family',
+    label: 'One Native Android Compose Family',
+    testID: 'nav-one-native-android-compose-family',
   },
   {
     href: '/one-native-android-compose-image',

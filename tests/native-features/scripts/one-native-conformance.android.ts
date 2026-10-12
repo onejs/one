@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+import { androidXmlAttributes as attributes } from './android-ui-xml'
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
@@ -229,22 +230,6 @@ function densityScale(config: Config) {
   if (!Number.isFinite(density) || density <= 0)
     throw new Error(`Android display density is unavailable: ${output.trim()}`)
   return density / 160
-}
-
-function xmlUnescape(value: string) {
-  return value
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&')
-}
-
-function attributes(source: string) {
-  const result: Record<string, string> = {}
-  const pattern = /([A-Za-z_:][A-Za-z0-9_.:-]*)\s*=\s*(["'])(.*?)\2/g
-  for (const match of source.matchAll(pattern)) result[match[1]] = xmlUnescape(match[3])
-  return result
 }
 
 function booleanAttribute(attrs: Record<string, string>, name: string) {

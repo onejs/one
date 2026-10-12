@@ -6,11 +6,9 @@ import androidx.work.WorkerParameters
 import java.util.concurrent.TimeUnit
 
 // runs One.BackgroundTasks work when WorkManager dispatches it. delivery
-// goes through the shared coordinator so foreground JS observes the same
-// launch/expire/complete contract as iOS: the worker blocks until JS
-// completes the execution, the stop signal expires it, and a launch with
-// no JS listener fails after the same 20s startup grace iOS applies to
-// jobs whose handler never registers.
+// starts ReactHost and a Headless JS task without mounting an Activity. the
+// coordinator owns completion and expiration; a warm listener never replays
+// headless invocations, which would execute the same work twice.
 class OneBackgroundWorker(
     appContext: Context,
     params: WorkerParameters,
@@ -27,34 +25,28 @@ class OneBackgroundWorker(
         } else {
             BackgroundTaskKind.REFRESH
         }
-        // JS may be starting alongside the worker; give it the iOS startup
-        // grace before failing a listener-less launch.
-        val graceDeadline = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(20)
-        while (!OneBackgroundTasksCoordinator.hasListener() &&
-            System.currentTimeMillis() < graceDeadline &&
-            !isStopped
-        ) {
-            try {
-                Thread.sleep(250)
-            } catch (e: InterruptedException) {
-                Thread.currentThread().interrupt()
-                return Result.failure()
-            }
-        }
         if (isStopped) return Result.failure()
-        if (!OneBackgroundTasksCoordinator.hasListener()) return Result.failure()
-        val record = OneBackgroundTasksCoordinator.launch(identifier, kind)
+        val record = OneBackgroundTasksCoordinator.launch(identifier, kind, headless = true)
         executionId = record.executionId
+        var headless: OneBackgroundTaskRuntime.Execution? = null
         try {
+            headless = OneBackgroundTaskRuntime.start(applicationContext, record)
+            if (isStopped) return Result.failure()
             // WorkManager stops workers past ~10 minutes; cap the wait below
             // it so expiration still reports through the coordinator.
             val completed = record.completion.await(9, TimeUnit.MINUTES)
             finished = true
-            return if (completed && record.success) Result.success() else Result.failure()
+            return if (completed && record.success && !isStopped) Result.success() else Result.failure()
         } catch (e: InterruptedException) {
             Thread.currentThread().interrupt()
-            finished = true
             return Result.failure()
+        } catch (e: Exception) {
+            android.util.Log.e("OneBackgroundTasks", "headless execution failed", e)
+            return Result.failure()
+        } finally {
+            finished = true
+            OneBackgroundTasksCoordinator.expire(record.executionId)
+            headless?.finish()
         }
     }
 

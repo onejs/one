@@ -2,6 +2,7 @@ import { execFileSync } from 'node:child_process'
 import { describe, test, expect, beforeAll, afterAll } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 import { createSession, navigateTo } from '@vxrn/test/utils/appium'
+import sharp from 'sharp'
 import { captureScreenshot, waitForElement } from '../utils/screenshot'
 import type { Browser } from 'webdriverio'
 
@@ -70,6 +71,71 @@ describe('one native integration tests', () => {
         await driver.deleteSession()
       } catch {}
     }
+  })
+
+  describe('ContactsUI contact viewer', () => {
+    test('presents a native new contact and receives cancellation without saving', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-contact-ui')
+      await waitForElement(driver, 'contact-ui-screen')
+      expect(await (await waitForElement(driver, 'contact-ui-draft')).getText()).toBe('Draft: UIKit Fixture')
+      await (await waitForElement(driver, 'contact-ui-new')).click()
+      await waitForElement(driver, 'New Contact')
+      await captureScreenshot(driver, 'contact-ui-native-new')
+      await (await waitForElement(driver, 'Cancel')).click()
+      await (await waitForElement(driver, 'Discard Changes')).click()
+      await waitForElement(driver, 'Result: cancelled')
+      expect(await (await waitForElement(driver, 'contact-ui-error')).getText()).toBe('Error: -')
+      await (await waitForElement(driver, 'contact-ui-known')).click()
+      await waitForElement(driver, 'Result: rejected')
+      expect(await (await waitForElement(driver, 'contact-ui-error')).getText()).toBe('Error: Error: Save a contact first')
+    })
+  })
+
+  describe('VisionKit data scanner', () => {
+    test('rejects simulator presentation and scanning without recognized items', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-data-scanner')
+      await waitForElement(driver, 'data-scanner-screen')
+      expect(await (await waitForElement(driver, 'data-scanner-supported')).getText()).toBe('Supported: false')
+      expect(await (await waitForElement(driver, 'data-scanner-available')).getText()).toBe('Available: true')
+      await (await waitForElement(driver, 'data-scanner-present')).click()
+      await waitForElement(driver, 'Error: E_DATA_SCANNER_UNSUPPORTED')
+      expect(await (await waitForElement(driver, 'data-scanner-state')).getText()).toBe('State: rejected')
+      await (await waitForElement(driver, 'data-scanner-dismiss')).click()
+      await waitForElement(driver, 'State: dismissed')
+      await (await waitForElement(driver, 'data-scanner-start')).click()
+      await waitForElement(driver, 'State: rejected')
+      expect(await (await waitForElement(driver, 'data-scanner-items')).getText()).toBe('Items: 0')
+      await captureScreenshot(driver, 'data-scanner-unavailable')
+    })
+  })
+
+  describe('MessageUI composers', () => {
+    test('reports simulator capabilities and rejects unavailable composers', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-message-ui')
+      await waitForElement(driver, 'message-ui-screen')
+      expect(await (await waitForElement(driver, 'message-ui-mail-supported')).getText()).toBe('Mail: false')
+      expect(await (await waitForElement(driver, 'message-ui-text-supported')).getText()).toBe('Text: false')
+      await (await waitForElement(driver, 'message-ui-mail')).click()
+      await waitForElement(driver, 'Error: E_MAIL_COMPOSE_UNAVAILABLE')
+      expect(await (await waitForElement(driver, 'message-ui-result')).getText()).toBe('Result: rejected')
+      await (await waitForElement(driver, 'message-ui-text')).click()
+      await waitForElement(driver, 'Error: E_MESSAGE_COMPOSE_UNAVAILABLE')
+      expect(await (await waitForElement(driver, 'message-ui-result')).getText()).toBe('Result: rejected')
+      await captureScreenshot(driver, 'message-ui-unavailable')
+    })
+  })
+
+  describe('VisionKit document camera', () => {
+    test('reports actual simulator unavailability and rejects without pages', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-document-camera')
+      await waitForElement(driver, 'document-camera-screen')
+      expect(await (await waitForElement(driver, 'document-camera-supported')).getText()).toBe('Supported: false')
+      await (await waitForElement(driver, 'document-camera-present')).click()
+      await waitForElement(driver, 'State: rejected')
+      expect(await (await waitForElement(driver, 'document-camera-error')).getText()).toBe('Error: E_DOCUMENT_CAMERA_UNSUPPORTED')
+      expect(await (await waitForElement(driver, 'document-camera-pages')).getText()).toBe('Pages: 0')
+      await captureScreenshot(driver, 'document-camera-unavailable')
+    })
   })
 
   // -- home screen --
@@ -887,6 +953,269 @@ describe('one native integration tests', () => {
       const error = await waitForElement(driver, 'one-native-map-controls-error')
       expect(await error.getText()).toContain('One.iOS.Map accepts')
     })
+  })
+
+  // -- geometry reader (WRITTEN, interaction legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Geometry Reader', () => {
+    test('reader mounts and reports its laid-out frame', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-geometry-reader')
+      const view = await waitForElement(driver, 'one-native-geometry-reader-view', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+
+      const status = await waitForElement(driver, 'one-native-geometry-reader-status')
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Frame: 200x100'),
+        { timeout: 10_000, timeoutMsg: 'geometry reader did not report its frame' }
+      )
+
+      await captureScreenshot(driver, 'one-native-geometry-reader-mounted')
+    })
+
+    test('resizing the reader reports the new frame', sharedTestOptions, async () => {
+      const toggle = await waitForElement(driver, 'one-native-geometry-reader-toggle-width')
+      await toggle.click()
+      const status = await waitForElement(driver, 'one-native-geometry-reader-status')
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Frame: 120x100'),
+        { timeout: 10_000, timeoutMsg: 'resized frame was not reported' }
+      )
+
+      await captureScreenshot(driver, 'one-native-geometry-reader-resized')
+    })
+
+    test('static children throw instead of mounting', sharedTestOptions, async () => {
+      const invalid = await waitForElement(
+        driver,
+        'one-native-geometry-reader-invalid-static'
+      )
+      await invalid.click()
+      await dismissExpectedRenderError(driver, 'takes a render function')
+      const error = await waitForElement(
+        driver,
+        'one-native-geometry-reader-static-error'
+      )
+      expect(await error.getText()).toContain('takes a render function')
+    })
+
+    test('React Native children throw instead of mounting', sharedTestOptions, async () => {
+      const invalid = await waitForElement(
+        driver,
+        'one-native-geometry-reader-invalid-native'
+      )
+      await invalid.click()
+      await dismissExpectedRenderError(driver, 'takes SwiftUI children')
+      const error = await waitForElement(
+        driver,
+        'one-native-geometry-reader-native-error'
+      )
+      expect(await error.getText()).toContain('takes SwiftUI children')
+    })
+  })
+
+  // -- scroll view reader: proxy.scrollTo moves the SwiftUI scroll view that
+  // reports its content offset through the SDK's onScrollGeometryChange --
+
+  describe('One Native Scroll Reader', () => {
+    const offsetOf = async (testID: string, label: string) => {
+      const text = await (await waitForElement(driver, testID)).getText()
+      const match = text.match(new RegExp(`${label}: (-?\\d+)`))
+      if (!match) throw new Error(`no ${label} in ${text}`)
+      return Number(match[1])
+    }
+    const scrollAndSettle = async (button: string, last: string) => {
+      await (await waitForElement(driver, button)).click()
+      const status = await waitForElement(driver, 'one-native-scroll-reader-status')
+      await status.waitUntil(async () => (await status.getText()).includes(`Last: ${last}`), {
+        timeout: 10_000,
+        timeoutMsg: `scrollTo ${last} did not run`,
+      })
+      // the offset settles when two reads a frame apart agree.
+      let previous = Number.NaN
+      await status.waitUntil(
+        async () => {
+          const next = await offsetOf('one-native-scroll-reader-status', 'Offset')
+          const settled = next === previous
+          previous = next
+          return settled
+        },
+        { timeout: 10_000, interval: 250, timeoutMsg: `offset after ${last} did not settle` }
+      )
+      return previous
+    }
+
+    test('reader mounts its content at the top', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-scroll-reader')
+      const view = await waitForElement(driver, 'one-native-scroll-reader-view', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+      expect(await offsetOf('one-native-scroll-reader-status', 'Offset')).toBe(0)
+      await captureScreenshot(driver, 'one-native-scroll-reader-mounted')
+    })
+
+    test('scrollTo moves the scroll view to each anchor', sharedTestOptions, async () => {
+      // explicit zero spacing makes bottom alignment differ from top and center.
+      const bottom = await scrollAndSettle('one-native-scroll-reader-bottom', 'row-29 bottom')
+      expect(bottom).toBe(30 * 40 - 200)
+      await captureScreenshot(driver, 'one-native-scroll-reader-bottom')
+      const visible = await scrollAndSettle('one-native-scroll-reader-visible', 'row-29 nil')
+      expect(visible).toBe(bottom)
+      const top = await scrollAndSettle('one-native-scroll-reader-top', 'row-0 top')
+      expect(top).toBe(0)
+      // a nil anchor reveals row-39 with the least scrolling: the end of content.
+      const nil = await scrollAndSettle('one-native-scroll-reader-nil', 'row-39 nil')
+      expect(nil).toBe(40 * 40 - 200)
+    })
+
+    test('an id no view carries leaves the scroll view where it was', sharedTestOptions, async () => {
+      const before = await offsetOf('one-native-scroll-reader-status', 'Offset')
+      expect(before).toBeGreaterThan(0)
+      const after = await scrollAndSettle('one-native-scroll-reader-missing', 'missing top')
+      expect(after).toBe(before)
+    })
+
+    test('an invalid anchor throws instead of scrolling', sharedTestOptions, async () => {
+      const before = await offsetOf('one-native-scroll-reader-status', 'Offset')
+      await (await waitForElement(driver, 'one-native-scroll-reader-invalid-anchor')).click()
+      const error = await waitForElement(driver, 'one-native-scroll-reader-anchor-error')
+      expect(await error.getText()).toContain('anchor must be a UnitPoint')
+      expect(await offsetOf('one-native-scroll-reader-status', 'Offset')).toBe(before)
+    })
+
+    test('scrollTo from a mount effect runs once the reader appears', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-scroll-reader-mount')).click()
+      const status = await waitForElement(driver, 'one-native-scroll-reader-mount-status')
+      // row-20 at the top edge sits below exactly 20 rows.
+      await status.waitUntil(
+        async () => (await offsetOf('one-native-scroll-reader-mount-status', 'Mount offset')) === 20 * 40,
+        { timeout: 10_000, timeoutMsg: 'mount-time scrollTo did not reach row-20' }
+      )
+      await captureScreenshot(driver, 'one-native-scroll-reader-mount')
+    })
+
+    test('scrollTo while the content builds throws', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-scroll-reader-building')).click()
+      await dismissExpectedRenderError(
+        driver,
+        'Swift.ScrollViewProxy.scrollTo cannot run while Swift.ScrollViewReader builds'
+      )
+      const error = await waitForElement(driver, 'one-native-scroll-reader-building-error')
+      expect(await error.getText()).toContain('cannot run while Swift.ScrollViewReader builds')
+    })
+  })
+
+  // -- phase and keyframe animators: SwiftUI runs the timing and interpolation --
+
+  describe('One Native Animators', () => {
+    const logOf = async (testID: string) => (await waitForElement(driver, testID)).getText()
+
+    // magenta columns on the cycling box's center row, in points.
+    async function cycleWidth() {
+      const box = await waitForElement(driver, 'one-native-animators-cycle')
+      const [{ x, y }, { width, height }, window] = await Promise.all([
+        box.getLocation(),
+        box.getSize(),
+        driver.getWindowSize(),
+      ])
+      const { data, info } = await sharp(Buffer.from(await driver.takeScreenshot(), 'base64'))
+        .raw()
+        .toBuffer({ resolveWithObject: true })
+      const scale = info.width / window.width
+      const row = Math.round((y + height / 2) * scale)
+      let columns = 0
+      for (let column = Math.round(x * scale); column < Math.round((x + width) * scale); column++) {
+        const offset = (row * info.width + column) * info.channels
+        if (data[offset] > 230 && data[offset + 1] < 40 && data[offset + 2] > 230) columns++
+      }
+      return columns / scale
+    }
+
+    test('phase animator mounts at its first phase', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-animators')
+      const phase = await waitForElement(driver, 'one-native-animators-phase', { timeout: 30_000 })
+      expect(await phase.isDisplayed()).toBe(true)
+      const log = await waitForElement(driver, 'one-native-animators-phase-log')
+      await log.waitUntil(async () => (await log.getText()) === 'Phases: 60', {
+        timeout: 10_000,
+        timeoutMsg: 'phase animator did not lay out its first phase',
+      })
+      await captureScreenshot(driver, 'one-native-animators-mounted')
+    })
+
+    test('a trigger runs every phase once and returns to the first', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-animators-run-phases')).click()
+      const log = await waitForElement(driver, 'one-native-animators-phase-log')
+      await log.waitUntil(async () => (await log.getText()) === 'Phases: 60 140 100 60', {
+        timeout: 10_000,
+        timeoutMsg: 'phases did not run in order once',
+      })
+    })
+
+    test('a trigger during a run interrupts it and settles at the first phase', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-animators-interrupt-phases')).click()
+      const log = await waitForElement(driver, 'one-native-animators-phase-log')
+      await log.waitUntil(
+        async () => {
+          const widths = (await log.getText()).replace('Phases: ', '').split(' ')
+          return widths.length > 4 && widths.at(-1) === '60' && widths.slice(4).includes('140')
+        },
+        { timeout: 10_000, timeoutMsg: 'interrupted phases did not settle at the first phase' }
+      )
+      await captureScreenshot(driver, 'one-native-animators-phases-interrupted')
+    })
+
+    test('SwiftUI interpolates between phases instead of jumping', sharedTestOptions, async () => {
+      const widths: number[] = []
+      for (let sample = 0; sample < 6; sample++) widths.push(await cycleWidth())
+      // a snap would only ever show the 40 and 240 point phases.
+      const between = widths.filter((width) => width > 44 && width < 236)
+      expect(new Set(between.map(Math.round)).size, `widths ${widths.join(', ')}`).toBeGreaterThanOrEqual(2)
+      await captureScreenshot(driver, 'one-native-animators-cycling')
+    })
+
+    test('keyframes render intermediate values and return to the start', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-animators-run-keyframes')).click()
+      const log = await waitForElement(driver, 'one-native-animators-keyframe-log')
+      await log.waitUntil(async () => /max 220, last 60$/.test(await log.getText()), {
+        timeout: 10_000,
+        timeoutMsg: 'keyframes did not reach 220 and return to 60',
+      })
+      // a JS-sampled or snapping timeline would report only a few widths.
+      const frames = Number(/Keyframes: (\d+) frames/.exec(await logOf('one-native-animators-keyframe-log'))![1])
+      expect(frames).toBeGreaterThan(20)
+    })
+
+    test('a keyframe trigger during a run restarts from the current value', sharedTestOptions, async () => {
+      const before = Number(/Keyframes: (\d+) frames/.exec(await logOf('one-native-animators-keyframe-log'))![1])
+      await (await waitForElement(driver, 'one-native-animators-interrupt-keyframes')).click()
+      const log = await waitForElement(driver, 'one-native-animators-keyframe-log')
+      await log.waitUntil(
+        async () => {
+          const text = await log.getText()
+          return Number(/Keyframes: (\d+) frames/.exec(text)![1]) > before + 20 && text.endsWith('last 60')
+        },
+        { timeout: 10_000, timeoutMsg: 'interrupted keyframes did not run again and settle at 60' }
+      )
+      await captureScreenshot(driver, 'one-native-animators-keyframes-interrupted')
+    })
+
+    for (const [testID, message] of [
+      ['one-native-animators-invalid-empty', 'Swift.PhaseAnimator phases must not be empty'],
+      ['one-native-animators-invalid-static', 'Swift.PhaseAnimator takes a content function of its phase'],
+      ['one-native-animators-invalid-prop', 'content can vary only swiftStyle by phase'],
+      ['one-native-animators-invalid-curve', 'must map its value linearly to swiftStyle numbers; width does not'],
+      ['one-native-animators-invalid-keyframes', 'keyframes must not depend on their value argument'],
+    ])
+      test(`${testID.replace('one-native-animators-invalid-', '')} content throws instead of mounting`, sharedTestOptions, async () => {
+        await navigateTo(driver, '/one-native-animators')
+        await (await waitForElement(driver, testID, { timeout: 30_000 })).click()
+        await dismissExpectedRenderError(driver, message)
+        const error = await waitForElement(driver, 'one-native-animators-error')
+        expect(await error.getText()).toContain(message)
+      })
   })
 })
 

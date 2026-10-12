@@ -50,7 +50,7 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-
+      
 
     public:
       // Methods
@@ -59,6 +59,9 @@ namespace margelo::nitro::one {
       virtual std::shared_ptr<Promise<ScreenCaptureResult>> captureView(double viewTag) = 0;
       virtual std::function<void()> addStateListener(const std::function<void(ScreenCaptureState /* state */)>& onChange) = 0;
       virtual std::function<void()> addScreenshotListener(const std::function<void(double /* timestampMs */)>& onScreenshot) = 0;
+      virtual std::shared_ptr<Promise<void>> prevent() = 0;
+      virtual std::shared_ptr<Promise<void>> allow() = 0;
+      virtual std::shared_ptr<Promise<bool>> isPrevented() = 0;
 
     protected:
       // Hybrid Setup

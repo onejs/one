@@ -222,3 +222,16 @@ internal class OneNativeComposeNodeContentSizeChangeEvent(
     override fun getEventData(): WritableMap =
         Arguments.createMap().apply { putDouble("height", height) }
 }
+
+internal class OneNativeComposeNodeDateRangeEvent(
+    surfaceId: Int, viewTag: Int, private val start: Long?, private val end: Long?,
+) : Event<OneNativeComposeNodeDateRangeEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeComposeNodeDateRangeSelected"
+    override fun canCoalesce(): Boolean = false
+    override fun getEventData(): WritableMap = Arguments.createMap().apply {
+        putBoolean("hasStart", start != null)
+        putBoolean("hasEnd", end != null)
+        putDouble("start", start?.toDouble() ?: 0.0)
+        putDouble("end", end?.toDouble() ?: 0.0)
+    }
+}

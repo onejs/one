@@ -79,6 +79,7 @@ class OneNativeComposeNodeManager :
     override fun getExportedCustomDirectEventTypeConstants(): Map<String, Any> {
         val events =
             super.getExportedCustomDirectEventTypeConstants()?.toMutableMap() ?: mutableMapOf()
+        events["topNativeComposeNodeDateRangeSelected"] = mapOf("registrationName" to "onNativeComposeNodeDateRangeSelected")
         events["topNativeComposeNodeButtonPress"] =
             mapOf("registrationName" to "onNativeComposeNodeButtonPress")
         events["topNativeComposeNodeBooleanValueChange"] =
@@ -482,6 +483,10 @@ class OneNativeComposeNodeManager :
 
     override fun setExitTransition(view: OneNativeComposeNodeView, value: String?) {
         view.stageExitTransition(value)
+    }
+
+    override fun setFamilyOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageFamilyOptions(value)
     }
 
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {

@@ -854,6 +854,7 @@ internal data class OneNativeNavigationBarItemColors(
 }
 
 internal data class OneNativeComposeNodeProps(
+    val familyOptions: OneNativeComposeFamilyOptions = OneNativeComposeFamilyOptions(),
     val nodeType: String? = null,
     val text: String? = null,
     val fontSize: Double = -1.0,
@@ -1067,7 +1068,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         get() = logicalChildren
 
     internal val renderedBooleanValue: Boolean
-        get() = controlledBoolean.value
+        get() = boundSyncText?.value as? Boolean ?: controlledBoolean.value
 
     internal val renderedTextValue: String
         get() = boundSyncText?.value as? String ?: controlledText.value
@@ -1163,6 +1164,10 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun observeComposeSemantics() {
         semanticsVersion
+    }
+
+    internal fun stageFamilyOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(familyOptions = OneNativeComposeFamilyOptions.fromMap(value, context))
     }
 
     internal fun stageNodeType(value: String?) {
@@ -1607,6 +1612,13 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
         pendingProps = pendingProps.copy(composeStyle = OneNativeComposeStyle.fromMap(value, context))
     }
 
+    internal fun handleDateRangeSelected(start: Long?, end: Long?) {
+        if (!compositionActive) return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeDateRangeEvent(UIManagerHelper.getSurfaceId(this), id, start, end)
+        )
+    }
+
     internal fun handlePress() {
         if (!compositionActive || committedProps.disabled || !isEnabled) return
         pressEventCount += 1
@@ -1621,6 +1633,12 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun handleBooleanChanged(nextValue: Boolean) {
         if (!compositionActive || committedProps.disabled || !isEnabled) return
+        if (boundSyncId != 0) {
+            OneNativeSyncRegistry.set(boundSyncId, nextValue)
+            OneNativeSyncJni.nativeDidSetExternally(boundSyncId)
+            val callbackId = committedProps.familyOptions.number("syncCallbackId", 0.0).toInt()
+            if (callbackId != 0) OneNativeSyncJni.invokeComposeBooleanCallback(callbackId, nextValue)
+        }
         val eventCount = controlledBoolean.change(nextValue) ?: return
         UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
             OneNativeComposeNodeBooleanValueChangeEvent(
@@ -1827,7 +1845,7 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 }
 
 @Composable
-private fun RenderComposeNode(
+internal fun RenderComposeNode(
     node: OneNativeComposeNodeView,
     outerModifier: Modifier = Modifier,
 ) {
@@ -2071,6 +2089,9 @@ private fun RenderComposeNodeBody(
         "assistchip", "filterchip", "inputchip", "suggestionchip" -> RenderComposeChip(node, props, modifier)
         "textfield" -> RenderComposeTextField(node, props, modifier)
         "slider" -> RenderComposeSlider(node, props, modifier)
+        "basicalertdialog", "centeredherocarousel", "multibrowsecarousel", "uncontainedcarousel",
+        "daterangepicker", "daterangepickerdialog", "horizontalfloatingtoolbar", "shape" ->
+            RenderComposeFamily(node, props, modifier)
         "alertdialog" -> RenderComposeAlertDialog(node, props, modifier)
         "dialog" ->
             if (props.visible) {
@@ -3554,7 +3575,7 @@ private fun Modifier.applyComposeStyle(style: OneNativeComposeStyle): Modifier {
     return result
 }
 
-private fun Modifier.applyReactSemantics(
+internal fun Modifier.applyReactSemantics(
     node: OneNativeComposeNodeView,
     props: OneNativeComposeNodeProps,
 ): Modifier {
@@ -3612,7 +3633,7 @@ private fun Modifier.applyReactSemantics(
     }
 }
 
-private val composeDialogKinds = setOf("alertdialog", "dialog", "datepickerdialog", "timepickerdialog", "modalbottomsheet", "dropdownmenu")
+private val composeDialogKinds = setOf("basicalertdialog", "daterangepickerdialog", "alertdialog", "dialog", "datepickerdialog", "timepickerdialog", "modalbottomsheet", "dropdownmenu")
 
 private fun composeRole(value: String?): Role? =
     when (value) {

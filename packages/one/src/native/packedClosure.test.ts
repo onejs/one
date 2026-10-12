@@ -425,10 +425,8 @@ if (!config.dependencies['react-native-nitro-modules']) {
     expect(existsSync(join(basicStarterDir, 'app.json'))).toBe(false)
 
     const previousCwd = process.cwd()
-    const previousTestMetro = process.env.TEST_METRO
     try {
       process.chdir(basicStarterDir)
-      delete process.env.TEST_METRO
       const rolldown = await loadUserOneOptions('build', true)
       expect(rolldown.oneOptions.native).toMatchObject({
         app: {
@@ -438,14 +436,8 @@ if (!config.dependencies['react-native-nitro-modules']) {
         },
       })
       expect(rolldown.oneOptions.native).not.toHaveProperty('bundler')
-
-      process.env.TEST_METRO = '1'
-      const metro = await loadUserOneOptions('build', true)
-      expect(metro.oneOptions.native).toMatchObject({ bundler: 'metro' })
     } finally {
       process.chdir(previousCwd)
-      if (previousTestMetro === undefined) delete process.env.TEST_METRO
-      else process.env.TEST_METRO = previousTestMetro
     }
   })
 }, 180000)

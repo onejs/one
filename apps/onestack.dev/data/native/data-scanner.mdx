@@ -1,0 +1,127 @@
+---
+title: DataScannerViewController
+description: Recognize live text and machine-readable codes with VisionKit.
+---
+
+`One.iOS.DataScannerViewController` wraps VisionKit's live data scanner on iOS.
+Check the SDK's `isSupported` and `isAvailable` before presenting. Set
+`ios.infoPlist.NSCameraUsageDescription`. Recognition requires supported
+physical hardware; the simulator reports unsupported.
+
+```tsx
+import { One } from 'one'
+
+const Scanner = One.iOS.DataScannerViewController
+if (Scanner.isSupported && Scanner.isAvailable) {
+  const scanner = new Scanner({
+    recognizedDataTypes: [Scanner.RecognizedDataType.text(), Scanner.RecognizedDataType.barcode()],
+    recognizesMultipleItems: true,
+  })
+  scanner.delegate = {
+    dataScanner: (sender, event) => {
+      if ('didTapOn' in event) {
+        sender.stopScanning()
+        void sender.dismiss()
+      }
+    },
+  }
+  await scanner.present()
+  scanner.startScanning()
+  for await (const items of scanner.recognizedItems) {
+    // consume each native batch in SDK reading order.
+    if (items.length > 0) break
+  }
+  scanner.stopScanning()
+  await scanner.dismiss()
+}
+```
+
+The initializer uses an options object for Swift's labeled arguments. The
+recognized-data-type set is an array deduplicated by the native SDK.
+`RecognizedDataType.text(languages = [], textContentType?)` and
+`RecognizedDataType.barcode(symbologies = [])` mirror the SDK factories. Barcode
+symbologies use Vision raw string values, such as `QR`. Text content types are
+`dateTimeDuration`, `emailAddress`, `flightNumber`, `fullStreetAddress`,
+`shipmentTrackingNumber`, `telephoneNumber`, `URL`, and `currency`.
+
+`recognizedItems` is an `AsyncIterable<RecognizedItem[]>` backed by the native
+AsyncStream. Each iterator owns a subscription; breaking a `for await` loop
+cancels it. Consumers using `next()` directly must call `return()` to cancel.
+It delivers complete ordered batches, including empty batches, without
+fabricating recognition or deriving snapshots from delegate callbacks.
+`stopScanning()` pauses recognition; cancellation of iteration is separate.
+
+Delegate labeled overloads adapt to `dataScanner(sender, event)` with
+`didTapOn`, `didAdd`, `didUpdate`, `didRemove`, or `becameUnavailableWithError`.
+Add/update/remove events include `allItems`. `dataScannerDidZoom(sender)`
+preserves the separate SDK method. Unavailability preserves `unsupported` and
+`cameraRestricted` enum cases; operation rejection uses
+`E_DATA_SCANNER_UNSUPPORTED` and `E_DATA_SCANNER_CAMERA_RESTRICTED`.
+
+Recognized items are tagged objects with `type`, UUID-string `id`, and `bounds`
+containing `topLeft`, `topRight`, `bottomRight`, `bottomLeft` points. Text items
+have `transcript`; barcodes have optional `payloadStringValue`. The native
+Vision `observation` objects and UIKit `overlayContainerView` are not bound.
+This is a scanner subset, not the complete Vision or UIView API.
+
+`present` and `dismiss` adapt UIViewController ownership to the app's current
+presenter. They resolve after the transition. Start scanning explicitly after
+presentation. Dismissal stops scanning; a delegate event does not dismiss the
+scanner. `capturePhoto()` returns the same native UIImage encoding subset as
+[document camera](/native/document-camera), with PNG/JPEG ArrayBuffer output.
+`regionOfInterest` is a CGRect-shaped `{ x, y, width, height }` in view points;
+undefined clears it. Zoom factors use SDK units.
+
+<PropsTable
+  title="Availability"
+  source="data-scanner/types.ts#DataScannerAvailability"
+  data={[
+    { name: 'isSupported', type: 'boolean', description: 'Static SDK hardware support.' },
+    { name: 'isAvailable', type: 'boolean', description: 'Static SDK camera availability.' },
+    { name: 'supportedTextRecognitionLanguages', type: 'string[]', description: 'Static SDK language identifiers.' },
+  ]}
+/>
+
+<PropsTable
+  title="Initializer configuration"
+  source="specs/OneDataScanner.nitro.ts#DataScannerConfiguration"
+  data={[
+    { name: 'recognizedDataTypes', type: 'DataScannerRecognizedDataType[]', description: 'Required text and barcode filters.' },
+    { name: 'qualityLevel', type: 'DataScannerQualityLevel', description: 'balanced by default; also fast or accurate.' },
+    { name: 'recognizesMultipleItems', type: 'boolean', description: 'Defaults to false.' },
+    { name: 'isHighFrameRateTrackingEnabled', type: 'boolean', description: 'Defaults to true.' },
+    { name: 'isPinchToZoomEnabled', type: 'boolean', description: 'Defaults to true.' },
+    { name: 'isGuidanceEnabled', type: 'boolean', description: 'Defaults to true.' },
+    { name: 'isHighlightingEnabled', type: 'boolean', description: 'Defaults to false.' },
+  ]}
+/>
+
+All configuration properties are readonly after initialization. Except for
+`recognizedDataTypes`, initializer fields are optional and use the defaults
+above.
+
+<PropsTable
+  title="Controller"
+  source="data-scanner/types.ts#DataScannerController"
+  data={[
+    { name: 'delegate', type: 'DataScannerViewControllerDelegate | null', description: 'Native scanner events; defaults to null.' },
+    { name: 'regionOfInterest', type: 'DataScannerRect | undefined', description: 'Scan region in view points.' },
+    { name: 'isScanning', type: 'boolean', description: 'Native scanning state.' },
+    { name: 'minZoomFactor', type: 'number', description: 'SDK minimum supported zoom.' },
+    { name: 'maxZoomFactor', type: 'number', description: 'SDK maximum supported zoom.' },
+    { name: 'zoomFactor', type: 'number', description: 'Current camera zoom.' },
+    { name: 'recognizedItems', type: 'AsyncIterable<RecognizedItem[]>', description: 'Native async stream of complete batches.' },
+    { name: 'present', type: '(animated?: boolean) => Promise<void>', description: 'Presents the scanner; animation defaults to true.' },
+    { name: 'dismiss', type: '(animated?: boolean) => Promise<void>', description: 'Stops scanning and dismisses; animation defaults to true.' },
+    { name: 'startScanning', type: '() => void', description: 'Starts native recognition or throws.' },
+    { name: 'stopScanning', type: '() => void', description: 'Stops recognition.' },
+    { name: 'capturePhoto', type: '() => Promise<UIImage>', description: 'Captures a high-resolution native image.' },
+  ]}
+/>
+
+Sources: [DataScannerViewController](https://developer.apple.com/documentation/visionkit/datascannerviewcontroller),
+[recognizedItems](https://developer.apple.com/documentation/visionkit/datascannerviewcontroller/recognizeditems).
+Simulator unsupported rejection is covered by a fixture and production Swift
+SDK probe. Generated Nitro ABI integration and physical text/barcode recognition,
+tracking, taps, zoom, capture and permissions remain acceptance gates under the
+native CI owner.

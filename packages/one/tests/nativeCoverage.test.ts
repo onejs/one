@@ -25,6 +25,26 @@ const knownGaps: Record<string, string> = {
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  usePreventScreenCapture:
+    'Android 37 emulator mount/unmount and manual-hold overlap proven with FLAG_SECURE pixels; iOS suite steps unrun',
+  'Android.BasicAlertDialog':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalCenteredHeroCarousel':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalMultiBrowseCarousel':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalUncontainedCarousel':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.DateRangePicker':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.DateRangePickerDialog':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.HorizontalFloatingToolbar':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.Shape':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
+  'Android.SyncSwitch':
+    'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
   'UI.ReservedRegions':
     'iOS and Android flat native readiness, bounds and empty regions proven; Android folding active division bounds proven on the 7.6in fold-in; nonempty occlusions unproven',
   useSizeClass:
@@ -53,6 +73,16 @@ const partialGaps: Record<string, string> = {
     'bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted',
   LiveActivities:
     'bounded iOS cover-sheet scalar/JSX and expanded JSX Island fixture; Android supported rendering, compact/minimal, scalar Island and hardware-lock unproven; root/aggregate unaccepted',
+  'iOS.MFMailComposeViewController':
+    'production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven',
+  'iOS.MFMessageComposeViewController':
+    'production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven',
+  'iOS.CNContactViewController': 'production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven',
+  'iOS.CNMutableContact': 'production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven',
+  'iOS.CNContactStore': 'production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven',
+  'iOS.DataScannerViewController': 'production Swift simulator unsupported checks with transport shims; generated ABI and physical recognition, tracking, zoom, capture and permission gates unproven',
+  'iOS.VNDocumentCameraViewController':
+    'production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven',
   'iOS.WidgetUI':
     'bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted',
   BackgroundTasks:
@@ -149,6 +179,11 @@ function androidSuites() {
   )) {
     navIds.add(navId)
   }
+  // the family flow is a standalone Maestro suite with a direct router link.
+  const familyFlow = read('maestro/one-native-android-compose-family.yaml')
+  const familyRoute = familyFlow.match(/link: nativefeatures:\/\/app\/([a-z-]+)/)?.[1]
+  if (!familyRoute) throw new Error('Compose family Maestro route not found')
+  navIds.add(`nav-${familyRoute}`)
   return [...navIds].map((navId) => ({
     suite: navId.replace(/^nav-one-(?:native-)?/, '') || 'android',
     route: navId.replace(/^nav-/, ''),

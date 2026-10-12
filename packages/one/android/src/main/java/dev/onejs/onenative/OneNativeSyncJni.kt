@@ -23,6 +23,9 @@ internal class OneNativeSyncJni {
 
         @JvmStatic
         external fun nativeDidSetExternally(stateId: Int)
+
+        @JvmStatic
+        external fun invokeComposeBooleanCallback(callbackId: Int, value: Boolean)
     }
 
     @field:DoNotStrip

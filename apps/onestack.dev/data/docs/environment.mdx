@@ -10,11 +10,11 @@ One handles environment variables for you in a few ways.
 
 First, it handles loading `.env` files during development and in production. In order to ease compatibility with ESM and CJS, One makes your loaded environment variables (from `.env` and from `process.env`) automatically be defined onto both `import.meta.env` and `process.env`.
 
-Second, One ensures that all environment variables loaded are only available to the server-side functionality, unless they are prefixed with `VITE_` (Vite convention), `EXPO_PUBLIC_` (Expo convention), or `ONE_PUBLIC_`.
+Second, One ensures that all environment variables loaded are only available to the server-side functionality, unless they are prefixed with `ONE_PUBLIC_` or `VITE_` (Vite convention).
 
 So, for example `ONE_PUBLIC_DAYTIME=false one dev` would set both `process.env.ONE_PUBLIC_DAYTIME` and `import.meta.env.ONE_PUBLIC_DAYTIME` to be the string "false" on both server and client.
 
-`ONE_PUBLIC_` is One's default naming convention, while `EXPO_PUBLIC_` remains fully supported. A `ONE_PUBLIC_` variable is also exposed under the matching `EXPO_PUBLIC_` name when that Expo variable is absent. One does not create `ONE_PUBLIC_` variables from Expo variables, and an explicitly defined Expo variable keeps its own value.
+`ONE_PUBLIC_` is One's naming convention. `EXPO_PUBLIC_` is also accepted; see [Coming from Expo](/native/migrating-to-one#environment).
 
 But, `SOME_RANDOM_VAR=2` would *not* be exposed to the client side, because it lacks the appropriate prefix.
 
@@ -46,7 +46,7 @@ Port priority (highest wins):
 
 - `VITE_ENVIRONMENT` is set to `"client"` for client-side web, `"ssr"` for server-side web, or `"ios"` / `"android"` for native platforms.
 - `VITE_NATIVE` is `"1"` for native platforms (iOS and Android), or `""` for web (client and SSR). Uses truthy/falsy strings to avoid polluting `process.env` types. Useful for tree-shaking native-only code.
-- `ONE_PLATFORM` is `"web"`, `"ios"`, or `"android"`. Expo packages also receive `EXPO_OS` as `"ios"` or `"android"` in native builds; One does not define it on web.
+- `ONE_PLATFORM` is `"web"`, `"ios"`, or `"android"`.
 - `TAMAGUI_TARGET` is `"web"` for web builds or `"native"` for native builds. Used by Tamagui and One native route branches.
 
 #### React Native

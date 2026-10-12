@@ -28,6 +28,7 @@ export const nativeRoutes = [
       { title: 'Stacks', route: '/native/ios-stacks' },
       { title: 'Lists and Forms', route: '/native/ios-lists' },
       { title: 'Groups', route: '/native/ios-groups' },
+      { title: 'Animators', route: '/native/ios-animators' },
       { title: 'Text and Fields', route: '/native/ios-text-fields' },
       { title: 'Buttons and Toggles', route: '/native/ios-buttons-toggles' },
       { title: 'Pickers', route: '/native/ios-pickers' },
@@ -92,6 +93,10 @@ export const nativeRoutes = [
       { title: 'Camera preview', route: '/native/camera' },
       { title: 'Image Manipulator', route: '/native/image-manipulator' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
+      { title: 'Document camera', route: '/native/document-camera' },
+      { title: 'Contact viewer', route: '/native/contact-ui' },
+      { title: 'Data scanner', route: '/native/data-scanner' },
+      { title: 'MessageUI', route: '/native/message-ui' },
       { title: 'SecureStore', route: '/native/secure-store' },
       { title: 'Storage', route: '/native/storage' },
       { title: 'Keep Awake', route: '/native/keep-awake' },
@@ -115,7 +120,7 @@ export const nativeRoutes = [
   {
     title: 'Resources',
     pages: [
-      { title: 'Migrating to One Native', route: '/native/migrating-to-one' },
+      { title: 'Coming from Expo', route: '/native/migrating-to-one' },
       { title: 'Platform Support', route: '/native/platform-support' },
     ],
   },

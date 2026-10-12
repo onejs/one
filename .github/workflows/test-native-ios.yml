@@ -143,7 +143,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: one-native-features-ios
+          include-hidden-files: true
           path: |
+            tests/native-features/node_modules/.test/*-server.log
             /tmp/appium.log
             /tmp/appium-screenshots
             /tmp/one-native-zoom-e2e/*.json*

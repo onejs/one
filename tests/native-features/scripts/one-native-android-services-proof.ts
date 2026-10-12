@@ -1,7 +1,8 @@
 #!/usr/bin/env bun
 // Android runtime proof for the iOS-only services gaining Android halves:
 // One.StoreReview (Play In-App Review), One.BackgroundTasks (WorkManager)
-// and One.Android.CameraView (CameraX). Installs the prebuilt debug APK on
+// and One.Android.CameraView (CameraX), plus the One.ScreenCapture
+// prevention half (FLAG_SECURE). Installs the prebuilt debug APK on
 // the given Android 37 emulator, drives each proof screen through its
 // fixture, and asserts the on-screen result strings: the called state, one
 // behavior check, and one negative control per service.
@@ -9,11 +10,13 @@
 // Usage:
 //   bun tests/native-features/scripts/one-native-android-services-proof.ts \
 //     --device-id emulator-5554 --apk tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk \
-//     [--suite store-review|all] [--artifact-dir DIR] [--metro-port PORT] [--install-only] [--no-install]
+//     [--suite store-review|screen-capture-prevent|all] [--artifact-dir DIR] [--metro-port PORT] [--install-only] [--no-install]
 import { execFileSync } from 'node:child_process'
+import { androidXmlAttributes } from './android-ui-xml'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
+import { readPng } from './visual-pixel-gate'
 
 const PACKAGE = 'dev.vxrn.nativefeatures.tests'
 const ADB = process.env.ADB ?? 'adb'
@@ -49,7 +52,7 @@ function parse(args: string[]): Args {
     else if (arg === '--no-install') out.noInstall = true
     else if (arg === '--help' || arg === '-h') {
       console.log(
-        'Usage: one-native-android-services-proof.ts --device-id <SERIAL> --apk <APK> [--suite store-review|background-tasks|all] [--artifact-dir DIR] [--metro-port PORT] [--install-only] [--no-install]'
+        'Usage: one-native-android-services-proof.ts --device-id <SERIAL> --apk <APK> [--suite store-review|background-tasks|screen-capture-prevent|all] [--artifact-dir DIR] [--metro-port PORT] [--install-only] [--no-install]'
       )
       process.exit(0)
     } else throw new Error(`unknown argument: ${arg}`)
@@ -59,7 +62,12 @@ function parse(args: string[]): Args {
   if (!Number.isInteger(out.metroPort) || out.metroPort <= 0 || out.metroPort > 65535) {
     throw new Error('a valid Metro port is required: --metro-port <PORT>')
   }
-  if (out.suite !== 'all' && out.suite !== 'store-review' && out.suite !== 'background-tasks')
+  if (
+    out.suite !== 'all' &&
+    out.suite !== 'store-review' &&
+    out.suite !== 'background-tasks' &&
+    out.suite !== 'screen-capture-prevent'
+  )
     throw new Error(`unknown suite: ${out.suite}`)
   return out
 }
@@ -106,10 +114,8 @@ function parseXml(xml: string): XmlNode[] {
   const pattern = /<node\b([\s\S]*?)\/?>/g
   for (const match of xml.matchAll(pattern)) {
     const raw = match[1]
-    const attr = (name: string): string => {
-      const found = raw.match(new RegExp(`${name}="([^"]*)"`))
-      return found ? found[1] : ''
-    }
+    const attrs = androidXmlAttributes(raw)
+    const attr = (name: string): string => attrs[name] ?? ''
     nodes.push({
       text: attr('text'),
       contentDesc: attr('content-desc'),
@@ -319,6 +325,160 @@ async function backgroundTasks() {
   writeFileSync(resolve(artifacts, 'background-tasks.txt'), screenText(nodes))
 }
 
+function screencap(saveName: string): string {
+  const out = execFileSync(
+    ADB,
+    ['-s', config.deviceId, 'exec-out', 'screencap', '-p'],
+    { encoding: null, timeout: 60_000, maxBuffer: 64 * 1024 * 1024 }
+  ) as Buffer
+  const file = resolve(artifacts, saveName)
+  writeFileSync(file, out)
+  return file
+}
+
+function middleThirdDarkFraction(imagePath: string): number {
+  // the status and navigation bars live outside the app window, so only the
+  // middle third counts: FLAG_SECURE blanks the app window, never system UI.
+  const image = readPng(imagePath)
+  const top = Math.floor(image.height / 3)
+  const bottom = Math.floor((image.height * 2) / 3)
+  let dark = 0
+  let total = 0
+  for (let y = top; y < bottom; y += 6) {
+    for (let x = 0; x < image.width; x += 6) {
+      const offset = (y * image.width + x) * 4
+      total += 1
+      if (image.data[offset] < 40 && image.data[offset + 1] < 40 && image.data[offset + 2] < 40)
+        dark += 1
+    }
+  }
+  return total === 0 ? 0 : dark / total
+}
+
+async function screenCapturePrevent() {
+  // mounted state: the fixture mounts with prevention idle and unheld.
+  // a fresh install (and pm clear) prompts for nearby-devices on first
+  // foreground; screen capture needs no nearby access, so deny it when
+  // present. scoped to this suite: other suites manage their own prompts.
+  launch('one-native-screen-capture')
+  let nodes = await waitFor(
+    (current) =>
+      (findByText(current, 'Prevention: idle') !== undefined &&
+        findByText(current, 'Prevention hold: idle') !== undefined) ||
+      findByTestId(
+        current,
+        'com.android.permissioncontroller:id/permission_deny_button'
+      ) !== undefined,
+    { timeoutMs: 60_000 }
+  )
+  if (
+    findByTestId(nodes, 'com.android.permissioncontroller:id/permission_deny_button') !==
+    undefined
+  ) {
+    await tapTestId('com.android.permissioncontroller:id/permission_deny_button')
+    nodes = await waitFor(
+      (current) =>
+        findByText(current, 'Prevention: idle') !== undefined &&
+        findByText(current, 'Prevention hold: idle') !== undefined,
+      { timeoutMs: 60_000 }
+    )
+  }
+  check('screen-capture-prevent-mounted', screenText(nodes), 'Prevention: idle')
+  check('screen-capture-prevent-mounted-unheld', screenText(nodes), 'Prevention hold: idle')
+
+  // called state, refcount behavior, and the key negative, all through one run.
+  await tapTestId('one-native-screen-capture-prevent-run')
+  nodes = await waitFor((current) => screenText(current).includes('Prevention: done'), {
+    timeoutMs: 60_000,
+  })
+  const text = screenText(nodes)
+  check('screen-capture-prevent-initial', text, 'Prevent initial: false')
+  check('screen-capture-prevent-active', text, 'Prevent active: true')
+  check('screen-capture-prevent-kept', text, 'Prevent kept: true')
+  check('screen-capture-prevent-released', text, 'Prevent released: false')
+  check(
+    'screen-capture-prevent-invalid',
+    text,
+    'Prevent invalid: ScreenCapture.prevent requires a non-empty string key'
+  )
+  check('screen-capture-prevent-restored', text, 'Prevent restored: false')
+
+  // behavior: FLAG_SECURE blanks the app window in an adb screencap while
+  // held, and the same pixels read light again after release.
+  const baselineFile = screencap('screen-capture-prevent-baseline.png')
+  const baselineDark = middleThirdDarkFraction(baselineFile)
+  console.log(`screen-capture-prevent baseline dark fraction: ${baselineDark}`)
+  if (baselineDark > 0.3)
+    throw new Error(`expected a light baseline screen, got dark fraction ${baselineDark}`)
+  await tapTestId('one-native-screen-capture-prevent-hold')
+  nodes = await waitFor(
+    (current) => findByText(current, 'Prevention hold: held true') !== undefined,
+    { timeoutMs: 30_000 }
+  )
+  check('screen-capture-prevent-held', screenText(nodes), 'Prevention hold: held true')
+  const heldFile = screencap('screen-capture-prevent-held.png')
+  const heldDark = middleThirdDarkFraction(heldFile)
+  console.log(`screen-capture-prevent held dark fraction: ${heldDark}`)
+  if (heldDark < 0.9)
+    throw new Error(`FLAG_SECURE did not blank the screen, dark fraction ${heldDark}`)
+  await tapTestId('one-native-screen-capture-prevent-release')
+  nodes = await waitFor(
+    (current) => findByText(current, 'Prevention hold: released false') !== undefined,
+    { timeoutMs: 30_000 }
+  )
+  check('screen-capture-prevent-released-hold', screenText(nodes), 'Prevention hold: released false')
+  const releasedFile = screencap('screen-capture-prevent-released.png')
+  const releasedDark = middleThirdDarkFraction(releasedFile)
+  console.log(`screen-capture-prevent released dark fraction: ${releasedDark}`)
+  if (releasedDark > 0.3)
+    throw new Error(`release did not restore the screen, dark fraction ${releasedDark}`)
+  console.log(
+    `PASS FLAG_SECURE blanks and restores: baseline=${baselineDark} held=${heldDark} released=${releasedDark}`
+  )
+
+  // usePreventScreenCapture: a mounted guard alone sets FLAG_SECURE, its
+  // unmount clears it, and a manual hold keeps it after the guard unmounts.
+  // toggling resets the guard label to idle, so each check reads a fresh value.
+  const toggleGuard = async () => {
+    await tapTestId('one-native-screen-capture-guard-toggle')
+    nodes = await waitFor(
+      (current) => findByText(current, 'Guard check: idle') !== undefined,
+      { timeoutMs: 30_000 }
+    )
+  }
+  const checkGuard = async (name: string, expected: string, dark: 'blank' | 'light') => {
+    await tapTestId('one-native-screen-capture-guard-check')
+    nodes = await waitFor(
+      (current) => findByText(current, `Guard check: ${expected}`) !== undefined,
+      { timeoutMs: 30_000 }
+    )
+    check(name, screenText(nodes), `Guard check: ${expected}`)
+    const fraction = middleThirdDarkFraction(screencap(`${name}.png`))
+    console.log(`${name} dark fraction: ${fraction}`)
+    if (dark === 'blank' ? fraction < 0.9 : fraction > 0.3)
+      throw new Error(`${name}: expected a ${dark} screen, got dark fraction ${fraction}`)
+  }
+  await toggleGuard()
+  await checkGuard('screen-capture-guard-mounted', 'mounted true', 'blank')
+  await toggleGuard()
+  await checkGuard('screen-capture-guard-unmounted', 'unmounted false', 'light')
+  await toggleGuard()
+  await tapTestId('one-native-screen-capture-prevent-hold')
+  await waitFor(
+    (current) => findByText(current, 'Prevention hold: held true') !== undefined,
+    { timeoutMs: 30_000 }
+  )
+  await toggleGuard()
+  await checkGuard('screen-capture-guard-unmounted-held', 'unmounted true', 'blank')
+  await tapTestId('one-native-screen-capture-prevent-release')
+  await waitFor(
+    (current) => findByText(current, 'Prevention hold: released false') !== undefined,
+    { timeoutMs: 30_000 }
+  )
+  await checkGuard('screen-capture-guard-released', 'unmounted false', 'light')
+  writeFileSync(resolve(artifacts, 'screen-capture-prevent.txt'), screenText(nodes))
+}
+
 async function main() {
   if (!config.noInstall) {
     console.log(`installing ${config.apk}`)
@@ -329,10 +489,14 @@ async function main() {
     console.log('install-only done')
     return
   }
-  const suites = config.suite === 'all' ? ['store-review', 'background-tasks'] : [config.suite]
+  const suites =
+    config.suite === 'all'
+      ? ['store-review', 'background-tasks', 'screen-capture-prevent']
+      : [config.suite]
   for (const suite of suites) {
     if (suite === 'store-review') await storeReview()
     else if (suite === 'background-tasks') await backgroundTasks()
+    else if (suite === 'screen-capture-prevent') await screenCapturePrevent()
     else throw new Error(`unknown suite: ${suite}`)
   }
   console.log(`PASS one-native-android-services ${suites.join(',')}`)

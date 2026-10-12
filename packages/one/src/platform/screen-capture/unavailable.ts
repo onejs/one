@@ -1,4 +1,5 @@
-import { validateViewTag } from './validate'
+import { useEffect } from 'react'
+import { assertPreventKey, preventDefaultKey, validateViewTag } from './validate'
 import { validateCallback } from '../validateCallback'
 import { missingNativeBuild } from '../nativeError'
 import type {
@@ -30,4 +31,18 @@ export const ScreenCapture = Object.freeze({
     )
     return () => {}
   },
+  prevent: (key: string = preventDefaultKey): Promise<void> => {
+    assertPreventKey(key, 'prevent')
+    return Promise.resolve()
+  },
+  allow: (key: string = preventDefaultKey): Promise<void> => {
+    assertPreventKey(key, 'allow')
+    return Promise.resolve()
+  },
+  isPrevented: (): Promise<boolean> => Promise.resolve(false),
 })
+
+export function usePreventScreenCapture(key: string = preventDefaultKey): void {
+  assertPreventKey(key, 'prevent')
+  useEffect(() => {}, [key])
+}
