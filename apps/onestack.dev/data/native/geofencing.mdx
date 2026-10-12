@@ -3,7 +3,7 @@ title: Geofencing
 description: Monitor circular regions for enter and exit events on iOS and Android
 ---
 
-> Region monitoring is verified on iOS devices. Android enter and exit delivery is not yet verified on a device.
+> Beta: iOS simulator checks cover validation and unsupported region-monitoring hardware. Physical iOS region transitions and Android enter and exit delivery remain unverified.
 
 `One.Location` monitors circular regions on iOS and Android with the names, inputs, and composition of Core Location's `CLRegion` and `CLLocationManager`. It adds `requestAlwaysAuthorization()`, `startMonitoring(region)`, `stopMonitoring(identifier)`, `monitoredRegions()`, `requestState(identifier)`, `addDidEnterRegionListener(fn)`, and `addDidExitRegionListener(fn)`.
 
