@@ -64,7 +64,7 @@ import {
   type ViewThatFitsProps,
   viewThatFitsAxes,
   type GlassEffectContainerProps,
-  type GeometryProxySnapshot,
+  type GeometryProxy,
   type GeometryReaderProps,
   type LinkProps,
   type OverlayContentProps,
@@ -660,28 +660,27 @@ export function GlassEffectContainer({ spacing, children, style, ...props }: Gla
   )
 }
 
-// a reader takes the box React Native gave it and runs its content closure with
-// the geometry SwiftUI proposes, like SwiftUI's trailing closure: the function
-// runs in JavaScript with a native snapshot and what it returns composes
-// natively. the snapshot starts at zero and updates when native reports, so
-// first paint uses placeholder geometry. size content from the snapshot, never
-// the reader's own box from it: the reader fills what it is offered.
-const zeroGeometry: GeometryProxySnapshot = {
-  size: { width: 0, height: 0 },
-  safeAreaInsets: { top: 0, leading: 0, bottom: 0, trailing: 0 },
-  frame: { x: 0, y: 0, width: 0, height: 0 },
+// the content builder runs only after SwiftUI supplies real geometry. native
+// transport keeps frames as data; the public proxy preserves the SDK method.
+type GeometrySnapshot = {
+  size: GeometryProxy['size']
+  safeAreaInsets: GeometryProxy['safeAreaInsets']
+  globalFrame: ReturnType<GeometryProxy['frame']>
+  localFrame: ReturnType<GeometryProxy['frame']>
 }
 
 function geometryNumber(value: unknown): number | undefined {
   return typeof value === 'number' && Number.isFinite(value) ? value : undefined
 }
 
-function sameGeometry(a: GeometryProxySnapshot, b: GeometryProxySnapshot): boolean {
+function sameGeometry(a: GeometrySnapshot | null, b: GeometrySnapshot): boolean {
+  if (!a) return false
   return (
-    a.frame.x === b.frame.x &&
-    a.frame.y === b.frame.y &&
-    a.frame.width === b.frame.width &&
-    a.frame.height === b.frame.height &&
+    a.size.width === b.size.width && a.size.height === b.size.height &&
+    a.globalFrame.x === b.globalFrame.x && a.globalFrame.y === b.globalFrame.y &&
+    a.globalFrame.width === b.globalFrame.width && a.globalFrame.height === b.globalFrame.height &&
+    a.localFrame.x === b.localFrame.x && a.localFrame.y === b.localFrame.y &&
+    a.localFrame.width === b.localFrame.width && a.localFrame.height === b.localFrame.height &&
     a.safeAreaInsets.top === b.safeAreaInsets.top &&
     a.safeAreaInsets.leading === b.safeAreaInsets.leading &&
     a.safeAreaInsets.bottom === b.safeAreaInsets.bottom &&
@@ -690,17 +689,11 @@ function sameGeometry(a: GeometryProxySnapshot, b: GeometryProxySnapshot): boole
 }
 
 export function GeometryReader({ children, style, ...props }: GeometryReaderProps) {
-  const [geometry, setGeometry] = useState<GeometryProxySnapshot>(zeroGeometry)
-  // the last snapshot handed to state, so a duplicate native report never
-  // reaches setState: the reader does not re-run its closure for one.
-  const latest = useRef(geometry)
+  const [geometry, setGeometry] = useState<GeometryProxy | null>(null)
+  const latest = useRef<GeometrySnapshot | null>(null)
   if (typeof children !== 'function')
-    throw new Error(
-      'Swift.GeometryReader takes a render function of its geometry; pass (geometry) => content and read size, safeAreaInsets, or frame from it'
-    )
-  const content = (
-    children as (geometry: GeometryProxySnapshot) => ReactNode
-  )(geometry)
+    throw new Error('Swift.GeometryReader takes a render function of its geometry; pass (geometry) => content')
+  const content = geometry === null ? null : children(geometry)
   assertOneNativeChildren(content, 'Swift.GeometryReader')
   return (
     <NativeGeometryReader
@@ -708,33 +701,31 @@ export function GeometryReader({ children, style, ...props }: GeometryReaderProp
       style={[{ alignSelf: 'stretch' }, style]}
       onNativeGeometryReaderChange={({ nativeEvent }) => {
         const event = nativeEvent as Record<string, unknown> | null | undefined
-        const x = geometryNumber(event?.x)
-        const y = geometryNumber(event?.y)
-        const width = geometryNumber(event?.width)
-        const height = geometryNumber(event?.height)
-        const top = geometryNumber(event?.safeAreaTop)
-        const leading = geometryNumber(event?.safeAreaLeading)
-        const bottom = geometryNumber(event?.safeAreaBottom)
-        const trailing = geometryNumber(event?.safeAreaTrailing)
-        if (
-          x === undefined ||
-          y === undefined ||
-          width === undefined ||
-          height === undefined ||
-          top === undefined ||
-          leading === undefined ||
-          bottom === undefined ||
-          trailing === undefined
-        )
-          throw new Error('Swift.GeometryReader emitted an invalid geometry')
-        const next: GeometryProxySnapshot = {
-          size: { width, height },
-          safeAreaInsets: { top, leading, bottom, trailing },
-          frame: { x, y, width, height },
+        const fields = ['x', 'y', 'width', 'height', 'localX', 'localY', 'localWidth', 'localHeight',
+          'sizeWidth', 'sizeHeight', 'safeAreaTop', 'safeAreaLeading', 'safeAreaBottom', 'safeAreaTrailing'] as const
+        for (const field of fields) {
+          if (geometryNumber(event?.[field]) === undefined)
+            throw new Error('Swift.GeometryReader emitted an invalid geometry')
+        }
+        const values = event as Record<(typeof fields)[number], number>
+        const next: GeometrySnapshot = {
+          size: { width: values.sizeWidth, height: values.sizeHeight },
+          safeAreaInsets: { top: values.safeAreaTop, leading: values.safeAreaLeading,
+            bottom: values.safeAreaBottom, trailing: values.safeAreaTrailing },
+          globalFrame: { x: values.x, y: values.y, width: values.width, height: values.height },
+          localFrame: { x: values.localX, y: values.localY, width: values.localWidth, height: values.localHeight },
         }
         if (sameGeometry(latest.current, next)) return
         latest.current = next
-        setGeometry(next)
+        setGeometry({
+          size: next.size,
+          safeAreaInsets: next.safeAreaInsets,
+          frame(coordinateSpace) {
+            if (coordinateSpace === 'global') return { ...next.globalFrame }
+            if (coordinateSpace === 'local') return { ...next.localFrame }
+            throw new Error('Swift.GeometryProxy.frame supports global and local coordinate spaces; named spaces are not yet bound')
+          },
+        })
       }}
     >
       <InsideContainer value={true}>{content}</InsideContainer>

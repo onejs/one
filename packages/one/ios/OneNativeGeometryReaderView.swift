@@ -3,15 +3,24 @@ import UIKit
 
 private struct GeometryReaderSnapshot: Equatable {
   var frame: CGRect
+  var localFrame: CGRect
+  var size: CGSize
   var insets: EdgeInsets
 }
 
 private final class GeometryReaderModel: ObservableObject {
   var active = false
-  var onGeometry: ((CGRect, EdgeInsets) -> Void)?
+  var latest: GeometryReaderSnapshot?
+  var onGeometry: ((GeometryReaderSnapshot) -> Void)?
 
-  func emit(frame: CGRect, insets: EdgeInsets) {
-    if active { onGeometry?(frame, insets) }
+  func emit(_ snapshot: GeometryReaderSnapshot) {
+    latest = snapshot
+    if active { onGeometry?(snapshot) }
+  }
+
+  func setActive(_ active: Bool) {
+    self.active = active
+    if active, let latest { onGeometry?(latest) }
   }
 }
 
@@ -23,14 +32,14 @@ private struct GeometryReaderContent: View {
     GeometryReader { _ in
       ForEach(children.items) { child in child.content }
     }
-    // the frame is global so readers report position as well as size; the
-    // size is the reader's size. onGeometryChange only fires when the frame
-    // or the safe-area insets change, so a static layout reports once on mount.
+    // report the native layout size separately from coordinate-space bounds.
+    // the observer fires when frames, size or safe-area insets change.
     .onGeometryChange(for: GeometryReaderSnapshot.self) { proxy in
       GeometryReaderSnapshot(
-        frame: proxy.frame(in: .global), insets: proxy.safeAreaInsets)
+        frame: proxy.frame(in: .global), localFrame: proxy.frame(in: .local),
+        size: proxy.size, insets: proxy.safeAreaInsets)
     } action: { snapshot in
-      model.emit(frame: snapshot.frame, insets: snapshot.insets)
+      model.emit(snapshot)
     }
   }
 }
@@ -38,7 +47,7 @@ private struct GeometryReaderContent: View {
 @objcMembers
 public final class OneNativeGeometryReaderView: OneNativeContainerView {
   public var onGeometry:
-    ((CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat) -> Void)?
+    ((CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat, CGFloat) -> Void)?
   private let model: GeometryReaderModel
 
   public init() {
@@ -47,14 +56,24 @@ public final class OneNativeGeometryReaderView: OneNativeContainerView {
     super.init(wrap: { children, _ in
       AnyView(GeometryReaderContent(model: model, children: children))
     })
-    model.onGeometry = { [weak self] frame, insets in
+    model.onGeometry = { [weak self] snapshot in
+      let frame = snapshot.frame
+      let local = snapshot.localFrame
+      let insets = snapshot.insets
       self?.onGeometry?(
         frame.origin.x, frame.origin.y, frame.size.width, frame.size.height,
+        local.origin.x, local.origin.y, local.size.width, local.size.height,
+        snapshot.size.width, snapshot.size.height,
         insets.top, insets.leading, insets.bottom, insets.trailing)
     }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
-  public override func setActive(_ active: Bool) { model.active = active }
+  public override func setActive(_ active: Bool) { model.setActive(active) }
+
+  public override func reset() {
+    model.latest = nil
+    super.reset()
+  }
 }

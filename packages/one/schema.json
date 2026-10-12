@@ -4137,6 +4137,24 @@
           "height": {
             "type": "Double"
           },
+          "localX": {
+            "type": "Double"
+          },
+          "localY": {
+            "type": "Double"
+          },
+          "localWidth": {
+            "type": "Double"
+          },
+          "localHeight": {
+            "type": "Double"
+          },
+          "sizeWidth": {
+            "type": "Double"
+          },
+          "sizeHeight": {
+            "type": "Double"
+          },
           "safeAreaTop": {
             "type": "Double"
           },

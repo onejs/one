@@ -58,13 +58,13 @@ export interface GeometryProxyFrame {
     width: number;
     height: number;
 }
-export interface GeometryProxySnapshot {
+export interface GeometryProxy {
     readonly size: GeometryProxySize;
     readonly safeAreaInsets: GeometryProxySafeAreaInsets;
-    readonly frame: GeometryProxyFrame;
+    frame(coordinateSpace: 'global' | 'local'): GeometryProxyFrame;
 }
 export interface GeometryReaderProps extends Omit<ViewProps, 'children'> {
-    children: (geometry: GeometryProxySnapshot) => ReactNode;
+    children: (geometry: GeometryProxy) => ReactNode;
 }
 export interface OverlayProps extends ViewProps {
     alignment?: ZStackAlignment;

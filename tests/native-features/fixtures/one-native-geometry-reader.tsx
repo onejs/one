@@ -12,7 +12,7 @@ import { One } from 'one'
 type GeometrySnapshot = {
   size: { width: number; height: number }
   safeAreaInsets: { top: number; leading: number; bottom: number; trailing: number }
-  frame: { x: number; y: number; width: number; height: number }
+  frame(coordinateSpace: 'global' | 'local'): { x: number; y: number; width: number; height: number }
 }
 
 function GeometryStatus({
@@ -40,9 +40,10 @@ export default function OneNativeGeometryReader() {
   const [nativeChild, setNativeChild] = useState(false)
 
   const onFrame = useCallback((geometry: GeometrySnapshot) => {
+    const frame = geometry.frame('global')
     setFrames((count) => count + 1)
     setFrame(
-      `${Math.round(geometry.frame.width)}x${Math.round(geometry.frame.height)} @ ${Math.round(geometry.frame.x)},${Math.round(geometry.frame.y)}`
+      `${Math.round(frame.width)}x${Math.round(frame.height)} @ ${Math.round(frame.x)},${Math.round(frame.y)}`
     )
   }, [])
 

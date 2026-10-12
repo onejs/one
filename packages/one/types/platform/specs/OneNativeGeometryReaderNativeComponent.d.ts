@@ -6,6 +6,12 @@ interface NativeProps extends ViewProps {
         y: Double;
         width: Double;
         height: Double;
+        localX: Double;
+        localY: Double;
+        localWidth: Double;
+        localHeight: Double;
+        sizeWidth: Double;
+        sizeHeight: Double;
         safeAreaTop: Double;
         safeAreaLeading: Double;
         safeAreaBottom: Double;

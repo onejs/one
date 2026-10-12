@@ -81,21 +81,22 @@ proposal is unbounded.
 
 ## GeometryReader
 
-`One.iOS.GeometryReader` is SwiftUI's geometry reader with its content
-closure adapted to a JavaScript render function. It takes the box React
-Native gives it, runs `children` with a native `GeometryProxy` snapshot, and
-composes what the function returns natively. The snapshot starts at zero and
-updates when native reports, so first paint uses placeholder geometry; the
-closure re-runs on mount and whenever the frame or safe-area insets change,
-so a reader inside a scroll view re-renders while scrolling: keep the closure
-cheap. Size content from the snapshot, never the reader's own box from it.
-Give the reader an explicit size or `flex: 1`; like SwiftUI, it fills what it
-is offered. A non-function child throws instead of mounting.
+`One.iOS.GeometryReader` adapts SwiftUI's content builder to a JavaScript
+function receiving a `GeometryProxy`. The native reader mounts first; the
+builder runs after SwiftUI reports real geometry and runs again when that
+geometry changes. No placeholder geometry is delivered. Its returned content
+composes natively. Give the reader an explicit size or `flex: 1`, because it
+fills the box it is offered. A non-function child throws.
 
-`frame` is in global coordinates; `size` is the reader's size.
-`frame(in:)` with a local or named space, anchors, `bounds(of:)`, and the
-iOS 26 and later corner, margin, and reserved-region APIs have no synchronous
-bridge path and are not represented in the snapshot.
+`size` and `safeAreaInsets` come from the native geometry proxy.
+`frame('global')` and `frame('local')` adapt SwiftUI's `frame(in:)` method;
+frames and size are reported separately, so a transformed global frame does
+not replace the reader's layout size. Named coordinate spaces, anchor
+resolution, `bounds(of:)`, and the later corner, margin and reserved-region
+APIs remain unbound. A named-space request throws instead of returning an
+unrelated frame. A reader in a scroll view can update while scrolling; keep
+the content builder cheap and observe it from an effect when updating React
+state outside its native content.
 
 ```tsx
 <One.iOS.GeometryReader style={{ height: 100 }}>
@@ -107,17 +108,17 @@ bridge path and are not represented in the snapshot.
   title="Props"
   source="groupTypes.ts#GeometryReaderProps"
   data={[
-    { name: 'children', required: true, type: '(geometry: GeometryProxySnapshot) => ReactNode', description: 'The content closure, run with the native geometry snapshot.' },
+    { name: 'children', required: true, type: '(geometry: GeometryProxy) => ReactNode', description: 'The content closure, run with the native geometry snapshot.' },
   ]}
 />
 
 <PropsTable
-  title="GeometryProxy snapshot"
-  source="groupTypes.ts#GeometryProxySnapshot"
+  title="GeometryProxy"
+  source="groupTypes.ts#GeometryProxy"
   data={[
     { name: 'size', type: 'GeometryProxySize', description: 'The reader size: { width, height }.' },
     { name: 'safeAreaInsets', type: 'GeometryProxySafeAreaInsets', description: 'The safe-area insets: { top, leading, bottom, trailing }.' },
-    { name: 'frame', type: 'GeometryProxyFrame', description: 'The laid-out frame in global coordinates: { x, y, width, height }.' },
+    { name: 'frame', type: "(coordinateSpace: 'global' | 'local') => GeometryProxyFrame", description: 'SwiftUI frame(in:), using a global or local coordinate-space argument.' },
   ]}
 />
 

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { act, create } from 'react-test-renderer'
 import { Swift as UnsupportedSwift } from '../src/platform/unsupported'
-import type { GeometryProxySnapshot } from '../src/platform/groupTypes'
+import type { GeometryProxy } from '../src/platform/groupTypes'
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
@@ -47,17 +47,17 @@ function stubOf(root: ReturnType<typeof create>, name: string) {
   )
 }
 
-const zeroSnapshot: GeometryProxySnapshot = {
-  size: { width: 0, height: 0 },
-  safeAreaInsets: { top: 0, leading: 0, bottom: 0, trailing: 0 },
-  frame: { x: 0, y: 0, width: 0, height: 0 },
-}
-
 const nativeReport = {
   x: 8,
   y: 44,
   width: 200,
   height: 100,
+  localX: 0,
+  localY: 0,
+  localWidth: 180,
+  localHeight: 80,
+  sizeWidth: 180,
+  sizeHeight: 80,
   safeAreaTop: 59,
   safeAreaLeading: 0,
   safeAreaBottom: 34,
@@ -87,48 +87,46 @@ function fireGeometry(rendered: ReturnType<typeof create>, nativeEvent: unknown)
 }
 
 describe('geometry reader', () => {
-  it('runs its content closure with the zero snapshot on first paint', () => {
-    const seen: GeometryProxySnapshot[] = []
-    const rendered = renderReader((geometry: GeometryProxySnapshot) => {
+  it('waits for native geometry before running the content builder', () => {
+    const seen: GeometryProxy[] = []
+    const rendered = renderReader((geometry: GeometryProxy) => {
       seen.push(geometry)
       return createElement(Containers.Group, { children: null })
     })
-    expect(seen).toEqual([zeroSnapshot])
+    expect(seen).toEqual([])
     // stubs render null, so composition is asserted on the native element the
     // way the map suite asserts its slot props: inside the container, a group.
     const native = stubOf(rendered, 'OneNativeGeometryReader')
     expect(native.props.children.props.value).toBe(true)
-    expect(native.props.children.props.children.type).toBe(Containers.Group)
+    expect(native.props.children.props.children).toBeNull()
   })
 
   it('re-runs content with the native snapshot when geometry reports', () => {
-    const seen: GeometryProxySnapshot[] = []
-    const rendered = renderReader((geometry: GeometryProxySnapshot) => {
+    const seen: GeometryProxy[] = []
+    const rendered = renderReader((geometry: GeometryProxy) => {
       seen.push(geometry)
       return createElement(Containers.Group, { children: null })
     })
     fireGeometry(rendered, nativeReport)
-    expect(seen).toEqual([
-      zeroSnapshot,
-      {
-        size: { width: 200, height: 100 },
-        safeAreaInsets: { top: 59, leading: 0, bottom: 34, trailing: 0 },
-        frame: { x: 8, y: 44, width: 200, height: 100 },
-      },
-    ])
+    expect(seen).toHaveLength(1)
+    expect(seen[0].size).toEqual({ width: 180, height: 80 })
+    expect(seen[0].safeAreaInsets).toEqual({ top: 59, leading: 0, bottom: 34, trailing: 0 })
+    expect(seen[0].frame('global')).toEqual({ x: 8, y: 44, width: 200, height: 100 })
+    expect(seen[0].frame('local')).toEqual({ x: 0, y: 0, width: 180, height: 80 })
+    expect(() => seen[0].frame('named' as never)).toThrow('named spaces are not yet bound')
     const native = stubOf(rendered, 'OneNativeGeometryReader')
     expect(native.props.children.props.children.type).toBe(Containers.Group)
   })
 
   it('keeps state on a duplicate native report', () => {
-    const seen: GeometryProxySnapshot[] = []
-    const rendered = renderReader((geometry: GeometryProxySnapshot) => {
+    const seen: GeometryProxy[] = []
+    const rendered = renderReader((geometry: GeometryProxy) => {
       seen.push(geometry)
       return createElement(Containers.Group, { children: null })
     })
     fireGeometry(rendered, nativeReport)
     fireGeometry(rendered, nativeReport)
-    expect(seen).toHaveLength(2)
+    expect(seen).toHaveLength(1)
   })
 
   it('rejects an invalid native geometry', () => {
@@ -159,10 +157,10 @@ describe('geometry reader', () => {
     const { View } = (await import('react-native')) as never as {
       View: () => null
     }
-    expect(() =>
-      renderReader(() => createElement(View))
-    ).toThrow('takes SwiftUI children')
-    expect(() => renderReader(() => 'sized')).toThrow('not raw text')
+    const invalidView = renderReader(() => createElement(View))
+    expect(() => fireGeometry(invalidView, nativeReport)).toThrow('takes SwiftUI children')
+    const invalidText = renderReader(() => 'sized')
+    expect(() => fireGeometry(invalidText, nativeReport)).toThrow('not raw text')
   })
 
   it('throws without the native build', () => {
@@ -182,6 +180,12 @@ describe('geometry reader schema', () => {
         y: { type: 'Double' },
         width: { type: 'Double' },
         height: { type: 'Double' },
+        localX: { type: 'Double' },
+        localY: { type: 'Double' },
+        localWidth: { type: 'Double' },
+        localHeight: { type: 'Double' },
+        sizeWidth: { type: 'Double' },
+        sizeHeight: { type: 'Double' },
         safeAreaTop: { type: 'Double' },
         safeAreaLeading: { type: 'Double' },
         safeAreaBottom: { type: 'Double' },
