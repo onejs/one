@@ -6,6 +6,10 @@ const state = vi.hoisted(() => ({ pathname: '/', mounts: 0, unmounts: 0 }))
 vi.hoisted(() => { Object.assign(globalThis, { __DEV__: true, IS_REACT_ACT_ENVIRONMENT: true }) })
 
 vi.mock('one', () => ({
+  One: { iOS: { SplitView: Object.assign(
+    ({ slot: Slot, children }: { slot: React.ComponentType, children: React.ReactNode }) => <>{children}<Slot /></>,
+    { Column: ({ children }: { children: React.ReactNode }) => <>{children}</> }
+  ) } },
   usePathname: () => state.pathname,
   Stack: () => {
     useEffect(() => {
@@ -18,10 +22,11 @@ vi.mock('one', () => ({
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios' },
   LogBox: { ignoreLogs() {} },
-  View: 'View',
+  View: 'View', Text: 'Text', Pressable: 'Pressable', ScrollView: 'ScrollView',
+  StyleSheet: { create: (value: object) => value },
 }))
 vi.mock('../../../tests/native-features/components/QuickNavigatePixel', () => ({
-  QuickNavigatePixel: () => null,
+  QuickNavigatePixel: () => <input testID="quick-navigate-path-input" />,
 }))
 vi.mock('../../../tests/native-features/app/split-view-test', () => ({
   SplitViewFixture: () => <React.Fragment>split fixture</React.Fragment>,
@@ -51,11 +56,13 @@ it('keeps the mounted navigation root when entering and leaving the split view r
   await act(async () => { tree.update(<Layout />) })
   expect(tree.root.findAllByType('View')[0].props.style.display).toBe('none')
   expect(tree.toJSON()).toContain('split fixture')
+  expect(tree.root.findAllByType('input')).toHaveLength(0)
   expect(state.mounts).toBe(1)
   expect(state.unmounts).toBe(0)
   state.pathname = '/one-native-map-controls'
   await act(async () => { tree.update(<Layout />) })
   expect(tree.root.findAllByType('View')[0].props.style.display).toBe('flex')
+  expect(tree.root.findAllByType('input')).toHaveLength(1)
   expect(state.mounts).toBe(1)
   expect(state.unmounts).toBe(0)
   await act(async () => { tree.unmount() })
@@ -69,4 +76,20 @@ it('observes Swift nil as null and a populated optional label without changing t
     at: '2026-01-01T00:00:00.000Z',
     blob: [1, 2, 3],
   })
+})
+
+it('keeps navigation within both collapsed split columns and observes sidebar selection', async () => {
+  const { SplitViewFixture } = await vi.importActual<typeof import('../../../tests/native-features/app/split-view-test')>(
+    '../../../tests/native-features/app/split-view-test'
+  )
+  let tree!: ReturnType<typeof create>
+  await act(async () => { tree = create(<SplitViewFixture />) })
+  for (const testID of ['split-sidebar', 'split-main-slot']) {
+    expect(tree.root.findByProps({ testID }).findByProps({ testID: 'quick-navigate-path-input' })).toBeDefined()
+  }
+  await act(async () => { tree.root.findByProps({ testID: 'split-sidebar-item-drafts' }).props.onPress() })
+  for (const receipt of tree.root.findAllByProps({ testID: 'split-view-selected-id' })) {
+    expect(receipt.props.children).toEqual(['Selected: ', 'drafts'])
+  }
+  await act(async () => { tree.unmount() })
 })

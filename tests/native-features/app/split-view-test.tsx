@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 import { View, Text, Pressable, ScrollView, StyleSheet, Platform } from 'react-native'
 import { One } from 'one'
+import { QuickNavigatePixel } from '../components/QuickNavigatePixel'
 
 const sidebarItems = [
   { id: 'inbox', label: 'Inbox', count: 12 },
@@ -39,6 +40,7 @@ function SidebarContent({
           </Text>
         </>
       ) : null}
+      {showStatus ? <QuickNavigatePixel /> : null}
       {sidebarItems.map((item) => (
         <Pressable
           key={item.id}
@@ -89,6 +91,7 @@ function MainSlot() {
   const selectedId = useContext(SelectedMailboxContext)
   return (
     <View style={styles.mainSlot} testID="split-main-slot">
+      <QuickNavigatePixel />
       <Text testID="split-view-title" style={styles.title}>
         One.iOS.SplitView Test
       </Text>

@@ -571,6 +571,8 @@ describe('one native integration tests', () => {
     })
 
     test('split view shows sidebar items', sharedTestOptions, async () => {
+      // the phone starts on the collapsed detail column; use UIKit's back action.
+      await (await waitForElement(driver, 'BackButton')).click()
       const sidebarItems = ['inbox', 'sent', 'drafts', 'archive', 'trash']
 
       for (const itemId of sidebarItems) {

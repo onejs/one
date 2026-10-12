@@ -16,7 +16,7 @@ export default function Layout() {
         <Stack screenOptions={{ headerShown: true }} />
       </View>
       {isSplitView ? <SplitViewFixture /> : null}
-      <QuickNavigatePixel />
+      {isSplitView ? null : <QuickNavigatePixel />}
     </>
   )
 }
