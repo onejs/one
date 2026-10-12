@@ -26,7 +26,7 @@ function AudioHookProbe({ uri }: { uri: string }) {
   return (
     <>
       <Text testID="one-native-audio-hooks">
-        {`Hooks: loaded:${hookStatus.isLoaded} playing:${hookStatus.playing} paused:${player.paused} run:${hookRun} pos:${hookStatus.currentTime.toFixed(1)} id:${hookStatus.id.slice(0, 8)}`}
+        {`Hooks: loaded:${hookStatus.isLoaded} playing:${hookStatus.playing} run:${hookRun}`}
       </Text>
       <Pressable
         testID="one-native-audio-hooks-run"
@@ -422,8 +422,6 @@ export default function OneNativeAudio() {
       const uri = await writeBackgroundClip()
       const first = audio.createPlayer(uri, { updateInterval: 100 })
       const second = audio.createPlayer(uri)
-      const firstId = first.getStatus().id
-      const secondId = second.getStatus().id
       if (first.id === second.id) throw new Error('player ids collided')
 
       stage = 'load'
@@ -543,7 +541,7 @@ export default function OneNativeAudio() {
       setPlayers(
         `playing:${playing},paused:${paused},rate:${rate},pos:${pos},` +
           `duration:${duration},listener:true,looped:${looped},finish:${finished},` +
-          `errors:${rateError},ids:${firstId.slice(0, 8)}/${secondId.slice(0, 8)}`
+          `errors:${rateError}`
       )
     } catch (error) {
       setPlayers(

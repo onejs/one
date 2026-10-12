@@ -18,7 +18,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.os.SystemClock
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.facebook.react.bridge.ReactApplicationContext
@@ -578,16 +577,13 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             val managed = ManagedAudioPlayer()
             if (sourceUri != null) attachPlayerSource(managed, sourceUri, headers)
             val id = UUID.randomUUID().toString()
-            managed.debugId = id.take(8)
             managedPlayers[id] = managed
-            Log.d("OneAudioDebug", "create ${managed.debugId} map=${managedPlayers.size}")
             id
         }
 
     override fun playerPlay(playerId: String) {
         mainSync("playerPlay") {
             val managed = managedPlayer(playerId)
-            Log.d("OneAudioDebug", "play ${managed.debugId} paused=${managed.paused} prepared=${managed.prepared}")
             requestFocus()
             val current = managed.player
             if (managed.ended && current != null && managed.prepared) {
@@ -669,8 +665,6 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     }
 
     override fun removePlayer(playerId: String) {
-        // TEMP-AUDIODEBUG: removal visibility. REVERT.
-        Log.d("OneAudioDebug", "remove ${playerId.take(8)}")
         if (Looper.myLooper() == Looper.getMainLooper()) {
             managedPlayers.remove(playerId)?.let { releaseManagedPlayer(it) }
             return
@@ -733,9 +727,6 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
     }
 
     private class ManagedAudioPlayer {
-        // TEMP-AUDIODEBUG: short id for logcat correlation. REVERT.
-        var debugId: String = "?"
-        var anomalyLogged: Boolean = false
         var player: MediaPlayer? = null
         var prepared = false
         var paused = true
@@ -823,23 +814,26 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
             fresh.isLooping = managed.loop
             applyPlayerVolume(managed, fresh)
             fresh.setOnPreparedListener { mp ->
-                if (managed.player !== mp) {
-                    Log.d("OneAudioDebug", "prepared-stale ${managed.debugId}")
-                    return@setOnPreparedListener
-                }
+                if (managed.player !== mp) return@setOnPreparedListener
                 managed.prepared = true
                 managed.error = null
                 applyPlayerRate(managed, mp)
-                Log.d("OneAudioDebug", "prepared ${managed.debugId} paused=${managed.paused} ended=${managed.ended}")
                 if (!managed.paused && !managed.ended) {
                     try { mp.start() } catch (e: Exception) { }
+                } else {
+                    // a freshly prepared MediaPlayer can report isPlaying on
+                    // some emulators without ever being started; stop any
+                    // phantom playback immediately while the position is ~0.
+                    // healthy devices report false here and skip the pause.
+                    try {
+                        if (mp.isPlaying) mp.pause()
+                    } catch (e: Exception) {
+                    }
                 }
             }
             fresh.setOnCompletionListener { mp ->
                 if (managed.player !== mp) return@setOnCompletionListener
                 managed.ended = true
-                // TEMP-AUDIODEBUG: completion visibility. REVERT.
-                Log.d("OneAudioDebug", "complete ${managed.debugId}")
             }
             fresh.setOnErrorListener { mp, what, extra ->
                 if (managed.player !== mp) return@setOnErrorListener true
@@ -872,20 +866,18 @@ class HybridOneAudio : HybridOneAudioSpec(), PermissionListener {
 
     private fun playerStatus(managed: ManagedAudioPlayer): AudioPlayerStatus {
         val current = managed.player
+        // paused is set only by explicit pause calls, so a paused player is
+        // never reported playing even when the MediaPlayer self-reports
+        // isPlaying without ever being started (emulator quirk, see
+        // attachPlayerSource).
         val playing = try {
-            current?.isPlaying == true
+            current?.isPlaying == true && !managed.paused
         } catch (e: Exception) {
             false
         }
         val position = if (managed.prepared && current != null) {
             try { current.currentPosition / 1000.0 } catch (e: Exception) { 0.0 }
         } else 0.0
-        // TEMP-AUDIODEBUG: log only the anomaly (mp claims playing while paused). REVERT.
-        if (playing && managed.paused && !managed.anomalyLogged) {
-            managed.anomalyLogged = true
-            val duration = try { current?.duration ?: -1 } catch (e: Exception) { -2 }
-            Log.d("OneAudioDebug", "ANOMALY ${managed.debugId} pos=$position dur=$duration prepared=${managed.prepared} ended=${managed.ended} loop=${managed.loop} err=${managed.error}")
-        }
         val duration = if (managed.prepared && current != null) {
             try {
                 val ms = current.duration
