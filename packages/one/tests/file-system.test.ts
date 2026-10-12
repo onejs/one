@@ -594,6 +594,45 @@ describe('file streams', () => {
     expect(closed).toBe(true)
   })
 
+  it('a rejected stream read still closes the owned native handle once', async () => {
+    const closeFile = vi.fn()
+    const { File } = await loadNativeClasses({
+      openFile: () => 1,
+      closeFile,
+      readHandleAsync: async () => {
+        throw Object.assign(new Error('E_FILE_FAILED: FileSystem.readHandle: boom'), {
+          code: 'E_FILE_FAILED',
+        })
+      },
+    })
+    const reader = new File('file:///cache/probe.bin').readableStream().getReader()
+    const failure = await reader.read().then(
+      () => null,
+      (error) => error as { code?: string }
+    )
+    expect(failure?.code).toBe('E_FILE_FAILED')
+    expect(closeFile).toHaveBeenCalledTimes(1)
+  })
+
+  it('a rejected stream write still closes the owned handle once', async () => {
+    let closes = 0
+    const stream = new WritableStream(
+      new FileSystemWritableSink({
+        readBytes: async () => new Uint8Array(),
+        writeBytes: async () => {
+          throw new Error('E_FILE_FAILED: FileSystem.writeHandle: boom')
+        },
+        close: () => {
+          closes += 1
+        },
+      })
+    )
+    await expect(stream.getWriter().write(new Uint8Array([1]))).rejects.toThrow(
+      'E_FILE_FAILED'
+    )
+    expect(closes).toBe(1)
+  })
+
   it('writes chunks through the sink and closes the handle', async () => {
     const written: number[] = []
     let closed = false

@@ -288,10 +288,18 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
             target.createNewFile()
         }
         val accessFile = RandomAccessFile(target, access)
-        when (mode) {
-            "wa" -> accessFile.seek(accessFile.length())
-            "wt" -> accessFile.setLength(0)
-            else -> accessFile.seek(0)
+        try {
+            when (mode) {
+                "wa" -> accessFile.seek(accessFile.length())
+                "wt" -> accessFile.setLength(0)
+                else -> accessFile.seek(0)
+            }
+        } catch (e: Exception) {
+            try {
+                accessFile.close()
+            } catch (ignored: Exception) {
+            }
+            throw e
         }
         val id = nextHandle.getAndIncrement()
         handles[id] = accessFile
