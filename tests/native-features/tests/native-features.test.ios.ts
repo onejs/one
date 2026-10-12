@@ -7,6 +7,20 @@ import type { Browser } from 'webdriverio'
 
 const sharedTestOptions = { timeout: 10 * 60 * 1000 }
 
+async function dismissExpectedRenderError(driver: Browser, expectedMessage: string) {
+  // react native also reports caught boundary errors in its development inspector.
+  // verify that error before dismissing it so unrelated failures remain failures.
+  const inspector = await waitForElement(driver, 'Render Error', { timeout: 30_000 })
+  const message = driver.$(
+    '-ios predicate string:type == "XCUIElementTypeStaticText" AND label BEGINSWITH ' +
+      JSON.stringify(expectedMessage)
+  )
+  await message.waitForDisplayed({ timeout: 30_000 })
+  expect(await message.getText()).toContain(expectedMessage)
+  await (await waitForElement(driver, 'Dismiss')).click()
+  await inspector.waitForDisplayed({ reverse: true, timeout: 30_000 })
+}
+
 function getSimulatorUdid(driver: Browser) {
   const capabilities = driver.capabilities as Record<string, any>
   return (
@@ -673,6 +687,8 @@ describe('one native integration tests', () => {
       await captureScreenshot(driver, 'one-native-derived-views')
 
       await (await waitForElement(driver, 'one-native-derived-invalid')).click()
+      await dismissExpectedRenderError(driver, 'SubscriptionStoreView takes exactly one of groupID, productIDs')
+      await driver.execute('mobile: scroll', { direction: 'down' })
       const error = await waitForElement(driver, 'one-native-derived-error')
       expect(await error.getText()).toContain('takes exactly one of groupID, productIDs')
     })
@@ -815,12 +831,16 @@ describe('one native integration tests', () => {
       // the calendar fills the first screen; the controls sit below it.
       await driver.execute('mobile: scroll', { direction: 'down' })
       await (await waitForElement(driver, 'one-native-picker-passkit-invalid')).click()
+      await dismissExpectedRenderError(driver, 'MultiDatePicker selection must be an array of valid Dates')
+      await driver.execute('mobile: scroll', { direction: 'down' })
       const pickerError = await waitForElement(driver, 'one-native-picker-passkit-error')
       expect(await pickerError.getText()).toContain('must be an array of valid Dates')
 
       await driver.execute('mobile: scroll', { direction: 'down' })
       await driver.execute('mobile: scroll', { direction: 'down' })
       await (await waitForElement(driver, 'one-native-picker-passkit-bad-label')).click()
+      await dismissExpectedRenderError(driver, 'Unknown SwiftUI PayWithApplePayButtonLabel: shout')
+      await driver.execute('mobile: scroll', { direction: 'down' })
       const labelError = await waitForElement(driver, 'one-native-picker-passkit-label-error')
       expect(await labelError.getText()).toContain('PayWithApplePayButtonLabel')
     })
@@ -863,6 +883,7 @@ describe('one native integration tests', () => {
 
     test('a non-control child throws instead of mounting', sharedTestOptions, async () => {
       await (await waitForElement(driver, 'one-native-map-controls-invalid')).click()
+      await dismissExpectedRenderError(driver, 'One.iOS.Map accepts')
       const error = await waitForElement(driver, 'one-native-map-controls-error')
       expect(await error.getText()).toContain('One.iOS.Map accepts')
     })
