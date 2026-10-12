@@ -1,7 +1,8 @@
-import { act, createElement } from 'react'
+import { act, createElement, createRef } from 'react'
 import TestRenderer from 'react-test-renderer'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { createSyncState } from '../src/platform/syncStore'
+import type { ComposeModalBottomSheetRef } from '../src/platform/composeTypes'
 import {
   validateAlertDialogProps,
   validateBoxProps,
@@ -693,5 +694,39 @@ describe('compose modal bottom sheet', () => {
     expect(() =>
       render(Compose.ModalBottomSheet, { onDismissRequest, scrimColor: '' })
     ).toThrow('Compose ModalBottomSheet scrimColor must be a color value')
+  })
+
+  it('emits and resolves every hide queued in one batch', async () => {
+    const ref = createRef<ComposeModalBottomSheetRef>()
+    let renderer: TestRenderer.ReactTestRenderer | undefined
+    act(() => {
+      renderer = TestRenderer.create(
+        createElement(Compose.ModalBottomSheet as never, { onDismissRequest, ref } as never)
+      )
+    })
+    const native = () => renderer!.root.findByType('div' as never).props
+    let firstResolved = false
+    let secondResolved = false
+    act(() => {
+      void ref.current!.hide().then(() => {
+        firstResolved = true
+      })
+      void ref.current!.hide().then(() => {
+        secondResolved = true
+      })
+    })
+    // native only sees the committed command, so the first queued hide emits first
+    expect(native().sheetCommand).toMatchObject({ requestId: 1 })
+    await act(async () => {
+      native().onNativeComposeNodeSheetHidden({ nativeEvent: { requestId: 1, eventCount: 1 } })
+    })
+    expect(firstResolved).toBe(true)
+    expect(secondResolved).toBe(false)
+    // acknowledging the first emits the second queued hide
+    expect(native().sheetCommand).toMatchObject({ requestId: 2 })
+    await act(async () => {
+      native().onNativeComposeNodeSheetHidden({ nativeEvent: { requestId: 2, eventCount: 2 } })
+    })
+    expect(secondResolved).toBe(true)
   })
 })

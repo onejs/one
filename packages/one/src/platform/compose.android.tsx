@@ -584,6 +584,11 @@ type SnackbarQueuedRequest = {
   resolve: (result: ComposeSnackbarResult) => void
 }
 
+type SheetQueuedCommand = {
+  id: number
+  resolve: () => void
+}
+
 const SnackbarHostRoot = forwardRef<ComposeSnackbarHostRef, ComposeSnackbarHostProps>(
   function SnackbarHost({ children, ...props }, ref) {
     const requestId = useRef(0)
@@ -660,17 +665,25 @@ const ModalBottomSheetRoot = forwardRef<ComposeModalBottomSheetRef, ComposeModal
     })
     const commandId = useRef(0)
     const commandRevision = useRef(0)
-    const waiters = useRef(new Map<number, () => void>())
+    const active = useRef<SheetQueuedCommand | undefined>(undefined)
+    const queue = useRef<SheetQueuedCommand[]>([])
     const [hideCommand, setHideCommand] = useState<ComposeNativeNodeProps['sheetCommand']>(undefined)
+    const pump = () => {
+      if (active.current) return
+      const next = queue.current.shift()
+      if (!next) return
+      active.current = next
+      commandRevision.current += 1
+      setHideCommand({ requestId: next.id, revision: commandRevision.current })
+    }
     useImperativeHandle(
       ref,
       () => ({
         hide: () =>
           new Promise<void>((resolve) => {
             commandId.current += 1
-            waiters.current.set(commandId.current, resolve)
-            commandRevision.current += 1
-            setHideCommand({ requestId: commandId.current, revision: commandRevision.current })
+            queue.current.push({ id: commandId.current, resolve })
+            pump()
           }),
       }),
       []
@@ -684,11 +697,12 @@ const ModalBottomSheetRoot = forwardRef<ComposeModalBottomSheetRef, ComposeModal
         sheetCommand={hideCommand}
         onNativeComposeNodeDialogDismiss={() => onDismissRequest()}
         onNativeComposeNodeSheetHidden={(event) => {
-          const resolve = waiters.current.get(event.nativeEvent.requestId)
-          if (resolve) {
-            waiters.current.delete(event.nativeEvent.requestId)
+          if (active.current && active.current.id === event.nativeEvent.requestId) {
+            const resolve = active.current.resolve
+            active.current = undefined
             resolve()
           }
+          pump()
         }}
       >
         {children}
