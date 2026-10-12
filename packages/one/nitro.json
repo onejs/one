@@ -9,6 +9,9 @@
     "androidCxxLibName": "One"
   },
   "autolinking": {
+    "OneContactUI": { "ios": { "language": "swift", "implementationClassName": "HybridOneContactUI" } },
+    "NativeCNContact": { "ios": { "language": "swift", "implementationClassName": "HybridNativeCNContact" } },
+    "NativeCNContactStore": { "ios": { "language": "swift", "implementationClassName": "HybridNativeCNContactStore" } },
     "OneDataScanner": { "ios": { "language": "swift", "implementationClassName": "HybridOneDataScanner" } },
     "OneMailCompose": { "ios": { "language": "swift", "implementationClassName": "HybridOneMailCompose" } },
     "OneMessageCompose": { "ios": { "language": "swift", "implementationClassName": "HybridOneMessageCompose" } },

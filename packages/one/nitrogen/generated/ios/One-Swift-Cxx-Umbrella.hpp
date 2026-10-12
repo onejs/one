@@ -124,6 +124,10 @@ namespace margelo::nitro::one { struct ContactInput; }
 namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 // Forward declaration of `ContactPostalAddress` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactPostalAddress; }
+// Forward declaration of `ContactUIMode` to properly resolve imports.
+namespace margelo::nitro::one { enum class ContactUIMode; }
+// Forward declaration of `ContactUINameKey` to properly resolve imports.
+namespace margelo::nitro::one { enum class ContactUINameKey; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
 // Forward declaration of `DataScannerBounds` to properly resolve imports.
@@ -194,6 +198,12 @@ namespace margelo::nitro::one { enum class HingeStatus; }
 namespace margelo::nitro::one { class HybridDocumentCameraImageSpec; }
 // Forward declaration of `HybridDocumentCameraScanSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridDocumentCameraScanSpec; }
+// Forward declaration of `HybridNativeCNContactSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNContactSpec; }
+// Forward declaration of `HybridNativeCNContactStoreSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNContactStoreSpec; }
+// Forward declaration of `HybridNativeCNKeyDescriptorSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNKeyDescriptorSpec; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppIconSpec` to properly resolve imports.
@@ -222,6 +232,8 @@ namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
+// Forward declaration of `HybridOneContactUISpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneContactUISpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
 // Forward declaration of `HybridOneDataScannerSpec` to properly resolve imports.
@@ -566,6 +578,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactInput.hpp"
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
+#include "ContactUIMode.hpp"
+#include "ContactUINameKey.hpp"
 #include "ContactsPermissionStatus.hpp"
 #include "DataScannerBounds.hpp"
 #include "DataScannerConfiguration.hpp"
@@ -601,6 +615,9 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HingeStatus.hpp"
 #include "HybridDocumentCameraImageSpec.hpp"
 #include "HybridDocumentCameraScanSpec.hpp"
+#include "HybridNativeCNContactSpec.hpp"
+#include "HybridNativeCNContactStoreSpec.hpp"
+#include "HybridNativeCNKeyDescriptorSpec.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppIconSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
@@ -615,6 +632,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
+#include "HybridOneContactUISpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneDataScannerSpec.hpp"
 #include "HybridOneDeviceAttestationSpec.hpp"
@@ -783,6 +801,12 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 namespace One { class HybridDocumentCameraImageSpec_cxx; }
 // Forward declaration of `HybridDocumentCameraScanSpec_cxx` to properly resolve imports.
 namespace One { class HybridDocumentCameraScanSpec_cxx; }
+// Forward declaration of `HybridNativeCNContactSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNContactSpec_cxx; }
+// Forward declaration of `HybridNativeCNContactStoreSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNContactStoreSpec_cxx; }
+// Forward declaration of `HybridNativeCNKeyDescriptorSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNKeyDescriptorSpec_cxx; }
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppIconSpec_cxx` to properly resolve imports.
@@ -811,6 +835,8 @@ namespace One { class HybridOneBrowserSpec_cxx; }
 namespace One { class HybridOneCalendarSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneClipboardSpec_cxx; }
+// Forward declaration of `HybridOneContactUISpec_cxx` to properly resolve imports.
+namespace One { class HybridOneContactUISpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactsSpec_cxx; }
 // Forward declaration of `HybridOneDataScannerSpec_cxx` to properly resolve imports.

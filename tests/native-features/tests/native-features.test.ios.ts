@@ -73,6 +73,24 @@ describe('one native integration tests', () => {
     }
   })
 
+  describe('ContactsUI contact viewer', () => {
+    test('presents a native new contact and receives cancellation without saving', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-contact-ui')
+      await waitForElement(driver, 'contact-ui-screen')
+      expect(await (await waitForElement(driver, 'contact-ui-draft')).getText()).toBe('Draft: UIKit Fixture')
+      await (await waitForElement(driver, 'contact-ui-new')).click()
+      await waitForElement(driver, 'New Contact')
+      await captureScreenshot(driver, 'contact-ui-native-new')
+      await (await waitForElement(driver, 'Cancel')).click()
+      await (await waitForElement(driver, 'Discard Changes')).click()
+      await waitForElement(driver, 'Result: cancelled')
+      expect(await (await waitForElement(driver, 'contact-ui-error')).getText()).toBe('Error: -')
+      await (await waitForElement(driver, 'contact-ui-known')).click()
+      await waitForElement(driver, 'Result: rejected')
+      expect(await (await waitForElement(driver, 'contact-ui-error')).getText()).toBe('Error: Error: Save a contact first')
+    })
+  })
+
   describe('VisionKit data scanner', () => {
     test('rejects simulator presentation and scanning without recognized items', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-data-scanner')

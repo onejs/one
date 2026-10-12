@@ -10,6 +10,9 @@
 // Include C++ implementation defined types
 #include "HybridDocumentCameraImageSpecSwift.hpp"
 #include "HybridDocumentCameraScanSpecSwift.hpp"
+#include "HybridNativeCNContactSpecSwift.hpp"
+#include "HybridNativeCNContactStoreSpecSwift.hpp"
+#include "HybridNativeCNKeyDescriptorSpecSwift.hpp"
 #include "HybridOneAdaptiveSpecSwift.hpp"
 #include "HybridOneAppIconSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
@@ -24,6 +27,7 @@
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
+#include "HybridOneContactUISpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneDataScannerSpecSwift.hpp"
 #include "HybridOneDeviceAttestationSpecSwift.hpp"
@@ -632,6 +636,86 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneContactsSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridNativeCNContactSpec>
+  std::shared_ptr<HybridNativeCNContactSpec> create_std__shared_ptr_HybridNativeCNContactSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridNativeCNContactSpec_cxx swiftPart = One::HybridNativeCNContactSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridNativeCNContactSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridNativeCNContactSpec_(std__shared_ptr_HybridNativeCNContactSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridNativeCNContactSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridNativeCNContactSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridNativeCNContactSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridNativeCNContactSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::shared_ptr<HybridNativeCNKeyDescriptorSpec>
+  std::shared_ptr<HybridNativeCNKeyDescriptorSpec> create_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridNativeCNKeyDescriptorSpec_cxx swiftPart = One::HybridNativeCNKeyDescriptorSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridNativeCNKeyDescriptorSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(std__shared_ptr_HybridNativeCNKeyDescriptorSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridNativeCNKeyDescriptorSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridNativeCNKeyDescriptorSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridNativeCNKeyDescriptorSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridNativeCNKeyDescriptorSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& /* result */)>
+  Func_void_std__shared_ptr_HybridNativeCNContactSpec_ create_Func_void_std__shared_ptr_HybridNativeCNContactSpec_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__shared_ptr_HybridNativeCNContactSpec_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::shared_ptr<HybridNativeCNContactSpec>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridNativeCNContactStoreSpec>
+  std::shared_ptr<HybridNativeCNContactStoreSpec> create_std__shared_ptr_HybridNativeCNContactStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridNativeCNContactStoreSpec_cxx swiftPart = One::HybridNativeCNContactStoreSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridNativeCNContactStoreSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridNativeCNContactStoreSpec_(std__shared_ptr_HybridNativeCNContactStoreSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridNativeCNContactStoreSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridNativeCNContactStoreSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridNativeCNContactStoreSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridNativeCNContactStoreSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& /* contact */)>
+  Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__ create_Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& contact) mutable -> void {
+      swiftClosure.call(contact);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneContactUISpec>
+  std::shared_ptr<HybridOneContactUISpec> create_std__shared_ptr_HybridOneContactUISpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneContactUISpec_cxx swiftPart = One::HybridOneContactUISpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneContactUISpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneContactUISpec_(std__shared_ptr_HybridOneContactUISpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneContactUISpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneContactUISpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneContactUISpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneContactUISpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

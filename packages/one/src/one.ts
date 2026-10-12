@@ -36,6 +36,9 @@ import {
   WidgetUI,
   VNDocumentCameraViewController,
   DataScannerViewController,
+  CNContactViewController,
+  CNMutableContact,
+  CNContactStore,
   MFMailComposeViewController,
   MFMessageComposeViewController,
   Clipboard as NativeClipboard,
@@ -82,6 +85,9 @@ export type OnePlatform = 'web' | 'ios' | 'android'
 export type OneIOS = typeof Swift & {
   readonly MFMailComposeViewController: typeof MFMailComposeViewController
   readonly MFMessageComposeViewController: typeof MFMessageComposeViewController
+  readonly CNContactViewController: typeof CNContactViewController
+  readonly CNMutableContact: typeof CNMutableContact
+  readonly CNContactStore: typeof CNContactStore
   readonly DataScannerViewController: typeof DataScannerViewController
   readonly VNDocumentCameraViewController: typeof VNDocumentCameraViewController
   readonly WidgetUI: typeof WidgetUI
@@ -191,6 +197,9 @@ const iOS: Readonly<OneIOS> = Object.freeze({
   ...Swift,
   VNDocumentCameraViewController,
   DataScannerViewController,
+  CNContactViewController,
+  CNMutableContact,
+  CNContactStore,
   MFMailComposeViewController,
   MFMessageComposeViewController,
   WidgetUI,

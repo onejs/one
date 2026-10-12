@@ -366,3 +366,6 @@ export { MFMailComposeViewController, MFMessageComposeViewController } from './m
 
 export { DataScannerViewController } from './data-scanner/index'
 export type { DataScannerOptions, DataScannerViewControllerDelegate, RecognizedItem } from './data-scanner/index'
+
+export { CNContactViewController, CNMutableContact, CNContactStore } from './contact-ui/index'
+export type { CNContact, CNKeyDescriptor, CNContactViewControllerOptions, CNContactViewControllerDelegate } from './contact-ui/index'

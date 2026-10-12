@@ -39,7 +39,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |
 | `One.AppIntents` | app-intents | native-modules:unavailable | missing |  |
 | `One.DeviceAttestation` | device-attestation | native-modules:unavailable | missing | iOS 27 simulator availability, input, and unavailable errors proven; successful App Attest and DeviceCheck operations need a registered physical device |
-| `One.Contacts` | contacts | native-modules:unavailable | missing |  |
+| `One.Contacts` | contacts, e2e:one-native-contact-ui | native-modules:unavailable | missing |  |
 | `One.Calendar` | calendar | native-modules:unavailable | missing |  |
 | `One.iOS.ArrangementView` | arrangement | n/a | OneSwiftArrangementLibraryCase | closed iPhone Duo automatic/split/overlay proven; open and folded postures unobserved |
 | `One.iOS.Tabs` | tabs-menu, tab-slot, tab-sidebar, e2e:one-native-tabview | n/a | OneSwiftTabsLibraryCase |  |
@@ -157,6 +157,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.SubscriptionStoreView` | e2e:one-native-derived-views | n/a | missing |  |
 | `One.iOS.VNDocumentCameraViewController` | e2e:one-native-document-camera | n/a | missing | production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven |
 | `One.iOS.DataScannerViewController` | e2e:one-native-data-scanner | n/a | missing | production Swift simulator unsupported checks with transport shims; generated ABI and physical recognition, tracking, zoom, capture and permission gates unproven |
+| `One.iOS.CNContactViewController` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |
+| `One.iOS.CNMutableContact` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |
+| `One.iOS.CNContactStore` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |
 | `One.iOS.MFMailComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven |
 | `One.iOS.MFMessageComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven |
 | `One.iOS.WidgetUI` | realapps:widgets | n/a | missing | bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted |

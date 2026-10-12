@@ -10,6 +10,9 @@
 #import "One-Swift-Cxx-Umbrella.hpp"
 #import <type_traits>
 
+#include "HybridOneContactUISpecSwift.hpp"
+#include "HybridNativeCNContactSpecSwift.hpp"
+#include "HybridNativeCNContactStoreSpecSwift.hpp"
 #include "HybridOneDataScannerSpecSwift.hpp"
 #include "HybridOneMailComposeSpecSwift.hpp"
 #include "HybridOneMessageComposeSpecSwift.hpp"
@@ -74,6 +77,27 @@
   using namespace margelo::nitro;
   using namespace margelo::nitro::one;
 
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneContactUI",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneContactUISpec> hybridObject = One::OneAutolinking::createOneContactUI();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "NativeCNContact",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridNativeCNContactSpec> hybridObject = One::OneAutolinking::createNativeCNContact();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "NativeCNContactStore",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridNativeCNContactStoreSpec> hybridObject = One::OneAutolinking::createNativeCNContactStore();
+      return hybridObject;
+    }
+  );
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneDataScanner",
     []() -> std::shared_ptr<HybridObject> {

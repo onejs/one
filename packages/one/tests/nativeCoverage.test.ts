@@ -77,6 +77,9 @@ const partialGaps: Record<string, string> = {
     'production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven',
   'iOS.MFMessageComposeViewController':
     'production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven',
+  'iOS.CNContactViewController': 'production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven',
+  'iOS.CNMutableContact': 'production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven',
+  'iOS.CNContactStore': 'production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven',
   'iOS.DataScannerViewController': 'production Swift simulator unsupported checks with transport shims; generated ABI and physical recognition, tracking, zoom, capture and permission gates unproven',
   'iOS.VNDocumentCameraViewController':
     'production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven',

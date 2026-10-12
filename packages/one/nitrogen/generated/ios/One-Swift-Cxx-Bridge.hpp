@@ -162,6 +162,12 @@ namespace margelo::nitro::one { enum class HingeStatus; }
 namespace margelo::nitro::one { class HybridDocumentCameraImageSpec; }
 // Forward declaration of `HybridDocumentCameraScanSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridDocumentCameraScanSpec; }
+// Forward declaration of `HybridNativeCNContactSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNContactSpec; }
+// Forward declaration of `HybridNativeCNContactStoreSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNContactStoreSpec; }
+// Forward declaration of `HybridNativeCNKeyDescriptorSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridNativeCNKeyDescriptorSpec; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
 // Forward declaration of `HybridOneAppIconSpec` to properly resolve imports.
@@ -190,6 +196,8 @@ namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 // Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
+// Forward declaration of `HybridOneContactUISpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneContactUISpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
 // Forward declaration of `HybridOneDataScannerSpec` to properly resolve imports.
@@ -448,6 +456,12 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 namespace One { class HybridDocumentCameraImageSpec_cxx; }
 // Forward declaration of `HybridDocumentCameraScanSpec_cxx` to properly resolve imports.
 namespace One { class HybridDocumentCameraScanSpec_cxx; }
+// Forward declaration of `HybridNativeCNContactSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNContactSpec_cxx; }
+// Forward declaration of `HybridNativeCNContactStoreSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNContactStoreSpec_cxx; }
+// Forward declaration of `HybridNativeCNKeyDescriptorSpec_cxx` to properly resolve imports.
+namespace One { class HybridNativeCNKeyDescriptorSpec_cxx; }
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
 // Forward declaration of `HybridOneAppIconSpec_cxx` to properly resolve imports.
@@ -476,6 +490,8 @@ namespace One { class HybridOneBrowserSpec_cxx; }
 namespace One { class HybridOneCalendarSpec_cxx; }
 // Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneClipboardSpec_cxx; }
+// Forward declaration of `HybridOneContactUISpec_cxx` to properly resolve imports.
+namespace One { class HybridOneContactUISpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactsSpec_cxx; }
 // Forward declaration of `HybridOneDataScannerSpec_cxx` to properly resolve imports.
@@ -630,6 +646,9 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HingeStatus.hpp"
 #include "HybridDocumentCameraImageSpec.hpp"
 #include "HybridDocumentCameraScanSpec.hpp"
+#include "HybridNativeCNContactSpec.hpp"
+#include "HybridNativeCNContactStoreSpec.hpp"
+#include "HybridNativeCNKeyDescriptorSpec.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
 #include "HybridOneAppIconSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
@@ -644,6 +663,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
+#include "HybridOneContactUISpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneDataScannerSpec.hpp"
 #include "HybridOneDeviceAttestationSpec.hpp"
@@ -2963,6 +2983,187 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ContactInfo>>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<HybridNativeCNContactSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridNativeCNContactSpec>`.
+   */
+  using std__shared_ptr_HybridNativeCNContactSpec_ = std::shared_ptr<HybridNativeCNContactSpec>;
+  std::shared_ptr<HybridNativeCNContactSpec> create_std__shared_ptr_HybridNativeCNContactSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridNativeCNContactSpec_(std__shared_ptr_HybridNativeCNContactSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridNativeCNContactSpec>
+  using std__weak_ptr_HybridNativeCNContactSpec_ = std::weak_ptr<HybridNativeCNContactSpec>;
+  inline std__weak_ptr_HybridNativeCNContactSpec_ weakify_std__shared_ptr_HybridNativeCNContactSpec_(const std::shared_ptr<HybridNativeCNContactSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<HybridNativeCNContactSpec>>
+  using Result_std__shared_ptr_HybridNativeCNContactSpec__ = Result<std::shared_ptr<HybridNativeCNContactSpec>>;
+  inline Result_std__shared_ptr_HybridNativeCNContactSpec__ create_Result_std__shared_ptr_HybridNativeCNContactSpec__(const std::shared_ptr<HybridNativeCNContactSpec>& value) noexcept {
+    return Result<std::shared_ptr<HybridNativeCNContactSpec>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_HybridNativeCNContactSpec__ create_Result_std__shared_ptr_HybridNativeCNContactSpec__(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<HybridNativeCNContactSpec>>::withError(error);
+  }
+
+  // pragma MARK: std::shared_ptr<HybridNativeCNKeyDescriptorSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridNativeCNKeyDescriptorSpec>`.
+   */
+  using std__shared_ptr_HybridNativeCNKeyDescriptorSpec_ = std::shared_ptr<HybridNativeCNKeyDescriptorSpec>;
+  std::shared_ptr<HybridNativeCNKeyDescriptorSpec> create_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(std__shared_ptr_HybridNativeCNKeyDescriptorSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridNativeCNKeyDescriptorSpec>
+  using std__weak_ptr_HybridNativeCNKeyDescriptorSpec_ = std::weak_ptr<HybridNativeCNKeyDescriptorSpec>;
+  inline std__weak_ptr_HybridNativeCNKeyDescriptorSpec_ weakify_std__shared_ptr_HybridNativeCNKeyDescriptorSpec_(const std::shared_ptr<HybridNativeCNKeyDescriptorSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>`.
+   */
+  using std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec___ = std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>;
+  inline std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>> create_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec___() noexcept {
+    return Promise<std::shared_ptr<HybridNativeCNContactSpec>>::create();
+  }
+  inline PromiseHolder<std::shared_ptr<HybridNativeCNContactSpec>> wrap_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec___(std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>> promise) noexcept {
+    return PromiseHolder<std::shared_ptr<HybridNativeCNContactSpec>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>&)>`.
+   */
+  using Func_void_std__shared_ptr_HybridNativeCNContactSpec_ = std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__shared_ptr_HybridNativeCNContactSpec__Wrapper final {
+  public:
+    explicit Func_void_std__shared_ptr_HybridNativeCNContactSpec__Wrapper(std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& /* result */)>>(std::move(func))) {}
+    inline void call(std::shared_ptr<HybridNativeCNContactSpec> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::shared_ptr<HybridNativeCNContactSpec>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__shared_ptr_HybridNativeCNContactSpec_ create_Func_void_std__shared_ptr_HybridNativeCNContactSpec_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__shared_ptr_HybridNativeCNContactSpec__Wrapper wrap_Func_void_std__shared_ptr_HybridNativeCNContactSpec_(Func_void_std__shared_ptr_HybridNativeCNContactSpec_ value) noexcept {
+    return Func_void_std__shared_ptr_HybridNativeCNContactSpec__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>
+  /**
+   * Specialized version of `std::vector<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>`.
+   */
+  using std__vector_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__ = std::vector<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>;
+  inline std::vector<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>> create_std__vector_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__(size_t size) noexcept {
+    std::vector<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::shared_ptr<HybridNativeCNContactStoreSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridNativeCNContactStoreSpec>`.
+   */
+  using std__shared_ptr_HybridNativeCNContactStoreSpec_ = std::shared_ptr<HybridNativeCNContactStoreSpec>;
+  std::shared_ptr<HybridNativeCNContactStoreSpec> create_std__shared_ptr_HybridNativeCNContactStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridNativeCNContactStoreSpec_(std__shared_ptr_HybridNativeCNContactStoreSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridNativeCNContactStoreSpec>
+  using std__weak_ptr_HybridNativeCNContactStoreSpec_ = std::weak_ptr<HybridNativeCNContactStoreSpec>;
+  inline std__weak_ptr_HybridNativeCNContactStoreSpec_ weakify_std__shared_ptr_HybridNativeCNContactStoreSpec_(const std::shared_ptr<HybridNativeCNContactStoreSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>>
+  using Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____ = Result<std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>>;
+  inline Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____ create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____(const std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____ create_Result_std__shared_ptr_Promise_std__shared_ptr_HybridNativeCNContactSpec____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::shared_ptr<HybridNativeCNContactSpec>>>>::withError(error);
+  }
+
+  // pragma MARK: std::optional<std::shared_ptr<HybridNativeCNContactSpec>>
+  /**
+   * Specialized version of `std::optional<std::shared_ptr<HybridNativeCNContactSpec>>`.
+   */
+  using std__optional_std__shared_ptr_HybridNativeCNContactSpec__ = std::optional<std::shared_ptr<HybridNativeCNContactSpec>>;
+  inline std::optional<std::shared_ptr<HybridNativeCNContactSpec>> create_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(const std::shared_ptr<HybridNativeCNContactSpec>& value) noexcept {
+    return std::optional<std::shared_ptr<HybridNativeCNContactSpec>>(value);
+  }
+  inline bool has_value_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::shared_ptr<HybridNativeCNContactSpec> get_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>
+  /**
+   * Specialized version of `std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>`.
+   */
+  using std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec__ = std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>;
+  inline std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>> create_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec__(const std::shared_ptr<HybridNativeCNContactStoreSpec>& value) noexcept {
+    return std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>(value);
+  }
+  inline bool has_value_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec__(const std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::shared_ptr<HybridNativeCNContactStoreSpec> get_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec__(const std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& /* contact */)>
+  /**
+   * Specialized version of `std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>&)>`.
+   */
+  using Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__ = std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& /* contact */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& / * contact * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec___Wrapper final {
+  public:
+    explicit Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec___Wrapper(std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& /* contact */)>&& func): _function(std::make_unique<std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& /* contact */)>>(std::move(func))) {}
+    inline void call(std::optional<std::shared_ptr<HybridNativeCNContactSpec>> contact) const noexcept {
+      _function->operator()(contact);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::optional<std::shared_ptr<HybridNativeCNContactSpec>>& /* contact */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__ create_Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec___Wrapper wrap_Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__(Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec__ value) noexcept {
+    return Func_void_std__optional_std__shared_ptr_HybridNativeCNContactSpec___Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneContactUISpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneContactUISpec>`.
+   */
+  using std__shared_ptr_HybridOneContactUISpec_ = std::shared_ptr<HybridOneContactUISpec>;
+  std::shared_ptr<HybridOneContactUISpec> create_std__shared_ptr_HybridOneContactUISpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneContactUISpec_(std__shared_ptr_HybridOneContactUISpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneContactUISpec>
+  using std__weak_ptr_HybridOneContactUISpec_ = std::weak_ptr<HybridOneContactUISpec>;
+  inline std__weak_ptr_HybridOneContactUISpec_ weakify_std__shared_ptr_HybridOneContactUISpec_(const std::shared_ptr<HybridOneContactUISpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>
+  using Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__ = Result<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>;
+  inline Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__ create_Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__(const std::shared_ptr<HybridNativeCNKeyDescriptorSpec>& value) noexcept {
+    return Result<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__ create_Result_std__shared_ptr_HybridNativeCNKeyDescriptorSpec__(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<HybridNativeCNKeyDescriptorSpec>>::withError(error);
+  }
+
+  // pragma MARK: Result<std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>>
+  using Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___ = Result<std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>>;
+  inline Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___ create_Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___(const std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>& value) noexcept {
+    return Result<std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>>::withValue(value);
+  }
+  inline Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___ create_Result_std__optional_std__shared_ptr_HybridNativeCNContactStoreSpec___(const std::exception_ptr& error) noexcept {
+    return Result<std::optional<std::shared_ptr<HybridNativeCNContactStoreSpec>>>::withError(error);
   }
   
   // pragma MARK: std::optional<DataScannerTextContentType>

@@ -94,6 +94,7 @@ export const nativeRoutes = [
       { title: 'Image Manipulator', route: '/native/image-manipulator' },
       { title: 'DocumentPicker', route: '/native/document-picker' },
       { title: 'Document camera', route: '/native/document-camera' },
+      { title: 'Contact viewer', route: '/native/contact-ui' },
       { title: 'Data scanner', route: '/native/data-scanner' },
       { title: 'MessageUI', route: '/native/message-ui' },
       { title: 'SecureStore', route: '/native/secure-store' },

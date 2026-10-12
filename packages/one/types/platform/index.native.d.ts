@@ -234,4 +234,6 @@ export type { VNDocumentCameraScan, VNDocumentCameraError, VNDocumentCameraViewC
 export { MFMailComposeViewController, MFMessageComposeViewController } from './message-ui/index';
 export { DataScannerViewController } from './data-scanner/index';
 export type { DataScannerOptions, DataScannerViewControllerDelegate, RecognizedItem } from './data-scanner/index';
+export { CNContactViewController, CNMutableContact, CNContactStore } from './contact-ui/index';
+export type { CNContact, CNKeyDescriptor, CNContactViewControllerOptions, CNContactViewControllerDelegate } from './contact-ui/index';
 //# sourceMappingURL=index.native.d.ts.map

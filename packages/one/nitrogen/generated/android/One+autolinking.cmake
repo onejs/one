@@ -48,6 +48,10 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneCalendarSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneContactsSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridNativeCNContactSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridNativeCNKeyDescriptorSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridNativeCNContactStoreSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneContactUISpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDataScannerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDeviceSpec.cpp

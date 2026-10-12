@@ -12,6 +12,42 @@ import NitroModules
 public final class OneAutolinking {
   public typealias bridge = margelo.nitro.one.bridge.swift
 
+  public static func createOneContactUI() -> bridge.std__shared_ptr_HybridOneContactUISpec_ {
+    let hybridObject = HybridOneContactUI()
+    return { () -> bridge.std__shared_ptr_HybridOneContactUISpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneContactUIRecyclable() -> Bool {
+    return HybridOneContactUI.self is any RecyclableView.Type
+  }
+
+  public static func createNativeCNContact() -> bridge.std__shared_ptr_HybridNativeCNContactSpec_ {
+    let hybridObject = HybridNativeCNContact()
+    return { () -> bridge.std__shared_ptr_HybridNativeCNContactSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isNativeCNContactRecyclable() -> Bool {
+    return HybridNativeCNContact.self is any RecyclableView.Type
+  }
+
+  public static func createNativeCNContactStore() -> bridge.std__shared_ptr_HybridNativeCNContactStoreSpec_ {
+    let hybridObject = HybridNativeCNContactStore()
+    return { () -> bridge.std__shared_ptr_HybridNativeCNContactStoreSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isNativeCNContactStoreRecyclable() -> Bool {
+    return HybridNativeCNContactStore.self is any RecyclableView.Type
+  }
+
   public static func createOneDataScanner() -> bridge.std__shared_ptr_HybridOneDataScannerSpec_ {
     let hybridObject = HybridOneDataScanner()
     return { () -> bridge.std__shared_ptr_HybridOneDataScannerSpec_ in

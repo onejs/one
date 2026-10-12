@@ -249,6 +249,11 @@ const testScreens = [
     testID: 'nav-one-native-camera',
   },
   {
+    href: '/one-native-contact-ui',
+    label: 'System contact viewer',
+    testID: 'nav-one-native-contact-ui',
+  },
+  {
     href: '/one-native-data-scanner',
     label: 'Live data scanner',
     testID: 'nav-one-native-data-scanner',
