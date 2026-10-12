@@ -32,6 +32,14 @@ RCT_EXPORT_MODULE(OneNativeSourceEvents)
   }
 }
 
+RCT_EXPORT_METHOD(addListener:(NSString *)channel) {
+  // react validates the channel before the first native event can be sent.
+  @synchronized(OneNativeSourceEventChannels()) {
+    [OneNativeSourceEventChannels() addObject:channel];
+  }
+  [super addListener:channel];
+}
+
 + (void)sendChannel:(NSString *)channel argsJson:(NSString *)argsJson {
   @synchronized(OneNativeSourceEventChannels()) {
     [OneNativeSourceEventChannels() addObject:channel];
