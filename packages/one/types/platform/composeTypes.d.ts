@@ -637,3 +637,4 @@ export interface ComposeSyncSwitchProps extends Omit<ComposeNodeProps, 'children
     enabled?: boolean;
     onCheckedChangeSync?: (checked: boolean) => void;
 }
+//# sourceMappingURL=composeTypes.d.ts.map

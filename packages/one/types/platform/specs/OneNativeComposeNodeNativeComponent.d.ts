@@ -436,3 +436,4 @@ export interface NativeProps extends ViewProps {
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;
+//# sourceMappingURL=OneNativeComposeNodeNativeComponent.d.ts.map

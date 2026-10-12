@@ -246,3 +246,4 @@ export declare const Compose: {
     TimePickerDialog: typeof TimePickerDialog;
 };
 export {};
+//# sourceMappingURL=compose.d.ts.map
