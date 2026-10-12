@@ -102,8 +102,10 @@ export async function buildBundle(
 
   // Prevent the process not getting exited for some unknown reason.
   // If the process is not exited, it might hang the native build process.
+  // unref so a clean build exits as soon as its work is done; the timer only
+  // fires when something else still holds the event loop.
   setTimeout(() => {
     console.info('Exiting process to prevent hanging.')
     process.exit()
-  }, 30000)
+  }, 30000).unref()
 }
