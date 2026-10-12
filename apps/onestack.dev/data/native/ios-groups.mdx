@@ -1,6 +1,6 @@
 ---
 title: iOS Groups
-description: Group, GroupBox, ViewThatFits, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
+description: Group, GroupBox, ViewThatFits, GeometryReader, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
 ---
 
 <NativeHero
@@ -13,6 +13,7 @@ Grouping, disclosure, glass, and modifier slot views under `One.iOS`.
 - `GroupBox`, `DisclosureGroup`, and `ControlGroup` group related rows and
   controls.
 - `ViewThatFits` picks the first child that fits.
+- `GeometryReader` reports the frame SwiftUI lays it out in.
 - `Glass` and `GlassEffectContainer` apply Liquid Glass on iOS 26 and later.
 - `Overlay`, `ViewSlot`, and `SwipeActions` attach native content to a view.
 - Every view here throws on web and Android.
@@ -77,6 +78,40 @@ proposal is unbounded.
   <One.iOS.Button label="Action" onPress={run} />
 </One.iOS.ViewThatFits>
 ```
+
+## GeometryReader
+
+`One.iOS.GeometryReader` is SwiftUI's geometry reader with native content
+composition. It takes the box React Native gives it, composes its children
+natively, and reports the frame SwiftUI lays it out in through
+`onGeometryChange`. The frame is in global coordinates; `width` and `height`
+are the reader's size. The callback fires on mount and whenever the frame
+changes, so a reader inside a scroll view reports while scrolling: keep the
+handler cheap.
+
+Children are static: unlike SwiftUI's trailing closure, there is no render
+function. Compose the content directly and read its frame from
+`onGeometryChange`. A function child throws instead of mounting. Give the
+reader an explicit size or `flex: 1`; like SwiftUI, it fills what it is
+offered.
+
+```tsx
+<One.iOS.GeometryReader
+  style={{ height: 100 }}
+  onGeometryChange={(frame) => setWidth(frame.width)}
+>
+  <One.iOS.Text text="sized" />
+</One.iOS.GeometryReader>
+```
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#GeometryReaderProps"
+  data={[
+    { name: 'onGeometryChange', type: '(frame: GeometryReaderFrame) => void', description: 'The laid-out frame in global coordinates: { x, y, width, height }.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The composed content.' },
+  ]}
+/>
 
 ## ControlGroup
 

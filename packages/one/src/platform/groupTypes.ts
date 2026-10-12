@@ -56,6 +56,20 @@ export interface GlassEffectContainerProps extends ViewProps {
   children: ReactNode
 }
 
+// the frame SwiftUI laid a GeometryReader out in, in global coordinates. width
+// and height are the reader's size; x and y are its global origin.
+export interface GeometryReaderFrame {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+export interface GeometryReaderProps extends ViewProps {
+  onGeometryChange?: (frame: GeometryReaderFrame) => void
+  children: ReactNode
+}
+
 export interface OverlayProps extends ViewProps {
   alignment?: ZStackAlignment
   children: ReactNode

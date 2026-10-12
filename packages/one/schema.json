@@ -4120,6 +4120,40 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeGeometryReader",
+      "publicName": "GeometryReader",
+      "props": {},
+      "events": {
+        "onNativeGeometryReaderChange": {
+          "x": {
+            "type": "Double"
+          },
+          "y": {
+            "type": "Double"
+          },
+          "width": {
+            "type": "Double"
+          },
+          "height": {
+            "type": "Double"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {

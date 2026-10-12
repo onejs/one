@@ -888,6 +888,66 @@ describe('one native integration tests', () => {
       expect(await error.getText()).toContain('One.iOS.Map accepts')
     })
   })
+
+  // -- geometry reader (WRITTEN, interaction legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Geometry Reader', () => {
+    test('reader mounts and reports its laid-out frame', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-geometry-reader')
+      const view = await waitForElement(driver, 'one-native-geometry-reader-view', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+
+      const status = await waitForElement(driver, 'one-native-geometry-reader-status')
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Frame: 200x100'),
+        { timeout: 10_000, timeoutMsg: 'geometry reader did not report its frame' }
+      )
+
+      await captureScreenshot(driver, 'one-native-geometry-reader-mounted')
+    })
+
+    test('resizing the reader reports the new frame', sharedTestOptions, async () => {
+      const toggle = await waitForElement(driver, 'one-native-geometry-reader-toggle-width')
+      await toggle.click()
+      const status = await waitForElement(driver, 'one-native-geometry-reader-status')
+      await status.waitUntil(
+        async () => (await status.getText()).includes('Frame: 120x100'),
+        { timeout: 10_000, timeoutMsg: 'resized frame was not reported' }
+      )
+
+      await captureScreenshot(driver, 'one-native-geometry-reader-resized')
+    })
+
+    test('render functions throw instead of mounting', sharedTestOptions, async () => {
+      const invalid = await waitForElement(
+        driver,
+        'one-native-geometry-reader-invalid-function'
+      )
+      await invalid.click()
+      await dismissExpectedRenderError(driver, 'not a render function')
+      const error = await waitForElement(
+        driver,
+        'one-native-geometry-reader-function-error'
+      )
+      expect(await error.getText()).toContain('not a render function')
+    })
+
+    test('React Native children throw instead of mounting', sharedTestOptions, async () => {
+      const invalid = await waitForElement(
+        driver,
+        'one-native-geometry-reader-invalid-native'
+      )
+      await invalid.click()
+      await dismissExpectedRenderError(driver, 'takes SwiftUI children')
+      const error = await waitForElement(
+        driver,
+        'one-native-geometry-reader-native-error'
+      )
+      expect(await error.getText()).toContain('takes SwiftUI children')
+    })
+  })
 })
 
 // the standalone runner owns app launch and debugger automation after Appium closes.

@@ -9,6 +9,7 @@ import type {
   FullScreenCoverProps,
   GlassProps,
   GlassEffectContainerProps,
+  GeometryReaderProps,
   GroupProps,
   GroupBoxProps,
   ViewThatFitsProps,
@@ -129,6 +130,11 @@ function Glass(_props: GlassProps): never {
 }
 function GlassEffectContainer(_props: GlassEffectContainerProps): never {
   throw new Error('Swift.GlassEffectContainer requires an iOS native build')
+}
+function GeometryReader(_props: GeometryReaderProps): never {
+  throw new Error(
+    'Swift.GeometryReader requires an iOS native build'
+  )
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
@@ -283,6 +289,7 @@ export const Swift = {
   Section,
   Glass,
   GlassEffectContainer,
+  GeometryReader,
   LabeledContent,
   Button,
   Spacer,

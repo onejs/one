@@ -15,6 +15,7 @@ import NativeDivider from './specs/OneNativeDividerNativeComponent'
 import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeGlassEffectContainer from './specs/OneNativeGlassEffectContainerNativeComponent'
+import NativeGeometryReader from './specs/OneNativeGeometryReaderNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
@@ -61,6 +62,8 @@ import {
   type ViewThatFitsProps,
   viewThatFitsAxes,
   type GlassEffectContainerProps,
+  type GeometryReaderFrame,
+  type GeometryReaderProps,
   type LinkProps,
   type OverlayContentProps,
   type OverlayProps,
@@ -652,6 +655,56 @@ export function GlassEffectContainer({ spacing, children, style, ...props }: Gla
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGlassEffectContainer>
+  )
+}
+
+// a reader takes the box React Native gave it and reports the frame SwiftUI laid
+// it out in. children are static native composition: a render function cannot
+// cross into the native ViewBuilder, so one fails here with a javascript stack
+// instead of mounting nothing.
+export function GeometryReader({
+  onGeometryChange,
+  children,
+  style,
+  ...props
+}: GeometryReaderProps) {
+  if (onGeometryChange !== undefined && typeof onGeometryChange !== 'function')
+    throw new Error('Swift.GeometryReader onGeometryChange must be a function')
+  // Children.toArray drops function children, so a render function would slip
+  // through to native and mount nothing. check the prop itself first.
+  const direct = Array.isArray(children) ? children : [children]
+  if (direct.some((child) => typeof child === 'function'))
+    throw new Error(
+      'Swift.GeometryReader takes SwiftUI children, not a render function; compose the content directly and read its frame from onGeometryChange'
+    )
+  assertOneNativeChildren(children, 'Swift.GeometryReader')
+  return (
+    <NativeGeometryReader
+      {...props}
+      style={[{ alignSelf: 'stretch' }, style]}
+      onNativeGeometryReaderChange={({ nativeEvent }) => {
+        const frame = nativeEvent as Partial<GeometryReaderFrame> | null | undefined
+        if (
+          !frame ||
+          !Number.isFinite(frame.x) ||
+          !Number.isFinite(frame.y) ||
+          !Number.isFinite(frame.width) ||
+          !Number.isFinite(frame.height)
+        )
+          throw new Error('Swift.GeometryReader emitted an invalid geometry')
+        const { x, y, width, height } = frame
+        if (
+          x === undefined ||
+          y === undefined ||
+          width === undefined ||
+          height === undefined
+        )
+          throw new Error('Swift.GeometryReader emitted an invalid geometry')
+        onGeometryChange?.({ x, y, width, height })
+      }}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeGeometryReader>
   )
 }
 

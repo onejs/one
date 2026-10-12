@@ -126,6 +126,26 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeGeometryReader',
+    publicName: 'GeometryReader',
+    // a reader takes the box React Native gave it and reports the frame SwiftUI
+    // laid it out in; the frame's size is the reader's size. children compose
+    // natively: no JavaScript closure crosses into the native ViewBuilder.
+    props: {},
+    events: {
+      onNativeGeometryReaderChange: {
+        x: 'Double',
+        y: 'Double',
+        width: 'Double',
+        height: 'Double',
+      },
+    },
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [composedContent],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },
@@ -435,6 +455,9 @@ export function emitContainers(
     // only a container that keeps control chrome carries swiftStyle as its own struct
     // prop; every other container styles through its children or not at all.
     const styled = 'swiftStyle' in component && component.swiftStyle === true
+    const eventTypes = eventEntries
+      .flatMap(([, fields]) => Object.values(fields as Record<string, string>))
+      .join(' ')
     const reactNativeTypes = [
       ...(props.some(({ type }) => type === 'ColorValue') ? ['ColorValue'] : []),
       ...(styled ? ['ProcessedColorValue'] : []),
@@ -443,7 +466,11 @@ export function emitContainers(
     const codegenTypes = [
       ...new Set([
         ...(eventEntries.length ? ['DirectEventHandler', 'Int32'] : []),
-        ...(props.some(({ type }) => type === 'Double') || styled ? ['Double'] : []),
+        ...(props.some(({ type }) => type === 'Double') ||
+        styled ||
+        /\bDouble\b/.test(eventTypes)
+          ? ['Double']
+          : []),
         ...(styled ? ['WithDefault'] : []),
       ]),
     ]
