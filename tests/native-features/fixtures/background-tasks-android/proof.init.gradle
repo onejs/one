@@ -1,0 +1,19 @@
+// reuse an existing prebuilt consumer's resolved dependencies without editing
+// its application sources or replacing its installed package.
+def sourceRoot = new File(System.getProperty('one.services.sourceRoot'))
+def proofRoot = new File(sourceRoot, 'tests/native-features/fixtures/background-tasks-android')
+settingsEvaluated { settings ->
+    def one = settings.findProject(':one')
+    if (one != null) one.projectDir = new File(sourceRoot, 'packages/one/android')
+}
+gradle.beforeProject { project ->
+    if (project.path != ':app') return
+    project.afterEvaluate {
+        project.dependencies.add('implementation', 'androidx.work:work-runtime-ktx:2.9.0')
+        project.layout.buildDirectory.set(new File(proofRoot, 'build'))
+        project.android.defaultConfig.applicationId = 'dev.onejs.backgroundproof'
+        project.android.sourceSets.main.java.setSrcDirs([new File(proofRoot, 'src')])
+        project.android.sourceSets.main.manifest.srcFile(new File(proofRoot, 'AndroidManifest.xml'))
+        project.android.sourceSets.main.assets.setSrcDirs([new File(proofRoot, 'assets')])
+    }
+}

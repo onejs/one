@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <application android:name="dev.vxrn.nativefeatures.tests.BackgroundProofApplication" android:label="Background proof" android:theme="@android:style/Theme.Material.Light.NoActionBar" android:allowBackup="false">
+        <meta-data android:name="one.calendar.reminders" android:value="true" />
+        <meta-data android:name="one.backgroundTasks.refresh" android:value="proof.refresh" />
+        <meta-data android:name="one.backgroundTasks.processing" android:value="proof.power,proof.cancel,proof.fail" />
+        <activity android:name="dev.vxrn.nativefeatures.tests.BackgroundProofActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
