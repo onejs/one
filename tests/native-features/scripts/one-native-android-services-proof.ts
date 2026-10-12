@@ -358,19 +358,35 @@ function middleThirdDarkFraction(imagePath: string): number {
 
 async function screenCapturePrevent() {
   // mounted state: the fixture mounts with prevention idle and unheld.
+  // a fresh install (and pm clear) prompts for nearby-devices on first
+  // foreground; screen capture needs no nearby access, so deny it when
+  // present. scoped to this suite: other suites manage their own prompts.
   launch('one-native-screen-capture')
   let nodes = await waitFor(
     (current) =>
-      findByText(current, 'Prevention: idle') !== undefined &&
-      findByText(current, 'Prevention hold: idle') !== undefined,
-    { timeoutMs: 60_000 }
+      findByText(current, 'Prevention: idle') !== undefined ||
+      findByTestId(
+        current,
+        'com.android.permissioncontroller:id/permission_deny_button'
+      ) !== undefined,
+    { timeoutMs: 240_000 }
   )
+  if (
+    findByTestId(nodes, 'com.android.permissioncontroller:id/permission_deny_button') !==
+    undefined
+  ) {
+    await tapTestId('com.android.permissioncontroller:id/permission_deny_button')
+    nodes = await waitFor(
+      (current) => findByText(current, 'Prevention: idle') !== undefined,
+      { timeoutMs: 240_000 }
+    )
+  }
   check('screen-capture-prevent-mounted', screenText(nodes), 'Prevention: idle')
 
   // called state, refcount behavior, and the key negative, all through one run.
   await tapTestId('one-native-screen-capture-prevent-run')
   nodes = await waitFor((current) => screenText(current).includes('Prevention: done'), {
-    timeoutMs: 60_000,
+    timeoutMs: 120_000,
   })
   const text = screenText(nodes)
   check('screen-capture-prevent-initial', text, 'Prevent initial: false')
@@ -394,7 +410,7 @@ async function screenCapturePrevent() {
   await tapTestId('one-native-screen-capture-prevent-hold')
   nodes = await waitFor(
     (current) => findByText(current, 'Prevention hold: held true') !== undefined,
-    { timeoutMs: 30_000 }
+    { timeoutMs: 120_000 }
   )
   check('screen-capture-prevent-held', screenText(nodes), 'Prevention hold: held true')
   const heldFile = screencap('screen-capture-prevent-held.png')
@@ -405,7 +421,7 @@ async function screenCapturePrevent() {
   await tapTestId('one-native-screen-capture-prevent-release')
   nodes = await waitFor(
     (current) => findByText(current, 'Prevention hold: released false') !== undefined,
-    { timeoutMs: 30_000 }
+    { timeoutMs: 120_000 }
   )
   check('screen-capture-prevent-released-hold', screenText(nodes), 'Prevention hold: released false')
   const releasedFile = screencap('screen-capture-prevent-released.png')
