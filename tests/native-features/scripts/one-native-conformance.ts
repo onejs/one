@@ -110,6 +110,7 @@ const suites = [
   'app-tracking',
   'app-icon',
   'location',
+  'geofencing',
   'file-system',
   'audio',
   'audio-interruption',
@@ -769,6 +770,9 @@ const appTrackingLoaded = (nodes: Node[]) =>
 const locationLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-location-request')) && has(nodes, 'Permission: ')) ||
   has(nodes, 'Allow While Using App')
+const geofencingLoaded = (nodes: Node[]) =>
+  (Boolean(id(nodes, 'one-native-geofencing-request')) && has(nodes, 'Permission: ')) ||
+  has(nodes, 'Allow While Using App')
 const fileSystemLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-file-system-run')) && has(nodes, 'Status: ')
 const audioLoaded = (nodes: Node[]) =>
@@ -964,6 +968,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   'app-tracking': appTrackingLoaded,
   'app-icon': (nodes) => Boolean(id(nodes, 'one-native-app-icon-alternate')),
   location: locationLoaded,
+  geofencing: geofencingLoaded,
   'file-system': fileSystemLoaded,
   audio: audioLoaded,
   'audio-interruption': audioLoaded,
@@ -1104,6 +1109,7 @@ const suiteHome: Record<Suite, string> = {
   'app-tracking': 'nav-one-native-app-tracking',
   'app-icon': 'nav-one-native-app-icon',
   location: 'nav-one-native-location',
+  geofencing: 'nav-one-native-geofencing',
   'file-system': 'nav-one-native-file-system',
   audio: 'nav-one-native-audio',
   'audio-interruption': 'nav-one-native-audio',
@@ -1538,6 +1544,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
   }
   if (config.suite === 'location') {
+    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+  }
+  if (config.suite === 'geofencing') {
     execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
@@ -9923,6 +9939,74 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('background location watch stops', (n) =>
       labels(n).includes('Background watch: stopped'))
     screenshot('location-current-position.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'geofencing') {
+    const appContainer = execFileSync('xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
+      { encoding: 'utf8', timeout: 30_000 }).trim()
+    const infoPlist = execFileSync('xcrun', [
+      'plutil', '-p', path.join(appContainer, 'Info.plist')
+    ], { encoding: 'utf8', timeout: 30_000 })
+    if (!infoPlist.includes('NSLocationAlwaysAndWhenInUseUsageDescription'))
+      throw new Error('Installed app does not declare the always location usage description')
+    console.log('PASS installed app declares the always location usage description')
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-geofencing')
+    await wait('geofencing starts undetermined', (n) =>
+      labels(n).includes('Permission: notDetermined')
+    )
+    tap({ id: 'one-native-geofencing-start' })
+    await wait('monitoring requires authorization', (n) =>
+      labels(n).includes('Monitoring: error: E_LOCATION_PERMISSION')
+    )
+    tap({ id: 'one-native-geofencing-request' })
+    await wait('native location permission prompt appears with usage text', (n) =>
+      has(n, 'Allow While Using App') &&
+      labels(n).some((label) => label.includes('NativeFeatureTests verifies current location.'))
+    )
+    screenshot('geofencing-permission-prompt.png')
+    tap({ label: 'Allow While Using App' })
+    await wait('geofencing permission resolves when in use', (n) =>
+      labels(n).includes('Permission: whenInUse') &&
+      labels(n).includes('Monitoring: requested:whenInUse,whenInUse')
+    )
+    tap({ id: 'one-native-geofencing-anchor' })
+    await wait('geofencing anchors the simulated coordinate', (n) =>
+      labels(n).includes('Anchor: 37.7749,-122.4194')
+    )
+    tap({ id: 'one-native-geofencing-subscribe' })
+    await wait('region listeners subscribe', (n) =>
+      labels(n).includes('Monitoring: subscribed')
+    )
+    tap({ id: 'one-native-geofencing-start' })
+    await wait('monitoring starts one region', (n) =>
+      labels(n).includes('Monitoring: started:one-native-geofence') &&
+      labels(n).includes('Monitored: one-native-geofence')
+    )
+    tap({ id: 'one-native-geofencing-state' })
+    await wait('region state determines inside', (n) =>
+      labels(n).includes('State: inside')
+    )
+    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '48.8566,2.3522'], {
+      stdio: 'ignore',
+      timeout: 30_000,
+    })
+    await wait('region exit reaches the exit listener', (n) =>
+      labels(n).includes('Event: didExit:one-native-geofence')
+    )
+    tap({ id: 'one-native-geofencing-invalid' })
+    await wait('monitoring rejects an invalid region', (n) =>
+      labels(n).some((label) => label.includes('Monitoring: error:') && label.includes('radius'))
+    )
+    tap({ id: 'one-native-geofencing-stop' })
+    await wait('monitoring stops', (n) =>
+      labels(n).includes('Monitoring: stopped') &&
+      labels(n).includes('Monitored: none')
+    )
+    screenshot('geofencing-monitored.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }

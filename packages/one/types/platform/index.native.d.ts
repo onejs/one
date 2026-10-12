@@ -165,7 +165,7 @@ export type { LocalAuthenticationStatus } from './local-authentication/index';
 export { ProtectedStore } from './protected-store/index';
 export type { ProtectedStorePolicy } from './protected-store/index';
 export { Location } from './location/index';
-export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationWatchError, } from './location/index';
+export type { LocationPermissionStatus, LocationPosition, LocationPlace, LocationRegion, LocationWatchError, RegionCenter, RegionState, RegionSubscription, } from './location/index';
 export { FileSystem } from './file-system/index.native';
 export type { FileDirectories, FileEncoding, FileEntry, FileInfo, } from './file-system/index.native';
 export { Audio } from './audio/index';

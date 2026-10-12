@@ -730,6 +730,11 @@ const testScreens = [
     testID: 'nav-one-native-location',
   },
   {
+    href: '/one-native-geofencing',
+    label: 'One Native Geofencing',
+    testID: 'nav-one-native-geofencing',
+  },
+  {
     href: '/one-native-file-system',
     label: 'One Native File System',
     testID: 'nav-one-native-file-system',

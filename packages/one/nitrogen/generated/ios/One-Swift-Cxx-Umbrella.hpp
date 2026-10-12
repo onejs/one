@@ -296,6 +296,8 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
+// Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
 // Forward declaration of `MapPlace` to properly resolve imports.
@@ -416,6 +418,10 @@ namespace margelo::nitro::one { enum class PurchaseUpdateStatus; }
 namespace margelo::nitro::one { struct PurchaseUpdate; }
 // Forward declaration of `QuickActionItem` to properly resolve imports.
 namespace margelo::nitro::one { struct QuickActionItem; }
+// Forward declaration of `RegionCenter` to properly resolve imports.
+namespace margelo::nitro::one { struct RegionCenter; }
+// Forward declaration of `RegionState` to properly resolve imports.
+namespace margelo::nitro::one { enum class RegionState; }
 // Forward declaration of `ReminderInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ReminderInput` to properly resolve imports.
@@ -610,6 +616,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
+#include "LocationRegion.hpp"
 #include "MapCoordinate.hpp"
 #include "MapPlace.hpp"
 #include "MapRoute.hpp"
@@ -670,6 +677,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "PurchaseUpdate.hpp"
 #include "PurchaseUpdateStatus.hpp"
 #include "QuickActionItem.hpp"
+#include "RegionCenter.hpp"
+#include "RegionState.hpp"
 #include "ReminderInfo.hpp"
 #include "ReminderInput.hpp"
 #include "ResolvedDocumentPickerOptions.hpp"

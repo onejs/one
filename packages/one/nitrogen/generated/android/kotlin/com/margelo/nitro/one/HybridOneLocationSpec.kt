@@ -40,6 +40,10 @@ abstract class HybridOneLocationSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
+  abstract fun requestAlwaysAuthorization(): Promise<LocationPermissionStatus>
+  
+  @DoNotStrip
+  @Keep
   abstract fun getCurrentPosition(): Promise<LocationPosition>
   
   abstract fun addPositionListener(onPosition: (position: LocationPosition) -> Unit, onError: (code: String, message: String) -> Unit, background: Boolean): () -> Unit
@@ -58,6 +62,40 @@ abstract class HybridOneLocationSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun reverseGeocode(latitude: Double, longitude: Double): Promise<Array<LocationPlace>>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun startMonitoring(region: LocationRegion): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun stopMonitoring(identifier: String): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun monitoredRegions(): Array<LocationRegion>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun requestState(identifier: String): Promise<RegionState>
+  
+  abstract fun addDidEnterRegionListener(listener: (region: LocationRegion) -> Unit): () -> Unit
+  
+  @DoNotStrip
+  @Keep
+  private fun addDidEnterRegionListener_cxx(listener: Func_void_LocationRegion): Func_void {
+    val __result = addDidEnterRegionListener(listener)
+    return Func_void_java(__result)
+  }
+  
+  abstract fun addDidExitRegionListener(listener: (region: LocationRegion) -> Unit): () -> Unit
+  
+  @DoNotStrip
+  @Keep
+  private fun addDidExitRegionListener_cxx(listener: Func_void_LocationRegion): Func_void {
+    val __result = addDidExitRegionListener(listener)
+    return Func_void_java(__result)
+  }
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

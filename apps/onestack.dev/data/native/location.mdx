@@ -61,7 +61,7 @@ first; it adds `location` to
 app is active, after the user grants location permission. It uses the same
 stop function and displays iOS's background location indicator. Tracking
 stops when the watch is removed; apps should restore a wanted watch after a
-fresh launch. This path does not monitor regions or restart a terminated app.
+fresh launch. For region enter/exit monitoring see [Geofencing](/native/geofencing).
 Background mode without the manifest calls the error callback with
 `E_LOCATION_MANIFEST`; starting the background watch while inactive calls it
 with `E_LOCATION_BACKGROUND`.

@@ -98,6 +98,7 @@ declare module 'one' {
         | `/one-native-fetch`
         | `/one-native-file-system`
         | `/one-native-fonts`
+        | `/one-native-geofencing`
         | `/one-native-gestures`
         | `/one-native-glass-container`
         | `/one-native-gpu`

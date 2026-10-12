@@ -18,6 +18,12 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationPlace` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPlace; }
+// Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
+// Forward declaration of `RegionCenter` to properly resolve imports.
+namespace margelo::nitro::one { struct RegionCenter; }
+// Forward declaration of `RegionState` to properly resolve imports.
+namespace margelo::nitro::one { enum class RegionState; }
 
 #include "LocationPermissionStatus.hpp"
 #include <NitroModules/Promise.hpp>
@@ -27,6 +33,9 @@ namespace margelo::nitro::one { struct LocationPlace; }
 #include "LocationPlace.hpp"
 #include <vector>
 #include <optional>
+#include "LocationRegion.hpp"
+#include "RegionCenter.hpp"
+#include "RegionState.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -94,6 +103,14 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline std::shared_ptr<Promise<LocationPermissionStatus>> requestAlwaysAuthorization() override {
+      auto __result = _swiftPart.requestAlwaysAuthorization();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<LocationPosition>> getCurrentPosition() override {
       auto __result = _swiftPart.getCurrentPosition();
       if (__result.hasError()) [[unlikely]] {
@@ -120,6 +137,54 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<std::vector<LocationPlace>>> reverseGeocode(double latitude, double longitude) override {
       auto __result = _swiftPart.reverseGeocode(std::forward<decltype(latitude)>(latitude), std::forward<decltype(longitude)>(longitude));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> startMonitoring(const LocationRegion& region) override {
+      auto __result = _swiftPart.startMonitoring(std::forward<decltype(region)>(region));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> stopMonitoring(const std::string& identifier) override {
+      auto __result = _swiftPart.stopMonitoring(identifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::vector<LocationRegion> monitoredRegions() override {
+      auto __result = _swiftPart.monitoredRegions();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<RegionState>> requestState(const std::string& identifier) override {
+      auto __result = _swiftPart.requestState(identifier);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::function<void()> addDidEnterRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) override {
+      auto __result = _swiftPart.addDidEnterRegionListener(listener);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::function<void()> addDidExitRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) override {
+      auto __result = _swiftPart.addDidExitRegionListener(listener);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

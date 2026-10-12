@@ -14,6 +14,16 @@ final class HybridOneLocation: HybridOneLocationSpec {
   )] = [:]
   private var monitoring = false
   private var geocoders: [UUID: CLGeocoder] = [:]
+  private struct MonitoredRegion {
+    var region: CLCircularRegion
+    var notifyOnEntry: Bool
+    var notifyOnExit: Bool
+    var state: RegionState
+  }
+  private var monitoredRegions: [String: MonitoredRegion] = [:]
+  private var didEnterListeners: [UUID: (LocationRegion) -> Void] = [:]
+  private var didExitListeners: [UUID: (LocationRegion) -> Void] = [:]
+  private var statePromises: [String: [Promise<RegionState>]] = [:]
 
   override init() {
     super.init()
@@ -55,6 +65,46 @@ final class HybridOneLocation: HybridOneLocationSpec {
       }
       self.permissionPromises.append(promise)
       manager.requestWhenInUseAuthorization()
+    }
+    return promise
+  }
+
+  func requestAlwaysAuthorization() throws -> Promise<LocationPermissionStatus> {
+    let promise = Promise<LocationPermissionStatus>()
+    DispatchQueue.main.async {
+      guard let usage = Bundle.main.object(forInfoDictionaryKey: "NSLocationWhenInUseUsageDescription")
+        as? String, !usage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+      else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_MANIFEST", "Location.requestAlwaysAuthorization: set native.app.location.whenInUse"))
+        return
+      }
+      guard let alwaysUsage = Bundle.main.object(forInfoDictionaryKey: "NSLocationAlwaysAndWhenInUseUsageDescription")
+        as? String, !alwaysUsage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+      else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_MANIFEST", "Location.requestAlwaysAuthorization: set native.app.location.alwaysAndWhenInUse"))
+        return
+      }
+      let manager = self.locationManager()
+      guard manager.authorizationStatus == .notDetermined else {
+        promise.resolve(withResult: Self.status(manager.authorizationStatus))
+        return
+      }
+      if !self.permissionPromises.isEmpty {
+        self.permissionPromises.append(promise)
+        return
+      }
+      guard UIApplication.shared.applicationState == .active else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_BACKGROUND", "Location.requestAlwaysAuthorization: app must be active"))
+        return
+      }
+      self.permissionPromises.append(promise)
+      manager.requestAlwaysAuthorization()
     }
     return promise
   }
@@ -168,6 +218,213 @@ final class HybridOneLocation: HybridOneLocationSpec {
     return promise
   }
 
+  func startMonitoring(region: LocationRegion) throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      let manager = self.locationManager()
+      guard manager.authorizationStatus == .authorizedWhenInUse ||
+        manager.authorizationStatus == .authorizedAlways
+      else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_PERMISSION", "Location.startMonitoring: location permission is required"))
+        return
+      }
+      guard CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_UNAVAILABLE", "Location.startMonitoring: region monitoring is unavailable"))
+        return
+      }
+      let identifier = region.identifier.trimmingCharacters(in: .whitespacesAndNewlines)
+      guard !identifier.isEmpty else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_REGION", "Location.startMonitoring: region identifier is required"))
+        return
+      }
+      guard CLLocationCoordinate2DIsValid(
+        CLLocationCoordinate2D(
+          latitude: region.center.latitude, longitude: region.center.longitude)) else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_REGION", "Location.startMonitoring: region has an invalid coordinate"))
+        return
+      }
+      guard region.radius > 0 else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_REGION", "Location.startMonitoring: region radius must be greater than 0"))
+        return
+      }
+      if self.monitoredRegions[identifier] == nil && self.monitoredRegions.count >= 20 {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_GEOFENCING", "Location.startMonitoring: at most 20 regions can be monitored"))
+        return
+      }
+      let circular = CLCircularRegion(
+        center: CLLocationCoordinate2D(
+          latitude: region.center.latitude, longitude: region.center.longitude),
+        radius: region.radius,
+        identifier: identifier)
+      circular.notifyOnEntry = region.notifyOnEntry ?? true
+      circular.notifyOnExit = region.notifyOnExit ?? true
+      if let kept = self.monitoredRegions[identifier],
+        kept.region.center.latitude == circular.center.latitude,
+        kept.region.center.longitude == circular.center.longitude,
+        kept.region.radius == circular.radius,
+        kept.notifyOnEntry == circular.notifyOnEntry,
+        kept.notifyOnExit == circular.notifyOnExit
+      {
+        promise.resolve(withResult: ())
+        return
+      }
+      if let previous = self.monitoredRegions[identifier] {
+        manager.stopMonitoring(for: previous.region)
+      }
+      self.monitoredRegions[identifier] = MonitoredRegion(
+        region: circular,
+        notifyOnEntry: circular.notifyOnEntry,
+        notifyOnExit: circular.notifyOnExit,
+        state: .unknown)
+      manager.startMonitoring(for: circular)
+      promise.resolve(withResult: ())
+    }
+    return promise
+  }
+
+  func stopMonitoring(identifier: String) throws -> Promise<Void> {
+    let promise = Promise<Void>()
+    DispatchQueue.main.async {
+      if let monitored = self.monitoredRegions[identifier] {
+        self.locationManager().stopMonitoring(for: monitored.region)
+        self.monitoredRegions.removeValue(forKey: identifier)
+      }
+      promise.resolve(withResult: ())
+    }
+    return promise
+  }
+
+  func monitoredRegions() throws -> [LocationRegion] {
+    if Thread.isMainThread {
+      return monitoredSnapshot()
+    }
+    return DispatchQueue.main.sync { monitoredSnapshot() }
+  }
+
+  func requestState(identifier: String) throws -> Promise<RegionState> {
+    let promise = Promise<RegionState>()
+    DispatchQueue.main.async {
+      guard let monitored = self.monitoredRegions[identifier] else {
+        promise.reject(
+          withError: oneNativeError(
+            "E_LOCATION_REGION", "Location.requestState: no monitored region with that identifier"))
+        return
+      }
+      var pending = self.statePromises[identifier] ?? []
+      pending.append(promise)
+      self.statePromises[identifier] = pending
+      if pending.count == 1 {
+        self.locationManager().requestState(for: monitored.region)
+      }
+    }
+    return promise
+  }
+
+  func addDidEnterRegionListener(listener: @escaping (LocationRegion) -> Void) throws -> () -> Void {
+    let id = UUID()
+    DispatchQueue.main.async {
+      self.didEnterListeners[id] = listener
+    }
+    return { [weak self] in
+      DispatchQueue.main.async {
+        self?.didEnterListeners.removeValue(forKey: id)
+      }
+    }
+  }
+
+  func addDidExitRegionListener(listener: @escaping (LocationRegion) -> Void) throws -> () -> Void {
+    let id = UUID()
+    DispatchQueue.main.async {
+      self.didExitListeners[id] = listener
+    }
+    return { [weak self] in
+      DispatchQueue.main.async {
+        self?.didExitListeners.removeValue(forKey: id)
+      }
+    }
+  }
+
+  private func monitoredSnapshot() -> [LocationRegion] {
+    monitoredRegions.values.sorted { $0.region.identifier < $1.region.identifier }.map {
+      LocationRegion(
+        identifier: $0.region.identifier,
+        center: RegionCenter(
+          latitude: $0.region.center.latitude, longitude: $0.region.center.longitude),
+        radius: $0.region.radius,
+        notifyOnEntry: $0.notifyOnEntry,
+        notifyOnExit: $0.notifyOnExit,
+        state: $0.state)
+    }
+  }
+
+  private func snapshot(for identifier: String) -> LocationRegion? {
+    guard let monitored = monitoredRegions[identifier] else { return nil }
+    return LocationRegion(
+      identifier: monitored.region.identifier,
+      center: RegionCenter(
+        latitude: monitored.region.center.latitude,
+        longitude: monitored.region.center.longitude),
+      radius: monitored.region.radius,
+      notifyOnEntry: monitored.notifyOnEntry,
+      notifyOnExit: monitored.notifyOnExit,
+      state: monitored.state)
+  }
+
+  fileprivate func didEnterRegion(_ region: CLRegion) {
+    guard var monitored = monitoredRegions[region.identifier] else { return }
+    monitored.state = .inside
+    monitoredRegions[region.identifier] = monitored
+    guard monitored.notifyOnEntry, let snapshot = snapshot(for: region.identifier) else { return }
+    for listener in didEnterListeners.values { listener(snapshot) }
+  }
+
+  fileprivate func didExitRegion(_ region: CLRegion) {
+    guard var monitored = monitoredRegions[region.identifier] else { return }
+    monitored.state = .outside
+    monitoredRegions[region.identifier] = monitored
+    guard monitored.notifyOnExit, let snapshot = snapshot(for: region.identifier) else { return }
+    for listener in didExitListeners.values { listener(snapshot) }
+  }
+
+  fileprivate func didDetermineState(_ state: CLRegionState, for region: CLRegion) {
+    let resolved: RegionState
+    switch state {
+    case .inside: resolved = .inside
+    case .outside: resolved = .outside
+    case .unknown: resolved = .unknown
+    @unknown default: resolved = .unknown
+    }
+    if var monitored = monitoredRegions[region.identifier] {
+      monitored.state = resolved
+      monitoredRegions[region.identifier] = monitored
+    }
+    guard let pending = statePromises[region.identifier] else { return }
+    statePromises.removeValue(forKey: region.identifier)
+    for promise in pending {
+      promise.resolve(withResult: resolved)
+    }
+  }
+
+  fileprivate func monitoringDidFail(for region: CLRegion?) {
+    guard let region else { return }
+    if let monitored = monitoredRegions[region.identifier] {
+      locationManager().stopMonitoring(for: monitored.region)
+      monitoredRegions.removeValue(forKey: region.identifier)
+    }
+  }
+
   private func finishGeocode(
     _ id: UUID, _ promise: Promise<[LocationPlace]>, _ placemarks: [CLPlacemark]?, _ error: Error?
   ) {
@@ -208,6 +465,23 @@ final class HybridOneLocation: HybridOneLocationSpec {
       promise.resolve(withResult: status)
     }
     if status != .wheninuse && status != .always {
+      if !monitoredRegions.isEmpty {
+        for monitored in monitoredRegions.values {
+          manager.stopMonitoring(for: monitored.region)
+        }
+        monitoredRegions.removeAll()
+      }
+      if !statePromises.isEmpty {
+        let pending = statePromises
+        statePromises.removeAll()
+        for promises in pending.values {
+          for promise in promises {
+            promise.reject(
+              withError: oneNativeError(
+                "E_LOCATION_PERMISSION", "Location.requestState: location permission was removed"))
+          }
+        }
+      }
       if !positionListeners.isEmpty {
         if monitoring { manager.stopUpdatingLocation(); monitoring = false }
         let listeners = Array(positionListeners.values)
@@ -340,5 +614,25 @@ private final class OneLocationDelegate: NSObject, CLLocationManagerDelegate {
 
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     owner?.didFailWithError(error)
+  }
+
+  func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    owner?.didEnterRegion(region)
+  }
+
+  func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+    owner?.didExitRegion(region)
+  }
+
+  func locationManager(
+    _ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion
+  ) {
+    owner?.didDetermineState(state, for: region)
+  }
+
+  func locationManager(
+    _ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error
+  ) {
+    owner?.monitoringDidFail(for: region)
   }
 }

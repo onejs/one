@@ -4,9 +4,23 @@ import type {
   LocationPermissionStatus,
   LocationPosition,
   LocationPlace,
+  LocationRegion,
+  RegionCenter,
+  RegionState,
 } from '../specs/OneLocation.nitro'
-export type { LocationPermissionStatus, LocationPosition, LocationPlace }
+import { assertIdentifier, assertRegion, assertRegionListener } from './validation'
+export type {
+  LocationPermissionStatus,
+  LocationPosition,
+  LocationPlace,
+  LocationRegion,
+  RegionCenter,
+  RegionState,
+}
 export type LocationWatchError = Error & { code: string }
+export interface RegionSubscription {
+  remove(): void
+}
 let permission: LocationPermissionStatus = 'notDetermined'
 let observing: Promise<void> | undefined
 function observe(): Promise<void> {
@@ -113,4 +127,31 @@ export const Location = Object.freeze({
   },
   geocodeAddress: unavailable.geocodeAddress,
   reverseGeocode: unavailable.reverseGeocode,
+  requestAlwaysAuthorization: (): Promise<LocationPermissionStatus> =>
+    Promise.resolve('denied'),
+  startMonitoring: (region: LocationRegion): Promise<void> => {
+    assertRegion(region, 'startMonitoring')
+    return Promise.resolve()
+  },
+  stopMonitoring: (identifier: string): Promise<void> => {
+    assertIdentifier(identifier, 'stopMonitoring')
+    return Promise.resolve()
+  },
+  monitoredRegions: (): LocationRegion[] => [],
+  requestState: (identifier: string): Promise<RegionState> => {
+    assertIdentifier(identifier, 'requestState')
+    return Promise.resolve('unknown')
+  },
+  addDidEnterRegionListener: (
+    listener: (region: LocationRegion) => void
+  ): RegionSubscription => {
+    assertRegionListener(listener, 'addDidEnterRegionListener')
+    return { remove: () => {} }
+  },
+  addDidExitRegionListener: (
+    listener: (region: LocationRegion) => void
+  ): RegionSubscription => {
+    assertRegionListener(listener, 'addDidExitRegionListener')
+    return { remove: () => {} }
+  },
 })

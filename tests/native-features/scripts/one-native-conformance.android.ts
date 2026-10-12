@@ -1973,10 +1973,95 @@ async function run(config: Config) {
     await expect(
       'system-location-reverse',
       (nodes) => joined(nodes).includes('Reverse: San Francisco'),
-      'one-native-location-background-watch',
+      'nav-one-native-geofencing',
       undefined,
       45_000
     )
+    await tapNavigation(config, 'nav-one-native-geofencing')
+    await expect(
+      'system-geofencing-mounted',
+      (nodes) =>
+        joined(nodes).includes('Permission: whenInUse') &&
+        joined(nodes).includes('Monitoring: idle'),
+      'one-native-geofencing-anchor'
+    )
+    tapFresh(config, 'system-geofencing-subscribe', {
+      id: 'one-native-geofencing-subscribe',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-geofencing-subscribed',
+      (nodes) => joined(nodes).includes('Monitoring: subscribed'),
+      'one-native-geofencing-anchor'
+    )
+    adbText(config, ['emu', 'geo', 'fix', '-122.4194', '37.7749'])
+    tapFresh(config, 'system-geofencing-anchor', {
+      id: 'one-native-geofencing-anchor',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-geofencing-anchored',
+      (nodes) => joined(nodes).includes('Anchor: 37.7749,-122.4194'),
+      'one-native-geofencing-start'
+    )
+    tapFresh(config, 'system-geofencing-start', {
+      id: 'one-native-geofencing-start',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-geofencing-started',
+      (nodes) =>
+        joined(nodes).includes('Monitoring: started:one-native-geofence') &&
+        joined(nodes).includes('Monitored: one-native-geofence'),
+      'one-native-geofencing-state'
+    )
+    tapFresh(config, 'system-geofencing-state', {
+      id: 'one-native-geofencing-state',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-geofencing-inside',
+      (nodes) => joined(nodes).includes('State: inside'),
+      'one-native-geofencing-invalid'
+    )
+    adbText(config, ['emu', 'geo', 'fix', '-122.4094', '37.7849'])
+    await expect(
+      'system-geofencing-exit',
+      (nodes) => joined(nodes).includes('Event: didExit:one-native-geofence'),
+      'one-native-geofencing-invalid',
+      undefined,
+      60_000
+    )
+    tapFresh(config, 'system-geofencing-invalid', {
+      id: 'one-native-geofencing-invalid',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-geofencing-invalid',
+      (nodes) => {
+        const text = joined(nodes)
+        return text.includes('Monitoring: error:') && text.includes('radius')
+      },
+      'one-native-geofencing-stop'
+    )
+    tapFresh(config, 'system-geofencing-stop', {
+      id: 'one-native-geofencing-stop',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-geofencing-stopped',
+      (nodes) =>
+        joined(nodes).includes('Monitoring: stopped') &&
+        joined(nodes).includes('Monitored: none'),
+      'one-native-location-background-watch'
+    )
+    await tapNavigation(config, 'nav-one-native-location')
     const serviceDump = () =>
       adbText(config, ['shell', 'dumpsys', 'activity', 'services', config.packageId])
     const locationService = () => serviceDump().split(/(?=  \* ServiceRecord\{)/).find(

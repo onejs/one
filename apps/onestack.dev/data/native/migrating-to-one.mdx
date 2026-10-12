@@ -183,6 +183,20 @@ From `expo-notifications`. See [Notifications](/native/notifications).
 Payload, permission, and push token shapes are the same. Platform enums
 become string unions, and channel importance still accepts the numbers 0 to 5.
 
+## Geofencing
+
+From `expo-location` region monitoring. See [Geofencing](/native/geofencing). The calls keep Core Location's names instead of the task names: one region per `startMonitoring` call, one identifier per `stopMonitoring` call, and the delegate becomes two listeners whose `{ remove() }` replaces the task unregistration. `state` values become lowercase strings.
+
+| expo-location | One |
+|---|---|
+| `startGeofencingAsync(taskName, regions)` | `One.Location.startMonitoring(region)` (one region per call) |
+| `stopGeofencingAsync(taskName)` | `One.Location.stopMonitoring(identifier)` |
+| `hasStartedGeofencingAsync(taskName)` | `One.Location.monitoredRegions()` (empty means not started) |
+| `TaskManager.defineTask(name, ({ data: { eventType, region } }) => ...)` | `One.Location.addDidEnterRegionListener((region) => ...)` and `One.Location.addDidExitRegionListener((region) => ...)` |
+| region `{ identifier?, latitude, longitude, radius, notifyOnEnter?, notifyOnExit? }` | region `{ identifier, center: { latitude, longitude }, radius, notifyOnEntry?, notifyOnExit? }` |
+| `GeofencingEventType.Enter` / `.Exit` | the enter listener / the exit listener |
+| `GeofencingRegionState.Inside` | `'inside'` (and likewise for every member) |
+
 ## Maps
 
 From `react-native-maps`. See [Map](/native/map).

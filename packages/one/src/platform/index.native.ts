@@ -185,7 +185,11 @@ export type {
   LocationPermissionStatus,
   LocationPosition,
   LocationPlace,
+  LocationRegion,
   LocationWatchError,
+  RegionCenter,
+  RegionState,
+  RegionSubscription,
 } from './location/index'
 export { FileSystem } from './file-system/index.native'
 export type {

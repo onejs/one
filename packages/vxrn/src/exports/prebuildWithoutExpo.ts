@@ -2620,6 +2620,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       }
       if (app.location !== undefined) {
         usage.set('NSLocationWhenInUseUsageDescription', app.location.whenInUse)
+        if (app.location.alwaysAndWhenInUse !== undefined) {
+          usage.set(
+            'NSLocationAlwaysAndWhenInUseUsageDescription',
+            app.location.alwaysAndWhenInUse
+          )
+        }
       }
       if (app.pedometer !== undefined) {
         usage.set('NSMotionUsageDescription', app.pedometer.usage)

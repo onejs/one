@@ -13,6 +13,12 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationPlace` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPlace; }
+// Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
+// Forward declaration of `RegionCenter` to properly resolve imports.
+namespace margelo::nitro::one { struct RegionCenter; }
+// Forward declaration of `RegionState` to properly resolve imports.
+namespace margelo::nitro::one { enum class RegionState; }
 
 #include "LocationPermissionStatus.hpp"
 #include "JLocationPermissionStatus.hpp"
@@ -28,8 +34,16 @@ namespace margelo::nitro::one { struct LocationPlace; }
 #include "JLocationPlace.hpp"
 #include <string>
 #include <optional>
+#include <NitroModules/JUnit.hpp>
+#include "LocationRegion.hpp"
+#include "JLocationRegion.hpp"
+#include "RegionCenter.hpp"
+#include "JRegionCenter.hpp"
+#include "RegionState.hpp"
+#include "JRegionState.hpp"
 #include "JFunc_void_LocationPosition.hpp"
 #include "JFunc_void_std__string_std__string.hpp"
+#include "JFunc_void_LocationRegion.hpp"
 
 namespace margelo::nitro::one {
 
@@ -71,6 +85,22 @@ namespace margelo::nitro::one {
   }
   std::shared_ptr<Promise<LocationPermissionStatus>> JHybridOneLocationSpec::requestWhenInUsePermission() {
     static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("requestWhenInUsePermission");
+    auto __result = method(_javaPart);
+    return [&]() {
+      auto __promise = Promise<LocationPermissionStatus>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<JLocationPermissionStatus>(__boxedResult);
+        __promise->resolve(__result->toCpp());
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<LocationPermissionStatus>> JHybridOneLocationSpec::requestAlwaysAuthorization() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>()>("requestAlwaysAuthorization");
     auto __result = method(_javaPart);
     return [&]() {
       auto __promise = Promise<LocationPermissionStatus>::create();
@@ -162,6 +192,92 @@ namespace margelo::nitro::one {
         __promise->reject(std::make_exception_ptr(__jniError));
       });
       return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<void>> JHybridOneLocationSpec::startMonitoring(const LocationRegion& region) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<JLocationRegion> /* region */)>("startMonitoring");
+    auto __result = method(_javaPart, JLocationRegion::fromCpp(region));
+    return [&]() {
+      auto __promise = Promise<void>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
+        __promise->resolve();
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::shared_ptr<Promise<void>> JHybridOneLocationSpec::stopMonitoring(const std::string& identifier) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* identifier */)>("stopMonitoring");
+    auto __result = method(_javaPart, jni::make_jstring(identifier));
+    return [&]() {
+      auto __promise = Promise<void>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
+        __promise->resolve();
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::vector<LocationRegion> JHybridOneLocationSpec::monitoredRegions() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<JLocationRegion>>()>("monitoredRegions");
+    auto __result = method(_javaPart);
+    return [&](auto&& __input) {
+      size_t __size = __input->size();
+      std::vector<LocationRegion> __vector;
+      __vector.reserve(__size);
+      for (size_t __i = 0; __i < __size; __i++) {
+        auto __element = __input->getElement(__i);
+        __vector.push_back(__element->toCpp());
+      }
+      return __vector;
+    }(__result);
+  }
+  std::shared_ptr<Promise<RegionState>> JHybridOneLocationSpec::requestState(const std::string& identifier) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* identifier */)>("requestState");
+    auto __result = method(_javaPart, jni::make_jstring(identifier));
+    return [&]() {
+      auto __promise = Promise<RegionState>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
+        auto __result = jni::static_ref_cast<JRegionState>(__boxedResult);
+        __promise->resolve(__result->toCpp());
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  std::function<void()> JHybridOneLocationSpec::addDidEnterRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JFunc_void::javaobject>(jni::alias_ref<JFunc_void_LocationRegion::javaobject> /* listener */)>("addDidEnterRegionListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_LocationRegion_cxx::fromCpp(listener));
+    return [&]() -> std::function<void()> {
+      if (__result->isInstanceOf(JFunc_void_cxx::javaClassStatic())) [[likely]] {
+        auto downcast = jni::static_ref_cast<JFunc_void_cxx::javaobject>(__result);
+        return downcast->cthis()->getFunction();
+      } else {
+        auto __resultRef = jni::make_global(__result);
+        return JNICallable<JFunc_void, void()>(std::move(__resultRef));
+      }
+    }();
+  }
+  std::function<void()> JHybridOneLocationSpec::addDidExitRegionListener(const std::function<void(const LocationRegion& /* region */)>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JFunc_void::javaobject>(jni::alias_ref<JFunc_void_LocationRegion::javaobject> /* listener */)>("addDidExitRegionListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_LocationRegion_cxx::fromCpp(listener));
+    return [&]() -> std::function<void()> {
+      if (__result->isInstanceOf(JFunc_void_cxx::javaClassStatic())) [[likely]] {
+        auto downcast = jni::static_ref_cast<JFunc_void_cxx::javaobject>(__result);
+        return downcast->cthis()->getFunction();
+      } else {
+        auto __resultRef = jni::make_global(__result);
+        return JNICallable<JFunc_void, void()>(std::move(__resultRef));
+      }
     }();
   }
 
