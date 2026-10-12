@@ -50,6 +50,7 @@ object OneBackgroundTasksCoordinator {
         val kind: BackgroundTaskKind,
         val completion: CountDownLatch = CountDownLatch(1),
         @Volatile var success: Boolean = false,
+        val headless: Boolean = false,
     )
 
     private val running = ConcurrentHashMap<String, RunningTask>()
@@ -176,6 +177,7 @@ object OneBackgroundTasksCoordinator {
         // a listener that arrives after launches replays them, mirroring the
         // iOS coordinator: late JS registration still observes running tasks.
         for ((executionId, record) in running) {
+            if (record.headless) continue
             val invocation = BackgroundTaskInvocation(executionId, record.identifier, record.kind)
             mainHandler.post { this.onLaunch?.invoke(invocation) }
         }
@@ -190,16 +192,14 @@ object OneBackgroundTasksCoordinator {
         }
     }
 
-    internal fun hasListener(): Boolean = onLaunch != null
-
     // called by the worker on its background thread when real scheduled work
     // runs, and by the DEBUG deep-link hook for injected proof launches.
-    internal fun launch(identifier: String, kind: BackgroundTaskKind): RunningTask {
+    internal fun launch(identifier: String, kind: BackgroundTaskKind, headless: Boolean = false): RunningTask {
         val executionId = UUID.randomUUID().toString()
-        val record = RunningTask(executionId, identifier, kind)
+        val record = RunningTask(executionId, identifier, kind, headless = headless)
         running[executionId] = record
         val invocation = BackgroundTaskInvocation(executionId, identifier, kind)
-        mainHandler.post { onLaunch?.invoke(invocation) }
+        if (!headless) mainHandler.post { onLaunch?.invoke(invocation) }
         return record
     }
 

@@ -90,8 +90,14 @@ on both. On Android each identifier schedules uniquely-named one-time work;
 `requiresNetworkConnectivity` becomes a connected-network constraint and
 `requiresExternalPower` a charging constraint, and a refresh job rejects
 processing requirements, exactly like iOS. When scheduled work runs, the
-worker delivers the invocation to the registered JavaScript handler and
-reports its result; a launch with no registered handler fails after a
-startup grace period, and expiration aborts the handler's signal.
+worker starts the app’s `ReactHost` without mounting an Activity, then runs a
+React Native Headless JS task that invokes the handler registered by the
+native `setupFile` and reports its result; a launch with no registered handler fails after a
+startup grace period, and expiration aborts the handler's signal. Register
+handlers at module scope in that setup file, rather than in a component effect.
+WorkManager persists requests across process death and reboot; Android decides
+when constraints permit execution. Force-stop prevents background execution
+until the person opens the app again. See [React Native's Headless JS guide](https://reactnative.dev/docs/headless-js-android)
+for background JavaScript lifecycle details.
 
 Web validates registrations and requests, returns an empty pending list, and leaves registration, submission, and cancellation without system effects.
