@@ -41,11 +41,37 @@ export async function runZoomSuite(options: {
       .split('\n')
       .filter(Boolean)
       .map((line) => JSON.parse(line))
-  const native = (args: string[]) =>
-    execFileSync('xcodebuildmcp', ['debugging', ...args], {
-      encoding: 'utf8',
-      timeout: 30_000,
-    })
+  const commands: unknown[] = []
+  const saveCommands = () => fs.writeFileSync(
+    path.join(artifactDir, 'zoom-debugger-commands.json'),
+    JSON.stringify(commands, null, 2)
+  )
+  const native = (args: string[]) => {
+    const receipt = { args, startedAt: new Date().toISOString() }
+    commands.push(receipt)
+    saveCommands()
+    try {
+      const stdout = execFileSync('xcodebuildmcp', ['debugging', ...args], {
+        encoding: 'utf8',
+        timeout: 30_000,
+      })
+      Object.assign(receipt, { completedAt: new Date().toISOString(), stdout })
+      return stdout
+    } catch (error) {
+      const failure = error as Error & { stdout?: string; stderr?: string; status?: number; signal?: string }
+      Object.assign(receipt, {
+        failedAt: new Date().toISOString(),
+        error: failure.message,
+        stdout: failure.stdout?.toString(),
+        stderr: failure.stderr?.toString(),
+        status: failure.status,
+        signal: failure.signal,
+      })
+      throw error
+    } finally {
+      saveCommands()
+    }
+  }
   const find = (nodes: Node[], id: string) => nodes.find((n) => n.AXUniqueId === id)
   const nodes = await wait('zoom source has native geometry', (n) =>
     Boolean(find(n, 'zoom-source-item-1')?.frame?.height)
