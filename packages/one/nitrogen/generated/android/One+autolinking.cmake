@@ -49,6 +49,7 @@ target_sources(
   ../nitrogen/generated/shared/c++/HybridOneClipboardSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneContactsSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneCryptoSpec.cpp
+  ../nitrogen/generated/shared/c++/HybridOneDataScannerSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDeviceSpec.cpp
   ../nitrogen/generated/shared/c++/HybridOneDeviceAttestationSpec.cpp
   ../nitrogen/generated/shared/c++/HybridDocumentCameraImageSpec.cpp

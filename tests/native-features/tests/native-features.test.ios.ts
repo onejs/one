@@ -72,6 +72,24 @@ describe('one native integration tests', () => {
     }
   })
 
+  describe('VisionKit data scanner', () => {
+    test('rejects simulator presentation and scanning without recognized items', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-data-scanner')
+      await waitForElement(driver, 'data-scanner-screen')
+      expect(await (await waitForElement(driver, 'data-scanner-supported')).getText()).toBe('Supported: false')
+      expect(await (await waitForElement(driver, 'data-scanner-available')).getText()).toBe('Available: true')
+      await (await waitForElement(driver, 'data-scanner-present')).click()
+      await waitForElement(driver, 'Error: E_DATA_SCANNER_UNSUPPORTED')
+      expect(await (await waitForElement(driver, 'data-scanner-state')).getText()).toBe('State: rejected')
+      await (await waitForElement(driver, 'data-scanner-dismiss')).click()
+      await waitForElement(driver, 'State: dismissed')
+      await (await waitForElement(driver, 'data-scanner-start')).click()
+      await waitForElement(driver, 'State: rejected')
+      expect(await (await waitForElement(driver, 'data-scanner-items')).getText()).toBe('Items: 0')
+      await captureScreenshot(driver, 'data-scanner-unavailable')
+    })
+  })
+
   describe('MessageUI composers', () => {
     test('reports simulator capabilities and rejects unavailable composers', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-message-ui')

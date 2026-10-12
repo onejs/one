@@ -10,6 +10,7 @@
 #import "One-Swift-Cxx-Umbrella.hpp"
 #import <type_traits>
 
+#include "HybridOneDataScannerSpecSwift.hpp"
 #include "HybridOneMailComposeSpecSwift.hpp"
 #include "HybridOneMessageComposeSpecSwift.hpp"
 #include "HybridOneDocumentCameraSpecSwift.hpp"
@@ -73,6 +74,13 @@
   using namespace margelo::nitro;
   using namespace margelo::nitro::one;
 
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneDataScanner",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneDataScannerSpec> hybridObject = One::OneAutolinking::createOneDataScanner();
+      return hybridObject;
+    }
+  );
   HybridObjectRegistry::registerHybridObjectConstructor(
     "OneMailCompose",
     []() -> std::shared_ptr<HybridObject> {

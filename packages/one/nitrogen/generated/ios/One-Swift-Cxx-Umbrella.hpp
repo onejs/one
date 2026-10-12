@@ -126,6 +126,26 @@ namespace margelo::nitro::one { struct ContactPostalAddressInput; }
 namespace margelo::nitro::one { struct ContactPostalAddress; }
 // Forward declaration of `ContactsPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class ContactsPermissionStatus; }
+// Forward declaration of `DataScannerBounds` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerBounds; }
+// Forward declaration of `DataScannerConfiguration` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerConfiguration; }
+// Forward declaration of `DataScannerItemType` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerItemType; }
+// Forward declaration of `DataScannerPoint` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerPoint; }
+// Forward declaration of `DataScannerQualityLevel` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerQualityLevel; }
+// Forward declaration of `DataScannerRecognizedDataType` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerRecognizedDataType; }
+// Forward declaration of `DataScannerRecognizedItem` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerRecognizedItem; }
+// Forward declaration of `DataScannerRect` to properly resolve imports.
+namespace margelo::nitro::one { struct DataScannerRect; }
+// Forward declaration of `DataScannerScanningUnavailable` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerScanningUnavailable; }
+// Forward declaration of `DataScannerTextContentType` to properly resolve imports.
+namespace margelo::nitro::one { enum class DataScannerTextContentType; }
 // Forward declaration of `DetailedDirectoryInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct DetailedDirectoryInfo; }
 // Forward declaration of `DetailedFileInfo` to properly resolve imports.
@@ -204,6 +224,8 @@ namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactsSpec; }
+// Forward declaration of `HybridOneDataScannerSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneDataScannerSpec; }
 // Forward declaration of `HybridOneDeviceAttestationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 // Forward declaration of `HybridOneDeviceSpec` to properly resolve imports.
@@ -545,6 +567,16 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
 #include "ContactsPermissionStatus.hpp"
+#include "DataScannerBounds.hpp"
+#include "DataScannerConfiguration.hpp"
+#include "DataScannerItemType.hpp"
+#include "DataScannerPoint.hpp"
+#include "DataScannerQualityLevel.hpp"
+#include "DataScannerRecognizedDataType.hpp"
+#include "DataScannerRecognizedItem.hpp"
+#include "DataScannerRect.hpp"
+#include "DataScannerScanningUnavailable.hpp"
+#include "DataScannerTextContentType.hpp"
 #include "DetailedDirectoryInfo.hpp"
 #include "DetailedFileInfo.hpp"
 #include "DeviceAttestationAvailability.hpp"
@@ -584,6 +616,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactsSpec.hpp"
+#include "HybridOneDataScannerSpec.hpp"
 #include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentCameraSpec.hpp"
@@ -780,6 +813,8 @@ namespace One { class HybridOneCalendarSpec_cxx; }
 namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactsSpec_cxx; }
+// Forward declaration of `HybridOneDataScannerSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneDataScannerSpec_cxx; }
 // Forward declaration of `HybridOneDeviceAttestationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 // Forward declaration of `HybridOneDeviceSpec_cxx` to properly resolve imports.

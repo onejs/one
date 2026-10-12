@@ -1,9 +1,9 @@
 import NitroModules
 import UIKit
 
-func oneUIKitOnMain<T>(_ work: () throws -> T) rethrows -> T {
-  if Thread.isMainThread { return try work() }
-  return try DispatchQueue.main.sync(execute: work)
+func oneUIKitOnMain<T>(_ work: @MainActor () throws -> T) rethrows -> T {
+  if Thread.isMainThread { return try MainActor.assumeIsolated { try work() } }
+  return try DispatchQueue.main.sync { try MainActor.assumeIsolated { try work() } }
 }
 
 // holds the hybrid owner while UIKit owns its presented controller.

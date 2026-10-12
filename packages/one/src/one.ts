@@ -35,6 +35,7 @@ import {
   Calendar,
   WidgetUI,
   VNDocumentCameraViewController,
+  DataScannerViewController,
   MFMailComposeViewController,
   MFMessageComposeViewController,
   Clipboard as NativeClipboard,
@@ -81,6 +82,7 @@ export type OnePlatform = 'web' | 'ios' | 'android'
 export type OneIOS = typeof Swift & {
   readonly MFMailComposeViewController: typeof MFMailComposeViewController
   readonly MFMessageComposeViewController: typeof MFMessageComposeViewController
+  readonly DataScannerViewController: typeof DataScannerViewController
   readonly VNDocumentCameraViewController: typeof VNDocumentCameraViewController
   readonly WidgetUI: typeof WidgetUI
   readonly CameraView: typeof CameraView
@@ -188,6 +190,7 @@ function currentPlatform(): OnePlatform {
 const iOS: Readonly<OneIOS> = Object.freeze({
   ...Swift,
   VNDocumentCameraViewController,
+  DataScannerViewController,
   MFMailComposeViewController,
   MFMessageComposeViewController,
   WidgetUI,

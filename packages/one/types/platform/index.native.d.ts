@@ -223,4 +223,6 @@ export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerS
 export { VNDocumentCameraViewController } from './vision-kit/index';
 export type { VNDocumentCameraScan, VNDocumentCameraError, VNDocumentCameraViewControllerDelegate } from './vision-kit/index';
 export { MFMailComposeViewController, MFMessageComposeViewController } from './message-ui/index';
+export { DataScannerViewController } from './data-scanner/index';
+export type { DataScannerOptions, DataScannerViewControllerDelegate, RecognizedItem } from './data-scanner/index';
 //# sourceMappingURL=index.native.d.ts.map

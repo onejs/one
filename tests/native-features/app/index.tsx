@@ -249,6 +249,11 @@ const testScreens = [
     testID: 'nav-one-native-camera',
   },
   {
+    href: '/one-native-data-scanner',
+    label: 'Live data scanner',
+    testID: 'nav-one-native-data-scanner',
+  },
+  {
     href: '/one-native-message-ui',
     label: 'One Native MessageUI',
     testID: 'nav-one-native-message-ui',
