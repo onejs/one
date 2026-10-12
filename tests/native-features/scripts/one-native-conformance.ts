@@ -4045,8 +4045,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // simctl io reads the host framebuffer below the render-server secure
     // filter, so it cannot observe canvas blanking (measured: the held shot
     // renders normally while lldb shows the window under _UITextLayoutCanvasView).
-    // the canvas half is proven by prevent resolving (attach throws otherwise)
-    // plus the hold/release round trip; the overlay half is proven by pixels below.
+    // hold/release proves API state; structural attachment was checked separately.
+    // physical-device screenshot blanking remains unproven. pixels below check
+    // only the captured-scene overlay.
     tap({ id: 'one-native-screen-capture-prevent-hold' })
     await wait('prevention hold arms the secure canvas', (n) =>
       labels(n).includes('Prevention hold: held true')
