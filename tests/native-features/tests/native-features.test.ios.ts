@@ -915,6 +915,13 @@ describe('one native integration tests', () => {
   // -- map controls (WRITTEN, interaction legs not RAN: device proof belongs to the lane) --
 
   describe('One Native Map Controls', () => {
+    // mapkit reports the camera it settles on at first appearance, several identical
+    // onEnd callbacks in one tick, so the initialized count is read from the device
+    // once the seeded camera is reported. automatic framing of the two pins would
+    // center elsewhere, so the seeded center proves the props placed the camera.
+    const seeded = 'Center: 37.7955,-122.3937'
+    let initialized = ''
+
     test('map mounts with its compass and pitch controls', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-map-controls')
       const view = await waitForElement(driver, 'one-native-map-controls-view', {
@@ -923,13 +930,20 @@ describe('one native integration tests', () => {
       expect(await view.isDisplayed()).toBe(true)
 
       const status = await waitForElement(driver, 'one-native-map-controls-status')
-      expect(await status.getText()).toContain('Controls: compass,pitch')
-      expect(await status.getText()).toContain('Regions: 0')
+      await status.waitUntil(async () => (await status.getText()).includes(seeded), {
+        timeout: 10_000,
+        timeoutMsg: 'map did not report its seeded camera',
+      })
+      const text = await status.getText()
+      expect(text).toContain('Controls: compass,pitch')
+      initialized = text.match(/Regions: \d+ · Center: \S+/)![0]
+      expect(Number(initialized.match(/Regions: (\d+)/)![1])).toBeGreaterThan(0)
 
       await captureScreenshot(driver, 'one-native-map-controls-mounted')
     })
 
     test('toggling controls remounts the slot without resetting the map', sharedTestOptions, async () => {
+      expect(initialized).toContain(seeded)
       await (await waitForElement(driver, 'one-native-map-controls-toggle-user')).click()
       const status = await waitForElement(driver, 'one-native-map-controls-status')
       await status.waitUntil(
@@ -942,9 +956,31 @@ describe('one native integration tests', () => {
         async () => (await status.getText()).includes('Controls: pitch,user'),
         { timeout: 5000, timeoutMsg: 'compass control did not unmount' }
       )
-      expect(await status.getText()).toContain('Regions: 0')
+      expect(await status.getText()).toContain(initialized)
 
       await captureScreenshot(driver, 'one-native-map-controls-toggled')
+
+      // a real pan must move both the count and the center, or the unchanged
+      // status above would prove nothing about camera resets.
+      const rect = await driver.getElementRect(
+        await (await waitForElement(driver, 'one-native-map-controls-view')).elementId
+      )
+      const x = rect.x + rect.width / 2
+      const y = rect.y + rect.height / 2
+      await driver.execute('mobile: dragFromToForDuration', {
+        duration: 0.5,
+        fromX: x,
+        fromY: y,
+        toX: x - rect.width / 3,
+        toY: y - rect.height / 4,
+      })
+      await status.waitUntil(
+        async () => {
+          const text = await status.getText()
+          return !text.includes(initialized) && !text.includes(seeded)
+        },
+        { timeout: 5000, timeoutMsg: 'a pan did not report a new camera' }
+      )
     })
 
     test('a non-control child throws instead of mounting', sharedTestOptions, async () => {

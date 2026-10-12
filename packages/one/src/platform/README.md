@@ -784,8 +784,10 @@ it: size it with `style`.
 `latitude`, `longitude` and `distance` place the camera: `distance` is metres
 from the camera to the ground, which is how `MapCamera` frames a map. They seed
 the camera and re-center it when they change, and the user is free to pan and
-zoom in between. Panning is reported one way through `onRegionChange`, which
-fires when a gesture ends rather than continuously.
+zoom in between. The camera is reported one way through `onRegionChange`, which
+fires when a gesture ends rather than continuously. MapKit also reports the
+camera it settles on when the map first appears, so expect calls with the seeded
+camera before any gesture.
 
 The camera is deliberately not a controlled value. The controlled protocol
 carries one scalar and a camera is three, and a map that could snap back to a
