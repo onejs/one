@@ -71,6 +71,18 @@ namespace margelo::nitro::one {
     std::shared_ptr<Promise<void>> setNowPlayingInfo(const AudioNowPlayingInfo& info) override;
     std::shared_ptr<Promise<void>> clearNowPlayingInfo() override;
     std::function<void()> addRemoteCommandListener(const std::function<void(const AudioRemoteCommandEvent& /* event */)>& onEvent) override;
+    std::string createPlayer(const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) override;
+    void playerPlay(const std::string& playerId) override;
+    void playerPause(const std::string& playerId) override;
+    std::shared_ptr<Promise<void>> playerSeek(const std::string& playerId, double seconds, std::optional<double> toleranceBeforeMs, std::optional<double> toleranceAfterMs) override;
+    void playerReplace(const std::string& playerId, const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) override;
+    void removePlayer(const std::string& playerId) override;
+    AudioPlayerStatus getPlayerStatus(const std::string& playerId) override;
+    void setPlayerRate(const std::string& playerId, double rate, std::optional<PitchCorrectionQuality> pitchQuality) override;
+    void setPlayerVolume(const std::string& playerId, double volume) override;
+    void setPlayerMuted(const std::string& playerId, bool muted) override;
+    void setPlayerLoop(const std::string& playerId, bool loop) override;
+    void setPlayerPitchCorrection(const std::string& playerId, bool enabled) override;
 
   private:
     jni::global_ref<JHybridOneAudioSpec::JavaPart> _javaPart;

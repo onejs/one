@@ -93,10 +93,17 @@ export type {
 export type {
   AudioPlaybackState,
   AudioPlaybackStatus,
+  AudioPlayer,
+  AudioPlayerOptions,
+  AudioPlayerSubscription,
   AudioRecordingPermission,
   AudioRecordingResult,
   AudioRecordingState,
   AudioRecordingStatus,
+  AudioSource,
+  AudioSourceObject,
+  AudioStatus,
+  PitchCorrectionQuality,
 } from './audio/index'
 export { Share } from './share/index'
 export { Open } from './open/index'

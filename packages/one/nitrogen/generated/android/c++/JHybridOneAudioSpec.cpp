@@ -19,6 +19,8 @@ namespace margelo::nitro::one { struct AudioRecordingStatus; }
 namespace margelo::nitro::one { enum class AudioRecordingState; }
 // Forward declaration of `AudioRecordingResult` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioRecordingResult; }
+// Forward declaration of `AudioPlayerStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayerStatus; }
 // Forward declaration of `AudioInterruptionEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioInterruptionEvent; }
 // Forward declaration of `AudioInterruptionType` to properly resolve imports.
@@ -29,6 +31,8 @@ namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
 namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
 // Forward declaration of `AudioRemoteCommandType` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
+// Forward declaration of `PitchCorrectionQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 
 #include "AudioRecordingPermission.hpp"
 #include <NitroModules/Promise.hpp>
@@ -50,6 +54,8 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 #include <functional>
 #include "JFunc_void.hpp"
 #include <NitroModules/JNICallable.hpp>
+#include "AudioPlayerStatus.hpp"
+#include "JAudioPlayerStatus.hpp"
 #include "AudioInterruptionEvent.hpp"
 #include "JFunc_void_AudioInterruptionEvent.hpp"
 #include "JAudioInterruptionEvent.hpp"
@@ -62,6 +68,9 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 #include "JAudioRemoteCommandEvent.hpp"
 #include "AudioRemoteCommandType.hpp"
 #include "JAudioRemoteCommandType.hpp"
+#include <unordered_map>
+#include "PitchCorrectionQuality.hpp"
+#include "JPitchCorrectionQuality.hpp"
 
 namespace margelo::nitro::one {
 
@@ -358,6 +367,79 @@ namespace margelo::nitro::one {
         return JNICallable<JFunc_void, void()>(std::move(__resultRef));
       }
     }();
+  }
+  std::string JHybridOneAudioSpec::createPlayer(const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JString>(jni::alias_ref<jni::JString> /* sourceUri */, jni::alias_ref<jni::JMap<jni::JString, jni::JString>> /* headers */)>("createPlayer");
+    auto __result = method(_javaPart, sourceUri.has_value() ? jni::make_jstring(sourceUri.value()) : nullptr, headers.has_value() ? [&]() -> jni::local_ref<jni::JMap<jni::JString, jni::JString>> {
+      auto __map = jni::JHashMap<jni::JString, jni::JString>::create(headers.value().size());
+      for (const auto& __entry : headers.value()) {
+        __map->put(jni::make_jstring(__entry.first), jni::make_jstring(__entry.second));
+      }
+      return __map;
+    }() : nullptr);
+    return __result->toStdString();
+  }
+  void JHybridOneAudioSpec::playerPlay(const std::string& playerId) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */)>("playerPlay");
+    method(_javaPart, jni::make_jstring(playerId));
+  }
+  void JHybridOneAudioSpec::playerPause(const std::string& playerId) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */)>("playerPause");
+    method(_javaPart, jni::make_jstring(playerId));
+  }
+  std::shared_ptr<Promise<void>> JHybridOneAudioSpec::playerSeek(const std::string& playerId, double seconds, std::optional<double> toleranceBeforeMs, std::optional<double> toleranceAfterMs) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* playerId */, double /* seconds */, jni::alias_ref<jni::JDouble> /* toleranceBeforeMs */, jni::alias_ref<jni::JDouble> /* toleranceAfterMs */)>("playerSeek");
+    auto __result = method(_javaPart, jni::make_jstring(playerId), seconds, toleranceBeforeMs.has_value() ? jni::JDouble::valueOf(toleranceBeforeMs.value()) : nullptr, toleranceAfterMs.has_value() ? jni::JDouble::valueOf(toleranceAfterMs.value()) : nullptr);
+    return [&]() {
+      auto __promise = Promise<void>::create();
+      __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
+        __promise->resolve();
+      });
+      __result->cthis()->addOnRejectedListener([=](const jni::alias_ref<jni::JThrowable>& __throwable) {
+        jni::JniException __jniError(__throwable);
+        __promise->reject(std::make_exception_ptr(__jniError));
+      });
+      return __promise;
+    }();
+  }
+  void JHybridOneAudioSpec::playerReplace(const std::string& playerId, const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */, jni::alias_ref<jni::JString> /* sourceUri */, jni::alias_ref<jni::JMap<jni::JString, jni::JString>> /* headers */)>("playerReplace");
+    method(_javaPart, jni::make_jstring(playerId), sourceUri.has_value() ? jni::make_jstring(sourceUri.value()) : nullptr, headers.has_value() ? [&]() -> jni::local_ref<jni::JMap<jni::JString, jni::JString>> {
+      auto __map = jni::JHashMap<jni::JString, jni::JString>::create(headers.value().size());
+      for (const auto& __entry : headers.value()) {
+        __map->put(jni::make_jstring(__entry.first), jni::make_jstring(__entry.second));
+      }
+      return __map;
+    }() : nullptr);
+  }
+  void JHybridOneAudioSpec::removePlayer(const std::string& playerId) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */)>("removePlayer");
+    method(_javaPart, jni::make_jstring(playerId));
+  }
+  AudioPlayerStatus JHybridOneAudioSpec::getPlayerStatus(const std::string& playerId) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JAudioPlayerStatus>(jni::alias_ref<jni::JString> /* playerId */)>("getPlayerStatus");
+    auto __result = method(_javaPart, jni::make_jstring(playerId));
+    return __result->toCpp();
+  }
+  void JHybridOneAudioSpec::setPlayerRate(const std::string& playerId, double rate, std::optional<PitchCorrectionQuality> pitchQuality) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */, double /* rate */, jni::alias_ref<JPitchCorrectionQuality> /* pitchQuality */)>("setPlayerRate");
+    method(_javaPart, jni::make_jstring(playerId), rate, pitchQuality.has_value() ? JPitchCorrectionQuality::fromCpp(pitchQuality.value()) : nullptr);
+  }
+  void JHybridOneAudioSpec::setPlayerVolume(const std::string& playerId, double volume) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */, double /* volume */)>("setPlayerVolume");
+    method(_javaPart, jni::make_jstring(playerId), volume);
+  }
+  void JHybridOneAudioSpec::setPlayerMuted(const std::string& playerId, bool muted) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */, jboolean /* muted */)>("setPlayerMuted");
+    method(_javaPart, jni::make_jstring(playerId), muted);
+  }
+  void JHybridOneAudioSpec::setPlayerLoop(const std::string& playerId, bool loop) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */, jboolean /* loop */)>("setPlayerLoop");
+    method(_javaPart, jni::make_jstring(playerId), loop);
+  }
+  void JHybridOneAudioSpec::setPlayerPitchCorrection(const std::string& playerId, bool enabled) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* playerId */, jboolean /* enabled */)>("setPlayerPitchCorrection");
+    method(_javaPart, jni::make_jstring(playerId), enabled);
   }
 
 } // namespace margelo::nitro::one

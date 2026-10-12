@@ -34,6 +34,10 @@ namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
 namespace margelo::nitro::one { struct AudioRemoteCommandEvent; }
 // Forward declaration of `AudioRemoteCommandType` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
+// Forward declaration of `AudioPlayerStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayerStatus; }
+// Forward declaration of `PitchCorrectionQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 
 #include "AudioRecordingPermission.hpp"
 #include <NitroModules/Promise.hpp>
@@ -50,6 +54,9 @@ namespace margelo::nitro::one { enum class AudioRemoteCommandType; }
 #include "AudioNowPlayingInfo.hpp"
 #include "AudioRemoteCommandEvent.hpp"
 #include "AudioRemoteCommandType.hpp"
+#include <unordered_map>
+#include "AudioPlayerStatus.hpp"
+#include "PitchCorrectionQuality.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -97,7 +104,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-
+    
 
   public:
     // Methods
@@ -236,6 +243,84 @@ namespace margelo::nitro::one {
       }
       auto __value = std::move(__result.value());
       return __value;
+    }
+    inline std::string createPlayer(const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) override {
+      auto __result = _swiftPart.createPlayer(sourceUri, headers);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void playerPlay(const std::string& playerId) override {
+      auto __result = _swiftPart.playerPlay(playerId);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void playerPause(const std::string& playerId) override {
+      auto __result = _swiftPart.playerPause(playerId);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline std::shared_ptr<Promise<void>> playerSeek(const std::string& playerId, double seconds, std::optional<double> toleranceBeforeMs, std::optional<double> toleranceAfterMs) override {
+      auto __result = _swiftPart.playerSeek(playerId, std::forward<decltype(seconds)>(seconds), toleranceBeforeMs, toleranceAfterMs);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void playerReplace(const std::string& playerId, const std::optional<std::string>& sourceUri, const std::optional<std::unordered_map<std::string, std::string>>& headers) override {
+      auto __result = _swiftPart.playerReplace(playerId, sourceUri, headers);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void removePlayer(const std::string& playerId) override {
+      auto __result = _swiftPart.removePlayer(playerId);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline AudioPlayerStatus getPlayerStatus(const std::string& playerId) override {
+      auto __result = _swiftPart.getPlayerStatus(playerId);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline void setPlayerRate(const std::string& playerId, double rate, std::optional<PitchCorrectionQuality> pitchQuality) override {
+      auto __result = _swiftPart.setPlayerRate(playerId, std::forward<decltype(rate)>(rate), pitchQuality);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void setPlayerVolume(const std::string& playerId, double volume) override {
+      auto __result = _swiftPart.setPlayerVolume(playerId, std::forward<decltype(volume)>(volume));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void setPlayerMuted(const std::string& playerId, bool muted) override {
+      auto __result = _swiftPart.setPlayerMuted(playerId, std::forward<decltype(muted)>(muted));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void setPlayerLoop(const std::string& playerId, bool loop) override {
+      auto __result = _swiftPart.setPlayerLoop(playerId, std::forward<decltype(loop)>(loop));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void setPlayerPitchCorrection(const std::string& playerId, bool enabled) override {
+      auto __result = _swiftPart.setPlayerPitchCorrection(playerId, std::forward<decltype(enabled)>(enabled));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
     }
 
   private:

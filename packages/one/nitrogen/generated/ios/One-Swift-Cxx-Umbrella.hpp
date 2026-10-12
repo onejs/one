@@ -38,6 +38,8 @@ namespace margelo::nitro::one { struct AudioNowPlayingInfo; }
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioPlaybackStatus; }
+// Forward declaration of `AudioPlayerStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayerStatus; }
 // Forward declaration of `AudioRecordingPermission` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioRecordingPermission; }
 // Forward declaration of `AudioRecordingResult` to properly resolve imports.
@@ -392,6 +394,8 @@ namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `PitchCorrectionQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 // Forward declaration of `PrintResult` to properly resolve imports.
 namespace margelo::nitro::one { struct PrintResult; }
 // Forward declaration of `ProtectedStorePolicy` to properly resolve imports.
@@ -477,6 +481,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "AudioNowPlayingInfo.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
+#include "AudioPlayerStatus.hpp"
 #include "AudioRecordingPermission.hpp"
 #include "AudioRecordingResult.hpp"
 #include "AudioRecordingState.hpp"
@@ -654,6 +659,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
+#include "PitchCorrectionQuality.hpp"
 #include "PrintResult.hpp"
 #include "ProtectedStorePolicy.hpp"
 #include "PurchaseProduct.hpp"
@@ -697,6 +703,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include <memory>
 #include <optional>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 // C++ helpers for Swift

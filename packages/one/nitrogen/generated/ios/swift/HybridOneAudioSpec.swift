@@ -10,7 +10,7 @@ import NitroModules
 /// See ``HybridOneAudioSpec``
 public protocol HybridOneAudioSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func getRecordingPermissionStatus() throws -> Promise<AudioRecordingPermission>
@@ -30,6 +30,18 @@ public protocol HybridOneAudioSpec_protocol: HybridObject {
   func setNowPlayingInfo(info: AudioNowPlayingInfo) throws -> Promise<Void>
   func clearNowPlayingInfo() throws -> Promise<Void>
   func addRemoteCommandListener(onEvent: @escaping (_ event: AudioRemoteCommandEvent) -> Void) throws -> () -> Void
+  func createPlayer(sourceUri: String?, headers: Dictionary<String, String>?) throws -> String
+  func playerPlay(playerId: String) throws -> Void
+  func playerPause(playerId: String) throws -> Void
+  func playerSeek(playerId: String, seconds: Double, toleranceBeforeMs: Double?, toleranceAfterMs: Double?) throws -> Promise<Void>
+  func playerReplace(playerId: String, sourceUri: String?, headers: Dictionary<String, String>?) throws -> Void
+  func removePlayer(playerId: String) throws -> Void
+  func getPlayerStatus(playerId: String) throws -> AudioPlayerStatus
+  func setPlayerRate(playerId: String, rate: Double, pitchQuality: PitchCorrectionQuality?) throws -> Void
+  func setPlayerVolume(playerId: String, volume: Double) throws -> Void
+  func setPlayerMuted(playerId: String, muted: Bool) throws -> Void
+  func setPlayerLoop(playerId: String, loop: Bool) throws -> Void
+  func setPlayerPitchCorrection(playerId: String, enabled: Bool) throws -> Void
 }
 
 public extension HybridOneAudioSpec_protocol {

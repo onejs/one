@@ -1,5 +1,7 @@
 import type { AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingStatus, AudioInterruptionEvent, AudioNowPlayingInfo, AudioRemoteCommandEvent } from '../specs/OneAudio.nitro';
-export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioInterruptionEvent, AudioInterruptionType, AudioNowPlayingInfo, AudioRemoteCommandEvent, AudioRemoteCommandType, } from '../specs/OneAudio.nitro';
+import { AudioPlayer, createPlayer } from './player.native';
+export type { AudioPlaybackState, AudioPlaybackStatus, AudioRecordingPermission, AudioRecordingResult, AudioRecordingState, AudioRecordingStatus, AudioInterruptionEvent, AudioInterruptionType, AudioNowPlayingInfo, AudioRemoteCommandEvent, AudioRemoteCommandType, PitchCorrectionQuality, } from '../specs/OneAudio.nitro';
+export type * from './types';
 export declare const Audio: Readonly<{
     getRecordingPermissionStatus: () => Promise<AudioRecordingPermission>;
     requestRecordingPermission: () => Promise<AudioRecordingPermission>;
@@ -18,5 +20,7 @@ export declare const Audio: Readonly<{
     setNowPlayingInfo: (info: AudioNowPlayingInfo) => Promise<void>;
     clearNowPlayingInfo: () => Promise<void>;
     watchRemoteCommands: (onEvent: (event: AudioRemoteCommandEvent) => void) => (() => void);
+    AudioPlayer: typeof AudioPlayer;
+    createPlayer: typeof createPlayer;
 }>;
 //# sourceMappingURL=index.native.d.ts.map

@@ -36,6 +36,8 @@ namespace margelo::nitro::one { enum class AudioInterruptionType; }
 namespace margelo::nitro::one { enum class AudioPlaybackState; }
 // Forward declaration of `AudioPlaybackStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct AudioPlaybackStatus; }
+// Forward declaration of `AudioPlayerStatus` to properly resolve imports.
+namespace margelo::nitro::one { struct AudioPlayerStatus; }
 // Forward declaration of `AudioRecordingPermission` to properly resolve imports.
 namespace margelo::nitro::one { enum class AudioRecordingPermission; }
 // Forward declaration of `AudioRecordingResult` to properly resolve imports.
@@ -348,6 +350,8 @@ namespace margelo::nitro::one { struct PhotoLibraryAsset; }
 namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 // Forward declaration of `PhotoLibraryPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
+// Forward declaration of `PitchCorrectionQuality` to properly resolve imports.
+namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
 // Forward declaration of `PrintResult` to properly resolve imports.
 namespace margelo::nitro::one { struct PrintResult; }
 // Forward declaration of `PurchaseProductType` to properly resolve imports.
@@ -515,6 +519,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "AudioInterruptionType.hpp"
 #include "AudioPlaybackState.hpp"
 #include "AudioPlaybackStatus.hpp"
+#include "AudioPlayerStatus.hpp"
 #include "AudioRecordingPermission.hpp"
 #include "AudioRecordingResult.hpp"
 #include "AudioRecordingState.hpp"
@@ -671,6 +676,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "PhotoLibraryAssetPage.hpp"
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
+#include "PitchCorrectionQuality.hpp"
 #include "PrintResult.hpp"
 #include "PurchaseProduct.hpp"
 #include "PurchaseProductType.hpp"
@@ -709,6 +715,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include <memory>
 #include <optional>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 /**
@@ -1532,6 +1539,61 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_AudioRemoteCommandEvent_Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::unordered_map<std::string, std::string>
+  /**
+   * Specialized version of `std::unordered_map<std::string, std::string>`.
+   */
+  using std__unordered_map_std__string__std__string_ = std::unordered_map<std::string, std::string>;
+  inline std::unordered_map<std::string, std::string> create_std__unordered_map_std__string__std__string_(size_t size) noexcept {
+    std::unordered_map<std::string, std::string> map;
+    map.reserve(size);
+    return map;
+  }
+  inline std::vector<std::string> get_std__unordered_map_std__string__std__string__keys(const std__unordered_map_std__string__std__string_& map) noexcept {
+    std::vector<std::string> keys;
+    keys.reserve(map.size());
+    for (const auto& entry : map) {
+      keys.push_back(entry.first);
+    }
+    return keys;
+  }
+  inline std::string get_std__unordered_map_std__string__std__string__value(const std__unordered_map_std__string__std__string_& map, const std::string& key) noexcept {
+    return map.find(key)->second;
+  }
+  inline void emplace_std__unordered_map_std__string__std__string_(std__unordered_map_std__string__std__string_& map, const std::string& key, const std::string& value) noexcept {
+    map.emplace(key, value);
+  }
+  
+  // pragma MARK: std::optional<std::unordered_map<std::string, std::string>>
+  /**
+   * Specialized version of `std::optional<std::unordered_map<std::string, std::string>>`.
+   */
+  using std__optional_std__unordered_map_std__string__std__string__ = std::optional<std::unordered_map<std::string, std::string>>;
+  inline std::optional<std::unordered_map<std::string, std::string>> create_std__optional_std__unordered_map_std__string__std__string__(const std::unordered_map<std::string, std::string>& value) noexcept {
+    return std::optional<std::unordered_map<std::string, std::string>>(value);
+  }
+  inline bool has_value_std__optional_std__unordered_map_std__string__std__string__(const std::optional<std::unordered_map<std::string, std::string>>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::unordered_map<std::string, std::string> get_std__optional_std__unordered_map_std__string__std__string__(const std::optional<std::unordered_map<std::string, std::string>>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<PitchCorrectionQuality>
+  /**
+   * Specialized version of `std::optional<PitchCorrectionQuality>`.
+   */
+  using std__optional_PitchCorrectionQuality_ = std::optional<PitchCorrectionQuality>;
+  inline std::optional<PitchCorrectionQuality> create_std__optional_PitchCorrectionQuality_(const PitchCorrectionQuality& value) noexcept {
+    return std::optional<PitchCorrectionQuality>(value);
+  }
+  inline bool has_value_std__optional_PitchCorrectionQuality_(const std::optional<PitchCorrectionQuality>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline PitchCorrectionQuality get_std__optional_PitchCorrectionQuality_(const std::optional<PitchCorrectionQuality>& optional) noexcept {
+    return optional.value();
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneAudioSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneAudioSpec>`.
@@ -1578,6 +1640,15 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<AudioPlayerStatus>
+  using Result_AudioPlayerStatus_ = Result<AudioPlayerStatus>;
+  inline Result_AudioPlayerStatus_ create_Result_AudioPlayerStatus_(const AudioPlayerStatus& value) noexcept {
+    return Result<AudioPlayerStatus>::withValue(value);
+  }
+  inline Result_AudioPlayerStatus_ create_Result_AudioPlayerStatus_(const std::exception_ptr& error) noexcept {
+    return Result<AudioPlayerStatus>::withError(error);
   }
   
   // pragma MARK: std::optional<bool>

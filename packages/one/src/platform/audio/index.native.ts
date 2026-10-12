@@ -1,5 +1,4 @@
 import { validateCallback } from '../validateCallback'
-import { NitroModules } from 'react-native-nitro-modules'
 import { rethrowNativeError } from '../nativeError'
 import type {
   AudioPlaybackStatus,
@@ -9,8 +8,9 @@ import type {
   AudioInterruptionEvent,
   AudioNowPlayingInfo,
   AudioRemoteCommandEvent,
-  OneAudio,
 } from '../specs/OneAudio.nitro'
+import { audioNative as native } from './hybrid.native'
+import { AudioPlayer, createPlayer } from './player.native'
 
 export type {
   AudioPlaybackState,
@@ -24,14 +24,9 @@ export type {
   AudioNowPlayingInfo,
   AudioRemoteCommandEvent,
   AudioRemoteCommandType,
+  PitchCorrectionQuality,
 } from '../specs/OneAudio.nitro'
-
-let hybrid: OneAudio | undefined
-
-function native(): OneAudio {
-  hybrid ??= NitroModules.createHybridObject<OneAudio>('OneAudio')
-  return hybrid
-}
+export type * from './types'
 
 export const Audio = Object.freeze({
   getRecordingPermissionStatus: (): Promise<AudioRecordingPermission> =>
@@ -73,4 +68,6 @@ export const Audio = Object.freeze({
     validateCallback(onEvent, 'Audio.watchRemoteCommands: onEvent must be a function')
     return native().addRemoteCommandListener(onEvent)
   },
+  AudioPlayer,
+  createPlayer,
 })

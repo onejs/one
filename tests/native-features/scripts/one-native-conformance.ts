@@ -9971,6 +9971,60 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('audio-record-and-play.png')
+    // the players and hooks rows sit below the fold: bring each into the
+    // viewport before tapping, like the clipboard extras do.
+    const tapAudio = async (testID: string) => {
+      for (let attempt = 0; attempt < 10; attempt++) {
+        const nodes = snapshot(config.simulatorId)
+        const app = nodes.find((node) => node.type === 'Application')?.frame
+        const row = id(nodes, testID)?.frame
+        if (!app || !row) {
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        const back = id(nodes, 'BackButton')?.frame
+        const top = back ? back.y + back.height : 0
+        if (row.y >= top && row.y + row.height <= app.height) {
+          return tap({ id: testID })
+        }
+        const [from, to] = row.y < top ? [0.4, 0.6] : [0.75, 0.35]
+        axe(
+          [
+            'swipe',
+            '--start-x',
+            String(Math.round(app.width / 2)),
+            '--start-y',
+            String(Math.round(app.height * from)),
+            '--end-x',
+            String(Math.round(app.width / 2)),
+            '--end-y',
+            String(Math.round(app.height * to)),
+            '--duration',
+            '0.3',
+          ],
+          config.simulatorId
+        )
+        await new Promise((resolve) => setTimeout(resolve, 400))
+      }
+      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    }
+    await tapAudio('one-native-audio-players-run')
+    await wait('player instances play independently with rate', (n) =>
+      labels(n).includes(
+        'Players: playing:true,paused:true,rate:1.5,pos:true,duration:60,' +
+          'listener:true,looped:true,finish:true,errors:E_AUDIO_RATE'
+      )
+    )
+    screenshot('audio-player-instances.png')
+    await tapAudio('one-native-audio-hooks-prepare')
+    await wait('hook probe loads through hooks', (n) =>
+      labels(n).includes('Hooks: loaded:true playing:false run:idle')
+    )
+    await tapAudio('one-native-audio-hooks-run')
+    await wait('hook player plays through hooks', (n) =>
+      labels(n).includes('Hooks: loaded:true playing:true run:played')
+    )
+    screenshot('audio-hooks.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
