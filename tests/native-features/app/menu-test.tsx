@@ -13,7 +13,7 @@ export default function MenuTestScreen() {
   }
 
   return (
-    <View style={styles.container} testID="menu-test-screen">
+    <View style={styles.container} testID="menu-test-screen" collapsable={false}>
       <ScrollView contentContainerStyle={styles.content}>
         <Text testID="menu-test-title" style={styles.title}>
           Menu Action Test

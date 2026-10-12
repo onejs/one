@@ -110,6 +110,19 @@ jobs:
           appium_version: ${{ env.appium_version }}
           appium_xcuitest_version: ${{ env.appium_xcuitest_version }}
 
+      # the zoom fixture drives the simulator through the axe cli
+      # (scripts/one-native-conformance.ts), which runner images do not ship.
+      - name: Install axe
+        shell: bash
+        run: |
+          curl -sSfL -o "$RUNNER_TEMP/axe.tgz" \
+            https://github.com/cameroncooke/AXe/releases/download/v1.8.0/AXe-macOS-v1.8.0-universal.tar.gz
+          echo "7b76340b72e90d0f211bc7c4636f15009076eff07acef2f2b632b175debd8834  $RUNNER_TEMP/axe.tgz" | shasum -a 256 -c -
+          mkdir -p "$RUNNER_TEMP/axe"
+          tar -xzf "$RUNNER_TEMP/axe.tgz" -C "$RUNNER_TEMP/axe"
+          echo "$RUNNER_TEMP/axe" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/axe/axe" --version
+
       - name: Run One Native feature fixtures
         working-directory: tests/native-features
         env:

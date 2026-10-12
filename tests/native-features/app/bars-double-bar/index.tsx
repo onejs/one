@@ -4,7 +4,7 @@ const ROWS = Array.from({ length: 60 }, (_, index) => `Row ${index + 1}`)
 
 export default function DoubleBarFeed() {
   return (
-    <View testID="bars-double-feed" style={styles.container}>
+    <View testID="bars-double-feed" collapsable={false} style={styles.container}>
       <ScrollView testID="bars-double-scroll" contentContainerStyle={styles.content}>
         <Text testID="bars-double-title" style={styles.title}>
           Double Bar

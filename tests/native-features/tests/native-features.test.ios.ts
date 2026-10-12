@@ -454,7 +454,7 @@ describe('one native integration tests', () => {
     })
   })
 
-  // -- bars double bar (track B): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+  // -- bars double bar (track B) --
 
   describe('Bars Double Bar', () => {
     test(
@@ -481,9 +481,9 @@ describe('one native integration tests', () => {
       'tab bar minimizes on scroll with inline accessory',
       sharedTestOptions,
       async () => {
-        for (let index = 0; index < 4; index++) {
-          await driver.execute('mobile: scroll', { direction: 'down' })
-        }
+        // one page down: uikit expands a minimized tab bar again once the scroll
+        // reaches the end of its content, the same in a plain uikit tab controller.
+        await driver.execute('mobile: scroll', { direction: 'down' })
 
         const placement = await waitForElement(
           driver,
@@ -494,24 +494,34 @@ describe('one native integration tests', () => {
 
         await captureScreenshot(driver, 'bars-double-minimized')
 
-        for (let index = 0; index < 4; index++) {
-          await driver.execute('mobile: scroll', { direction: 'up' })
-        }
+        await driver.execute('mobile: scroll', { direction: 'up' })
       }
     )
   })
 
-  // -- bars button probe (track C): WRITTEN, interaction legs not RAN (static screenshots proven on iOS 27 sim) --
+  // -- bars button probe (track C) --
 
   describe('Bars Button Probe', () => {
-    test('probe toolbar reads above the tab bar', sharedTestOptions, async () => {
+    test('probe toolbar item sits in the tab bar row', sharedTestOptions, async () => {
       await navigateTo(driver, '/bars-probe/main')
       const title = await waitForElement(driver, 'bars-probe-title', {
         timeout: 30_000,
       })
       expect(await title.getText()).toBe('Button Probe')
 
-      const action = await waitForElement(driver, 'Probe action')
+      // uikit hosts a tab-embedded navigation toolbar item beside the floating tab
+      // bar, and xctest reports that item not visible even in a plain uikit tab
+      // controller, so this asserts its placement in the tab bar row and taps it.
+      const action = driver.$('~Probe action')
+      await action.waitForExist({ timeout: 30_000 })
+      const actionRect = await driver.getElementRect(await action.elementId)
+      const tabBarRect = await driver.getElementRect(
+        await driver.$('//XCUIElementTypeTabBar').elementId
+      )
+      expect(actionRect.y).toBeGreaterThanOrEqual(tabBarRect.y)
+      expect(actionRect.y + actionRect.height).toBeLessThanOrEqual(
+        tabBarRect.y + tabBarRect.height
+      )
       await action.click()
 
       const lastAction = await waitForElement(driver, 'bars-probe-last-action')
