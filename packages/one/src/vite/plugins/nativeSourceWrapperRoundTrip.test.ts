@@ -1,6 +1,7 @@
 import { mkdtempSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
+import { parseSync } from 'oxc-parser'
 import { afterAll, describe, expect, it } from 'vitest'
 import {
   decodeNativeSourceResult,
@@ -48,10 +49,9 @@ function kotlinPinFixture() {
   return { root, source }
 }
 
-// the generated module embeds its structs table after this marker; the
-// swift renderer keeps the following export on the same line, so scan for
-// the balanced close instead of parsing to end of line.
+// read the structs table from the complete, valid generated module.
 function structsFromCode(code: string) {
+  expect(parseSync('native-source.js', code, { sourceType: 'module' }).errors).toEqual([])
   const marker = 'const nativeSourceStructs = '
   const start = code.indexOf(marker)
   if (start < 0) throw new Error('generated module has no nativeSourceStructs')

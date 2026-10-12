@@ -43,6 +43,22 @@ beforeAll(async () => {
 })
 
 describe('metro swift source import', () => {
+  it('transforms wired payloads and subscriptions with a project-relative filename', async () => {
+    const relative = 'native-source/EscapeHatch.swift'
+    const source = readFileSync(resolve(projectRoot, relative))
+    const native = await transformNative({}, projectRoot, relative, source, {
+      dev: true,
+      minify: false,
+      platform: 'ios',
+      type: 'module',
+    })
+    const dependencies = native.dependencies.map((dependency) => dependency.name)
+    expect(dependencies.some((name) => name.endsWith('/native-source/wire.native.js'))).toBe(true)
+    expect(dependencies.some((name) => name.endsWith('/native-source/events.native.js'))).toBe(true)
+    const babel = babelTransform(resolve(projectRoot, relative), source.toString('utf8'), 'ios')
+    expect(babel.ast.program.body.length).toBeGreaterThan(0)
+  })
+
   it('transforms the fixture through both Metro transformer implementations', async () => {
     const source = readFileSync(filename)
     const native = await transformNative({}, projectRoot, filename, source, {

@@ -53,7 +53,7 @@ export function renderSwiftPackageModule(id: string, platform: string, root: str
   const eventsModule = join(oneRoot, 'dist/esm/platform/native-source/events.native.js')
   const needsWire = contract.modules.some((module) => module.methods.some(methodWired))
   const needsEvents = contract.modules.some((module) => module.methods.some(methodSubscribed))
-  const structs = needsWire || needsEvents ? `\nconst nativeSourceStructs = ${JSON.stringify(toNativeSourceStructs(contract.structs))}` : ''
+  const structs = needsWire || needsEvents ? `\nconst nativeSourceStructs = ${JSON.stringify(toNativeSourceStructs(contract.structs))}\n` : ''
   const exports = contract.modules
     .map(
       (module) =>
