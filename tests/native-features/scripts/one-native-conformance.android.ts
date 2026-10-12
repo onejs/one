@@ -309,11 +309,26 @@ function dumpNodes(config: Config): Snapshot {
 }
 
 function snapshot(config: Config): Snapshot {
-  const current = dumpNodes(config)
-  assertNoRedBox(current.nodes)
-  if (!current.nodes.length)
-    throw new Error('Android accessibility XML contained no nodes.')
-  return current
+  // direct snapshots outside waitFor see the same transient dump failures
+  // waitFor already tolerates; retry that exact signature a bounded number
+  // of times instead of failing the suite on one busy-system dump. redbox
+  // and empty-tree verdicts still throw on the first attempt.
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const current = dumpNodes(config)
+      assertNoRedBox(current.nodes)
+      if (!current.nodes.length)
+        throw new Error('Android accessibility XML contained no nodes.')
+      return current
+    } catch (error) {
+      const transient =
+        error instanceof Error &&
+        error.message.includes('uiautomator dump') &&
+        error.message.includes('Command failed')
+      if (!transient || attempt >= 4) throw error
+      Bun.sleepSync(250)
+    }
+  }
 }
 
 function nodeValues(node: Node) {
