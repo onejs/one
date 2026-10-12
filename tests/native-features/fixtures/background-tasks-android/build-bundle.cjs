@@ -6,7 +6,8 @@ const root = path.resolve(__dirname, '../../../..')
 const config = mergeConfig(getDefaultConfig(root), {
   maxWorkers: 2,
   watchFolders: [fs.realpathSync(path.join(root, 'node_modules'))],
-  resolver: { nodeModulesPaths: [path.join(root, 'node_modules')] },
+  // crawl this isolated source and its external dependencies directly.
+  resolver: { useWatchman: false, nodeModulesPaths: [path.join(root, 'node_modules')] },
   transformer: {
     babelTransformerPath: require.resolve('@react-native/metro-babel-transformer'),
   },
