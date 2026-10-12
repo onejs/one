@@ -18,14 +18,6 @@ const badgeStatuses = {
     theme: 'red',
     text: 'Early',
   },
-  alpha: {
-    theme: 'orange',
-    text: 'Alpha',
-  },
-  beta: {
-    theme: 'pink',
-    text: 'Beta',
-  },
 } as const
 
 export const Status = ({
