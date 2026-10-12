@@ -2,6 +2,7 @@ import { createRequire } from 'node:module'
 import { runInNewContext } from 'node:vm'
 import { originalPositionFor, TraceMap } from '@jridgewell/trace-mapping'
 import { parseSync } from 'oxc-parser'
+import { transformSync } from 'oxc-transform'
 import { describe, expect, it, vi } from 'vitest'
 import { transformBabel } from './transformBabel'
 import { stripFlowTypes } from './transformFlow'
@@ -78,6 +79,32 @@ describe('native transforms preserve Flow runtime behavior without Babel', () =>
       )
       expect(parseSync('View.jsx', result.code, { lang: 'jsx' }).errors).toEqual([])
     }
+  })
+
+  it('erases Flow field declarations before Hermes class lowering to preserve prototype constants', async () => {
+    const source = `class Event {
+      static +NONE: 0;
+      +NONE: 0;
+      value: number = 42;
+    }
+    Object.defineProperty(Event, 'NONE', {value: 0});
+    Object.defineProperty(Event.prototype, 'NONE', {value: 0});
+    globalThis.result = new Event();
+    globalThis.Event = Event;`
+    const stripped = await stripFlowTypes('Event.js', source)
+    const fields = transformSync('Event.js', stripped.code, {
+      target: 'es2020',
+      assumptions: { setPublicClassFields: true },
+    })
+    expect(fields.errors).toEqual([])
+    const lowered = await transformHermesClasses(fields.code, 'Event.js', true)
+    expect(lowered).toBeDefined()
+    const context: any = {}
+    runInNewContext(lowered!.code, context)
+    expect(context.result.NONE).toBe(0)
+    expect(context.Event.NONE).toBe(0)
+    expect(Object.hasOwn(context.result, 'NONE')).toBe(false)
+    expect(context.result.value).toBe(42)
   })
 
   it('lowers class hierarchies and parameter shadowing without Babel', async () => {

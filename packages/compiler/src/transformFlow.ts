@@ -40,7 +40,11 @@ export async function stripFlowTypes(id: string, code: string, sourceMaps = true
         components: true,
         patternMatching: true,
       },
-      transform: { react: { runtime: 'preserve' } },
+      // match Flow's declaration erasure before the native class-field pass.
+      transform: {
+        react: { runtime: 'preserve' },
+        useDefineForClassFields: false,
+      },
     },
   })
   const map = result.map ? JSON.parse(result.map) : undefined
