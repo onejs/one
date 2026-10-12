@@ -4,7 +4,13 @@ import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { stampAndroidDebugHost } from './android-debug-host'
 import { runEffectsSuite } from './one-native-effects-suite'
-import { countDistinctColors, readPng } from './visual-pixel-gate'
+import {
+  countChangedPixels,
+  countDistinctColors,
+  countMatchingPixels,
+  extractCrop,
+  readPng,
+} from './visual-pixel-gate'
 import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
 
 type Bounds = { left: number; top: number; right: number; bottom: number }
@@ -6507,16 +6513,136 @@ async function runCompose(config: Config) {
   const tooltip = async () => {
     const treeHas = (nodes: Node[], text: string) =>
       nodes.some((node) => nodeValues(node).some((value) => value.includes(text)))
-    // a long press is a zero-distance swipe held past the system's
-    // long-press timeout.
-    const longPress = (name: string, id: string) => {
+    // material3 dismisses a touch tooltip the moment the press lifts, and
+    // uiautomator cannot dump mid-touch, so shown legs compare screenshots
+    // taken during a held long-press: the tooltip is the only figure that
+    // appears in the band above its target and vanishes on release.
+    // spawned, never blocking-sync: a wedged device must fail this leg in a
+    // minute, not wedge the runner with it.
+    const screenshot = async (stem: string) => {
+      const proc = Bun.spawn(['adb', '-s', config.deviceId, 'exec-out', 'screencap', '-p'], {
+        stdout: 'pipe',
+        stderr: 'pipe',
+      })
+      let timedOut = false
+      const deadline = setTimeout(() => {
+        timedOut = true
+        try {
+          proc.kill()
+        } catch {}
+      }, 60_000)
+      const [exit, stdout] = await Promise.all([proc.exited, new Response(proc.stdout).arrayBuffer()])
+      clearTimeout(deadline)
+      if (timedOut) throw new Error(`${stem} screencap timed out after 60s`)
+      if (exit !== 0) throw new Error(`${stem} screencap exited ${exit}`)
+      const png = Buffer.from(stdout)
+      if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a')
+        throw new Error(`${stem} screenshot was not a PNG`)
+      const pngPath = path.join(config.artifactDir, `${stem}.png`)
+      writeFileSync(pngPath, png)
+      return pngPath
+    }
+    // bands hug the anchor's top edge, where material3 parks the popup:
+    // the plain pill fills the 100px above its button, the rich card's title
+    // row sits 154-199px above its taller anchor. both baselines are clean.
+    const tooltipBand = (id: string, rich: boolean) => {
       const current = snapshot(config)
-      const node = uniqueNode(current.nodes, { id }, name)
-      const bounds = validBounds(node, name)
+      const node = uniqueNode(current.nodes, { id }, `tooltip band ${id}`)
+      const bounds = validBounds(node, `tooltip band ${id}`)
+      return {
+        x: bounds.left + 8,
+        y: rich ? bounds.top - 199 : bounds.top - 115,
+        width: bounds.right - bounds.left - 18,
+        height: rich ? 45 : 100,
+        isPixel: true,
+      }
+    }
+    const darkPixels = (pngPath: string, band: { x: number; y: number; width: number; height: number; isPixel: boolean }) => {
+      const crop = extractCrop(readPng(pngPath), band)
+      // glyph ink, not midnight: catches body text while the blue decoy,
+      // button borders and light card fills stay out.
+      return countMatchingPixels(
+        crop,
+        (r, g, b, a) => a === 255 && r < 110 && g < 110 && b < 110
+      )
+    }
+    // holds a long-press on the target, screenshots before, during and after
+    // the hold, and returns the dark-pixel counts in the tooltip band. the
+    // hold runs async so it is still down when the middle shots land, then
+    // completes so the press lifts cleanly with its own up event. the during
+    // shot polls because a loaded device shows the tooltip late.
+    const pressPixels = async (stem: string, targetId: string, rich: boolean) => {
+      const band = tooltipBand(targetId, rich)
+      const before = await screenshot(`${stem}-before`)
+      const beforeDark = darkPixels(before, band)
+      const target = snapshot(config)
+      const node = uniqueNode(target.nodes, { id: targetId }, stem)
+      const bounds = validBounds(node, stem)
       const x = Math.round((bounds.left + bounds.right) / 2)
       const y = Math.round((bounds.top + bounds.bottom) / 2)
-      adbText(config, ['shell', 'input', 'swipe', String(x), String(y), String(x), String(y), '1200'])
+      const hold = Bun.spawn([
+        'adb',
+        '-s',
+        config.deviceId,
+        'shell',
+        'input',
+        'swipe',
+        String(x),
+        String(y),
+        String(x),
+        String(y),
+        '90000',
+      ])
+      let during = ''
+      let duringDark = beforeDark
+      let changed = 0
+      // the hold outlasts the whole poll sweep so every shot lands mid-press,
+      // even when a loaded device shows the popup late and screenshots crawl.
+      // no early break: a mid-animation partial must never beat the full
+      // popup, so every sweep keeps its max-changed frame.
+      for (let attempt = 0; attempt < 6; attempt++) {
+        await Bun.sleep(3000)
+        const shot = await screenshot(`${stem}-during-${attempt}`)
+        const shotDark = darkPixels(shot, band)
+        const shotChanged = countChangedPixels(before, shot, band).changed
+        if (attempt === 0 || shotChanged > changed) {
+          during = shot
+          duringDark = shotDark
+          changed = shotChanged
+        }
+      }
+      // the 90s gesture must finish on its own; a hung device fails the leg
+      // instead of wedging the runner with it.
+      const holdFinished = await Promise.race([
+        hold.exited.then(() => true),
+        Bun.sleep(120_000).then(() => false),
+      ])
+      if (!holdFinished) {
+        try {
+          hold.kill()
+        } catch {}
+        throw new Error(`${stem} long-press timed out after 120s`)
+      }
+      if (hold.exitCode !== 0) throw new Error(`${stem} long-press exited ${hold.exitCode}`)
+      // the release needs a moment to dismiss and repaint; settle-poll so a
+      // slow device reads as slow, while a genuinely stuck tooltip still
+      // fails. the bar sits below the faintest full popup (~530px), so even
+      // the rich card must fully clear before the loop stops.
+      let after = await screenshot(`${stem}-after-0`)
+      let settled = countChangedPixels(before, after, band).changed
+      for (let attempt = 1; attempt < 4 && settled > 150; attempt++) {
+        await Bun.sleep(4000)
+        after = await screenshot(`${stem}-after-${attempt}`)
+        settled = countChangedPixels(before, after, band).changed
+      }
+      const afterDark = darkPixels(after, band)
+      writeFileSync(
+        path.join(config.artifactDir, `${stem}-pixels.json`),
+        JSON.stringify({ beforeDark, duringDark, afterDark, changed, settled, band }, null, 2)
+      )
+      return { beforeDark, duringDark, afterDark, changed, settled }
     }
+    const pass = (name: string) => console.log(`PASS ${name}`)
     await tapNavigation(config, 'nav-one-native-android-tooltip')
     await check('compose-tooltip-mounted', (nodes) =>
       exactlyOneId(nodes, 'one-native-android-tooltip-screen') &&
@@ -6525,23 +6651,36 @@ async function runCompose(config: Config) {
       !treeHas(nodes, 'Save the file') &&
       !treeHas(nodes, 'Syncs automatically')
     )
-    longPress('plain tooltip', 'one-native-android-tooltip-plain-target')
-    await check('compose-tooltip-plain-shown', (nodes) => treeHas(nodes, 'Save the file'))
-    tapFresh(config, 'dismiss tooltip', { id: 'one-native-android-tooltip-decoy' })
-    await check('compose-tooltip-dismissed', (nodes) => !treeHas(nodes, 'Save the file'))
-    longPress('disabled tooltip', 'one-native-android-tooltip-disabled-target')
-    // a broken enabled gate shows on the press; wait out the gesture so the
-    // kept-quiet assertion means the press was ignored, not just early.
-    await Bun.sleep(2000)
-    await check('compose-tooltip-disabled-noop', (nodes) => !treeHas(nodes, 'Never shown'))
-    longPress('rich tooltip', 'one-native-android-tooltip-rich-target')
-    await check('compose-tooltip-rich-shown', (nodes) =>
-      treeHas(nodes, 'Sync') && treeHas(nodes, 'Syncs automatically')
-    )
-    tapFresh(config, 'dismiss rich tooltip', { id: 'one-native-android-tooltip-decoy' })
-    await check('compose-tooltip-rich-dismissed', (nodes) =>
-      !treeHas(nodes, 'Sync') && !treeHas(nodes, 'Syncs automatically')
-    )
+    // the plain pill is near-black: ~12k dark pixels arrive with the hold
+    // and leave with the release. a dirty baseline means the band missed the
+    // pill, so it fails loudly instead of passing weakly.
+    const plain = await pressPixels('compose-tooltip-plain', 'one-native-android-tooltip-plain-target', false)
+    if (plain.beforeDark > 2500)
+      throw new Error(`plain tooltip band missed its baseline: ${JSON.stringify(plain)}`)
+    if (plain.duringDark - plain.beforeDark <= 3000)
+      throw new Error(`plain tooltip never appeared: ${JSON.stringify(plain)}`)
+    pass('compose-tooltip-plain-shown')
+    if (plain.afterDark > 1000)
+      throw new Error(`plain tooltip stuck after release: ${JSON.stringify(plain)}`)
+    pass('compose-tooltip-dismissed')
+    // a broken enabled gate paints on the press; the held screenshots prove
+    // the disabled box kept quiet instead.
+    const quiet = await pressPixels('compose-tooltip-disabled', 'one-native-android-tooltip-disabled-target', false)
+    if (Math.abs(quiet.duringDark - quiet.beforeDark) > 500 || quiet.changed > 1000)
+      throw new Error(`disabled tooltip painted on press: ${JSON.stringify(quiet)}`)
+    pass('compose-tooltip-disabled-noop')
+    // the rich card's fill is near-white, so only its title ink, edge and
+    // shadow register: a full card measures ~530 changed with ~310 fresh
+    // glyph pixels, identical across captures, against a zero baseline.
+    const rich = await pressPixels('compose-tooltip-rich', 'one-native-android-tooltip-rich-target', true)
+    if (rich.beforeDark > 2500)
+      throw new Error(`rich tooltip band missed its baseline: ${JSON.stringify(rich)}`)
+    if (rich.changed <= 300 || rich.duringDark - rich.beforeDark <= 150)
+      throw new Error(`rich tooltip never appeared: ${JSON.stringify(rich)}`)
+    pass('compose-tooltip-rich-shown')
+    if (rich.settled > 150 || rich.afterDark > 150)
+      throw new Error(`rich tooltip stuck after release: ${JSON.stringify(rich)}`)
+    pass('compose-tooltip-rich-dismissed')
   }
   const animatedVisibility = async () => {
     const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-animated-visibility-status', text)
