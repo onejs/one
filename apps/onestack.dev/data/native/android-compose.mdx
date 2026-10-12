@@ -893,3 +893,92 @@ const [expanded, setExpanded] = useState(false)
     { name: 'containerColor', type: 'ColorValue', description: 'The bar background.' },
   ]}
 />
+
+## DropdownMenu, ExposedDropdownMenuBox
+
+`One.Android.DropdownMenu` is the Material 3 popup menu. Put it beside its
+anchor in a `Box`; its children are `One.Android.DropdownMenuItem` rows. The
+parent owns expansion: `expanded` opens it, and `onDismissRequest` fires on
+an outside tap or back press. `One.Android.ExposedDropdownMenuBox` is the
+anchored text-field form: a read-only field shows `value`, tapping it opens
+the same items, and picking one usually writes the value and collapses.
+
+```tsx
+const [open, setOpen] = useState(false)
+
+<One.Android.Box>
+  <One.Android.Button label="Open menu" onPress={() => setOpen(true)} />
+  <One.Android.DropdownMenu expanded={open} onDismissRequest={() => setOpen(false)}>
+    <One.Android.DropdownMenuItem text="Edit" onClick={() => edit()} leadingIcon="edit" />
+    <One.Android.DropdownMenuItem text="Share" onClick={() => share()} leadingIcon="share" />
+  </One.Android.DropdownMenu>
+</One.Android.Box>
+
+<One.Android.ExposedDropdownMenuBox
+  expanded={boxOpen}
+  onExpandedChange={setBoxOpen}
+  value={size}
+  placeholder="Size"
+>
+  {['Small', 'Medium', 'Large'].map((option) => (
+    <One.Android.DropdownMenuItem
+      key={option}
+      text={option}
+      onClick={() => {
+        setSize(option)
+        setBoxOpen(false)
+      }}
+    />
+  ))}
+</One.Android.ExposedDropdownMenuBox>
+```
+
+<PropsTable
+  title="DropdownMenu"
+  source="composeTypes.ts#ComposeDropdownMenuProps"
+  data={[
+    { name: 'expanded', required: true, type: 'boolean', description: 'The menu is open.' },
+    { name: 'onDismissRequest', required: true, type: '() => void', description: 'An outside tap or back press asked to close it.' },
+    { name: 'containerColor', type: 'ColorValue', description: 'The menu background.' },
+  ]}
+/>
+
+<PropsTable
+  title="DropdownMenuItem"
+  source="composeTypes.ts#ComposeDropdownMenuItemProps"
+  data={[
+    { name: 'text', required: true, type: 'string', description: 'The row label.' },
+    { name: 'onClick', required: true, type: '() => void', description: 'The row was tapped.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled row ignores taps.' },
+    { name: 'leadingIcon', type: 'ComposeIconName', description: 'A Material Symbols icon before the label.' },
+    { name: 'trailingIcon', type: 'ComposeIconName', description: 'A Material Symbols icon after the label.' },
+    { name: 'iconFilled', type: 'boolean', default: 'false', description: 'Uses the filled icon font.' },
+    { name: 'colors', type: 'ComposeDropdownMenuItemColors', description: 'Label and icon colors.' },
+  ]}
+/>
+
+<PropsTable
+  title="DropdownMenuItemColors"
+  source="composeTypes.ts#ComposeDropdownMenuItemColors"
+  data={[
+    { name: 'textColor', type: 'ColorValue', description: 'The label color.' },
+    { name: 'leadingIconColor', type: 'ColorValue', description: 'The leading icon color.' },
+    { name: 'trailingIconColor', type: 'ColorValue', description: 'The trailing icon color.' },
+    { name: 'disabledTextColor', type: 'ColorValue', description: 'The disabled label color.' },
+    { name: 'disabledLeadingIconColor', type: 'ColorValue', description: 'The disabled leading icon color.' },
+    { name: 'disabledTrailingIconColor', type: 'ColorValue', description: 'The disabled trailing icon color.' },
+  ]}
+/>
+
+<PropsTable
+  title="ExposedDropdownMenuBox"
+  source="composeTypes.ts#ComposeExposedDropdownMenuBoxProps"
+  data={[
+    { name: 'expanded', required: true, type: 'boolean', description: 'The menu is open.' },
+    { name: 'onExpandedChange', required: true, type: '(expanded: boolean) => void', description: 'A tap, outside tap, or back press asked to expand or collapse.' },
+    { name: 'expandedRevision', type: 'number', description: 'Bump to force native expansion to expanded.' },
+    { name: 'value', required: true, type: 'string', description: 'The read-only text in the field.' },
+    { name: 'placeholder', type: 'string', description: 'The hint shown when the value is empty.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled box ignores taps.' },
+  ]}
+/>

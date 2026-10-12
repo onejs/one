@@ -9,6 +9,9 @@ import {
   validateButtonProps,
   validateColumnProps,
   validateDialogProps,
+  validateDropdownMenuItemProps,
+  validateDropdownMenuProps,
+  validateExposedDropdownMenuBoxProps,
   validateIconProps,
   validateImageProps,
   validateLazyColumnProps,
@@ -805,6 +808,116 @@ describe('compose search bar', () => {
     expect(() => Unsupported.DockedSearchBar(bar)).toThrow(
       'Compose.DockedSearchBar requires an Android native build'
     )
+  })
+})
+
+describe('compose dropdown menu', () => {
+  it('renders a menu with expansion and container color', () => {
+    expect(
+      render(Compose.DropdownMenu, {
+        expanded: true,
+        onDismissRequest: () => {},
+        containerColor: '#1b1b1f',
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'dropdownmenu',
+        visible: true,
+        dropdownMenuColors: { containerColor: '#1b1b1f' },
+      },
+    })
+  })
+
+  it('renders an item with text, icons and colors', () => {
+    expect(
+      render(Compose.DropdownMenuItem, {
+        text: 'Edit',
+        onClick: () => {},
+        leadingIcon: 'edit',
+        trailingIcon: 'chevron_right',
+        colors: { textColor: '#ffffff' },
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'dropdownmenuitem',
+        text: 'Edit',
+        disabled: false,
+        dropdownMenuItemOptions: {
+          leadingIcon: glyph('edit'),
+          trailingIcon: glyph('chevron_right'),
+          filled: false,
+        },
+        dropdownMenuItemColors: { textColor: '#ffffff' },
+      },
+    })
+  })
+
+  it('renders an exposed box with a display value', () => {
+    expect(
+      render(Compose.ExposedDropdownMenuBox, {
+        expanded: false,
+        onExpandedChange: () => {},
+        value: 'Small',
+        placeholder: 'Size',
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'exposeddropdownmenubox',
+        textValue: 'Small',
+        expandedValue: false,
+        placeholder: 'Size',
+        disabled: false,
+      },
+    })
+  })
+
+  it('accepts defaults and rejects bad menus, items and boxes', () => {
+    expect(() =>
+      validateDropdownMenuProps({ expanded: false, onDismissRequest: () => {} })
+    ).not.toThrow()
+    expect(() => validateDropdownMenuProps({} as never)).toThrow(
+      'Compose DropdownMenu expanded must be a boolean'
+    )
+    expect(() =>
+      validateDropdownMenuProps({ expanded: false, onDismissRequest: 'x' as never })
+    ).toThrow('Compose DropdownMenu onDismissRequest must be a function')
+    const item = { text: 'Edit', onClick: () => {} }
+    expect(() => validateDropdownMenuItemProps(item)).not.toThrow()
+    expect(() => validateDropdownMenuItemProps({ ...item, text: '  ' })).toThrow(
+      'Compose DropdownMenuItem text must be a non-empty string'
+    )
+    expect(() =>
+      validateDropdownMenuItemProps({ ...item, leadingIcon: 'not-an-icon' })
+    ).toThrow(
+      'Compose DropdownMenuItem leadingIcon must be a Material Symbols name, got "not-an-icon"'
+    )
+    expect(() =>
+      validateDropdownMenuItemProps({ ...item, colors: { containerColor: '#000' } as never })
+    ).toThrow('Compose DropdownMenuItem colors does not support containerColor')
+    expect(() =>
+      validateExposedDropdownMenuBoxProps({ expanded: false, onExpandedChange: () => {}, value: '' })
+    ).not.toThrow()
+    expect(() => validateExposedDropdownMenuBoxProps({} as never)).toThrow(
+      'Compose ExposedDropdownMenuBox expanded must be a boolean'
+    )
+    expect(() =>
+      render(Compose.DropdownMenuItem, { ...item, children: createElement('div') })
+    ).toThrow('Compose dropdownmenuitem does not accept children')
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.DropdownMenu({ expanded: false, onDismissRequest: () => {} })).toThrow(
+      'Compose.DropdownMenu requires an Android native build'
+    )
+    expect(() => Unsupported.DropdownMenuItem({ text: 'Edit', onClick: () => {} })).toThrow(
+      'Compose.DropdownMenuItem requires an Android native build'
+    )
+    expect(() =>
+      Unsupported.ExposedDropdownMenuBox({ expanded: false, onExpandedChange: () => {}, value: '' })
+    ).toThrow('Compose.ExposedDropdownMenuBox requires an Android native build')
   })
 })
 

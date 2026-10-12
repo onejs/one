@@ -9,6 +9,9 @@ import type {
   ComposeColumnProps,
   ComposeDialogProps,
   ComposeDividerProps,
+  ComposeDropdownMenuItemProps,
+  ComposeDropdownMenuProps,
+  ComposeExposedDropdownMenuBoxProps,
   ComposeFilterChipProps,
   ComposeFlowRowProps,
   ComposeFloatingActionButtonProps,
@@ -1012,6 +1015,47 @@ export function validateSearchBarProps(props: ComposeSearchBarProps, owner = 'Se
   if (props.onSearch !== undefined) assertFunction(props.onSearch, `${owner} onSearch`)
   if (props.containerColor !== undefined)
     assertComposeColorValue(props.containerColor, `${owner} containerColor`)
+}
+
+const dropdownMenuItemColorKeys = new Set([
+  'textColor',
+  'leadingIconColor',
+  'trailingIconColor',
+  'disabledTextColor',
+  'disabledLeadingIconColor',
+  'disabledTrailingIconColor',
+])
+
+export function validateDropdownMenuProps(props: ComposeDropdownMenuProps) {
+  assertBoolean(props.expanded, 'DropdownMenu expanded')
+  assertFunction(props.onDismissRequest, 'DropdownMenu onDismissRequest')
+  if (props.containerColor !== undefined)
+    assertComposeColorValue(props.containerColor, 'DropdownMenu containerColor')
+}
+
+export function validateDropdownMenuItemProps(props: ComposeDropdownMenuItemProps) {
+  assertString(props.text, 'DropdownMenuItem text', true)
+  assertFunction(props.onClick, 'DropdownMenuItem onClick')
+  assertOptionalBoolean(props.enabled, 'DropdownMenuItem enabled')
+  if (props.leadingIcon !== undefined) {
+    assertString(props.leadingIcon, 'DropdownMenuItem leadingIcon', true)
+    composeIconGlyph('DropdownMenuItem leadingIcon', props.leadingIcon)
+  }
+  if (props.trailingIcon !== undefined) {
+    assertString(props.trailingIcon, 'DropdownMenuItem trailingIcon', true)
+    composeIconGlyph('DropdownMenuItem trailingIcon', props.trailingIcon)
+  }
+  assertOptionalBoolean(props.iconFilled, 'DropdownMenuItem iconFilled')
+  if (props.colors !== undefined)
+    assertComposeColors(props.colors, dropdownMenuItemColorKeys, 'DropdownMenuItem')
+}
+
+export function validateExposedDropdownMenuBoxProps(props: ComposeExposedDropdownMenuBoxProps) {
+  assertBoolean(props.expanded, 'ExposedDropdownMenuBox expanded')
+  assertFunction(props.onExpandedChange, 'ExposedDropdownMenuBox onExpandedChange')
+  assertString(props.value, 'ExposedDropdownMenuBox value')
+  assertOptionalString(props.placeholder, 'ExposedDropdownMenuBox placeholder')
+  assertOptionalBoolean(props.enabled, 'ExposedDropdownMenuBox enabled')
 }
 
 export function validateModalBottomSheetProps(props: ComposeModalBottomSheetProps) {

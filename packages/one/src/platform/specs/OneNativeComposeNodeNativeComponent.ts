@@ -348,6 +348,22 @@ interface NativeProps extends ViewProps {
   searchBarColors?: Readonly<{
     containerColor?: ColorValue
   }>
+  dropdownMenuColors?: Readonly<{
+    containerColor?: ColorValue
+  }>
+  dropdownMenuItemColors?: Readonly<{
+    textColor?: ColorValue
+    leadingIconColor?: ColorValue
+    trailingIconColor?: ColorValue
+    disabledTextColor?: ColorValue
+    disabledLeadingIconColor?: ColorValue
+    disabledTrailingIconColor?: ColorValue
+  }>
+  dropdownMenuItemOptions?: Readonly<{
+    leadingIcon?: string
+    trailingIcon?: string
+    filled?: boolean
+  }>
   onNativeComposeNodeImageLoad?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
   onNativeComposeNodeImageError?: DirectEventHandler<
     Readonly<{ message: string; eventCount: Int32 }>

@@ -42,6 +42,7 @@ declare module 'one' {
         | `/one-native-android-menus`
         | `/one-native-android-navigation-bar`
         | `/one-native-android-search-bar`
+        | `/one-native-android-dropdown-menu`
         | `/one-native-android-picker-reference`
         | `/one-native-android-pickers`
         | `/one-native-android-progress`

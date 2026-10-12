@@ -575,6 +575,11 @@ const testScreens = [
     testID: 'nav-one-native-android-search-bar',
   },
   {
+    href: '/one-native-android-dropdown-menu',
+    label: 'One Native Android Dropdown Menu',
+    testID: 'nav-one-native-android-dropdown-menu',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

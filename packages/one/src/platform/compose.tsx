@@ -15,7 +15,10 @@ import type {
   ComposeDatePickerProps,
   ComposeDialogProps,
   ComposeDividerProps,
+  ComposeDropdownMenuItemProps,
+  ComposeDropdownMenuProps,
   ComposeElevatedCardProps,
+  ComposeExposedDropdownMenuBoxProps,
   ComposeExtendedFloatingActionButtonProps,
   ComposeFilterChipProps,
   ComposeFlowRowProps,
@@ -316,6 +319,18 @@ const DockedSearchBar = Object.assign(DockedSearchBarRoot, {
   TrailingIcon: (_props: { children: ReactNode }): never => unsupported('DockedSearchBar.TrailingIcon'),
 })
 
+function DropdownMenu(_props: ComposeDropdownMenuProps): never {
+  return unsupported('DropdownMenu')
+}
+
+function DropdownMenuItem(_props: ComposeDropdownMenuItemProps): never {
+  return unsupported('DropdownMenuItem')
+}
+
+function ExposedDropdownMenuBox(_props: ComposeExposedDropdownMenuBoxProps): never {
+  return unsupported('ExposedDropdownMenuBox')
+}
+
 function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
@@ -416,6 +431,9 @@ export const Compose = {
   NavigationBarItem,
   SearchBar,
   DockedSearchBar,
+  DropdownMenu,
+  DropdownMenuItem,
+  ExposedDropdownMenuBox,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

@@ -53,6 +53,12 @@ import androidx.compose.material3.contentColorFor
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.CircularWavyProgressIndicator
 import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -763,6 +769,46 @@ internal data class OneNativeSheetCommand(
     }
 }
 
+internal data class OneNativeDropdownMenuItemColors(
+    val textColor: Int? = null,
+    val leadingIconColor: Int? = null,
+    val trailingIconColor: Int? = null,
+    val disabledTextColor: Int? = null,
+    val disabledLeadingIconColor: Int? = null,
+    val disabledTrailingIconColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeDropdownMenuItemColors {
+            if (map == null) return OneNativeDropdownMenuItemColors()
+            return OneNativeDropdownMenuItemColors(
+                textColor = readComposeColor(map, "textColor", context),
+                leadingIconColor = readComposeColor(map, "leadingIconColor", context),
+                trailingIconColor = readComposeColor(map, "trailingIconColor", context),
+                disabledTextColor = readComposeColor(map, "disabledTextColor", context),
+                disabledLeadingIconColor = readComposeColor(map, "disabledLeadingIconColor", context),
+                disabledTrailingIconColor = readComposeColor(map, "disabledTrailingIconColor", context),
+            )
+        }
+    }
+}
+
+internal data class OneNativeDropdownMenuItemOptions(
+    val leadingIcon: String? = null,
+    val trailingIcon: String? = null,
+    val filled: Boolean = false,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeDropdownMenuItemOptions {
+            if (map == null) return OneNativeDropdownMenuItemOptions()
+            return OneNativeDropdownMenuItemOptions(
+                leadingIcon = if (map.hasKey("leadingIcon") && !map.isNull("leadingIcon")) map.getString("leadingIcon") else null,
+                trailingIcon = if (map.hasKey("trailingIcon") && !map.isNull("trailingIcon")) map.getString("trailingIcon") else null,
+                filled = map.hasKey("filled") && !map.isNull("filled") && map.getType("filled") == ReadableType.Boolean && map.getBoolean("filled"),
+            )
+        }
+    }
+}
+
 internal data class OneNativeNavigationBarItemColors(
     val selectedIconColor: Int? = null,
     val selectedTextColor: Int? = null,
@@ -876,6 +922,9 @@ internal data class OneNativeComposeNodeProps(
     val expandedRevision: Int = 0,
     val acknowledgedExpandedEvent: Int = 0,
     val searchBarColors: OneNativeCardColors = OneNativeCardColors(),
+    val dropdownMenuColors: OneNativeCardColors = OneNativeCardColors(),
+    val dropdownMenuItemColors: OneNativeDropdownMenuItemColors = OneNativeDropdownMenuItemColors(),
+    val dropdownMenuItemOptions: OneNativeDropdownMenuItemOptions = OneNativeDropdownMenuItemOptions(),
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -1440,6 +1489,18 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageSearchBarColors(value: ReadableMap?) {
         pendingProps = pendingProps.copy(searchBarColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageDropdownMenuColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dropdownMenuColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageDropdownMenuItemColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dropdownMenuItemColors = OneNativeDropdownMenuItemColors.fromMap(value, context))
+    }
+
+    internal fun stageDropdownMenuItemOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dropdownMenuItemOptions = OneNativeDropdownMenuItemOptions.fromMap(value, context))
     }
 
     internal fun handleExpandedChanged(nextValue: Boolean) {
@@ -2032,6 +2093,9 @@ private fun RenderComposeNodeBody(
         "navigationbaritem" -> Unit
         "searchbar" -> RenderComposeSearchBar(node, props, modifier, docked = false)
         "dockedsearchbar" -> RenderComposeSearchBar(node, props, modifier, docked = true)
+        "dropdownmenu" -> RenderComposeDropdownMenu(node, props, modifier)
+        "dropdownmenuitem" -> Unit
+        "exposeddropdownmenubox" -> RenderComposeExposedDropdownMenuBox(node, props, modifier)
         "datepicker" -> RenderComposeDatePicker(node, props, modifier)
         "timepicker" -> RenderComposeTimePicker(node, props, modifier)
         "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
@@ -2465,6 +2529,95 @@ private fun RenderComposeSearchBar(
             colors = colors,
             content = content,
         )
+    }
+}
+
+@Composable
+private fun RenderComposeDropdownMenuItem(child: OneNativeComposeNodeView) {
+    val item = child.renderedProps
+    val custom = item.dropdownMenuItemColors
+    val options = item.dropdownMenuItemOptions
+    val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+    fun icon(glyph: String?): (@Composable () -> Unit)? =
+        glyph?.let {
+            {
+                Text(
+                    text = it,
+                    fontFamily = materialSymbolsFontFamily(options.filled),
+                    fontSize = 24.0.composeIconTextUnit(fontScale),
+                )
+            }
+        }
+    DropdownMenuItem(
+        text = { Text(item.text.orEmpty()) },
+        onClick = { if (item.nativeClickable) child.handlePress() },
+        modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+        leadingIcon = icon(options.leadingIcon),
+        trailingIcon = icon(options.trailingIcon),
+        enabled = !item.disabled && child.isEnabled,
+        colors = MenuDefaults.itemColors(
+            textColor = custom.textColor?.let(::Color) ?: Color.Unspecified,
+            leadingIconColor = custom.leadingIconColor?.let(::Color) ?: Color.Unspecified,
+            trailingIconColor = custom.trailingIconColor?.let(::Color) ?: Color.Unspecified,
+            disabledTextColor = custom.disabledTextColor?.let(::Color) ?: Color.Unspecified,
+            disabledLeadingIconColor = custom.disabledLeadingIconColor?.let(::Color) ?: Color.Unspecified,
+            disabledTrailingIconColor = custom.disabledTrailingIconColor?.let(::Color) ?: Color.Unspecified,
+        ),
+    )
+}
+
+@Composable
+private fun RenderComposeDropdownMenu(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    DropdownMenu(
+        expanded = props.visible,
+        onDismissRequest = { node.handleDialogDismiss() },
+        modifier = modifier,
+        containerColor = props.dropdownMenuColors.containerColor?.let(::Color) ?: MenuDefaults.containerColor,
+    ) {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedNodeKind != "dropdownmenuitem") return@forEach
+            key(child) { RenderComposeDropdownMenuItem(child) }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeExposedDropdownMenuBox(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val expanded = node.renderedExpandedValue
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = node::handleExpandedChanged,
+        modifier = modifier,
+    ) {
+        TextField(
+            value = props.textValue.orEmpty(),
+            onValueChange = {},
+            readOnly = true,
+            enabled = enabled,
+            placeholder = props.placeholder?.let { text -> { Text(text) } },
+            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+            colors = ExposedDropdownMenuDefaults.textFieldColors(),
+            modifier = Modifier.menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, enabled),
+        )
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { node.handleExpandedChanged(false) },
+        ) {
+            node.renderedChildren.forEach { child ->
+                if (child.renderedNodeKind != "dropdownmenuitem") return@forEach
+                key(child) { RenderComposeDropdownMenuItem(child) }
+            }
+        }
     }
 }
 
@@ -3330,7 +3483,7 @@ private fun Modifier.applyReactSemantics(
     }
 }
 
-private val composeDialogKinds = setOf("alertdialog", "dialog", "datepickerdialog", "timepickerdialog", "modalbottomsheet")
+private val composeDialogKinds = setOf("alertdialog", "dialog", "datepickerdialog", "timepickerdialog", "modalbottomsheet", "dropdownmenu")
 
 private fun composeRole(value: String?): Role? =
     when (value) {

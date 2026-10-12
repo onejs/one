@@ -245,6 +245,40 @@ export interface ComposeSearchBarProps extends ComposeNodeProps {
   containerColor?: ColorValue
 }
 
+export interface ComposeDropdownMenuProps extends ComposeNodeProps {
+  expanded: boolean
+  onDismissRequest: () => void
+  containerColor?: ColorValue
+}
+
+export type ComposeDropdownMenuItemColors = Readonly<{
+  textColor?: ColorValue
+  leadingIconColor?: ColorValue
+  trailingIconColor?: ColorValue
+  disabledTextColor?: ColorValue
+  disabledLeadingIconColor?: ColorValue
+  disabledTrailingIconColor?: ColorValue
+}>
+
+export interface ComposeDropdownMenuItemProps extends ComposeLeafProps {
+  text: string
+  onClick: () => void
+  enabled?: boolean
+  leadingIcon?: ComposeIconName
+  trailingIcon?: ComposeIconName
+  iconFilled?: boolean
+  colors?: ComposeDropdownMenuItemColors
+}
+
+export interface ComposeExposedDropdownMenuBoxProps extends ComposeNodeProps {
+  expanded: boolean
+  onExpandedChange: (expanded: boolean) => void
+  expandedRevision?: number
+  value: string
+  placeholder?: string
+  enabled?: boolean
+}
+
 export interface ComposeBadgeProps extends ComposeNodeProps {
   containerColor?: ColorValue
   contentColor?: ColorValue

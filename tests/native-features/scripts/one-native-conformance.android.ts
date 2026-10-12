@@ -36,7 +36,7 @@ export type Config = {
   metroPort: number
   // 'updates' drives a release apk against the static update server instead
   // of the debug proof screen against metro.
-  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'compose-lists' | 'compose-image' | 'compose-snackbar' | 'compose-sheet' | 'compose-navigation-bar' | 'compose-search-bar' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'system-clipboard' | 'state' | 'network' | 'document-picker' | 'camera' | 'launch-screen' | 'adaptive-flat' | 'adaptive-fold'
+  suite: 'proof' | 'compose' | 'compose-badges' | 'compose-list-items' | 'compose-flow-row' | 'compose-icon-buttons' | 'compose-loading' | 'compose-surface' | 'compose-progress' | 'compose-segmented' | 'compose-pickers' | 'compose-lists' | 'compose-image' | 'compose-snackbar' | 'compose-sheet' | 'compose-navigation-bar' | 'compose-search-bar' | 'compose-dropdown-menu' | 'ui-image' | 'ui-text-input' | 'ui-icon' | 'ui-effects' | 'portal' | 'pager' | 'open' | 'database' | 'color' | 'menus' | 'updates' | 'system' | 'system-app-icon' | 'system-share' | 'system-location' | 'system-clipboard' | 'state' | 'network' | 'document-picker' | 'camera' | 'launch-screen' | 'adaptive-flat' | 'adaptive-fold'
   apkPath: string
   negativeControl: boolean
 }
@@ -59,7 +59,7 @@ type Check = {
 
 const usage = () =>
   console.log(
-    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|compose-lists|compose-image|compose-snackbar|compose-sheet|compose-navigation-bar|compose-search-bar|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|system-clipboard|state|network|document-picker|camera|launch-screen|adaptive-flat|adaptive-fold --apk-path <APK for updates>]'
+    'Usage: bun tests/native-features/scripts/one-native-conformance.android.ts --device-id <SERIAL> --package-id <PACKAGE> [--artifact-dir <PATH>] [--timeout <MS>] [--metro-port <PORT>] [--negative-control] [--suite compose|compose-badges|compose-list-items|compose-flow-row|compose-icon-buttons|compose-loading|compose-surface|compose-progress|compose-segmented|compose-pickers|compose-lists|compose-image|compose-snackbar|compose-sheet|compose-navigation-bar|compose-search-bar|compose-dropdown-menu|ui-image|ui-text-input|ui-icon|ui-effects|portal|pager|open|database|color|menus|updates|system|system-app-icon|system-share|system-location|system-clipboard|state|network|document-picker|camera|launch-screen|adaptive-flat|adaptive-fold --apk-path <APK for updates>]'
   )
 
 function parse(args: string[]): Config {
@@ -90,7 +90,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'compose-lists' && value !== 'compose-image' && value !== 'compose-snackbar' && value !== 'compose-sheet' && value !== 'compose-navigation-bar' && value !== 'compose-search-bar' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'camera' && value !== 'launch-screen' && value !== 'adaptive-flat' && value !== 'adaptive-fold') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'compose-lists' && value !== 'compose-image' && value !== 'compose-snackbar' && value !== 'compose-sheet' && value !== 'compose-navigation-bar' && value !== 'compose-search-bar' && value !== 'compose-dropdown-menu' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'camera' && value !== 'launch-screen' && value !== 'adaptive-flat' && value !== 'adaptive-fold') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -6407,6 +6407,57 @@ async function runCompose(config: Config) {
     adbType(config, 'ch')
     await check('compose-search-bar-docked-query', (nodes) => dockedStatus('Docked: [ch] · open')(nodes))
   }
+  const dropdownMenu = async () => {
+    const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-dropdown-menu-status', text)
+    const boxStatus = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-dropdown-menu-box-status', text)
+    const treeHas = (nodes: Node[], text: string) =>
+      nodes.some((node) => nodeValues(node).some((value) => value.includes(text)))
+    await tapNavigation(config, 'nav-one-native-android-dropdown-menu')
+    await check('compose-dropdown-menu-mounted', (nodes) =>
+      exactlyOneId(nodes, 'one-native-android-dropdown-menu-screen') &&
+      status('Menu: shut · Picked: none')(nodes) &&
+      boxStatus('Box: [Medium] · shut')(nodes) &&
+      !treeHas(nodes, 'Edit') &&
+      !treeHas(nodes, 'Small')
+    )
+    tapFresh(config, 'open menu', { id: 'one-native-android-dropdown-menu-open' })
+    await check('compose-dropdown-menu-open', (nodes) =>
+      status('Menu: open')(nodes) &&
+      exactlyOneId(nodes, 'one-native-android-dropdown-menu-edit') &&
+      exactlyOneId(nodes, 'one-native-android-dropdown-menu-share') &&
+      matching(nodes, { id: 'one-native-android-dropdown-menu-delete' }).some((node) => node.enabled === false)
+    )
+    tapFresh(config, 'pick share', { id: 'one-native-android-dropdown-menu-share' })
+    await check('compose-dropdown-menu-picked', (nodes) =>
+      status('Menu: shut · Picked: share')(nodes) && !treeHas(nodes, 'Edit')
+    )
+    tapFresh(config, 'reopen menu', { id: 'one-native-android-dropdown-menu-open' })
+    await check('compose-dropdown-menu-reopened', (nodes) =>
+      status('Menu: open')(nodes) && treeHas(nodes, 'Delete')
+    )
+    tapFresh(config, 'disabled delete item', { id: 'one-native-android-dropdown-menu-delete' })
+    await check('compose-dropdown-menu-disabled-noop', (nodes) =>
+      status('Menu: open · Picked: share')(nodes) && treeHas(nodes, 'Delete')
+    )
+    pressBack(config)
+    await check('compose-dropdown-menu-back-dismissed', (nodes) =>
+      status('Menu: shut · Picked: share')(nodes) && !treeHas(nodes, 'Delete')
+    )
+    tapFresh(config, 'dropdown menu decoy', { id: 'one-native-android-dropdown-menu-decoy' })
+    await check('compose-dropdown-menu-decoy-noop', (nodes) =>
+      status('Menu: shut · Picked: share')(nodes)
+    )
+    tapFresh(config, 'open exposed box', { id: 'one-native-android-dropdown-menu-box' })
+    await check('compose-dropdown-menu-box-open', (nodes) =>
+      boxStatus('Box: [Medium] · open')(nodes) &&
+      exactlyOneId(nodes, 'one-native-android-dropdown-menu-size-small') &&
+      exactlyOneId(nodes, 'one-native-android-dropdown-menu-size-large')
+    )
+    tapFresh(config, 'choose large', { id: 'one-native-android-dropdown-menu-size-large' })
+    await check('compose-dropdown-menu-box-chosen', (nodes) =>
+      boxStatus('Box: [Large] · shut')(nodes) && !treeHas(nodes, 'Small')
+    )
+  }
   const surface = async () => {
     await tapNavigation(config, 'nav-one-native-android-surface')
     await check('compose-surface-mounted', (nodes) =>
@@ -7076,6 +7127,11 @@ async function runCompose(config: Config) {
     console.log('ALL ONE NATIVE ANDROID SEARCH BAR CHECKS PASSED')
     return
   }
+  if (config.suite === 'compose-dropdown-menu') {
+    await dropdownMenu()
+    console.log('ALL ONE NATIVE ANDROID DROPDOWN MENU CHECKS PASSED')
+    return
+  }
   if (config.suite === 'compose-segmented') {
     await segmented()
     console.log('ALL ONE NATIVE ANDROID SEGMENTED CHECKS PASSED')
@@ -7472,7 +7528,7 @@ if (import.meta.main) {
     const config = parse(process.argv.slice(2))
     await (config.suite === 'updates'
       ? runUpdates(config)
-      : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'compose-lists' || config.suite === 'compose-image' || config.suite === 'compose-snackbar' || config.suite === 'compose-sheet' || config.suite === 'compose-navigation-bar' || config.suite === 'compose-search-bar' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
+      : config.suite === 'compose' || config.suite === 'compose-badges' || config.suite === 'compose-list-items' || config.suite === 'compose-flow-row' || config.suite === 'compose-icon-buttons' || config.suite === 'compose-loading' || config.suite === 'compose-surface' || config.suite === 'compose-progress' || config.suite === 'compose-segmented' || config.suite === 'compose-pickers' || config.suite === 'compose-lists' || config.suite === 'compose-image' || config.suite === 'compose-snackbar' || config.suite === 'compose-sheet' || config.suite === 'compose-navigation-bar' || config.suite === 'compose-search-bar' || config.suite === 'compose-dropdown-menu' || config.suite === 'ui-image' || config.suite === 'ui-text-input' || config.suite === 'ui-icon' || config.suite === 'ui-effects'
         ? runCompose(config)
         : run(config))
   } catch (error) {
@@ -7480,4 +7536,3 @@ if (import.meta.main) {
     console.error(`FAIL one-native-android: ${message}`)
     process.exitCode = 1
   }
-}

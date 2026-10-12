@@ -460,6 +460,18 @@ class OneNativeComposeNodeManager :
         view.stageSearchBarColors(value)
     }
 
+    override fun setDropdownMenuColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageDropdownMenuColors(value)
+    }
+
+    override fun setDropdownMenuItemColors(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageDropdownMenuItemColors(value)
+    }
+
+    override fun setDropdownMenuItemOptions(view: OneNativeComposeNodeView, value: ReadableMap?) {
+        view.stageDropdownMenuItemOptions(value)
+    }
+
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageComposeStyle(value)
     }

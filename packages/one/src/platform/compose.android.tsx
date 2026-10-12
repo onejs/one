@@ -24,7 +24,10 @@ import type {
   ComposeDatePickerProps,
   ComposeDialogProps,
   ComposeDividerProps,
+  ComposeDropdownMenuItemProps,
+  ComposeDropdownMenuProps,
   ComposeElevatedCardProps,
+  ComposeExposedDropdownMenuBoxProps,
   ComposeExtendedFloatingActionButtonProps,
   ComposeFilterChipProps,
   ComposeFlowRowProps,
@@ -96,6 +99,9 @@ import {
   validateColumnProps,
   validateDialogProps,
   validateDividerProps,
+  validateDropdownMenuItemProps,
+  validateDropdownMenuProps,
+  validateExposedDropdownMenuBoxProps,
   validateFlowRowProps,
   validateFloatingActionButtonProps,
   validateChipProps,
@@ -182,6 +188,9 @@ type ComposeNodeType =
   | 'searchbar'
   | 'dockedsearchbar'
   | 'searchbarslot'
+  | 'dropdownmenu'
+  | 'dropdownmenuitem'
+  | 'exposeddropdownmenubox'
   | 'progressindicator'
   | 'datepicker'
   | 'timepicker'
@@ -340,6 +349,13 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
   expandedRevision?: number
   acknowledgedExpandedEvent?: number
   searchBarColors?: Pick<ComposeSearchBarProps, 'containerColor'>
+  dropdownMenuColors?: Pick<ComposeDropdownMenuProps, 'containerColor'>
+  dropdownMenuItemColors?: ComposeDropdownMenuItemProps['colors']
+  dropdownMenuItemOptions?: Readonly<{
+    leadingIcon?: string
+    trailingIcon?: string
+    filled?: boolean
+  }>
   onNativeComposeNodeImageLoad?: (event: { nativeEvent: { eventCount: number } }) => void
   onNativeComposeNodeImageError?: (event: {
     nativeEvent: { message: string; eventCount: number }
@@ -365,6 +381,7 @@ const leafNodeTypes: ReadonlySet<ComposeNodeType> = new Set([
   'image',
   'snackbar',
   'navigationbaritem',
+  'dropdownmenuitem',
   'textfield',
   'slider',
   'alertdialog',
@@ -737,6 +754,111 @@ const ModalBottomSheet = Object.assign(ModalBottomSheetRoot, {
     </ComposeNode>
   ),
 })
+
+function DropdownMenu({
+  children,
+  expanded,
+  onDismissRequest,
+  containerColor,
+  ...props
+}: ComposeDropdownMenuProps) {
+  validateDropdownMenuProps({ expanded, onDismissRequest, containerColor })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="dropdownmenu"
+      visible={expanded}
+      dropdownMenuColors={{ containerColor }}
+      onNativeComposeNodeDialogDismiss={() => onDismissRequest()}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function DropdownMenuItem({
+  text,
+  onClick,
+  enabled = true,
+  leadingIcon,
+  trailingIcon,
+  iconFilled = false,
+  colors,
+  ...props
+}: ComposeDropdownMenuItemProps) {
+  validateDropdownMenuItemProps({
+    text,
+    onClick,
+    enabled,
+    leadingIcon,
+    trailingIcon,
+    iconFilled,
+    colors,
+  })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="dropdownmenuitem"
+      text={text}
+      disabled={!enabled}
+      dropdownMenuItemOptions={{
+        leadingIcon:
+          leadingIcon === undefined
+            ? undefined
+            : composeIconGlyph('DropdownMenuItem leadingIcon', leadingIcon),
+        trailingIcon:
+          trailingIcon === undefined
+            ? undefined
+            : composeIconGlyph('DropdownMenuItem trailingIcon', trailingIcon),
+        filled: iconFilled,
+      }}
+      dropdownMenuItemColors={colors}
+      onNativeComposeNodeButtonPress={() => onClick()}
+    />
+  )
+}
+
+function ExposedDropdownMenuBox({
+  children,
+  expanded,
+  onExpandedChange,
+  expandedRevision = 0,
+  value,
+  placeholder,
+  enabled = true,
+  ...props
+}: ComposeExposedDropdownMenuBoxProps) {
+  validateExposedDropdownMenuBoxProps({
+    expanded,
+    onExpandedChange,
+    expandedRevision,
+    value,
+    placeholder,
+    enabled,
+  })
+  const controlledExpanded = useControlled<{
+    value: boolean
+    eventCount: number
+    revision: number
+  }>((event) => onExpandedChange(event.value), expandedRevision)
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="exposeddropdownmenubox"
+      textValue={value}
+      expandedValue={expanded}
+      expandedRevision={expandedRevision}
+      acknowledgedExpandedEvent={controlledExpanded.acknowledgedEvent}
+      placeholder={placeholder}
+      disabled={!enabled}
+      onNativeComposeNodeBooleanValueChange={(event) =>
+        controlledExpanded.onNativeChange(event.nativeEvent)
+      }
+    >
+      {children}
+    </ComposeNode>
+  )
+}
 
 function NavigationBar({
   children,
@@ -1870,6 +1992,9 @@ export const Compose = {
   NavigationBarItem,
   SearchBar,
   DockedSearchBar,
+  DropdownMenu,
+  DropdownMenuItem,
+  ExposedDropdownMenuBox,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,
