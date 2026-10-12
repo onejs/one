@@ -2130,7 +2130,7 @@ export function deriveViews(
         checks.push(`  if (${ownedByOne ? `${argument.field} !== undefined && ` : ''}(${typeCheck})) throw new Error('${view.name} ${argument.field} must be ${typeName}')`)
         if (argument.kind === 'enum')
           checks.push(`  if (${ownedByOne || argument.optional ? `${argument.field} !== undefined && ${argument.optional ? `${argument.field} !== '' && ` : ''}` : ''}!${JSON.stringify(caseNames)}.includes(${argument.field})) throw new Error('${view.name} ${argument.field} must be one of ${caseNames.join(', ')}')`)
-        if (required(argument) && !choosing && scalar === 'string')
+        if (required(argument) && !argument.optional && !choosing && scalar === 'string')
           checks.push(`  if (!${argument.field}) throw new Error('${view.name} ${argument.field} is required')`)
         if (argument.kind === 'enum') {
           const baseType = argument.type.replace(/\?$/, '')

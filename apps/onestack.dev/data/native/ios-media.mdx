@@ -67,7 +67,8 @@ For bundled, remote, and cross-platform images, use
 ## AsyncImage
 
 `One.iOS.AsyncImage` is SwiftUI's `AsyncImage`. It shows a placeholder while
-it loads the image at `url`, then draws the image at its own size.
+it loads the image at `url`, then draws the image at its own size. Pass `url=""`
+to use the SDK nil URL and keep its default placeholder.
 
 ```tsx
 <One.iOS.AsyncImage url="https://reactnative.dev/img/tiny_logo.png" scale={2} />
@@ -81,6 +82,12 @@ it loads the image at `url`, then draws the image at its own size.
     { name: 'scale', type: 'number', default: '1', description: 'Image pixels per point.' },
   ]}
 />
+
+This binding exposes `init(url:scale:)`. The SDK also has image-content,
+placeholder and `AsyncImagePhase` builders, and iOS 27 request initializers.
+Those overloads are not bound: their callbacks return generic SwiftUI view
+values or take `URLRequest`, which this generated constructor bridge cannot
+carry. There is no phase-observer replacement.
 
 ## Shapes
 

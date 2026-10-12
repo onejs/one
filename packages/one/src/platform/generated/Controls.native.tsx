@@ -2301,7 +2301,6 @@ export function AsyncImage({
   ...props
 }: Types.AsyncImageProps) {
   if (typeof url !== 'string') throw new Error('AsyncImage url must be a string')
-  if (!url) throw new Error('AsyncImage url is required')
   if (typeof scale !== 'number') throw new Error('AsyncImage scale must be a number')
 
   return (
