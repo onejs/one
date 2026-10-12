@@ -1,47 +1,32 @@
 # Releasing One
 
-## Stable releases (patch / minor / major)
+## Stable releases
 
-Two steps, because `main` is protected by a merge queue.
+`main` requires the `checks` and `tests` jobs on every pull request. Open a
+pull request, run `gh pr merge <n> --auto --merge`, and it lands once both
+pass. Every push to `main` then publishes a stable release:
 
-1. **Land the version bump as a normal pull request.**
+- By default it publishes the patch after npm `latest` (2.6.0, then 2.6.1,
+  2.6.2...). The version commit exists only on its `vX.Y.Z` tag; `main`'s
+  package.json keeps the last version a pull request set.
+- A pull request that raises the version above `latest` publishes that version
+  as is. For a minor:
 
-   ```sh
-   bun scripts/release.ts --minor --ci --dirty \
-     --skip-publish --skip-push --skip-tests --skip-native-tests
-   ```
+  ```sh
+  bun scripts/release.ts --minor --ci --dirty \
+    --skip-publish --skip-push --skip-tests --skip-native-tests
+  ```
 
-   That rewrites the workspace `package.json` versions and leaves them
-   uncommitted. Review the diff, run `bun install` so the lockfile matches,
-   commit as exactly `vX.Y.Z`, push a branch, open a PR and merge it through
-   the queue like any other change.
+  then `bun install`, commit as `vX.Y.Z`, and merge it like any other change.
 
-2. **Dispatch the release workflow with `republish`.**
-
-   ```sh
-   gh workflow run release.yml --repo onejs/one --ref main -f release=republish
-   ```
-
-   It checks that `main` is current and that CI is green on that exact SHA,
-   builds the packages in its fresh checkout, publishes the version `main`
-   already carries via npm trusted publishing (OIDC, no token), pushes the
-   `vX.Y.Z` tag, and creates the GitHub release.
+`release=republish` from `main` still publishes the version `main` carries,
+after green CI on that exact SHA.
 
 ## Why not `release=minor` directly
 
 The `patch` / `minor` / `major` inputs bump the version inside the workflow and
-then push that commit straight to `main`. `main` does not accept that:
-
-```
-remote: error: GH006: Protected branch update failed for refs/heads/main.
-remote: - Changes must be made through the merge queue
-remote: - Changes must be made through a pull request.
-```
-
-Every Release run in this repo's history failed on that step, so those three
-inputs have never successfully published anything. They are kept only so the
-failure stays visible rather than looking like a missing feature. Use
-`republish`.
+push that commit straight to `main`, which its required checks reject for the
+workflow's token. Raise the version in a pull request instead.
 
 ## Canaries
 
