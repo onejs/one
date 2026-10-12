@@ -649,6 +649,10 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
       app: { ...app, calendar: { remindersUsage: 'Manage tasks' } },
     })
     expect(remindersOnly.content).not.toContain('android.permission.READ_CALENDAR')
+    expect(remindersOnly.content).toContain('android.permission.POST_NOTIFICATIONS')
+    expect(remindersOnly.content).toContain('android.permission.RECEIVE_BOOT_COMPLETED')
+    expect(remindersOnly.content).toContain('one.calendar.reminders')
+    expect(bare.content).not.toContain('one.calendar.reminders')
   })
 
   it('stamps the maps key and flag only when googleMapsApiKey is set', () => {

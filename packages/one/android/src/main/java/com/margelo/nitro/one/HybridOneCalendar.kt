@@ -23,13 +23,12 @@ import java.util.concurrent.Executors
 
 // calendar events over CalendarContract. identifiers are Events row ids;
 // recurring occurrences are keyed by (identifier, startMs) exactly like
-// EventKit. reminders have no Android provider, so the six reminder
-// methods answer the honest unavailable contract at the native layer too
-// (the js bridge keeps them on unavailable.ts). provider work runs on one
+// EventKit. reminders are app-owned tasks with OS alarm delivery. provider work runs on one
 // worker; the permission slot is only taken or settled under the lock.
 class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
     private val lock = Any()
     private var pendingPermission: Promise<CalendarPermissionStatus>? = null
+    private var pendingRemindersPermission: Promise<CalendarPermissionStatus>? = null
     private val worker = Executors.newSingleThreadExecutor()
 
     private val context: ReactApplicationContext
@@ -43,6 +42,10 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
             pendingPermission = null
         }
         permission?.reject(OneNativeError(E_PERMISSION, "Calendar.requestPermission: torn down mid-request"))
+        synchronized(lock) {
+            pendingRemindersPermission?.reject(OneNativeError("E_REMINDERS_PERMISSION", "Calendar.requestRemindersPermission: torn down mid-request"))
+            pendingRemindersPermission = null
+        }
         worker.shutdownNow()
         super.dispose()
     }
@@ -92,6 +95,13 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
         permissions: Array<String>,
         grantResults: IntArray
     ): Boolean {
+        if (requestCode == REQUEST_REMINDERS_PERMISSION) {
+            val pending = synchronized(lock) {
+                pendingRemindersPermission.also { pendingRemindersPermission = null }
+            }
+            pending?.resolve(getRemindersPermissionStatus())
+            return true
+        }
         if (requestCode != REQUEST_PERMISSION) return false
         val pending = synchronized(lock) {
             val pending = pendingPermission
@@ -327,25 +337,74 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
         return promise
     }
 
-    // reminders: no Android provider exists. these mirror unavailable.ts so
-    // even a direct native caller gets the honest contract.
-    override fun getRemindersPermissionStatus(): CalendarPermissionStatus =
-        CalendarPermissionStatus.DENIED
+    override fun getRemindersPermissionStatus(): CalendarPermissionStatus {
+        if (!OneCalendarReminders.declared(context)) return CalendarPermissionStatus.NOTDETERMINED
+        if (OneCalendarReminders.allowed(context)) {
+            // opening the app after a force-stop restores its cancelled alarms.
+            worker.execute {
+                try {
+                    OneCalendarReminders.reschedule(context)
+                } catch (error: Exception) {
+                    android.util.Log.e("OneCalendar", "could not restore reminder alarms", error)
+                }
+            }
+            return CalendarPermissionStatus.FULLACCESS
+        }
+        val asked = context.getSharedPreferences("one-native-calendar", Activity.MODE_PRIVATE)
+            .getBoolean("reminders.asked", false)
+        return if (asked || Build.VERSION.SDK_INT < 33) CalendarPermissionStatus.DENIED else CalendarPermissionStatus.NOTDETERMINED
+    }
 
-    override fun requestRemindersPermission(): Promise<CalendarPermissionStatus> =
-        Promise.resolved(CalendarPermissionStatus.DENIED)
+    override fun requestRemindersPermission(): Promise<CalendarPermissionStatus> {
+        if (!OneCalendarReminders.declared(context)) return Promise.rejected(
+            OneNativeError("E_REMINDERS_MANIFEST", "Calendar.requestRemindersPermission: set native.app.calendar.remindersUsage")
+        )
+        if (OneCalendarReminders.allowed(context) || Build.VERSION.SDK_INT < 33) return Promise.resolved(getRemindersPermissionStatus())
+        val activity = context.currentActivity as? PermissionAwareActivity ?: return Promise.rejected(
+            OneNativeError("E_REMINDERS_PERMISSION", "Calendar.requestRemindersPermission: found no activity to prompt from")
+        )
+        val promise = Promise<CalendarPermissionStatus>()
+        synchronized(lock) {
+            if (pendingRemindersPermission != null) return Promise.rejected(
+                OneNativeError("E_REMINDERS_PERMISSION", "Calendar.requestRemindersPermission: another request is already in flight")
+            )
+            pendingRemindersPermission = promise
+        }
+        context.getSharedPreferences("one-native-calendar", Activity.MODE_PRIVATE).edit().putBoolean("reminders.asked", true).apply()
+        try {
+            activity.requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), REQUEST_REMINDERS_PERMISSION, this)
+        } catch (error: Exception) {
+            synchronized(lock) { pendingRemindersPermission = null }
+            promise.reject(OneNativeError("E_REMINDERS_PERMISSION", "Calendar.requestRemindersPermission: ${error.message}"))
+        }
+        return promise
+    }
+
+    private fun <T> remindersWork(code: String, verb: String, work: () -> T): Promise<T> {
+        val promise = Promise<T>()
+        worker.execute {
+            try {
+                promise.resolve(work())
+            } catch (error: OneNativeError) {
+                promise.reject(error)
+            } catch (error: Exception) {
+                promise.reject(OneNativeError(code, "Calendar.$verb: ${error.message}"))
+            }
+        }
+        return promise
+    }
 
     override fun listReminders(limit: Double, includeCompleted: Boolean): Promise<Array<ReminderInfo>> =
-        Promise.resolved(emptyArray())
+        remindersWork("E_REMINDERS_FETCH", "listReminders") { OneCalendarReminders.list(context, limit, includeCompleted) }
 
     override fun createReminder(input: ReminderInput): Promise<String> =
-        Promise.rejected(OneNativeError("Calendar.createReminder needs an iOS or Android build"))
+        remindersWork("E_REMINDERS_SAVE", "createReminder") { OneCalendarReminders.create(context, input) }
 
     override fun setReminderCompleted(identifier: String, completed: Boolean): Promise<Unit> =
-        Promise.resolved(Unit)
+        remindersWork("E_REMINDERS_SAVE", "setReminderCompleted") { OneCalendarReminders.complete(context, identifier, completed) }
 
     override fun removeReminder(identifier: String): Promise<Unit> =
-        Promise.resolved(Unit)
+        remindersWork("E_REMINDERS_DELETE", "deleteReminder") { OneCalendarReminders.remove(context, identifier) }
 
     private data class Occurrence(
         val event: CalendarEvent,
@@ -914,5 +973,6 @@ class HybridOneCalendar : HybridOneCalendarSpec(), PermissionListener {
         private const val E_NOT_FOUND = "E_CALENDAR_NOT_FOUND"
         private const val E_UNAVAILABLE = "E_CALENDAR_UNAVAILABLE"
         private const val REQUEST_PERMISSION = 0x2D01
+        private const val REQUEST_REMINDERS_PERMISSION = 0x2D02
     }
 }
