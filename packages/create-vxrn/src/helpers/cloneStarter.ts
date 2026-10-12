@@ -10,14 +10,9 @@ const vxrnDir = join(home, '.vxrn')
 
 export const cloneStarter = async (
   template: CloneableTemplate,
-  resolvedProjectPath: string,
-  version: string
+  resolvedProjectPath: string
 ) => {
-  // a prerelease create-vxrn pins a prerelease one, so its starter must match
-  const branch =
-    'prereleaseBranch' in template.repo && version.includes('-')
-      ? template.repo.prereleaseBranch
-      : template.repo.branch
+  const branch = template.repo.branch
 
   const dir = await setupVxrnDotDir(
     template,

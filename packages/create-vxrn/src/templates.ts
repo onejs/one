@@ -11,9 +11,7 @@ export const templates = [
       url: `https://github.com/onejs/one.git`,
       sshFallback: `git@github.com:onejs/one.git`,
       dir: [`examples`, `one-basic`],
-      // stable releases ship from main; canaries and betas from v2-beta
       branch: 'main',
-      prereleaseBranch: 'v2-beta',
     },
     ...BasicTemplateSteps,
   },

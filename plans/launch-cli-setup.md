@@ -8,8 +8,7 @@ first push: `106ffc430`. Validated code SHA:
 
 ## Result
 
-Basic clones `v2-beta` from a prerelease create-vxrn and `main` from a stable
-one (2026-10-12; `v2-beta-starter` is retired). The clone cache includes the
+Basic clones `main` (2026-10-12; `v2-beta-starter` is retired). The clone cache includes the
 branch to avoid reusing cached main. The standalone creator forwards its positional directory
 to create. Existing One interactive Basic/Takeout selection and the Vite project
 dev path remain intact. No One public flag or type was added; One cli.ts and

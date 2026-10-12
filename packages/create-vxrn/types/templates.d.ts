@@ -11,7 +11,6 @@ export declare const templates: readonly [{
         readonly sshFallback: `git@github.com:onejs/one.git`;
         readonly dir: readonly [`examples`, `one-basic`];
         readonly branch: 'main';
-        readonly prereleaseBranch: 'v2-beta';
     };
 }, {
     readonly extraSteps: import("./steps/types").ExtraSteps;

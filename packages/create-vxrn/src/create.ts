@@ -136,7 +136,7 @@ export async function create(args: { template?: string; name?: string }) {
   await FSExtra.mkdir(resolvedProjectPath)
 
   try {
-    await cloneStarter(template as any, resolvedProjectPath, packageJson.version)
+    await cloneStarter(template as any, resolvedProjectPath)
     process.chdir(resolvedProjectPath)
   } catch (e) {
     console.error(`[vxrn] Failed to copy example into ${resolvedProjectPath}\n\n`, e)
