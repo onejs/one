@@ -196,6 +196,7 @@ jobs:
         with:
           path: |
             ~/.bun/install/cache
+            .turbo/cache
           key: one-canary-${{ runner.os }}-${{ hashFiles('bun.lock') }}-${{ github.sha }}
           restore-keys: |
             one-canary-${{ runner.os }}-${{ hashFiles('bun.lock') }}-
