@@ -22,8 +22,21 @@ export class FileSystemReadableStreamSource implements UnderlyingByteSource {
 
   async pull(controller: ReadableByteStreamController): Promise<void> {
     const view = controller.byobRequest?.view
+    let bytes: Uint8Array<ArrayBuffer>
+    try {
+      bytes = await this.handle.readBytes(view ? view.byteLength : this.size)
+    } catch (error) {
+      // a failed pull errors the stream without invoking cancel, so the
+      // owned handle must be released here; the close is idempotent and a
+      // close failure must not mask the read failure.
+      try {
+        this.handle.close()
+      } catch {
+        // keep the read failure
+      }
+      throw error
+    }
     if (!view) {
-      const bytes = await this.handle.readBytes(this.size)
       if (bytes.length === 0) {
         // expo's reader closes the controller here but never the handle;
         // closing both is the documented behavior and avoids leaking the
@@ -35,7 +48,6 @@ export class FileSystemReadableStreamSource implements UnderlyingByteSource {
       controller.enqueue(bytes)
       return
     }
-    const bytes = await this.handle.readBytes(view.byteLength)
     if (bytes.length === 0) {
       this.handle.close()
       controller.close()
@@ -63,6 +75,17 @@ export class FileSystemWritableSink implements UnderlyingSink<Uint8Array> {
   }
 
   async write(chunk: Uint8Array): Promise<void> {
-    await this.handle.writeBytes(chunk)
+    try {
+      await this.handle.writeBytes(chunk)
+    } catch (error) {
+      // like pull, a failed write errors the stream without abort, so the
+      // owned handle must be released here without masking the failure.
+      try {
+        this.handle.close()
+      } catch {
+        // keep the write failure
+      }
+      throw error
+    }
   }
 }
