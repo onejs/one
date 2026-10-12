@@ -304,43 +304,6 @@ describe('one native integration tests', () => {
     })
   })
 
-  // -- zoom transitions --
-
-  describe('Zoom Transitions', () => {
-    test(
-      'native zoom resolves its mounted source and alignment with controls',
-      sharedTestOptions,
-      async () => {
-        const capabilities = driver.capabilities as Record<string, any>
-        const simulatorId = getSimulatorUdid(driver)
-        const bundleId =
-          capabilities['appium:options']?.bundleId ||
-          capabilities['appium:bundleId'] ||
-          capabilities.bundleId
-        expect(simulatorId).toMatch(/^[0-9A-F-]{36}$/i)
-        expect(bundleId).toBeTypeOf('string')
-        execFileSync(
-          'bun',
-          [
-            'scripts/one-native-conformance.ts',
-            '--simulator-id',
-            simulatorId,
-            '--bundle-id',
-            bundleId,
-            '--suite',
-            'zoom',
-            '--artifact-dir',
-            process.env.ZOOM_ARTIFACT_DIR || '/tmp/one-native-zoom-e2e',
-            ...(process.env.TEST_ENV === 'dev'
-              ? ['--js-location', `localhost:${process.env.DEV_PORT || '8081'}`]
-              : []),
-          ],
-          { stdio: 'inherit' }
-        )
-      }
-    )
-  })
-
   // -- toolbar --
 
   describe('Toolbar', () => {
@@ -901,5 +864,43 @@ describe('one native integration tests', () => {
       const error = await waitForElement(driver, 'one-native-map-controls-error')
       expect(await error.getText()).toContain('One.iOS.Map accepts')
     })
+  })
+})
+
+// the standalone runner owns app launch and debugger automation after Appium closes.
+describe('one native standalone conformance', () => {
+  describe('Zoom Transitions', () => {
+    test(
+      'native zoom resolves its mounted source and alignment with controls',
+      sharedTestOptions,
+      async () => {
+        const capabilities = getWebDriverConfig().capabilities as Record<string, any>
+        const simulatorId = capabilities['appium:options'].udid
+        const bundleId =
+          capabilities['appium:options']?.bundleId ||
+          capabilities['appium:bundleId'] ||
+          capabilities.bundleId
+        expect(simulatorId).toMatch(/^[0-9A-F-]{36}$/i)
+        expect(bundleId).toBeTypeOf('string')
+        execFileSync(
+          'bun',
+          [
+            'scripts/one-native-conformance.ts',
+            '--simulator-id',
+            simulatorId,
+            '--bundle-id',
+            bundleId,
+            '--suite',
+            'zoom',
+            '--artifact-dir',
+            process.env.ZOOM_ARTIFACT_DIR || '/tmp/one-native-zoom-e2e',
+            ...(process.env.TEST_ENV === 'dev'
+              ? ['--js-location', `localhost:${process.env.DEV_PORT || '8081'}`]
+              : []),
+          ],
+          { stdio: 'inherit' }
+        )
+      }
+    )
   })
 })

@@ -125,6 +125,12 @@ jobs:
           echo "$RUNNER_TEMP/axe" >> "$GITHUB_PATH"
           "$RUNNER_TEMP/axe/axe" --version
 
+      - name: Install native debugger CLI
+        run: |
+          bun install --global xcodebuildmcp@2.7.0
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+          "$HOME/.bun/bin/xcodebuildmcp" --version
+
       - name: Run One Native feature fixtures
         working-directory: tests/native-features
         env:
@@ -140,6 +146,8 @@ jobs:
           path: |
             /tmp/appium.log
             /tmp/appium-screenshots
+            /tmp/one-native-zoom-e2e/*.json*
+            /tmp/one-native-zoom-e2e/*.txt
 
   build-ios-test-container-dev:
     name: Build iOS RN Test App (Dev)
