@@ -84,13 +84,17 @@ function useBatteryLevel(): number {
   const [level, setLevel] = useState(-1)
   useEffect(() => {
     let active = true
+    let fromEvent = false
     getLevel()
       .then((next) => {
-        if (active) setLevel(next)
+        if (active && !fromEvent) setLevel(next)
       })
       .catch(() => {})
     const subscription = addLevelListener((event) => {
-      if (active) setLevel(event.batteryLevel)
+      if (active) {
+        fromEvent = true
+        setLevel(event.batteryLevel)
+      }
     })
     return () => {
       active = false
@@ -104,13 +108,17 @@ function useBatteryState(): BatteryState {
   const [state, setState] = useState<BatteryState>('unknown')
   useEffect(() => {
     let active = true
+    let fromEvent = false
     getState()
       .then((next) => {
-        if (active) setState(next)
+        if (active && !fromEvent) setState(next)
       })
       .catch(() => {})
     const subscription = addStateListener((event) => {
-      if (active) setState(event.batteryState)
+      if (active) {
+        fromEvent = true
+        setState(event.batteryState)
+      }
     })
     return () => {
       active = false
@@ -124,13 +132,17 @@ function useLowPowerMode(): boolean {
   const [enabled, setEnabled] = useState(false)
   useEffect(() => {
     let active = true
+    let fromEvent = false
     isLowPowerModeEnabled()
       .then((next) => {
-        if (active) setEnabled(next)
+        if (active && !fromEvent) setEnabled(next)
       })
       .catch(() => {})
     const subscription = addLowPowerModeListener((event) => {
-      if (active) setEnabled(event.lowPowerMode)
+      if (active) {
+        fromEvent = true
+        setEnabled(event.lowPowerMode)
+      }
     })
     return () => {
       active = false
@@ -148,22 +160,36 @@ function usePowerState(): BatteryPowerState {
   })
   useEffect(() => {
     let active = true
+    let levelFromEvent = false
+    let stateFromEvent = false
+    let modeFromEvent = false
     getPowerState()
       .then((next) => {
-        if (active) setPower(next)
+        if (!active) return
+        setPower((current) => ({
+          batteryLevel: levelFromEvent ? current.batteryLevel : next.batteryLevel,
+          batteryState: stateFromEvent ? current.batteryState : next.batteryState,
+          lowPowerMode: modeFromEvent ? current.lowPowerMode : next.lowPowerMode,
+        }))
       })
       .catch(() => {})
     const onLevel = addLevelListener((event) => {
-      if (active)
+      if (active) {
+        levelFromEvent = true
         setPower((current) => ({ ...current, batteryLevel: event.batteryLevel }))
+      }
     })
     const onState = addStateListener((event) => {
-      if (active)
+      if (active) {
+        stateFromEvent = true
         setPower((current) => ({ ...current, batteryState: event.batteryState }))
+      }
     })
     const onMode = addLowPowerModeListener((event) => {
-      if (active)
+      if (active) {
+        modeFromEvent = true
         setPower((current) => ({ ...current, lowPowerMode: event.lowPowerMode }))
+      }
     })
     return () => {
       active = false

@@ -126,11 +126,15 @@ function useBatteryLevel(): number {
   const [level, setLevel] = useState(1)
   useEffect(() => {
     let active = true
+    let fromEvent = false
     void getLevel().then((next) => {
-      if (active) setLevel(next)
+      if (active && !fromEvent) setLevel(next)
     })
     const subscription = addLevelListener((event) => {
-      if (active) setLevel(event.batteryLevel)
+      if (active) {
+        fromEvent = true
+        setLevel(event.batteryLevel)
+      }
     })
     return () => {
       active = false
@@ -144,11 +148,15 @@ function useBatteryState(): BatteryState {
   const [state, setState] = useState<BatteryState>('unknown')
   useEffect(() => {
     let active = true
+    let fromEvent = false
     void getState().then((next) => {
-      if (active) setState(next)
+      if (active && !fromEvent) setState(next)
     })
     const subscription = addStateListener((event) => {
-      if (active) setState(event.batteryState)
+      if (active) {
+        fromEvent = true
+        setState(event.batteryState)
+      }
     })
     return () => {
       active = false
@@ -171,16 +179,27 @@ function usePowerState(): BatteryPowerState {
   })
   useEffect(() => {
     let active = true
+    let levelFromEvent = false
+    let stateFromEvent = false
     void getPowerState().then((next) => {
-      if (active) setPower(next)
+      if (!active) return
+      setPower((current) => ({
+        batteryLevel: levelFromEvent ? current.batteryLevel : next.batteryLevel,
+        batteryState: stateFromEvent ? current.batteryState : next.batteryState,
+        lowPowerMode: next.lowPowerMode,
+      }))
     })
     const onLevel = addLevelListener((event) => {
-      if (active)
+      if (active) {
+        levelFromEvent = true
         setPower((current) => ({ ...current, batteryLevel: event.batteryLevel }))
+      }
     })
     const onState = addStateListener((event) => {
-      if (active)
+      if (active) {
+        stateFromEvent = true
         setPower((current) => ({ ...current, batteryState: event.batteryState }))
+      }
     })
     return () => {
       active = false
