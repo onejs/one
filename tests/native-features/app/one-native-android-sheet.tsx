@@ -59,7 +59,18 @@ export default function OneNativeAndroidSheet() {
           }}
           properties={locked ? { shouldDismissOnClickOutside: false } : undefined}
         >
+          {locked ? (
+            <One.Android.ModalBottomSheet.DragHandle>
+              <One.Android.Text testID="one-native-android-sheet-drag" text="Grip" />
+            </One.Android.ModalBottomSheet.DragHandle>
+          ) : null}
           <One.Android.Text testID="one-native-android-sheet-body" text="Sheet body" />
+          <One.Android.Button
+            testID="one-native-android-sheet-hide-inside"
+            label="Hide sheet"
+            variant="text"
+            onPress={() => void hideByRef()}
+          />
         </One.Android.ModalBottomSheet>
       ) : null}
     </One.Android.Column>

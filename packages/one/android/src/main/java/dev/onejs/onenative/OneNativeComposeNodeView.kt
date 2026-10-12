@@ -2256,6 +2256,7 @@ private fun RenderComposeModalBottomSheet(
         onDismissRequest = { node.handleDialogDismiss() },
         sheetState = sheetState,
         modifier = modifier,
+        sheetGesturesEnabled = options.sheetGesturesEnabled,
         scrimColor = options.scrimColor?.let(::Color) ?: Color.Black.copy(alpha = 0.32f),
         dragHandle = {
             if (dragSlot != null) RenderComposeChildren(dragSlot)

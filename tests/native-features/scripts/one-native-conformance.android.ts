@@ -6013,7 +6013,10 @@ async function runCompose(config: Config) {
       exact(nodes, 'Row item 1') &&
       !exact(nodes, 'Row item 20')
     )
-    for (let attempt = 0; attempt < 5; attempt++) {
+    // one row fling advances about two wide items, so reaching item twenty
+    // needs more drive attempts than the column loop; the pass criteria are
+    // unchanged.
+    for (let attempt = 0; attempt < 10; attempt++) {
       swipeOnNode(config, 'row scroll', { id: 'one-native-android-lists-row' }, 0.8, 0.2)
       if (exact(snapshot(config).nodes, 'Row item 20')) break
     }
@@ -6044,13 +6047,17 @@ async function runCompose(config: Config) {
     const treeHas = (nodes: Node[], text: string) =>
       nodes.some((node) => nodeValues(node).some((value) => value.includes(text)))
     await tapNavigation(config, 'nav-one-native-android-snackbar')
+    // the idle host has no size, so the platform prunes it from the
+    // accessibility tree; it is asserted once a snackbar gives it size.
     await check('compose-snackbar-mounted', (nodes) =>
       exactlyOneId(nodes, 'one-native-android-snackbar-screen') &&
-      exactlyOneId(nodes, 'one-native-android-snackbar-host') &&
       status('Result: none')(nodes)
     )
     tapFresh(config, 'show action snackbar', { id: 'one-native-android-snackbar-show-action' })
-    await check('compose-snackbar-shown', (nodes) => treeHas(nodes, 'File saved'))
+    await check('compose-snackbar-shown', (nodes) =>
+      treeHas(nodes, 'File saved') &&
+      exactlyOneId(nodes, 'one-native-android-snackbar-host')
+    )
     tapByText(config, 'snackbar action', 'Undo')
     await check('compose-snackbar-action', (nodes) => status('Result: actionPerformed')(nodes))
     tapFresh(config, 'show plain snackbar', { id: 'one-native-android-snackbar-show-plain' })
@@ -6074,24 +6081,41 @@ async function runCompose(config: Config) {
       status('Sheet: closed')(nodes) &&
       !treeHas(nodes, 'Sheet body')
     )
+    // a focused dialog eclipses the background screen from the accessibility
+    // tree, so open-state legs assert dialog-window content (body and scrim)
+    // while status transitions are asserted after each dismissal returns the
+    // background.
+    const scrim = (name: string) =>
+      tapMatching(config, name, 'scrim', (node) => node.contentDescription === 'Close sheet')
     tapFresh(config, 'open sheet', { id: 'one-native-android-sheet-open' })
     await check('compose-sheet-open', (nodes) =>
-      treeHas(nodes, 'Sheet body') && status('Sheet: open')(nodes)
+      treeHas(nodes, 'Sheet body') && treeHas(nodes, 'Close sheet')
     )
-    tapFresh(config, 'scrim tap dismisses', { id: 'one-native-android-sheet-status' })
+    scrim('scrim tap dismisses')
     await check('compose-sheet-scrim-dismissed', (nodes) =>
       !treeHas(nodes, 'Sheet body') && status('Sheet: dismissed')(nodes)
     )
+    // a locked sheet exposes no tappable scrim node, so the kept-open tap
+    // goes at scrim coordinates; the dialog staying up keeps the background
+    // eclipsed from the tree.
+    const scrimKept = () => {
+      const viewport = applicationBounds(snapshot(config).nodes)
+      const x = Math.round((viewport.left + viewport.right) / 2)
+      const y = Math.round(viewport.top + (viewport.bottom - viewport.top) * 0.25)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    }
     tapFresh(config, 'open locked sheet', { id: 'one-native-android-sheet-open-locked' })
     await check('compose-sheet-locked-open', (nodes) =>
-      treeHas(nodes, 'Sheet body') && status('Sheet: open')(nodes)
+      treeHas(nodes, 'Sheet body') && treeHas(nodes, 'Grip')
     )
-    tapFresh(config, 'scrim tap keeps locked sheet', { id: 'one-native-android-sheet-status' })
+    scrimKept()
     // a broken scrim gate dismisses on the tap; wait out the animation so the
     // kept-open assertion means the tap was ignored, not just early.
     await Bun.sleep(1500)
     await check('compose-sheet-locked-kept', (nodes) =>
-      treeHas(nodes, 'Sheet body') && status('Sheet: open')(nodes)
+      treeHas(nodes, 'Sheet body') &&
+      treeHas(nodes, 'Grip') &&
+      !treeHas(nodes, 'Open locked')
     )
     pressBack(config)
     await check('compose-sheet-back-dismissed', (nodes) =>
@@ -6099,7 +6123,9 @@ async function runCompose(config: Config) {
     )
     tapFresh(config, 'open sheet', { id: 'one-native-android-sheet-open' })
     await check('compose-sheet-reopened', (nodes) => treeHas(nodes, 'Sheet body'))
-    tapFresh(config, 'hide sheet by ref', { id: 'one-native-android-sheet-hide' })
+    // the open dialog eclipses the background hide button from the tree,
+    // so the ref-hide tap goes at the in-sheet button instead.
+    tapFresh(config, 'hide sheet by ref', { id: 'one-native-android-sheet-hide-inside' })
     await check('compose-sheet-ref-hidden', (nodes) =>
       !treeHas(nodes, 'Sheet body') && status('Sheet: hidden')(nodes)
     )

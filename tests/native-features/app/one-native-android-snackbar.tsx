@@ -6,10 +6,12 @@ export default function OneNativeAndroidSnackbar() {
   const [result, setResult] = useState('none')
 
   const showAction = async () => {
+    // indefinite keeps the action tappable under slow-device dump latency;
+    // short durations are still covered by the plain and dismiss snackbars.
     const outcome = await host.current?.showSnackbar({
       message: 'File saved',
       actionLabel: 'Undo',
-      duration: 'short',
+      duration: 'indefinite',
     })
     if (outcome) setResult(outcome)
   }
