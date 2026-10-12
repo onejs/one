@@ -17,6 +17,6 @@ if (One.Barometer.isAvailable()) {
 }
 ```
 
-`isAvailable()` is synchronous. Each event is `{ pressure, relativeAltitude, timestamp }`: `pressure` in hectopascals (hPa), `relativeAltitude` in meters above the first reading on iOS only, and `timestamp` in seconds since boot, matching Expo on both platforms. `setUpdateInterval` paces delivery on Android; on iOS the altimeter delivers at its own rate and the call is accepted and ignored, matching Expo.
+`isAvailable()` is synchronous. Each event is `{ pressure, relativeAltitude, timestamp }`: `pressure` in hectopascals (hPa), `relativeAltitude` in meters above the first reading on iOS only, and `timestamp` in seconds since boot on both platforms. `setUpdateInterval` paces delivery on Android; on iOS the altimeter delivers at its own rate and the call is accepted and ignored.
 
 On iOS, physical devices need the motion usage description before the altimeter delivers; set `native.app.pedometer.usage` (see [Pedometer](/native/pedometer)). On web, browsers expose no barometer API, so the sensor reads unavailable and listeners never fire.

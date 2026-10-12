@@ -2,55 +2,38 @@
 title: Over-the-air Updates
 ---
 
-Over-the-air (OTA) updates ship JavaScript and asset changes to installed native apps without going through TestFlight or the Play Store. One works with two OTA libraries — pick the one that matches your hosting story. The framework handles the integration automatically; your repo follows the standard install flow.
+Over-the-air (OTA) updates ship JavaScript and asset changes to installed native apps without going through TestFlight or the Play Store.
 
-## Choosing
+## One.Updates
 
-| | [expo-updates](https://docs.expo.dev/eas-update/) (EAS Update) | [hot-updater](https://hot-updater.dev) |
-| --- | --- | --- |
-| Backend | Managed by Expo (EAS subscription) | Self-hosted (Supabase, Cloudflare R2, S3, custom) |
-| Setup | `npm install expo-updates` + `eas init` | `npx hot-updater init` + pick storage/database |
-| Vendor lock-in | EAS | None |
+One ships its own OTA client. Set the update url and runtime version in `native.app`:
 
-## expo-updates
+```ts fileName=vite.config.ts
+one({
+  native: {
+    app: {
+      // ...
+      updates: {
+        url: 'https://updates.example.com',
+        runtimeVersion: '1.0',
+      },
+    },
+  },
+})
+```
 
-Standard install:
+Prebuild stamps both into the binary. Publish from the app's source and serve the output directory at `<url>/<platform>/<runtimeVersion>/`:
 
 ```bash
-npm install expo-updates
+one updates publish --platform ios --out ./ota-out
+one updates publish --platform android --out ./ota-out-android
 ```
 
-Add the EAS project URL and runtime policy to `app.json`:
-
-```js
-{
-  "expo": {
-    "updates": { "url": "https://u.expo.dev/<your-eas-project-id>" },
-    "runtimeVersion": { "policy": "appVersion" }
-  }
-}
-```
-
-`appVersion` is the supported policy. `fingerprint` isn't fully wired up yet.
-
-Set the `main` field in `package.json` so `expo export` (which `eas update` invokes) finds One's router entry:
-
-```json
-{ "main": "one/metro-entry" }
-```
-
-Publish via the standard EAS flow:
-
-```bash
-eas update --channel staging
-eas update --channel production
-```
-
-That's the entire user surface — no babel.config / metro.config in your repo. One starters include `"postinstall": "one patch || true"` so EAS workers generate the Metro/Babel shims with your real `one()` router/setup options during install.
+The launcher picks the newest downloaded update for the binary's runtime version before React Native starts, and rolls back when an update fails before first render. See [Updates](/native/updates) for the client API and publish options.
 
 ## hot-updater
 
-Standard install + init:
+[hot-updater](https://hot-updater.dev) is a self-hosted alternative (Supabase, Cloudflare R2, S3, custom). Install and init:
 
 ```bash
 bun add @hot-updater/react-native react-native-mmkv
@@ -64,7 +47,7 @@ Wrap your app:
 import { HotUpdater } from '@hot-updater/react-native'
 
 export default HotUpdater.wrap({
-  source: process.env.EXPO_PUBLIC_HOT_UPDATER_URL,
+  source: process.env.ONE_PUBLIC_HOT_UPDATER_URL,
 })(App)
 ```
 
@@ -75,91 +58,16 @@ npx hot-updater deploy -p ios -c production
 npx hot-updater deploy -p android -c production
 ```
 
-See [hot-updater.dev/docs](https://hot-updater.dev/docs/) for full backend setup.
+See [hot-updater.dev/docs](https://hot-updater.dev/docs/) for full backend setup. Apps on EAS Update follow [Coming from Expo](/native/migrating-to-one#eas-update).
 
 ## What's OTA-safe
 
 Only publish OTA updates for changes that don't touch the native binary:
 
 - ✅ JavaScript, TypeScript, JSX, styles, copy, bundled assets
-- ❌ Expo SDK upgrades, native dependencies, config plugins, `app.json` fields that affect native output, any native iOS/Android file
+- ❌ native dependencies, `native.app` fields that affect native output, any native iOS/Android file
 
-For those, bump your app `version`, build a fresh TestFlight/Play binary, and only then publish OTA updates against the new runtime. The `appVersion` strategy (supported by both libraries) gates delivery so devices on the old version don't receive incompatible updates.
-
-## Monorepo asset resolution
-
-In a pnpm/yarn workspace, Metro's `projectRoot`, `watchFolders`, and `server.unstable_serverRoot` need to agree on which directory your app lives in. When they disagree, project-local assets (`apps/<your-app>/assets/logo.png` referenced via `require('./assets/logo.png')`) can silently drop from the production native bundle — the file ships in the binary but its `AssetRegistry.registerAsset(...)` descriptor never makes it into the Hermes bundle, so `<Image source={require(...)} />` renders blank. Assets from `node_modules` keep registering because their paths are stable relative to whichever root Metro picks.
-
-Two settings keep this consistent for production-like builds:
-
-**1. Pin Metro's server root to your app directory** in `vite.config.ts`, scoped to production-shaped builds so dev isn't affected:
-
-```ts
-import { resolve } from 'node:path'
-import { one } from 'one/vite'
-
-const projectRoot = resolve(__dirname)
-const isProdLike =
-  process.env.NODE_ENV === 'production' || process.env.EAS_BUILD === 'true'
-
-export default {
-  root: projectRoot,
-  plugins: [
-    one({
-      native: {
-        bundler: 'metro',
-        bundlerOptions: {
-          argv: { projectRoot, cwd: projectRoot },
-          defaultConfigOverrides: (config) => ({
-            ...config,
-            projectRoot,
-            ...(isProdLike && {
-              server: {
-                ...config?.server,
-                unstable_serverRoot: projectRoot,
-              },
-            }),
-          }),
-        },
-      },
-    }),
-  ],
-}
-```
-
-`unstable_serverRoot` is a Metro internal field — name may change across Metro versions. Pin your Metro version if you depend on it.
-
-**2. Set `EXPO_NO_METRO_WORKSPACE_ROOT=1` in EAS production env** so Expo doesn't elevate `projectRoot` to the workspace root behind your back:
-
-```json
-// eas.json
-{
-  "build": {
-    "production": {
-      "env": {
-        "EXPO_NO_METRO_WORKSPACE_ROOT": "1"
-      }
-    }
-  }
-}
-```
-
-To verify after `expo export --platform ios`, the asset's content hash should appear as a filename in `dist/assets/` and as an entry in `dist/metadata.json` under `fileMetadata.ios.assets`. If a project-local asset is missing from `metadata.json` but the file you `require()` exists on disk, this is the symptom.
-
-**3. The iOS `EXUpdates.bundle/app.manifest` gets generated for you.** vxrn's iOS Podfile patch wraps the EXUpdates pod's `Generate updates resources` build phase and runs the upstream `create-updates-resources-ios.sh` with `EXPO_NO_METRO_WORKSPACE_ROOT=1`, producing a manifest with `nsBundleDir` / `nsBundleFilename` entries for every embedded asset. The asset paths in the manifest only match what vxrn actually writes into the `.app` when settings 1 and 2 above are in place. If they don't match, `expo-asset`'s runtime transformer falls back to `uri:""` for project-local `require()`'d images and the logo renders blank in App Store / TestFlight builds. `node_modules` assets work either way.
-
-To verify after a Release build: locate the installed `.app/EXUpdates.bundle/app.manifest`, confirm `assets` is non-empty, and check that each entry's `nsBundleDir` + `nsBundleFilename` actually exists inside the `.app`. At runtime, a `console.log(Image.resolveAssetSource(require('./assets/logo.png')))` should return a `file://.../.expo-internal/<hash>.png` URI rather than `uri:""`.
-
-## Publishing locally (expo-updates only)
-
-`eas update` from your own machine works the same way EAS workers run it — but One's auto-setup only fires when `CI=1` or `EAS_BUILD=true` is set, so your local working tree stays clean. After dependencies are installed, generate the same shims explicitly before publishing:
-
-```bash
-CI=1 npx one patch
-eas update --channel staging
-```
-
-The first command sets up the bundler-config files Metro needs. They're regenerated whenever `one patch` runs in CI/EAS — gitignore them or leave them out of source control entirely. Most projects publish from EAS Workflows or CI instead and never need this.
+For those, bump `runtimeVersion`, build a fresh TestFlight/Play binary, and only then publish OTA updates against the new runtime. The runtime version gates delivery so devices on the old binary don't receive incompatible updates.
 
 ## Owning the config files yourself
 
@@ -199,7 +107,5 @@ Pass `--force` to overwrite existing files.
 
 ## Reference
 
-- [EAS Update documentation](https://docs.expo.dev/eas-update/)
-- [Runtime versions](https://docs.expo.dev/eas-update/runtime-versions/)
-- [`expo-updates` API](https://docs.expo.dev/versions/latest/sdk/updates/)
+- [Updates](/native/updates)
 - [hot-updater documentation](https://hot-updater.dev/docs/)

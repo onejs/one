@@ -22,13 +22,9 @@ The One development server serves both web and native apps on the same port at t
 
 ## Native Development
 
-The `one dev` command only starts the development server — it does not build or run the native iOS/Android shell. One ships native code inside the `one` package, so native development uses your own app build rather than Expo Go:
+The `one dev` command only starts the development server — it does not build or run the native iOS/Android shell. One ships native code inside the `one` package, so native development uses your own app build:
 
 1. Run `one prebuild` to generate the native Xcode/Android project
 2. Run `one run:ios` or `one run:android` to build and launch the app
 
 See the [Build or Run the Native iOS App](/docs/guides-ios-native) guide for detailed instructions.
-
-## Metro Mode
-
-By default, One bundles native apps with Rolldown. If a dependency requires Metro, use [Metro mode](/docs/metro-mode).

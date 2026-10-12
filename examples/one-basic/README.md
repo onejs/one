@@ -22,7 +22,7 @@ Set your bundle ID and application ID in `native.app` in `vite.config.ts`.
 Regenerate and rebuild after changing native configuration or adding native
 dependencies. JavaScript changes use hot reload.
 
-The [native setup guide](https://onestack.dev/docs/native-setup) covers permissions,
-Expo integration, and adding One Native controls. The
+The [native setup guide](https://onestack.dev/docs/native-setup) covers permissions
+and adding One Native controls. The
 [platform support table](https://onestack.dev/native/platform-support) lists
 which services and components each platform supports.

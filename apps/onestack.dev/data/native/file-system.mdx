@@ -51,8 +51,8 @@ their DOMException names rather than the native error codes.
 
 ## Files and directories
 
-`One.FileSystem.File`, `Directory`, `Paths`, and `FileHandle` mirror
-`expo-file-system`. A `File` or `Directory` instance can point anywhere; it
+`One.FileSystem.File`, `Directory`, `Paths`, and `FileHandle` model the
+file system as objects. A `File` or `Directory` instance can point anywhere; it
 does not need to exist until an operation touches it. Constructors join
 segments, and the first segment can be a `File` or `Directory`:
 
@@ -83,7 +83,7 @@ hex digest; the algorithm is `'MD5' | 'SHA-1' | 'SHA-256' | 'SHA-384' |
 'SHA-512'`.
 
 `create()`, `delete()`, `rename(newName)`, `copy()`, `move()`, and `list()`
-follow Expo: `create` takes `{ intermediates, overwrite }` for files and adds
+work as follows: `create` takes `{ intermediates, overwrite }` for files and adds
 `idempotent` for directories; `copy` and `move` take a `File` or `Directory`
 destination (a directory keeps the source name) with `{ overwrite }`, and come
 in `copy` / `copySync` and `move` / `moveSync` twins; `move` and `rename`
@@ -95,14 +95,14 @@ update the instance's `uri`. `directory.list()` returns sorted `File` and
 `Paths.totalDiskSpace` and `Paths.availableDiskSpace` are byte counts; and
 `Paths.info(...uris)` reports `{ exists, isDirectory }`. The path helpers
 `join`, `dirname`, `basename`, `extname`, `normalize`, `parse`, `relative`,
-and `isAbsolute` accept strings, files, and directories and match Expo's
-behavior, including URI encoding.
+and `isAbsolute` accept strings, files, and directories and handle URI
+encoding.
 
 ## Handles and streams
 
 `file.open()` returns a `FileHandle` for random access. The mode defaults to
 `FileMode.ReadWrite`; `ReadOnly`, `WriteOnly`, `Append`, and `Truncate`
-behave as in Expo (`'r'`, `'w'`, `'wa'`, `'wt'`), and write-only modes create
+map to `'r'`, `'w'`, `'wa'`, and `'wt'`, and write-only modes create
 a missing file. `handle.offset` seeks before the next operation (an offset
 past the end appends on write); `handle.size` reports the file length. Both
 are `null` after `close()`. `readBytes(length)` / `readBytesSync(length)`
@@ -139,9 +139,8 @@ disk space, and `Paths.info`) throws `<member> is not available on web`, and
 create, delete, and list. On the server the async reads resolve empty values
 and writes, copies, and moves resolve without doing anything.
 
-`Paths.bundle` is the iOS app bundle; on Android it is the `asset://`
-placeholder Expo uses, and operations on it reject. Not covered yet: file and
+`Paths.bundle` is the iOS app bundle; on Android it is an `asset://`
+placeholder, and operations on it reject. Not covered yet: file and
 directory watching, `slice`/`formData`, upload and download tasks, system
-pickers and previews, Android `contentUri`, and Apple shared containers. The
-deprecated Expo `md5` property and `md5` info option are omitted; use
-`digest('MD5')` instead.
+pickers and previews, Android `contentUri`, and Apple shared containers. For
+an MD5 hash, use `digest('MD5')`.

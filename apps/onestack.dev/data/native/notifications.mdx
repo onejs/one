@@ -139,8 +139,7 @@ shows the button the same way), and `opensAppToForeground` (defaulting to `true`
 `textInput` turns the action into a text field: the typed text arrives as `userText` on
 the response. Category `options` are iOS-only extras (`allowInCarPlay`,
 `customDismissAction`, `showTitle`, `showSubtitle`, `categorySummaryFormat`,
-`intentIdentifiers`, `previewPlaceholder`); `allowAnnouncement` is accepted and ignored,
-like Expo. Identifiers must be non-empty and contain neither `:` nor `-`.
+`intentIdentifiers`, `previewPlaceholder`); `allowAnnouncement` is accepted and ignored. Identifiers must be non-empty and contain neither `:` nor `-`.
 
 `getCategories` resolves every registered category and `deleteCategory` removes one,
 resolving `true`, or `false` when the identifier was unknown. Scheduling onto an

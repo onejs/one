@@ -75,10 +75,7 @@ one updates publish --platform ios --out ./ota-out
 one updates publish --platform android --out ./ota-out-android
 ```
 
-An app whose native project comes from Expo prebuild turns updates on
-through the `vxrn/expo-plugin` options
-(`["vxrn/expo-plugin", { updates: { url, runtimeVersion } }]`, iOS only) and
-has no `native.app`, so it passes the same runtime version to publish with
+Apps without `native.app` pass the runtime version to publish with
 `--runtime-version`.
 
 Each run writes a fresh directory: `manifest.json` plus content-named files

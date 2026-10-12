@@ -4,14 +4,16 @@ export const templates = [
   {
     title: `Basic`,
     value: 'Basic',
-    description: 'The simplest starting point, vanilla Rreact Native',
+    description: 'The simplest starting point, vanilla React Native',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {
       url: `https://github.com/onejs/one.git`,
       sshFallback: `git@github.com:onejs/one.git`,
       dir: [`examples`, `one-basic`],
-      branch: 'v2-beta-starter',
+      // stable releases ship from main; canaries and betas from v2-beta
+      branch: 'main',
+      prereleaseBranch: 'v2-beta',
     },
     ...BasicTemplateSteps,
   },

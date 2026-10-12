@@ -119,7 +119,7 @@ export const nativeRoutes = [
   {
     title: 'Resources',
     pages: [
-      { title: 'Migrating to One Native', route: '/native/migrating-to-one' },
+      { title: 'Coming from Expo', route: '/native/migrating-to-one' },
       { title: 'Platform Support', route: '/native/platform-support' },
     ],
   },

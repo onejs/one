@@ -17,6 +17,6 @@ if (One.LightSensor.isAvailable()) {
 }
 ```
 
-`isAvailable()` is synchronous. Each event is `{ illuminance, timestamp }`: `illuminance` in lux (lx) and `timestamp` in seconds since boot, matching Expo. `setUpdateInterval` paces delivery on Android.
+`isAvailable()` is synchronous. Each event is `{ illuminance, timestamp }`: `illuminance` in lux (lx) and `timestamp` in seconds since boot. `setUpdateInterval` paces delivery on Android.
 
-iOS exposes no public ambient light API, so the sensor reads unavailable there and listeners never fire, matching Expo. On web, the generic-sensor `AmbientLightSensor` supplies live lux where the browser has it (with a unix-seconds timestamp); without it the sensor reads unavailable and listeners never fire.
+iOS exposes no public ambient light API, so the sensor reads unavailable there and listeners never fire. On web, the generic-sensor `AmbientLightSensor` supplies live lux where the browser has it (with a unix-seconds timestamp); without it the sensor reads unavailable and listeners never fire.

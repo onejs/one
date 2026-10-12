@@ -6,16 +6,9 @@ export default defineConfig({
     one({
       web: {
         defaultRenderMode: 'ssg',
-        // vite 8.1 experimental bundled dev (rolldown FullBundleDevEnvironment)
-        experimentalBundledDev: !!process.env.BUNDLED_DEV,
       },
 
-      // unified build mode — pages, api routes, and middlewares all build
-      // against the same SSR server config (same defines, same plugins, same
-      // externalization rules) and drops the blanket `ssr.noExternal: true`.
-      // this is the direction One is moving; in the next major it becomes the
-      // default and `build.api` / `build.middleware` lose their separate
-      // config surfaces.
+      // pages, api routes, and middlewares build against one server config
       build: {
         server: { unified: true },
       },
@@ -44,9 +37,6 @@ export default defineConfig({
           },
           android: { applicationId: 'com.natew.oneexample' },
         },
-        ...(process.env.TEST_METRO && {
-          bundler: 'metro',
-        }),
       },
     }),
   ],

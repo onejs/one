@@ -207,24 +207,3 @@ One's default native path uses its Vite and Rolldown pipeline and does not requi
 a Babel config.
 
 Note that for web-only projects you don't need `react-native`, and further note that if you want something that has a much broader styling featureset and much lighter bundle-size on web, you can use [Tamagui](https://tamagui.dev), which has no dependency on React Native.
-
-### About Metro Mode
-
-Metro remains available for packages that require it. Set `bundler: 'metro'` in the native
-configuration and generate its explicit config:
-
-```bash
-bunx one metro-eject
-```
-
-The generated `babel.config.cjs` delegates to the preset (`module.exports = require('one/babel-preset')`),
-which builds on React Native's preset. Those Babel settings belong to the Metro path and are not
-part of One's default bundler.
-
-Metro provides:
-
-- **Stability**: Metro is the battle-tested bundler used by React Native
-- **Compatibility**: Works with all React Native packages without modification
-- **Production compatibility**: A familiar path for packages designed around Metro
-
-Use Metro when a dependency requires it. See the [Metro Mode documentation](/docs/metro-mode) for more details.
