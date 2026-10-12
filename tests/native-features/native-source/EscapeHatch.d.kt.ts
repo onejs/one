@@ -9,4 +9,7 @@ export declare const EscapeHatch: {
   at(moment: Date): Promise<Date>
   blob(data: Uint8Array): Promise<Uint8Array>
   onTick(listener: (value0: number) => void): () => void
+  emitTick(value: number): Promise<void>
+  onPayload(listener: (value0: Waypoint, value1: Compass, value2: Date, value3: Uint8Array) => void): () => void
+  emitPayload(point: Waypoint, direction: Compass, moment: Date, data: Uint8Array): Promise<void>
 }

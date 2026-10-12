@@ -1,5 +1,29 @@
 # One Native Conformance Runner
 
+## Android source imports in Expo
+
+`app.config.cjs` enables the existing source-import fixture in an Expo-prebuilt
+consumer with application ID `dev.vxrn.nativesource.expo.tests`. Run Expo's
+`prebuild --platform android --no-install` from this fixture, with Expo installed.
+Expo may add its dependency to the local fixture manifest; keep that local
+consumer setup separate from the regular `one prebuild` fixture.
+
+Build the generated Android project with
+`./gradlew :app:assembleDebug -PreactNativeArchitectures=arm64-v8a -Pandroid.minSdkVersion=26`.
+The API 26 minimum is required by this fixture's WebGPU dependency. Install the
+APK on an owned Android emulator and point its `debug_http_host` preference at
+the fixture's running One dev server. Then run:
+
+```sh
+maestro --device <emulator-id> test maestro/native-source-android.yaml
+```
+
+The flow asserts struct, enum, Date and byte-array round trips, typed native
+events, independent listeners, unsubscribe behavior, and invalid payload and
+listener errors. A surviving listener confirms delivery after another listener
+is removed; the event probe awaits delivery within its existing two-second
+budget. This is Android coverage; it does not rerun iOS acceptance.
+
 ## Android Compose in Peach
 
 The Peach lane uses Maestro for interaction and a thin runner for independent tree, layout,

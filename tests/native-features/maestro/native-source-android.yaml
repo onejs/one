@@ -1,0 +1,37 @@
+appId: dev.vxrn.nativesource.expo.tests
+---
+- launchApp
+- extendedWaitUntil:
+    visible:
+      id: home-title
+    timeout: 30000
+- openLink:
+    link: nativefeatures:///one-native-source
+- extendedWaitUntil:
+    visible:
+      id: native-payloads-run
+    timeout: 30000
+- tapOn:
+    id: native-payloads-run
+- extendedWaitUntil:
+    visible:
+      id: native-payloads-result
+      text: '.*"pinned":\{"x":1,"y":2,"label":null\}.*"labeled":\{"x":3,"y":4,"label":"named"\}.*"heading":"NORTH".*"at":"2026-01-01T00:00:00.123Z".*"blob":\[0,1,128,255\].*'
+    timeout: 30000
+- tapOn:
+    id: native-payloads-invalid-run
+- assertVisible:
+    id: native-payloads-invalid-result
+    text: '.*expected Date.*'
+- tapOn:
+    id: native-events-run
+- extendedWaitUntil:
+    visible:
+      id: native-events-result
+      text: '.*"ticks":\[1\].*"payloads":\[\{"point":\{"x":3,"y":4,"label":"first"\},"direction":"SOUTH","moment":"2026-01-01T00:00:00.123Z","data":\[0,128,255\]\}\].*"survivor":\[.*\{"point":\{"x":5,"y":6,"label":null\},"direction":"NORTH","moment":"2026-01-01T00:00:00.123Z","data":\[255,0\]\}\].*"isolated":true,"unsubscribed":true.*'
+    timeout: 30000
+- tapOn:
+    id: native-events-invalid-run
+- assertVisible:
+    id: native-events-invalid-result
+    text: '.*needs a listener function.*'

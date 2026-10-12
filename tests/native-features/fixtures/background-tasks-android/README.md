@@ -9,6 +9,10 @@ WorkManager unchanged. Before scheduling, the mounted fixture also calls
 Calendar reminders through the production Nitro adapter, checking creation,
 completion filtering, deletion, invalid input, and a missing identifier.
 
+This standalone consumer has its own package boundary so native-source
+prebuild does not copy its application classes into the parent fixture.
+Its Gradle init script selects `src` explicitly for this proof's APK.
+
 For an event-driven build and proof job, run `build-and-run.sh` with the
 generated Android consumer path, Gradle executable, claimed serial and evidence
 directory as arguments. Set `ADB` and `SIM_CLAIM_SCRIPT`. Wrap it in one

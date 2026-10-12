@@ -24,4 +24,15 @@ object EscapeHatch : OneModule {
             tick?.invoke(1.0)
         }.start()
     }
+
+    fun emitTick(value: Double) { tick?.invoke(value) }
+
+    private var payload: ((Waypoint, Compass, Date, ByteArray) -> Unit)? = null
+    fun onPayload(callback: (Waypoint, Compass, Date, ByteArray) -> Unit) {
+        payload = callback
+    }
+
+    fun emitPayload(point: Waypoint, direction: Compass, moment: Date, data: ByteArray) {
+        payload?.invoke(point, direction, moment, data)
+    }
 }

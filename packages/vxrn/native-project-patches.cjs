@@ -195,8 +195,14 @@ function replaceAppBuildGradleReactBlock(appBuildGradleContents) {
     return appBuildGradleContents
   }
 
+  // replace our resolver declarations together with the react block on re-prebuild.
+  const prefix = appBuildGradleContentLines
+    .slice(0, reactBlockStartIndex)
+    .join('\n')
+    .replaceAll(ANDROID_APP_BUILD_GRADLE_RESOLVERS, '')
+    .trimEnd()
   return [
-    ...appBuildGradleContentLines.slice(0, reactBlockStartIndex),
+    prefix,
     ANDROID_APP_BUILD_GRADLE_REACT_BLOCK,
     ...appBuildGradleContentLines.slice(reactBlockEndIndex + 1),
   ].join('\n')
@@ -204,8 +210,7 @@ function replaceAppBuildGradleReactBlock(appBuildGradleContents) {
 
 // TODO: Get the content of this block from @react-native-community/template (for example, get https://registry.npmjs.org/@react-native-community/template/0.76.6, find the tarball, download it into a tmp dir, extract it, read template/android/app/build.gradle, parse out the react block) to ensure it stays up to date.
 // Note that we need to add patches marked with [vxrn/one], not just copy the block from the template as is.
-const ANDROID_APP_BUILD_GRADLE_REACT_BLOCK = `
-def resolveNodePackage = { packageName ->
+const ANDROID_APP_BUILD_GRADLE_RESOLVERS = `def resolveNodePackage = { packageName ->
     providers.exec {
         workingDir(rootDir)
         commandLine("node", "--print", "require.resolve('" + packageName + "')")
@@ -217,7 +222,10 @@ def resolveReactNativeDependency = { packageName ->
         workingDir(rootDir)
         commandLine("node", "--print", "require('module').createRequire(require.resolve('react-native/package.json')).resolve('" + packageName + "')")
     }.standardOutput.asText.get().trim()
-}
+}`
+
+const ANDROID_APP_BUILD_GRADLE_REACT_BLOCK = `
+${ANDROID_APP_BUILD_GRADLE_RESOLVERS}
 
 react {
     // [vxrn/one] the bundle command should find the entry file automatically,

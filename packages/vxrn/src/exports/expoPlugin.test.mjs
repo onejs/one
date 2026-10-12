@@ -98,6 +98,9 @@ describe('vxrn Expo project patches', () => {
     expect(result).toContain('autolinkLibrariesWithApp()')
     expect(result).not.toContain('entryFile = file("../index.js")')
     expect(result).toContain('[vxrn/one] ensure patches are applied')
+    expect(patches.addDepsPatchToAppBuildGradle(
+      patches.replaceAppBuildGradleReactBlock(result)
+    )).toBe(result)
   })
 
   it('applies the shared Podfile patches idempotently', () => {
