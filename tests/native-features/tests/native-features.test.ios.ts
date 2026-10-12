@@ -602,7 +602,7 @@ describe('one native integration tests', () => {
       await waitForElement(driver, 'split-view-test-screen', { timeout: 30_000 })
 
       const title = await waitForElement(driver, 'split-view-title')
-      expect(await title.getText()).toBe('SplitView Test')
+      expect(await title.getText()).toBe('One.iOS.SplitView Test')
 
       await captureScreenshot(driver, 'split-view-initial')
     })
@@ -626,7 +626,7 @@ describe('one native integration tests', () => {
 
     test('split view renders completion status', sharedTestOptions, async () => {
       const status = await waitForElement(driver, 'split-view-render-complete')
-      expect(await status.getText()).toBe('SplitView test rendered')
+      expect(await status.getText()).toBe('One.iOS.SplitView test rendered')
 
       const selectedId = await waitForElement(driver, 'split-view-selected-id')
       expect(await selectedId.getText()).toContain('inbox')

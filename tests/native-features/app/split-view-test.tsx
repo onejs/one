@@ -109,12 +109,13 @@ function MainSlot() {
   )
 }
 
-export default function SplitViewTestScreen() {
+export function SplitViewFixture() {
   const [selectedId, setSelectedId] = useState('inbox')
   const isIOS = Platform.OS === 'ios'
 
   if (isIOS) {
     return (
+      <View style={{ flex: 1 }} testID="split-view-test-screen" collapsable={false}>
       <SelectedMailboxContext.Provider value={selectedId}>
         <One.iOS.SplitView slot={MainSlot}>
           <One.iOS.SplitView.Column>
@@ -126,6 +127,7 @@ export default function SplitViewTestScreen() {
           </One.iOS.SplitView.Column>
         </One.iOS.SplitView>
       </SelectedMailboxContext.Provider>
+      </View>
     )
   }
 
@@ -155,6 +157,11 @@ export default function SplitViewTestScreen() {
       </View>
     </View>
   )
+}
+
+export default function SplitViewTestScreen() {
+  // the native split host mounts at the layout root, beside the persistent stack.
+  return Platform.OS === 'ios' ? null : <SplitViewFixture />
 }
 
 const styles = StyleSheet.create({

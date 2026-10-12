@@ -18,11 +18,14 @@ vi.mock('one', () => ({
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios' },
   LogBox: { ignoreLogs() {} },
+  View: 'View',
 }))
 vi.mock('../../../tests/native-features/components/QuickNavigatePixel', () => ({
   QuickNavigatePixel: () => null,
 }))
-vi.mock('../../../tests/native-features/app/split-view-test', () => ({ default: () => null }))
+vi.mock('../../../tests/native-features/app/split-view-test', () => ({
+  SplitViewFixture: () => <React.Fragment>split fixture</React.Fragment>,
+}))
 vi.mock('../../../tests/native-features/native-source/EscapeHatch.swift', () => ({
   EscapeHatch: {
     // swift's synthesized codable omits nil fields.
@@ -46,10 +49,13 @@ it('keeps the mounted navigation root when entering and leaving the split view r
   await act(async () => { tree = create(<Layout />) })
   state.pathname = '/split-view-test'
   await act(async () => { tree.update(<Layout />) })
+  expect(tree.root.findAllByType('View')[0].props.style.display).toBe('none')
+  expect(tree.toJSON()).toContain('split fixture')
   expect(state.mounts).toBe(1)
   expect(state.unmounts).toBe(0)
   state.pathname = '/one-native-map-controls'
   await act(async () => { tree.update(<Layout />) })
+  expect(tree.root.findAllByType('View')[0].props.style.display).toBe('flex')
   expect(state.mounts).toBe(1)
   expect(state.unmounts).toBe(0)
   await act(async () => { tree.unmount() })
