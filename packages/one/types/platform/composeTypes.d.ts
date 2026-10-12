@@ -197,6 +197,17 @@ export interface ComposePullToRefreshBoxProps extends ComposeNodeProps {
     onRefresh: () => void;
     enabled?: boolean;
 }
+export interface ComposeTooltipBoxProps extends ComposeNodeProps {
+    text: string;
+    title?: string;
+    enabled?: boolean;
+}
+export type ComposeAnimatedVisibilityTransition = 'fade' | 'scale' | 'slideVertically' | 'expandVertically';
+export interface ComposeAnimatedVisibilityProps extends ComposeNodeProps {
+    visible: boolean;
+    enter?: ComposeAnimatedVisibilityTransition;
+    exit?: ComposeAnimatedVisibilityTransition;
+}
 export interface ComposeBadgeProps extends ComposeNodeProps {
     containerColor?: ColorValue;
     contentColor?: ColorValue;

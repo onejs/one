@@ -365,6 +365,8 @@ interface NativeProps extends ViewProps {
     filled?: boolean
   }>
   isRefreshing?: boolean
+  enterTransition?: string
+  exitTransition?: string
   onNativeComposeNodeImageLoad?: DirectEventHandler<Readonly<{ eventCount: Int32 }>>
   onNativeComposeNodeImageError?: DirectEventHandler<
     Readonly<{ message: string; eventCount: Int32 }>

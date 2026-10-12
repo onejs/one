@@ -156,8 +156,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a | missing |  |
 | `One.iOS.ZoomTransitionEnabler` | zoom | n/a | ScreensTransitionLibraryCase |  |
 | `One.iOS.ZoomTransitionSource` | zoom | n/a | ScreensTransitionLibraryCase |  |
-| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | missing |  |
-| `One.Android.Row` | n/a | android, android-inputs, android-progress, android-lists, android-snackbar, android-sheet, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers | missing |  |
+| `One.Android.Column` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | missing |  |
+| `One.Android.Row` | n/a | android, android-inputs, android-progress, android-lists, android-snackbar, android-sheet, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-animated-visibility, android-loading, android-badges, android-flow-row, android-icon-buttons, android-selection, android-dividers | missing |  |
 | `One.Android.Spacer` | n/a | android-flow-row | missing |  |
 | `One.Android.FlowRow` | n/a | android-pickers, android-flow-row | missing |  |
 | `One.Android.Box` | n/a | android, android-inputs, android-dropdown-menu, android-flow-row | missing |  |
@@ -174,9 +174,9 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.AssistChip` | n/a | android-chips | OneComposeActionsLibraryCase |  |
 | `One.Android.InputChip` | n/a | android-chips | missing |  |
 | `One.Android.SuggestionChip` | n/a | android-chips | missing |  |
-| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
+| `One.Android.Text` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-compose-image, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-badges, android-list-items, android-flow-row, android-icon-buttons, android-selection, android-cards, android-dividers, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneComposeFormLibraryCase, OneComposeSelectionLibraryCase |  |
 | `One.Android.Icon` | n/a | android, android-search-bar, android-badges, android-list-items, android-icon-buttons, ui-icon, android-filter-chip, android-chips | OneComposeActionsLibraryCase, OneNativeIconLibraryCase |  |
-| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip | OneComposeFormLibraryCase |  |
+| `One.Android.Button` | n/a | android, state, android-inputs, android-progress, android-segmented, android-pickers, android-lists, android-snackbar, android-sheet, android-navigation-bar, android-search-bar, android-dropdown-menu, android-pull-to-refresh, android-tooltip, android-animated-visibility, android-surface, android-loading, android-icon-buttons, android-selection, android-filter-chip | OneComposeFormLibraryCase |  |
 | `One.Android.IconButton` | n/a | android-search-bar, android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
 | `One.Android.FilledTonalIconButton` | n/a | android-icon-buttons | OneComposeActionsLibraryCase |  |
@@ -213,6 +213,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Android.DropdownMenuItem` | n/a | android-dropdown-menu | missing |  |
 | `One.Android.ExposedDropdownMenuBox` | n/a | android-dropdown-menu | missing |  |
 | `One.Android.PullToRefreshBox` | n/a | android-pull-to-refresh | missing |  |
+| `One.Android.TooltipBox` | n/a | android-tooltip | missing |  |
+| `One.Android.AnimatedVisibility` | n/a | android-animated-visibility | missing |  |
 | `One.Android.ProgressIndicator` | n/a | android-inputs | missing |  |
 | `One.Android.LinearProgressIndicator` | n/a | android-progress | OneComposeSelectionLibraryCase |  |
 | `One.Android.CircularProgressIndicator` | n/a | android-progress | OneComposeSelectionLibraryCase |  |

@@ -7,6 +7,7 @@ import { getSyncStateId } from './syncStore'
 import { syncHandleOf, useSyncValue } from './syncNativeState'
 import type {
   ComposeAlertDialogProps,
+  ComposeAnimatedVisibilityProps,
   ComposeAssistChipProps,
   ComposeBadgeProps,
   ComposeBadgedBoxProps,
@@ -77,6 +78,7 @@ import type {
   ComposeTextFieldVariant,
   ComposeTextProps,
   ComposeTimePickerColors,
+  ComposeTooltipBoxProps,
   ComposeTimePickerDialogProps,
   ComposeTimePickerProps,
   ComposeToggleButtonProps,
@@ -92,6 +94,7 @@ import {
   validatePickerDialogProps,
   validateTimePickerProps,
   validateAlertDialogProps,
+  validateAnimatedVisibilityProps,
   validateBadgeProps,
   validateBoxProps,
   validateButtonProps,
@@ -129,6 +132,7 @@ import {
   validateTextFieldProps,
   validateTextProps,
   validateToggleButtonProps,
+  validateTooltipBoxProps,
   validateSegmentedButtonProps,
 } from './composeValidation'
 
@@ -194,6 +198,8 @@ type ComposeNodeType =
   | 'dropdownmenuitem'
   | 'exposeddropdownmenubox'
   | 'pulltorefreshbox'
+  | 'tooltipbox'
+  | 'animatedvisibility'
   | 'progressindicator'
   | 'datepicker'
   | 'timepicker'
@@ -360,6 +366,8 @@ type ComposeNativeNodeProps = ComposeNodeProps & {
     filled?: boolean
   }>
   isRefreshing?: boolean
+  enterTransition?: string
+  exitTransition?: string
   onNativeComposeNodeImageLoad?: (event: { nativeEvent: { eventCount: number } }) => void
   onNativeComposeNodeImageError?: (event: {
     nativeEvent: { message: string; eventCount: number }
@@ -858,6 +866,48 @@ function ExposedDropdownMenuBox({
       onNativeComposeNodeBooleanValueChange={(event) =>
         controlledExpanded.onNativeChange(event.nativeEvent)
       }
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function TooltipBox({
+  children,
+  text,
+  title,
+  enabled = true,
+  ...props
+}: ComposeTooltipBoxProps) {
+  validateTooltipBoxProps({ text, title, enabled })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="tooltipbox"
+      text={text}
+      title={title}
+      disabled={!enabled}
+    >
+      {children}
+    </ComposeNode>
+  )
+}
+
+function AnimatedVisibility({
+  children,
+  visible,
+  enter,
+  exit,
+  ...props
+}: ComposeAnimatedVisibilityProps) {
+  validateAnimatedVisibilityProps({ visible, enter, exit })
+  return (
+    <ComposeNode
+      {...props}
+      nodeType="animatedvisibility"
+      visible={visible}
+      enterTransition={enter}
+      exitTransition={exit}
     >
       {children}
     </ComposeNode>
@@ -2021,6 +2071,8 @@ export const Compose = {
   DropdownMenuItem,
   ExposedDropdownMenuBox,
   PullToRefreshBox,
+  TooltipBox,
+  AnimatedVisibility,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

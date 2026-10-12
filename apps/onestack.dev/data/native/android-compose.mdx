@@ -1015,3 +1015,48 @@ const [refreshing, setRefreshing] = useState(false)
     { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled box ignores pulls.' },
   ]}
 />
+
+## TooltipBox
+
+`One.Android.TooltipBox` shows a Material 3 tooltip on long-press over its
+children. A `title` upgrades the plain tooltip to the rich form.
+
+```tsx
+<One.Android.TooltipBox text="Save the file">
+  <One.Android.IconButton onClick={() => save()}>
+    <One.Android.Icon name="save" />
+  </One.Android.IconButton>
+</One.Android.TooltipBox>
+```
+
+<PropsTable
+  title="TooltipBox"
+  source="composeTypes.ts#ComposeTooltipBoxProps"
+  data={[
+    { name: 'text', required: true, type: 'string', description: 'The tooltip body.' },
+    { name: 'title', type: 'string', description: 'A title, which selects the rich tooltip.' },
+    { name: 'enabled', type: 'boolean', default: 'true', description: 'A disabled box ignores long-presses.' },
+  ]}
+/>
+
+## AnimatedVisibility
+
+`One.Android.AnimatedVisibility` fades and resizes its children in and out
+as `visible` changes. `enter` and `exit` pick one transition each; unset,
+both use the Material fade with a vertical resize.
+
+```tsx
+<One.Android.AnimatedVisibility visible={open} enter="expandVertically" exit="fade">
+  <One.Android.Text text="Now you see me" />
+</One.Android.AnimatedVisibility>
+```
+
+<PropsTable
+  title="AnimatedVisibility"
+  source="composeTypes.ts#ComposeAnimatedVisibilityProps"
+  data={[
+    { name: 'visible', required: true, type: 'boolean', description: 'The children are shown.' },
+    { name: 'enter', type: 'ComposeAnimatedVisibilityTransition', description: 'fade, scale, slideVertically, or expandVertically.' },
+    { name: 'exit', type: 'ComposeAnimatedVisibilityTransition', description: 'fade, scale, slideVertically, or expandVertically. The slide and expand forms shrink on exit.' },
+  ]}
+/>

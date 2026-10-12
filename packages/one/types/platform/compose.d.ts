@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ComposeAlertDialogProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeDropdownMenuItemProps, ComposeDropdownMenuProps, ComposeElevatedCardProps, ComposeExposedDropdownMenuBoxProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposePullToRefreshBoxProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSearchBarProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostProps, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps } from './composeTypes';
+import type { ComposeAlertDialogProps, ComposeAnimatedVisibilityProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeDropdownMenuItemProps, ComposeDropdownMenuProps, ComposeElevatedCardProps, ComposeExposedDropdownMenuBoxProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposePullToRefreshBoxProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSearchBarProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostProps, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps, ComposeTooltipBoxProps } from './composeTypes';
 declare function Column(_props: ComposeColumnProps): never;
 declare function Row(_props: ComposeRowProps): never;
 declare function Spacer(_props: ComposeSpacerProps): never;
@@ -68,6 +68,8 @@ declare function DropdownMenu(_props: ComposeDropdownMenuProps): never;
 declare function DropdownMenuItem(_props: ComposeDropdownMenuItemProps): never;
 declare function ExposedDropdownMenuBox(_props: ComposeExposedDropdownMenuBoxProps): never;
 declare function PullToRefreshBox(_props: ComposePullToRefreshBoxProps): never;
+declare function TooltipBox(_props: ComposeTooltipBoxProps): never;
+declare function AnimatedVisibility(_props: ComposeAnimatedVisibilityProps): never;
 declare function ProgressIndicator(_props: ComposeProgressIndicatorProps): never;
 type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>;
 declare function LinearProgressIndicator(_props: ProgressVariantProps): never;
@@ -210,6 +212,8 @@ export declare const Compose: {
     DropdownMenuItem: typeof DropdownMenuItem;
     ExposedDropdownMenuBox: typeof ExposedDropdownMenuBox;
     PullToRefreshBox: typeof PullToRefreshBox;
+    TooltipBox: typeof TooltipBox;
+    AnimatedVisibility: typeof AnimatedVisibility;
     ProgressIndicator: typeof ProgressIndicator;
     LinearProgressIndicator: typeof LinearProgressIndicator;
     CircularProgressIndicator: typeof CircularProgressIndicator;

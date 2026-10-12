@@ -44,6 +44,8 @@ declare module 'one' {
         | `/one-native-android-search-bar`
         | `/one-native-android-dropdown-menu`
         | `/one-native-android-pull-to-refresh`
+        | `/one-native-android-tooltip`
+        | `/one-native-android-animated-visibility`
         | `/one-native-android-picker-reference`
         | `/one-native-android-pickers`
         | `/one-native-android-progress`

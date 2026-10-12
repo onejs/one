@@ -585,6 +585,16 @@ const testScreens = [
     testID: 'nav-one-native-android-pull-to-refresh',
   },
   {
+    href: '/one-native-android-tooltip',
+    label: 'One Native Android Tooltip',
+    testID: 'nav-one-native-android-tooltip',
+  },
+  {
+    href: '/one-native-android-animated-visibility',
+    label: 'One Native Android Animated Visibility',
+    testID: 'nav-one-native-android-animated-visibility',
+  },
+  {
     href: '/one-native-tabview',
     label: 'One Native TabView Parity',
     testID: 'nav-one-native-tabview',

@@ -35,6 +35,17 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
@@ -132,8 +143,13 @@ import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.RichTooltip
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Surface
@@ -928,6 +944,8 @@ internal data class OneNativeComposeNodeProps(
     val dropdownMenuItemColors: OneNativeDropdownMenuItemColors = OneNativeDropdownMenuItemColors(),
     val dropdownMenuItemOptions: OneNativeDropdownMenuItemOptions = OneNativeDropdownMenuItemOptions(),
     val isRefreshing: Boolean = false,
+    val enterTransition: String? = null,
+    val exitTransition: String? = null,
     val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
 )
 
@@ -1508,6 +1526,14 @@ class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
 
     internal fun stageIsRefreshing(value: Boolean) {
         pendingProps = pendingProps.copy(isRefreshing = value)
+    }
+
+    internal fun stageEnterTransition(value: String?) {
+        pendingProps = pendingProps.copy(enterTransition = value)
+    }
+
+    internal fun stageExitTransition(value: String?) {
+        pendingProps = pendingProps.copy(exitTransition = value)
     }
 
     internal fun handleExpandedChanged(nextValue: Boolean) {
@@ -2104,6 +2130,8 @@ private fun RenderComposeNodeBody(
         "dropdownmenuitem" -> Unit
         "exposeddropdownmenubox" -> RenderComposeExposedDropdownMenuBox(node, props, modifier)
         "pulltorefreshbox" -> RenderComposePullToRefreshBox(node, props, modifier)
+        "tooltipbox" -> RenderComposeTooltipBox(node, props, modifier)
+        "animatedvisibility" -> RenderComposeAnimatedVisibility(node, props, modifier)
         "datepicker" -> RenderComposeDatePicker(node, props, modifier)
         "timepicker" -> RenderComposeTimePicker(node, props, modifier)
         "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
@@ -2642,6 +2670,72 @@ private fun RenderComposePullToRefreshBox(
         modifier = modifier,
         state = state,
         enabled = !props.disabled && node.isEnabled,
+    ) {
+        node.renderedChildren.forEach { child ->
+            key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeTooltipBox(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val rich = props.title != null
+    TooltipBox(
+        positionProvider =
+            if (rich) TooltipDefaults.rememberRichTooltipPositionProvider()
+            else TooltipDefaults.rememberPlainTooltipPositionProvider(),
+        tooltip = {
+            if (rich) {
+                RichTooltip(
+                    title = { Text(props.title.orEmpty()) },
+                    text = { Text(props.text.orEmpty()) },
+                )
+            } else {
+                PlainTooltip { Text(props.text.orEmpty()) }
+            }
+        },
+        state = rememberTooltipState(),
+        modifier = modifier,
+        enableUserInput = !props.disabled && node.isEnabled,
+    ) {
+        RenderComposeChildren(node)
+    }
+}
+
+private fun composeEnterTransition(value: String?): EnterTransition =
+    when (value?.trim()?.lowercase()) {
+        "fade" -> fadeIn()
+        "scale" -> scaleIn()
+        "slidevertically" -> slideInVertically()
+        "expandvertically" -> expandVertically()
+        else -> fadeIn() + expandVertically()
+    }
+
+private fun composeExitTransition(value: String?): ExitTransition =
+    when (value?.trim()?.lowercase()) {
+        "fade" -> fadeOut()
+        "scale" -> scaleOut()
+        "slidevertically" -> slideOutVertically()
+        "expandvertically" -> shrinkVertically()
+        else -> fadeOut() + shrinkVertically()
+    }
+
+@Composable
+private fun RenderComposeAnimatedVisibility(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    AnimatedVisibility(
+        visible = props.visible,
+        modifier = modifier,
+        enter = composeEnterTransition(props.enterTransition),
+        exit = composeExitTransition(props.exitTransition),
     ) {
         node.renderedChildren.forEach { child ->
             key(child) { RenderComposeNode(child, Modifier) }

@@ -476,6 +476,14 @@ class OneNativeComposeNodeManager :
         view.stageIsRefreshing(value)
     }
 
+    override fun setEnterTransition(view: OneNativeComposeNodeView, value: String?) {
+        view.stageEnterTransition(value)
+    }
+
+    override fun setExitTransition(view: OneNativeComposeNodeView, value: String?) {
+        view.stageExitTransition(value)
+    }
+
     override fun setComposeStyle(view: OneNativeComposeNodeView, value: ReadableMap?) {
         view.stageComposeStyle(value)
     }

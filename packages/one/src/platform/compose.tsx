@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import type {
   ComposeAlertDialogProps,
+  ComposeAnimatedVisibilityProps,
   ComposeAssistChipProps,
   ComposeBadgeProps,
   ComposeBadgedBoxProps,
@@ -53,6 +54,7 @@ import type {
   ComposeTimePickerDialogProps,
   ComposeTimePickerProps,
   ComposeToggleButtonProps,
+  ComposeTooltipBoxProps,
 } from './composeTypes'
 
 function unsupported(name: string): never {
@@ -336,6 +338,14 @@ function PullToRefreshBox(_props: ComposePullToRefreshBoxProps): never {
   return unsupported('PullToRefreshBox')
 }
 
+function TooltipBox(_props: ComposeTooltipBoxProps): never {
+  return unsupported('TooltipBox')
+}
+
+function AnimatedVisibility(_props: ComposeAnimatedVisibilityProps): never {
+  return unsupported('AnimatedVisibility')
+}
+
 function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
   return unsupported('ProgressIndicator')
 }
@@ -440,6 +450,8 @@ export const Compose = {
   DropdownMenuItem,
   ExposedDropdownMenuBox,
   PullToRefreshBox,
+  TooltipBox,
+  AnimatedVisibility,
   ProgressIndicator,
   LinearProgressIndicator,
   CircularProgressIndicator,

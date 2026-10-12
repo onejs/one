@@ -5,6 +5,7 @@ import { createSyncState } from '../src/platform/syncStore'
 import type { ComposeModalBottomSheetRef } from '../src/platform/composeTypes'
 import {
   validateAlertDialogProps,
+  validateAnimatedVisibilityProps,
   validateBoxProps,
   validateButtonProps,
   validateColumnProps,
@@ -29,6 +30,7 @@ import {
   validateSwitchProps,
   validateTextFieldProps,
   validateTextProps,
+  validateTooltipBoxProps,
 } from '../src/platform/composeValidation'
 
 // the compose leaves read the spec through codegenNativeComponent and a context, so the test
@@ -955,6 +957,78 @@ describe('compose pull to refresh box', () => {
   it('requires an Android native build outside Android', () => {
     expect(() => Unsupported.PullToRefreshBox({ isRefreshing: false, onRefresh: () => {} })).toThrow(
       'Compose.PullToRefreshBox requires an Android native build'
+    )
+  })
+})
+
+describe('compose tooltip box', () => {
+  it('renders plain and rich tooltips', () => {
+    expect(render(Compose.TooltipBox, { text: 'Save the file' })).toMatchObject({
+      type: 'div',
+      props: { nodeType: 'tooltipbox', text: 'Save the file', disabled: false },
+    })
+    expect(
+      render(Compose.TooltipBox, { text: 'Saves automatically', title: 'Save', enabled: false })
+    ).toMatchObject({
+      props: { nodeType: 'tooltipbox', text: 'Saves automatically', title: 'Save', disabled: true },
+    })
+  })
+
+  it('accepts defaults and rejects bad text', () => {
+    expect(() => validateTooltipBoxProps({ text: 'Save' })).not.toThrow()
+    expect(() => validateTooltipBoxProps({} as never)).toThrow(
+      'Compose TooltipBox text must be a non-empty string'
+    )
+    expect(() => validateTooltipBoxProps({ text: 'Save', title: 4 as never })).toThrow(
+      'Compose TooltipBox title must be string'
+    )
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.TooltipBox({ text: 'Save' })).toThrow(
+      'Compose.TooltipBox requires an Android native build'
+    )
+  })
+})
+
+describe('compose animated visibility', () => {
+  it('renders visibility with transitions', () => {
+    expect(
+      render(Compose.AnimatedVisibility, { visible: true, enter: 'scale', exit: 'fade' })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'animatedvisibility',
+        visible: true,
+        enterTransition: 'scale',
+        exitTransition: 'fade',
+      },
+    })
+    expect(render(Compose.AnimatedVisibility, { visible: false })).toMatchObject({
+      props: { nodeType: 'animatedvisibility', visible: false },
+    })
+  })
+
+  it('accepts defaults and rejects bad transitions', () => {
+    expect(() => validateAnimatedVisibilityProps({ visible: true })).not.toThrow()
+    expect(() => validateAnimatedVisibilityProps({} as never)).toThrow(
+      'Compose AnimatedVisibility visible must be a boolean'
+    )
+    expect(() =>
+      validateAnimatedVisibilityProps({ visible: true, enter: 'spin' as never })
+    ).toThrow(
+      'Compose AnimatedVisibility enter must be one of fade, scale, slideVertically, expandVertically'
+    )
+    expect(() =>
+      validateAnimatedVisibilityProps({ visible: true, exit: 'spin' as never })
+    ).toThrow(
+      'Compose AnimatedVisibility exit must be one of fade, scale, slideVertically, expandVertically'
+    )
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.AnimatedVisibility({ visible: true })).toThrow(
+      'Compose.AnimatedVisibility requires an Android native build'
     )
   })
 })

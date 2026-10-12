@@ -1,5 +1,7 @@
 import type {
   ComposeAlertDialogProps,
+  ComposeAnimatedVisibilityProps,
+  ComposeAnimatedVisibilityTransition,
   ComposeAssistChipProps,
   ComposeBadgeProps,
   ComposeBoxProps,
@@ -36,6 +38,7 @@ import type {
   ComposeTextFieldProps,
   ComposeTextProps,
   ComposeToggleButtonProps,
+  ComposeTooltipBoxProps,
   ComposeSegmentedButtonProps,
   ComposeDatePickerProps,
   ComposeTimePickerProps,
@@ -1063,6 +1066,27 @@ export function validatePullToRefreshBoxProps(props: ComposePullToRefreshBoxProp
   assertBoolean(props.isRefreshing, 'PullToRefreshBox isRefreshing')
   assertFunction(props.onRefresh, 'PullToRefreshBox onRefresh')
   assertOptionalBoolean(props.enabled, 'PullToRefreshBox enabled')
+}
+
+export const animatedVisibilityTransitions: readonly ComposeAnimatedVisibilityTransition[] = [
+  'fade',
+  'scale',
+  'slideVertically',
+  'expandVertically',
+]
+
+export function validateTooltipBoxProps(props: ComposeTooltipBoxProps) {
+  assertString(props.text, 'TooltipBox text', true)
+  assertOptionalString(props.title, 'TooltipBox title')
+  assertOptionalBoolean(props.enabled, 'TooltipBox enabled')
+}
+
+export function validateAnimatedVisibilityProps(props: ComposeAnimatedVisibilityProps) {
+  assertBoolean(props.visible, 'AnimatedVisibility visible')
+  if (props.enter !== undefined)
+    assertOneOf(props.enter, 'AnimatedVisibility enter', animatedVisibilityTransitions)
+  if (props.exit !== undefined)
+    assertOneOf(props.exit, 'AnimatedVisibility exit', animatedVisibilityTransitions)
 }
 
 export function validateModalBottomSheetProps(props: ComposeModalBottomSheetProps) {
