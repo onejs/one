@@ -1385,9 +1385,9 @@ describe('one native integration tests', () => {
     for (const [testID, message] of [
       ['one-native-animators-invalid-empty', 'Swift.PhaseAnimator phases must not be empty'],
       ['one-native-animators-invalid-static', 'Swift.PhaseAnimator takes a content function of its phase'],
-      ['one-native-animators-invalid-prop', 'content can vary only swiftStyle by phase'],
-      ['one-native-animators-invalid-curve', 'must map its value linearly to swiftStyle numbers; width does not'],
-      ['one-native-animators-invalid-keyframes', 'keyframes must not depend on their value argument'],
+      ['one-native-animators-invalid-prop', 'Swift.PhaseAnimator content can vary only swiftStyle by phase'],
+      ['one-native-animators-invalid-curve', 'Swift.KeyframeAnimator content must map its value linearly to swiftStyle numbers; width does not'],
+      ['one-native-animators-invalid-keyframes', 'Swift.KeyframeAnimator keyframes must not depend on their value argument'],
     ])
       test(`${testID.replace('one-native-animators-invalid-', '')} content throws instead of mounting`, sharedTestOptions, async () => {
         await navigateTo(driver, '/one-native-animators')
