@@ -40,7 +40,9 @@
 #include "HybridOneLightSensorSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneLocationSpecSwift.hpp"
+#include "HybridOneMailComposeSpecSwift.hpp"
 #include "HybridOneMapServicesSpecSwift.hpp"
+#include "HybridOneMessageComposeSpecSwift.hpp"
 #include "HybridOneMotionSpecSwift.hpp"
 #include "HybridOneNativeModulesSpecSwift.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
@@ -1088,6 +1090,54 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
+  // pragma MARK: std::function<void(MailComposeResult /* result */, const std::optional<DocumentCameraError>& /* error */)>
+  Func_void_MailComposeResult_std__optional_DocumentCameraError_ create_Func_void_MailComposeResult_std__optional_DocumentCameraError_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_MailComposeResult_std__optional_DocumentCameraError_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](MailComposeResult result, const std::optional<DocumentCameraError>& error) mutable -> void {
+      swiftClosure.call(static_cast<int>(result), error);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneMailComposeSpec>
+  std::shared_ptr<HybridOneMailComposeSpec> create_std__shared_ptr_HybridOneMailComposeSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneMailComposeSpec_cxx swiftPart = One::HybridOneMailComposeSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneMailComposeSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneMailComposeSpec_(std__shared_ptr_HybridOneMailComposeSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneMailComposeSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneMailComposeSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneMailComposeSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneMailComposeSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(MessageComposeResult /* result */)>
+  Func_void_MessageComposeResult create_Func_void_MessageComposeResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_MessageComposeResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](MessageComposeResult result) mutable -> void {
+      swiftClosure.call(static_cast<int>(result));
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneMessageComposeSpec>
+  std::shared_ptr<HybridOneMessageComposeSpec> create_std__shared_ptr_HybridOneMessageComposeSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneMessageComposeSpec_cxx swiftPart = One::HybridOneMessageComposeSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneMessageComposeSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneMessageComposeSpec_(std__shared_ptr_HybridOneMessageComposeSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneMessageComposeSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneMessageComposeSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneMessageComposeSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneMessageComposeSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
   // pragma MARK: std::function<void(const MotionReading& /* reading */)>
   Func_void_MotionReading create_Func_void_MotionReading(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_MotionReading::fromUnsafe(swiftClosureWrapper);

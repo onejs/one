@@ -12,6 +12,30 @@ import NitroModules
 public final class OneAutolinking {
   public typealias bridge = margelo.nitro.one.bridge.swift
 
+  public static func createOneMailCompose() -> bridge.std__shared_ptr_HybridOneMailComposeSpec_ {
+    let hybridObject = HybridOneMailCompose()
+    return { () -> bridge.std__shared_ptr_HybridOneMailComposeSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneMailComposeRecyclable() -> Bool {
+    return HybridOneMailCompose.self is any RecyclableView.Type
+  }
+
+  public static func createOneMessageCompose() -> bridge.std__shared_ptr_HybridOneMessageComposeSpec_ {
+    let hybridObject = HybridOneMessageCompose()
+    return { () -> bridge.std__shared_ptr_HybridOneMessageComposeSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneMessageComposeRecyclable() -> Bool {
+    return HybridOneMessageCompose.self is any RecyclableView.Type
+  }
+
   public static func createOneDocumentCamera() -> bridge.std__shared_ptr_HybridOneDocumentCameraSpec_ {
     let hybridObject = HybridOneDocumentCamera()
     return { () -> bridge.std__shared_ptr_HybridOneDocumentCameraSpec_ in

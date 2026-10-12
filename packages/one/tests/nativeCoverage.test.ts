@@ -55,6 +55,10 @@ const partialGaps: Record<string, string> = {
     'bounded iOS Home scalar/JSX fixture; Android references unavailable checks; root/aggregate unaccepted',
   LiveActivities:
     'bounded iOS cover-sheet scalar/JSX and expanded JSX Island fixture; Android supported rendering, compact/minimal, scalar Island and hardware-lock unproven; root/aggregate unaccepted',
+  'iOS.MFMailComposeViewController':
+    'production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven',
+  'iOS.MFMessageComposeViewController':
+    'production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven',
   'iOS.VNDocumentCameraViewController':
     'production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven',
   'iOS.WidgetUI':

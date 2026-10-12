@@ -226,3 +226,5 @@ export type { PagerProps, PagerRef, PagerScrollEvent, PagerSelectedEvent, PagerS
 
 export { VNDocumentCameraViewController } from './vision-kit/index'
 export type { VNDocumentCameraScan, VNDocumentCameraError, VNDocumentCameraViewControllerDelegate } from './vision-kit/index'
+
+export { MFMailComposeViewController, MFMessageComposeViewController } from './message-ui/index'

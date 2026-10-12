@@ -9,6 +9,8 @@
     "androidCxxLibName": "One"
   },
   "autolinking": {
+    "OneMailCompose": { "ios": { "language": "swift", "implementationClassName": "HybridOneMailCompose" } },
+    "OneMessageCompose": { "ios": { "language": "swift", "implementationClassName": "HybridOneMessageCompose" } },
     "OneDocumentCamera": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneDocumentCamera" }
     },

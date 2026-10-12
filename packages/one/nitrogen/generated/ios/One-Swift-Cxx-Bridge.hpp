@@ -206,8 +206,12 @@ namespace margelo::nitro::one { class HybridOneLightSensorSpec; }
 namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
+// Forward declaration of `HybridOneMailComposeSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMailComposeSpec; }
 // Forward declaration of `HybridOneMapServicesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneMapServicesSpec; }
+// Forward declaration of `HybridOneMessageComposeSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneMessageComposeSpec; }
 // Forward declaration of `HybridOneMotionSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneMotionSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
@@ -274,6 +278,8 @@ namespace margelo::nitro::one { enum class LocationPermissionStatus; }
 namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
+// Forward declaration of `MailComposeResult` to properly resolve imports.
+namespace margelo::nitro::one { enum class MailComposeResult; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
 // Forward declaration of `MapPlace` to properly resolve imports.
@@ -284,6 +290,10 @@ namespace margelo::nitro::one { struct MapRouteStep; }
 namespace margelo::nitro::one { struct MapRoute; }
 // Forward declaration of `MapSuggestion` to properly resolve imports.
 namespace margelo::nitro::one { struct MapSuggestion; }
+// Forward declaration of `MessageAttachment` to properly resolve imports.
+namespace margelo::nitro::one { struct MessageAttachment; }
+// Forward declaration of `MessageComposeResult` to properly resolve imports.
+namespace margelo::nitro::one { enum class MessageComposeResult; }
 // Forward declaration of `MotionAvailability` to properly resolve imports.
 namespace margelo::nitro::one { struct MotionAvailability; }
 // Forward declaration of `MotionReading` to properly resolve imports.
@@ -480,8 +490,12 @@ namespace One { class HybridOneLightSensorSpec_cxx; }
 namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocationSpec_cxx; }
+// Forward declaration of `HybridOneMailComposeSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMailComposeSpec_cxx; }
 // Forward declaration of `HybridOneMapServicesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneMapServicesSpec_cxx; }
+// Forward declaration of `HybridOneMessageComposeSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneMessageComposeSpec_cxx; }
 // Forward declaration of `HybridOneMotionSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneMotionSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
@@ -618,7 +632,9 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneLightSensorSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
+#include "HybridOneMailComposeSpec.hpp"
 #include "HybridOneMapServicesSpec.hpp"
+#include "HybridOneMessageComposeSpec.hpp"
 #include "HybridOneMotionSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
 #include "HybridOneNetworkSpec.hpp"
@@ -652,11 +668,14 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
 #include "LocationPosition.hpp"
+#include "MailComposeResult.hpp"
 #include "MapCoordinate.hpp"
 #include "MapPlace.hpp"
 #include "MapRoute.hpp"
 #include "MapRouteStep.hpp"
 #include "MapSuggestion.hpp"
+#include "MessageAttachment.hpp"
+#include "MessageComposeResult.hpp"
 #include "MotionAvailability.hpp"
 #include "MotionReading.hpp"
 #include "MotionSensor.hpp"
@@ -4315,6 +4334,100 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<MapRoute>>>::withError(error);
   }
   
+  // pragma MARK: std::optional<DocumentCameraError>
+  /**
+   * Specialized version of `std::optional<DocumentCameraError>`.
+   */
+  using std__optional_DocumentCameraError_ = std::optional<DocumentCameraError>;
+  inline std::optional<DocumentCameraError> create_std__optional_DocumentCameraError_(const DocumentCameraError& value) noexcept {
+    return std::optional<DocumentCameraError>(value);
+  }
+  inline bool has_value_std__optional_DocumentCameraError_(const std::optional<DocumentCameraError>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline DocumentCameraError get_std__optional_DocumentCameraError_(const std::optional<DocumentCameraError>& optional) noexcept {
+    return optional.value();
+  }
+
+  // pragma MARK: std::function<void(MailComposeResult /* result */, const std::optional<DocumentCameraError>& /* error */)>
+  /**
+   * Specialized version of `std::function<void(MailComposeResult, const std::optional<DocumentCameraError>&)>`.
+   */
+  using Func_void_MailComposeResult_std__optional_DocumentCameraError_ = std::function<void(MailComposeResult /* result */, const std::optional<DocumentCameraError>& /* error */)>;
+  /**
+   * Wrapper class for a `std::function<void(MailComposeResult / * result * /, const std::optional<DocumentCameraError>& / * error * /)>`, this can be used from Swift.
+   */
+  class Func_void_MailComposeResult_std__optional_DocumentCameraError__Wrapper final {
+  public:
+    explicit Func_void_MailComposeResult_std__optional_DocumentCameraError__Wrapper(std::function<void(MailComposeResult /* result */, const std::optional<DocumentCameraError>& /* error */)>&& func): _function(std::make_unique<std::function<void(MailComposeResult /* result */, const std::optional<DocumentCameraError>& /* error */)>>(std::move(func))) {}
+    inline void call(int result, std::optional<DocumentCameraError> error) const noexcept {
+      _function->operator()(static_cast<MailComposeResult>(result), error);
+    }
+  private:
+    std::unique_ptr<std::function<void(MailComposeResult /* result */, const std::optional<DocumentCameraError>& /* error */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MailComposeResult_std__optional_DocumentCameraError_ create_Func_void_MailComposeResult_std__optional_DocumentCameraError_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MailComposeResult_std__optional_DocumentCameraError__Wrapper wrap_Func_void_MailComposeResult_std__optional_DocumentCameraError_(Func_void_MailComposeResult_std__optional_DocumentCameraError_ value) noexcept {
+    return Func_void_MailComposeResult_std__optional_DocumentCameraError__Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneMailComposeSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneMailComposeSpec>`.
+   */
+  using std__shared_ptr_HybridOneMailComposeSpec_ = std::shared_ptr<HybridOneMailComposeSpec>;
+  std::shared_ptr<HybridOneMailComposeSpec> create_std__shared_ptr_HybridOneMailComposeSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneMailComposeSpec_(std__shared_ptr_HybridOneMailComposeSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneMailComposeSpec>
+  using std__weak_ptr_HybridOneMailComposeSpec_ = std::weak_ptr<HybridOneMailComposeSpec>;
+  inline std__weak_ptr_HybridOneMailComposeSpec_ weakify_std__shared_ptr_HybridOneMailComposeSpec_(const std::shared_ptr<HybridOneMailComposeSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: std::vector<MessageAttachment>
+  /**
+   * Specialized version of `std::vector<MessageAttachment>`.
+   */
+  using std__vector_MessageAttachment_ = std::vector<MessageAttachment>;
+  inline std::vector<MessageAttachment> create_std__vector_MessageAttachment_(size_t size) noexcept {
+    std::vector<MessageAttachment> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::function<void(MessageComposeResult /* result */)>
+  /**
+   * Specialized version of `std::function<void(MessageComposeResult)>`.
+   */
+  using Func_void_MessageComposeResult = std::function<void(MessageComposeResult /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(MessageComposeResult / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_MessageComposeResult_Wrapper final {
+  public:
+    explicit Func_void_MessageComposeResult_Wrapper(std::function<void(MessageComposeResult /* result */)>&& func): _function(std::make_unique<std::function<void(MessageComposeResult /* result */)>>(std::move(func))) {}
+    inline void call(int result) const noexcept {
+      _function->operator()(static_cast<MessageComposeResult>(result));
+    }
+  private:
+    std::unique_ptr<std::function<void(MessageComposeResult /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_MessageComposeResult create_Func_void_MessageComposeResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_MessageComposeResult_Wrapper wrap_Func_void_MessageComposeResult(Func_void_MessageComposeResult value) noexcept {
+    return Func_void_MessageComposeResult_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneMessageComposeSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneMessageComposeSpec>`.
+   */
+  using std__shared_ptr_HybridOneMessageComposeSpec_ = std::shared_ptr<HybridOneMessageComposeSpec>;
+  std::shared_ptr<HybridOneMessageComposeSpec> create_std__shared_ptr_HybridOneMessageComposeSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneMessageComposeSpec_(std__shared_ptr_HybridOneMessageComposeSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneMessageComposeSpec>
+  using std__weak_ptr_HybridOneMessageComposeSpec_ = std::weak_ptr<HybridOneMessageComposeSpec>;
+  inline std__weak_ptr_HybridOneMessageComposeSpec_ weakify_std__shared_ptr_HybridOneMessageComposeSpec_(const std::shared_ptr<HybridOneMessageComposeSpec>& strong) noexcept { return strong; }
+
   // pragma MARK: std::optional<MotionVector>
   /**
    * Specialized version of `std::optional<MotionVector>`.

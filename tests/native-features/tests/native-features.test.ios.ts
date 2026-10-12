@@ -72,6 +72,22 @@ describe('one native integration tests', () => {
     }
   })
 
+  describe('MessageUI composers', () => {
+    test('reports simulator capabilities and rejects unavailable composers', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-message-ui')
+      await waitForElement(driver, 'message-ui-screen')
+      expect(await (await waitForElement(driver, 'message-ui-mail-supported')).getText()).toBe('Mail: false')
+      expect(await (await waitForElement(driver, 'message-ui-text-supported')).getText()).toBe('Text: false')
+      await (await waitForElement(driver, 'message-ui-mail')).click()
+      await waitForElement(driver, 'Error: E_MAIL_COMPOSE_UNAVAILABLE')
+      expect(await (await waitForElement(driver, 'message-ui-result')).getText()).toBe('Result: rejected')
+      await (await waitForElement(driver, 'message-ui-text')).click()
+      await waitForElement(driver, 'Error: E_MESSAGE_COMPOSE_UNAVAILABLE')
+      expect(await (await waitForElement(driver, 'message-ui-result')).getText()).toBe('Result: rejected')
+      await captureScreenshot(driver, 'message-ui-unavailable')
+    })
+  })
+
   describe('VisionKit document camera', () => {
     test('reports actual simulator unavailability and rejects without pages', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-document-camera')
