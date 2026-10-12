@@ -15,6 +15,7 @@ tests = project.targets.find { |target| target.name == test_name } ||
   project.new_target(:ui_test_bundle, test_name, :ios, '17.0')
 
 FileUtils.cp(File.join(__dir__, 'OnePurchasesUITests.swift'), File.join(ios, 'OnePurchasesUITests.swift'))
+FileUtils.cp(File.join(__dir__, 'OneDerivedStoreViewsUITests.swift'), File.join(ios, 'OneDerivedStoreViewsUITests.swift'))
 FileUtils.cp(File.join(root, 'assets', 'one-native-purchases.storekit'), File.join(ios, 'OnePurchases.storekit'))
 
 group = project.main_group.children.find { |child| child.display_name == 'OnePurchasesProof' } ||
@@ -24,6 +25,9 @@ source = group.files.find { |file| file.path == 'OnePurchasesUITests.swift' } ||
 configuration = group.files.find { |file| file.path == 'OnePurchases.storekit' } ||
   group.new_file('OnePurchases.storekit')
 tests.source_build_phase.add_file_reference(source) unless tests.source_build_phase.files_references.include?(source)
+derived_source = group.files.find { |file| file.path == 'OneDerivedStoreViewsUITests.swift' } ||
+  group.new_file('OneDerivedStoreViewsUITests.swift')
+tests.source_build_phase.add_file_reference(derived_source) unless tests.source_build_phase.files_references.include?(derived_source)
 tests.resources_build_phase.add_file_reference(configuration) unless tests.resources_build_phase.files_references.include?(configuration)
 tests.add_dependency(app) unless tests.dependencies.any? { |dependency| dependency.target == app }
 tests.build_configurations.each do |config|
