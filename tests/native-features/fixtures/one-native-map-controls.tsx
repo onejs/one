@@ -3,9 +3,10 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 // the map's own controls, composed under the map so they operate on the owning
-// map. toggles mount and unmount each control; regions only changes when the
-// native side reports a finished pan, so it stays put while controls come and
-// go. the invalid control stays unmounted until its pressable runs.
+// map. toggles mount and unmount each control; regions counts the camera reports
+// mapkit sends when the map first settles and after each finished pan, so it stays
+// put while controls come and go. the invalid control stays unmounted until its
+// pressable runs.
 const pins = [
   { id: 'coit', label: 'Coit Tower', latitude: 37.8024, longitude: -122.4058 },
   { id: 'ballpark', label: 'Ballpark', latitude: 37.7786, longitude: -122.3893 },
