@@ -685,6 +685,19 @@ outputs.set(
             ])
           ),
           controlled: 'controlled' in component ? component.controlled : undefined,
+          commands:
+            'commands' in component
+              ? Object.fromEntries(
+                  Object.entries(component.commands as Record<string, Record<string, string>>).map(
+                    ([name, args]) => [
+                      name,
+                      Object.fromEntries(
+                        Object.entries(args).map(([arg, type]) => [arg, { type }])
+                      ),
+                    ]
+                  )
+                )
+              : undefined,
           actions: 'actions' in component ? component.actions : [],
           layout: 'layout' in component ? component.layout : undefined,
           slots: component.slots,

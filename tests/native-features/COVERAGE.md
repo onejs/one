@@ -66,7 +66,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Spacer` | building-blocks | n/a | OneNativeFormLayoutLibraryCase, OneSwiftListsLibraryCase |  |
 | `One.iOS.Slot` | containers | n/a | OneSwiftGlassLibraryCase |  |
 | `One.iOS.List` | lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, groups, swipe-actions, edit-button, navigation-split-view | n/a | OneSwiftListsLibraryCase | Text row modifiers proven in plain List; section spacing, margins, and header prominence proven in insetGrouped List; refreshable callback and rearm proven in plain List with a NavigationStack-hosted search field on iPhone; indicator duration and other modifiers/styles unproven |
-| `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids | n/a | OneSwiftLazyStacksLibraryCase, OneSwiftScrollViewportLibraryCase | vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven |
+| `One.iOS.ScrollView` | lists, list-row-background, scroll-search-refresh, editors, grids, e2e:one-native-scroll-reader | n/a | OneSwiftLazyStacksLibraryCase, OneSwiftScrollViewportLibraryCase | vertical refreshable callback and rearm proven with a NavigationStack-hosted search field on iPhone; indicator duration, standalone search hosting, horizontal/both axes, and other modifiers unproven |
+| `One.iOS.ScrollViewReader` | e2e:one-native-scroll-reader | n/a | missing |  |
 | `One.iOS.LazyVStack` | lists, list-row-background, scroll-search-refresh | n/a | OneSwiftLazyStacksLibraryCase |  |
 | `One.iOS.LazyHStack` | lists, list-row-background | n/a | OneSwiftLazyStacksLibraryCase |  |
 | `One.iOS.LazyVGrid` | grids | n/a | OneSwiftListsLibraryCase |  |
@@ -100,7 +101,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Slider` | pickers, forms, e2e:one-native-animation | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.Stepper` | pickers, forms, host | n/a | OneNativeFormControlsLibraryCase |  |
 | `One.iOS.PasteButton` | paste-button | n/a | OneSwiftPasteEditLibraryCase |  |
-| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-map-controls, e2e:one-native-geometry-reader | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
+| `One.iOS.Text` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, list-search-refresh, scroll-search-refresh, groups, state, grids, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, disclosure-group, tab-slot, edit-button, view-that-fits, popover, accessibility, navigation-split-view, e2e:one-native-map-controls, e2e:one-native-geometry-reader, e2e:one-native-scroll-reader | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftLazyStacksLibraryCase, OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Label` | leaves, containers | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.ProgressView` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Gauge` | leaves | n/a | OneSwiftTextActionsLibraryCase |  |
@@ -276,6 +277,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useWindowSegments` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
 | `useSpanning` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
 | `useNativeState` | state, ui-text-input, e2e:one-native-animation | state | missing |  |
+| `usePreventScreenCapture` | missing | missing | missing |  |
 | `useFonts` | fonts | fonts | missing |  |
 | `useBatteryLevel` | battery | battery | missing |  |
 | `useBatteryState` | battery | battery | missing |  |

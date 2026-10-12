@@ -154,6 +154,7 @@ declare module 'one' {
         | `/one-native-safe-area-bar`
         | `/one-native-screen-capture`
         | `/one-native-screen-orientation`
+        | `/one-native-scroll-reader`
         | `/one-native-scroll-search-refresh`
         | `/one-native-secure-store`
         | `/one-native-share`

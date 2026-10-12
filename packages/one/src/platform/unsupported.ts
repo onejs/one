@@ -34,6 +34,7 @@ import type {
   PagerProps,
   PopoverProps,
   ScrollViewProps,
+  ScrollViewReaderProps,
   SectionProps,
   SheetProps,
   SlotProps,
@@ -141,6 +142,9 @@ function Slot(_props: SlotProps): never {
 }
 function List(_props: ListProps): never {
   throw new Error('Swift.List requires an iOS native build')
+}
+function ScrollViewReader(_props: ScrollViewReaderProps): never {
+  throw new Error('Swift.ScrollViewReader requires an iOS native build')
 }
 function ScrollView(_props: ScrollViewProps): never {
   throw new Error(
@@ -296,6 +300,7 @@ export const Swift = {
   Slot,
   List,
   ScrollView,
+  ScrollViewReader,
   LazyVStack,
   LazyHStack,
   LazyVGrid,

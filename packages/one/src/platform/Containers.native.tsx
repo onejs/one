@@ -4,6 +4,7 @@ import {
   useContext,
   useRef,
   useState,
+  type ElementRef,
   type ReactNode,
 } from 'react'
 import { Platform } from 'react-native'
@@ -34,6 +35,9 @@ import NativeList from './specs/OneNativeListNativeComponent'
 import NativeOverlay from './specs/OneNativeOverlayNativeComponent'
 import NativeOverlayContent from './specs/OneNativeOverlayContentNativeComponent'
 import NativeScrollView from './specs/OneNativeScrollViewNativeComponent'
+import NativeScrollViewReader, {
+  Commands as ScrollViewReaderCommands,
+} from './specs/OneNativeScrollViewReaderNativeComponent'
 import NativeSwipeActions from './specs/OneNativeSwipeActionsNativeComponent'
 import NativeSwipeActionsActions from './specs/OneNativeSwipeActionsActionsNativeComponent'
 import NativeSection from './specs/OneNativeSectionNativeComponent'
@@ -49,10 +53,14 @@ import {
   lazyHStackAlignments,
   lazyVStackAlignments,
   scrollViewAxes,
+  unitPoints,
   type LazyHStackProps,
   type LazyVStackProps,
   type ListProps,
   type ScrollViewProps,
+  type ScrollViewProxy,
+  type ScrollViewReaderProps,
+  type UnitPoint,
 } from './listTypes'
 import {
   swipeActionsEdges,
@@ -379,6 +387,68 @@ export function ScrollView({
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeScrollView>
+  )
+}
+
+function unitPoint(anchor: UnitPoint): { x: number; y: number } {
+  if (typeof anchor === 'string') {
+    if (!Object.hasOwn(unitPoints, anchor))
+      throw new Error(
+        `Swift.ScrollViewProxy.scrollTo anchor must be a UnitPoint: one of ${Object.keys(unitPoints).join(', ')}, or { x, y }`
+      )
+    return unitPoints[anchor]
+  }
+  if (
+    typeof anchor !== 'object' ||
+    !Number.isFinite(anchor.x) ||
+    !Number.isFinite(anchor.y)
+  )
+    throw new Error('Swift.ScrollViewProxy.scrollTo anchor { x, y } must be finite numbers')
+  return anchor
+}
+
+// the content builder runs with a proxy whose scrollTo reaches the ScrollViewProxy
+// SwiftUI gave the native reader. as in SwiftUI, using it while the builder runs is
+// an error; call it from an event handler or an effect.
+export function ScrollViewReader({ children, style, ...props }: ScrollViewReaderProps) {
+  const host = useRef<ElementRef<typeof NativeScrollViewReader> | null>(null)
+  const building = useRef(false)
+  const [proxy] = useState<ScrollViewProxy>(() => ({
+    scrollTo(id, anchor) {
+      if (building.current)
+        throw new Error(
+          'Swift.ScrollViewProxy.scrollTo cannot run while Swift.ScrollViewReader builds its content; call it from an event handler or effect'
+        )
+      if (typeof id !== 'string')
+        throw new Error('Swift.ScrollViewProxy.scrollTo id must be a string matching a swiftStyle.id')
+      const point = anchor == null ? null : unitPoint(anchor)
+      if (!host.current)
+        throw new Error('Swift.ScrollViewProxy.scrollTo needs its Swift.ScrollViewReader mounted')
+      ScrollViewReaderCommands.scrollTo(
+        host.current,
+        id,
+        point !== null,
+        point?.x ?? 0,
+        point?.y ?? 0
+      )
+    },
+  }))
+  if (typeof children !== 'function')
+    throw new Error(
+      'Swift.ScrollViewReader takes a render function of its proxy; pass (proxy) => content'
+    )
+  building.current = true
+  let content: ReactNode
+  try {
+    content = children(proxy)
+  } finally {
+    building.current = false
+  }
+  assertOneNativeChildren(content, 'Swift.ScrollViewReader')
+  return (
+    <NativeScrollViewReader {...props} ref={host} style={viewportStyle(style)}>
+      <InsideContainer value={true}>{content}</InsideContainer>
+    </NativeScrollViewReader>
   )
 }
 

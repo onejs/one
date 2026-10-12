@@ -948,6 +948,94 @@ describe('one native integration tests', () => {
       expect(await error.getText()).toContain('takes SwiftUI children')
     })
   })
+
+  // -- scroll view reader: proxy.scrollTo moves the SwiftUI scroll view that
+  // reports its content offset through the SDK's onScrollGeometryChange --
+
+  describe('One Native Scroll Reader', () => {
+    const offsetOf = async (testID: string, label: string) => {
+      const text = await (await waitForElement(driver, testID)).getText()
+      const match = text.match(new RegExp(`${label}: (-?\\d+)`))
+      if (!match) throw new Error(`no ${label} in ${text}`)
+      return Number(match[1])
+    }
+    const scrollAndSettle = async (button: string, last: string) => {
+      await (await waitForElement(driver, button)).click()
+      const status = await waitForElement(driver, 'one-native-scroll-reader-status')
+      await status.waitUntil(async () => (await status.getText()).includes(`Last: ${last}`), {
+        timeout: 10_000,
+        timeoutMsg: `scrollTo ${last} did not run`,
+      })
+      // the offset settles when two reads a frame apart agree.
+      let previous = Number.NaN
+      await status.waitUntil(
+        async () => {
+          const next = await offsetOf('one-native-scroll-reader-status', 'Offset')
+          const settled = next === previous
+          previous = next
+          return settled
+        },
+        { timeout: 10_000, interval: 250, timeoutMsg: `offset after ${last} did not settle` }
+      )
+      return previous
+    }
+
+    test('reader mounts its content at the top', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-scroll-reader')
+      const view = await waitForElement(driver, 'one-native-scroll-reader-view', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+      expect(await offsetOf('one-native-scroll-reader-status', 'Offset')).toBe(0)
+      await captureScreenshot(driver, 'one-native-scroll-reader-mounted')
+    })
+
+    test('scrollTo moves the scroll view to each anchor', sharedTestOptions, async () => {
+      // rows are 40pt in a 200pt viewport: row-29 at the bottom edge leaves
+      // 30 rows (and their spacing) above the viewport's bottom.
+      const bottom = await scrollAndSettle('one-native-scroll-reader-bottom', 'row-29 bottom')
+      expect(bottom).toBeGreaterThanOrEqual(30 * 40 - 200)
+      await captureScreenshot(driver, 'one-native-scroll-reader-bottom')
+      const top = await scrollAndSettle('one-native-scroll-reader-top', 'row-0 top')
+      expect(top).toBe(0)
+      // a nil anchor reveals row-39 with the least scrolling: the end of content.
+      const nil = await scrollAndSettle('one-native-scroll-reader-nil', 'row-39 nil')
+      expect(nil).toBeGreaterThan(bottom)
+    })
+
+    test('an id no view carries leaves the scroll view where it was', sharedTestOptions, async () => {
+      const before = await offsetOf('one-native-scroll-reader-status', 'Offset')
+      expect(before).toBeGreaterThan(0)
+      const after = await scrollAndSettle('one-native-scroll-reader-missing', 'missing top')
+      expect(after).toBe(before)
+    })
+
+    test('an invalid anchor throws instead of scrolling', sharedTestOptions, async () => {
+      const before = await offsetOf('one-native-scroll-reader-status', 'Offset')
+      await (await waitForElement(driver, 'one-native-scroll-reader-invalid-anchor')).click()
+      const error = await waitForElement(driver, 'one-native-scroll-reader-anchor-error')
+      expect(await error.getText()).toContain('anchor must be a UnitPoint')
+      expect(await offsetOf('one-native-scroll-reader-status', 'Offset')).toBe(before)
+    })
+
+    test('scrollTo from a mount effect runs once the reader appears', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-scroll-reader-mount')).click()
+      const status = await waitForElement(driver, 'one-native-scroll-reader-mount-status')
+      // row-20 at the top edge sits below 20 rows and their spacing.
+      await status.waitUntil(
+        async () => (await offsetOf('one-native-scroll-reader-mount-status', 'Mount offset')) >= 20 * 40,
+        { timeout: 10_000, timeoutMsg: 'mount-time scrollTo did not reach row-20' }
+      )
+      await captureScreenshot(driver, 'one-native-scroll-reader-mount')
+    })
+
+    test('scrollTo while the content builds throws', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-scroll-reader-building')).click()
+      await dismissExpectedRenderError(driver, 'cannot run while Swift.ScrollViewReader builds')
+      const error = await waitForElement(driver, 'one-native-scroll-reader-building-error')
+      expect(await error.getText()).toContain('cannot run while Swift.ScrollViewReader builds')
+    })
+  })
 })
 
 // the standalone runner owns app launch and debugger automation after Appium closes.
